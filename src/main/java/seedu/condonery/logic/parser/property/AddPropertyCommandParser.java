@@ -13,6 +13,7 @@ import static seedu.condonery.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.Set;
 import java.util.stream.Stream;
 
+import seedu.condonery.commons.core.Messages;
 import seedu.condonery.logic.commands.Command;
 import seedu.condonery.logic.commands.property.AddPropertyCommand;
 import seedu.condonery.logic.parser.ArgumentMultimap;
@@ -52,7 +53,15 @@ public class AddPropertyCommandParser implements Parser<Command> {
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+
+        try {
+            Integer.parseInt(ParserUtil.parsePrice(argMultimap.getValue(PREFIX_PRICE).get()).value);
+        } catch (NumberFormatException e) {
+            throw new ParseException(Messages.MESSAGE_NUMBER_OUT_OF_RANGE);
+        }
+
         Price price = ParserUtil.parsePrice(argMultimap.getValue(PREFIX_PRICE).get());
+
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Set<Client> interestedClientList = ParserUtil.parseClients(argMultimap.getAllValues(PREFIX_INTERESTEDCLIENTS));
         PropertyTypeEnum propertyTypeEnum =
