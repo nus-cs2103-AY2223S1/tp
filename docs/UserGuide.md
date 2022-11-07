@@ -991,6 +991,9 @@ the file that contains the data of your previous Plannit home folder.
 <br>
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
+
 # 4. Glossary
 
 | Term                  | Meaning                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
