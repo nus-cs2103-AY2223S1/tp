@@ -199,8 +199,37 @@ Classes used by multiple components are in the `eatwhere.foodguide.commons` pack
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Find (Find, FindCuisine, FindLocation, FindPrice, FindTag)
+### Displaying Command Help
 
+Users are able to view a help or usage message for individual commands by including a special flag in their input.
+This mimics the behaviour found in other CLI applications and shells, where it is facilitated by
+the addition of arguments such as `-h`, `-help`, or `--help`.
+
+#### Implementation
+
+The FoodGuide's current `PREFIX_HELP`, representing the help flag, is `-h`,
+which aligns with the other prefixes in the command syntax.
+In the FoodGuide, since all parsing beyond identifying the command word is handled by individual command parsers,
+searching for this flag has to be done in these parsers.
+
+Individual `CommandParser`s return instances of their `Command`.
+Because different commands have varying number of arguments, modifying `CommandResult` to support the
+displaying of a help message would require additional constructors for all supported commands,
+which is tedious and makes future commands harder to implement.
+
+Therefore, the option to display help instead makes use of a special exception `DisplayCommandHelpException`,
+which is thrown when `PREFIX_HELP` is detected. This then bypasses usual command evaluation and
+returns the usage message of the command.
+
+The detection of `PREFIX_HELP` is as follows:
+* The prefix must not be accompanied by a value. `-hello` and `-h ello` will not invoke the exception.
+* Presence of the prefix overrides other arguments.
+
+The detection rules limit false-positives from stray `-h`s in names of eateries, locations, etc.
+
+For supported commands, the following activity diagram summarizes what happens when a user executes a command:
+
+<img src="images/CommandDisplayHelpActivityDiagram.png" />
 
 ### \[Proposed\] Undo/redo feature
 
