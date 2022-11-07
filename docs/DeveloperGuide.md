@@ -860,11 +860,11 @@ Prerequisite: Only 1 guest to be edited. The guest's index should exist.
 Prerequisite: All guests room cleaning status will be edited.
 
    1. Test case: `markroomsunclean`<br>
-      Expected: All guests' room clean statuses are marked as unclean and the icon representing isRoomClean will change to red for all the guests.
+      Expected: All guests' room clean statuses are marked as unclean and the icon representing `isRoomClean` will change to red for all the guests.
    2. Test case: `markroomunclean`<br>
       Expected: No guest's room clean status is changed. The command is invalid as it is missing a "s" after the "room".
    3. Test case: `markRoomsUnclean`<br>
-      Expected: No guest's room clean status is changed. The command is invalid as is capitalised the "R" and "U" when they should have been lower case.
+      Expected: No guest's room clean status is changed. The command is invalid as it capitalised the "R" and "U" when they should have been lower case.
 
 ### Changing guest's bill value
 
@@ -873,12 +873,12 @@ The guest should exist in GuestBook. The format and content of the command shoul
 The bill value cannot exceed 999,999,999,999.99.
 The test cases must be executed in succession as stated below for the intended outcome.
 
-We assume that there is a guest named John in the list.
+We assume that there is only one guest in the list.
 
    1. Test case: `bill 1 b/10`
-      Expected: The bill for guest will be added from $0 to $10.
+      Expected: The bill for the first guest in the current list will be incremented by 10.
    2. Test case: `bill 1 b/-10`
-      Expected: The bill for guest will be subtracted from $10 to $0.
+      Expected: The bill for the first guest in the current list will be decremented by 10.
    3. Test case: `bill 2 b/10`
       Expected: No guest's bill is edited, because the input index **does not exist**. Error details shown in the result display."
    4. Test case: `bill 1 b/9999999999999`
@@ -891,7 +891,7 @@ Prerequisite: all guests in GuestBook will be deleted.
 This command is irreversible.
 
    1. Test case: `clear`
-      Expected: All guests in the guest book will be deleted
+      Expected: All guests in GuestBook will be deleted.
 
 ### Saving data
 
