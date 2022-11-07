@@ -160,7 +160,7 @@ The parameters required for each command can be found in [Command Summary](#9-co
 
 ### 6.4. How to Use the CLI
 
-If you already know about [Command Line Interface (CLI)](#CLI), you can skip this part and read the [Commands](#7-commands).
+If you already know about [Command Line Interface (CLI)](#cli), you can skip this part and read the [Commands](#7-commands).
 
 To use the CLI, you can type a command, which is supposed to be typed in a certain [format](#63-command-format), in the command box and press Enter. SoConnect will perform a specific action. You could try using the CLI using some examples provided below. <br>
 
