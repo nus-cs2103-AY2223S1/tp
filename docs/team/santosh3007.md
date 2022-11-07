@@ -5,8 +5,8 @@ title: Santosh Muthukrishnan's Project Portfolio Page
 
 ## Project: Swift+
 
-Swift+ is a **project management application** designed to help software engineering (SWE) project leads in tracking their daily
-interactions with contacts. The user interacts with Swift+ mainly through a Command Line Interface (CLI). The application is
+Swift+ is a **project management application** designed to help software engineering (SWE) project leads in tracking their daily tasks and
+interactions with different contacts. The user interacts with Swift+ mainly through a Command Line Interface (CLI). The application is
 written in **Java** and has about **10k LoC**.
 
 Given below are my contributions to the project.
@@ -40,11 +40,17 @@ Given below are my contributions to the project.
     - Added documentation for `edit_task` command ([#27](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/27))
     - Added documentation for Command Suggestion and Autocomplete features
     - Added documentation for `mark` and `unmark` commands
+    - Added Caution note for `clear` command
   - Developer Guide:
     - Updated and added Non-Functional Requirements ([#28](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/28))
     - Added implementation details of Command Suggestion and Autocomplete ([#82](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/82))
+    - Added and updated class diagrams for UI (With and without Task/Contact display panels)
+    - Update PersonTaskBridge Diagram
 
 <!-- * **Project management**: to be added soon -->
 
 - **Reviewing/Mentoring**:
-  - PRs reviewed (with non-trivial review comments): [#77](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/77), [#83](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/83), [#85](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/85), [#101](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/101), [#111](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/111), [#119](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/119), [#121](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/121), [#127](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/127), [#132](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/132), [#137](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/137), [#138](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/138), [#139](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/139), [#190](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/190), [#191](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/191), [#193](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/193)
+  - PRs reviewed (with non-trivial review comments): [#77](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/77), [#83](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/83), [#85](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/85), [#101](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/101), [#111](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/111), [#119](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/119), [#121](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/121), [#127](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/127), [#132](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/132), [#137](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/137), [#138](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/138), [#139](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/139), [#190](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/190), [#191](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/191), [#193](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/193), [#199](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/199), [#217](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/217),  [#251](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/251)
+  - Helped with the logic behind tab switching and panel management  [#111](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/111)
+  - Helped with coming up with the idea of making `CommandResult` include a `CommandType` enum to differentiate which tab each command is associated to  [#111](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/111)
+
