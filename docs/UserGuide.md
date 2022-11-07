@@ -69,11 +69,11 @@ This User Guide has been structured in a way to help you find information easily
 ,Section - reading this document you can find a multitude of tips on how to use this User Guide. The following sections 
 documents the main features of FRIDAY
 
-1. [Student management](#Student management)
-2. [Organizing students](#Organizing students)
-3. [Grading students](#Grading students)
-4. [Miscellaneous features](#Miscellaneous features)
-5. [Features for advanced users](#Features for advanced users)
+1. [Student management](#student-management)
+2. [Organizing students](#organizing-students)
+3. [Grading students](#grading-students)
+4. [Miscellaneous features](#miscellaneous-features)
+5. [Features for advanced users](#features-for-advanced-users)
 
 ### Reading this document
 This section on reading the document will introduce you to some technical terms and formats that will be used throughout the guide.
@@ -148,15 +148,16 @@ and hyperlinks to the first occurrence of the word in each section of the User g
 
 [Table of Contents](#table-of-contents)
 
+--------------------------------------------------------------------------------------------------------------------
 
 ## Features
 
 This section contains all the information and details of each feature of **FRIDAY**. These features are split into 5 sections depending on their purpose and function:
-1. [Student management](#Student management)
-2. [Organizing students](#Organizing students)
-3. [Grading students](#Grading students)
-4. [Miscellaneous features](#Miscellaneous features)
-5. [Features for advanced users](#Features for advanced users)
+1. [Student management](#student-management)
+2. [Organizing students](#organizing-students)
+3. [Grading students](#grading-students)
+4. [Miscellaneous features](#miscellaneous-features)
+5. [Features for advanced users](#features-for-advanced-users)
 
 ## Student management
 
@@ -171,7 +172,7 @@ The table below shows a list of command parameters that will be used.
 <tr><td><pre>TELEGRAM_HANDLE</pre></td><td>The Telegram handle of the student. <br> <br> The Telegram handle can only contain alphanumeric characters and underscores. <br> <br> It must also be between 5 and 32 characters long.</td><td><code>johndoe_123</code></td></tr>
 <tr><td><pre>CONSULTATION_DATE</pre></td><td>The consultation date of the student. <br> <br> It must be a valid date in the <code> YYYY-MM-DD </code> format, where the year is between 1900 and 2999.</td><td>E.g. <code>2022-09-27</code> would represent the student's consultation date of 27 September 2022.</td></tr>
 <tr><td><pre>MASTERY_CHECK_DATE</pre></td><td>The Mastery Check date of the student. <br> <br> It must be a valid date in the <code> YYYY-MM-DD </code> format, where the year is between 1900 and 2999.</td><td>E.g. <code>2022-08-30</code> would represent the student's Mastery Check date of 30 August 2022.</td></tr>
-<tr><td><pre>TAG</pre></td><td>The tag you want to attach to the student. </td><td>E.g. Typing <code>cool guy</code> would mean that "cool guy" is an additional information associated with the student.</td></tr>
+<tr><td><pre>TAG</pre></td><td>The additional information you want to attach to the student. </td><td>E.g. Typing <code>cool guy</code> would mean that "cool guy" is an additional information associated with the student.</td></tr>
 <tr><td><pre>REMARK</pre></td><td>The remark you want to add for the student. </td><td>E.g. Typing <code>Needs more help</code> would mean that "Needs more help" is an additional information associated with the student.</td></tr>
 <tr><td><pre>INDEX</pre></td><td>The index of the student in the displayed list. <br> <br> It must be a valid and positive index number.</td><td>E.g. Typing <code>2</code> would mean the student at the second position in the displayed list.</td></tr>
 </table>
