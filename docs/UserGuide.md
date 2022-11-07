@@ -431,7 +431,7 @@ Examples:
 <table>
   <tr>
     <td>Before executing edit consultation command</td>
-    <td>After executing example command to edit 1st consultation</td>
+    <td>After executing example command to edit the venue of the 1st consultation</td>
   </tr>
   <tr>
     <td><img src="images/AddConsultation.png" width=350></td>
