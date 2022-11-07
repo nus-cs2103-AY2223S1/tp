@@ -54,8 +54,8 @@ public class AddToCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New Attributes added to person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
-    public static final String MESSAGE_NO_ATTRIBUTE_TO_ADD = "Only tag, rating, note, and link "
-             + "attributes should be added and attributes to be added should not be empty!";
+    public static final String MESSAGE_NO_ATTRIBUTE_TO_ADD = "Only tag, rating, note, and link"
+            + "attributes should be added and attributes to be added should not be empty!";
 
     private final Index index;
     private final UpdatePersonDescriptor updatePersonDescriptor;
@@ -109,7 +109,7 @@ public class AddToCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createUpdatedPerson(Person personToUpdate,
+    static Person createUpdatedPerson(Person personToUpdate,
                                               AddToCommand.UpdatePersonDescriptor updatePersonDescriptor)
             throws TagTypeNotFoundException, TagNotFoundException, DuplicateTagException, RatingAlreadyExistsException {
         assert personToUpdate != null;

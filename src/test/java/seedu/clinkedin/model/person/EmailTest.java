@@ -1,5 +1,6 @@
 package seedu.clinkedin.model.person;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.clinkedin.testutil.Assert.assertThrows;
@@ -64,5 +65,39 @@ public class EmailTest {
         assertTrue(Email.isValidEmail("peter_jack@very-very-very-long-example.com")); // long domain name
         assertTrue(Email.isValidEmail("if.you.dream.it_you.can.do.it@example.com")); // long local part
         assertTrue(Email.isValidEmail("e1234567@u.nus.edu")); // more than one period in domain
+    }
+
+    @Test
+    public void email_toString() {
+        String emailString = "PeterJack_1190@example.com";
+        Email email1 = new Email("PeterJack_1190@example.com");
+        Email email2 = new Email("PeterJack_1190@example.com");
+        assertTrue(email1.toString().equals(email2.toString()));
+        assertEquals(email1.toString(), emailString);
+    }
+
+    @Test
+    public void equalityTests() {
+        Email email1 = new Email("PeterJack_1190@example.com");
+        Email email2 = new Email("PeterJack_1190@example.com");
+        Email email3 = new Email("PeterJack_110@example.com");
+        assertTrue(email1.equals(email2));
+        assertTrue(email1.equals(email1));
+        assertFalse(email1.equals(email3));
+        assertFalse(email1.equals(null));
+        assertFalse(email1.equals(5));
+    }
+
+    @Test
+    public void hashcodeTests() {
+        Email email1 = new Email("PeterJack_1190@example.com");
+        Email email2 = new Email("PeterJack_1190@example.com");
+        Email email3 = new Email("PeterJack_110@example.com");
+        int hashcode1 = email1.hashCode();
+        int hashcode2 = email2.hashCode();
+        int hashcode3 = email3.hashCode();
+        assertTrue(hashcode1 == hashcode1);
+        assertTrue(hashcode2 == hashcode2);
+        assertTrue(hashcode1 != hashcode3);
     }
 }
