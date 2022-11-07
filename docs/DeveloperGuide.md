@@ -162,7 +162,8 @@ API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-T08-4/tp/blob/master/
 
 The `Model` component,
 
-* stores the address book data i.e., all `Student` objects (which are contained in a `UniqueStudentList` object), all
+* stores the seta
+* data i.e., all `Student` objects (which are contained in a `UniqueStudentList` object), all
   `Question` objects (which are contained in a `UniqueQuestionList` object), all `Tutorial` objects (which are contained
   in a `UniqueTutorialList` object)
 * stores the currently 'selected' `Student` objects (e.g., results of a search query) as a separate _filtered_ list
@@ -183,7 +184,7 @@ The `Model` component,
 
 The `Storage` component,
 
-* can save both address book data and user preference data in json format, and read them back into corresponding
+* can save both seta data and user preference data in json format, and read them back into corresponding
   objects.
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only
   the functionality of only one is needed).
@@ -209,9 +210,8 @@ the student will be added on the Graphical User Interface.
 
 The Add Student mechanism is facilitated by `AddressBook`. It implements the following operations:
 
-* `AddressBook#hasStudent(Student s)` - Returns true if a student with the same identity as Student s exists in the
-  address book.
-* `AddressBook#addStudent(Student student)` - Adds a student to the address book.
+* `AddressBook#hasStudent(Student s)` - Returns true if a student with the same identity as Student's exists in seta.
+* `AddressBook#addStudent(Student student)` - Adds a student to the seta.
 
 These operations are exposed in the Model interface as `Model#hasStudent(Student student)`
 and `Model#addStudent(Student student)` respectively.
@@ -221,7 +221,7 @@ Given below is an example usage scenario and how the `addstu` mechanism behaves 
 Step 1. The user launches the application for the first time. The `AddressBook` will be initialised with the initial
 json data stored.
 
-Step 2. The user execute `addstu n/John Doe...` command to add student called John Doe to the address book. The `addstu`
+Step 2. The user execute `addstu n/John Doe...` command to add student called John Doe to the seta. The `addstu`
 command calls `AddStuCommandParser#parse()` which parses the string keyed into the command line of the GUI.
 
 Step 3. `AddStuCommandParser#parse()` invokes the creation of an `AddStuCommand` object.
@@ -325,27 +325,26 @@ The following activity diagram summarizes what happens when a user executes a ne
 The proposed add question mechanism is facilitated by `AddressBook`. It implements the following operations:
 
 * `AddressBook#hasQuestion(Question question)` - Returns true if a question with the same identity as Question question
-  exists in the address book.
+  exists in the seta.
 
-* `AddressBook#addQuestion(Question question)` - Adds a question to the question list in the address book.
+* `AddressBook#addQuestion(Question question)` - Adds a question to the question list in seta.
 
 These operations are exposed in the Model interface as `Model#hasQuestion(Question question)`
 and `Model#addQuestion(Question question)` respectively.
 
 Given below is an example usage scenario and how the addq mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `AddressBook` will be initialised with the initial
-address book state.
+Step 1. The user launches the application for the first time. The `AddressBook` will be initialised with the initial state.
 
 Step 2. The user execute `addq Why?` command to add question called "Why?" to the question list ('UniqueQuestionList').
-The `addq` command calls `Model#setAddressBook(ReadOnlyAddressBook addressBook)`, causing the modified address book
+The `addq` command calls `Model#setAddressBook(ReadOnlyAddressBook addressBook)`, causing the modified seta
 after the `addq Why?` command executes to be saved in the `addressBook`.
 
 **Note:**
 
 1. If a command fails its execution
    due to incorrect command format, it will not call `Model#setAddressBook(ReadOnlyAddressBook addressBook)`,
-   so the address book state will not be saved into `addressBook`. User will retype their command.
+   so the seta state will not be saved into `addressBook`. User will retype their command.
 2. If upon invoking `AddressBook#hasQuestion`
    method and return value is `true`, it will not call `Model#setAddressBook(ReadOnlyAddressBook addressBook)`,
    so 'UniqueQuestionList' and `addressBook` will not be updated.
@@ -365,11 +364,11 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Aspect: How addq executes:**
 
-* **Alternative 1 (current choice):** Saves the question inside the entire address book.
+* **Alternative 1 (current choice):** Saves the question inside seta.
     * Pros: Easy to implement.
     * Cons: If the data file is corrupted, all questions added are lost.
 
-* **Alternative 2:** Add questions to a separate list not part of the address book.
+* **Alternative 2:** Add questions to a separate list not part of seta.
     * Pros: Easier to test as data is stored separately.
     * Cons: Having separate lists will cause the code to be more complicated.
 
@@ -438,9 +437,8 @@ the tutorial will be added on the Graphical User Interface.
 
 The Add Tutorial mechanism is facilitated by `AddressBook`. It implements the following operations:
 
-* `AddressBook#hasTutorial(Tutorial t)` - Returns true if a tutorial with the same identity as Tutorial t exists in the
-  address book.
-* `AddressBook#addTutorial(Tutorial tutorial)` - Adds a tutorial to the address book.
+* `AddressBook#hasTutorial(Tutorial t)` - Returns true if a tutorial with the same identity as Tutorial t exists in seta.
+* `AddressBook#addTutorial(Tutorial tutorial)` - Adds a tutorial to seta.
 
 These operations are exposed in the Model interface as `Model#hasTutorial(Tutorial tutorial)`
 and `Model#addTutorial(Tutorial tutorial)` respectively.
@@ -450,7 +448,7 @@ Given below is an example usage scenario and how the `addtut` mechanism behaves 
 Step 1. The user launches the application for the first time. The `AddressBook` will be initialised with the initial
 json data stored.
 
-Step 2. The user execute `addtut g/T08...` command to add tutorial called T08 to the address book. The `addtut`
+Step 2. The user execute `addtut g/T08...` command to add tutorial called T08 to seta. The `addtut`
 command calls `AddTutorialCommandParser#parse()` which parses the string keyed into the command line of the GUI.
 
 Step 3. `AddTutorialCommandParser#parse()` invokes the creation of an `AddTutorialCommand` object.
