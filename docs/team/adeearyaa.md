@@ -33,7 +33,7 @@ This displays my code contributions for the project: [RepoSense link](https://nu
 #### Contributions to Developer Guide
 - Added user stories. [Update User Stories](https://github.com/AY2223S1-CS2103T-T10-3/tp/pull/31)
 - Added use cases. [Update Use Cases](https://github.com/AY2223S1-CS2103T-T10-3/tp/pull/75)
-- Added Find Command's implementation
+- Added Find Command's implementation [Find Command](https://github.com/AY2223S1-CS2103T-T10-3/tp/pull/179)
 
 #### Contributions to team-based tasks
 - [Testing](https://github.com/AY2223S1-CS2103T-T10-3/tp/pull/81): Added attributes for internships and test code.
