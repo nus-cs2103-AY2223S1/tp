@@ -847,6 +847,31 @@ For all use cases below, the **System** is `FRIDAY` and the **Actor** is the `us
 
 <br>
 
+**Use Case 13: Find students**
+
+**MSS**
+
+1. User requests to list students
+2. FRIDAY shows a list of students
+3. User requests to find students with specific criteria
+4. FRIDAY displays the students with keywords
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given command format is invalid.
+
+    * 3a1. FRIDAY shows an error message listing the accepted format.
+
+      Use case resumes at step 3.
+
+<br>
+
 
 ### Non-Functional Requirements
 
