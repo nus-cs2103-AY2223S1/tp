@@ -796,7 +796,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Same expected results as the first case.
 
 ### Adding comments
-1. Adding comment to a tutor while all tutors are being shown
+1. Adding a comment to a tutor while all tutors are being shown
 
     1. Prerequisites: List all tutors using the `list` command. At least one tutor in the list.
 
@@ -813,7 +813,7 @@ testers are expected to do more *exploratory* testing.
        Expected: Similar to 3.
 
 ### Deleting comments
-1. Deleting comment from a tutor while all tutors are being shown
+1. Deleting a comment from a tutor while all tutors are being shown
 
     1. Prerequisites: List all tutors using the `list` command. At least one tutor in the list. At least one comment for said tutor.
 
