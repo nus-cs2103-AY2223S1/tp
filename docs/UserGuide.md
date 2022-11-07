@@ -103,7 +103,7 @@ will not run and will output the error message `This person already exists in th
 </div>
 
 <div markdown ="span" class="alert alert-info">
-:information_source: **Note:** The year "0000" is an invalid input for all persons and events.
+:information_source: **Note:** The year "0000" is an invalid input for all persons.
 </div>
 
 ### Listing all persons : `listPersons`
@@ -113,9 +113,9 @@ Shows a list of all persons in the application.
 Format: `listPersons [s/FIELD]`
 
 * Sorts all persons by a specified field. `FIELD` must take one of the following values:
-  * `n` or `N` sort by name in ascending lexicographical order, ignoring case differences
-  * `d` or `D` sort by date of birth from oldest to youngest
-  * `g` or `G` sort by gender, females first followed by males
+  * `n` or `N`: sort by name in ascending lexicographical order, ignoring case differences
+  * `d` or `D`: sort by date of birth from oldest to youngest
+  * `g` or `G`: sort by gender, females first followed by males
 
 * It is optional to include the sorting prefix and field. If the sorting prefix and field are not included, the application will display all persons in the current order that they are stored.
 * At most one field can be specified. i.e. Cannot specify 2nd or 3rd criteria to sort by.
@@ -172,7 +172,7 @@ Format: `findPersons KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `findPersons John` returns `john` and `John Doe`
 * `findPersons alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'findPersons alex david'](images/findPersonsAlexDavidResult.png)
+
 
 ### Deleting a person : `deletePerson`
 
@@ -216,6 +216,9 @@ will not run and will output the error message `This event already exists in the
 :information_source: **Note:** To add an event with the time of 12am, only input `t/00:00` is allowed. Meanwhile, the input of `t/24:00` is not allowed.
 </div>
 
+<div markdown ="span" class="alert alert-info">
+:information_source: **Note:** The year "0000" is an invalid input for all events.
+</div>
 
 
 ### Editing an event : `editEvent`
@@ -255,7 +258,6 @@ Format: `findEvents KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `findEvents Sale` returns `sale` and `Marketing Sale`
 * `findEvents sports car` returns `Sports Festival`, `Car Sale`<br>
-  ![result for 'findEvents Sports Car'](images/findEventsSportsCar.png)
 
 
 ### Deleting an event: `deleteEvent`
@@ -279,8 +281,8 @@ Shows a list of all events in the application.
 Format: `listEvents [s/FIELD]`
 
 * Sorts the events by a specified field. `FIELD` must take one of the following values:
-  * `e` or `E` sort by event title in ascending lexicographical order, ignoring case differences
-  * `d` or `D` sort by date from oldest to newest
+  * `e` or `E`: sort by event title in ascending lexicographical order, ignoring case differences
+  * `d` or `D`: sort by date from oldest to newest
 
 * It is optional to include the sorting prefix and field. If the sorting prefix and field are not included, the application will display all events in the current order that they are stored.
 * At most one field can be specified. i.e. Cannot specify 2nd or 3rd criteria to sort by.
@@ -353,8 +355,8 @@ Format: `makeStats EVENT_INDEX t/STATISTIC_TYPE`
 * The `EVENT_INDEX` refers to the index number shown in the displayed event list.
 * The `EVENT_INDEX` must be **a positive integer** 1, 2, 3, …, and it must be within the range of the event list index. This command is invalid if `EVENT_INDEX` is a non-positive integer.
 * The `STATISTIC_TYPE` refers to the type of statistical data being generated and it must take one of the following values:
-  * `a` generate a pie chart showing the distribution of ages across age groups
-  * `g` generate a pie chart showing the distribution of genders
+  * `a` generate a pie chart showing the distribution of ages across age groups. Each age group has a 5-year age range.
+  * `g` generate a pie chart showing the distribution of genders, separating them into either `Male` or `Female` categories.
 
 Example:
 * `makeStats 1 t/g` generates gender statistics of the persons tagged to the 1st event in the event list

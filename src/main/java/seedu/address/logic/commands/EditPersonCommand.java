@@ -45,8 +45,8 @@ public class EditPersonCommand extends Command {
             + "[" + PREFIX_DOB + "DATE OF BIRTH]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com"
-            + PREFIX_GENDER + "m"
+            + PREFIX_EMAIL + "johndoe@example.com "
+            + PREFIX_GENDER + "m "
             + PREFIX_DOB + "22/09/1995";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";

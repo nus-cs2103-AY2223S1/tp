@@ -44,17 +44,17 @@ public class SampleDataUtil {
 
     public static Event[] getSampleEvents() {
         return new Event[] {
-            new Event(new EventTitle("2 2 Sale"), new Date("02/02/2022"), new StartTime("02:00"),
+            new Event(new EventTitle("Football Merchandise Sale"), new Date("02/02/2022"), new StartTime("02:00"),
                     new Purpose("For football fans")),
-            new Event(new EventTitle("4 4 Sale"), new Date("04/04/2022"), new StartTime("16:00"),
+            new Event(new EventTitle("Computer Parts Sale"), new Date("04/04/2022"), new StartTime("16:00"),
                     new Purpose("For computer scientists")),
-            new Event(new EventTitle("6 6 Sale") , new Date("06/06/2022"), new StartTime("06:00"),
+            new Event(new EventTitle("Toy Cars Sale") , new Date("06/06/2022"), new StartTime("06:00"),
                     new Purpose("For car enthusiasts")),
-            new Event(new EventTitle("8 8 Sale") , new Date("08/08/2022"), new StartTime("20:00"),
+            new Event(new EventTitle("Bread Sale") , new Date("08/08/2022"), new StartTime("20:00"),
                     new Purpose("For bread lovers")),
-            new Event(new EventTitle("10 10 Sale") , new Date("10/10/2022"), new StartTime("10:00"),
+            new Event(new EventTitle("Limited Edition Watch Sale") , new Date("10/10/2022"), new StartTime("10:00"),
                     new Purpose("For watch hobbyists")),
-            new Event(new EventTitle("12 12 Sale") , new Date("12/12/2022"), new StartTime("12:00"),
+            new Event(new EventTitle("Stationery Sale") , new Date("12/12/2022"), new StartTime("12:00"),
                     new Purpose("For stationery buyers"))
         };
     }
