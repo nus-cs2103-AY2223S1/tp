@@ -359,21 +359,24 @@ When the user gives an `undo` command, the most recent AddressBook will be poppe
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​ | I can …​                                                                                      | So that …​                                                          |
-|----------|---------|-----------------------------------------------------------------------------------------------|---------------------------------------------------------------------|
-| `* * *`  | user    | save persons and their contact details                                                        | I do not need to remember these details                             |
-| `* * *`  | user    | keep track of debts                                                                           | I know who owes me money and for what                               |
-| `* * *`  | user    | add debts of the same type to multiple people at once                                         | I do not have to spend a long time adding debts                     |
-| `* * *`  | user    | remove debts                                                                                  | I do not mistakenly think I have not yet been paid                  |
-| `* * *`  | user    | see how much I am owed in total                                                               | I know how much I expect to be paid                                 |
-| `* * *`  | user    | split a debt fairly among several people                                                      | I do not need to manually divide the amount that each person owes   |
-| `* * *`  | user    | mark debts as paid/unpaid                                                                     | I know whether the debts has been paid or not                       |
-| `* * *`  | user    | close the application                                                                         |                                                                     |
-| `* * *`  | user    | specify if an amount of money in the debt is inclusive or exclusive of GST and service charge | I do not have to manually calculate the final debt amount           |
-| `* *`    | user    | search for a person’s contact                                                                 | I can easily access his contact details                             |
-| `* *`    | user    | save my contacts and debts over multiple usage sessions of the app                            | I do not need to key in data again when I exit and re-enter the app |
-| `* *`    | user    | sort the list of contacts by name, amount owed and how long they have owed the debt           | I can quickly decide who to prioritize chasing for debts.           |
-| `* *`    | user    | easily undo any unintentional or wrong changes I made to my address book                      | I do not have to take a long time to revert my changes.             |
+
+| Priority | As a …  | I can …                                                                                       | So that …                                                                    |
+|----------|---------|-----------------------------------------------------------------------------------------------|------------------------------------------------------------------------------|
+| `* * *`  | user    | save persons and their contact details                                                        | I do not need to remember these details                                      |
+| `* * *`  | user    | keep track of debts                                                                           | I know who owes me money and for what                                        |
+| `* * *`  | user    | add debts of the same type to multiple people at once                                         | I do not have to spend a long time adding debts                              |
+| `* * *`  | user    | remove debts                                                                                  | I do not mistakenly think I have not yet been paid                           |
+| `* * *`  | user    | see how much I am owed in total                                                               | I know how much I expect to be paid                                          |
+| `* * *`  | user    | split a debt fairly among several people                                                      | I do not need to manually divide the amount that each person owes            |
+| `* * *`  | user    | mark debts as paid/unpaid                                                                     | I know whether the debts has been paid or not                                |
+| `* * *`  | user    | close the application                                                                         |                                                                              |
+| `* * *`  | user    | specify if an amount of money in the debt is inclusive or exclusive of GST and service charge | I do not have to manually calculate the final debt amount                    |
+| `* *`    | user    | search for a person’s contact                                                                 | I can easily access his contact details                                      |
+| `* *`    | user    | search for people who owe me money for a certain event                                        | I can tell at a glance who still hasn't paid me for that event               |
+| `* *`    | user    | search for people who owe me money past a certain date                                        | I can ensure that these people do not forget to return my money for too long |
+| `* *`    | user    | save my contacts and debts over multiple usage sessions of the app                            | I do not need to key in data again when I exit and re-enter the app          |
+| `* *`    | user    | sort the list of contacts by name, amount owed and how long they have owed the debt           | I can quickly decide who to prioritize chasing for debts.                    |
+| `* *`    | user    | easily undo any unintentional or wrong changes I made to my address book                      | I do not have to take a long time to revert my changes.                      |
 
 ### Use cases
 
