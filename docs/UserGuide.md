@@ -260,8 +260,6 @@ Examples:
 
 ---
 
-<div style="page-break-after: always;"></div>
-
 ### Editing an existing resident : `edit`
 
 Edits the data of an existing resident. Does **not** allow any [duplicate residents](#modifying-resident-data) to be created due to the editing of a resident.
@@ -283,8 +281,6 @@ Examples:
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
 ---
-
-<div style="page-break-after: always;"></div>
 
 ### Deleting a resident : `delete`
 
@@ -407,8 +403,6 @@ Format: `list`
 
 ---
 
-<div style="page-break-after: always;"></div>
-
 ### Showing only some columns : `showonly`
 
 Shows only the specified columns from the *current* table view.
@@ -446,8 +440,6 @@ The following examples are to be performed one after the other:
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
 ---
-
-<div style="page-break-after: always;"></div>
 
 ### Hiding only some columns : `hideonly`
 
@@ -513,8 +505,6 @@ Format: `reset`
 
 ---
 
-<div style="page-break-after: always;"></div>
-
 ### Locating residents by name : `find`
 
 Finds residents whose names contain any of the given keywords.
@@ -539,7 +529,7 @@ Examples:
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
-<div style="page-break-after: always;"></div>
+---
 
 ### Filtering residents by field : `filter`
 
@@ -790,8 +780,6 @@ Examples:
 
 ---
 
-<div style="page-break-after: always;"></div>
-
 ### Viewing a venue : `venue view`
 
 Displays all bookings for the specified venue.
@@ -835,8 +823,6 @@ Examples:
 
 ---
 
-<div style="page-break-after: always;"></div>
-
 ### Deleting a booking: `venue unbook`
 
 Deletes a booking from the specified venue, at the given time period and day.
@@ -850,12 +836,14 @@ To view all venues, switch over to the bookings tab and refer to the list on the
 </div>
 
 Examples:
-* `venue unbook v/Meeting Room tp/8-9 d/TUE` deletes the 8am to 9am Meeting Room booking on Tuseday.
+* `venue unbook v/Meeting Room tp/8-9 d/TUE` deletes the 8am to 9am Meeting Room booking on Tuesday.
 * `venue unbook v/Hall tp/13-18 d/WED` deletes the 1pm to 6pm Hall booking n Wednesday.
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ### Format for Venue fields
 
@@ -1011,6 +999,8 @@ time on typing!
 
 <br>
 
+<div style="page-break-after: always;"></div>
+
 **Q: How do I remember which commands use letters (as compared to other commands which use key/value) as inputs?**
 
 **A:** Only the column hiding features, i.e. `showonly` and `hideonly`, use letters. You can remember this by 
@@ -1096,6 +1086,8 @@ commands. The tables below contain the full summary of our commands and how they
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ### Modifying Resident Commands
 
 | Action                                             | Format, Examples                                                                                                                                                                  |
@@ -1111,6 +1103,8 @@ commands. The tables below contain the full summary of our commands and how they
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ### Viewing Resident Commands
 
 | Action                                                | Format, Examples                                                                                           |
@@ -1125,6 +1119,8 @@ commands. The tables below contain the full summary of our commands and how they
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ### File Management Commands
 
@@ -1150,5 +1146,3 @@ commands. The tables below contain the full summary of our commands and how they
 | [**Unbook Venue**](#deleting-a-booking-venue-unbook)  | `venue unbook v/VENUE_NAME tp/TIME_PERIOD d/DAY` <br> e.g. `venue unbook v/Meeting Room tp/8-9 d/TUE`     |
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
-
----
