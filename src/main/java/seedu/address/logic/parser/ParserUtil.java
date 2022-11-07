@@ -22,6 +22,7 @@ import seedu.address.model.attribute.Name;
 import seedu.address.model.attribute.Phone;
 import seedu.address.model.group.Group;
 import seedu.address.model.group.Path;
+import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -31,6 +32,7 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     private static final String PATH_VALIDATION_REGEX = "([a-zA-Z0-9_-]+\\/?)+([a-zA-Z0-9_-]+)";
+    private static final String PERSON_NAME_PATTERN = "[A-Za-z][a-zA-Z \\-]*";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing
@@ -255,6 +257,8 @@ public class ParserUtil {
     public static boolean isValidPath(String path) {
         return path.matches(PATH_VALIDATION_REGEX);
     }
+
+
 
     /**
      * Splits the str by "|"

@@ -9,9 +9,9 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-// @@author connlim
+// @@author jasonchristopher21
 /**
- * Parses input arguments and creates a new TaskCommand object
+ * Parses input arguments and creates a new AddFieldCommand object
  */
 public class AddFieldCommandParser implements Parser<AddFieldCommand> {
 
@@ -19,15 +19,16 @@ public class AddFieldCommandParser implements Parser<AddFieldCommand> {
     public AddFieldCommand parse(String args) throws ParseException {
         args = args.trim();
         Pattern p = Pattern.compile("([gtu])/([0-9]+)\\s+([a-zA-Z][a-zA-Z0-9]*)\\s+(.*)");
+        Pattern p2 = Pattern.compile("([a-zA-Z][a-zA-Z0-9]*)\\s+(.*)");
         Matcher m = p.matcher(args.trim());
         if (m.matches()) {
             return new AddFieldCommand(ParserUtil.parseIndex(m.group(2)), m.group(1), m.group(3), m.group(4));
         }
-        String[] arg2 = args.split("\\s+", 2);
-        if (arg2.length < 2) {
-            throw new ParseException("Invalid arguments supplied.\n" + AddFieldCommand.MESSAGE_USAGE);
+        m = p2.matcher(args);
+        if (m.matches()) {
+            return new AddFieldCommand(null, "0", m.group(1), m.group(2));
         }
-        return new AddFieldCommand(null, "0", arg2[0], arg2[1]);
+        throw new ParseException(AddFieldCommand.MESSAGE_USAGE);
     }
 
 }
