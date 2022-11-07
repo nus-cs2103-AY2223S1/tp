@@ -177,7 +177,7 @@ Additionally, we will explain the methods of particular concern below.
 * `Item#getStartTime()` — Returns the start time of the item.
 * `Item#getEndTime()` — Returns the end time of the item.
 
-Given below is an example usage scenario and how the Plan/Unplan mechanism behaves at each step.
+Given below is an example usage scenario and how the Plan/Unplan mechanism behaves at each step. The sequence diagram is a partial diagram showing omitting the details of how the `PlanCommand` is executed. This detail will be shown in the next sequence diagram.
 
 ![PlanSequenceDiagram](images/PlanSequenceDiagram.png)
 
@@ -194,8 +194,6 @@ Step 4. `Itinerary` gets the item from its unscheduledItemList at the specified 
 Step 5. `Day`self invokes `Day#getConflictingItems(item)`. If there are no conflicting items, the incoming item is added into the day's `itemList`. If there are conflicting items, a CommandException is thrown with a time conflict message.
 
 Step 6. If the item is successfully added, a `CommandResult` object is created with the success message.
-
-The following sequence diagram shows how the undo operation works:
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The Unplan command works in a similar manner. Instead of `Itinerary#planItem(itemIndex, dayNumber, startTime)` and `Day#addItem(item)`, `Itinerary#unplanItem(MultiIndex)` and `Day#removeitem(Index)` are called instead.
 

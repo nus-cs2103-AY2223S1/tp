@@ -137,7 +137,7 @@ The main page, or home page, of Waddle displays the list of itineraries you have
 
 [Commands exclusive to the main page](#commands-on-the-main-page) can help you:
 * [add](#creating-a-new-itinerary--add) new itineraries
-* [list](#listing-all-itineraries--list) or [find](#locating-itineraries-by-name--find) existing itineraries
+* [list](#listing-all-itineraries--list) or [find](#locating-itineraries-by-description--find) existing itineraries
 * [edit](#editing-the-details-of-an-itinerary--edit) or [delete](#deleting-an-itinerary--delete) existing itineraries
 * [clear](#clearing-itineraries--clear) all existing itineraries
 
@@ -183,7 +183,7 @@ Shows a list of all itineraries in Waddle.
 
 Format: `list`
 
-### Locating itineraries by name : `find`
+### Locating itineraries by description : `find`
 
 Finds itineraries with names containing any of the given keywords.
 
@@ -390,7 +390,7 @@ Examples:
 * `plan 2 d/3 st/12:00` would add the 2nd item in the Wishlist to Day 3, starting at 12pm.
 * `plan 1 d/1 st/14:50:10` would add the 1st item in the Wishlist to Day 1, starting at 14:50pm, 10 seconds in.
 
-<p><div style="page-break-after: always"></div></p>
+<div style="page-break-after: always"></div>
 
 ### Unscheduling an item : `unplan`
 
@@ -494,7 +494,7 @@ If your changes to the data file makes its format invalid, Waddle will discard a
 | [**Edit Itinerary**](#editing-the-details-of-an-itinerary--edit) | `edit INDEX [n/NAME] [c/COUNTRY] [du/DURATION] [s/START DATE] [p/NUMBER OF WADDLERS] [b/BUDGET]`<br> e.g.,`edit 1 du/15 sd/2025-04-10`                            |
 | [**Delete Itinerary**](#deleting-an-itinerary--delete)           | `delete INDEX`<br> e.g., `delete 3`                                                                                                                               |
 | [**Clear Itineraries**](#clearing-itineraries--clear)            | `clear`                                                                                                                                                           |
-| [**Find Itinerary**](#locating-itineraries-by-description--find)        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find India Trip`                                                                                                        |
+| [**Find Itinerary**](#locating-itineraries-by-description--find) | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find India Trip`                                                                                                        |
 | [**Select Itinerary**](#selecting-an-itinerary--select)          | `select INDEX`<br> e.g., `select 3`                                                                                                                               |
 | [**Exit**](#exiting-waddle--exit)                                | `exit`                                                                                                                                                            |
 
