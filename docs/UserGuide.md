@@ -126,7 +126,7 @@ undone. Commands that are executed before the application is launched cannot be 
 
 For example, `help` cannot be undone, whereas `add -p` can be undone.
 
-Note: The feature for undo-ing an image upload has yet to be implemented. User's will have to change the image 
+Note: The feature for undo-ing an image upload has yet to be implemented. User's will have to change the image
 (eg. `edit -p 1 -i`) in order to 'undo' an image upload.
 
 Format: `undo`
@@ -165,12 +165,12 @@ Property directory and Client directory data are saved in the hard disk automati
 
 * Property directory data are saved as a JSON file `[JAR file location]/data/propertyDirectory.json`.
 * Client directory data are saved as a JSON file `[JAR file location]/data/clientDirectory.json`.
-* Uploaded images are saved in `[JAR file location]/data/images`. Images have to follow the naming convention of 
+* Uploaded images are saved in `[JAR file location]/data/images`. Images have to follow the naming convention of
 `[property/client]-[EXACT_NAME]`, with no file extension.
 
 Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: 
+<div markdown="span" class="alert alert-warning">:exclamation:
 
 **Caution:**
 If your changes to the data file makes its format invalid, both the Property directory and Client directory will discard all data and start with an empty data file at the next run.
@@ -206,7 +206,7 @@ Optional arguments:
 * A property can have any number of tags (including 0)<br>
 * A property can have any number of interested clients (including 0)<br>
   * Adding interested clients to a property does not add the new property as an interested property for those clients.
-  * User should manually add the new property as an interested property of those clients (using `ip/` prefix under `add -c` command). 
+  * User should manually add the new property as an interested property of those clients (using `ip/` prefix under `add -c` command).
 * The `h/PROPERTY_TYPE` flag specifies the type of property. It can only be either `HDB`, `CONDO`, or `LANDED` (arguments are case-insensitive).<br>
 * The `s/PROPERTY_STATUS` is optional, if not specified, will default to `AVAILABLE` status.<br>
 * The `ic/INTERESTED_CLIENT` flag allows users to specify clients who are interested in the property.
@@ -323,7 +323,7 @@ Format: `filter -p TAG [MORE_TAGS]`
 <div markdown="block" class="alert alert-primary">
 
 :bulb: **Tips:**
-    
+
 * Arguments provided must be an exact string match for the tag i.e., `high-end` instead of `high`.
   * Recall that tags associated with each property are singular words.
 * Arguments are case-insensitive.
@@ -343,10 +343,10 @@ Format: `range -p l/100,000 u/1,000,000`
 <div markdown="block" class="alert alert-primary">
 
 :bulb: **Tips:**
-    
+
 * Lower and upper price boundaries only accept positive integer values (commas in between digits are acceptable; see Prefix List for acceptable comma usage).
 * Lower price boundary (`l/LOWER_BOUND`) cannot be higher than upper price boundary (`u/UPPER_BOUND`).
-    
+
 </div>
 
 Examples:
@@ -364,7 +364,7 @@ Format: `status -p STATUS`
 
 * Only valid arguments for `STATUS` are `AVAILABLE`, `PENDING` and `SOLD` (case-insensitive).
 * Properties matching at least one keyword will be returned (i.e., `OR` search). e.g., `SOLD pending` will return properties with `PROPERTY_STATUS` of `SOLD` or `PENDING`.
-    
+
 </div>
 
 Examples:
@@ -381,10 +381,10 @@ Format: `type -p TYPE`
 <div markdown="block" class="alert alert-primary">
 
 :bulb: **Tips:**
-    
+
 * Only valid arguments for `TYPE` are `CONDO`, `HDB` and `LANDED` (case-insensitive).
 * Properties matching at least one keyword will be returned (i.e., `OR` search). e.g., `HDB condo` will return properties with `PROPERTY_TYPE` of `HDB` or `CONDO`.
-    
+
 </div>
 
 Examples:
@@ -399,11 +399,11 @@ Format: `select -p INDEX`
 <div markdown="block" class="alert alert-primary">
 
 :bulb: **Tips:**
-    
-* Selects the property at the specified `INDEX`. 
-* The `INDEX` refers to the index number shown in the currently displayed property directory. 
-* The `INDEX` **must be a positive integer** 1, 2, 3, … 
-* The GUI changes to display only the selected property in the property directory, while clients interested in that property are shown in the client directory. 
+
+* Selects the property at the specified `INDEX`.
+* The `INDEX` refers to the index number shown in the currently displayed property directory.
+* The `INDEX` **must be a positive integer** 1, 2, 3, …
+* The GUI changes to display only the selected property in the property directory, while clients interested in that property are shown in the client directory.
 
 ![select_property](images/ug_select_property.png)
 
@@ -443,7 +443,7 @@ Optional arguments:
 
 * A client can have any number of tags (including 0)<br>
 * A client can have any number of interested clients (including 0)<br>
-  * Adding interested properties to a client does not add the new client as an interested client for those properties. 
+  * Adding interested properties to a client does not add the new client as an interested client for those properties.
   * User should manually add the new client as an interested client of those properties (using `ic/` prefix under `add -p` command).
 * The `ip/INTERESTED_PROPERTY` flag allows users to specify which properties the client is interested in.
   * The `INTERESTED_PROPERTY` argument should be a case-sensitive substring of the Properties's name.<br>
@@ -511,7 +511,7 @@ Format: `find -c NAME [MORE_NAMES]`
 <div markdown="block" class="alert alert-primary">
 
 :bulb: **Tips:**
-    
+
 * The search is case-insensitive. e.g., `janice` will match `Janice`.
 * Only the name is searched.
 * The order of the keywords does not matter. e.g., `Tan Sean` will match `Sean Tan`.
@@ -535,10 +535,10 @@ Format: `delete -c INDEX`
 <div markdown="block" class="alert alert-primary">
 
 :bulb: **Tips:**
-    
-* The `INDEX` refers to the index number shown in the currently displayed client directory. 
+
+* The `INDEX` refers to the index number shown in the currently displayed client directory.
 * The `INDEX` must be a positive integer 1, 2, 3...
-    
+
 </div>
 
 Examples:
