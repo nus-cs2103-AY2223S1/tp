@@ -1659,12 +1659,12 @@ starting point for testers to work on; testers are expected to do more *explorat
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Dealing with missing/corrupted data files.
 
    1. Run UniNurse without `uninursebook.json` inside the data folder. <br>
       Expected: UniNurse will create `uninursebook.json` containing the sample patient data and run.
 
-   2. Run UniNurse with a corrupted `uninursebook.json` (data stored in the wrong format, random text added into the file, etc.) <br>
+   2. Run UniNurse with a corrupted `uninursebook.json`. (data stored in the wrong format, random text added into the file, etc.) <br>
       Expected: UniNurse will run with an empty `uninursebook.json`.
 
    3. Run UniNurse without the `data` folder inside the root directory. <br>
