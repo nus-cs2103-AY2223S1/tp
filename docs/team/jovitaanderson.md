@@ -64,7 +64,7 @@ Given below are my contributions to the project.
     
 * **Review/mentoring contributions**:
     * PRs reviewed: ([#40](https://github.com/AY2223S1-CS2103T-F11-3/tp/pull/40),
-      [#42](https://github.com/AY2223S1-CS2103T-F11-3/tp/pull/40),
+      [#42](https://github.com/AY2223S1-CS2103T-F11-3/tp/pull/42),
       [#50](https://github.com/AY2223S1-CS2103T-F11-3/tp/pull/50),
       [#52](https://github.com/AY2223S1-CS2103T-F11-3/tp/pull/52),
       [#56](https://github.com/AY2223S1-CS2103T-F11-3/tp/pull/56),
