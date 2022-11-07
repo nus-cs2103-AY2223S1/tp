@@ -688,6 +688,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | team lead | find task by name                              | find out more information about the task        |
 | `* *`    | team lead | sort task by deadline                          | know which task is more urgent                  |
 | `* *`    | team lead | sort task by completetion status               | see all my remaining tasks that have to be done |
+
 <div style="page-break-after: always"></div>
 ## **Use cases**
 
