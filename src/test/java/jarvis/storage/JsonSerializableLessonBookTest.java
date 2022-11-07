@@ -1,14 +1,10 @@
 package jarvis.storage;
 
 import static jarvis.testutil.Assert.assertThrows;
-import static jarvis.testutil.TypicalLessons.CONSULT_1;
-import static jarvis.testutil.TypicalLessons.MC_1;
-import static jarvis.testutil.TypicalLessons.STUDIO_1;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
