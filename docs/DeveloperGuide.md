@@ -778,6 +778,7 @@ and the **Actor** is the `user`, unless specified otherwise)
 * **Commission**: An art piece requested by a customer that has been delivered or is in progress. Contains specifics about the commission and a list of iterations.
 * **Iteration**: A single version of a commission. Contains an image and a text comment on the image.
 * **Tag**: An additional field in customer or commission that can be used for tag filter feature.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
