@@ -24,14 +24,14 @@ class JsonAdaptedBook {
 
     private final String returnDate;
 
-    private final boolean isLoaned;
+    private final Boolean isLoaned;
 
     /**
      * Constructs a {@code JsonAdaptedBook} with the given book details.
      */
     @JsonCreator
     public JsonAdaptedBook(@JsonProperty("title") String title, @JsonProperty("author") String author,
-                           @JsonProperty("returnDate") String returnDate, @JsonProperty("isLoaned") boolean isLoaned) {
+                           @JsonProperty("returnDate") String returnDate, @JsonProperty("isLoaned") Boolean isLoaned) {
         this.title = title;
         this.author = author;
         this.returnDate = returnDate;
@@ -77,8 +77,16 @@ class JsonAdaptedBook {
         }
         final Author modelAuthor = new Author(author);
 
+        if (isLoaned == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "isLoaned"));
+        }
+
+        if (!isLoaned && returnDate != null) {
+            throw new IllegalValueException("An unloaned Book's returnDate field is not null!");
+        }
+
         if (isLoaned && returnDate == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "return date"));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "returnDate"));
         }
 
         if (isLoaned) {
