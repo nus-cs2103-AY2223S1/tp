@@ -11,15 +11,23 @@ Given below are my contributions to the project.
 
 * **New Features**:
   * `task sort` ([#144](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/144), [#176](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/176))
-    * Added support to sort tasks alphabetically, by when they were added, or by their date.
+    * What it does: Adds support to sort tasks alphabetically, by when they were added, or by their date.
+    * Justification: This feature improves the product by allowing users to gather information about a task in their list at a quick glance.
+    * Highlights: Each sorting command is a different type, and inherit from an abstract superclass `TaskSortCommand`, thus exhibiting polymorphism and inheritance.
   * `task find` ([#161](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/161))
-    * Added support to filter tasks by a query, their assignment, or their done status.
+    * What it does: Adds support to filter tasks by a query, their assignment, or their done status.
+    * Justification: This feature improves the product by allowing users to gather information about a task in their list at a quick glance.
+    * Highlights: There are many fields that users can find tasks by, so the method to find tasks could have been long. Instead, there are over a dozen smaller private methods that make up this method, thus exhibiting SLAP.
   * `contact sort` ([#174](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/174), [#176](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/176))
-    * Added support to sort contacts alphabetically, or by when they were added.
+    * What it does: Adds support to sort contacts alphabetically, or by when they were added.
+    * Justification: This feature improves the product by allowing users to gather information about a contact in their list at a quick glance.
+    * Highlights: Each sorting command is a different type, and inherit from an abstract superclass `ContactSortCommand`, thus exhibiting polymorphism and inheritance.
   * `contact find` ([#171](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/171))
-    * Added support to find contacts by a query.
+    * What it does: Adds support to find contacts by a query.
+    * Justification: This feature improves the product by allowing users to gather information about a contact in their list at a quick glance.
   * TaskListPanel ([#99](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/99))
-    * Added Gui component that displays tasks added to Task Book, after applying filters from find commands, and sorted by sort commands.
+    * What it does: Adds Gui component that displays tasks added to Task Book, after applying filters from find commands, and sorted by sort commands.
+    * Justification: This feature improves the product by allowing users to gather information about a task in their list at a quick glance.
 
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=nephelite&breakdown=true)
@@ -61,6 +69,11 @@ Given below are my contributions to the project.
     * Assisted in documenting some parts of the discussions.
   * Main facilitator of team meetings
   * Did both [v1.2 and v1.3 feature demos](https://docs.google.com/document/d/14En-ABkoTu9jwAkJWjvaA7r7CGlvVIR7W2VpX8hGLHE)
+
+
+* **Bugs found**:
+  * Tasks assigned to `Myself` not loading on start-up, fixed by Jin Wei ([#289](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/289))
+  * `task list` displaying `contact list`'s help message, fixed by Jin Wei ([#289](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/289))
 
 
 * **Bugs fixed**:

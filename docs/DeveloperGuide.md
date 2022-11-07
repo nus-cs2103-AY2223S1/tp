@@ -684,15 +684,15 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all persons using the `contact list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
+   1. Test case: `contact delete i/1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
+   1. Test case: `contact delete i/0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `contact delete`, `contact delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 ### UI for Command History Navigation
@@ -702,3 +702,48 @@ testers are expected to do more *exploratory* testing.
    * A quick way to test is to execute `1`, `12`, `123`, etc...
 
 1. Ensure that the input field is selected and in focus. Press `UP` and `DOWN` arrow keys and ensure that the command history displayed is per the order of execution.
+
+
+## **Appendix: Effort**
+
+The general difficulty level of TaskBook was medium. As the project direction was chosen to morph AB-3, most of the components from AB-3, including Logic, UI, Model and Storage could be reused without needing any major revamps. However, the difficulty came in the form of additional features that were implemented above the existing AB-3 components. They will be further elaborated below in **Effort Required**.
+
+### Challenges Faced
+
+**Logic**
+* Implementing inheritance structure for Sorting commands.
+* Parsing all fields in `task find` to create one comparator that searches all fields.
+
+**Model**
+* Implementing Sorting and Filtering of tasks and contacts.
+
+**Storage**
+* Storing and loading of Tasks which each has a dependency relationship with a contact.
+* Storage and loading of Tasks while maintaining the `Todo`, `Event` and `Deadline` subclasses.
+
+**Ui**
+* Adding a task list display component.
+* Changing window color scheme.
+* Changing color scheme of list cells based on type of item in the cell.
+
+### Effort Required
+The focus of TaskBook was to introduce Task management features on top of contact management features in AB-3.
+While AB-3 only deals with a single `Person` entity, TaskBook introduced the `Task` entity.
+Although effort was saved through reusing and adapting components from AB-3, a substantial effort was still required to incorporate `Task`-specific methods into the program.
+Furthermore, `Task` was made extensible to 3 specific entities, `Todo`, `Event` and `Deadline`, which each required their respective models and commands.
+
+Trying to parse the arguments for `task find` was also a big challenge, because there was a lot of possible combinations of fields we could use, but we managed to break up the command's execute method into several smaller methods that could be reused, thus not only saving lines of code and increasing code readability, but also applying SLAP.
+Adding the SortedList components to the task list and contact list in `ModelManager` was also a challenge due to lack of information on the existence of such a class. Until that point, we did not know how to implement a sorting feature to our contact and task lists. However, upon learning of Observer design patterns, we found another project that used SortedList and understood what to do from there.
+
+A significant part of the effort in storing and loading of Tasks was saved using Jackson's `@JsonTypeInfo` and `@JsonSubTypes` annotations. This allowed for Tasks in the `TaskList` to be saved and loaded in their actual subtypes.
+
+{TODO: Talk about effort for 2nd stage aka v1.3 - QOL features}
+
+It was also difficult learning Javafx and CSS in order to design our Gui in the style we wanted it. It was also a struggle to learn how to use the Observer design pattern that was given by AB3. However, with a lot of trial and error, as well as feedback from close friends outside this project group, we managed to put together a Gui we can be proud of.
+
+We thankfully avoided a lot of work conflicts where multiple people were stuck because of one person's portion being unimplemented because we recognised early on that work blockages were a huge risk factor. We therefore assigned strict deadlines for those vital features and thus reduced the number of work blockages that occurred.
+
+### Achievements
+* Working saving and loading of Tasks.
+* Implemented effective task management system with finding and sorting features.
+* Fully customised and good-looking Gui.
