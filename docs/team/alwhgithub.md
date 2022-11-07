@@ -10,7 +10,7 @@ HackAssist is written in Java.
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added feature to display Person within Tasks, and display Task within Person
+* **New Feature**: Added feature to dynamically display Person within Tasks, and display Task within Person
   * What it does: For each task, displays the person that the task is assigned to. For each person, displays the list of all tasks that is assigned to that person
   * Justification: Displaying the link between tasks and people assigned is one of our core features.
   * Highlights: The name and email of people assigned in tasks are edited when that person's name or email is edited (vice versa with task's name with the person)
@@ -35,15 +35,15 @@ Given below are my contributions to the project.
 * **Documentation**:
   * User Guide:
     * Updated add, delete and edit commands to be consistent with new features. [\#173]()
+    * Documented what purpose each section of the user interface serves [\#169]()
     * Updated find command image to be consistent with updated UI and command format [\#173]()
     * Updated Quickstart image to be consistent with Updated UI and added labels for each section of the interface [#\169]()
-    * Documented what purpose each section of the interface serves [\#169]()
   * Developer Guide:
-    * Updated appendix to be consistent with new features
-    * Expanded use cases to cover scenarios not covered in the original application
-    * Updated description and implementation of UI to be consistent with new UI
+    * Updated appendix to be consistent with new features [\#192]
+    * Expanded use cases to cover scenarios not covered in the original application [\#221]
+    * Updated description and implementation of UI to be consistent with new UI [\#206]
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#54](), [\#90]()
+  * PRs reviewed (with non-trivial review comments): [\#54](), [\#90](), [\#193]()
   * Reported bugs and suggestions for other teams in the class
 
