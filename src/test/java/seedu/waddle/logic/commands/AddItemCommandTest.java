@@ -2,20 +2,23 @@ package seedu.waddle.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.waddle.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.waddle.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.waddle.testutil.Assert.assertThrows;
+import static seedu.waddle.testutil.TypicalItineraries.getTypicalWaddle;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.waddle.commons.core.GuiSettings;
+import seedu.waddle.commons.core.index.MultiIndex;
 import seedu.waddle.logic.StageManager;
 import seedu.waddle.logic.commands.exceptions.CommandException;
-import seedu.waddle.model.Model;
-import seedu.waddle.model.ReadOnlyUserPrefs;
-import seedu.waddle.model.ReadOnlyWaddle;
+import seedu.waddle.model.*;
 import seedu.waddle.model.item.Item;
 import seedu.waddle.model.itinerary.Itinerary;
 import seedu.waddle.testutil.ItemBuilder;
@@ -23,6 +26,7 @@ import seedu.waddle.testutil.ItineraryBuilder;
 
 
 public class AddItemCommandTest {
+
     @Test
     public void constructor_nullItem_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddItemCommand(null));
@@ -52,6 +56,34 @@ public class AddItemCommandTest {
 
         assertThrows(CommandException.class,
                 AddItemCommand.MESSAGE_DUPLICATE_ITEM, () -> addItemCommand.execute(modelStub));
+    }
+
+    // integration test with typical Waddle
+    @Test
+    public void execute_newItem_addSuccessful() throws Exception {
+        Item validItem = new ItemBuilder().build();
+        Itinerary validItinerary = new ItineraryBuilder().build();
+        Model model = new ModelManager(getTypicalWaddle(), new UserPrefs());
+        StageManager stageManager = StageManager.getInstance();
+        stageManager.setWishStage(validItinerary);
+        CommandResult commandResult = new AddItemCommand(validItem).execute(model);
+
+        assertEquals(String.format(AddItemCommand.MESSAGE_SUCCESS, validItem),
+                commandResult.getFeedbackToUser());
+        assertEquals(true, validItinerary.hasItem(validItem));
+    }
+
+    // integration test with typical Waddle
+    @Test
+    public void execute_duplicateItem_throwsDuplicateItemException_modelIntegration() {
+        Model model = new ModelManager(getTypicalWaddle(), new UserPrefs());
+        Itinerary itineraryInList = model.getWaddle().getItineraryList().get(1);
+        Item itemInList = itineraryInList.getItemList().get(0);
+        StageManager stageManager = StageManager.getInstance();
+        stageManager.setWishStage(itineraryInList);
+
+        assertCommandFailure(new AddItemCommand(itemInList), model,
+                AddItemCommand.MESSAGE_DUPLICATE_ITEM);
     }
 
     /**
