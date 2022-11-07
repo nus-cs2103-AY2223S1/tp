@@ -800,9 +800,9 @@ _Details coming soon ..._
 
 | Action                                                  | Format                                                       | Example                                                      |
 |---------------------------------------------------------| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [Switch to light mode](#411-switch-to-light-mode-light) | `light`                                                                                                            | `light`                                                                                                                                                                     |
-| [Switch to dark mode](#412-switch-to-dark-mode-dark)    | `dark`                                                                                                             | `dark`                                                                                                                                                                      |
-| [View help](#413-viewing-help-help)                     | `help`                                                                                                             | `help`                                                                                                                                                                      |
+| [Switch to light mode](#411-switch-to-light-mode-light) | `light`                                                                                                            | `light`                                                                                                                                                                   |
+| [Switch to dark mode](#412-switch-to-dark-mode-dark)    | `dark`                                                                                                             | `dark`                                                                                                                                                                    |
+| [View help](#413-viewing-help-help)                     | `help`                                                                                                             | `help`                                                                                                                                                                     |
 
 ### 6.2. Module Manager Command Summary
 
