@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.taassist.commons.core.Messages.MESSAGE_SESSION_DOES_NOT_EXIST;
 import static seedu.taassist.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.taassist.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.taassist.logic.commands.DeletesCommand.MESSAGE_SUCCESS;
 import static seedu.taassist.testutil.Assert.assertThrows;
 import static seedu.taassist.testutil.TypicalSessions.ASSIGNMENT_1;
 import static seedu.taassist.testutil.TypicalSessions.LAB_1;
@@ -99,6 +100,14 @@ public class DeletesCommandTest {
         assertThrows(CommandException.class, () -> command.execute(modelStub));
         assertCommandFailure(command, modelStub, String.format(MESSAGE_SESSION_DOES_NOT_EXIST,
                 TUTORIAL_1.getSessionName(), focusedClass));
+    }
+
+    @Test
+    public void execute_getCommandMessage_showsCorrectMessage() {
+        Set<Session> sessionsDeleted = new HashSet<>(List.of(LAB_1, ASSIGNMENT_1));
+        String actualMessage = DeletesCommand.getCommandMessage(sessionsDeleted);
+        String expectedMessage = String.format(MESSAGE_SUCCESS, "Lab 1, Assignment 1");
+        assertEquals(expectedMessage, actualMessage);
     }
 
     //==================================== Integration Tests =========================================================

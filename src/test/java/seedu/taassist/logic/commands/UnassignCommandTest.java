@@ -3,6 +3,7 @@ package seedu.taassist.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.taassist.logic.commands.UnassignCommand.MESSAGE_SUCCESS;
 import static seedu.taassist.testutil.Assert.assertThrows;
 import static seedu.taassist.testutil.TypicalModuleClasses.CS1101S;
 import static seedu.taassist.testutil.TypicalStudents.ALICE;
@@ -114,6 +115,14 @@ class UnassignCommandTest {
         assertNotEquals(unassignFirstCommand, unassignSecondCommand);
     }
 
+    @Test
+    public void execute_getCommandMessage_showsCorrectMessage() {
+        List<Student> studentsUnassigned = List.of(ALICE, BOB);
+        ModuleClass moduleClass = CS1101S;
+        String actualMessage = UnassignCommand.getCommandMessage(studentsUnassigned, moduleClass);
+        String expectedMessage = String.format(MESSAGE_SUCCESS, moduleClass, ALICE.getName() + ", " + BOB.getName());
+        assertEquals(expectedMessage, actualMessage);
+    }
     /**
      * A Model stub with one filtered student with an assigned class: CS1101S.
      * Always says it has a module.

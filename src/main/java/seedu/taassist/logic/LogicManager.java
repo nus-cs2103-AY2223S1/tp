@@ -10,11 +10,11 @@ import seedu.taassist.commons.core.GuiSettings;
 import seedu.taassist.commons.core.LogsCenter;
 import seedu.taassist.logic.commands.Command;
 import seedu.taassist.logic.commands.CommandResult;
+import seedu.taassist.logic.commands.actions.StorageAction;
 import seedu.taassist.logic.commands.exceptions.CommandException;
 import seedu.taassist.logic.parser.TaAssistParser;
 import seedu.taassist.logic.parser.exceptions.ParseException;
 import seedu.taassist.model.Model;
-import seedu.taassist.model.ReadOnlyTaAssist;
 import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.session.Session;
 import seedu.taassist.model.student.Student;
@@ -50,7 +50,8 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         if (commandResult.hasStorageAction()) {
-            commandResult = commandResult.performStorageAction(storage);
+            StorageAction storageAction = commandResult.getStorageAction();
+            commandResult = storageAction.act(storage);
         }
 
         try {
@@ -60,11 +61,6 @@ public class LogicManager implements Logic {
         }
 
         return commandResult;
-    }
-
-    @Override
-    public ReadOnlyTaAssist getTaAssist() {
-        return model.getTaAssist();
     }
 
     @Override

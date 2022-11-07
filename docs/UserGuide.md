@@ -52,7 +52,6 @@ If you encounter any issues in launching and using the app, feel free to refer t
 * Extraneous parameters for commands that do not expect such parameters may be parsed incorrectly.
   * e.g. if you specify `addc c/CS1231S n/CS2030S`, the parser interprets it as adding a class named "CS1231S n/CS2030S", which is not a valid class name. Hence, TA-Assist throws an error.
 * All parameters and their constraints have been provided in [the Appendix](#parameters-and-constraints) for your reference.
-
 </div>
 
 ## Modes
@@ -303,7 +302,7 @@ Format: `focus c/CLASS_NAME`
   <img class="center" src="images/sampleFocusedGui.png" width="600"/>
 
 Example:
-* `focus c/CS1231S` enters focus mode for the **CS1231S** class, allowing you to manage data relating to **CS1231S**.
+* `focus c/CS2100` enters focus mode for the **CS2100** class, allowing you to manage data relating to **CS2100**.
 
 ### Clear all existing data: `clear`
 
@@ -422,13 +421,13 @@ Format: `scores s/SESSION_NAME`
 
 Example:
 
-* `scores s/tutorial 1` shows the grades of all students for the session **tutorial 1**, as shown below.
+* `scores s/Tutorial 11` shows the grades of all students for the session **Tutorial 11**, as shown below.
   
   <img class="center" src="images/sampleScoresGui.png" width="600"/>
 
   In the above example,
-  * **Bernice Yu** has been allocated a score of **10.0** for **Tutorial 1**.
-  * **Tutorial 1** for **David Li** and **Roy Balakrishnan** has not been graded, hence their cells have been marked red.
+  * **Edbert Geraldy**, **Lin Zechen**, **Ng Jing Xue**, and **Rezwan Arefin** have been allocated a score of **100.0** for **Tutorial 11**.
+  * **Tutorial 11** for **Xu Yi** has not been graded, hence her cell has been marked red.
 
 ### View session grades of student: `view`
 
@@ -468,7 +467,7 @@ Format: `export`
 * An example generated CSV file when opened in Microsoft Excel:
 ![Example Excel file](images/exampleExcelFile.png)
   * The first column shows all the student names.
-  * Subsequent columns show the grade for a student for a session (e.g. **David Li** scores **0** for **Tutorial 1**).
+  * Subsequent columns show the grades of students for various sessions (e.g. **David Li** scores **0** for **Tutorial 1**).
 
 ### Exit focus mode: `unfocus`
 

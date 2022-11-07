@@ -1,11 +1,16 @@
 package seedu.taassist.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.taassist.logic.commands.AddsCommand.MESSAGE_DUPLICATE_SESSIONS;
+import static seedu.taassist.logic.commands.AddsCommand.MESSAGE_SUCCESS;
 import static seedu.taassist.logic.commands.CommandTestUtil.VALID_CLASS_CS1101S;
 import static seedu.taassist.logic.commands.CommandTestUtil.VALID_SESSION_LAB1;
 import static seedu.taassist.logic.commands.CommandTestUtil.VALID_SESSION_TUT3;
 import static seedu.taassist.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.taassist.testutil.Assert.assertThrows;
+import static seedu.taassist.testutil.TypicalSessions.ASSIGNMENT_1;
+import static seedu.taassist.testutil.TypicalSessions.LAB_1;
+import static seedu.taassist.testutil.TypicalSessions.TUTORIAL_1;
 import static seedu.taassist.testutil.TypicalStudents.getTypicalTaAssist;
 
 import java.util.HashSet;
@@ -133,6 +138,19 @@ public class AddsCommandTest {
 
         assertCommandSuccess(command, model, AddsCommand.getCommandMessage(new HashSet<>(), validSessions),
                 expectedModel);
+    }
+
+    @Test
+    public void execute_getCommandMessage_showsCorrectMessage() {
+        Set<Session> sessionsAdded = new HashSet<>(List.of(LAB_1, ASSIGNMENT_1));
+        Session lab2 = new SessionBuilder().withName("Lab 2").build();
+        Set<Session> duplicateSessions = new HashSet<>(List.of(lab2, TUTORIAL_1));
+        String actualMessage = AddsCommand.getCommandMessage(sessionsAdded, duplicateSessions);
+        String expectedMessage = String.format(MESSAGE_SUCCESS,
+                "1. [ Lab 1 ] on " + LAB_1.getDate() + "\n"
+                        + "2. [ Assignment 1 ] on " + ASSIGNMENT_1.getDate())
+                + "\n" + String.format(MESSAGE_DUPLICATE_SESSIONS, "Lab 2, Tutorial 1");
+        assertEquals(expectedMessage, actualMessage);
     }
 
     //==================================== Model Stubs ==============================================================

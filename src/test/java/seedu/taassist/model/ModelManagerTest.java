@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.taassist.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 import static seedu.taassist.testutil.Assert.assertThrows;
+import static seedu.taassist.testutil.TypicalModuleClasses.CS1101S;
 import static seedu.taassist.testutil.TypicalModuleClasses.CS1231S;
 import static seedu.taassist.testutil.TypicalStudents.ALICE;
 import static seedu.taassist.testutil.TypicalStudents.BENSON;
@@ -14,6 +15,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -97,6 +99,37 @@ public class ModelManagerTest {
     public void hasStudent_studentInTaAssist_returnsTrue() {
         modelManager.addStudent(ALICE);
         assertTrue(modelManager.hasStudent(ALICE));
+    }
+
+    @Test
+    public void hasModuleClasses_hasAllClasses_returnsTrue() {
+        modelManager.addModuleClass(CS1101S);
+        modelManager.addModuleClass(CS1231S);
+        assertTrue(modelManager.hasModuleClasses(List.of(CS1231S, CS1101S)));
+    }
+
+    @Test
+    public void hasModuleClasses_hasSomeClasses_returnsFalse() {
+        modelManager.addModuleClass(CS1101S);
+        assertFalse(modelManager.hasModuleClasses(List.of(CS1231S, CS1101S)));
+    }
+
+    @Test
+    public void removeModuleClass_focusedModuleClass_exitsFocusMode() {
+        modelManager.addModuleClass(CS1231S);
+        modelManager.enterFocusMode(CS1231S);
+        modelManager.removeModuleClass(CS1231S);
+        assertFalse(modelManager.isInFocusMode());
+        assertFalse(modelManager.hasModuleClass(CS1231S));
+    }
+
+    @Test
+    public void removeModuleClasses_containsFocusedClass_exitsFocusMode() {
+        modelManager.addModuleClasses(Set.of(CS1101S, CS1231S));
+        modelManager.removeModuleClasses(Set.of(CS1231S, CS1101S));
+        assertFalse(modelManager.isInFocusMode());
+        assertFalse(modelManager.hasModuleClass(CS1101S));
+        assertFalse(modelManager.hasModuleClass(CS1231S));
     }
 
     @Test

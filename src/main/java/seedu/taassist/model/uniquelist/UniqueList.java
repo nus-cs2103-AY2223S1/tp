@@ -3,7 +3,6 @@ package seedu.taassist.model.uniquelist;
 import static java.util.Objects.requireNonNull;
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -68,22 +67,6 @@ public class UniqueList<T extends Identity<T> & Comparable<T>> implements Iterab
             throw new DuplicateElementException();
         }
         internalList.add(toAdd);
-    }
-
-    /**
-     * Adds all elements in {@code toAddList} to the list. The elements must not already exist in the list.
-     *
-     * @param toAddList Elements to add.
-     * @throws DuplicateElementException If any element in {@code toAddList} already exists.
-     */
-    public void addAll(Collection<T> toAddList) {
-        requireAllNonNull(toAddList);
-        for (T toAdd : toAddList) {
-            if (contains(toAdd)) {
-                throw new DuplicateElementException();
-            }
-        }
-        internalList.addAll(toAddList);
     }
 
     /**

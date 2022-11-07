@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.taassist.commons.util.StringUtil.commaSeparate;
 import static seedu.taassist.logic.commands.AddcCommand.MESSAGE_DUPLICATE_MODULE_CLASS;
+import static seedu.taassist.logic.commands.AddcCommand.MESSAGE_SUCCESS;
 import static seedu.taassist.logic.commands.AddcCommand.getCommandMessage;
 import static seedu.taassist.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.taassist.testutil.Assert.assertThrows;
@@ -17,6 +18,7 @@ import static seedu.taassist.testutil.TypicalStudents.getTypicalTaAssist;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
@@ -123,6 +125,18 @@ public class AddcCommandTest {
                 new HashSet<>(Arrays.asList(duplicateModuleClass)));
 
         assertCommandSuccess(new AddcCommand(moduleClasses), model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_getCommandMessage_showsCorrectMessage() {
+        Set<ModuleClass> classedAdded = new HashSet<>(List.of(CS1101S, CS1231S));
+        ModuleClass cs2030s = new ModuleClassBuilder().withName("CS2030S").build();
+        ModuleClass cs2040s = new ModuleClassBuilder().withName("CS2040S").build();
+        Set<ModuleClass> duplicateClasses = new HashSet<>(List.of(cs2030s, cs2040s));
+        String actualMessage = AddcCommand.getCommandMessage(classedAdded, duplicateClasses);
+        String expectedMessage = String.format(MESSAGE_SUCCESS, "CS1101S, CS1231S")
+                + "\n" + String.format(MESSAGE_DUPLICATE_MODULE_CLASS, "CS2030S, CS2040S");
+        assertEquals(expectedMessage, actualMessage);
     }
 
     //==================================== Model Stubs ===============================================================
