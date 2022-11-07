@@ -1,14 +1,14 @@
 {
   "eateries": [ {
-    "name": "Alice Pauline",
-    "phone": "$$",
-    "email": "aliceexamplecom",
-    "address": "4th street",
-    "tagged": [ "friends" ]
+    "name" : "Alice Abalone",
+    "price" : "$",
+    "cuisine" : "Chinese",
+    "location" : "University Town",
+    "tagged" : [ "seafood" ]
   }, {
-    "name": "Alice Pauline",
-    "phone": "$$",
-    "email": "paulineexamplecom",
-    "address": "4th street"
+    "name" : "Alice Abalone",
+    "price" : "$",
+    "cuisine" : "Chinese",
+    "location" : "University Town"
   } ]
 }
