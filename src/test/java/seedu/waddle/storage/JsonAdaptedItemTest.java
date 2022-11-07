@@ -1,5 +1,11 @@
 package seedu.waddle.storage;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.waddle.storage.JsonAdaptedItem.MISSING_FIELD_MESSAGE_FORMAT;
+import static seedu.waddle.testutil.Assert.assertThrows;
+
+import java.time.format.DateTimeParseException;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.waddle.commons.exceptions.IllegalValueException;
@@ -10,12 +16,6 @@ import seedu.waddle.model.item.Priority;
 import seedu.waddle.model.itinerary.Date;
 import seedu.waddle.model.itinerary.Description;
 import seedu.waddle.testutil.TypicalItems;
-
-import java.time.format.DateTimeParseException;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.waddle.storage.JsonAdaptedItem.MISSING_FIELD_MESSAGE_FORMAT;
-import static seedu.waddle.testutil.Assert.assertThrows;
 
 public class JsonAdaptedItemTest {
     private static final String INVALID_DESC = "Exchange $$$";
