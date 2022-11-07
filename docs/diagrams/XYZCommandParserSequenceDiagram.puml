@@ -75,5 +75,6 @@ XYZCommandParser -[hidden]-> TaAssistParser
 destroy XYZCommandParser
 
 TaAssistParser -->[: xyz
+deactivate TaAssistParser
 
 @enduml
