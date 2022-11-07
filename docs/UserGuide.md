@@ -285,6 +285,7 @@ Format: `find PREFIX/KEYWORDS [KEYWORDS]`
 
 :information_source: **Note:**
 * The find command works by entering only **one prefix** corresponding to a tutor's profile attribute, followed by the keyword(s) to search
+* Multiple find commands executed consecutively do not act upon the list of tutors that each find command has resulted in. e.g. Entering `find m/cs2100` after `find n/alex` will not find tutors teaching CS2100 from the list of tutors that `find n/alex` outputted.
 * The search is case-insensitive. e.g. `find n/hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `find n/Hans Bo` will match `Bo Hans`
 * Only the attribute that corresponds to the prefix entered is searched.
