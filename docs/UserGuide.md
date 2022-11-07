@@ -47,6 +47,8 @@ title: User Guide
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 # ConnectNUS User Guide
 
 ConnectNUS is **designed for NUS Computer Science students** by providing a centralised platform for them to keep track
@@ -371,6 +373,8 @@ Format: `list`
 
 [Scroll back to top](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ### Finding contacts
 
 Finds persons whose names contain any of the given keywords, to quickly view those you want.
@@ -386,7 +390,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]…`
 Examples:
 * `find alex David` returns `Alex Yeoh`, `David Li`
 
-<img src="images/FindCommand.png" width="450">
+<img src="images/FindCommand.png" width="550">
 
 [Scroll back to top](#table-of-contents)
 
