@@ -120,13 +120,9 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-W16-3/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
+Here's a partial class diagram of the `Ui` component, certain components have been omitted for brevity's sake:
+
 ![Structure of the UI Component](images/dg-images/UiClassDiagram.png)
-
-<div markdown="span" class="alert alert-primary">
-
-:bulb: **Tip:** The reason PersonListPanel can only have PersonCard or ContactCard is that only 1 form of information,
-list of patients or next of kin details, can be listed at one time.
-</div>
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, etc. 
 All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures 
@@ -235,10 +231,13 @@ This section describes some noteworthy details on how certain features are imple
 ### Add Command
 The `add` command is used to create a new patient in the app and set the necessary fields for that patient,
 namely they are the: `Name`, `Phone`, `Email`, `NextOfKin`, `PatientType`,`HospitalWing`, `FloorNumber`, `WardNumber`,
-`Medications` and `UpcomingAppointment` fields. Note that the `PastAppointment` field cannot be updated in this command,
-that is done in the [`Appt`](#pastappointment) and [`DelAppt`](#delappt-delete-appointment-command) commands.
+`Medication`(Long Term Medication) and `UpcomingAppointment` fields. Note that the `PastAppointment` field cannot be 
+updated in this command, that is done in the [`Appt`](#pastappointment) and 
+[`DelAppt`](#delappt-delete-appointment-command) commands.
 
-When `add <<args>>` is inputted, the UI calls the `LogicManager` which then calls the `AddressBookParser` to parse the
+The format for the `add` command can be seen [here](https://ay2223s1-cs2103t-w16-3.github.io/tp/UserGuide.html#adding-a-patient-add).
+
+When `add ...` is inputted, the UI calls the `LogicManager` which then calls the `AddressBookParser` to parse the
 input. This then creates an instance of the `AddCommandParser` to parse the `args` via the respective static
 `ParserUtil` functions. If duplicate parameters are inputted (e.g. `add n/Joe n/Mel`), only the last instance is taken,
 similar to how [`edit`](#edit-command), [`appt`](#pastappointment) and [`consult`](#consult-command) are executed.
@@ -256,11 +255,15 @@ The following sequence diagram shows how the argument parsing for the `add` comm
 
 ### Edit Command
 
-The `edit` command is used to change the information of an existing patient in the app. The fields supported are: `Name`, `Phone`, `Email`, `NextOfKin`, `PatientType`,`HospitalWing`, `FloorNumber`, `WardNumber`,
-`Medications` and `UpcomingAppointment`. Note that the `PastAppointment` field cannot be updated in this command,
-that is done in the [`Appt`](#pastappointment) and [`DelAppt`](#delappt-delete-appointment-command) commands.
+The `edit` command is used to change the information of an existing patient in the app. The fields supported are: 
+`Name`, `Phone`, `Email`, `NextOfKin`, `PatientType`,`HospitalWing`, `FloorNumber`, `WardNumber`,
+`Medication`(Long Term Medications) and `UpcomingAppointment`. Note that the `PastAppointment` field cannot be updated 
+in this command, that is done in the [`Appt`](#pastappointment) and 
+[`DelAppt`](#delappt-delete-appointment-command) commands.
 
-When `edit INDEX <<args>>` is inputted, the UI calls the `LogicManager` which then calls the `AddressBookParser` to parse the
+The format for the `edit` command can be seen [here](https://ay2223s1-cs2103t-w16-3.github.io/tp/UserGuide.html#editing-a-patient-edit).
+
+When `edit INDEX ...` is inputted, the UI calls the `LogicManager` which then calls the `AddressBookParser` to parse the
 input. This then creates an instance of the `EditCommandParser` to parse the `INDEX` and `args` via the respective static
 `ParserUtil` functions. If duplicate parameters are inputted (e.g. `add n/Joe n/Mel`), only the last instance is taken,
 similar to how [`add`](#add-command), [`appt`](#pastappointment) and [`consult`](#consult-command)  are executed.
@@ -306,7 +309,7 @@ constitute of sensitive patient data. Apart from `date`, `PastAppointment`s also
     input separately with a `m/` prefix.
   * Exposed using the `PastApointment#getMedication()` method for use in `JsonAdaptedPastAppointment`.
 
-The following Sequence Diagram represents the creation of a `PastAppointment` using a `PastAppointmentCommand`:
+The following Sequence Diagram represents the creation of a `PastAppointment` using a `CreatePastAppointmentCommand`:
 
 ![PastAppointmentCommandSequenceDiagram](images/PastAppointmentSequenceDiagram.png)
 
@@ -332,7 +335,7 @@ m/paracetamol`. The `PastAppointment` count is now at `1`.
 
 ![AppointmentObjectDiagramWithPastAppt](images/AppointmentObjectDiagramWithPastAppt.png)
 
-Step 3. The medical assistant creates an `UpcomingAppointment` for John by executing `edit upcoming/16-06-2022`. John
+Step 3. The medical assistant creates an `UpcomingAppointment` for John by executing `edit ua/16-06-2022`. John
 now has an `UpcomingAppointment` associated with him.
 
 ![AppointmentObjectDiagramWithBothAppt](images/AppointmentObjectDiagramWithBothAppt.png)
@@ -613,8 +616,8 @@ They are:
 
 When a key is pressed, `MainWindow` will recursively go through its child elements until it finds the first matching 
 `EventHandler`, which is the `CommandBox#commandTextField#getOnKeyPressed()` handler. This will then call the 
-`CommandBox#handleKeyPress(event)` to check the key pressed. If the 'UP' arrow key was pressed, 
-`CommandHistory#previousCommand()` is called to set the command to the previous command, if any. If the 'DOWN' arrow key
+`CommandBox#handleKeyPress(event)` to check the key pressed. If the `UP` arrow key was pressed, 
+`CommandHistory#previousCommand()` is called to set the command to the previous command, if any. If the `DOWN` arrow key
 was pressed, `CommandHistory#nextCommand()` is called to set the command to the next command, if any. If the `Ctrl` + 
 `Shift` + `C` keys were pressed together, it will clear all the text in the `commandTextField` with the 
 `CommandBox#setCommandTextField(str)` command. 
