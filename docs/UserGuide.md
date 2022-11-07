@@ -451,7 +451,7 @@ Here's an example of how the generated PDF would look like: <br>
 
 ### Returning to main page : `home`
 
-Returns you to the main itinerary list page.
+Returns you to the [main itinerary list page](#the-main-page).
 
 Format: `home`
 
