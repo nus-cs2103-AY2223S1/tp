@@ -28,6 +28,7 @@ public class RecordContainsKeywordsPredicate implements Predicate<Record> {
 
     @Override
     public boolean test(Record record) {
+        assert record != null;
         boolean recordDataMatch = recordKeywords.isEmpty()
                 || recordKeywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(record.record, keyword));
