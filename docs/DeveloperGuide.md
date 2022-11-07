@@ -51,6 +51,8 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 Given below is a quick overview of main components and how they interact with each other.
 
+<div style="page-break-after: always;"></div>
+
 **Main components of the architecture**
 
 **`Main`** has two classes
@@ -82,6 +84,8 @@ Each of the four main components (also shown in the diagram above),
 * defines its *API* in an `interface` with the same name as the Component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding
   API `interface` mentioned in the previous point).
+
+<div style="page-break-after: always;"></div>
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using
 the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component
@@ -143,6 +147,8 @@ How the `Logic` component works:
 3. The command can communicate with the `Model` when it is executed (e.g. to add a task).
 4. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
+<div style="page-break-after: always;"></div>
+
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API
 call.
 
@@ -150,6 +156,8 @@ call.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
@@ -185,6 +193,8 @@ The `Model` component,
   a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they
   should make sense on their own without depending on other components)
+
+<div style="page-break-after: always;"></div>
 
 For the `Task` class,
 * to support a default sorting of `Task` objects, `Task` implements the `Comparable<Task>` interface
@@ -232,6 +242,8 @@ Command result will if the task is archived successfully. Should there be a dupl
 
 Should the `TASK_NUMBER` entered is out of bound, a generic CommandResult and an error message
 will be given. Model will not be updated.
+
+<div style="page-break-after: always;"></div>
 
 Below is the sequence diagram for an execution of `archive TASK_NUMBER`, assuming `TASK_NUMBER` is not out of bound.
 
@@ -290,6 +302,8 @@ Words in `UPPER_CASE` are values of parameters to be supplied by the user
 | `-d`*       | List all tasks with deadline on or after a date | `ls -d DATE`                  |
 | `-n`*       | List all task names with the matching keywords  | `ls -n KEYWORD`               |
 
+<div style="page-break-after: always;"></div>
+
 <div markdown="block" class="alert alert-info">
 **:information_source: Note:**
 Flags that are labelled with a `*` are commands that expect a parameter, as seen in the Format column. <br>
@@ -321,6 +335,8 @@ Given below is an example usage scenario and how the mechanism behaves at each s
 **Step 6.** `ListCommandParser` calls `ListModuleCommandParser#getPredicate(String)` method. A new instance of `ModuleContainsKeywordsPredicate` is created and returned.
 
 **Step 7.** A new `ListCommand` instance is instantiated. Both predicates, `TaskIsDonePredicate` from **Step 4** and `ListModuleCommandPredicate` from **Step 6** are passed into the `ListCommand` constructor. `ListCommand` instance is returned to `LogicManager`.
+
+<div style="page-break-after: always;"></div>
 
 Below is the sequence diagram for the partial execution of `ls -u --module CS2103T` up till **Step 7**.
 
@@ -529,6 +545,8 @@ we are using a `LocalDate` internally, which requires a year. A solution to this
 `MonthDay` refers to a day in the current year. For example, say the current year is 2022, if the user 
 provides 20/11, the date should be parsed as 20 November 2022.
 
+<div style="page-break-after: always;"></div>
+
 The following sequence diagram shows what will happen with the proposed implementation of multiple date formats:
 
 ![ProposedDeadlineSequenceDiagram](images/ProposedDeadlineSequenceDiagram.png)
@@ -588,11 +606,11 @@ These operations will be exposed in the `Model` interface as `Model::addAlias`, 
 Since aliases can only be one word (by our restriction in the add alias command), we only need the first word of a 
 command to check whether it is an alias. If it is, the alias will be replaced with the actual command to be run. 
 
+<div style="page-break-after: always;"></div>
+
 Below is the sequence diagram for an execution of `a Project -m CS2103T`, with `a` being an alias for `add -n`.
 
 ![ProposedAliasSequenceDiagram](images/ProposedAliasSequenceDiagram.png)
-
-<div style="page-break-after: always;"></div>
 
 To prevent the `alias` and `unalias` commands from being inaccessible due to a bad alias, eg `alias alias -c bad`, those
 two commands cannot be aliased.
@@ -722,6 +740,9 @@ Unless specified otherwise, the **System** is the `NotionUS` application and the
 
       Use case ends.
 
+
+<div style="page-break-after: always;"></div>
+
 **Use Case: UC3 - Delete a task**
 
 **MSS:**
@@ -773,6 +794,8 @@ Unless specified otherwise, the **System** is the `NotionUS` application and the
 
       Use case starts from 1.
 
+<div style="page-break-after: always;"></div>
+
 **Use Case: UC6 - Mark a task as not done**
 
 **MSS:**
@@ -822,6 +845,8 @@ Unless specified otherwise, the **System** is the `NotionUS` application and the
 
       Use case ends.
 
+<div style="page-break-after: always;"></div>
+
 **Use Case: UC9 - Archive a task**
 
 **MSS:**
@@ -859,6 +884,8 @@ Unless specified otherwise, the **System** is the `NotionUS` application and the
     * 2a1. NotionUS displays an empty page.
 
       Use case ends.
+
+<div style="page-break-after: always;"></div>
 
 **Use Case: UC11 - Clear all tasks**
 
@@ -955,7 +982,9 @@ testers are expected to do more *exploratory* testing.
 
     2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-    
+
+<div style="page-break-after: always;"></div>
+
 ### 8.2 Adding a task
 
 1. Adding a task while all tasks are being shown
@@ -977,6 +1006,8 @@ testers are expected to do more *exploratory* testing.
     2. Test case: `add -n Tutorial 1 -m CS2100 -t mediumPriority -d 2022-10-20`<br>
        Expected: `Tutorial 1` is added into the list. Details of the added task shown in the status message.
        "Current View" of task list is reset to show all tasks. `Tutorial 1` is inserted into an index of the task list according to its deadline.
+
+<div style="page-break-after: always;"></div>
 
 ### 8.3 Deleting a task
 
@@ -1005,6 +1036,8 @@ testers are expected to do more *exploratory* testing.
    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
+<div style="page-break-after: always;"></div>
+
 ### 8.4  Marking a task
 
 1. Marking a task while all tasks are being shown.
@@ -1026,6 +1059,8 @@ testers are expected to do more *exploratory* testing.
 
    3. Test case: `archive 0`<br>
       Expected: No task is archived. Error details shown in the status message.
+
+<div style="page-break-after: always;"></div>
 
 ### 8.6 Saving data
 
