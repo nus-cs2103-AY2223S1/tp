@@ -3,7 +3,7 @@ layout: page
 title: Kang Qiao's Project Portfolio Page
 ---
 
-### Project: Intrack
+### Project: InTrack
 
 InTrack is a desktop application that helps Computer Science students who are applying for multiple internships to keep
 track of their progress and deadlines across these applications. It is optimised for use via a Command Line Interface
