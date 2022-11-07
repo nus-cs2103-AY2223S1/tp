@@ -1,7 +1,14 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.testutil.TypicalIndexes.*;
+import static seedu.address.testutil.TypicalTeams.getTypicalAddressBookWithTeams;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
@@ -9,12 +16,6 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.model.team.Team;
-
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.*;
-import static seedu.address.testutil.TypicalIndexes.*;
-import static seedu.address.testutil.TypicalTeams.getTypicalAddressBookWithTeams;
 
 public class AssignMemberCommandTest {
     private Model model;
@@ -29,7 +30,8 @@ public class AssignMemberCommandTest {
         Team teamToAssign = model.getFilteredTeamList().get(INDEX_SECOND_TEAM.getZeroBased());
         Person memberToAssign = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         AssignMemberCommand assignMemberCommand = new AssignMemberCommand(INDEX_FIRST_PERSON, INDEX_SECOND_TEAM);
-        String expectedMessage = String.format(AssignMemberCommand.MESSAGE_SUCCESS, memberToAssign.getName(), teamToAssign.getName());
+        String expectedMessage = String.format(AssignMemberCommand.MESSAGE_SUCCESS,
+                memberToAssign.getName(), teamToAssign.getName());
 
         ModelManager expectedModel = new ModelManager(getTypicalAddressBookWithTeams(), new UserPrefs());
         Team teamToAssign2 = expectedModel.getFilteredTeamList().get(INDEX_SECOND_TEAM.getZeroBased());
