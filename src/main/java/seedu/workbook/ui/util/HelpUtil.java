@@ -40,6 +40,36 @@ public class HelpUtil {
      * @param command Command to return example for.
      * @return Command example as String.
      */
+    public static String getCommandHeader(Command command) {
+        switch(command) {
+            case ADD:
+                return ADD_HEADER;
+            case EDIT:
+                return EDIT_HEADER;
+            case DELETE:
+                return DELETE_HEADER;
+            case CLEAR:
+                return CLEAR_HEADER;
+            case LIST:
+                return LIST_HEADER;
+            case FIND:
+                return FIND_HEADER;
+            case UNDO:
+                return UNDO_HEADER;
+            case REDO:
+                return REDO_HEADER;
+            case EXIT:
+                return EDIT_HEADER;
+            default:
+                return "Command Example Here.";
+        }
+    }
+
+    /**
+     * Returns command example for a given command.
+     * @param command Command to return example for.
+     * @return Command example as String.
+     */
     public static String getCommandExample(Command command) {
         switch(command) {
             case ADD:
