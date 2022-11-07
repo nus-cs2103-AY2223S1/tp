@@ -311,16 +311,6 @@ The following activity diagram summarizes the action taken when `MarkCommand` is
 
 _Activity diagram of marking task as done_
 
-In the `Logic` component, once `LogicManager#execute()` is called, `TruthTableParser` and `MarkCommandParser` parses the
-index of the task in the user input, and generates a `MarkCommand` object. `LogicManager` then executes the
-`MarkCommand` object, which sets which task in the team is to be set as done in the `Model` component. A
-`CommandResult` is generated with `isCompleted` boolean value being true.
-
-The sequence diagram of the Mark command is shown below:
-![MarkSequenceDiagram](images/MarkSequenceDiagram.png)
-
-_Sequence diagram of marking tasks as done_
-
 ### Add Member to Team Feature
 
 #### Implementation
@@ -331,7 +321,7 @@ The following is an example usage scenario of how a member is added to a team:
 
 Precondition: Index provided is valid and the current working team is set to the team that the member should be added to.
 
-1. User keys in `add_member` command along with the person's index.
+1. User keys in `add member` command along with the person's index.
 2. The person at the specified index in the list is added to the team.
 
 If any of the following occurs:
@@ -359,7 +349,7 @@ executes the `AddMemberCommand` object, which adds the person to the current tea
 
 The list members feature allows users to view the members in their current team.
 
-The list members command works similar to list command, which updates the `PersonListPanel` and shows the members in the
+The list members command updates the `PersonListPanel` and shows the members in the
 current team.
 
 Currently, `PersonListPanel` displays all persons that satisfy some `Predicate`, which is stored in the
@@ -410,6 +400,37 @@ The following activity diagram summarizes the flow of `AssignTaskRandomlyCommand
 
 _Activity diagram of randomly assigning a task_
 
+### Add Link Feature
+
+#### Implementation
+
+The add link feature allows users to add links to their current team.
+
+The add link command updates the `LinkListPanel` and adds the link to the list.
+
+The following is an example usage scenario of how a member is added to a team:
+
+Precondition: Link name and URL provided is valid and the current working team is set to the team that the link should
+be added to.
+
+1. User keys in `add link` command along with the `-n` flag and the link name, and the `-l` flag and the link URL.
+2. The link is added to the link list of the current working team.
+
+If any of the following occurs:
+
+1. The link name is invalid
+2. The URL is badly formatted
+3. Either the link or the URL is missing
+
+Then, an appropriate exception will be thrown and the respective error message will be shown to the user.
+
+The following activity diagram summarizes the action taken when the `AddMemberCommand` is executed:
+
+![AddLinkActivityDiagram](images/AddLinkActivityDiagram.png)
+
+The following sequence diagram illustrates what happens within the `Logic` component when the add link command is
+executed:
+![AddLinkSequenceDiagram](images/AddLinkSequenceDiagram.png)
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**

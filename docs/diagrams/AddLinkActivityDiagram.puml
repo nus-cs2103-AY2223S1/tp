@@ -1,0 +1,20 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+if () then ([else])
+    :Create a new link;
+    if () then ([else])
+        :Add link to team's link list;
+        :Display success message to user;
+    else ([link already exists in link list])
+        :Throw CommandException;
+    endif
+else ([link name or URL is invalid])
+    :Throw ParseException;
+endif
+
+stop
+
+
+@enduml
