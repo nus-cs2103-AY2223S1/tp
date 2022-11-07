@@ -498,21 +498,18 @@ Examples:
 
 Finds all students with a particular tag.
 
-Format: `find t/TAG_NAME`
+Format: `find t/TAG…`
 
-- Only one tag can be searched at each time.
+- You can have more than one tag that can be searched at each time.
 - The tag is case-insensitive.
-
-<div markdown="span" class="alert alert-danger">❗ **Caution:** Do not include more than one tag such as find t/python java.
-</div>
 
 Examples:
 
 * `find t/python` returns all students who have a python tag, including students who have other tags on top of the
 python tag.
 * `find t/javascript` returns all students who have a javascript tag, including students who have other tags on top
-of javascript tag.
-* `find t/python t/javascript` returns all students who have javascript and python tags, includings students who have 
+of javascript tag 
+* `find t/python t/javascript` returns all students who have javascript and python tags, including students who have
 other tags on top of the two tags.
 
 [↑ Back to top](#table-of-contents)
@@ -602,7 +599,7 @@ Format: `delete INDEX [MORE_INDEXES]`
 
 - Deletes the student(s) at the specified `INDEX(ES)`.
 - The `INDEX(ES)` refers to the index numbers shown in the [Student List](#ui-overview) (bottom left section of the display).
-- An index must be a positive integer within the size of the displayed student list.
+- The `INDEX(ES)` must be a positive integer within the size of the displayed student list.
 
 Examples:
 - `list` followed by `delete 1 2` deletes the 1st and 2nd student in the [Student List](#ui-overview).
