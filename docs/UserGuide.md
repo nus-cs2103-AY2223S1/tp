@@ -2,7 +2,7 @@
 layout: page
 title: User Guide
 ---
-##Introduction
+## Introduction
 
 Welcome to the User Guide of MODPRO!
 
@@ -15,10 +15,10 @@ MODPRO helps you…
 
 It is highly optimised for students who prefer Command Line Interface (CLI) by allowing those who type fast to key in commands to track their modules. If you struggle to type fast, we also provide a Graphical User interface (GUI) to assist you in using MODPRO.
 
-###The Graphical User Interface (GUI)
+### The Graphical User Interface (GUI)
 
 To give you a quick overview of MODPRO, the following image shows you the main components of the GUI.
-![Ui](images/)
+![Ui](images/GUI.png)
 
 The table below summarises the function of each component.
 
@@ -411,6 +411,7 @@ Examples:
 | ![FindCommand](images/FindCommandImage.png) |
 |:-------------------------------------------:|
 |      Demonstration of FindTasksCommand      |
+
 ### Sorting the task list
 Sorts the tasks in the task list based on the criteria specified
 
@@ -553,8 +554,8 @@ Restrictions:
 
 Example:
 
-`e add m/CS2030S ex/midterms ed/20-11-2022` adds the exam with the exam module as 'CS2030S',
-exam description as 'midterms', exam date as '20-11-2022' into the exam list. 
+`e add m/CS2100 ex/midterms ed/20-08-2023` adds the exam with the exam module as 'CS2100',
+exam description as 'midterms', exam date as '20-08-2023' into the exam list. 
 
 | ![AddExamCommand](images/AddExamImage.png) |
 |:------------------------------------------:|
