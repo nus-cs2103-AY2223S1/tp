@@ -10,8 +10,6 @@ import static seedu.intrack.testutil.TypicalInternships.getTypicalInTrack;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.intrack.commons.core.Messages;
-import seedu.intrack.commons.core.index.Index;
 import seedu.intrack.model.Model;
 import seedu.intrack.model.ModelManager;
 import seedu.intrack.model.UserPrefs;
