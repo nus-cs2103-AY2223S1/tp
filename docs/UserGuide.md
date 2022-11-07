@@ -25,7 +25,15 @@ to use and what it does for all the features available in myStudent. If you don'
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: Notes about the command format in this user guide:
+:information_source: Notes about some keywords in this user guide:
+
+* **Entry**: an entry is a **student**, a **tutor** or a **class**.
+
+
+* **Displayed list**: it refers to the current list that is displayed.
+  There are three possible list: the **student list**, the **tutor list** and the **class list**.
+  Only one of the three will be displayed at one time, and this list is referred to as the **displayed list**.
+
 
 * **Format** appears in each command section. It refers to the format of the inputs that you need to type into the command box to execute the commands.
   (E.g., `Format: delete <index>` means that you need to type in `delete` followed by an `index` to execute the command.)
@@ -38,6 +46,11 @@ to use and what it does for all the features available in myStudent. If you don'
 * **Fields** are information to be supplied to the command by the user for the application to execute.  
   (E.g., `name` or `phone`)
 
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: Notes about the command format in this user guide:
 
 * `< >` - indicate that enclosing field is *mandatory*.   
   (E.g., `add n/<name>`, where `<name>` is a mandatory field "name" and a valid input could be `add n/John Doe`.)
@@ -53,18 +66,6 @@ to use and what it does for all the features available in myStudent. If you don'
 
 * Extra input from the user for commands that do not take in any fields will be ignored.  
   (E.g., the `clear` command does not have any other fields, thus typing `clear asdfghjkl` into the command box will have the same result as if you had entered `clear` instead.)
-
-</div>
-
-<div markdown="block" class="alert alert-info">
-
-:information_source: Notes about some keywords in this user guide:
-
-* **Entry**: an entry is a **student**, a **tutor** or a **class**.
-
-* **Displayed list**: it refers to the current list that is displayed. 
-There are three possible list: the **student list**, the **tutor list** and the **class list**. 
-Only one of the three will be displayed at one time, and this list is referred to as the **displayed list**. 
 
 </div>
 
