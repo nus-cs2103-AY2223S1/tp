@@ -34,7 +34,7 @@ public class AddNoteCommandParser implements Parser<AddNoteCommand> {
                     AddNoteCommand.MESSAGE_USAGE), ive);
         }
         BinaryOperator<String> combiner = (x, y) -> x + "\n" + y;
-        note = new Note(argMultimap.getAllValues(PREFIX_NOTE).stream().reduce(combiner).get());
+        note = ParserUtil.parseNote(argMultimap.getAllValues(PREFIX_NOTE).stream().reduce(combiner).get());
         return new AddNoteCommand(index, note);
     }
 }
