@@ -73,6 +73,7 @@ Given below are my contributions to the project.
     * Assigned teammates to different issues and kept track of their progress
     * Maintained and updated the official and unofficial meeting minutes after every meeting
     * Managed milestones, changed their due dates, and closed them to wrap-up.
+    * Did final submission of the JAR file, the UG, the DG, and the PPP.
 
 * **Enhancements to existing features**:
     * Let the GUI window fit different screen sizes (Pull
