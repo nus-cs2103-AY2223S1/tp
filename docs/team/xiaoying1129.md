@@ -25,37 +25,36 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=xiaoying1129&breakdown=true)
 
   * `Pull Requests`:
-    * Added a skeletal Personal Portfolio Page [#32]
-    * Update `add`, `list` and `edit` in User Guide [#36]
-    * Add `find` by subject, personality, class [#56]
-    * Update Developer Guide for `sort` and add assertions [#81]
-    * Add `sort` command [#87]
-    * Add `remark` command [#90]
-    * Update Developer Guide and User Guide for `find`, `sort` and `remark` commands [#101]
-    * Fix User Guide issues from PE dry run [#191]
-    * Update Personal Portfolio Page [#207]
-    * Add test cases to increase coverage [#209]
-    * Add user stories, use cases and other updates to Developer Guide [#210]
+    * (#32): Added a skeletal Personal Portfolio Page 
+    * (#36): Update `add`, `list` and `edit` in User Guide 
+    * (#56): Add `find` by subject, personality, class
+    * (#81): Update Developer Guide for `sort` and add assertions
+    * (#87): Add `sort` command 
+    * (#90): Add `remark` command 
+    * (#101): Update Developer Guide and User Guide for `find`, `sort` and `remark` commands 
+    * (#191): Fix User Guide issues from PE dry run 
+    * (#207): Update Personal Portfolio Page
+    * (#209): Add test cases to increase coverage 
+    * (#210): Add user stories, use cases and other updates to Developer Guide 
 
 
 * **Project management**:
-    * `PRs reviewed`
-      * [#31], [#34], [#35], [#37], [#38], [#42], [#48], [#53], [#58], [#59], [#60], [#64], [#68], [#79], [#83], [#85], [#93], [#98], [#100]
+    * [PRs reviewed](https://github.com/AY2223S1-CS2103T-T08-1/tp/pulls?q=is%3Apr+reviewed-by%3A%40me+is%3Aclosed) (with non-trivial review comments)
 
 
 * **Enhancements to existing features**:
-    * Wrote additional tests for existing features to increase coverage: (Pull Request [#209])
+    * Wrote additional tests for existing features to increase coverage: (Pull Request [\#209](https://github.com/AY2223S1-CS2103T-T08-1/tp/pull/209))
 
 
 * **Documentation**:
     * User Guide:
-        * Added documentation for `add`, `list` and `edit` features to the UG draft [#36]
-        * Added documentation for `find`, `sort` and `remark` features [#101]
-        * Update User Guide to fix documentation bugs reported in the PE dry run [#191]
+        * Added documentation for `add`, `list` and `edit` features to the UG draft [\#36]((https://github.com/AY2223S1-CS2103T-T08-1/tp/pull/36))
+        * Added documentation for `find`, `sort` and `remark` features [\#101](https://github.com/AY2223S1-CS2103T-T08-1/tp/pull/101)
+        * Update User Guide to fix documentation bugs reported in the PE dry run [\#191](https://github.com/AY2223S1-CS2103T-T08-1/tp/pull/191)
     * Developer Guide:
-        * Added proposed implementation for the `sort` feature [#81]
-        * Added documentation for `find`, `sort` and `remark` features [#101]
-        * Add user stories, use cases and other updates to Developer Guide [#210]
+        * Added proposed implementation for the `sort` feature [\#81](https://github.com/AY2223S1-CS2103T-T08-1/tp/pull/81)
+        * Added documentation for `find`, `sort` and `remark` features [\#101](https://github.com/AY2223S1-CS2103T-T08-1/tp/pull/101)
+        * Add user stories, use cases and other updates to Developer Guide [\#210](https://github.com/AY2223S1-CS2103T-T08-1/tp/pull/210)
 
 
 * **Community**:
