@@ -1,0 +1,13 @@
+@startuml
+start
+:User selects a Person;
+:User enters their Contact Detail Page;
+:User selects attributes to set;
+
+if () then ([Person already has that attribute])
+    :Update that attribute with the given value;
+else ([Person does not have that attribute yet])
+    :Add that attribute with the given value;
+endif
+stop
+@enduml

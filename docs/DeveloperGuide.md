@@ -164,6 +164,7 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Set Command
 
+#### Implementation
 The Set Command makes use of the following classes:
 
 * `SetCommand` — Updates the `Person` object in the model.
@@ -194,6 +195,27 @@ attributes will be updated.
 The sequence diagram below illustrates the process of the Set Command works.
 ![SetSequenceDiagram](images/SetSequenceDiagram.png)
 
+The below activity diagram highlights what happens when a user uses the `set` command.
+
+![SetActivityDiagram](images/SetActivityDiagram.png)
+
+#### Design considerations:
+
+**Aspect: How data is used to update the person's information:**
+
+* **Alternative 1 (current choice):** Store inside a `SetPersonDescriptor` object.
+    * Pros: 
+      * Abstracts out the data transfer process, making it easily extensible.
+      * Handles optional arguments, allowing users to only input the attributes that they wish to set.
+      * Improves cohesion of the codebase.
+    * Cons:
+      * Slightly more complicated to implement.
+      * Possibly more space usage.
+
+* **Alternative 2:** Transfer all data directly.
+    * Pros: Easier to implement.
+    * Cons: Difficult to extend.
+
 ### Sort Command
 
 The Sort Command makes use of the following classes:
@@ -204,6 +226,11 @@ The Sort Command makes use of the following classes:
 SortCommand Parser will determine the field that users want to sort, retrieve the `Comparator` from `PersonComparators` and update in model.
 
 ![SortSequenceDiagram](images/SortSequenceDiagram.png)
+
+The below activity diagram shows what happens when a user uses the `sort` command.
+
+![SortActivityDiagram](images/SortActivityDiagram.png)
+
 
 ### \[Proposed\] Undo/redo feature
 
@@ -536,18 +563,48 @@ testers are expected to do more *exploratory* testing.
 
 1. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+   1. Resize the window to an optimum size. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Adding a person
+
+1. Adding a person to the list
+   1. Test case: `add name/Mike github/mikelim address/21 Clementi phone/86609831 email/mike@gmail.com slack/mike123 telegram/@mike123 tag/friend timezone/+9 role/Frontend` <br>
+      Expected: A person with the following attributes should be added to the list. Note that some attributes are only
+      visible by entering the person's Contact Detail Page.
+      1. name: Mike
+      2. github: @mikelim
+      3. address: 21 Clementi
+      4. phone number: 86609831
+      5. email: mike@gmail.com
+      6. slack: mike123
+      7. telegram: @mike123
+      8. tags: friend
+      9. timezone: 1 hour ahead
+      10. role: Frontend
+   2. Test case:`add name/John Doe address/27 Clementi` <br>
+      Expected: A person with the following attributes should be added to the list.
+      1. name: John Doe
+      2. address: 27 Clementi
+
+### Adding a person by GitHub username
+
+1. Adding a person with only Github username
+
+   1. Test case: `add github/wrewsama` <br>
+      Expected: A person with the following attributes should be added to the list. Note that some attributes are only
+                visible by entering the person's Contact Detail Page.
+      1. name: Andrew Lo
+      2. github: @wrewsama
+      3. address: Singapore
 
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: The displayed list of persons is non-empty.
 
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
@@ -558,12 +615,103 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Entering the Contact Detail Page
+
+1. Enter a person's contact detail page from the main page.
+   1. Prerequisites: Multiple persons in the list. Execute the following commands first:
+      1. `add n/amy`
+      2. `add n/bob`
+      3. `add name/Mike github/mikelim address/21 Clementi phone/86609831 email/mike@gmail.com slack/mike123 telegram/@mike123 tag/friend timezone/+9 role/Frontend`
+   
+   2. Test case: Use the arrow keys until Mike is highlighted, then hit the `<ENTER>` key. <br>
+      Expected: A page with the following information is displayed:
+      1. Profile picture
+      2. Name
+      3. Github account name
+      4. Role
+      5. Timezone
+      6. Address
+      7. Phone number
+      8. telegram handle
+      9. slack account
+      10. email address
+      11. repositories
+
+      Use the `back` command or hit the `<ESC>` key to return to the main page.
+   
+   3. Test case: From the main page, double click on Mike. <br>
+      Expected: The same page mentioned above is shown.
+
+### Setting a person's attributes
+
+1. Set a person's attributes.
+
+   1. Prerequisites: Execute the following commands first:
+      1. `add n/Bob phone/12345678`
+      2. Double-click on Bob in the list of persons to access his contact detail page.
+   2. Test case: `set n/Bobby` <br>
+      Expected: Name gets changed from Bob to Bobby
+   3. Test case: `set telegram/@bobby slack/b0bby` <br>
+      Expected: telegram and slack fields are added to the contact detail page.
+   4. Test case: `set phone/87654321 email/bob@bob.com` <br>
+      Expected: Phone number gets changed from 12345678 to 87654321 and an email field is added.
+   
+### Deleting a person's attributes
+
+1. Deleting a person's non-compulsory attributes.
+   1. Prerequisites: Execute the following commands first:
+       1. `add n/Bob phone/12345678 telegram/@bobby`
+       2. Double-click on Bob in the list of persons to access his contact detail page.
+   2. Test case: `delete telegram` <br>
+      Expected: The telegram field is removed.
+   3. Test case: `delete phone` <br>
+      Expected: The phone number field is removed.
+
+### Sorting the list of persons
+
+1. Sorting the list of persons by role, by name, and by address.
+   1. Prerequisites: Execute the following commands first:
+      1. `add n/Amy role/DevOps a/Bishan`
+      2. `add n/Bob role/Frontend a/Clementi`
+      3. `add n/Chad role/Backend a/Ang Mo Kio`
+   2. Test case: `sort name/desc` <br>
+      Expected: Going from the top of the list to the bottom, Chad should appear first, followed by Bob, then Amy
+   3. Test case: `sort role` <br>
+      Expected: From top to bottom, Chad should appear first, followed by Amy, then Bob.
+   4. Test case `sort address` <br>
+      Expected: From top to bottom, Bob should appear first, followed by Amy, then Chad.
+   5. Test case: `reset` <br>
+      Expected: From top to bottom, Amy appears first, followed by Bob, then Chad.
+
+### Searching
+
+1. Fuzzy search for persons by name, address, github username, tags, and role.
+   1. Prerequisites: Execute the following commands first:
+       1. `add n/Amy role/DevOps a/Bishan`
+       2. `add n/Bob role/Frontend a/Clementi t/lead`
+       3. `add n/Chad role/Backend a/Ang Mo Kio`
+       4. `add n/Drew github/wrewsama role/Intern a/Khatib`
+       5. `add n/Eren role/Backend a/Khatib t/lead`
+   2. Test case: `find wrewsama` <br>
+      Expected: Only Drew appears in the list.
+   3. Test case: `find backend` <br>
+      Expected: Both Chad and Eren appear in the list.
+   4. Test case: `find lead` <br>
+      Expected: Both Bob and Eren appear in the list.
+   5. Test case: `find ang mo kio` <br>
+      Expected: Both Drew and Eren appear in the list.
+   6. Test case: `find ereh` <br>
+      Expected: Eren appears in the list.
+   7. Test case: `reset` <br>
+      Expected: All added persons can be seen in the list.
 
 ### Saving data
 
+GithubContact enables advanced users to make direct edits to the data file located at:
+`<JAR FILE LOCATION>/data/addressbook.json>`.
+
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. If an edit to the data file invalidates the information's format, when opened, GithubContact will delete the data
+      file and start with a fresh, empty data file.
 
-1. _{ more test cases …​ }_
