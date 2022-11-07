@@ -277,7 +277,7 @@ Format: `edit TASK_NUMBER [-n TASK_NAME] [-m MODULE] [-d DATE] [-t TAG_NAME]*`
 Examples:
 * `edit 1 -t revision -n Recitation` Edits the tag to "revision" and taskName to "Recitation".
 
-![Example image of Edot Command](images/user-guide/EditCommandDemo.png)
+![Example image of Edit Command](images/user-guide/EditCommandDemo.png)
 
 #### Deleting a task : `delete`
 
@@ -319,10 +319,10 @@ Example: `unmark 2`
 
 Allows you to tag a task.
 
-Format : `tag TASK_NUMBER (-t TAG_NAME)*`
+Format : `tag TASK_NUMBER -t TAG_NAME [-t TAG_NAME]*`
 * `TASK_NUMBER`: This is the number of the task currently displayed.
 * `TAG_NAME`: The word to tag the task with, should be alphanumeric, i.e. must not contain any spaces.
-* `(-t TAG_NAME)`: You may add more than one tag by adding `-t TAG_2` after your first tag.
+* `[-t TAG_NAME]*`: You may add more than one tag by adding `-t TAG_NAME` after your first tag.
 
 Example: `tag 1 -t optional`
 
@@ -340,12 +340,9 @@ Clear command does not clear archived task list.
 
 Format: `clear`
 
-<div markdown="span" class="alert alert-warning">
-
-:warning: **Warning:**
-
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:**<br>
 This command is irreversible!
-
 </div>
 
 ### Viewing Specific Tasks
@@ -408,7 +405,9 @@ Format: `ls -t TAG_NAME`
 
 Example: `ls -t highPriority` will find tags with `highpriority` (Case-insensitive)
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**<br>
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Tip:**<br>
 Any command that searches for tags finds all tags that exactly match, but is case-insensitive.
 </div>
 
@@ -433,7 +432,8 @@ Format: `ls -n KEYWORD*`
 
 Example: `ls -n task1`
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**<br>
+<div markdown="block" class="alert alert-info">
+**:information_source: Tip:**<br>
 Any command that searches for names finds all task names that contain the keyword and does not have to be an exact match. It is also case-insensitive.
 </div>
 
@@ -509,7 +509,7 @@ Click to return to: [Command Features](#command-features), [Back to Top](#)
 NotionUS data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
-NotionUS data are saved as a JSON file `[JAR file location]/data/notionusdata.json`. Advanced users are welcome to update data directly by editing that data file.
+NotionUS data are saved as a JSON file `[JAR file location]/data/taskList.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">
 
@@ -526,9 +526,6 @@ Click to return to: [Back to Top](#)
 
 **Q**: How do I transfer my data in NotionUS to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous NotionUS home folder.
-
-**Q**: What if the date file fails to load into NotionUS?<br>
-**A**: It is likely that your storage data file is in the wrong format. Do check the log files to see what had happened when launching NotionUS. 
 
 **Q**: What if double-clicking fails to open the jar file?<br>
 **A**: Check that the correct version of java is installed (Java 11) locally on your computer. You may open the terminal and type java -version to check. If it is the wrong version, visit this [page](https://nus-cs2103-ay2223s1.github.io/website/admin/programmingLanguages.html#programming-language) for a guide to install the correct version of java. If you have the correct version of java installed, you may try to launch the app using terminal, open terminal or command prompt and type java -jar NotionUs.jar.  
@@ -562,10 +559,10 @@ Format meanings:
 | **Exit** NotionUS           | `exit`                                                                                                                                                                                                                                                                                                                                                                                                                                 |                                              |
 | **Find** task/tag with name | `find KEYWORD/TAG_NAME*`                                                                                                                                                                                                                                                                                                                                                                                                               | `find Tutorial Lab`                          |
 | **Help**                    | `help`                                                                                                                                                                                                                                                                                                                                                                                                                                 |                                              |
-| **List** specific tasks     | `ls [-a] [-u] [-m] [--module MODULE] [-t TAG_NAME] [-d YYYY-MM-DD] [-n KEYWORD]*`<br/>`ls -a` View all tasks<br/>`ls -u` View all incomplete tasks<br/> `ls -m` View all marked tasks<br/> `ls --module MODULE` View tasks under the specific module<br/> `ls -t TAG_NAME` View tasks with a specific tag<br/> `ls -d YYYY-MM-DD` View tasks on or after a specific date <br/> `ls -n KEYWORD*` View task names with matching keywords | `ls -n task test --module CS2103T `          |
+| **List** specific tasks     | `ls [-a] [-u] [-m] [--module MODULE] [-t TAG_NAME] [-d YYYY-MM-DD] [-n KEYWORD*]`<br/>`ls -a` View all tasks<br/>`ls -u` View all incomplete tasks<br/> `ls -m` View all marked tasks<br/> `ls --module MODULE` View tasks under the specific module<br/> `ls -t TAG_NAME` View tasks with a specific tag<br/> `ls -d YYYY-MM-DD` View tasks on or after a specific date <br/> `ls -n KEYWORD*` View task names with matching keywords | `ls -n task test --module CS2103T `          |
 | **Mark** tasks              | `mark TASK_NUMBER`                                                                                                                                                                                                                                                                                                                                                                                                                     | `mark 2`                                     |
 | **Show Archived** tasks     | `showarchive`                                                                                                                                                                                                                                                                                                                                                                                                                          |                                              |
-| **Tagging** a task          | `tag TASK_NUMBER (-t TAG_NAME)*`                                                                                                                                                                                                                                                                                                                                                                                                       | `tag 1 -t highPriority -t homework`          |
+| **Tagging** a task          | `tag TASK_NUMBER -t TAG_NAME [-t TAG_NAME]*`                                                                                                                                                                                                                                                                                                                                                                                           | `tag 1 -t highPriority -t homework`          |
 | **Unmark** tasks            | `unmark TASK_NUMBER`                                                                                                                                                                                                                                                                                                                                                                                                                   | `unmark 2`                                   |
 | Accessing previous commands | Use the `Up` and `Down` arrow keys                                                                                                                                                                                                                                                                                                                                                                                                     |                                              |
 

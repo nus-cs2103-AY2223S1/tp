@@ -28,6 +28,7 @@ implementation of our features in the "Implementation" section.
 
 
 * This project is based on the [AddressBook Level-3](https://se-education.org/addressbook-level3/) created by the [SE-EDU initiative](https://se-education.org/).
+* The Quicksand font's Open Font License: [Open Font License for Quicksand font](http://scripts.sil.org/OFL)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -169,7 +170,7 @@ The `Model` component,
 * stores the currently 'selected' `Task` objects (e.g., results of a search query) as a separate _filtered_ list which
   is exposed to outsiders as an unmodifiable `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to
   this list so that the UI automatically updates when the data in the list change.
-* stores the archived `Task` objects in another `UniqueTaskList` object
+* stores the archived `Task` objects in another `UniqueTaskList` object.
 * stores the filter status when the task list is filtered and also updates when the list changes.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as
   a `ReadOnlyUserPref` objects.
@@ -431,14 +432,14 @@ in previous list.
   * Pros: Harder to implement.
   * Cons: Efficient especially when command list is large.
 
-### 5.5 [Proposed] Acceptance of Multiple Date Formats
+### 5.6 [Proposed] Acceptance of Multiple Date Formats
 
-#### 5.5.1 Current Implementation
+#### 5.6.1 Current Implementation
 
 Currently, the `Deadline` class only accepts dates in the ISO 8601 format (e.g. 2022-11-07), which is unnatural for new
 users to type. Accepting multiple date formats will be much appreciated by the user base.
 
-#### 5.5.2 Proposed Implementation
+#### 5.6.2 Proposed Implementation
 
 A list of accepted formats generated using `DateTimeFormatter::ofPattern` needs to be stored as a static field in 
 `Deadline`. 
@@ -457,7 +458,7 @@ The following sequence diagram shows what will happen with the proposed implemen
 
 ![ProposedDeadlineSequenceDiagram](images/ProposedDeadlineSequenceDiagram.png)
 
-#### 5.5.3 Alternative Implementations
+#### 5.6.3 Alternative Implementations
 
 **Aspect: Providing a year for Month and Day only inputs**
 
@@ -473,16 +474,16 @@ The following sequence diagram shows what will happen with the proposed implemen
   * Cons: More complicated implementation
 
 
-### 5.6 [Proposed] Aliasing of Commands
+### 5.7 [Proposed] Aliasing of Commands
 
-#### 5.6.1 Rationale for Feature
+#### 5.7.1 Rationale for Feature
 
 As users become more familiar with the command line, some may prefer to have aliases for commonly used commands to
 improve their efficiency. For example, instead of typing `add -n Project ...` every time, a user may prefer to just type 
 `a Project ...` to quickly add in a task, where `a` is an alias for `add -n`. Other potential uses are aliases for 
 commonly used list filters, instead of typing the whole command out.
 
-#### 5.6.2 Proposed Implementation
+#### 5.7.2 Proposed Implementation
 
 The addition of the alias feature will require the following commands:
 
@@ -912,7 +913,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with corrupted data files
 
-    1. Open `addressbook.json`. There are some pre-loaded tasks in this file.
+    1. Open `addressbook.json`. There are some preloaded tasks in this file.
 
     2. In line 2, change `tasks` to `task`. This corrupts the file and system will recognise the mismatch.
 
@@ -927,7 +928,7 @@ testers are expected to do more *exploratory* testing.
 
 2. Dealing with missing data files
 
-    1. Open `addressbook.json`. There are some pre-loaded tasks in this file.
+    1. Open `addressbook.json`. There are some preloaded tasks in this file.
 
     2. Delete `addressbook.json` manually.
 
