@@ -1,6 +1,7 @@
 package seedu.clinkedin.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.clinkedin.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.clinkedin.commons.util.FileUtil.exportToCsvFile;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_PATH;
 
@@ -25,11 +26,11 @@ import seedu.clinkedin.storage.JsonSerializableAddressBook;
  */
 public class ExportCommand extends Command {
     public static final String COMMAND_WORD = "export";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Exports the address book.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Exports the address book in JSON or CSV format.\n"
             + "Parameters: "
             + PREFIX_PATH + "PATH\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_PATH + "~/Desktop/data.csv";
+            + PREFIX_PATH + "/Desktop/data.csv";
     public static final String MESSAGE_SUCCESS = "PersonList exported successfully in %s";
     public static final String MESSAGE_WINDOW = "Opening Export Window...";
 
@@ -41,6 +42,7 @@ public class ExportCommand extends Command {
      * Creates an ExportCommand to export the AddressBook
      */
     public ExportCommand(String filePath, FileType fileType) {
+        requireAllNonNull(filePath, fileType);
         this.filePath = filePath;
         this.fileType = fileType;
     }

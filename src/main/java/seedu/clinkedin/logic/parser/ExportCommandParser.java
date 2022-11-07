@@ -7,6 +7,7 @@ import java.io.File;
 import java.util.stream.Stream;
 
 import seedu.clinkedin.logic.commands.ExportCommand;
+import seedu.clinkedin.logic.parser.exceptions.InvalidExtensionException;
 import seedu.clinkedin.logic.parser.exceptions.ParseException;
 
 
@@ -37,7 +38,12 @@ public class ExportCommandParser implements Parser<ExportCommand> {
         if (file.getName().trim().startsWith(".")) {
             throw new ParseException("File name cannot begin with period(.)!");
         }
-        ParserUtil.FileType fileType = ParserUtil.getFileType(argMultimap.getValue(PREFIX_PATH).get().trim());
+        ParserUtil.FileType fileType;
+        try {
+            fileType = ParserUtil.getFileType(argMultimap.getValue(PREFIX_PATH).get().trim());
+        } catch (InvalidExtensionException iee) {
+            throw new ParseException(iee.getMessage());
+        }
         return new ExportCommand(filePath, fileType);
     }
 
