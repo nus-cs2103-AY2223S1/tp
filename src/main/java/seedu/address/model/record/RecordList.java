@@ -3,8 +3,12 @@ package seedu.address.model.record;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.logging.Logger;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.MainApp;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.exceptions.DuplicateRecordException;
 import seedu.address.model.person.exceptions.RecordNotFoundException;
 
@@ -12,6 +16,7 @@ import seedu.address.model.person.exceptions.RecordNotFoundException;
  * Represents a record list in the address book.
  */
 public class RecordList {
+    private static final Logger logger = LogsCenter.getLogger(MainApp.class);
     /* Record List variables */
     // count of the record list should be accessed through the ArrayList#size() method.
     private final ObservableList<Record> recordList = FXCollections.observableArrayList();
@@ -21,11 +26,13 @@ public class RecordList {
     /**
      * Adds a record to the RecordList.
      * The person must not already exist in the list.
+     *
      * @param toAdd Record to add.
      */
     public void add(Record toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
+            logger.warning("Duplicate record detected.");
             throw new DuplicateRecordException();
         }
         recordList.add(toAdd);
@@ -74,10 +81,12 @@ public class RecordList {
 
         int index = recordList.indexOf(target);
         if (index == -1) {
+            logger.warning("Index input is negative and invalid.");
             throw new RecordNotFoundException();
         }
 
         if (!target.isSameRecord(editedRecord) && this.contains(editedRecord)) {
+            logger.warning("Record is duplicate.");
             throw new DuplicateRecordException();
         }
 
@@ -103,6 +112,7 @@ public class RecordList {
     public void delete(Record record) {
         requireNonNull(record);
         if (!recordList.remove(record)) {
+            logger.warning("Record not found");
             throw new RecordNotFoundException();
         }
         recordList.remove(record);
