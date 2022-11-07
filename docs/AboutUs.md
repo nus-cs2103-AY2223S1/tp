@@ -52,10 +52,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Gavin Cho
 
-<img src="images/gavzzz.png.png" width="200px">
+<img src="images/gavzzz.png" width="200px">
 
 [[github](http://github.com/gavzzz)]
 [[portfolio](team/gavzzz.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: UI, Deliverables, Testing and Documentation
