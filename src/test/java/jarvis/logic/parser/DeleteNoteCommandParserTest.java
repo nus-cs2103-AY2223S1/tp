@@ -9,15 +9,16 @@ import static jarvis.logic.commands.CommandTestUtil.STUDENT_INDEX;
 import static jarvis.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static jarvis.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
+import jarvis.testutil.TypicalIndexes;
 import org.junit.jupiter.api.Test;
 
 import jarvis.commons.core.index.Index;
 import jarvis.logic.commands.DeleteNoteCommand;
 
 public class DeleteNoteCommandParserTest {
-    private static final Index noteIndex = Index.fromZeroBased(0);
-    private static final Index lessonIndex = Index.fromZeroBased(0);
-    private static final Index studentIndex = Index.fromZeroBased(0);
+    private static final Index noteIndex = TypicalIndexes.INDEX_FIRST_NOTE;
+    private static final Index lessonIndex = TypicalIndexes.INDEX_FIRST_LESSON;
+    private static final Index studentIndex = TypicalIndexes.INDEX_FIRST_STUDENT;
 
     private DeleteNoteCommandParser parser = new DeleteNoteCommandParser();
 
