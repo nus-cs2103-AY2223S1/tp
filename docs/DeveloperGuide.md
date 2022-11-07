@@ -421,6 +421,68 @@ The following activity diagram summarizes what happens when a user executes a ne
     - Pros: Attendance can be modified easily.
     - Cons: Implementation is relatively complicated and require more exception handling.
 
+### Add Tutorial feature
+
+The Add Tutorial feature allows CS2103T TAs to add a new `Tutorial` object to the tutorial list. When successfully added,
+the tutorial will be added on the Graphical User Interface.
+
+#### Implementation
+
+The Add Tutorial mechanism is facilitated by `AddressBook`. It implements the following operations:
+
+* `AddressBook#hasTutorial(Tutorial t)` - Returns true if a tutorial with the same identity as Tutorial t exists in the
+  address book.
+* `AddressBook#addTutorial(Tutorial tutorial)` - Adds a tutorial to the address book.
+
+These operations are exposed in the Model interface as `Model#hasTutorial(Tutorial tutorial)`
+and `Model#addTutorial(Tutorial tutorial)` respectively.
+
+Given below is an example usage scenario and how the `addtut` mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `AddressBook` will be initialised with the initial
+json data stored.
+
+Step 2. The user execute `addtut g/T08...` command to add tutorial called T08 to the address book. The `addtut`
+command calls `AddTutorialCommandParser#parse()` which parses the string keyed into the command line of the GUI.
+
+Step 3. `AddTutorialCommandParser#parse()` invokes the creation of an `AddTutCommand` object.
+
+**Note:** If a command fails its execution due to incorrect command format, it will not create a `AddTutCommand` object,
+User will retype their command.
+
+Step 4. Upon creation of `AddTutCommand` object, `Model#hasTutorial(Tutorial tutorial)`
+and `Model#addTutorial(Tutorial tutorial)`
+methods are called.
+
+**Note:** If upon invoking `Model#hasTutorial(Tutorial s)` method and return value is `true`, it will not
+call `Model#addTutorial(Tutorial tutorial)`, so the tutorial will not be added into the tutorial list as tutorial already
+exist in the list.
+
+
+Step 5. After successfully adding tutorial to the tutorial list, a `CommandResult` object will be created to tell the user
+that the tutorial has been successfully added.
+
+The following sequence diagram shows how the add tutorial operation works:
+![AddTutSequenceDiagram](images/AddTutorialSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddTutCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+The following activity diagram summarizes what happens when a user executes a new `addtut` command.
+
+![AddStuActivityDiagram](images/AddTutorialActivityDiagram.png)
+
+#### Design Considerations
+
+**Aspect: How AddStu executes::**
+
+- **Alternative 1: Require user to key in response and attendance number in when adding tutorial**
+    - Pros: More details of a tutorial can be viewed right after adding a tutorial
+    - Cons: Troublesome for CS2103T TAs to add a tutorial quickly as many details have to be keyed in if what they want
+      is to just keep track of the tutorials name and contact name.
+- **Alternative 2: Only name, telegram handle and email needs to be keyed in when adding tutorial**
+    - Pros: Faster to add a tutorial
+    - Cons: CS2103T TA has to use another command to change the response and attendance number of the tutorial.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
