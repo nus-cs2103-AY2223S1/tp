@@ -40,6 +40,7 @@ Given below are my contributions to the project.
   - Added use cases for sorting clients
   - Added implementation details for `find` command feature.
   - Added numerous user stories.
+  - Added manual testing cases for `find` and `sort` Command.
 - ### Contributions to team-based tasks
   - Ensured timely submission of team project deliverables.
   - Reported bugs as issues for better tracking.
