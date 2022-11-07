@@ -178,6 +178,16 @@ The **right half** of each student card contains module information related to y
 | Ungraded Assignments     | Number of ungraded assignments (assignments marked as **received**) that you yet to have graded.                                                                                                                                                                                                                      |
 | Assignment Status        | {::nomarkdown} Detailed record of assignments for your student. Each box represents one assignment: <ul><li>the text in the box indicates the name of the assignment</li><li>the colour indicates assignment status (There are 3 assignment status: Green for graded, Red for received, Yellow for new)</li></ul>{:/} |
 
+<div markdown="block" class="alert alert-info">
+:information_source: **Note 1:** Each student is uniquely identified by their **name, student ID and module** combined.
+This means that two students with the same name and module are considered **distinct** if they have different student IDs.
+</div>
+
+<div markdown="block" class="alert alert-info">
+:information_source: **Note 2:** Each student in StudMap can only be attached to **one module**. If you are tutoring a student
+for more than one module, you will have to create separate entries for that student, each with a different module.
+</div>
+
 ## 4.3 Understanding Commands
 
 Now that you understand the User Interface of StudMap, what can you do to interact with it?
