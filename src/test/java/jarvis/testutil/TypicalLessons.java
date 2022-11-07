@@ -64,6 +64,14 @@ public class TypicalLessons {
         return lb;
     }
 
+    public static LessonBook getTypicalLessonBook(List<Lesson> lessonList) {
+        LessonBook lb = new LessonBook();
+        for (Lesson lesson : lessonList) {
+            lb.addLesson(lesson);
+        }
+        return lb;
+    }
+
     public static List<Lesson> getTypicalLessons() {
         return new ArrayList<>(Arrays.asList(MC_1, STUDIO_1, CONSULT_1));
     }
