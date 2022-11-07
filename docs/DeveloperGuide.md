@@ -162,7 +162,7 @@ Classes used by multiple components are in the `tuthub.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Adding tutors
+### Add Feature
 
 <img src="images/AddSequenceDiagram.png">
 
@@ -247,7 +247,7 @@ Step 5: The execution ends, returning a `CommandResult` object that has the succ
 ### View Feature
 <ins>Implementation</ins>
 
-Similar to the `help` command, the `view` command involves operations within the UI to display/hide the tutor details panel. The communication between the logic and UI classes is facilitated by the `CommandResult` class, where the following field has been added:
+The `view` command involves operations within the UI to display/hide the tutor details panel. The communication between the logic and UI classes is facilitated by the `CommandResult` class, where the following field has been added:
 - `CommandResult#isView` - Indicates if the current command is a `view` command.
 
 Given below is an example usage scenario when the user enters a `view` command in the command box and how the view mechanism behaves at each step (omitting the parsing details).
