@@ -138,8 +138,8 @@ This may be useful to include eateries near NUS (such as Supper Stretch!).
   e.g. `help 123` will be interpreted as `help`.
 
 * The special `-h` parameter will provide a useful help message for how to use the command. 
-  This overrides the existing command behaviour. All other parameters will be ignored.
-  Additionally, inputs that contain `-h` 
+  To avoid any unforeseen behaviour, remove your other inputs and just call the command.
+  e.g. `find -h` or `add -h`. 
 
 <br>
 </div>
