@@ -20,6 +20,7 @@ Even if you are not, fret not! Just have a quick look at the [command summary](#
 
 For first-time users, we also recommend you to first read through the various [person fields](#person-fields) as well as [module fields](#module-fields) to familiarise yourself with what each field represent and their constraints.
 
+<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
 
 ## Table of Contents
@@ -51,6 +52,8 @@ For first-time users, we also recommend you to first read through the various [p
 - [FAQ](#faq)
 - [Glossary](#glossary)
 
+<div style="page-break-after: always;"></div>
+
 ## Quick start
 
 1. Ensure you have Java `11` or above installed on your Computer.
@@ -71,6 +74,7 @@ For first-time users, we also recommend you to first read through the various [p
 
 6. Refer to the [Command Summary](#command-summary) below for details of each command.
 
+<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
 
 ## The [GUI](#graphical-user-interface-gui) Layout
@@ -84,6 +88,7 @@ For first-time users, we also recommend you to first read through the various [p
 
 [Back to top](#socompiler-user-guide)
 
+<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
 
 ## Things to note
@@ -120,6 +125,8 @@ For first-time users, we also recommend you to first read through the various [p
 Displays all modules and contacts stored in the app.
 
 Format: `list`
+
+<div style="page-break-after: always;"></div>
 
 ### Finding keywords in contacts and/or modules: `find`
 
