@@ -527,8 +527,6 @@ GuestBook data is saved in the hard disk **automatically** after any command tha
 GuestBook data is saved as a _JSON file_ `[JAR file location]/data/guestbook.json`.<br>
 Advanced users may change data directly by editing this data file.
 
-<div style="page-break-after: always;"></div>
-
 <div markdown="block" class="alert alert-warning">
 
 :exclamation: **Caution:**<br>
