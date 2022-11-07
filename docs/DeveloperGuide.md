@@ -9,7 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -71,7 +71,7 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-T11-3/tp/tree/master/src/main/java/jarvis/ui/Ui.java)
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+<img src="images/UiClassDiagram.png" width="800"/>
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `TaskListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
@@ -141,7 +141,7 @@ Similar analogues exist for task and lesson data. The class diagram is similar a
 
 In particular, the following class diagram shows how a lesson is represented in the `Model` component.
 
-<img src="images/LessonClassDiagram.png" width="450" />
+<img src="images/LessonClassDiagram.png" width="600" />
 
 Note that the 3 Lesson subtypes (`Studio`, `MasteryCheck` and `Consult`) inherit from the abstract `Lesson` class. Each lesson consists of smaller components such as `LessonAttendance`, `TimePeriod` etc.
 
@@ -149,11 +149,11 @@ Note that the 3 Lesson subtypes (`Studio`, `MasteryCheck` and `Consult`) inherit
 
 **API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-T11-3/tp/tree/master/src/main/java/jarvis/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<img src="images/StorageClassDiagram.png" width="650" />
 
 The above diagram only shows the UserPrefs and StudentBook Storage in full. TaskBook Storage is done similarly to StudentBook Storage. The only difference is the name of the classes (`JsonTaskBookStorage` instead of `JsonStudentBookStorage`, `JsonAdaptedTask` instead of `JsonAdaptedStudent` etc.)
 
-<img src="images/LessonStorageClassDiagram.png" width="550" />
+<img src="images/LessonStorageClassDiagram.png" width="500" />
 
 The LessonBook Storage is slightly different from the StudentBook and TaskBook Storages.
 
@@ -700,7 +700,6 @@ Use case ends.
 7.  The product is intended only for a single user (i.e. not a multi-user product)
 8.  The system is not required to handle the actual grading of student's works
 
-*{More to be added}*
 
 ### Glossary
 * **Mastery check**: An assessment where students in pairs must present what they have learnt in the module to their TA, and the TA will assess the students’ understanding of the concepts.
@@ -726,41 +725,93 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1. Download the jar file and copy into an empty folder.
 
-   1. Double-click the jar file
+   2. Double-click the jar file
        Expected: Shows the GUI with a set of sample students, tasks and lists. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+3. Exiting the app
+
+    1. While the app is still open, enter `exit` in the command box or click on the close window button.
+       Expected: The application closes. 
+
+### Adding a student
+
+1. Adding a student while student list is being shown
+
+   1. Prerequisites: List all students using the `liststudent` or `listall` command.
+
+   2. Test case: `addstudent s/John Doe m/A0123459G` <br>
+      Expected: Student with the name `John Doe` and matriculation number `A0123459G` has been added to the list of students. Details of added student shown in the status message.
+   
+   3. Test case : `addstudent s/J@hn Doe m/A0123459G` <br>
+      Expected: No student is added. Error details are shown in the status message. 
+   
+   4. Test case : `addstudent s/John Doe m/A01234G` <br>
+      Expected: Similar to previous.
 
 ### Deleting a student
 
 1. Deleting a student while student list is being shown
 
-   1. Prerequisites: List all student using the `lists` command. Multiple students in the list.
+   1. Prerequisites: List all students using the `liststudent` or `listall` command. There must be at least one student in the list.
 
-   1. Test case: `deletestudent 1`<br>
-      Expected: First student is deleted from the list. Details of the deleted student shown in the status message. Timestamp in the status bar is updated.
+   2. Test case: `deletestudent 1`<br>
+      Expected: First student is deleted from the list. Details of the deleted student shown in the status message.
 
-   1. Test case: `deletestudent 0`<br>
-      Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
+   3. Test case: `deletestudent 0`<br>
+      Expected: No student is deleted. Error details shown in the status message.
 
-   1. Other incorrect delete commands to try: `deletestudent`, `deletestudent x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `deletestudent`, `deletestudent x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Adding a task
 
+1. Adding a task while task list is being shown
+
+    1. Prerequisites: List all tasks using the `listtask` or `listall` command.
+
+    2. Test case: `addtask t/Prepare tutorial slides d/2022-10-09` <br>
+       Expected: Task with the description `Prepare tutorial slides` with the deadline `Oct-09-2022` is added. Details of the task added shown in status message.
+   
+    3. Test case: `addtask d/2022-10-09` <br>
+       Expected: No task is added. Error details are shown in the status message.
+   
+    4. Test case: `addtask t/ d/2022-10-09` <br>
+       Expected: Similar to previous. 
+
+### Deleting a task
+
+1. Deleting a task while task list is being shown
+
+   1. Prerequisites: List all tasks using the `listtask` or `listall` command. There are existing tasks in the task list.
+   
+   2. Test case: `deletetask 1` <br>
+      Expected: The first task at the top of the list is deleted. Details of the deleted task are shown in the status message. 
+   
+   3. Test case: `deletetask 0` <br>
+      Expected: No task is deleted. Error details shown in status message.
+   
+   4. Other incorrect delete commands to try: `deletetask`, `deletetask x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+   
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Dealing with missing data file(s).
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Prerequisites: If there exists studentbook.json, taskbook.json and/or lessonbook.json file(s) in the data folder at the root of the application directory, delete the file(s).
+   2. Test case: Double-click on the jar file to run the application.
+      Expected: Application runs and loads the sample data from `SampleStudentUtil#getSampleStudentBook`, `SampleTaskUtil#getSampleTaskBook` and/or `SampleLessonUtil#getSampleLessonBook`.
 
-1. _{ more test cases …​ }_
+2. Dealing with corrupted data file(s).
+
+   1. Prerequisites: Modify the studentbook.json, taskbook.json and/or lessonbook.json file(s) to be an illegal format, such as deleting the “name” field of a student, the "taskDesc" field of a task, and/or the "attendance" field of a lesson.
+   2. Test case: Double-click on the jar file to run the application.
+      Expected: Application runs and has no data on initial load. Running the next command overwrites the current corrupted json file(s).
