@@ -14,7 +14,7 @@ import seedu.rc4hdb.model.VenueBook;
 public class ClearCommand implements ModelCommand {
 
     public static final String COMMAND_WORD = "clear";
-    public static final String MESSAGE_SUCCESS = "Resident book has been cleared!";
+    public static final String MESSAGE_SUCCESS = "All data has been cleared!";
 
     @Override
     public CommandResult execute(Model model) {
