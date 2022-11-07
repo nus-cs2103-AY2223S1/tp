@@ -34,7 +34,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S1-CS2103T-T14-2/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -47,7 +47,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/codeconnect/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/codeconnect/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-T14-2/tp/tree/master/src/main/java/seedu/codeconnect/Main.java) and [`MainApp`](https://github.com/AY2223S1-CS2103T-T14-2/tp/tree/master/src/main/java/seedu/codeconnect/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -80,13 +80,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/codeconnect/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-T14-2/tp/tree/master/src/main/java/seedu/codeconnect/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `TaskListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/codeconnect/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-T14-2/tp/tree/master/src/main/java/seedu/codeconnect/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-T14-2/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -97,7 +97,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/codeconnect/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-T14-2/tp/tree/master/src/main/java/seedu/codeconnect/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -125,7 +125,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddContactCommandParser`, `DeleteTaskCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/codeconnect/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-T14-2/tp/tree/master/src/main/java/seedu/codeconnect/model/Model.java)
 
 ![Model component class diagram](images/ModelClassDiagram.png)
 
@@ -146,7 +146,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/codeconnect/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-T14-2/tp/tree/master/src/main/java/seedu/codeconnect/storage/Storage.java)
 
 ![Storage component class diagram](images/StorageClassDiagram.png)
 
@@ -198,7 +198,7 @@ Outline of how components work together when the user enters a find command:
 4. `FindContactCommandParser` determines the user's input to be valid
 5. `FindContactCommandParser` creates a `ModuleTakenPredicate`
    - This `Predicate` is used by the `Model` to filter for contacts that take the queried module
-6. A `FindContactCommand` command created and executed by the `Model`
+6. A `FindContactCommand` command is created and executed by the `Model`
 7. The result of the find command is displayed to the user
 
 ![Activity diagram for execution of a findc command](images/FindContactActivityDiagram.png)
@@ -729,14 +729,203 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file
+
+      Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   2. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+   2. Re-launch the app by double-clicking the jar file.
+
+      Expected: The most recent window size and location is retained.
+
+1. Exiting the program
+
+    1. Enter the `exit` command.
+
+       Expected: The program exits.
+
+    1. Reopen the program. Click the close button on the top right of the window.
+
+       Expected: Similar to previous.
+
+    1. Reopen the program. Select the File → Exit menu entry.
+
+       Expected: Similar to previous.
+
+   *All three should also work when the GUI is showing an invalid command.*
+
+### GUI functionality
+
+1. Using menu items
+
+    1. Select the Help → Help menu entry.
+
+       Expected: A window showing a clickable link to the [User Guide](UserGuide.html) is shown.
+
+       *Note: This window is known to open with zero dimensions on Linux X11.*
+
+    1. Close the help window. Press `F1`.
+
+       Expected: Similar to previous.
+
+1. Switching tabs
+
+    1. Prerequisites: The Contacts tab is selected.
+
+    1. Click on the Tasks tab.
+
+       Expected: The Tasks tab is highlighted. A list of tasks is shown. The data file path at the bottom changes to the task list file (`/data/tasks.json` by default).
+
+    1. Click on the Contacts tab.
+
+       Expected: The Contacts tab is highlighted. A list of contacts is shown. The data file path at the bottom changes to the contact list file (`/data/contacts.json` by default).
+
+### Managing tasks
+
+1. Adding a task
+
+    1. Prerequisites: A task with the same name and module as below does not already exist. (It does not exist in the sample data)
+
+    1. Test case: `add Programming assignment m/CS1234 by/2022-01-02 3:45pm`
+
+       Expected: The app switches to the Task tab. A new task is shown in the GUI and its details are shown in the result box.
+
+    1. Test case: `add Get groceries by/tomorrow`
+
+       Expected: Similar to previous.
+
+    1. Test case: `add Math assignment m/MA4321`
+
+       Expected: The command turns red and the result box shows an error message. No tasks are added.
+
+    1. Test case: `add Math assignment m/MA4321/R by/2022-01-02 3:45pm`
+
+       Expected: Similar to previous.
+
+    1. Test case: `add Math assignment m/ by/2022-01-02 3:45pm`
+
+       Expected: Similar to previous.
+
+    1. Test case: `add Programming assignment m/CS1234 by/2022-01-02 4pm`
+
+       Expected: Similar to previous.
+
+1. Listing tasks
+
+    1. Run `add Math assignment m/MA4321 by/2022-01-02 2pm`, so that a sort order can be verified.
+
+    1. Test case: `list`
+
+       Expected: The app switches to the Task tab. Tasks are listed in order of most recently added first. The result box displays the matching message.
+
+    1. Test case: `list time`
+
+       Expected: The app switches to the Task tab. Tasks are listed in order of increasing due date. The result box displays the matching message.
+
+    1. Test case: `list foo`
+
+       Expected: The app switches to the Task tab. Tasks are listed in order of most recently added first. The result box displays the matching message.
+
+1. Finding tasks
+
+    1. Prerequisites: A task with "ign" in its name exists (if you're following this guide, there will be one)
+
+    1. Test case: `find n/ign`
+
+       Expected: The app switches to the Task tab. Matching tasks are shown. The result box displays the matching message.
+
+    1. Test case: `find n/ign m/CS`
+
+       Expected: The command turns red and the result box shows an error message. The tasks shown in the tasks tab do not change.
+
+    1. Test case: `find`
+
+       Expected: Similar to previous.
+
+    1. Test case: `find n/asdfghjk`
+
+       Expected: The app switches to the Task tab. No tasks are shown. The result box displays a message about listing tasks.
+
+1. Marking and unmarking tasks
+
+    1. Prerequisites: There are at least two tasks. (if you're following this guide, there will be)
+
+    1. Run `list time` to change the sort order.
+
+    1. Test case: `mark 2`
+
+       Expected: The app switches to the Task tab. The list is still sorted by increasing deadline. The 2nd task in the list is marked. The result box displays the matching message.
+
+    1. Test case: `mark 2`
+
+       Expected: The command turns red and the result box shows an error message. The tasks shown in the tasks tab do not change.
+
+    1. Test case: `mark -1`
+
+       Expected: Similar to previous.
+
+    1. Test case: `mark`
+
+       Expected: Similar to previous.
+
+    1. Repeat the steps above for the `unmark` command.
+
+1. Editing tasks
+
+    1. Prerequisites: A task with the name "Get groceries" exists. (if you're following this guide, there will be one)
+
+    1. Run `find n/Get groceries`.
+
+    1. Test case: `edit 1 m/CS1234`
+
+       Expected: The app switches to the Task tab. The 1st task in the list has its module set to `CS1234`. The result box displays a message about the task being edited.
+
+    1. Test case: `edit 1 m/CS1234`
+
+       Expected: The app switches to the Task tab. The 1st task in the list does not change. The result box displays a message about the task being edited.
+
+    1. Test case: `edit 1 n/Programming assignment`
+
+       Expected: The command turns red and the result box shows an error message. The tasks shown in the tasks tab do not change.
+
+    1. Test case: `edit n/Programming assignment`
+
+       Expected: Similar to previous.
+
+    1. Test case: `edit 1`
+
+       Expected: Similar to previous.
+
+1. Deleting tasks
+
+    1. Run `list time` to change the sort order.
+
+    1. Test case: `del -1`
+
+       Expected: The command turns red and the result box shows an error message. The tasks shown in the tasks tab do not change.
+
+    1. Test case: `del`
+
+       Expected: Similar to previous.
+
+    1. Test case: `del 1 n/Hello`
+
+       Expected: Similar to previous.
+
+    1. Test case: `del 1`
+
+       Expected: The app switches to the Task tab. The list is still sorted by increasing deadline. The 1st task in the list is deleted. The result box displays the matching message.
+
+1. Clearing completed tasks
+
+    1. Prerequisites: At least one, but not all, tasks are marked. (if you're following this guide, `mark 2`)
+
+    1. Test case: `clean now`
+
+       Expected: The app switches to the Task tab. The list is still sorted and filtered like before the command. All marked tasks and none of the unmarked tasks are deleted. The result box displays the matching message.
 
 ### Managing contacts
 
@@ -759,7 +948,7 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `addc n/David p/88776655 e/`
 
        Expected: Similar to previous.
-    
+
 
 2. Listing contacts
 
@@ -790,7 +979,7 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `findc n/asdfghjk`
 
        Expected: No contacts are shown. The result box displays a message about listing contacts.
-    
+
 4. Editing contacts
 
     1. Prerequisites: Contacts with the name "John Doe" and "James Doe" exist. (if you're following this guide, there will be one)
@@ -841,17 +1030,17 @@ testers are expected to do more *exploratory* testing.
 
     2. Test case: `clear`
 
-        Expected: All contacts are deleted from the contact list.
-        
+       Expected: All contacts are deleted from the contact list.
+
 7. Saveme
-   
+
     1. Prerequisites: A task with the same name and module as below does not already exist. (It does not exist in the sample data) A contact with the name "John Doe" exists. (if you're following this guide, there will be one)
 
     2. Run `add Assignment 1 m/CS4321 by/tomorrow 23:59`
-    
+
     3. Test case: `saveme`
-    
-        Expected: The app is on the Contacts tab. The 1st contact in the list has a module tag `CS4321`.
+
+       Expected: The app is on the Contacts tab. The 1st contact in the list has a module tag `CS4321`.
 
     4. Test case: `saveme foo`
 
