@@ -311,7 +311,7 @@ The proposed view module list functionality is accomplished by `ListModuleComman
 
 - `ListModuleCommand#execute(Model model)` — Executes the command and displays all modules
 
-The following sequence diagram shows how view schedule operation works :
+The following sequence diagram shows how view module operation works :
 
 ![ListModuleSequence](images/ListModuleSequence.png)
 
@@ -344,6 +344,7 @@ The following activity diagram summarizes what happens when a user executes a `m
 Reason for choosing option 1:
 Modules like CS2103T, CS2103R and CS2103 have the same module name "Software Engineering". If we allow searching by module name, the program would not know which "Software Engineering" module to display.
 This would mean that we would need to have unique module names. However, this is not possible if the professor is teaching modules that have the same name but different code.
+As module code is the only unique field Module has, we decided to view modules by module code only to avoid any errors.
 
 ### 5.5. The edit a module feature
 
