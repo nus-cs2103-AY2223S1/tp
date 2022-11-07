@@ -184,9 +184,11 @@ The following sequence diagram shows how the `add student` command works:
 `add tutorial`, `add consultation` and `add reminder` commands work similar to the above but have different fields.
 </div>
 
-The following activity diagram illustrates what happens when the `add Student` command is called to add a student into ModQuik. There is a need to check that the given student id does not already exist in ModQuik.
+The following activity diagram illustrates what happens when the `add student` command is called to add a student into ModQuik. There is a need to check that the given student id does not already exist in ModQuik.
 
 ![AddStudentActivityDiagram](images/AddStudentActivityDiagram.png)
+
+**Note:** Fields used in `add student` command are name, student id, phone, email, telegram handle, module, tutorial, and grade(if any), attendance(if any), participation (if any), tags (if any).
 
 Referencing the above activity diagram, ModQuik will first check that all prefixes are present and formatted correctly. It will then proceed to check if all fields provided are formatted correctly. After that, it creates a Student object using the provided fields and then check if there is a duplicate student inside ModQuik. If there are no duplicate student inside ModQuik, it will check across every student in ModQuik to see if the provided student id already exists inside ModQuik. If the provided student id does not belong to any student inside ModQuik already, the created student is then added into ModQuik and a message is returned indicating success. The new student will appear in the ModQuik.
 
