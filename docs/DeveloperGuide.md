@@ -407,7 +407,7 @@ Sorting by default and alphabetical order is done using the `.sort(Comparator<? 
 </td>
 <td markdown="block">
 
-`uniqueId` has 2 parts, the time when the entry was added, and the sequence number it was added in. This was done because myStudent loads  data from the .json files instantly during startup i.e. `Instant.now()` is not precise enough, thus their sequence number is used instead to sort. 
+`uniqueId` has 2 parts, the time when the entry was added, and the sequence number it was added in. This was done because myStudent loads  data from the .json files instantly during startup i.e. the method to capture the time is not precise enough, thus their sequence number is used instead to sort. 
 </td>
 </tr>
 
