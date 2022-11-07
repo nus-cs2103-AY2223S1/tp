@@ -3,93 +3,8 @@ layout: page
 title: User Guide
 ---
 
-<style>
-h1, h2, h3, h4, h5, h6 {
-  color: #000000;
-}
 
-watson{
-    color:#00a120;
-    background-color:transparent;
-    font-size: 1.2em;
-}
 
-.red-text{
-    color:#D00000;
-    background-color:transparent;
-    font-size: 1.2em;
-}
-
-.green-text{
-    color:#008000;
-    background-color:transparent;
-    font-size: 1.2em;
-}
-
-.orange-text{
-    color:#E36414;
-    background-color:transparent;
-    font-size: 1.2em;
-}
-
-.big-font{
-    font-size: 1.2em;
-    font-weight: bold;
-}
-
-.infobox {
-    font-size: 1.2em;
-}
-
-.flex-box {
-    display: flex;
-    margin: auto;
-}
-
-.special-box {
-    position: relative;
-    padding: .75rem 1.25rem;
-    margin-bottom: 1rem;
-    border: 1px solid transparent;
-    border-radius : .25rem;
-}
-
-.warning-box {
-    background-color: #FFD60A;
-    color: #000000;
-    position: relative;
-    padding: .75rem 1.25rem;
-    margin-bottom: 1rem;
-    border: 1px solid transparent;
-    border-radius : .25rem;
-}
-
-.info-box {
-    background-color: #A2D6F9;
-    color: #000000;
-    position: relative;
-    padding: .75rem 1.25rem;
-    margin-bottom: 1rem;
-    border: 1px solid transparent;
-    border-radius : .25rem;
-}
-
-.special-img {
-    position: relative;
-    border-radius: 15px;
-    border: 2px solid #000000;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.img-caption {
-    position: relative;
-    text-align: center;
-    font-decoration: italic;
-}
-
-</style>
 
 # Hello! I Am <watson>Watson!</watson>
 <div class="infobox">
@@ -677,6 +592,9 @@ Continue typing in marks until the window closes.
 
 3) Once the window closes, you will observe that the grades of the students marked
 will be updated.
+   <br/><br/>
+   <br/><br/>
+   <br/><br/>
 
 <div class="flex-box">
 <img src="images/PreGrade.png" alt="menu bar" class="special-img">

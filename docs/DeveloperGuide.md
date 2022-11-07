@@ -8,36 +8,36 @@ title: Developer Guide
 2. [Acknowledgements](#acknowledgements)
 3. [Setting up, getting started](#setting-up-getting-started)
 4. [Design](#design)
-   * [Architecture](#architecture)
-   * [UI Component](#ui-component)
-   * [Logic Component](#logic-component)
-   * [Model component](#model-component)
-   * [Storage component](#storage-component)
-   * [Common classes](#common-classes)
+    * [Architecture](#architecture)
+    * [UI Component](#ui-component)
+    * [Logic Component](#logic-component)
+    * [Model component](#model-component)
+    * [Storage component](#storage-component)
+    * [Common classes](#common-classes)
 5. [Implementation](#implementation)
-   * [Edit Feature](#edit-feature)
-   * [Sort Feature](#sort-feature)
-   * [Grade Feature](#grade-feature)
-   * [Grade Prediction Feature](#grade-prediction-feature)
-   * [Attendance Feature](#attendance-feature)
+    * [Edit Feature](#edit-feature)
+    * [Sort Feature](#sort-feature)
+    * [Grade Feature](#grade-feature)
+    * [Grade Prediction Feature](#grade-prediction-feature)
+    * [Attendance Feature](#attendance-feature)
 6. [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 7. [Appendix: Requirements](#appendix-requirements)
-   * [Product Scope](#product-scope)
-   * [User Stories](#user-stories)
-   * [Use Cases](#use-cases)
-   * [Non-Functional Requirements](#non-functional-requirements)
-   * [Glossary](#glossary)
-8. [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing) 
+    * [Product Scope](#product-scope)
+    * [User Stories](#user-stories)
+    * [Use Cases](#use-cases)
+    * [Non-Functional Requirements](#non-functional-requirements)
+    * [Glossary](#glossary)
+8. [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
 
 <div style="page-break-after: always;"></div>
 ---
 
 ## **Overview**
 
-Watson is a powerful **desktop database application** that reduces the administrative workload of **primary/secondary school teachers** greatly. 
+Watson is a powerful **desktop database application** that reduces the administrative workload of **primary/secondary school teachers** greatly.
 
-It provides a **centralized** platform for teachers to handle and retrieve student data **conveniently**, namely: 
-* student particulars 
+It provides a **centralized** platform for teachers to handle and retrieve student data **conveniently**, namely:
+* student particulars
 * student grades
 * student attendance
 
@@ -115,6 +115,8 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 The sections below give more details of each component.
 
 <div style="page-break-after: always;"></div>
+---
+
 ### UI component
 
 The **API** of this component is specified in [UiManager.java](https://github.com/AY2223S1-CS2103T-T08-1/tp/blob/master/src/main/java/seedu/address/ui/UiManager.java)
@@ -208,7 +210,7 @@ The `Model` component,
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<img src="images/StorageClassDiagram.png" width="550" height="300" />
 
 The `Storage` component,
 
@@ -279,7 +281,7 @@ As with all other commands, the Grade command has a `Parser` subclass that goes 
 
 The command will be used as such:
 - entering grades for an `Assignment` using the follow command format - `grade SUBJECT_NAME_TOTALSCORE_WEIGHTAGE_DIFFICULTY`,
-e.g.`grade MATH_CA1_100_0.4_0.1`
+  e.g.`grade MATH_CA1_100_0.4_0.1`
 - Words in `UPPER_CASE` are the inputs to be supplied by the user.
 
 The command works in the following steps: <br>
@@ -327,7 +329,7 @@ The command will be used as such:
 -`predict n/NAME s/SUBJECT diff/DIFFICULTY`
 - Words in `UPPER_CASE` are the inputs to be supplied by the user.
 
-The command works in the following steps: <br>
+The command works in the following steps:
 1) Users enter the `PredictionCommand` following the above specified format in the `CommandBox`, providing the name of the `Student`, `Subject` and `Difficulty` <br>
 2) `PredictionCommandParser` will parse the `PredictionCommand` to check whether the provided arguments are valid and return a `CommandResult` <br>
 3) The `PredictGrade` method in `PredictionUtil` class will be used to predict the grade given the arguments provided <br>
@@ -351,7 +353,7 @@ The command will be used as such:
 - `markAtt d/DATE c/STUDENTCLASS ind/INDEXES` eg. `markAtt d/12-02-2023 c/1.2 ind/1 2 3`
 - Words in `UPPER_CASE` are the inputs to be supplied by the user.
 
-The command works in the following steps: <br>
+The command works in the following steps:
 1) Users enter the `AttendanceCommand` following the above specified format in the `CommandBox`, providing the `Date`, `StudentClass` and `Indexes` of students present <br>
 2) `AttendanceCommandParser` will parse the `AttendanceCommand` to check whether the provided arguments are valid <br>
 3) For each `Student` in the specified `StudentClass`, the `updateAttendance` method in the `Attendance` class is called to update the model to indicate whether the `Student` is present. <br>
@@ -432,6 +434,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+<br>
+
 **Use case: Add a student**
 
 **Preconditions: User is logged in**
@@ -451,6 +455,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - 2a1. Watson shows an error message.
 
       Use case resumes at step 1.
+
+<br>
 
 **Use case: Edit a student**
 
@@ -478,6 +484,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
+<br>
+
 **Use case: Delete a student**
 
 **Preconditions: User is logged in**
@@ -499,9 +507,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 3a. The given index is invalid.
 
-  - 3a1. Watson shows an error message.
+    - 3a1. Watson shows an error message.
 
-    Use case resumes at step 2.
+      Use case resumes at step 2.
+
+<br>
 
 **Use case: Find a student**
 
@@ -521,6 +531,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 - 2a. The list is empty.
 
   Use case ends.
+
+<br>
 
 **Use case: Add remarks to a student**
 
@@ -548,6 +560,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
+<br>
+
 **Use case: Grade students**
 
 **Preconditions: User is logged in**
@@ -559,7 +573,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. User enters grade for each student.
 4. Students' grades are updated in the displayed list.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
@@ -568,6 +582,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - 2a1. Watson shows an error message.
 
       Use case resumes at step 1.
+
+<br>
 
 **Use case: Predicting a student's grade**
 
@@ -587,6 +603,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - 2a1. Watson shows an error message.
 
       Use case resumes at step 1.
+
+<br>
 
 **Use case: Sorting students by grades**
 
@@ -608,7 +626,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. Should be able to hold up to 1000 students without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. Non-authenticated users should not be able to access the system.
-5. The data should be saved everytime a command alters the data. 
+5. The data should be saved everytime a command alters the data.
 6. Should work without an internet connection.
 7. The User Guide and Developer Guide should be PDF-friendly.
 
@@ -632,16 +650,16 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+    1. Download the jar file and copy into an empty folder
 
-   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 2. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   2. Re-launch the app by double-clicking the jar file.<br>
-      Expected: The most recent window size and location is retained.
+    2. Re-launch the app by double-clicking the jar file.<br>
+       Expected: The most recent window size and location is retained.
 
 3. Shut down application
 
@@ -652,6 +670,9 @@ testers are expected to do more *exploratory* testing.
 
     3. Test case: Close the application using the command `exit`.
        Expected: The application exits.
+
+<div style="page-break-after: always;"></div>
+---
 
 ### Adding a student
 
@@ -683,6 +704,9 @@ testers are expected to do more *exploratory* testing.
     4. Other incorrect edit commands to try: `edit`, `edit x n/John Doe`(where x is a non-existent index)
        Expected: Similar to previous.
 
+<div style="page-break-after: always;"></div>
+---
+
 ### Finding students
 
 1. Finding students that shares the same subject.
@@ -703,7 +727,7 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: List all students using the `list` command. Multiple students in the list.
 
     2. Test case 1: `find c/1A`<br>
-        Expected: All students that are in class 1A will be shown in a new list. Timestamp in the status bar is updated.
+       Expected: All students that are in class 1A will be shown in a new list. Timestamp in the status bar is updated.
 
     3. Test case 2: `find c/1a`<br>
        Expected: Same result as Test case 1. Keywords given by user after `c/` are not case sensitive.
@@ -714,20 +738,23 @@ testers are expected to do more *exploratory* testing.
     5. Other incorrect find commands to try: `find c/`, `find c/ `, `find c/x` (where x is a non-existent class)<br>
        Expected: Similar to Test case 3.
 
+<div style="page-break-after: always;"></div>
+---
+
 ### Deleting a student
 
 1. Deleting a student while all students are being shown
 
-   1. Prerequisites: List all students using the `list` command. Multiple students in the list.
+    1. Prerequisites: List all students using the `list` command. Multiple students in the list.
 
-   2. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    2. Test case: `delete 1`<br>
+       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   3. Test case: `delete 0`<br>
-      Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
+    3. Test case: `delete 0`<br>
+       Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
 
-   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
 
 ### Adding remark to a student
 
@@ -743,6 +770,9 @@ testers are expected to do more *exploratory* testing.
 
     4. Other incorrect remark commands to try: `remark`, `remark 1`
        Expected: Similar to previous.
+
+<div style="page-break-after: always;"></div>
+---
 
 ### Grading students
 
@@ -774,7 +804,11 @@ testers are expected to do more *exploratory* testing.
     4. Other incorrect sort commands to try: `sort`, `sort asc`
        Expected: Similar to previous.
 
+<div style="page-break-after: always;"></div>
+---
+
 ### Marking attendance of students
+
 1. Marking attendance while all students are being shown
 
     1. Prerequisites: List all students using the `list` command. Multiple students in the list.
