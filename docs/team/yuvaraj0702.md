@@ -50,7 +50,7 @@ The user interacts with it using a CLI, and it has a GUI created with JavaFX. It
     - Mock PE Issues:[Issues found](https://github.com/Yuvaraj0702/ped/issues)
       <br>
       <br>
-    - **Contributions beyond the project team:**:
+    - **Contributions beyond the project team:**
     - Facilitation of group meetings.
     - (Future) Assist in making project video.
     
