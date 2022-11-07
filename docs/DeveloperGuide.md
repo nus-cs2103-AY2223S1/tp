@@ -29,11 +29,11 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S1-CS2103T-W15-3/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
-<div style="page-break-after: always;"></div>
-
 ### Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
+
+<div style="page-break-after: always;"></div>
 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
@@ -58,6 +58,8 @@ The rest of the App consists of four components.
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `deletei 1`.
+
+<div style="page-break-after: always;"></div>
 
 ![ArchitectureSequenceDiagram](images/developer-guide/ArchitectureSequenceDiagram.png)
 
