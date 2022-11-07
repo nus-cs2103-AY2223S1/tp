@@ -42,8 +42,10 @@ Given below are my contributions to the project.
     * Edited add feature's comments [#247](https://github.com/AY2223S1-CS2103-F13-4/tp/pull/247)
     * Update hyperlinks [#245](https://github.com/AY2223S1-CS2103-F13-4/tp/pull/245)
     * Update DG diagrams [#247](https://github.com/AY2223S1-CS2103-F13-4/tp/pull/247)
+    * Person class diagram [#249](https://github.com/AY2223S1-CS2103-F13-4/tp/pull/249)
+    * Enhance overall grammar and readability [#249](https://github.com/AY2223S1-CS2103-F13-4/tp/pull/249)
 
 
 * **Community**:
-  * PRs reviewed: [#29](https://github.com/AY2223S1-CS2103-F13-4/tp/pull/29), [#32](https://github.com/AY2223S1-CS2103-F13-4/tp/pull/32), [#44](https://github.com/AY2223S1-CS2103-F13-4/tp/pull/44), [#75](https://github.com/AY2223S1-CS2103-F13-4/tp/pull/75), 
+  * PRs reviewed: [#29](https://github.com/AY2223S1-CS2103-F13-4/tp/pull/29), [#32](https://github.com/AY2223S1-CS2103-F13-4/tp/pull/32), [#44](https://github.com/AY2223S1-CS2103-F13-4/tp/pull/44), [#75](https://github.com/AY2223S1-CS2103-F13-4/tp/pull/75)
   * Reported bugs during PE-D exercise.
