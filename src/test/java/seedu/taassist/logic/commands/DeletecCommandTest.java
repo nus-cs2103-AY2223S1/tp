@@ -17,6 +17,7 @@ import static seedu.taassist.testutil.TypicalStudents.getTypicalTaAssist;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
@@ -142,6 +143,18 @@ public class DeletecCommandTest {
 
         assertFalse(modelStub.isInFocusMode()); // exited focus
         assertNull(modelStub.moduleClass); // deleted class
+    }
+
+    @Test
+    public void execute_getCommandMessage_showsCorrectMessage() {
+        Set<ModuleClass> existingClasses = new HashSet<>(List.of(CS1101S, CS1231S));
+        Set<ModuleClass> nonExistentClasses = new HashSet<>(List.of(
+                new ModuleClassBuilder().withName("CS2030S").build(),
+                new ModuleClassBuilder().withName("CS2040S").build()));
+        String actualMessage = DeletecCommand.getCommandMessage(existingClasses, nonExistentClasses);
+        String expectedMessage = String.format(DeletecCommand.MESSAGE_SUCCESS, "CS1101S, CS1231S") + "\n"
+                + String.format(MESSAGE_MODULE_CLASSES_DOES_NOT_EXIST, "CS2030S, CS2040S");
+        assertEquals(expectedMessage, actualMessage);
     }
 
     //==================================== Model Stubs ===============================================================

@@ -2,6 +2,7 @@ package seedu.taassist.logic.commands;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.taassist.logic.commands.GradeCommand.MESSAGE_SUCCESS;
 import static seedu.taassist.testutil.Assert.assertThrows;
 import static seedu.taassist.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static seedu.taassist.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
@@ -10,6 +11,7 @@ import static seedu.taassist.testutil.TypicalSessions.ASSIGNMENT_1;
 import static seedu.taassist.testutil.TypicalSessions.LAB_1;
 import static seedu.taassist.testutil.TypicalStudents.ALICE;
 import static seedu.taassist.testutil.TypicalStudents.BENSON;
+import static seedu.taassist.testutil.TypicalStudents.BOB;
 
 import java.util.List;
 
@@ -20,6 +22,7 @@ import javafx.collections.ObservableList;
 import seedu.taassist.commons.core.Messages;
 import seedu.taassist.logic.commands.exceptions.CommandException;
 import seedu.taassist.model.moduleclass.ModuleClass;
+import seedu.taassist.model.session.Session;
 import seedu.taassist.model.stubs.ModelStub;
 import seedu.taassist.model.student.Student;
 import seedu.taassist.model.uniquelist.exceptions.ElementNotFoundException;
@@ -57,7 +60,7 @@ class GradeCommandTest {
         ModelStubOneStudentNoGrades modelStub = new ModelStubOneStudentNoGrades();
 
         Student expectedStudent = ALICE.updateGrade(modelStub.getFocusedClass(), LAB_1, 100.0);
-        String expectedMessage = String.format(GradeCommand.MESSAGE_SUCCESS,
+        String expectedMessage = String.format(MESSAGE_SUCCESS,
                 "100.0", LAB_1.getSessionName(), expectedStudent.getName());
 
         CommandResult commandResult = gradeCommand.execute(modelStub);
@@ -72,7 +75,7 @@ class GradeCommandTest {
 
         Student expectedStudent = modelStub.students.get(0)
                 .updateGrade(modelStub.getFocusedClass(), ASSIGNMENT_1, 100.0);
-        String expectedMessage = String.format(GradeCommand.MESSAGE_SUCCESS,
+        String expectedMessage = String.format(MESSAGE_SUCCESS,
                 "100.0", ASSIGNMENT_1.getSessionName(), expectedStudent.getName());
 
         CommandResult commandResult = gradeCommand.execute(modelStub);
@@ -90,13 +93,23 @@ class GradeCommandTest {
         Student expectedStudent1 = ALICE.updateGrade(modelStub.getFocusedClass(), LAB_1, 100.0);
         Student expectedStudent2 = BENSON.updateGrade(modelStub.getFocusedClass(), LAB_1, 100.0);
 
-        String expectedMessage = String.format(GradeCommand.MESSAGE_SUCCESS,
+        String expectedMessage = String.format(MESSAGE_SUCCESS,
                 "100.0", LAB_1.getSessionName(), expectedStudent1.getName() + ", " + expectedStudent2.getName());
 
         CommandResult commandResult = gradeCommand.execute(modelStub);
         assertEquals(expectedMessage, commandResult.getFeedbackToUser());
         assertEquals(expectedStudent1, modelStub.students.get(0));
         assertEquals(expectedStudent2, modelStub.students.get(1));
+    }
+
+    @Test
+    public void execute_getCommandMessage_showsCorrectMessage() {
+        List<Student> studentsGraded = List.of(ALICE, BOB);
+        Session sessionGraded = LAB_1;
+        Double grade = 1.0;
+        String actualMessage = GradeCommand.getCommandMessage(studentsGraded, sessionGraded, grade);
+        String expectedMessage = String.format(MESSAGE_SUCCESS, 1.0, "Lab 1", ALICE.getName() + ", " + BOB.getName());
+        assertEquals(expectedMessage, actualMessage);
     }
 
     /**

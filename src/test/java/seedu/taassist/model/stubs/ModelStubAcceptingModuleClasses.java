@@ -20,7 +20,7 @@ public class ModelStubAcceptingModuleClasses extends ModelStub {
     @Override
     public boolean hasModuleClass(ModuleClass moduleClass) {
         requireNonNull(moduleClass);
-        return false;
+        return moduleClassesAdded.stream().anyMatch(m -> m.isSame(moduleClass));
     }
 
     @Override

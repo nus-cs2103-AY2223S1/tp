@@ -66,7 +66,7 @@ public class CommandUtil {
      * @param moduleClass ModuleClass object to find the given {@code sessions}
      * @throws CommandException if any Session object in {@code sessions} does not exist in {@code moduleClass}.
      */
-    public static void requireSessionsExists(Collection<Session> sessions, ModuleClass moduleClass)
+    public static void requireSessionsExist(Collection<Session> sessions, ModuleClass moduleClass)
             throws CommandException {
         requireAllNonNull(moduleClass, sessions);
         for (Session session : sessions) {

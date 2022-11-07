@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.taassist.commons.util.StringUtil.commaSeparate;
 import static seedu.taassist.logic.commands.CommandUtil.requireFocusMode;
-import static seedu.taassist.logic.commands.CommandUtil.requireSessionsExists;
+import static seedu.taassist.logic.commands.CommandUtil.requireSessionsExist;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_SESSION;
 
 import java.util.Set;
@@ -46,7 +46,7 @@ public class DeletesCommand extends Command {
         requireNonNull(model);
         requireFocusMode(model, COMMAND_WORD);
         ModuleClass focusedClass = model.getFocusedClass();
-        requireSessionsExists(sessions, focusedClass);
+        requireSessionsExist(sessions, focusedClass);
         model.removeSessions(focusedClass, sessions);
         return new CommandResult(getCommandMessage(sessions));
     }
