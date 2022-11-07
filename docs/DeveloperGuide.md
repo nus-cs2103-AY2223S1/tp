@@ -533,7 +533,7 @@ person to display in the Patient Details Panel.
 
 #### Clickability
 
-Although Checkup is a CLI based application, Patient Details Panel supports clicking on individual fields to bring up the 
+Although checkUp is a CLI based application, Patient Details Panel supports clicking on individual fields to bring up the 
 required `edit` command. To illustrate this in more detail, an example is shown below of what happens when `Alex Yeoh`'s
 `email` field is clicked on.
 ![Alex Yeohs' email clicked](images/ug-images/Person-Details-Panel-Clickability.png)
@@ -551,6 +551,22 @@ The following sequence diagram shows how the clickability works:
 
 ![Patient Details Panel Sequence Diagram](images/dg-images/PersonDetailsPanelSequenceDiagram.png)
 _Note that the Persons Details Panel is known as PersonViewPanel in the code_
+
+#### Person Card Clickability
+
+Similar to the clickability of Patient Details Panel, person cards in the Patient List Panel can be clicked on to update
+the Person View Panel with the details of the patient that was clicked on. This is done by executing a `view` command 
+when a person card is clicked on. 
+
+`MainWindow` has the method `executeCommand` which will be passed on as an argument for the construction of a 
+`PersonListPanel` object which in turn is passed on as an argument to the creation of each `PersonCard` object. 
+When clicked, a `PersonCard` executes the `handleMouseClicked` method which makes use of the `MainWindow#executeCommand`
+method to execute a `view` command with the corresponding index of the `PersonCard` that was clicked. This is done to 
+prevent `PersonListPanel` and `PersonCard` from having direct access to `Model` or `Logic`, choosing to maintain 
+`MainWindow` and `Ui` as the classes that interact with Logic instead.
+
+Note that this is only done for `PersonCard` and not `ContactCard` as `ContactCard` already has all the information 
+of the next-of-kin encapsulated on it. Hence, there is no need for the detailed view of the patient.
 
 ### View Command
 
@@ -651,15 +667,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is `CheckUp` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `checkUp` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Add a patient**
 
 **MSS**
 
 1. User requests to add a patient
-2. CheckUp adds patient to system
-3. CheckUp displays the patient added
+2. checkUp adds patient to system
+3. checkUp displays the patient added
 
     Use case ends.
 
@@ -667,7 +683,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The information entered is invalid.
 
-    * 1a1. CheckUp shows an error message.
+    * 1a1. checkUp shows an error message.
 
       Use case resumes at step 1.
 
@@ -677,10 +693,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to list persons
-2. CheckUp shows a list of persons
+2. checkUp shows a list of persons
 3. User requests to edit patient
-4. CheckUp edits patient in system
-5. CheckUp displays the patient added
+4. checkUp edits patient in system
+5. checkUp displays the patient added
 
    Use case ends.
 
@@ -691,12 +707,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 * 3a. The information entered is invalid.
-    * 3a1. CheckUp shows an error message.
+    * 3a1. checkUp shows an error message.
 
       Use case resumes at step 3.
 
 * 3b. No information is updated for the edit.
-    * 3a1. CheckUp shows an error message.
+    * 3a1. checkUp shows an error message.
 
       Use case resumes at step 3.
 
@@ -796,9 +812,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to list persons
-2.  CheckUp shows a list of persons
+2.  checkUp shows a list of persons
 3.  User requests to delete appointment from a specific person in the list
-4.  CheckUp deletes the appointment
+4.  checkUp deletes the appointment
 
     Use case ends.
 
@@ -810,13 +826,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. CheckUp shows an error message.
+    * 3a1. checkUp shows an error message.
 
       Use case resumes at step 2.
 
 * 3b. The selected patient has no past appointments.
 
-    * 3b1. CheckUp shows an error message.
+    * 3b1. checkUp shows an error message.
 
       Use case ends.
     
@@ -847,10 +863,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to list persons
-2. CheckUp shows a list of persons
+2. checkUp shows a list of persons
 3. User request to consult a patient
-4. CheckUp creates a past appointment for the User
-5. CheckUp removes the upcoming appointment for the current date for the User
+4. checkUp creates a past appointment for the User
+5. checkUp removes the upcoming appointment for the current date for the User
 
    Use case ends.
 
@@ -862,7 +878,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. CheckUp shows an error message.
+    * 3a1. checkUp shows an error message.
 
       Use case resumes at step 2.
 
