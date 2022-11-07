@@ -123,7 +123,7 @@ public class CalculatorWindow extends UiPart<Stage> {
     /**
      * Handle the bottom clicks on calculator.
      * Reused from https://gist.github.com/argius/08834fab73b91de8d79b
-     * with modifications to fix some bugs
+     * with modifications and bug fixes
      * @param event User actions (Clicks on buttons)
      */
     @FXML
