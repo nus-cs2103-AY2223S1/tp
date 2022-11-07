@@ -281,7 +281,7 @@ For the five classes,
 
 * The `ModuleCode` should only contain alphanumeric characters and spaces, and it should not be blank.
 * The `ZoomLink` should be either blank, or a valid URL.
-* `AssignmentDetails` should only contain alphanumeric characters and spaces if added.
+* `AssignmentDetails` should not be blank if added.
 
 <img src="images/ModuleClassDiagram.png" width="550" />
 
