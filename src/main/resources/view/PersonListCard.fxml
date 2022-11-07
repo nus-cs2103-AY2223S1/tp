@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox id="cardPane" fx:id="cardPane" prefHeight="95.0" prefWidth="560.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="cardPane" fx:id="cardPane" prefHeight="95.0" prefWidth="560.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
@@ -21,7 +21,7 @@
       <padding>
         <Insets bottom="5" left="15" right="5" top="5" />
       </padding>
-      <HBox alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="540.0" spacing="5">
+      <HBox alignment="CENTER_LEFT" prefWidth="540.0" spacing="5">
         <Label fx:id="id" styleClass="cell_big_label">
           <minWidth>
             <!-- Ensures that the label text is never truncated -->
@@ -31,7 +31,7 @@
                   <Insets top="11.0" />
                </padding>
         </Label>
-        <Label fx:id="name" prefHeight="17.0" prefWidth="500.0" styleClass="cell_big_label" text="\$first">
+        <Label fx:id="name" prefHeight="17.0" styleClass="cell_big_label" text="\$first">
                <padding>
                   <Insets top="10.0" />
                </padding>
@@ -48,66 +48,64 @@
                <Insets top="5.0" />
             </VBox.margin>
       </HBox>
-         <HBox prefHeight="18.0" prefWidth="130.0">
-            <children>
-                <Label fx:id="phone" styleClass="cell_small_label" text="\$phone">
-                    <padding>
-                        <Insets left="24.0" right="12.0" />
-                    </padding>
-                    <graphic>
-                        <Label styleClass="circle_icon_label">
-                            <graphic>
-                                <ImageView fitHeight="9.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@/images/phone_icon_2.png" />
-                                    </image>
-                                </ImageView>
-                            </graphic>
-                            <padding>
-                               <Insets right="3.0" top="1.0" />
-                            </padding>
-                         </Label>
-                      </graphic>
-                   </Label>
-                <Label fx:id="email" styleClass="cell_small_label" text="\$email">
-                    <padding>
-                        <Insets right="10.0" />
-                    </padding>
-                    <graphic>
-                        <Label styleClass="circle_icon_label">
-                            <graphic>
-                                <ImageView fitHeight="9.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@/images/email_icon_2.png" />
-                                    </image>
-                                </ImageView>
-                            </graphic>
-                            <padding>
-                                <Insets right="3.0" top="1.0" />
-                            </padding>
-                        </Label>
-                    </graphic>
-                </Label>
-                <Label fx:id="address" styleClass="cell_small_label" text="\$address">
-                    <padding>
-                        <Insets right="10.0" />
-                    </padding>
-                    <graphic>
-                        <Label styleClass="circle_icon_label">
-                            <graphic>
-                                <ImageView fitHeight="9.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@/images/address_icon_2.png" />
-                                    </image>
-                                </ImageView>
-                            </graphic>
-                            <padding>
-                                <Insets right="3.0" />
-                            </padding>
-                        </Label>
-                    </graphic>
-                </Label>
-            </children>
+         <HBox>
+            <Label fx:id="phone" minWidth="-Infinity" styleClass="cell_small_label" text="\$phone" HBox.hgrow="ALWAYS">
+                <padding>
+                    <Insets left="24.0" right="12.0" />
+                </padding>
+                <graphic>
+                    <Label styleClass="circle_icon_label">
+                        <graphic>
+                            <ImageView fitHeight="9.0" pickOnBounds="true" preserveRatio="true">
+                                <image>
+                                    <Image url="@/images/phone_icon_2.png" />
+                                </image>
+                            </ImageView>
+                        </graphic>
+                        <padding>
+                           <Insets right="3.0" top="1.0" />
+                        </padding>
+                     </Label>
+                  </graphic>
+               </Label>
+            <Label fx:id="email" minWidth="-Infinity" styleClass="cell_small_label" text="\$email">
+                <padding>
+                    <Insets right="10.0" />
+                </padding>
+                <graphic>
+                    <Label styleClass="circle_icon_label">
+                        <graphic>
+                            <ImageView fitHeight="9.0" pickOnBounds="true" preserveRatio="true">
+                                <image>
+                                    <Image url="@/images/email_icon_2.png" />
+                                </image>
+                            </ImageView>
+                        </graphic>
+                        <padding>
+                            <Insets right="3.0" top="1.0" />
+                        </padding>
+                    </Label>
+                </graphic>
+            </Label>
+            <Label fx:id="address" styleClass="cell_small_label" text="\$address">
+                <padding>
+                    <Insets right="10.0" />
+                </padding>
+                <graphic>
+                    <Label styleClass="circle_icon_label">
+                        <graphic>
+                            <ImageView fitHeight="9.0" pickOnBounds="true" preserveRatio="true">
+                                <image>
+                                    <Image url="@/images/address_icon_2.png" />
+                                </image>
+                            </ImageView>
+                        </graphic>
+                        <padding>
+                            <Insets right="3.0" />
+                        </padding>
+                    </Label>
+                </graphic>
+            </Label>
             <VBox.margin>
                <Insets />
             </VBox.margin>
