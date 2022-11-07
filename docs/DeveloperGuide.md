@@ -708,7 +708,8 @@ Users are able to perform several tasks within the application that is broken do
 
     Use case ends.
 
-#### **Use case: UC08 - Buying from a client**
+#### **Use case: UC08 - Buying from a client**<br>
+**Preconditions: Alice is a valid Client in JeeqTracker**
 
 **MSS**
 
@@ -737,7 +738,8 @@ Users are able to perform several tasks within the application that is broken do
 
       Use case resumes at step 2.
 
-#### **Use case: UC09 - Selling to a client**
+#### **Use case: UC09 - Selling to a client**<br>
+**Preconditions: Alice is a valid Client in JeeqTracker**
 
 * Similar to [UC08](#use-case-uc08---buying-from-a-client). Just changing Buy to Sell.
 
@@ -751,7 +753,8 @@ Users are able to perform several tasks within the application that is broken do
 
     Use case ends.
 
-#### **Use case: UC11 - Edit a client**
+#### **Use case: UC11 - Edit a client**<br>
+**Preconditions: Alice is a valid Client in JeeqTracker**
 
 **MSS**
 
@@ -775,7 +778,8 @@ Users are able to perform several tasks within the application that is broken do
 
       Use case resumes at 2.
 
-#### **Use case: UC12 - Edit a transaction**
+#### **Use case: UC12 - Edit a transaction**<br>
+**Preconditions: Alice is a valid Client with at least one transaction in JeeqTracker**
 
 **MSS**
 
@@ -803,7 +807,8 @@ Users are able to perform several tasks within the application that is broken do
 
       Use case resumes at 2.
 
-#### **Use case: UC13 - Edit a remark**
+#### **Use case: UC13 - Edit a remark**<br>
+**Preconditions: Alice is a valid Client with at least one remark in JeeqTracker**
 
 This use case exactly similar to use case [UC12](#use-case-uc12---edit-a-transaction). Instead of `transaction`, `remark` will be used for this use case
 
