@@ -15,6 +15,8 @@ If you are a developer, this guide provides you with comprehensive documentation
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Acknowledgements**
 
 * This project is based on the [AddressBook Level 3 (AB3)](https://se-education.org/addressbook-level3/) project created by the [SE-EDU initiative](https://se-education.org/).
@@ -28,6 +30,8 @@ If you are a developer, this guide provides you with comprehensive documentation
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Design**
 
@@ -77,6 +81,8 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
+<div style="page-break-after: always;"></div>
+
 ### UI component
 
 **API** : [`Ui.java`](https://github.com/AY2223S1-CS2103T-T12-4/tp/tree/master/src/main/java/seedu/uninurse/ui/Ui.java)
@@ -121,6 +127,7 @@ Additionally, the structure of `OutputPanel` (simplified in class diagram above)
 | `UpdatedPersonListPanel`                      | Displays a list of `UpdatedPatientCard`s after using a `find` command           |
 | `UndoCard`, `RedoCard`, `ModifiedPatientCard` | Displays the outcome of an `undo`/`redo` command                                |
 
+<div style="page-break-after: always;"></div>
 
 **Functionality**
 
@@ -130,6 +137,8 @@ The `UI` component,
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` or `Patient` object residing in the `Model`.
+
+<div style="page-break-after: always;"></div>
 
 ### Logic component
 
@@ -177,6 +186,9 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 </div>
 
+
+<div style="page-break-after: always;"></div>
+
 ### Model component
 
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-T12-4/tp/tree/master/src/main/java/seedu/uninurse/model/Model.java)
@@ -201,6 +213,8 @@ The `Model` component,
   
 <img src="images/TaskClassDiagram.png" width="450" />
 
+<div style="page-break-after: always;"></div>
+
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-T12-4/tp/tree/master/src/main/java/seedu/uninurse/storage/Storage.java)
@@ -223,6 +237,8 @@ The `Storage` component,
 Classes used by multiple components are in the `seedu.uninurse.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Implementation**
 
@@ -264,6 +280,8 @@ The following sequence diagrams illustrate the interactions between the `UI`, `L
 
 <img src="images/ViewTaskSequenceDiagram2.png" width="500" />
 
+<div style="page-break-after: always;"></div>
+
 ### Viewing tasks on a particular day feature
 
 #### Implementation
@@ -274,6 +292,8 @@ When the command is executed, it sets the model to show only the tasks on the da
 The Sequence diagram below shows the execution of a view command with no flags.
 
 ![tasksOnSequenceDiagram](images/TasksOnSequenceDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 ### Multi-valued attributes feature
 
@@ -387,6 +407,10 @@ The sequence diagram below shows the interactions within the Logic component tha
 
 <img src="images/DeleteConditionSequenceDiagram.png" alt="delete_condition_sequence_diagram"/>
 
+
+<div style="page-break-after: always;"></div>
+
+
 ### Undo/redo feature
 
 #### Implementation
@@ -468,6 +492,8 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 
+<div style="page-break-after: always;"></div>
+
 ### Display added/edited/deleted patient feature
 
 #### Implementation
@@ -491,6 +517,8 @@ Below is the sequence diagram which shows the entire interaction between the `UI
 <img src="images/AddPatientSequenceDiagram2.png"  />
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -570,6 +598,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | doctor in charge of the patient,           | control who has edit or read access                                        | ensure no unqualified person can change the patients medicine requirements     |
 | `*`      | user                                       | know what apparatus I need for my tasks                                    | retrieve them beforehand                                                       |
 | `*`      | user                                       | be able to add customised command syntax to tailor to my typing preferences| manage my patients even faster                                                 |
+
+<div style="page-break-after: always;"></div>
 
 ### Use cases
 
@@ -1227,11 +1257,11 @@ unless specified otherwise)
     * 2b1. UniNurse shows an error message.
 
       Use case resumes at step 2.
-
-
-*{More to be added}*
+    
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ### Non-Functional Requirements
 
@@ -1253,6 +1283,8 @@ unless specified otherwise)
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Instructions for manual testing**
 
