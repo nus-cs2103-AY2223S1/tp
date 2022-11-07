@@ -16,21 +16,25 @@ Given below are my contributions to the project.
 *  Refer to my [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=AY2223S1-CS2103T-W10-3&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&tabAuthor=DarrenCsAcc&tabRepo=AY2223S1-CS2103T-W10-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 * **Project management**:
-* Renamed all tags to major
-* Changed all usage of address name to scholarship name.
+* Renamed and refactored tags to major
+* Renamed and refactored usage of address name to scholarship name.
 * Designed TrackAScholar logo
 
 * **Enhancements to existing features**: 
-* * Added `SortCommandParserTest`
+* * Added `SortCommandParserTest`[Here](https://github.com/AY2223S1-CS2103T-W10-3/tp/commit/f3e5c1b00b4fb13d78a4cca5089f2fb8b9a2fcb8)
 
 * **Documentation**:
-  * User Guide: Added sort command in features.
-                Added remove command in features.
-                Corrected grammar mistakes and updated introduction.
-                Added glossary.
   
-  * Developer Guide:Added find command in developer guide.
+  * User Guide: 
+  * Added sort command in features. [Here](https://github.com/AY2223S1-CS2103T-W10-3/tp/commit/b5f1c291e7a0449843b74df6f15724b4b7c55dc2)
+  * Added remove command in features. [Here](https://github.com/AY2223S1-CS2103T-W10-3/tp/commit/cafa6add924130714359372344ccbe719c751251)
+  * Corrected grammar mistakes and updated introduction. [Here](https://github.com/AY2223S1-CS2103T-W10-3/tp/commit/af926ac39b48e55b27cb0eaf0f622486b4ed6b85) 
+  * Added glossary. [Here](https://github.com/AY2223S1-CS2103T-W10-3/tp/commit/af926ac39b48e55b27cb0eaf0f622486b4ed6b85)
+  
+  * Developer Guide:
+  * Added find command in developer guide.[Here](https://github.com/AY2223S1-CS2103T-W10-3/tp/commit/28260371cc7e85b6da42b3f0e18a981f18d177f7)
   * Completed sequence diagram for find.[Here](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/202/commits/1fa69447fa1f19c9850000bcedcc73bce9147bc1)
+  * Proposed Future iterations [Here](https://github.com/AY2223S1-CS2103T-W10-3/tp/commit/aba740c08671a69fed13dd30cac290a678d5ed59)
   * Completed activity diagram for find.[Here](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/202/commits/20458e101962adf1b8843b0200d328d6e6850fb2)
 
 * **Community**: 
