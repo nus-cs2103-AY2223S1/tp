@@ -185,6 +185,7 @@ Format: `addstudent s/NAME m/MATRIC_NUM`
 
 * `m/MATRIC_NUM` must start with 'A', followed by 7 digits and a capital letter.
 * A maximum of 10 students can exist in the student list at any point in time. The user will not be allowed to add more students after reaching the limit of 10 students.
+* `MATRIC_NUM` provided must not already exist in student list. 
 
 Examples:
 * `addstudent s/John Doe m/A0123459G` adds a student named `John Doe` with matric number `A0123459G` to your student list.
@@ -292,11 +293,13 @@ Adds a task to JARVIS.
 Format: `addtask t/TASK_DESC [d/DEADLINE]`
 
 * `d/DEADLINE` is optional, if specified will indicate a deadline for the task.
-* `d/DEADLINE` should be in the format `yyyy-MM-dd`
+* `d/DEADLINE` should be in the format `yyyy-MM-dd`.
+* Task to be added must not already exist in the task list. 
 
 Examples:
 * `addtask t/Prepare tutorial slides d/2022-11-01` adds a task with description `Prepare tutorial slides` and deadline of `Nov-11-2022` to your task list.
 * `addtask t/Mark missions` adds a task with description `Mark missions` and no deadline to your task list.
+
 
 ### Deleting a task : `deletetask`
 
@@ -356,7 +359,9 @@ Format: `addstudio [l/LESSON_DESC] sd/START_DATE st/START_TIME [ed/END_DATE] et/
 * `l/LESSON_DESC` is optional
 * `sd/START_DATE` and `ed/END_DATE` should be in the format `yyyy-MM-dd`.
 * `st/START_TIME` and `et/END_TIME` should be in the format `hh:mm`.
-* `ed/END_DATE` is optional, if unspecified `END_DATE` will be assumed to be the same as `START_DATE`
+* `ed/END_DATE` is optional, if unspecified `END_DATE` will be assumed to be the same as `START_DATE`.
+* Studio to be added must not already exist in the lesson list.
+* Studio to be added must not clash with other lessons in the lesson list.
 
 Examples:
 * `addstudio l/Studio 3 sd/2022-10-12 st/14:00 et/16:00` adds a studio lesson with description `Studio 3` on `Oct-12-2022` from `14:00` to `16:00`.
@@ -372,6 +377,8 @@ Format: `addconsult [l/LESSON_DESC] sd/START_DATE st/START_TIME [ed/END_DATE] et
 * `st/START_TIME` and `et/END_TIME` should be in the format `hh:mm`.
 * `ed/END_DATE` is optional, if unspecified `END_DATE` will be assumed to be the same as `START_DATE`
 * `si/STUDENT_INDEX` can be specified one or more times according to the number of attending students.
+* Consult to be added must not already exist in the lesson list.
+* Consult to be added must not clash with other lessons in the lesson list.
 
 Examples:
 * `addconsult l/Consultation on recursion sd/2022-10-14 st/12:00 et/14:00 si/3 si/4` adds a consult lesson with description `Consultation on recursion` on `Oct-14-2022` from `12:00` to `14:00` with the 3rd and 4th student in your student list.
@@ -388,6 +395,8 @@ Format: `addmc [l/LESSON_DESC] sd/START_DATE st/START_TIME [ed/END_DATE] et/END_
 * `st/START_TIME` and `et/END_TIME` should be in the format `hh:mm`.
 * `ed/END_DATE` is optional, if unspecified `END_DATE` will be assumed to be the same as `START_DATE`
 * `si/STUDENT_INDEX` can be specified one or more times according to the number of attending students.
+* Mastery Check to be added must not already exist in the lesson list.
+* Mastery Check to be added must not clash with other lessons in the lesson list.
 
 Examples:
 * `addmc l/Mastery check 1 sd/2022-10-12 st/12:00 et/14:00 si/1 si/2` adds a mastery check lesson with description `Mastery check 1` on `Oct-20-2022` from `12:00` to `14:00` with the 1st and 2nd student in your student list.
