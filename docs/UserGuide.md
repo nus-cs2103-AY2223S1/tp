@@ -672,13 +672,13 @@ Reverses the most recent command.
 
 1. Original Data
 
-<img src="images/ug/undoredocommand/undo1.png">
+<img src="images/ug/undoredocommand/undo1.PNG">
 
 2. Execute `deletepatient 1` to delete all information of Bernice Yu.
 
 <img src="images/ug/undoredocommand/undo2.png">
 
-3. Execute `undo`, infomation of Bernice Yu comes back.
+3. Execute `undo`, information of Bernice Yu comes back.
 
 <img src="images/ug/undoredocommand/undo3.png">
 
@@ -707,11 +707,11 @@ Reverses the most recent undo command.
 
 <img src="images/ug/undoredocommand/redo2.png">
 
-3. Execute `undo`, infomation of Bernice Yu comes back.
+3. Execute `undo`, information of Bernice Yu comes back.
 
 <img src="images/ug/undoredocommand/redo3.png">
 
-4. Execute `redo`, infomation of Bernice Yu is deleted again.
+4. Execute `redo`, information of Bernice Yu is deleted again.
 
 <img src="images/ug/undoredocommand/redo4.png">
 
