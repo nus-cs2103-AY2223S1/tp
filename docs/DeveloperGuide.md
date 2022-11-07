@@ -9,16 +9,22 @@ title: Developer Guide
 
 ---
 
+TruthTable is a **desktop app for managing software engineering teams, optimized for use via a Command Line Interface**
+(CLI) while still having the benefits of a Graphical User Interface (GUI). This guide will help you get familiar with TruthTable and understand the implementations of some of our features.
+
 ## **Acknowledgements**
 
-- {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the
-  original source as well}
+- Our application is based on the [AddressBook-Level3](https://se-education.org/addressbook-level3/) project created by the [SE-EDU initiative](https://se-education.org/).
+- Our application makes use of the [Picocli](https://picocli.info/) library for parsing and executing commands.
+- Our application makes use [JavaFX](https://openjfx.io/) of as the UI framework.
+- Our application makes use [Jackson](https://github.com/FasterXML/jackson) of as the JSON parser.
+- Our application makes use of [JUnit5](https://junit.org/junit5/) as the testing framework.
 
 ---
 
 ## **Setting up, getting started**
 
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
+If this is your first time contributing to our application, please take a look at the guide [_Setting up and getting started_](SettingUp.md).
 
 ---
 
