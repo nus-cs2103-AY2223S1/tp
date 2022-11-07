@@ -3,42 +3,42 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":ExerciseTrackerParser" as ExerciseTrackerParser LOGIC_COLOR
 participant "u:UndoCommand" as UndoCommand LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
-participant ":VersionedAddressBook" as VersionedAddressBook MODEL_COLOR
+participant ":VersionedExerciseTracker" as VersionedExerciseTracker MODEL_COLOR
 end box
 [-> LogicManager : execute(undo)
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand(undo)
-activate AddressBookParser
+LogicManager -> ExerciseTrackerParser : parseCommand(undo)
+activate ExerciseTrackerParser
 
 create UndoCommand
-AddressBookParser -> UndoCommand
+ExerciseTrackerParser -> UndoCommand
 activate UndoCommand
 
-UndoCommand --> AddressBookParser
+UndoCommand --> ExerciseTrackerParser
 deactivate UndoCommand
 
-AddressBookParser --> LogicManager : u
-deactivate AddressBookParser
+ExerciseTrackerParser --> LogicManager : u
+deactivate ExerciseTrackerParser
 
 LogicManager -> UndoCommand : execute()
 activate UndoCommand
 
-UndoCommand -> Model : undoAddressBook()
+UndoCommand -> Model : undoExerciseTracker()
 activate Model
 
-Model -> VersionedAddressBook : undo()
-activate VersionedAddressBook
+Model -> VersionedExerciseTracker : undo()
+activate VersionedExerciseTracker
 
-VersionedAddressBook -> VersionedAddressBook :resetData(ReadOnlyAddressBook)
-VersionedAddressBook --> Model :
-deactivate VersionedAddressBook
+VersionedExerciseTracker -> VersionedExerciseTracker :resetData(ReadOnlyExerciseTracker)
+VersionedExerciseTracker --> Model :
+deactivate VersionedExerciseTracker
 
 Model --> UndoCommand
 deactivate Model

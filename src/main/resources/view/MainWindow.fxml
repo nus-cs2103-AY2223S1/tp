@@ -6,15 +6,15 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.stage.Stage?>
 
-<fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="Address App" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
+<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Gim" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
-    <Image url="@/images/address_book_32.png" />
+    <Image url="@/images/clean.png" />
   </icons>
   <scene>
     <Scene>
@@ -33,26 +33,30 @@
           </Menu>
         </MenuBar>
 
-        <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
+              <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
+            <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
         </StackPane>
-
-        <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
-                   minHeight="100" prefHeight="100" maxHeight="100">
-          <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
-          </padding>
-        </StackPane>
-
-        <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-          <padding>
-            <Insets top="10" right="10" bottom="10" left="10" />
-          </padding>
-          <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-        </VBox>
-
+            <HBox prefHeight="100.0" prefWidth="84.0" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+               <children>
+             <StackPane fx:id="exerciseListPanelPlaceholder" alignment="CENTER_LEFT" prefHeight="131.0" prefWidth="168.0" HBox.hgrow="ALWAYS" />
+                  <VBox prefHeight="131.0" prefWidth="168.0" HBox.hgrow="ALWAYS">
+                     <children>
+                         <StackPane fx:id="resultDisplayPlaceholder" alignment="CENTER_RIGHT" prefHeight="131.0" prefWidth="168.0" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+                      <padding>
+                        <Insets bottom="5" left="10" right="10" top="5" />
+                      </padding>
+                    </StackPane>
+                        <StackPane fx:id="savedExerciseListPlaceholder" alignment="CENTER_RIGHT" prefHeight="131.0" prefWidth="168.0" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+                           <padding>
+                              <Insets bottom="5" left="10" right="10" top="5" />
+                           </padding>
+                        </StackPane>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
     </Scene>

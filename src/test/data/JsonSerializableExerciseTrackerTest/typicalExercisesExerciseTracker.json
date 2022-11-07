@@ -1,0 +1,46 @@
+{
+  "_comment": "ExerciseTracker save file which contains the same Exercise values as in TypicalExercises#getTypicalExerciseTracker()",
+  "exercises" : [ {
+    "name" : "ABDUCTION",
+    "weight" : "10",
+    "sets" : "1",
+    "reps" : "1",
+    "date" : "02/05/2022"
+  }, {
+    "name" : "BICEP CURLS",
+    "weight" : "20",
+    "sets" : "1",
+    "reps" : "1",
+    "date" : "02/05/2022"
+  }, {
+    "name" : "CALF RAISES",
+    "weight" : "30",
+    "sets" : "1",
+    "reps" : "1",
+    "date" : "02/05/2022"
+  }, {
+    "name" : "DEADLIFT",
+    "weight" : "40",
+    "sets" : "1",
+    "reps" : "1",
+    "date" : "02/05/2022"
+  }, {
+    "name" : "ELEVATED SQUATS",
+    "weight" : "50",
+    "sets" : "1",
+    "reps" : "1",
+    "date" : "02/05/2022"
+  }, {
+    "name" : "FRONT SQUATS",
+    "weight" : "60",
+    "sets" : "1",
+    "reps" : "1",
+    "date" : "02/05/2022"
+  }, {
+    "name" : "GLUTE RAISES",
+    "weight" : "70",
+    "sets" : "1",
+    "reps" : "1",
+    "date" : "02/05/2022"
+  } ]
+}

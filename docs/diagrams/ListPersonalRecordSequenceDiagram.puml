@@ -1,0 +1,72 @@
+@startuml
+!include style.puml
+skinparam sequenceReferenceBackgroundColor AntiqueWhite
+
+box Logic LOGIC_COLOR_T1
+participant ":Logic\nManager" as LogicManager LOGIC_COLOR
+participant ":ExerciseTracker\nParser" as ExerciseTrackerParser LOGIC_COLOR
+participant ":Pr\nCommandParser" as PrCommandParser LOGIC_COLOR
+participant "command:Pr\nCommand" as PrCommand LOGIC_COLOR
+participant GeneratorFactory as "<<class>>\nGenerator\nFactory" LOGIC_COLOR
+participant ":Command\nResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute\n(":pr n/Squat")
+activate LogicManager
+
+LogicManager -> ExerciseTrackerParser : parseCommand\n(":pr n/Squat")
+activate ExerciseTrackerParser
+
+create PrCommandParser
+ExerciseTrackerParser -> PrCommandParser
+activate PrCommandParser
+
+PrCommandParser --> ExerciseTrackerParser
+deactivate PrCommandParser
+
+ExerciseTrackerParser -> PrCommandParser : parse("n/Squat")
+activate PrCommandParser
+
+create PrCommand
+PrCommandParser -> PrCommand
+activate PrCommand
+
+PrCommand --> PrCommandParser : command
+deactivate PrCommand
+
+PrCommandParser --> ExerciseTrackerParser : command
+deactivate PrCommandParser
+
+PrCommandParser -[hidden]-> ExerciseTrackerParser
+destroy PrCommandParser
+
+ExerciseTrackerParser --> LogicManager : command
+deactivate ExerciseTrackerParser
+
+LogicManager -> PrCommand : execute()
+activate PrCommand
+
+
+PrCommand -> Model : getExercisePR(exerciseName)
+activate Model
+Model --> PrCommand : exerciseWithPR
+deactivate Model
+
+create CommandResult
+PrCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> PrCommand
+deactivate CommandResult
+
+PrCommand --> LogicManager : commandResult
+deactivate PrCommand
+
+[<--LogicManager
+deactivate LogicManager
+
+@enduml
