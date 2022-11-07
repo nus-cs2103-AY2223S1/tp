@@ -56,11 +56,12 @@ raising an issue on our [GitHub](https://github.com/AY2223S1-CS2103T-W11-1/tp)!
 ## First Glance
 The following image describes how `Food Guide` looks like upon opening the application.
 
-![Ui](images/Ui.png)
+![Ui](images/user-guide/UgGuiGuide.png)
 
 ## Quick start
 
-1. First, start by installing `Java 11` from [here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html).
+1. First, start by installing `Java 11` from 
+[here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html).
 
 2. Next, download the latest `foodguide.jar` from [here](https://github.com/AY2223S1-CS2103T-W11-1/tp/releases).
 
@@ -83,6 +84,29 @@ e.g. typing **`help`** and pressing Enter will open the help window. <br>
 6. You can refer to [Features](#features) below for the details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+
+## Introduction to Features
+
+This section summarizes all the commands supported in the `Food Guide`. 
+We highly recommend you read this section before jumping into all the features below!
+
+1. When in doubt, you can always fall back on the `help` command.
+
+<div markdown="block" class="alert alert-info">
+
+You can also add `-h` to the back of any command to get `Food Guide` to generate 
+a help message on how to use the command (e.g. `find -h`)! 
+
+</div>
+
+2. To reset the eateries in the list to its default state, use `list`.
+
+3. Make use of the various search commands (`find`, `findTag`, `findLocation`, `findCuisine`, `findPrice`) 
+to search for a specific eatery!
+
+4. Make use of our random generator by adding `-r NUMBER` after any `find` command. For example, run
+`find -r 1` to generate 1 random eatery to eat at.
+
 
 ## Features
 
