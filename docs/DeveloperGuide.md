@@ -325,6 +325,59 @@ The following activity diagram summarizes what happens when a user executes a ne
   
 ![MarkTaskActivityDiagram](images/MarkTaskActivityDiagram.png)
 
+### Delete Task Command
+
+####Command Format
+`t del INDEX` where `INDEX` is the index (shown in the displayed task list) of the task to be deleted.
+
+####What is the feature about
+The `t del` command allows users to delete a specific task from the displayed task list.
+
+####How does the feature work
+The delete task feature is currently implemented through the `DeleteTaskCommand` which extends the abstract class `Command`.
+The task to be deleted will be retrieved from the `Model` based on the `INDEX` given. This task will then be deleted from the 
+the `DistinctTaskList`.
+
+####UML diagrams
+Shown below is a sequence diagram of what occurs when the execute method of LogicManager is invoked.
+
+|  ![MarkTaskSequenceDiagram](images/MarkTaskSequenceDiagram.png)  |
+|:----------------------------------------------------------------:|
+| ![MarkTaskReferenceDiagram](images/MarkTaskReferenceDiagram.png) |
+|              Sequence diagram of DeleteTaskCommand               |
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** The lifeline for `MarkCommandParser` and `MarkCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifelines reach the end of the diagram.
+</div>
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** If the command fails, `Model#replaceTask()` will not be called, so the task list will not change. If so, `MarkCommand` will return an error to the user rather than attempting to perform the command.
+</div>
+
+**Sequence of actions made when `execute` method of `LogicManager` is invoked**
+
+1. The user types the `t mark 1` command.
+2. The `execute()` method of the `LogicManager` is called.
+3. The `LogicManager` then calls `AddressBookParser#parseCommand()` which parses `t mark 1`, creating a `MarkCommandParser` object.
+4. The `AddressBookParser` calls `MarkCommandParser#parse()` which parses `1` and creates a `MarkCommand` object with an `Index` object storing the target index `1`.
+5. Then, the `LogicManager`calls `MarkCommand#execute()`.
+6. The `MarkCommand` retrieves the task at the `Index`, which is the first task in the filtered task list, from the `Model`.
+7. The `MarkCommand` command calls `Task#mark()` to create a marked copy of the `taskToMark`.
+8. This `markedTask` has all fields similar to the original task, except its `TaskStatus` is `COMPLETE`.
+9. Then, `MarkCommand` calls `Model#replaceTask()` which replaces the `taskToMark` in the filtered task list in `Model` with the `markedTask`.
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** The `UnmarkCommand` works the same — the only difference is that it calls `Task#unmark()`, which returns a copy of the task with `TaskStatus` set to `INCOMPLETE`.
+</div>
+
+The following activity diagram summarizes what happens when DeleteTaskCommand is executed
+
+| ![MarkTaskActivityDiagram](images/MarkTaskActivityDiagram.png) |
+|:--------------------------------------------------------------:|
+|             Activity diagram of DeleteTaskCommand              |
 
 ### Link Exam feature
 
