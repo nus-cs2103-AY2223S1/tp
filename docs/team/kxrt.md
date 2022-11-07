@@ -92,6 +92,14 @@ Issues: [link](https://github.com/AY2223S1-CS2103T-W16-3/tp/issues?q=is%3Aissue+
 ###### Contributions beyond project team
 
 - Forum:
+  [#34](https://github.com/nus-cs2103-AY2223S1/forum/issues/34#issuecomment-1221230839)
+  [#38](https://github.com/nus-cs2103-AY2223S1/forum/issues/38#issuecomment-1221234801)
+  [#48](https://github.com/nus-cs2103-AY2223S1/forum/issues/48#issuecomment-1222054272)
+  [#105](https://github.com/nus-cs2103-AY2223S1/forum/issues/105#issuecomment-1231079132)
+  [#118](https://github.com/nus-cs2103-AY2223S1/forum/issues/118#issuecomment-1233689433)
+  [#119](https://github.com/nus-cs2103-AY2223S1/forum/issues/119#issuecomment-1233675121)
+  [#141](https://github.com/nus-cs2103-AY2223S1/forum/issues/141#issuecomment-1236156886)
+  [#165](https://github.com/nus-cs2103-AY2223S1/forum/issues/165#issuecomment-1242684073)
   [#315](https://github.com/nus-cs2103-AY2223S1/forum/issues/315#issuecomment-1263175854)
   [#323](https://github.com/nus-cs2103-AY2223S1/forum/issues/323#issuecomment-1265182783)
   [#335](https://github.com/nus-cs2103-AY2223S1/forum/issues/335#issuecomment-1272447673)
