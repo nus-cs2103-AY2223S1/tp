@@ -20,7 +20,7 @@ public class TimeRange {
     public static final String VALIDATION_TIME_RANGE_REGEX = VALIDATION_TIME_REGEX + "-" + VALIDATION_TIME_REGEX
             + " " + VALIDATION_DURATION_REGEX;
     public static final String INVALID_DURATION_ERROR_MESSAGE = "EndTime must be after StartTime "
-        + "and duration must be less than the difference between EndTime and StartTime";
+        + "and duration must be less than or equal to the difference between EndTime and StartTime";
     public final LocalTime startTimeRange;
     public final LocalTime endTimeRange;
     public final Integer duration;
