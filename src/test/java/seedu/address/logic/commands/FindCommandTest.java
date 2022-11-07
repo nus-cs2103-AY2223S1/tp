@@ -3,11 +3,17 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.*;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalPersons.DANIEL;
+import static seedu.address.testutil.TypicalPersons.HOON;
+import static seedu.address.testutil.TypicalPersons.LEE;
+import static seedu.address.testutil.TypicalPersons.FANG;
+import static seedu.address.testutil.TypicalPersons.GEORGE;
+import static seedu.address.testutil.TypicalPersons.FIONA;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -74,7 +80,7 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(predicate);
         expectedModel.filterPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(FIONA,HOON,LEE), model.getSortedFilteredPersonList());
+        assertEquals(Arrays.asList(FIONA, HOON, LEE), model.getSortedFilteredPersonList());
     }
 
     @Test
@@ -84,7 +90,7 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(predicate);
         expectedModel.filterPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(LEE,FANG), model.getSortedFilteredPersonList());
+        assertEquals(Arrays.asList(LEE, FANG), model.getSortedFilteredPersonList());
     }
 
     @Test
@@ -94,7 +100,7 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(predicate);
         expectedModel.filterPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ALICE,BENSON,DANIEL,HOON,LEE,FANG), model.getSortedFilteredPersonList());
+        assertEquals(Arrays.asList(ALICE, BENSON, DANIEL, HOON, LEE, FANG), model.getSortedFilteredPersonList());
     }
 
     @Test
@@ -104,11 +110,11 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(predicate);
         expectedModel.filterPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ALICE,HOON,FANG), model.getSortedFilteredPersonList());
+        assertEquals(Arrays.asList(ALICE, HOON, FANG), model.getSortedFilteredPersonList());
     }
 
     @Test
-    public void execute_gitHubUserKeyword_PersonFound() {
+    public void execute_gitHubUserKeyword_personFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
         PersonMatchesKeywordsPredicate predicate = preparePredicate("sh4nH");
         FindCommand command = new FindCommand(predicate);
@@ -118,7 +124,7 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_nameSpelledWrong_PersonFound() {
+    public void execute_nameSpelledWrong_personFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
         PersonMatchesKeywordsPredicate predicate = preparePredicate("lei chang");
         FindCommand command = new FindCommand(predicate);

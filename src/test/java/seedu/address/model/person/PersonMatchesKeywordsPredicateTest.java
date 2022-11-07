@@ -198,7 +198,7 @@ public class PersonMatchesKeywordsPredicateTest {
 
         // Multiple tags
         predicate.setKeywords("friend");
-        assertTrue(predicate.test(new PersonBuilder().withTags("friend","owesMoney").build()));
+        assertTrue(predicate.test(new PersonBuilder().withTags("friend", "owesMoney").build()));
 
         // Only one matching keyword
         predicate.setKeywords("friend");

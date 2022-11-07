@@ -44,13 +44,15 @@ public class TypicalPersons {
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withAddress("4th street").build();
 
     // Manually added
-    public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withAddress("little india").withRole("Backend Engineer")
+    public static final Person HOON = new PersonBuilder().withName("Hoon Meier")
+            .withAddress("little india").withRole("Backend Engineer")
             .withGithubUser("sh4nH").withTags("friends").build();
 
     public static final Person FANG = new PersonBuilder().withName("Lee Fang").withAddress("clementi ave")
             .withRole("Frontend Engineer").withGithubUser("george").withTags("friend").build();
 
-    public static final Person LEE = new PersonBuilder().withName("Lee Chan").withAddress("little china").withTags("friend").build();
+    public static final Person LEE = new PersonBuilder().withName("Lee Chan")
+            .withAddress("little china").withTags("friend").build();
 
 
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withAddress("chicago ave").build();
