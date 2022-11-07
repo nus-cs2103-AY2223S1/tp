@@ -78,7 +78,7 @@ BookFace replaces a paper-based system or manual tracking of books, providing gr
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
+* Items with `…`​ after them can be used multiple times including zero times.<br> 
   e.g. `[t/TAG]…​` can be ignored (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
@@ -94,7 +94,7 @@ BookFace replaces a paper-based system or manual tracking of books, providing gr
   e.g. if your user list has 5 users, and you enter `find user Alex` and get 1 user displayed under the user list, `delete user 1` will always
 delete the user that is currently displayed.
 
-* Any whitespace between the start of a parameter prefix such as `n/` and the end of the preceding parameter will be ignored.<br>e.g. the parameter `p/` in `p/999999 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; n/John` will be interpreted as `999999` and not `999999 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;`.
+* Any whitespace between the start of a parameter prefix such as `n/` and the end of the preceding parameter will be ignored.<br>e.g. the parameter `p/` in `p/999999      n/John` will be interpreted as `999999` and not `999999      `.
 </div>
 
 <div style="page-break-after: always;"></div>
