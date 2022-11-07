@@ -517,9 +517,9 @@ We chose to implement the changing of view panels through `CommandResult` due to
 - Within in view panel class, there are similar structures (FXML file name attribute, Logger, ListView, constructor, overwriting ListCell etc.), but that is where the similarities end. We feel that having the panels inherit from a single panel does not necessarily add any value, as they do not share any attribute or methods. We find that the use of polymorphism here to make all the different view panels inherit from a single parent class is an example of over engineering and adds no value to justify the effort of doing so.
 - Only within the three `ListPanel`, there is a single common method `numRecordsString`, which checks for plurality of the word 'record'. As such, a small bit of polymorphism in an abstract class `ListPanel` is incorporated in an attempt to reduce repetition.
 
-### 3.5 Proposed Features
+### 4.5 Proposed Features
 
-#### 3.5.1 Multiple possible prefixes per command
+#### 4.5.1 Multiple possible prefixes per command
 
 Purpose: In this proposed feature, the user is provided with  multiple possible prefixes for defining fields in a command.
 For example, currently we can define a client's birthday using the `b/` prefix.
