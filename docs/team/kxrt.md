@@ -23,17 +23,19 @@ Issues: [link](https://github.com/AY2223S1-CS2103T-W16-3/tp/issues?q=is%3Aissue+
     - What it does: Returns count of all patients in the application, along with prescription counts for long-term
       medication.
     - Justification: Allows medical staff to easily keep track of total patient count.
-- Creating past appointments for patients: `appt`
-    - What it does: Creates a record of a past appointment for a patient in the application, with details such as the
-      date of the appointment, the doctor's diagnosis and the medication prescribed during the appointment.
-    - Justification: Significant feature for the application as it allows storing a history of patient visits that can
-      later be accessed by date or by patient. This improves the medical record system by integrating patient history.
-    - Highlights: This was a major feature added to the application during the project, as it laid the basis for future
-      enhancements. Adding this impacted many currently existing commands, such as `add` and side effects caused by the
-      `edit` command. This was a challenging addition that required editing of over 20 files simultaneously.
-- Creating upcoming appointments for patients: `edit ua/`
-    - What it does: Schedules a future appointment for a patient.
-    - Justification: Allows medical staff to keep track of when a patient is next due for a visit.
+- Appointments feature
+  - Created the main classes that encapsulate the appointments feature, including both past and upcoming appointments.
+  - Creating past appointments for patients: `appt`
+      - What it does: Creates a record of a past appointment for a patient in the application, with details such as the
+        date of the appointment, the doctor's diagnosis and the medication prescribed during the appointment.
+      - Justification: Significant feature for the application as it allows storing a history of patient visits that can
+        later be accessed by date or by patient. This improves the medical record system by integrating patient history.
+      - Highlights: This was a major feature added to the application during the project, as it laid the basis for future
+        enhancements. Adding this impacted many currently existing commands, such as `add` and side effects caused by the
+        `edit` command. This was a challenging addition that required editing of over 20 files simultaneously.
+  - Creating upcoming appointments for patients: `edit ua/`
+      - What it does: Schedules a future appointment for a patient.
+      - Justification: Allows medical staff to keep track of when a patient is next due for a visit.
 
 ###### Other code contributions
 
