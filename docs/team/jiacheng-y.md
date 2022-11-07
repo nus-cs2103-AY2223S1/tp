@@ -13,7 +13,6 @@ CLI, and the application responds with its GUI, created with JavaFX.
 * **Code contributed**: [RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=jiacheng-y&breakdown=true)
 
 * **Enhancements implemented**:
-
   * Notable Feature: **Mark Order Command**
     * Function: Allow the user to mark orders as paid and/or delivered. This feature also includes reducing inventory 
     item quantities accordingly when an item is marked as delivered, and checking for sufficient stock when a 
@@ -54,10 +53,7 @@ CLI, and the application responds with its GUI, created with JavaFX.
     [#213](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/213)
 
 * **Contributions to the UG**: 
-  * Features added in documentation: 
-    * Add item
-    * Mark item as paid and/or delivered
-    * Clear
+  * Features added in documentation: add item, mark item as paid and/or delivered, clear
   * Fix bugs in the UG reported by other teams
   * Relevant pull requests: [#46](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/46), 
   [#113](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/113), 
