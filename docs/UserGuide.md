@@ -39,7 +39,7 @@ title: Modtrekt User Guide
 ## Introduction
 
 ModtRekt is a desktop app created for NUS students to have a faster and more organised way to **manage their modules and
-tasks**. It ensures that you would **never forget another task or miss another deadline**. This way you can focus on
+tasks**. It ensures that you will **never forget another task or miss another deadline**. This way you can focus on
 learning and not be sidetracked by unexpected tasks that you forget. With ModtRekt, you can **quickly add tasks**, see your 
 **upcoming deadlines**, and **filter your tasks by their module**.
 
@@ -47,7 +47,7 @@ Modtrekt is optimized for use via a command line interface (CLI) for **faster na
 the benefits of a graphical user interface (GUI).
 
 This user guide contains in-depth information which can help new users learn all the features of ModtRekt. If you
-are an experienced user, the a command summary at the bottom can get you up to speed.
+are an experienced user, the command summary at the bottom can get you up to speed.
 
 ## Quick Start
 
@@ -319,7 +319,7 @@ Sample execution of command `done module CS2100`:
 Marks a module as undone.
 
 - After you unmark a module as done, your total completed module credits (MCs) will be updated.
-- Unmarking a module will not affect its tasks, i.e. your original tasks will not be marked as undone)
+- Unmarking a module will not affect its tasks, i.e. your original tasks will not be marked as undone
 - You cannot execute this command while cd'd into any module.
 
 Format: `undone module <module code>`
@@ -339,6 +339,7 @@ Sample execution of command `done module CS2105`, with CS2105 marked as done ini
 Shows all the modules you have added.
 - Using the command without `-a` flag will show you only undone modules.
 - Using the command with `-a` flag will show you all modules, including those marked as done.
+- You cannot execute this command while cd'd into any module.
 
 Format: `list module [-a]`
 
@@ -358,7 +359,7 @@ Changes current parameters of selected module.
 
 - Targeted module code must exist in the module list
 - New module code must not already exist in the module list
-- All tasks associated with the module would change to the new module code after editing the module
+- All tasks associated with the module will change to the new module code after editing the module
 - The order of optional tags does not matter
 
 > Any edits to the module would not be checked against NUSMods again and is **taken as a customised module**.
@@ -392,11 +393,11 @@ Format (if `cd`'d previously): `add task <description> [-d <deadline>] [-p <prio
 
 Format (if not `cd`'d): `add task <description> -c <module code> [-d <deadline>] [-p <priority>]`
 
-Examples (CD'd into a module):
+Examples (`cd`'d into a module):
 - `add task "do ip tasks" -d 2022-09-15`
 - `add task -d 2022-09-15 "do ip tasks"`
 
-Examples (Not CD'd into a module):
+Examples (not `cd`'d into a module):
 - `add task -c CS2103T "do ip tasks" -d 2022-09-15`
 - `add task -d 2022-09-15 "do ip tasks" -c CS2103T`
 

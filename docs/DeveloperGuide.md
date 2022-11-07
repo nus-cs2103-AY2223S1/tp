@@ -56,9 +56,8 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/
-
-/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/src/main/java/seedu/address/Main.java)
+and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -153,24 +152,24 @@ The `ResultDisplay` class shows the message returned from the user's input.
 
 #### ModuleListPanel
 
-The `ModuleListPanel` class contains `ListView<Module>` JavaFX component displaying a list view of the component inside.
-In this case, the list inside is a list of `ModuleCard` class.
+The `ModuleListPanel` class contains a `ListView<Module>` JavaFX component displaying a list view of the component inside.
+In this case, the list inside is a list of `ModuleCard` objects.
 
-The contents of the list are dependent on the `modules` that the user's data. Each module input by the user will be displayed
+The contents of the list are dependent on the modules of the user. Each module input by the user will be displayed
 as a `ModuleCard` object, presented in the form of `ListView`.
 
 #### TaskListPanel
 
 The `TaskListPanel` class contains `ListView<Task>` JavaFX component displaying a list view of the component inside.
-In this case, the list inside is a list of `TaskCard` class.
+In this case, the list inside is a list of `TaskCard` objects.
 
-The contents of the list are dependent on the `tasks` that the user's data. Each module input by the user will be displayed
+The contents of the list are dependent on the tasks of the user. Each module input by the user will be displayed
 as a `TaskCard` object, presented in the form of `ListView`.
 
 #### ProfileSidePanel
 
 The `ProfileSidePanel` class contains the user's profile. The following information is displayed in on the object:
-* `Course` name
+* Course name
 * Inspiring quote
 * Modular Credits completed by user
 * Number of Active Tasks
@@ -181,8 +180,8 @@ Here is how the `ProfileSidePanel` works:
 2. `Model` is updated.
 3. `MainWindow` calls the method `refresh`, which refreshes the `ProfileSidePanel`.
 4. `ProfileSidePanel` uses `Logic` to obtain the corresponding information:
-    1. MC Completed
-    2. Active Tasks
+    1. MCs completed
+    2. Active tasks
 5. `ProfileSidePanel` executes corresponding JavaFX methods to update displayed information.
 6. `ProfileSidePanel` shows visible change on the interface.
 7. `refresh` ends execution.
@@ -213,7 +212,7 @@ How the `Logic` component works:
 1. The command can communicate with the `Model` when it is executed (e.g. to add or remove a module).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
-The Sequence Diagram in the sections below will illustrate the interactions within the `Logic` component.
+The sequence diagrams in the sections below will illustrate the interactions within the `Logic` component.
 
 How the parsing works:
 * When called upon to parse a user command, the `ModtrektParser` class creates an `XYZCommand` (`XYZ` is a placeholder for the specific command name e.g., `AddCommand`) which is returned to `ModtrektParser` as a `Command` object.
@@ -387,7 +386,7 @@ Section by : [David](https://github.com/vvidday)
 
 The `cd` command allows users to set a module as the **current module**, which accomplishes two things:
 * Firstly, it filters the current task list in the UI to only show tasks from the corresponding module
-* Additionally, all further commands are parsed in the context of the corresponding module. For instance, commands that require a task index, such as `remove -t 1`, will now base the index on the *updated filtered* task list.
+* Additionally, all further commands are parsed in the context of the corresponding module. For instance, commands that require a task index, such as `remove task 1`, will now base the index on the *updated filtered* task list.
 
 The relevant commands are:
 * **`cd <module code>`** sets the current module to the module with the specified module code
@@ -560,7 +559,7 @@ verbose command inputs.
 
 #### Current implementation
 
-The diagram below showcases the path execution for when edit a module
+The diagram below showcases the path execution when editing a module
 
 <img src="images/ModulePUMLs/EditModule/ModuleEditPathExecution.png" width="800" />
 
@@ -732,7 +731,7 @@ The diagram below showcases the path execution for when edit a task
 
 <img src="images/TaskPUMLs/EditTask/TaskEditPathExecution.png" width="800" />
 
-The diagram below shows how the remove command work with input `edit task 1 -c CS2103T -ds Assignment 2`
+The diagram below shows how the remove command work with input `edit task 1 -c CS2103T -ds "Assignment 2"`
 
 Note that the sequence diagram has been kept simple, as the logic flow for `addTask(t)` and
 `removeTask(t)` have been covered in greater detail in the earlier diagrams.
@@ -752,7 +751,8 @@ task details in the list.
 
 Section by : [Jonathan](https://github.com/jontmy)
 
-Marking tasks as done allows users to selectively hide tasks that they have completed.
+Marking tasks as done allows users to selectively hide tasks that they have completed with the `list task` command
+afterward.
 
 Every task in the task book will be in either the done or undone state.
 New tasks will be created in the undone state.
@@ -776,7 +776,7 @@ There was an alternative we considered for users to select the task to mark as d
 
 * **Alternative 2:** Using the task index of the current module (current implementation):
     * Pro: Users can mark tasks as done by their index easily without much typing.
-    * Con: Users now have to use `ls` and `ls -A` to view undone tasks or all tasks respectively.
+    * Con: Users now have to use `ls` and `ls -a` to view undone tasks or all tasks respectively.
 
 Seeing as we prioritize a CLI, we chose the second option as it would be simpler for users to use.
 
@@ -1262,7 +1262,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 _**Mainstream OS**_
 
-Windows, Linux, Unix, OS-X
+Windows, Linux, Unix, macOS
 
 ## **Appendix: Instructions for manual testing**
 
