@@ -691,7 +691,7 @@ Do the test cases sequentially to ensure correct expectation.
     2. Test case: `add student n/John Doe i/A0000000J ph/98765432 e/johnd@example.com tele/johnDoe m/CS2103T tut/W17`<br>
        Expected:  A new student is added to the student list. A success message containing details of the added student is shown in result display box and the list of students is shown.
 
-    3. Test case: `add student n/Mary i/A0000000B ph/87654321 e/john@example.com tele/john m/missing_module tut/W17 g/A`<br>
+    3. Test case: `add student n/Mary i/A0000000B ph/87654321 e/john@example.com tele/john m/CS2103T tut/W17 g/A`<br>
        Expected:  A new student is added to the student list. A success message containing details of the added student is shown in result display box and the list of students is shown.
 
     4. Test case: `add student n/Mary i/A0000000J ph/12345678 e/mary@example.com tele/mary m/CS2103T tut/W17`<br>
