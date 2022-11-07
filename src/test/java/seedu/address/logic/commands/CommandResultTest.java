@@ -8,13 +8,50 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 public class CommandResultTest {
+
+    @Test
+    public void isShowHelp() {
+
+        // showHelp is true
+        CommandResult commandResult = new CommandResult("feedback", true, false, false);
+        assertTrue(commandResult.isShowHelp());
+
+        // showHelp is false
+        commandResult = new CommandResult("feedback", false, false, false);
+        assertFalse(commandResult.isShowHelp());
+    }
+
+    @Test
+    public void isExit() {
+
+        // exit is true
+        CommandResult commandResult = new CommandResult("feedback", false, true, false);
+        assertTrue(commandResult.isExit());
+
+        // exit is false
+        commandResult = new CommandResult("feedback", false, false, false);
+        assertFalse(commandResult.isExit());
+    }
+
+    @Test
+    public void isShowTimetable() {
+
+        // showTimetable is true
+        CommandResult commandResult = new CommandResult("feedback", false, false, true);
+        assertTrue(commandResult.isShowTimetable());
+
+        // showTimetable is false
+        commandResult = new CommandResult("feedback", false, false, false);
+        assertFalse(commandResult.isShowTimetable());
+    }
+
     @Test
     public void equals() {
         CommandResult commandResult = new CommandResult("feedback");
 
         // same values -> returns true
         assertTrue(commandResult.equals(new CommandResult("feedback")));
-        assertTrue(commandResult.equals(new CommandResult("feedback", false, false)));
+        assertTrue(commandResult.equals(new CommandResult("feedback", false, false, false)));
 
         // same object -> returns true
         assertTrue(commandResult.equals(commandResult));
@@ -29,10 +66,14 @@ public class CommandResultTest {
         assertFalse(commandResult.equals(new CommandResult("different")));
 
         // different showHelp value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", true, false)));
+        assertFalse(commandResult.equals(new CommandResult("feedback", true, false, false)));
 
         // different exit value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", false, true)));
+        assertFalse(commandResult.equals(new CommandResult("feedback", false, true, false)));
+
+        // different timetable value -> returns false
+        assertFalse(commandResult.equals(new CommandResult("feedback", false, false, true)));
+
     }
 
     @Test
@@ -46,9 +87,13 @@ public class CommandResultTest {
         assertNotEquals(commandResult.hashCode(), new CommandResult("different").hashCode());
 
         // different showHelp value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", true, false).hashCode());
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", true, false, false).hashCode());
 
         // different exit value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, true).hashCode());
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, true, false).hashCode());
+
+        // different timetable value -> returns different hashcode
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, false, true).hashCode());
+
     }
 }

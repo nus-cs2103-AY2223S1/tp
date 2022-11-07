@@ -1,0 +1,33 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+
+Package Module <<Rectangle>>{
+Class "<<interface>>\nModule" as Module
+
+Class CurrentModule
+Class PlannedModule
+Class PreviousModule
+
+Class "Name" as CurrentName
+Class "Name" as PreviousName
+Class "Name" as PlannedName
+
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Module
+
+CurrentModule .up.|> Module
+PlannedModule .up.|> Module
+PreviousModule .up.|> Module
+
+CurrentModule *-->  "1" CurrentName
+
+PlannedModule *-->  "1" PlannedName
+PreviousModule *-->  "1" PreviousName
+
+@enduml

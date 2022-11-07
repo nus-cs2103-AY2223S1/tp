@@ -9,6 +9,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -20,7 +21,9 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.module.Lesson;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.user.User;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -124,6 +127,31 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasUser() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addUser(User user) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public User getUser() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteUser() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setUser(User editedUser) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasPerson(Person person) {
             throw new AssertionError("This method should not be called.");
         }
@@ -145,6 +173,56 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addLessonToUser(Lesson lesson) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void removeLessonToUser(Lesson lesson) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Set<Lesson> getTimetable() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean setTimetable(Set<Lesson> lessons) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void nextSem() {
+            throw new AssertionError("This method should not be called.");
+
+        }
+
+        @Override
+        public void commitAddressBook() {
+        }
+
+        @Override
+        public boolean canUndoAddressBook() {
+            return false;
+        }
+
+        @Override
+        public boolean canRedoAddressBook() {
+            return false;
+        }
+
+        @Override
+        public void undoAddressBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void redoAddressBook() {
             throw new AssertionError("This method should not be called.");
         }
     }

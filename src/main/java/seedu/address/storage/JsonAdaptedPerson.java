@@ -10,8 +10,13 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.module.CurrentModule;
+import seedu.address.model.module.PlannedModule;
+import seedu.address.model.module.PreviousModule;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Github;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -28,7 +33,13 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+    private final String github;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedCurrentModule> currModules = new ArrayList<>();
+    private final List<JsonAdaptedPreviousModule> prevModules = new ArrayList<>();
+    private final List<JsonAdaptedPlannedModule> planModules = new ArrayList<>();
+    private final List<JsonAdaptedLesson> lessons = new ArrayList<>();
+
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -36,13 +47,29 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("github") String github, @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("currModules") List<JsonAdaptedCurrentModule> currModules,
+            @JsonProperty("prevModules") List<JsonAdaptedPreviousModule> prevModules,
+            @JsonProperty("planModules") List<JsonAdaptedPlannedModule> planModules) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.github = github;
         if (tagged != null) {
             this.tagged.addAll(tagged);
+        }
+        if (currModules != null) {
+            this.currModules.addAll(currModules);
+        }
+        if (prevModules != null) {
+            this.prevModules.addAll(prevModules);
+        }
+        if (planModules != null) {
+            this.planModules.addAll(planModules);
+        }
+        if (lessons != null) {
+            this.lessons.addAll(lessons);
         }
     }
 
@@ -54,8 +81,21 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        github = source.getGithub().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
+        currModules.addAll(source.getCurrModules().stream()
+                .map(JsonAdaptedCurrentModule::new)
+                .collect(Collectors.toList()));
+        prevModules.addAll(source.getPrevModules().stream()
+                .map(JsonAdaptedPreviousModule::new)
+                .collect(Collectors.toList()));
+        planModules.addAll(source.getPlanModules().stream()
+                .map(JsonAdaptedPlannedModule::new)
+                .collect(Collectors.toList()));
+        lessons.addAll(source.getLessons().stream()
+                .map(JsonAdaptedLesson::new)
                 .collect(Collectors.toList()));
     }
 
@@ -64,10 +104,25 @@ class JsonAdaptedPerson {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
-    public Person toModelType() throws IllegalValueException {
+    public Person toModelType() throws IllegalValueException, CommandException {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
+        }
+
+        final List<CurrentModule> personCurrModules = new ArrayList<>();
+        for (JsonAdaptedCurrentModule currModule : currModules) {
+            personCurrModules.add(currModule.toModelType());
+        }
+
+        final List<PreviousModule> personPrevModules = new ArrayList<>();
+        for (JsonAdaptedPreviousModule prevModule : prevModules) {
+            personPrevModules.add(prevModule.toModelType());
+        }
+
+        final List<PlannedModule> personPlanModules = new ArrayList<>();
+        for (JsonAdaptedPlannedModule planModule : planModules) {
+            personPlanModules.add(planModule.toModelType());
         }
 
         if (name == null) {
@@ -102,8 +157,28 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        if (github == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Github.class.getSimpleName()));
+        }
+        if (!Github.isValidUsername(github)) {
+            throw new IllegalValueException(Github.MESSAGE_CONSTRAINTS);
+        }
+        final Github modelGithub = new Github(github);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+
+        final Set<CurrentModule> modelCurrModules = new HashSet<>(personCurrModules);
+
+        final Set<PreviousModule> modelPrevModules = new HashSet<>(personPrevModules);
+
+        final Set<PlannedModule> modelPlanModules = new HashSet<>(personPlanModules);
+
+        Person person = new Person(modelName, modelPhone, modelEmail, modelAddress, modelGithub,
+                modelTags, modelCurrModules, modelPrevModules, modelPlanModules);
+        for (JsonAdaptedLesson lesson : lessons) {
+            person.addLesson(lesson.toModelType());
+        }
+        return person;
     }
 
 }

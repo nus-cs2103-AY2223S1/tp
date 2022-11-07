@@ -9,5 +9,16 @@
     "phone": "948asdf2424",
     "email": "hans@example.com",
     "address": "4th street"
-  } ]
+  } ],
+  "jsonAdaptedUser" : {
+    "name" : "",
+    "phone" : "",
+    "email" : "",
+    "address" : "",
+    "currModules" : [ ],
+    "prevModules" : [ ],
+    "planModules" : [ ],
+    "isEmpty" : false,
+    "emptyUser" : { }
+  }
 }

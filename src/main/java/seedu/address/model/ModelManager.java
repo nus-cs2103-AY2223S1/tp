@@ -4,6 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,7 +14,21 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.ModuleCommand;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.module.CurrentModule;
+import seedu.address.model.module.Lesson;
+import seedu.address.model.module.PlannedModule;
+import seedu.address.model.module.PreviousModule;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Github;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.user.ExistingUser;
+import seedu.address.model.person.user.User;
+import seedu.address.model.tag.Tag;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -19,21 +36,23 @@ import seedu.address.model.person.Person;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final VersionedAddressBook versionedAddressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private Set<Lesson> timetable = new HashSet<>();
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAddressBook addressBook,
+                        ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.versionedAddressBook = new VersionedAddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredPersons = new FilteredList<>(this.versionedAddressBook.getPersonList());
     }
 
     public ModelManager() {
@@ -79,28 +98,55 @@ public class ModelManager implements Model {
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+        this.versionedAddressBook.resetData(addressBook);
     }
 
     @Override
     public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+        return versionedAddressBook;
+    }
+
+    @Override
+    public boolean hasUser() {
+        return versionedAddressBook.hasUser();
+    }
+
+    @Override
+    public void addUser(User user) {
+        versionedAddressBook.addUser(user);
+    }
+
+    @Override
+    public User getUser() {
+        return versionedAddressBook.getUser();
+    }
+
+    @Override
+    public void deleteUser() {
+        versionedAddressBook.deleteUser();
+    }
+
+    @Override
+    public void setUser(User editedUser) {
+        requireNonNull(editedUser);
+
+        versionedAddressBook.setUser(editedUser);
     }
 
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
-        return addressBook.hasPerson(person);
+        return versionedAddressBook.hasPerson(person);
     }
 
     @Override
     public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+        versionedAddressBook.removePerson(target);
     }
 
     @Override
     public void addPerson(Person person) {
-        addressBook.addPerson(person);
+        versionedAddressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -108,8 +154,145 @@ public class ModelManager implements Model {
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
-        addressBook.setPerson(target, editedPerson);
+        versionedAddressBook.setPerson(target, editedPerson);
     }
+
+    @Override
+    public void addLessonToUser(Lesson lesson) throws CommandException {
+        versionedAddressBook.addLessonToUser(lesson);
+    }
+
+    @Override
+    public void removeLessonToUser(Lesson lesson) throws CommandException {
+        versionedAddressBook.removeLessonToUser(lesson);
+    }
+
+    @Override
+    public Set<Lesson> getTimetable() {
+        return timetable;
+    }
+
+    @Override
+    public boolean setTimetable(Set<Lesson> lessons) {
+        if (lessons.isEmpty()) {
+            return false;
+        }
+        timetable = lessons;
+        return true;
+    }
+
+    @Override
+    public void nextSem() throws CommandException {
+        List<Person> currentPeopleList = getFilteredPersonList();
+
+        for (int i = 0; i < currentPeopleList.size(); i++) {
+            Person personToEdit = currentPeopleList.get(i);
+            ModuleCommand.EditModuleDescriptor editModuleDescriptor = new ModuleCommand.EditModuleDescriptor();
+            editModuleDescriptor.setCurrModules(null);
+            editModuleDescriptor.setPlanModules(personToEdit.getPlanModules());
+            Set<PreviousModule> updatedPreviousModules = new HashSet<>();
+            for (int n = 0; n < personToEdit.getCurrModules().size(); n++) {
+                Object currCurrentModule = personToEdit.getCurrModules().toArray()[n];
+                if (currCurrentModule instanceof CurrentModule) {
+                    CurrentModule currentModule = (CurrentModule) currCurrentModule;
+                    updatedPreviousModules.add(currentModule.toPrevModule());
+                }
+            }
+            updatedPreviousModules.addAll(personToEdit.getPrevModules());
+            editModuleDescriptor.setPrevModules(updatedPreviousModules);
+            Person editedPerson = createEditedPerson(personToEdit, editModuleDescriptor);
+            setPerson(personToEdit, editedPerson);
+        }
+
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+
+        User user = getUser();
+        ModuleCommand.EditModuleDescriptor editModuleDescriptor = new ModuleCommand.EditModuleDescriptor();
+        editModuleDescriptor.setCurrModules(null);
+        editModuleDescriptor.setPlanModules(user.getPlanModules());
+        Set<PreviousModule> updatedPreviousModules = new HashSet<>();
+        for (int n = 0; n < user.getCurrModules().size(); n++) {
+            Object currCurrentModule = user.getCurrModules().toArray()[n];
+            if (currCurrentModule instanceof CurrentModule) {
+                CurrentModule currentModule = (CurrentModule) currCurrentModule;
+                updatedPreviousModules.add(currentModule.toPrevModule());
+            }
+        }
+        updatedPreviousModules.addAll(user.getPrevModules());
+        editModuleDescriptor.setPrevModules(updatedPreviousModules);
+        User editedUser = createEditedUser(user, editModuleDescriptor);
+        setUser(editedUser);
+    }
+
+    /**
+     * Creates and returns a {@code Person} with the details of {@code personToEdit}
+     * edited with {@code editModuleDescriptor}.
+     */
+    private static Person createEditedPerson(Person personToEdit,
+                                             ModuleCommand.EditModuleDescriptor editModuleDescriptor) {
+        assert personToEdit != null;
+
+        Name name = personToEdit.getName();
+        Phone phone = personToEdit.getPhone();
+        Email email = personToEdit.getEmail();
+        Address address = personToEdit.getAddress();
+        Github github = personToEdit.getGithub();
+        Set<Tag> tags = personToEdit.getTags();
+        Set<CurrentModule> setCurrentModules = editModuleDescriptor.getCurrModules();
+        Set<PreviousModule> setPreviousModules = editModuleDescriptor.getPrevModules();
+        Set<PlannedModule> setPlannedModules = editModuleDescriptor.getPlanModules();
+
+        return new Person(name, phone, email, address, github, tags, setCurrentModules, setPreviousModules,
+                setPlannedModules);
+    }
+
+    /**
+     * Creates and returns a {@code User} with the details of {@code userToEdit}
+     * edited with {@code editModuleDescriptor}.
+     */
+    private static ExistingUser createEditedUser(User user,
+                                             ModuleCommand.EditModuleDescriptor editModuleDescriptor) {
+        assert user != null;
+
+        Name name = user.getName();
+        Phone phone = user.getPhone();
+        Email email = user.getEmail();
+        Address address = user.getAddress();
+        Github github = user.getGithub();
+        Set<CurrentModule> setCurrentModules = editModuleDescriptor.getCurrModules();
+        Set<PreviousModule> setPreviousModules = editModuleDescriptor.getPrevModules();
+        Set<PlannedModule> setPlannedModules = editModuleDescriptor.getPlanModules();
+
+        return new ExistingUser(name, phone, email, address, github, setCurrentModules, setPreviousModules,
+                setPlannedModules);
+    }
+
+    @Override
+    public void commitAddressBook() {
+        this.versionedAddressBook.commit();
+    }
+
+    @Override
+    public boolean canUndoAddressBook() {
+        return this.versionedAddressBook.canUndo();
+    }
+
+    @Override
+    public boolean canRedoAddressBook() {
+        return this.versionedAddressBook.canRedo();
+    }
+
+    @Override
+    public void undoAddressBook() {
+        this.versionedAddressBook.undo();
+    }
+
+    @Override
+    public void redoAddressBook() {
+        this.versionedAddressBook.redo();
+    }
+
+
 
     //=========== Filtered Person List Accessors =============================================================
 
@@ -142,7 +325,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return versionedAddressBook.equals(other.versionedAddressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
     }

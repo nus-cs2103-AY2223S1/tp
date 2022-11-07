@@ -5,8 +5,12 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.module.Lesson;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.person.user.EmptyUser;
+import seedu.address.model.person.user.User;
 
 /**
  * Wraps all data at the address-book level
@@ -15,6 +19,8 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final EmptyUser emptyUser = new EmptyUser();
+    private User user = emptyUser;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -27,7 +33,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons = new UniquePersonList();
     }
 
-    public AddressBook() {}
+    public AddressBook() {
+    }
 
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}
@@ -48,12 +55,50 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the user with {@code user}.
+     */
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
-
+        setUser(newData.getUser());
         setPersons(newData.getPersonList());
+    }
+
+    //// user operations
+
+    /**
+     * Returns true if a user is already saved in the address book.
+     */
+    public boolean hasUser() {
+        return !(user.equals(emptyUser));
+    }
+
+    /**
+     * Adds user to the address book.
+     */
+    public void addUser(User u) {
+        user = u;
+    }
+
+    /**
+     * Deletes the current user from the address book and replaces it with an EmptyUser.
+     */
+    public void deleteUser() {
+        user = emptyUser;
+    }
+
+    public void addLessonToUser(Lesson lesson) throws CommandException {
+        user.addLesson(lesson);
+    }
+
+    public void removeLessonToUser(Lesson lesson) throws CommandException {
+        user.removeLesson(lesson);
     }
 
     //// person-level operations
@@ -92,12 +137,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void removePerson(Person key) {
         persons.remove(key);
     }
-
     //// util methods
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        return persons.toString() + user.toString();
         // TODO: refine later
     }
 
@@ -107,9 +151,15 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
+    public User getUser() {
+        return user;
+    }
+
+    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
+                && user.equals(((AddressBook) other).user)
                 && persons.equals(((AddressBook) other).persons));
     }
 

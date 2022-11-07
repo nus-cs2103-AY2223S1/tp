@@ -16,6 +16,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.user.EmptyUser;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -31,15 +32,20 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
+    private UserProfile userProfile;
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private TimetableWindow timetableWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
 
     @FXML
     private MenuItem helpMenuItem;
+
+    @FXML
+    private StackPane userProfilePlaceholder;
 
     @FXML
     private StackPane personListPanelPlaceholder;
@@ -66,6 +72,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        timetableWindow = new TimetableWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -110,6 +117,15 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+
+        if (logic.hasUser()) {
+            userProfile = new UserProfile(logic.getUser());
+            userProfilePlaceholder.getChildren().add(userProfile.getRoot());
+        } else {
+            userProfile = new UserProfile(new EmptyUser());
+            userProfilePlaceholder.getChildren().add(userProfile.getRoot());
+        }
+
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
@@ -152,6 +168,19 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Opens the timetable window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleTimetable() {
+        timetableWindow.setTimetableMessage(logic.getTimetable());
+        if (!timetableWindow.isShowing()) {
+            timetableWindow.show();
+        } else {
+            timetableWindow.focus();
+        }
+    }
+
+    /**
      * Closes the application.
      */
     @FXML
@@ -161,6 +190,7 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
+        timetableWindow.hide();
     }
 
     public PersonListPanel getPersonListPanel() {
@@ -175,8 +205,20 @@ public class MainWindow extends UiPart<Stage> {
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
             CommandResult commandResult = logic.execute(commandText);
+            userProfile.update(logic.getUser());
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            if (commandText.startsWith("delete user")
+                    || commandText.startsWith("edit user")
+                    || commandText.startsWith("module user")
+                    || commandText.startsWith("user")) {
+                userProfile.update(logic.getUser());
+            }
+
+            if (commandText.startsWith("nextsem")) {
+                userProfile.updatePrevMods(logic.getUser());
+                personListPanel.updatePrevMods(logic.getFilteredPersonList());
+            }
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
@@ -184,6 +226,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isShowTimetable()) {
+                handleTimetable();
             }
 
             return commandResult;

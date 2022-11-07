@@ -1,0 +1,21 @@
+@startuml
+start
+:User inputs Module command;
+:Parser reads user command and recognises the command prefix module;
+:ModuleCommandParser reads preamble;
+
+if () then ([preamble.equals"user"])
+  :creates editModuleDescriptor;
+  :executes ModuleUserCommand;
+  :creates editedUser;
+  :sets User to editedUser;
+else ([else])
+  :creates editModuleDescriptor;
+  :executes ModuleIndexCommand;
+  :creates editedPerson;
+  :sets User's contacts of the specified index to editedPerson;
+endif
+:Save to AddressBookStorage;
+stop
+
+@enduml

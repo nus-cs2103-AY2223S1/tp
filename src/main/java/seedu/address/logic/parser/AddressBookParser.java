@@ -12,9 +12,22 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FilterCurrModCommand;
+import seedu.address.logic.commands.FilterPlanModCommand;
+import seedu.address.logic.commands.FilterPrevModCommand;
+import seedu.address.logic.commands.FilterTagCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.LessonCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ModuleCommand;
+import seedu.address.logic.commands.ModulesLeftCommand;
+import seedu.address.logic.commands.NextSemCommand;
+import seedu.address.logic.commands.RedoCommand;
+import seedu.address.logic.commands.RemoveCommand;
+import seedu.address.logic.commands.TimetableCommand;
+import seedu.address.logic.commands.UndoCommand;
+import seedu.address.logic.commands.UserCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -44,6 +57,9 @@ public class AddressBookParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
+        case UserCommand.COMMAND_WORD:
+            return new UserCommandParser().parse(arguments);
+
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
 
@@ -61,6 +77,42 @@ public class AddressBookParser {
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+
+        case ModuleCommand.COMMAND_WORD:
+            return new ModuleCommandParser().parse(arguments);
+
+        case ModulesLeftCommand.COMMAND_WORD:
+            return new ModulesLeftCommandParser().parse(arguments);
+
+        case LessonCommand.COMMAND_WORD:
+            return new LessonCommandParser().parse(arguments);
+
+        case RemoveCommand.COMMAND_WORD:
+            return new RemoveCommandParser().parse(arguments);
+
+        case TimetableCommand.COMMAND_WORD:
+            return new TimetableCommandParser().parse(arguments);
+
+        case FilterTagCommand.COMMAND_WORD:
+            return new FilterTagCommandParser().parse(arguments);
+
+        case FilterCurrModCommand.COMMAND_WORD:
+            return new FilterCurrModCommandParser().parse(arguments);
+
+        case FilterPrevModCommand.COMMAND_WORD:
+            return new FilterPrevModCommandParser().parse(arguments);
+
+        case FilterPlanModCommand.COMMAND_WORD:
+            return new FilterPlanModCommandParser().parse(arguments);
+
+        case NextSemCommand.COMMAND_WORD:
+            return new NextSemCommand();
+
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommand();
+
+        case RedoCommand.COMMAND_WORD:
+            return new RedoCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

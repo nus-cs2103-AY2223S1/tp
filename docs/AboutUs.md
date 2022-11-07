@@ -5,55 +5,54 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
+ConnectNUS
+### Silas Tay
 
-### John Doe
+<img src="images/silastsl.png" width="200px">
 
-<img src="images/johndoe.png" width="200px">
-
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/silastsl)]
+[[portfolio](team/silastsl.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Add modules to contacts, `Undo`/`Redo`
 
-### Jean Doe
+### Koh Rui Jie
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/rjkoh.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/rjkoh)]
+[[portfolio](team/rjkoh.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Add modules to contacts, add lesson to user/contact (`lesson` command),  add lesson to user/contact (`remove` command), view user/contact timetable (`timetable` command)
+
+### Laura Lee
+
+<img src="images/leehuiyulaura.png" width="200px">
+
+[[github](http://github.com/leehuiyulaura)]
+[[portfolio](team/leehuiyulaura.md)]
+
+* Role: Developer
+* Responsibilities: v1.2 UI, `filter` command, convert current mods to previous mod (`nextsem` command)
+
+### Shamus Tan
+
+<img src="images/shamooose.png" width="200px">
+
+[[github](http://github.com/shamooose)]
+[[portfolio](team/shamooose.md)]
+
+* Role: Developer
+* Responsibilities: Add user (`user` command), edit user or contact modules (`module` command), add GitHub link, view modules left (`modulesleft` command)
+
+### Linus Chui
+
+<img src="images/linuschui.png" width="200px">
+
+[[github](http://github.com/linuschui)]
+[[portfolio](team/linuschui.md)]
+
+* Role: Developer
+* Responsibilities: v1.2 testing, add lesson to user/contact (`lesson` command),  add lesson to user/contact (`remove` command), view user/contact timetable (`timetable` command)

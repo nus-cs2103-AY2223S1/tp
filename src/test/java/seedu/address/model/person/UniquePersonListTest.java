@@ -2,12 +2,18 @@ package seedu.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalPersons.CARL;
+import static seedu.address.testutil.TypicalPersons.DANIEL;
+import static seedu.address.testutil.TypicalPersons.ELLE;
+import static seedu.address.testutil.TypicalPersons.FIONA;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -167,4 +173,56 @@ public class UniquePersonListTest {
         assertThrows(UnsupportedOperationException.class, ()
             -> uniquePersonList.asUnmodifiableObservableList().remove(0));
     }
+
+    @Test
+    public void equals() {
+        // same values -> returns true
+        UniquePersonList list = new UniquePersonList();
+        list.add(ALICE);
+        list.add(BENSON);
+        list.add(CARL);
+        UniquePersonList listCopy = new UniquePersonList();
+        listCopy.add(ALICE);
+        listCopy.add(BENSON);
+        listCopy.add(CARL);
+        assertTrue(list.equals(listCopy));
+
+        // same object -> returns true
+        assertTrue(list.equals(list));
+
+        // null -> returns false
+        assertFalse(list.equals(null));
+
+        // different types -> returns false
+        assertFalse(list.equals(5));
+
+        // different uniquePersonList -> returns false
+        UniquePersonList differentList = new UniquePersonList();
+        differentList.add(DANIEL);
+        differentList.add(ELLE);
+        differentList.add(FIONA);
+        assertFalse(list.equals(differentList));
+    }
+
+    @Test
+    public void hashcode() {
+        // same values -> returns true
+        UniquePersonList list = new UniquePersonList();
+        list.add(ALICE);
+        list.add(BENSON);
+        list.add(CARL);
+        UniquePersonList listCopy = new UniquePersonList();
+        listCopy.add(ALICE);
+        listCopy.add(BENSON);
+        listCopy.add(CARL);
+        assertEquals(list.hashCode(), listCopy.hashCode());
+
+        // different uniquePersonList -> returns false
+        UniquePersonList differentList = new UniquePersonList();
+        differentList.add(DANIEL);
+        differentList.add(ELLE);
+        differentList.add(FIONA);
+        assertNotEquals(list.hashCode(), differentList.hashCode());
+    }
+
 }

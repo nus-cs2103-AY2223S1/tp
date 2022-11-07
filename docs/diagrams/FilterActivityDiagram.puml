@@ -1,0 +1,12 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User inputs Filter Tag command;
+:Parser reads user command and recognises the command prefix filtertag;
+:Executes FilterTagCommand;
+:All persons in the contact list that has any of the tags specified
+        by the user will be listed out in the contact list;
+stop
+
+@enduml

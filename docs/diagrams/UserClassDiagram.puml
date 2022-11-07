@@ -1,0 +1,53 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> User
+
+Class Name
+Class Address
+Class Github
+Class Phone
+Class Email
+Class CurrentModulesSet
+Class PreviousModulesSet
+Class PlannedModulesSet
+Class LessonsSet
+Class CurrentModule
+Class PreviousModule
+Class PlannedModule
+Class Lesson
+
+package User <<Rectangle>>{
+Class "{abstract}\nUser" as User
+Class EmptyUser
+Class ExistingUser
+
+EmptyUser -up-|> User
+ExistingUser -up-|> User
+
+ExistingUser *--> "1" Name
+ExistingUser *--> "1" Email
+ExistingUser *--> "1" Phone
+ExistingUser *--> "1" Address
+ExistingUser *--> "0..1" Github
+ExistingUser *--> "1" CurrentModulesSet
+ExistingUser *--> "1" PreviousModulesSet
+ExistingUser *--> "1" PlannedModulesSet
+ExistingUser *--> "1" LessonsSet
+
+CurrentModulesSet *--> "*" CurrentModule
+PreviousModulesSet *--> "*" PreviousModule
+PlannedModulesSet *--> "*" PlannedModule
+LessonsSet *--> "*" Lesson
+
+Github -down[hidden]-> CurrentModulesSet
+Github -down[hidden]-> PreviousModulesSet
+Github -down[hidden]-> PlannedModulesSet
+Github -down[hidden]-> LessonsSet
+}
+
+@enduml

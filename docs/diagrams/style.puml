@@ -31,7 +31,11 @@
 !define STORAGE_COLOR_T3 #806600
 !define STORAGE_COLOR_T2 #544400
 
+!define CURRENT_MODULE_COLOR #FFC0CB
+
 !define USER_COLOR #000000
+
+!define PERSON_COLOR #808080
 
 skinparam BackgroundColor #FFFFFFF
 

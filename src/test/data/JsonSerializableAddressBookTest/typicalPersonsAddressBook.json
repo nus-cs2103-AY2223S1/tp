@@ -5,42 +5,82 @@
     "phone" : "94351253",
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
-    "tagged" : [ "friends" ]
+    "github" : "alice-pauline",
+    "tagged" : [ "family" ],
+    "currModules" : [ "CS2103T" ],
+    "prevModules" : [ "CS2040S" ],
+    "planModules" : [ "CS2109S" ]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
-    "tagged" : [ "owesMoney", "friends" ]
+    "github" : "BensonMeier",
+    "tagged" : [ "owesMoney", "friends" ],
+    "currModules" : [ "CS2103T" ],
+    "prevModules" : [ "CS2040S" ],
+    "planModules" : [ "CS2109S" ]
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "address" : "wall street",
-    "tagged" : [ ]
+    "github" : "Kurz-Carl",
+    "tagged": [ ],
+    "currModules" : [ "CS2101" ],
+    "prevModules" : [ "CS2030S" ],
+    "planModules" : [ "CS2105" ]
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "address" : "10th street",
-    "tagged" : [ "friends" ]
+    "github" : "danMeier",
+    "tagged" : [ "friends" ],
+    "currModules" : [ "CS2101" ],
+    "prevModules" : [ "CS2030S" ],
+    "planModules" : [ "CS2105" ]
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "email" : "werner@example.com",
     "address" : "michegan ave",
-    "tagged" : [ ]
+    "github" : "elleeee",
+    "tagged" : [ ],
+    "currModules" : [ "CS2101" ],
+    "prevModules" : [ "CS2030S" ],
+    "planModules" : [ "CS2105" ]
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "address" : "little tokyo",
-    "tagged" : [ ]
+    "github" : "fiona-kunz",
+    "tagged" : [ ],
+    "currModules" : [ "CS2101" ],
+    "prevModules" : [ "CS2030S" ],
+    "planModules" : [ "CS2105" ]
   }, {
     "name" : "George Best",
     "phone" : "9482442",
     "email" : "anna@example.com",
     "address" : "4th street",
-    "tagged" : [ ]
-  } ]
+    "github" : "George-the-b3st",
+    "tagged" : [ ],
+    "currModules" : [ "CS2103T" ],
+    "prevModules" : [ "CS2040S" ],
+    "planModules" : [ "CS2109S" ]
+  } ],
+  "jsonAdaptedUser" : {
+    "name" : "Zephyr Yosef",
+    "phone" : "90123456",
+    "email" : "zephYosef@example.com",
+    "address" : "333, Yishun St 33, #03-33",
+    "github" : "ZephYosef",
+    "currModules" : [ "CS2103T" ],
+    "prevModules" : [ "CS2040S" ],
+    "planModules" : [ "CS2109S" ],
+    "isEmpty" : false,
+    "emptyUser" : { }
+  }
 }
