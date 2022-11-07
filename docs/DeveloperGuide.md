@@ -157,10 +157,10 @@ Classes used by multiple components are in the `foodwhere.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### **Review components**
+### Review components
 * Added classes into the `Model` component to encapsulate a Review
 
-#### **Implementation**
+#### Implementation
 <img src="images/ModelReviewClassDiagram.png" width="700" />
 
 A `Review`,
