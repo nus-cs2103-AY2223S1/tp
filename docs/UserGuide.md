@@ -458,39 +458,6 @@ Example after entering `unmark 1`:
 
 As you can see, the "(passed)" status has been removed from student 1's Mastery Check after the `unmark` command is run.
 
-[Table of Contents](#table-of-contents)
-
-## Miscellaneous features
-
-Other features that aid you in using FRIDAY.
-
-### Getting User Guide link: `guide`
-
-If you ever need to refer to our User Guide while using FRIDAY, use this command to obtain the link to FRIDAY's User Guide.
-
-Format: `guide`
-
-### Getting help: `help`
-
-Shows a summary of commands along with their command word used in FRIDAY. This allows you to have an easily accessible summary when using FRIDAY.<br>
-It also includes a link to this User Guide if needed.
-
-Format: `help`
-
-### Clearing all existing data: `clear`
-
-On your first launch of FRIDAY, a sample list of students is displayed. The `clear` command allows you to clear this and any other existing data in FRIDAY, resulting in an empty Student list.
-
-Format: `clear`
-
-### Exiting FRIDAY : `exit`
-
-Exits FRIDAY. See you again soon!
-
-Format: `exit`
-
-[Table of Contents](#table-of-contents)
-
 ## Features for advanced users
 
 These features help you personalize your FRIDAY experience and improve your productivity when using FRIDAY.
