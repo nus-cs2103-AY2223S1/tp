@@ -868,23 +868,6 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a student
-
-1. Deleting a person while all persons are being shown
-
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
-
 ### Adding of grade progress to student
 
 1. Adding grade progress to a student in `Pupilist`
@@ -895,111 +878,96 @@ testers are expected to do more *exploratory* testing.
       Expected: Grade is not added to any persons. Error details shown in the status message.
    4. Other incorrect commands to try: `grade` , `grade 1 g/`
 
-### Deleting a student
-
-1. Deleting a student while all persons are being shown
-
-  1. Prerequisites: List all students using the `list` command. Multiple students in the list.
-
-  1. Test case: `delete 1`<br>
-     Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
-
-  1. Test case: `delete 0`<br>
-     Expected: No student is deleted. Error details shown in the status message.
-
-  1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-     Expected: Similar to previous.
-
 ### Adding homework to a student
 
 1. Adding homework to a student while all students are being shown in list mode
 
-  1. Prerequisites: List all students using the `list` command. Multiple students in the list.
+   1. Prerequisites: List all students using the `list` command. Multiple students in the list.
 
-  2. Test case: `hw 1 h/Science worksheet`<br>
-     Expected: "Science worksheet" homework is added to the first student. Details of updated contact shown in the status message.
+   2. Test case: `hw 1 h/Science worksheet`<br>
+      Expected: "Science worksheet" homework is added to the first student. Details of updated contact shown in the status message.
 
-  3. Test case: `hw 1`<br>
-     Expected: No homework is added. Error details shown in the status message.
+   3. Test case: `hw 1`<br>
+      Expected: No homework is added. Error details shown in the status message.
 
-  4. Other incorrect delete commands to try: `hw`, `hw 0`, `hw 1 h/` <br>
-     Expected: Similar to previous.
+   4. Other incorrect delete commands to try: `hw`, `hw 0`, `hw 1 h/` <br>
+      Expected: Similar to previous.
 
 2. Adding homework to a student while in view mode
 
-  1. Prerequisites: View a single student using the `view` command, e.g. `view Alex Yeoh`. Only one person.
+   1. Prerequisites: View a single student using the `view` command, e.g. `view Alex Yeoh`. Only one person.
 
-  2. Test case: `hw 1 h/Math worksheet`<br>
-     Expected: "Math worksheet" homework is added to the student. Details of updated contact shown in the status message.
+   2. Test case: `hw 1 h/Math worksheet`<br>
+      Expected: "Math worksheet" homework is added to the student. Details of updated contact shown in the status message.
 
-  3. Test case: `hw 2 h/Math worksheet`<br>
-     Expected: No homework is added. Error details shown in the status message.
+   3. Test case: `hw 2 h/Math worksheet`<br>
+      Expected: No homework is added. Error details shown in the status message.
 
-  4. Other incorrect delete commands to try: Similar to adding homework while all students are shown in list mode.<br>
-     Expected: Similar to previous.
+   4. Other incorrect delete commands to try: Similar to adding homework while all students are shown in list mode.<br>
+      Expected: Similar to previous.
 
 ### Updating lesson plan of a student
 
 1. Updating lesson plan of a student while all students are being shown in list mode
 
-  1. Prerequisites: List all students using the `list` command. Multiple students in the list.
+   1. Prerequisites: List all students using the `list` command. Multiple students in the list.
 
-  2. Test case: `lesson 1 lp/Biology`<br>
-     Expected: Lesson plan of first contact is updated to "Biology". Details of the updated contact shown in the status message.
+   2. Test case: `lesson 1 lp/Biology`<br>
+      Expected: Lesson plan of first contact is updated to "Biology". Details of the updated contact shown in the status message.
 
-  3. Test case: `lesson 3 lp/Algorithms 0`<br>
-     Expected: Lesson plan of third contact is updated to "Algorithms". Details of the updated contact shown in the status message.
+   3. Test case: `lesson 3 lp/Algorithms 0`<br>
+      Expected: Lesson plan of third contact is updated to "Algorithms". Details of the updated contact shown in the status message.
 
-  4. Test case: `lesson 1 lp/`<br>
-     Expected: No lesson plan is updated. Error details shown in the status message.
+   4. Test case: `lesson 1 lp/`<br>
+      Expected: No lesson plan is updated. Error details shown in the status message.
 
-  5. Other incorrect delete commands to try: `lesson`, `lesson 1`, `lesson x`, `...` (where x is larger than the list size)<br>
-     Expected: Similar to previous.
+   5. Other incorrect delete commands to try: `lesson`, `lesson 1`, `lesson x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
 
 ### Editing a student
 
 1. Editing a student while in view mode
 
-  1. Prerequisites: App is in view mode of a student.
+   1. Prerequisites: App is in view mode of a student.
 
-  2. Test case: `edit n/Alice Tan`<br>
-     Expected: First contact is deleted from the list. Details of the edited contact shown in the status message.
+   2. Test case: `edit n/Alice Tan`<br>
+      Expected: First contact is deleted from the list. Details of the edited contact shown in the status message.
 
-  3. Test case: `edit 1 n/Alice Tan`<br>
-     Expected: No student is edited. Error details shown in the status message.
+   3. Test case: `edit 1 n/Alice Tan`<br>
+      Expected: No student is edited. Error details shown in the status message.
 
-  4. Other incorrect delete commands to try: `edit`, `edit 1`, `edit lp/` <br>
-     Expected: Similar to previous.
+   4. Other incorrect delete commands to try: `edit`, `edit 1`, `edit lp/` <br>
+      Expected: Similar to previous.
 
 ### Viewing a student
 
 1. Viewing a student while all students are being shown
 
-  1. Prerequisites: App must be in either view or list mode. Contact named Alex Yeoh exists. No contact named 0 exists.
+   1. Prerequisites: App must be in either view or list mode. Contact named Alex Yeoh exists. No contact named 0 exists.
 
-  2. Test case: `view Alex yeoh`<br>
-     Expected: Contact named Alex Yeoh is displayed in full view mode. No other contacts are displayed.
+   2. Test case: `view Alex yeoh`<br>
+      Expected: Contact named Alex Yeoh is displayed in full view mode. No other contacts are displayed.
 
-  3. Test case: `view 0`<br>
-     Expected: No student is deleted. App returns to list mode. Error details shown in the status message.
+   3. Test case: `view 0`<br>
+      Expected: No student is deleted. App returns to list mode. Error details shown in the status message.
 
-  4. Other incorrect delete commands to try: `view` <br>
-     Expected: Similar to previous.
+   4. Other incorrect delete commands to try: `view` <br>
+      Expected: Similar to previous.
 
 ### Showing a schedule of a day
 
 1. Showing a schedule while in list or view mode
 
-  1. Prerequisites: At least one student has a session added to them. At least one of the sessions added is on Monday.
+   1. Prerequisites: At least one student has a session added to them. At least one of the sessions added is on Monday.
 
-  2. Test case: `show Mon`<br>
-     Expected: List of session times on Monday is displayed.
+   2. Test case: `show Mon`<br>
+      Expected: List of session times on Monday is displayed.
 
-  3. Test case: `show abc`<br>
-     Expected: No schedule is shown. Error details shown in the status message.
+   3. Test case: `show abc`<br>
+      Expected: No schedule is shown. Error details shown in the status message.
 
-  4. Other incorrect delete commands to try: `show`, `show tues`<br>
-     Expected: Similar to previous.
+   4. Other incorrect delete commands to try: `show`, `show tues`<br>
+      Expected: Similar to previous.
 
 ### Marking a student
 
@@ -1032,3 +1000,18 @@ testers are expected to do more *exploratory* testing.
    2. Test case: `unmark h/1` <br>
       Expected: No person is unmarked. Error details shown in the status message. Status bar remains the same.
    3. Other incorrect unmark commands to try: `unmark a/y` , `unmark h/y` (y can be any integer or string)
+
+### Deleting a student
+
+1. Deleting a student while all persons are being shown
+
+   1. Prerequisites: List all students using the `list` command. Multiple students in the list.
+
+   2. Test case: `delete 1`<br>
+      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
+
+   3. Test case: `delete 0`<br>
+      Expected: No student is deleted. Error details shown in the status message.
+
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
