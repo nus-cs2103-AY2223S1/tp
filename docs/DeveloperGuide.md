@@ -1147,7 +1147,7 @@ starting point for testers to work on; testers are expected to do more *explorat
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file Expected: Shows the GUI with a set of sample patients. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -1156,24 +1156,381 @@ starting point for testers to work on; testers are expected to do more *explorat
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases … }_
+### Modifying patient contact details
 
-### Deleting a person
+1. Adding a new patient to the patient list.
 
-1. Deleting a person while all persons are being shown
-
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Prerequisites: The new patient does not already exist in the patient list. 
+   
+   2. Test case: `add n/John Doe p/91235678 e/johnd@gmail.com a/312 Rivervale Street SG 416875 t/elderly r/Allergic to paracetemol m/Cough syrup | 5ml a day c/Cough` <br>
+      Expected: The patient John Doe is added to the patient list. Details of the added patient shown in the status message and output panel.
+   
+   3. Test case: `add n/John Doe p/91235678 e/johnd@gmail.com a/312 Rivervale Street SG 416875 t/elderly r/Allergic to paracetemol m/Cough syrup | 5ml a day c/Cough` (duplicate patient) <br>
+      Expected: No patient is added to the list. Error details shown in the status message. 
+   
+   4. Other incorrect add commands to try: `add`, `add n/Mike Ho p/91283045` (missing field) <br>
       Expected: Similar to previous.
 
-1. _{ more test cases … }_
+2. Editing a patient's contact details in the patient list. 
+
+   1. Prerequisites: There is at least 1 patient in the displayed patient list.
+   
+   2. Test case: `edit -p 1 n/Michelle Ho` <br>
+      Expected: The name of the first patient displayed in the patient list is changed to `Michelle Ho`. Details of the edited patient shown in the status message and output panel.
+   
+   3. Test case: `edit -p 0 p/98776566` <br>
+      Expected: No patient is edited. Error details shown in the status message. 
+   
+   4. Other incorrect edit commands to try: `edit`, `edit -p 1` (missing field), `edit -p x n/Edna`, `...` (where x is larger than the displayed patient list size)). <br>
+      Expected: Similar to previous.
+
+
+3. Deleting a patient from the patient list.
+
+   1. Prerequisites: There is at least 1 patient in the displayed patient list.
+
+   2. Test case: `delete- p 1`<br>
+      Expected: First patient in the displayed list is deleted. Details of the deleted patient is shown in the status message and the output panel.
+
+   3. Test case: `delete -p 0`<br>
+      Expected: No patient is deleted. Error details shown in the status message.
+
+   4. Other incorrect delete commands to try: `delete` (missing field), `delete -p x`, `...` (where x is larger than the displayed list size)<br>
+      Expected: Similar to previous.
+   
+### Modifying tags
+
+1. Adding a tag to a patient in the patient list. 
+   
+   1. Prerequisites: There is at least 1 patient in the displayed patient list. The new tag is not already in the patient's list of tags.
+   
+   2. Test case: `add -p 1 t/elderly` <br>
+      Expected: The `elderly` tag is added to the first patient in the displayed list. Details of the added tag is shown in the status message and the output panel.
+   
+   3. Test case: `add -p 1 t/elderly` (duplicate tag) <br>
+      Expected: No tag is added. Error details shown in the status message.
+   
+   4. Other incorrect adding tags commands to try: `add -p 1 t/` (missing field), `add -p 0 t/critical`, `add -p x t/wheelchair`, `...` (where x is larger than the displayed list size) <br>
+      Expected: Similar to previous.
+
+2. Editing a patient's tag.
+
+   1. Prerequisites: There is at least 1 patient in the displayed patient list. The patient has at least 2 tags.
+   
+   2. Test case: `edit -p 1 -t 1 t/infant` <br>
+      Expected: The first tag of the first patient in the displayed list is changed to `infant`. Details of the new tag is shown in the status message and the output panel.
+   
+   3. Test case: `edit -p 1 -t 2 t/infant` (duplicate tag) <br>
+      Expected: No tag is edited. Error details shown in the status message.
+   
+   4. Other incorrect editing tag commands to try: `edit -p 1 -t` (missing field), `edit -p 1 -t 0`, `edit -p 1 -t x t/bedridden`, `...` (where x is larger than the number of patient's tags) <br>
+      Expected: Similar to previous.
+
+3. Deleting a patient's tag.
+
+   1. Prerequisites: There is at least 1 patient in the displayed patient list. The patient has at least 1 tag.
+   
+   2. Test case: `delete -p 1 -t 1` <br>
+      Expected: The first tag from the first patient in the displayed list is deleted. Details of the deleted tag is shown in the status message and the patient's details is shown in the output panel.
+   
+   3. Test case: `delete -p 1 -t 0` <br>
+      Expected: No tag is deleted. Error details are shown in the status message.
+   
+   4. Other incorrect deleting tag commands to try: `delete -p 1 -t` (missing field), `delete -p 1 -t x`, `...` (where x is larger than the number of patient's tags) <br>
+      Expected: Similar to previous.
+   
+### Modifying tasks
+
+1. Adding a new non-recurring task to a patient's task list.
+
+   1. Prerequisites: There is at least 1 patient in the displayed patient list. The new non-recurring task is not already in the patient's task list.
+   
+   2. Test case: `add -p 1 d/Change dressing | 6-10-23 0900` <br>
+      Expected: The non-recurring task `Change dressing`  is added to the first patient in the displayed list. Details of the new task is shown in the status message and the output panel.
+   
+   3. Test case: `add -p 1 d/Change dressing | 6-10-23 0900` (duplicate task) <br>
+      Expected: No task is added. Error details are shown in the status message.
+   
+   4. Other incorrect adding task commands to try: `add -p 1 d/` (missing field), `add -p 1 d/Take blood sample | 14-14-2022` (invalid date) <br>
+      Expected: Similar to previous.
+
+2. Adding a new recurring task to a patient's task list.
+
+   1. Prerequisites: There is at least 1 patient in the displayed patient list. The new recurring task is not already in the patient's task list.
+   
+   2. Test case: `add -p 1 d/Take urine sample | 6-10-23 0900 | 1 week`<br>
+      Expected: The recurring task `Take urine sample` is added to the first patient in the displayed list. Details of the new task is shown in the status message and the output panel.
+   
+   3. Test case: `add -p 1 d/Take hair sample | 7-11-23 0900 | 10 hours` (invalid recurrence) <br>
+      Expected: No task is added. Error details are shown in the status message.
+   
+   4. Other incorrect adding task commands to try: `add -p 1 d/Escort to X-ray | 8-10-23 0900 | 10` (incomplete recurrence)
+      Expected: Similar to previous.
+
+3. Editing a task in a patient's task list.
+
+   1. Prerequisites: There is at least 1 patient in the displayed patient list. The patient has at least 2 tasks in his/her task list.
+   
+   2. Test case: `edit -p 1 -d 1 d/|5-10-22 0800` <br>
+      Expected: The date and time of the first task of the first patient of the displayed list is changed to `5-10-22 0800`. Details of the new task is shown in the status message and output panel.
+
+   3. Test case: `edit -p 1 -d 1 d/Conduct physiotherapy | 6-10-22 0900` <br>
+      Expected: The first task of the first patient of the displayed list is changed to `Conduct physiotherapy` with the date and time of `6-10-22 0900`. Details of the new task is shown in the status message and output panel.
+   
+   4. Test case: `edit -p 1 -d 2 d/Conduct physiotherapy | 6-10-22 0900` (duplicate task) <br>
+      Expected: No task is edited. Error details are shown in the status message.
+   
+   5. Other incorrect editing task commands to try: `edit -p 1 -d 1 d/` (missing field), `edit -p 1 -d 1`
+   
+
+4. Deleting a task in a patient's task list.
+
+   1. Prerequisites: There is at least 1 patient in the displayed patient list. The patient has at least 1 task in his/her task list.
+   
+   2. Test case: `delete -p 1 -d 1` <br>
+      Expected: The first task of the first patient of the displayed list is deleted. Details of the deleted task is shown in the status message. The patient's new task list is shown in the output panel.
+   
+   3. Test case: `delete -p 1 -d 0` <br>
+      Expected: No task is deleted. Error details are shown in the status message.
+   
+   4. Other incorrect deleting task commands to try: `delete -p 1 -d` (missing field), `delete -p 1 -d x`, `...` (where x is larger than the number of patient's tasks) <br>
+      Expected: Similar to previous.
+
+### Modifying medical conidtions
+
+1. Adding a new medical condition to a patient.
+
+   1. Prerequisites: There is at least 1 patient in the displayed patient list. The new medical condition is not already in the patient's list of conditions. 
+   
+   2. Test case: `add -p 1 c/Asthma` <br>
+      Expected: The medical condition `Asthma` is added to the first patient of the displayed list. Details of the new condition is shown in the status message and the output panel.
+   
+   3. Test case: `add -p 1 c/Asthma` (duplicate condition) <br>
+      Expected: No condition is added. Error details are shown in the status message.
+   
+   4. Other incorrect adding medical condition commands to try: `add -p 1 c/` (missing field) <br>
+      Expected: Similar to previous.
+
+      
+2. Editing a medical condition in a patient's list of conditions.
+
+   1. Prerequisites: There is at least 1 patient in the displayed patient list. The patient has at least 2 conditions added.
+   
+   2. Test case: `edit -p 1 -c 1 c/Cough` <br>
+      Expected: The first condition of the first patient in the displayed list is changed to `Cough`. Details of the new condition is shown in the status message and the output panel.
+   
+   3. Test case: `edit -p 1 -c 2 c/Cough` (duplicate condition) <br>
+      Expected: No condition is edited. Error details are shown in the status message.
+   
+   4. Other incorrect editing medical condition commands to try: `edit -p 1 -c 0 c/Covid` (invalid index), `edit -p 1 -c 1 c/` (missing field) <br>
+      Expected: Similar to previous.
+
+      
+3. Deleting a medical condition from a patient's list of conditions.
+
+    1. Prerequisites: There is at least 1 patient in the displayed patient list. The patient has at least 1 medical condition.
+
+    2. Test case: `delete -p 1 -c 1` <br>
+       Expected: The first condition of the first patient in the displayed list is deleted. Details of the deleted task is shown in the status message. The patient's new details is shown in the output panel.
+
+    3. Test case: `delete -p 1 -c 0` <br>
+       Expected: No task is deleted. Error details are shown in the status message.
+
+    4. Other incorrect deleting task commands to try: `delete -p 1 -c` (missing field), `delete -p 1 -c x`, `...` (where x is larger than the number of patient's conditions) <br>
+       Expected: Similar to previous.
+
+### Modifying medications
+
+1. Adding a new medication to a patient's list of medication.
+
+   1. Prerequisites: There is at least 1 patient in the displayed patient list. The new medication is not already in the patient's list of medication.
+   
+   2. Test case: `add -p 1 m/Cough syrup | 5ml a day` <br>
+      Expected: The medication `Cough syrup` with dosage `5ml a day` is added to the first patient in the displayed list. Details of the new medication is shown in the status message and the output panel.
+   
+   3. Test case: `add -p 1 m/Cough syrup | 5ml a day` <br>
+      Expected: No medication is added. Error details are shown in the status message.
+   
+   4. Other incorrect adding medication commands to try: `add -p 1 m/` (missing fields), `add -p 1 m/pills` (missing dosage) <br>
+      Expected: Similar to previous.
+   
+
+2. Editing a medication in a patient's list of medications.
+
+   1. Prerequisites: There is at least 1 patient in the displayed patient list. The patient has at least 2 medications.
+   
+   2. Test case: `edit -p 1 -m 1 m/Sleeping pills | 1 before sleeping` <br>
+      Expected: The first medication of the first patient in the displayed list is changed to `Sleeping pills` with dosage `1 before sleeping`. Details of the new medication is shown in the status message and the output panel.
+   
+   3. Test case: `edit -p 1 -m 2 m/Sleeping pills | 1 before sleeping` (duplicate medication) <br>
+      Expected: No medication is edited. Error details are shown in the status message.
+   
+   4. Other incorrect editing medication commands to try: `edit -p 1 -m 0 m/pills`, `edit -p 1 -m 1 m/` (missing fields) <br>
+      Expected: Similar to previous.
+
+   
+3. Deleting a medication from a patient's list of medications.
+
+    1. Prerequisites: There is at least 1 patient in the displayed patient list. The patient has at least 1 medication.
+
+    2. Test case: `delete -p 1 -m 1` <br>
+       Expected: The first medication of the first patient in the displayed list is deleted. Details of the deleted medication is shown in the status message. The patient's new details is shown in the output panel.
+
+    3. Test case: `delete -p 1 -m 0` <br>
+       Expected: No task is deleted. Error details are shown in the status message.
+
+    4. Other incorrect deleting task commands to try: `delete -p 1 -m` (missing field), `delete -p 1 -m x`, `...` (where x is larger than the number of patient's medications) <br>
+       Expected: Similar to previous.
+
+### Modifying remarks
+
+1. Adding a new remark to a patient.
+
+    1. Prerequisites: There is at least 1 patient in the displayed patient list. The new remark is not already in the patient's list of remark.
+
+    2. Test case: `add -p 1 r/Allergic to cough syrup` <br>
+       Expected: The remark `Allergic to cough syrup` is added to the first patient in the displayed list. Details of the new remark is shown in the status message and the output panel.
+
+    3. Test case: `add -p 1 r/Allergic to cough syrup` (duplicate remarks) <br>
+       Expected: No remark is added. Error details are shown in the status message.
+
+    4. Other incorrect adding remark commands to try: `add -p 1 r/` (missing field) <br>
+       Expected: Similar to previous.
+
+
+2. Editing a remark in a patient's list of remarks.
+
+    1. Prerequisites: There is at least 1 patient in the displayed patient list. The patient has at least 2 remarks.
+
+    2. Test case: `edit -p 1 -r 1 r/Allergic to dust` <br>
+       Expected: The first remark of the first patient in the displayed list is changed to `Allergic to dust`. Details of the new remark is shown in the status message and the output panel.
+
+    3. Test case: `edit -p 1 -r 2 r/Allergic to dust` (duplicate remark) <br>
+       Expected: No remark is edited. Error details are shown in the status message.
+
+    4. Other incorrect editing remark commands to try: `edit -p 1 -r 0`, `edit -p 1 -r 1 r/` (missing fields) <br>
+       Expected: Similar to previous.
+
+
+3. Deleting a remark from a patient's list of remarks.
+
+    1. Prerequisites: There is at least 1 patient in the displayed patient list. The patient has at least 1 remark.
+
+    2. Test case: `delete -p 1 -r 1` <br>
+       Expected: The first remark of the first patient in the displayed list is deleted. Details of the deleted remark is shown in the status message. The patient's new details is shown in the output panel.
+
+    3. Test case: `delete -p 1 -r 0` <br>
+       Expected: No remark is deleted. Error details are shown in the status message.
+
+    4. Other incorrect deleting remark commands to try: `delete -p 1 -r` (missing field), `delete -p 1 -r x`, `...` (where x is larger than the number of patient's remarks) <br>
+       Expected: Similar to previous.
+
+
+### Viewing details of a patient
+
+1. View details of a specific patient.
+
+   1. Prerequisites: There is at least 1 patient in the displayed patient list.
+   
+   2. Test case: `focus -p 1` <br>
+      Expected: The details of the first patient in the displayed list is shown in the output panel.
+   
+   3. Test case: `focus -p 0` (invalid index) <br>
+      Expected: No patient is displayed in the output panel. Error details are shown in the status message.
+   
+   4. Other incorrect viewing commands: `focus -p `, `focus 1` (missing fields) <br>
+      Expected: Similar to previous.
+
+### Finding patients
+
+ 1. Finding patients with specific keywords.
+
+    1. Prerequisites: None.
+    
+    2. Test case: `find Alex Yeoh` <br>
+       Expected: A list of patients whose details contain the keywords `Alex Yeoh` are shown in the displayed patient list and output panel.
+    
+    3. Test case: `find cough syrup` <br>
+       Expected: A list of patients whose details contain the keywords `cough syrup` are shown in the displayed patient list and output panel.
+    
+    4. Test case: `find` (missing keyword) <br>
+       Expected: No patients are shown in the output panel. Error details are shown in the status message.
+   
+### Viewing all tasks for a particular day
+
+1. Viewing all tasks for today.
+
+    1. Prerequisites: None.
+
+    2. Test case: `view --today` <br>
+       Expected: All tasks whose date is the current day are shown in the output panel.
+   
+
+2. Viewing all tasks for a particular day.
+
+   1. Prerequisites: None.
+   
+   2. Test case: `view 10-10-22` <br>
+      Expected: All tasks with the date `10-10-22` are shown in the output panel.
+   
+   3. Test case: `view 10-10-2022` (invalid date format) <br>
+      Expected: No tasks are shown in the output panel. Error details are shown in the status message.
+   
+   4. Other incorrect viewing commands: `view 15-15-22` (invalid date), `view ` (missing date) <br>
+      Expected: Similar to previous.
+
+
+### Viewing all tasks of a patient
+
+ 1. Viewing all tasks of a patient.
+
+    1. Prerequisites: There is at least 1 patient in the displayed patient list.
+    
+    2. Test case: `view -p 1` <br>
+       Expected: The task list of the first patient in the displayed list is shown in the output panel.
+    
+    3. Test case: `view -p 0` (invalid index) <br>
+       Expected: No task list is shown in the output panel. Error details are shown in the status message.
+    
+    4. Other incorrect task viewing commands to try: `view -p ` (missing field), `view -p x` , `...` (where x is larger than the size of the patient list) <br>
+       Expected: Similar to previous.
+
+### Viewing all tasks of all patients
+
+1. Viewing all tasks of all patients.
+
+   1. Prerequisites: None.
+   
+   2. Test case: `view -p --all` <br>
+      Expected: All tasks of all patients in the patient list are shown in the output panel.
+
+### Undoing previous command
+
+ 1. Undoing a previous command entered.
+ 
+    1. Prerequisites: At least 1 add/edit/delete command was executed.
+    
+    2. Test case: `undo` <br>
+       Expected: Previous command is undone. Details of the undone command is shown in the status message and output panel.
+
+### Reversing undo command
+
+1. Reversing an undo command.
+
+   1. Prerequisites: An undo command was executed successfully.
+   
+   2. Test case: `redo` <br>
+      Expected: Previous undo command is reversed. Details of the redone command is shown in the status message and output panel.
+
+   
+### Clearing all patients
+
+1. Delete all patients in the displayed patient list.
+
+   1. Prerequisites: There is at least 1 patient in the displayed patient list.
+   
+   2. Test case: `clear` <br>
+      Expected: All patients in the displayed list are deleted. Details of the clear command is shown in the status message.
 
 ### Saving data
 
