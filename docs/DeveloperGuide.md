@@ -211,6 +211,15 @@ The `Storage` component,
 - depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects
   that belong to the `Model`)
 
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** Currently, as `Team`, `Task` and the overall `TruthTable` objects all have references to 
+`Person`, for ease of a copy of the entire `Person` object is stored within each of its `JsonAdaptedXYZ` parent objects 
+in the json file (where `XYZ` refers to `Team`, `Task` or `TruthTable`. An alternative (arguably better) implementation 
+would be to only store the name of each `Person` object and repopulate its fields from the `TruthTable` list of `Person`
+objects, which would reduce repetition.
+</div>
+
+
 ### Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.

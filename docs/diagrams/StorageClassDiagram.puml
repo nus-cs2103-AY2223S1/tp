@@ -19,7 +19,10 @@ Class "<<interface>>\nTruthTableStorage" as TruthTableStorage
 Class JsonTruthTableStorage
 Class JsonSerializableTruthTable
 Class JsonAdaptedPerson
+Class JsonAdaptedTeam
 Class JsonAdaptedTag
+Class JsonAdaptedLink
+Class JsonAdaptedTask
 }
 
 }
@@ -38,6 +41,11 @@ JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonTruthTableStorage .up.|> TruthTableStorage
 JsonTruthTableStorage ..> JsonSerializableTruthTable
 JsonSerializableTruthTable --> "*" JsonAdaptedPerson
-JsonAdaptedPerson --> "*" JsonAdaptedTag
+JsonSerializableTruthTable --> "*" JsonAdaptedTeam
+JsonAdaptedPerson -up-> "*" JsonAdaptedTag
+JsonAdaptedTeam -left-> "*" JsonAdaptedPerson
+JsonAdaptedTeam --> "*" JsonAdaptedLink
+JsonAdaptedTeam --> "*" JsonAdaptedTask
+JsonAdaptedTask --> "*" JsonAdaptedPerson
 
 @enduml
