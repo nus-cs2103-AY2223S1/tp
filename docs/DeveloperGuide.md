@@ -255,7 +255,7 @@ Additionally, it will also contain these fields:
   * Cons:
     * NUS has many students, and it is inevitable that some of them will share the exact same name
 
-### 5.2. The edit student feature
+### 5.2. Editing a student feature
 
 #### Implementation
 
@@ -329,7 +329,7 @@ Each `Module` in ProfNUS will contain the following fields:
   * Cons:
       * NUS modules can share the same name. For example, CS2103 and CS2103T have the module name Software Engineering. Thus, with this implementation, you would not be able to add two Software Engineering modules.
 
-### 5.4. View module list feature
+### 5.4. Viewing the module list feature
 
 #### Implementation
 
@@ -341,7 +341,7 @@ The following sequence diagram shows how view module operation works :
 
 ![ListModuleSequence](images/ListModuleSequence.png)
 
-### 5.5. View students and tutors in module feature
+### 5.5. Viewing the students and tutors in a module feature
 
 #### Implementation
 
@@ -370,7 +370,7 @@ Modules like CS2103T, CS2103R and CS2103 have the same module name "Software Eng
 This would mean that we would need to have unique module names. However, this is not possible if the professor is teaching modules that have the same name but different code.
 As module code is the only unique field Module has, we decided to view modules by module code only to avoid any errors.
 
-### 5.6. The edit a module feature
+### 5.6. Editing a module feature
 
 #### Implementation
 
@@ -398,7 +398,7 @@ The following activity diagram summarizes what happens when a user executes a `m
 Reason for choosing option 1:
 A professor is more highly likely to remember the module codes of the modules that he is teaching rather than the index in the list in our application. Hence, an additional step would be required of the professor if option 2 were to be chosen. Therefore, option 1 is preferred.
 
-### 5.7. The view more details of a target module feature
+### 5.7. Viewing more details(Name, Description, Tags) of a module feature
 
 #### Implementation
 
@@ -428,7 +428,7 @@ As shown below in our [Use Cases](#73-use-cases), the expected behaviour of a Pr
 the modules that he has added to ProfNUS first, then choosing to view more details about a module. Hence, the
 indexing would be clearly known to the Professor and thus, option 2 is preferred.
 
-###  5.8. AddSchedule feature
+###  5.8. Adding a schedule feature
 
 #### Implementation
 
@@ -449,7 +449,7 @@ During the execution, the following validity checks will be conducted:
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the command isn't executed successfully and a `CommandException` is thrown, then the new schedule won't be added to the ProfNUS.</div>
 
-### 5.9. EditSchedule feature
+### 5.9. Editing a schedule feature
 
 #### Implementation
 
@@ -485,7 +485,7 @@ Reason for choosing Option 2:
 
 To locate a schedule uniquely with schedule, a user needs to know the module code, class type, and class group. For example, `CS2103T tut W11`. However, when there are too many groups, professors can easily forget which group he is looking for. Therefore, using the index is better in this case.
 
-### 5.10. ViewSchedule feature
+### 5.10. Viewing the schedule list feature
 
 
 #### Implementation
@@ -504,7 +504,7 @@ The following sequence diagram shows how view schedule operation works :
 
 
 
-### 5.10. ViewTimetable feature
+### 5.10. Viewing the timetable feature
 
 
 
