@@ -328,16 +328,16 @@ Example:
 
 #### Finding the calorie content of a food item: `find`
 
-Finds the calorie content of a commonly-found food item.
+Finds the estimated calorie content of a food item.
 
 Format: `find FOOD_NAME`
 
-* By default, only the calorie contents of certain food items are included. Refer to the list of food items in the [FAQ](#faq).
+* By default, only the calorie contents of certain food items are included. Refer to the list of food items [here](#what-are-the-default-food-items-for-the-find-feature).
 * If the user has entered a specific food item before, the `find` command will return the average calorie content of that food item. _(This includes entries on previous days, **on top of** the current day's entries.)_
 
 Example:
 
-* `find chicken rice` finds and displays the calorie content of chicken rice.
+* `find chicken rice` finds and displays the estimated calorie content of 1 plate of chicken rice.
 
 <div markdown="block" class="alert alert-info">
 
@@ -518,7 +518,7 @@ You may follow the steps below:
 
 No, NutriGoals can still work normally without an internet connection.
 
-### What are the default food items for the [`find`](#finding-the-calorie-content-of-a-food-item-find) feature?<br>
+### What are the default food items for the [`find`](#finding-the-calorie-content-of-a-food-item-find) feature?
 
 The food items are:
 
