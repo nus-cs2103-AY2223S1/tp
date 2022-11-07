@@ -338,6 +338,10 @@ Here is an example of what happens when the recruiter attempts to add a candidat
 6. Else, an `AddCommand` object is generated.
 7. Next, the `AddCommand#execute()` is called, which triggers the `Model#addPerson(Person)` command and a `CommandResult` is returned
 
+Following is a sequence diagram that illustrates what happens when a Person with status is added to CLInkedIn:
+
+![AddCommandStatusSequenceDiagram](images/AddCommandStatusSequenceDiagram.png)
+
 Here is an example of what happens when the recruiter attempts to edit a candidate's status  CLInkedIn:
 1. Recruiter enters the command `edit 1 s/OA In Progress`
 2. The command is first parsed by `AddressBookParser#parseCommand()`, which identifies the command word of every command.
