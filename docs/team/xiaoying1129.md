@@ -37,7 +37,6 @@ Given below are my contributions to the project.
     * Add test cases to increase coverage [#209]
     * Add user stories, use cases and other updates to Developer Guide [#210]
 
-
 * **Project management**:
     * `PRs reviewed`
       * [#31], [#34], [#35], [#37], [#38], [#42], [#48], [#53], [#58], [#59], [#60], [#64], [#68], [#79], [#83], [#85], [#93], [#98], [#100]

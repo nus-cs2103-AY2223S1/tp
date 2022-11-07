@@ -34,15 +34,15 @@ Given below are my contributions to the project.
 
 * **Code contributed**:
   * `Pull Requests`:
-    * [#67]: Find command with prefix v1.3
-    * [#76]: Update Developer Guide for 
+    * (#67): Find command with prefix v1.3
+    * (#76): Update Developer Guide for 
     find command(Finding by class prefix)
-    * [#79]: Update edit command
-    * [#91]: Mark attendance command
-    * [#98]: Update User Guide for edit command
-    * [#100]: Update Developer Guide for edit command
-    * [#190]: Enhancements to User Interface
-    * [#197]: Add test cases for FindCommandTest
+    * (#79): Update edit command
+    * (#91): Mark attendance command
+    * (#98): Update User Guide for edit command
+    * (#100): Update Developer Guide for edit command
+    * (#190): Enhancements to User Interface
+    * (#197): Add test cases for FindCommandTest
 
 * **Project management**:
   * `to be added soon`
