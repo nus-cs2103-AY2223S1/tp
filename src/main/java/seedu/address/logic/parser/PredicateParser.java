@@ -235,7 +235,7 @@ public class PredicateParser {
             }
             throw new ParseException(FilterOrderCommand.MESSAGE_INVALID_OS);
         case PRICE_RANGE_PREFIX:
-            final Pattern format = Pattern.compile("(?<lower>.\\S+),(?<upper>.\\S+)");
+            final Pattern format = Pattern.compile("(?<lower>.?\\S+),(?<upper>.?\\S+)");
             final Matcher matcher = format.matcher(input);
             if (!matcher.matches()) {
                 throw new ParseException(
@@ -246,7 +246,10 @@ public class PredicateParser {
             Price lowerBound = new Price(Double.parseDouble(lower));
             Price upperBound = new Price(Double.parseDouble(upper));
 
-            if (lowerBound.getPrice() > upperBound.getPrice()) {
+            if ((lowerBound.getPrice() > upperBound.getPrice() && (!upperBound.isNotApplicablePrice()))
+                    || ((!lowerBound.isNotApplicablePrice()) && lowerBound.getPrice() < 0)
+                    || ((!upperBound.isNotApplicablePrice()) && upperBound.getPrice() < 0)
+            ) {
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterOrderCommand.MESSAGE_USAGE));
             }

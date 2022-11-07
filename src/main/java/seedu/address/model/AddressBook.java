@@ -242,7 +242,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         sb.append(orders.asUnmodifiableObservableList().size() + " orders");
         sb.append("\n");
         return sb.toString();
-        // TODO: refine later
     }
 
     /**

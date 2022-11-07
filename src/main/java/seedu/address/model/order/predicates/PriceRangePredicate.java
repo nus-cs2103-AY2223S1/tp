@@ -4,6 +4,7 @@ import java.util.function.Predicate;
 
 import seedu.address.model.order.Order;
 import seedu.address.model.order.Price;
+import seedu.address.model.order.PriceRange;
 
 /**
  * Tests that a {@code Order}'s {@code PriceRange} matches any of the keywords given.
@@ -27,8 +28,15 @@ public class PriceRangePredicate<T extends Order> implements Predicate<T> {
     public boolean test(T order) {
         Price orderLowerBound = order.getRequestedPriceRange().getLowerBound();
         Price orderUpperBound = order.getRequestedPriceRange().getUpperBound();
-        boolean isAboveLowerBound = orderLowerBound.getPrice() >= lowerBound.getPrice();
-        boolean isBelowUpperBound = orderUpperBound.getPrice() <= upperBound.getPrice();
+        PriceRange thisRange = new PriceRange(lowerBound, upperBound);
+        boolean isThisLowerNA = lowerBound.isNotApplicablePrice();
+        boolean isThisUpperNA = upperBound.isNotApplicablePrice();
+        boolean isOtherLowerNA = orderLowerBound.isNotApplicablePrice();
+        boolean isOtherUpperNA = orderUpperBound.isNotApplicablePrice();
+        boolean isAboveLowerBound = thisRange.comparePrice(orderLowerBound) == PriceRange.WITHIN_RANGE
+                && ((!isOtherLowerNA) || (isThisLowerNA) || (lowerBound.getPrice() == 0));
+        boolean isBelowUpperBound = thisRange.comparePrice(orderUpperBound) == PriceRange.WITHIN_RANGE
+                && ((!isOtherUpperNA) || (isThisUpperNA));
         return isAboveLowerBound && isBelowUpperBound;
     }
 
