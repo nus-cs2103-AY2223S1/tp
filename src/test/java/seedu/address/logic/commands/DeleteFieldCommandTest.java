@@ -1,6 +1,6 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
+//import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.logic.commands.fields.AddFieldCommand.NO_INPUT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
@@ -9,7 +9,7 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.fields.AddFieldCommand;
+//import seedu.address.logic.commands.fields.AddFieldCommand;
 import seedu.address.logic.commands.fields.DeleteFieldCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;

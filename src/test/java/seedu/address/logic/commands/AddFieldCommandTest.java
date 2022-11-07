@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.fields.AddFieldCommand.MESSAGE_DUPLICATE;
+//import static org.junit.jupiter.api.Assertions.assertTrue;
+//import static seedu.address.logic.commands.fields.AddFieldCommand.MESSAGE_DUPLICATE;
 import static seedu.address.logic.commands.fields.AddFieldCommand.NO_INPUT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
@@ -14,7 +14,7 @@ import seedu.address.logic.commands.fields.AddFieldCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.item.DisplayItem;
+//import seedu.address.model.item.DisplayItem;
 
 
 public class AddFieldCommandTest {
