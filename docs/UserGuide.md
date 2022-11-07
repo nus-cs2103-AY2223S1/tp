@@ -31,10 +31,6 @@ show-toc: true
 
 ## Command Summary
 
-### General Commands
-
-{% include_relative _ug/commandSummary/GeneralCommands.md %}
-
 ### Item Commands
 
 {% include_relative _ug/commandSummary/ItemCommands.md %}
@@ -46,6 +42,10 @@ show-toc: true
 ### Statistics Command
 
 {% include_relative _ug/commandSummary/StatisticsCommands.md %}
+
+### General Commands
+
+{% include_relative _ug/commandSummary/GeneralCommands.md %}
 
 ## Troubleshooting
 
