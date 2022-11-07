@@ -92,7 +92,7 @@ Here is the activity diagram showing the process of the `edit` command:
 
 ![ItemSequenceDiagram](images/EditItemSequenceDiagram.png)
 
-This diagram excludes the instantiation of the objects that represents attributes in an Item, e.g. `ItemQuantity`, `ItemUnit`. This is because including all of them would cause the UML diagram to be cluttered and too small to read.
+This diagram excludes the instantiation of the objects that represents attributes in an Item, e.g. `ItemQuantity`, `ItemUnit`, when the `EditCommand` object creates an `editedItem`. This is because including all of them would cause the UML diagram to be cluttered and too small to read.
 
 ##### Feature Details
 
