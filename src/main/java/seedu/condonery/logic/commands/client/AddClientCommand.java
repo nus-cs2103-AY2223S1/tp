@@ -112,7 +112,7 @@ public class AddClientCommand extends Command {
                 String.format(MESSAGE_SUCCESS, toAdd),
                 false,
                 false,
-                "client-" + toAdd.getCamelCaseName()
+                "client-" + toAdd.getName().toString()
             );
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
