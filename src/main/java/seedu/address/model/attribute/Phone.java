@@ -27,7 +27,7 @@ public class Phone extends AbstractAttribute<String> implements PrefixedAttribut
      * @param phone A valid phone number.
      */
     public Phone(String phone) {
-        super(TYPE, phone);
+        super(TYPE, phone.replaceAll("\\s+", " ").trim());
         requireNonNull(phone);
         checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
         value = phone;
@@ -37,6 +37,7 @@ public class Phone extends AbstractAttribute<String> implements PrefixedAttribut
      * Returns true if a given string is a valid phone number.
      */
     public static boolean isValidPhone(String test) {
+        test = test.replaceAll("\\s+", " ").trim();
         return test.matches(VALIDATION_REGEX);
     }
 

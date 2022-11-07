@@ -25,7 +25,6 @@ public class DisplayItemSampleData {
         "test", "none",
         "content", "nothing",
         "display_format", "23",
-        "style_format", "35"
-    );
+        "style_format", "35");
 
 }
