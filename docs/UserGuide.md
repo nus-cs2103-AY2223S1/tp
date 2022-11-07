@@ -964,10 +964,18 @@ We enabled adding past dates for archival purposes so that you can make the best
 <br>
 
 <details>
+<summary><strong>Q</strong>: Why is my new commission not in the commission list?</summary>
+<br>
+<strong>A</strong>: You might have accidentally filtered out your new commission with a prior <code>findcom</code> command.
+Try <code>listcom</code> to reset your commission search and see all your commissions!
+</details>
+<br>
+
+<details>
 <summary><strong>Q</strong>: What are file paths and root directories?</summary>
 <br>
 <strong>A</strong>: We don't expect you to have a lot of technical knowledge about a computer file system.
-But we provide you a good explanation to answer your question in the <a href="#what-are-file-paths-and-root-directories">Appendix]</a>.
+But we provide you a good explanation to answer your question in the <a href="#what-are-file-paths-and-root-directories">Appendix</a>.
 </details>
 <br>
 
@@ -987,7 +995,7 @@ But we provide you a good explanation to answer your question in the <a href="#w
 | [**Add customer**](#adding-a-customer-addcus)                                                   | `addcus n/NAME p/PHONE_NUMBER e/EMAIL [a/ADDRESS] [t/TAG]...`  <br> e.g., <code>addcus n/<em>John Doe</em> p/<em>98765432</em> e/<em>johnd@example.com</em> a/<em>John street, block 123, #01-01</em> t/<em>animal cartoons</em></code>                                                                                               |
 | [**Edit customer**](#editing-a-customer-editcus)                                                | `editcus INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...` <br> e.g., <code>editcus <em>1</em> p/<em>91234567</em> e/<em>johndoe@example.com</em></code>                                                                                                                                                                     |
 | [**Delete customer**](#deleting-a-customer-delcus)                                              | `delcus INDEX`<br> e.g., <code>delcus <em>14</em></code>                                                                                                                                                                                                                                                                              |
-| [**Open Commission/Switch to Commission Tab**](#viewing-a-commission-opencom)                   | `opencom [INDEX]`<br> e.g., <code>opencom <em>14</em></code>, <code>opencus</code>                                                                                                                                                                                                                                                    |
+| [**Open Commission/Switch to Commission Tab**](#viewing-a-commission-opencom)                   | `opencom [INDEX]`<br> e.g., <code>opencom <em>14</em></code>, <code>opencom</code>                                                                                                                                                                                                                                                    |
 | [**Add commission**](#adding-a-commission-addcom)                                               | `addcom n/TITLE f/FEE d/DEADLINE [t/TAG]...`<br> e.g., <code>addcom n/<em>Rimuru</em> f/<em>40</em> d/<em>2022-11-01</em> t/<em>traditional</em> t/<em>chibi</em></code>                                                                                                                                                              |
 | [**Edit commission**](#editing-a-commission-editcom)                                            | `editcom INDEX [n/TITLE] [f/FEE] [d/DEADLINE] [s/COMPLETION STATUS] [p/DESCRIPTION] [t/TAG]...` <br> e.g., <code>editcom <em>1</em> n/<em>Tokyo Ghoul Kaneki</em> f/<em>50</em> d/<em>2022-10-10</em> s/<em>False</em> p/<em>Unfamiliar, I will need to do up a reference board first.</em> t/<em>digital</em> t/<em>neon</em></code> |
 | [**Delete Commission**](#deleting-a-commission-delcom)                                          | `delcom INDEX`<br> e.g., <code>delcom <em>14</em></code>                                                                                                                                                                                                                                                                              |
