@@ -31,7 +31,7 @@ A `#` followed by a number denotes the relevant pull request.
       - What was done: Added the base code for `Item` (`ItemName`, `InventoryList`, `Item`, `Description`, `Quantity`
       classes) for the members to build on, utilizing object-oriented programming.
 
-    - **Implement the following commands: `edito`, `listi`, `findi`** — [#111](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/111)
+    - **Implement the following commands: `edito`, `listi`, `findi`** — [#68](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/68), [#111](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/111)
         - `edito`: Edits orders.
         - `listi`: Lists all the existing inventory items.
         - `findi`: Finds existing inventory items that match certain keyword(s) inputted by the user.
