@@ -85,7 +85,7 @@ The following figures show the overall GUI of **FAP**
 --------------------------------------------------------------------------------------------------------------------
 ## 4. Prefixes
 
-Prefixes are an indicator for a specific type of parameter to be input during any command. The following section shows the type of prefixes that are used in the app and it shows which prefixes are used for the find command
+Prefixes are an indicator for a specific type of parameter to be input during any command. The following section shows the type of prefixes that are used in the app. It also shows which prefixes are available for the respective commands that uses prefixes.
 
 Prefix | Parameter              | add                | edit               | find               | aa                 | ea                 |
 -------|------------------------|--------------------|--------------------|--------------------|--------------------|--------------------|
@@ -164,6 +164,8 @@ Adds a client to the list of clients.
 
 Format: `add n/NAME p/PHONE e/EMAIL a/ADDRESS i/YEARLY_INCOME m/MONTHLY_CONTRIBUTIONS r/RISK_APPETITE ip/INVESTMENT_PLAN c/CLIENT_TYPE [t/TAG]…​`
 
+Refer to [Prefixes](#4-prefixes) for the types of prefixes.
+
 * This command is case-sensitive for the parameters NAME, EMAIL, ADDRESS, and INVESTMENT_PLAN.
 * After each execution of add command, the displayed contact list resets to the original contact list.
 
@@ -195,6 +197,8 @@ Format: `list`
 Edits an existing client in the list of clients.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/YEARLY_INCOME] [m/MONTHLY_CONTRIBUTIONS] [r/RISK_APPETITE] [ip/INVESTMENT PLAN] [c/CLIENT_TYPE] [t/TAG]…​`
+
+Refer to [Prefixes](#4-prefixes) for the types of prefixes.
 
 * Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client list. The index **must be a positive integer** 1, 2, 3,…​
 * At least one of the fields must be provided.
@@ -253,7 +257,13 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd client in the list of clients.
 * `find n/Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
 
-#### 5.1.7 Sorting: `sort KEYWORD`/  `sort KEYWORD desc`
+#### 5.1.7 Sorting: `sort`
+
+* Returns all the contacts sorted by the given `KEYWORD`
+
+Format: sort `KEYWORD` / sort `KEYWORD desc`
+
+Types of `KEYWORD`: `name`, `appt`, `risk`, `income`, `monthly`
 
 * Sorts the contacts shown in the list of clients according to given KEYWORD. It is ascending by default.
 * You can sort the contacts in descending order by adding `desc` behind the `KEYWORD`.
@@ -264,11 +274,11 @@ Examples:
   * `risk` sorts from low to high
   * `income` & `monthly` sorts by specified order (<, > or =)
 
-Format: sort `KEYWORD` / sort `KEYWORD desc`
 
-Types of `KEYWORD`: `name`, `appt`, `risk`, `income`, `monthly`
 
-* Returns all the contacts sorted by the given `KEYWORD`
+
+
+
 
 
 #### 5.1.8 Clearing all entries : `clear`
@@ -290,6 +300,8 @@ Format: `exit`
 Adds an appointment with inputs DATE_AND_TIME and LOCATION for an existing client in the list of clients. This will also update the Calendar and the appointment will be shown in the matching month in the Calendar.
 
 Format: `aa INDEX d/DATE_AND_TIME l/LOCATION`
+
+Refer to [Prefixes](#4-prefixes) for the types of prefixes.
 
 Example: `aa 1 d/21-01-2023 12:30 l/Jurong Point, Starbucks`
 
@@ -322,6 +334,9 @@ Examples:
 Edits an appointment for an existing client in the list of clients. This will also update the Calendar and the appointment will be shown in the matching month in the Calendar.
 
 Format: `ea PERSON_INDEX.APPOINTMENT_INDEX [d/DATE_AND_TIME] [l/LOCATION]`
+
+Refer to [Prefixes](#4-prefixes) for the types of prefixes.
+
 * Edits the client's appointment using specified PERSON_INDEX and APPOINTMENT_INDEX.
 * The PERSON_INDEX refers to the index number shown in the displayed client list. The index must be a positive integer 1, 2, 3,…​
 * The APPOINTMENT_INDEX refers to the index number shown in the displayed client's appointment list. The index can only be 1, 2, or 3.
