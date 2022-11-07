@@ -39,4 +39,10 @@ public class CopyCommand extends Command {
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, selectedItinerary.getDescription()));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof CopyCommand); // instanceof handles nulls
+    }
 }

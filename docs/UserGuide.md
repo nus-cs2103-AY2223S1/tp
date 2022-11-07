@@ -16,6 +16,7 @@ Waddle allows you to plan your travels in **3 simple steps**.
 <div style="page-break-after: always"></div>
 
 ## Table of Contents
+
 1. [**Quick start**](#quick-start)
 2. [**Features**](#features)
    1. [**Universal commands**](#universal-commands)
@@ -25,7 +26,7 @@ Waddle allows you to plan your travels in **3 simple steps**.
    3. [**Commands on main page**](#commands-on-the-main-page)
       1. [`add` Creating a new itinerary](#creating-a-new-itinerary--add)
       2. [`list` Listing all itineraries](#listing-all-itineraries--list)
-      3. [`find` Locating itineraries by name](#locating-itineraries-by-name--find)
+      3. [`find` Locating itineraries by description](#locating-itineraries-by-description--find)
       4. [`edit` Editing the details of an itinerary](#editing-the-details-of-an-itinerary--edit)
       5. [`delete` Deleting an itinerary](#deleting-an-itinerary--delete)
       6. [`clear` Clearing itineraries](#clearing-itineraries--clear)
@@ -53,6 +54,7 @@ Waddle allows you to plan your travels in **3 simple steps**.
 <div style="page-break-after: always"></div>
 
 ## Quick start
+
 To begin planning your travels with Waddle, simply set it up as follows:
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -65,8 +67,10 @@ To begin planning your travels with Waddle, simply set it up as follows:
    Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-And you're ready to waddle! To execute any command, type the command in the command box and press Enter. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+And you're ready to waddle! To execute any command, type it command in the command box and press Enter. e.g. typing **`help`** and pressing Enter will open the help window.
+<div style="page-break-after: always"></div>
+
+Some example commands you can try:
 
    * **`list`** : Lists all itineraries.
 
@@ -91,9 +95,7 @@ For more commands and their details, refer to the [Features](#features) section 
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   - e.g. in `add d/DESCRIPTION ...`, `DESCRIPTION` is a parameter which can be used as `add d/My Japan Trip`.
-
-* Unlesss stated otherwise, all parameters should contain alphanumerical characters only.
-
+   
 * Items in square brackets are optional.<br>
   - e.g. `d/DESCRIPTION [c/COUNTRY] sd/START_DATE du/DURATION` can be used as `d/My Japan Trip c/Japan sd/2023-04-01 du/14` or as `d/My Japan Trip sd/2023-04-01 du/14`.
 
@@ -110,6 +112,7 @@ For more commands and their details, refer to the [Features](#features) section 
 <div style="page-break-after: always"></div>
 
 ### Universal commands
+
 Most commands in Waddle can only be used on the [main page](#the-main-page) or the [planning page](#the-planning-page). However, the commands in this section may be used on either page at any time.
 
 ### Viewing help : `help`
@@ -129,6 +132,7 @@ Format: `exit`
 <div style="page-break-after: always"></div>
 
 ### The main page
+
 The main page, or home page, of Waddle displays the list of itineraries you have created and stored in the app.
 
 [Commands exclusive to the main page](#commands-on-the-main-page) can help you:
@@ -162,8 +166,7 @@ alphanumeric characters, spaces and these following special characters: `()&!':.
 
 **:information_source: Notes:**<br>
 
-* You cannot add an itinerary with the same description as an existing itinerary.<br>
-
+* You cannot add an itinerary with the same description as an existing itinerary.
 * Waddle only accepts english letters and spaces for `COUNTRY`, special characters like `'`, `&`, `!` are not allowed.<br>
   - Example of invalid input: `c/Côte d'Ivoire`, `c/中国`
 * The budget input should only contain numbers and one decimal point.<br>
@@ -257,6 +260,7 @@ Examples:
 <div style="page-break-after: always"></div>
 
 ### The planning page
+
 The planning page of an itinerary displays the list of items you have added to the itinerary. Items on the Wishlist that have not been added to you schedule yet will appear on top in order of priority, while scheduled items will appear in order of date and time.
 
 The index of scheduled items are in the format `DAY.ITEM_NUMBER`. Some examples:
@@ -306,7 +310,7 @@ Format: `add d/DESCRIPTION du/DURATION [p/PRIORITY] [c/COST] `
   * The default `PRIORITY` is 1.<br>
   * The default `COST` is $0.<br>
 * The cost input should only contain numbers and one decimal point.<br>
-  - Example of invalid input: `c/1,000,000`
+  - Examples of invalid input: `c/1,000,000`
 * If more than 2 decimal places are provided for the cost, Waddle rounds it up to 2 decimal places.<br>
   - e.g. `b/1000.505` will be reflected as $1,000.51.
 
@@ -316,6 +320,8 @@ Examples:
 * `add d/Go to the Louvre p/2 du/1`
 * `add d/Skiing du/14 c/100`
 
+<div style="page-break-after: always"></div>
+
 ### Editing the details of an item : `edit`
 
 Edits an existing item in the item list.
@@ -323,6 +329,7 @@ Edits an existing item in the item list.
 Format: `edit INDEX [d/DESCRIPTION] [p/PRIORITY] [c/COST] [du/DURATION]`
 
 * Edits the item at the specified `INDEX`. The index refers to the index number displayed in either the wishlist, or the scheduled items in the day lists.
+* The index of a scheduled item refers to the index number displayed in the list of days, the format being `DAY_NUMBER`.`ITEM_INDEX`.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
@@ -371,7 +378,6 @@ Format: `plan INDEX d/DAY_NUMBER st/START_TIME`
 * The end time of the item is automatically calculated by adding the `DURATION` of the item to the `START_TIME`.
 * You can only add an item if there is no clash in timing between the start and end time of the new item, and the start and end time of any existing scheduled item.
 
-
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Note:**<br>
@@ -384,14 +390,15 @@ Examples:
 * `plan 2 d/3 st/12:00` would add the 2nd item in the Wishlist to Day 3, starting at 12pm.
 * `plan 1 d/1 st/14:50:10` would add the 1st item in the Wishlist to Day 1, starting at 14:50pm, 10 seconds in.
 
+<p><div style="page-break-after: always"></div></p>
+
 ### Unscheduling an item : `unplan`
 
 Takes an item from the itinerary and puts it back into the Wishlist.
 
 Format: `unplan INDEX`
 
-* Unschedules the item at the specified `INDEX`. 
-* The index refers to the index number displayed in the list of scheduled items in the list of days, the format being `[DAY NUMBER]`.`[ITEM INDEX]`.
+* Unschedules the item at the specified `INDEX` as displayed on the day lists.
 * When an item is unscheduled, its cost is automatically added back to the budget of the itinerary.
 
 Examples:
@@ -406,15 +413,14 @@ Copies the itinerary in a text format onto your device's clipboard so you can pa
 
 Format: `copy`
 
-Here's an example of how the copied text would look like:
+Here's an example of how the copied text would look like: <br>
 ![exportCopy](images/exportCopy.png)
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Note:** <br>
 
-* The generated text includes all days within the itinerary, even if there are no items planned for the day.<br>
-
+* The generated text includes all days within the itinerary, even if there are no items planned for the day.
 * The generated text does not include the items in the Wishlist. For items to be reflected in the generated text, they must be planned.<br>
 
 </div>
@@ -429,7 +435,7 @@ Exports the itinerary as a PDF file. The file can be found under the "Waddle" fo
 
 Format: `pdf`
 
-Here's an example of how the generated PDF would look like:
+Here's an example of how the generated PDF would look like: <br>
 ![exportPDF](images/exportPDF.png)
 
 <div markdown="block" class="alert alert-info">
@@ -488,7 +494,7 @@ If your changes to the data file makes its format invalid, Waddle will discard a
 | [**Edit Itinerary**](#editing-the-details-of-an-itinerary--edit) | `edit INDEX [n/NAME] [c/COUNTRY] [du/DURATION] [s/START DATE] [p/NUMBER OF WADDLERS] [b/BUDGET]`<br> e.g.,`edit 1 du/15 sd/2025-04-10`                            |
 | [**Delete Itinerary**](#deleting-an-itinerary--delete)           | `delete INDEX`<br> e.g., `delete 3`                                                                                                                               |
 | [**Clear Itineraries**](#clearing-itineraries--clear)            | `clear`                                                                                                                                                           |
-| [**Find Itinerary**](#locating-itineraries-by-name--find)        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find India Trip`                                                                                                        |
+| [**Find Itinerary**](#locating-itineraries-by-description--find)        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find India Trip`                                                                                                        |
 | [**Select Itinerary**](#selecting-an-itinerary--select)          | `select INDEX`<br> e.g., `select 3`                                                                                                                               |
 | [**Exit**](#exiting-waddle--exit)                                | `exit`                                                                                                                                                            |
 

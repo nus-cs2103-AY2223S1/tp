@@ -20,7 +20,7 @@ public class Date {
     public final LocalDate date;
 
     /**
-     * Constructs a {@code Name}.
+     * Constructs a {@code Date}.
      *
      * @param date A valid date.
      */

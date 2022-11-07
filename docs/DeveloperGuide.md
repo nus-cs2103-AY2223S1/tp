@@ -330,13 +330,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to add itinerary.
-2. User enters the name of the itinerary.
+2. User enters the description of the itinerary.
 3. Waddle creates the itinerary and provides a confirmation to the user.<br>
 Use case ends.
 
 **Extensions**
 
-* 2a. The itinerary name is not entered.
+* 2a. The itinerary description is not entered.
   * Waddle shows an error message.<br>
   Use case resumes at step 2.
 
@@ -352,7 +352,7 @@ Use case ends.
 
 **Extensions**
 
-* 2a. The itinerary name is incomplete.
+* 2a. The itinerary description is incomplete.
   * Waddle shows an error message.<br>
   Use case resumes at step 2.
 

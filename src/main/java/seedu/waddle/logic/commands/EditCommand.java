@@ -44,7 +44,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_BUDGET + "BUDGET]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_COUNTRY + "Australia "
-            + PREFIX_START_DATE + "2022-07-30 ";
+            + PREFIX_START_DATE + "2025-07-30 ";
 
     public static final String MESSAGE_EDIT_ITINERARY_SUCCESS = "Edited Itinerary: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -73,7 +73,8 @@ public class EditCommand extends Command {
                                                    EditItineraryDescriptor editItineraryDescriptor) {
         assert itineraryToEdit != null;
 
-        Description updatedName = editItineraryDescriptor.getName().orElse(itineraryToEdit.getDescription());
+        Description updatedDescription =
+                editItineraryDescriptor.getDescription().orElse(itineraryToEdit.getDescription());
         Country updatedCountry = editItineraryDescriptor.getCountry().orElse(itineraryToEdit.getCountry());
         Date updatedStartDate = editItineraryDescriptor.getStartDate().orElse(itineraryToEdit.getStartDate());
         ItineraryDuration updatedDuration = editItineraryDescriptor.getDuration()
@@ -81,7 +82,7 @@ public class EditCommand extends Command {
         People updatedPeople = editItineraryDescriptor.getPeople().orElse(itineraryToEdit.getPeople());
         Budget updatedBudget = editItineraryDescriptor.getBudget().orElse(itineraryToEdit.getBudget());
 
-        Itinerary editedItinerary = new Itinerary(updatedName, updatedCountry, updatedStartDate, updatedDuration,
+        Itinerary editedItinerary = new Itinerary(updatedDescription, updatedCountry, updatedStartDate, updatedDuration,
                 updatedPeople, updatedBudget);
         editedItinerary.setUnscheduledItems(itineraryToEdit.getUnscheduledItemList());
         editedItinerary.setDays(itineraryToEdit.getDays());
@@ -137,7 +138,7 @@ public class EditCommand extends Command {
      * corresponding field value of the person.
      */
     public static class EditItineraryDescriptor {
-        private Description name;
+        private Description description;
         private Country country;
         private Date startDate;
         private ItineraryDuration duration;
@@ -152,7 +153,7 @@ public class EditCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public EditItineraryDescriptor(EditItineraryDescriptor toCopy) {
-            setName(toCopy.name);
+            setDescription(toCopy.description);
             setCountry(toCopy.country);
             setStartDate(toCopy.startDate);
             setDuration(toCopy.duration);
@@ -164,15 +165,15 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, country, startDate, duration, people, budget);
+            return CollectionUtil.isAnyNonNull(description, country, startDate, duration, people, budget);
         }
 
-        public Optional<Description> getName() {
-            return Optional.ofNullable(name);
+        public Optional<Description> getDescription() {
+            return Optional.ofNullable(description);
         }
 
-        public void setName(Description name) {
-            this.name = name;
+        public void setDescription(Description description) {
+            this.description = description;
         }
 
         public Optional<Country> getCountry() {
@@ -230,7 +231,7 @@ public class EditCommand extends Command {
             // state check
             EditItineraryDescriptor e = (EditItineraryDescriptor) other;
 
-            return getName().equals(e.getName())
+            return getDescription().equals(e.getDescription())
                     && getCountry().equals(e.getCountry())
                     && getStartDate().equals(e.getStartDate())
                     && getDuration().equals(e.getDuration())

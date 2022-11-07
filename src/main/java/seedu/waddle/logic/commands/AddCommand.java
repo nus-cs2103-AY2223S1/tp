@@ -30,7 +30,7 @@ public class AddCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_DESCRIPTION + "Summer Trip "
             + PREFIX_COUNTRY + "India "
-            + PREFIX_START_DATE + "2022-10-28 "
+            + PREFIX_START_DATE + "2025-10-28 "
             + PREFIX_ITINERARY_DURATION + "15 "
             + PREFIX_PEOPLE + "4 "
             + PREFIX_BUDGET + "1000 ";

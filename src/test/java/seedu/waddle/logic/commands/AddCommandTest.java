@@ -53,8 +53,8 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        Itinerary summer = new ItineraryBuilder().withName("Summer").build();
-        Itinerary winter = new ItineraryBuilder().withName("Winter").build();
+        Itinerary summer = new ItineraryBuilder().withDescription("Summer").build();
+        Itinerary winter = new ItineraryBuilder().withDescription("Winter").build();
         AddCommand addSummerCommand = new AddCommand(summer);
         AddCommand addWinterCommand = new AddCommand(winter);
 
