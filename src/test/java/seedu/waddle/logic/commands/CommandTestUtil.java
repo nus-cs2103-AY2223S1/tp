@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_BUDGET;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_COST;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_COUNTRY;
+import static seedu.waddle.logic.parser.CliSyntax.PREFIX_DAY_NUMBER;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_ITEM_DURATION;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_ITINERARY_DURATION;
@@ -123,6 +124,8 @@ public class CommandTestUtil {
     public static final int VALID_PRIORITY_LUNCH = 4;
 
 
+    public static final String VALID_DAY_NUMBER = "1";
+
     public static final String ITEM_DESC_DESC_SHOPPING = " " + PREFIX_DESCRIPTION + VALID_ITEM_DESC_SHOPPING;
     public static final String ITEM_DESC_DESC_SKINNY = " " + PREFIX_DESCRIPTION + VALID_ITEM_DESC_SKINNY;
     public static final String ITEM_DESC_DESC_ART = " " + PREFIX_DESCRIPTION + VALID_ITEM_DESC_ART;
@@ -142,7 +145,7 @@ public class CommandTestUtil {
     public static final String START_TIME_DESC_2300 = " " + PREFIX_START_TIME + VALID_START_TIME_2330;
     public static final String START_TIME_DESC_0000 = " " + PREFIX_START_TIME + VALID_START_TIME_0000;
     public static final String START_TIME_DESC_1715 = " " + PREFIX_START_TIME + VALID_START_TIME_1715;
-    public static final String START_TIME_DESC_1220 = " " + PREFIX_START_TIME + VALID_START_TIME_1200;
+    public static final String START_TIME_DESC_1200 = " " + PREFIX_START_TIME + VALID_START_TIME_1200;
 
     public static final String COST_DESC_SHOPPING = " " + PREFIX_COST + VALID_COST_SHOPPING;
     public static final String COST_DESC_SKINNY = " " + PREFIX_COST + VALID_COST_SKINNY;
@@ -162,11 +165,14 @@ public class CommandTestUtil {
     public static final String PRIORITY_DESC_LUNCH = " " + PREFIX_PRIORITY + VALID_PRIORITY_LUNCH;
 
 
+    public static final String DAY_NUMBER_DESC = " " + PREFIX_DAY_NUMBER + VALID_DAY_NUMBER;
+
     public static final String INVALID_ITEM_DESC_DESC = " " + PREFIX_DESCRIPTION + "吃饭";
     public static final String INVALID_ITEM_DURATION_DESC = " " + PREFIX_ITEM_DURATION + "abc";
     public static final String INVALID_START_TIME_DESC = " " + PREFIX_START_TIME + "1200";
     public static final String INVALID_COST_DESC = " " + PREFIX_COST + "$500";
     public static final String INVALID_PRIORITY_DESC = " " + PREFIX_PRIORITY + "nice";
+    public static final String INVALID_DAY_NUMBER_DESC = " " + PREFIX_DAY_NUMBER + "-1";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

@@ -39,8 +39,23 @@ public class Duration {
         }
         return value > 0 && value <= 1440;
     }
+
     @Override
     public String toString() {
         return String.valueOf(duration);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Duration)) {
+            return false;
+        }
+
+        Duration otherDuration = (Duration) other;
+        return this.duration == otherDuration.duration;
     }
 }

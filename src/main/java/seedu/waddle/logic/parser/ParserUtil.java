@@ -12,6 +12,7 @@ import seedu.waddle.logic.parser.exceptions.ParseException;
 import seedu.waddle.model.item.Cost;
 import seedu.waddle.model.item.Duration;
 import seedu.waddle.model.item.Priority;
+import seedu.waddle.model.item.StartTime;
 import seedu.waddle.model.itinerary.Budget;
 import seedu.waddle.model.itinerary.Country;
 import seedu.waddle.model.itinerary.Date;
@@ -165,7 +166,12 @@ public class ParserUtil {
     public static Priority parsePriority(String priority) throws ParseException {
         requireNonNull(priority);
         String trimmedPriority = priority.trim();
-        Integer stars = Integer.parseInt(trimmedPriority);
+        int stars = 0;
+        try {
+            stars = Integer.parseInt(trimmedPriority);
+        } catch (NumberFormatException e) {
+            throw new ParseException(Priority.MESSAGE_CONSTRAINTS);
+        }
         if (!Priority.isValidPriority(stars)) {
             throw new ParseException(Priority.MESSAGE_CONSTRAINTS);
         }
@@ -228,7 +234,7 @@ public class ParserUtil {
         try {
             time = LocalTime.parse(trimmedStartTime);
         } catch (DateTimeParseException e) {
-            throw new ParseException("Start time should be written in HH:MM:SS format. For example, 10:15 or 10:15:30");
+            throw new ParseException(StartTime.MESSAGE_CONSTRAINTS);
         }
         return time;
     }

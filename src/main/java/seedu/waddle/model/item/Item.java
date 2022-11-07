@@ -111,6 +111,27 @@ public class Item {
                 && otherItem.getDescription().equals(getDescription());
     }
 
+    /**
+     * Returns true if both items have the same identity and data fields.
+     * This defines a stronger notion of equality between two itineraries.
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Item)) {
+            return false;
+        }
+
+        Item otherItem = (Item) other;
+        return this.description.equals(otherItem.getDescription())
+                && this.duration.equals(otherItem.getDuration())
+                && this.cost.equals(otherItem.getCost())
+                && this.priority.equals(otherItem.getPriority());
+    }
+
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
