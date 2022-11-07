@@ -164,7 +164,7 @@ This can also be done by clicking on the person.
 
 Edits an existing person in TAB.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [pos/POSITION] [t/TAGS]`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TAGS]`
 
 Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -232,7 +232,7 @@ The indices **must be positive integers** 1, 2, 3, …​
 
 Examples:
 * `grade 2 assignment/1 grade/68/80` edits the grade of the 1st assignment of the 2nd person (whose position is student) to be `68/80`.
-* `grade 1 assignment/1 grade/68/80` will fail if the position of the 1st person in the displayed person list is not student.
+* `grade 1 assignment/1 grade/68/80` will fail if the position of the 1st person in the displayed person list is not a student.
 
 ### Editing the availability of a TA : `avail`
 
@@ -318,7 +318,7 @@ Creates a new TAB and automatically swaps to the newly created data file.
 Format: `new`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-This can also be done by clicking `File` - `New Book` or using keyboard shortcut `ctrl + shift + n`
+This can also be done by clicking `File` - `New Book`
 </div>
 
 ### Swapping between TABs : `swap`
@@ -328,7 +328,7 @@ Swaps between existing TABs.
 Format: `swap`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-This can also be done by clicking `File` - `Swap Book` or using keyboard shortcut `shift + tab`
+This can also be done by clicking `File` - `Swap Book`
 </div>
 
 ### Renaming the data file : `rename`
@@ -341,7 +341,7 @@ Renames the current data file as the `NEW_NAME`
 * `NEW_NAME`only accepts alphanumeric, '-' and '_' characters.
 
 Example:
-* `rename {CS2103T}` renames the current data file as `CS2103T.json`
+* `rename CS2103T` renames the current data file as `CS2103T.json`
 
 ### Saving the data
 
@@ -439,7 +439,7 @@ Action | Format, Examples
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS pos/ POSITION [t/TAG]…​` <br> e.g., `add n/Alex Yeoh p/87438807 e/alexyeoh@example.com pos/Student a/Blk 30 Geylang Street 29, #06-40 t/CS2103T-T17`
 **List** | `list`
 **Show** | `show INDEX`<br> e.g., `show 2`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [pos/POSITION] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Remark** | `remark INDEX r/REMARK`<br> e.g., `remark 1 r/Interested to be a TA`
 **Attendance** | `attendance INDEX attendance/ATTENDANCE` <br> e.g., `attendance 1 attendance/10/13`
 **Assignments** | `assignments assignments/ ASSIGNMENT_1 w/ASSIGNMENT_1_WEIGHTAGE, ASSIGNMENT_2 w/ASSIGNMENT_2_WEIGHTAGE…​`<br> e.g., `assignments assignments/ Assignment 1 w/15, Assignment 2 w/15, Midterms w/30, Finals w/40`
@@ -452,5 +452,5 @@ Action | Format, Examples
 **Clear** | `clear`
 **New** | `new`
 **Swap** | `swap`
-**Rename** | `rename {NEW_NAME}`<br> e.g., `rename {CS2103T}`
+**Rename** | `rename {NEW_NAME}`<br> e.g., `rename CS2103T`
 **Exit** | `exit`
