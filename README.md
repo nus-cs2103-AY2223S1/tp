@@ -12,3 +12,13 @@
 * It is named `SectresBook` because it is used by Secretaries and Treasurers of clubs to manage their club information.
 * For the detailed documentation of this project, see the **[SectresBook Product Website](https://ay2223s1-cs2103t-w12-2.github.io/tp/)**.
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+
+-------------
+
+## Acknowledgements
+
+The background of the program is a large-scale city, attributed to [GiulioDesign94](https://www.deviantart.com/giuliodesign94)'s [Big City](https://www.deviantart.com/giuliodesign94/art/Big-City-198672166).
+
+The icon of this program is an edited image from DepositPhotos, found [here](https://depositphotos.com/471137460/stock-illustration-book-yellow-glowing-neon-icon.html).
+
+This team recognises the rights to the images go to their respective owners.
