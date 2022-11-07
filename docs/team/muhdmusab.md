@@ -33,8 +33,11 @@ Given below are my contributions to the project.
 - ### Contributions to the DG:
   - Added implementation details and design consideration for `aa` command feature.
     - Added sequence diagram for `aa` command.
+  - Added implementation details and design consideration for `UI` component.
+  - Added CalendarLogicClassDiagram.
   - Added Use Cases for Add a client, Edit client details, Clear Financial Advisor Planner and Add and appointment.
   - Added numerous user stories.
+  - Updated DeleteSequenceDiagram.
   - Updated BetterModelClassDiagram.
 - ### Contributions to team-based tasks
   - Ensured timely submission of team project deliverables.

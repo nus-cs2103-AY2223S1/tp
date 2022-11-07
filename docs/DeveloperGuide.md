@@ -58,7 +58,6 @@ The rest of the App consists of four components.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
-
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
@@ -99,20 +98,50 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
+#### Overall structure of the UI component
+
+We currently have two tabs for the different displays (Contacts and Calendar). Users can switch between these tabs by entering certain keys or clicking on the tabs. Our team decided that we needed a method to update our UI dynamically upon update of an `Appointment` or update of a `Person`. Also, we wanted our application to support navigation using keystrokes as well on top of clicking the different UI components. 
+Hence, our team made use of two of `JavaFx` features, [`ObservableList`](https://docs.oracle.com/javase/8/javafx/api/javafx/collections/ObservableList.html) and [`FocusModel`](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/FocusModel.html).
+
+#### `ObservableList`
+
+##### Reason for use:
+
+The use of the `ObservableList` class follows the **observer design pattern**, where the `UI` components, the observer, listen subscribe to updates by the different `Model` components which are the observable objects. This is necessary as certain parts of the `UI` are dependent on `Model` components, and if these components are updated, the UI should be updated as well.    
+
+##### Design Considerations
+
+**Aspect: How the UI is dynamically updated**
+* **Alternative 1 (current choice):** Use `ObservableList` to listen to changes.
+    * Pros: Simpler to implement with current changes required by the UI as the **observer design pattern** is inbuilt in the `ObservableList` class. 
+    * Cons: May require the different `UI` components to listen to multiple `ObservableList`, if more features are added that requires new model components that update the `UI`. 
+* **Alternative 2 (potential future choice)**: Use state management features and `callbacks`. 
+    * Pros: 
+      * Able to introduce state to the application and synchronize the state of the application throughout all components of the application.
+      * Maintenance of code is simple, as well as making code more readable.
+      * `UI` components can update according to multiple data changes in `Model`.
+    * Cons: Implementing state-management is difficult and requires change throughout the entire architecture of the application. 
+
+#### `FocusModel`
+
+##### Reason for use:
+
+The use of `FocusModel` allows different behaviour of the `UI` components when the component is focused(i.e. the component has been navigated to or the component has been clicked).
+
 ### Logic component
 
 **API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
-Here's a (partial) class diagram of the `Logic` component:
+Here's a (partial) class diagram of the `Logic` component for the command operations:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
-*Figure 5. Class diagram showing the structure of the `Ui` component*
+*Figure 5. Class diagram showing the structure of the `Logic` component for the command operations*
 
-How the `Logic` component works:
+How the `Logic` component works during command execution:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+1. The command can communicate with the `Model` when it is executed (e.g. to add a person or to add an appointment).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
@@ -132,6 +161,18 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+
+Here are the other classes in Logic (omitted from the class diagram above) that are used to update the Calendar whenever the user interacts with the Calendar's UI:
+
+<img src="images/CalendarLogicClassDiagram.png" width="600"/>
+
+How the `Logic` component works during the user's interaction with the Calendar:
+1. `CalendarLogic` listens to any changes in `Model`'s `filteredCalendarEventList`, which contains different `CalendarEvents`, upon interaction with the Calendar Ui.
+2. `CalendarLogic` will then update the corresponding Calendar components in `Ui` that are dependent on these `CalendarEvents`.  
+
+More about our `Ui` design decisions [can be found here](#ui-component) 
+
+*Figure 8. Class diagram showing the classes in the `Logic` component used for during the User's interaction with the Calendar*
 
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
@@ -222,7 +263,7 @@ Step 7. `AddAppointmentCommand` will create a `CommandResult` object and will re
 
 This is shown in the diagram below:
 
-![Add Appointment Sequence Diagram](images/AddAppointmentCommandSequenceDiagram.png)
+<img src="images/AddAppointmentCommandSequenceDiagram.png" width="2000"/>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** command_details and command_values refer to the command `aa 1 d/21-01-2023 `12:30 l/Starbucks` and the command values `1 d/21-01-2023 `12:30 l/Starbucks`. We have substituted these values for readability.
 
@@ -356,7 +397,7 @@ The following activity diagram summarizes what happens when a user executes the 
 
 #### Design Considerations
 
-**Aspect: How `sort` executs**
+**Aspect: How `sort` executes**
 * **Alternative 1 (current choice):** Use Java inbuilt `Collections::sort`.
     * Pros: Easy to implement as not much modification needed.
     * Cons: May require the addition of attributes to implement the `compareTo` method.
@@ -521,36 +562,46 @@ The following sequence diagram summarizes how an up arrow key navigates to the p
 
 ### Calendar features
 The calendar feature allows a calendar to display with the corresponding appointments of the month in a calendar format. The feature consists of the following features:
+
 * `Calendar Display` — Can display appointments of a month in a calendar format.
 * `Calendar Navigation` — Can navigate between months with/without a mouse.
 * `Calendar Pop-Up` — Can view the details of each appointment.
 
-**Calendar Display**
+#### Overall implementation of Calendar
+
+The main calendar display is implemented using the `CalendarDisplay` class, which acts as the main container for the entire Calendar feature. This main container consists of a `topCalendar`, which is a `FlowPane` that contains the current month to be displayed, and the different navigation buttons as well as the `JumpBox`. Also, `CalendarDisplay` contains `calendarGrid`, which is a GridPane that contains all the dates and `Appointment` buttons within the calendar.
+
+Upon initialisation of the `CalendarDisplay`, it will display the current month and year, using the `CalendarLogic#drawCalendar()` method. The current month and year is obtained using the default `Java` package's `GregorianCalendar` class.
 
 ![Calendar Class Diagram](images/CalendarUiClassDiagram.png)
 
-*Figure x. Class diagram showing the classes for the Calendar in the `Ui` *
+*Figure x. Class diagram showing the classes for the Calendar in the `Ui`.*
+
+**Calendar Display**
 
 Implementation:
 
-The following is a more detailed explanation on how `Calendar Display` works.
-1. When the app first launches, `MainWindow#fillInnerParts()` is called, which then initialises the `Calendar Display`. This then initialises the `CalendarLogic` and the relevant methods to build the the `Calendar Display`.
-2. Following which, when appointments are added,`Model#updateCalendarEventList()` is called which then updates the `Calendar Display` as well.
+The following is a more detailed explanation on how `Calendar Display` is implemented:
+1. When the app first launches, `MainWindow#fillInnerParts()` is called, which then initialises the `Calendar Display`.
+2. The `CalendarLogic` class is initialised, where the current month to be displayed in the Calendar is set using `Java`'s `GregorianCalendar` class. 
+3. Next, `CalendarLogic#drawCalendar()` is called which initialises the header of the Calendar, by calling `CalendarLogic#drawHeader()`, where the `FlowPane`, `topCalendar`, displays the current month.
+4. Also, `CalendarLogic#drawCalendar()` will then call `CalendarLogic#drawBody()` which initialise the body of the Calendar and each individual day of the month is created in the Calendar.
+5. A `CalendarEventListPanel` object is created for each day of the month, and `EventButtons` are added to each `CalendarEventListPanel` if there is an appointment falling on that particular day.
+6. Following which, when appointments are added,`Model#updateCalendarEventList()` is called which then updates the `Calendar Display` as well.
 
 The following activity diagram summarizes what happens when a user selects the Calendar tab:
 ![Calendar Display Activity](images/CalendarDisplayActivityDiagram.png)
 
 **Calendar Navigation**
+
 The Calendar navigation allows a user to navigate between different months in the calendar and also navigate between the different appointments within the current month.
-This feature uses JavaFX's FocusModel features to obtain different behaviours when a Ui component is focused.
+This feature uses JavaFX's [`FocusModel`](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/FocusModel.html) features to obtain different behaviours when a UI component is focused.
+Also, JavaFX's [`KeyEvent`](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/input/KeyEvent.html) feature is used to listen to the different keystrokes that will update our UI.
 
-Implementation:
-
-The following is a more detailed explanation on how `Calendar Navigation` works.
+These are the ways that a user can use the `Calendar Navigation` feature.
 1. Clicking on the Next/Prev buttons to view the next/previous month in the calendar
 2. Pressing N or B key to view the next/previous month in the calendar
-3. Pressing the ENTER key when the Next/Prev button is focused to view the next/previous month in the calendar
-4. Typing the date in the Jump Box and pressing the ENTER key to view the input month and year of the date.
+3. Typing the date in the Jump Box and pressing the ENTER key to view the input month and year of the date.
 
 The following activity diagram summarizes what happens when a user selects a navigation feature:
 ![Calendar Navigation Activity](images/CalendarNavigationActivityDiagram.png)
@@ -560,7 +611,7 @@ The calendar Pop-up allows user to view the details of the appointment in the ca
 
 Implementation:
 
-The following is a more detailed explanation on how `Calendar Pop-Up` works.
+These are the ways that a user can use the `Calendar Pop-up` feature.
 1. Clicking on the Up/Down/Left/Right keys to view adjacent appointments oriented in space in the calendar
 2. Pressing SHIFT or SHIFT + TAB key to view the next/previous appointment in the calendar
 3. Clicking on a desired appointment to view the appointment in the calendar
