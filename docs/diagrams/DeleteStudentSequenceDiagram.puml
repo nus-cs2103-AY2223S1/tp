@@ -6,7 +6,7 @@ participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":ModQuikParser" as ModQuikParser LOGIC_COLOR
 participant ":DeleteStudentCommandParser" as DeleteStudentCommandParser LOGIC_COLOR
 participant "d:DeleteStudentCommand" as DeleteStudentCommand LOGIC_COLOR
-participant "res:CommandResult" as CommandResult LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
@@ -61,7 +61,7 @@ activate CommandResult
 CommandResult --> DeleteStudentCommand
 deactivate CommandResult
 
-DeleteStudentCommand --> LogicManager : res
+DeleteStudentCommand --> LogicManager : result
 deactivate DeleteStudentCommand
 
 [<--LogicManager

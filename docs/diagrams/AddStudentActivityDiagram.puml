@@ -2,8 +2,7 @@
 start
 :User executes addStudentCommand;
 
-if () then ([all prefixes present and no
-multiple of the same prefix])
+if () then ([all prefixes present])
     :Parse prefixes;
     if () then ([all prefixes
     formatted correctly])

@@ -19,9 +19,9 @@ import seedu.modquik.logic.parser.ParserUtil;
 import seedu.modquik.logic.parser.Prefix;
 import seedu.modquik.logic.parser.exceptions.ParseException;
 import seedu.modquik.model.student.Student;
-import seedu.modquik.model.student.predicates.ModuleContainsKeywordPredicate;
-import seedu.modquik.model.student.predicates.NameContainsKeywordsPredicate;
-import seedu.modquik.model.student.predicates.StudentIdContainsKeywordPredicate;
+import seedu.modquik.model.student.predicates.ModulePredicate;
+import seedu.modquik.model.student.predicates.NamePredicate;
+import seedu.modquik.model.student.predicates.StudentIdPredicate;
 import seedu.modquik.model.student.predicates.TutorialContainsKeywordPredicate;
 
 /**
@@ -54,17 +54,22 @@ public class FindCommandParser implements Parser<FindCommand> {
             String trimmedKeywords = str.get().trim();
             if (prefix.equals(PREFIX_NAME)) {
                 String[] nameKeywords = trimmedKeywords.split("\\s+");
-                predicates.add(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+                predicates.add(new NamePredicate(Arrays.asList(nameKeywords)));
             } else if (prefix.equals(PREFIX_ID)) {
-                predicates.add(new StudentIdContainsKeywordPredicate(trimmedKeywords));
+                predicates.add(new StudentIdPredicate(trimmedKeywords));
             } else if (prefix.equals(PREFIX_MODULE)) {
-                predicates.add(new ModuleContainsKeywordPredicate(trimmedKeywords));
+                predicates.add(new ModulePredicate(trimmedKeywords));
             } else if (prefix.equals(PREFIX_TUTORIAL)) {
                 predicates.add(new TutorialContainsKeywordPredicate(trimmedKeywords));
             }
         }
 
-        Predicate<Student> chainedPredicates = student -> {
+        Predicate<Student> chainedPredicates = createChainedPredicates(predicates);
+        return new FindCommand(chainedPredicates);
+    }
+
+    private Predicate<Student> createChainedPredicates(List<Predicate<Student>> predicates) {
+        return student -> {
             for (Predicate<Student> predicate : predicates) {
                 if (!predicate.test(student)) {
                     return false;
@@ -72,7 +77,6 @@ public class FindCommandParser implements Parser<FindCommand> {
             }
             return true;
         };
-        return new FindCommand(chainedPredicates);
     }
 
 }

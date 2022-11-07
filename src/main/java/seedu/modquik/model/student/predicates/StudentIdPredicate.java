@@ -9,10 +9,10 @@ import seedu.modquik.model.student.Student;
 /**
  * Tests that a {@code Student}'s {@code studentId} matches the keyword given.
  */
-public class StudentIdContainsKeywordPredicate implements Predicate<Student> {
+public class StudentIdPredicate implements Predicate<Student> {
     private final String keyword;
 
-    public StudentIdContainsKeywordPredicate(String keyword) {
+    public StudentIdPredicate(String keyword) {
         this.keyword = keyword;
     }
 
@@ -24,8 +24,8 @@ public class StudentIdContainsKeywordPredicate implements Predicate<Student> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof StudentIdContainsKeywordPredicate // instanceof handles nulls
-                && keyword.equals(((StudentIdContainsKeywordPredicate) other).keyword)); // state check
+                || (other instanceof StudentIdPredicate // instanceof handles nulls
+                && keyword.equals(((StudentIdPredicate) other).keyword)); // state check
     }
 
 }

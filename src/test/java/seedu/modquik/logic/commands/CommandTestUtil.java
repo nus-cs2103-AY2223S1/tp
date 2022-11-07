@@ -35,7 +35,7 @@ import seedu.modquik.model.ModQuik;
 import seedu.modquik.model.Model;
 import seedu.modquik.model.ModelType;
 import seedu.modquik.model.student.Student;
-import seedu.modquik.model.student.predicates.NameContainsKeywordsPredicate;
+import seedu.modquik.model.student.predicates.NamePredicate;
 import seedu.modquik.testutil.EditConsultationDescriptorBuilder;
 import seedu.modquik.testutil.EditReminderDescriptorBuilder;
 import seedu.modquik.testutil.EditStudentDescriptorBuilder;
@@ -281,7 +281,7 @@ public class CommandTestUtil {
 
         Student student = model.getFilteredStudentList().get(targetIndex.getZeroBased());
         final String[] splitName = student.getName().fullName.split("\\s+");
-        model.updateFilteredStudentList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredStudentList(new NamePredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredStudentList().size());
     }

@@ -12,10 +12,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 participant ":ModQuik" as ModQuik MODEL_COLOR
 end box
-[-> LogicManager : execute("add student")
+[-> LogicManager : execute("add student n/Name i/A0000000A \n ph/88888888 e/example@example.com \n tele/myHandle m/CS2103T tut/w17")
 activate LogicManager
 
-LogicManager -> ModQuikParser : parseCommand("add student")
+LogicManager -> ModQuikParser : parseCommand("add student n/Name i/A0000000A \n ph/88888888 e/example@example.com \n tele/myHandle m/CS2103T tut/w17")
 activate ModQuikParser
 
 create AddStudentCommandParser
@@ -25,7 +25,7 @@ activate AddStudentCommandParser
 AddStudentCommandParser --> ModQuikParser
 deactivate AddStudentCommandParser
 
-ModQuikParser -> AddStudentCommandParser : parse("")
+ModQuikParser -> AddStudentCommandParser : parse("n/Name i/A0000000A \n ph/88888888 e/example@example.com \n tele/myHandle m/CS2103T tut/w17")
 activate AddStudentCommandParser
 
 create AddStudentCommand
@@ -65,4 +65,5 @@ AddStudentCommand -[hidden]-> LogicManager: result
 destroy AddStudentCommand
 
 [<--LogicManager
+deactivate LogicManager
 @enduml

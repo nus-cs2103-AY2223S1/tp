@@ -376,7 +376,7 @@ Examples:
 <a name="add-consultation"></a>
 #### 5.3.1 Adding a consultation: `add consultation`
 
-Adds a consultation to ModQuik.
+Adds a consultation slot at the given time, date, place and description to ModQuik.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 ```Name``` can be anything e.g., Past Year Papers, and does not have to be the student's name.
@@ -389,12 +389,12 @@ Format: `add consultation n/NAME m/MODULE v/VENUE D/DATE T/TIMESLOT d/DESCRIPTIO
 * In rare cases, ModQuik will autocorrect invalid dates. See [here](#notes-autocorrect-dates) for more details.
 
 Examples:
-* `add consultation n/Jake Kim m/CS2103T D/2023-11-24 T/18:00-20:00 v/COM1-0205 d/Review past year paper`
+* `add consultation n/Review past year paper m/CS2103T v/COM2-0109 D/2022-12-12 T/16:00-18:00 d/AY2019-2020 Question 3,6,8`
 
 <table>
   <tr>
     <td>Before executing add consultation command</td>
-    <td>After executing example command to add consultation with Jake Kim</td>
+    <td>After executing example command to add consultation of Review past year paper</td>
   </tr>
   <tr>
     <td><img src="images/Consultation.png" width=350></td>
@@ -431,7 +431,7 @@ Examples:
 <table>
   <tr>
     <td>Before executing edit consultation command</td>
-    <td>After executing example command to edit 1st consultation</td>
+    <td>After executing example command to edit the venue of the 1st consultation</td>
   </tr>
   <tr>
     <td><img src="images/AddConsultation.png" width=350></td>
@@ -617,9 +617,9 @@ Examples:
 _Figure 2. Grade Chart Tab_
 
 <a name="clear"></a>
-### 5.6 Clearing all data: `clear`
+### 5.6 Clearing data: `clear`
 
-Clears all data in a specific field or the entire app.
+Clears all existing data in a specific field (including student, tutorial, reminder and consultation) or the entire app.
 
 For example, user might choose to reset the data when the semester ends to prepare for the upcoming semester.
 
@@ -715,7 +715,7 @@ Examples:
 | [**Add Tutorial**][`add tutorial`]               | `add tutorial n/NAME m/MODULE v/VENUE T/TIMESLOT D/DAY`<br> e.g., `add tutorial n/T23 m/CS2103T v/COM1-0205 T/1800-2000 D/1`                                                                                                                               |
 | [**Edit Tutorial**][`edit tutorial`]             | `edit tutorial INDEX [n/NAME] [m/MODULE] [v/VENUE] [T/TIMESLOT] [D/DAY]`<br> e.g., `edit tutorial 1 n/W17 m/CS2103T`                                                                                                                                       |
 | [**Delete Tutorial**][`delete tutorial`]         | `delete tutorial INDEX`<br> e.g., `delete tutorial 3`                                                                                                                                                                                                      |
-| [**Add Consultation**][`add consultation`]       | `add consultation n/NAME m/MODULE v/VENUE D/DATE T/TIMESLOT d/DESCRIPTION`<br> e.g., `add consultation D/2023-10-24 T/18:00-20:00 v/COM1-0205 m/CS2103T n/JakeKim d/past year papers`                                                                      |
+| [**Add Consultation**][`add consultation`]       | `add consultation n/NAME m/MODULE v/VENUE D/DATE T/TIMESLOT d/DESCRIPTION`<br> e.g., `add consultation n/Review past year paper m/CS2103T v/COM2-0109 D/2022-12-12 T/16:00-18:00 d/AY2019-2020 Question 3,6,8`                                             |
 | [**Edit Consultation**][`edit consultation`]     | `edit consultation INDEX`<br> e.g., `edit consultation 3 d/Review past year paper`                                                                                                                                                                         |
 | [**Delete Consultation**][`delete consultation`] | `delete consultation INDEX`<br> e.g., `delete consultation 3`                                                                                                                                                                                              |
 | [**Add Reminder**][`add reminder`]               | `add reminder n/NAME D/DATE T/TIME p/PRIORITY d/DESCRIPTION`<br> e.g., `add reminder n/mark papers D/2023-03-21 T/13:00 p/HIGH d/300 papers to mark`                                                                                                       |
