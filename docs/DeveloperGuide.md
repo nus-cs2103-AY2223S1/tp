@@ -308,7 +308,7 @@ Shown below is a sequence diagram of what occurs when the execute method of Logi
 8. This `markedTask` has all fields similar to the original task, except its `TaskStatus` is `COMPLETE`.
 9. Then, `MarkCommand` calls `Model#replaceTask()` which replaces the `taskToMark` in the filtered task list in `Model` with the `markedTask`.
 
-<div markdown="span" class="alert alert-info">:The `UnmarkCommand` works the same — the only difference is that it calls `Task#unmark()`, which returns a copy of the task with `TaskStatus` set to `INCOMPLETE`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:**The `UnmarkCommand` works the same — the only difference is that it calls `Task#unmark()`, which returns a copy of the task with `TaskStatus` set to `INCOMPLETE`.
 </div>
   
 The following activity diagram summarizes what happens when MarkCommand is executed
@@ -358,11 +358,11 @@ Shown below is a sequence diagram of what occurs when the `execute` method of
 5. Then, the `LogicManager`calls `EditTaskCommand#execute()`.
 6. The `EditTaskCommand` retrieves the task at the `Index`, which is the first task in the filtered task list, from the `Model`.
 7. The `EditTaskCommand` command calls `Task#edit()` with the `EditTaskDescriptor` passed as the argument.
-8. The `Task#edit()` method checks that the module of the `taskToEdit` is not changed, so it creates a copy of the `taskToMark`, still linked to an exam.
-9. This `editedTask` has all fields similar to the original task, except its `TaskDescription` is changed to `Task 1`.
-10. Then, the `EditTaskCommand` calls `Model#replaceTask()` which replaces the `taskToEdit` in the filtered task list in `Model` with the `editedTask`.
+8. The `Task#edit()` method checks that the module of the `taskToEdit` is not changed, so it creates a copy of the `taskToEdit`, with only the description changed. If `taskToEdit` has a linked exam, `linkedEditedTask` is also linked to the same exam.
+9. This `linkedEditedTask` has all fields similar to the original task, except its `TaskDescription` is changed to `Task 1`.
+10. Then, the `EditTaskCommand` calls `Model#replaceTask()` which replaces the `taskToEdit` in the filtered task list in `Model` with the `linkedEditedTask`.
 
-The following activity diagram summarizes what happens when a user executes EditTaskCommand is executed
+The following activity diagram summarizes what happens when EditTaskCommand is executed
 
 |  ![EditTaskActivityDiagram](images/EditTaskActivityDiagram.png)  |
 |:----------------------------------------------------------------:|
