@@ -25,7 +25,7 @@ public class CreateMeetingCommandParserTest {
         // with the tests for MeetingList
         /*assertParseSuccess(parser, "  Alex }} Yu ;;; Study session ;;; 26-10-2022 1830 ;;; Central Library  ",
             new CreateMeetingCommand(nameArgs, "Study session",
-                "Wednesday, 26 October 2022 06:30 pm", "Central Library"));
+                "Wednesday, 26 October 2022 06:30 PM", "Central Library"));
         assertEquals(parser.parse("  Alex }} Yu ;;; Study session ;;; 26-10-2022 1830 ;;; Central Library  "),
             new CreateMeetingCommand(nameArgs, "Study session", "Wednesday, 26 October 2022 06:30 pm",
                 "Central Library"));*/

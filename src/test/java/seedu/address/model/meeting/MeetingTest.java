@@ -21,7 +21,7 @@ public class MeetingTest {
     private final Meeting meetingOneDifferentPerson = new MeetingBuilder(johann).build();
     private final Meeting meetingOneDifferentTitle = new MeetingBuilder().withDescription("Play chess").build();
     private final Meeting meetingOneDifferentDateTime = new MeetingBuilder()
-        .withDateAndTime("Wednesday, 26 October 2020 06:30 pm").build();
+        .withDateAndTime("Wednesday, 26 October 2020 06:30 PM").build();
     private final Meeting meetingOneDifferentLocation = new MeetingBuilder().withLocation("in lounge").build();
 
     /**
