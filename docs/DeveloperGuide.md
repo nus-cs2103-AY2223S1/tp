@@ -1388,7 +1388,7 @@ starting point for testers to work on; testers are expected to do more *explorat
    3. Test case: `add -p 1 d/Take hair sample | 7-11-23 0900 | 10 hours` (invalid recurrence) <br>
       Expected: No task is added. Error details are shown in the status message.
    
-   4. Other incorrect adding task commands to try: `add -p 1 d/Escort to X-ray | 8-10-23 0900 | 10` (incomplete recurrence)
+   4. Other incorrect adding task commands to try: `add -p 1 d/Escort to X-ray | 8-10-23 0900 | 10` (incomplete recurrence) <br>
       Expected: Similar to previous.
 
 3. Editing a task in a patient's task list.
@@ -1404,7 +1404,8 @@ starting point for testers to work on; testers are expected to do more *explorat
    4. Test case: `edit -p 1 -d 2 d/Conduct physiotherapy | 6-10-22 0900` (duplicate task) <br>
       Expected: No task is edited. Error details are shown in the status message.
    
-   5. Other incorrect editing task commands to try: `edit -p 1 -d 1 d/` (missing field), `edit -p 1 -d 1`
+   5. Other incorrect editing task commands to try: `edit -p 1 -d 1 d/` , `edit -p 1 -d 1` (missing fields) <br>
+      Expected: Similar to previous.
    
 
 4. Deleting a task in a patient's task list.
@@ -1472,7 +1473,7 @@ starting point for testers to work on; testers are expected to do more *explorat
    2. Test case: `add -p 1 m/Cough syrup | 5ml a day` <br>
       Expected: The medication `Cough syrup` with dosage `5ml a day` is added to the first patient in the displayed list. Details of the new medication is shown in the status message and the output panel.
    
-   3. Test case: `add -p 1 m/Cough syrup | 5ml a day` <br>
+   3. Test case: `add -p 1 m/Cough syrup | 5ml a day` (duplicate medication) <br>
       Expected: No medication is added. Error details are shown in the status message.
    
    4. Other incorrect adding medication commands to try: `add -p 1 m/` (missing fields), `add -p 1 m/pills` (missing dosage) <br>
@@ -1489,7 +1490,7 @@ starting point for testers to work on; testers are expected to do more *explorat
    3. Test case: `edit -p 1 -m 2 m/Sleeping pills | 1 before sleeping` (duplicate medication) <br>
       Expected: No medication is edited. Error details are shown in the status message.
    
-   4. Other incorrect editing medication commands to try: `edit -p 1 -m 0 m/pills`, `edit -p 1 -m 1 m/` (missing fields) <br>
+   4. Other incorrect editing medication commands to try: `edit -p 1 -m 0 m/pills | once a day` (invalid index), `edit -p 1 -m 1 m/` (missing fields) <br>
       Expected: Similar to previous.
 
    
@@ -1500,7 +1501,7 @@ starting point for testers to work on; testers are expected to do more *explorat
     2. Test case: `delete -p 1 -m 1` <br>
        Expected: The first medication of the first patient in the displayed list is deleted. Details of the deleted medication is shown in the status message. The patient's new details is shown in the output panel.
 
-    3. Test case: `delete -p 1 -m 0` <br>
+    3. Test case: `delete -p 1 -m 0` (invalid index) <br>
        Expected: No task is deleted. Error details are shown in the status message.
 
     4. Other incorrect deleting task commands to try: `delete -p 1 -m` (missing field), `delete -p 1 -m x`, `...` (where x is larger than the number of patient's medications) <br>
@@ -1532,7 +1533,7 @@ starting point for testers to work on; testers are expected to do more *explorat
     3. Test case: `edit -p 1 -r 2 r/Allergic to dust` (duplicate remark) <br>
        Expected: No remark is edited. Error details are shown in the status message.
 
-    4. Other incorrect editing remark commands to try: `edit -p 1 -r 0`, `edit -p 1 -r 1 r/` (missing fields) <br>
+    4. Other incorrect editing remark commands to try: `edit -p 1 -r 0 r/Cardiac arrest` (invalid index), `edit -p 1 -r 1 r/` (missing fields) <br>
        Expected: Similar to previous.
 
 
@@ -1600,7 +1601,7 @@ starting point for testers to work on; testers are expected to do more *explorat
    3. Test case: `view 10-10-2022` (invalid date format) <br>
       Expected: No tasks are shown in the output panel. Error details are shown in the status message.
    
-   4. Other incorrect viewing commands: `view 15-15-22` (invalid date), `view ` (missing date) <br>
+   4. Other incorrect viewing commands: `view 15-15-22` (invalid date), `view` (missing date) <br>
       Expected: Similar to previous.
 
 
@@ -1616,7 +1617,7 @@ starting point for testers to work on; testers are expected to do more *explorat
     3. Test case: `view -p 0` (invalid index) <br>
        Expected: No task list is shown in the output panel. Error details are shown in the status message.
     
-    4. Other incorrect task viewing commands to try: `view -p ` (missing field), `view -p x` , `...` (where x is larger than the size of the patient list) <br>
+    4. Other incorrect task viewing commands to try: `view -p` (missing field), `view -p x` , `...` (where x is larger than the size of the patient list) <br>
        Expected: Similar to previous.
 
 ### Viewing all tasks of all patients
@@ -1630,7 +1631,7 @@ starting point for testers to work on; testers are expected to do more *explorat
 
 ### Undoing previous command
 
- 1. Undoing a previous command entered.
+ 1. Undoing a previous add/edit/delete command.
  
     1. Prerequisites: At least 1 add/edit/delete command was executed.
     
@@ -1658,12 +1659,12 @@ starting point for testers to work on; testers are expected to do more *explorat
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Dealing with missing/corrupted data files.
 
    1. Run UniNurse without `uninursebook.json` inside the data folder. <br>
       Expected: UniNurse will create `uninursebook.json` containing the sample patient data and run.
 
-   2. Run UniNurse with a corrupted `uninursebook.json` (data stored in the wrong format, random text added into the file, etc.) <br>
+   2. Run UniNurse with a corrupted `uninursebook.json`. (data stored in the wrong format, random text added into the file, etc.) <br>
       Expected: UniNurse will run with an empty `uninursebook.json`.
 
    3. Run UniNurse without the `data` folder inside the root directory. <br>
