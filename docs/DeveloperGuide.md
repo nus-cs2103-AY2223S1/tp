@@ -11,7 +11,7 @@ title: Developer Guide
   * [Schedule List Feature](#schedule-list-feature)
   * [Sort-by](#sort-by-feature)
   * [Undo Command Feature](#undo-command-feature)
-  * [Proposed Find by Feature](#proposed-find-by-feature)
+  * [Find by Feature](#find-by-feature)
   * [[Proposed] Next Available Class Feature](#next-available-class-feature)
 * [Appendix](#appendix-requirements)
   * [Target User Profile](#target-user-profile)
