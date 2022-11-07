@@ -307,6 +307,8 @@ Format: `addT d/DESCRIPTION D/DEADLINE`
 
 * Add a task that is the same as one already in the address book. Two tasks are the same if they have the same description, deadline and labels.<br>
 
+* Do not adhere to [field constraints](#section-2-tasks).<br>
+
 </div>
  
 Example:
@@ -354,7 +356,7 @@ Format: `deleteT INDEX`
 
 * Enter 0 or a negative number as INDEX.<br>
 
-* Enter a number greater than the currently shown list size as INDEX
+* Enter a number greater than the currently shown list size as INDEX.<br>
 
 </div>
 
@@ -483,6 +485,12 @@ Format: `remindT DEADLINE`
 * Task with deadlines that are already past are also listed.
 
 <div markdown="span" class="alert alert-info">:bulb:Tasks that are complete are also listed so users are reminded to delete or archive them.
+</div>
+
+<div markdown="block" class="alert alert-warning">:warning: There will be an error if you:<br>
+
+* Do not adhere to [deadline constraints](#section-2-tasks).<br>
+
 </div>
 
 Example:
