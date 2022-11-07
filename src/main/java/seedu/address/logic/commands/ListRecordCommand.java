@@ -31,6 +31,11 @@ public class ListRecordCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Creates a ListRecordCommand with the specified patient index.
+     *
+     * @param targetIndex The index of the patient in the patient list.
+     */
     public ListRecordCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
         logger.info("ListRecordCommand created with index: " + this.targetIndex.getOneBased());

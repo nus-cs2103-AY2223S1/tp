@@ -1,8 +1,5 @@
 package seedu.address.model.person;
 
-import seedu.address.MainApp;
-import seedu.address.commons.core.LogsCenter;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -12,6 +9,9 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
 import java.util.logging.Logger;
+
+import seedu.address.MainApp;
+import seedu.address.commons.core.LogsCenter;
 
 /**
  * Represents a Person's birthdate in the address book.
