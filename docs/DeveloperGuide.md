@@ -47,9 +47,9 @@ PlantUML, the lifeline reaches the end of the diagram.
 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
-Given below is a quick overview of main components and how they interact with each other.
+A quick overview of main components and how they interact with each other is given below.
 
-**Main components of the architecture**
+#### Main components
 
 **`Main`** has two classes
 called [`Main`](https://github.com/AY2223S1-CS2103T-T17-2/tp/blob/master/src/main/java/seedu/nutrigoals/Main.java)
@@ -68,9 +68,9 @@ The rest of the App consists of four components.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
-**How the architecture components interact with each other**
+#### Interactions between components
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues
+The *Sequence Diagram* below shows how the components interact with each other in the scenario: user issues
 the command `delete 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
@@ -83,7 +83,7 @@ Each of the four main components (also shown in the diagram above),
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using
 the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component
-through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the
+through its interface rather than the concrete class (reason: to prevent external components being coupled to the
 implementation of a component), as illustrated in the (partial) class diagram below.
 
 <img src="images/ComponentManagers.png" width="300" />
@@ -107,18 +107,18 @@ The UI consists of a `MainWindow` that is made up of the following parts:
 All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures
 the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that
-are in the `src/main/resources/view` folder. For example, the layout of
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in the matching `.fxml` files that
+are found in the `src/main/resources/view` folder. For example, the layout of
 the [`MainWindow`](https://github.com/AY2223S1-CS2103T-T17-2/tp/blob/master/src/main/java/seedu/nutrigoals/ui/MainWindow.java)
 is specified
 in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-T17-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
-The `UI` component,
+The `UI` component:
 
 * executes user commands using the `Logic` component.
-* listens for changes to `Model` data so that the UI can be updated with the modified data.
-* keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Food` object residing in the `Model`.
+* listens for changes to data in `Model` so that the UI can be updated with the modified data.
+* keeps a reference to the `Logic` component, as the `UI` relies on the `Logic` to execute commands.
+* depends on some classes in the `Model` component, as it displays the `Food` object residing in the `Model`.
 
 ### Logic component
 
@@ -131,10 +131,10 @@ Here's a (partial) class diagram of the `Logic` component:
 How the `Logic` component works:
 
 1. When `Logic` is called upon to execute a command, it uses the `NutriGoalsParser` class to parse the user command.
-2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is
+2. This results in a `Command` object (specifically: an object of one of its subclasses, e.g., `AddCommand`) which is
    executed by the `LogicManager`.
 3. The command can communicate with the `Model` when it is executed (e.g. to add a food).
-4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API
 call.
@@ -148,8 +148,8 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 How the parsing works:
 
 * When called upon to parse a user command, the `NutriGoalsParser` class creates an `XYZCommandParser` (`XYZ` is a
-  placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse
-  the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `NutriGoalsParser` returns back as
+  placeholder for the specified command name e.g., `AddCommandParser`). The `XYZCommandParser` object then uses the other classes shown above to parse
+  the user command and create a `XYZCommand` object (e.g., `AddCommand`) which `NutriGoalsParser` then returns as
   a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser`
   interface so that they can be treated similarly where possible e.g, during testing.
@@ -161,20 +161,20 @@ How the parsing works:
 <img src="images/ModelClassDiagram.png" width="550" />
 
 
-The `Model` component,
+The `Model` component:
 
-* stores the NutriGoals data, which includes the following:
+* stores NutriGoals' data, which includes the following:
   * a `FoodList` object that contains all `Food` objects
-  * a `List` of `Location` objects that represent the locations of NUS gyms
+  * a `List` of `Location` objects, each representing a NUS gym location
   * a `User` object that contains the user's profile details (e.g. height, weight, ideal weight, gender, age, BMI)
   * a `Calorie` object that represents the target calorie intake
   * a `FoodCalorieList` object that contains information about the calorie contents of default food items
   * a `TipList` object that contains `Tip` objects
-* stores the currently 'selected' `Food` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Food>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the currently 'selected' `Food` objects (e.g., results of a search query) as a separate _filtered_ list. This filtered list is exposed to outsiders as an unmodifiable `ObservableList<Food>` that can be 'observed' e.g. the UI can be bound to this list so that the UI updates automatically whenever the data in the list changes.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as
-  a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they
-  should make sense on their own without depending on other components)
+  a `ReadOnlyUserPref` object.
+* does not depend on any of the other three components (since the `Model` represents data entities in the domain, they
+   make sense on their own without depending on other components)
 
 ### Storage component
 
@@ -182,22 +182,22 @@ The `Model` component,
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
-The `Storage` component,
+The `Storage` component:
 
-* can save both NutriGoals data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `NutriGoalsStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* can save both NutriGoals data and user preference data in the json format, and read them into corresponding objects.
+* inherits from both `NutriGoalsStorage` and `UserPrefStorage`. This means that it can be treated as either format (when the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects
   that belong to the `Model`)
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.nutrigoals.commons` package.
+Classes used by multiple components can be found in the `seedu.nutrigoals.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Implementation**
 
-This section describes some noteworthy details on how certain features are implemented.
+This section describes the noteworthy details on how certain features are implemented.
 
 ### Setup feature
 
@@ -214,8 +214,8 @@ Given below is an example usage scenario of how the setup mechanism behaves at e
 
 Step 1. The user launches the application.
 
-Step 2. The user executes `setup h/170 w/65 i/60 g/m a/20`, which calls `LogicManager#execute()`. `NutriGoals#parseCommand()`
-is called subsequently, which then creates a `SetupCommand` object.
+Step 2. The user inputs `setup h/170 w/65 i/60 g/m a/20`, which calls `LogicManager#execute()`. `NutriGoals#parseCommand()`
+is subsequently called, creating a `SetupCommand` object.
 
 Step 3. The `SetupCommand` created is executed by `SetupCommand#execute()`.
 
@@ -226,7 +226,7 @@ Step 4. `SetupCommand#execute()` calls the following methods from `Model`:
 
 Step 5. `SetupCommand#execute()` returns a `CommandResult` which displays the user's information.
 
-The following diagram illustrates how the setup operation works.
+The following diagram illustrates how the `setup` operation works.
 
 ![SetupSequenceDiagram](./images/SetupSequenceDiagram.png)
 
@@ -245,7 +245,7 @@ Given below is an example usage scenario and how the profile mechanism behaves a
 
 Step 1. The user launches the application on 19 October 2022.
 
-Step 2. The user executes `profile`, which calls `LogicManager#execute()`. `NutriGoals#parseCommand()` is called subsequently, which then creates a `ProfileCommand` object.
+Step 2. The user executes `profile`, which calls `LogicManager#execute()`. `NutriGoals#parseCommand()` is subsequently called, creating a `ProfileCommand` object.
 
 Step 3. The `ProfileCommand` created is executed by `ProfileCommand#execute()`.
 
@@ -279,7 +279,7 @@ Step 1. The user launches the application on 19 October 2022. Suppose the foods 
 3. sushi: 500 calories, lunch
 
 Step 2. The user executes `edit 2 n/honey milk tea c/310`, which calls `LogicManager#execute()`.
-`NutriGoals#parseCommand()` is called subsequently, which then creates an `EditCommandParser` object.
+`NutriGoals#parseCommand()` is subsequently called, creating an `EditCommandParser` object.
 `EditCommandParser#parse()` is then called to make sense of the arguments supplied by the user.
 
 Step 3. The `EditCommand` is created, and then executed by `EditCommand#execute()`.
@@ -299,7 +299,7 @@ Calorie content: 310 calories
 Meal type: lunch
 ```
 
-The following diagram illustrates how the edit operation works:
+The following diagram illustrates how the `edit` operation works:
 
 ![EditSequenceDiagram](./images/EditSequenceDiagram.png)
 
@@ -319,7 +319,7 @@ Step 1. The user launches the application on 19 October 2022. `NutriGoals` initi
 current day, 19 October 2022.
 
 Step 2. The user executes `list 2022-07-29` command, which calls `LogicManager#execute()`.
-`NutriGoals#parseCommand()` is called subsequently, which then creates a `ListCommandParser` object.
+`NutriGoals#parseCommand()` is subsequently called, creating a `ListCommandParser` object.
 `ListCommandParser#parse()` is then called to make sense of the date argument supplied by the user.
 
 Step 3. A `ListCommand` object is created with an `IsFoodAddedOnThisDatePredicate` object. The predicate is initialised with 29 July 2022 as the date.
@@ -355,7 +355,7 @@ Given below is an example usage scenario and how the find mechanism behaves at e
 Step 1. The user launches the application.
 
 Step 2. The user executes `find Banana` command, which calls `LogicManager#execute()`.
-`NutriGoals#parseCommand()` is called subsequently, which then creates a `FindCommandParser` object.
+`NutriGoals#parseCommand()` is subsequently called, creating a `FindCommandParser` object.
 `FindCommandParser#parse()` is then called to make sense of the food name supplied by the user.
 
 Step 3. A `FindCommand` object is created and then executed by `FindCommand#execute()`.
@@ -365,7 +365,9 @@ Step 4. The `FindCommand#execute()` then calls the following methods from `Model
 * `Model#getFoodCalorieList()`
 * `Model#getUnfilteredFoodList()`
 
-Step 5. The `FindCommand#execute()` returns a `CommandResult` that displays the calorie content of the food item specified by the user which in this case is Banana.
+Step 5. The `FindCommand#execute()` returns a `CommandResult` that displays the calorie content of the food item specified by the user (which in this case is Banana).
+
+The following diagram illustrates how the `find` operation works:
 
 ![FindSequenceDiagram](images/FindSequenceDiagram.png)
 
@@ -384,7 +386,7 @@ Given below is an example usage scenario and how set calorie target mechanism be
 Step 1. The user launches the application today.
 
 Step 2. The user executes `target 2103`, which calls `LogicManager#execute()`. 
-`NutriGoals#parseCommand()` is called subsequently, which then creates a `TargetCommandParser` object.
+`NutriGoals#parseCommand()` is subsequently called, creating a `TargetCommandParser` object.
 `TargetCommandParser#parser()` is then called to make sense of the arguments supplied by the user.
 
 Step 3. The `TargetCommand` is created, and then executed by `TargetCommand#execute()`.
@@ -399,7 +401,7 @@ Step 5. `TargetCommand#execute()` returns a `CommandResult` with the following r
 Your calorie target set for today: 2103 calories
 ```
 
-The following diagram illustrates how the target operation works:
+The following diagram illustrates how the `target` operation works:
 
 ![TargetSequenceDiagram](./images/TargetSequenceDiagram.png)
 
@@ -422,7 +424,7 @@ Step 1. The user launches the application on 19 October 2022. Suppose the foods 
 2. chicken rice: 702 kcal
 3. wanton noodles: 409 kcal
 
-Step 2. The user executes `review` command, which creates a `ReviewCommand` object. 
+Step 2. The user executes `review` command, creating a `ReviewCommand` object. 
 
 Step 3. The `ReviewCommand` created is executed by `ReviewCommand#execute()`. 
 
@@ -443,7 +445,7 @@ Your calorie target for today: 2000 calories
 You should consume 657 more calories to reach your calorie target for today!
 ```
 
-The following sequence diagram illustrates how the review operation works:
+The following sequence diagram illustrates how the `review` operation works:
 
 ![ReviewSequenceDiagram](images/ReviewSequenceDiagram.png)
 
@@ -465,7 +467,7 @@ Given below is an example usage scenario and how the suggest mechanism behaves a
 
 Step 1. The user launches the application today.
 
-Step 2. The user executes `suggest` command, which creates a `SuggestCommand` object.
+Step 2. The user executes `suggest` command, creating a `SuggestCommand` object.
 
 Step 3. The `SuggestCommand` created is executed by `SuggestCommand#execute()`.
 
@@ -486,6 +488,8 @@ The following activity diagram outlines what happens when a user executes the `s
 
 The locate gym mechanism is facilitated by `LocateGymCommand`, which extends `Command`. It overrides the following operation:
 
+* `LocateGymCommand#execute()`: Sorts and returns a list of gyms in NUS that are closest to the user.
+
 #### Example usage
 
 * `LocateGymCommand#execute()`: Returns a list of gyms sorted by distance.
@@ -494,7 +498,7 @@ Given below is an example usage scenario and how the locate-gym mechanism behave
 
 Step 1. The user launches the application.
 
-Step 2. The user executes `locate CLB`, which calls `LogicManager#execute()`. `NutriGoals#parseCommand()` is called subsequently, which then creates an `LocateGymCommand` object.
+Step 2. The user inputs `locate CLB`, which calls `LogicManager#execute()`. `NutriGoals#parseCommand()` is subsequently called, creating a `LocateGymCommand` object.
 
 Step 3. The `LocateGymCommand` created is executed by `LocateGymCommand#execute()`.
 
@@ -522,7 +526,7 @@ The following activity diagram outlines what happens when a user executes the `l
 
 ### Product scope
 
-**Target user profile**:
+**Target user profile:**
 
 * NUS students
 * Wishes to get healthier or fitter
@@ -531,7 +535,7 @@ The following activity diagram outlines what happens when a user executes the `l
 * Wants to know how many calories are in their food
 * Is reasonably comfortable using CLI apps
 
-**Value proposition**: Help users manage and calculate their calorie intake quickly, get recommendations on their daily calorie intake, learn about the calorie content of food items and find the nearest gyms in NUS in order to meet their health and fitness goals
+**Value proposition:** Help users manage and calculate their calorie intake quickly, get recommendations on their daily calorie intake, learn about the calorie content of food items, find the nearest gyms in NUS and learn useful tips in order to meet their health and fitness goals
 
 ### User stories
 
@@ -557,7 +561,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 For all use cases below, the **System** is the `NutriGoals` application and the **Actor** is the `user`, unless specified otherwise.
 
-**Use case: UC-1 List food items**
+#### UC-1: List food items
+**Use case:** List food items
 
 **MSS**
 
@@ -580,7 +585,8 @@ For all use cases below, the **System** is the `NutriGoals` application and the 
   
       Use case ends.
 
-**Use case: UC-2 Add a meal**
+#### UC-2: Add a meal
+**Use case:** Add a meal
 
 **MSS**
 
@@ -597,7 +603,8 @@ For all use cases below, the **System** is the `NutriGoals` application and the 
 
       Use case ends.
 
-**Use case: UC-3 Delete a meal**
+#### UC-3: Delete a meal
+**Use case:** Delete a meal
 
 **MSS**
 
@@ -620,7 +627,8 @@ For all use cases below, the **System** is the `NutriGoals` application and the 
 
       Use case resumes at step 2.
 
-**Use case: UC-4 Edit a meal**
+#### UC-4: Edit a meal
+**Use case:** Edit a meal
 
 **MSS**
 
@@ -643,7 +651,8 @@ For all use cases below, the **System** is the `NutriGoals` application and the 
 
       Use case resumes at step 2.
 
-**Use case: UC-5 Set up a profile**
+#### UC-5: Set up a profile
+**Use case:** Set up a profile
 
 **MSS**
 
@@ -660,7 +669,8 @@ For all use cases below, the **System** is the `NutriGoals` application and the 
 
       Use case resumes at step 1.
 
-**Use case: UC-6 View the profile created**
+#### UC-6: View the profile created
+**Use case:** View the profile created
 
 **MSS**
 
@@ -679,17 +689,19 @@ For all use cases below, the **System** is the `NutriGoals` application and the 
 
       Use case resumes at step 1.
 
-**Use case: UC-7 View a summary of the daily calorie intake**
+#### UC-7: View a summary of the daily calorie intake
+**Use case:** View a summary of the daily calorie intake
 
 **MSS**
 
 1. User requests to view a summary of the daily calorie intake.
-2. NutriGoals shows the user's total calories consumed, the calorie target and the deficient or excess amount of
+2. NutriGoals shows the user's total calories consumed, the calorie target and the deficient/excess amount of
    calories for the day.
 
    Use case ends.
 
-**Use case: UC-8 Find the calorie content of a food item**
+#### UC-8: Find the calorie content of a food item
+**Use case:** Find the calorie content of a food item
 
 **MSS**
 
@@ -712,7 +724,8 @@ For all use cases below, the **System** is the `NutriGoals` application and the 
 
       Use case ends.
 
-**Use case: UC-9 Get a suggested amount of calorie to consume daily**
+#### UC-9: Get a suggested amount of calorue to consume daily
+**Use case:** Get a suggested amount of calorie to consume daily
 
 **MSS**
 
@@ -798,11 +811,11 @@ testers are expected to do more *exploratory* testing.
     4. Test case: `add n/Sush! t/breakfast c/300`<br />
        Expected: Sush! is not added into the food list as the food name (Sush!) is invalid. Error details are shown on the result display.
 
-    5. Other invalid add commands to try: `add n/Sushi c/300.5 t/lunch`, `add n/Sushi c/300 t/supper`, `...` (where any field specified does not conform to the expected format).
+    5. Other invalid add commands to try: `add n/Sushi c/300.5 t/lunch`, `add n/Sushi c/300 t/supper`, `...` (where any field specified does not conform to the required format).
 
 ### Deleting a food
 
-1. Deleting a food while all foods on a particular day are being shown
+1. Deleting a food item while all foods on a particular day are being shown
 
     1. Prerequisites: List all foods on a particular day using the `list` command. Multiple foods in the list.
 
@@ -818,7 +831,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Editing a food
 
-1. Editing a food while all foods on a particular day are being shown
+1. Editing a food item while all foods on a particular day are being shown
 
     1. Prerequisites: List all foods on a particular day using the `list` command. Multiple foods in the list.
 
@@ -839,7 +852,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Setting a target calorie
 
-1. Setting a target calorie to consume
+1. Setting a target calorie to consume daily
 
     1. Test case: `target 2500`<br />
        Expected: The target calorie is set to 2500 calories. Success message is displayed on the result display.
