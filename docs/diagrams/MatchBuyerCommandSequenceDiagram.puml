@@ -3,10 +3,7 @@
 !include style.puml
 
 Participant ":MatchBuyerCommand" as matchCommand LOGIC_COLOR
-Participant ":Model" as model MODEL_COLOR
-Participant ":List<Buyer>" as list USER_COLOR
 Participant ":ArrayList<Predicate>" as arrayList USER_COLOR
-Participant ":Stream<Predicate>" as stream USER_COLOR
 Participant ":FilterPropsByPricePredicate" as pricePred MODEL_COLOR_T1
 Participant ":FilterPropsContainingAnyCharacteristicPredicate" as charPred MODEL_COLOR_T1
 Participant ":FilterPropertiesCommand" as filterProps LOGIC_COLOR
@@ -14,25 +11,6 @@ Participant ":FilterPropertiesCommand" as filterProps LOGIC_COLOR
 
 [-[LOGIC_COLOR]> matchCommand: execute(model)
 activate matchCommand
-
-matchCommand -[LOGIC_COLOR]> model: getFilteredBuyerList()
-activate model
-
-create list
-model -[MODEL_COLOR]> list
-activate list
-list --[USER_COLOR]> model
-deactivate list
-
-model --[MODEL_COLOR]> matchCommand: List<Buyer>
-deactivate model
-destroy model
-
-matchCommand -[LOGIC_COLOR]> list: get(0)
-activate list
-list --[USER_COLOR]> matchCommand: Buyer
-deactivate list
-destroy list
 
 create arrayList
 matchCommand -[LOGIC_COLOR]> arrayList
@@ -62,23 +40,10 @@ activate arrayList
 arrayList --[USER_COLOR]> matchCommand
 deactivate arrayList
 
-matchCommand -[LOGIC_COLOR]> arrayList: stream()
+matchCommand -[LOGIC_COLOR]> arrayList: stream().reduce(Predicate::and)
 activate arrayList
-
-create stream
-arrayList -[USER_COLOR]> stream
-activate stream
-stream --[USER_COLOR]> arrayList
-deactivate stream
-
-arrayList --[USER_COLOR]> matchCommand: Stream<Predicate>
+arrayList --[USER_COLOR]> matchCommand: combinedPredicate
 deactivate arrayList
-
-matchCommand -[LOGIC_COLOR]> stream: reduce(Predicate::and)
-activate stream
-stream --[LOGIC_COLOR]> matchCommand: combinedPredicate
-deactivate stream
-destroy stream
 
 create filterProps
 matchCommand -[LOGIC_COLOR]> filterProps: combinedPredicate
