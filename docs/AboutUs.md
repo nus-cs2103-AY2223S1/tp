@@ -43,7 +43,7 @@ You can reach us at our emails:
 [[portfolio](team/charles1026.md)]
 
 * Role: Developer
-* Responsibilities: Deadlines, Sandbagging, Storage
+* Responsibilities: Deadlines, Storage
 
 ### Ryan Tan
 
