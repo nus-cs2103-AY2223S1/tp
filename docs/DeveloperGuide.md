@@ -492,8 +492,6 @@ The locate gym mechanism is facilitated by `LocateGymCommand`, which extends `Co
 
 #### Example usage
 
-* `LocateGymCommand#execute()`: Returns a list of gyms sorted by distance.
-
 Given below is an example usage scenario and how the locate-gym mechanism behaves at each step.
 
 Step 1. The user launches the application.
@@ -519,8 +517,6 @@ The tip mechanism is facilitated by `TipCommand`, which extends `Command`. It ov
 * `TipCommand#execute()`: Returns a randomly-drawn tip to help users adopt a healthier lifestyle.
 
 #### Example Usage
-
-* `TipCommand#execute()`: Returns a healthy lifestyle tip.
 
 Given below is an example usage scenario and how the locate-gym mechanism behaves at each step.
 
@@ -962,5 +958,27 @@ testers are expected to do more *exploratory* testing.
     
     2. Relaunch the GUI. <br />
        Expected behaviour: The GUI is launched with the sample data.
+
+## Appendix: Effort
+
+When we embarked on this project, NutriGoals was projected to be a morph of the original AB3 application.
+It would be a complete wraparound where even the base purpose was different - from an address book to a calorie tracker.
+This design decision then lead to many hiccups along the way, but they were nonetheless instrumental in teaching us about
+good software engineering practices that we need moving ahead.
+
+Initially, the choice to morph the application led to the refactoring of the codebase to suit our purpose. This
+unfortunately caused certain bugs and many errors in not just the test cases, but also the core program itself. While this
+was troublesome, confusing and tedious, it allowed us to understand the code base on a deeper level and we were able to appreciate
+certain software engineering skills (such as defensive coding).
+
+Another major hiccup and learning lesson came from designing features that not only work, but also suit the user needs. We
+admittedly had some trouble coming up with ideas for new features to implement. Eventually, using customer-oriented thinking,
+we were able to come up with unique and useful features to add, which we did so successfully. Yet again, we were able to practice
+the skills taught extensively as we tried to code comprehensively and defensively, and come up with test cases to ensure extensive
+coverage of our code.
+
+To summarise, while the project itself was arduous with multiple setbacks, we were successful in developing an application that
+is both useful and easy-to-use for users. Additionally, as mentioned, we were able to put into practice what we had learnt as 
+software engineering students and develop a product with good software engineering practices.
 
 </div>
