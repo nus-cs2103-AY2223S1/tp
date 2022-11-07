@@ -66,8 +66,10 @@ To begin planning your travels with Waddle, simply set it up as follows:
    Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-And you're ready to waddle! To execute any command, type it command in the command box and press Enter. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+And you're ready to waddle! To execute any command, type it command in the command box and press Enter. e.g. typing **`help`** and pressing Enter will open the help window.
+<div style="page-break-after: always"></div>
+
+Some example commands you can try:
 
    * **`list`** : Lists all itineraries.
 
@@ -226,6 +228,8 @@ Examples:
 * `edit 1 du/15 sd/2023-11-03` Edits the duration and start date of the first itinerary to be `15` and `2023-11-03` respectively.
 * `edit 2 c/India` Edits the country of the second itinerary to be `India`.
 
+<div style="page-break-after: always"></div>
+
 ### Deleting an itinerary : `delete`
 
 Deletes the specified itinerary from Waddle.
@@ -319,6 +323,8 @@ Format: `add d/DESCRIPTION du/DURATION [p/PRIORITY] [c/COST] `
 Examples:
 * `add d/Go to the Louvre p/2 du/1`
 * `add d/Skiing du/14 c/100`
+
+<div style="page-break-after: always"></div>
 
 ### Editing the details of an item : `edit`
 
