@@ -1,5 +1,6 @@
 ---
 layout: page title: Eiffel Leo's Project Portfolio Page
+title: Eiffel Leo's Project Portfolio Page
 ---
 ## Overview
 
