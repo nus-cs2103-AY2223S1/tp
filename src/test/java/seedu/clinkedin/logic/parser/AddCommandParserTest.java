@@ -38,7 +38,6 @@ import static seedu.clinkedin.testutil.TypicalPersons.BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.clinkedin.logic.commands.AddCommand;
-import seedu.clinkedin.logic.commands.AddNoteCommand;
 import seedu.clinkedin.logic.parser.exceptions.ParseException;
 import seedu.clinkedin.model.person.Address;
 import seedu.clinkedin.model.person.Email;

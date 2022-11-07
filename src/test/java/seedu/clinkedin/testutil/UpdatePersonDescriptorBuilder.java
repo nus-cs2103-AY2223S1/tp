@@ -11,6 +11,9 @@ import seedu.clinkedin.model.person.UniqueTagTypeMap;
 import seedu.clinkedin.model.tag.Tag;
 import seedu.clinkedin.model.tag.TagType;
 
+/**
+ * A utility class to help with building UpdatePersonDescriptor objects.
+ */
 public class UpdatePersonDescriptorBuilder {
     private AddToCommand.UpdatePersonDescriptor descriptor;
 
