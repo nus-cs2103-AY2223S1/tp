@@ -1093,6 +1093,52 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Adding a client
+1. Adding a client
+
+2. Prerequisites: Arguments are valid, parameters that are compulsory are provided. Clients added must not be a duplicate client that is already in the contact book.
+
+3. Test case: `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 i/1000 m/200 r/HIGH ip/Savings Plan c/CURRENT t/friends t/owesMoney`<br>
+   Expected: Client is added. Details of the newly added client is shown in the status message.
+
+4. Test case: `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 i/1000 m/200 r/HIGH ip/Savings Plan c/CURRENT`<br>
+   Expected: Client is added. Details of the newly added client is shown in the status message.
+
+5. Test case: `add n/John Doe`<br>
+   Expected: No client is added. Error details will show that there is invalid command format.
+
+6. Test case: `add n/John Doe p/98765432`<br>
+   Expected: No client is added. Error details will show that there is invalid command format.
+
+7. Test case: `add n/John Doe p/98765432 e/johnd@example.com... a/311, Clementi Ave 2, #02-25 i/1000 m/200 r/HIGH ip/Savings Plan c/CURRENT`<br>
+   Expected: No client is added. Error details will show that there is invalid email format.(where ... represents email string that exceeds the character limit of 320)
+
+8Test case: `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 i/1000 m/200 r/HIGH ip/Savings Plan c/CURRENT t/friends...`<br>
+   Expected: No client is added. Error details will show that there is a invalid tag format.(where ... represents tag string that exceeds the character limit of 50)
+
+### Editing a client
+1. Editing a client
+
+2. Prerequisites: Arguments are valid, at least one parameter is provided. Client's whose name is being edited must not be a duplicate client that is already in the contact book. At least one client in the list.
+
+3. Test case: `edit 1 p/91234567 e/johndoe@example.com`<br>
+   Expected: Client at index 1 of the displayed list is edited. Details of the newly edited client is shown in the status message.
+
+4. Test case: `edit 1 n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 i/1000 m/200 r/HIGH ip/Savings Plan c/CURRENT`<br>
+   Expected: Client at index 1 of the displayed list is edited. Details of the newly edited client is shown in the status message.
+
+5. Test case: `edit 1 n/John Doe`<br>
+   Expected: No fields of client is edited. Error details will show that there is no change in fields of the edited client. (where client at index 1 has the name of John Doe)
+
+6. Test case: `edit 1`<br>
+   Expected: No fields of client is edited. Error details will show that there must be a field being provided.
+
+7. Test case: `edit n/John Doe p/98765432 e/johnd@example.com... a/311, Clementi Ave 2, #02-25 i/1000 m/200 r/HIGH ip/Savings Plan c/CURRENT`<br>
+   Expected: No fields of client is edited. Error details will show that there is invalid email format.(where ... represents email string that exceeds the character limit of 320)
+
+8. Test case: `edit n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 i/1000 m/200 r/HIGH ip/Savings Plan c/CURRENT t/friends...`<br>
+Expected: No fields of client is edited. Error details will show that there is a invalid tag format.(where ... represents tag string that exceeds the character limit of 50)
+
 ### Adding an appointment
 1. Adding valid appointments until maximum appointment limit for a client is reached while all persons are being shown
 
