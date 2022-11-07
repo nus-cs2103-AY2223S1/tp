@@ -20,7 +20,7 @@ The following are my contributions to the project:
     * Justification:
       * Controlling graph state can be complex, requiring us to manage several variables such as the entry type of the data in the graph, the type of graph and whether the graph should be updated or not
       * By encapsulating the graph configuration, it is easier to pass the graph configuration around the application and ensure that we improve coupling
-* **New Feature**: Added the ability to view entries in the application (PRs: [\#33](https://github.com/AY2223S1-CS2103T-W17-2/tp/pull/33, [\#81](https://github.com/AY2223S1-CS2103T-W17-2/tp/pull/81))
+* **New Feature**: Added the ability to view entries in the application (PRs: [\#33](https://github.com/AY2223S1-CS2103T-W17-2/tp/pull/33), [\#81](https://github.com/AY2223S1-CS2103T-W17-2/tp/pull/81))
   * What it does: `view` allows the user to list the expenditure or income entries in the application, and additionally supports filtering of the entries by month
   * Highlights:
     * The `view` command has a side effect of updating the data shown in the graph panel, requiring us to take additional work to synchronise the data and maintain a single source of truth for the data in both the list panel and graph panel
@@ -48,7 +48,7 @@ The following are my contributions to the project:
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): [\#105](https://github.com/AY2223S1-CS2103T-W17-2/tp/pull/105), [\#90](https://github.com/AY2223S1-CS2103T-W17-2/tp/pull/90), [\#42](https://github.com/AY2223S1-CS2103T-W17-2/tp/pull/42)
-    * Contributed to forum discussions (examples: [\#1](https://github.com/nus-cs2103-AY2223S1/forum/issues/57#issuecomment-1225512329))
+    * Contributed to forum discussions (examples: [\#1](https://github.com/nus-cs2103-AY2223S1/forum/issues/57))
     * Reported bugs and suggestions for other teams in the class: [PE-D Issues Link](https://github.com/EmilyOng/ped/issues)
 
 * **Documentation**:
