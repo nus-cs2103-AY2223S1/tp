@@ -217,42 +217,42 @@ Finds a contact using one or more information fields (e.g. name, phone number, e
 
 Format: `findC [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK]`
 
-* The search is case-insensitive. e.g. `dr doofenshmirtz` will match `Dr Doofenshmirtz`.
+* The search is case-insensitive, e.g. `dr doofenshmirtz` will match `Dr Doofenshmirtz`.
 
-* Only full words will be matched. e.g. `John` will not match `Johnny`.
+* Only full words will be matched, e.g. `John` will not match `Johnny`.
 
-* Contacts matching at least one keyword will be returned. e.g. `n/Perry Dr`
+* Contacts matching at least one keyword will be returned, e.g. `n/Perry Dr`
   will match contacts with name `Perry the Platypus` and `Dr Doofenshmirtz`.
 
-* Successive `findC` commands are not cumulative. e.g. `findC n/John` followed by `findC n/Doe` will return the same result as `findC n/Doe`.
+* Successive `findC` commands are not cumulative, e.g. `findC n/John` followed by `findC n/Doe` will return the same result as `findC n/Doe`.
 
 <div markdown="block" class="alert alert-warning">
 
 :warning: There will be an error if you:<br>
 
-* Do not adhere to the [constraints](#section-1-contacts) for each field.<br>
+* Do not adhere to the [field constraints](#section-1-contacts) for each field.<br>
 
-* Do not provide at least one information field.<br>
+* Do not provide at least one optional field.<br>
 
 </div>
 
 Examples:
 
-* `findC n/john p/81113210 e/john@gmail.com a/123` will return `Candace Flynn` and `Phineas Flynn`.
+* `findC n/flynn` will return `Candace Flynn` and `Phineas Flynn`.
 
 * `findC n/john p/12345678 e/john@gmail.com a/123` will return contacts with name containing the word `john`, phone number `12345678`, email `john@gmail.com`, and address containing `123`.
 
 ### Filtering contacts by label: `filterC`
 
-Filters contact whose label(s) contain any of the given keywords.
+Filters contacts whose label(s) contain any of the given keywords.
 
 Format: `filterC KEYWORD [MORE_KEYWORDS]...`
 
-* The filter is case-sensitive. e.g. `cs2103t` will not match `CS2103T`.
+* The filter is case-sensitive, e.g. `cs2103t` will not match `CS2103T`.
 
-* Only full words will be matched. e.g. `math` will not match `mathematics`.
+* Only full words will be matched, e.g. `math` will not match `mathematics`.
 
-* Successive `filterC` commands are not cumulative. e.g. `filterC cs2101` followed by `filterC cs2103t` will return the same result as `filterC cs2103t`.
+* Successive `filterC` commands are not cumulative, e.g. `filterC cs2101` followed by `filterC cs2103t` will return the same result as `filterC cs2103t`.
 
 <div markdown="block" class="alert alert-warning">
 
@@ -402,7 +402,7 @@ Example:
 
 ### Finding a task: `findT`
 
-Finds a task using one or more information fields (e.g. description, deadline, and/or completion status).
+Finds tasks using one or more information fields (e.g. description, deadline, and/or completion status).
 
 Format: `findT [d/DESCRIPTION] [D/DEADLINE] [s/STATUS]`
 
@@ -412,20 +412,19 @@ Format: `findT [d/DESCRIPTION] [D/DEADLINE] [s/STATUS]`
 
 * The search is case-insensitive, e.g. `homework` will match `HOMEWORK`.
 
-* Only full words will be matched. e.g. `math` will not match `mathematics`.
+* Only full words will be matched, e.g. `math` will not match `mathematics`.
 
-* Task descriptions matching at least one keyword will be returned. e.g. `d/cs2103t cs2101` will match
-  `cs2103t tutorial` and `cs2101 reflection`.
+* Task descriptions matching at least one keyword will be returned, e.g. `d/cs2103t cs2101` will match `cs2103t tutorial` and `cs2101 reflection`.
 
-* Successive `findT` commands are not cumulative. e.g. `findT d/math` followed by `findT d/homework` will return the same result as `findT n/homework`.
+* Successive `findT` commands are not cumulative, e.g. `findT d/math` followed by `findT d/homework` will return the same result as `findT n/homework`.
 
 <div markdown="block" class="alert alert-warning">
 
 :warning: There will be an error if you:<br>
 
-* Do not adhere to the [constraints](#section-2-tasks) for each field.<br>
+* Do not adhere to the [field constraints](#section-2-tasks) for each field.<br>
 
-* Do not provide at least one information field.<br>
+* Do not provide at least one optional field.<br>
 
 </div>
 
@@ -443,11 +442,11 @@ Format: `filterT KEYWORD [MORE_KEYWORDS]...`
 
 * Both archived and unarchived tasks containing specified labels will be displayed.
 
-* The filter is case-sensitive. e.g. `cs2103t` will not match `CS2103T`.
+* The filter is case-sensitive, e.g. `cs2103t` will not match `CS2103T`.
 
-* Only full words will be matched. e.g. `math` will not match `mathematics`.
+* Only full words will be matched, e.g. `math` will not match `mathematics`.
 
-* Successive `filterT` commands are not cumulative. e.g. `filterT cs2103t` followed by `filterT math` will return the same result as `filterT math`.
+* Successive `filterT` commands are not cumulative, e.g. `filterT cs2103t` followed by `filterT math` will return the same result as `filterT math`.
 
 Examples:
 
