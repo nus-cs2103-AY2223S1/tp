@@ -110,8 +110,8 @@ Format: `exit`
 
 Adds a project, client, or issue to the project book. A unique ID will be automatically generated.
 
-![add command1](images/AddIssueCommand1.png)
-![add command2](images/AddIssueCommand2.png)
+<img src="images/AddIssueCommand1.png" width="500" />
+<img src="images/AddIssueCommand2.png" width="500" />
 
 Format: 
 * Project: `project -a n/PROJECT_NAME [r/REPOSITORY] [c/CLIENT_ID] [d/DEADLINE]`
@@ -132,8 +132,8 @@ Examples:
 
 Edits the specified existing project, client or issue.
 
-![edit command1](images/EditProjectCommand1.png)
-![edit command2](images/EditProjectCommand2.png)
+<img src="images/EditProjectCommand1.png" width="500" />
+<img src="images/EditProjectCommand2.png" width="500" />
 
 Format: 
 * Project: `project -e p/PROJECT_ID [n/PROJECT_NAME] [r/REPOSITORY] [c/CLIENT_ID] [d/DEADLINE]`
@@ -158,8 +158,8 @@ Examples:
 
 Removes the specified existing project, client or issue.
 
-![delete command1](images/DeleteClientCommand1.png)
-![delete command2](images/DeleteClientCommand2.png)
+<img src="images/DeleteClientCommand1.png" width="500" />
+<img src="images/DeleteClientCommand2.png" width="500" />
 
 Format: 
 * Project: `project -d PROJECT_ID`
@@ -190,8 +190,8 @@ Format:
 
 Finds and lists all the projects, clients or issues matching the search criteria.
 
-![find command1](images/FindProjectCommand1.png)
-![find command2](images/FindProjectCommand2.png)
+<img src="images/FindProjectCommand1.png" width="500" />
+<img src="images/FindProjectCommand2.png" width="500" />
 
 Format: 
 * Project: `project -f [n/PROJECT_NAME] [p/PROJECT_ID] [r/REPOSITORY] [l/CLIENT_LABEL] [c/CLIENT_ID]`
@@ -229,8 +229,8 @@ Examples:
 
 Pins a project, client, or issue to the top of the project list, client list or issue list.
 
-![pin command1](images/PinIssueCommand1.png)
-![pin command2](images/PinIssueCommand2.png)
+<img src="images/PinIssueCommand1.png" width="500" />
+<img src="images/PinIssueCommand2.png" width="500" />
 
 Format: 
 * Project: `project -p PROJECT_ID`
@@ -253,8 +253,8 @@ Examples:
 
 Sorts all projects, clients or issues based on a specified key.
 
-![sort command1](images/SortIssueCommand1.png)
-![sort command2](images/SortIssueCommand2.png)
+<img src="images/SortIssueCommand1.png" width="500" />
+<img src="images/SortIssueCommand2.png" width="500" />
 
 > IMPORTANT: Unlike other commands, input 0/1 as the argument for each prefix (e.g.p/0)
 
@@ -299,8 +299,8 @@ Format:
 
 Marks specified existing issue as completed or incomplete
 
-![mark command1](images/MarkIssueCommand1.png)
-![mark command2](images/MarkIssueCommand2.png)
+<img src="images/MarkIssueCommand1.png" width="500" />
+<img src="images/MarkIssueCommand2.png" width="500" />
 
 Format: 
 * Mark: `issue -m ISSUE_ID`
