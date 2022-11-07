@@ -62,7 +62,7 @@ public class EditCommand extends Command {
     public EditCommand(Index index, EditInternshipDescriptor editInternshipDescriptor) {
         requireNonNull(index);
         requireNonNull(editInternshipDescriptor);
-        assert index.getOneBased() > 0 : "index should be positive integer";
+        assert index.getOneBased() > 0 : "index should be a positive integer";
 
         this.index = index;
         this.editInternshipDescriptor = new EditInternshipDescriptor(editInternshipDescriptor);

@@ -52,7 +52,7 @@ public class InterviewDateTimeTest {
                 + " " + TypicalDateTimes.THIRD_INVALID_TIME)); // space missing
 
         // empty interview date time
-        assertFalse(InterviewDateTime.isValidInterviewDateTime(" "));
+        assertFalse(InterviewDateTime.isValidInterviewDateTime(""));
 
         // valid interview date time
         assertTrue(InterviewDateTime.isValidInterviewDateTime(TypicalDateTimes.FIRST_VALID_DATE
@@ -65,5 +65,6 @@ public class InterviewDateTimeTest {
                 + ", " + TypicalDateTimes.SECOND_VALID_TIME)); // d/M, h:mm a
         assertTrue(InterviewDateTime.isValidInterviewDateTime(TypicalDateTimes.FIFTH_VALID_DATE
                 + " " + TypicalDateTimes.FIRST_VALID_TIME)); // 29 Feb on leap year
+
     }
 }

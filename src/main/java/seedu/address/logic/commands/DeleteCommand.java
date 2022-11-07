@@ -31,7 +31,7 @@ public class DeleteCommand extends Command {
      */
     public DeleteCommand(Index targetIndex) {
         requireNonNull(targetIndex);
-        assert targetIndex.getOneBased() > 0 : "index should be positive integer";
+        assert targetIndex.getOneBased() > 0 : "index should be a positive integer";
 
         this.targetIndex = targetIndex;
     }
