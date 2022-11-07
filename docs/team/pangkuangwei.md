@@ -19,7 +19,7 @@ Given below are my contributions to the project.
     * What it does: Allows the user to show certain information of all contacts displayed.
     * Justification: This feature improves the product significantly because a user can focus on certain information.
     * Highlights: This enhancement affects the user interface. It required an in-depth analysis of different possible implementations and understanding of the implementation of the user interface.
-  * **Customise Order**: Added the ability to order contacts' information.
+  * **Customise Order Feature**: Added the ability to order contacts' information.
     * What it does: Allows the user to customise the order of information shown in all contacts shown.
     * Justification: This feature improves the product significantly because a user can see information they consider more important above other information.
     * Highlights: This enhancement affects the user interface. It required an in-depth analysis of different possible implementations and understanding of the implementation of the user interface.
