@@ -16,3 +16,7 @@ This table breaks down the different components of FoodRem's GUI.
 | Item List Box      |      ![Item List Box](images/ItemListBox.png)      |
 | Help Window        |       ![Help Window](images/HelpWindow.png)        |
 {: .layout-table }
+
+```note
+The _Help Window_ is not part of the main GUI and is only shown after a [Help Command](#receive-help-during-usage-help) is run.
+```
