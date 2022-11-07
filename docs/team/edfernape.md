@@ -16,5 +16,8 @@ Given below are my contributions to the project.
   * Contributed to the `Book` and `BookList` classes to accommodate book operations in the BookFace app.
   * Implemented the `add book` command, a core use case of BookFace.
 * **Documentation**:
-    * User Guide: *to be updated*
-    * Developer Guide: *to be updated*
+    * User Guide:
+      * List loans, Clear, Changing the Theme and Exit features.
+      * Use Case for adding a book.
+    * Developer Guide:
+      * Implementation of `add` and its subsections of adding a book and user.
