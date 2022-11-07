@@ -209,7 +209,7 @@ Below shows a description of an example scenario for adding a command.
 
 **Step 1**: User enters command `add-module m/CS2105` to add module CS2105 to Plannit.
 
-**Step 2**: `addressBookParser`, the parser for Plannit, will parse the user command to return an
+**Step 2**: `AddressBookParser`, the parser for Plannit, will parse the user command to return an
 `AddModuleCommand` object.
 
 **Step 3**: The resulting `AddModuleCommand` object is then executed. The validity of the input
