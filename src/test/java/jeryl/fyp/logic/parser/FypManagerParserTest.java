@@ -139,18 +139,27 @@ public class FypManagerParserTest {
 
     @Test
     public void parseCommand_mark() throws Exception {
-        final StudentId studentId = new StudentId("A0123456G");
-        final ProjectStatus projectStatus = new ProjectStatus("DONE");
+        final StudentId validStudentId = new StudentId("A0123456G");
+        final ProjectStatus validProjectStatus = new ProjectStatus("DONE");
         MarkCommand command = (MarkCommand) parser.parseCommand(MarkCommand.COMMAND_WORD + " "
-                + PREFIX_STUDENT_ID + studentId + " " + PREFIX_PROJECT_STATUS + projectStatus);
-        assertEquals(new MarkCommand(studentId, projectStatus), command);
+                + PREFIX_STUDENT_ID + validStudentId + " " + PREFIX_PROJECT_STATUS + validProjectStatus);
+        assertEquals(new MarkCommand(validStudentId, validProjectStatus), command);
+        assertThrows(ParseException.class, StudentId.MESSAGE_CONSTRAINTS, ()
+                -> parser.parseCommand(MarkCommand.COMMAND_WORD + " " + PREFIX_STUDENT_ID + "A012345G"
+                + " " + PREFIX_PROJECT_STATUS + validProjectStatus));
+        assertThrows(ParseException.class, ProjectStatus.MESSAGE_CONSTRAINTS, ()
+                -> parser.parseCommand(MarkCommand.COMMAND_WORD + " " + PREFIX_STUDENT_ID + validStudentId
+                + " " + PREFIX_PROJECT_STATUS + "done"));
     }
 
     @Test
     public void parseCommand_sortProjectStatus() throws Exception {
+        final String invalidInput = "sort -sp";
         assertTrue(parser.parseCommand(SortProjectStatusCommand.COMMAND_WORD) instanceof SortProjectStatusCommand);
         assertTrue(parser.parseCommand(SortProjectStatusCommand.COMMAND_WORD + " 3")
                 instanceof SortProjectStatusCommand);
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () ->
+                parser.parseCommand(invalidInput));
     }
 
     @Test
@@ -159,12 +168,9 @@ public class FypManagerParserTest {
         assertTrue(parser.parseCommand(SortProjectNameCommand.COMMAND_WORD) instanceof SortProjectNameCommand);
         assertTrue(parser.parseCommand(SortProjectNameCommand.COMMAND_WORD + " 3")
                 instanceof SortProjectNameCommand);
-
-        // sort
         assertTrue(parser.parseCommand(SortProjectNameCommand.ALTERNATIVE_COMMAND_WORD)
                 instanceof SortProjectNameCommand);
-        assertTrue(parser.parseCommand(SortProjectNameCommand.ALTERNATIVE_COMMAND_WORD + " 3")
-                instanceof SortProjectNameCommand);
+
     }
 
     @Test
