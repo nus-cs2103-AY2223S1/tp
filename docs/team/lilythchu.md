@@ -16,10 +16,9 @@ Given below are my contributions to the project.
 * **New feature**: Added the ability to switch between different contents within the app.
     * What it does: Allows the user to switch between student, tutorial, consultation and grade chart by typing command. Switches automatically to related content after executing command successfully.
     * Justification: This feature makes our product more optimal for fast-typists. It allows users to switch between different tabs without the mouse and brings them to desired tab after executing command related to its contents.
-    * Highlights: This enhancement improved the entire UI and allowed us to have multiple tabs which users could view.
 
 * **New feature**: Added the ability to view grade chart
-    * What it does: Allows the user to view the pie chart of all their students' grade.
+    * What it does: Allows the user to view the pie chart showing an overview of the number of students in each grade category.
     * Justification: This feature improves the product significantly as it helps TAs to keep track of their student's progress.
 
 * **Enhancements to existing features**:
@@ -28,15 +27,16 @@ Given below are my contributions to the project.
         * Justification: This feature makes our product more attractive as users would usually want to keep track of tutorials that they are teaching.
         * Highlights: This enhancement affects existing command as it was similar to the `add`, `edit` and `delete` commands that AddressBook already has.
           Thus, there was a need to abstract out similar components and adhere to the DRY principle.
+    * Improved Ui
+        * What it does: Allows our app to have multiple tabs and users can click to switch between those tabs, changes the content's layout and adds more icons.
+        * Justification: This feature enhances the visualization of our app which makes it more attractive.
 
 * **Documentation**:
     * User Guide:
-        * Added screenshots for the following features:
-            * `mark reminder`
-            * `switch f/grade`
+        * Added screenshots for `switch f/grade` and created a table comparing before executing command to after executing command.
         * Added documentation for `tutorial` and `switch` feature.
     * Developer Guide:
-        * Updated class diagram and description for `UI` and `Model` component
+        * Updated class diagram and description for `UI` component
         * Added implementation for show grade features
         * Added instruction for manual testing for `tutorial` and `switch` feature.
         * Added use case for `delete tutorial`
