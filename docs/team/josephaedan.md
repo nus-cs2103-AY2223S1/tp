@@ -5,8 +5,7 @@ title: Joseph Aedan Marcus' Project Portfolio Page
 
 ### Project: CLInkedIn
 
-CLInkedIn is a desktop contact management Java application made for Recruiters to manage their contacts list of candidates.
-CLInkedIn operates mainly using a CLI, but still has a GUI made with JavaFX for improved user experience.
+CLInkedIn is a desktop contact management Java application made for Recruiters to manage their contacts list of candidates using a CLI, and has a GUI created with JavaFX.
 
 Given below are my contributions to the project.
 
@@ -60,11 +59,7 @@ Given below are my contributions to the project.
 * **Review/Mentoring contributions**:
   * PRs reviewed with non-trivial review comments: [\#109](https://github.com/AY2223S1-CS2103T-T13-3/tp/pull/109), [\#125](https://github.com/AY2223S1-CS2103T-T13-3/tp/pull/125), [\#258](https://github.com/AY2223S1-CS2103T-T13-3/tp/pull/258)
   * PRs submitted that aid with the workflow/improvement of the repository: [\#76](https://github.com/AY2223S1-CS2103T-T13-3/tp/pull/76), [\#77](https://github.com/AY2223S1-CS2103T-T13-3/tp/pull/77)
-  * Given my experience with external projects and workflows, I was able to provide valuable feedback to the team on how to improve their GitHub workflow and the quality of their code beyond the scope of PR review feedback.
-
-* **Tools**:
-  * Integrated [Codecov](https://codecov.io/) to the project to track the test coverage of the project.
-  * Added [Visual Studio Code extension recommendations](https://github.com/AY2223S1-CS2103T-T13-3/tp/pull/77) to the project for the team to use.
+  * Given my experience with external projects, I was able to provide valuable feedback to the team on how to improve their code quality and workflow.
 
 * **Contributions beyond the project**:
   * 9 Bug reports submitted in PE-Dry Run: [\#1](https://github.com/Josephaedan/ped/issues/1), [\#2](https://github.com/Josephaedan/ped/issues/2), [\#3](https://github.com/Josephaedan/ped/issues/3), [\#4](https://github.com/Josephaedan/ped/issues/4), [\#5](https://github.com/Josephaedan/ped/issues/5), [\#6](https://github.com/Josephaedan/ped/issues/6), [\#7](https://github.com/Josephaedan/ped/issues/7), [\#8](https://github.com/Josephaedan/ped/issues/8), [\#9](https://github.com/Josephaedan/ped/issues/9)
