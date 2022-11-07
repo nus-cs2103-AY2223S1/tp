@@ -576,7 +576,7 @@ This is shown in the diagram below:
 ![Sort Command Sequence Diagram](images/SortCommandSequenceDiagram.png)
 
 *Figure 18: Sequence Diagram showing the execution of an `sort` command*
-
+<div style="page-break-after: always"></div>
 The following activity diagram summarizes what happens when a user executes the Sort Command:
 
 ![Sort Command Activity Diagram](images/SortCommandActivityDiagram.png)
