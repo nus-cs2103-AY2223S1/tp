@@ -15,7 +15,7 @@ import foodwhere.model.commons.Tag;
 import foodwhere.model.stall.Stall;
 
 /**
- * Parses input arguments and creates a new SAddCommand object
+ * Parses input arguments and creates a new SAddCommand object.
  */
 public class SAddCommandParser implements Parser<SAddCommand> {
 
@@ -23,7 +23,7 @@ public class SAddCommandParser implements Parser<SAddCommand> {
      * Parses the given {@code String} of arguments in the context of the SAddCommand
      * and returns an SAddCommand object for execution.
      *
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public SAddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =

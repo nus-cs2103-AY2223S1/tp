@@ -61,6 +61,7 @@ public abstract class UiPart<T> {
 
     /**
      * Loads the object hierarchy from a FXML document.
+     *
      * @param location Location of the FXML document.
      * @param root Specifies the root of the object hierarchy.
      */

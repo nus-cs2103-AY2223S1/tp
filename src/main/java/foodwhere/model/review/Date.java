@@ -12,8 +12,8 @@ import java.time.format.ResolverStyle;
 import java.time.temporal.ChronoField;
 
 /**
- * Represents a Review's date in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}
+ * Represents a Review's date in FoodWhere.
+ * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}.
  */
 public class Date implements Comparable<Date> {
 

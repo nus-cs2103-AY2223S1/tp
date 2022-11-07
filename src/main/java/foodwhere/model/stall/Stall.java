@@ -15,7 +15,7 @@ import foodwhere.model.commons.Tag;
 import foodwhere.model.review.Review;
 
 /**
- * Represents a Stall in the address book.
+ * Represents a Stall in FoodWhere.
  * Guarantees: tags are present and not null, field values are validated, immutable.
  */
 public class Stall {
@@ -39,7 +39,7 @@ public class Stall {
     }
 
     /**
-     * Constructor with reviews, reviews can be empty as it is optional
+     * Constructor with reviews, reviews can be empty as it is optional.
      */
     public Stall(Name name, Address address, Set<Tag> tags, Set<Review> reviews) {
         requireAllNonNull(name, address, tags);
@@ -140,7 +140,7 @@ public class Stall {
     /**
      * Creates a string that contains the list of tags stored within the Stall.
      * Example: If the sets of tags are 'test1' and 'test2', the method will
-     * return "test1, test2"
+     * return "test1, test2".
      *
      * @return List of tags in a string format.
      */

@@ -6,7 +6,7 @@ import static java.util.Objects.requireNonNull;
 import foodwhere.model.Model;
 
 /**
- * Lists all stalls in the address book to the user.
+ * Lists all stalls in the address book in FoodWhere for the user.
  */
 public class SListCommand extends Command {
 

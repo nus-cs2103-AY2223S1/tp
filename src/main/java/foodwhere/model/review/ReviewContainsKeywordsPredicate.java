@@ -17,9 +17,10 @@ public class ReviewContainsKeywordsPredicate implements Predicate<Review> {
     private final HashSet<Tag> tagKeywords;
 
     /**
-     * Creates a ReviewContainsKeywordsPredicate where arguments are in List
-     * @param nameKeywords List of name keywords
-     * @param tagKeywords List of tag keywords
+     * Creates a ReviewContainsKeywordsPredicate where arguments are in List.
+     *
+     * @param nameKeywords List of name keywords.
+     * @param tagKeywords List of tag keywords.
      */
     public ReviewContainsKeywordsPredicate(List<Name> nameKeywords, List<Tag> tagKeywords) {
         this.nameKeywords = new HashSet<Name>(nameKeywords);
@@ -27,9 +28,10 @@ public class ReviewContainsKeywordsPredicate implements Predicate<Review> {
     }
 
     /**
-     * Creates a ReviewContainsKeywordsPredicate where arguments are in Set
-     * @param nameKeywords Set of name keywords
-     * @param tagKeywords Set of tag keywords
+     * Creates a ReviewContainsKeywordsPredicate where arguments are in Set.
+     *
+     * @param nameKeywords Set of name keywords.
+     * @param tagKeywords Set of tag keywords.
      */
     public ReviewContainsKeywordsPredicate(Set<Name> nameKeywords, Set<Tag> tagKeywords) {
         this.nameKeywords = new HashSet<Name>(nameKeywords);

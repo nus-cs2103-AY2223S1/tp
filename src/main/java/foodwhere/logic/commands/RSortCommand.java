@@ -7,7 +7,7 @@ import foodwhere.model.Model;
 import foodwhere.model.review.comparator.ReviewsComparatorList;
 
 /**
- * Sort and list all reviews in FoodWhere to the user.
+ * Sort and list all reviews in FoodWhere for the user.
  */
 public class RSortCommand extends Command {
 
@@ -25,7 +25,7 @@ public class RSortCommand extends Command {
     /**
      * Creates an RSortCommand to sort the specified {@code Review}s based on a criteria.
      *
-     * @param reviewsComparator Comparator for the {@code Review}s
+     * @param reviewsComparator Comparator for the {@code Review}s.
      */
     public RSortCommand(ReviewsComparatorList reviewsComparator) {
         this.reviewsComparator = reviewsComparator;

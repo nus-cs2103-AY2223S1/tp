@@ -116,7 +116,8 @@ public class ReviewCard extends UiPart<Region> {
     //@@author hikoya-reused
     /**
      * Adapted from https://stackoverflow.com/a/70961583.
-     * Gets row index constrain for given node, forcefully as integer: 0 as null.
+     * Gets row index constraint for given node, forcefully as integer: 0 as null.
+     *
      * @param node Node to look up the constraint for.
      * @return The row index as primitive integer.
      */
