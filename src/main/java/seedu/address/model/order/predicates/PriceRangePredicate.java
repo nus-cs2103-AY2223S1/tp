@@ -34,7 +34,7 @@ public class PriceRangePredicate<T extends Order> implements Predicate<T> {
         boolean isOtherLowerNA = orderLowerBound.isNotApplicablePrice();
         boolean isOtherUpperNA = orderUpperBound.isNotApplicablePrice();
         boolean isAboveLowerBound = thisRange.comparePrice(orderLowerBound) == PriceRange.WITHIN_RANGE
-                && ((!isOtherLowerNA) || (isThisLowerNA));
+                && ((!isOtherLowerNA) || (isThisLowerNA) || (lowerBound.getPrice() == 0));
         boolean isBelowUpperBound = thisRange.comparePrice(orderUpperBound) == PriceRange.WITHIN_RANGE
                 && ((!isOtherUpperNA) || (isThisUpperNA));
         return isAboveLowerBound && isBelowUpperBound;
