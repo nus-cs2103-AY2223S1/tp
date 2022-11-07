@@ -256,7 +256,7 @@ Aspect: How to filter properties by prices
 
 Alternative 1 was chosen to enable more efficient parsing of commands.
 
-### Filter feature
+### Filter by Tag feature
 
 The filter feature returns a list of properties whose tags contain any of the given keywords.
 
