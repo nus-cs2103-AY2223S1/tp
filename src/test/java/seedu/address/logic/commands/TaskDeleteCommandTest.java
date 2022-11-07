@@ -1,13 +1,5 @@
 package seedu.address.logic.commands;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.task.Task;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -17,6 +9,15 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TEAM;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TASK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TEAM;
 import static seedu.address.testutil.TypicalTeams.getTypicalAddressBookWithTeams;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.task.Task;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -28,7 +29,8 @@ public class TaskDeleteCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Task taskToDelete = model.getFilteredTeamList().get(INDEX_FIRST_TEAM.getZeroBased()).getTask(INDEX_FIRST_TASK.getZeroBased());
+        Task taskToDelete = model.getFilteredTeamList().get(INDEX_FIRST_TEAM.getZeroBased())
+                .getTask(INDEX_FIRST_TASK.getZeroBased());
         TaskDeleteCommand taskDeleteCommand = new TaskDeleteCommand(INDEX_FIRST_TEAM, INDEX_FIRST_TASK);
 
         String expectedMessage = String.format(TaskDeleteCommand.MESSAGE_SUCCESS, taskToDelete);
@@ -49,7 +51,8 @@ public class TaskDeleteCommandTest {
 
     @Test
     public void execute_invalidTaskIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTeamList().get(INDEX_FIRST_TEAM.getZeroBased()).getTasks().getSize() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTeamList()
+                .get(INDEX_FIRST_TEAM.getZeroBased()).getTasks().getSize() + 1);
         TaskDeleteCommand taskDeleteCommand = new TaskDeleteCommand(INDEX_FIRST_TEAM, outOfBoundIndex);
 
         assertCommandFailure(taskDeleteCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
