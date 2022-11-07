@@ -1,7 +1,7 @@
 # Kian Seong's Portfolio Page
 
 ## Arrow
-*Arrow** is a **desktop app** that **help software project managers keep track of their members’ tasks and deliverables**. By associating tasks to specific teammates, users can **keep track of what needs to be done and have quick access to contact information should they wish to reach out to the teammate**. More specifically, apart from the _command box_, there are two main lists which store the tasks list and the teammates list. In this way, our users can use two lists to organize the team project easily.
+**Arrow** is a **desktop app** that **help software project managers keep track of their members’ tasks and deliverables**. By associating tasks to specific teammates, users can **keep track of what needs to be done and have quick access to contact information should they wish to reach out to the teammate**. More specifically, apart from the _command box_, there are two main lists which store the tasks list and the teammates list. In this way, our users can use two lists to organize the team project easily.
 
 ## Summary of Contributions
 
