@@ -363,6 +363,38 @@ The following sequence diagram demonstrates the above operations (excluding the 
     - Pros: Easier to implement.
     - Cons: It is harder to add and remove comments from each tutor, as the previous comments need to be copied and then added manually by the user.
 
+### Delete Comment feature
+
+This command deletes a comment from a tutor in `Tuthub`'s displayed list.
+
+<ins>Implementation</ins>
+
+The `deletecomment` command involves the logic and model part of Tuthub.
+Most updates are made within the `ModelManager`, which are:
+
+Given below is an example usage scenario when the user enters a `deletecomment` command in the command box and how the comment is removed from the tutor.
+
+Step 1: The user enters the command `deletecomment 1 1`.
+
+Step 2: The `TuthubParser` verifies the `DeleteCommentCommand#COMMAND_WORD`, and requests `DeleteCommentCommandParser` to parse.
+The `DeleteCommentCommandParser` verifies the appropriateness of the user input (`tutorIndex` and `commentIndex`).
+In this case, the `tutorIndex` and `commentIndex` are both set to 1.
+
+Step 3: Upon parsing, a new `DeleteCommentCommand` is created based on the tutorIndex and the commentIndex.
+
+Step 4: In the `DeleteCommentCommand` execution, the `model#getFilteredTutorList` is called upon to retrieve the list of displayed tutors.
+The tutor whose index matches the `tutorIndex` is then stored. 
+In this case, the first tutor is selected.
+
+Step 5: For this tutor, the `tutor#getComments` is called upon to retrieve the `CommentList` of the tutor. 
+
+Step 6: The `CommentList` retrieves the `Comment` that is at the index specified by `commentIndex`.
+This comment is then deleted from the `CommentList`.
+In this case, the first comment of the first tutor is deleted.
+
+The following sequence diagram demonstrates the above operations (excluding the parsing details):
+
+![DeleteCommentSequenceDiagram](./images/DeleteCommentSequenceDiagram.png)
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
