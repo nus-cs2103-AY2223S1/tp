@@ -9,9 +9,9 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* This application is built on code from the [AddressBook-Level3](https://github.com/nus-cs2103-AY2223S1/tp) project created by SE-EDU 
+* This application is built on code from the [AddressBook-Level3](https://github.com/nus-cs2103-AY2223S1/tp) project created by SE-EDU
 initiative at [https://se-education.org/](https://se-education.org/)
-* Libraries used in our application: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), 
+* Libraries used in our application: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson),
 [JUnit5](https://github.com/junit-team/junit5)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -156,7 +156,7 @@ Classes used by multiple components are in the `tracko.commons` package.
 
 ## **Implementation**
 
-This section describes some noteworthy details on how certain features are implemented. 
+This section describes some noteworthy details on how certain features are implemented.
 
 ### Inventory Management
 
@@ -166,13 +166,13 @@ to form the backbone of the application, allowing for efficient and reliable tra
 #### Overview
 
 As per the Model diagram given [above](#model-component), the application keeps track of one `InventoryList`
-at any point in time. This `InventoryList` instance represents the container that keeps track of all inventory item 
+at any point in time. This `InventoryList` instance represents the container that keeps track of all inventory item
 data in the system.
 
-Currently, the application features 5 main operations that interact directly with the `InventoryList`. They are 
+Currently, the application features 5 main operations that interact directly with the `InventoryList`. They are
 represented by the following commands:
 * [`AddItemCommand`](#add-item-feature) - creates a new item to be added to the `InventoryList`
-* [`FindItemCommand`](#find-item-feature) - filters and display matching items from the `InventoryList` based on 
+* [`FindItemCommand`](#find-item-feature) - filters and display matching items from the `InventoryList` based on
 provided keywords
 * [`ListItemCommand`](#list-items-feature) - display all inventory data from the `InventoryList`
 * [`EditItemCommand`](#edit-item-feature) - edit the data of an item from the `InventoryList`
@@ -188,7 +188,7 @@ The `InventoryItem` class encapsulates item-related data packaged in the followi
 
 ### Add Item Feature
 
-The add item feature allows users to add an `InventoryItem` to be tracked by the system. 
+The add item feature allows users to add an `InventoryItem` to be tracked by the system.
 
 #### Implementation
 
@@ -202,22 +202,22 @@ The initial state of TrackO Model before running add item command will be as suc
 ![AddItemState0](images/developer-guide/AddItemState0.png)
 
 Step 2. The user executes `addi i/Key q/200 d/Cabinet keys sp/9.90 cp/4.90 t/new` command to add 200 keys to the inventory list in TrackO.
-The `addi` command creates an `AddItemCommandParser` which checks that the following input arguments are present 
-before parsing the arguments into an `AddItemCommand` object: 
+The `addi` command creates an `AddItemCommandParser` which checks that the following input arguments are present
+before parsing the arguments into an `AddItemCommand` object:
 * item name (prefixed by `i/`)
-* quantity (prefixed by `q/`) 
+* quantity (prefixed by `q/`)
 * description (prefixed by `d/`)
 * sell price (prefixed by `sp/`)
 * cost price (prefied by `cp`)
 
-Tags (which are prefixed by `t/`) are optional inputs and will be parsed into the `AddItemCommand` 
+Tags (which are prefixed by `t/`) are optional inputs and will be parsed into the `AddItemCommand`
 as well if they are present.
 
 The `AddItemCommand` calls `Model#addItem()` to add the item and its corresponding quantity into the inventory list.
 
 ![AddItemState1](images/developer-guide/AddItemState1.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution,
 it will not call `Model#addItem()`, so the incomplete item will not be saved to `InventoryList`.
 
 </div>
@@ -226,7 +226,7 @@ The following sequence diagram shows how the add item operation works:
 
 ![AddItemSequenceDiagram](images/developer-guide/AddItemSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddItemCommand` should 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddItemCommand` should
 end at the <i>destroy marker</i> (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
@@ -265,8 +265,8 @@ The sequence diagram below illustrates this process.
 
 ![EditItemSequenceDiagram](images/developer-guide/DeleteItemSequenceDiagram.png)
 <div markdown="span" class="alert alert-info">
-:information_source: **Note:** The lifeline for `DeleteItemCommandParser` and `DeleteItemCommand` should end at 
-the <i>destroy marker</i> (X) but due to a limitation of PlantUML, the lifeline reaches the 
+:information_source: **Note:** The lifeline for `DeleteItemCommandParser` and `DeleteItemCommand` should end at
+the <i>destroy marker</i> (X) but due to a limitation of PlantUML, the lifeline reaches the
 end of diagram.
 </div>
 
@@ -274,7 +274,7 @@ end of diagram.
 
 **Aspect: How deletei is implemented**
 - **Alternative 1 (current choice)**: The command deletes the target `InventoryItem` based on the target `Index`.
-  - Pros: Easier to implement, 
+  - Pros: Easier to implement,
   - Cons: The user must check for the `InventoryItem` for its `Index`.
 - **Alternative 2**: The command can delete `InventoryItem` objects based on their `ItemName`.
   - Pros: User do not need to check for the `InventoryItem` object's `Index`.
@@ -339,7 +339,7 @@ The sequence diagram below illustrates this process.
 ![FindItemSequenceDiagram](images/FindItemSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindItemCommandParser`
-and `FindItemCommand` should end at the <i>destroy marker</i> (X) but due to a limitation of PlantUML, the lifeline 
+and `FindItemCommand` should end at the <i>destroy marker</i> (X) but due to a limitation of PlantUML, the lifeline
 reaches the end of diagram.
 </div>
 
@@ -384,14 +384,14 @@ because having 2 `InventoryItem` with the same `ItemName` can be confusing to th
 situation.
 
 Step 3. The `InventoryItem` at the target index is then replaced by the newly created `InventoryItem` using `Model#setItem()`,
-successfully executing the edit item command in the `Model`. 
+successfully executing the edit item command in the `Model`.
 
 The sequence diagram below illustrates this process.
 
 ![EditItemSequenceDiagram](images/developer-guide/EditItemSequenceDiagram.png)
 <div markdown="span" class="alert alert-info">
-:information_source: **Note:** The lifeline for `EditItemCommandParser` should end at 
-the <i>destroy marker</i> (X) but due to a limitation of PlantUML, the lifeline reaches the 
+:information_source: **Note:** The lifeline for `EditItemCommandParser` should end at
+the <i>destroy marker</i> (X) but due to a limitation of PlantUML, the lifeline reaches the
 end of diagram.
 </div>
 
@@ -536,13 +536,13 @@ Given below is an example usage scenario and how the find order mechanism behave
 Step 1. The user launches the application for the first time. `TrackO` will be initialised with the initial TrackO
 state, and the `OrderList` will contain sample data.
 
-Step 2. The user executes `findo -D -p n/Alex a/Serangoon` command to find the orders which are paid but not 
-delivered made by customer with the `Name` `Alex` and `Address` containing the word `Serangoon`. The `findo` 
-command calls `FindOrderCommandParser` which checks for the correct command syntax and separates the keywords, 
-utilising each space as a delimiter. The keywords are then passed as a `List` into a constructor for 
+Step 2. The user executes `findo -D -p n/Alex a/Serangoon` command to find the orders which are paid but not
+delivered made by customer with the `Name` `Alex` and `Address` containing the word `Serangoon`. The `findo`
+command calls `FindOrderCommandParser` which checks for the correct command syntax and separates the keywords,
+utilising each space as a delimiter. The keywords are then passed as a `List` into a constructor for
 `OrderMatchesFlagsAndPrefixPredicate`, which extends `Predicate<Order>`, to construct a predicate
 that will filter the items according to the keywords. The predicate is passed into a new instance of
-`FindOrderCommand`. `FindOrderCommand` then calls `Model#updateFilteredOrderList()` to filter 
+`FindOrderCommand`. `FindOrderCommand` then calls `Model#updateFilteredOrderList()` to filter
 `Model#filteredOrders` according to the predicate.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the command syntax is incorrect,
@@ -554,7 +554,7 @@ The following sequence diagram shows how the find order command works:
 ![FindOrderSequenceDiagram](images/FindOrderSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindItemCommandParser`
-and `FindItemCommand` should end at the <i>destroy marker</i> (X) but due to a limitation of PlantUML, the lifeline 
+and `FindItemCommand` should end at the <i>destroy marker</i> (X) but due to a limitation of PlantUML, the lifeline
 reaches the end of diagram.
 </div>
 
@@ -568,8 +568,8 @@ The following activity diagram summarizes what happens when a user executes a va
   - Pros: Easier to implement, and users do not have to use prefixes to find items.
   - Cons: Cannot search based on other fields, such as the customer's details (eg. name, address) and order's delivery or payment status.
 - **Alternative 2 (current choice):** The command finds orders based on `ItemName`, `Name`, `Address`, delivery status and payment status.
-  - Pros: More robust searching functionality, allowing users to search by more fields at once. This benefits users with a large customer base. 
-  The ability to search by delivery and payment status also allows users to keep track of the orders which have yet to be paid/delivered. 
+  - Pros: More robust searching functionality, allowing users to search by more fields at once. This benefits users with a large customer base.
+  The ability to search by delivery and payment status also allows users to keep track of the orders which have yet to be paid/delivered.
   - Cons: Harder to implement.
 
 ### Edit Order Feature
@@ -584,13 +584,13 @@ Given below is an example usage scenario and how the `EditOrderCommand` mechanis
 
 Step 1. The user inputs `edito 3 n/John Doe i/Banana q/5`. The following methods are called, in the given order:
 1. `LogicManager#execute`, which then calls
-2. `TrackOParser#parseCommand`. It will parse the input as an `EditOrderCommand` and call the constructor of 
+2. `TrackOParser#parseCommand`. It will parse the input as an `EditOrderCommand` and call the constructor of
 `EditOrderCommandParser`.
 3. `EditOrderCommandParser#parse` will parse the user command based on the prefixes given by the user, and returns an
-`EditOrderCommand` with the target index and `EditOrderDescriptor` as input. 
+`EditOrderCommand` with the target index and `EditOrderDescriptor` as input.
 
-The `EditOrderDescriptor` contains information that a newly edited order should have; in this case, 
-it contains a `Name`, `InventoryItem`, and `Quantity`. The rest of the fields that are not provided are copied from the existing 
+The `EditOrderDescriptor` contains information that a newly edited order should have; in this case,
+it contains a `Name`, `InventoryItem`, and `Quantity`. The rest of the fields that are not provided are copied from the existing
 order at target index `3` (This index is **one-based**).
 
 Step 2. `EditOrderCommand#execute` is called, and it will check whether the `orderToEdit` is completed; if it is, it
@@ -604,24 +604,24 @@ Step 3. The `EditOrderCommand#createEditedOrder` creates an edited order using t
   *This is because customers cannot order things that are not in stock*.
   - If it exists, the method will keep running.
 - **the `InventoryItem` exists in the `Order`'s list of ordered items, which is stored as a `List<ItemQuantityPair>`.** This is
-done by `InventoryItem#isSameItem`, which returns true if both the newly inputted `InventoryItem` and the `InventoryItem` referenced in 
+done by `InventoryItem#isSameItem`, which returns true if both the newly inputted `InventoryItem` and the `InventoryItem` referenced in
 `ItemQuantityPair` share the same `ItemName` (case-insensitive).
   - If it does not exist, then the `InventoryItem` and `Quantity` will form a
     new instance of `ItemQuantityPair` which will be added to the `List<ItemQuantityPair>`.
   - If it exists, it will check whether:
     - The `Quantity` is `0`. If it is, then:
-      - If the order's list of ordered items has more than one `ItemQuantityPair` will be removed from the 
+      - If the order's list of ordered items has more than one `ItemQuantityPair` will be removed from the
       `List<ItemQuantityPair>`.
       - If the order's list of ordered items has only one `ItemQuantityPair`, then a `CommandException` with
       `MESSAGE_ONE_ORDERED_ITEM` will be thrown. This is because **an order cannot have zero ordered items**.
-    - The newly inputted`Quantity` is different from the existing `Quantity`. If it is, then it will update 
+    - The newly inputted`Quantity` is different from the existing `Quantity`. If it is, then it will update
 to the newly inputted `Quantity`.
       - Otherwise, a `CommandException` with `MESSAGE_NO_CHANGE_IN_QUANTITY` will be thrown. This is to warn users that
       the newly inputted `Quantity` is the same as the existing `Quantity` and does not update the `Quantity` field at
-      all. 
+      all.
 
-Step 4. The `Order` at the target index is then replaced by the newly created `Order` using `Model#setOrder()`, 
-successfully executing the edit order command in the `Model`. `Model#refreshData` is called to refresh the GUI, and 
+Step 4. The `Order` at the target index is then replaced by the newly created `Order` using `Model#setOrder()`,
+successfully executing the edit order command in the `Model`. `Model#refreshData` is called to refresh the GUI, and
 `Model#updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS)` is called to update the list to show all orders.
 `EditOrderCommand#execute()` returns a `CommandResult` to the `LogicManager`.
 
@@ -629,14 +629,14 @@ The sequence diagram below illustrates this process.
 
 ![EditOrderSequenceDiagram](images/EditOrderSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `EditOrderCommandParser` 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `EditOrderCommandParser`
 and `EditOrderCommand` should end at the <i>destroy marker</i> (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 #### Design Considerations
 
 **Aspect: Whether to implement the edit order feature**
-- **Alternative 1 (current choice)**: The command is implemented and edits the order based on the prefixes 
+- **Alternative 1 (current choice)**: The command is implemented and edits the order based on the prefixes
 inputted by the user.
   - Pros: The user can edit only the fields that they want to edit.
   - Cons: The user may have to input long commands.
@@ -671,8 +671,8 @@ The sequence diagram below illustrates this process.
 
 ![SortOrdersSequenceDiagram](images/developer-guide/SortOrdersSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SortOrdersCommandParser` and `SortOrdersCommand` 
-should end at the <i>destroy marker</i> (X) but due to a limitation of PlantUML, the lifeline 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SortOrdersCommandParser` and `SortOrdersCommand`
+should end at the <i>destroy marker</i> (X) but due to a limitation of PlantUML, the lifeline
 reaches the end of diagram.
 </div>
 
