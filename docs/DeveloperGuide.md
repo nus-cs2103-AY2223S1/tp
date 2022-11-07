@@ -455,7 +455,7 @@ Given below is how the sort mechanism behaves at each step.
 Sort by salary:
 
 1. The `LogicManager` executes the `SortSalaryCommand`.
-2. The `SortSalaryCommand` checks if the `ORDER_TYPE` is a or d.
+2. The `SortSalaryCommand` checks if the `ORDER_TYPE` is `a` or `d`.
 3. If the `ORDER_TYPE` is a, then `Model#ascendSortSalary()` is called. If the `ORDER_TYPE` is d, then
 `Model#descendSortSalary()` is called.
 
