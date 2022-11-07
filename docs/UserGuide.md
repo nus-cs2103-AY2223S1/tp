@@ -7,10 +7,6 @@ title: User Guide
 {:toc}
 ---
 
-<head>
-<link rel="icon" href="images/checkUp_512.png">
-</head>
-
 ![banner](images/ug-images/editCommand/checkUp_banner.png)
 
 **checkUp is the perfect desktop app for healthcare establishments**. If you are a healthcare worker looking for an app to better manage 
