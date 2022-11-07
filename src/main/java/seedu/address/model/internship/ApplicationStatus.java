@@ -14,7 +14,7 @@ public enum ApplicationStatus {
     Rejected("rejected");
 
     public static final String MESSAGE_CONSTRAINTS = "Application status can be Accepted, Applied, Shortlisted,"
-            + " Interviewed or Rejected. ";
+            + " Interviewed or Rejected.";
 
     private final String status;
 
@@ -45,8 +45,8 @@ public enum ApplicationStatus {
     /**
      * Returns true if a given string is a valid application status.
      *
-     * @param test The given string.
-     * @return true if valid.
+     * @param test String to check if valid application status.
+     * @return True if valid application status, false otherwise.
      */
     public static boolean isValidApplicationStatus(String test) {
         for (ApplicationStatus applicationStatus : ApplicationStatus.values()) {

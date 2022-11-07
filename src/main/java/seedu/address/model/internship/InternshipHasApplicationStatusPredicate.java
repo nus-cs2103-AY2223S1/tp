@@ -1,5 +1,7 @@
 package seedu.address.model.internship;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.function.Predicate;
 
 /**
@@ -8,7 +10,13 @@ import java.util.function.Predicate;
 public class InternshipHasApplicationStatusPredicate implements Predicate<Internship> {
     private final ApplicationStatus applicationStatus;
 
+    /**
+     * Constructs an {@code InternshipHasApplicationStatusPredicate}.
+     *
+     * @param applicationStatus The {@code ApplicationStatus} to use as filter.
+     */
     public InternshipHasApplicationStatusPredicate(ApplicationStatus applicationStatus) {
+        requireNonNull(applicationStatus);
         this.applicationStatus = applicationStatus;
     }
 

@@ -17,6 +17,13 @@ public class AppliedDateTest {
 
     @Test
     public void constructor_invalidAppliedDate_throwsIllegalArgumentException() {
+        // empty date
+        assertThrows(IllegalArgumentException.class, () -> new AppliedDate(""));
+
+        // blank date
+        assertThrows(IllegalArgumentException.class, () -> new AppliedDate(" "));
+
+        // invalid date
         assertThrows(IllegalArgumentException.class, () -> new AppliedDate(TypicalDateTimes.SECOND_INVALID_DATE));
     }
 

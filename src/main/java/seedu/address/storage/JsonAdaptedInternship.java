@@ -59,8 +59,6 @@ class JsonAdaptedInternship {
      * Converts a given {@code Internship} into this class for Jackson use.
      */
     public JsonAdaptedInternship(Internship source) {
-
-
         company = source.getCompany().value;
         link = source.getLink().value;
         description = source.getDescription().value;
@@ -141,7 +139,7 @@ class JsonAdaptedInternship {
         }
 
 
-        if (interviewDateTime == "") {
+        if (interviewDateTime.isBlank()) {
             return new Internship(modelCompany, modelLink, modelDescription,
                 modelApplicationStatus, modelAppliedDate, null, modelTags);
         } else if (!InterviewDateTime.isValidFormat(interviewDateTime)) {

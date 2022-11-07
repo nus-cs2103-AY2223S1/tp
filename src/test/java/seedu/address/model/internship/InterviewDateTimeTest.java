@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.time.format.DateTimeParseException;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.TypicalDateTimes;
@@ -17,6 +19,12 @@ public class InterviewDateTimeTest {
 
     @Test
     public void constructor_invalidInterviewDateTime_throwsIllegalArgumentException() {
+        // empty date and time
+        assertThrows(DateTimeParseException.class, () -> new InterviewDateTime(""));
+
+        // blank date and time
+        assertThrows(IllegalArgumentException.class, () -> new InterviewDateTime(" "));
+
         // valid date and invalid time
         assertThrows(IllegalArgumentException.class, () -> new InterviewDateTime(TypicalDateTimes.SECOND_VALID_DATE
                 + " " + TypicalDateTimes.FIRST_INVALID_TIME));
@@ -28,9 +36,6 @@ public class InterviewDateTimeTest {
 
     @Test
     public void isValidInterviewDateTime() {
-        // null interview date time
-        assertThrows(NullPointerException.class, () -> InterviewDateTime.isValidInterviewDateTime(null));
-
         // invalid date
         assertFalse(InterviewDateTime.isValidInterviewDateTime(TypicalDateTimes.FIRST_INVALID_DATE
                 + " " + TypicalDateTimes.FIRST_VALID_TIME)); // only MMM or M allowed for month
@@ -51,8 +56,9 @@ public class InterviewDateTimeTest {
         assertFalse(InterviewDateTime.isValidInterviewDateTime(TypicalDateTimes.FIRST_VALID_DATE
                 + " " + TypicalDateTimes.THIRD_INVALID_TIME)); // space missing
 
-        // empty interview date time
+        // empty and blank interview date time
         assertFalse(InterviewDateTime.isValidInterviewDateTime(""));
+        assertFalse(InterviewDateTime.isValidInterviewDateTime(" "));
 
         // valid interview date time
         assertTrue(InterviewDateTime.isValidInterviewDateTime(TypicalDateTimes.FIRST_VALID_DATE

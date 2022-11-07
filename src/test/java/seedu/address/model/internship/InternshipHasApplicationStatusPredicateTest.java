@@ -2,12 +2,18 @@ package seedu.address.model.internship;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.InternshipBuilder;
 
 public class InternshipHasApplicationStatusPredicateTest {
+
+    @Test
+    public void constructor_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new InternshipHasApplicationStatusPredicate(null));
+    }
 
     @Test
     public void equals() {

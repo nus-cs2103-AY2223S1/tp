@@ -1,5 +1,7 @@
 package seedu.address.model.internship;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -12,11 +14,12 @@ public class ContainsKeywordsPredicate implements Predicate<Internship> {
     private final List<String> keywords;
 
     /**
-     * Constructs a new ContainsKeywordsPredicate.
+     * Constructs a new {@code ContainsKeywordsPredicate}.
      *
-     * @param keywords List of keywords.
+     * @param keywords The list of keywords to search for.
      */
     public ContainsKeywordsPredicate(List<String> keywords) {
+        requireNonNull(keywords);
         this.keywords = keywords;
     }
 

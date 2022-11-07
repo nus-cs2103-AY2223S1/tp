@@ -111,6 +111,8 @@ public class InternshipCard extends UiPart<Region> {
      * @param tagName The tag name.
      */
     private void formatAndAddTag(String tagName) {
+        assert !tagName.isBlank() : "tag name is blank";
+
         Tooltip tagTooltip = new Tooltip(tagName);
         tagTooltip.setShowDelay(TOOLTIP_DELAY);
 
