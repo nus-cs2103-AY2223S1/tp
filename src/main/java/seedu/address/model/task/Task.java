@@ -13,7 +13,7 @@ import seedu.address.model.tag.PriorityTag;
 import seedu.address.model.tag.exceptions.DeadlineTagAlreadyExistsException;
 import seedu.address.model.tag.exceptions.DeadlineTagDoesNotExistException;
 import seedu.address.model.tag.exceptions.DeadlineTagUnchangedException;
-import seedu.address.model.tag.exceptions.PriorityTagAlreadyExistsException;;
+import seedu.address.model.tag.exceptions.PriorityTagAlreadyExistsException;
 import seedu.address.model.tag.exceptions.PriorityTagDoesNotExistException;
 import seedu.address.model.tag.exceptions.PriorityTagUnchangedException;
 import seedu.address.model.task.exceptions.TaskAlreadyMarkedException;

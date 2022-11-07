@@ -12,6 +12,8 @@ import seedu.address.model.task.Task;
  * listView.
  */
 public class TaskCard extends UiPart<Region> {
+    //@@author dlimyy-reused
+    //Reused with minor modifications from AddressBook 3
     private static final String FXML = "TaskListCard.fxml";
 
     public final Task task;
@@ -68,4 +70,5 @@ public class TaskCard extends UiPart<Region> {
             examDescription.setManaged(false);
         }
     }
+    //@@author
 }

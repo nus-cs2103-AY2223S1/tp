@@ -2,13 +2,14 @@ package seedu.address.logic.parser;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CRITERIA;
 
+import java.util.logging.Logger;
+
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.SortTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Criteria;
 
-import java.util.logging.Logger;
 
 /**
  * SortTaskCommandParser represents a parser which parses the arguments

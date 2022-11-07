@@ -9,6 +9,9 @@ import static seedu.address.testutil.TypicalTasks.TASK_A;
 import static seedu.address.testutil.TypicalTasks.TASK_B;
 import static seedu.address.testutil.TypicalTasks.TASK_D;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.EditTaskCommand;
@@ -28,10 +31,6 @@ import seedu.address.testutil.DeadlineTagBuilder;
 import seedu.address.testutil.EditTaskDescriptorBuilder;
 import seedu.address.testutil.PriorityTagBuilder;
 import seedu.address.testutil.TaskBuilder;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 public class TaskTest {
 
@@ -89,7 +88,7 @@ public class TaskTest {
     public void setDeadlineTag_taskAlreadyHasDeadlineTag_throwDeadlineTagAlreadyExistsException() {
         Task task = new TaskBuilder().withDeadlineTag(new DeadlineTagBuilder()
                 .build()).build();
-        LocalDate date = LocalDate.parse("25-12-2023",  DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+        LocalDate date = LocalDate.parse("25-12-2023", DateTimeFormatter.ofPattern("dd-MM-yyyy"));
         DeadlineTag deadlineTag = new DeadlineTagBuilder().withDeadline(date).build();
         assertThrows(DeadlineTagAlreadyExistsException.class, () -> task.setDeadlineTag(deadlineTag));
     }

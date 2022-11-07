@@ -20,10 +20,10 @@ import seedu.address.model.tag.PriorityTag;
  * create a EditTagCommand object.
  */
 public class EditTagCommandParser implements Parser<EditTagCommand> {
-    private final Logger logger = LogsCenter.getLogger(EditTagCommand.class);
     public static final String INVALID_INDEX_EDIT_TAG = "The index for tagedit should be an unsigned "
             + "positive integer greater than 0 "
             + "and lesser than 2147483648.";
+    private final Logger logger = LogsCenter.getLogger(EditTagCommand.class);
 
     @Override
     public EditTagCommand parse(String args) throws ParseException {
@@ -37,6 +37,7 @@ public class EditTagCommandParser implements Parser<EditTagCommand> {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
                     EditTagCommand.MESSAGE_USAGE));
         }
+
         if (!areAnyPrefixesPresent(argumentMultimap, PREFIX_PRIORITY_STATUS, PREFIX_DEADLINE)) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
                     EditTagCommand.MESSAGE_USAGE));

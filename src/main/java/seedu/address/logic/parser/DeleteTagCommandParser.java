@@ -15,9 +15,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * Parses the user input for the command to create a DeleteTagCommand object.
  */
 public class DeleteTagCommandParser implements Parser<DeleteTagCommand> {
-    private final Logger logger = LogsCenter.getLogger(DeleteTagCommand.class);
     public static final String INVALID_INDEX_FOR_DELETE_TAG = "The index for tagdel should"
             + " be an unsigned positive integer greater than 0 and lesser than 2147483648.";
+    private final Logger logger = LogsCenter.getLogger(DeleteTagCommand.class);
     @Override
     public DeleteTagCommand parse(String userInput) throws ParseException {
         logger.info("Parsing arguments for DeleteTagCommand.");

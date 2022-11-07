@@ -13,6 +13,9 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_PRIORITY_TAG_TASK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TASK;
 import static seedu.address.testutil.TypicalTasks.getTypicalAddressBook;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
@@ -28,9 +31,6 @@ import seedu.address.model.task.Task;
 import seedu.address.testutil.DeadlineTagBuilder;
 import seedu.address.testutil.PriorityTagBuilder;
 import seedu.address.testutil.TaskBuilder;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 /**
  * Integration test for AddTagCommandTest together with some unit testing
