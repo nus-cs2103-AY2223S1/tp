@@ -3,6 +3,8 @@ package seedu.boba.ui;
 import static seedu.boba.commons.util.AppUtil.getImage;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -20,9 +22,9 @@ public class CalculatorWindow extends UiPart<Stage> {
     private static final String FXML = "CalculatorWindow.fxml";
     private static final Logger logger = LogsCenter.getLogger(CalculatorWindow.class);
     private static final String ICON_APPLICATION = "/images/calculator.png";
-    private BigDecimal left;
+    private BigDecimal numberDisplaying;
     private String selectedOperator;
-    private boolean numberInputting;
+    private boolean isInputtingNumber;
 
     @FXML
     private TextField display;
@@ -34,9 +36,9 @@ public class CalculatorWindow extends UiPart<Stage> {
      */
     public CalculatorWindow(Stage root) {
         super(FXML, root);
-        this.left = BigDecimal.ZERO;
+        this.numberDisplaying = BigDecimal.ZERO;
         this.selectedOperator = "";
-        this.numberInputting = false;
+        this.isInputtingNumber = false;
 
         //Set the application icon.
         root.getIcons().add(getImage(ICON_APPLICATION));
@@ -74,6 +76,30 @@ public class CalculatorWindow extends UiPart<Stage> {
     }
 
     /**
+     * Calculate +, -, *, / operations
+     * @param operator Operator to be used to perform calculation
+     * @param leftOperand Left operand (number)
+     * @param rightOperand Right operand (number)
+     * @return Result of calculation
+     */
+    static BigDecimal calculate(String operator, BigDecimal leftOperand, BigDecimal rightOperand) {
+        switch (operator) {
+        case "＋":
+            return leftOperand.add(rightOperand);
+        case "－":
+            return leftOperand.subtract(rightOperand);
+        case "×":
+            return leftOperand.multiply(rightOperand);
+        case "÷":
+            return leftOperand.divide(rightOperand, 2, RoundingMode.HALF_UP);
+        default:
+        }
+        // Trivial. Will not reach here
+        return leftOperand;
+    }
+
+
+    /**
      * Returns true if the calculator window is currently being shown.
      */
     public boolean isShowing() {
@@ -97,61 +123,56 @@ public class CalculatorWindow extends UiPart<Stage> {
     /**
      * Handle the bottom clicks on calculator.
      * Reused from https://gist.github.com/argius/08834fab73b91de8d79b
-     * with modifications.
-     * @param evt User actions
+     * with modifications to fix some bugs
+     * @param event User actions (Clicks on buttons)
      */
     @FXML
-    protected void handleOnAnyButtonClicked(ActionEvent evt) {
-        Button button = (Button) evt.getSource();
+    protected void handleOnAnyButtonClicked(ActionEvent event) {
+        Button button = (Button) event.getSource();
         final String buttonText = button.getText();
-        if (buttonText.equals("C") || buttonText.equals("AC")) {
-            if (buttonText.equals("AC")) {
-                left = BigDecimal.ZERO;
-            }
-            selectedOperator = "";
-            numberInputting = false;
-            display.setText("0");;
-            return;
-        }
+        // The button clicked is a number
         if (buttonText.matches("[0-9\\.]")) {
-            if (!numberInputting) {
-                numberInputting = true;
+            if (!isInputtingNumber) {
+                isInputtingNumber = true;
                 display.clear();
             }
             display.appendText(buttonText);
             return;
         }
+        // The button clicked is an operator
         if (buttonText.matches("[＋－×÷]")) {
-            left = new BigDecimal(display.getText());
+            numberDisplaying = new BigDecimal(display.getText());
             selectedOperator = buttonText;
-            numberInputting = false;
+            isInputtingNumber = false;
             return;
         }
         if (buttonText.equals("=")) {
-            final BigDecimal right = numberInputting ? new BigDecimal(display.getText()) : left;
+            final BigDecimal rightOperand = isInputtingNumber
+                    ? new BigDecimal(display.getText())
+                    : numberDisplaying;
+            final BigDecimal leftOperand = numberDisplaying;
             try {
-                left = calculate(selectedOperator, left, right);
-                display.setText(left.toString());
+                numberDisplaying = calculate(selectedOperator, leftOperand, rightOperand);
+                DecimalFormat df = new DecimalFormat("#.##");
+                // May round 5 to 0 sometimes without this line
+                df.setRoundingMode(RoundingMode.HALF_UP);
+                String resultToDisplay = df.format(numberDisplaying);
+                display.setText(resultToDisplay);
             } catch (ArithmeticException ae) {
+                // Division by zero
                 display.setText("∞");
             }
-            numberInputting = false;
+            isInputtingNumber = false;
+            return;
+        }
+        // The button clicked is clear/all-clear
+        if (buttonText.equals("C") || buttonText.equals("AC")) {
+            if (buttonText.equals("AC")) {
+                numberDisplaying = BigDecimal.ZERO;
+            }
+            selectedOperator = "";
+            isInputtingNumber = false;
+            display.setText("0");
         }
     }
-
-    static BigDecimal calculate(String operator, BigDecimal left, BigDecimal right) {
-        switch (operator) {
-        case "＋":
-            return left.add(right);
-        case "－":
-            return left.subtract(right);
-        case "×":
-            return left.multiply(right);
-        case "÷":
-            return left.divide(right);
-        default:
-        }
-        return right;
-    }
-
 }
