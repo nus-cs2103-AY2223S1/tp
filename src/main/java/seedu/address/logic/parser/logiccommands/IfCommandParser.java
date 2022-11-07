@@ -23,14 +23,11 @@ public class IfCommandParser implements Parser<IfCommand> {
     public IfCommand parse(String userInput) throws ParseException {
         // "[[logical commands]] ;; [[if true command]] ;; [[if else command]]"
         userInput = userInput.trim();
-        System.out.println(userInput);
         String check;
         String ifTrue;
         String ifFalse = null;
         Matcher m = WITH_ELSE.matcher(userInput);
         Matcher mElse = NO_ELSE.matcher(userInput);
-        System.out.println(m.matches());
-        System.out.println(mElse.matches());
         if (m.matches()) {
             check = m.group("ifcheck");
             ifTrue = m.group("true");

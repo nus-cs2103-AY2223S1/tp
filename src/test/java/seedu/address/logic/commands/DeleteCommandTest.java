@@ -7,7 +7,6 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,6 +21,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.item.DisplayItem;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.PersonOutOfBoundException;
+import seedu.address.testutil.TypicalPersons;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for {@code DeleteCommand}.
@@ -31,7 +31,7 @@ public class DeleteCommandTest {
     private static final Changer<Person> P_DELETER = (m, item) -> m.deletePerson(item);
     private static final java.util.function.Predicate<Object> P_TESTER = o -> o instanceof Person;
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {

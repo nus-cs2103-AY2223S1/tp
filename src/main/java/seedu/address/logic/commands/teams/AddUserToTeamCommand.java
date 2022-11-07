@@ -62,7 +62,7 @@ public class AddUserToTeamCommand extends PureCommand {
         try {
             user.setParent(grp);
         } catch (ItemCannotBeParentException e) {
-            throw new CommandException(e.getMessage());
+            throw new CommandException(String.format("%s is already in the group!", user.getName()));
         }
         return new CommandResult(String.format(ASSIGN_SUCCESS, user, grp));
     }
