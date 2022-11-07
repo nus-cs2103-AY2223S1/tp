@@ -9,6 +9,9 @@ title: User Guide
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
+
 ## 1. Introducing WorkBook
 
 Welcome to WorkBook! :wave:
@@ -46,8 +49,11 @@ It consists of a step-by-step installation guide and an explanation of the key G
 |:------------------------------:|:-------------------------------------:|
 | ![wide layout](images/Ui2.png) | ![narrow layout](images/UiNarrow.png) |
 
-5. Tell WorkBook what you want to do by typing your command in `Enter command here...` at the top of the application and pressing <kbd>⏎ Enter</kbd> to execute it.
+5. Tell WorkBook what you want to do by typing your command in `Enter command here...` at the top of the application and pressing <kbd>Enter</kbd> on your keyboard to execute it.
+
 6. Before diving right into using WorkBook, familiarise yourself with the [things to note](#4-things-to-note) to not hinder your tracking process!
+
+<div style="page-break-after: always;"></div>
 
 ### 2.1 Understanding WorkBook's GUI
 
@@ -85,10 +91,6 @@ For the narrow layout, everything else is the same except for the labelled light
 
 **Highlights** <br>
 `commands` or `PARAMETERS`
-
-**Keyboard Inputs**<br>
-
-<button>enter</button>   <button>&uarr;</button>   <button>&darr;</button>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -303,25 +305,21 @@ Format: `find c/COMPANY | r/ROLE | s/STAGE`
 Examples:
 * `find r/Engineer` returns `Software Engineer` and `Backend Engineer`:
 
-  | Before                                   |       After      |
-  |:-------------------------:|:-------------------------:|
-  | ![before layout](images/BeforeFindRole.png) |![after layout](images/AfterFindRole.png) |
+|                   Before                    |                   After                   |
+|:-------------------------------------------:|:-----------------------------------------:|
+| ![before layout](images/BeforeFindRole.png) | ![after layout](images/AfterFindRole.png) |
 
 
 ### 5.6. Deleting your internship application
 
-If you wanted to remove an internship application then this command
+If you want to remove an internship application then this command
 deletes the specified internship application from WorkBook.
 
 Format: `delete INDEX`
 
-* Deletes the internship application at the specified `INDEX`.
-* The index refers to the index number shown in the displayed internship application list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-<div markdown="block" class="alert alert-warning">
-**:exclamation: Caution:** The command will only be executed if the index provided corresponds to an internship application.
-</div>
+* Deletes the internship at the specified `INDEX`, which **must be**:
+  * A positive number (1, 2, 3, …​).
+  * Within the number range of your list of internship applications.
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd internship application in WorkBook.
@@ -329,8 +327,10 @@ Examples:
 
 ### 5.7. Clearing your existing internship applications
 
-It's a new cycle of summer internship applications and that means it's time for some spring-cleaning! 
-Use this command to clear all the applications you've previously saved in WorkBook!
+Be it getting ready for a new internship application cycle or wanting to do a general spring-cleaning of your 
+list of internship applications in WorkBook, this command is the one for you!
+
+Use this command to clear all the applications you've previously saved in WorkBook.
 
 Format: `clear`
 
@@ -461,7 +461,7 @@ redoing and how your WorkBook currently looks like!
 
 ### 5.10. Viewing help
 
-Shows a summary of the commands as well as a link to this User Guide.
+This shows a summary of the commands as well as a link to this User Guide.
 
 Format: `help`
 
@@ -478,7 +478,7 @@ Format: `exit`
 ### 6.1. Saving
 
 Conveniently, any inputted command that changes any part of your internship application is **automatically saved**!
-Hence, you need not worry about pressing <kbd>ctrl</kbd> + <kbd>s</kbd> everytime you update your list of internship applications.
+Hence, you need not worry about pressing <kbd>ctrl</kbd> + <kbd>s</kbd> on your keyboard everytime you update your list of internship applications.
 
 ### 6.2. Editing
 
