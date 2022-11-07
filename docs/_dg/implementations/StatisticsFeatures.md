@@ -22,4 +22,4 @@ The `stats` command displays the calculated statistics based on the inventory by
 
 
 ##### Feature Considerations
-The three statistics were chosen as a baseline because they are a good starting point for users to help track their food waste. For example, the user can obtain the total amount of wasted food, which is food whose expiry date has already been passed. Future extensions can include additional statistics, or even provide further arguments to selectively display desired statistics. For example, `stats topThreeMostExpensive` would display the statistics for the top three most expensive items only.
+The three statistics were chosen as a baseline because they are a good starting point for users to help track their food waste. For example, the user can obtain the total amount of wasted food, which is food whose expiry date has already been passed. Future extensions can include additional statistics, or even provide further arguments to selectively display desired statistics. For example, `stats TopThreeMostExpensive` would display the statistics for the top three most expensive items only.
