@@ -145,7 +145,9 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.filterPersonList(new PersonMatchesKeywordsPredicate(keywords.toString()));
+        PersonMatchesKeywordsPredicate predicate = new PersonMatchesKeywordsPredicate();
+        predicate.setKeywords(keywords.toString());
+        modelManager.filterPersonList(predicate);
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests

@@ -76,7 +76,9 @@ public class AddressBookParserTest {
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + keywords,
                 MainPanelName.List);
-        assertEquals(new FindCommand(new PersonMatchesKeywordsPredicate(keywords)), command);
+        PersonMatchesKeywordsPredicate predicate = new PersonMatchesKeywordsPredicate();
+        predicate.setKeywords(keywords);
+        assertEquals(new FindCommand(predicate), command);
     }
 
     @Test

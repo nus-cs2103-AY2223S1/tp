@@ -45,6 +45,18 @@ public class TypicalPersons {
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withAddress("little india").build();
+
+    public static final Person JOON = new PersonBuilder().withName("Joon Smith")
+            .withAddress("little india").withRole("Backend Engineer")
+            .withGithubUser("sh4nH").withTags("friends").build();
+
+    public static final Person FANG = new PersonBuilder().withName("Lee Fang").withAddress("clementi ave")
+            .withRole("Frontend Engineer").withGithubUser("george").withTags("friend").build();
+
+    public static final Person LEE = new PersonBuilder().withName("Lee Chan")
+            .withAddress("little china").withTags("friend").build();
+
+
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withAddress("chicago ave").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
@@ -75,7 +87,19 @@ public class TypicalPersons {
         return ab;
     }
 
+    public static AddressBook getTypicalAddressBookForFindTest() {
+        AddressBook ab = new AddressBook();
+        for (Person person : getTypicalPersonsForFindTest()) {
+            ab.addPerson(person);
+        }
+        return ab;
+    }
+
     public static List<Person> getTypicalPersons() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+    }
+
+    public static List<Person> getTypicalPersonsForFindTest() {
+        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE, JOON, LEE, FANG));
     }
 }
