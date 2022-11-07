@@ -219,6 +219,9 @@ Parameters:
 :information_source: **Note:** `KEYWORD` is case-insensitive.
 </div>
 
+------------------
+<div style="page-break-after: always;"></div>
+
 Examples:
 
 `m find CS` finds modules whose module code contains the `KEYWORD` 'CS' such as 'CS2030S', 'CS2040S'.
@@ -291,9 +294,6 @@ Examples:
 `m edit 1 m/Programming Methodology I mc/4` changes the module name of the first module in the module list to 'Programming Methodology I' and the module credit to '4'.
 
 `m edit 2 c/cs2040 m/Data Structures and Algorithms mc/4` changes the module name of the second module in the module list to ‘Data Structures and Algorithms’, the module code to ‘cs2040’ and the module credit to ‘4’.
-
-------------------
-<div style="page-break-after: always;"></div>
 
 ## Tasks-related Features
 
