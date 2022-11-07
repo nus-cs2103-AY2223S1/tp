@@ -3,7 +3,6 @@ package seedu.taassist.commons.util;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.taassist.commons.util.StringUtil.caseInsensitiveEquals;
 import static seedu.taassist.testutil.Assert.assertThrows;
 
 import java.io.FileNotFoundException;
@@ -139,23 +138,6 @@ public class StringUtilTest {
     @Test
     public void getDetails_nullGiven_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> StringUtil.getDetails(null));
-    }
-
-    //---------------- Tests for getDetails --------------------------------------
-
-    @Test
-    public void caseInsensitiveEquals_sameString_equals() {
-        String testString = "testString";
-        String testString2 = "TestString";
-        assertTrue(caseInsensitiveEquals(testString, testString));
-        assertTrue(caseInsensitiveEquals(testString, testString2));
-    }
-
-    @Test
-    public void caseInsensitiveEquals_differentStrings_notEquals() {
-        String testString = "testString";
-        String differentTestString = "differenttt";
-        assertFalse(caseInsensitiveEquals(testString, differentTestString));
     }
 
     //---------------- Tests for capitalise --------------------------------------

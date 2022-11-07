@@ -39,17 +39,6 @@ public class StringUtil<T> {
     }
 
     /**
-     * Compares two strings case insensitively to see if they are equal.
-     *
-     * @param string1 String involved in comparison.
-     * @param string2 String involved in comparison.
-     * @return True if both strings are equivalent (case insensitively).
-     */
-    public static boolean caseInsensitiveEquals(String string1, String string2) {
-        return string1.toLowerCase().equals(string2.toLowerCase());
-    }
-
-    /**
      * Capitalises the first letter of each word in the trimmed {@code str} and sets the remaining characters
      * to lowercase.
      *
