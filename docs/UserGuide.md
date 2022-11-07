@@ -340,9 +340,9 @@ Examples:
 :bulb: **Tip:** You can sort and filter tasks based on their completion status. The percentage of completed tasks are also shown for each exam and module.
 </div>
 
-| ![MarkTaskCommand](images/MarkTask.png)   |
-|:-----------------------------------------:|
-|     Demonstration of MarkTaskCommand      |
+| ![MarkTaskCommand](images/MarkTask.png) |
+|:---------------------------------------:|
+|    Demonstration of MarkTaskCommand     |
 
 ### Unmarking a task
 Indicates the specified task is not completed.
