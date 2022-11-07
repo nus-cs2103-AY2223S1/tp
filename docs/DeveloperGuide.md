@@ -230,7 +230,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Add a Team Feature
+### Add Team Feature
 
 #### Implementation
 
@@ -250,7 +250,7 @@ shown to the user.
 The following activity diagram summarizes the action taken when the `AddTeamCommand` is executed.
 ![AddTeamActivityDiagram](images/AddTeamActivityDiagram.png)
 
-### Add a Task Feature
+### Add Task Feature
 
 #### Implementation
 
