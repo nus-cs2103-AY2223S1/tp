@@ -4,11 +4,11 @@ title: Zhehao's Project Portfolio Page
 ---
 
 ##### Project: CS2103 tP
-__Overview__: checkUp is a desktop patient medical record management system. The user interacts with it using a CLI, and it has a GUI
+__Overview:__ checkUp is a desktop patient medical record management system. The user interacts with it using a CLI, and it has a GUI
 created with JavaFX. It is written in Java, and has about 15 kLoC.
 
 ###### Summary of contributions
-__Code Contributed__: All my code contribution can be viewed here:
+__Code Contributed:__ All my code contribution can be viewed here:
 [RepoSense Report](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=charles1026&breakdown=true)
 
 ###### Enhancements implemented
@@ -87,6 +87,5 @@ __Code Contributed__: All my code contribution can be viewed here:
 - Ensured team was on schedule to meet deadlines and milestone submissions.
 - Checked for code quality and adherence to coding standards.
 
-###### Review/mentoring contributions
-- Reviewed [PRs](https://github.com/AY2223S1-CS2103T-W16-3/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3A%40me)
+__Review/mentoring contributions:__ Reviewed [PRs](https://github.com/AY2223S1-CS2103T-W16-3/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3A%40me)
   for team members through the SDLC versions.
