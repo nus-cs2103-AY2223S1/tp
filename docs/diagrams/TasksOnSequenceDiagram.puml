@@ -4,24 +4,30 @@
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":UninurseBookParser" as UninurseBookParser LOGIC_COLOR
+participant ":DisplayTasksGenericCommandParser" as DisplayTasksGenericCommandParser LOGIC_COLOR
 participant ":TasksOnCommandParser" as TasksOnCommandParser LOGIC_COLOR
 participant "<<class>>\nDateTime" as DateTimeClass LOGIC_COLOR
 participant ":DateTime" as DateTime LOGIC_COLOR
 participant "t:TasksOnCommand" as TasksOnCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("tasksOn 22-10-2022")
+[-> LogicManager : execute("view 22-10-2022")
 activate LogicManager
 
-LogicManager -> UninurseBookParser : parseCommand("tasksOn 22-10-2022")
+LogicManager -> UninurseBookParser : parseCommand("view 22-10-2022")
 activate UninurseBookParser
 
+create DisplayTasksGenericCommandParser
+UninurseBookParser -> DisplayTasksGenericCommandParser
+activate DisplayTasksGenericCommandParser
+
 create TasksOnCommandParser
-UninurseBookParser -> TasksOnCommandParser
+DisplayTasksGenericCommandParser -> TasksOnCommandParser
 activate TasksOnCommandParser
 
 TasksOnCommandParser -> DateTimeClass : ofDate("22-10-2022")
@@ -43,10 +49,12 @@ activate TasksOnCommand
 TasksOnCommand -> TasksOnCommandParser : t
 deactivate TasksOnCommand
 
-TasksOnCommandParser -> UninurseBookParser : t
+TasksOnCommandParser -> DisplayTasksGenericCommandParser : t
 deactivate TasksOnCommandParser
-TasksOnCommandParser -[hidden]-> AddressBookParser
 destroy TasksOnCommandParser
+DisplayTasksGenericCommandParser -> UninurseBookParser : t
+deactivate DisplayTasksGenericCommandParser
+destroy DisplayTasksGenericCommandParser
 
 UninurseBookParser -> LogicManager : t
 deactivate UninurseBookParser
@@ -54,19 +62,7 @@ deactivate UninurseBookParser
 LogicManager -> TasksOnCommand : execute()
 activate TasksOnCommand
 
-TasksOnCommand -> Model : updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS)
-activate Model
-
-Model -> TasksOnCommand
-deactivate Model
-
-TasksOnCommand -> Model : getFilteredPersonList()
-activate Model
-
-Model -> TasksOnCommand
-deactivate Model
-
-TasksOnCommand -> Model : updateFilteredPersonListWithTasks()
+TasksOnCommand -> Model : setDayOfInterest(dt)
 activate Model
 
 Model -> TasksOnCommand
@@ -76,7 +72,7 @@ create CommandResult
 TasksOnCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> TasksOnCommand
+CommandResult --> TasksOnCommand : result
 deactivate CommandResult
 
 TasksOnCommand --> LogicManager : result

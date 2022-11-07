@@ -166,9 +166,14 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 * each patient has a `TaskList`, which holds `Task` which can be NonRecurringTasks or RecurringTasks. The below Class diagram illustrates their relationship.
-
+  
 <img src="images/TaskClassDiagram.png" width="450" />
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in `UniNurse`, which `Person` references. This allows `UniNurse` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+
+<img src="images/BetterModelClassDiagram.png" width="450" />
+
+</div>
 
 ### Storage component
 
@@ -237,11 +242,10 @@ The following sequence diagrams illustrates the interactions between the `UI`, `
 
 #### Implementation
 
-The `tasksOn` command parses the user input and generates a `DateTime` object, however the time fields are default values since we only care about the particular Date, the it filters each patient by whether they have a 
-task on the given Date. Each patient themselves filter their TaskList to arrive at the conclusion on whether they have a task on the given Date. Then the Model is set to show the filtered Patients, each with their own TaskList to also 
-only the Tasks on the given Date.
+The `view` command when no flags are present, parses the user input and generates a `TasksOnCommand` object which has a `DateTime` object containing the date the user wants the tasks for. 
+When the command is executed, it sets the model to show only the tasks on the day of interest.
 
-The Sequence diagram below shows the execution of a tasksOn command
+The Sequence diagram below shows the execution of a view command with no flags.
 
 ![tasksOnSequenceDiagram](images/TasksOnSequenceDiagram.png)
 
