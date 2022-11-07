@@ -735,7 +735,7 @@ The search is not case-sensitive. For example, `meeting` will match any notes co
 
 Please be informed that only the title will be search. Contents will not be searched through this command. 
 
-Although the title may contain special characters such as `,`, `.`, `?` or `!`, these special characters are not accepted as part of a keyword. This is because punctuation are not normally associated as part of a word. During the parsing of the [title](#title), special charaters are treated as spaces, so adjacent segments of the word containing it are treated as separate words.
+Although the title may contain special characters such as `,`, `.`, `?` or `!`, these special characters are not accepted as part of a keyword. This is because punctuation are not normally associated as part of a word. During the parsing of the [title](#title), special characters are treated as spaces, so adjacent segments of the word containing it are treated as separate words.
   * The keywords `?!` and `t-shirt` will not be allowed, as they contain special characters.
   * `2` will match `shirt 2` but will not match `shirt2`, as `shirt2` is an entire word by itself.
   * To search for `Upcoming club meeting!`, `meeting!` is not allowed as a keyword as it contains a special character, but `meeting` is allowed.
