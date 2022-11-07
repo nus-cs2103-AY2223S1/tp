@@ -1,6 +1,15 @@
 package seedu.address.logic.commands.client;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.parser.predicates.ClientContainsKeywordsPredicate;
@@ -15,14 +24,8 @@ import seedu.address.model.client.ClientMobile;
 import seedu.address.ui.StubUiManager;
 import seedu.address.ui.Ui;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.client.EditClientCommand.MESSAGE_SUCCESS;
+
 
 public class FindClientCommandTest {
     private final Ui stubUi = new StubUiManager();
