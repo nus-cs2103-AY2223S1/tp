@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page-with-header
 title: Xu Daofu's Project Portfolio Page
 ---
 
