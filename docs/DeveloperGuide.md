@@ -27,52 +27,54 @@ The `.puml` files used to create diagrams in this document can be found in the [
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
-The **_Architecture Diagram_** given above explains the high-level design of the App.
+The architecture diagram given above explains the high-level design of the App.
 
 Given below is a quick overview of main components and how they interact with each other.
 
-**Main components of the architecture**
+#### Main Components of the Architecture
 
 **`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-T12-2/tp/blob/master/src/main/java/swift/Main.java) and [`MainApp`](https://github.com/AY2223S1-CS2103T-T12-2/tp/blob/master/src/main/java/swift/MainApp.java). It is responsible for,
 
-- At app launch: Initializes the components in the correct sequence, and connects them up with each other.
-- At shut down: Shuts down the components and invokes cleanup methods where necessary.
+- initializing the components in the correct sequence and connecting them up with each other during the app's launch.
+- shutting down the components and invoking cleanup methods where necessary when closing the app.
 
-[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+The rest of the app consists of four components.
 
-The rest of the App consists of four components.
-
-- [**`UI`**](#ui-component): The UI of the App.
-- [**`Logic`**](#logic-component): The command executor.
-- [**`Model`**](#model-component): Holds the data of the App in memory.
+- [**`UI`**](#ui-component): Displays the user interface of the app.
+- [**`Logic`**](#logic-component): Parses and executes the commands.
+- [**`Model`**](#model-component): Holds the data of the app in memory.
 - [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+ 
+[**`Commons`**](#common-classes) represents a collection of classes used by multiple components.
 
-**How the architecture components interact with each other**
+#### How the architecture components interact with each other
 
-The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The sequence diagram below shows how the components interact with each other for the scenario where the user issues the command `delete_contact 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
 Each of the four main components (also shown in the diagram above),
 
-- defines its _API_ in an `interface` with the same name as the Component.
-- implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point).
+- defines its API in an `interface` with the same name as the component.
+- implements its functionality using a concrete `{Component Name}Manager` class.
 
-For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
+For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class. Other components interact with a given component through its interface, rather than the concrete class. The reasoning is to prevent outside component's from being coupled to the implementation of a component, which is illustrated by the diagram below.
 
 <img src="images/ComponentManagers.png" width="300" />
 
 The sections below give more details of each component.
 
-### UI component
+### UI Component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-T12-2/tp/blob/master/src/main/java/swift/ui/Ui.java)
+The API of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-T12-2/tp/blob/master/src/main/java/swift/ui/Ui.java). 
+
+Here's a partial class diagram of the `UI` component.
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts, e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter`, and etc. All these parts, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-T12-2/tp/blob/master/src/main/java/swift/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-T12-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the [JavaFx](https://openjfx.io/) UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-T12-2/tp/blob/master/src/main/java/swift/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-T12-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -80,30 +82,29 @@ The `UI` component,
 - prompts users with command suggestions and allows them to auto-complete them using the `Logic` component.
 - listens for changes to `Model` data so that the UI can be updated with the modified data.
 - keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-- depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
-- depends on some classes in the `Model` component, as it displays `Task` object located in the `Model`.
+- depends on some classes in the `Model` component, as it displays `Person` and `Task` objects located in the `Model`.
 
-### Logic component
+### Logic Component
 
-**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-T12-2/tp/blob/master/src/main/java/swift/logic/Logic.java)
+The API of this component is specified in [`Logic.java`](https://github.com/AY2223S1-CS2103T-T12-2/tp/blob/master/src/main/java/swift/logic/Logic.java).
 
-Here's a (partial) class diagram of the `Logic` component:
+Here's a partial class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
 
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
-2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddContactCommand`) which is executed by the `LogicManager`.
 3. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 4. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The sequence diagram below illustrates the interactions within the `Logic` component for the `execute("delete_contact 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete_contact 1` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note** <br>
-The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+The lifeline for `DeleteContactCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -112,21 +113,28 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 How the parsing works:
 
-- When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-- All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+- When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddContactCommandParser`) 
+- The `XYZCommandParser` class then uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddContactCommand`), which the `AddressBookParser` returns back as a `Command` object.
+- All `XYZCommandParser` classes (e.g., `AddContactCommandParser`, `DeleteTaskCommandParser`, ...) inherit from the `Parser` interface, so that they can be treated similarly where possible, e.g. during testing.
 
-### Model component
+### Model Component
 
-**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-T12-2/tp/blob/master/src/main/java/swift/model/Model.java)
+The API of this component is specified in [`Model.java`](https://github.com/AY2223S1-CS2103T-T12-2/tp/blob/master/src/main/java/swift/model/Model.java).
+
+Here's a partial class diagram of the `Model` component:
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
+<div markdown="span" class="alert alert-info">:information_source: **Note** <br>
+The `Task` and `PersonTaskBridge` classes are left out of the above diagram for simplicity. Compared to the `Person` class, they follow a similar structure of attribute composition.
+</div>
+
 The `Model` component,
 
-- stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+- stores the address book data, i.e. all `Person` objects (which are contained in a `UniquePersonList` object).
 - stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-- stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-- does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+- stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` object.
+- does not depend on any of the other three components, because the `Model` represents data entities of the domain, and they should make sense on their own without depending on other components.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note** <br>
 An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
@@ -135,17 +143,19 @@ An alternative (arguably, a more OOP) model is given below. It has a `Tag` list 
 
 </div>
 
-### Storage component
+### Storage Component
 
-**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-T12-2/tp/blob/master/src/main/java/swift/storage/Storage.java)
+The API of this component is specified in [`Storage.java`](https://github.com/AY2223S1-CS2103T-T12-2/tp/blob/master/src/main/java/swift/storage/Storage.java).
+
+Here's a partial class diagram of the `Storage` component:
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
 
-- can save both address book data and user preference data in json format, and read them back into corresponding objects.
+- can save both address book data and user preference data in `.json` format, and read them back into corresponding objects.
 - inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-- depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+- depends on some classes in the `Model` component, because the `Storage` component's job is to save/retrieve objects that belong to the `Model`.
 
 ### Common classes
 
@@ -157,100 +167,7 @@ Classes used by multiple components are in the `swift.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-<!---
-# KEEP AS REFERENCE FOR NOW, REMOVE ONCE MORE IMPLEMENTATIONS ARE ADDED #
-
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-- `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-- `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-- `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note** <br>
-If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note** <br>
-If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note** <br>
-The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note** <br>
-If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-- **Alternative 1 (current choice):** Saves the entire address book.
-
-  - Pros: Easy to implement.
-  - Cons: May have performance issues in terms of memory usage.
-
-- **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  - Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  - Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
--->
-
 ### Many-to-many relationship between `Person` and `Task`
-
-<div markdown="span" class="alert alert-info">:information_source: **Note** <br>
-UUID stands for Universally Unique Identifier.
-</div>
 
 The implementation of the contact-task relation is facilitated by `PersonTaskBridge` and `PersonTaskBridgeList`.
 
@@ -269,7 +186,7 @@ The following class diagram summarizes the relationship between `PersonTaskBridg
 
 <img src="images/PersonTaskBridgeDiagram.png" width="250" />
 
-#### Design considerations:
+#### Design Considerations
 
 **Aspect: How `Person` and `Task` are associated with `PersonTaskBridge`:**
 
@@ -282,17 +199,8 @@ The following class diagram summarizes the relationship between `PersonTaskBridg
     - Pros: No change is needed for `Person` and `Task` schema.
     - Cons: Requires changes to `PersonTaskBridge` objects every time a command changes `Person` or `Task` object index.
 
-### Find contacts/tasks
-
-Execution of the `find_task` and `find_contact` commands are similar to other commands, as per described in the [Logic component](#logic-component).
-
-The implementation of finding the contacts/tasks from our model is facilitated by `ContactNameContainsKeywordsPredicate` and `TaskNameContainsKeywordsPredicate`.
-
-`ContactNameContainsKeywordsPredicate` and `TaskNameContainsKeywordsPredicate` implement the interface `Predicate` and test if a contact/task's name contains the given keywords.
-
-The predicates are passed into `Model#updateFilteredContactList` and `Model#updateFilteredTaskList` respectively, which then uses the predicates to filter contacts/tasks containing the given keywords.
-
 ### View tasks details
+
 The implementation of the task tab UI is facilitated by `TaskCard` and `TaskListPanel`.
 
 `TaskCard` and `TaskListPanel` extends the superclass `UiPart<Region>` and fills the UI container with a panel that displays the list of tasks, along with their assigned contacts and deadlines.
@@ -307,35 +215,41 @@ The implementation of Command Suggestions and Command Auto-Completion is facilit
 - `CommandSuggestor#suggestCommand` - Suggests a command with the corresponding syntax based on the user's current input
 - `CommandSuggestor#autocompleteCommand` - Completes the current user input according to the shown command suggestion
 
-## **Documentation, logging, testing, configuration, and dev-ops**
+---
 
-- [Documentation guide](Documentation.md)
-- [Testing guide](Testing.md)
-- [Logging guide](Logging.md)
-- [Configuration guide](Configuration.md)
-- [DevOps guide](DevOps.md)
+## **Documentation, Logging, Dev-ops, Testing, and Configuration**
+
+To understand how to set up and maintain this project website, head over to the [Documentation Guide](Documentation.md).
+
+You can learn how to run tests on Swift+ by going to the [Testing Guide](Testing.md) page.
+
+To learn how to run and release Swift+ using Gradle, please visit the [DevOps Guide](DevOps.md) page.
+
+Please visit the [Logging Guide](Logging.md) to learn how we implement logging.
+
+We also have files to configure properties of the app, which are detailed in the [Configuration Guide](Configuration.md).
 
 ---
 
 ## **Appendix: Requirements**
 
-### Product scope
+This section covers the user requirements we attempt to meet in Swift+.
 
-**Target user profile**:
+### Target User Profile
 
+Swift+ is designed for **software engineering project leads** who,
+- need to keep track of many tasks with clients and colleagues.
+- can type fast.
+- prefer typing to mouse interactions.
+- prefer desktop apps over other types.
 
-Designed for software engineering project leads who ...
-- need to keep track of many tasks and scheduled events with clients and colleagues
-- can type fast
-- prefer typing to mouse interactions
-- prefer desktop apps over other types
+### Value proposition
 
-**Value proposition**: manage tasks and scheduled events with clients and colleagues faster than a typical GUI driven app
+Swift+ allows users to manage tasks with clients and colleagues **faster** than a typical GUI-driven app.
 
 ### User stories
 
-Priorities:
-
+Priority levels:
 - High (must have) - `* * *`
 - Medium (nice to have) - `* *`
 - Low (unlikely to have) - `*`
@@ -475,10 +389,11 @@ Priorities:
 
 ### Glossary
 
-- **Mainstream OS**: Windows, Linux, Unix, OS-X
-- **Private contact detail**: A contact detail that is not meant to be shared with others
-- **Task**: A task that is assigned to a specific contact
-- **Tag**: The relationship between user and contact
+- **API**: Stands for application programming interface, which is a set of definitions and protocols for building and integrating application software.
+- **Bridge**: Maps a relationship between a contact and a task.
+- **GUI**: Stands for graphical user interface, which is a system interface that uses visual icons, menus, and a mouse to manage interactions with the system.
+- **Mainstream OS**: Stands for mainstream operating systems, which includes Windows, Linux, Unix, and OS-X.
+- **UUID**: Stands for universally unique identifier, which is used for identifying information that needs to be unique within a system.
 
 ---
 
