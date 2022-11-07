@@ -58,7 +58,7 @@ illustration of my contributions as well as the relevant documentation I have ad
   - Provided insights on potential implementations to certain features.
   - Assisted in fixing various bugs detected. 
     - Relevant pull request(s): [#117](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/117), [#199](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/199)
-  - Wrote test cases to test coverage of the application
+  - Wrote test cases to test coverage of the application.
     - Contributed to the following test files:
       - `FindOrderCommandParserTest`
       - `PriceTest`
@@ -69,7 +69,8 @@ illustration of my contributions as well as the relevant documentation I have ad
       - `OrderMatchesFlagsAndPrefixPredicateTest`
       - `PhoneTest`
     - Relevant pull request(s): [#209](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/209) <br/>
-
+  - Updated `AboutUs.md` file with relevant roles and responsibilities.
+    - Relevant pull request(s): [#206](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/206)
 - **Review/mentoring contributions**:
   - Provided timely feedback and suggestions to the pull requests of teammates
     - Relevant pull requests: [#211](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/211), 
@@ -77,4 +78,4 @@ illustration of my contributions as well as the relevant documentation I have ad
             
 - **Contributions beyond the project team**:
   - Assisted in detecting an above average number of bugs for other teams and offered solutions to resolving the bugs 
-  detected during the [Practical Exam Dry Run](https://github.com/janelleljt/ped)
+  detected during the [Practical Exam Dry Run](https://github.com/janelleljt/ped).
