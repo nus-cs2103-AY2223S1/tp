@@ -344,9 +344,10 @@ The following sequence diagram summarizes the aforementioned steps.
 | **Option 2** <br> Allow users to find by block keywords | Possibly more accurate searches.         | Higher possibly that search is unsuccessful due to error in keywords. |
 
 ### Mark feature
-FRIDAY allows users to mark the Mastery Checks of certain students as passed.
+#### Rationale
+FRIDAY allows users to mark the Mastery Checks of certain students as passed. This would help the user keep track of which students have already completed and passed their Mastery Checks.
 
-### Implementation
+#### Implementation
 The mark command is implemented by a `MarkMasteryCheckCommand`. The `MasteryCheck` of a student contains a boolean `isPassed`, which is set to false by default for sample students and when a student is added to the list.
 
 Below is an activity diagram depicting the implementation of the mark command.
@@ -371,7 +372,7 @@ The following Sequence Diagram summarises the aforementioned steps.
 
 ![Mark command sequence diagram](images/MarkCommandSequenceDiagram.png)
 
-### Design considerations
+#### Design considerations
 
 **Aspect: Should we allow users to mark empty Mastery Checks as passed**
 
@@ -382,9 +383,10 @@ The following Sequence Diagram summarises the aforementioned steps.
 
 
 ### Unmark feature
+#### Rationale
 FRIDAY allows users to unmark the Mastery Checks of certain students as passed. This would be useful in cases where the user accidentally marks the Mastery Check of a student who has not passed their Mastery Check.
 
-### Implementation
+#### Implementation
 The unmark command is implemented by an `UnmarkMasteryCheckCommand`. As mentioned above the `MasteryCheck` of a student contains a boolean `isPassed`, which is set to false by default but can be changed to `true` by a `MarkMasteryCheckCommand`.
 
 Below is an activity diagram depicting how the unmark command is implemented.
@@ -409,7 +411,7 @@ The following Sequence Diagram summarises steps 4 to 5.
 
 ![Unmark command sequence diagram](images/UnmarkCommandSequenceDiagram.png)
 
-### Design considerations
+#### Design considerations
 
 **Aspect: Should we allow users to unmark empty Mastery Checks as passed**
 
