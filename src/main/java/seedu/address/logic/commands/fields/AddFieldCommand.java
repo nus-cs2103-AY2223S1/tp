@@ -20,7 +20,7 @@ public class AddFieldCommand extends FieldCommand {
         + " :Assigns an attribute to a given item.\n"
         + getFullCommand(SUBCOMMAND_WORD) + "[t|u|g]/id [type] [value]\n"
         + "e.g. field add t/1 bug low severity\n"
-        + "OR task select 1 field add bug low severity\n"
+        + " OR task select 1 field add bug low severity\n"
         + "Adds a new custom field called bug to attribute";
 
     public static final String NO_INPUT = "No input item is chosen!";
@@ -58,7 +58,7 @@ public class AddFieldCommand extends FieldCommand {
         if (item == null) {
             item = sItem;
         }
-        if (item.getAttribute(ftype).isPresent()) {
+        if (item.getAttribute(type).isPresent()) {
             throw new CommandException(MESSAGE_DUPLICATE);
         }
         item.addAttribute(new AbstractAttribute<String>(type, data) {

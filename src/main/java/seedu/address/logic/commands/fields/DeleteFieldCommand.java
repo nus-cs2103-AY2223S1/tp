@@ -19,7 +19,7 @@ public class DeleteFieldCommand extends FieldCommand {
         + " :Deletes an custom attribute to a given item.\n"
         + getFullCommand(SUBCOMMAND_WORD) + "[t|u|g]/id [type]"
         + "e.g. field delete t/1 bug"
-        + "OR task select 1 field delete bug\n"
+        + " OR task select 1 field delete bug\n"
         + "Delete bug attribute of task to low severity";
 
     public static final String NO_INPUT = "No input item is chosen!";

@@ -57,7 +57,7 @@ public abstract class AbstractAttribute<T> implements Attribute<T> {
 
     @Override
     public boolean isNameMatch(String name) {
-        return typeName.equalsIgnoreCase(name);
+        return typeName.trim().equalsIgnoreCase(name.trim());
     }
 
     @Override

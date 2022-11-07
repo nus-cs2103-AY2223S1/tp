@@ -19,7 +19,7 @@ public class EditFieldCommand extends FieldCommand {
         + " :Edits an existing attribute of a given item.\n"
         + getFullCommand(SUBCOMMAND_WORD) + "[t|u|g]/id [type] [value]\n"
         + "e.g. field edit t/1 bug low severity"
-        + "OR task select 1 field edit bug low severity\n"
+        + " OR task select 1 field edit bug low severity\n"
         + "Edit bug attribute of task to low severity";
 
     public static final String NO_INPUT = "No input item is chosen!";
