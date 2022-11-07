@@ -22,7 +22,6 @@ Given below are my contributions to the project.
     * Created the `Rating` class, one of the key components we are tracking with Coydir.
     * Use Case: Building blocks to track Employee Performance over time.
     * Justification: Tracking performance (talent development) is one important component of HRM.
-    * Highlights: Formating values and timestamps.
   * Implemented `rate` feature
     * Created a `RateCommand` class to handle the logic (Refer to code [here](https://github.com/AY2223S1-CS2103T-T15-1/tp/blob/master/src/main/java/coydir/logic/commands/RateCommand.java))
     and `RateCommandParser` class to handle the parsing of the user input (Refer to code [here](https://github.com/AY2223S1-CS2103T-T15-1/tp/blob/master/src/main/java/coydir/logic/parser/RateCommandParser.java)).
@@ -36,7 +35,7 @@ Given below are my contributions to the project.
     * Justification: Observe the overall trend of employee performance and make talent development decisions.
     * Highlights: Display individual rating values beside each node, prevent multiple ratings per day, sort ratings by date.
 * **Existing Features**
-  * Made improvements to the `Add` class - variable arguments `varags` for non-compulsory fields.
+  * Made improvements to the `Add` class - variable arguments for non-compulsory fields.
   * Fixed multiple bugs (Refer to #84, #200, #227, #242).
 
 #### Contributions to the UG
@@ -51,7 +50,7 @@ Given below are my contributions to the project.
 * Added implementation details for:
   * `add` function
   * `rate` function
-  * Use cases
+  * Wrote Use Cases
 
 #### Contributions to the team-based tasks
 * Helped to create and distribute issues.
@@ -69,4 +68,8 @@ Given below are my contributions to the project.
   [#224](https://github.com/AY2223S1-CS2103T-T15-1/tp/pull/224),
   [#225](https://github.com/AY2223S1-CS2103T-T15-1/tp/pull/225),
   [#241](https://github.com/AY2223S1-CS2103T-T15-1/tp/pull/241),
-  [#243](https://github.com/AY2223S1-CS2103T-T15-1/tp/pull/243)
+  [#243](https://github.com/AY2223S1-CS2103T-T15-1/tp/pull/243),
+  [#252](https://github.com/AY2223S1-CS2103T-T15-1/tp/pull/252),
+  [#253](https://github.com/AY2223S1-CS2103T-T15-1/tp/pull/253),
+  [#255](https://github.com/AY2223S1-CS2103T-T15-1/tp/pull/255)
+
