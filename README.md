@@ -21,4 +21,4 @@
 
 * Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5).
 * Font used: OpenSans. The Apache license can be found [here](https://github.com/AY2223S1-CS2103T-T12-4/tp/blob/master/src/main/resources/fonts/open-sans/LICENSE.txt).
-* 
+
