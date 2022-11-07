@@ -233,7 +233,7 @@ Edits a patient's information, such as name, phone number, address, email, remar
 * User input should be different from the previous information that the patient has.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
+* When editing tags, the existing tags of the person will be removed, i.e. adding of tags is not cumulative.
 * You can remove all the patient’s tags by typing `t/` without
   specifying any tags after it.
 * The prefixes that can be used to edit patients can be found below in the parameter list.
