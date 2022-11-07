@@ -457,10 +457,9 @@ The following Sequence Diagram summarises steps 4 to 5.
 
 **Value proposition**
 1. One easy-to-access place to track each student’s individual progress
-2. Makes TA’s lives easier by removing the need to manually filter students
+2. Makes CS1101S TA’s lives easier by removing the need to manually filter students
 3. Easier and more convenient to manage and schedule meetings with students
 4. Manage students faster than a typical mouse/GUI driven app
-5. Constraint: won’t be able to actually grade assignments using FRIDAY
 
 
 ### User stories
@@ -1052,7 +1051,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Friday will not load the student list. Error details shown in the logs.
 
 ## **Appendix: Effort**
-<b>FRIDAY</b> was built over a period of 6 weeks. It is build upon, AddressBook Level-3, as well as design,plan out and implement<b>FRIDAY</b> 
+<b>FRIDAY</b> was built over a period of 6 weeks. It is build upon, AddressBook Level-3, as well as design,plan out and implement <b>FRIDAY</b> 
 
 ### Difficulty level
 
