@@ -64,7 +64,7 @@ service that would meet the needs of your client, increasing customer engagement
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer. If you do not have Java, you can download it from 
+1. Ensure you have Java `11` installed in your Computer. If you do not have Java, you can download it from 
 [here for Window Users](https://www.oracle.com/java/technologies/downloads/#java11) and [here for Mac Users](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx).
 
 2. Download the latest `jeeqtracker.jar` from [here](https://github.com/AY2223S1-CS2103T-T09-1/tp/releases).

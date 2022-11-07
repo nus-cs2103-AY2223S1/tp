@@ -1,0 +1,77 @@
+@startuml
+!include ./style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":JeeqTrackerParser" as JeeqTrackerParser LOGIC_COLOR
+participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
+participant "d:EditRemarkCommand" as EditRemarkCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("edit 2 m/remark Fast and responsive")
+activate LogicManager
+
+LogicManager -> JeeqTrackerParser : parseCommand("edit")
+activate JeeqTrackerParser
+
+create EditCommandParser
+JeeqTrackerParser -> EditCommandParser
+activate EditCommandParser
+
+EditCommandParser --> JeeqTrackerParser
+deactivate EditCommandParser
+
+JeeqTrackerParser -> EditCommandParser : parse("2 m/remark Fast and responsive")
+activate EditCommandParser
+
+create EditRemarkCommand
+EditCommandParser -> EditRemarkCommand
+activate EditRemarkCommand
+
+EditRemarkCommand --> EditCommandParser : d
+deactivate EditRemarkCommand
+
+EditCommandParser --> JeeqTrackerParser : d
+deactivate EditCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditCommandParser -[hidden]-> JeeqTrackerParser
+destroy EditCommandParser
+
+JeeqTrackerParser --> LogicManager : d
+deactivate JeeqTrackerParser
+
+LogicManager -> EditRemarkCommand : execute()
+activate EditRemarkCommand
+
+EditRemarkCommand -> Model : getFilteredClientList()
+activate Model
+
+Model --> EditRemarkCommand
+deactivate Model
+
+EditRemarkCommand -> EditRemarkCommand: createEditedClient(clientToEdit, editClientDescriptor)
+
+EditRemarkCommand -> Model: setClient(clientToEdit, editedClient)
+activate Model
+
+Model --> EditRemarkCommand
+deactivate Model
+
+create CommandResult
+EditRemarkCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditRemarkCommand
+deactivate CommandResult
+
+EditRemarkCommand --> LogicManager : result
+deactivate EditRemarkCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

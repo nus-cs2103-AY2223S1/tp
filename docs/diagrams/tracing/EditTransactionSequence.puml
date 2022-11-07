@@ -9,7 +9,13 @@ participant "d:EditTransactionCommand" as EditTransactionCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
-[-> LogicManager : execute("edit")
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":Client" as Client MODEL_COLOR
+participant ":TransactionLog" as TransactionLog MODEL_COLOR
+end box
+
+[-> LogicManager : execute("edit 1 m/transaction g/Apple price/5")
 activate LogicManager
 
 LogicManager -> JeeqTrackerParser : parseCommand("edit")
@@ -22,7 +28,7 @@ activate EditCommandParser
 EditCommandParser --> JeeqTrackerParser
 deactivate EditCommandParser
 
-JeeqTrackerParser -> EditCommandParser : parse("edit")
+JeeqTrackerParser -> EditCommandParser : parse("1 m/transaction g/Apple price/5")
 activate EditCommandParser
 
 create EditTransactionCommand
@@ -43,6 +49,30 @@ deactivate JeeqTrackerParser
 
 LogicManager -> EditTransactionCommand : execute()
 activate EditTransactionCommand
+
+EditTransactionCommand -> Model : getFilteredClientList()
+activate Model
+
+Model --> EditTransactionCommand
+deactivate Model
+
+EditTransactionCommand -> Client : getTransactions()
+activate Client
+
+Client --> EditTransactionCommand
+deactivate Client
+
+EditTransactionCommand -> TransactionLog : setTransaction(1, editedTransaction)
+activate TransactionLog
+
+TransactionLog --> EditTransactionCommand
+deactivate TransactionLog
+
+EditTransactionCommand -> Model: updateFilteredClientList
+activate Model
+
+Model --> EditTransactionCommand
+deactivate Model
 
 create CommandResult
 EditTransactionCommand -> CommandResult
