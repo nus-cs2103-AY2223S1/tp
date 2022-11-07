@@ -21,6 +21,11 @@ a CLI, and it has a GUI created with JavaFX. It is written in Java, and has abou
 
 ### Enhancements to existing features
 
+Added Command Type enumeration to Logic component to cover all commands.
+
+* What it does: Stores the command type in each command so that MainWindow can determine the command entered and update itself accordingly.
+* Justification: The exisiting application only displayed the patient list, hence there was no need for the enhancement. However, we needed a way for the output panel to update itself accordingly based on the command executed.  
+
 Added the ability to display patients added/edited/deleted in the output panel 
 * What it does: Shows the patient card of the patient added/edited/deleted
 * Justification: The existing application only displayed the patient's details in the result box which is text based
