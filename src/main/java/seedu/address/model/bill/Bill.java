@@ -7,7 +7,7 @@ import java.util.Objects;
 import seedu.address.model.appointment.Appointment;
 
 /**
- * Represents a bill of a patient in the HealthConnect
+ * Represents a bill of a patient in the HealthContact
  */
 public class Bill {
 
