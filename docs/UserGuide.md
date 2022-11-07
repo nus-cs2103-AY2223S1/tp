@@ -241,7 +241,7 @@ Examples:
 
 ### Finding a contact: `findp`
 
-Finds contacts with any of the given keywords in any field.
+Find contacts with any of the given keywords in any field.
 
 Format: `findp KEYWORD [MORE_KEYWORD]…​`
 
@@ -250,6 +250,8 @@ Format: `findp KEYWORD [MORE_KEYWORD]…​`
 * Only full words will be matched; e.g. `find ale` will not return the contact `alex`.
 * Full words are characterized by having a space before and after the word; e.g. Searching `Alex` will only match `Alex` and not `Alex-`
 * Contacts matching at least one keyword will be returned; e.g. `findp mcghee broad` will return the contacts `Bob McGhee` and `Seaward Broad`.
+
+<div style="page-break-after: always;"></div>
 
 Examples:
 
