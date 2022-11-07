@@ -11,7 +11,7 @@ package "Parser classes"{
 Class "<<interface>>\nParser" as Parser
 Class AddressBookParser
 Class XYZCommandParser
-Class CliSyntax
+Class XYZCliSyntax
 Class ParserUtil
 Class ArgumentMultimap
 Class ArgumentTokenizer
@@ -29,10 +29,11 @@ XYZCommandParser .up.|> Parser
 XYZCommandParser ..> ArgumentMultimap
 XYZCommandParser ..> ArgumentTokenizer
 ArgumentTokenizer .left.> ArgumentMultimap
-XYZCommandParser ..> CliSyntax
-CliSyntax ..> Prefix
+XYZCommandParser ..> XYZCliSyntax
+XYZCliSyntax ..> Prefix
 XYZCommandParser ..> ParserUtil
 ParserUtil .down.> Prefix
 ArgumentTokenizer .down.> Prefix
 XYZCommand -up-|> Command
+note bottom of XYZCliSyntax: ClientCliSyntax, ProjectCliSyntax, \nIssueCliSyntax
 @enduml
