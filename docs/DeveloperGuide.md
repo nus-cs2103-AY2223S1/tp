@@ -235,7 +235,7 @@ The implementation of Command Suggestions and Command Auto-Completion is facilit
 
 **Aspect: How to provide command suggestions to users**
 
-- **Alternative 1:** Provide command suggestion over the command box.
+- **Alternative 1 (current choice):** Provide command suggestion over the command box.
 
   - Pros: Uses less screen real estate
   - Cons: Only able to view one possible command
