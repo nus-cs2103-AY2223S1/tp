@@ -72,6 +72,7 @@ Designers and developers who wish to extend or morph this product may also use t
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Design**
 
