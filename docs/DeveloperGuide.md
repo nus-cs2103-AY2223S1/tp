@@ -148,7 +148,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 How the parsing works:
 
 * When called upon to parse a user command, the `NutriGoalsParser` class creates an `XYZCommandParser` (`XYZ` is a
-  placeholder for the specified command name e.g., `AddCommandParser`). This `XYZCommandParser` object then uses the other classes shown above to parse
+  placeholder for the specified command name e.g., `AddCommandParser`). The `XYZCommandParser` object then uses the other classes shown above to parse
   the user command and create a `XYZCommand` object (e.g., `AddCommand`) which `NutriGoalsParser` then returns as
   a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser`
