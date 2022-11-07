@@ -249,7 +249,7 @@ to the `commandHistory` list, and index is set to `commandHistory.size()`.
 Step 3. The user types a command halfway, but does not press the Enter key. He/she now wishes to use the previous
 command to type the command.
 
-Step 4. The user presses and releases the Up arrow. `CommandBox#handleKeyReleased` is fired, which sets the text field
+Step 4. The user presses and releases the Up arrow. `CommandBox#handleKeyReleased()` is fired, which sets the text field
 to display the `(index - 1)`th element in `commmandHistory`. Because the current command is one that has not been
 executed, it is saved in the field `currentCommand`.
 
