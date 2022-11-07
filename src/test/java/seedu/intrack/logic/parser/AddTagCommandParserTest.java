@@ -38,4 +38,10 @@ public class AddTagCommandParserTest {
         // no parameters
         assertParseFailure(parser, AddTagCommand.COMMAND_WORD, expectedMessage);
     }
+
+    @Test
+    public void parse_emptyArg_throwsParseException() {
+        assertParseFailure(parser, "  ",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTagCommand.MESSAGE_USAGE));
+    }
 }

@@ -21,6 +21,7 @@ import static seedu.intrack.testutil.TypicalInternships.GOOG;
 import static seedu.intrack.testutil.TypicalInternships.MSFT;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -161,5 +162,55 @@ public class InternshipTest {
         LocalDateTime nearestDate = internship.getNearestTaskDate();
         LocalDateTime expectedNearestDate = second.getTaskTime();
         assertTrue(nearestDate.equals(expectedNearestDate));
+    }
+
+    @Test
+    public void isTaskListEmpty() {
+        List<Task> taskList = new ArrayList<>();
+        Set<Tag> tagList = new HashSet<>();
+        Internship internship = new Internship(new Name(VALID_NAME_AAPL), new Position(VALID_POSITION_AAPL),
+                new Status(VALID_STATUS_AAPL), new Email(VALID_EMAIL_AAPL),
+                new Website(VALID_WEBSITE_AAPL), taskList, new Salary(VALID_SALARY_AAPL),
+                tagList, new Remark(VALID_REMARK_AAPL));
+        assertTrue(internship.isTaskListEmpty());
+    }
+
+    @Test
+    public void clearTag() {
+        List<Task> taskList = new ArrayList<>();
+        Set<Tag> tagList = new HashSet<>();
+        tagList.add(new Tag("Urgent"));
+        Internship internship = new Internship(new Name(VALID_NAME_AAPL), new Position(VALID_POSITION_AAPL),
+                new Status(VALID_STATUS_AAPL), new Email(VALID_EMAIL_AAPL),
+                new Website(VALID_WEBSITE_AAPL), taskList, new Salary(VALID_SALARY_AAPL),
+                tagList, new Remark(VALID_REMARK_AAPL));
+        internship.clearTag();
+        assertTrue(internship.getTags().equals(new HashSet<>()));
+    }
+
+    @Test
+    public void isHasUpcomingTasks_empty() {
+        List<Task> taskList = new ArrayList<>();
+        Set<Tag> tagList = new HashSet<>();
+        Internship internship = new Internship(new Name(VALID_NAME_AAPL), new Position(VALID_POSITION_AAPL),
+                new Status(VALID_STATUS_AAPL), new Email(VALID_EMAIL_AAPL),
+                new Website(VALID_WEBSITE_AAPL), taskList, new Salary(VALID_SALARY_AAPL),
+                tagList, new Remark(VALID_REMARK_AAPL));
+        assertFalse(internship.isHasUpcomingTasks());
+    }
+
+    @Test
+    public void isHasUpcomingTasks_notEmpty() {
+        LocalDateTime taskTime = LocalDateTime.now().plusDays(7);
+        String newTaskTime = taskTime.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"));
+
+        List<Task> taskList = new ArrayList<>();
+        taskList.add(new Task("Technical Interview", newTaskTime));
+        Set<Tag> tagList = new HashSet<>();
+        Internship internship = new Internship(new Name(VALID_NAME_AAPL), new Position(VALID_POSITION_AAPL),
+                new Status(VALID_STATUS_AAPL), new Email(VALID_EMAIL_AAPL),
+                new Website(VALID_WEBSITE_AAPL), taskList, new Salary(VALID_SALARY_AAPL),
+                tagList, new Remark(VALID_REMARK_AAPL));
+        assertTrue(internship.isHasUpcomingTasks());
     }
 }
