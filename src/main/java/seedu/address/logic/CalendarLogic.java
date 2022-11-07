@@ -28,11 +28,11 @@ import seedu.address.ui.calendar.CalendarEventListPanel;
  */
 public class CalendarLogic {
     private static final String[] MONTH_NAMES = {
-            "January", "February", "March", "April", "May", "June",
-            "July", "August", "September", "October", "November", "December"
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
     };
     private static final String[] DAY_NAMES = {
-            "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
+        "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
     };
     private static final String TEXT_HEADER_STYLE = "-fx-font-size: 15pt; -fx-text-fill: white; "
             + "-fx-background-color: #fff";
