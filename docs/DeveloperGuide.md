@@ -694,7 +694,28 @@ testers are expected to do more *exploratory* testing.
     2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
     
-### 8.2 Deleting a task
+### 8.2 Adding a task
+
+1. Adding a task while all tasks are being shown
+
+    1. Prerequisites: List all tasks using the `ls -a` command. Multiple tasks in the list.
+
+    2. Test case: `add -n Tutorial 1 -m CS2100 -t mediumPriority -d 2022-10-20`<br>
+       Expected: `Tutorial 1` is added into the list. Details of the added task shown in the status message.
+                    `Tutorial 1` is inserted into an index according to its deadline. 
+    3. Test case: `add -n PYP -m CS2100 -t finals`<br>
+       Expected: `PYP` is added into the list. Details of the added task shown in the status message.
+       `PYP` is inserted behind all other tasks that contain a deadline.
+
+2. Adding a task while only unmarked tasks are being shown
+
+    1. Prerequisites: List all tasks using the `ls -u` command. Multiple tasks in the list.
+
+    2. Test case: `add -n Tutorial 1 -m CS2100 -t mediumPriority -d 2022-10-20`<br>
+       Expected: `Tutorial 1` is added into the list. Details of the added task shown in the status message.
+       "Current View" of task list is reset to show all tasks. `Tutorial 1` is inserted into an index of the task list according to its deadline.
+
+### 8.3 Deleting a task
 
 1. Deleting a task while all tasks are being shown
 
@@ -707,9 +728,9 @@ testers are expected to do more *exploratory* testing.
     3. Test case: `delete 0`<br>
        Expected: No task is deleted. Error details shown in the status message.
 
-2. Deleting a task while only tasks tagged with "lowPriority" are being shown 
+2. Deleting a task while only tasks due after or on `2022-10-11` are being shown 
 
-   1. Prerequisites: List all tasks using the `ls -t lowPriority` command. Multiple tasks in the list.
+   1. Prerequisites: List tasks using the `ls -d 2022-10-11` command. Multiple tasks in the list.
 
    2. Test case: `delete 1`<br>
       Expected: First task is deleted from the filtered list. Details of the deleted task shown in the status message.
@@ -722,11 +743,11 @@ testers are expected to do more *exploratory* testing.
       Expected: Similar to previous.
 
 
-### 8.3 Saving data
+### 8.4 Saving data
 
 1. Dealing with corrupted data files
 
-    1. Open `/data/addressbook.json`. There are some pre-loaded tasks in this file. 
+    1. Open `addressbook.json`. There are some pre-loaded tasks in this file. 
 
     2. In line 2, change `tasks` to `task`. This corrupts the file and system will recognise the mismatch. 
 
@@ -736,18 +757,18 @@ testers are expected to do more *exploratory* testing.
     4. Add a new task by entering `add -n Tutorial 1 -m CS2100` <br>
        Expected: Task will be added into empty task list. Now, task list contains 1 task.
 
-    5. Open `/data/addressbook.json` again. <br>
+    5. Open `addressbook.json` again. <br>
        Expected: Tasks that were present prior to the corruption are now gone. Task list contains only one task (`Tutorial 1`).
 
 2. Dealing with missing data files
 
-    1. Open `/data/addressbook.json`. There are some pre-loaded tasks in this file.
+    1. Open `addressbook.json`. There are some pre-loaded tasks in this file.
 
-    2. Delete `/data/addressbook.json` manually. 
+    2. Delete `addressbook.json` manually. 
 
     3. Follow Steps 3-5 of the above "Dealing with corrupted data files". Expected behaviour is the same.
 
-### 8.4 Loading saved data
+### 8.5 Loading saved data
 
 1. Restoring task list from previous launch 
 
