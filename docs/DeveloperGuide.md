@@ -431,7 +431,7 @@ With these two classes implemented, `SessionData` can now be easily passed to `U
 
 The following sequence diagram shows how changes are propagated to the `UI` through the chain of `ObservableList`-s when `TaAssist::addStudent(s)` is called:
 
-<img class="center" src="images/ObservableUpdateSequenceDiagram.png" w="800"/>
+<img class="center" src="images/ObservableUpdateSequenceDiagram.png" />
 
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** The diagram above simplifies the `ListView` interaction as it is abstracted away by JavaFX and its details are mostly irrelevant to our implementation.
@@ -462,7 +462,7 @@ The `ExportCsvStorageAction` class is a `StorageAction` that requests the `Stora
 
 The following sequence diagram shows how the `export` command exports a CSV file with the help of `Storage`:
 
-<img class="center" src="images/ExportCommandSequenceDiagram.png" w="800"/>
+<img class="center" src="images/ExportCommandSequenceDiagram.png" />
 
 #### Design considerations
 **Aspect: How commands should access the `Storage` class:**

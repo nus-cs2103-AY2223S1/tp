@@ -6,7 +6,7 @@ participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":TaAssistParser" as TaAssistParser LOGIC_COLOR
 participant "e:ExportCommand" as ExportCommand LOGIC_COLOR
 participant "result:CommandResult" as CommandResult LOGIC_COLOR
-participant ":ExportCsvStorageAction" as ExportCsvStorageAction LOGIC_COLOR
+participant "action:ExportCsvStorageAction" as ExportCsvStorageAction LOGIC_COLOR
 participant "finalResult:CommandResult" as CommandResult2 LOGIC_COLOR
 end box
 
@@ -72,10 +72,12 @@ activate CommandResult
 CommandResult --> LogicManager : true
 deactivate CommandResult
 
-LogicManager -> CommandResult : performStorageAction(storage)
+LogicManager -> CommandResult: getStorageAction()
 activate CommandResult
+CommandResult --> LogicManager : action
+deactivate CommandResult
 
-CommandResult -> ExportCsvStorageAction : act(storage)
+LogicManager -> ExportCsvStorageAction : act(storage)
 activate ExportCsvStorageAction
 
 ExportCsvStorageAction -> Storage : exportAsCsv(fileName, fileData)
@@ -91,11 +93,8 @@ activate CommandResult2
 CommandResult2 --> ExportCsvStorageAction
 deactivate CommandResult2
 
-ExportCsvStorageAction --> CommandResult : finalResult
+ExportCsvStorageAction --> LogicManager : finalResult
 deactivate ExportCsvStorageAction
-
-CommandResult --> LogicManager : finalResult
-deactivate CommandResult
 
 [<--LogicManager
 deactivate LogicManager
