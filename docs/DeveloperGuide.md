@@ -228,9 +228,10 @@ The detection of `PREFIX_HELP` is as follows:
 
 The detection rules limit false-positives from stray `-h`s in names of eateries, locations, etc.
 
-For supported commands, the following activity diagram summarizes what happens when a user executes a command:
-
-<img src="images/CommandDisplayHelpActivityDiagram.png" />
+<p align="center">
+<img src="images/CommandDisplayHelpActivityDiagram.png" /> <br>
+*For supported commands, the* ***activity diagram*** *summarizes what happens when a user executes a command.*
+</p>
 
 ### Favourite/Unfavourite feature
 The favourite/unfavourite commands were introduced as a way to standardize how "favourite eateries" are tagged.
@@ -259,6 +260,8 @@ When `FavouriteCommand` is first initialized, it initializes `TagCommand` via a 
 Additionally, the `execute()` call to `FavouriteCommand` is passed onto `TagCommand` whereby `TagCommand` then normally interacts with the `Model` class as other commands do.
 
 This unique implementation of `FavouriteCommand` and `UnfavouriteCommand` is especially important to keep in mind if future modifications (e.g. keeping favourited eateries at the top of the list) are implemented.
+
+
 
 ### \[Proposed\] Undo/redo feature
 

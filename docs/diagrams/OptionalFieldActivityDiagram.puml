@@ -1,0 +1,30 @@
+@startuml
+start
+:User executes Add Command;
+:AddCommandParser created;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([Arguments is missing name,
+location and/or cuisine])
+    :ParserException is thrown;
+    :CommandResult contains
+    usage message;
+else ([else])
+    if () then ([Command has
+    correct syntax])
+    :Command created
+    and executed;
+    :CommandResult contains
+    success message;
+    else ([else])
+    :ParseException thrown
+    by CommandParser;
+    :CommandResult contains
+    error message;
+    endif
+endif
+:CommandResult shown to user;
+stop
+@enduml
