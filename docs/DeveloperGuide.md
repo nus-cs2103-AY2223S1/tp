@@ -1085,29 +1085,241 @@ testers are expected to do more *exploratory* testing.
     1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
-
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
 
     1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-    1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    2. Test case: `delete 1`<br>
+       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the result display is updated.
 
-    1. Test case: `delete 0`<br>
-       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    3. Test case: `delete 0`<br>
+       Expected: No person is deleted. Error details shown in the status message. Result display remains the same.
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+    4. Test case: `delete Charlotte`, assuming there is only 1 person with the name `Charlotte` in the Sectresbook.<br>
+       Expected: Person with name `Charlotte` is deleted from the list. Details of the deleted contact shown in the status message.
+   
+    5. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+2. Deleting a person, but not all persons are shown
 
-### Saving data
+    1. Prerequisites: List a subset of persons using the `find` command. At least 1 person in the list.
+   
+    2. Test case: `delete 1`, assuming there is more than or equal to 1 person in the Sectresbook.<br>
+       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
+   
+    3. Test case: `delete -1`<br>
+       Expected: No person is deleted from the list. Error details shown in the status message. Result display remains the same.
+   
+    4. Test case: `delete Charlotte`, assuming there is only 1 person with the name `Charlotte` in the Sectresbook.<br>
+       Expected: Person with name `Charlotte` is deleted from the list. Details of the deleted contact shown in the status message.
+   
+    5. Test case: `delete Sean`, assuming there is more than 1 person with the name `Sean` in the Sectresbook.<br>
+       Expected: No person is deleted from the list. Sectresbook lists the contacts with `Sean` in their name. Error details shown in the status message.
 
-1. Dealing with missing/corrupted data files
+    6. Other incorrect delete commands to try: `delete`, `delete phone/PHONE_NUMBER`, `...` (where `PHONE_NUMBER` is a phone number of a person).<br>
+       Expected: No person is deleted from the list. Error details shown the status message. Result display remains the same.
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+### Editing a person
 
-1. _{ more test cases …​ }_
+1. Editing a person after listing all persons or after finding a list of persons (list should contain more than 0 people).
+
+   1. Test case: `edit 1 phone/98112233`, assuming there is more than or equal to 1 person in the Sectresbook.<br>
+      Expected: Phone number of the first contact in the list is edited. Details of the edited contact shown in the status message.
+   
+   2. Test case: `edit 5 tag/Friend`, assuming there is less than 5 people currently displayed in the Sectresbook.<br>
+      Expected: No person is edited. Error details shown in the status message. Result display remains the same.
+   
+   3. Test case: `edit Charlotte tag/Friend`, assuming there is only 1 person with the name `Charlotte` in the Sectresbook.<br>
+      Expected: The tag of the Person with the name `Charlotte` is edited. Details of the edited contact shown in the status message.
+   
+   4. Test case: `edit Sean tag/Colleague`, assuming there is more than 1 person with the name `Sean` in the Sectresbook.<br>
+      Expected: No person is edited from the list. Sectresbook shows the list of persons with `Sean` in their name. Error details shown the status message. Result display remains the same.
+   
+   5. Other incorrect edit commands to try: `edit`, `edit 2 phone/TEXT`, `...` (where `TEXT` is an input with only alphabets). <br>
+      Expected: No person is edited in the list. Error details shown in the status message. Result display remains the same.
+
+### Editing a loan of a person
+
+1. Editing a loan of a person after listing all persons or after finding a list of persons (list should contain more than 0 people).
+
+   1. Test case: `editLoan 1 amt/10 reason/Logistics`, assuming there is more than or equal to 1 person in the Sectresbook.<br>
+      Expected: Loan amount and history of the first contact is updated. Details of the edited contact shown in the status message.
+   
+   2. Test case: `editLoan 5 amt/100 reason/Logistics`, assuming there is less than 5 people currently displayed in the Sectresbook.<br>
+      Expected: No person is edited. Error details shown in the status message. Result display remains the same.
+   
+   3. Test case: `edit Charlotte amt/10 reason/Test`, assuming there is only 1 person with the name `Charlotte` in the Sectresbook.<br>
+      Expected: Loan amount and history of the Person with the name `Charlotte` is edited. Details of the edited contact shown in the status message.
+   
+   4. Test case: `edit Sean amt/10 reason/Test`, assuming there is more than 1 person with the name `Sean` in the Sectresbook.<br>
+      Expected: No person is edited from the list. Sectresbook shows the list of persons with `Sean` in their name. Error details shown the status message. Result display remains the same.
+   
+   5. Other incorrect editLoan commands to try: `editLoan`, `editLoan amt/`,`editLoan 1 amt/TEXT reason/TEXT`, `...` (where `TEXT` is an input with only alphabets). <br>
+      Expected: No person is edited in the list. Error details shown in the status message. Result display remains the same.
+
+### Finding a person
+
+1. Finding a person with the given keyword.
+
+   1. Test case: `find Ryan`, assuming there is at least 1 person with the substring `Ryan` in the Sectresbook.<br>
+      Expected: Person list is updated with contacts that contain the substring `Ryan`. Details of the number of persons listed shown in status message.
+
+   2. Test case: `find Jack`, assuming there is no one with the substring `Jack`.<br>
+      Expected: Person list is updated, showing nobody in the list. Details of the number of persons listed shown in status message.
+   
+   3. Test case: `find 8445`, assuming there is at least 1 person with phone number starting with `8445` in the Sectresbook.<br>
+      Expected: Person list is updated with contacts with phone number starting with `8445`. Details of the number of persons listed shown in status message.
+   
+   4. Test case: `find 8445 Ryan`, assuming there is at least 1 person with phone number starting with `8445` and substring `Ryan` in their name in the Sectresbook.<br>
+      Expected: Person list is updated with contacts that contain the substring `Ryan` and phone number starting with `8445`. Details of the number of persons listed shown in status message.
+   
+   5. Incorrect editLoan command to try: `editLoan`. <br>
+      Expected: No change in the list shown. Error details shown in the status message. Result display remains the same.
+
+### Listing a person
+
+1. Listing all persons in the Sectresbook. 
+
+   1. Test case: `list`<br>
+      Expected: Person list is updated to show all persons in the Sectresbook. Success message is shown as the status message.
+   
+   2. Test case: `list TEXT`, where `TEXT` is any string input.<br>
+      Expected: Person list is updated to show all persons in the Sectresbook. Success message is shown as the status message.
+
+### Inspecting a person
+
+1. Inspecting a person while all persons are shown.
+
+   1. Test case: `inspect 1`, assuming there is at least 1 person shown in the person list. <br>
+      Expected: Displays the information of the contact with index 1 in the person list. Success message is shown as the status message.
+   
+   2. Test case: `inspect Charlotte`, assuming there is only 1 person with the name `Charlotte` in the Sectresbook.<br>
+      Expected: Displays the information of the contact with name `Charlotte` in the person list. Success message is shown as the status message.
+   
+   3. Test case: `inspect -1`<br>
+      Expected: No change in the person being inspected. Error details shown in the status message. Result display remains the same.
+   
+   4. Test case: `inspect Jack`, assuming there is more than 1 person with the name `Jack` in the person list.<br>
+      Expected: No change in the person currently being inspected. Error details shown in the status message. Result display remains the same.
+   
+   5. Other incorrect inspect commands to try: `inspect`.<br>
+      Expected: No change in the person currently being inspected. Error details shown in the status message. Result display remains the same.
+
+### Viewing Help
+
+1. Viewing help bar.
+
+   1. Test case: `help`<br>
+      Expected: The help popup screen is shown.
+
+### Clearing all data
+
+1. Clearing all data
+
+    1. Test case: `clear`<br>
+       Expected: Clears all data from the Sectresbook.
+        
+
+### Exiting program
+
+1. Exitting the Sectresbook
+
+   1. Test case: `exit`<br>
+      Expected: The program closes. 
+
+
+### Adding a note
+
+1. Adding a note with title that is yet to exist
+   1. Test case: `addNote title/event content/november 3rd 4pm`<br>
+      Expected: Note with title `event` and content `november 3rd 4pm` added into notes list. Result display shows message stating new note is added. Notes display panel shows new note.
+      
+   2. Test case: `addNote title/event content/november 3rd 4pm tag/progs`<br>
+       Expected: Result display shows message stating new note is added. Notes display panel shows new note.
+   
+   3. Test case: incorrect `addNote` commands (e.g. `addNote`, `addNote title/event`, `addNote content/groceries`)<br>
+      Expected: No new note is added to notes list. Result display shows error message stating incorrect command format.
+   
+2. Adding a note with a duplicate title
+   1. Test case: `addNote title/event content/november 3rd 4pm`<br>
+      Expected: No new note is added to notes list. Result display shows message stating that note already exists in the notes list. No change to the notes display panel.
+      
+### Editing a note
+
+1. Editing a note
+    1. Test case: `editNote 1 content/meeting at mpsh`, assuming there exists at least 1 note in the current notes list.<br>
+       Expected: Note at index 1 in the current notes list have its content changed to `meeting at mpsh`. Result display shows message stating note was edited.
+       
+    2. Test case: `editNote progs content/meeting at mpsh`, assuming there exists a note with title `progs`.<br>
+       Expected: Note with title `progs` in the current notes list have its content changed to `meeting at mpsh`. Result display shows message stating note was edited.
+   
+    3. Test case: `editNote 5 content/meeting at mpsh`, assuming there are less than 5 notes in the current notes list.<br>
+       Expected: No note was edited. Result display shows error message stating index provided to be invalid.
+       
+    4. Test case: `editNote content/meeting at mpsh`<br>
+       Expected: No note was edited. Status bar display error message stating at least one field to be edited has to be provided.
+       
+    5. Test case: incorrect `editNote` commands (e.g. `editNote`, `editNote content/abc`)<br>
+       Expected: No note was edited. Result display shows error message stating invalid command format.
+
+### Deleting a note
+
+1. Deleting a note
+   1. Test case: `deleteNote 1`, assuming there exists at least 1 note in the current notes list.<br>
+      Expected: Note at index 1 is removed from the current notes list. Result display shows message stating note was deleted.
+   
+   2. Test case: `deleteNote`<br>
+      Expected: No note was deleted. Result display shows error message stating invalid command format.
+
+### Finding a note
+
+1. Finding a note
+   1. Test case: `findNote progs`<br>
+      Expected: Notes with title containing the keyword `progs` are shown on the notes display panel. Result display shows message stating number of notes listed.
+                If there are no notes with `progs` in the title, notes display panel will be empty.
+   
+   2. Test case: `findNote`<br>
+      Expected: No change to the notes display panel. Status bar display error message stating invalid command format.
+
+### List all notes
+
+1. List notes
+   1. Test case: `listNote`<br>
+      Expected: Notes display panel is populated with all existing notes. Result display shows message stating listed all notes.
+
+### Hide notes
+
+1. Hide notes
+   1. Test case: `hideNotes`, assuming notes display panel is on shown on the GUI.<br>
+      Expected: Notes display panel is hidden from the GUI. Persons list and Inspect section is extended horizontally to fill the GUI. Result display shows message stating notes panel hidden.
+   
+   2. Test case: `hideNotes`, assuming notes display panel is already hidden. Result display shows message stating notes panel hidden.<br>
+      Expected: No change to the GUI. Result display shows message stating notes panel hidden.
+   
+   3. Other `hideNotes` commands with additional arguments (e.g. `hideNotes 1`, `hideNotes abc`)<br>
+         Expected: Additional arguments are ignored, behaviour is same as `hideNotes`.
+
+### Show notes
+
+1. Show notes
+   1. Test case: `showNotes`, assuming notes display panel is hidden from GUI.<br>
+      Expected: Notes display panel appears on the right side of the GUI. Persons list and Inspect section becomes horizontally narrower. Result display shows message stating notes panel shown.
+   
+   2. Test case: `showNotes`, assuming notes display panel is already shown on the GUI.<br>
+      Expected: No change to the GUI. Result display shows message stating notes panel shown.
+
+   3. Other `showNotes` commands with additional arguments (e.g. `showNotes 1`, `showNotes abc`)<br>
+      Expected: Additional arguments are ignored, behaviour is same as `showNotes`.
+
+### Finding person/notes based on tag
+
+1. Find using tag
+   1. Test case: `findTag cs2103`<br>
+      Expected: Persons list display persons tagged with `cs2103`. Notes display panel displays notes tagged with `cs2103`. Result display shows message stating number of people listed in the persons list.<br>
+                If there is no person tagged with `cs2103`, the persons list will be empty.<br>
+                If there is no note tagged with `cs2103`, the notes display panel will be empty.
+
+
