@@ -188,7 +188,7 @@ The following class diagram summarizes the relationship between `PersonTaskBridg
 
 #### Design Considerations
 
-**Aspect: How `Person` and `Task` are associated with `PersonTaskBridge`:**
+**Aspect: How `Person` and `Task` are associated with `PersonTaskBridge`**
 
 - **Alternative 1 (current choice):** Stores `Person` and `Task` UUID in `PersonTaskBridge`.
 
@@ -199,7 +199,23 @@ The following class diagram summarizes the relationship between `PersonTaskBridg
     - Pros: No change is needed for `Person` and `Task` schema.
     - Cons: Requires changes to `PersonTaskBridge` objects every time a command changes `Person` or `Task` object index.
 
-### View tasks details
+### Optional `Description` and `Deadline` Fields
+
+The `Description` and `Deadline` fields for tasks are optional for the users fill in. The implementation of this optionality is 
+facilitated by wrapping the values using the [`java.util.Optional<T>`](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Optional.html) class. 
+By doing so, we took advantage of the provided methods, e.g. `orElse`, `or`, and etc. This `Optional` class thus helps to encapsulate
+the logic of methods that depend on the presence or absence of the contained value.
+
+#### Difference from Optional `Tag`
+
+It is also optional for a `Person` to have tags. To achieve this, a `Person` stores the tags in a `HashSet`.
+If no tags are assigned to a `Person`, the `HashSet` will be empty. By doing so, a `Person` can have any number of tags.
+
+This differs from the implementation of optionality for `Description` and `Deadline`. For `Description` and `Deadline`,
+a `Task` can either contain the value or no value at all. Thus, due to the differing multiplicities, we could not use the 
+same implementation as tags.
+
+### View Task Details
 
 The implementation of the task tab UI is facilitated by `TaskCard` and `TaskListPanel`.
 
@@ -215,18 +231,18 @@ The implementation of Command Suggestions and Command Auto-Completion is facilit
 - `CommandSuggestor#suggestCommand` - Suggests a command with the corresponding syntax based on the user's current input
 - `CommandSuggestor#autocompleteCommand` - Completes the current user input according to the shown command suggestion
 
-#### Design considerations:
+#### Design Considerations
 
-**Aspect: How to provide command suggestions to users:**
+**Aspect: How to provide command suggestions to users**
 
-- **Alternative 1 (current choice):** Provide command suggestion over the command box.
+- **Alternative 1:** Provide command suggestion over the command box.
 
   - Pros: Uses less screen real estate
   - Cons: Only able to view one possible command
 
 - **Alternative 2:** Provide command suggestions in a separate display box
   itself.
-  - Pros: Able to display all possible commands.
+  - Pros: Able to display all possible commands
   - Cons: Uses more screen real estate
 
 **Aspect: How to autocomplete commands for users**
@@ -237,7 +253,6 @@ The implementation of Command Suggestions and Command Auto-Completion is facilit
   - Cons: Users might have to backspace and complete the command again for commands with common prefixes. Eg. `add_contact`, `add_task`
 
 - **Alternative 2 (current choice):** Autocomplete up to the longest matching prefix of all possible commands.
-  itself.
   - Pros: Easy to autocomplete commands with common prefixes
   - Cons: Users might have to type a few characters more
 
