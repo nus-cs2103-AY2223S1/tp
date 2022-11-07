@@ -489,9 +489,9 @@ Format: `get /n NAME`
 
 <sub><sup>[back to top](#back-to-topt), [back to features](#features), [back to segment top](#retrieving-patient-info)</sub></sup>
 
-#### by next-of-kin data: `/nok`
+#### next-of-kin data: `/nok`
 
-Finds next-of-kin data for patients matching the input `PATIENT_NAME`.
+Finds next-of-kin data for patients matching the input `PATIENT_NAME`, and is hence similar to the `get \n` command.
 
 Format: `get /nok PATIENT_NAME`
 
