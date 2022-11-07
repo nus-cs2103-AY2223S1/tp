@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -87,14 +86,14 @@ public class UndoCommand extends Command {
      * @param model The model after modification.
      */
     public static void saveBeforeMod(Model model) {
-        if (isNull(prepareAddressBook) ||
-            isNull(prepareFilteredPersons) ||
-            isNull(prepareSortedPersons) ||
-            isNull(prepareGroupedPersons) ||
-            prepareAddressBook.equals(model.getAddressBook()) &&
-            prepareFilteredPersons.equals(model.getFilteredPersonList()) &&
-            prepareSortedPersons.equals(model.getSortedPersonList()) &&
-            prepareGroupedPersons.equals(model.getGroupedPersonList())) {
+        if (isNull(prepareAddressBook)
+            || isNull(prepareFilteredPersons)
+            || isNull(prepareSortedPersons)
+            || isNull(prepareGroupedPersons)
+            || prepareAddressBook.equals(model.getAddressBook())
+            && prepareFilteredPersons.equals(model.getFilteredPersonList())
+            && prepareSortedPersons.equals(model.getSortedPersonList())
+            && prepareGroupedPersons.equals(model.getGroupedPersonList())) {
             return;
         }
         lastCommand = prepareLastCommand;
