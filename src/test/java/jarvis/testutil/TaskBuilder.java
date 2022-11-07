@@ -16,6 +16,7 @@ public class TaskBuilder {
 
     private TaskDesc taskDesc;
     private TaskDeadline taskDeadline;
+    private boolean isDone;
 
     /**
      * Creates a {@code TaskBuilder} with the default details.
@@ -32,6 +33,7 @@ public class TaskBuilder {
         taskDesc = taskToCopy.getDesc();
         LocalDate deadline = taskToCopy.getDeadline();
         taskDeadline = new TaskDeadline(deadline);
+        isDone = taskToCopy.isDone();
     }
 
     /**
@@ -63,5 +65,17 @@ public class TaskBuilder {
      */
     public Task build() {
         return new Task(taskDesc, taskDeadline);
+    }
+
+    /**
+     * Returns the {@code Task} that we have built with a completion status copied from the task that TaskBuilder is
+     * initiated with.
+     */
+    public Task buildWithCompletionStatus() {
+        Task builtTask = new Task(taskDesc, taskDeadline);
+        if (isDone) {
+            builtTask.markAsDone();
+        }
+        return builtTask;
     }
 }
