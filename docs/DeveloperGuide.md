@@ -543,6 +543,48 @@ have standardised it to be in the format of `Uppercase Alphabet` + `3 Numbers`. 
 If the user tries to query for a ward number of incorrect format, the search will still proceed, but no patients will be
 displayed.
 
+### Patient Details Panel
+
+The Patient Details Panel provides a detailed view into the information of a specific patient. All the patient's personal 
+particulars and appointment details are reflected in this panel. The patient being viewed defaults to the first patient
+in the app, if present. Whenever the [`add`](#add-command) or [`edit`](#edit-command) is called on a patient, the patient 
+displayed switches to that patient in question. The [`view`](#view-command) command can be used to manually select the 
+person to display in the Patient Details Panel.
+
+#### Clickability
+
+Although checkUp is a CLI based application, Patient Details Panel supports clicking on individual fields to bring up the 
+required `edit` command. To illustrate this in more detail, an example is shown below of what happens when `Alex Yeoh`'s
+`email` field is clicked on.
+![Alex Yeohs' email clicked](images/ug-images/Person-Details-Panel-Clickability.png)
+
+When Alex Yeoh's email field is clicked on, `MainWindow` will recursively go through its child elements until it finds 
+the first matching `EventHandler`, which is the `email#getOnMouseCLicked()` handler. This will then call 
+`PersonViewPanel#CheckCLickType(event, prefix)` to ensure that the event was a double primary click. (Note that the `prefix`
+passed is different for each field, in this case it is _`PREFIX_EMAIL`_) 
+
+If so, it will call the `MainWindow#handlePersonViewClick(prefix)` which will combine the command word, prefix and index 
+of the person currently being viewed into a string, which is `edit 1 e/`. Then it will use 
+`CommandBox#setCommandTextField(str)` to update the text inside the `CommandBox`.
+
+#### Person Card Clickability
+
+Similar to the clickability of Patient Details Panel, person cards in the Patient List Panel can be clicked on to update
+the Person View Panel with the details of the patient that was clicked on. This is done by executing a `view` command 
+when a person card is clicked on. 
+
+`MainWindow` has the method `executeCommand` which will be passed on as an argument for the construction of a 
+`PersonListPanel` object which in turn is passed on as an argument to the creation of each `PersonCard` object. 
+When clicked, a `PersonCard` executes the `handleMouseClicked` method which makes use of the `MainWindow#executeCommand`
+method. The `MainWindow#executeCommand` method executes a `view` command with the corresponding index of the 
+`PersonCard` that was clicked. This is done to prevent `PersonListPanel` and `PersonCard` from having direct access to 
+`Model` or `Logic`, choosing to maintain `MainWindow` and `Ui` as the classes that interact with `Logic` instead.
+
+Things to note:
+* this is only done for `PersonCard` and not `ContactCard` as `ContactCard` already has all the information 
+  of the next-of-kin encapsulated on it. Hence, there is no need for the detailed view of the patient.
+*  You need to double-click the person card.
+
 ### View Command
 
 The purpose of the `view` command is to manually change the patient currently displayed in the Patient Details Panel.
@@ -647,7 +689,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is `CheckUp` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `checkUp` and the **Actor** is the `user`, unless specified otherwise)
 
 <h3>Use case 1: Register a patient</h3>
 
@@ -824,10 +866,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to list persons
-2. CheckUp shows a list of persons
+2. checkUp shows a list of persons
 3. User request to consult a patient
-4. CheckUp creates a past appointment for the User
-5. CheckUp removes the upcoming appointment for the current date for the User
+4. checkUp creates a past appointment for the User
+5. checkUp removes the upcoming appointment for the current date for the User
 
    Use case ends.
 
@@ -839,7 +881,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. CheckUp shows an error message.
+    * 3a1. checkUp shows an error message.
 
       Use case resumes at step 2.
 
