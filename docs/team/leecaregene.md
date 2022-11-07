@@ -54,7 +54,7 @@ FinBook is optimized for use via a Command Line Interface (CLI), which means mos
 * **Contributions to the DG**:
     * Updated the acknowledgements section.
     * Updated the storage component section.
-    * Added implementation details of the following: import command, lock feature
+    * Added implementation details of the following: import command, password lock feature
     * Updated user stories, use cases and glossary
     * Helped to fix bugs such as inconsistent formatting, broken links and outdated carryovers from AB3.
 
