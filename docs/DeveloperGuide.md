@@ -230,7 +230,7 @@ They go into full view mode with the `view` command and execute `edit 1 h/Scienc
 
 #### Implementation
 
-The grade progress feature is facilitated by `GradeProgressCommand`, `GradeProgressList` and `GradeProgressList` classes.
+The grade progress feature is facilitated by `GradeProgressCommand`, `GradeProgress` and `GradeProgressList` classes.
 `GradeProgressCommand` extends `Command` abstract class that has  abstract method, `execute()`.
 `GradeProgress` deals with the actual grade progress inputs while the
 `GradeProgressList` deals with the list of `GradeProgress`. 
@@ -251,7 +251,7 @@ Step 3. Upon successful entry of grade inputs, the `CommandResult()` message wil
 
 #### Design considerations
 
-Aspect: How grade progress command executes
+**Aspect: How grade progress command executes**
 - Alternative 1 (current choice): Creates a new `Person` object and overwrites current 'Person' object
   - Pros: Easy to implement and simple understandable code.
   - Cons: May lead to performance issues, when contents of the `Person` object is greater.
@@ -259,7 +259,7 @@ Aspect: How grade progress command executes
   - Pros: Faster, as there is no need to recreate the whole `Person` object
   - Cons: Implementation details are greatly exposed, damages code's maintainability
 
-Aspect: Addition of Grade progress
+**Aspect: Addition of Grade progress**
 - **Alternative 1 (current choice):** Creation of `Person` object first with empty `GradeProgressList` and thereafter executing `GradeProgressCommand`
   - Pros: Users would not have to key in a long statement when adding a new `Person` to the `AddressBook`
   - Cons: 2 command lines to be written for addition of new `Person` with non-empty `GradeProgressList`
@@ -267,7 +267,7 @@ Aspect: Addition of Grade progress
   - Pros: Reduce the need to recreate new `Person` object for the addition of grade progress
   - Cons: Increase tendency of user-made errors when inputting longer command lines
 
-Aspect: Data Structure of `GradeProgressList`
+**Aspect: Data Structure of `GradeProgressList`**
 - **Alternative 1 (current choice):** ArrayList
   - Pros: Easy to perform basic functions such as add, delete and remove of respective grade progress elements in the list.
   - Cons: Deletion of data from the middle is time-consuming as data needs to be shifted to update the list.
@@ -437,6 +437,66 @@ The following activity diagram summarises what happens when a user executes the 
   * Pros: Less bug-prone, more convenient for developers
   * Cons: Not user-friendly and makes things difficult for users.
   
+### Mark & Unmark Feature
+
+#### Implementation
+
+The `mark` feature allows the user to mark a specified item from the homework or attendance list.
+The `unmark` feature allows the user to unmark a specified item from the homework or attendance list.
+Both `mark` and `unmark` features can only be used when the user is in the `view` state of the student.
+
+The `mark` feature is facilitated by `MarkCommand` and `MarkPersonDescriptor` which is an associated class.
+The `unmark` feature is faciliatated by `UnmarkCommand` and `MarkPersonDescriptor` which is an associated class.
+Each `MarkCommand` and `UnmarkCommand` contains one and only one `MarkPersonDescriptor` object. Below is a partial class diagram of the relationship.
+
+![MarkCommandClassDiagram](images/MarkCommandClassDiagram.png)
+
+
+Both `MarkCommand` and `UnmarkCommand` extends `Command` abstract class that has  abstract method, `execute()`.
+`MarkPersonDescriptor` class stores the details to mark/unmark the person with.
+
+Additionally, the classes implement the following methods
+- `MarkCommmand#createMarkedPerson` - creates a person object with marked field as specified by the command.
+- `MarkCommand#getUpdatedHomeworkList` - creates an updated homework list.
+- `MarkCommand#getUpdatedAttendanceList` - creates an updates attendance list.
+
+To enable the marking behaviour, following methods have been implemented
+- `Attendance#markAsPresent` - sets the `isPresent` attribute as `true`
+- `AttendanceList#markAtIndex` - sets the `isPresent` attribute of the object in the list specified by the index as `true`
+- `Homework#markAsDone` - sets the `isDone` attribute as `true`
+- `HomeworkList#markAtIndex` - sets the `isDone` attribute of the object in the list specified by the index as `true`
+
+To enable the unmarking behaviour, following methods have been implemented
+- `Attendance#markAsAbsent` - sets the `isPresent` attribute as `false`
+- `AttendanceList#unmarkAtIndex` - sets the `isPresent` attribute of the object in the list specified by the index as `false`
+- `Homework#markAsUndone` - sets the `isDone` attribute as `false`
+- `HomeworkList#unmarkAtIndex` - sets the `isDone` attribute of the object in the list specified by the index as `false`
+
+Given below is an example usage scenario of how the user can mark a specified item from the homework or attendance list.
+
+Step 1. The user launches the application. The `AddressBook` will be initialized with the initial address book state.
+
+Step 2. The user executes `view Alex Yeoh`, which would show the details of the person only.
+
+Step 3. The user executes `mark h/1`, which would then mark the homework of index 1 in `Alex Yeoh`'s homework list.
+
+The following sequence diagram shows how the `MarkCommand` works:
+
+![MarkSequenceDiagram](images/MarkSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">
+:information_source: **Note** The lifeline for `MarkCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+#### Design considerations
+
+**Aspect: How mark and unmark command executes**
+- Alternative 1 (current choice): Use of PersonDescriptors for identifying and marking/unmarking of fields
+  - Pros: Able to identify the various 2 fields and do the necessary updates where needed
+  - Cons: More code to implement which would mean it is more susceptible to bugs
+- Alternative 2: Do direct marking of lists through invoking of marking methods of the specified field
+  - Pros: Less bug-prone, easier to implement
+  - Cons: Marking/unmarking might be limited to only one field
+
 
 ### Schedule feature
 
