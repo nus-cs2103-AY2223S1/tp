@@ -60,24 +60,27 @@ hrPro --> modelManager
 deactivate hrPro
 
 modelManager --> sortTaskCommand
+deactivate modelManager
 
 create commandResult
-sortTaskCommand -> commandResult : new()
+sortTaskCommand -> commandResult
 activate commandResult
 
 commandResult --> sortTaskCommand
 deactivate commandResult
 
 sortTaskCommand --> logicManager
+deactivate sortTaskCommand
 
 logicManager --> mainWindow
+deactivate logicManager
 
-mainWindow -> resultDisplay : setFeedbackToUser(Tasks are now sorted by deadline!)
+mainWindow -> resultDisplay : setFeedbackToUser(s)
 activate resultDisplay
 
 resultDisplay --> mainWindow
 deactivate resultDisplay
 
-mainWindow --> user : Tasks are now sorted by deadline!
+mainWindow --> user : s
 
 @enduml
