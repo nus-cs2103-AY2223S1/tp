@@ -12,6 +12,7 @@ end box
 
 box Model MODEL_COLOR_T1
 participant ":Person" as Person MODEL_COLOR
+participant ":Model" as Model MODEL_COLOR
 end box
 
 [-> LogicManager : execute("addLink 1 l/https://linkedin.com")
@@ -66,6 +67,12 @@ activate Person
 
 Person --> AddLinkCommand
 deactivate Person
+
+AddLinkCommand -> Model : setPerson()
+activate Model
+
+Model --> AddLinkCommand
+deactivate Model
 
 create CommandResult
 AddLinkCommand -> CommandResult
