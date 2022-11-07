@@ -17,7 +17,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/eclipse-dominator.md)]
 
 - Role: Developer
-- Responsibilities: Something
+- Responsibilities: System designer, complex commands
 
 ### Eric Lee Ying Yao
 
@@ -27,7 +27,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/autumn-sonata.md)]
 
 - Role: Developer
-- Responsibilities: Something
+- Responsibilities: Update storage components, database
 
 ### Jason Christopher
 
@@ -37,7 +37,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/jasonchristopher21.md)]
 
 - Role: Developer
-- Responsibilities: TBA
+- Responsibilities: Attributes, data modeling
 
 ### Connor Shihern Lim
 
@@ -47,7 +47,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/connlim.md)]
 
 - Role: Developer
-- Responsibilities: In charge of Tasks, Quality Assurance
+- Responsibilities: Implement Tasks, Quality Assurance, Bug fixing
 
 ### Mohamed Safwan S/O Abdul Wahab Lukuman
 
