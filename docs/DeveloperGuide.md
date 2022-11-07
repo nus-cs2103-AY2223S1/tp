@@ -634,16 +634,94 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+
+### Student
+
+#### Adding a student
+
+Do the test cases sequentially to ensure correct expectation.
+
+1. Adding a student while student tab is being shown.
+
+    1. Prerequisites: Switch to student tab using the `switch f/student` command. Ensure students data are empty by using `clear f/student` (you may skip this if you do not have any students).
+
+    2. Test case: `add student n/John Doe i/A0000000J ph/98765432 e/johnd@example.com tele/johnDoe m/CS2103T tut/W17`<br>
+       Expected:  A new student is added to the student list. A success message containing details of the added student is shown in result display box and the list of students is shown.
+
+    3. Test case: `add student n/Mary i/A0000000B ph/87654321 e/john@example.com tele/john m/missing_module tut/W17 g/A`<br>
+       Expected:  A new student is added to the student list. A success message containing details of the added student is shown in result display box and the list of students is shown.
+
+    4. Test case: `add student n/Mary i/A0000000J ph/12345678 e/mary@example.com tele/mary m/CS2103T tut/W17`<br>
+       Expected: Conflicting student error message is shown.
+
+    5. Test case: `add student n/John  i/A0000000B ph/87654321 e/john@example.com tele/john m/missing_module tut/W17`<br>
+       Expected: Error message is shown as module code is invalid. No student is added.
+
+    6. Test case: `add student n/John  i/A0000000B ph/87654321 e/john@example.com tele/john` <br>
+       Expected: Error message is shown as missing prefix. No student is added.
+
+    7. Other incorrect add student commands to try: `add student`, `add student n/testing i/sususu ph/ e/ tele/ m/ tut/`, `...` <br>
+       Expected: Error message is shown in the result display box.
+
+2. Adding a student while student tab is not being shown.
+
+    1. Prerequisites: Switch to another tab that is not student, for example, using the `switch f/tutorial` command.
+
+    2. Test case: `add student n/Mary i/A123456789J ph/12345678 e/mary@example.com tele/mary m/CS2103T tut/W17`<br>
+       Expected: Error message is shown as student id format is invalid. Main display remains the same.
+
+    3. Test case: `add student n/Mary i/A1234567J ph/12345678 e/mary@example.com tele/mary m/CS2103T tut/W17`<br>
+       Expected:  A success message containing details of the added student is shown. Main display changes to student and student list is updated.
+
+
+#### Deleting a student
+
+1. Deleting a student while student tab is being shown
+
+    1. Prerequisites: Switch to student tab using `switch f/student` command (you can skip this if the main display is already student). Multiple student in the list.
+
+    2. Test case: `delete student 1`<br>
+       Expected: First student is deleted from the list. Details of the deleted student shown in the status message. Student list is updated.
+
+    3. Test case: `delete consultation 0`<br>
+       Expected: No student is deleted. Error details shown in the status message. Student list remains the same.
+
+    4. Other incorrect delete student commands to try: `delete`, `delete x`, `...` (where x is larger than the student list size)<br>
+       Expected: Similar to previous.
+
+#### Editing a student
+
+1. Editing a student while student tab is being shown.
+
+    1. Prerequisites: Switch to student tab using the `switch f/student` command (you may skip this if the main display is already student). There exists at least 1 student in the list.
+
+    2. Test case: `edit student 1 m/CS1101S`<br>
+       Expected: Module of first student is edited. Details of the edited student shown in the status message.
+
+    3. Test case: `edit student 0`<br>
+       Expected: No student is edited. Error message shown in result display box.
+
+#### Finding a student
+
+1. Finding a student while student tab is being shown.
+
+    1. Prerequisites: Switch to student tab using the `switch f/student` command (you may skip this if the main display is already student).
+       Ensure student existing by using `clear f/student` then `add student n/Mary i/A0000000B ph/87654321 e/john@example.com tele/mary m/missing_module tut/W17` 
+
+    2. Test case: `find n/John`<br>
+       Expected: No student is listed. Details of the find command shown in the status message.
+
+    3. Test case: `find n/Mary`<br>
+       Expected: 1 student is listed. Details of the find command shown in the status message.
 
 ### Tutorial
 
@@ -719,7 +797,7 @@ Do the test cases sequentially to ensure correct expectation.
     1. Prerequisites: Switch to consultation tab using the `switch f/consultation` command. Ensure consultations data are empty by using `clear f/consultation` (you may skip this if you do not have any consultations).
 
     2. Test case: `add consultation n/Review past year paper m/CS2103T v/COM2-0109 D/2022-12-12 T/16:00-18:00 d/AY2019-2020 Question 3,6,8`<br>
-       Expected:  A new consultation is added to the tutorial list. A success message containing details of the added consultation is shown in result display box and the list of consultations is shown.
+       Expected:  A new consultation is added to the consultation list. A success message containing details of the added consultation is shown in result display box and the list of consultations is shown.
 
     3. Test case: `add consultation n/Review past year paper m/CS2103T v/COM2-0109 D/2022-12-12 T/17:00-19:00 d/AY2019-2020 Question 3,6,8`<br>
        Expected: Conflicting consultation error message is shown.
@@ -766,25 +844,10 @@ Do the test cases sequentially to ensure correct expectation.
     1. Prerequisites: Switch to consultation tab using the `switch f/consultation` command (you may skip this if the main display is already consultation). There exists at least 1 consultation in the list.
 
     2. Test case: `edit consultation 1 v/AS16`<br>
-       Expected: Venue of first consultation is edited. Details of the edited tutorial shown in the status message.
+       Expected: Venue of first consultation is edited. Details of the edited consultation shown in the status message.
 
     3. Test case: `edit consultation 0`<br>
        Expected: No consultation is edited. Error message shown in result display box.
-
-### Deleting a student
-
-1. Deleting a student while all students are being shown
-
-   1. Prerequisites: List all students using the `list` command. Multiple students in the list.
-
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-   1. Test case: `delete 0`<br>
-      Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
 
 ### Reminder
 
@@ -912,9 +975,11 @@ Do the test cases sequentially to ensure correct expectation.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+2. Test case: Missing JSON file. 
+   Expected: Sample data will be populated on startup.
 
-1. _{ more test cases …​ }_
+3. Test case: Corrupted JSON file.
+   Expected: An empty instance of EdRecord will be started, with more detailed error message logged.
 
 ## Effort
 Implementing ModQuik was not easy. We have summarised the difficulties and challenges our team have encountered when developing ModQuik and listed it below.
