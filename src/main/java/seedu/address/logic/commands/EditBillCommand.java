@@ -64,6 +64,11 @@ public class EditBillCommand extends Command {
         Bill billToEdit = lastShownList.get(indexOfBill.getZeroBased());
         Bill editedBill = createEditedBill(billToEdit, editBillDescriptor);
 
+        if (editBillDescriptor.getBillDate().orElse(billToEdit.getBillDate()).localDate
+                .isBefore(billToEdit.getAppointment().getSlot().localDateTime.toLocalDate())) {
+            throw new CommandException(MESSAGE_BILL_DATE_EARLIER_THAN_SLOT);
+        }
+
         model.setBill(billToEdit, editedBill);
         return new CommandResult(String.format(MESSAGE_EDIT_BILL_SUCCESS, editedBill));
     }

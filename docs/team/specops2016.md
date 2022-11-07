@@ -58,13 +58,10 @@ Given below are my contributions to the project.
 * Added the __User Stories__
 
 ### Contributions to the team-based tasks:
-* Created milestones
 * Closed milestones
-* Maintained the issue tracker
 * Released JAR files
 * Updated user docs not specific to feature
 * Updated developer docs not specific to feature
-* Facilitated team meeting discussions
 * Added test cases for existing features that were not assigned to me
 * Added developer docs not specific to feature as mentioned above (Appendix: Effort, User Stories)
 

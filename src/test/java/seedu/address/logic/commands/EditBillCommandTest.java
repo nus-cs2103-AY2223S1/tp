@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BILL_7;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BILL_8;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_BILL_DATE_7;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_AMOUNT_7;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_BILL_DATE_7;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -38,9 +39,11 @@ public class EditBillCommandTest {
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
 
-        Bill editedBill = new BillBuilder().withPaymentStatus(BILL_1.getPaymentStatus().toString()).build();
+        Bill editedBill = new BillBuilder().withPaymentStatus(BILL_1.getPaymentStatus().toString())
+                .withBillDate(VALID_BILL_DATE_7).build();
 
-        EditBillDescriptor descriptor = new EditBillDescriptorBuilder(editedBill).build();
+        EditBillDescriptor descriptor = new EditBillDescriptorBuilder(editedBill).withBillDate(VALID_BILL_DATE_7)
+                .build();
         EditBillCommand editBillCommand = new EditBillCommand(INDEX_FIRST_BILL, descriptor);
 
         String expectedMessage = String.format(EditBillCommand.MESSAGE_EDIT_BILL_SUCCESS, editedBill);
@@ -49,6 +52,24 @@ public class EditBillCommandTest {
         expectedModel.setBill(model.getFilteredBillList().get(0), editedBill);
 
         assertCommandSuccess(editBillCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_allFieldsSpecifiedUnfilteredList_failure() {
+
+        Bill editedBill = new BillBuilder().withPaymentStatus(BILL_1.getPaymentStatus().toString())
+                .withBillDate(VALID_BILL_DATE_7).build();
+
+        EditBillDescriptor descriptor = new EditBillDescriptorBuilder(editedBill)
+                .withBillDate(INVALID_BILL_DATE_7).build();
+        EditBillCommand editBillCommand = new EditBillCommand(INDEX_FIRST_BILL, descriptor);
+
+        String expectedMessage = String.format(EditBillCommand.MESSAGE_BILL_DATE_EARLIER_THAN_SLOT, editedBill);
+
+        Model expectedModel = new ModelManager(new HealthContact(model.getHealthContact()), new UserPrefs());
+        expectedModel.setBill(model.getFilteredBillList().get(0), editedBill);
+
+        assertCommandFailure(editBillCommand, model, expectedMessage);
     }
 
     @Test

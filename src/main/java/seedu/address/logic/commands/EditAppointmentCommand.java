@@ -36,9 +36,9 @@ public class EditAppointmentCommand extends Command {
             + "[" + PREFIX_SLOT + "SLOT<yyyy-MM-dd HH:mm>] "
             + "[" + PREFIX_DOCTOR + "DOCTOR]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_NAME + "John Doe"
-            + PREFIX_MEDICAL_TEST + "Computed Tomography"
-            + PREFIX_SLOT + "2020-10-09 13:30"
+            + PREFIX_NAME + "John Doe "
+            + PREFIX_MEDICAL_TEST + "Computed Tomography "
+            + PREFIX_SLOT + "2020-10-09 13:30 "
             + PREFIX_DOCTOR + "Muhammad Wong";
 
     public static final String MESSAGE_EDIT_APPOINTMENT_SUCCESS = "Edited Appointment: %1$s";
