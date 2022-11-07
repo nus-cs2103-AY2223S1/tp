@@ -1,14 +1,11 @@
 package seedu.address.logic.commands.buyer;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_BUYERS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.buyer.BuyerCommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalBuyers.KEYWORD_MATCHING_MEIER;
-import static seedu.address.testutil.TypicalBuyers.getTypicalBuyers;
 import static seedu.address.testutil.TypicalBuyers.getTypicalBuyersBook;
-import static seedu.address.testutil.TypicalBuyers.getTypicalBuyersWithMeier;
 import static seedu.address.testutil.TypicalProperties.getTypicalPropertyBook;
 
 import org.junit.jupiter.api.Test;
@@ -59,7 +56,6 @@ public class FindBuyersCommandTest {
         FindBuyersCommand command = new FindBuyersCommand(predicate);
         expectedModel.updateFilteredBuyerList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(getTypicalBuyers(), model.getFilteredBuyerList());
     }
 
     @Test
@@ -69,6 +65,5 @@ public class FindBuyersCommandTest {
         FindBuyersCommand command = new FindBuyersCommand(predicate);
         expectedModel.updateFilteredBuyerList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(getTypicalBuyersWithMeier(), model.getFilteredBuyerList());
     }
 }
