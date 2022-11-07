@@ -1,0 +1,17 @@
+@startuml
+!include style.puml
+skinparam ClassFontColor #000000
+skinparam ClassBorderColor #000000
+
+title After command "ls -u"
+
+package previousCommands {
+    class PreviousCommand1 as "ls -u"
+    class PreviousCommand2 as " "
+}
+
+PreviousCommand1 -[hidden]right-> PreviousCommand2
+
+class Pointer as "pointer" #FFFFFF
+Pointer -up-> PreviousCommand2
+@enduml

@@ -59,7 +59,7 @@ public class ListDeadlineCommandTest {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         TaskByDeadlinePredicate predicate = preparePredicate(" ");
         ListDeadlineCommand command = new ListDeadlineCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredTaskList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
     }
@@ -69,7 +69,7 @@ public class ListDeadlineCommandTest {
         TaskByDeadlinePredicate predicate = preparePredicate("2022-10-07");
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
         ListDeadlineCommand command = new ListDeadlineCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredTaskList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(List.of(BENSON, DANIEL, CARL), model.getFilteredPersonList());
     }

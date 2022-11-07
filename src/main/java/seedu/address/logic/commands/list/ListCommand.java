@@ -46,7 +46,7 @@ public class ListCommand extends Command {
         requireNonNull(model);
         Predicate<Task> predicate = predicates.stream()
                 .reduce(x -> true, Predicate::and);
-        model.updateFilteredPersonList(predicate);
+        model.updateFilteredTaskList(predicate);
         model.updateFilterStatus("Showing all tasks", true);
         predicates.stream().forEach(p -> {
             if (p.equals(PREDICATE_SHOW_ALL_PERSONS)) {

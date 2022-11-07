@@ -1,0 +1,96 @@
+@startuml
+!include style.puml
+'https://plantuml.com/sequence-diagram
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TaskListParser" as TaskListParser LOGIC_COLOR
+participant ":ListCommandParser" as ListCommandParser LOGIC_COLOR
+participant "t:TaskIsDonePredicate" as TaskIsDonePredicate LOGIC_COLOR
+participant ":ListModule\nCommandParser" as ListModuleCommandParser LOGIC_COLOR
+participant "m:ModuleContains\nKeywordsPredicate" as ModuleContainsKeywordsPredicate LOGIC_COLOR
+participant ":ParserUtil" as ParserUtil LOGIC_COLOR
+participant "d:ListCommand" as ListCommand LOGIC_COLOR
+end box
+
+[-> LogicManager
+activate LogicManager
+
+LogicManager -> TaskListParser : parseCommand( \n"ls -u --module CS2103T")
+activate TaskListParser
+
+create ListCommandParser
+TaskListParser -> ListCommandParser
+activate ListCommandParser
+
+ListCommandParser --> TaskListParser
+deactivate ListCommandParser
+
+TaskListParser -> ListCommandParser : parse(\n"-u --module CS2103T")
+activate ListCommandParser
+
+ListCommandParser -> ListCommandParser : getPredicate("-u")
+activate ListCommandParser
+
+create TaskIsDonePredicate
+ListCommandParser -> TaskIsDonePredicate
+activate TaskIsDonePredicate
+
+TaskIsDonePredicate --> ListCommandParser : t
+deactivate TaskIsDonePredicate
+
+deactivate ListCommandParser
+
+ListCommandParser -> ListCommandParser : getPredicate(\n"--module CS2103T")")
+activate ListCommandParser
+
+create ListModuleCommandParser
+ListCommandParser -> ListModuleCommandParser
+activate ListModuleCommandParser
+
+ListModuleCommandParser --> ListCommandParser
+deactivate ListModuleCommandParser
+
+ListCommandParser -> ListModuleCommandParser : getPredicate("CS2103T")
+activate ListModuleCommandParser
+
+
+ListModuleCommandParser -> ParserUtil : parseModule("CS2103T");
+activate ParserUtil
+
+ParserUtil --> ListModuleCommandParser
+deactivate ParserUtil
+
+create ModuleContainsKeywordsPredicate
+ListModuleCommandParser -> ModuleContainsKeywordsPredicate
+activate ModuleContainsKeywordsPredicate
+
+ModuleContainsKeywordsPredicate --> ListModuleCommandParser : m
+deactivate ModuleContainsKeywordsPredicate
+
+ListModuleCommandParser --> ListCommandParser :m
+deactivate ListModuleCommandParser
+
+ListModuleCommandParser -[hidden]-> TaskListParser
+destroy ListModuleCommandParser
+
+deactivate ListCommandParser
+
+create ListCommand
+ListCommandParser -> ListCommand : ListCommand(List.of(t, m))
+activate ListCommand
+
+ListCommand --> ListCommandParser : d
+deactivate ListCommand
+
+ListCommandParser --> TaskListParser : d
+deactivate ListCommandParser
+
+ListCommandParser -[hidden]-> TaskListParser
+destroy ListCommandParser
+
+TaskListParser --> LogicManager : d
+deactivate TaskListParser
+
+deactivate LogicManager
+@enduml

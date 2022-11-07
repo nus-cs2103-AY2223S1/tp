@@ -22,7 +22,6 @@ The following is a short overview of the features and capabilities of NotionUS:
 * Marking and unmarking a task as done.
 * Filtering tasks by name, module, deadline, tags and completion status.
 * Finding specific tasks by name or tag.
-* Archiving tasks and viewing them separately.
 
 |   If you are   |                                         You should                                         |
 |:--------------:|:------------------------------------------------------------------------------------------:|
