@@ -20,20 +20,20 @@ public class CalendarDisplay extends UiPart<Region> {
     private Logic logic;
     private CalendarLogic calendarLogic;
     @FXML
-    private GridPane calendarDisplay;
+    private GridPane calendarGrid;
     @FXML
     private FlowPane topCalendar;
-    private JumpText jumpText;
+    private JumpBox jumpBox;
 
     /**
      * Creates a Calendar with the given list of CalendarEvents.
      */
     public CalendarDisplay(Logic logic, Stage primaryStage) {
         super(FXML);
-        this.calendarLogic = new CalendarLogic(logic, primaryStage, calendarDisplay, topCalendar);
+        this.calendarLogic = new CalendarLogic(logic, primaryStage, calendarGrid, topCalendar);
         this.primaryStage = primaryStage;
         this.logic = logic;
-        this.jumpText = calendarLogic.getJumpText();
+        this.jumpBox = calendarLogic.getJumpBox();
         calendarLogic.initialiseLogic();
         calendarLogic.drawCalendar();
     }
@@ -47,14 +47,14 @@ public class CalendarDisplay extends UiPart<Region> {
     public void handleKeyPressed(KeyEvent event) {
         if (event.getCode().equals(KeyCode.B)) {
             calendarLogic.previous();
-            calendarDisplay.requestFocus();
+            calendarGrid.requestFocus();
         } else if (event.getCode().equals(KeyCode.N)) {
             calendarLogic.next();
-            calendarDisplay.requestFocus();
+            calendarGrid.requestFocus();
         }
     }
 
-    public boolean isJumpTextFocused() {
-        return jumpText.isJumpTextFocused();
+    public boolean isJumpBoxFocused() {
+        return jumpBox.isJumpBoxFocused();
     }
 }
