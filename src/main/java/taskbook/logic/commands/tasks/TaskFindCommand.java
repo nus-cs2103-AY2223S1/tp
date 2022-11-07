@@ -24,7 +24,7 @@ public class TaskFindCommand extends Command {
     public static final String MESSAGE_USAGE =
             TaskCategoryParser.CATEGORY_WORD + " " + COMMAND_WORD
             + " <" + PREFIX_QUERY + "QUERY " + PREFIX_ASSIGNMENT + "ASSIGNMENT " + PREFIX_DONE + "DONE>: "
-            + ": Searches all task descriptions and names that contain the given query.\n"
+            + "Searches all task descriptions and names that contain the given query.\n"
             + "Parameters:\n"
             + PREFIX_QUERY + "QUERY\n"
             + PREFIX_ASSIGNMENT + "ASSIGNMENT\n"
