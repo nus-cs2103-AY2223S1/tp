@@ -615,7 +615,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. There is no input after search.
 
-    * 3a1. SoConnect shows the same list of contacts.
+    * 3a1. SoConnect shows an error message and the same list of contacts.
 
       Use case ends.
 
@@ -755,18 +755,41 @@ testers are expected to do more *exploratory* testing.
 
    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts and todos. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
+   
+### Adding a contact
 
-1. _{ more test cases …​ }_
+1. Adding a new contact.
+   1. Prerequisite: There is no contact named `John Doe`.
+   2. Test case: `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+   3. Expected: New contact with the same details added in the contact list.
+2. Adding a contact that has existed before.
+   1. Prerequisite: There is a contact named `Betsy Crowe` in the contact list.
+   2. Text case: `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567`
+   3. Expected: Error message `This person already exists in the SoConnect.` is displayed.
+   
+### Editing a contact
+
+1. Edit an existing contact.
+   1. Prerequisite: There is a contact in the 2nd index of contact list.
+   2. Test case: `edit 2 n/Betsy Crower`.
+   3. Expected: Edits the name of the 2nd contact to be Betsy Crower.
+   
+
+### Listing all contacts
+
+1. Prerequisite: There are some existing contacts.
+2. Test case: `list`.
+3. Expected: 
 
 ### Deleting a contact
 
-1. Deleting a contact while all contacts are being shown
+1. Deleting a contact while all contacts are being shown.
 
    1. Prerequisites: List all contacts using the `list` command. Multiple contacts in the list.
 
@@ -783,7 +806,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Dealing with missing/corrupted data files.
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
