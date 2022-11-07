@@ -27,16 +27,7 @@ import seedu.clinkedin.model.tag.exceptions.TagTypeNotFoundException;
 import seedu.clinkedin.model.tag.exceptions.TagTypePrefixPairNotFoundException;
 
 /**
- * A list of tagtypes that enforces uniqueness between its elements and does not
- * allow nulls.
- * A tagtype is considered unique by comparing using
- * {@code TagType#equals(Object)}. As such, adding and updating of
- * tag types uses TagType#equals(Object) for equality so as to ensure that
- * the tag type being added or updated is
- * unique in terms of identity in the UniqueTagTypeList. The removal of
- * a tag type also uses TagType#equals(Object) so
- * as to ensure that the tag type with exactly the same fields will be removed.
- *
+ * A map of tagtypes and uniqueTagLists that enforces uniqueness between its keys.
  * Supports a minimal set of map operations.
  *
  */
@@ -50,9 +41,12 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
     private final ObservableMap<TagType, UniqueTagList> internalMap = FXCollections.observableMap(new HashMap<>());
     private final ObservableMap<TagType, UniqueTagList> internalUnmodifiableMap = FXCollections
             .unmodifiableObservableMap(internalMap);
-
     /**
-     * Adds a new tag type to the existing TAG_TYPES.
+     * Adds a new tag type to the prefixMap.
+     * @param prefix Prefix of the tag type to be added.
+     * @param tagType TagType to be added.
+     * @throws DuplicatePrefixException If the prefix already exists in the prefixMap.
+     * @throws DuplicateTagTypeException If the tagType already exists in the prefixMap.
      */
     public static void createTagType(Prefix prefix, TagType tagType) throws DuplicatePrefixException,
             DuplicateTagTypeException {
@@ -65,9 +59,10 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
             CliSyntax.addTagPrefix(prefix);
         }
     }
-
     /**
-     * Removes tagType from list of tag types.
+     * Removes a tagType from the prefixMap.
+     * @param tagType TagType to be removed.
+     * @throws TagTypeNotFoundException If the tagType does not exist in the prefixMap.
      */
     public static void removeExistingTagType(TagType tagType) throws TagTypeNotFoundException {
         if (prefixMap.values().contains(tagType)) {
@@ -80,6 +75,18 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
         }
     }
 
+    /**
+     * Replaces an existing tagType in the prefixMap.
+     * @param toRemovePrefix Prefix of the tagType to be replaced.
+     * @param toRemoveTagType TagType to be replaced.
+     * @param prefix New prefix after replacing.
+     * @param tagType New tagType after after replacing.
+     * @throws PrefixNotFoundException If prefix to be replaced doesn't exist.
+     * @throws TagTypeNotFoundException If tagType to be replaced doesn't exist.
+     * @throws DuplicatePrefixException If replacing the prefix would lead to duplicate prefixes.
+     * @throws TagTypePrefixPairNotFoundException If prefix-tagType pair to be replaced doesn't exist.
+     * @throws DuplicateTagTypeException If replacing the tagType would lead to duplicate tagTypes.
+     */
     public static void setExistingTagType(Prefix toRemovePrefix, TagType toRemoveTagType, Prefix prefix,
                                           TagType tagType)
             throws PrefixNotFoundException, TagTypeNotFoundException, DuplicatePrefixException,
@@ -102,17 +109,19 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
         CliSyntax.removeTagPrefix(toRemovePrefix);
         UniqueTagTypeMap.createTagType(prefix, tagType);
     }
-
     /**
-     * Returns true if the list contains an equivalent tag type as the given argument.
+     * Returns true if the map contains an equivalent tagType as a key as the given argument.
+     * @param toCheck TagType to be checked.
+     * @return True if tagType exists as a key in the map.
      */
     public boolean contains(TagType toCheck) {
         requireNonNull(toCheck);
         return internalMap.containsKey(toCheck);
     }
-
     /**
-     * Merges another UniqueTagTypeMap.
+     * Merges another UniqueTagTypeMap with the uniqueTagTypeMap.
+     * @param tagTypeMap UniqueTagTypeMap to be merged.
+     * @throws DuplicateTagException If merging would result in duplicate tags.
      */
     public void mergeTagTypeMap(UniqueTagTypeMap tagTypeMap) throws DuplicateTagException {
         requireNonNull(tagTypeMap);
@@ -132,7 +141,10 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
         }
     }
     /**
-     * Subtracts a UniqueTagTypeMap.
+     * Subtracts a UniqueTagTypeMap from the uniqueTagTypeMap.
+     * @param tagTypeMap UniqueTagTypeMap to be subtracted.
+     * @throws TagTypeNotFoundException If a tagType not found in the uniqueTagTypeMap.
+     * @throws TagNotFoundException If a tag not found in the uniqueTagTypeMap.
      */
     public void removeTags(UniqueTagTypeMap tagTypeMap) throws TagTypeNotFoundException, TagNotFoundException {
         requireNonNull(tagTypeMap);
@@ -157,9 +169,11 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
             }
         }
     }
-
     /**
      * Adds a tag for the given tagType.
+     * @param tagType TagType to be added.
+     * @param tagName Tag to be added.
+     * @throws DuplicateTagException If adding the tag would result in duplicate tags.
      */
     public void mergeTag(TagType tagType, Tag tagName) throws DuplicateTagException {
         requireAllNonNull(tagType, tagName);
@@ -173,7 +187,7 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
         }
     }
     /**
-     * Replaces the tag type {@code target} in the list with {@code editedTagType}.
+     * Replaces the tag type {@code target} in the map with {@code editedTagType}.
      * {@code target} must exist in the list.
      * The tag type name of {@code editedTagType} must not be the same as another
      * existing tag type in the list.
@@ -193,8 +207,10 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
         internalMap.put(editedTagType, tagList);
     }
     /**
-     * Removes the equivalent tag type from the list.
-     * The tag type must exist in the list.
+     * Removes the equivalent tag type from the map.
+     * The tag type must exist in the map.
+     * @param toRemove tagType to be removed.
+     * @throws TagTypeNotFoundException If tagType not found in map.
      */
     public void removeTagType(TagType toRemove) throws TagTypeNotFoundException {
         requireNonNull(toRemove);
@@ -203,7 +219,12 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
         }
         internalMap.remove(toRemove);
     }
-
+    /**
+     * Returns the UniqueTagList corresponding to the given tagType in the map.
+     * @param toGet TagType whose UniqueTagList is asked for.
+     * @return UniqueTagList of the corresponding tagType in the map.
+     * @throws TagTypeNotFoundException If tagType not found in map.
+     */
     public UniqueTagList getTagList(TagType toGet) throws TagTypeNotFoundException {
         requireNonNull(toGet);
         if (!this.contains(toGet)) {
@@ -211,7 +232,10 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
         }
         return internalMap.get(toGet).copy();
     }
-
+    /**
+     * Replaces the map with the given map.
+     * @param replacement new map after replacement.
+     */
     public void setTagTypeMap(UniqueTagTypeMap replacement) {
         requireNonNull(replacement);
         internalMap.clear();
@@ -219,8 +243,8 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
     }
 
     /**
-     * Replaces the contents of this list with {@code tagTypes}.
-     * {@code tagTypes} must not contain duplicate tags.
+     * Replaces the map with the given map.
+     * @param tagTypeMap new map after replacement.
      */
     public void setTagTypeMap(Map<TagType, UniqueTagList> tagTypeMap) {
         requireAllNonNull(tagTypeMap);
@@ -228,14 +252,18 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
     }
 
     /**
-     * Get the count of unique tag types in the list. Used for displaying information
+     * Get the count of unique tag types in the map. Used for displaying information
      * on total count of tag types.
-     * @return the count of unique tag types in the list.
+     * @return the count of unique tag types in the map.
      */
     public int getCount() {
         return internalMap.size();
     }
 
+    /**
+     * Get the total count of tags in the map. Used for displaying information on total count of tags.
+     * @return the count of tags in the map.
+     */
     public int getTagCount() {
         int count = 0;
         for (TagType t: this) {
@@ -246,7 +274,7 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
     }
 
     /**
-     * Returns the backing list as an unmodifiable {@code ObservableList}.
+     * Returns the backing map as an unmodifiable {@code ObservableMap}.
      */
     public ObservableMap<TagType, UniqueTagList> asUnmodifiableObservableMap() {
         return internalUnmodifiableMap;
@@ -257,10 +285,16 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
         return internalMap.keySet().iterator();
     }
 
+    /**
+     * Returns the prefixMap as an unmodifiable map.
+     */
     public static Map<Prefix, TagType> getPrefixMap() {
         return Collections.unmodifiableMap(prefixMap);
     }
 
+    /**
+     * Returns a copy of the prefixMap.
+     */
     public static Map<Prefix, TagType> getPrefixMapCopy() {
         Map<Prefix, TagType> copy = new HashMap<>();
         for (Prefix p : prefixMap.keySet()) {
@@ -269,6 +303,9 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
         return copy;
     }
 
+    /**
+     * Sets or replaces the prefixMap with the given prefixMap.
+     */
     public static void setPrefixMap(Map<Prefix, TagType> map) {
         Map<Prefix, TagType> newMap = new HashMap<>();
         for (Prefix p: map.keySet()) {
@@ -289,9 +326,17 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
     public int hashCode() {
         return internalMap.hashCode();
     }
+
+    /**
+     * Returns a stream of tagTypes in the map.
+     */
     public Stream<TagType> toStream() {
         return StreamSupport.stream(this.spliterator(), false);
     }
+
+    /**
+     * Returns the tagType of the prefix in the prefixMap.
+     */
     public static TagType getTagType(Prefix pref) throws PrefixNotFoundException {
         if (!prefixMap.containsKey(pref)) {
             throw new PrefixNotFoundException();
@@ -306,7 +351,12 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
         }
         return res.toString();
     }
-
+    /**
+     * Returns the prefix of the tagType in the prefixMap.
+     * @param tagType TagType whose prefix is required.
+     * @return Prefix of the tagType.
+     * @throws TagTypeNotFoundException If the tagType doesn't exist in the prefixMap.
+     */
     public static Prefix getPrefixFromTagType(String tagType) throws TagTypeNotFoundException {
         for (Prefix pref: prefixMap.keySet()) {
             if (prefixMap.get(pref).getTagTypeName().equals(tagType)) {
@@ -316,6 +366,12 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
         throw new TagTypeNotFoundException(tagType);
     }
 
+    /**
+     * Returns the tagType of the prefix in the prefixMap.
+     * @param prefix Prefix whose tagType is required.
+     * @return TagType of the prefix.
+     * @throws TagTypeNotFoundException If no tagType found in the prefixMap for the given prefix.
+     */
     public static TagType getTagTypeFromPrefix(Prefix prefix) throws TagTypeNotFoundException {
         for (TagType tagType: prefixMap.values()) {
             if (tagType.getPrefix().equals(prefix)) {
@@ -324,7 +380,9 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
         }
         throw new TagTypeNotFoundException();
     }
-
+    /**
+     * Returns true if the map is empty.
+     */
     public boolean isEmpty() {
         return internalMap.isEmpty();
     }
@@ -339,6 +397,7 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
 
     /**
      * Returns a copy of the UniqueTagTypeMap.
+     * @return Copy of the uniqueTagTypeMap.
      */
     public UniqueTagTypeMap copy() {
         UniqueTagTypeMap copy = new UniqueTagTypeMap();

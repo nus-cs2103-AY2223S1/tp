@@ -451,6 +451,44 @@ It is designed to be a non-compulsory feature, as the recruiter might not be abl
 **Aspect: Argument type of the `Rating` constructor**
 It is designed to take in a String, as Commands are parsed as a String. However, the constructor will parse the String and the Rating is stored as an Integer.
 
+### Export/Import Feature
+
+#### Implementation
+
+##### Export
+* In order to export in CSV format, The `Export` command creates and uses an instance of the `CSVWriter` class from the `OpenCSV` package which generates a CSV file line by line in the file specified by the user. 
+* During the execution of the `Export` command, in order to convert the `personList` to a CSV Writable format, the `Person#getDetailsAsArray()` method is invoked on each person.
+* The file-writing operations for CSV format can be found in the `exportToCsvFile()` method in `FileUtil`.
+* In order to export in JSON format, The `Export` command uses the `saveJsonFile()` method in `JsonUtil` similar to how CLInkedIn uses the `saveJsonFile()` method to store the addressbook data.
+
+The following sequence diagram shows how the `Export` command operation works for a **CSV** file:
+
+<center>
+
+![ExportSequenceDiagram](images/ExportSequenceDiagram.png)
+![ExportToCSVRefSequenceDiagram](images/ExportToCSVRefSequenceDiagram.png)
+
+</center>
+
+##### Import
+* In order to import from a CSV file, the `Import` command creates and uses an instance of the `CSVReader` class from the `OpenCSV` package to read the CSV file line by line. 
+* The file-reading operations can be found in the `importFromCsvFile()` method in `FileUtil`. 
+* During the execution of the `Import` command, the details of each person received from the `importFromCsvFile` is validated and used to generate an instance of a `Person` by invoking the `ParserUtil#parsePerson()` method in `ParserUtil`.
+* In order to import from a JSON file, The `Import` command uses the `readJsonFile()` method in `JsonUtil` similar to how CLInkedIn uses the `readJsonFile()` method to retrieve the addressbook data on launch.
+
+The following sequence diagram shows how the `Import` command operation works for a **CSV** file:
+
+<center>
+
+![ImportSequenceDiagram](images/ImportSequenceDiagram.png)
+![ImportFromCsvRefSequenceDiagram](images/ImportFromCsvRefSequenceDiagram.png)
+
+</center>
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the user executes the `import` or `export` command through the GUI Window, internally the `import` or `export` command is invoked, by appending `import ` or `export ` before the file path specified in the GUI Window respectively, and then passing the resultant `String` as an argument while invoking the `MainWindow#executeCommand()` method.
+</div>
+    
+
 ### Link Feature
 
 #### Implementation
