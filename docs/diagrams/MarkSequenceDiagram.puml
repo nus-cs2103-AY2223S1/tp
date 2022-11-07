@@ -1,0 +1,95 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":MarkCommandParser" as MarkCommandParser LOGIC_COLOR
+participant "m:MarkCommand" as MarkCommand LOGIC_COLOR
+participant "mPer:MarkPersonDescriptor" as MarkPersonDescriptor LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "markedPerson:Person" as Person MODEL_COLOR
+end box
+
+[-> LogicManager : execute("mark h/1")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("mark h/1")
+activate AddressBookParser
+
+create MarkCommandParser
+AddressBookParser -> MarkCommandParser
+activate MarkCommandParser
+
+MarkCommandParser --> AddressBookParser
+deactivate MarkCommandParser
+
+AddressBookParser -> MarkCommandParser : parse("h/1")
+activate MarkCommandParser
+
+create MarkCommand
+MarkCommandParser -> MarkCommand
+activate MarkCommand
+
+create MarkPersonDescriptor
+MarkCommand -> MarkPersonDescriptor
+activate MarkPersonDescriptor
+
+MarkPersonDescriptor --> MarkCommand : mPer
+deactivate MarkPersonDescriptor
+
+MarkCommand --> MarkCommandParser : m
+deactivate MarkCommand
+
+MarkCommandParser --> AddressBookParser : m
+deactivate MarkCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+MarkCommandParser -[hidden]-> AddressBookParser
+destroy MarkCommandParser
+
+AddressBookParser --> LogicManager : m
+deactivate AddressBookParser
+
+LogicManager -> MarkCommand : execute()
+activate MarkCommand
+
+MarkCommand -> Model : getFilteredPersonList()
+activate Model
+
+Model --> MarkCommand
+deactivate Model
+
+
+MarkCommand -> MarkCommand : createMarkedPerson(personToMark, markPersonDescriptor)
+
+
+create Person
+MarkCommand -> Person : setFullView()
+activate Person
+
+Person --> MarkCommand
+deactivate Person
+
+MarkCommand -> Model : setPerson(personToMark,editedPerson)
+activate Model
+
+Model --> MarkCommand
+deactivate Model
+
+create CommandResult
+MarkCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> MarkCommand
+deactivate CommandResult
+
+MarkCommand --> LogicManager : result
+deactivate MarkCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

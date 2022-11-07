@@ -7,11 +7,11 @@ participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":GradeProgressCommandParser" as GradeProgressCommandParser LOGIC_COLOR
 participant "g:GradeProgressCommand" as GradeProgressCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
-participant ":GradeProgressList" as GradeProgressList LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
+participant ":GradeProgressList" as GradeProgressList MODEL_COLOR
 participant "editedPerson:Person" as Person MODEL_COLOR
 end box
 
