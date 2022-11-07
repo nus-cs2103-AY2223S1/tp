@@ -5,6 +5,7 @@ import static swift.commons.util.AppUtil.checkArgument;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 
 /**
  * Represents a Task's deadline in the address book.
@@ -16,7 +17,7 @@ public class Deadline implements Comparable<Deadline> {
             "Deadline must be in `dd-MM-yyyy HHmm` format.";
 
     private static final DateTimeFormatter DATE_TIME_FORMATTER =
-            DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
+            DateTimeFormatter.ofPattern("dd-MM-uuuu HHmm").withResolverStyle(ResolverStyle.STRICT);
 
     public final LocalDateTime deadline;
 

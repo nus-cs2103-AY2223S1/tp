@@ -14,6 +14,7 @@ import swift.commons.core.index.Index;
 import swift.logic.commands.exceptions.CommandException;
 import swift.logic.parser.Prefix;
 import swift.model.Model;
+import swift.model.task.Deadline;
 import swift.model.task.Task;
 
 /**
@@ -42,6 +43,7 @@ public class AddTaskCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the address book";
     public static final String MESSAGE_INVALID_CONTACT_INDEX = "The contact index provided is invalid";
+    public static final String MESSAGE_INVALID_DATE = "Deadline must valid and in the `dd-MM-yyyy HHmm` format.";
 
     private final Task toAdd;
     private final Collection<Index> contactIndices;
@@ -63,6 +65,9 @@ public class AddTaskCommand extends Command {
 
         if (model.hasTask(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
+        }
+        if (toAdd.getDeadline().map(x -> !Deadline.isValidDeadline(x.toString())).orElse(false)) {
+            throw new CommandException(MESSAGE_INVALID_DATE);
         }
         for (Index index : contactIndices) {
             if (index.getZeroBased() >= model.getFilteredPersonList().size()) {
