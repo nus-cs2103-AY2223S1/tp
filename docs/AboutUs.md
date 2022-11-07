@@ -17,7 +17,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[portfolio](team/nitant-p.md)]
 
-* Role: Project Advisor
+* Role: Developer
 
 ### Png Yi Wei Jonas
 

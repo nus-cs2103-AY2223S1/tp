@@ -5,6 +5,8 @@ title: Nitant Panicker's Project Portfolio Page
 
 ### Project: SoConnect
 
+### Overview
+
 SoConnect is a desktop address book application designed for National University of Singapore (NUS) Computer Science Undergraduates to keep track of their University Social Circle. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 * **Enhancements to existing features**: Added the ability to find contacts by any field and added a new search mode.
