@@ -279,7 +279,7 @@ While the `ModuleClass` object for the module "CS1231S" might be saved in `modul
 ```
 
 #### Design considerations
-* **Option 1 (Current Choice).**: The `StudentModuleData` and `SessionData` objects only save the `ModuleClass` name and `Session` name respectively. Because in any of their functionality, we do not need to know the list of `Sessions` in the `ModuleClass` object or the `Date` of the `Session` object. 
+* **Option 1 (Current Choice)**: The `StudentModuleData` and `SessionData` objects only save the `ModuleClass` name and `Session` name respectively. Because in any of their functionality, we do not need to know the list of `Sessions` in the `ModuleClass` object or the `Date` of the `Session` object. 
   * **Pros**:
     * The `StudentModuleData` and `SessionData` objects are independent of the `ModuleClass` and `Session` objects stored in `Model`. 
     * It makes testing easier due to the independence of the `StudentModuleData` and `SessionData` objects.
@@ -440,26 +440,24 @@ The following sequence diagram shows how changes are propagated to the `UI` thro
 #### Design considerations
 
 **Aspect: How query data is passed to `UI`:**
-* **Option 1 (Current Choice)** Pair `Student` and `SessionData` together in a `StudentView` class.
+* **Option 1 (Current Choice)**: Pair `Student` and `SessionData` together in a `StudentView` class.
   * **Pros**: With `Observable` pattern, can be made to automatically update when a new student is graded. Simplifies `UI` implementation.
   * **Cons**: Complicates design of `Model` as it adds another class just for handling the "view" of a student.
-* **Option 2** Maintain two `ObservableList`-s for `Student` and `SessionData` seperately.
+* **Option 2**: Maintain two `ObservableList`-s for `Student` and `SessionData` seperately.
   * **Pros**: Reduces the need of a encapsulating class, which simplifies the design of `Model`.
   * **Cons**: Hard to maintain. Accidental slip-up in updating one list but not the other can occur.
-* **Option 3** Let UI query the data from `Student`
+* **Option 3**: Let UI query the data from `Student`
   * **Pros**: `Model` needs no change.
   * **Cons**: Breaks abstraction principle. Non-trivial querying of fields from `Student` should be handled by `Model`.
-* **Option 4** Pass data through `CommandResult`
+* **Option 4**: Pass data through `CommandResult`
   * **Pros**: Easy to implement.
   * **Cons**: Hard to maintain. Each `Command` now needs to know that `CommandResult` can pass data other than for result display.
 
 ### Exporting data as CSV
 This feature allows the user to extract data efficiently from TA-Assist to be used for other purposes such as statistical analysis or result collation on other platforms. Unlike other commands which only works on the model, the `export` command requires access to `Storage` to create a new CSV file and write data to it. This is facilitated by the `ExportCsvStorageAction` class, which is a children of the `StorageAction` class, where further action onto the `Storage` component is processed.
 
-#### CommandResult class
 The `CommandResult` class can contain just the feedback to the user, or it can also contain either a `UiAction` or `StorageAction`. These two classes represent an action to be performed by the `Ui` and `Storage` respectively.
 
-#### ExportCsvStorageAction class
 The `ExportCsvStorageAction` class is a `StorageAction` that requests the `Storage` to export a CSV file.
 
 The following sequence diagram shows how the `export` command exports a CSV file with the help of `Storage`:
