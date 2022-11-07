@@ -111,7 +111,7 @@ How the `Logic` component works:
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 <div style="page-break-after: always;"></div>
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete p/1234567")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete p/12345678")` API call.
 
 ![Interactions Inside the Logic Component for the `delete p/1234567` Command](images/DeleteSequenceDiagram.png)
 
@@ -774,7 +774,6 @@ Guarantee: bobaBot will be exited.
 11. The source code and project management should follow the requirements and principles in CS2103T
 12. Should handle large amount of customers' data, like 10,000 customers
 
-*{More to be added}*
 
 ### Glossary
 
@@ -1069,5 +1068,4 @@ testers are expected to do more *exploratory* testing.
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_
 

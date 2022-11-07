@@ -13,9 +13,9 @@ if () then ([valid command format])
   :creates a AddCommandParser Object;
   :AddCommandParser Object parses input;
     if () then ([input valid format])
-      :get all Person details;
+      :get all Customer details;
       :Returns AddCommand Object;
-      :Check if Person with same phone
+      :Check if Customer with same phone
        or email address already exists;
       if () then ([does not exist yet])
         :BobaBotModel adds customer;
