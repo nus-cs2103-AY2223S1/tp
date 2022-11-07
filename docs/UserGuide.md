@@ -299,7 +299,10 @@ Format: `delete ATTRIBUTE_NAME`
 
 - You can only run this command in a person's detail page. Please refer to [Show Person Details](#show-a-persons-details--enter-or-double-click) to enter person details page.
 - `name` cannot be deleted as it is a required attribute.
-- You only can delete one attribute at one time.
+- You only can delete one attribute at one time. If multiple arguments
+are provided, the last of the provided arguments will be deleted.
+- For example, `delete github role email` will result in only the `email`
+being deleted.
 
 Attributes (`ATTRIBUTE_NAME`) that can be deleted:
 - `role`
@@ -308,6 +311,7 @@ Attributes (`ATTRIBUTE_NAME`) that can be deleted:
 - `phone`
 - `slack`
 - `telegram`
+- `github`
 
 Example:
 - `delete telegram`
