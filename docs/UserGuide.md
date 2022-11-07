@@ -44,7 +44,7 @@ It helps to keep track of patient data, patient appointments and patient bills f
 
 3. Copy the file to the folder you want to use as the home folder for your HealthContact application.
 
-4. Double-click the file to start the app. The GUI (Graphical User Interface) similar to the below should appear in a few seconds. Note how the app contains some sample data.
+4. Double-click the file to start the app. The Graphical User Interface(GUI) similar to the below should appear in a few seconds. Note how the app contains some sample data.
 
 <img src="images/Ui.png" width="800px" height ="500px">
 
