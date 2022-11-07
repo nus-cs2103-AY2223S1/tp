@@ -7,6 +7,8 @@ Here's a (partial) class diagram of the `Logic` component:
 
 ![](images/LogicClassDiagram.png)
 
+{% include page-break.html %}
+
 How the `Logic` component works:
 
 1. When `Logic` is called upon to execute a command, it uses the `FoodRemParser` class to parse the user command.
