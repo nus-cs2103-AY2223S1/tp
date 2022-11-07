@@ -3,7 +3,7 @@
 skinparam classBackgroundColor MODEL_COLOR
 show members
 
-enum Status {
+enum "<<enumeration>>\nStatus" {
     INTERVIEW
     OFFERED
     PENDING
