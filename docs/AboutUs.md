@@ -9,6 +9,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
+### Jovita Anderson
+
+<img src="images/jovitaanderson.png" width="200px">
+
+[[github](https://github.com/jovitaanderson)][[portfolio](team/jovitaanderson.md)]
+
+Roles:
+
+* Team Lead
+
 ### Lee Care Gene
 
 <img src="images/leecaregene.png" width="200px">
@@ -19,16 +29,6 @@ Roles:
 
 * Code quality
 * Integration
-
-### Jovita Anderson
-
-<img src="images/jovitaanderson.png" width="200px">
-
-[[github](https://github.com/jovitaanderson)][[portfolio](team/jovitaanderson.md)]
-
-Roles:
-
-* Team Lead
 
 ### Shanice Ng Wen Yi
 
