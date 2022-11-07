@@ -13,7 +13,7 @@ title: Developer Guide
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-## Introduction
+## **Introduction**
 Welcome to the Developer Guide for **Tuthub**, a Command Line Interface (CLI) App that will help you find your next batch of teaching assistants (TA) in no time! Tuthub is a desktop app for NUS professors who wish to track and choose their next batch of teaching assistants/tutors based on their past performance and records but have little time to spare for tedious administrative work.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -641,16 +641,17 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
-
+   
 ### Saving data
 
 1. Dealing with missing/corrupted data files
-    1. Test Case
-    2. Test Case: Before starting Tuthub, delete `tuthub.json` from the `./data/` directory.<br/>
-       Expected: Tuthub will start with a sample list of tutors. A new `tuthub.json` file containing the sample data will be created in the `./data/` directory.
-    3. Test Case: While Tuthub is running, delete `tuthub.json`. Try carrying out a valid command, e.g. `view 1`.<br/>
-       Expected: Command works as per usual. Upon carrying out the command, a new `tuthub.json` file will be created in the `./data/` directory.
+    1. Prerequisites: If you have used Tuthub before, there should be a `tuthub.json` in the `./data/` directory. If not, the directory and file will be created when you first launch Tuthub.
 
-1. _{ more test cases …​ }_
+    2. Test Case: Before starting Tuthub, enter random characters in the `tuthub.json` file. Launch Tuthub.<br/>
+       Expected: Tuthub should start with no tutors in the list. You should see a warning message "`WARNING: Data file not in the correct format. Will be starting with an empty Tuthub`" in the terminal console.
+   
+    5. Test Case: Before starting Tuthub, delete `tuthub.json`.<br/>
+        Expected: Tuthub will start with a sample list of tutors. A new `tuthub.json` file containing the sample data will be created.
+   
+    6. Test Case: While Tuthub is running, delete `tuthub.json`. Try carrying out a valid command, e.g. `view 1`.<br/>
+       Expected: Command works as per usual. Upon carrying out the command, a new `tuthub.json` file will be created.
