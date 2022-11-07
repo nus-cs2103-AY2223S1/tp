@@ -9,14 +9,14 @@ Gim is a **desktop app for managing gym exercises, optimized for use via a Comma
 
 Given below are my contributions to the project.
 
-* **New Feature**: `:range start/START_DATE end/END_DATE` command (PR #92, #119) 
+* **New Feature**: `:range start/START_DATE end/END_DATE` command (PR [#92](https://github.com/AY2223S1-CS2103T-T15-4/tp/issues/92), [#119](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/119)) 
   * What it does: Displays a list of exercises within the time period defined by the start date and end date.
   * Justification: This allows users to easily view exercise within a time period, which is a common operation.
   * Highlights: Tracing of the original AB3 code base is necessary to understand how a new command can be added. The integration
   of Java's LocalDate APIs is crucial to this command as well.
 
 
-* **New Feature**: `:range last/NUMBER_OF_DAYS` (PR #92, #119)
+* **New Feature**: `:range last/NUMBER_OF_DAYS` (PR [#92](https://github.com/AY2223S1-CS2103T-T15-4/tp/issues/92), [#119](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/119))
   * What it does: Displays a list of exercises the last N days, where N is the number of days the user inputs.
   * Justification: This allows users to easily view exercise within a time period, without inputting the specific dates.
   * Highlights: Tracing of the original AB3 code base is necessary to understand how a new command can be added. The integration
@@ -25,13 +25,13 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=stevenlimhw&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Enhancements to existing features**:
-  * Allow date to be optional when adding an exercise using `:add` (PR #86, #108)
+  * Allow date to be optional when adding an exercise using `:add` (PR [#86](https://github.com/AY2223S1-CS2103T-T15-4/tp/issues/86), [#108](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/108))
     * What I did:
       * When the date field for `:add` is empty, the date will be set as today's date by default.
     * Justification:
       * This is to make the `:add` command shorter and increases speed of adding an exercise
       when one wants to add exercises for today.
-  * Allow a variety of common date formats (PR #108, #119)
+  * Allow a variety of common date formats (PR [#108](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/108), [#119](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/119))
     * What I did:
       * Allow different separators, such as `15/05/2002`, `15 05 2002`,
       `15-05-2022`.
@@ -42,13 +42,13 @@ Given below are my contributions to the project.
 
 * **Testing**:
   * Add unit tests for `Date`, `FormatterList`, `RegexList`, `RangeCommand`, `RangeCommandParser`,
-  `AddCommandParser`, `DateWithinRangePredicate` to improve Codecov code coverage. (PR #217 etc.)
+  `AddCommandParser`, `DateWithinRangePredicate` to improve Codecov code coverage. (PR [#217](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/217) etc.)
 
 * **Documentation**:
   * User Guide:
-    * Common date formats accepted for command inputs. (PR #130)
-    * Explanation on `:range start/START_DATE end/END_DATE` command. (PR #105, #128)
-    * Explanation on `:range last/NUMBER_OF_DAYS` command. (PR #128)
+    * Common date formats accepted for command inputs. (PR [#130](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/130))
+    * Explanation on `:range start/START_DATE end/END_DATE` command. (PR [#105](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/105), [#128](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/128))
+    * Explanation on `:range last/NUMBER_OF_DAYS` command. (PR [#128](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/128))
 
   * Developer Guide:
     * Class diagram showing the relationship between `Date`, `RegexList` and `FormatterList`.
@@ -59,7 +59,8 @@ Given below are my contributions to the project.
 
 * **Community**:
   * Add a guide for the team to refer to on how to use Gradle to run tests and checkstyle for
-  CI checks locally before making a pull request. (PR #29)
+  CI checks locally before making a pull request. (PR [#29](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/29))
+  * Add a guide for using Codecov to see which parts of the code base can be covered better. (Issue [#224](https://github.com/AY2223S1-CS2103T-T15-4/tp/issues/224))
   * Discussed design choices with their benefits and trade-offs and implementation options with the team.
   * Analyzed team member's Pull Requests (PRs) and provided feedback.
   * Brainstormed on the potential bugs in the app and ways to rigorously test the features.
