@@ -1,5 +1,5 @@
 ---
-layout: alt-page
+layout: page-with-header
 title: Kok Chun Khai's Project Portfolio Page
 ---
 
