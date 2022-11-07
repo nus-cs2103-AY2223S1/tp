@@ -1,17 +1,23 @@
 package seedu.address.logic.commands.issue;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
-
-import seedu.address.logic.parser.predicates.IssueContainsKeywordsPredicate;
 import seedu.address.logic.parser.predicates.IssueContainsKeywordsPredicate;
 import seedu.address.model.Deadline;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.Name;
 import seedu.address.model.Pin;
-
 import seedu.address.model.issue.Issue;
 import seedu.address.model.issue.IssueId;
 import seedu.address.model.issue.Status;
@@ -21,14 +27,6 @@ import seedu.address.model.project.Project;
 import seedu.address.ui.StubUiManager;
 import seedu.address.ui.Ui;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.issue.EditIssueCommand.MESSAGE_SUCCESS;
 
 public class FindIssueCommandTest {
     private final Ui stubUi = new StubUiManager();
@@ -42,11 +40,11 @@ public class FindIssueCommandTest {
                 new Pin(false));
         Issue issueTwo = new Issue(new Title("Fix the UG"),
                 new Deadline("2022-01-02"), Urgency.HIGH,
-                new Status(false), new Project(new Name("Stub")), new IssueId(1),
+                new Status(false), new Project(new Name("Stub")), new IssueId(2),
                 new Pin(false));
         Issue issueThree = new Issue(new Title("Fix the DG"),
                 new Deadline("2022-01-02"), Urgency.HIGH,
-                new Status(false), new Project(new Name("Stub")), new IssueId(1),
+                new Status(false), new Project(new Name("Stub")), new IssueId(3),
                 new Pin(false));
 
         actualModel.addIssue(issueOne);
