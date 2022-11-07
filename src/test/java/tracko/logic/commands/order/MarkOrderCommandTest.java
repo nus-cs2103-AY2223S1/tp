@@ -2,15 +2,16 @@ package tracko.logic.commands.order;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static tracko.commons.core.Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX;
+import static tracko.logic.commands.CommandTestUtil.assertCommandFailure;
+import static tracko.logic.commands.CommandTestUtil.showOrderAtIndex;
 import static tracko.testutil.TypicalIndexes.INDEX_FIRST;
 import static tracko.testutil.TypicalIndexes.INDEX_SECOND;
 import static tracko.testutil.TypicalOrders.getTrackOWithTypicalOrders;
 
 import org.junit.jupiter.api.Test;
 
-import tracko.commons.core.Messages;
 import tracko.commons.core.index.Index;
-import tracko.logic.commands.CommandTestUtil;
 import tracko.model.Model;
 import tracko.model.ModelManager;
 import tracko.model.UserPrefs;
@@ -28,12 +29,12 @@ public class MarkOrderCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getOrderList().size() + 1);
         MarkOrderCommand markOrderCommand = new MarkOrderCommand(outOfBoundIndex, true, false);
 
-        CommandTestUtil.assertCommandFailure(markOrderCommand, model, Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
+        assertCommandFailure(markOrderCommand, model, MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        CommandTestUtil.showOrderAtIndex(model, INDEX_FIRST);
+        showOrderAtIndex(model, INDEX_FIRST);
 
         Index outOfBoundIndex = INDEX_SECOND;
 
@@ -42,7 +43,7 @@ public class MarkOrderCommandTest {
 
         MarkOrderCommand markOrderCommand = new MarkOrderCommand(outOfBoundIndex, true, false);
 
-        CommandTestUtil.assertCommandFailure(markOrderCommand, model, Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
+        assertCommandFailure(markOrderCommand, model, MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
     }
 
     @Test

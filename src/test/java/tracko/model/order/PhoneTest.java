@@ -7,6 +7,27 @@ import static tracko.testutil.Assert.assertThrows;
 import org.junit.jupiter.api.Test;
 
 public class PhoneTest {
+    @Test
+    public void equals() {
+        Phone phone1 = new Phone("999");
+        Phone phone2 = new Phone("90389212");
+
+        // same object -> returns true
+        assertTrue(phone1.equals(phone1));
+
+        //same values -> return true
+        Phone phone1Copy = new Phone("999");
+        assertTrue(phone1.equals(phone1Copy));
+
+        // different types -> returns false
+        assertFalse(phone1.equals(1));
+
+        // null -> returns false
+        assertFalse(phone1.equals(null));
+
+        // different predicate -> returns false
+        assertFalse(phone1.equals(phone2));
+    }
 
     @Test
     public void constructor_null_throwsNullPointerException() {
