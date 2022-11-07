@@ -1,4 +1,7 @@
-# Project Portfolio Page for Justin Cheng
+---
+layout: page
+title: Project Portfolio Page for Justin Cheng
+---
 
 ---
 ## Overview
