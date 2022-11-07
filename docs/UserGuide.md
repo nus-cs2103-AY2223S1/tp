@@ -346,8 +346,9 @@ Example:
 ### 5.8. Undoing your previous command
 
 What if you accidentally made a mistake and performed a wrong <em>undoable</em> command?
-Workbook can help you to undo your changes after performing an undesirable <em>undoable</em> command! 
-Workbook will restore itself to the version before you performed the previous <em>undoable</em> command!
+Workbook can help you to undo your changes after performing an 
+undesirable <em>undoable</em> command and restore itself to the 
+previous version!
 
 WorkBook keeps track of all your previous <em>undoable</em> commands and its current version, allowing you to `undo` as many times
 to restore any desired state of your WorkBook.
@@ -366,44 +367,6 @@ and return an error message: "No previous changes to undo!".
 
 ![UndoFailure](images/UndoFailure.png)
 
-
-Examples:
-* `add c/Meta r/Frontend Engineer s/Application Sent d/29-Oct-2022 12:00 e/hrmonkey@example.com` followed by `undo` will
-return the WorkBook version without the added internship.
-* `edit 1 s/Behavioural Interview e/hr@meta.com` followed by `clear` and then `undo` will undo the 
-clearing of the Workbook. The edited stage and email address of the first internship will remain in the 
-returned WorkBook version. 
-
-Workbook version before `undo`:
-![BeforeUndoStack](images/BeforeUndoStack.png)
-
-Workbook version after `undo`:
-![AfterUndoStack](images/AfterUndoStack.png)
-
-
-* `delete 2` followed by `list` and then `undo` will restore the WorkBook to its version prior to the 
-`delete 2` command as the `list` command is not an <em>undoable</em> command and does not create a new
-version of the WorkBook.
-* `edit 2 l/golang t/` followed by `delete 1` and then 2 consecutive `undo` commands will first restore the
-WorkBook to its version before the `delete 1` command, and then the version before the `edit` command.
-
-Before executing command: `edit 2 l/golang t/`
-![BeforeEdit](images/BeforeEdit.png)
-
-After executing command: `edit 2 l/golang t/`
-![AfterEdit](images/AfterEdit.png)
-
-After executing command: `delete 1`
-![AfterDelete](images/AfterDelete.png)
-
-After executing command: `undo`
-![AfterUndo1](images/AfterUndo1.png)
-
-After executing command: `undo`
-![AfterUndo2](images/AfterUndo2.png)
-
-
-
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Note:**<br>
@@ -414,6 +377,28 @@ You can only undo <em>undoable</em> commands!
 * `clear`
 * `redo`
 </div>
+
+Examples:
+* `add c/Meta r/Frontend Engineer s/Application Sent d/29-Oct-2022 12:00 e/hrmonkey@example.com` followed by `undo` will
+display the WorkBook version without the added internship.
+* `edit 1 s/Behavioural Interview e/hr@meta.com` followed by `clear` and then `undo` will undo the 
+clearing of the Workbook. The edited stage and email address of the first internship will remain in the 
+displayed WorkBook version.
+* `delete 2` followed by `list` and then `undo` will restore the WorkBook to its version prior to the 
+`delete 2` command as the `list` command is not an <em>undoable</em> command and does not create a new
+version of the WorkBook.
+* `edit 2 l/golang t/` followed by `delete 1` and then 2 consecutive `undo` commands will first restore the
+WorkBook to its version before the `delete 1` command, and then the version before the `edit` command.
+
+What you'll see before and after executing the command: <br>
+
+| State                                            | What you will see                      |
+|--------------------------------------------------|----------------------------------------|
+| **Before**                                       | ![BeforeEdit](images/BeforeEdit.png)   |
+| **After executing command `edit 2 l/golang t/`** | ![AfterEdit](images/AfterEdit.png)     |
+| **After executing command `delete 1`**           | ![AfterDelete](images/AfterDelete.png) |
+| **After executing command: `undo`**              | ![AfterUndo1](images/AfterUndo1.png)   |
+| **After executing command: `undo`**              | ![AfterUndo2](images/AfterUndo2.png)   |
 
 <div markdown="block" class="alert alert-success">
 
@@ -429,8 +414,8 @@ undoing and how your WorkBook currently looks like!
 ### 5.9. Redoing your previous command
 
 Now, what if you mistakenly performed an `undo` command?
-Workbook can help you to redo your changes after performing an undesirable `undo` command!
-Workbook will reverse the previous `undo` command and restore itself to the version before that!
+Workbook can help you to redo your changes after performing 
+an undesirable `undo` command and restore itself to the version before that!
 
 WorkBook keeps track of all your previous <em>undoable</em> commands and its current version,
 allowing the `redo` command to be performed as many times to reverse the
@@ -452,33 +437,19 @@ top of the stack.
 Examples:
 * `add c/Meta r/Frontend Engineer s/Application Sent d/29-Oct-2022 12:00 e/hrmonkey@example.com` followed by `undo` 
 and then `redo` will restore the WorkBook version with the added internship.
-
-Workbook version before `redo`:
-![BeforeRedoStack](images/BeforeRedoStack.png)
-
-Workbook version after `redo`:
-![AfterRedoStack](images/AfterRedoStack.png)
-
 * `edit 1 s/Behavioural Interview e/hr@visa.com` followed by `clear` will create 2 new WorkBook versions. 
 If you perform 2 consecutive `undo` commands, the WorkBook will be restored to the version before both
 `edit` and `clear` commands. When you perform a `redo` command now,
 the WorkBook version will contain the edited stage and email for the first internship.
 
-After you perform command: `edit 1 s/Behavioural Interview e/hr@visa.com`
-![AfterEdit](images/RedoAfterEdit.png)
 
-After you perform command: `clear`
-![AfterClear](images/RedoAfterClear.png)
-
-After you perform command: `undo`
-![AfterUndo1](images/RedoAfterUndo1.png)
-
-After you perform command: `undo`
-![AfterUndo1](images/RedoAfterUndo2.png)
-
-After you perform command: `redo`
-![AfterRedo](images/RedoAfterRedo.png)
-
+| State                                                                      | What you will see                        |
+|----------------------------------------------------------------------------|------------------------------------------|
+| **After executing command `edit 1 s/Behavioural Interview e/hr@visa.com`** | ![AfterEdit](images/RedoAfterEdit.png)   |
+| **After executing command `clear`**                                        | ![AfterClear](images/RedoAfterClear.png) |
+| **After executing command: `undo`**                                        | ![AfterUndo1](images/RedoAfterUndo1.png) |
+| **After executing command: `undo`**                                        | ![AfterUndo2](images/RedoAfterUndo2.png) |
+| **After executing command: `redo`**                                        | ![AfterRedo](images/RedoAfterRedo.png)   |
 
 <div markdown="block" class="alert alert-success">
 
