@@ -268,7 +268,6 @@ Types of `KEYWORD`: `name`, `appt`, `risk`, `income`, `monthly`, `client`
 
 * Returns all the contacts sorted by the given `KEYWORD`
 
-
 #### 5.1.8 Clearing all entries : `clear`
 
 Clears all entries from the list of clients.
