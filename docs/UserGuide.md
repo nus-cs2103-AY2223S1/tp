@@ -185,7 +185,8 @@ This means that two students with the same name and module are considered **dist
 
 <div markdown="block" class="alert alert-info">
 :information_source: **Note 2:** Each student in StudMap can only be attached to **one module**. If you are tutoring a student
-for more than one module, you will have to create separate entries for that student, each with a different module.
+for more than one module, you will have to create separate entries for that student, each with a different module. This ensures
+that data from one module (i.e. Attendance for CS2103T) **will not be mixed** with that from another module (Attendance for CS2040).
 </div>
 
 ## 4.3 Understanding Commands
