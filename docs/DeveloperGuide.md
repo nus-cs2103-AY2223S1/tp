@@ -185,7 +185,7 @@ The following sequence diagram shows how the `add student` command works:
 `add tutorial`, `add consultation` and `add reminder` commands work similar to the above but have different fields.
 </div>
 
-The following activity diagram illustrates what happens when the `add Student` command is called to add a student into ModQuik. There is a need to check that the given student id does not already exist in ModQuik.
+The following activity diagram illustrates what happens when the `add student` command is executed. ModQuik will check if the given student id does not already exist.
 
 ![AddStudentActivityDiagram](images/AddStudentActivityDiagram.png)
 
@@ -231,6 +231,9 @@ The implementation of the `delete student` command involves deleting the Student
 The following sequence diagram shows how the `delete student` command works:
 
 ![DeleteStudentSequenceDiagram](images/DeleteStudentSequenceDiagram.png)
+
+The following activity diagram illustrates what happens when the `delete student` command is executed.
+![DeleteStudentActivityDiagram](images/DeleteStudentActivityDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
 `delete tutorial`, `delete consultation` and `delete reminder` commands work similar to the above.
@@ -822,6 +825,19 @@ Do the test cases sequentially to ensure correct expectation.
        Expected:  A success message containing details of the added consultation is shown. Main display changes to consultation and consultation list is updated.
 
 
+#### Editing a consultation
+
+1. Editing a consultation while consultation tab is being shown.
+
+    1. Prerequisites: Switch to consultation tab using the `switch f/consultation` command (you may skip this if the main display is already consultation). There exists at least 1 consultation in the list.
+
+    2. Test case: `edit consultation 1 v/AS16`<br>
+       Expected: Venue of first consultation is edited. Details of the edited tutorial shown in the status message.
+
+    3. Test case: `edit consultation 0`<br>
+       Expected: No consultation is edited. Error message shown in result display box.
+
+
 #### Deleting a consultation
 
 1. Deleting a consultation while consultation tab is being shown
@@ -837,6 +853,7 @@ Do the test cases sequentially to ensure correct expectation.
     4. Other incorrect delete consultation commands to try: `delete`, `delete x`, `...` (where x is larger than the consultation list size)<br>
        Expected: Similar to previous.
 
+<<<<<<< Updated upstream
 #### Editing a consultation
 
 1. Editing a consultation while consultation tab is being shown.
@@ -848,6 +865,8 @@ Do the test cases sequentially to ensure correct expectation.
 
     3. Test case: `edit consultation 0`<br>
        Expected: No consultation is edited. Error message shown in result display box.
+=======
+>>>>>>> Stashed changes
 
 ### Reminder
 
