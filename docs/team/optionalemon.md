@@ -21,6 +21,7 @@ Given below are my contributions to the project.
 * **Project management**:
   * Authored [11 issues](https://github.com/AY2223S1-CS2103T-T12-1/tp/issues?q=is%3Aissue+author%3Aoptionalemon+) to help keep track of current issues and progress.
   * Reviewed [20 pull requests](https://github.com/AY2223S1-CS2103T-T12-1/tp/pulls?q=is%3Apr+reviewed-by%3Aoptionalemon) to ensure quality and consistency across the database.
+  * Designed the application logo.
 
 * **Enhancements to existing features**: 
   * Modified `addc` to allow multiple classes to be added at once.
