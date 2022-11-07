@@ -550,7 +550,7 @@ From then on, the `AddClientCommand` can be built as expected.
 - Pros: `String` matches are easier to understand than regexes.
   - e.g. `String[] patternsForBirthday = {"b", "d", "birthday", "birthdate"}` are all possible prefixes and can be used to check for finding matches. 
 - Cons: `List` of `String` returned is cumbersome for pattern matching, i.e. Iterate through every `String` in `patternsForBirthday` to look for a match.
-- **Solution 1** is preferred the proposed feature because: 
+- **Solution 1** is the preferred proposed feature because: 
   - A single `Pattern` for each `Prefix` is more succinct that a `List`.
   - No need to iterate through a list of `Strings` to find a match.
   - Matches can be made using pre-existing methods in `Matcher` class (no need to rely on `String` methods)
