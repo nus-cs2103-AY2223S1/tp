@@ -172,7 +172,7 @@ may have typed a command incorrectly as **RC4HDB** will inform you in the event 
   e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times. This also includes 0 times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -343,7 +343,7 @@ Deleted data can not be retrieved. Do use this command cautiously!
 ### Format for resident fields
 
 `n/NAME`
-* Whitespaces are allowed *i.e. `Michael B. Jordan` is allowed*.
+* Whitespaces are allowed *i.e. `Michael B Jordan` is allowed*.
 
 `p/PHONE_NUMBER`
 * Must be an **8**-digit non-negative integer.
