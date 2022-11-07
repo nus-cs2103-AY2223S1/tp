@@ -409,6 +409,7 @@ Step 3. The user executes `add n/David …​` to add a new customer. The `add` 
 
 </div>
 
+<div style="page-break-after: always;"></div>
 Step 4. The user now decides that adding the customer was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `BobaBotModel#undoBobaBot()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous bobaBot state, and restores the bobaBot to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
@@ -418,6 +419,7 @@ than attempting to perform the `undo` command.
 
 </div>
 
+<div style="page-break-after: always;"></div>
 The following sequence diagram shows how the undo operation works:
 
 ![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
@@ -544,6 +546,7 @@ Guarantee: Selected Customer will be deleted from bobaBot.
 
     Use case ends.
 
+<div style="page-break-after: always;"></div>
 **Extensions**
 
 * 1a. User enters the command wrongly.
@@ -587,6 +590,7 @@ Guarantee: Selected Customer's details will be displayed by bobaBot.
 
       Use case ends.
 
+<div style="page-break-after: always;"></div>
 **Use case 4: Edit a Customer's details**
 
 System: bobaBot <br>
