@@ -190,14 +190,8 @@ Given below is an example usage scenario.
 8. `Model#updateFilteredInternshipList()` is called to update the internship list to display all internships.
 9. Finally, `EditInternshipCommand` creates a `CommandResult` to denote that the operation is completed, and returns this `CommandResult` back to `LogicManager`.
 
-The sequence diagram is given below.
+The sequence diagram is given below (some details are omitted, such as the instantiation of the `EditInternshipDescriptor`).
 ![EditInternshipSequence](images/EditInternshipSequence.png)
-
-<div align="center">
-
-_Some details are omitted from the sequence diagram, such as the instantiating of the_ `EditInternshipDescriptor`
-
-</div>
 
 The following activity diagram summarizes what happens when a user executes an `EditInternshipCommand`:
 ![EditInternshipActivity](images/EditInternshipActivity.png)
