@@ -58,7 +58,7 @@ Component | Purpose
 ### Appointment Card
 ![AppointmentCardDetail](images/AppointmentCard.png)
 * The status of an appointment is `[]` when uncompleted, and `[X]` when completed.
-* More information about recurrence duration can be found [here](#book-an-appointment--book).
+* More information about recurrence duration can be found [here](#features).
 
 ## **Features**
 
