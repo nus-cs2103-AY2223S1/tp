@@ -27,6 +27,10 @@ to use and what it does for all the features available in myStudent. If you don'
 
 :information_source: Notes about the command format in this user guide:
 
+* **Format** appears in each command section. It refers to the format of the inputs that you need to type into the command box to execute the commands.
+  (E.g., `Format: delete <index>` means that you need to type in `delete` followed by an `index` to execute the command.)
+
+
 * **Prefixes** are characters (case-sensitive) followed by a slash and are usually prepended to a field.  
   (E.g., `n/` or `p/`.)
 
@@ -146,9 +150,9 @@ This is where the feedback information is displayed after you execute a command.
 
 ### 3. List Display Panel
 
-This is where the current list of entities is shown. Only one of the three entities, student, tutor, or class will be shown at one time.
+This is where the **displayed list** of entries is shown. Only one of the three entries, student, tutor, or class will be shown at one time.
 
-In the student and tutor lists, clicking on the individual student or tutor cards to show their description in the description panel.
+In the **student list** and **tutor list**, clicking on the individual student or tutor cards to show their description in the description panel.
 
 <p align="left">
 
@@ -156,12 +160,12 @@ In the student and tutor lists, clicking on the individual student or tutor card
 
 </p>
 
-* Note that the card for the person being displayed will be highlighted as well.
+Note that the card for the person being displayed will be highlighted as well.
 
 ### 4. List Tabs
 
 There are three list tabs: Student, Tutor and Class.  
-There will be an indication for which list is currently being displayed.
+The highlighted tab indicates which list is currently being displayed.
 
 
 <p align="center">
@@ -171,7 +175,7 @@ There will be an indication for which list is currently being displayed.
 </p>
 
 
-The above shows that the student list is the one that is currently being displayed.
+The above shows that the **student list** is the one that is currently being displayed.
 
 ### 5. Description Panel
 
@@ -215,7 +219,9 @@ For more information regarding `Export`, you can click [here](#exporting-address
 
 Shows help information that will be useful to you.
 
-Format: `help [<command>]`
+Formats: 
+`help`
+`help [<command>]`
 
 * To view all the commands, type `help` and press <kbd>Enter</kbd>.
 
@@ -385,7 +391,7 @@ Examples:
 
 </p>
 
-This adds the class into the database. Note that the Person Description Panel is not updated.
+This adds the class into the database. 
 
 ### Deleting an entry: `delete`
 
@@ -393,10 +399,9 @@ Deletes an entry from the myStudent database.
 
 Format: `delete <index>`
 
-* The index refers to the index number shown in the displayed list. For example, when displaying a student list, the command `delete 2` will delete the 2nd student on that list from the entire database.
+* The index refers to the index number shown in the **displayed list**. For example, when displaying the **student list**, the command `delete 2` will delete the 2nd **student** in that list from the entire database.
 
-
-* The index must be a positive integer 1, 2, 3, …
+* The index must be a positive integer such as 1, 2, 3 etc.
 
 Examples:
 * `delete 2`
@@ -413,13 +418,11 @@ Examples:
 
 </p>
 
-This deletes the person from the database. Note that if the deleted person is displayed in the Person Description Panel, the panel will update to display the previous person.
-
 ## Manipulation of data
 
-### Editing an entity: `edit`
+### Editing an entry: `edit`
 
-Edits an entity in the myStudent database. 
+Edits an entry in the myStudent database. 
 
 Formats:
 
@@ -432,7 +435,7 @@ To edit a **tutor**, <br>
 To edit a **class**, <br>
 `edit <index> [n/<name>] [s/<subject>] [l/<level>] [d/<day>] [t/<time>] [#/<tag>]…`
 
-* The index refers to the index number shown in the displayed list.
+* The index refers to the index number shown in the **displayed list**.
 
 
 * The index must be a positive integer 1, 2, 3, …
@@ -441,7 +444,7 @@ To edit a **class**, <br>
 * All fields are optional except for the `<index>` field; however, at least one optional field must be present at all times. Fields present will overwrite the existing values.
 
 
-* Fields must be valid in correspondence to the entity list being displayed currently. For example, when a student list is displayed, specifying a qualification when executing the edit command is disallowed.
+* Fields must be valid in correspondence to the entry list being displayed currently. For example, when a **student list** is displayed, specifying a qualification when executing the edit command is disallowed.
 
 
 * If a specific optional field is repeated, the last occurrence in the input is taken. The `<tag>` field is an exception as multiple tags are allowed.
@@ -528,16 +531,16 @@ Assign an existing tuition class to a specified student/tutor.
 
 Format: `assign <index> n/<name>`
 
-* `assign` command only works when the displayed list is a student or tutor list.
+* `assign` command only works when the **displayed list** is the **student list ** or **tutor list**.
 
 
-* The index refers to the index number shown in the displayed list.
+* The index refers to the index number shown in the **displayed list**.
 
 
 * The index must be a positive integer 1, 2, 3, …
 
 
-* `<name>` field refers to name of the class being assigned and should only contain alphanumeric characters and spaces, and should not be left blank. The specified tuition class (case-sensitive) must already exist in the tuition class list.
+* `<name>` field refers to name of the class being assigned and should only contain alphanumeric characters and spaces, and should not be left blank. The specified tuition class (case-sensitive) must already exist in the **class list**.
 
 
 * The tuition class to be assigned to the specified student/tutor must not have been assigned beforehand.
@@ -564,16 +567,16 @@ Unassign an existing tuition class from a specified student/tutor.
 
 Format: `unassign <index> n/<name>`
 
-* `unassign` command only works when the displayed list is a student or tutor list.
+* `unassign` command only works when the **displayed list** is a student or tutor list.
 
 
-* The index refers to the index number shown in the displayed list.
+* The index refers to the index number shown in the **displayed list**.
 
 
 * The index must be a positive integer 1, 2, 3, …
 
 
-* `<name>` field refers to name of the class being assigned and should only contain alphanumeric characters and spaces, and should not be left blank. The specified tuition class (case-sensitive) must already exist in the tuition class list.
+* `<name>` field refers to name of the class being assigned and should only contain alphanumeric characters and spaces, and should not be left blank. The specified tuition class (case-sensitive) must already exist in the **class list**.
 
 
 * The tuition class to be unassigned from the specified student/tutor must have been assigned to the
@@ -600,15 +603,14 @@ Examples:
 Adds the next of kin to an existing student. If there is an existing next of kin, it will be overwritten.
 
 Formats:
-
 `nok <index>`
 
 `nok <index> n/<name> p/<phone> e/<email> a/<address> r/<relationship> [#/tag]…`
 
-* The current displayed list when executing this command must be a list of students.
+* The **displayed list** when executing this command must be the **student list**.
 
 
-* The index refers to the index number shown in the displayed list.
+* The index refers to the index number shown in the **displayed list**.
 
 
 * The index must be a positive integer 1, 2, 3, …
@@ -683,20 +685,21 @@ Examples:
 
 ### Showing the details of a person: `show`
 
-In the student and tutor list, the details of the persons are not displayed. You could access the person’s details by executing the show command.
+In the **student list** and **tutor list**, the details of the persons are not displayed. You could access the person’s details by executing the show command.
 
 Format: `show <index>`
 
-* In the student list, `show 1` shows the description of the first student in the list.
+* In the **student list**, `show 1` shows the description of the first student in the list.
 
 
-* In the tutor list, `show 1` shows the description of the first tutor in the list.
+* In the **tutor list**, `show 1` shows the description of the first tutor in the list.
 
 
-* In the class list, `show 1` is invalid as `show` command can only be executed for the student and tutor list.
+* In the **class list**, `show 1` is invalid as `show` command can only be executed for the **student list** and **tutor list**.
 
 Examples:
-* `show 3` in the student list
+* `show 3` 
+The **displayed list** is the **student list**.
 
 <p align="center">
 
@@ -710,7 +713,8 @@ Examples:
 
 </p>
 
-* `show 1` in the class list
+* `show 1` 
+The **displayed list** is the **class list**.
 
 <p align="center">
 
@@ -724,25 +728,22 @@ Examples:
 
 </p>
 
-Note that `show` command is invalid for the class list.
+Note that `show` command is invalid for the **class list**.
 
-### Listing all entities : `list`
+### Listing all entries : `list`
 
-Shows a list of the specified entity type in the myStudent database.
+Shows a list of the specified entry type in the myStudent database.
 
-Format: `list <entity>`
-* The valid entity types are:
+Format: `list <entry type>`
+* The valid entry types are:
   1. student
   2. tutor
   3. class
   <p></p>
-* The lists of each entity type can be displayed by clicking any of the tabs above the current displayed list.
+* The lists of each entry type can be displayed by clicking any of the tabs above the **displayed list**.
 
 Examples:
-* `list student`
-
-
-* `list class`
+* `list tutor`
 
 <p align="center">
 
@@ -756,15 +757,15 @@ Examples:
 
 </p>
 
-This changes the current displayed list to the tutor list.
+Note that this changes the **displayed list** to the **tutor list**.
 
 ### Clears list: `clear`
 
-Clears either the student, the tutor or the class list.
+Clears either the student, the tutor or the **class list**.
 
 Format: `clear`
 
-* Please note the list you are clearing as this action is **irreversible**. This can be identified by the tabs above the displayed list.
+* Please note the list you are clearing as this action is **irreversible**. This can be identified by the tabs above the **displayed list**.
 
 <p align="center">
 
@@ -778,21 +779,21 @@ Format: `clear`
 
 </p>
 
-Note that the clear command clears the current displayed list only, which in this case is the tutor list. The student list and the class list will remain unchanged.
+Note that the clear command clears the **displayed list** only, which in this case is the **tutor list**. The **student list** and the **class list** will remain unchanged.
 
 ### Sort list: `sort`
 
-Sorts the current list chronologically, alphabetically, or in reverse order.
+Sorts the **displayed list** chronologically, alphabetically, or in reverse order.
 
 Format: `sort <order>`
 
 * `<order>` field should be a valid sort order. The valid orders are as follows:
 
-  * **default**: Sorts the list in order of entries updated from oldest to newest. Editing an entry is considered as updating it.
+  * **default**: Sorts the **displayed list** in order of entries updated from oldest to newest. Editing an entry is considered as updating it.
     <p></p>   
-  * **alpha**: Sorts the list alphabetically with reference to the name.
+  * **alpha**: Sorts the **displayed list** alphabetically with reference to the name.
     <p></p>
-  * **reverse**: Sorts the list in reverse order.
+  * **reverse**: Sorts the **displayed list** in reverse order.
 
 Examples:
 * `sort alpha`
@@ -811,7 +812,7 @@ Examples:
 
 ### Searching by multiple fields: `find`
 
-Finds entities from the current list based on multiple fields such that the fields of the entity specified contains the respective keywords.
+Finds entries from the **displayed list** based on multiple fields such that the fields of the entry specified contains the respective keywords.
 
 Format: `find PREFIX/KEYWORD [MORE PREFIX/KEYWORD]...`
 
@@ -865,7 +866,7 @@ Examples:
 
 </p>
 
-Note that the current list is the student list , so `find n/john` returns the students, `John Doe` and `Johnny Tay` in the student list.
+Note that the **displayed list** is the **student list**, so `find n/john` returns the students, `John Doe` and `Johnny Tay` in the **student list**.
 
 * `find i/NUS q/Bachelor of Computing`
 
@@ -881,7 +882,7 @@ Note that the current list is the student list , so `find n/john` returns the st
 
 </p>
 
-Note that the current list is the tutor lsit, so `find i/NUS q/Bachelor of Computing` returns the tutors graduated from NUS with a Bachelor of Computing qualification.
+Note that the **displayed list** is the **tutor list**, so `find i/NUS q/Bachelor of Computing` returns the tutors graduated from NUS with a Bachelor of Computing qualification.
 
 * `find d/monday #/hard`
 
@@ -897,7 +898,7 @@ Note that the current list is the tutor lsit, so `find i/NUS q/Bachelor of Compu
 
 </p>
 
-Note that the current list is the class list, so `find d/monday #/tag` returns all classes conducted on Monday and have the tag “hard”.
+Note that the **displayed list** is the **class list**, so `find d/monday #/tag` returns all classes conducted on Monday and have the tag “hard”.
 
 ## Advanced
 
