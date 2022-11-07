@@ -1,0 +1,9 @@
+{
+  "venues" : [ {
+    "bookings" : [],
+    "venueName" : "Meeting Room"
+  }, {
+    "bookings" : [],
+    "venueName" : "meeting room"
+  } ]
+}

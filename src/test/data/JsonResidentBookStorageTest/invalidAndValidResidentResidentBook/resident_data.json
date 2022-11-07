@@ -1,0 +1,21 @@
+{
+  "residents": [ {
+    "name": "Valid Person",
+    "phone": "9482424",
+    "email": "hans@example.com",
+    "room": "04-10",
+    "gender": "M",
+    "house": "D",
+    "MatricNumber": "A0123456A",
+    "tagged" : [ ]
+  }, {
+    "name": "Person With Invalid Phone Field",
+    "phone": "948asdf2424",
+    "email": "hans@example.com",
+    "room": "05-12",
+    "gender": "F",
+    "house": "U",
+    "MatricNumber": "A6543210B",
+    "tagged" : [ ]
+  } ]
+}

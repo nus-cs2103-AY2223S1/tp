@@ -1,0 +1,21 @@
+{
+  "residents": [ {
+    "name": "Alice Pauline",
+    "phone": "94351253",
+    "email": "alice@example.com",
+    "room": "11-04",
+    "gender": "F",
+    "house": "A",
+    "matricNumber": "A0431582U",
+    "tagged": [ "friends" ]
+  }, {
+    "name": "Alice Pauline",
+    "phone": "94351253",
+    "email": "pauline@example.com",
+    "room": "11-04",
+    "gender": "F",
+    "house": "A",
+    "matricNumber": "A0431582U",
+    "tagged" : [ ]
+  } ]
+}

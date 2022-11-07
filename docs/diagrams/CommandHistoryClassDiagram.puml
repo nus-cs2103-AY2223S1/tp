@@ -1,0 +1,22 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor BLACK
+
+package Ui {
+    class CommandBox as "CommandBox" UI_COLOR_T3
+    package History {
+        class Forward as "ForwardHistory" UI_COLOR_T3
+        class Backward as "BackwardHistory" UI_COLOR_T3
+        class Parser as "CommandHistoryParser" UI_COLOR_T3
+        class Parent as "<<interface>>\nCommandHistory" UI_COLOR_T3
+    }
+}
+
+CommandBox -down-> "1" Parser
+Parser --> "1" Forward
+Parser --> "1" Backward
+Forward ..|> Parent
+Backward ..|> Parent
+
+@end

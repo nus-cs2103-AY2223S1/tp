@@ -1,0 +1,79 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor BLACK
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":Rc4hdbParser" as Rc4hdbParser LOGIC_COLOR
+participant ":FilterCommandParser" as FilterCommandParser LOGIC_COLOR
+participant "f:FilterCommand" as FilterCommand LOGIC_COLOR
+participant "res:CommandResult" as CommandResult LOGIC_COLOR
+participant ":AttributesMatchAllKeywordsPredicate" as AttributesMatchAllKeywordsPredicate LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("filter /all n/John")
+activate LogicManager
+
+LogicManager -> Rc4hdbParser : parseCommand("filter /all n/John")
+activate Rc4hdbParser
+
+create FilterCommandParser
+Rc4hdbParser -> FilterCommandParser
+activate FilterCommandParser
+
+FilterCommandParser --> Rc4hdbParser
+deactivate FilterCommandParser
+
+Rc4hdbParser -> FilterCommandParser : parse("/all n/John")
+activate FilterCommandParser
+create FilterCommand
+FilterCommandParser -> FilterCommand
+activate FilterCommand
+
+FilterCommand --> FilterCommandParser : f
+deactivate FilterCommand
+
+FilterCommandParser --> Rc4hdbParser : f
+deactivate FilterCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FilterCommandParser -[hidden]-> Rc4hdbParser
+destroy FilterCommandParser
+
+Rc4hdbParser --> LogicManager : f
+deactivate Rc4hdbParser
+LogicManager -> FilterCommand : execute(f)
+activate FilterCommand
+
+create AttributesMatchAllKeywordsPredicate
+FilterCommand -> AttributesMatchAllKeywordsPredicate
+activate AttributesMatchAllKeywordsPredicate
+
+AttributesMatchAllKeywordsPredicate --> FilterCommand
+deactivate AttributesMatchAllKeywordsPredicate
+
+FilterCommand -> Model : filterResident(residentToFilter)
+activate Model
+Model --> FilterCommand
+deactivate Model
+
+create CommandResult
+FilterCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FilterCommand
+deactivate CommandResult
+
+FilterCommand --> LogicManager : res
+deactivate FilterCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FilterCommand -[hidden]-> LogicManager
+destroy FilterCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

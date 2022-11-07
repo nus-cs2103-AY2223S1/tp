@@ -1,15 +1,15 @@
 @startuml
 !include style.puml
 skinparam arrowThickness 1.1
-skinparam arrowColor LOGIC_COLOR_T4
+skinparam arrowColor BLACK
 skinparam classBackgroundColor LOGIC_COLOR
 
-Class "{abstract}\nCommand" as Command
+Class "<<interface>>\nCommand" as Command
 Class XYZCommand
 
 package "Parser classes"{
-Class "<<interface>>\nParser" as Parser
-Class AddressBookParser
+Class "<<interface>>\nCommandParser" as CommandParser
+Class Rc4hdbParser
 Class XYZCommandParser
 Class CliSyntax
 Class ParserUtil
@@ -19,13 +19,13 @@ Class Prefix
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> AddressBookParser
+HiddenOutside ..> Rc4hdbParser
 
-AddressBookParser .down.> XYZCommandParser: creates >
+Rc4hdbParser .down.> XYZCommandParser: creates >
 
 XYZCommandParser ..> XYZCommand : creates >
-AddressBookParser ..> Command : returns >
-XYZCommandParser .up.|> Parser
+Rc4hdbParser ..> Command : returns >
+XYZCommandParser .up.|> CommandParser
 XYZCommandParser ..> ArgumentMultimap
 XYZCommandParser ..> ArgumentTokenizer
 ArgumentTokenizer .left.> ArgumentMultimap
@@ -34,5 +34,5 @@ CliSyntax ..> Prefix
 XYZCommandParser ..> ParserUtil
 ParserUtil .down.> Prefix
 ArgumentTokenizer .down.> Prefix
-XYZCommand -up-|> Command
+XYZCommand .up.|> Command
 @enduml

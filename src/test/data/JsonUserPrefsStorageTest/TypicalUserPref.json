@@ -7,5 +7,5 @@
       "y" : 100
     }
   },
-  "addressBookFilePath" : "addressbook.json"
+  "residentBookFilePath" : "rc4hdb.json"
 }
