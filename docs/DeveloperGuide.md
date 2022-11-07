@@ -353,22 +353,22 @@ A `ParseException` will be thrown if the format is incorrect.
 
 #### Command execution
 
-5. The `LogicManager` executes the `RemarkCommand`.
+1. The `LogicManager` executes the `RemarkCommand`.
 
-6. The `RemarkCommand` obtains a list of `Internship`s via the `getSelectedInternshipList()` method
+2. The `RemarkCommand` obtains a list of `Internship`s via the `getSelectedInternshipList()` method
 which is exposed to the `Model` interface as `Model#getSelectedInternshipList()`.
 
-7. The `RemarkCommand` obtains the `Internship` object that the user wants to add the remark to via the
+3. The `RemarkCommand` obtains the `Internship` object that the user wants to add the remark to via the
 `get(0)` method from list of `Internship`s. A `CommandException` will be thrown if an internship is not selected.
 
-8. The `RemarkCommand` then creates a new `Internship` object with the same variables as the old `Internship` except for the
+4. The `RemarkCommand` then creates a new `Internship` object with the same variables as the old `Internship` except for the
 `REMARK_CONTENT` that the user has input.
 
-9. `RemarkCommand` then call the `Model#setInternship(internshipToEdit, editedInternship)` to replace the old `Internship` with the new `Internship` with the new `Remark`
+5. `RemarkCommand` then call the `Model#setInternship(internshipToEdit, editedInternship)` to replace the old `Internship` with the new `Internship` with the new `Remark`
 
 #### Displaying of result
 
-10. Finally, the `RemarkCommand` creates a `CommandResult` with a success message and returns it to the `LogicManager` to complete the command execution. The
+1. Finally, the `RemarkCommand` creates a `CommandResult` with a success message and returns it to the `LogicManager` to complete the command execution. The
 GUI would also be updated on this change in the internship list and update the display of the `Internship` respectively.
 
 The following sequence diagram shows how the `remark` command works:
