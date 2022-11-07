@@ -13,14 +13,14 @@ title: User Guide
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-## Introduction
+## **Introduction**
 Hi Profs! Welcome to the User Guide for **Tuthub**, a Command Line Interface (CLI) App that will help you find your next batch of teaching assistants (TA) in no time!
 
 Tuthub is a desktop app for NUS professors who wish to track and choose their next batch of teaching assistants/tutors based on their past performance and records but have little time to spare for tedious administrative work. Tuthub helps profs who can type fast find the best TAs faster than traditional Graphical User Interface (GUI) apps.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## About This Document
+## **About This Document**
 
 This section will introduce you to the symbols frequently used in this User Guide as well as Tuthub application layout and command format to aid your understanding of the document.
 
@@ -56,7 +56,7 @@ The following table describes the sections in detail:
 | 6        | `Tutor Details Pane`    | Displays full details of a tutor saved in Tuthub.                                   |
 | 7        | `Storage File Location` | Displays the location of your Tuthub data file.                                     |
 
-### Notes About Command Format
+### Command Format
 <div markdown="block" class="alert alert-info">
 
 :information_source: **Some general rules that Tuthub commands follow:**
@@ -71,7 +71,7 @@ The following table describes the sections in detail:
 
 </div>
 
-### Notes About Frequently Used Command Parameters
+### Frequently Used Command Parameters
 
 <div markdown="block" class="alert alert-info">
 
@@ -104,7 +104,7 @@ The following table describes the sections in detail:
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-## Quick Start
+## **Quick Start**
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -139,7 +139,7 @@ The following table describes the sections in detail:
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-## Features
+## **Features**
 
 ### Viewing help: `help`
 
@@ -366,7 +366,7 @@ Deletes the specified tutors from Tuthub. This could be useful if you are removi
 
 Format: `delete INDEX`
 
-<div markdown="block" class="alert alert-warning">
+<div markdown="block" class="alert alert-danger">
 
 :exclamation: **Caution:** Deleting a tutor is **irreversible**! Only enter this command when you are very sure that the tutor profile is not needed anymore!
 
@@ -382,7 +382,7 @@ Clears all entries from Tuthub. You may find this particularly useful if you wou
 
 Format: `clear`
 
-<div markdown="block" class="alert alert-warning">
+<div markdown="block" class="alert alert-danger">
 
 :exclamation: **Caution:** Clearing all the data is **irreversible**! Only enter this command when you are very sure that all the existing tutor profiles are not needed!
 
@@ -397,20 +397,7 @@ Format: `exit`
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-## FAQ
-
-**Q**: How do I save my data in Tuthub?<br>
-**A**: Tuthub data are saved in the hard disk automatically after any command that changes the data is executed. There is no need to save manually.
-
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Tuthub home folder.
-
-**Q**: Why is my previous data not loaded properly into Tuthub?<br>
-**A**: It is highly likely that your data storage file has something in the wrong format. It is recommended to check the log files to see what happened when Tuthub started up.
-
---------------------------------------------------------------------------------------------------------------------
-
-## Command Summary
+## **Command Summary**
 
 | Action                     | Format                                                                                                                             | Examples (if any)                                                                                      |
 |----------------------------|------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
@@ -431,7 +418,20 @@ Format: `exit`
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-## Glossary
+## **FAQ**
+
+**Q**: How do I save my data in Tuthub?<br>
+**A**: Tuthub data are saved in the hard disk automatically after any command that changes the data is executed. There is no need to save manually.
+
+**Q**: How do I transfer my data to another Computer?<br>
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Tuthub home folder.
+
+**Q**: Why is my previous data not loaded properly into Tuthub?<br>
+**A**: It is highly likely that your data storage file has something in the wrong format. It is recommended to check the log files to see what happened when Tuthub started up.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Glossary**
 
 | **Term**                              | **Definition**                                                                                                                   |
 |---------------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
