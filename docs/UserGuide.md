@@ -707,7 +707,9 @@ A: Fret not! Simply drop us an email at e0725346@u.nus.edu, and we will reply wi
 | **Edit Client**           | `editClient (INDEX of CLIENT) [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br><br> e.g: `editClient 2 n/James Lee e/jameslee@example.com`                                                                  |
 | **View All Clients**      | `allClients`                                                                                                                                                                                                              |
 | **View Filtered Clients** | `clients`                                                                                                                                                                                                                 |                                                              
-| **Sort Clients**          | `sort (KEYWORD)`<br> eg. `sort name`                                                                                                                                                                                         |
+| **Sort Clients**          | `sort SORTING_METRIC`<br> eg. `sort name`                                                                                                                                                                                 |
+| **Pin**                   | `pin (INDEX of CLIENT)` <br><br> e.g: `pin 1`                                                                                                                                                                             |
+| **View Pinned**           | `viewPin`                                                                                                                                                                                                                 |
 
 Note: `allClients` shows all existing clients inside LTNS, while `clients` show all clients based on filter metric placed previously.
 
@@ -740,14 +742,6 @@ Note: `allPolicies` shows all existing policies inside LTNS, while `policies` sh
 | **View Calendar**        | `calendar`                                                                                                                                                                             |                                                                                                                                                                                                     
 
 Note: `allEvents` shows all existing events inside LTNS, while `events` show all events based on filter metric placed previously.
-
-### Miscellaneous Commands
-
-| Action          | Format, Examples                                  |
-|-----------------|---------------------------------------------------|
-| **Sort**        | `sort COMPARABLE_METRIC` <br><br> e.g: `sort AGE` |
-| **Pin**         | `pin (INDEX of CLIENT)` <br><br> e.g: `pin 1`     |
-| **View Pinned** | `viewPin`                                         |
 
 #### Additional Notes:
 * For better clarity, `INDEX` has been placed in parentheses to denote clearly which index is being referred to (either CLIENT, POLICY or EVENT). At the same time, it is compulsory to include `INDEX`.
