@@ -121,7 +121,7 @@ How the parsing works:
   creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific 
   command name e.g. `AddPersonCommandParser`) which uses the other classes 
   shown above to parse the user command and create a `XYZCommand` object (e.g. `AddPersonCommand`) which the `AddressBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g. `AddPersonCommandParser`, `DeletePersonCommandParser`, ...) inherit from the `Parser` interface so that   they can be treated similarly where possible e.g, during testing.
+* All `XYZCommandParser` classes (e.g. `AddPersonCommandParser`, `DeletePersonCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g. during testing.
 
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-T10-1/tp/tree/master/src/main/java/seedu/address/model/Model.java)
@@ -134,7 +134,7 @@ The `Model` component,
 * stores the address book data i.e.:
     * all `Person` objects (which are contained in a `UniquePersonList` object).
     * all `Module` objects (which are contained in a `UniqueModuleList` object).
-* stores the current `isHome` status' of the application in an `ObservableList<Boolean>` object which is exposed to outsiders as an unmodifiable `ObservableList<Boolean>` that can be 'observed' e.g. the UI can be bound to this object so that the UI automatically updates when the `isHome` status changes.
+* stores the current `isHome` status of the application in an `ObservableList<Boolean>` object which is exposed to outsiders as an unmodifiable `ObservableList<Boolean>` that can be 'observed' e.g. the UI can be bound to this object so that the UI automatically updates when the `isHome` status changes.
 * stores the currently 'selected' `Person` objects (e.g. results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores the currently 'selected' `Module` objects (e.g. results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Module>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
@@ -1977,7 +1977,7 @@ Remember to perform a backup before deletion if necessary. Then, open Plannit.
 Although we described Plannit as a morph of the original AB3, there were substantial unique design decisions to be made. Problems of our target audience were analysed and a comprehensive list of user stories were generated to guide us in deciding the necessary features to include in our application. Fields such as tasks and links were deemed as "must-have" features of modules that we wanted to include in our application. Association between modules and persons was also decided as an important feature to be included, since it would vastly improve the usefulness of the persons list within Plannit.
 
 ### Implementation
-While only AB3 deals with persons, Plannit deals with both modules and persons at the same time. Modules and persons are not exactly independent entities because Plannit allows creating/deleting associations between person and module via the `add-person-to-module` and `delete-person-from-module` commands. This association proved highly challenging to implement, as the additional coupling meant that commands involving modules may unintentionally affect the persons. Deletion of persons now also involved the modification of modules. Our team eventually overcame this after extensive modifications to AB3 code, as well as rigorous testing to weed out any potential unintended behaviours.
+While AB3 only deals with persons, Plannit deals with both modules and persons at the same time. Modules and persons are not exactly independent entities because Plannit allows creating/deleting associations between person and module via the `add-person-to-module` and `delete-person-from-module` commands. This association proved highly challenging to implement, as the additional coupling meant that commands involving modules may unintentionally affect the persons. Deletion of persons now also involved the modification of modules. Our team eventually overcame this after extensive modifications to AB3 code, as well as rigorous testing to weed out any potential unintended behaviours.
 
 We also added the concept of having a home page, where detailed information of modules are hidden. This was introduced with the aim to reduce clutter by only displaying the relevant information required by the user. This functionality introduced a whole host of obstacles for us, including, but not limited to:
 * Behavioural decisions regarding whether a command can be executed away from the home page.
