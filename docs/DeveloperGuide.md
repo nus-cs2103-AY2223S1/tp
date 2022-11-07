@@ -18,7 +18,8 @@ Table of Contents
    4.1. [Import command](#41-import-command)<br>
    4.2. [View command](#42-view-command)<br>
    4.3. [Sort command](#43-sort-command)<br>
-   4.4. [Lock feature](#44-lock-feature)<br>
+   4.4. [Copy command](#44-copy-command)<br>
+   4.5. [Lock feature](#45-lock-feature)<br>
 5. [Documentation, logging, testing, configuration, dev-ops](#5-documentation-logging-testing-configuration-dev-ops)<br>
 6. [Appendix: Requirements](#6-appendix-requirements)<br>
    6.1. [Product scope](#61-product-scope)<br>
@@ -329,7 +330,37 @@ The sort command mainly relies on the following classes:
 
 `sortParam` should be passed to `UniquePersonList#sort` to modify `internalList`.
 
-### 4.4. Lock feature
+### 4.4. Copy Command
+
+#### Current Implementation
+
+The copy command mainly relies on the following classes:
+
+* `AddressBookParser`
+* `CopyCommand`
+* `CopyCommandParser`
+* `ParserUtil`
+* `Model`
+* `Person`
+* `Clipboard`
+
+1. The user executes the `copy` command while providing an index of the client as an argument.
+2. `AddressBookParser#parseCommand` is called, which creates and returns a new `CopyCommandParser` that parses the
+   provided index.
+3. `CopyCommandParser#parse()` is called, which calls `ParserUtil#parseIndex` with index as an argument to check if it is valid.
+4. `CopyCommandParser` creates and returns a new `CopyCommand` with the index of client.
+5. `CopyCommand#execute()` is called.
+    1. `CopyCommand#execute()` will get the updated client list using `model#getFilteredPersonList()`.
+    2. `CopyCommand#execute()` will get the specific client using the index given as the parameter.
+    3. `CopyCommand#execute()` will set `stringSelection` with clients details by calling `person#toClipboardString()`.
+    4. `Toolkit#getDefaultToolkit()#getSystemClipboard()` is called to is initialized `clipboard` to the system's clipboard.
+    5. `clipboard#setContents()` is called with `stringSelection` as parameter.
+
+#### Design considerations:
+
+Java `Clipboard` API is used as it implements a mechanism to transfer data using cut/copy/paste operations.
+
+### 4.5. Lock feature
 
 #### Current Implementation
 
@@ -360,8 +391,6 @@ The following activity diagram shows how the lock feature works:
 #### Design considerations:
 
 Chose to use battle-tested Password4j to verify passwords to avoid implementing an insecure password system.
-
-*{More to be added}*
 
 --------------------------------------------------------------------------------------------------------------------
 

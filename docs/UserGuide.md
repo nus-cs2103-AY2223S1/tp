@@ -261,6 +261,8 @@ Additional notes to client’s portfolio. <br>
 **Examples**:
 * Valid: `Plans to save for retirement`, `Currently have COVID`
 
+---
+
 [⬆ back to Table of Contents](#table-of-contents)
 
 ---
