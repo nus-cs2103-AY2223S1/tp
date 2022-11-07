@@ -8,5 +8,5 @@ public enum SortCategory {
     NAME,
     DEADLINE,
     ISSUE_COUNT,
-    URGENCY
+    Low, URGENCY
 }
