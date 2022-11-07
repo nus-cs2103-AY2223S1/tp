@@ -170,7 +170,9 @@ public class CommandTestUtil {
 
         Person person = model.getSortedFilteredPersonList().get(targetIndex.getZeroBased());
         final String[] splitName = person.getName().fullName.split("\\s+");
-        model.filterPersonList(new PersonMatchesKeywordsPredicate(splitName[0]));
+        PersonMatchesKeywordsPredicate predicate = new PersonMatchesKeywordsPredicate();
+        predicate.setKeywords(splitName[0]);
+        model.filterPersonList(predicate);
 
         assertEquals(1, model.getSortedFilteredPersonList().size());
     }
