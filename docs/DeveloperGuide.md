@@ -12,7 +12,7 @@ title: Developer Guide
   * [Sort-by](#sort-by-feature)
   * [Undo Command Feature](#undo-command-feature)
   * [Find by Feature](#find-by-feature)
-  * [[Proposed] Next Available Class Feature](#next-available-class-feature)
+  * [[Proposed] Next Available Class Feature](#proposed-next-available-class-feature)
 * [Appendix](#appendix-requirements)
   * [Target User Profile](#target-user-profile)
   * [Value Proposition](#value-proposition)
