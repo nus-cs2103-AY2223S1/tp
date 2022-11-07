@@ -361,7 +361,7 @@ which then calls the `PennyWiseParser#parseCommand` method
 4. The `PennyWiseParser` then calls `SummaryCommandParser#parse` method
 and the argument string is converted to a List
 
-5. The `SummaryCommandParser` creates a new EntryInYearMonthPredicate instance to handle the filter
+5. The `SummaryCommandParser` creates a new `EntryInYearMonthPredicate` instance to handle the filter
 
 6. The `SummaryCommandParser` creates a new `SummaryCommand` instance with the `EntryInYearMonthPredicate` instance and
 returns it to `PennyWiseParser`, which in turn returns to `LogicManger`.
@@ -373,7 +373,7 @@ filters the income and expenditure entries by the month
 
 9. The application calculates the summary statistics for the filtered income and expenditure entries.
 
-10. The `SummaryCommand` then creates a CommandResult and returns it to `LogicManager`.
+10. The `SummaryCommand` then creates a `CommandResult` and returns it to `LogicManager`.
 
 #### Design considerations:
 * **Alternative 1 (current choice):** Only allow users to generate summary statistic either by month or all entries
@@ -424,13 +424,13 @@ Below is a sequence diagram and explanation of how the `add` command is executed
 10. The `AddCommand` then creates a `CommandResult` instance and returns it to `LogicManager`.
 
 #### Design Considerations
-* **Alternative 1 (current choice):** Only allow users to create an Entry with 1 type of category
-  * Pros: Users are able to distinctly sort their entries into specific pre-determined categories.
-  * Cons: Users would not be able to specify entries under their own categories.
+* **Alternative 1 (current choice):** Only allow users to create an entry with 1 type of category
+  * Pros: Users are able to distinctly sort their expenditures/incomes into specific pre-determined categories.
+  * Cons: Users would not be able to specify expenditures/incomes under their own categories.
 
 * **Alternative 2:** Allow users to specify their own categories.
-  * Pros: Users can be more flexible in grouping their spending/incomes.
-  * Cons: Possible dilution of categories, which would make the PieChart diagram not as useful.
+  * Pros: Users can be more flexible in grouping their expenditures/incomes.
+  * Cons: Possible dilution of categories, which would make the pie chart diagram not as useful.
 
 ### Edit Entry
 
@@ -444,7 +444,8 @@ The `edit` command is implemented by the `EditCommandParser` and `EditCommand` c
 
 `EditCommand` class is responsible for editing an existing entry in the application.
 
-Below is a sequence diagram and explanation of how the EditCommand is executed.
+Below is a sequence diagram and explanation of how the `EditCommand` is executed.
+
 ![Interactions Inside the Logic Component for the `edit 1 t/e d/LunchDeck` Command](images/EditSequenceDiagram.png)
 
 ![Interactions Inside the Logic Component for the `edit 1 t/e d/LunchDeck` Command](images/EditEntrySequenceDiagram.png)
@@ -515,7 +516,7 @@ the steps in **command execution** as well as **UI updates**.
 3. `LogicManager` then calls the `pennyWiseParser#parseCommand` method which matches the command word `view` in the string and extracts the arguments string `t/e`.
 
 4. `pennyWiseParser` then calls the `ViewCommandParser#parse` method.
-   In this method, it is ensured that the input is of the correct format, and the entryType (and year month, if supplied) is extracted.
+   In this method, it is ensured that the input is of the correct format, and the entry type (and year month, if supplied) is extracted.
    It creates a `viewEntriesDescriptor` with `entryType` set to expenditure and `yearMonth` set to `null`.
 5. `LogicManager`then calls the `ViewCommand#execute` method which creates a `graphConfiguration` based on the `viewEntriesDescriptor`. It also filters the
 expenditure list based on `predicate` generated from the `viewEntriesDescriptor`.
