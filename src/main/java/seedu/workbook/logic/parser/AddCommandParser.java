@@ -11,7 +11,6 @@ import static seedu.workbook.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.workbook.model.internship.DateTime.EMPTY_DATETIME;
 import static seedu.workbook.model.internship.Email.EMPTY_EMAIL;
 
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
