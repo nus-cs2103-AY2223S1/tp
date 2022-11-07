@@ -9,7 +9,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.IncomeLevel;
+import seedu.address.model.person.Income;
 import seedu.address.model.person.Monthly;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -29,7 +29,7 @@ public class EditPersonDescriptor {
     private Phone phone;
     private Email email;
     private Address address;
-    private IncomeLevel income;
+    private Income income;
     private Monthly monthly;
     private RiskTag riskTag;
     private PlanTag planTag;
@@ -116,10 +116,10 @@ public class EditPersonDescriptor {
     public Optional<ClientTag> getClientTag() {
         return Optional.ofNullable(clientTag);
     }
-    public void setIncome(IncomeLevel income) {
+    public void setIncome(Income income) {
         this.income = income;
     }
-    public Optional<IncomeLevel> getIncome() {
+    public Optional<Income> getIncome() {
         return Optional.ofNullable(income);
     }
 
@@ -157,7 +157,7 @@ public class EditPersonDescriptor {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        IncomeLevel updatedIncomeLevel = editPersonDescriptor.getIncome().orElse(personToEdit.getIncome());
+        Income updatedIncomeLevel = editPersonDescriptor.getIncome().orElse(personToEdit.getIncome());
         Monthly updateMonthly = editPersonDescriptor.getMonthly().orElse(personToEdit.getMonthly());
         RiskTag updatedRiskTag = editPersonDescriptor.getRiskTag().orElse(personToEdit.getRiskTag());
         PlanTag updatedPlanTag = editPersonDescriptor.getPlanTag().orElse(personToEdit.getPlanTag());

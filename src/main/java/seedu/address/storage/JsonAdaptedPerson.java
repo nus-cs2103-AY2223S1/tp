@@ -15,7 +15,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.IncomeLevel;
+import seedu.address.model.person.Income;
 import seedu.address.model.person.Monthly;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -147,12 +147,12 @@ class JsonAdaptedPerson {
 
         if (income == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    IncomeLevel.class.getSimpleName()));
+                    Income.class.getSimpleName()));
         }
-        if (!IncomeLevel.isValidIncome(income)) {
-            throw new IllegalValueException(IncomeLevel.MESSAGE_CONSTRAINTS);
+        if (!Income.isValidIncome(income)) {
+            throw new IllegalValueException(Income.MESSAGE_CONSTRAINTS);
         }
-        final IncomeLevel modelIncome = new IncomeLevel(income);
+        final Income modelIncome = new Income(income);
 
         if (monthly == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,

@@ -26,7 +26,7 @@ import seedu.address.model.appointment.DateTime;
 import seedu.address.model.appointment.Location;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.IncomeLevel;
+import seedu.address.model.person.Income;
 import seedu.address.model.person.Monthly;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -261,16 +261,16 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String income} into an {@code IncomeLevel}.
+     * Parses a {@code String income} into an {@code Income}.
      * Leading and trailing whitespaces will be trimmed.
      */
-    public static IncomeLevel parseIncomeLevel(String income) throws ParseException {
+    public static Income parseIncomeLevel(String income) throws ParseException {
         requireNonNull(income);
         String trimmedIncome = income.trim();
-        if (!IncomeLevel.isValidIncome(income)) {
-            throw new ParseException(IncomeLevel.MESSAGE_CONSTRAINTS);
+        if (!Income.isValidIncome(income)) {
+            throw new ParseException(Income.MESSAGE_CONSTRAINTS);
         }
-        return new IncomeLevel(trimmedIncome);
+        return new Income(trimmedIncome);
     }
 
     /**

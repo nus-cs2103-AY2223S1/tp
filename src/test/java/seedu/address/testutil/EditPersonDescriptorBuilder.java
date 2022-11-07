@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 import seedu.address.logic.parser.EditPersonDescriptor;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.IncomeLevel;
+import seedu.address.model.person.Income;
 import seedu.address.model.person.Monthly;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -103,7 +103,7 @@ public class EditPersonDescriptorBuilder {
      * Sets the {@code Income} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withIncome(String income) {
-        descriptor.setIncome(new IncomeLevel(income));
+        descriptor.setIncome(new Income(income));
         return this;
     }
 

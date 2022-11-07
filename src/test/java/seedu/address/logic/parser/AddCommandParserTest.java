@@ -53,7 +53,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.IncomeLevel;
+import seedu.address.model.person.Income;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -220,7 +220,7 @@ public class AddCommandParserTest {
         // invalid income
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + INVALID_INCOME_DESC + MONTHLY_DESC_BOB + RISKTAG_DESC_HIGH + PLANTAG_DESC_SAVINGS
-                + CLIENTTAG_DESC_POTENTIAL + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, IncomeLevel.MESSAGE_CONSTRAINTS);
+                + CLIENTTAG_DESC_POTENTIAL + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Income.MESSAGE_CONSTRAINTS);
         // invalid monthly
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
                 + INCOME_DESC_BOB + INVALID_MONTHLY_DESC + RISKTAG_DESC_HIGH + PLANTAG_DESC_SAVINGS

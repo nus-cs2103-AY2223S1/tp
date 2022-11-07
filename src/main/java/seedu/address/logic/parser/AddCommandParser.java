@@ -22,7 +22,7 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.IncomeLevel;
+import seedu.address.model.person.Income;
 import seedu.address.model.person.Monthly;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -60,7 +60,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        IncomeLevel incomeLevel = ParserUtil.parseIncomeLevel(argMultimap.getValue(PREFIX_INCOME).get());
+        Income incomeLevel = ParserUtil.parseIncomeLevel(argMultimap.getValue(PREFIX_INCOME).get());
         Monthly monthly = ParserUtil.parseMonthly(argMultimap.getValue(PREFIX_MONTHLY).get());
         RiskTag riskTag = ParserUtil.parseRiskTag(argMultimap.getValue(PREFIX_RISKTAG).get());
         PlanTag planTag = ParserUtil.parsePlanTag(argMultimap.getValue(PREFIX_PLANTAG).get());
