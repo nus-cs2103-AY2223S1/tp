@@ -144,20 +144,21 @@ The `Model` component,
 
 **API** : [`Project.java`](https://github.com/AY2223S1-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/hrpro/model/project/Project.java)
 
-<img src="images/ModelProjectClassDiagram.png" width="650" />
+<img src="images/ModelProjectClassDiagram.png" width="800" />
 
 The `Project` class,
 
 * stores the details of a particular project (i.e. `ProjectName`, `Budget`, `Deadline`).
 * stores the details of all Staff members (which are contained in a `UniqueStaffList` object) working on the project.
 
-Additional information:
-* The `UniqueStaffList` of a chosen `Project` object in HR Pro Max++ is copied over to the `UniqueStaffList` in `HrPro`, which is used to display the staff list shown to outsiders.
-* The copying is done whenever the user edits the `UniqueStaffList` of the `Project` object being viewed (e.g. `AddStaffCommand`, `EditStaffCommand`) or when the user wants to view a different `Project` object (e.g. after a `ViewCommand`)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The `UniqueStaffList` of a chosen `Project` object in HR Pro Max++ is copied over to the `UniqueStaffList` in `HrPro`, which is used to display the staff list shown to outsiders. The copying is done whenever the user edits the `UniqueStaffList` of the `Project` object being viewed (e.g. `AddStaffCommand`, `EditStaffCommand`) or when the user wants to view a different `Project` object (e.g. after a `ViewCommand`)
+</div>
+
+
 
 **API** : [`Staff.java`](https://github.com/AY2223S1-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/hrpro/model/staff/Staff.java)
 
-<img src="images/ModelStaffClassDiagram.png" width="650" />
+<img src="images/ModelStaffClassDiagram.png" width="800" />
 
 The `Staff` class,
 
@@ -288,31 +289,6 @@ The following sequence diagram shows how the view command works.
 * We also decided to create a defensive copy of the project's `UniqueStaffList`, which exists in `HrPro`, to be linked to the UI for display.
 * Initially, we decided to create a target project attribute in `Model` that keeps track of the `Project` object being viewed, but we realised that this design exposes the `UniqueStaffList` attribute of the project to other components like UI. Also, other commands could potentially mutate this target project which would result in a lot of bugs.
 * The last viewed staff list would also be saved in `Storage` for convenience to users.
-
-## **Task List**
-
-### Implementation
-`Task List` is implemented in a way that is similar to
-`Staff List` and `Project List`. The `Task ` class is first created, alongside the supporting field
-classes `TaskDeadline` and `TaskDescription`. With these classes, the `Task` class can hold information
-regarding the description and deadline of a task.
-
-* `UniqueTaskList`: A list of tasks which are unique and can be displayed to the `UI`.
-* `Task`: The task to be done.
-* `TaskDeadline`: The deadline of the task.
-* `TaskDescription`: The description of the task.
-* `TaskMark`: The completion status of the task.
-
-![img.png](images/TaskStructure.png)
-
-### Design considerations
-
-* A `UniqueTaskList` ensures that all tasks are different so that the tasks that are needed to be done
-are well-defined.
-* By making sure all added tasks are checked using `Task.isSameTask`, we can be sure that
-there are no duplicates in the task list.
-* When storing the task list, we ensured that both `Project List` and `Task List` are stored together
-in one file so that the file can be read easily.
 
 ## **Find Task**
 
