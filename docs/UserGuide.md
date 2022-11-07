@@ -248,7 +248,7 @@ Initial: A student with name "Alex Yeoh", with the following details: Telegram h
 on 2022-08-16, consultation date on 2022-11-11, and a tag "Colour blind".
 
 ![EditCommandInitial.png](images/EditCommandInitial.png)
-<i> Before edit command</i>**
+<i> Before edit command</i>
 
 Outcome: Student's name changed to "Alex Yap", along with the following details: Telegram handle as "@AlexYap",
 Mastery Check date as 2022-11-06, consultation date as 2022-10-10, and tags as "Experienced coder" and "Intern".
@@ -552,7 +552,7 @@ Format: `aliaslist`
 
 ### Miscellaneous Features
 
-Overview: Other features that aid you in using FRIDAY.
+Other features that aid you in using FRIDAY.
 
 #### Getting User Guide link: `guide`
 
