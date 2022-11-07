@@ -137,7 +137,7 @@ How the `Logic` component works:
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("addClient n/John Tan p/12345678")` API call.
-
+<!-- @@author rexong -->
 ![Interactions Inside the Logic Component for the `addClient n/John Tan p/12345678` Command](images/AddClientSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteClientCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
@@ -222,6 +222,7 @@ We decided to only allow adding of a client with its product only after the prod
 
 This is to try and maintain the overall cleanliness and housekeeping of _MyInsuRec_. Suppose we allow the user to add the client with any product name without it already existing in the product list. This might be organized and clean for the first few contacts added, but over time, the product name can get distorted. Shorthand forms may be used in place of the product name, case sensitivity and whitespaces are ignored. With _MyInsuRec_ also placing a focus on allowing users to get an idea of the popularity of each of the products they are selling, it is paramount that the product name stay the same, so as to enable the feature to work. Furthermore, one of the problems we are attempting to solve is the messiness of using traditional Excel spreadsheets. Having this validation check helps to preserve the data added, and thus the user can use the app for a longer time without feeling cluttered.
 
+<!-- @@author rexong -->
 #### 4.1.2 Birthday constraints
 
 Below is the activity diagram that illustrates the process of validating birthday when birthday of a client is added.
@@ -258,6 +259,7 @@ Below is an activity diagram that summarises the execution of `viewClient`.
 
 ![ViewClientActivityDiagram](images/ViewClientActivityDiagram.png)
 
+<!-- @@author rexong -->
 #### 4.1.4 Delete Client
 
 Syntax: `delClient i/INDEX`, where `INDEX` is an index shown in the client list.
@@ -338,6 +340,7 @@ Below is a sequence diagram that illustrates the execution of `addMeeting i/1 st
     - Cons: The parser will need to have access to the model in order to
       obtain the referenced client.
 
+<!-- @@author rexong -->
 #### 4.2.2 Meeting date constraints
 
 Below is the activity diagram that illustrates the process of validating meeting date.
@@ -348,6 +351,7 @@ We decided to set this constraint on meeting date:
 
 1) Meeting Date is not in the past.
 
+<!-- @@author rexong -->
 #### 4.2.3 Delete meeting
 
 Syntax: `delMeeting i/INDEX`, where `INDEX` is an index shown in the meeting list.
@@ -669,6 +673,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
       Use case ends.
 
+<!-- @@author rexong -->
 #### 6.3.4 Use case: UC4 - Delete a client
 
 **MSS**
@@ -760,6 +765,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
       Use case ends.
 
+<!-- @@author rexong -->
 #### 6.3.9 Use case: UC9 - Delete a meeting
 
 **MSS**
@@ -999,6 +1005,7 @@ testers are expected to do more *exploratory* testing.
     * Test case: `viewClient 1`
         * Expected: Prefix for index is not provided, so there will be an invalid command format error.
 
+<!-- @@author rexong -->
 ### 7.4 Deleting a client
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in, but it only makes sense to use while you are in the list of clients using `listClient` where the index number of the client can be found.</div>
@@ -1047,6 +1054,7 @@ testers are expected to do more *exploratory* testing.
     * Test case: `listMeeting adsfadsf`
         * Expected: The view switches back to the list of meetings, and all three meetings are displayed. Extra parameters are ignored.
 
+<!-- @@author rexong -->
 ### 7.6 Deleting a Meeting
 
 Deleting a meeting while all meetings are being shown

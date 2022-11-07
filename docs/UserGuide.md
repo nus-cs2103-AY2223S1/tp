@@ -17,7 +17,7 @@ _MyInsuRec_ prioritizes user-friendliness and user experience. As such, interact
 _MyInsuRec_ is available for the Windows, macOS and Linux operating systems. To get started, simply head over to the [installation guide](#5-installation-guide). This user guide can also serve as a reference for experienced users, with a convenient [command summary](#9-command-summary).
 
 --------------------------------------------------------------------------------------------------------------------
-
+<!-- @@author rexong -->
 ## 2. How to use this User Guide
 
 Welcome to _MyInsuRec_ User Guide!
@@ -34,6 +34,8 @@ Before we go on further, look out for these symbols in the User Guide as they pr
 | :information_source: | Blue             | Additional information. This symbol is followed by a label 'Note'.                                    |
 | :exclamation:        | Yellow           | Crucial information needed for proper use of MyInsuRec. This symbol is followed by a label 'Caution'. |
 | :bulb:               | Green            | Tips and tricks. This symbol is followed by a label 'Tips and tricks'.                                |
+
+<!-- @@author rexong -->
 
 <div markdown="span" class="alert alert-info">**:information_source: Note:**
 If you have **not installed** _MyInsuRec_, you can follow the [installation guide](#5-installation-guide) here!
@@ -111,7 +113,7 @@ Beyond individual products, you can also:
 [Return to the top](#)
 
 --------------------------------------------------------------------------------------------------------------------
-
+<!-- @@author rexong -->
 ## 4. User Interface
 
 The following subsections introduces the layout of _MyInsuRec_'s user interface.
@@ -269,6 +271,7 @@ This section guides you on how to use features available in *MyInsuRec*. We will
 
 **Do take some time to read the following note** to better understand how you can use this section!
 
+<!-- @@author rexong -->
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
@@ -321,7 +324,7 @@ See [addProduct](#731-adding-a-product-addproduct).
 ### 7.1 Client commands
 
 This subsection covers all client-related commands.
-
+<!-- @@author rexong -->
 #### 7.1.1 Add client: `addClient`
 
 Add a new client to _MyInsuRec_.
@@ -413,7 +416,7 @@ Examples:
 
 Screenshot:
 ![ViewClient](images/features/ViewClient.png)
-
+<!-- @@author rexong -->
 #### 7.1.4 Delete client: `delClient`
 
 Delete the specified client from _MyInsuRec_.
@@ -555,7 +558,7 @@ Examples:
 
 Screenshot:
 ![ViewMeeting](images/features/ViewMeeting.png)
-
+<!-- @@author rexong -->
 #### 7.2.4 Delete meeting: `delMeeting`
 
 Delete a meeting from _MyInsuRec_.
