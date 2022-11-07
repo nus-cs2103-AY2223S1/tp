@@ -523,7 +523,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `Condonery` and the **Actor** is the `use
+(For all use cases below, the **System** is the `Condonery` and the **Actor** is the `user`
 
 #### Use Case 1: Listing all Properties
 
@@ -756,8 +756,17 @@ Use case ends.
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Contact**: A client of the app user
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Property**: A listed unit of a property
+* **Command**: A text input keyed in by the user, in the command box of the GUI.
+  * A command must have a keyword (e.g. `select`, `clear`)
+  * A command might require a flag, and/or a parameter(s)
+* **Flag**: A flag denoting if a command is for properties or clients, i.e., `-p` and `-c`
+* **Parameter**: A combination of a prefix and an argument(s) that functions as inputs to a command
+  * Examples: `n/Samuel` is a name parameter; `a/Woodlands` is an address parameter
+* **Prefix**: The symbol used in a parameter to indicate which parameter it is for
+  * Examples: `n/` is the prefix for the name parameter; `a/` is the prefix for the address parameter
+* **Argument**: The user-defined inputs for parameters
+  * Examples: "Jaime" could be an argument for the name parameter; "Sembawang" could be an argument for the addresss parameter
 
 --------------------------------------------------------------------------------------------------------------------
 
