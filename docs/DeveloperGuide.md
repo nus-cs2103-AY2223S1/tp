@@ -230,18 +230,19 @@ The `EditTaskDescriptor` object contains the new value(s) of the data that needs
 
 #### Example usage of `task edit`
 
-1. The user adds a `Task` to the `TaskPanel`.
-2. The user types in the command `task edit 1 ti/TITLE`.
+Step 1. The user adds a `Task` to the `TaskPanel`.
+
+Step 2. The user types in the command `task edit 1 ti/TITLE`.
    The `EditTaskCommand` is created together with the `EditTaskDescriptor` object as shown below.
 
 ![Sequence diagram](images/EditTaskCommandParse.png)
 
-3. The command return is executed. The copy of the `EditTaskDescriptor` object is used  during the `EditTaskCommand#createEditedTask` method, after which it is destroyed.
+Step 3. The command return is executed. The copy of the `EditTaskDescriptor` object is used  during the `EditTaskCommand#createEditedTask` method, after which it is destroyed.
    The edited copy of the task then replaces the current task in the task list.
 
 ![Sequence diagram](images/EditTaskCommandExecute.png)
 
-4. Finally, the GUI is updated to reflect the changes made. In this case, it will show the task at index 1 with the new title.
+Step 4. Finally, the GUI is updated to reflect the changes made. In this case, it will show the task at index 1 with the new title.
 
 #### `EditTaskDescriptor` implementation
 
@@ -342,15 +343,22 @@ The selection of tasks is implemented by acting on the current filtered `TaskPan
 #### Example Usage of `task assign`
 
 Step 1. User launches Arrow. The `TaskPanel` and `AddressBook` is populated with existing `Task` and `Teammate` entries respectively.
+
 Step 2. User types in the command `task assign 1 +@2 -@Bernice Yu`. `1` is the specified index of `Task` in `TaskPanel` to be assigned to given in one-based form. `2` is the specified index of `Teammate` in the `AddressBook` to be assigned. "Bernice Yu" is the full name of the `Teammate` in the `AddressBook` to be unassigned.
+
 Step 3. The `LogicManager` detects that this is a `TaskCommand`, and therefore passes the user input to the `TaskPanelParser`
+
 Step 4. The `TaskPanelParser` detects the `AssignTaskCommand.COMMAND_WORD`, and therefore parses the command arguments via a `AssignTaskCommandParser`
+
 Step 5. The relevant parameters are used to create an instance of a `AssignTaskCommand`, which is then returned to the `TaskPanelParser`
+
 Step 6. The `LogicManager` executes the command
+
 
 ![AssignTaskSequenceDiagramReferenceFrame](images/AssignTaskSequenceDiagramReferenceFrame.png)
 
 Step 7. The command obtains the current state of the `TaskPanel` and `AddressBook` from `Model`.
+
 Step 8. The `Task` to be modified is fetched from the `TaskPanel` using the specified `Index`, using its zero-based form.
 
 Note: if the `Index` provided is invalid, an exception will be thrown and user will retype their command.
@@ -362,9 +370,13 @@ Note: if the `Index` of teammates is invalid, an exception will be thrown and us
 Note: if the full name provided by user does not match any `Teammate`, an exception will be thrown and user will retype their command.
 
 Step 10. For each `Teammate` to be assigned, a `Contact` is created using the `Teammate`s' name.
+
 Step 11. The modified `Task` is created with the newly assigned `Contact`s
+
 Step 12. The `Model` is updated with the modified `Task`.
+
 Step 13. The `GUI` is updated to show the new `TaskPanel` with the `Task`'s assigned contacts updated.
+
 
 The AssignTaskCommandParser relies on the ArgumentMultimap abstraction, which helps to tokenize the user input by pre-specified prefixes. The prefix `+@` denotes that the contact is to be assigned, while prefix `-@` denotes that the contact is to be unassigned from the task's assigned contact list.
 
