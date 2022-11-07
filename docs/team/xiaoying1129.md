@@ -35,6 +35,7 @@ Given below are my contributions to the project.
     * Fix User Guide issues from PE dry run [#191]
     * Update Personal Portfolio Page [#207]
     * Add test cases to increase coverage [#209]
+    * Add user stories, use cases and other updates to Developer Guide [#210]
 
 
 * **Project management**:
@@ -54,6 +55,7 @@ Given below are my contributions to the project.
     * Developer Guide:
         * Added proposed implementation for the `sort` feature [#81]
         * Added documentation for `find`, `sort` and `remark` features [#101]
+        * Add user stories, use cases and other updates to Developer Guide [#210]
 
 
 * **Community**:
