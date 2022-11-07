@@ -56,6 +56,8 @@ This one-stop, convenient, and efficient platform empowers Internship Campus Rec
 
 6. Refer to [Features](#3-features) for details of each command.
 
+<div style="page-break-after: always;"></div>
+
 ## 2. Fields
 
 <div markdown="block" class="alert alert-info">
@@ -198,6 +200,7 @@ Format: `view INDEX`
 * The index refers to the index number shown in the displayed applicants list.
 * The index **must be a positive integer** 1, 2, 3, ... and **not exceed the total records listed**
 
+<div style="page-break-after: always;"></div>
 
 ### 3.5 Editing an applicant: `edit`
 
@@ -233,6 +236,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd applicant in the address book.
 * `find n/Betsy` followed by `delete 1` deletes the 1st applicant in the results of the `find` command.
 
+<div style="page-break-after: always;"></div>
 
 ### 3.7 Locating applicants by field: `find`
 
