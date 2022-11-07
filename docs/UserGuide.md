@@ -530,9 +530,7 @@ Examples:
 * List meetings happening in the next week
     * `listMeeting d/week`
 
-<div markdown="span" class="alert alert-warning">**:exclamation: Caution:**
-
-* Extraneous parameters will not be taken into account. For example, `listMeeting n/Alex` will be considered as `listMeeting` without any error messages.
+<div markdown="span" class="alert alert-warning">**:exclamation: Caution:**Extraneous parameters will not be taken into account. For example, `listMeeting n/Alex` will be considered as `listMeeting` without any error messages.
 </div>
 
 #### 7.2.3 View meeting: `viewMeeting`
