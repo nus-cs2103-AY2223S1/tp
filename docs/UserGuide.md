@@ -207,6 +207,8 @@ Format: `return INDEX`
 Examples:
 * `return 2` returns book number two (which has been previously loaned).
 
+<div style="page-break-after: always;"></div>
+
 ### Finding books : `find book`
 
 Finds a book using keywords.
@@ -242,6 +244,8 @@ Format: `find user KEYWORD [KEYWORD]...`
 Examples:
 * `find user wa` will find `Mohammad Rizwan` and `Wallace Andrew`.
 * `find user John Sim` will find `John Goh` and `Sim Chee Ming`.
+
+<div style="page-break-after: always;"></div>
 
 ### Editing a book : `edit book`
 

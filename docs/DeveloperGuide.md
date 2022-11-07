@@ -696,6 +696,8 @@ Use case ends.
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
