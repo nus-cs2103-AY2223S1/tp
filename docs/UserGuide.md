@@ -284,6 +284,8 @@ Examples:
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ### Deleting a resident : `delete`
 
 Deletes the specified resident.
@@ -304,8 +306,6 @@ Examples:
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
 ---
-
-<div style="page-break-after: always;"></div>
 
 ### Deleting multiple residents : `remove`
 
@@ -538,8 +538,6 @@ Examples:
 * `find char li` returns `Charmaine Yee`, `William Li`<br>
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
-
----
 
 <div style="page-break-after: always;"></div>
 
