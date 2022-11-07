@@ -16,7 +16,7 @@ title: User Guide
 ## Introduction
 myStudent is **an easy-to-use, portable and aesthetically-pleasing desktop application for managing students of a tuition center**, optimized for use via a Command Line Interface 
 (CLI) while still having the benefits of a Graphical User Interface (GUI). If you're able to type fast, myStudent can get your
-work done faster than a traditional GUI apps.
+work done faster than traditional GUI apps.
 
 ---
 ## About
@@ -27,29 +27,28 @@ to use and what it does for all the features available in myStudent. If you don'
 
 :information_source: Notes about the command format in this user guide:
 
-* Prefixes are user inputs that consist of a character followed by a slash  
-  e.g. `n/` or `p/`
-
-* Fields are 
+* **Prefixes** are characters (case-sensitive) followed by a slash and are usually prepended to a field.  
+  (E.g., `n/` or `p/`.)
 
 
-* `< >` - represent fields that are supplied by the user.  
-  e.g. `add n/<name>, where <name>` is just the name of the field and users can input `add n/John Doe`. <br>
+* **Fields** are information to be supplied to the command by the user for the application to execute.  
+  (E.g., `name` or `phone`)
 
 
-* `[ ]` - represent fields that are optional.  
-        e.g `n/<name> [#/<tag>]`, users can input `add n/John Doe` or `n/John Doe #/male`.
+* `< >` - indicate that enclosing field is *mandatory*.   
+  (E.g., `add n/<name>`, where `<name>` is a mandatory field "name" and a valid input could be `add n/John Doe`.)
 
 
-* Users can input fields of prefixes in any order.
-  e.g. `nok <index> n/<name> p/<phone>`, users can either input `nok 2 n/John Doe p/91234567` or `nok 2 n/John Doe p/91234567`.  
-  However, `nok n/John Doe p/91234567 2` where the `<index>` is at the end of the input, is not a valid command.
+* `[ ]` - indicate that the enclosing elements (prefixes and/or fields) are *optional*.  
+  (E.g., `n/<name> [#/<tag>]`, where valid inputs could be `add n/John Doe` or `n/John Doe #/male`.)
 
 
+* Users can input fields of prefixes in any order.  
+  (E.g., `nok <index> n/<name> p/<phone>`, where valid inputs could be `nok 2 n/John Doe p/91234567` or `nok 2 n/John Doe p/91234567`. However, `nok n/John Doe p/91234567 2`, where the `<index>` is at the end of the input, is not valid.)
 
-* Extra input from the user for commands that do not take in fields will be ignored.  
-  e.g. the `clear` command does not have any other fields, thus typing `clear asdfghjkl` into the command box will have the same result as if you had entered `clear` instead.
 
+* Extra input from the user for commands that do not take in any fields will be ignored.  
+  (E.g., the `clear` command does not have any other fields, thus typing `clear asdfghjkl` into the command box will have the same result as if you had entered `clear` instead.)
 
 </div>
 
@@ -82,6 +81,7 @@ Below is a quick guide on how to get started.
 <div markdown="block" class="alert alert-info">
 
 :pencil2: **Configuring the app**  
+
 You can change the default configurations of the app in the `preference.json` file which is located in the home folder.  
 A `preference.json` file will be created when you first run the application, if it doesn't exist initially.  You can then edit the file to customize mystudent to your needs.  
 
@@ -107,6 +107,17 @@ A `preference.json` file will be created when you first run the application, if 
 | Tutor Address Book Location 	         | data\\\tutoraddressbook.json 	        |
 | Tuition Class Address Book Location 	 | data\\\tuitionclassaddressbook.json 	 |
 
+</div>
+
+<div markdown="block" class="alert alert-danger">
+
+:heavy_exclamation_mark: **Alert**  
+All your data will be saved as .json files in their respective location as specified above.  
+The default location of the files will be in a folder named `data` in your [home folder](#quick-start).  
+Do **NOT** modify these files directly as it may cause irreparable damage to your data, cause the application to not work as intended, or both.  
+If you need to modify the details of your entries, please do so within the myStudent application. Your data will be saved automatically.  
+Some applicable commands that helps to modify your data are: [assign](#unassign-class-from-a-person-unassign), [unassign](#unassign-class-from-a-person-unassign) and [edit](#editing-an-entity-edit). 
+    
 </div>
 
 ---
@@ -142,9 +153,10 @@ In the student and tutor lists, clicking on the individual student or tutor card
 <p align="left">
 
 <img src="images/listDisplayPanel.png"/>
-*Note that the card for the person being displayed will be highlighted as well.
 
 </p>
+
+* Note that the card for the person being displayed will be highlighted as well.
 
 ### 4. List Tabs
 
@@ -182,7 +194,6 @@ This is an example of a description being displayed in the description panel. Wh
 
 #### File
 The `File`  menu contains `Export` and `Exit`.
-
 * `Export` allows you to export your data into a `.csv` file.  
 For more information regarding `Export`, you can click [here](#exporting-address-books-to-csv).
 
@@ -237,8 +248,10 @@ Adds a person to the myStudent database.
 
 Formats:
 
+To add a **student**,<br>
 `add student n/<name> p/<phone> e/<email> a/<address> s/<school> l/<level> [#/<tag>]…`
 
+To add a **tutor**,<br>
 `add tutor n/<name> p/<phone> e/<email> a/<address> q/<qualification> i/<institution> [#/<tag>]…`
 
 
@@ -248,37 +261,49 @@ Formats:
 * If a specific field is repeated, the last occurrence in the input is taken. The `<tag>` field is an exception as multiple tags are allowed.
 
 
-* Generally,
+* Generally,  
+
   * `<name>` field should only contain alphanumeric characters and spaces, and should not be left blank.
+    <p></p>
   * `<phone>` field should only contain numbers, and it should be between 7 and 15 digits long.
+    <p></p>
   * `<email>` field should be of the format local-part@domain and adhere to the following constraints:
     1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters.
     2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.
        The domain name must:
-       - end with a domain label at least 2 characters long
-       - have each domain label start and end with alphanumeric characters
+       - end with a domain label at least 2 characters long;
+       - have each domain label start and end with alphanumeric characters;
        - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
+    <p></p>
   * `<address>` field can take any values but should not be left blank.
+    <p></p>
   * `<tag>` fields should only contain alphanumeric characters. No spaces are allowed.
-  <br><br>
-  * For students,
-    * `<school>` field should only contain alphanumeric characters and spaces, and should not be left blank.
-    * `<level>` field should be one of the valid academic levels.
-      The valid academic levels are:
-        1. Primary 1 to 6
-        2. Secondary 1 to 4
+    <p></p>
+
+
+* For students,  
+
+  * `<school>` field should only contain alphanumeric characters and spaces, and should not be left blank.
+    <p></p>
+  * `<level>` field should be one of the valid academic levels.
+    The valid academic levels are:
+      1. Primary 1 to 6
+      2. Secondary 1 to 4
     
-      (Abbreviations are also allowed, e.g., "P1" or "Sec 3".)
-  <br><br>
-  * For tutors,
-    * `<quallification>` field should only contain alphanumeric characters, commas and spaces, and should not be left blank.
-    * `<institution>` field should only contain alphanumeric characters and spaces, and should not be left blank.
-  
+    (Abbreviations are also allowed, e.g., "P1" or "Sec 3".)
+
+
+* For tutors,
+
+  * `<quallification>` field should only contain alphanumeric characters, commas and spaces, and should not be left blank.
+    <p></p>
+  * `<institution>` field should only contain alphanumeric characters and spaces, and should not be left blank.
+
 Examples:
-* `add student n/John Doe p/98765432 e/johndoe@example.com a/John street, block 123, #01-01 s/Example Primary School l/Primary 3 #/badBoy`
-
-
 * `add tutor n/Betsy Crowe p/1234567 e/betsycrowe@example.com a/Newgate st, block 123, #01-01 q/MSc, Master of Science i/National University of Singapore #/mostLiked`
+
+
+* `add student n/John Doe p/98765432 e/johndoe@example.com a/John street, block 123, #01-01 s/Example Primary School l/Primary 3 #/badBoy`
 
 <p align="center">
 
@@ -306,9 +331,11 @@ Format: `add class n/<name> s/<subject> l/<level> d/<day> t/<time> [#/<tag>]…`
 * If a specific field is repeated, the last occurrence in the input is taken. The `<tag>` field is an exception as multiple tags are allowed.
 
 
-* Generally,
+* Generally,  
+
   * `<name>` field should only contain alphanumeric characters and spaces, and should not be left blank. Also, there should not be an existing class with the same name.
-  * `<subject>` field should only contain alphabetical characters, and should be one of the valid subjects spelt out in full.
+    <p></p>
+  * `<subject>` field should only contain alphabetical characters, and should be one of the valid subjects spelt out in full. 
     The valid subjects are:
     1. English
     2. Mathematics
@@ -317,7 +344,7 @@ Format: `add class n/<name> s/<subject> l/<level> d/<day> t/<time> [#/<tag>]…`
     5. Biology
     6. Elementary Mathematics
     7. Additional Mathematics
-
+    
     (Abbreviations are also allowed, e.g., "Eng" or "Amath".)
   * `<level>` field should be one of the valid academic levels.
     The valid academic levels are:
@@ -326,14 +353,17 @@ Format: `add class n/<name> s/<subject> l/<level> d/<day> t/<time> [#/<tag>]…`
 
     (Abbreviations are also allowed, e.g., "P1" or "Sec 3".)
   * `<day>` field should be a valid day of the week. (Abbreviations are also allowed, e.g., "Mon" or "Thurs".)
+    <p></p>
   * `<time>` field should be separated by a dash, a space or "to", and adhere to the following constraints:
     1. Timings must be in either 12-hour or 24-hour formats. When using the 12-hour format, AM/PM must be specified while minutes can be omitted. For both, the colon and initial zero may be omitted.
-    2. Start and end timings specified must respect chronology. The end time cannot occur before the start time. 
-    Note that all timings are considered to be on the same day.
+    2. Start and end timings specified must respect chronology. The end time cannot occur before the start time.
+       Note that all timings are considered to be on the same day (**including** midnight, i.e., 12am or 00:00, if specified as the end time, symbolises the end of the same day).
        Some valid examples are:
         - 12pm - 3pm
         - 1:00pm 2:00pm
-        - 2200 to 2330
+        - 2200 to 2400
+        - 23:00 - 00:00
+       <p></p>
   * `<tag>` fields should only contain alphanumeric characters. No spaces are allowed.
 
 
@@ -393,13 +423,13 @@ Edits an entity in the myStudent database.
 
 Formats:
 
-To edit a student, <br>
+To edit a **student**, <br>
 `edit <index> [n/<name>] [p/<phone>] [e/<email>] [a/<address>] [s/<school>] [l/<level>] [#/<tag>]…`
 
-To edit a tutor, <br>
+To edit a **tutor**, <br>
 `edit <index> [n/<name>] [p/<phone>] [e/<email>] [a/<address>] [q/<qualification>] [i/<institution>] [#/<tag>]…`
 
-To edit a class, <br>
+To edit a **class**, <br>
 `edit <index> [n/<name>] [s/<subject>] [l/<level>] [d/<day>] [t/<time>] [#/<tag>]…`
 
 * The index refers to the index number shown in the displayed list.
@@ -417,9 +447,12 @@ To edit a class, <br>
 * If a specific optional field is repeated, the last occurrence in the input is taken. The `<tag>` field is an exception as multiple tags are allowed.
 
 
-* The constraints of each optional field must be followed. They are:
+* The constraints of each optional field must be followed. They are:  
+
   * `<name>` field should only contain alphanumeric characters and spaces, and should not be left blank.
+    <p></p>
   * `<phone>` field should only contain numbers, and it should be between 7 and 15 digits long.
+    <p></p>
   * `<email>` field should be of the format local-part@domain and adhere to the following constraints:
       1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters.
       2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.
@@ -427,9 +460,13 @@ To edit a class, <br>
           - end with a domain label at least 2 characters long
           - have each domain label start and end with alphanumeric characters
           - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
+    <p></p>
   * `<address>` field can take any values but should not be left blank.
+    <p></p>
   * `<tag>` fields should only contain alphanumeric characters. No spaces are allowed.
+    <p></p>
   * `<school>` field should only contain alphanumeric characters and spaces, and should not be left blank.
+    <p></p>
   * `<level>` field should be one of the valid academic levels.
     The valid academic levels are:
       1. Primary 1 to 6
@@ -437,7 +474,9 @@ To edit a class, <br>
 
     (Abbreviations are also allowed, e.g., "P1" or "Sec 3".)
   * `<quallification>` field should only contain alphanumeric characters, commas and spaces, and should not be left blank.
+    <p></p>
   * `<institution>` field should only contain alphanumeric characters and spaces, and should not be left blank.
+    <p></p>
   * `<subject>` field should only contain alphabetical characters, and should be one of the valid subjects spelt out in full.
     The valid subjects are:
       1. English
@@ -450,14 +489,17 @@ To edit a class, <br>
 
     (Abbreviations are also allowed, e.g., "Eng" or "Amath".)
   * `<day>` field should be a valid day of the week. (Abbreviations are also allowed, e.g., "Mon" or "Thurs".)
+    <p></p>
   * `<time>` field should be separated by a dash, a space or "to", and adhere to the following constraints:
       1. Timings must be in either 12-hour or 24-hour formats. When using the 12-hour format, AM/PM must be specified while minutes can be omitted. For both, the colon and initial zero may be omitted.
       2. Start and end timings specified must respect chronology. The end time cannot occur before the start time.
-         Note that all timings are considered to be on the same day.
+         Note that all timings are considered to be on the same day (**including** midnight, i.e., 12am or 00:00, if specified as the end time, symbolises the end of the same day).
          Some valid examples are:
           - 12pm - 3pm
           - 1:00pm 2:00pm
-          - 2200 to 2330
+          - 2200 to 2400
+          - 23:00 - 00:00
+    <p></p>
   * `<tag>` fields should only contain alphanumeric characters. No spaces are allowed.
 
 Examples:
@@ -583,7 +625,9 @@ Formats:
 
 * The constraints of each field must be followed. They are:
     * `<name>` field should only contain alphanumeric characters and spaces, and should not be left blank.
+      <p></p>
     * `<phone>` field should only contain numbers, and it should be between 7 and 15 digits long.
+      <p></p>
     * `<email>` field should be of the format local-part@domain and adhere to the following constraints:
         1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters.
         2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.
@@ -591,13 +635,16 @@ Formats:
             - end with a domain label at least 2 characters long
             - have each domain label start and end with alphanumeric characters
             - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
+        <p></p>
     * `<address>` field can take any values but should not be left blank.
+        <p></p>
     * `<relationship>` should only contain letters, and should be spelt out in full. The valid relationships are:
         1. Father
         2. Mother
         3. Brother
         4. Sister
         5. Guardian
+      <p></p>
     * `<tag>` fields should only contain alphanumeric characters. No spaces are allowed.
 
 Examples:
@@ -688,8 +735,7 @@ Format: `list <entity>`
   1. student
   2. tutor
   3. class
-
-
+  <p></p>
 * The lists of each entity type can be displayed by clicking any of the tabs above the current displayed list.
 
 Examples:
@@ -741,8 +787,11 @@ Sorts the current list chronologically, alphabetically, or in reverse order.
 Format: `sort <order>`
 
 * `<order>` field should be a valid sort order. The valid orders are as follows:
+
   * **default**: Sorts the list in order of entries updated from oldest to newest. Editing an entry is considered as updating it.
+    <p></p>   
   * **alpha**: Sorts the list alphabetically with reference to the name.
+    <p></p>
   * **reverse**: Sorts the list in reverse order.
 
 Examples:
@@ -766,28 +815,28 @@ Finds entities from the current list based on multiple fields such that the fiel
 
 Format: `find PREFIX/KEYWORD [MORE PREFIX/KEYWORD]...`
 
-**Find students**<br>
+**To find a student,**<br>
 Format: `find [n/<name>] [p/<phone>] [e/<email>] [a/<address>] [s/<school>] [l/<level>] [#/<tag>]`
 
-**Find tutors**<br>
+**To find a tutor,**<br>
 Format: `find [n/<name>] [p/<phone>] [e/<email>] [a/<address>] [q/<qualification>] [i/<institution>] [#/<tag>]`
 
-**Find classes**<br>
+**To find a class,**<br>
 Format: `find [n/<name>] [s/<subject>] [l/<level>] [d/day] [t/time] [#/<tag>]`
 
 * All fields are optional, but at least one pair of `PREFIX/KEYWORD` must be specified.
 
 
-* The input `PREFIX` is case-sensitive and must be in lowercase. e.g. `n/hans e/notgmail.com`
+* The input `PREFIX` is case-sensitive and must be in lowercase (e.g., `n/hans e/notgmail.com`).
 
 
-* The input `KEYWORD` is case-insensitive. e.g. `n/hans` will match a student named “Hans”
+* The input `KEYWORD` is case-insensitive (e.g., `n/hans` will match a student named “Hans”).
 
 
-* Partial `KEYWORDS` will be matched e.g. `n/Ha` will match a student named “Hans Jones”
+* Partial `KEYWORDS` will be matched (e.g., `n/Ha` will match a student named “Hans Jones”).
 
 
-* The order of the `PREFIX/KEYWORD` pair does not matter. e.g. `n/Alice p/12345678` vs `p/12345678 n/Alice`
+* The order of the `PREFIX/KEYWORD` pair does not matter (e.g., `n/Alice p/12345678` vs `p/12345678 n/Alice`).
 
 
 * `KEYWORDS` must not contain the `/` character.
@@ -796,10 +845,10 @@ Format: `find [n/<name>] [s/<subject>] [l/<level>] [d/day] [t/time] [#/<tag>]`
 * If there are repeated `PREFIXES`, only the latest one will be taken.
 
 
-* The `<time>` field should be searched in the `HH:MM-HH:MM` format. e.g. `find t/18:00` or `find t/09:00-11:00`
+* The `<time>` field should be searched in the `HH:MM-HH:MM` format (e.g., `find t/18:00` or `find t/09:00-11:00`).
 
 
-* When searching the `<level>` field, a space must be included between the level and number if the number is to be specified. e.g. `find l/secondary 1` instead of `find l/secondary1`
+* When searching the `<level>` field, a space must be included between the level and number if the number is to be specified (e.g., `find l/secondary 1` instead of `find l/secondary1`).
 
 Examples:
 * `find n/john` 
@@ -894,14 +943,15 @@ Please close any .csv files that are currently open before clicking on the "*Exp
 **Q:** I can export my data to .csv files, but can I import .csv files into myStudent?  
 **A:** No, currently the import feature is still a work in progress. Stay tuned for it!
 
-**Q:** I can't seem to open myStudent when I tried to double-click it like a normal application. What do I do?
+**Q:** I can't seem to open myStudent when I tried to double-click it like a normal application. What do I do?  
 **A:** You can refer to our troubleshooting guide [here](#troubleshooting).
 
 **Q:** What if I'm still having trouble using myStudent?  
 **A:** You can tell us about the problem you're having and give more details [here](https://github.com/AY2223S1-CS2103T-F12-4/tp/issues/new). We'll be glad to help!
 
 **Q:** Can I request for new features or themes?  
-**A:** Of course you can! We're open to new suggestions. You can leave your suggestions [here](https://github.com/AY2223S1-CS2103T-F12-4/tp/issues/new). (Do note that implementation of any suggestion will be at our own discretion) 
+**A:** Of course you can! We're open to new suggestions. You can leave your suggestions [here](https://github.com/AY2223S1-CS2103T-F12-4/tp/issues/new).  
+(Do note that implementation of any suggestion will be at our own discretion) 
 
 ---
 

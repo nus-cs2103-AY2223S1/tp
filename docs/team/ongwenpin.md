@@ -34,6 +34,8 @@ Given below are my contributions to the project.
     * Coordinated team meetings every week.
     * Reported PE-D bug fixing status
 
+<div style="page-break-after: always;"></div>
+
 * **Enhancements to existing features**:
     * Modified methods in `AddressBook`, `Model` and `ModelManager` to ensure it works for `Student`, `Tutor` and `TuitionClass`. (Pull request [#42](https://github.com/AY2223S1-CS2103T-F12-4/tp/pull/42))
     * Made `Person` class abstract and fix affected methods in different components and tests to ensure it works. (Pull request [#113](https://github.com/AY2223S1-CS2103T-F12-4/tp/pull/113))
@@ -54,6 +56,6 @@ Given below are my contributions to the project.
     * Reported bugs and suggestions for other team during PE-D ([Here](https://github.com/ongwenpin/ped/issues)).
 
 * **Team-based tasks**
-    * PR reviewed and merged. [#231](https://github.com/AY2223S1-CS2103T-F12-4/tp/pull/231)
-  [#85](https://github.com/AY2223S1-CS2103T-F12-4/tp/pull/85)
+    * PR reviewed and merged. ([#231](https://github.com/AY2223S1-CS2103T-F12-4/tp/pull/231), 
+  [#85](https://github.com/AY2223S1-CS2103T-F12-4/tp/pull/85))
         * [Full list](https://github.com/AY2223S1-CS2103T-F12-4/tp/pulls?q=is%3Apr+commenter%3Aongwenpin) can be found here  
