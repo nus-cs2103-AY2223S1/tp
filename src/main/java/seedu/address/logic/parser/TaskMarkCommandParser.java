@@ -41,6 +41,7 @@ public class TaskMarkCommandParser implements Parser<TaskMarkCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     TaskMarkCommand.MESSAGE_USAGE), pe);
         }
+
         return new TaskMarkCommand(teamIndex, taskIndex);
     }
 

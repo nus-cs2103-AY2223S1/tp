@@ -63,6 +63,7 @@ public class EditTeamCommand extends Command {
         }
 
         model.setTeamName(targetIndex, newTeamName);
+
         return new CommandResult(String.format(MESSAGE_EDIT_TEAM_SUCCESS, newTeamName));
     }
 

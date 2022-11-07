@@ -39,6 +39,7 @@ public class TaskUnmarkCommandParser implements Parser<TaskUnmarkCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     TaskUnmarkCommand.MESSAGE_USAGE), pe);
         }
+
         return new TaskUnmarkCommand(teamIndex, taskIndex);
     }
 

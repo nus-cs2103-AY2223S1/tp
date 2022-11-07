@@ -42,6 +42,7 @@ public class DeleteTeamCommand extends Command {
 
         Team teamToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteTeam(teamToDelete);
+
         return new CommandResult(String.format(MESSAGE_DELETE_TEAM_SUCCESS, teamToDelete));
     }
 

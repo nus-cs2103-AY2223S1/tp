@@ -65,6 +65,7 @@ public class TaskUnmarkCommand extends Command {
         }
 
         model.unmarkTask(teamIndex, taskIndex);
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, taskToUnmark));
     }
 

@@ -65,6 +65,7 @@ public class TaskMarkCommand extends Command {
         }
 
         model.markTask(teamIndex, taskIndex);
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, taskToMark));
     }
 
