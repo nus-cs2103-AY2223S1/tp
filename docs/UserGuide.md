@@ -230,14 +230,14 @@ Edits an existing student in the list.
         1. `yyyy-MM-dd 0000-2359`
         2. `Day-of-Week 0000-2359`
     - End time must be after the start time.
-    - For the first time argument, `0000` will be interpreted as `12AM` of the current specified day;
-      while for the second `0000` argument will be interpreted as `12AM` of the next day of the specified day.
-    - No lesson lasting from `12AM` of the first day till `12AM` of the next day.
     - If the Day-of-Week is today, executing `edit INDEX dt/Day-of-Week 0000-2359` will set the date to today only
       if the start time of the class is later than the current time. Else, the date will be set to the specified Day-of-Week
       in the following week.
     - Examples: `2022-10-09 1100-1230`, `MON 1100-1230`, `Mon 1100-1230`
     - Invalid inputs: `2022-10-9 1100-1230`, `2022-10-09 1100-1000`
+
+<div markdown="span" class="alert alert-danger">❗ **Caution:** If the end time is 12AM, it is referring to 12AM of the next day.
+</div>
 
 <div markdown="span" class="alert alert-danger">❗ **Caution:** If a chosen date is occupied by another student, a class conflict error will arise.
 </div>
