@@ -387,6 +387,10 @@ The calendar feature allows a calendar to display with the corresponding appoint
 
 **Calendar Display**
 
+![Calendar Class Diagram](images/CalendarUiClassDiagram.png)
+
+*Figure x. Class diagram showing the classes for the Calendar in the `Ui` *
+
 Implementation:
 
 The following is a more detailed explanation on how `Calendar Display` works.
