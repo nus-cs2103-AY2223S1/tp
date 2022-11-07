@@ -658,13 +658,13 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
 **Extensions**
 
-- 1a. Teacher requests to find by address without providing any query.
-    - 1a1. Teacher’s Pet displays invalid address command message.
+- 1a. Teacher requests to find by address with a blank or white space only parameter.
+    - 1a1. Teacher’s Pet displays invalid address format command message.
 
       Use case ends.
 
 - 1b. Teacher's Pet detects multiple students share the same address in the system.
-    - 1b1. Teacher’s Pet lists the details of multiple students.
+    - 1b1. Teacher’s Pet lists the details of all those students.
 
       Use case ends.
 
