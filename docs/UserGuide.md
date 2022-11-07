@@ -421,12 +421,12 @@ Format: `scores s/SESSION_NAME`
 
 Example:
 
-* `scores s/Tutorial 11` shows the grades of all students for the session **tutorial 1**, as shown below.
+* `scores s/Tutorial 11` shows the grades of all students for the session **Tutorial 11**, as shown below.
   
   <img class="center" src="images/sampleScoresGui.png" width="600"/>
 
   In the above example,
-  * **Edbert Geraldy**,**Lin Zechen**,**Ng Jing Xue** and **Rezwan Arefin** have been allocated a score of **100.0** for **Tutorial 11**.
+  * **Edbert Geraldy**, **Lin Zechen**, **Ng Jing Xue**, and **Rezwan Arefin** have been allocated a score of **100.0** for **Tutorial 11**.
   * **Tutorial 11** for **Xu Yi** has not been graded, hence her cell has been marked red.
 
 ### View session grades of student: `view`
