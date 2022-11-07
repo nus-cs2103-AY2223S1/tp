@@ -77,7 +77,6 @@ Given below are my contributions to the project.
  
 * **Community**:
 
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
   * Created [forum discussion](https://github.com/nus-cs2103-AY2223S1/forum/issues/413) 
 
 * **Misc PRs**:
