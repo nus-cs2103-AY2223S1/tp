@@ -1,7 +1,7 @@
 @startuml
 !include style.puml
 
-skinparam ParticipantFontSize 25
+skinparam ParticipantFontSize 18
 
 skinparam Sequence {
     ArrowFontSize 20
@@ -17,8 +17,8 @@ participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
-participant ":MaximumSortedList" as MaximumSortedList MODEL_COLOR
 participant "a:Appointment" as Appointment MODEL_COLOR
+participant ":MaximumSortedList" as MaximumSortedList MODEL_COLOR
 participant ":Model" as Model MODEL_COLOR
 end box
 
@@ -69,7 +69,7 @@ EditAppointmentCommand -> EditAppointmentDescriptor : createEditedAppointment(ap
 activate EditAppointmentDescriptor
 
 create Appointment
-EditAppointmentDescriptor -> Appointment : Appointment(updatedDateTime, updatedLocation)
+EditAppointmentDescriptor -> Appointment : Appointment(updatedDateTime, \nupdatedLocation)
 activate Appointment
 
 Appointment --> EditAppointmentDescriptor : a
