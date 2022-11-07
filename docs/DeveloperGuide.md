@@ -2,10 +2,9 @@
 layout: page
 title: Developer Guide
 ---
-
-- Table of Contents
-  {:toc}
-
+* Table of Contents
+{:toc}
+ 
 ---
 
 ## **Acknowledgements**
@@ -420,16 +419,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is `ContactMation` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `Contactmation` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 - Delete a person**
 
 **MSS**
 
-1.  User requests to list persons
-2.  ContactMation shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  ContactMation deletes the person
+1.  User requests to list persons.
+2.  Contactmation shows a list of persons.
+3.  User requests to delete a specific person in the list.
+4.  Contactmation deletes the person.
 
     Use case ends.
 
@@ -441,20 +440,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 3a. The given index is invalid.
 
-  - 3a1. ContactMation shows an error message.
+  - 3a1. Contactmation shows an error message.
 
     Use case resumes at step 2.
 
-**Use case: Edit a person**
+**Use case: UC02 - Edit a person**
 
 **MSS**
 
-1.  User requests to list persons
-2.  ContactMation shows a list of persons
-3.  User requests to edit a specific person in the list
-4.  ContactMation shows a screen with the properties of the person
-5.  User edits the properties to their liking and saves
-6.  Contactmation saves the data
+1.  User requests to list persons.
+2.  Contactmation shows a list of persons.
+3.  User requests to edit a specific person in the list.
+4.  Contactmation shows a screen with the properties of the person.
+5.  User edits the properties to their liking and saves.
+6.  Contactmation saves the data.
 
     Use case ends.
 
@@ -466,18 +465,60 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 3a. The given index is invalid.
 
-  - 3a1. ContactMation shows an error message.
+  - 3a1. Contactmation shows an error message.
 
     Use case resumes at step 2.
 
-**Use case: Add a Task**
+**Use case: UC03 - Create a team**
 
 **MSS**
 
-1.  User requests to list groups
-2.  ContactMation shows a list of groups
-3.  User requests to add a task to a group in the list
-4.  ContactMation adds the task
+1.  User requests to create a team with a team name.
+2.  Contactmation creates the team.
+
+    Use case ends.
+
+**Extensions**
+
+- 1a. The team name is empty or invalid.
+
+    - 1a1. Contactmation shows an error message. 
+
+      Use case ends.
+
+- 2a. The new team is in the current path.
+
+    - 2a1. Contactmation adds the new team to the list of teams in this path.
+
+      Use case ends.
+
+**Use case: UC04 - Enter a team context**
+
+**MSS**
+
+1.  Contactmation shows a list of teams.
+2.  User requests to enter a team context.
+3.  Contactmation enters the team context.
+4.  Contactmation only shows information specified to the new team context.
+
+    Use case ends.
+
+**Extensions**
+
+- 2a. The team selected is invalid.
+
+    - 2a1. Contactmation shows an error message.
+
+      Use case ends.
+
+**Use case: UC05 - Add a Task**
+
+**MSS**
+
+1.  User requests to list groups.
+2.  Contactmation shows a list of groups.
+3.  User requests to add a task to a group in the list.
+4.  Contactmation adds the task.
 
     Use case ends.
 
@@ -489,18 +530,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 3a. The given index is invalid.
 
-  - 3a1. ContactMation shows an error message.
+  - 3a1. Contactmation shows an error message.
 
     Use case resumes at step 2.
 
-**Use case: Set a Task completion status**
+**Use case: UC06 - Set a Task completion status**
 
 **MSS**
 
-1.  User requests to list tasks for a group
-2.  ContactMation shows a list of tasks
-3.  User requests to set the task completion status
-4.  ContactMation sets the task completion status
+1.  User requests to list tasks for a group.
+2.  Contactmation shows a list of tasks.
+3.  User requests to set the task completion status.
+4.  Contactmation sets the task completion status.
 
     Use case ends.
 
@@ -512,15 +553,97 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 3a. The given index is invalid.
 
-  - 3a1. ContactMation shows an error message.
+  - 3a1. Contactmation shows an error message.
 
     Use case resumes at step 2.
 
 - 4a. The given status is empty.
 
-  - 4a1. ContactMation sets the task to `Done`
+  - 4a1. Contactmation sets the task to `Done`
 
     Use case ends.
+
+**Use case: UC07 - Create a macro**
+
+**MSS**
+
+1.  User enters the command to create a macro.
+2.  Contactmation creates and saves the macro.
+
+    Use case ends.
+
+**Extensions**
+
+- 1a. The macro command is invalid.
+
+    - 1a1. Contactmation shows an error message.
+
+      Use case ends.
+
+**Use case: UC08 - Execute a macro**
+
+**MSS**
+
+1.  User requests to use a macro.
+2.  Contactmation executes the commands defined by the macro.
+
+    Use case ends.
+
+**Extensions**
+
+- 1a. The macro does not exist.
+
+    - 2a1. Contactmation shows an error message.
+
+      Use case ends.
+
+
+**Use case: UC09 - Execute a foreach loop**
+
+**MSS**
+
+1.  User requests to use a with a supplied command over selected item type.
+2.  Contactmation executes the command over the selected item type.
+
+    Use case ends.
+
+**Extensions**
+
+- 1a. The command is invalid.
+
+    - 1a1. Contactmation shows an error message.
+
+      Use case ends.
+    
+- 1b. The selected item type does not exist.
+
+    - 1b1. Contactmation shows an error message.
+
+      Use case ends.
+
+- 2a. The command fails on an item.
+
+  - 2a1. Contactmation stops execution of the loop.
+  - 2a2. Contactmation displays an error message
+    
+    Use case ends.
+
+**Use case: UC10 - Use macros for repetitive tasks**
+
+**MSS**
+
+1.  User **creates a macro (UC07)**.
+2.  User **executes a foreach loop (UC09)** with the macro.
+
+    Use case ends.
+
+**Extensions**
+
+- 2a. The macro does not exist.
+
+    - 2a1. Contactmation shows an error message.
+
+      Use case ends.
 
 ### Non-Functional Requirements
 

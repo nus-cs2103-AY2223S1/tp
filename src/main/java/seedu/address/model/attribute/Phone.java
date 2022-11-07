@@ -7,15 +7,15 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import seedu.address.logic.parser.Prefix;
 
 /**
- * Represents a Person's phone number in the address book. Guarantees: immutable; is valid as
- * declared in {@link #isValidPhone(String)}
+ * Represents a Person's phone number in the address book. Guarantees: immutable; is valid as declared in
+ * {@link #isValidPhone(String)}
  */
 public class Phone extends AbstractAttribute<String> implements PrefixedAttribute {
 
     public static final String TYPE = "Phone";
-    public static final String MESSAGE_CONSTRAINTS = "Phone numbers should only contain numbers,"
-        + " and it should be at least 3 digits long";
-    public static final String VALIDATION_REGEX = "\\d{3,}";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Phone numbers should only contain numbers, start with 6, 8 or 9, and be 8 digits long";
+    public static final String VALIDATION_REGEX = "[689]\\d{7}";
     public final String value;
 
     /**
