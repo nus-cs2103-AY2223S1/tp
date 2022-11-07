@@ -858,7 +858,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Adding an applicant
 1. Adding an applicant to TrackAScholar while all applicants are displayed in GUI.
-   1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list. The list contains 
+   1. Prerequisites: Multiple applicants in the list. The list contains 
       an applicant named `Alex Yeoh` but does not contain an applicant named `Benjamin Low`.
    
    1. Test case: 
@@ -902,7 +902,7 @@ testers are expected to do more *exploratory* testing.
 ### Editing an applicant
 1. Editing an applicant in TrackAScholar while all applicants are displayed in GUI.
     1. Prerequisites: List all applicants using the `list` command. Two applicants in the list. The list contains
-       an applicant named `Alex Yeoh` with the following characteristics:
+       first applicant named `Alex Yeoh` with the following characteristics:
        ```
        Name: Alex Yeoh 
        Major(s): Medicine
@@ -911,7 +911,7 @@ testers are expected to do more *exploratory* testing.
        Email: alexyeoh@yahoo.com
        Phone Number: 87438807
        ``` 
-       and another applicant named `Shamus Lee` with the following characteristics:
+       and second applicant named `Shamus Lee` with the following characteristics:
        ```
        Name: Shamus Lee 
        Major(s): Business
@@ -976,7 +976,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Removing existing applicants with the specified application status while all applicants are being shown
 
-    1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list.
+    1. Prerequisites: Multiple applicants in the list.
 
     1. Test case: `remove ACCEPTED` followed by pressing `yes` on the alert box. <br>
        Expected: All applicants with application status `ACCEPTED` will be removed, while the list of applicants only
@@ -1002,7 +1002,7 @@ testers are expected to do more *exploratory* testing.
 ### Finding applicants by name, scholarship or major
 
 1. Finding existing applicants based on the specified characteristics while these applicants are being shown
-   1. Prerequisites: List all applicants using the `list` command. 3 applicants in the list. The list contains
+   1. Prerequisites: 3 applicants in the list. The list contains
       first applicant named `Muhammad Ali` with the following characteristics:
       ```
       Name: Muhammad Ali
@@ -1064,7 +1064,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Filtering existing applicants based on the specified application status while all applicants are being shown
 
-    1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list.
+    1. Prerequisites: Multiple applicants in the list.
 
     1. Test case: `filter ACCEPTED`
        Expected: All applicants with application status `ACCEPTED` will be shown in TrackAScholar GUI.
@@ -1130,7 +1130,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Unpinning an existing applicant while all applicants are being shown
 
-    1. Prerequisites: List all applicants using the `list` command. One applicant in the list. The list contains
+    1. Prerequisites: One applicant in the list. The list contains
        a pinned applicant named `Alex Yeoh`.
 
     1. Test case: `unpin Alex Yeoh`<br>
@@ -1202,7 +1202,7 @@ our commitment to improving the features and testability of TrackAScholar and im
   * After PED, my team start rectifying and filtering the respective bugs into its respective severity immediately,
   thus mitigating the number of bugs in TrackAScholar for future releases.
 
-* Maintaining high code quality and standards
+* Maintained high code quality and standards
   * By following the large amount of abstraction possessed by AB3, we aim to minimise duplicability of code in TrackAScholar 
   and thus reducing the amount of code written. This is evident from `Command` and `Ui` interfaces etc.
   * Moreover, we adhered to the KISS principle and tried to keep our methods short and simple, thus
