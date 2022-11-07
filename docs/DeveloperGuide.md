@@ -335,21 +335,23 @@ The sequence diagram below shows how the edit operation works:
 ![EditPatientSequenceDiagram](images/dg/EditCommandSequenceDiagram.png)
 
 The edit feature is now separated for the patients, appointments and bills sections. The steps for editing appointments and bills are similar.
-Design considerations:
-1. Length of command word
-2. Whether to use a prefix for the name of the patient
-3. Number of parameters for the command
 
-Alternatives:
-1. Use a shorter command word (eg. ep instead of editpatient)
-    - Pros: Easy to type
-    - Cons: Might be confusing for the user
-2. Use a prefix for the name of the patient (eg. n/ instead of just the name)
-    - Pros: Easier to implement
-    - Cons: Might be confusing for the user
-3. Combine edit feature for patients, appointments and bills into one command
-    - Pros: Easier to implement
-    - Cons: Might be confusing for the user
+
+Design considerations:
+
+**Aspects:**
+
+
+Command format:
+
+
+1. __Alternative 1 (Current choice)__: Create separate commands for adding patients, appointments and bills
+   - Pros: Easier to implement
+   - Cons: Might be troublesome for user to remember the different commands
+
+2. __Alternative 2__: Create one command for editing patients, appointments and bills using the command word edit
+   - Pros: Easy to remember and type the command word
+   - Cons: Too many prefixes to type in one command, which can make the command very long
 
 ### Find Feature
 
@@ -440,20 +442,37 @@ The following sequence diagram shows how the `DeleteBillCommand` works:
 
 Design considerations:
 
-Aspect: The parameter for delete command:
+**Aspects:**
 
-1. Alternative 1 (current choice): Uses index to identify patient to be deleted.
+1. The parameter for delete command:
 
-    - Pros: Easy to implement
+   1. __Alternative 1 (current choice)__: Uses index to identify patient to be deleted.
 
-    - Cons: Less intuitive. User has to first find the patient and know the index of the patient in the list to delete.
+       - Pros: Easy to implement
+
+       - Cons: Less intuitive. User has to first find the patient and know the index of the patient in the list to delete.
+
+   2. __Alternative 2__: Uses the name of the patient to identify the patient to be deleted.
+
+       - Pros: More intuitive. User can just enter the name of the patient.
+
+       - Cons: Worse run-time. Slightly difficult to implement.
+
+2. Command format:
+
+   1. __Alternative 1 (Current choice)__: Create separate commands for adding patients, appointments and bills
+   
+       - Pros: Easier to implement
+   
+       - Cons: Might be troublesome for user to remember the different commands
+    
+   2. __Alternative 2__: Create one command for deleteing patients, appointments and bills using the command word delete
+   
+       - Pros: Easy to remember and type the command word
+      
+       - Cons: Too many prefixes to type in one command, which can make the command very long
 
 
-2. Alternative 2: Uses the name of the patient to identify the patient to be deleted.
-
-    - Pros: More intuitive. User can just enter the name of the patient.
-
-    - Cons: Worse run-time. Slightly difficult to implement.
 
 
 ### Select Feature
