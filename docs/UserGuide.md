@@ -712,6 +712,7 @@ and [edit](#editing-a-meeting--editm) meetings.
 
 **If this is not the section you are looking for**, click [here](#table-of-contents) to go back to the **Table of Contents**.
 
+> Currently, Meetings are not displayed in the UI.
 
 ### Adding a meeting: `addM`
 
