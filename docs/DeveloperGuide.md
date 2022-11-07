@@ -791,13 +791,18 @@ Unless specified otherwise, the **System** is the `NotionUS` application and the
     * 2a1. NotionUS shows an error, requesting the user check the task ID.
 
       Use case starts from 1.
+* 2b. There are no tasks in the task list.
+    * 2b1. No tasks to archive.
+
+      Use case ends.  
 
 **Use Case: UC10 - Show archived tasks**
 
 **MSS:**
 
-1. User requests to show the archived tasks.
-2. NotionUS displays the archived tasks.
+1. NotionUS shows all tasks. 
+2. User requests to show the archived tasks.
+3. NotionUS displays the archived tasks.
 
    Use case ends.
 
@@ -867,7 +872,6 @@ Below is a use case diagram summarising the use cases listed above:
 15. Should take less than 2GB of storage space.
 16. Data should be stored locally in the user's operating device.
 
-*{More to be added}*
 
 ### 7.5 Glossary
 
@@ -950,8 +954,29 @@ testers are expected to do more *exploratory* testing.
    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
+### 8.4  Marking a task
 
-### 8.4 Saving data
+1. Marking a task while all tasks are being shown.
+   1. Prerequisites: List all tasks using the `ls -a` command. Multiple tasks in the list.
+   2. Test case: `mark 1`<br>
+          Expected: First task is mark, the checkbox of the task will be ticked. Details of the marked task shown in the status message.
+          Task IDs of remaining tasks updated.
+
+   3. Test case: `mark 0`<br>
+      Expected: No task is marked. Error details shown in the status message.
+
+### 8.5 Archiving a task
+
+1. Archiving a task while all tasks is shown. 
+   1. Prerequisites: List all tasks using the `ls -a` command. Multiple tasks in the list.
+   2. Test case: `archive 1`<br>
+      Expected: First task is archived, deleted from the list and added to the archived list. Details of the archived task shown in the status message.
+      Task IDs of remaining tasks updated.
+
+   3. Test case: `archive 0`<br>
+      Expected: No task is archived. Error details shown in the status message.
+
+### 8.6 Saving data
 
 1. Dealing with corrupted data files
 
@@ -976,7 +1001,7 @@ testers are expected to do more *exploratory* testing.
 
     3. Follow Steps 3-5 of the above "Dealing with corrupted data files". Expected behaviour is the same.
 
-### 8.5 Loading saved data
+### 8.7 Loading saved data
 
 1. Restoring task list from previous launch
 
@@ -993,3 +1018,22 @@ testers are expected to do more *exploratory* testing.
    
    5. Relaunch NotionUS by double-clicking the jar file.
       Expected: Task list displayed contains 2  tasks, `Tutorial 1` and `PYP`.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **9. Appendix: Effort**
+For the effort, we felt that our group have placed more than the average. We dissected and analysed the problem of our target audience. 
+From there, we generated an extensive list of user stories to decide on the features to be included in our application.  
+
+Our group morphed the model from `Person` to `Task`, the challenging part is to refactor all the various classes and fields. We also had to change of the various syntax of `module`, `Deadline` etc.
+This caused a lot of test cases to fail which we have to fix. For `Deadline`, we took the extra effort to make it optional to improve the usability for our users.
+
+Another challenge that was faced was understanding the `logicManager` and `modelManager` as we add in more commands. This requires us to apply the OOP principle and read up on the various APIs that we are 
+not familiar with such as `ObservableList`.  
+
+While we were adding the archive command, we have added a separate storage file for the `ArchivedTaskList` to separate it from the current task list as we do not want it to be modified or changed at this stage. 
+A lot of time was taken to understand how the addressBook storage works such as how the JSON file was created and saved. Due to creation of the new `ArchiveTaskList` class, we have to add in new methods to `logicManager` and `modelManager` and 
+the relevant interfaces, which resulted in many existing test cases to fail.  
+
+For the UI, we took the extra effort to change the appearance so that it is easy on the eyes. Since we did not have much experience dealing with CSS files and JavaFx, and on top of that it was different from what we have learnt, hence 
+we had read up and try for ourselves. Experimenting with the various fonts and editing size of the windows and make changes to fit in our new features was foreign to us as well, which caused us extra time to tackle it. 
