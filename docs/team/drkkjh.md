@@ -20,11 +20,12 @@ Given below are my contributions to the project.
 
 * **Project management**:
   * Authored [15 issues](https://github.com/AY2223S1-CS2103T-W11-2/tp/issues?q=is%3Aissue+is%3Aclosed+author%3Adrkkjh) to help keep track of current issues and progress.
-  * Reviewed [32 pull requests](https://github.com/AY2223S1-CS2103T-W11-2/tp/pulls?q=is%3Apr+reviewed-by%3Adrkkjh) to ensure quality and consistency across the database.
+  * Reviewed [35 pull requests](https://github.com/AY2223S1-CS2103T-W11-2/tp/pulls?q=is%3Apr+reviewed-by%3Adrkkjh) to ensure quality and consistency across the database.
 
 * **Enhancements to existing features**:
     * Updated the UI of `mlist` to display the list of modules, alongside with the target module and the
   schedule of the target module when `vtarget` command is executed. [#136](https://github.com/AY2223S1-CS2103T-W11-2/tp/pull/136)
+    * Updated `ModuleListPanel` to be able to display the target module and the schedules of the target module.
     * Added test cases for `Module` class. [#91](https://github.com/AY2223S1-CS2103T-W11-2/tp/pull/91)
     * Added test cases for `madd`, `mdel`, `medit` alongside during implementation.
     * Added test cases for `vtarget`. [#296](https://github.com/AY2223S1-CS2103T-W11-2/tp/pull/296)
@@ -41,5 +42,4 @@ Given below are my contributions to the project.
     * Enabled assertions in tP [#120](https://github.com/AY2223S1-CS2103T-W11-2/tp/pull/120)
 
 * **Tools**:
-    * `to be added soon`
 

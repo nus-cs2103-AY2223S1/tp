@@ -137,12 +137,12 @@ and other module related information such as your teaching schedule for the modu
 Before you get started with this feature, have a look at the common parameters we have used. Take a look before you
 continue!
 
-| Parameter            | Description & Restriction                                                                                                                                                                         | Example                                                         |
-|----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------|
-| `MODULE_NAME`        | This parameter represents the name of the module you are adding into ProfNUS.<br/>The name should be alphanumeric.<br/>Modules in ProfNUS are allowed to have the same names.                     | `Software Engineering`                                          |
-| `MODULE_CODE`        | This parameter represents the module code of a module in ProfNUS. Using module code can uniquely determine a module. The format should abide by the Module Code Format of NUS.                    | `CS2030S`                                                       |
-| `MODULE_DESCRIPTION` | This parameter represents the description of the module you are adding into ProfNUS.<br/>The description should be alphanumeric.<br/>Modules in ProfNUS are allowed to have the same description. | `This module teaches you about software engineering principles.` |
-| `TAG`                | This parameter represents the tag you want to attach to the module.<br/>It must be a single word consisting of alphanumeric characters.                                                           | `ModuleCoordinator`                                             |
+| Parameter            | Description & Restriction                                                                                                                                                                                                                                               | Example                                                         |
+|----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------|
+| `MODULE_NAME`        | This parameter represents the name of the module you are adding into ProfNUS.<br/>The name should be alphanumeric.<br/>Modules in ProfNUS are allowed to have the same names.                                                                                           | `Software Engineering`                                          |
+| `MODULE_CODE`        | This parameter represents the module code of a module in ProfNUS. Using module code can uniquely determine a module. The format should abide by the Module Code Format of NUS. Module codes are not case sensitive, this means that `CS2030S` is the same as `cs2030s`. | `CS2030S`                                                       |
+| `MODULE_DESCRIPTION` | This parameter represents the description of the module you are adding into ProfNUS.<br/>The description should be alphanumeric.<br/>Modules in ProfNUS are allowed to have the same description.                                                                       | `This module teaches you about software engineering principles.` |
+| `TAG`                | This parameter represents the tag you want to attach to the module.<br/>It must be a single word consisting of alphanumeric characters.                                                                                                                                 | `ModuleCoordinator`                                             |
 
 #### 4.2.2. Viewing list of modules: `mlist`
 
@@ -164,17 +164,15 @@ as well as any tags given to the module upon using this command!
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Note**<br>
-
-- Refer to section [Module Manager Command Parameters](#421-module-manager-command-parameters) for more information about the parameters
-- View more specific information about a module at your specified index.
-- The index refers to the index number shown in the displayed module list.
-- The index **must be a positive integer** 1, 2, 3, …​
+- You can view more specific information about a module at your specified index!
+- The `INDEX` refers to the index number shown in the displayed module list.
+- The `INDEX` **must be a positive integer** 1, 2, 3, …​
 
 </div>
 
 <div markdown="span" class="alert alert-warning">
 
-:exclamation: **Caution:**
+:exclamation: **Caution:**<br>
 
 - Please make sure the `INDEX` you type is **valid**, i.e. it appears in the displayed list.
   Otherwise, **no** information about a module will be display by ProfNUS.
@@ -188,9 +186,11 @@ as well as any tags given to the module upon using this command!
 Now, let's use the `vtarget` command to see how you can view more information about a module.
 
 **Step 1**: Type the command `vtarget 1` in the command box.
+
 ![vtarget_step1](images/userguide/vtarget_step1.png)
 
 **Step 2**: Press enter, and you will be able to see more information about a module now!
+
 ![vtarget_step2](images/userguide/vtarget_step2.png)
 
 #### 4.2.4. Viewing module details: `mview`
@@ -205,9 +205,17 @@ Let's use the `mview` command to view all the students and tutors in a module.
 
 **Step 1**: Type the command `mview c/CS1101S` in the command box.
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note**<br>
+
+- Module codes are not case-sensitive, this means that `CS2030S` is the same as `cs2030s`.
+
+</div>
+
 <div markdown="span" class="alert alert-warning">
 
-:exclamation: **Caution:**
+:exclamation: **Caution:**<br>
 
 - Please ensure that the `MODULE_CODE` exists in ProfNUS before you run this command! Otherwise, ProfNUS will consider the command to be invalid.
 
@@ -230,8 +238,8 @@ You can use this command to add your desired module into ProfNUS.
 
 **:information_source: Note**<br>
 
-- Refer to section [Module Manager Command Parameters](#421-module-manager-command-parameters) for more information about the parameters.
-- A module can have any number of tags(including 0).
+- You can refer to the section [Module Manager Command Parameters](#421-module-manager-command-parameters) for more information about the parameters.
+- A module can have any number of tags(including 0), of your choice!
 
 </div>
 
@@ -252,11 +260,19 @@ into the command box.
 
 You can use this command to edit details of a module in ProfNUS!
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note**<br>
+
+- You can refer to the section [Module Manager Command Parameters](#421-module-manager-command-parameters) for more information about the parameters.
+- A module can have any number of tags(including 0), of your choice!
+
+</div>
+
 <div markdown="span" class="alert alert-warning">
 
-:exclamation: **Caution:**
+:exclamation: **Caution:**<br>
 
-- Refer to section [Module Manager Command Parameters](#421-module-manager-command-parameters) for more information about the parameters.
 - Please make sure the module with `MODULE_CODE` exists in ProfNUS before you run this command! Otherwise, ProfNUS will consider the command to be invalid.
 
 </div>
@@ -281,7 +297,7 @@ You can use this command to delete a module stored already in ProfNUS.
 
 <div markdown="span" class="alert alert-warning">
 
-:exclamation: **Caution:**
+:exclamation: **Caution:**<br>
 
 - Please make sure the module with `MODULE_CODE` exists in ProfNUS before you run this command! Otherwise, ProfNUS will consider the command to be invalid.
 
@@ -355,7 +371,7 @@ You can add a student / teaching assistant by using this command.
 
 **:information_source: Note**<br>
 
-- Refer to section [Student Manager Command Parameters](#431-student-manager-command-parameters) for more information about the parameters
+- You can refer to the section [Student Manager Command Parameters](#431-student-manager-command-parameters) for more information about the parameters.
 - A student can have any number of tags, modules, ta modules and class groups (including 0).
 - A student's Student Id has to be unique!
 - Successfully adding a student will redirect you to the all student's and teaching assistant's page.
@@ -364,10 +380,12 @@ You can add a student / teaching assistant by using this command.
 
 <div markdown="span" class="alert alert-warning">
 
-:exclamation: **Caution:**
+:exclamation: **Caution:**<br>
 
-- Please make sure you have added the module with `MODULE_CODE` before you add any students with `MODULE_CODE`. Otherwise, ProfNUS will consider the command to be invalid.
-- A student should not be a teaching assistant and a student of the same module!
+- Please make sure you have added the module with `MODULE_CODE` before you add any students with `MODULE_CODE`. Otherwise, ProfNUS will consider the command to be invalid.<br>
+
+- A student should not be a teaching assistant and a student of the same module!<br>
+
 - If a student name is too long, only the first 50 characters of the name will be shown!
 
 </div>
@@ -398,7 +416,7 @@ You can use this command to edit a student in the Student Manager.
 
 **:information_source: Note**<br>
 
-- Refer to section [Student Manager Command Parameters](#431-student-manager-command-parameters) for more information about the parameters
+- You can refer to the section [Student Manager Command Parameters](#431-student-manager-command-parameters) for more information about the parameters.
 - You must enter at least on optional parameter to edit the student.
 - When editing tags, modules, ta modules and class groups, the existing information of the student will be removed i.e adding of tags, modules, ta modules and class groups is not cumulative.
 - You can remove all the student’s tags by typing `t/` without specifying any tags after it.
@@ -438,7 +456,7 @@ You can use this command to edit a teaching assistant from the teaching assistan
 
 **:information_source: Note**<br>
 
-- Refer to section [Student Manager Command Parameters](#431-student-manager-command-parameters) for more information about the parameters
+- You can refer to the section [Student Manager Command Parameters](#431-student-manager-command-parameters) for more information about the parameters.
 - You must enter at least on optional parameter to edit the teaching assistant.
 - When editing tags, modules, ta modules and class groups, the existing information of the teaching assistant will be removed i.e adding of tags, modules, ta modules and class groups is not cumulative.
 - You can remove all the teaching assistant’s tags by typing `t/` without specifying any tags after it.
@@ -463,7 +481,7 @@ You can use this command to delete a student from the student list.
 
 **:information_source: Note**<br>
 
-- Refer to section [Student Manager Command Parameters](#431-student-manager-command-parameters) for more information about the parameters
+- You can refer to the section [Student Manager Command Parameters](#431-student-manager-command-parameters) for more information about the parameters.
 - Deletes the student at the specified index.
 - The index refers to the index number shown in the displayed student list.
 - The index **must be a positive integer** 1, 2, 3, …​
@@ -474,7 +492,7 @@ You can use this command to delete a student from the student list.
 
 <div markdown="span" class="alert alert-warning">
 
-:exclamation: **Caution:**
+:exclamation: **Caution:**<br>
 
 - Please make sure the `INDEX` you type is **valid**, i.e. it appears in the displayed list.
 Otherwise, **no** student will be deleted by ProfNUS.
@@ -504,7 +522,7 @@ You can use this command to delete a teaching assistant from the teaching assist
 
 **:information_source: Note**<br>
 
-- Refer to section [Student Manager Command Parameters](#431-student-manager-command-parameters) for more information about the parameters
+- You can refer to the section [Student Manager Command Parameters](#431-student-manager-command-parameters) for more information about the parameters.
 - Deletes the teaching assistant at the specified index.
 - The index refers to the index number shown in the displayed student list.
 - The index **must be a positive integer** 1, 2, 3, …​
@@ -516,7 +534,7 @@ You can use this command to delete a teaching assistant from the teaching assist
 
 <div markdown="span" class="alert alert-warning">
 
-:exclamation: **Caution:**
+:exclamation: **Caution:**<br>
 
 - Please make sure the `INDEX` you type is **valid**, i.e. it appears in the displayed list.
   Otherwise, **no** teaching assistant will be deleted by ProfNUS.
@@ -537,7 +555,7 @@ You can find your students / teaching assistants by searching for keywords in th
 
 **:information_source: Note**<br>
 
-- Refer to section [Student Manager Command Parameters](#431-student-manager-command-parameters) for more information about the parameters
+- You can refer to the section [Student Manager Command Parameters](#431-student-manager-command-parameters) for more information about the parameters.
 - The search is case-insensitive. e.g `hans` will match `Hans`
 - The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 - Only the name is searched.
@@ -590,7 +608,7 @@ Views the list of selected/all schedules.
 
 **:information_source: Note**<br>
 
-- Refer to section [Schedule Manager Command Parameters](#441-schedule-manager-command-parameters) for more information about the parameters
+- You can refer to the section [Schedule Manager Command Parameters](#441-schedule-manager-command-parameters) for more information about the parameters.
 - Schedules matching at least one keyword will be returned to you.
 - You can view all your schedules by typing `sview` without any parameter.
 
@@ -598,7 +616,7 @@ Views the list of selected/all schedules.
 
 <div markdown="span" class="alert alert-warning">
 
-:exclamation: **Caution:**
+:exclamation: **Caution:**<br>
 
 - If any one of `MODULE_CODE` you type in doesn't exist, ProfNUS will report an error and **will not** show any schedule.
 
@@ -628,18 +646,15 @@ Views the Timetable of all schedules
 **:information_source: Note**<br>
 
 - `MODE` can only be `v`(for vertical mode) or `h`(for horizontal mode).
-
 - The default value of `MODE` is `h`.
-
 - You can view the vertical schedules by typing `tview v`.
-
 - You can view the horizontal schedules by typing `tview h` or `tview`.
 
 </div>
 
 <div markdown="span" class="alert alert-warning">
 
-:exclamation: **Caution:**
+:exclamation: **Caution:**<br>
 
 - If there are other parameters/words after `sview` instead of `v` or `h`, ProfNUS will report an error.
 
@@ -674,15 +689,15 @@ You can add a schedule by using this command.
 
 **:information_source: Note**<br>
 
-- Refer to section [Schedule Manager Command Parameters](#441-schedule-manager-command-parameters) for more information about the parameters
+- You can refer to the section [Schedule Manager Command Parameters](#441-schedule-manager-command-parameters) for more information about the parameters.
 
 </div>
 
 <div markdown="span" class="alert alert-warning">
 
-:exclamation: **Caution:**
+:exclamation: **Caution:**<br>
 
-- Please make sure you have added the module with `MODULE_CODE` before you add any schedules with `MODULE_CODE`. Otherwise, ProfNUS will consider the command to be invalid and report an error.
+- Please make sure you have added the module with `MODULE_CODE` before you add any schedules with `MODULE_CODE`. Otherwise, ProfNUS will consider the command to be invalid and report an error.<br>
 - If the schedule to be added conflicts with any existing schedule, ProfNUS will report an error and **will not** perform any operation.
 
 </div>
@@ -712,7 +727,7 @@ Edits a schedule in ProfNUS.
 
 **:information_source: Note**<br>
 
-- Refer to section [Schedule Manager Command Parameters](#441-schedule-manager-command-parameters) for more information about the parameters
+- You can refer to the section [Schedule Manager Command Parameters](#441-schedule-manager-command-parameters) for more information about the parameters.
 - You are expected to provide at least one optional parameter
 - Your newly typed parameters will overwrite corresponding existing information.
 
@@ -751,13 +766,13 @@ Deletes a schedule from ProfNUS.
 
 **:information_source: Note**<br>
 
-- Refer to section [Schedule Manager Command Parameters](#441-schedule-manager-command-parameters) for more information about the parameters
+- You can refer to the section [Schedule Manager Command Parameters](#441-schedule-manager-command-parameters) for more information about the parameters.
 
 </div>
 
 <div markdown="span" class="alert alert-warning">
 
-:exclamation: **Caution:**
+:exclamation: **Caution:**<br>
 
 - Please make sure the `INDEX` you type is **valid**, i.e. it appears in the displayed list. Otherwise, there will be an error message and **no** schedule will be deleted by ProfNUS.
 
@@ -786,14 +801,14 @@ Clears all the schedules or all schedules of selected modules.
 
 **:information_source: Note**<br>
 
-- Refer to section [Schedule Manager Command Parameters](#441-schedule-manager-command-parameters) for more information about the parameters
+- You can refer to the section [Schedule Manager Command Parameters](#441-schedule-manager-command-parameters) for more information about the parameters
 - If no optional `MODULE_CODE` is given, all schedules will be cleared.
 
 </div>
 
 <div markdown="span" class="alert alert-warning">
 
-:exclamation: **Caution:**
+:exclamation: **Caution:**<br>
 
 - If any one of `MODULE_CODE` you type in doesn't exist, ProfNUS will report an error and  **will not** clear any schedule you have.
 

@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":ProfNusParser" as ProfNusParser LOGIC_COLOR
 participant ":EditModuleCommandParser" as EditModuleCommandParser LOGIC_COLOR
 participant "c:ModuleCode" as ModuleCode LOGIC_COLOR
 participant "d:EditModuleDescriptor" as EditModuleDescriptor LOGIC_COLOR
@@ -19,7 +19,7 @@ end box
 [-> LogicManager : execute("command_details")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("command_details")
+LogicManager -> ProfNusParser : parseCommand("command_details")
 note left
 "command_details" serves
 to substitute
@@ -27,16 +27,16 @@ the actual command
 "medit CS2107 n/Cybersecurity"
 for readability purposes
 end note
-activate AddressBookParser
+activate ProfNusParser
 
 create EditModuleCommandParser
-AddressBookParser -> EditModuleCommandParser
+ProfNusParser -> EditModuleCommandParser
 activate EditModuleCommandParser
 
-EditModuleCommandParser --> AddressBookParser
+EditModuleCommandParser --> ProfNusParser
 deactivate EditModuleCommandParser
 
-AddressBookParser -> EditModuleCommandParser : parse("details")
+ProfNusParser -> EditModuleCommandParser : parse("details")
 note left
 "details" serves
 to substitute
@@ -67,12 +67,12 @@ activate EditModuleCommand
 EditModuleCommand --> EditModuleCommandParser : e
 deactivate EditModuleCommand
 
-EditModuleCommandParser --> AddressBookParser : e
+EditModuleCommandParser --> ProfNusParser : e
 deactivate EditModuleCommandParser
 
-AddressBookParser --> LogicManager : e
+ProfNusParser --> LogicManager : e
 destroy EditModuleCommandParser
-deactivate AddressBookParser
+deactivate ProfNusParser
 
 LogicManager -> EditModuleCommand : execute()
 activate EditModuleCommand
@@ -89,7 +89,6 @@ activate Model
 
 Model --> EditModuleCommand
 deactivate Model
-destroy Model
 
 create CommandResult
 EditModuleCommand -> CommandResult
@@ -100,8 +99,8 @@ deactivate CommandResult
 
 EditModuleCommand --> LogicManager : result
 deactivate EditModuleCommand
-destroy EditModuleCommand
 EditModuleCommand -[hidden]-> LogicManager : result
+destroy EditModuleCommand
 
 
 [<--LogicManager
