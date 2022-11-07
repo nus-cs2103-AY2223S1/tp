@@ -1,12 +1,13 @@
 ---
 layout: page title: Eiffel Leo's Project Portfolio Page
+title: Eiffel Leo's Project Portfolio Page
 ---
 ## Overview
 
 OmniHealth is a **Patient Management System** tailored to private clinicians to manage patients' details, records and upcoming appointments.
 As a private clinician, you can manage and monitor your patient database all in one location.
-Utilise OmniHealth's **sorting and filtering system** to help you easily manage and find your patients' details and records of past visits.
-Also, OmniHealth's **appointment tracker** allows you to tag upcoming appointments for each patient.
+
+OmniHealth aims to bring convenience into the lives of its users with its many features. 
 
 ## Summary of Contributions
 
