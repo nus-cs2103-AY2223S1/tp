@@ -1,5 +1,7 @@
 package modtrekt;
 
+import static modtrekt.commons.util.AppUtil.containsValidModCodes;
+
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
@@ -92,12 +94,18 @@ public class MainApp extends Application {
                 logger.info("Data file not found. Will be starting with a sample TaskBook");
             }
             taskBook = taskBookOptional.orElseGet(SampleDataUtil::getSampleTaskBook);
-
             moduleListOptional = storage.readModuleList();
             if (!moduleListOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample ModuleList");
             }
             moduleList = moduleListOptional.orElseGet(SampleDataUtil::getSampleModuleList);
+            if (!containsValidModCodes(taskBook, moduleList)) {
+                logger.info(
+                        "Data file contains a task with a module code that does not exist. "
+                                + "Will be starting with an empty ModuleList and TaskBook.");
+                taskBook = new TaskBook();
+                moduleList = new ModuleList();
+            }
         } catch (DataConversionException e) {
             logger.warning(
                     "Data file not in the correct format. Will be starting with an empty ModuleList and TaskBook.");
