@@ -15,8 +15,10 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.FunctionalInterfaces.Changer;
 import seedu.address.commons.util.FunctionalInterfaces.Retriever;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -81,8 +83,8 @@ public class FindCommandTest {
     }
 
     @Test
-    public void setInput_test() throws seedu.address.logic.commands.exceptions.CommandException {
-        Object dataStub = model.getFromFilteredPerson(seedu.address.commons.core.index.Index.fromZeroBased(1));
+    public void setInput_test() throws CommandException {
+        Object dataStub = model.getFromFilteredPerson(Index.fromZeroBased(1));
         String input = String.valueOf(dataStub.toString().split("\\s+"));
         NameContainsKeywordsPredicate predicateStub = new NameContainsKeywordsPredicate<>(Arrays.asList(input));
         FindCommand<Person> findCommandStub = new FindCommand<>(predicateStub, changerStub,

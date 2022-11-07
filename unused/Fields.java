@@ -8,6 +8,8 @@ import seedu.address.model.attribute.Field;
 
 /**
  * Represents a Person's custom fields pairings in the address book.
+ *
+ * Unused due to implementation of Attributes
  */
 public class Fields {
 

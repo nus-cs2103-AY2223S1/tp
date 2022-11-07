@@ -43,7 +43,7 @@ public class Person extends AbstractDisplayItem {
         }
 
         return otherPerson != null
-            && otherPerson.getName().equals(getName());
+                && otherPerson.getName().equals(getName());
     }
 
     @Override
@@ -66,12 +66,6 @@ public class Person extends AbstractDisplayItem {
     @Override
     public String getFullPath() {
         // person should not have a full path.
-        return name.fullName;
-    }
-
-    @Override
-    public String getRelativePath(DisplayItem parent) {
-        // person should not have a relative path.
         return name.fullName;
     }
 
