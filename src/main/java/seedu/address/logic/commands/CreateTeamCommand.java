@@ -24,7 +24,9 @@ public class CreateTeamCommand extends Command {
     private final Team toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an CreateTeamCommand to create the specified {@code Team}
+     *
+     * @param team The team to be created.
      */
     public CreateTeamCommand(Team team) {
         requireNonNull(team);

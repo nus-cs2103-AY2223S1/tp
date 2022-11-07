@@ -40,6 +40,9 @@ public class UnAssignMemberCommand extends Command {
 
     /**
      * Creates an UnAssignMemberCommand to remove the specified {@code Person} from specified {@code Team}
+     *
+     * @param personIndex The index of the member.
+     * @param teamIndex The index of the team.
      */
     public UnAssignMemberCommand(Index personIndex, Index teamIndex) {
         requireAllNonNull(personIndex, teamIndex);
