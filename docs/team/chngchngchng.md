@@ -39,6 +39,9 @@ Given below are my contributions to the project.
   5. Tested and fixed bugs regarding `propertyList`
   6. Tested and fixed bugs regarding `Buyer`
   7. Tested and fixed bugs regarding `filterbuyers` and `filterprops`
+  8. Wrote test cases for `AddPropertyCommandParser`, `DeletePropertyCommandParser`, `EditPropertyCommandParser`, `FindPropertiesCommandParser`,
+  9. Wrote test utility for `Property`
+  10. Wrote test cases for `FilterPropsByOwnerNamePredicate`, `FilterPropsByPriceRangePredicate`, `FilterPropsContainingAllCharacteristicsPredicate`, `FilterPropsContainingAnyCharacteristicsPredicate`.
 * **Review/mentoring contributions:**<br>
 Pull requests reviewed:
   1. [#229](https://github.com/AY2223S1-CS2103T-F12-1/tp/pull/229)

@@ -957,11 +957,10 @@ Use case ends.
 
 ## **Appendix: Instructions for manual testing**
 
-Given below are instructions to test the app manually.
+This section gives you some information as to how to test the application manually.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
-
 </div>
 
 ### Launch and shutdown
@@ -979,29 +978,95 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Adding a buyer
+1. Test case: `addbuyer -n Tim -ph 87321237 -e tim@gmail.com -a S648234`<br>
+   Expected: New buyer should be added into the list with relevant details. "New buyer added" message should be displayed
+   with details of the buyer that was added.
+
+2. Test case: `addbuyer -n Jane -a Street`<br>
+   Expected: "Invalid command format" error message should be displayed, with information regarding the syntax of the `addbuyer` command
+   and a correct example of the command.
 
 ### Deleting a buyer
 
-1. Deleting a buyer while all buyers are being shown
+1. Test case: `delete 1`<br>
+   Expected: First buyer is deleted from the list. "Deleted Buyer" message should be displayed on the screen
+   with details of the deleted contact.
 
-   1. Prerequisites: List all buyers using the `list` command. Multiple buyers in the list.
+2. Test case: `delete 0`<br>
+   Expected: No buyer is deleted. Error details shown in the status message. 
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+3. Other incorrect delete commands to try: `delete`, `delete x`, `...`, `delete test` (where x is larger than the list size)<br>
+   Expected: Similar to previous.
+   
+### Editing a buyer
 
-   1. Test case: `delete 0`<br>
-      Expected: No buyer is deleted. Error details shown in the status message. Status bar remains the same.
+1. Test case: `editbuyer 1 -n Tommy Jones`
+   Expected: First buyer in the list should have their name changed to "Tommy Jones". "Edited Buyer" message should also be
+   displayed on the screen with details of the edited contact.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+2. Test case: `editbuyer -n Tommy Jones`
+   Expected: "Invalid command format" error message should be displayed, along with information regarding the syntax of the `editbuyer`
+   command and a correct example.
 
-1. _{ more test cases …​ }_
+3. Test case: `editbuyer 1`
+   Expected: "At least one field to edit must be provided" error message should be displayed.
 
-### Saving data
+### Finding a buyer
 
-1. Dealing with missing/corrupted data files
+**Prerequisites**: A buyer that has 'John' in his name must exist in the buyer list.
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+1. Test case: `findbuyers John`
+   Expected: Buyer list should be filtered to contain only buyers that have 'John' as a substring in their name (case-insensitive).
+   "x buyers listed" message should be displayed, where x refers to the number of buyers in the new filtered list.
 
-1. _{ more test cases …​ }_
+2. Test case: `findbuyers`
+   Expected: "Invalid command format" error message should be displayed, along with information regarding the syntax of the `findbuyers`
+   command and a correct example.
+
+### Filtering buyers
+
+**Prerequisites**: A buyer that has normal priority must exist in the buyer list.
+
+1. Test case: `filterbuyers -pr NORMAL`
+   Expected: Buyer list should be filtered to contain only buyers that have NORMAL as their priority.
+   "x buyers listed" message should be displayed, where x refers to the number of buyers in the new filtered list.
+
+2. Test case: `filterbuyers`, `filterbuyers 1`, `filterbuyers x`
+   Expected: "Invalid command format" error message should be displayed, along with information regarding the syntax of the `filterbuyers`
+   command and a correct example.
+
+### Listing all buyers
+
+**Prerequisites**: Buyer list should be filtered to show a subset of the original list.
+
+1. Test case: `listbuyers`
+   Expected: Buyer list should return to its original state containing all buyers. "Listed all buyers" message should be displayed
+   on the screen.
+
+3. Test case: `listbuyers 1`, `listbuyers x`
+   Expected: Same behaviour as above.
+
+### Matching buyers to properties
+
+1. Test case: `matchbuyer 5`
+   Expected: Buyer list should be filtered to contain all properties that match a given buyer based on their price range and 
+   characteristics. "x matched properties for the buyer" message should be displayed on the screen, with x representing the number
+   of matched properties found, along with the buyer's information.
+
+2. Test case: `matchbuyer`, `matchbuyer 5 30`, `matchbuyer x`
+   Expected: "Invalid command format" error message should be displayed, along with information regarding the syntax of the `matchbuyer`
+   command and a correct example.
+
+### Sorting buyers
+
+1. Test case: `sortbuyers -n ASC`
+   Expected: Buyer list should be sorted in increasing alphabetical order. "Sorted buyers by:" message should be displayed on the screen
+   with correct criteria and order.
+
+2. Test case: `sortbuyers`, `sortbuyers x`, `sortbuyers 1`
+   Expected: "Invalid command format" error message should be displayed, along with information regarding the syntax of the `sortbuyers`
+   command and a correct example.
+
+3. Test case: `sortbuyers -n`, `sortbuyers -n oops`, `sortbuyers -n 1`
+   Expected: "Order should be ASC or DESC" error mesage should be displayed.

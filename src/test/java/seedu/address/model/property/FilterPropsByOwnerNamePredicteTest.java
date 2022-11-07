@@ -56,7 +56,7 @@ public class FilterPropsByOwnerNamePredicteTest {
         predicate = new FilterPropsByOwnerNamePredicate(new Name("KIM"));
         assertTrue(predicate.test(new PropertyBuilder().withOwner(kimName, kimPhone).build()));
 
-        //Mixed Case
+        // Mixed Case
         predicate = new FilterPropsByOwnerNamePredicate(new Name("RickY TAN"));
         assertTrue(predicate.test(new PropertyBuilder().withOwner(rickyName, rickyPhone).build()));
     }
@@ -72,6 +72,7 @@ public class FilterPropsByOwnerNamePredicteTest {
                 new FilterPropsByOwnerNamePredicate(new Name("Ricky Tan"));
         assertFalse(predicate.test(new PropertyBuilder().withOwner(kimName, kimPhone).build()));
 
+        // Owner name is a substring, but does not match
         predicate = new FilterPropsByOwnerNamePredicate(new Name("Ricky Tan Hi"));
         assertFalse(predicate.test(new PropertyBuilder().withOwner(rickyName, rickyPhone).build()));
     }
