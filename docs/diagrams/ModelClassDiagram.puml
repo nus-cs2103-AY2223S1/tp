@@ -18,6 +18,13 @@ Class Address
 Class Email
 Class Name
 Class Phone
+Class UniqueTagTypeMap
+Class Note
+Class Status
+Class Rating
+Class Link
+Class UniqueTagType
+Class UniqueTagList
 Class Tag
 
 }
@@ -40,7 +47,14 @@ Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
-Person *--> "*" Tag
+Person *--> UniqueTagTypeMap
+Person *--> Note
+Person *--> Status
+Person *--> Rating
+Person *--> "*" Link
+UniqueTagTypeMap *--> "*" UniqueTagType
+UniqueTagTypeMap *--> "*" UniqueTagList
+UniqueTagList *--> "*" Tag
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
