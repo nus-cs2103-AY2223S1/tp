@@ -305,25 +305,21 @@ Format: `find c/COMPANY | r/ROLE | s/STAGE`
 Examples:
 * `find r/Engineer` returns `Software Engineer` and `Backend Engineer`:
 
-  | Before                                   |       After      |
-  |:-------------------------:|:-------------------------:|
-  | ![before layout](images/BeforeFindRole.png) |![after layout](images/AfterFindRole.png) |
+|                   Before                    |                   After                   |
+|:-------------------------------------------:|:-----------------------------------------:|
+| ![before layout](images/BeforeFindRole.png) | ![after layout](images/AfterFindRole.png) |
 
 
 ### 5.6. Deleting your internship application
 
-If you wanted to remove an internship application then this command
+If you want to remove an internship application then this command
 deletes the specified internship application from WorkBook.
 
 Format: `delete INDEX`
 
-* Deletes the internship application at the specified `INDEX`.
-* The index refers to the index number shown in the displayed internship application list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-<div markdown="block" class="alert alert-warning">
-**:exclamation: Caution:** The command will only be executed if the index provided corresponds to an internship application.
-</div>
+* Deletes the internship at the specified `INDEX`, which **must be**:
+  * A positive number (1, 2, 3, …​).
+  * Within the number range of your list of internship applications.
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd internship application in WorkBook.
@@ -331,8 +327,10 @@ Examples:
 
 ### 5.7. Clearing your existing internship applications
 
-It's a new cycle of summer internship applications and that means it's time for some spring-cleaning! 
-Use this command to clear all the applications you've previously saved in WorkBook!
+Be it getting ready for a new internship application cycle or wanting to do a general spring-cleaning of your 
+list of internship applications in WorkBook, this command is the one for you!
+
+Use this command to clear all the applications you've previously saved in WorkBook.
 
 Format: `clear`
 
@@ -463,7 +461,7 @@ redoing and how your WorkBook currently looks like!
 
 ### 5.10. Viewing help
 
-Shows a summary of the commands as well as a link to this User Guide.
+This shows a summary of the commands as well as a link to this User Guide.
 
 Format: `help`
 

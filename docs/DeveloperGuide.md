@@ -432,7 +432,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | student who got rejected by all the companies | clear the list of internship applications                                                     | I can start anew                                                                                              |
 | `* * *`  | student                                       | add an expiry date and time to an application that is in the “Online Assessment” stage        | keep track of when I have to complete the Online Assessment by                                                |
 | `* * *`  | student who constantly changes my mind        | redo an undone command                                                                        | revert back the changes I had originally made                                                                 |
-| `* *`    | easily confused student                       | prevent myself from adding the same internship application twice                              | I don't get distracted by duplicate internships                                                                |
+| `* *`    | easily confused student                       | prevent myself from adding the same internship application twice                              | I don't get distracted by duplicate internships                                                               |
 | `* *`    | forgetful student                             | easily access tips specific to each application based on the current stage                    | quickly see a list of things to prepare for an upcoming interview or deadline                                 |
 | `* *`    | student                                       | filter my internship applications according to position                                       | view all my internship applications for that particular position that I am interested in                      |
 | `* *`    | student preparing for technical interviews    | conveniently do practice questions                                                            | be better prepared for my technical interviews                                                                |
@@ -464,6 +464,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The internship already exists.
 
     * 1a1. WorkBook shows an error message.
+
+      Use case ends.
+
+* 1b. The format of given command is invalid.
+    * 1b1. WorkBook shows an error message.
 
       Use case ends.
 
@@ -596,15 +601,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    Use case ends.
 
 <br>
-**Use case: UC09 - View prepatory tips based on internship stage**
+**Use case: UC09 - View preparatory tips based on internship stage**
 
-1. User requests to view prepatory tips.
-2. User chooses internship stage to view prepatory tips for.
-3. The prepatory tips for the internship stage is shown to the user.
+1. User requests to view preparatory tips.
+2. User chooses internship stage to view preparatory tips for.
+3. The preparatory tips for the internship stage is shown to the user.
 
    Use case ends.
-
-*{More to be added}*
 
 ### Non-Functional Requirements
 
@@ -615,14 +618,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 5.  Data should be persisted locally and be in a human-readable format, for e.g `json`. 
 6.  User interface and documentation should be intuitive enough so that new users can add an internship application within 15 minutes of installation.
 
-*{More to be added}*
-
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **OA/Online Assessment**: A common stage in a Software Engineering related internship application, where applicants are required to solve several theory and/or algorithmic questions under a timed and controlled environment
 
-*{More to be added}*
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -650,8 +650,6 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
-
 ### Deleting an internship application
 
 1. Deleting an internship application while all applications are being shown
@@ -666,8 +664,6 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
 
 ### Saving data
 
@@ -691,4 +687,3 @@ testers are expected to do more *exploratory* testing.
 
    1. `data/workbook.json` should only contain: `{ "internships" : [] }`.
 
-1. _{ more test cases …​ }_
