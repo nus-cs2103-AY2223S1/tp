@@ -131,6 +131,10 @@ FoodRem contains the following items, each with their own attributes:
 * `sort r/` : Sort by item remarks
 ```
 
+```tip
+You may find this command useful when you need to quickly dispose of expiring items or to check item stocks, but the sky is the limit! You can use FoodRem in creative ways to take advantage of this! For example, if you use the `PRICE` field to store each item's profit per unit sold, you can use this command to see which items are giving you the most profits!
+```
+
 ```warning
 * You should only provide one sorting criteria.
 * The sort can only be done in ascending order.
