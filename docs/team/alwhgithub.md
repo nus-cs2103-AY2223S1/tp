@@ -1,12 +1,12 @@
 ---
 layout: page
-title: Aaron Li's Project Portfolio Page
+title: Project Portfolio Page (@alwhgithub)
 ---
 
 ### Project: HackAssist
 
 HackAssist is a desktop application which allows team leads to distribute and manage tasks for Hackathons. We have implemented various commands and clear user interfaces to help display and organize all the relevant information.
-HackAssist is written in Java.
+
 
 Given below are my contributions to the project.
 
@@ -20,15 +20,15 @@ Given below are my contributions to the project.
   * Justification: Attributes of Tasks should be well encapsulated with their internal functions
   * Highlights: Simplifies the implementation of Sort and Filter command
 
-
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=&sort=totalCommits%20dsc&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=ALWHgithub&tabRepo=AY2223S1-CS2103T-F12-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 * **Project management**:
   * Managed releases `v1.3` - `v1.4` (2 releases) on GitHub
 
 * **Enhancements to existing features**:
+
   * Created test cases for editTask, addTask and deleteTask, increasing Code Coverage from  52.13% to 65.87% [\#59]()
-  * Updated link for help command [\#162]()
+  * Created test cases, increasing Code Coverage from  52.13% to 65.87% [\#59]()
   * Made parameters for commands case insensitive [\#162]()
   * Edited errors for incorrect category when adding/editing task [\#162]()
   
@@ -36,7 +36,6 @@ Given below are my contributions to the project.
   * User Guide:
     * Updated add, delete and edit commands to be consistent with new features. [\#173]()
     * Documented what purpose each section of the user interface serves [\#169]()
-    * Updated find command image to be consistent with updated UI and command format [\#173]()
     * Updated Quickstart image to be consistent with Updated UI and added labels for each section of the interface [\#169]()
   * Developer Guide:
     * Updated appendix to be consistent with new features [\#192]()
