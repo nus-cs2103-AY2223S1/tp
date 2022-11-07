@@ -3,12 +3,9 @@ layout: page
 title: User Guide
 ---
 
-**TA-Assist** is a desktop app for Teaching Assistants (TA) to keep track of students’ particulars and allocate marks 
-for attendance and assignments. It is optimized for use via a Command Line Interface (CLI) while having the benefits of 
-a Graphical User Interface (GUI).
+**TA-Assist** is a desktop app for Teaching Assistants (TA) to keep track of students’ particulars and allocate marks for attendance and assignments. It is optimized for use via a Command Line Interface (CLI) while having the benefits of a Graphical User Interface (GUI).
 
-This user guide provides a brief documentation on how you can install the application and describes how each feature 
-should be used. Start by looking at the [quick start](#quick-start) guide to get you started.
+This user guide provides a brief documentation on how you can install the application and describes how each feature should be used. Start by looking at the [quick start](#quick-start) guide to get you started.
 
 * Table of Contents
 {:toc}
@@ -18,8 +15,7 @@ should be used. Start by looking at the [quick start](#quick-start) guide to get
 1. Ensure you have **Java `11`** or above installed in your computer.
 2. Download the latest `taassist.jar` from [here](https://github.com/AY2223S1-CS2103T-T12-1/tp/releases/tag/v1.3).
 3. **Copy** the file to the folder you want to use as the _home folder_ for your TA-Assist.
-4. **Double-click** the file to start the app. The GUI similar to the one below should appear in a few seconds. Note how the
-   app contains sample data.
+4. **Double-click** the file to start the app. The GUI similar to the one below should appear in a few seconds. Note how the app contains sample data.
 
 ![sample gui](images/sampleGui.png)
 
@@ -41,7 +37,7 @@ If you encounter any issues in launching and using the app, feel free refer to t
 * Items in square brackets are optional.
   * e.g. `n/NAME [c/CLASS_NAME]` can be used as `n/John Doe c/CS1231S` or as `n/John Doe`.
 * Items with `...` after them can be used multiple times.
-  * e.g. `[c/CLASS_NAME...]` can be used as ` ` (i.e. 0 times since it is also optional), `c/CS1101S`, `c/CS2030 c/ST2334` etc.
+  * e.g. `[c/CLASS_NAME...]` can be used as ` ` (i.e. 0 times since it is also optional), `c/CS1101S`, or `c/CS2030 c/ST2334` etc.
 * Parameters, excluding index parameters, can be in any order.
   * e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
   * e.g. while `assign INDEX c/CLASS_NAME` is acceptable, `assign c/CLASS_NAME INDEX` is not acceptable.
@@ -55,9 +51,7 @@ If you encounter any issues in launching and using the app, feel free refer to t
 </div>
 
 ## Modes
-In TA-Assist, you can switch into a mode called the **focus** mode, which lets you run tasks that are specific to a (module) class. Therefore,
-[some commands](#features-available-in-focus-mode) can only be executed when you are in focus mode. Commands that you can run in the default (unfocused) mode can also
-be run in focus mode. On the other hand, commands that are available only in focus mode cannot be executed in the default (unfocused) mode.
+In TA-Assist, you can switch into a mode called the **focus** mode, which lets you run tasks that are specific to a class. Therefore, [some commands](#focus-mode-commands) can only be executed when you are in focus mode. Commands that you can run in the default (unfocused) mode can also be run in focus mode. On the other hand, commands that are available only in focus mode cannot be executed in the default mode.
 
 Let's first begin with the commands available in the default mode.
 
@@ -102,8 +96,7 @@ Format: `help`
 
   ![help message](images/helpMessage.png)
 
-  You can click on the "**Copy URL**" button to copy the URL shown in the help window, then paste the URL in the address bar of your
-  favourite browser to visit this User Guide page.
+  You can click on the "**Copy URL**" button to copy the URL shown in the help window, then paste the URL in the address bar of your favourite browser to visit this User Guide page.
 
 
 ### Add a student: `add`
@@ -177,8 +170,7 @@ Examples:
 
 {% include tip.html content="
 
-The `find` command performs its search over the currently displayed student list and replaces the displayed list with
-its search result.  If you need to revert to the original list of all students, you may use the [`list` command](#list-all-students-list).
+The `find` command performs its search over the currently displayed student list and replaces the displayed list with its search result. If you need to revert to the original list of all students, you may use the [`list` command](#list-all-students-list).
 
 " %}
 
@@ -212,8 +204,7 @@ Format: `addc c/CLASS_NAME...`
 * Class names are converted to **upper-case**.
   * e.g. `addc c/cs1101s` adds a class **CS1101S**.
 * The class names are **case-insensitive**.
-  * e.g. If a class with a name **CS1101S** already exists, `addc c/cs1101s` does not add
-  another **CS1101S** class.
+  * e.g. If a class with a name **CS1101S** already exists, `addc c/cs1101s` does not add another **CS1101S** class.
 
 Examples:
 * `addc c/CS2103T c/CS2100` adds the classes named **CS2103T** and **CS2100**.
@@ -298,7 +289,6 @@ Format: `focus c/CLASS_NAME`
 * The class name is **case-insensitive**.
 * If successful, the GUI changes to one that is similar to the one below:
 
-
   <img class="center" src="images/sampleFocusedGui.png" width="600"/>
 
 Example:
@@ -357,17 +347,14 @@ Creates one or more sessions in the class.
 
 {% include tip.html content="
 
-A session can be treated as a task a student has to complete in the class. These tasks usually have an associated
-grade. For example, **Tutorial 3 Participation** of **CS2100** is a task because it contributes to the
-overall grade for the module CS2100.
+A session can be treated as a task a student has to complete in the class. These tasks usually have an associated grade. For example, **Tutorial 3 Participation** of **CS2100** is a task because it contributes to the overall grade for the class CS2100.
 
 " %}
 
 Format: `adds s/SESSION_NAME... [d/DATE]`
 * Creates new sessions with names `SESSION_NAME` on the same `DATE`. If the `DATE` field is empty, the current date is used instead.
 * `DATE` field should follow the format `YYYY-MM-DD`.
-* Session names are **capitalised** (i.e. the first character of each word will be converted to upper-case. The remaining characters
-  of the word will be converted to lower-case).
+* Session names are **capitalised** (i.e. the first character of each word will be converted to upper-case. The remaining characters of the word will be converted to lower-case).
   * e.g. `adds s/tutorial ONE` adds a session **Tutorial One**. `adds s/_tutorial_2` adds a session **_tutorial_2**.
 * The session names are **case-insensitive**.
   * e.g. If a session **Lab 1** already exists, `adds s/lab 1` does not create another **Lab 1** session.
@@ -454,8 +441,7 @@ Exports the class data as a CSV file.
 
 {% include tip.html content="
 
-Comma-Separated Values (CSV) files can be opened with **Microsoft Excel**, where you can get an organised view
-of all the data.
+Comma-Separated Values (CSV) files can be opened with **Microsoft Excel**, where you can get an organised view of all the data.
 
 " %}
 
@@ -482,11 +468,9 @@ Format: `unfocus`
 
 ### Automated Data Backup
 
-On each launch of TA-Assist, if the save data loads without error, a backup of the save data is made 
-and saved to `data/taassist.json.bak`. 
+On each launch of TA-Assist, if the save data loads without error, a backup of the save data is made and saved to `data/taassist.json.bak`. 
 
-In the event that you need to revert a catastrophic change, you may simply quit the app and overwrite 
-`data/taassist.json` with the backup file. 
+In the event that you need to revert a catastrophic change, you may simply quit the app and overwrite `data/taassist.json` with the backup file. 
 
 {% include important.html content="
 
@@ -513,8 +497,7 @@ Each time TA-Assist is launched, the previous `data/taassist.json.bak` file will
 ### Parameters and Constraints
 
 For all parameters, the following constraints are applied:
-* As Ta-Assist uses prefixes such as `p/` and `c/` to identify the start of a new parameter, all parameters have the implicit constraint that they must not contain prefixes
-  of another parameter if that other parameter is being used in a command. 
+* As Ta-Assist uses prefixes such as `p/` and `c/` to identify the start of a new parameter, all parameters have the implicit constraint that they must not contain prefixes of another parameter if that other parameter is being used in a command. 
   * e.g. You cannot add a student with the address `Commongrove n/123A` as the `n/123A` prefix will be parsed by Ta-Assist as the Student's name.
 
 The following is the list of all parameters used in TA-Assist along with its constraints:
@@ -533,10 +516,10 @@ The following is the list of all parameters used in TA-Assist along with its con
 * `e/EMAIL`
   * E-mails must be of the format `local-part@domain`, i.e. `johndoe+work@s.mail.com`.
   * `local-part` must only contain alphanumeric characters and these special characters, excluding the parentheses, (`+_.-`).
-  * `domain` is made up of domain labels, seperated by period.
+  * `domain` is made up of domain labels, separated by period.
     * Each `domain` must end with a domain label of at least 2 characters long.
     * Each domain label must start and end with alphanumeric characters.
-    * Each domain label must consists of only alphanumeric characters, seperated only by hyphens, if any.
+    * Each domain label must consists of only alphanumeric characters, separated only by hyphens, if any.
 * `a/ADDRESS`
   * Addresses must not be empty.
 * `c/CLASS_NAME`
