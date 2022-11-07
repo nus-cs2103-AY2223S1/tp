@@ -65,6 +65,12 @@ FoodRem does not already contain an item with the name "Potato".
 * You can use the [List Command](#list-all-items-list) in the next section to display all items again!
 ```
 
+```note
+* The `find` command only finds `Items` which has a name that partially or fully matches the specified search by name! 
+* This means that if the `Items` `Brown Sugar` and `White Sugar` is in FoodRem, executing `find Sugar` will find these two `Items`. 
+* However, if you try to find an `Item` `Potato` by executing the command `find potatoes carrots celery`, it will not work!
+```
+
 **Example:**
 
 {% capture notes %}

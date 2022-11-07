@@ -2,7 +2,7 @@ package seedu.foodrem.logic.commands.itemcommands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static seedu.foodrem.commons.core.Messages.MESSAGE_ITEMS_LISTED_OVERVIEW;
+import static seedu.foodrem.commons.core.Messages.MESSAGE_ITEMS_FILTERED_OVERVIEW;
 import static seedu.foodrem.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.foodrem.testutil.TypicalFoodRem.getTypicalFoodRem;
 import static seedu.foodrem.testutil.TypicalItems.CUCUMBERS;
@@ -54,7 +54,7 @@ public class FindCommandTest {
 
     @Test
     public void execute_zeroKeywords_noItemsFound() {
-        String expectedMessage = String.format(MESSAGE_ITEMS_LISTED_OVERVIEW, 2);
+        String expectedMessage = String.format(MESSAGE_ITEMS_FILTERED_OVERVIEW, 2);
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredItemList(predicate);
@@ -63,8 +63,8 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_multipleKeywords_multipleItemsFound() {
-        String expectedMessage = String.format(MESSAGE_ITEMS_LISTED_OVERVIEW, 0);
+    public void execute_multipleKeywords_zeroItemsFound() {
+        String expectedMessage = String.format(MESSAGE_ITEMS_FILTERED_OVERVIEW, 0);
         NameContainsKeywordsPredicate predicate = preparePredicate("Potatoes Cucumbers Carrots");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredItemList(predicate);
