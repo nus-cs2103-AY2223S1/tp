@@ -644,7 +644,7 @@ The following activity diagram summarizes what happens when a user executes the 
 * **Alternative 2**: Input keywords will be searched for every field
     * Pros: Shorter command input, as only the required keywords are inputted.
     * Cons: Longer search time for each individual command and more complex validation is required, as keywords may be different types like `String` or `Integer`.
-
+<div style="page-break-after: always"></div>
 ### Parameter hint (enhancement)
 This enhancement allows a user to view the correct prefixes and arguments of a command before entering the command.
 
