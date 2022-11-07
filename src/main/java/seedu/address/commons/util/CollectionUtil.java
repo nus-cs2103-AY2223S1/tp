@@ -49,8 +49,8 @@ public class CollectionUtil {
         List<String> roundedKeywords = new ArrayList<>(keywords.size());
         for (String keyword : keywords) {
             try {
-                Double keyword_value = Double.valueOf(keyword);
-                roundedKeywords.add(String.format("%.2f", keyword_value));
+                Double keywordValue = Double.valueOf(keyword);
+                roundedKeywords.add(String.format("%.2f", keywordValue));
             } catch (NumberFormatException | NullPointerException e) {
                 throw new ParseException(MESSAGE_NOT_VALID_CAP);
             }
