@@ -453,12 +453,12 @@ json data stored.
 Step 2. The user execute `addtut g/T08...` command to add tutorial called T08 to the address book. The `addtut`
 command calls `AddTutorialCommandParser#parse()` which parses the string keyed into the command line of the GUI.
 
-Step 3. `AddTutorialCommandParser#parse()` invokes the creation of an `AddTutCommand` object.
+Step 3. `AddTutorialCommandParser#parse()` invokes the creation of an `AddTutorialCommand` object.
 
-**Note:** If a command fails its execution due to incorrect command format, it will not create a `AddTutCommand` object,
+**Note:** If a command fails its execution due to incorrect command format, it will not create a `AddTutorialCommand` object,
 User will retype their command.
 
-Step 4. Upon creation of `AddTutCommand` object, `Model#hasTutorial(Tutorial tutorial)`
+Step 4. Upon creation of `AddTutorialCommand` object, `Model#hasTutorial(Tutorial tutorial)`
 and `Model#addTutorial(Tutorial tutorial)`
 methods are called.
 
@@ -473,7 +473,7 @@ that the tutorial has been successfully added.
 
 The following sequence diagram shows how the add tutorial operation works:
 ![AddTutSequenceDiagram](images/AddTutorialSequenceDiagram.png)
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddTutCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddTutorialCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 The following activity diagram summarizes what happens when a user executes a new `addtut` command.
