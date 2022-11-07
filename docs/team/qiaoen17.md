@@ -1,5 +1,6 @@
 ---
-layout: page title: Lim Qiao En's Project Portfolio Page
+layout: page 
+title: Lim Qiao En's Project Portfolio Page
 ---
 
 ### Project: SETA
