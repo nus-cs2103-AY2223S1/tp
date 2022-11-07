@@ -3,22 +3,22 @@ start
 :User enters AddTask command;
 
 if () then ([Is invalid parameter])
-    :HackAssist displays \nerror message indicating \ninvalid user input;
+    :HackAssist displays \n error message indicating \n invalid user input;
 
 else ([Is valid parameters])
 
     if () then ([Task already exists])
-        :HackAssist displays \nerror message indicating \nthat Task already exist;
+        :HackAssist displays \n error message indicating \n that Task already exist;
     else ([else])
-        : Task is created;
         if () then ([user found])
-             :Task assigned to \nfound user based on\ntask email;
+             :Task assigned to \n found user based on\n task email;
+             :HackAssist updates \n to display new task\n at end of the list;
         else ([user not found])
-             :Task assigned to \n dummy user;
+             :Error message \n indicating no \n user with that email;
 
            endif
 
-        :HackAssist updates \nto display new task\nat end of the list;
+
     endif
 
 endif

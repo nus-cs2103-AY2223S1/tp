@@ -4,9 +4,13 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -45,6 +49,13 @@ import seedu.address.testutil.EditTaskDescriptorBuilder;
  */
 public class CommandTestUtil {
 
+    public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
+    public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
+
+    // --------------
+    // Persons
+    // --------------
+
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
@@ -55,7 +66,6 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
-
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -74,11 +84,43 @@ public class CommandTestUtil {
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
-
-    public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
-    public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
+
+    // --------------
+    // Tasks
+    // --------------
+
+    public static final String VALID_TASK_NAME_A = "A";
+    public static final String VALID_TASK_NAME_B = "B";
+    public static final String VALID_DESCRIPTION_A = "Do A";
+    public static final String VALID_DESCRIPTION_B = "Do B";
+    public static final String VALID_PRIORITY_LOW = "low";
+    public static final String VALID_PRIORITY_MEDIUM = "medium";
+    public static final String VALID_CATEGORY_FRONTEND = "frontend";
+    public static final String VALID_CATEGORY_OTHERS = "others";
+    public static final String VALID_DEADLINE_A = "2023-01-01";
+    public static final String VALID_DEADLINE_B = "2023-01-03";
+
+    public static final String TASK_NAME_DESC_A = " " + PREFIX_NAME + VALID_TASK_NAME_A;
+    public static final String TASK_NAME_DESC_B = " " + PREFIX_NAME + VALID_TASK_NAME_B;
+    public static final String DESCRIPTION_DESC_A = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_A;
+    public static final String DESCRIPTION_DESC_B = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_B;
+    public static final String PRIORITY_DESC_LOW = " " + PREFIX_PRIORITY + VALID_PRIORITY_LOW;
+    public static final String PRIORITY_DESC_MEDIUM = " " + PREFIX_PRIORITY + VALID_PRIORITY_MEDIUM;
+    public static final String CATEGORY_DESC_FRONTEND = " " + PREFIX_CATEGORY + VALID_CATEGORY_FRONTEND;
+    public static final String CATEGORY_DESC_OTHERS = " " + PREFIX_CATEGORY + VALID_CATEGORY_OTHERS;
+    public static final String DEADLINE_DESC_A = " " + PREFIX_DEADLINE + VALID_DEADLINE_A;
+    public static final String DEADLINE_DESC_B = " " + PREFIX_DEADLINE + VALID_DEADLINE_B;
+
+    public static final String INVALID_PRIORITY = "medium-high";
+    public static final String INVALID_CATEGORY = "infrastructure";
+    public static final String INVALID_DEADLINE = "2022-13-01";
+
+    public static final String INVALID_PRIORITY_DESC = " " + PREFIX_PRIORITY + INVALID_PRIORITY;
+    public static final String INVALID_CATEGORY_DESC = " " + PREFIX_CATEGORY + INVALID_CATEGORY;
+    public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE + INVALID_DEADLINE;
+
     public static final EditTaskCommand.EditTaskDescriptor DESC_ONE;
     public static final EditTaskCommand.EditTaskDescriptor DESC_TWO;
     public static final TaskCategory TEST_CATEGORY_OTHERS = new TaskCategory(TaskCategoryType.OTHERS);

@@ -14,9 +14,10 @@ end box
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 participant ":Task" as Task MODEL_COLOR
+participant ":AddressBook" as AddressBook MODEL_COLOR
 end box
 
-[-> LogicManager : execute(addTask \n n/Create Initial UIUX Design \n d/Use FIGMA to create initial UIUX Design \n pr/medium c/uiux dl/2022-01-01 \n pe/johnd@example.com \n as/pending)
+[-> LogicManager : execute(addTask \n n/Fix toggle \n d/Fix dark mode button\n pr/high c/frontend dl/2022-12-12 \n pe/charlotte@example.com)
 activate LogicManager
 
 LogicManager -> AddressBookParser : parseCommand(commandText)
@@ -30,7 +31,7 @@ AddTaskCommandParser --> AddressBookParser
 deactivate AddTaskCommandParser
 
 
-AddressBookParser -> AddTaskCommandParser : parse(addTask \n n/Create Initial UIUX Design \n d/Use FIGMA to create initial UIUX Design \n pr/medium c/uiux dl/2022-01-01 \n pe/johnd@example.com \n as/pending)
+AddressBookParser -> AddTaskCommandParser : parse(addTask \n n/Fix toggle \n d/Fix dark mode button\n pr/high c/frontend dl/2022-12-12 \n pe/charlotte@example.com)
 activate AddTaskCommandParser
 
 
@@ -63,20 +64,17 @@ activate AddTaskCommand
 
 AddTaskCommand -> Model : hasTask(toAdd)
 activate Model
-
 Model --> AddTaskCommand
-deactivate
-
 
 AddTaskCommand -> Model : addTask(task)
-activate Model
-
 Model --> AddTaskCommand
-deactivate
+
 
 AddTaskCommand -> Model : update()
-activate Model
-
+Model ->AddressBook : setTasks()
+activate AddressBook
+AddressBook -> Model
+deactivate AddressBook
 Model --> AddTaskCommand
 deactivate
 
