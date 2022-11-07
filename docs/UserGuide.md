@@ -167,6 +167,12 @@ This resets the list to its default state. Use this after a `find` command view 
 
 <br>
 
+#### Exit command : `exit`
+
+_Closes the `Food Guide`. All information is saved beforehand._
+
+**Format:** `exit`
+
 ### Commands for Finding
 These commands search the list of eateries for ones that match your criteria. All find commands support
 a randomizer functionality to pick out a number of eateries at random.
@@ -306,7 +312,7 @@ These commands modify the list of eateries in `Food Guide`, or change existing e
 
 #### Add tag to eatery : `tag`
 
-_Create custom tag(s) for an eatery to facilitate searching._
+_Create custom tag(s) for an eatery in the `Food Guide` to facilitate searching._
 
 **Format:** `tag INDEX -t TAGNAME…​ [-h]`
 
@@ -320,7 +326,7 @@ Example: `tag 1 -t coffee -t tea`
 
 #### Remove tag from eatery : `untag`
 
-_Remove custom tag(s) from eatery._
+_Remove custom tag(s) from an eatery in the `Food Guide`._
 
 **Format:** `untag INDEX -t TAGNAME…​ [-h]`
 
@@ -336,9 +342,39 @@ Note how the blue "cafe" tag on store 50 disappears after the untag command.
 ![Ui](images/user-guide/UgTagUntagComparison.png)
 <br><br>
 
+### Favourite Eatery : `fav`
+
+_Favourites an eatery in the `Food Guide`. <br>
+The favourite tag is standardized to be "<3" when using this command._
+
+**Format:** `fav INDEX [-h]`
+
+**Arguments:** <br>
+
+`INDEX`: index of the eatery to favourite <br>
+`-h`: displays help message (specific to fav) <br><br>
+Example: `fav 3`
+
+<br>
+
+#### Unfavourite Eatery : `unfav`
+
+_Unfavourites an eatery in the `Food Guide`. <br>
+The tag to be removed is standardized to be "<3" when using this command._
+
+**Format:** `unfav INDEX [-h]`
+
+**Arguments:** <br>
+
+`INDEX`: index of the eatery to unfavourite <br>
+`-h`: displays help message (specific to unfav) <br><br>
+Example: `unfav 3`
+
+<br>
+
 #### Add eatery : `add`
 
-_Adds a new eatery to NUSEatWhere's database. Eatery will be added to the end of the
+_Adds a new eatery to the `Food Guide`. Eatery will be added to the end of the
 current list <br>
 (i.e. if the current list pre-addition has 5 eateries, the newly added eatery will be of index 6)._
 
@@ -358,12 +394,12 @@ Example: `add -n KOI -l Central Square -c Drinks -p $$`
 
 #### Delete eatery : `delete`
 
-_Deletes an eatery from NUSEatWhere's database_
+_Deletes an eatery from the `Food Guide`._
 
 **Format:** `delete INDEX [-h]`
 
 **Arguments:** <br>
-`INDEX`: index of eatery to remove from NUSEatWhere <br>
+`INDEX`: index of eatery to remove <br>
 `-h`: displays help message (specific to delete) <br><br>
 Example: `delete 3`
 
@@ -373,43 +409,39 @@ Note how the eatery at index 70 disappears after the delete command.
 ![Ui](images/user-guide/UgAddDeleteComparison.png)
 <br><br>
 
-<br>
+#### Edit Eatery : `edit`
 
-### Favourite Eatery : `fav`
+_Edits the details of an eatery in the `Food Guide`._
 
-_Favourites an eatery from NUSEatWhere's database. <br>
-The favourite tag is standardized to be "<3" when using this command._
-
-**Format:** `fav INDEX [-h]`
+**Format:** `edit INDEX [-n NAME] [-l LOCATION] [-c CUISINE] [-p PRICE] [-t TAG]…​ [-h]`
 
 **Arguments:** <br>
+`INDEX`: index of the eatery to edit <br>
+`NAME`: new name of the eatery <br>
+`LOCATION`: new location of the eatery <br>
+`CUISINE`: new cuisine type of the eatery <br>
+`PRICE`: new price of the eatery <br>
+`TAGNAME`: new tags of the eatery <br>
+`-h`: displays help message (specific to edit) <br><br>
+Example: `edit 1 -n KOI -l Central Square -c Drinks` <br>
+Example: `edit 3 -n KOI -l Central Square -c Drinks -p $$` <br>
 
-`INDEX`: index of the eatery to favourite <br>
-`-h`: displays help message (specific to fav) <br><br>
-Example: `fav 3`
-
-<br>
-
-#### Unfavourite Eatery : `unfav`
-
-_Unfavourites an eatery from NUSEatWhere's database. <br>
-The tag to be removed is standardized to be "<3" when using this command._
-
-**Format:** `unfav INDEX [-h]`
-
-**Arguments:** <br>
-
-`INDEX`: index of the eatery to unfavourite <br>
-`-h`: displays help message (specific to unfav) <br><br>
-Example: `unfav 3`
+<div markdown="block" class="alert alert-info">
+When editing the tags of an eatery, all existing tags will be overwritten.
+</div>
 
 <br>
 
-#### Edit eatery : `edit`
+#### Clear Food Guide : `clear`
 
-_... Details coming soon ..._
+_Clears all eateries from the `Food Guide`._
 
-<br>
+**Format:** `clear`
+
+<div markdown="block" class="alert alert-info">
+This command removes ALL eateries.
+This action is irreversible.
+</div>
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -426,18 +458,21 @@ by any means of file sharing (thumbdrive, email, Google Drive, etc.) In the othe
 
 ## Command summary
 
-| Command Word    | Action                                  | Format                                                                |
-|:----------------|:----------------------------------------|:----------------------------------------------------------------------|
-| **help**        | View help window                        | `help`                                                                |
-| **list**        | List all eateries                       | `list [-h]`                                                           |
-| **find**        | Search for eateries by name             | `find NAME…​ [-r NUMBER] [-h]`                                     |
-| **findLocation**| Search for eateries by location         | `findLocation LOCATIONNAME…​ [-r NUMBER] [-h]`                     |
-| **findCuisine** | Search for eateries by cuisine          | `findCuisine CUISINENAME…​ [-r NUMBER] [-h]`                       |
-| **findPrice**   | Search for eateries by price            | `findPrice PRICE…​ [-r NUMBER] [-h]`						        |
-| **findTag**     | Search for eateries by tag              | `findTag TAGNAME…​ [-r NUMBER] [-h]`                               |
-| **tag**         | Adds tag(s) to an eatery                | `tag INDEX -t TAGNAME1 [-t TAGNAME2]…​ [-h]`                       |
-| **untag**       | Remove tag(s) from an eatery            | `untag INDEX -t TAGNAME1 [-t TAGNAME2]…​ [-h]`                     |
-| **add**         | Adds an eatery to `Food Guide`          | `add -n NAME -l LOCATION -c CUISINE [-p PRICE] [-t TAGNAME]…​ [-h]`|
-| **delete**      | Removes an eatery from `Food Guide`     | `delete INDEX [-h]`                                                   |
-| **fav**         | Adds an eatery to your favourites       | `fav INDEX [-h]`                                                      |
-| **unfav**       | Removes and eatery from your favourites | `unfav INDEX [-h]`                                                    |
+| Command Word    | Action                                  | Format                                                                                |
+|:----------------|:----------------------------------------|:--------------------------------------------------------------------------------------|
+| **help**        | View help window                        | `help`                                                                                |
+| **list**        | List all eateries                       | `list [-h]`                                                                           |
+| **exit**        | Exits the application                   | `exit`                                                                                |
+| **find**        | Search for eateries by name             | `find NAME…​ [-r NUMBER] [-h]`                                                     |
+| **findLocation**| Search for eateries by location         | `findLocation LOCATIONNAME…​ [-r NUMBER] [-h]`                                     |
+| **findCuisine** | Search for eateries by cuisine          | `findCuisine CUISINENAME…​ [-r NUMBER] [-h]`                                       |
+| **findPrice**   | Search for eateries by price            | `findPrice PRICE…​ [-r NUMBER] [-h]`						                        |
+| **findTag**     | Search for eateries by tag              | `findTag TAGNAME…​ [-r NUMBER] [-h]`                                               |
+| **tag**         | Adds tag(s) to an eatery                | `tag INDEX -t TAGNAME1 [-t TAGNAME2]…​ [-h]`                                       |
+| **untag**       | Remove tag(s) from an eatery            | `untag INDEX -t TAGNAME1 [-t TAGNAME2]…​ [-h]`                                     |
+| **add**         | Adds an eatery to the `Food Guide`      | `add -n NAME -l LOCATION -c CUISINE [-p PRICE] [-t TAGNAME]…​ [-h]`                |
+| **delete**      | Removes an eatery from the `Food Guide` | `delete INDEX [-h]`                                                                   |
+| **fav**         | Adds an eatery to your favourites       | `fav INDEX [-h]`                                                                      |
+| **unfav**       | Removes and eatery from your favourites | `unfav INDEX [-h]`                                                                    |
+| **edit**        | Edits an eatery in the `Food Guide`     | `edit INDEX [-n NAME] [-l LOCATION] [-c CUISINE] [-p PRICE] [-t TAGNAME]…​ [-h]`   |
+| **clear**       | Clears the `Food Guide`                 | `clear`                                                                               |
