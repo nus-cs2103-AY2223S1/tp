@@ -1,0 +1,68 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowcolor LOGIC_COLOR_T3
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR_T3
+participant "fcp:FindCommandParser" as FindCommandParser LOGIC_COLOR_T3
+participant "fc:FindCommand" as FindCommand LOGIC_COLOR_T3
+participant "r:CommandResult" as CommandResult LOGIC_COLOR_T3
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:ModelManager" as Model MODEL_COLOR
+participant ":fs:FilteredList" as FilteredList MODEL_COLOR
+end box
+[-> LogicManager : execute("find alice")
+activate LogicManager
+
+
+LogicManager -> FindCommandParser : parse("find alice")
+activate FindCommandParser
+
+create FindCommand
+FindCommandParser -> FindCommand : findCommand(p)
+activate FindCommand
+
+FindCommand --> FindCommandParser : fc
+deactivate FindCommand
+
+FindCommandParser --> LogicManager : fc
+deactivate FindCommandParser
+FindCommandParser [hidden]-> LogicManager
+destroy FindCommandParser
+
+LogicManager -> FindCommand : execute(m)
+activate FindCommand
+
+FindCommand [MODEL_COLOR]-> Model : updateFilteredStudentList(p)
+activate Model
+
+Model [MODEL_COLOR]-> FilteredList : setPredicate(p)
+activate FilteredList
+
+
+FilteredList -[MODEL_COLOR]--> Model :
+deactivate FilteredList
+
+
+Model -[MODEL_COLOR]--> FindCommand
+deactivate Model
+
+create CommandResult
+FindCommand -> CommandResult :
+activate CommandResult
+
+CommandResult --> FindCommand : r
+deactivate CommandResult
+FindCommand --> LogicManager : r
+deactivate FindCommand
+'spacing
+FindCommand [hidden]--> LogicManager
+destroy FindCommand
+
+
+[<--LogicManager : r
+deactivate LogicManager
+@enduml
