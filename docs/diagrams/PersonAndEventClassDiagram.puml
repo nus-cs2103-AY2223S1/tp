@@ -18,6 +18,7 @@ Package "Model (Partial)" <<Rectangle>>{
     Class Date
     Class Email
     Class Gender
+    Class Name
     Class Phone
     Class Uid
 }
@@ -29,13 +30,15 @@ HiddenOutside -down- ModelManager
 ModelManager -down-> Person
 ModelManager -down-> Event
 
+Person *-down-> "1"Uid
 Person *-down-> Address
 Person *-down-> Date
 Person *-down-> Email
 Person *-down-> Gender
+Person *-down-> Name
 Person *-down-> Phone
-Person *-down-> "1"Uid
 
+Uid -[hidden]right-> Phone
 Person -[hidden]right-> Event
 
 Event *-down-> EventTitle

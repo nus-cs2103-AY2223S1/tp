@@ -36,6 +36,7 @@ deactivate EditPersonCommandParser
 
 AddressBookParser --> LogicManager : c
 deactivate AddressBookParser
+destroy EditPersonCommandParser
 
 LogicManager -> EditPersonCommand : execute()
 activate EditPersonCommand

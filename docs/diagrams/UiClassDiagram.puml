@@ -39,10 +39,10 @@ MainWindow ---|> UiPart
 MainWindow *-down--> "1" PersonListPanel
 MainWindow *-down----> "1" StatusBarFooter
 MainWindow *-down--> "1" EventListPanel
-MainWindow --> "0..1" HelpWindow
-MainWindow -> "0..1" StatsWindow
+MainWindow *-down-> "0..1" HelpWindow
+MainWindow *-down-> "0..1" StatsWindow
 
-PersonListPanel --> "*" PersonCard
+PersonListPanel -down--> "*" PersonCard
 EventListPanel -down-> "*" EventCard
 
 

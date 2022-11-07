@@ -36,6 +36,7 @@ deactivate MailEventCommandParser
 
 AddressBookParser --> LogicManager : c
 deactivate AddressBookParser
+destroy MailEventCommandParser
 
 LogicManager -> MailEventCommand : execute()
 activate MailEventCommand
@@ -61,11 +62,10 @@ deactivate UniqueEventList
 
 MailEventCommand -> MailEventCommand : getMailingList()
 
-[<-- MailEventCommand : mailingList.csv
-
 MailEventCommand --> LogicManager : result
 deactivate MailEventCommand
 MailEventCommand -[hidden]-> LogicManager : result
+destroy MailEventCommand
 
 [<--LogicManager
 deactivate LogicManager

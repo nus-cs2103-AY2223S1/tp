@@ -39,6 +39,7 @@ deactivate MakeStatsCommandParser
 
 AddressBookParser --> LogicManager : c
 deactivate AddressBookParser
+destroy MakeStatsCommandParser
 
 LogicManager -> MakeStatsCommand : execute()
 activate MakeStatsCommand

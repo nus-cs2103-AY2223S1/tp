@@ -27,6 +27,8 @@ deactivate ListEventsCommand
 
 AddressBookParser --> LogicManager : u
 deactivate AddressBookParser
+AddressBookParser -[hidden]-> LogicManager
+destroy AddressBookParser
 
 LogicManager -> ListEventsCommand : execute()
 activate ListEventsCommand
