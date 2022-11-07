@@ -265,6 +265,8 @@ Sets mastery check result for a student.
 
 Format: `mc INDEX num/MC_NUM r/MC_RESULT`
 
+![mcCommand](images/mcCommand.png)
+
 * Sets mastery check result for the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list.
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
 * `MC_NUM` must be 1 or 2.
@@ -403,6 +405,8 @@ Marks a lesson as completed.
 
 Format: `marklesson INDEX`
 
+![marklessonCommand](images/marklessonCommand.png)
+
 * `INDEX` refer to the index number shown in the lesson list.
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
 
@@ -491,6 +495,8 @@ Example:
 
 Adds participation for a student in a lesson.
 
+![addparticipationCommand](images/addparticipationCommand.png)
+
 Format: `addpart p/PARTICIPATION li/LESSON_INDEX si/STUDENT_INDEX`
 
 * `PARTICIPATION` **must be a non-negative integer** from 0 to 500.
@@ -527,6 +533,9 @@ If your changes to the data file makes its format invalid, JARVIS will discard a
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data files it creates with the files that contains the data of your previous JARVIS home folder.
+
+**Q**: Can I import my timetable into JARVIS to manage my other lessons?<br>
+**A**: This functionality is currently not supported by JARVIS but could be implemented in the future.
 
 --------------------------------------------------------------------------------------------------------------------
 

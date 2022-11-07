@@ -20,14 +20,18 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=fongyj&breakdown=true)
 
 * **Project management**:
-  * [to be added]
+  * Created and assigned issues to team members.
 
 * **Enhancements to existing features**:
-  * Added `Task` class to the `Model` component. Also added other classes relevant to `Task` and added storage functionality for `Task` as well as a basic GUI for displaying the list of tasks.
+  * Added `Task` class to the `Model` component. 
+  * Added other classes relevant to `Task`.
+  * Added storage functionality for `Task` as well as a basic GUI for displaying the list of tasks.
 
 * **Documentation**:
     * User Guide:
-      * Formatted and added rough content and screenshots for all the commands in JARVIS.
+      * Formatted and added rough content for all the commands in JARVIS.
+      * Added screenshots for command description in JARVIS.
+      * Added Frequently Asked Questions(FAQ).
     * Developer Guide:
       * Added implementation details for adding notes to a lesson or to a student in a lesson.
 
