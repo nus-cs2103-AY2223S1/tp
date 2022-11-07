@@ -13,20 +13,17 @@ Given below are my contributions to the project.
     * Justification: This feature improves the product significantly because a user might want to view all tasks under a specific module before a tutorial. 
     * Highlights: The features was challenging as many new list commands were created and also new predicates are needed for the new list commands. This requires analysis of the design of the list command and how the predicates work. 
     * Credits: The design of the code was modelled after existing AB3 list command codes, due to the existing `Parser` and `Command` associations.
-    * Relevant PR:
 
 * **New Feature**: Added the `archive` feature.
     * What it does: allows the user to archive the tasks when then have completed it and want it removed from the list of tasks showed in the UI.
     * Justification: This features allows users to store the done tasks in another file which may provide them a sense of accomplishment when looking at the list of archived tasks. 
     * Highlights: This feature creates a new `ArchivedTaskList` which is stored in a separate JSON file. This was challenging as it requires extra effort to edit the constructors of `ModelManager` and make sure iut cannot m=be modified.   
     * Credits: This was modelled after the existing AB3 storage code.
-    * Relevant PR:
 
 * **New Feature**: Added `showarchive` feature.
   * What it does: allows the user view archived tasks.
   * Justification: This feature improves the product significantly because a user might want to view all archived tasks to track his own academic progress.
   * Highlights: The features was challenging it requires the modification UI to show the archived task list.
-  * Relevant PR:
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=12-3&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&tabAuthor=yiyefyy&tabRepo=AY2223S1-CS2103T-F12-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
@@ -42,7 +39,6 @@ Given below are my contributions to the project.
   * Modified class diagram for Storage.
   * Added sequence diagram for `archive`. 
   * Added 2 instructions to manual testing.
-  
   * Added Non-Functional requirements. 
 
 * **Contributions to team-based-tasks**:
