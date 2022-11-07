@@ -300,12 +300,12 @@ The following sequence diagram shows how the find contact feature works.
 
 **Aspect: How to find a contact using ALL search for modules/tags is implemented:**
 
-* **Alternative 1 (current choice):** Create a `Set` out of the strings provided by the user.
-    * Pros: This will allow us to use set operations such as `equal` and `containsAll` (subset) for `All` search and `retainALL` for intersect. The Java Set is a tried and tested collection which reduced the need for us to create new code for the set operations. 
-
-* **Alternative 2:** Create a `List` of strings from the string provided by the user.
+* **Alternative 1:** Create a `List` of strings from the string provided by the user.
     * Pros: This will reduce the amount of new code we need to write as matching the other fields is implemented in the same way.
     * Cons: Order of input matters for the `List` collection so to check if the user input is a match we may need to loop several times, creating an O(n<sup>2</sup>) solution.
+
+* **Alternative 2 (current choice):** Create a `Set` out of the strings provided by the user.
+    * Pros: This will allow us to use set operations such as `equal` and `containsAll` (subset) for `All` search and `retainALL` for intersect. The Java Set is a tried and tested collection which reduced the need for us to create new code for the set operations.
 
 
 ### Sort List Feature
