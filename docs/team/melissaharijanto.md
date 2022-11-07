@@ -104,8 +104,10 @@ Given below are my contributions to the project.
   - **Contributions to the DG**:
     - Added use cases for the Developer's Guide
       - Relevant pull request(s): [#48](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/48)
-    - Made sequence diagrams and implementation details for `edito`, `findi`, `listi`
+    - Made UML sequence diagrams and implementation details for `edito`, `findi`, `listi`
       - Relevant pull request(s): [#138](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/138)
+    - Add manual testing guide for `help`, `clear`, `exit`, `Editing the data file` and `Starting with missing/corrupted data files`
+      - Relevant pull request(s): [#225](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/225)
 
   - **Contributions to team-based tasks**:
     - Enabling assertions. [#184](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/104)
