@@ -740,6 +740,8 @@ The following diagram showcases the additions to the `Storage` component to supp
 
 ![VenueStorageUpdateClassDiagram](images/VenueStorageUpdateClassDiagram.png)
 
+As seen in the diagram, apart from the `DataStorageManager` class, all additions were heavily reused from the `ResidentBookStorage` portion. We added a `DataStorageManager` class to handle the `VenueBookStorage` and `ResidentBookStorage` needs. We intended for the `DataStorageManager` to be an all-purpose **RC4HDB** data storage, meaning that in the future, when more data needs to be tracked, such as perhaps finances and such, the `DataStorageManager` will serve as a go-to class to handle all **RC4HDB** data storage matters.
+
 <br>
 
 #### Logic updates
