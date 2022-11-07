@@ -762,6 +762,20 @@ testers are expected to do more *exploratory* testing.
    b. Re-launch the app by double-clicking the jar file.<br>
    Expected: The most recent window size and location is retained.
 
+## Adding a student
+
+1. Adding a Student
+
+   a. Prerequisites: None<br><br>
+
+   b. Test case: `add n/John Doe m/CS2103T id/E1234567`<br>
+   Expected: Student named John Doe with student ID `E1234567` added into StudMap. Details of the added contact shown in the status message.<br><br>
+
+   c. Test case: `add n/John Doe m/CS2103T id/E1234567 e/johndow@gmail.com`<br>
+    Suppose this is run after Test case in b above, where student named John Doe with student ID already exists in the StudMap.
+
+   Expected: No student is added. Error message for "duplicate student" shown in the status message.<br><br>
+
 ## Deleting a student
 
 1. Deleting a student while all students are being shown.
@@ -772,7 +786,7 @@ testers are expected to do more *exploratory* testing.
    Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.<br><br>
 
    c. Test case: `delete 0`<br>
-   Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.<br><br>
+   Expected: No student is deleted. Error details shown in the status message.<br><br>
 
    d. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
    Expected: Similar to previous.<br><br>
