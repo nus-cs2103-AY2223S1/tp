@@ -70,6 +70,83 @@ public class FindProjectCommandTest {
     }
 
     @Test
+    public void execute_findProjectRepository_success() {
+        Model actualModel = new ModelManager();
+        Project ab3Project = new Project(new Name("ab3 Beta"),
+                new Repository("stub/stub"), new Deadline("2022-02-02"),
+                new Client(new Name("Stub")), new ArrayList<>(), new ProjectId(1),
+                new Pin(false));
+        Project ab3FinalProject = new Project(new Name("AB3 FINAL"),
+                new Repository("editStub/editStub"), new Deadline("2023-01-02"),
+                new Client(new Name("Stub")), new ArrayList<>(), new ProjectId(2),
+                new Pin(false));
+        Project ab3DevProject = new Project(new Name("Dev Ab3"),
+                new Repository("editStub/editStub"), new Deadline("2025-01-02"),
+                new Client(new Name("Stub")), new ArrayList<>(), new ProjectId(2),
+                new Pin(false));
+
+        actualModel.addProject(ab3Project);
+        actualModel.addProject(ab3FinalProject);
+        actualModel.addProject(ab3DevProject);
+
+
+        Model expectedModel = new ModelManager();
+        expectedModel.addProject(ab3FinalProject);
+        expectedModel.addProject(ab3DevProject);
+
+        CommandResult expectedCommandResult = new CommandResult(
+                String.format(Messages.MESSAGE_PROJECTS_LISTED_OVERVIEW,
+                        expectedModel.getFilteredProjectList().size()));
+
+        List<String> repo = Arrays.asList("editStub/editStub");
+        List<String> empty = new ArrayList<>();
+
+        FindProjectCommand findName = new FindProjectCommand(new ProjectContainsKeywordsPredicate(empty, repo, empty,
+                empty, empty));
+
+        assertCommandSuccess(findName, actualModel, expectedCommandResult, expectedModel, stubUi);
+
+    }
+
+    @Test
+    public void execute_findProjectClientName_success() {
+        Model actualModel = new ModelManager();
+        Project ab3Project = new Project(new Name("ab3 Beta"),
+                new Repository("stub/stub"), new Deadline("2022-02-02"),
+                new Client(new Name("NotStub")), new ArrayList<>(), new ProjectId(1),
+                new Pin(false));
+        Project ab3FinalProject = new Project(new Name("AB3 FINAL"),
+                new Repository("editStub/editStub"), new Deadline("2023-01-02"),
+                new Client(new Name("NotStub")), new ArrayList<>(), new ProjectId(2),
+                new Pin(false));
+        Project ab3DevProject = new Project(new Name("Dev Ab3"),
+                new Repository("editStub/editStub"), new Deadline("2025-01-02"),
+                new Client(new Name("IsAStub")), new ArrayList<>(), new ProjectId(2),
+                new Pin(false));
+
+        actualModel.addProject(ab3Project);
+        actualModel.addProject(ab3FinalProject);
+        actualModel.addProject(ab3DevProject);
+
+
+        Model expectedModel = new ModelManager();
+        expectedModel.addProject(ab3DevProject);
+
+        CommandResult expectedCommandResult = new CommandResult(
+                String.format(Messages.MESSAGE_PROJECTS_LISTED_OVERVIEW,
+                        expectedModel.getFilteredProjectList().size()));
+
+        List<String> client = Arrays.asList("IsAStub");
+        List<String> empty = new ArrayList<>();
+
+        FindProjectCommand findName = new FindProjectCommand(new ProjectContainsKeywordsPredicate(empty, empty, client,
+                empty, empty));
+
+        assertCommandSuccess(findName, actualModel, expectedCommandResult, expectedModel, stubUi);
+
+    }
+
+    @Test
     public void testEquals() {
 
         List<String> projectName = Arrays.asList("DevEnable");
