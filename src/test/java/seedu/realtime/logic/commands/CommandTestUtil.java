@@ -51,11 +51,16 @@ public class CommandTestUtil {
     public static final String VALID_TAG_4_BEDROOM = "4bedroom";
     public static final String VALID_TAG_GARDEN = "garden";
     public static final String VALID_TAG_POOL = "pool";
+    public static final String VALID_TAG_VIEWING = "viewing";
+    public static final String VALID_TAG_CONTRACT = "contractSigning";
+    public static final String VALID_TAG_CHILDREN = "withChildren";
     public static final String VALID_ID_AMY = "amy";
     public static final String VALID_ID_BOB = "bob";
     public static final String VALID_PRICE_1 = "1";
     public static final String VALID_PRICE_2 = "2";
     public static final String VALID_PRICE_3 = "1000000";
+    public static final String VALID_DATETIME_1 = "2022-10-23 23:59";
+    public static final String VALID_DATETIME_2 = "2000-11-24 12:00";
     public static final String VALID_LISTING_ID_BEDOK = "BEDOK";
     public static final String VALID_LISTING_ID_1 = "1";
     public static final String VALID_LISTING_ID_2 = "2";
