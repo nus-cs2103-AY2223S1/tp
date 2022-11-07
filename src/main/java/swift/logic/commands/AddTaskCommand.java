@@ -43,7 +43,7 @@ public class AddTaskCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the address book";
     public static final String MESSAGE_INVALID_CONTACT_INDEX = "The contact index provided is invalid";
-    public static final String MESSAGE_INVALID_DATE = "Deadline must valid and be in the `dd-MM-yyyy HHmm` format.";
+    public static final String MESSAGE_INVALID_DATE = "Deadline must valid and in the `dd-MM-yyyy HHmm` format.";
 
     private final Task toAdd;
     private final Collection<Index> contactIndices;
