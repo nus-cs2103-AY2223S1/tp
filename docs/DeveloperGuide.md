@@ -484,9 +484,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `Teachers Address Book (TAB)` and the **Actor** is the `teaching assistant/professor)`, unless specified otherwise)
+(For all use cases below, the **System** is the `Teachers Address Book (TAB)` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 - Delete a person**
 
 **MSS**
 
@@ -509,7 +509,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Add a person**
+**Use case: UC02 - Add a person**
 
 **MSS**
 
@@ -525,7 +525,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case resumes at step 1.
 
-**Use case: Edit a person’s details**
+**Use case: UC03 - Edit a person’s details**
 
 **MSS**
 
@@ -546,6 +546,189 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case resumes at step 1.
 
+**Use case: UC04 - Show details of a person**
+
+**MSS**
+
+1.  User requests to view details of a person.
+2.  TAB shows the details of the specified person.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given index is invalid.
+
+    * 1a1. TAB shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: UC05 - Add remarks of a person**
+
+**MSS**
+
+1.  User enters the command to input a remark on a specific person.
+2.  TAB shows that the command is successful and displays the edited person.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given index is invalid.
+
+    * 1a1. TAB shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: UC06 - Edit attendance of a student**
+
+**MSS**
+
+1.  User enters the command to edit attendance of a student.
+2.  TAB shows that the command is successful and displays the edited student.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given index is invalid.
+
+    * 1a1. TAB shows an error message.
+
+      Use case resumes at step 1.
+
+* 1b. The person at the given index is not a student.
+
+    * 1b1. TAB shows an error message.
+
+      Use case resumes at step 1.
+
+* 1c. The new attendance details are invalid.
+
+    * 1c1. TAB shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: UC07 - Add assignments to all students**
+
+**MSS**
+
+1.  User enters the command to add assignments to all students.
+2.  TAB shows that the command is successful and displays assignments in the students' details.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The new assignment details are invalid.
+
+    * 1a1. TAB shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: UC08 - Edit the grade of a student**
+
+**MSS**
+
+1.  User enters the command to edit the grade of an student's assignment.
+2.  TAB shows that the command is successful and displays the updated student details.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given index of the person and/or assignment is invalid.
+
+    * 1a1. TAB shows an error message.
+
+      Use case resumes at step 1.
+
+* 1b. The person at the given index is not a student.
+
+    * 1b1. TAB shows an error message.
+
+      Use case resumes at step 1.
+
+* 1c. The new grade details are invalid.
+
+    * 1c1. TAB shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: UC09 - Edit the availability of a TA**
+
+**MSS**
+
+1.  User enters the command to edit the availability of a TA.
+2.  TAB shows that the command is successful and displays the updated TA's details.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given index is invalid.
+
+    * 1a1. TAB shows an error message.
+
+      Use case resumes at step 1.
+
+* 1b. The person at the given index is not a TA.
+
+    * 1b1. TAB shows an error message.
+
+      Use case resumes at step 1.
+
+* 1c. The new availability details are invalid.
+
+    * 1c1. TAB shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: UC10 - Edit the roles of a Professor**
+
+**MSS**
+
+1.  User enters the command to edit the roles of a Professor.
+2.  TAB shows that the command is successful and displays the updated Professor's details.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given index is invalid.
+
+    * 1a1. TAB shows an error message.
+
+      Use case resumes at step 1.
+
+* 1b. The person at the given index is not a Professor.
+
+    * 1b1. TAB shows an error message.
+
+      Use case resumes at step 1.
+
+* 1c. The new role details are invalid.
+
+    * 1c1. TAB shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: UC11 - Find persons by name**
+
+**MSS**
+
+1.  User enters the command to find specific persons by name.
+2.  TAB shows that the command is successful and displays the matching persons.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given name is invalid.
+
+    * 1a1. TAB shows an error message.
+
+      Use case resumes at step 1.
 
 *{More to be added}*
 
@@ -556,8 +739,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. All user operations should complete within 2 seconds.
 4. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 5. Unauthorised users can only read data without modifying anything.
-
-*{More to be added}*
 
 ### Glossary
 
