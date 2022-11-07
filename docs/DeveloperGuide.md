@@ -237,15 +237,15 @@ Step 4: The `InsuranceCommandParser#parse` will then parse the insurance prefixe
 
 Step 5: The `InsuranceCommandParser#parse` will then create a new `InsuranceCommand` object using the index and the `EditInsuranceDescriptor` object.
 
-Step 5: The `LogicManager` then calls `InsuranceCommand#execute` with the `Model` object.
+Step 6: The `LogicManager` then calls `InsuranceCommand#execute` with the `Model` object.
 
-Step 6: The `InsuranceCommand` calls `Model#getFilteredPersonList` to get the filtered `List` of `Person` objects.
+Step 7: The `InsuranceCommand` calls `Model#getFilteredPersonList` to get the filtered `List` of `Person` objects.
 
-Step 7: The `InsuranceCommand` gets the `Person` to be edited from the `List`
+Step 8: The `InsuranceCommand` gets the `Person` to be edited from the `List`
 
-Step 8: The `InsuranceCommand` calls its `createEditedPerson` method with the `Person` to be edited and the `EditInsuranceDescriptor` which returns the new edited `Person` .
+Step 9: The `InsuranceCommand` calls its `createEditedPerson` method with the `Person` to be edited and the `EditInsuranceDescriptor` which returns the new edited `Person` .
 
-Step 9: The `InsuranceCommand` calls the `setPerson` method of the `Model` object to replace the existing `Person` object with the new edited one.
+Step 10: The `InsuranceCommand` calls the `setPerson` method of the `Model` object to replace the existing `Person` object with the new edited one.
 
 Step 11: The `InsuranceCommand` then returns a new `CommandResult` object with the result of the execution.
 
@@ -311,10 +311,6 @@ Step 4: The `ReminderCommandParser#parse` will then parse the index, task and da
 
 Step 5: The `LogicManager` then calls `ReminderCommand#execute`.
 
-![Sequence diagram for the Parsing Remind Command](images/ParseReminderSequenceDiagram.png)
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ReminderCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
-
 Step 6: The `ReminderCommand` calls `Model#getFilteredPersonList` to get the filtered `List` of `Person` objects.
 
 Step 7: The `ReminderCommand` gets the `Person` to be edited from the `List`, using `List#get`.
@@ -323,8 +319,10 @@ Step 8: The `ReminderCommand` calls `Model#addReminder`, with the edited `Person
 
 Step 9: `ReminderCommand` then returns a new `CommandResult` with the result of the execution.
 
+![Sequence diagram for the Parsing Remind Command](images/ParseReminderSequenceDiagram.png)
 ![Sequence diagram for the Executing Remind Command](images/ExecuteReminderSequenceDiagram.png)
-
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ReminderCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 #### Design considerations:
 
@@ -404,7 +402,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                                                           | So that I can…​                                                                              |
 |----------|--------------------------------------------|------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|
-| `* * *`  | Brand New User                             | see usage instructions                                                 | refer to instructions when I forget how to use the App                                       |
 | `* * *`  | User                                       | store my friends, clients and potential clients contact information    | easily contact my friends, clients and potential clients                                     |
 | `* * *`  | User                                       | view all of my contacts                                                | get an overview of all of my contacts                                                        |
 | `* * *`  | User                                       | view my contacts' information                                          | easily access my contacts' information                                                       |
@@ -582,15 +579,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 100 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 100 persons without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. The system should respond within 2 seconds of entering a command.
 5. The app is not required to explain financial advisor terms.
 6. The app is not required to spell check or check for offensive terms.
 7. The system should still work even if there is no data file present.
-8. The system should replace the data file if it has corrupted.
-9. The system should save the data after each command has been processed.
+8. The system should save the data after each command has been processed.
 
 
 ### Full Glossary
@@ -894,7 +890,7 @@ testers are expected to do more *exploratory* testing.
 The application makes use of the [TestFX](https://github.com/TestFX/TestFX) library to carry out automated tests for
 the GUI. Below are common issues when trying to carry out GUI tests.
 
-#### **Problem: Keyboard and Mouse movements are not simulated in macOS systems, resulting in GUI tests failure**
+#### Problem: Keyboard and Mouse movements are not simulated in macOS systems, resulting in GUI tests failure
 
 * Reason: From macOS Mojave onwards, applications that do not have `Accessibility` permissions cannot simulate
 such keyboard and mouse movements. Therefore, the GUI tests that require simulation of keyboard and mouse movements
@@ -906,14 +902,14 @@ Then check the box beside `IntelliJ IDEA`. The figure below shows `Accessibility
 
 <img src="images/TroubleshootingGUiTestMacos.png" width="500px">
 
-#### **Problem: GitHub Actions Ubuntu environment cannot run GUI tests, resulting in Continuous Integration tests failure**
+#### Problem: GitHub Actions Ubuntu environment cannot run GUI tests, resulting in Continuous Integration tests failure
 
 * Reason: The automated GUI tests require tools on different Linux distributions to run properly as they need to
 display a GUI. The environment that GitHub Actions provides does not have these. Therefore, the GUI tests are
 getting stuck and taking very long to build with no success and this is causing Continuous Integration checks to
 fail.
 
-* Solution: Update the [`gradle.yml`](../.github/workflows/gradle.yml) file to make use of an additional [action](https://github.com/marketplace/actions/gabrielbb-xvfb-action)
+* Solution: Update the [`gradle.yml`](https://github.com/AY2223S1-CS2103T-W10-2/tp/blob/master/.github/workflows/gradle.yml) file to make use of an additional [action](https://github.com/marketplace/actions/gabrielbb-xvfb-action)
 on GitHub actions that installs [XVFB](http://elementalselenium.com/tips/38-headless) and runs headless tests with
 it. The figure below shows the new actions used to enable the CI environment to run the GUI tests properly.
 
