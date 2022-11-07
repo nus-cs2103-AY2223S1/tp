@@ -18,7 +18,11 @@ If you are a developer that recently joined the PayMeLah development team, or a 
 --------------------------------------------------------------------------------------------------------------------
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* JavaFX for providing the API for rendering GUI.
+* Jackson for providing the API for parsing JSON files.
+* JUnit for providing a unit testing framework.
+* [Zephyr](https://stackoverflow.com/users/6485651/zephyr) for providing [inspiration](https://stackoverflow.com/a/52458162) for the right-aligned label in the `PersonListPanel` class.
+* Our application is based on the [AddressBook-Level 3 (AB-3)](https://se-education.org/addressbook-level3/) project. All features present in our application are in addition to those already present in AB-3.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -184,11 +188,29 @@ The activity diagrams below detail the behaviour of PayMeLah when a user inputs 
 <img src="images/AddDebtActivityDiagram.png" width="450" />
 <img src="images/AddDebtActivityDiagramRake.png" width="450" />
 
+### Split debt feature: `splitdebt`
+
+#### Implementation
+
+This feature is facilitated by `SplitDebtCommand` and `SplitDebtCommandParser` in the `Logic` component, and work as per [described above](#logic-component).
+
+When given a valid user input, the `SplitDebtCommandParser` will create a new `Debt` object to add to the `DebtList` of the multiple specified `Person` objects.
+The following implementation is highly similar to the above implementation of [add debt](#add-debt-feature-adddebt), however, it differs in that '0' is a valid position in representing a `Person` to the `SplitDebtCommandParser`, and
+the value of the `Money` of the `Debt` added to each `Person` is the amount the command specified divided by the number of specified `Person` objects.
+However, '0' is not a valid `Index` internally and is only a placeholder to indicate that the user is included in the number of specified `Person` objects. Thus, no `Debt` is actually added to the `Person` whose position in the
+displayed list is '0'. It should also be noted that there is also never such a `Person`. The non-zero `Index` objects of the `Person` objects splitting the `Debt` are contained in a set that `DeleteDebtCommandParser` creates.
+The `SplitDebtCommandParser` will construct a `SplitDebtCommand` object with this set of `Index` objects and the `Debt` object created.
+The remaining functionality and behaviour of `SplitDebtCommand` and `SplitDebtCommandParser` are identical to that of [add debt](#add-debt-feature-adddebt).
+
+Consider an example of a valid `splitdebt` command, `splitdebt 0 1 2 d/pizza m/30`. The new objects in the final internal state after this example has been parsed is given by the object diagram below. Note that new `DebtDate` and `DebtTime` objects are created even though the user did not specify date and time parameters in their input command.
+
+<img src="images/SplitDebtObjectDiagram.png" width="450" />
+
 
 ### Clear debts feature: `cleardebts`
 
 #### Implementation
-This feature is facilitated by `ClearDebtsCommand` and `ClearDebtsCommandParser` in the `Logic` component, and work as per described above.
+This feature is facilitated by `ClearDebtsCommand` and `ClearDebtsCommandParser` in the `Logic` component, and work as per [described above](#logic-component).
 
 When given a valid user input, the `ClearDebtsCommandParser` will construct a `ClearDebtsCommand` object with the parsed `Index` representing the position of the `Person` in the `Model` component to have his/her debts cleared.
 
@@ -196,15 +218,20 @@ Receiving the `Index` of the specified `Person` from the `ClearDebtsCommandParse
 The `ClearDebtsCommand` object will create a new `Person` object with identical fields from the `Person` object previously obtained except for a new empty `DebtList`.
 This new `Person` object replaces the original `Person` object in the `Model` component.
 
+Consider an example of a valid `cleardebts` command `cleardebts 1`. The objects in the internal state after this example has been parsed, and after the constructed `ClearDebtsCommand` has been executed, is given by the object diagrams below.
+
+<img src="images/ClearDebtsObjectDiagram.png" width="450" />
+<img src="images/ClearDebtsObjectDiagramAfter.png" width="300" />
 
 ### Delete debt feature: `deletedebt`
 
 #### Implementation
-This feature is facilitated by `DeleteDebtCommand` and `DeleteDebtCommandParser` in the `Logic` component, and work as per described above.
+This feature is facilitated by `DeleteDebtCommand` and `DeleteDebtCommandParser` in the `Logic` component, and work as per [described above](#logic-component).
 
 When given a valid user input, the `DeletDebtCommandParser` will create a set with the `Index` object that represents the position of the `Debt` object to be removed from the `DebtList` of the specified `Person`.
+The `DeleteDebtCommandParser` will construct a `DeleteDebtCommand` object with this set of `Index` objects and the parsed `Index` representing the position of the `Person` in the `Model` component to have his/her debts cleared.
 
-To speed up deleting multiple `Debt` objects (for example, when multiple debts of a person contain incorrect details) from the `DebtList` of the specified `Person`, the `DeleteDebtCommandParser` can take in multiple indices such that the set with the `Index` object contains multiple `Index` objects that each represent the position of the `Debt` object to be removed.
+Consider a scenario where the user wishes to delete multiple debts from a person, such as when multiple debts were added to him/her incorrectly. To speed up deleting multiple `Debt` objects from the `DebtList` of the specified `Person`, the `DeleteDebtCommandParser` can take in multiple indices such that the set with the `Index` object contains multiple `Index` objects that each represent the position of the `Debt` object to be removed.
 
 Receiving this set of `Index` objects, and the `Index` of the specified `Person` from the `DeleteDebtCommandParser`, the `DeleteDebtCommand` object obtains the `Person` object and the `Debt` objects specified by the set from the `Model` component when executed.
 The `DeleteDebtCommand` object will create a new `Person` object with identical fields from the `Person` object previously obtained except for a new `DebtList` that does not contain the previously obtained `Debt` objects to be removed.
@@ -217,22 +244,34 @@ The sequence diagram below details such behaviour of PayMeLah when a user enters
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteDebtCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-An example of the new objects in the internal state when a valid `deletedebt` command parsed from the user, `deletedebt 1 debt/2 3`, has been executed is given by the object diagrams below.
+Consider an example of a valid `deletedebt` command `deletedebt 1 debt/2 3`. The new objects in the internal state after this example has been parsed, and after the constructed `DeleteDebtCommand` has been executed, is given by the object diagrams below.
 
 <img src="images/DeleteDebtObjectDiagram.png" width="450" />
-<img src="images/DeleteDebtAfterObjectDiagram.png" width="450" />
+<img src="images/DeleteDebtAfterObjectDiagram.png" width="280" />
 
 
 
-### \[Proposed\] Improved find command: `find`
+### Find-by-anything feature: `find`
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed improved find command shall use `ArgumentTokenizer` to get a list of fields to search by.
+This feature is facilitated by `FindCommand` and `FindCommandParser` in the `Logic` component, and works as per [described above](#logic-component).
 
-For each present prefix, the list of persons shall be filtered by the relevant field using a variety of additional `Predicate`s.
+`FindCommandParser` retrieves all prefixes supported by the command using `ArgumentTokenizer`.
+The resulting `ArgumentMultimap` is converted to a `PersonDescriptor`, which will hold the person-related fields to search for,
+and a `DebtsDescriptor`, which will hold the debt-related fields to search for, using `ParserUtil`'s `argumentMultimapToPersonDescriptor` and `argumentMultimapToDebtsDescriptor` respectively.
+A check ensures that at least one field to search for is specified.
+Then, the `PersonDescriptor` and `DebtsDescriptor` are used to construct a `PersonMatchesDescriptorPredicate`,
+which will return `true` if the given `Person` matches all the person-related fields in `PersonDescriptor` and all the debt-related fields in `DebtsDescriptor`.
 
-Finally, the user will be shown the filtered list of persons, like in the original find command.
+For example, suppose the user has multiple friends named Gary, and wants to find the one that owes money for a burger.
+The command `find n/gary d/burger` can be used to accomplish this. The sequence diagram below shows the basic events that take place.
+
+<img src="images/FindSequenceDiagram.png" width="600" />
+
+Note that due to the universal nature of find-by-anything, this command is dependent on lots of components:
+
+<img src="images/FindClassDiagram.png" width="600" />
 
 ### List debtors feature: `listdebtors`
 
@@ -264,13 +303,17 @@ This feature is facilitated by `MarkCommand`/`UnmarkCommand`, and `MarkCommandPa
 
 When given a valid user index, the `MarkCommandParser`/`UnmarkCommandParser` will create a new `Debt` object marked as paid/unpaid in the `DebtList` of the specified `Person`.
 
-An example of the internal state when a valid `mark` command is provided by the user is given by the object diagram below.
+To speed up marking `Debt` objects as paid (for example, when 1 person has paid for multiple debts in 1 shot) in the `DebtList` of 1 `Person`, the `MarkCommand` can take in multiple indices such that a replaced `Debt` object (only if it is unpaid) will be added to the `DebtList` for each mark operation.
 
-**(Insert object diagram here)**
+An example of the new objects in the internal state when a valid `mark` command provided by the user, `mark 1 debt/2 3`, has been parsed and then executed is given by the object diagrams below.
 
-The activity diagram below details all the possible behaviour of PayMeLah when a user inputs a valid `mark` command.
+<img src="images/MarkObjectDiagram.png" width="450" />
+<img src="images/MarkAfterObjectDiagram.png" width="280" />
 
-**(Insert activity diagram here)**
+The activity diagrams below detail the behaviour of PayMeLah when a user inputs a `mark` command of valid syntax to be executed.
+
+<img src="images/MarkActivityDiagram.png" width="450" />
+<img src="images/MarkActivityDiagramRake.png" width="450" />
 
 ### Undo feature: `undo`
 
@@ -328,22 +371,24 @@ When the user gives an `undo` command, the most recent AddressBook will be poppe
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​ | I can …​                                                                                      | So that …​                                                          |
-|----------|---------|-----------------------------------------------------------------------------------------------|---------------------------------------------------------------------|
-| `* * *`  | user    | save persons and their contact details                                                        | I do not need to remember these details                             |
-| `* * *`  | user    | keep track of debts                                                                           | I know who owes me money and for what                               |
-| `* * *`  | user    | add debts of the same type to multiple people at once                                         | I do not have to spend a long time adding debts                     |
-| `* * *`  | user    | remove debts                                                                                  | I do not mistakenly think I have not yet been paid                  |
-| `* * *`  | user    | see how much I am owed in total                                                               | I know how much I expect to be paid                                 |
-| `* * *`  | user    | split a debt fairly among several people                                                      | I do not need to manually divide the amount that each person owes   |
-| `* * *`  | user    | mark debts as paid/unpaid                                                                     | I know whether the debts has been paid or not                       |
-| `* * *`  | user    | close the application                                                                         |                                                                     |
-| `* * *`  | user    | specify if an amount of money in the debt is inclusive or exclusive of GST and service charge | I do not have to manually calculate the final debt amount           |
-| `* *`    | user    | see an overview of all the debts owed                                                         | I am in better control of my overall financial situation            |
-| `* *`    | user    | search for a person’s contact                                                                 | I can easily access his contact details                             |
-| `* *`    | user    | save my contacts and debts over multiple usage sessions of the app                            | I do not need to key in data again when I exit and re-enter the app |
-| `* *`    | user    | sort the list of contacts by name, amount owed and how long they have owed the debt           | I can quickly decide who to prioritize chasing for debts.           |
-| `* *`    | user    | easily undo any unintentional or wrong changes I made to my address book                      | I do not have to take a long time to revert my changes.             |
+
+| Priority | As a …  | I can …                                                                                       | So that …                                                                    |
+|----------|---------|-----------------------------------------------------------------------------------------------|------------------------------------------------------------------------------|
+| `* * *`  | user    | save persons and their contact details                                                        | I do not need to remember these details                                      |
+| `* * *`  | user    | keep track of debts                                                                           | I know who owes me money and for what                                        |
+| `* * *`  | user    | add debts of the same type to multiple people at once                                         | I do not have to spend a long time adding debts                              |
+| `* * *`  | user    | remove debts                                                                                  | I do not mistakenly think I have not yet been paid                           |
+| `* * *`  | user    | see how much I am owed in total                                                               | I know how much I expect to be paid                                          |
+| `* * *`  | user    | split a debt fairly among several people                                                      | I do not need to manually divide the amount that each person owes            |
+| `* * *`  | user    | mark debts as paid/unpaid                                                                     | I know whether the debts has been paid or not                                |
+| `* * *`  | user    | close the application                                                                         |                                                                              |
+| `* * *`  | user    | specify if an amount of money in the debt is inclusive or exclusive of GST and service charge | I do not have to manually calculate the final debt amount                    |
+| `* *`    | user    | search for a person’s contact                                                                 | I can easily access his contact details                                      |
+| `* *`    | user    | search for people who owe me money for a certain event                                        | I can tell at a glance who still hasn't paid me for that event               |
+| `* *`    | user    | search for people who owe me money past a certain date                                        | I can ensure that these people do not forget to return my money for too long |
+| `* *`    | user    | save my contacts and debts over multiple usage sessions of the app                            | I do not need to key in data again when I exit and re-enter the app          |
+| `* *`    | user    | sort the list of contacts by name, amount owed and how long they have owed the debt           | I can quickly decide who to prioritize chasing for debts.                    |
+| `* *`    | user    | easily undo any unintentional or wrong changes I made to my address book                      | I do not have to take a long time to revert my changes.                      |
 
 ### Use cases
 
@@ -366,14 +411,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**UC02: Add a debt**
+**UC02: List all persons**
 
 **MSS**
 
-1.  User requests to list persons
-1.  PayMeLah shows a list of persons
-1.  User requests to add a debt to a specific person in the list
-1.  PayMeLah adds the debt to the person
+1.  User requests to list all persons
+1.  PayMeLah shows a list of all persons
 
     Use case ends.
 
@@ -382,126 +425,118 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The given input is invalid.
 
     * 1a1. PayMeLah shows an error message.
-
+  
       Use case ends.
 
-* 3a. The given input is invalid.
-
-    * 3a1. PayMeLah shows an error message.
-
-      Use case resumes at step 2.
-
-**UC03: Split a debt**
+**UC03: Add a debt**
 
 **MSS**
 
-1.  User requests to list persons
-1.  PayMeLah shows a list of persons
+1.  User requests to list persons as per _UC02: List persons_
+1.  User requests to add a debt to specific persons in the list
+1.  PayMeLah adds the debt to the persons and displays the result
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 2a. The given input is invalid.
+
+    * 2a1. PayMeLah shows an error message.
+
+      Use case resumes at step 2.
+
+**UC04: Split a debt**
+
+**MSS**
+
+1.  User requests to list persons as per _UC02: List persons_
 1.  User requests to split a debt among several persons in the list
-1.  PayMeLah adds the split debt to the persons
+1.  PayMeLah adds the split debt to the persons and displays the result
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The given input is invalid.
-
-    * 1a1. PayMeLah shows an error message.
-
-      Use case ends.
-
-* 3a. The given input is invalid.
-
-    * 3a1. PayMeLah shows an error message.
-
-      Use case resumes at step 2.
-
-**UC04: Mark debts as paid**
-
-**MSS**
-
-1.  User requests to list persons
-1.  PayMeLah shows a list of persons
-1.  User requests to mark specific debts from a specific person in the list as paid.
-1.  PayMeLah marks the debts as paid.
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
+* 1a. The list is empty.
 
   Use case ends.
 
-* 3a. The given indexes are invalid.
+* 2a. The given input is invalid.
 
-    * 3a1. PayMeLah shows an error message.
+    * 2a1. PayMeLah shows an error message.
 
       Use case resumes at step 2.
 
-**UC05: Delete a person**
+**UC05: Mark debts as paid**
 
 **MSS**
 
-1.  User requests to list persons
-1.  PayMeLah shows a list of persons
+1.  User requests to list persons as per _UC02: List persons_
+1.  User requests to mark specific debts from a specific person in the list as paid
+1.  PayMeLah marks the debts as paid and displays the result
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 2a. The given input is invalid.
+
+    * 2a1. PayMeLah shows an error message.
+
+      Use case resumes at step 2.
+
+**UC06: Delete a person**
+
+**MSS**
+
+1.  User requests to list persons as per _UC02: List persons_
 1.  User requests to delete a specific person in the list
-1.  PayMeLah deletes the person
+1.  PayMeLah deletes the person and displays the result
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The list is empty.
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 2a. The given input is invalid.
 
-    * 3a1. PayMeLah shows an error message.
+    * 2a1. PayMeLah shows an error message.
 
       Use case resumes at step 2.
 
-**UC06: Delete debts**
+**UC07: Delete debts**
 
 **MSS**
 
-1.  User requests to list persons
-1.  PayMeLah shows a list of persons
+1.  User requests to list persons as per _UC02: List persons_
 1.  User requests to delete specific debts from a specific person in the list
-1.  PayMeLah deletes these debts
+1.  PayMeLah deletes these debts and displays the result
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The list is empty.
 
   Use case ends.
 
-* 3a. The given indexes are invalid.
+* 2a. The given input is invalid.
 
-    * 3a1. PayMeLah shows an error message.
+    * 2a1. PayMeLah shows an error message.
 
       Use case resumes at step 2.
-
-**UC07: Clear debts**
-
-**MSS**
-
-1.  User requests to list debtors
-1.  PayMeLah shows a list of debtors
-1.  User requests to clear the debts of a specific debtor in the list
-1.  PayMeLah clears the debts of that person
-1.  PayMeLah displays that the person’s debts are cleared
-
-**Extensions**
-
-* 3a. The given index is invalid.
-
-    * 3a1. PayMeLah shows an error message
-
-      Use case resumes at step 3.
 
 **UC08: List persons with debts**
 
@@ -532,7 +567,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**UC09: Find a person by name**
+**UC09: Clear debts**
+
+**MSS**
+
+1.  User requests to list debtors as per _UC08: List persons with debts_
+1.  User requests to clear the debts of a specific debtor in the list
+1.  PayMeLah clears the debts of that person and displays the result
+
+**Extensions**
+
+* 2a. The given input is invalid.
+
+    * 2a1. PayMeLah shows an error message
+
+      Use case resumes at step 2.
+
+**UC10: Find a person by name**
 
 **MSS**
 
@@ -548,7 +599,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**UC10: Find a person by debt description**
+**UC11: Find a person by debt description**
 
 **MSS**
 
@@ -564,12 +615,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**UC11: Get debt overview**
+**UC12: Get debt overview**
 
 **MSS**
 
 1. User requests to get overview of all debts
-1. PayMeLah shows the total sum of debts the user is owed.
+1. PayMeLah shows the total sum of debts the user is owed
 
    Use case ends.
 
@@ -793,7 +844,7 @@ testers are expected to do more *exploratory* testing.
     * Increased user-friendliness of UG significantly
     * Maintenance (inclusive of revisions and updates) of existing DG documentation
     * Inclusion of new features and corresponding insights in DG
-    
+
 * Challenges faced:
   * Learning of regex to ensure continuity with AB3 parse format
   * Learning of JavaFX to update GUI
