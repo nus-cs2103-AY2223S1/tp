@@ -207,7 +207,7 @@ Here, we will be guiding you on the basic features of *MyInsuRec* and helping yo
 Both client name and their phone number are **needed** to add the client into *MyInsuRec*.
 </div>
 
-* Tommy has also given us his email address, his address, as well as his birthday. As such, we would like to update Tommy's record. To do that, we first need to get Tommy's index from the list of clients, which is 7. Type in `editClient i/7 e/tommytan21@gmail.com a/167 Canning Road bd/25081982` and hit enter. Tommy's record in the list of clients will update with the newly inputted details. The image below shows *MyInsuRec* after updating Tommy with the additional details.
+* Tommy has also given us his email address, his address, as well as his birthday. As such, we would like to update Tommy's record. To do that, we first need to get Tommy's index from the list of clients, which is 7. Type in `editClient i/7 e/tommytan21@gmail.com a/167 Canning Road b/25081982` and hit enter. Tommy's record in the list of clients will update with the newly inputted details. The image below shows *MyInsuRec* after updating Tommy with the additional details.
 
 ![EditClientTommy](images/quick-start/EditClientTommy.png)
 
@@ -217,7 +217,11 @@ Both client name and their phone number are **needed** to add the client into *M
 See [addClient](#711-adding-a-client-addclient) for more variety of optional fields!
 </div>
 
-* Now we would like to add in an upcoming meeting with our client 'Bernice Yu' (index 2 in our sample data). We can do that by doing `addMeeting i/2 d/27102022 st/1400 et/1600 dn/Review Product 2` (You can replace `d/27102022` with today's date in the DDMMYYYY format)! When we hit enter, *MyInsuRec* will show us the list of meetings, including the one we just added. The image below shows the list of meetings after adding the meeting with Bernice.
+* Now we would like to add in an upcoming meeting with our client 'Bernice Yu' (index 2 in our sample data). We can do that by doing `addMeeting i/2 d/27102022 st/1400 et/1600 dn/Review plan` (You should replace `d/27102022` with a future date in the DDMMYYYY format)! When we hit enter, *MyInsuRec* will show us the list of meetings, including the one we just added. The image below shows the list of meetings after adding the meeting with Bernice.
+
+<div markdown="span" class="alert alert-info">**:information_source: Note:**
+The date for meeting should not be in the past.
+</div>
 
 ![AddMeetingBernice](images/quick-start/AddMeetingBernice.png)
 
