@@ -28,12 +28,12 @@ Here are my contributions to the project.
 - **Enhancements to existing features**:
 
   - Renamed `find` command from AB3 to `find_contact` ([#56](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/56))
+  - Added task sorting feature by chronological order of deadline ([#137](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/137))
 
 - **Project management**:
 
   - Managed releases `v1.1` to `v1.3` (4 releases) on GitHub
   - Updated Jekyll site-wide settings ([#10](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/10))
-  - Added user stories, target user profile, and value proposition to developer guide ([#16](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/16))
   - Removed AB3 traces from user guide ([#34](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/34))
 
 - **Documentation**:
@@ -43,7 +43,9 @@ Here are my contributions to the project.
     - Added documentation for the `find_task` command
     - Made cosmetic changes to header colors and spacing to match color scheme of app
   - Developer Guide:
-    - Added implementation details of finding contacts and tasks ([#82](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/82))
+    - Added implementation details of optional `Description` and `Deadline` fields ([#249](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/249))
+    - Added user stories, target user profile, and value proposition ([#16](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/16))
+    - Added use cases 7 to 9 ([#249](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/249))
 
 - **Community**:
   - PRs reviewed (with non-trivial review comments): [#19](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/19), [#20](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/20), [#48](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/48), [#57](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/57), [#62](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/62), [#83](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/83), [#85](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/85), [#89](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/89), [#99](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/99), [#128](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/128), [#133](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/133), [#187](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/187), [#195](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/195)
