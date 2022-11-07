@@ -3,7 +3,16 @@ layout: page
 title: PennyWise Developer Guide
 ---
 
-* Table of Contents
+![PennyWise Logo](images/PennyWiseLogo.png)
+
+PennyWise is a desktop application that **empowers students with the ability to make informed financial decisions**,
+by providing a **graphical analysis of their financial activities**.
+It provides a clean Graphical User Interface (GUI) for easy comprehension of expenditure and savings.
+
+# Table of Contents
+<div id="top">
+</div>
+
 <!-- TOC -->
   * [**Acknowledgements**](#acknowledgements)
   * [**Setting up, getting started**](#setting-up-getting-started)
@@ -45,42 +54,128 @@ title: PennyWise Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Purpose of Guide
+
+This guide is a comprehensive resource for developing and maintaining PennyWise.
+
+If you are an **experienced developer on PennyWise**, this guide provides a deep-dive into the core [implementation](#implementation) details and design considerations
+of several features of the application, allowing you to quickly familiarise yourself with the inner-workings of most parts of the code
+architecture and design.
+If you are **just getting started**, fret not! The guide gives a quick onboarding on how you can [set up and get started](#setting-up-getting-started).
+Once you have the development environment up and running, head over to the [design](#design) section to get a comprehensive
+overview of the code design of PennyWise.
+
+If you are in the **customer success team**, you may find the section on [requirements](#appendix-requirements) most helpful to
+you on _how_ and _why_ PennyWise came about. It allows you to have a thorough understanding of the [product](#product-scope),
+including the [user stories](#user-stories), [use cases](#use-cases) and [non-functional requirements](#non-functional-requirements).
+
+Whether you are a developer or in the customer success team, you may also find it useful to be aware of the [product requirements](#appendix-requirements)
+to ensure that we are always developing the finest application and solving the right problems for students. The [glossary](#glossary)
+is also helpful if you are unfamiliar with some terms used. Finally, the section on [testing](#appendix-instructions-for-manual-testing)
+provides information related to how you can test the application.
+
+<p align="right">
+    <a href="#top">Back to Top </a>
+</p>
+
+## How to use this Developer Guide
+These are some icons you may see throughout our developer guide.
+
+### Information Box
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+This provides some additional information that you are recommended to know.
+</div>
+
+### Tip Box
+
+<div markdown="block" class="alert alert-primary">:bulb: **Tip:**
+This provides some quick and convenient hacks that you might find useful.
+</div>
+
+### Danger Box
+
+<div markdown="block" class="alert alert-danger">:exclamation: **Warning**
+Danger zone! Do pay attention to the information here carefully.
+</div>
+
+### Formatting
+
+- `Highlights` are used to denote commands or output from the application.
+
+<p align="right">
+    <a href="#top">Back to Top </a>
+</p>
+
+If you are ready, let's [get started](#setting-up-getting-started)!
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the
-  original source as well}
+* This project is based on the [AddressBook-Level3 project](https://github.com/se-edu/addressbook-level3) created by the [SE-EDU initiative](https://se-education.org).
+* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
+* Assets used:
+  * PennyWise Application Logo: [Logo Generator](https://logo.com/)
+  * Icon(s): [Calendar icon from Streamline](https://www.streamlinehq.com/icons/plump-duo/interface-essential/calendar/interface-calendar)
+  * Font: [Poppins Font from Google Fonts](https://fonts.google.com/specimen/Poppins)
+  * Theme: [Dark Color Palette from ColorHunt](https://colorhunt.co/palette/2c3333395b64a5c9cae7f6f2)
+
+<p align="right">
+    <a href="#top">Back to Top </a>
+</p>
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
 
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
+Woohoo! We are excited to help you take your first steps in developing PennyWise.
+Please refer to [_Setting up and getting started_](SettingUp.md) to get up and running!
+
+Once you are done, you may check out the [design](#design) section to have a comprehensive overview of how PennyWise
+is designed.
+
+<p align="right">
+    <a href="#top">Back to Top </a>
+</p>
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Design**
 
+In this section, we provide a comprehensive and high-level overview of the code architecture and design of PennyWise,
+allowing you to easily _familiarise_ yourself with navigating the various aspects of the code and to _build upon_
+the existing code base.
+
+In explaining the design approach of the application, there are 6 main aspects:
+* [Architecture](#architecture)
+* [UI component](#ui-component)
+* [Logic component](#logic-component)
+* [Model component](#model-component)
+* [Storage component](#storage-component)
+* [Common classes](#common-classes)
+
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in
-the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML
+the [diagrams](https://github.com/AY2223S1-CS2103T-W17-2/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML
 Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit
 diagrams.
 </div>
 
 ### Architecture
 
+The ***Architecture*** provides a high-level design of PennyWise and how the various components work together.
+
 <img src="images/ArchitectureDiagram.png" width="280" />
-
-The ***Architecture Diagram*** given above explains the high-level design of the App.
-
-Given below is a quick overview of main components and how they interact with each other.
 
 **Main components of the architecture**
 
+Here, we provide a quick overview of main components and how they interact with each other.
+
 **`Main`** has two classes
-called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java)
-and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It
+called [`Main`](https://github.com/AY2223S1-CS2103T-W17-2/tp/blob/master/src/main/java/seedu/pennywise/Main.java)
+and [`MainApp`](https://github.com/AY2223S1-CS2103T-W17-2/tp/blob/master/src/main/java/seedu/pennywise/MainApp.java). It
 is responsible for,
 
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
@@ -106,7 +201,7 @@ Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding
-  API `interface` mentioned in the previous point.
+  API `interface` mentioned in the previous point).
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using
 the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component
@@ -115,24 +210,31 @@ implementation of a component), as illustrated in the (partial) class diagram be
 
 <img src="images/ComponentManagers.png" width="300" />
 
-The sections below give more details of each component.
+Ready to take your next steps? Read on to find out more about each of the components:
+* [UI component](#ui-component)
+* [Logic component](#logic-component)
+* [Model component](#model-component)
+* [Storage component](#storage-component)
+* [Common classes](#common-classes)
 
 ### UI component
 
+The UI component is responsible for handling the interactions on the user-interface.
+
 The **API** of this component is specified
-in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+in [`Ui.java`](https://github.com/AY2223S1-CS2103T-W17-2/tp/blob/master/src/main/java/seedu/pennywise/ui/Ui.java)
 
 ![Structure of the UI Component](images/UpdatedUIClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `EntryPane`
+The UI consists of a `MainWindow` that is made up of parts e.g. `CommandBox`, `ResultDisplay`, `EntryPane`
 , `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures
 the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that
 are in the `src/main/resources/view` folder. For example, the layout of
-the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java)
+the [`MainWindow`](https://github.com/AY2223S1-CS2103T-W17-2/tp/blob/master/src/main/java/seedu/pennywise/ui/MainWindow.java)
 is specified
-in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-W17-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -143,7 +245,9 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+The Logic component is the _brain_ of the application and handles how commands from the users are parsed and executed.
+
+**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-W17-2/tp/blob/master/src/main/java/seedu/pennywise/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -154,16 +258,15 @@ How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `PennyWiseParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is
    executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a entry).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+1. The command can communicate with the `Model` when it is executed (e.g. to add an entry).
+1. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1 t/e")` API
 call.
 
 ![Interactions Inside the Logic Component for the `delete 1 t/e` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.</div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
@@ -180,10 +283,11 @@ How the parsing works:
 
 ### Model component
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+The Model component is in charge of managing the entities in the application.
+
+**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W17-2/tp/blob/master/src/main/java/seedu/pennywise/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
-
 
 The `Model` component,
 
@@ -198,7 +302,9 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+The Storage component helps to provide data-storage facilities, allowing data in the application to be stored securely.
+
+**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-W17-2/tp/blob/master/src/main/java/seedu/pennywise/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -213,55 +319,68 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the [`seedu.addressbook.commons`](https://github.com/AY2223S1-CS2103T-W17-2/tp/tree/master/src/main/java/seedu/pennywise/commons) package.
+
+<p align="right">
+    <a href="#top">Back to Top </a>
+</p>
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Implementation**
 
-This section describes some noteworthy details on how certain features are implemented.
+This section describes some noteworthy details on how certain features are implemented, as well as the considerations that goes behind the implementations.
+You can also find some of our proposed implementations for challenging features that we will focus on in later iterations.
 
 ### Summarise Entries
 
-The `summary` command is implemented by the `SummaryCommandParser` and `SummaryCommand` classes
+The `summary` feature provides 3 simple statistic, including the total expenditure, total income and total balance,
+helping students to have a quick overview of their expenditure and income. If the command is optionally provided with a
+year and month field, the summary statistics will be contained to only the entries occurring in the specified year and month.
 
-`SummaryCommandParser` class is responsible for parsing the parameter received from the user
+#### How the `summary` command works
 
-`SummaryCommand` class is responsible for generating the summary statistic for the specified duration
+The `summary` command is implemented by the `SummaryCommandParser` and `SummaryCommand` classes.
 
-Below is a sequence diagram and explanation of how the SummaryCommand is executed.
+`SummaryCommandParser` class is responsible for parsing the parameter received from the user.
+
+`SummaryCommand` class is responsible for generating the summary statistic for the specified duration.
+
+Below is a sequence diagram and explanation of how the `summary` command is executed.
 ![Interactions Inside the Logic Component for the `summary mo/2022-08` Command](images/SummarySequenceDiagram.png)
 
-Step 1.The user enters `summary mo/2022-08` command in the main window
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SummaryCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.</div>
 
-Step 2. The command is handled by `LogicManager#execute` method,
+1. The user enters `summary mo/2022-08` command in the main window
+
+2. The command is handled by `LogicManager#execute` method,
 which then calls the `PennyWiseParser#parseCommand` method
 
-Step 3. The `PennyWiseParser` matches the word summary in the string and extracts the argument string `mo/2022-08`
+3. The `PennyWiseParser` matches the word summary in the string and extracts the argument string `mo/2022-08`
 
-Step 4. The `PennyWiseParser` then calls `SummaryCommandParser#parse` method
+4. The `PennyWiseParser` then calls `SummaryCommandParser#parse` method
 and the argument string is converted to a List
 
-Step 5. The `SummaryCommandParser` creates a new EntryInYearMonthPredicate instance to handle the filter
+5. The `SummaryCommandParser` creates a new EntryInYearMonthPredicate instance to handle the filter
 
-Step 6. The `SummaryCommandParser` creates a new `SummaryCommand` instance with the `EntryInYearMonthPredicate` instance and
+6. The `SummaryCommandParser` creates a new `SummaryCommand` instance with the `EntryInYearMonthPredicate` instance and
 returns it to `PennyWiseParser`, which in turn returns to `LogicManger`.
 
-Step 7. The `LogicManager` calls the `SummaryCommand#execute` method.
+7. The `LogicManager` calls the `SummaryCommand#execute` method.
 
-Step 8. The `SummaryCommand` calls the `Model#updateFilteredEntry` method and
+8. The `SummaryCommand` calls the `Model#updateFilteredEntry` method and
 filters the income and expenditure entries by the month
 
-Step 9. The application calculates the summary statistics for the filtered income and expenditure entries.
+9. The application calculates the summary statistics for the filtered income and expenditure entries.
 
-Step 10. The `SummaryCommand` then creates a CommandResult and returns it to `LogicManager`.
+10. The `SummaryCommand` then creates a CommandResult and returns it to `LogicManager`.
 
 #### Design considerations:
 * **Alternative 1 (current choice):** Only allow users to generate summary statistic either by month or all entries
   * Pros: Easier to implement. The statistics by month is also logical as
   users will generally budget based on a monthly basis
   * Cons: Users will not be able to customise the scope of the summary
-  statistic further (e.g summarising entries for the past week)
+  statistic further (e.g. summarising entries for the past week)
 
 * **Alternative 2:** Provide the option to specify a start and end date to generate summary statistic
   * Pros: Allows more customisation to the scope of the summary statistics
@@ -269,34 +388,40 @@ Step 10. The `SummaryCommand` then creates a CommandResult and returns it to `Lo
 
 ### Add Entry
 
+The `add` command allows students to add their expenses or income entries into PennyWise.
+
+### How the `add` command works
+
 The `add` command is implemented by the `AddCommandParser` and `AddCommand` classes.
 
 `AddCommandParser` class is responsible for parsing the parameter received from the user.
 
 `AddCommand` class is responsible for adding a new entry to the specified list.
 
-Below is a sequence diagram and explanation of how the AddCommand is executed.
+Below is a sequence diagram and explanation of how the `add` command is executed.
 ![Interactions Inside the Logic Component for the `add t/e d/Lunch a/7.20 da/04-10-2022 c/Food` Command](images/AddSequenceDiagram.png)
 
-Step 1. The user enters `add t/e d/Lunch a/7.20 da/04-10-2022 c/Food` command in the main window.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.</div>
 
-Step 2. The command is handled by `LogicManager#execute` method, which then calls the `PennyWiseParser#parseCommand`method.
+1. The user enters `add t/e d/Lunch a/7.20 da/04-10-2022 c/Food` command in the main window.
 
-Step 3. The `PennyWiseParser` matches the entry details in the string and extracts the argument string `t/e d/Lunch a/7.20 da/04-10-2022 c/Food`.
+2. The command is handled by `LogicManager#execute` method, which then calls the `PennyWiseParser#parseCommand`method.
 
-Step 4. The `PennyWiseParser` then calls `AddCommandParser#parse` method and the argument string is converted to a List.
+3. The `PennyWiseParser` matches the entry details in the string and extracts the argument string `t/e d/Lunch a/7.20 da/04-10-2022 c/Food`.
 
-Step 5. The `AddCommandParser` then creates a new instances of arguments needed for an Entry: `EntryType`, `Description`, `Amount`, `Date`, `Category`.
+4. The `PennyWiseParser` then calls `AddCommandParser#parse` method and the argument string is converted to a List.
 
-Step 6. The `AddCommandParser` uses the new instances to create a new instance of `Entry`, depending on the `EntryType` specified.
+5. The `AddCommandParser` then creates a new instances of arguments needed for an Entry: `EntryType`, `Description`, `Amount`, `Date`, `Category`.
 
-Step 7. The `AddCommandParser` creates a new `AddCommand` instance with the new `Entry` instance and returns it to `PennyWiseParser`, which in turns returns to `LogicManager`.
+6. The `AddCommandParser` uses the new instances to create a new instance of `Entry`, depending on the `EntryType` specified.
 
-Step 8. The `LogicManager` calls the `AddCommand#execute` method.
+7. The `AddCommandParser` creates a new `AddCommand` instance with the new `Entry` instance and returns it to `PennyWiseParser`, which in turns returns to `LogicManager`.
 
-Step 9. The `AddCommand` calls the `Model#addExpenditure` or `Model#addIncome` method and adds the new entry to the specified list.
+8. The `LogicManager` calls the `AddCommand#execute` method.
 
-Step 10. The `AddCommand` then creates a `CommandResult` instance and returns it to `LogicManager`.
+9. The `AddCommand` calls the `Model#addExpenditure` or `Model#addIncome` method and adds the new entry to the specified list.
+
+10. The `AddCommand` then creates a `CommandResult` instance and returns it to `LogicManager`.
 
 #### Design Considerations
 * **Alternative 1 (current choice):** Only allow users to create an Entry with 1 type of category
@@ -309,6 +434,10 @@ Step 10. The `AddCommand` then creates a `CommandResult` instance and returns it
 
 ### Edit Entry
 
+The `edit` command allows students to make changes to the description, date, amount or category of existing expenditure and income entries.
+
+#### How the `edit` command works
+
 The `edit` command is implemented by the `EditCommandParser` and `EditCommand` classes.
 
 `EditCommandParser` class is responsible for parsing the parameter received from the user.
@@ -318,27 +447,96 @@ The `edit` command is implemented by the `EditCommandParser` and `EditCommand` c
 Below is a sequence diagram and explanation of how the EditCommand is executed.
 ![Interactions Inside the Logic Component for the `edit 1 t/e d/LunchDeck` Command](images/EditSequenceDiagram.png)
 
-Step 1. The user enters `edit 1 t/e d/LunchDeck` command in the main window.
+![Interactions Inside the Logic Component for the `edit 1 t/e d/LunchDeck` Command](images/EditEntrySequenceDiagram.png)
 
-Step 2. The command is handled by `LogicManager#execute` method, which then calls the `PennyWiseParser#parseCommand`method.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `EditCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.</div>
 
-Step 3. The `PennyWiseParser` matches the entry details in the string and extracts the argument string `1 t/e d/LunchDeck`.
+1. The user enters `edit 1 t/e d/LunchDeck` command in the main window.
 
-Step 4. The `PennyWiseParser` then calls `EditCommandParser#parse` method and the argument string is converted to a List.
+2. The command is handled by `LogicManager#execute` method, which then calls the `PennyWiseParser#parseCommand`method.
 
-Step 5. The `EditCommandParser` then creates a new instance of the `EditEntryDescriptor` to describe the fields to be updated: `EntryType`, `Description`, `Amount`, `Date`, `Category`.
+3. The `PennyWiseParser` matches the entry details in the string and extracts the argument string `1 t/e d/LunchDeck`.
 
-Step 6. The `EditCommandParser` creates a new `EditCommand` instance with the `EditEntryDescriptor` instance and returns it to `PennyWiseParser`, which in turns returns to `LogicManager`.
+4. The `PennyWiseParser` then calls `EditCommandParser#parse` method and the argument string is converted to a List.
 
-Step 7. The `LogicManager` calls the `EditCommand#execute` method.
+5. The `EditCommandParser` then creates a new instance of the `EditEntryDescriptor` to describe the fields to be updated: `EntryType`, `Description`, `Amount`, `Date`, `Category`.
 
-Step 8. The `EditCommand` calls the `Model#getFilteredExpenditureList` method to retrieve the list of expenditure entries.
+6. The `EditCommandParser` creates a new `EditCommand` instance with the `EditEntryDescriptor` instance and returns it to `PennyWiseParser`, which in turns returns to `LogicManager`.
 
-Step 9. The `EditCommand` invokes the `EditCommand#getEntryToEdit` method to get the entry to be edited, then creates a new instance of the edited entry using `EditCommand#createdEditedEntry`.
+7. The `LogicManager` calls the `EditCommand#execute` method.
 
-Step 10. The `EditCommand` then calls the `Model#setExpenditure` method to update the expenditure and the `Model#updateFilteredExpenditureList` method to update the list of expenditure with the updated entry.
+8. The `EditCommand` calls the `Model#getFilteredExpenditureList` method to retrieve the list of expenditure entries.
 
-Step 11. The `EditCommand` eventually creates a `CommandResult` instance and returns it to `LogicManager`.
+9. The `EditCommand` invokes the `EditCommand#getEntryToEdit` method to get the entry to be edited, then creates a new instance of the edited entry using `EditCommand#createdEditedEntry`.
+
+10. The `EditCommand` then calls the `Model#setExpenditure` method to update the expenditure.
+
+11. The `EditCommand` eventually creates a `CommandResult` instance and returns it to `LogicManager`.
+
+### View pie charts and line graphs
+
+#### How the `view` command works
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The command syntax for view command is as follows:
+`view t/ENTRY_TYPE [mo/MONTH]`
+E.g. `view t/e` produces a pie chart view of the expenses entries grouped by categories.
+`view t/i mo/2022-01` produces a line graph of the income entries in Jan 2022 grouped by days.
+</div>
+
+`view` command is used to filter the entry list as well as generate graphs.
+
+The `ViewCommandParser` class is responsible for parsing the parameter received from the user, and passing the `EntryType`
+as well as `GraphType` to the `ViewCommand` class.
+
+The `ViewCommand` class is responsible for filtering the entry list and generating the correct `GraphConfiguration`.
+The class diagram below shows the structure of `ViewCommand`.
+![ViewCommandClassDiagram](images/ViewCommandClassDiagram.png)
+
+The `view` command will produce a category view with a pie chart or a daily view with a line graph. This is achieved with an optional
+input `mo/MONTH`. If it is present, the entry list will be filtered by the specified month and
+a line graph will be displayed. Otherwise, the full list will be shown and a pie chart will be displayed.
+
+The activity diagram below illustrates the workflow described above when a user executes the `view` command.
+![ViewActivityDiagram](images/ViewActivityDiagramBusiness.png)
+
+Given below is an example usage scenario and how the pie chart view mechanism behaves at each step.
+The two sequence diagrams below omit the parsing workflow as it is identical to the rest of the command. They only highlight
+the steps in **command execution** as well as **UI updates**.
+
+![ViewSequenceDiagramCommand](images/ViewSequenceDiagramCommand.png)
+![ViewSequenceDiagramUI](images/ViewSequenceDiagramUI.png)
+
+1. The user types `view t/e` command in the main window.
+
+2. This command is handled by `MainWindow#executeCommand` method, which then calls the `LogicManager#execute` method.
+
+3. `LogicManager` then calls the `pennyWiseParser#parseCommand` method which matches the command word `view` in the string and extracts the arguments string `t/e`.
+
+4. `pennyWiseParser` then calls the `ViewCommandParser#parse` method.
+   In this method, it is ensured that the input is of the correct format, and the entryType (and year month, if supplied) is extracted.
+   It creates a `viewEntriesDescriptor` with `entryType` set to expenditure and `yearMonth` set to `null`.
+5. `LogicManager`then calls the `ViewCommand#execute` method which creates a `graphConfiguration` based on the `viewEntriesDescriptor`. It also filters the
+expenditure list based on `predicate` generated from the `viewEntriesDescriptor`.
+The `CommandResult`, containing the `graphConfiguration`, is returned to `LogicManager` and passed to `MainWindow`.
+
+6.`MainWindow` checks the `commandResult` which indicates a need to update graph. It then calls the `updateGraph` method which renders the graph according to the `graphConfiguration`.
+
+7. In `updateGraph`, `LogicManager#getExpensePieChartData` calls `ModelManager#getPieChartData` which returns the `pieChartData`.
+   It then creates a new `GraphPanel` with the `pieChartData` and add it to the UI.
+
+Design considerations:
+* **Alternative 1:** The charts update only after `view` command.
+    * Pros: Easy to extend since we are adding more graph representation of data later such as bar graphs.
+    * Cons: Not responsive to changes in data, for instance if the user adds an entry, the pie chart will not be automatically updated.
+* **Alternative 2:** The charts update immediately after changing tabs between expenses and income.
+    * Pros: Intuitive, simple and quick for user.
+    * Cons: Difficult to extend to other graph types as user might prefer other graph representations.
+
+The current design follows a modified version of Alternative 2. Whenever the tab is toggled manually by users, all filters
+will be reset and a pie chart will be displayed. We followed this design for the following reasons:
+* The UI is still responsive to users' tab switching action.
+* Setting a filter for one list with `view t/ENTRY_TYPE mo/MONTH` would not affect the other list, because to show the other list,
+the user needs to either use a `view` command, which sets a filter for the other list, or switch tab manually, which is equivalent
+to a `view t/ENTRY_TYPE` command.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -357,19 +555,19 @@ and `Model#redoPennyWise()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedPennyWise` will be initialized with the
+1. The user launches the application for the first time. The `VersionedPennyWise` will be initialized with the
 initial PennyWise state, and the `currentStatePointer` pointing to that single PennyWise state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th entry in the application. The `delete` command
+2. The user executes `delete 5` command to delete the 5th entry in the application. The `delete` command
 calls `Model#commitPennyWise()`, causing the modified state of the application after the `delete 5` command executes
 to be saved in the `pennyWiseStateList`, and the `currentStatePointer` is shifted to the newly inserted PennyWise
 state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add t/e …​` to add a new entry. The `add` command also calls `Model#commitPennyWise()`
+3. The user executes `add t/e …​` to add a new entry. The `add` command also calls `Model#commitPennyWise()`
 , causing another modified PennyWise state to be saved into the `pennyWiseStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
@@ -378,7 +576,7 @@ Step 3. The user executes `add t/e …​` to add a new entry. The `add` command
 
 </div>
 
-Step 4. The user now decides that adding the entry was a mistake, and decides to undo that action by executing
+4. The user now decides that adding the entry was a mistake, and decides to undo that action by executing
 the `undo` command. The `undo` command will call `Model#undoPennyWise()`, which will shift the `currentStatePointer`
 once to the left, pointing it to the previous application state, and restores the application to that state.
 
@@ -393,9 +591,7 @@ The following sequence diagram shows how the undo operation works:
 
 ![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.</div>
 
 The `redo` command does the opposite — it calls `Model#redoPennyWise()`, which shifts the `currentStatePointer` once
 to the right, pointing to the previously undone state, and restores the application to that state.
@@ -406,7 +602,7 @@ to the right, pointing to the previously undone state, and restores the applicat
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 5. The user executes `clear`, which calls `Model#commitPennyWise()`. Since the `currentStatePointer` is not
+5. The user executes `clear`, which calls `Model#commitPennyWise()`. Since the `currentStatePointer` is not
 pointing at the end of the `pennyWiseStateList`, all application states after the `currentStatePointer` will be
 purged. Reason: It no longer makes sense to redo the `add t/e …​` command. This is the behavior that most modern
 desktop applications follow.
@@ -435,48 +631,9 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
-### [Proposed\] Pie Chart View feature
-
-#### Implementation
-The pie chart view feature displays a pie chart view by categories of spending/income entries, and can be accessed via the `view` command. Additionally, it implements the following operation
-* `getExpensePieChartData()`
-* `getIncomePieChartData()`
-
-These operations are exposed in the `Model` interface as `Model#getExpensePieChartData()`, `Model#getIncomePieChartData()` respectively.
-
-The activity diagram below shows the workflow when a user executes the `view` command.
-
-![ViewActivityDiagram](images/ViewActivityDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The command syntax for view command is as follows:
-view entryType graphType
-E.g. `view t/e g/c` indicates type expenses and graph category. This shows a pie chart view of the expenses entries grouped by categories.
-</div>
-
-Given below is an example usage scenario and how the pie chart view mechanism behaves at each step.
-![PieChartViewSequenceDiagram](images/PieChartViewSequenceDiagram.png)
-
-Step 1. The user types in `view t/e g/c` command in the main window.
-
-Step 2. This command is handled by `MainWindow#executeCommand` method, which then calls the `LogicManager#execute` method
-
-Step 3. `LogicManager` then calls the `pennyWiseParser#parseCommand` method which matches the command word `view` in the string and extracts the arguments string `t/e g/c`.
-
-Step 4. `pennyWiseParser` then calls the `ViewCommandParser#parse` method. In this method, it is ensured that the input is of the correct format, and the entryType and graphType is extracted.
-
-Step 5. `LogicManager`then calls the `ViewCommand#execute` method which returns a `CommandResult` that is returned to `LogicManager` and passed to `MainWindow`.
-
-Step 6. `MainWindow` then calls the `handleGraph` method which determines what data to update before calling `updateGraph`.
-
-Step 7. In `updateGraph`, `LogicManager#getExpensePieChartData` calls `ModelManager#getPieChartData` which returns the pieChartData for the pieChart to be created and rendered on the UI.
-
-Design considerations:
-* **Alternative 1(current choice):** The pie chart updates only after `view` command.
-    * Pros: Easy to extend since we are adding more graph representation of data later such as bar graphs.
-    * Cons: Not responsive to changes in data, for instance if the user adds an entry, the pie chart will not be automatically updated.
-* **Alternative 2:** Pie chart updates immediately after changing tabs from expenses and income.
-    * Pros: Intuitive, simple and quick for user.
-    * Cons: Difficult to extend to other graph types as user might prefer other graph representations.
+<p align="right">
+    <a href="#top">Back to Top </a>
+</p>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -488,14 +645,31 @@ Design considerations:
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
 
+<p align="right">
+    <a href="#top">Back to Top </a>
+</p>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Requirements**
 
+In this section, we share some thought-process behind starting and developing PennyWise.
+In particular, this encompasses:
+
+* [Product scope](#product-scope)
+* [User stories](#user-stories)
+* [Use cases](#use-cases)
+* [Non-Functional Requirements](#non-functional-requirements)
+* [Glossary](#glossary)
+
 ### Product scope
+
+Here, we share the target user profile and the value proposition of PennyWise, which can aid you in having a better
+understanding of how our features _fit together__ a cohesive product and how it matches our target user.
 
 **Target user profile**:
 
+Tertiary students who:
 * has a need to manage a significant number of expenditures or income streams
 * prefer desktop apps over other types
 * can type fast
@@ -503,32 +677,61 @@ Design considerations:
 * is reasonably comfortable using CLI apps
 
 **Value proposition**:
-* Empower students with the ability to make sensible financial decisions in their budgeting.
-* Provides an overview of their own expenditures and income, displaying it in a graphical manner for easy comprehension.
-* Students would be able to easily identify categories they are overspending, and hone in on which one to cut down on.
+
+PennyWise empowers tertiary students with the ability to make informed financial decisions by providing a graphical analysis of their financial activities.
+This allows students to easily identify categories they are overspending on and spot trends in their spending patterns,
+allowing them to zone in on which aspect to cut down on.
+Furthermore, PennyWise also helps students to keep track of their income streams, making it fast and convenient for them to juggle
+their budget.
 
 ### User stories
 
-Priorities: High (must have) - `HIGH`, Medium (nice to have) - `MEDIUM`, Low (unlikely to have) - `LOW`
+Here, we list some user stories of the application so that you can better understand how the application can be used from the user's perspective.
 
-| Priority | As a …​        | I want to …​                                                                             | So that I can…​                                                                                           |
-|----------|----------------|------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------|
-| `HIGH`   | user           | input expenses/income <br/> delete expenses/income <br/> input expenses/income with date | record my expenses/income <br/> remove any wrong expenses/income records <br/> keep track of when I spend my money |
-| `HIGH`   | user           | view all my expenses/income                                                              | get an overview of all my expenses/income                                                                          |
-| `HIGH`   | user           | summarize my expenses/income                                                             | be aware of the amount of money I can spend                                                                        |
-| `MEDIUM` | user           | edit any mistakes in my expenses/income entries                                          | correctly log my budgeting                                                                                         |
-| `MEDIUM` | organised user | tag my expenses/income based on specific categories                                      | keep track of which components I am spending more on                                                               |
-| `MEDIUM` | organised user | filter my expenses by tags                                                               | have an overview of the areas where I spent                                                                        |
-| `MEDIUM` | organised user | filter my expenses by date range                                                         | have an overview of the amount I spent in a given period                                                           |
-| `LOW`    | visual learner | have graphs that reflects my expenses/income                                             | better understand my spending/income patterns                                                                      |
-| `LOW`    | user           | view a list of commands and how to use them                                              | refer to it when i forgot the commands                                                                             |
+<div markdown="span" class="alert alert-info">:information_source: **What is a user story?**
+User stories are short, simple descriptions of a feature told from the perspective of the person who desires the new capability, usually a user or customer of the system.
 
-*{More to be added}*
+(adapted from [CS2103T Notes](https://nus-cs2103-ay2223s1.github.io/website/schedule/week5/topics.html#user-stories))
+</div>
+
+Priorities:
+* High (must have) - `HIGH`
+* Medium (nice to have) - `MEDIUM`
+* Low (unlikely to have) - `LOW`
+
+| **Priority** | **As a...**                          | **I want to...**                                        | **So that I can...**                                           |
+|--------------|--------------------------------------|---------------------------------------------------------|----------------------------------------------------------------|
+| `HIGH`       | student                              | add a new expense/income entry                          | keep track of the details of my expenditures/incomes           |
+| `HIGH`       | student                              | delete an existing expense/income entry                 | remove an expense/income entry that I do not need to track     |
+| `HIGH`       | student                              | view all my expenses/income                             | get an overview of all my expenses/income                      |
+| `HIGH`       | student                              | summarize my expenses/income                            | easily decide on how to adjust my spending                     |
+| `MEDIUM`     | student                              | edit any mistakes in my expenses/income entries         | correctly log my budgeting                                     |
+| `MEDIUM`     | student who spends a lot             | determine areas where I am spending the most on         | zone in on the appropriate areas to cut down my spending       |
+| `MEDIUM`     | student who spends a lot             | categorize my expense entries                           | have a finer overview of my expense entries                    |
+| `MEDIUM`     | student with multiple income streams | categorize my income entries                            | have a finer overview of my income entries                     |
+| `MEDIUM`     | organised student                    | filter my expenses by tags                              | have an overview of the areas where I spent                    |
+| `MEDIUM`     | organised student                    | filter my incomes by tags                               | have an overview of the areas where I am earning               |
+| `MEDIUM`     | organised student                    | filter my expenses by date range                        | identify trends and patterns in my spending habits             |
+| `MEDIUM`     | organised student                    | filter my incomes by date range                         | identify trends and patterns in my income streams              |
+| `MEDIUM`     | potential user                       | see example data in the application                     | see how the application works                                  |
+| `LOW`        | visual learner                       | view my expenses/income using different types of graphs | better visualisation of my spending/income patterns and habits |
+| `LOW`        | forgetful student                    | view a list of commands and how to use them             | refer to it when I forget the commands                         |
+| `LOW`        | forgetful student                    | have a list of prompts for commands when I am typing    | avoid having to constantly refer to the user guide             |
 
 ### Use cases
 
-(For all use cases below, the **System** is the `PennyWise` and the **Actor** is the `User`, unless specified
-otherwise, for all **Entries**, they can only be of type `expenditure` or `income`.)
+Here, we list some use cases of the application.
+
+<div markdown="span" class="alert alert-info">:information_source: **What is a use case?**
+A use case describes an interaction between the user and the system for a specific functionality of the system.
+
+(adapted from [CS2103T Notes](https://nus-cs2103-ay2223s1.github.io/website/schedule/week7/topics.html#W7-1))
+</div>
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+For all use cases below, the **System** is the `PennyWise` and the **Actor** is the `User`, unless specified
+otherwise, for all **Entries**, they can only be of type `expenditure` or `income`.
+</div>
 
 **Use case: UC1 - Add an entry**
 
@@ -661,28 +864,30 @@ otherwise, for all **Entries**, they can only be of type `expenditure` or `incom
 
    Use case ends.
 
-*{More to be added}*
-
 ### Non-Functional Requirements
 
 1. **Technical requirements**: The system should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. **Performance requirements**: The system should be able to hold up to 1000 entries without a noticeable sluggishness in performance for typical usage.
+2. **Performance requirements**: The system should be able to hold up to 1000 expenses entries and 1000 income entries without a noticeable sluggishness in performance for typical usage.
 3. **Performance requirements**: The system should respond within two seconds.
 4. **Quality requirements**: A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be
    able to accomplish most of the tasks faster using commands than using the mouse.
-5. **Quality requirements**: The system should be easily usable by a novice who has never managed budgeting.
+5. **Quality requirements**: The system should be easily usable by a novice who has never managed budgeting without having to constantly refer to the user guide.
 6. **Data Requirements**: Data should be persisted within the user's file system only.
-7. **Documentation**: The User Guide and Developer Guide should be directed towards self-help for users.
-8. The user interface should be intuitive enough for users who are not IT-savvy.
+7. **Documentation**: The User Guide should be directed towards self-help for users, so that they are able to understand how to use the application and recover from mistakes.
+8. The user interface should be self-explanatory as much as possible for users who are not IT-savvy without having to constantly refer to the user guide.
 9. The source code should be open source.
 10. The product is offered as a free online service.
 
-*{More to be added}*
-
 ### Glossary
+
+In the Glossary, we provide our definitions for some commonly-used terms that you can find throughout the application.
 
 * **Mainstream OS**: Windows, Linux, Unix, macOS
 * **Entry**: An entry refers to either an expenditure or income
+
+<p align="right">
+    <a href="#top">Back to Top </a>
+</p>
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
@@ -805,3 +1010,7 @@ testers are expected to do more *exploratory* testing.
     1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+<p align="right">
+    <a href="#top">Back to Top </a>
+</p>

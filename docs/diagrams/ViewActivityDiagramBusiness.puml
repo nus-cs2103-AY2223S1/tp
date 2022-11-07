@@ -1,0 +1,33 @@
+@startuml
+
+start
+:user input view command;
+if () then ([input is valid]))
+if () then ([entry type is expenditure]))
+    switch ()
+    case ([month parameter is present])
+      :Filter the expenditure list by the specified month;
+      :Display the filtered list and a line graph;
+    case ([else])
+      :Clear any filters;
+      :Display the entire expenditure list and a pie chart;
+     endswitch
+
+else ([entry type is income])
+    switch ()
+    case ([month parameter is present])
+      :Filter the income list by the specified month;
+      :Display the filtered list and a line graph;
+    case ([else])
+      :Clear any filters;
+      :Display the entire income list and a pie chart;
+     endswitch
+endif
+else ([else])
+stop
+endif
+stop
+
+@enduml
+
+

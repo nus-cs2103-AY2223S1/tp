@@ -15,8 +15,8 @@ import seedu.pennywise.model.entry.Tag;
  * Contains utility methods for populating {@code PennyWise} with sample data.
  */
 public class SampleDataUtil {
-    public static final EntryType EXPENDITURE_TYPE = new EntryType("e");
-    public static final EntryType INCOME_TYPE = new EntryType("i");
+    public static final EntryType EXPENDITURE_TYPE = new EntryType(EntryType.ENTRY_TYPE_EXPENDITURE);
+    public static final EntryType INCOME_TYPE = new EntryType(EntryType.ENTRY_TYPE_INCOME);
 
     public static Expenditure[] getSampleExpenditure() {
         return new Expenditure[] {

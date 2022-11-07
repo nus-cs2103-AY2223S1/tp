@@ -45,18 +45,10 @@ destroy DeleteCommandParser
 PennyWiseParser --> LogicManager : d
 deactivate PennyWiseParser
 
-LogicManager -> DeleteCommand : execute(model)
+LogicManager -> DeleteCommand : execute()
 activate DeleteCommand
 
-DeleteCommand -> Model :getFilteredExpenditureList()
-activate Model
-return lastShownList
-
-DeleteCommand -> DeleteCommand :getEntryToDelete(1, lastShownList)
-activate DeleteCommand
-return entryToDelete
-
-DeleteCommand -> Model : deleteExpenditure(entryToDelete)
+DeleteCommand -> Model : deleteExpenditure(1)
 activate Model
 
 Model --> DeleteCommand

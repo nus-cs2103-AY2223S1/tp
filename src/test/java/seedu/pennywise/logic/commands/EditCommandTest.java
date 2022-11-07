@@ -222,6 +222,7 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ENTRY_SUCCESS, editedEntry);
 
         Model expectedModel = new ModelManager(new PennyWise(model.getPennyWise()), new UserPrefs());
+        showExpenditureAtIndex(expectedModel, INDEX_FIRST_ENTRY);
         expectedModel.setExpenditure(
                 model.getFilteredExpenditureList().get(INDEX_FIRST_ENTRY.getZeroBased()),
                 editedEntry
