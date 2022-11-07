@@ -347,9 +347,9 @@ Format: `list-module`
 
 Here's a screenshot of Plannit before and after executing the command:
 
-| Before executing the command                                                                                                                                | After executing the command                                                                                                                                          |
-|-------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| {::nomarkdown}<p align="center"><img src="images/list-module-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/list-module-after.png"/></p> <p align="left"><p>The module list has now been updated with every module!</p><p/>{:/} |
+| Before executing the command                                                                                                                                | After executing the command                                                                                                                                   |
+|-------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/list-module-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/list-module-after.png"/></p> <p align="left">The module list has now been updated with every module!</p>{:/} |
 
 <div style="page-break-after: always;"></div>
 
