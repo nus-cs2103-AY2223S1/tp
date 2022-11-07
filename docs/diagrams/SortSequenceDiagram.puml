@@ -1,0 +1,59 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":JeeqTrackerParser" as JeeqTrackerParser LOGIC_COLOR
+participant ":SortCommandParser" as SortCommandParser LOGIC_COLOR
+participant "d:SortCommand" as SortCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+[-> LogicManager : execute("sort 1 latest")
+activate LogicManager
+
+LogicManager -> JeeqTrackerParser : parseCommand("sort 1 latest")
+activate JeeqTrackerParser
+
+create SortCommandParser
+JeeqTrackerParser -> SortCommandParser
+activate SortCommandParser
+
+SortCommandParser --> JeeqTrackerParser
+deactivate SortCommandParser
+
+JeeqTrackerParser -> SortCommandParser : parse("1 latest")
+activate SortCommandParser
+
+create SortCommand
+SortCommandParser -> SortCommand
+activate SortCommand
+
+SortCommand --> SortCommandParser : d
+deactivate SortCommand
+
+SortCommandParser --> JeeqTrackerParser : d
+deactivate SortCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+SortCommandParser -[hidden]-> JeeqTrackerParser
+destroy SortCommandParser
+
+JeeqTrackerParser --> LogicManager : d
+deactivate JeeqTrackerParser
+
+LogicManager -> SortCommand : execute()
+activate SortCommand
+
+create CommandResult
+SortCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> SortCommand
+deactivate CommandResult
+
+SortCommand --> LogicManager : result
+deactivate SortCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

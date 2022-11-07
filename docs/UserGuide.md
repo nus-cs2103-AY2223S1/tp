@@ -98,7 +98,7 @@ service that would meet the needs of your client, increasing customer engagement
 
 ## User Interface Overview
 
-![UiOverview](images/UiOverview.jpg)
+![UiOverview](images/UiOverview.png)
 
 This application UI is split into `5 sections`.
 * `Input Command`: This is where you should key in your commands, and press enter to execute
@@ -599,3 +599,4 @@ _Details coming soon ..._
 | **t/**     | Tag applied on clients                         | Alphanumeric, single word                           | `t/friends`                   |
 
 [Back to Table of Contents](#table-of-contents)
+

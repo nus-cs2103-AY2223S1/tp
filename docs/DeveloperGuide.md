@@ -14,12 +14,12 @@ title: Developer Guide
     * [Common classes](#common-classes)
 * [Implementation](#implementations)
     * [Filter transaction feature](#filter-feature-for-transactions)
-    * [Buy / Sell transaction feature](#buy-feature-for-transactions)
+    * [Buy / Sell transaction feature](#buysell-feature-for-transactions)
     * [Editing client feature](#editing-client-feature)
     * [Editing transactions feature](#editing-transactions-feature)
     * [Editing remarks feature](#editing-remarks-feature)
     * [Delete Client/Transaction/Remark feature](#delete-clienttransactionremark-feature)
-    * [Sort feature]()
+    * [Sort feature](#sort-feature)
 * [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 * [Appendix: Requirements](#appendix-requirements)
     * [Product Scope](#product-scope)
@@ -32,16 +32,24 @@ title: Developer Guide
       * [Add a remark to a client](#use-case-uc05---add-a-remark-to-a-client-br)
       * [Requesting help](#use-case-uc06---requesting-help)
       * [Clearing all data](#use-case-uc07---clearing-all-data)
+      * [Buying from a client](#use-case-uc08---buying-from-a-client)
+      * [Selling to a client](#use-case-uc09---selling-to-a-client)
+      * [Sorting a client](#use-case-uc10---sort-client-by-latest-transaction-br)
+      * [Edit a client](#use-case-uc11---edit-a-client)
+      * [Edit a transaction](#use-case-uc12---edit-a-transaction)
+      * [Edit a remark](#use-case-uc13---edit-a-remark)
     * [Non-Functional Requirements](#non-functional-requirements)
     * [Glossary](#glossary)
 * [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
   * [Launch and shutdown](#launch-and-shutdown)
   * [Delete a client](#deleting-a-client)
-  * [Delete a transaction]()
-  * [Delete a remark]()
+  * [Delete a transaction](#deleting-a-transaction)
+  * [Delete a remark](#deleting-a-remark)
+  * [Filtering transactions](#filtering-transactions-from-all-clients)
   * [Editing a client](#editing-a-client)
   * [Editing a transaction](#editing-a-transaction)
   * [Editing a remark](#editing-a-remark)
+  * [Sort a client](#sorting-transactions-from-a-client)
   * [Saving data](#saving-data)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -174,19 +182,18 @@ The `Model` component,
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <div markdown="span" class="alert alert-info">:information_source: **How Transaction and Remark are modelled:** 
-The diagrams below show the Transaction and Remark Model and how they are stored in Client. <br>
+The diagrams below show the Transaction and Remark Model and how they are stored in Client. <br><br>
 
 **`Transaction` Class <br>**
 Each `Client` Class has a `TransactionLog` which stores all transactions of the client in a List. The `Transaction` object contains the `Goods` transacted,
 `Price` of the goods, `Quantity` of goods and `Date` of the transaction. <br>
-<img src="images/TransactionModelClassDiagram2.png" width="350"/>
-
+<img src="images/TransactionModelClassDiagram2.png" width="350"/><br><br>
 
 **`Remark` Class <br>**
 Each `Client` Class has a `UniqueRemarkList` which stores `Remark` object that do not 
 have the same `Text` (case-insensitive). The `Remark` object contains the 
 `Text` which represents the remark's text. <br>
-<img src="images/RemarkModelClassDiagram.png" width="350"/>
+<img src="images/RemarkModelClassDiagram.png" width="350"/><br>
 </div>
 
 
@@ -194,7 +201,7 @@ have the same `Text` (case-insensitive). The `Remark` object contains the
 
 **API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-T09-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageDiagram.png" width="700" />
+<img src="images/StorageDiagram.png" />
 
 The `Storage` component,
 
@@ -257,13 +264,14 @@ The following activity diagram summarizes what happens when a user executes the 
     * Pros: Performs faster as the command only filters through one client transactions. Also, user would be able to know which client the filtered transactions are from.
     * Cons: User would have to manually select each client and filter the transactions.
 
-### Buy feature for transactions
+### Buy/Sell feature for transactions
 
-The proposed sort mechanism is facilitated by `BuyCommand`. It extends `Command` and `BuyCommandParser` which extends from `Parser`.
-To invoke the buy command, `BuyCommandParser` will parse the arguments from the user input via `BuyCommandParser#parse()` and returns the buy command
-if the arguments are valid.
+#### Implementation for Buy Transaction
 
-`BuyCommand` implements the `BuyCommandParser#execute()` operation which executes the command and returns the result message in a 
+The buy transaction mechanisms are facilitated by `BuyCommand`. The `BuyCommand` extends `Command` and `BuyCommandParser` which extends from `Parser`.
+To invoke either of the commands, `BuyCommandParser` will parse the arguments from the user input via `BuyCommandParser#parse()` or and returns the buy command if the arguments are valid.
+
+`BuyCommand` executes the `BuyCommand#execute()` operation which executes the command and returns the result message in a 
 `CommandResult` object.
 
 The operation is exposed in the `logic` interface as `Logic#execute()`.
@@ -272,13 +280,10 @@ Given below is an example usage scenario and how the buy transaction mechanism b
 
 Step 1. The user launches the application. The `UiManager` will call on the `MainWindow` to invoke the UI which displays the clients.
 
-![BuyState0](images/BuyState0-initial_state.png)
+Step 2. The user executes `buy 1 q/10 g/Apple p/0.5 d/17/05/2000` command to add a buy transaction of 10 apples at $0.50 each on 17/05/2000 to the
+client at index 1. This is done by calling the `BuyCommand#execute()` which will call `Model#getFilteredClientList()` to get the list of clients.
 
-Step 2. The user executes `buy 1 q/10 g/Apple p/0.5 d/17/05/2000` command to add a buy transaction of 10 apples at $0.50 each on the 17/05/2000 to the
-client at index 1.
-
-Step 3. The `Execute` of `BuyCommand` will call `Model#getFilteredClientList()` to get the list of clients. `List<Client>#get()` is called to
-get the client at the index to copy. The `BuyTransaction` is then added to the copied client by calling `Client#addTransaction(Transaction)`.
+Step 3. `List<Client>#get()` is called to get the client at the index. The `BuyTransaction` is then added to the copied client by calling `Client#addTransaction(Transaction)`.
 The copied client is replaced with the client at the index by calling `Model#setClient(Client, Client)`.
 
 The following sequence diagrams shows how the buy operation works:
@@ -297,14 +302,19 @@ The following activity diagram summarizes what happens when a user executes the 
 
 **Aspect: How buy transaction executes:**
 
-* **Alternative 1 (current choice):** Add buy transaction by into each client.
-    * Pros: Easy to implement and allow the user to see all the buy transactions for each client via view command.
+* **Alternative 1 (current choice):** Add buy transaction into each client.
+    * Pros: Easy to implement and allows the user to view all the buy transactions for each client via view command.
     * Cons: Users cannot see all buy transaction of every client at one time.
 * **Alternative 2:** Add buy transaction to JeeqTracker instead of per client.
     * Pros: Easy to see every past buy transaction with all the clients.
-    * Cons: Users may be overwhelmed if there are too many transactions. Also cannot distintively see which buy transaction belongs to which client.
+    * Cons: Users may be overwhelmed if there are too many transactions. Also, users would be unable to tell which buy transaction belongs to which client.
+
+#### Implementation for Sell Transaction
+
+Similar to Buy Transaction.
 
 _{more aspects and alternatives to be added}_
+
 
 --------------------------------------------------------------------------------------------------------------
 ### Editing client feature
@@ -329,6 +339,9 @@ The following sequence diagram shows how the edit client operation works in Logi
 
 ![EditClientSequenceDiagram](images/EditClientSequence.png)
 
+The following activity diagram summarizes what happens when a user executes the edit command:
+
+<img src="images/EditCommandActivityDiagram.png" width="250" />
 
 #### Design considerations:
 
@@ -366,9 +379,7 @@ The following sequence diagram shows how the edit transaction operation works in
 
 ![EditTransactionSequenceDiagram](images/EditTransactionSequence.png)
 
-The following activity diagram summarizes what happens when a user executes the edit command:
-
-<img src="images/EditCommandActivityDiagram.png" width="250" />
+The activity diagram for this feature is the same as that of the [Editing client feature](#editing-client-feature)
 
 #### Design considerations:
 
@@ -405,6 +416,8 @@ The following sequence diagram shows how the edit transaction operation works in
 
 ![EditRemarkSequenceDiagram](images/EditTransactionSequence.png)
 
+The activity diagram for this feature is the same as that of the [Editing client feature](#editing-client-feature)
+
 #### Design considerations:
 
 **Aspect: How edit remark executes:**
@@ -433,20 +446,19 @@ The deletion process occurs in these `3` main steps:
 The **sequence diagram** below shows how a client is deleted for user input `delete 1 m/client`.
 
 ![DeleteSequenceDiagram](images/DeleteSequenceDiagram.png)
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FilterTransCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
 
-The sequence diagram above is applicable for deleting `transaction` and `remark`, with just the following changes:
-- For delete transaction:
-    - `userInput` is changed to `delete 1 m/transaction`
-    - `parse("1 m/transaction")` returns `d`, which is a `DeleteTransactionCommand`
-    - `deleteClient(1)` is changed to `deleteTransaction(1)`
-- For delete remark:
-    - `userInput` is changed to `delete 1 m/remark`
-    - `parse("1 m/remark")` returns `d`, which is a `DeleteRemarkCommand`
-    - `deleteClient(1)` is changed to `deleteRemark(1)`
-    
+The process of deleting a `transaction` is almost the same as the process stated above, with a main difference in how the `DeleteTransactionCommand` and **Model** interact as shown in the sequence diagram below.
+
+![DeleteTransactionDiagram](images/DeleteTransactionDiagram.png)
+
+
+The process for deleting a `remark` is the same as the process of deleting a `transaction`, except for the following differences:
+* `userInput` is changed to `delete 1 m/remark`
+* `parse("1 m/remark")` returns `d`, which is a `DeleteRemarkCommand` instead of a `DeleteTransactionCommand`
+* `deleteTransaction(1)` is changed to `deleteRemark(1)`
 
 #### Design Considerations:
 
@@ -459,6 +471,55 @@ The sequence diagram above is applicable for deleting `transaction` and `remark`
 * **Alternative 2:** Create separate individual commands to Delete Client/Transaction/Remark, e.g. `deleteClient 1`, `deleteTransaction 1`, `deleteRemark 1`.
     * Pros: More intuitive to use, shorter command to type.
     * Cons: Adds more valid commands that the user can use, which may not be very user-friendly since they have to remember more commands. Also, there will be much more classes and code.
+
+### Sort feature
+
+#### Current Implementation
+
+The sort mechanism for `transactions` is facilitated by a `SortCommandParser` and `SortCommand`.
+
+The `SortCommandParser` will take in the `userInput`, parse it, and return the correct concrete command type that is `SortCommand` which will be executed to achieve the sort functionality.
+
+The operation is exposed in the `logic` interface as `Logic#execute()`.
+
+Given below is an example usage scenario and how the sort transaction mechanism behaves at each step.
+
+Step 1. The user launches the application. The `UiManager` will call on the `MainWindow` to invoke the UI which displays the clients.
+
+![BuyState0](images/BuyState0-initial_state.png)
+
+Step 2. The user executes `sort 1 latest` command to sort the transaction of the client at index 1 by the latest transactions first.
+
+Step 3. The `Execute` of `SortCommand` will call `Model#getFilteredClientList()` to get the list of clients. `List<Client>#get()` is called to
+get the client at the index to copy. The copied client is replaced with the client at the index by calling `Model#setClient(Client, Client)`.
+
+Step 4. The `CommandResult` of `FilterTransCommand` will call `MainWindow#handleSortTransaction()`,
+to display the sorted transactions from the `Client#getSortLatestTransaction()` while the client panel list will display the clients.
+
+![SortSequenceDiagram](images/SortSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SortCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+ </div>
+
+The following activity diagram summarizes what happens when a user executes a sort command:
+
+<img src="images/SortActivityDiagram.png" width="250" />
+
+#### Design Considerations:
+
+**Aspect: How Sort executes:**
+
+* **Alternative 1 (current choice):** Sort Transaction specified by `oldest` or `latest` selected by `index`
+    * Pros: Easy to implement and easy to understand command. Also targeted sort command allows for unnecessary transactions to be hidden, increasing user-friendliness.
+    * Cons: Users may want to sort and view all transactions by `oldest` or `latest`.
+
+* **Alternative 2:** Sort all Transaction of all clients by `oldest` or `latest`.
+    * Pros: Allows for faster sorting for users if user wants to sort every client.
+    * Cons: It is rare for users to want to sort all clients by `oldeest` or `latest`. Also, there maybe information overload if all transactions are displayed when sorted.
+
+_{more aspects and alternatives to be added}_
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -647,14 +708,14 @@ Users are able to perform several tasks within the application that is broken do
 
     Use case ends.
 
-#### **Use case: UC08 - Edit a client**
+#### **Use case: UC08 - Buying from a client**
 
 **MSS**
 
-1.  User requests to list all clients
+1.  User requests to list clients
 2.  JeeqTracker shows a list of clients
-3.  User requests to edit a specific client in the list
-4.  JeeqTracker edits the client
+3.  User requests to add a buy transaction to a specific client in the list
+4.  JeeqTracker adds the buy transaction to the client
 
     Use case ends.
 
@@ -670,12 +731,51 @@ Users are able to perform several tasks within the application that is broken do
 
       Use case resumes at step 2.
 
+* 3b. User fails to provide a valid command format to create a Buy Transaction.
+
+    * 3b1. JeeqTracker shows an error message.
+
+      Use case resumes at step 2.
+
+#### **Use case: UC09 - Selling to a client**
+
+* Similar to [UC08](#use-case-uc08---buying-from-a-client). Just changing Buy to Sell.
+
+#### **Use case: UC10 - Sort client by latest transaction** <br>
+**Preconditions: JeeqTracker has at least 1 client**
+
+**MSS**
+
+1. User requests to sort the client at index 1 by latest transactions
+2. JeeqTracker displays the list of transactions of client at index 1 sorted by the latest dates first.
+
+    Use case ends.
+
+#### **Use case: UC11 - Edit a client**
+
+**MSS**
+
+1.  User requests to list all clients
+2.  JeeqTracker shows a list of clients
+3.  User requests to edit a specific client in the list
+4.  JeeqTracker edits the client
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. The given client does not exist in the list.
+
+    * 3a1. JeeqTracker shows an error message.
+
+      Use case resumes at step 2.
+
 * 3b. User fails to provide a valid command format to edit a client.
     * 3b1. JeeqTracker shows an error message.
 
       Use case resumes at 2.
 
-#### **Use case: UC09 - Edit a transaction**
+#### **Use case: UC12 - Edit a transaction**
 
 **MSS**
 
@@ -703,11 +803,9 @@ Users are able to perform several tasks within the application that is broken do
 
       Use case resumes at 2.
 
-#### **Use case: UC10 - Edit a remark**
+#### **Use case: UC13 - Edit a remark**
 
-This use case exactly similar to use case UC09. Instead of `transaction`, `remark` will be used for this use case
-
-_{More to be added}_
+This use case exactly similar to use case [UC12](#use-case-uc12---edit-a-transaction). Instead of `transaction`, `remark` will be used for this use case
 
 ### Non-Functional Requirements
 
@@ -833,6 +931,28 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: List all clients using the `list` command. More than one client in the list.
     2. Test case: `edit 1 m/remark newRemark`<br/>Expected: No remark is edited. Error details shown in the `Application's Reply` panel.
 
+### Sorting transactions from a client
+
+1. Sorting transactions.
+
+   1. Prerequisites: At least one client in the list. 
+   2. Test case: `sort 1 latest`<br/>Expected: All transactions in index 1 client will be displayed in the transaction list panel, sorted with the latest transactions first.
+   If there are no transactions, the transaction list panel will be empty.
+   3. Test case: `sort 2 newest`<br/>Expected: No transactions for index 2 client is sorted. Error details shown in the `Application's Reply` panel.
+   4. Other incorrect sort commands to try: `sort all latest`, `sort oldest`, `sort newest`<br/>Expected: Similar to previous.
+    
+### Adding buy/sell transactions
+
+1. Adding a transaction while only one client is shown in the client list.
+    
+   1. Test case: `buy 1 g/apples price/0.50 q/100`<br/>Expected: Details of the added transaction is shown in the Transactions Window.
+   2. Test case: `sell 0 g/apples price/0.50 q/100`<br/>Expected: No transaction is added. Error details shown in the `Application's Reply` panel.
+   3. Other incorrect buy/sell commands to try:`buy`, `sell 3`, `buy g/apples price/0.5 q/abc`<br/>Expected: Similar to previous.
+
+2. Adding a transaction while more than one client is shown in the client list.
+   1. Prerequisites: List all clients using the `list` command. More than one client in the list.
+   2. Test case: `buy 1 g/apples price/test q/100`<br/>Expected: No transaction is added. Error details shown in the Application's Reply panel.
+
 ### Saving data
 
 1. Dealing with missing/corrupted data file
@@ -856,25 +976,26 @@ have an idea of how we should render transactions and remarks on the screen, and
 edit can be evolved to handle them. The lack of references in AB3 made it a lot harder since the Person class in
 AB3 does not have a **List** attribute, and we have to add it.
 
-Furthermore, we felt like we have created two additional AB3 in total, twice the effort of what it takes to create AB3.
+Furthermore, we felt like we had created two additional AB3 in total, twice the effort of what it takes to create AB3.
 The **transactions** and **remarks** each are almost like an AB3. They have their own storage, user interface, model,
-and have its own CRUD (Create, Read, Update, Delete) functionality. We also have to spend a lot of time learning about
-JavaFX, Jackson, since none of us have any experience with these prior to CS2103T. It definitely took more time and
+and have its own CRUD (Create, Read, Update, Delete) functionality. We also had to spend a lot of time learning about
+JavaFX, Jackson, since none of us has any experience with these prior to CS2103T. It definitely took more time and
 effort to create the user interface that we have now compared to the one in IP, since it was basically hand-holding in
 IP.
 
-We also have to refactor the application once at around week 10, because we realise that there isn't a real value
-proposition for our application. Hence, thousands of lines were refactored at that period, and it took effort to
+We also have to refactor the application once at around week 10, because we realised that there wasn't a real value
+proposition for our application. Hence, thousands of lines were refactored at that period, and it took much effort to
 get used to the new terms within the code.
 
-We spent a lot of effort in creating the UserGuide, adding almost up to triple the length of the original AB3, adding
+We have spent a lot of effort in creating the UserGuide, adding almost up to triple the length of the original AB3, adding
 new sections that AB3 doesn't have, and more user-friendly screenshots of the application with annotations.
 
-For Developer Guide, we have to change almost every single diagram within the application to align to our current
-code, and add more explanations to it. When appropriate, we also included new diagrams which are relevant, and
-created much more user stories, use cases, Non-Functional Requirements, Glossary, and Instructions for manual testing.
+For Developer Guide, we had to change almost every single diagram within the application to align to our current
+code, and add more explanations to it. When appropriate, we also included new diagrams which were relevant, and
+created many more user stories, use cases, Non-Functional Requirements, Glossary, and Instructions for manual testing.
 It is definitely much more than the original developer guide.
 
 Overall, our team has spent **a lot more effort in our application, user guide, developer guide** than the original
 AB3.
+
 

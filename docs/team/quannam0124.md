@@ -39,10 +39,10 @@ Given below are my contributions to the project.
     * Added documentation for Editing and Deleting a client from JeeqTracker [#262](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/262)
     * Reformat parameters and tags used in commands into a table format to increase readability [#287](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/287/files)
     
-  * Developer Guide:
+  * Developer Guide: [#309](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/309)
     * Added explanation for implementation and sequence diagrams for EditClientCommand, EditTransactionCommand, and EditRemarkCommand 
     * Added activity diagram for edit client command
-    * Added use cases UC08 to UC70
+    * Added use cases UC11 to UC13
     * Added test instructions for edit client, edit transaction, and edit remark features
 
 * **Community**:
