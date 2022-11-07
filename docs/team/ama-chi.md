@@ -9,19 +9,20 @@
 * Implemented add, edit and delete functions for the Meeting class.
 
 **Contributions to the UG:**
-* Edited formatting to ensure conistency across the User Guide
-* Styling and visual touch ups
+* Edited formatting to ensure conistency across the User Guide.
+* Styling and visual touch ups.
 
-**Contributions to the DG:** _to be added soon_
+**Contributions to the DG:**
+* Cleaning and formatting.
 
 **Contributions to team based tasks:** 
-* Created Milestones and deadlines
-* Created Issues and assigned them to respective milestones
-* Wrote Test cases for Meeting class
+* Created Milestones and deadlines.
+* Created Issues and assigned them to respective milestones.
+* Wrote Test cases for Meeting class.
 
 **Review/mentoring contributions:** 
-* Reviewed and Merged Pull Request
-* Handled merge conflicts
-* Discussions on weekly distribution of work
+* Reviewed and Merged Pull Request.
+* Handled merge conflicts.
+* Discussions on weekly distribution of work.
 
 **Contributions beyond the project team:** _to be added soon_
