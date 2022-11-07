@@ -76,6 +76,7 @@ public class SelectedTripCard extends UiPart<Region> {
         tripDate.textProperty().bind(new SimpleStringProperty(""));
         setIcon(tripDate, null, 0);
         setIcon(tripLocation, null, 0);
+        setIcon(title, null, 0);
     }
 
     private void setIcon(Label label, Image img, int size) {
