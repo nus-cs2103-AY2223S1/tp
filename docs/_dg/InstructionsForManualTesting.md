@@ -226,7 +226,8 @@ The specified item is untagged from the tag.
 
 Expected Output [[ command-output-box:Command Output Box ]]:
 Message indicating item has been successfully untagged.
-`untag n/Food
+
+`untag n/Food`
 
 Expected Output [[ command-output-box:Command Output Box ]]:
 Error message for invalid command format.
