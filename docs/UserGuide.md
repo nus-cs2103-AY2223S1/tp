@@ -4,7 +4,8 @@ title: User Guide
 ---
 
 ## Table of Contents
-  {:toc}
+* Table of Contents
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -34,7 +35,7 @@ interactive graphical icons such as buttons.
 If you are interested to try, jump to [Quick Start](#quick-start) to learn how to start using **FRIDAY**!
 
 --------------------------------------------------------------------------------------------------------------------
-## Quick start
+## Quick Start
 
 This section guides you along the process of downloading and opening FRIDAY.
 
@@ -65,7 +66,7 @@ This section guides you along the process of downloading and opening FRIDAY.
 
 --------------------------------------------------------------------------------------------------------------------
 ## About
-### Document structure
+### Document Structure
 This User Guide has been structured in a way to help you find information easily and quickly. In the next subsection
 ,Section - reading this document you can find a multitude of tips on how to use this User Guide. The following sections 
 documents the main features of FRIDAY
@@ -76,18 +77,18 @@ documents the main features of FRIDAY
 4. [Miscellaneous features](#miscellaneous-features)
 5. [Features for advanced users](#features-for-advanced-users)
 
-### Reading this document
+### Reading This Document
 This section on reading the document will introduce you to some technical terms and formats that will be used throughout the guide.
 Please make yourself familiar with the content here before moving to other sections in this user guide.
 
-#### Understanding the GUI
+#### Understanding The GUI
 
 Figure 2 depicts the [GUI](#glossary) of FRIDAY which is annotated with a description of each GUI component
 
 ![Layout](images/layout.png)
 <i> Figure 2 Layout</i>
 
-#### Understanding Symbols and syntax
+#### Understanding Symbols And Syntax
 
 The table explains the general syntax and common occurrences throughout the user guide
 
@@ -99,7 +100,7 @@ The table explains the general syntax and common occurrences throughout the user
 | **:bulb: Tip:**                | A quick memorable form of advice to the user to make their friday experience enjoyable                              |
 | **:exclamation: Caution:**     | A warning sign indicating that the following text is important                                                      |
 
-#### Understanding command terms and general information
+#### Understanding Command Terms And General Information
 
 Some terms that you may encounter along the way may confuse you. To help you understand all these terms this user guide has a dedicated [glossary](#glossary) section with all the key terms 
 and hyperlinks to the first occurrence of the word in each section of the User guide.
@@ -161,10 +162,11 @@ This section contains all the information and details of each feature of **FRIDA
 4. [Miscellaneous features](#miscellaneous-features)
 5. [Features for advanced users](#features-for-advanced-users)
 
-## Student management
+### Student Management
 
 These features allow you to add and delete students, and edit their details.
 
+#### Command Parameters
 Before you dive into using the features, you may want to have a look at the common [parameters](#glossary) used.
 The table below shows a list of [command](#glossary) parameters that will be used.
 
@@ -179,7 +181,7 @@ The table below shows a list of [command](#glossary) parameters that will be use
 <tr><td><pre>INDEX</pre></td><td>The index of the student in the displayed list. <br> <br> It must be a valid and positive index number.</td><td>E.g. Typing <code>2</code> would mean the student at the second position in the displayed list.</td></tr>
 </table>
 
-### Adding a student: `add`
+#### Adding a student: `add`
 
 You can add a student to FRIDAY, with the given name, [Telegram handle](#glossary), consultation date, [Mastery Check](#glossary) date, and tags.
 
@@ -210,7 +212,7 @@ Outcome: a student named Alex Yeoh is added.
 
 ![AddCommandOutcome.png](images/AddCommandOutcome.png)
 
-### Deleting a student: `delete`
+#### Deleting a student: `delete`
 
 You may need to delete students from your list in certain cases, such as when they decide to drop the module. The `delete` function allows you to do this and deletes the student at the given index from FRIDAY.
 
@@ -221,7 +223,7 @@ Format: `delete INDEX`
 * The index of the student must be specified and there should be exactly one INDEX parameter.
 </div>
 
-### Editing a student: `edit`
+#### Editing a student: `edit`
 
 You may not have all your students' details at the start, or you may have typed in the wrong details for a specific student. You can use the `edit` feature to add in or edit a student's details after getting this information. This feature is also useful for adding [Mastery Check](#glossary) and Consultation dates you have scheduled with your students.
 
@@ -251,7 +253,7 @@ Mastery Check date as 2022-11-06, consultation date as 2022-10-10, and tags as "
 
 ![EditCommandOutcome.png](images/EditCommandOutcome.png)
 
-### Editing a remark for a student: `remark`
+#### Editing a remark for a student: `remark`
 
 You may have noted something interesting about a student, which you wish to save as a remark in your list. The `remark` feature allows you to add this remark to the specified student.
 
@@ -277,11 +279,11 @@ Outcome: The student at the 1st index (Alex Yap) will have the remark "Aspiring 
 [Table of Contents](#table-of-contents)
 
 
-## Organizing students
+### Organizing Students
 
 These features allow you to organize your list of students to suit your needs.
 
-### Command Parameters
+#### Command Parameters
 Before you dive into using the features, you may want to have a look at the [parameters](#glossary) used.
 The table below shows a list of command parameters that will be used.
 
@@ -292,7 +294,7 @@ The table below shows a list of command parameters that will be used.
 <tr><td><pre>KEYWORDS</pre></td><td>The keywords to search with to find students' information. </td><td>E.g. Typing <code>cool guy</code> would represent finding students with the information "cool guy" associated with them.</td></tr>
 </table>
 
-### Sorting students: `sort`
+#### Sorting students: `sort`
 
 Once you have many students added to FRIDAY, viewing relevant information can get messy. To help with that, you can 
 sort students in FRIDAY with a given criteria, in ascending or descending order.
@@ -336,7 +338,7 @@ Outcome: Students are sorted by Mastery Check date, from earliest to latest.
 
 ![SortCommandOutcome.png](images/SortCommandOutcome.png)
 
-### Finding individual student details: `find`
+#### Finding individual student details: `find`
 
 You can search for keywords using the `find` command and FRIDAY will show you the students whose details match these keywords.
 
@@ -357,7 +359,7 @@ Outcome: The only student in the list whose details match the keyword "alex" is 
 
 ![FindCommandOutcome.png](images/FindCommandOutcome.png)
 
-### Viewing all students: `list`
+#### Viewing all students: `list`
 
 Lists all students in FRIDAY. This helps you to reset the sorting and finding done by the `sort` and `find` commands respectively.
 
@@ -366,11 +368,11 @@ Format: `list`
 [Table of Contents](#table-of-contents)
 
 
-## Grading students
+### Grading Students
 
 These features allow you to record your students grades.
 
-### Command Parameters
+#### Command Parameters
 Before you dive into using the features, you may want to have a look at the [parameters](#glossary) used.
 The table below shows a list of command parameters that will be used.
 
@@ -384,7 +386,7 @@ The table below shows a list of command parameters that will be used.
 <tr><td><pre>INDEX</pre></td><td>The index of the student in the displayed list. </td><td> E.g. Typing <code>2</code> would mean the student at the second position in the displayed list.</td></tr>
 </table>
 
-### Recording grades for a student: `grade`
+#### Recording grades for a student: `grade`
 
 You can record examination grades obtained by a specified student using the `grade` command. This allows you to keep track
 of your students' progress to see how well they are performing in the module.
@@ -415,7 +417,7 @@ Outcome: The student at the 1st index (Alex Yap) will have their grades updated.
 ![GradeCommand.png](images/GradeCommand.png)
 
 
-### Marking a student's Mastery Check as passed: `mark`
+#### Marking a student's Mastery Check as passed: `mark`
 
 After a student has passed their [Mastery Check](#glossary), you can use the `mark` command to mark their Mastery Check as passed. This will update the list of students with the status of the specified student's Mastery Check.
 
@@ -442,7 +444,7 @@ Outcome: The Mastery Check of the first student in the list has been marked as p
 
 As you can see, a "(passed)" status is added to student 1's Mastery Check after the `mark` command is run.
 
-### Unmarking a student's Mastery Check: `unmark`
+#### Unmarking a student's Mastery Check: `unmark`
 
 Unmarks the [Mastery Check](#glossary) of a specified student and removes its "(passed)" status. This will come in handy if you accidentally mark the Mastery Check of a student as passed, even though that is not the case.
 
@@ -466,11 +468,11 @@ Example after entering `unmark 1`:
 
 As you can see, the "(passed)" status has been removed from student 1's Mastery Check after the `unmark` command is run.
 
-## Features for advanced users
+### Features for advanced users
 
 These features help you personalize your FRIDAY experience and improve your productivity when using FRIDAY.
 
-### Command Parameters
+#### Command Parameters
 Before you dive into using the features, you may want to have a look at the parameters used.
 The table below shows a list of command parameters that will be used.
 
@@ -480,7 +482,7 @@ The table below shows a list of command parameters that will be used.
 <tr><td><pre>COMMAND_KEYWORD</pre></td><td> The command keyword of the original command. </td><td>E.g. <code> add </code> </td></tr>
 </table>
 
-### Adding aliases: `alias`
+#### Adding aliases: `alias`
 
 Adds an [alias](#glossary) for a command into FRIDAY, which you can use in place of the default command keywords.<br>
 This allows you to be more efficient in using FRIDAY.
@@ -507,7 +509,7 @@ Will execute the `list` command.
 ![UsingAliasAfter.png](images/UsingAliasAfter.png)
 
 
-### Deleting aliases: `unalias`
+#### Deleting aliases: `unalias`
 
 Deletes an existing [alias](#glossary), which is no longer needed, in FRIDAY.
 
@@ -521,46 +523,46 @@ Outcome: The alias `ls` will be deleted from FRIDAY.
 
 ![UnaliasCommandAfter.png](images/UnaliasCommandAfter.png)
 
-### Viewing aliases: `aliaslist`
+#### Viewing aliases: `aliaslist`
 
 Views all [aliases](#glossary) in FRIDAY, so that you know what aliases you have created and the commands they are for.
 
 Format: `aliaslist`
 
-## Miscellaneous features
+### Miscellaneous Features
 
 Overview: Other features that aid you in using FRIDAY.
 
-### Getting User Guide link: `guide`
+#### Getting User Guide link: `guide`
 
 If you ever need to refer to our User Guide while using FRIDAY, use this command to obtain the link to FRIDAY's User Guide.
 
 Format: `guide`
 
-### Getting help: `help`
+#### Getting help: `help`
 
 Shows a summary of commands along with their command word used in FRIDAY. This allows you to have an easily accessible summary when using FRIDAY.<br>
 It also includes a link to this User Guide if needed.
 
 Format: `help`
 
-### Clearing all existing data: `clear`
+#### Clearing all existing data: `clear`
 
 On your first launch of FRIDAY, a sample list of students is displayed. The `clear` command allows you to clear this and any other existing data in FRIDAY, resulting in an empty Student list.
 
 Format: `clear`
 
-### Exiting FRIDAY : `exit`
+#### Exiting FRIDAY : `exit`
 
 Exits FRIDAY. See you again soon!
 
 Format: `exit`
 
-### Saving the data
+#### Saving the data
 
 FRIDAY's data is saved in the hard disk automatically after any command that changes the data. There is no need for you to save manually.
 
-### Editing the data file
+#### Editing the data file
 
 FRIDAY's student and alias data is saved as a JSON file at `[JAR file location]/data/friday.json`.<br>
 Advanced users are welcome to update data directly by editing the data file.
