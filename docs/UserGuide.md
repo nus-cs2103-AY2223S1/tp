@@ -1,235 +1,339 @@
-
-=]---
+---
 layout: page
 title: User Guide
 ---
 
-REal-Time is a **desktop app for real estate agents to manage client contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, REal-Time can get your contact management tasks done faster than traditional GUI apps.
+# Introduction
+
+Welcome to the Real-Time User Guide!
+
+
+Real-Time is a desktop application for _Real-Estate agents_ to manage client information, schedule meetings,
+and track client offers and listings.
+
+## About Real-Time
+
+It is optimized for use via a Command Line Interface ([CLI](#Glossary)) while still having the
+benefits of a Graphical User Interface ([GUI](#Glossary)).
+If you can type fast, Real-Time can get your contact management tasks done faster than traditional GUI apps.
+
+## Fun fact
+The **"Rea"** in **Real-Time** stands for _Real-Estate agents_, which is the intended target user of our application!
+
+## Using this guide
+
+Now that you have read the introduction and learnt about what our product does, get started in using Real-Time by
+following the guide provided in the [Quick Start](#quick-start) section. Otherwise,
+* If you are still unsure of the commands used in Real-Time, the [Command Summary](#command-summary) is a good place to
+start.
+* The [Prefix Summary](#prefix-summary) and [Glossary](#glossary) are also great places to understand Real-Time
+better.
+* If you are a developer and would like to help improve our product, take a look at our [Developer Guide](https://ay2223s1-cs2103t-w15-2.github.io/tp/DeveloperGuide.html).
+
+# Table of Contents
+{: .no_toc}
 
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+# Quick start
 
-1. Download the latest `REal-Time.jar` from [here](https://github.com/AY2223S1-CS2103T-W15-2/tp/releases).
+1. Ensure you have `Java 11` or above installed in your Computer. To install `Java 11`,
+click [here](https://www.oracle.com/sg/java/technologies/downloads/#java11) and download the appropriate file depending
+on your Operating System ([OS](#Glossary)) (_e.g, Linux, Windows, macOS_).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+2. Download the latest `Real-Time.jar` file from [here](https://github.com/AY2223S1-CS2103T-W15-2/tp/releases). The
+`Real-Time.jar` file is located in the "Assets" section as shown below.
+![downloadRelease](./images/downloadRelease.png)
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+3. Copy the file to the folder you want to use as the _home folder_ for Real-Time.
+
+4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds.
+Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Refer to the [Layout](#layout) if you are still unsure in navigating Real-Time's interface.
+
+6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and
+pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`addO`**`l/John street, block 123, #01-01 n/John Doe o/700000` : Adds an offer by `John Doe` to the list of offers.
+   * [**`addO`**](#adding-an-offer-addo)`l/John street, block 123, #01-01 n/John Doe o/700000` : Adds an offer by `John Doe` to the list of offers.
 
-   * **`deleteC`**`3` : Deletes the 3rd contact shown in the current list of clients.
+   * [**`delC`**](#deleting-a-client--delc)`3` : Deletes the 3rd contact shown in the current list of clients.
 
-   * **`clear`** : Deletes all clients, meetings, listings and offers.
+   * [**`clear`**](#clearing-all-entries--clear) : Deletes all clients, meetings, listings and offers.
 
-   * **`exit`** : Exits the app.
+   * [**`exit`**](#exit-Real-Time--exit) : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+8. Refer to the [Features](#features) below for details of each command.
+
+Back to [Table of Contents](#table-of-contents)
+
+___
+
+# Layout
+
+![Layout](images/layout.png)
+
+`Command Box` - You can enter commands here.<br>
+
+`Feedback Box` - Real-Time feedbacks to your commands will appear here.<br>
+
+`Client Box` - All clients in Real-Time will appear here.<br>
+
+`Offer Box` - All offers in Real-Time will appear here.<br>
+
+`Listing Box` - All listings in Real-Time will appear here.<br>
+
+`Meeting Box` - All meetings in Real-Time will appear here.
+
+
+Back to [Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+# Command format
+#### We highly recommend you to read this section before using Real-Time
+Real-Time functions are based on commands that you enter. Real-Time has 4 main types
+of commands. let's learn how to write them!
 
-<div markdown="block" class="alert alert-info">
+## 1. `add`
 
-**:information_source: Notes about the command format:**<br>
+This type of command includes `addC` `addO` `addL` `addM` and is used to add a new
+entry into Real-Time.
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `addC n/NAME`, `NAME` is a parameter which can be used as `addC n/John Doe`.
+Back to [Table of Contents](#table-of-contents)
 
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+**Format:** `addC n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+This command adds a client into Real-Time.<br>
+1. `addC` is the **Command Word**
+2. `n/` `p/` `e/` `a/` are **Prefixes**. Prefixes help Real-Time distinguish between different inputs.
+3. `NAME` `PHONE_NUMBER` `EMAIL` `ADDRESS` are the **Data Field** that you can input. For example, `NAME` in `n/NAME` can be replaced with `n/John Doe`.
 
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+Let's say you want to add a client named `John Doe`, his phone number 
+is `12345678`, his email is `john@gmail.com` and his address is `123 John St`.<br>
 
-* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+You can enter the following command:<br>
+```text
+addC n/John Doe p/12345678 e/john@gmail.com a/123 John St
+```
+**Note:**
+1. You may notice square brackets [] around some parameters. This indicates that the field is **optional**. For the
+example above, the `t/TAG` parameter can be left empty if you do not wish to tag the client.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+2. You may also notice `…` after the `t/TAG` field. This indicates that you may enter this field as many times as you
+want to (0 or more times). For example, if you want to tag `John Doe` as `Friend` and `Neighbor` you can add 
+`t/Friend t/Neighbor` to the command above.
 
-</div>
+3. The order of every field does not matter. If the command specifies 
+`n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-___
-
-### Viewing help : `help`
-
-Shows a message explaining how to access the help page.
-
-Format - `help`
+4. If a field is expected only once in the command, but you specified it multiple times, only the last occurrence 
+will be taken. If you specify `n/John Dough n/John Doe`, only `n/John Doe` will be taken.
 
 
-![help message](images/helpMessage.png)
+## 2. `del`
+This type of command includes `delC` `delO` `delL` `delM` and is used to delete a
+current entry from Real-Time.
 
+Back to [Table of Contents](#table-of-contents)
 
-___
+**Format:** `delL INDEX`
+
+Let's say you want to delete the second listing from the `Listing Box`.<br>
+
+You can enter the following command:
+```text
+delL 2
+```
+**Note:**
+1. `INDEX` refers to the index number shown in each of the box. Below is an example:<br>
+![Index](images/OfferIndex.png)<br>
+2. `INDEX` **must be a positive integer** 1, 2, 3, …​
+
+## 3. `edit`
+This type of command includes `editC` `editO` `editL` `editM` and is used to edit the details
+of a current entry in Real-Time.
+
+Back to [Table of Contents](#table-of-contents)
+
+**Format:** `editO INDEX [n/NAME] [o/OFFER_PRICE] [l/LISTING_ID]`
+
+Let's say there is an existing offer at `INDEX` 2 that `Betsy Crowler` made for `john_house` with offer price `100000`
+but Betsy Crower just increased her offer price to `200000`, you also realised that you spelt her
+name wrongly the first time you add this offer, and it is actualy `Besty Crower` and you want to update this
+change in Real-Time.<br>
+
+You can enter the following command:<br>
+
+```text
+editO 2 n/Betsy Crower o/123456
+```
+
+## 4. `list`
+This type of command includes `listC` `listL` and is used to list all the entries
+of the specific type in Real-Time.
+
+Back to [Table of Contents](#table-of-contents)
+
+**Format:** `listC`
+
+Let's say you want to see all the clients in Real-Time.<br>
+
+You can enter the following command:
+```text
+listC
+```
+
+--------------------------------------------------------------------------------------------------------------------
+
+# Features
+
+## Managing Clients
+
+In this section, we provide you the basic steps needed to [add](#adding-a-client-addc), [delete](#deleting-a-client--delc), 
+[edit](#editing-a-client--editc), [find](#finding-clients-by-name-findc) and [list](#listing-clients-listc) clients.
+
+**If this is not the section you are looking for**, click [here](#table-of-contents) to go back to the **Table of Contents**.
 
 ### Adding a client: `addC`
 
-Adds a client to the address book.
+> Adds a client to Real-Time.
 
-Format - `addC n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+**Format:** `addC n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A client can have any number of tags (including 0)
-</div>
+`NAME` refers to the name of the client.<br>
+`PHONE_NUMBER` refers to the phone number of the client<br>
+`EMAIL` refers to the email address of the client.<br>
+`ADDRESS` refers to the address of the client.<br>
+`TAG` refers to the tags that you want to associate with the client.
 
-Examples:
-* `addC n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `addC n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
-
-___
-
-### Adding a listing: `addL`
-
-Adds a listing to the address book.
-
-Format - `addL l/LISTING_ID a/ADDRESS n/OWNER_NAME ap/ASKING_PRICE [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A listing can have any number of tags (including 0).
-However, all other fields must be present.
-</div>
-
-    `l/LISTING_ID` refers to the ListingId you wish to assign to this Listing.
-    `a/ADDRESS` refers to the address of this Listing.
-    `n/NAME` refers to the name of the owner of this Listing.
-    `ap/ASKING_PRICE` refers to the asking price that the owner is asking for this Listing.
-
-Examples:
-
+**Example input:**<br>
 _Success_
-* `addL l/007 a/100 Charming Ave n/Joke Peralta ap/10000000`
-
-![addL example](images/addL.png)
-
+```text
+addC n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01
+addC n/Betsy Crowe t/friend e/betsy@example.com a/Newgate Prison p/1234567 t/criminal
+```
+[screenshots to be added]<br>
 _Failure_
-* `addL l/007 a/100 Charming Ave n/Joke Peralta` Fails as there is no asking price.
+```text
+Invalid client name:
+addC n/John D@e p/98765432 e/johnd@example.com a/John street, block 123, #01-01
+```
+[screenshots to be added]<br>
+```text
+Missing fields:
+addC n/John Doe a/John street, block 123, #01-01
+```
+[screenshots to be added]<br>
+**Expected Success Output:**<br>
+A new client is added to RealTime.<br>
 
-![addL Missing Parameter example](images/addLMissingParam.png)
+**Feedback Box:**
 
-[Back to top](#features).
+```text
+New client added: [details of the newly added client]
+```
+
+1. If you have any confusion of the notation, you can refer to the
+   [Command Format]() section here.
+2. If you are still unsure of the **prefixes**, click [here](#prefix-summary) to find out more.
+
+Back to [Table of Contents](#table-of-contents)<br>
+Back to [Managing Clients](#managing-clients)
+
 ___
 
-### Adding an offer: `addO`
+### Deleting a client : `delC`
 
-Adds an offer to the address book.
+> Deletes the client at the specified index in Real-Time.
 
-Format - `addoffer l/LISTING_ID n/NAME o/OFFER_PRICE`
+**Format** - `delC INDEX`
 
-Examples:
-* `addO id/abc a/John Doe o/2000000`
-* `add0 id/1 a/Betsy Crowe o/20 `
-___
+**Example Input:**<br>
+_Success_
+```text
+delC 1
+```
+[screenshots to be added]<br>
+_Failure_
+```text
+Invalid index:
+delC -1
+```
+[screenshots to be added]<br>
+**Expected Success Output:**<br>
+The client at `INDEX` 1 is deleted from Real-Time.<br>
 
-### Adding a meeting: `addM`
+**Feedback Box:**
+```text
+Deleted Client: [details of the deleted client]
+```
+**Note:**
+1. `listC` followed by `delC 2` deletes the 2nd client in the Real-Time.
+2. `findC Betsy` followed by `delC 1` deletes the 1st client in the results of the `findC` command.
 
-Adds a meeting to the address book.
+1. If you have any confusion of the notation, you can refer to the
+   [Command Format]() section here.
 
-Format - `addM id/Listing_ID n/CLIENT_NAME d/DATE_TIME`
-
-Note: 
-* DATE_TIME must be in this format, yyyy-MM-dd HH:mm
-
-Examples:
-* `addM id/1 a/John street, block 123, #01-01 d/2022-10-20 12:00`
-* `addM id/abc a/Changi Prison d/2022-10-21 14:00`
+Back to [Table of Contents](#table-of-contents)<br>
+Back to [Managing Clients](#managing-clients)
 
 ___
 
 ### Editing a client : `editC`
 
-Edits an existing client in the address book.
+> Edits an existing client in Real-Time.
 
-Format - `editC INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+**Format:** `editC INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-Note:
-* Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the client will be removed i.e adding of tags is not cumulative.
-* You can remove all the client’s tags by typing `t/` without
-    specifying any tags after it.
-
-Examples:
-* `editC 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client to be `91234567` and `johndoe@example.com` respectively.
-* `editC 2 n/Betsy Crower t/` Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags.
-
-___
-
-### Editing a listing : `editL`
-
-Edits an existing listing in the address book.
-
-Format - `editL INDEX [a/ADDRESS] [n/OWNER_NAME] [ap/ASKING_PRICE] [t/TAG]…​`
-
-    `INDEX` refers to the index of the Listing you wish to edit
-    Any number (more than 1) of fields may be edited. 
-
-Examples:
-
+**Example input:**<br>
 _Success_
-* `editL 1 n/Joke Peralta`
-
-![editL example](images/editL.png)
-![editedL example](images/editedL.png)
-
+```text
+editC 1 p/91234567 e/johndoe@example.com
+editC 2 n/Betsy Crower t/
+```
+[screenshots to be added]<br>
 _Failure_
-* `editL 200 n/Joke Peralta` Fails as the index `200` does not exist.
+```text
+Invalid index:
+editC 0 p/12345678
+```
+[screenshots to be added]<br>
+```text
+Missing fields:
+editC 1
+```
+[screenshots to be added]<br>
+**Expected Success Output:**<br>
+The client at the specified `INDEX` is edited according to the fields provided.<br>
 
-![editL IndexOutOfBounds example](images/editLIndexOutOfBounds.png)
+**Feedback Box:**
+```text
+Edited Client: [newly updated details of client]
+```
+**Note:**
+1. Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client list.
+   The index **must be a positive integer** 1, 2, 3, …​
+2. At least one of the optional fields must be provided.
+3. Existing values will be updated to the input values.
+4. When editing tags, the existing tags of the client will be removed i.e adding of tags is not cumulative.
+5. You can remove all the client’s tags by typing `t/` without
+   specifying any tags after it.
 
-* `editL 1` Fails as no fields were being edited.
 
-![editL No Change example](images/editLNoChange.png)
+**Help:**
+1. If you have any confusion of the notation, you can refer to the
+   [Command Format]() section here. 
+2. If you are still unsure of the **prefixes**, click [here](#prefix-summary) to find out more.
 
-[Back to top](#features).
-___
-
-### Editing an offer : `editO`
-
-Edits an existing offer in the address book.
-
-Format - `editO INDEX [n/NAME] [o/OFFER_PRICE] [l/LISTING_ID]`
-
-Examples:
-* `editO 1 o/600000` Edits the offer price of the 1st offer to be `600000`.
-* `editO 2 n/Betsy Crower o/123456` Edits the name and offer price of the 2nd offer to be `Betsy Crower` and `123456`
-  respectively.
-
-___
-
-### Editing a meeting : `editM`
-
-Edits an existing meeting in the address book.
-
-Format - `editM INDEX [n/OWNER_NAME] [d/DATE_TIME]`
-
-Examples:
-* `editM 1 n/Betsy Crowe d/2022-10-20 17:00`
-* `editM 2 n/Johnny Sins d/2022-10-22 12:00`
-
-___
-
-### Listing entries : `listC` `listL` `list0` `listM`
-
-`listC` - Shows a list of all **clients** in the address book.<br>
-`listL` - Shows a list of all **listings** in the address book.<br>
-`listO` - Shows a list of all **offers** in the address book.<br>
-`listM` - Shows a list of all **meetings** in the address book.
+Back to [Table of Contents](#table-of-contents)<br>
+Back to [Managing Clients](#managing-clients)
 
 ___
 
@@ -237,146 +341,620 @@ ___
 
 Finds clients whose names contain any of the given keywords.
 
-Format - `findC KEYWORD [MORE_KEYWORDS]`
+**Format:** `findC KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Clients matching at least one keyword will be returned (i.e. `OR` search).
+**Example Input:**<br>
+_Success_
+```text
+findC John
+```
+[screenshots to be added]<br>
+_Failure_
+```text
+No keywords provided:
+findC
+```
+[screenshots to be added]<br>
+**Expected Success Output:**<br>
+The list of clients in the Client Box is updated to a list of all matches from the findC command.
+
+**Feedback Box:**
+```text
+[number of matches] clients listed!
+```
+
+![result for 'find alex david'](images/findAlexDavidResult.png)
+
+**Note:**
+1. The search is case-insensitive. e.g `hans` will match `Hans`
+2. The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+3. Only the name is searched.
+4. Only full words will be matched e.g. `Han` will not match `Hans`
+5. Clients matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
-Examples:
-* `findC John` returns `john` and `John Doe`
-* `findC alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+**Help:**
+1. If you have any confusion of the notation, you can refer to the
+   [Command Format]() section here.
+
+Back to [Table of Contents](#table-of-contents)<br>
+Back to [Managing Clients](#managing-clients)
 
 ___
 
-### Finding an offer : `[Coming soon]`
+### Listing Clients: `listC`
+
+> Shows the full list of clients.
+
+**Format:** `listC`
+
+**Expected Success Output:**<br>
+The full list of clients appears in the Client Box.<br>
+[screenshots to be added]<br>
+
+**Feedback Box:**
+```text
+Listed all clients
+```
+
+[Screenshots to be added]<br>
+
+Back to [Table of Contents](#table-of-contents)<br>
+Back to [Managing Clients](#managing-clients)
 
 ___
 
-### Finding a meeting: `[Coming soon]`
+## Managing Offers
+
+In this section, we provide you the basic steps needed to [add](#adding-an-offer-addo), [delete](#deleting-an-offer--delo),
+and [edit](#editing-an-offer--edito) offers.
+
+**If this is not the section you are looking for**, click [here](#table-of-contents) to go back to the **Table of Contents**.
 
 ___
 
-### Deleting a client : `deleteC`
+### Adding an offer: `addO`
 
-Deletes the specified client from the address book.
 
-Format - `deleteC INDEX`
+> Adds an offer to Real-Time.
 
-* Deletes the client at the specified `INDEX`.
-* The index refers to the index number shown in the displayed client list.
-* The index **must be a positive integer** 1, 2, 3, …​
+**Format:** `addO l/LISTING_ID n/NAME o/OFFER_PRICE`
 
-Examples:
-* `listC` followed by `deleteC 2` deletes the 2nd client in the address book.
-* `findC Betsy` followed by `deleteC 1` deletes the 1st client in the results of the `findC` command.
+`LISTING_ID` refers to the ListingId of the Listing that the offer has been made for.<br>
+`NAME` refers to the name of the client making the offer.<br>
+`OFFER_PRICE` refers to the offer price that has been made for the listing.
+
+**Example Input:**<br>
+_Success_
+```text
+addO l/BEDOK_NORTH_BLK123_12 n/John Doe o/2000000
+```
+[screenshots to be added]<br>
+_Failure_
+```text
+Missing fields:
+add0 l/BEDOK_NORTH_BLK123_12 n/John Doe
+```
+[screenshots to be added]<br>
+```text
+Invalid offer price:
+addO l/BEDOK_NORTH_BLK123_12 n/John Doe o/-1
+```
+[screenshots to be added]<br>
+**Expected Success Output:**<br>
+A new offer is added to Real-Time<br>
+
+**Feedback Box:**
+```text
+New offer added: [offer details]
+```
+
+**Help:**
+1. If you have any confusion of the notation, you can refer to the
+   [Command Format]() section here.
+2. If you are still unsure of the **prefixes**, click [here](#prefix-summary) to find out more.
+
+Back to [Table of Contents](#table-of-contents)<br>
+Back to [Managing Offers](#managing-offers)
 
 ___
 
-### Deleting a listing : `deleteL`
+### Deleting an offer : `delO`
 
-Format: `deleteL [id/INDEX]`
-* Deletes the listing with the given Index.
-* `INDEX` refers to the Index of the listing you wish to delete.
+> Deletes the specified offer in Real-Time.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Note that you refer to the Index of the Listing in the displayed list.
-</div>
+**Format** - `delO INDEX`
 
-Examples:
+**Example Input:**<br>
+_Success_
+```text
+delO 2 
+```
+[screenshots to be added]<br>
+_Failure_
+```text
+Invalid index:
+delO 0
+```
+[screenshots to be added]<br>
+```text
+delO
+```
+[screenshots to be added]<br>
+**Expected Success Output:**<br>
+The offer at `INDEX` 2 is deleted from Real-Time.<br>
+
+**Feedback Box:**
+```text
+Deleted Offer: [details of the deleted offer]
+```
+**Help:**
+1. If you have any confusion of the notation, you can refer to the 
+[Command Format]() section here.
+
+Back to [Table of Contents](#table-of-contents)<br>
+Back to [Managing Offers](#managing-offers)
+
+___
+
+### Editing an offer : `editO`
+
+> Edits an existing offer in Real-Time.
+
+**Format:** `editO INDEX [n/NAME] [o/OFFER_PRICE] [l/LISTING_ID]`
+
+**Example Input:**
+_Success_
+```text
+editO 2 n/Betsy Crower o/200000
+```
+[screenshots to be added]<br>
+_Failure_
+```text
+Invalid index:
+editO -1 n/Betsy Crower o/200000
+```
+[screenshots to be added]<br>
+```text
+Invalid client name:
+editO 2 n/Betsy Cr@wer o/200000
+```
+[screenshots to be added]<br>
+**Expected Success Output:**<br>
+The offer at `INDEX` 2 is edited according to the fields provided.<br>
+
+**Feedback Box:**
+```text
+Edited Offer: [newly updated details of offer]
+```
+**Note:**
+1. Edits the offer at the specified `INDEX`. The index refers to the index number shown in the displayed client list.
+   The index **must be a positive integer** 1, 2, 3, …​
+2. At least one of the optional fields must be provided.
+3. Existing values will be updated to the input values.
+
+**Help:**
+1. If you have any confusion of the notation, you can refer to the
+   [Command Format]() section here.
+2. If you are still unsure of the **prefixes**, click [here](#prefix-summary) to find out more.
+
+Back to [Table of Contents](#table-of-contents)<br>
+Back to [Managing Offers](#managing-offers)
+
+___
+
+## Managing Listings
+
+In this section, we provide you the basic steps needed to [add](#adding-a-listing-addl), [delete](#deleting-a-listing--dell),
+[edit](#editing-a-listing--editl) and [list](#listing-listings-listl) listings.
+
+**If this is not the section you are looking for**, click [here](#table-of-contents) to go back to the **Table of Contents**.
+
+
+### Adding a listing: `addL`
+
+> Adds a listing to Real-Time.
+
+**Format:** `addL l/LISTING_ID a/ADDRESS n/OWNER_NAME ap/ASKING_PRICE [t/TAG]…​`
+
+
+`l/LISTING_ID` refers to the ListingId you wish to assign to this Listing.<br>
+`a/ADDRESS` refers to the address of this Listing.<br>
+`n/NAME` refers to the name of the owner of this Listing.<br>
+`ap/ASKING_PRICE` refers to the asking price that the owner is asking for this Listing.
+
+**Example Input:**
 
 _Success_
-* `deleteL id/1` Deletes the first Listing in the list.
-
-![deleteL example](images/deleteL.png)
+```text
+addL l/007 a/100 Charming Ave n/Joke Peralta ap/10000000
+```
+![addL example](images/addL.png)
 
 _Failure_
-* `deleteL l/2356739457` Fails as the Index provided does not exist.
+```text
+Missing asking price field:
+addL l/007 a/100 Charming Ave n/Joke Peralta`
+```
+![addL Missing Parameter example](images/addLMissingParam.png)
 
+**Expected Success Output:**<br>
+A new listing is added to Real-Time<br>
+
+**Feedback Box:**
+```text
+New listing added: [listing details]
+```
+
+**Help:**
+1. If you have any confusion of the notation, you can refer to the
+   [Command Format]() section here.
+2. If you are still unsure of the **prefixes**, click [here](#prefix-summary) to find out more.
+
+Back to [Table of Contents](#table-of-contents)<br>
+Back to [Managing Listings](#managing-listings)
+___
+
+### Deleting a listing : `delL`
+
+> Deletes the listing at the specified Index from Real-Time.
+
+**Format:** `delL id/INDEX`
+
+**Example Input:**<br>
+_Success_
+```text
+delL 1 
+```
+![deleteL example](images/deleteL.png)
+_Failure_
+```text
+Invalid index:
+delL 2356739457
+```
 ![deleteL Invalid ListingId example](images/deleteLInvalidId.png)
 
-___
+**Expected Success Output:**<br>
+The listing at `INDEX` 1 is deleted from Real-Time.<br>
 
-### Deleting an offer : `deleteO`
+**Feedback Box:**
+```text
+Deleted Listing: [details of the deleted listing]
+```
+**Help:**
+1. If you have any confusion of the notation, you can refer to the
+   [Command Format]() section here.
 
-Deletes the specified offer from the address book.
-
-Format - `deleteO INDEX`
-
-Examples:
-* `deleteO 2` deletes the 2nd offer in the address book.
-
-___
-
-### Deleting an meeting : `deleteM`
-
-Deletes the specified meeting from the address book.
-
-Format - `deleteM INDEX`
-
-Examples:
-* `deleteM 2` deletes the 2nd meeting in the address book.
+Back to [Table of Contents](#table-of-contents)<br>
+Back to [Managing Listings](#managing-listings)
 
 ___
+
+### Editing a listing : `editL`
+
+> Edits an existing listing in the Real-Time.
+
+**Format:** `editL INDEX [l/LISTING_ID] [a/ADDRESS] [n/OWNER_NAME] [ap/ASKING_PRICE] [t/TAG]…​`
+
+**Example input:**<br>
+_Success_
+```text
+`editL 1 n/Joke Peralta`
+```
+![editL example](images/editL.png)
+![editedL example](images/editedL.png)
+
+_Failure_
+```text
+Invalid index:
+editL 200 n/Joke Peralta
+```
+![editL IndexOutOfBounds example](images/editLIndexOutOfBounds.png)
+```text
+Missing fields:
+editL 1
+```
+![editL No Change example](images/editLNoChange.png)
+
+**Expected Success Output:**<br>
+The client at the specified `INDEX` is edited according to the fields provided.<br>
+
+**Feedback Box:**
+```text
+Edited Client: [newly updated details of client]
+```
+**Note:**
+1. Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client list.
+   The index **must be a positive integer** 1, 2, 3, …​
+2. At least one of the optional fields must be provided.
+3. Existing values will be updated to the input values.
+4. When editing tags, the existing tags of the client will be removed i.e adding of tags is not cumulative.
+5. You can remove all the client’s tags by typing `t/` without
+   specifying any tags after it.
+
+**Help:**
+1. If you have any confusion of the notation, you can refer to the
+   [Command Format]() section here.
+2. If you are still unsure of the **prefixes**, click [here](#prefix-summary) to find out more.
+
+Back to [Table of Contents](#table-of-contents)<br>
+Back to [Managing Listings](#managing-listings)
+
+___
+
+### Listing listings: `listL`
+
+> Shows the full list of listings.
+
+**Format:** `listL`
+
+**Expected Success Output:**<br>
+The full list of listings appears in the Client Box.<br>
+
+[screenshots to be added]<br>
+
+**Feedback Box:**
+```text
+Listed all listings
+```
+
+Back to [Table of Contents](#table-of-contents)<br>
+Back to [Managing Listings](#managing-listings)
+
+___
+
+## Managing Meetings
+
+In this section, we provide you the basic steps needed to [add](#adding-a-meeting-addm), [delete](#deleting-a-meeting--delm) 
+and [edit](#editing-a-meeting--editm)meetings.
+
+**If this is not the section you are looking for**, click [here](#table-of-contents) to go back to the **Table of Contents**.
+
+
+### Adding a meeting: `addM`
+
+> Adds a meeting to the Real-Time.
+
+**Format:** `addM id/LISTING_ID n/CLIENT_NAME d/DATE_TIME`
+
+`LISTING_ID` refers to the Listing the meeting is about.
+`CLIENT_NAME` refers to the name of the Client you are meeting.
+`DATE_TIME` refers to the date and time of the meeting.
+
+**Example Input:**<br>
+_Success_
+```text
+addM id/007 n/Joke Peralta d/2022-10-20 12:00
+```
+[screenshots to be added]<br>
+_Failure_ 
+```text
+Wrong date format:
+addM id/007 n/Joke Peralta d/tomorrow 12pm
+```
+[screenshots to be added]<br>
+**Note:**
+1. DATE_TIME must be in this format, yyyy-MM-dd HH:mm
+
+**Help:**
+1. If you have any confusion of the notation, you can refer to the
+   [Command Format]() section here.
+2. If you are still unsure of the **prefixes**, click [here](#prefix-summary) to find out more.
+
+Back to [Table of Contents](#table-of-contents)<br>
+Back to [Managing Meetings](#managing-meetings)
+___
+
+### Deleting a meeting : `delM`
+
+> Deletes the meeting at the specified index from Real-Time.
+
+**Format:** `delM id/INDEX`
+
+**Example Input:**<br>
+_Success_
+```text
+delM 1 
+```
+[screenshots to be added]<br>
+_Failure_
+```text
+Invalid index:
+delM -1
+```
+[screenshots to be added]<br>
+
+**Expected Success Output:**<br>
+The meeting at `INDEX` 1 is deleted from Real-Time.<br>
+
+**Feedback Box:**
+```text
+Deleted Meeting: [details of the deleted listing]
+```
+**Help:**
+1. If you have any confusion of the notation, you can refer to the
+   [Command Format]() section here.
+
+Back to [Table of Contents](#table-of-contents)
+Back to [Managing Meetings](#managing-meetings)
+___
+
+### Editing a meeting : `editM`
+
+> Edits an existing meeting in Real-Time.
+
+**Format:** `editM INDEX [n/NAME] [d/DATE_TIME]`
+
+**Example input:**<br>
+_Success_
+```text
+`editM 1 n/Joke Peralta d/2022-10-20 23:59`
+```
+[screenshots to be added]<br>
+_Failure_
+```text
+Invalid index:
+editM -1 n/Joke Peralta
+```
+[screenshots to be added]<br>
+```text
+Missing fields:
+editM 1
+```
+[screenshots to be added]<br>
+
+**Expected Success Output:**<br>
+The meeting at the specified `INDEX` is edited according to the fields provided.<br>
+
+**Feedback Box:**
+```text
+Edited Meeting: [newly updated details of meeting]
+```
+**Note:**
+1. Edits the meeting at the specified `INDEX`. The index refers to the index number shown in the displayed client list.
+   The index **must be a positive integer** 1, 2, 3, …​
+2. At least one of the optional fields must be provided.
+3. Existing values will be updated to the input values.
+
+**Help:**
+1. If you have any confusion of the notation, you can refer to the
+   [Command Format]() section here.
+2. If you are still unsure of the **prefixes**, click [here](#prefix-summary) to find out more.
+
+Back to [Table of Contents](#table-of-contents)<br>
+Back to [Managing Meetings](#managing-meetings)
+
+___
+
+## General
+
+In this section, we provide you the basic steps needed to use the [help](#viewing-help--help), [clear](#clearing-all-entries--clear) and
+[exit](#exit-Real-Time--exit) commands.
+
+**If this is not the section you are looking for**, click [here](#table-of-contents) to go back to the **Table of Contents**.
+
+
+Available commands: `help` `clear` `exit`
+
+### Viewing help : `help`
+
+> Show a help window for Real-Time
+
+**Format:** `help`
+
+**Expected Success Output:**<br>
+
+A window displaying help similar to below will appear.
+
+![help message](images/helpMessage.png)
+
+Back to [Table of Contents](#table-of-contents)<br>
+Back to [General](#general)
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+> Clears all entries in Real-Time.
 
-Format - `clear`
+**Example Input:**<br>
+```text
+clear
+```
+**Expected Success Output:**<br>
+All data in Real-Time is cleared
+
+Back to [Table of Contents](#table-of-contents)<br>
+Back to [General](#general)
+
+___
+### Exit Real-Time : `exit`
+> Exits Real-Time
+
+**Example Input:**<br>
+```text
+exit
+```
+**Expected Success Output:**<br>
+The Real-Time window closes.
+
+Back to [Table of Contents](#table-of-contents)<br>
+Back to [General](#general)
 
 ___
 
-### Exiting the program : `exit`
-
-Exits the program.
-
-Format - `exit`
-
-___
 
 ### Saving the data
 
-REal-Time data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Real-Time data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+Back to [Table of Contents](#table-of-contents)<br>
+Back to [General](#general)
 
 ___
 
 ### Editing the data file
 
-REal-Time data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+Real-Time data are saved as a JSON file `[JAR file location]/data/realtime.json`.
+Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, REal-Time will discard all data and start with an empty data file at the next run.
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:** If your changes to the data file makes its format invalid, Real-Time will 
+discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
+Back to [Table of Contents](#table-of-contents)<br>
+Back to [General](#general)
 
-_Details coming soon ..._
+# Glossary
+
+|  Term   |                                Description                                 |
+|:-------:|:--------------------------------------------------------------------------:|
+| **OS**  | The operating system is the software that is used to run in your computer. |
+| **CLI** |                                To be added                                 |
+| **GUI** |                                To be added                                 |
+
+Back to [Introduction](#introduction)<br>
+Back to [Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+# Command Summary
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+|                      Action                       |                                       Format                                       |                                              Examples                                               |
+|:-------------------------------------------------:|:----------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------:|
+|      [**Add Client**](#adding-a-client-addc)      |              `addC n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`              | `addC n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+|     [**Add Listing**](#adding-a-listing-addl)     |        `addL l/LISTING_ID a/ADDRESS n/OWNER_NAME ap/ASKING_PRICE [t/TAG]…​`        |                     `addL l/007 a/100 Charming Ave n/Joke Peralta ap/10000000`                      |
+|     [**Add Meeting**](#adding-a-meeting-addm)     |                   `addM id/Listing_ID n/CLIENT_NAME d/DATE_TIME`                   |                   `addM id/1 a/John street, block 123, #01-01 d/2022-10-20 12:00`                   |
+|      [**Add Offer**](#adding-an-offer-addo)       |                      `addO l/LISTING_ID n/NAME o/OFFER_PRICE`                      |                          `addO l/30_SERGARDENS_LOR23_0718 n/Bob o/600000`                           |
+|     [**Clear**](#clearing-all-entries--clear)     |                                      `clear`                                       |                                               `clear`                                               |
+|   [**Delete Client**](#deleting-a-client--delc)   |                                    `delC INDEX`                                    |                                              `delC 3`                                               |
+|  [**Delete Listing**](#deleting-a-listing--dell)  |                                    `delL INDEX`                                    |                                              `delL 1`                                               |
+|  [**Delete Meeting**](#deleting-a-meeting--delm)  |                                    `delM INDEX`                                    |                                              `delM 4`                                               |
+|   [**Delete Offer**](#deleting-an-offer--delo)    |                                    `delO INDEX`                                    |                                              `delO 2`                                               |
+|    [**Edit Client**](#editing-a-client--editc)    |      `editC INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`       |                            `editC 2 n/James Lee e/jameslee@example.com`                             |
+|   [**Edit Listing**](#editing-a-listing--editl)   | `editL INDEX [l/LISTING_ID][a/ADDRESS] [n/OWNER_NAME] [ap/ASKING_PRICE] [t/TAG]…​` |                                        `editL 4 ap/1234567`                                         |
+|   [**Edit Meeting**](#editing-a-meeting--editm)   |                     `editM INDEX [n/OWNER_NAME] [d/DATE_TIME]`                     |                                      `editM 2 n/Roza Santiago`                                      |
+|    [**Edit Offer**](#editing-an-offer--edito)     |               `editO INDEX [n/NAME] [o/OFFER_PRICE] [l/LISTING_ID]`                |                                  `editO 2 n/Betsy Crower o/123456`                                  |
+| [**Find Client**](#finding-clients-by-name-findc) |                          `findC KEYWORD [MORE_KEYWORDS]`                           |                                         `findC James Jake`                                          |
+|     [**List Client**](#listing-clients-listc)     |                                      `listC`                                       |                                               `listC`                                               |
+|    [**List Listing**](#listing-listings-listl)    |                                      `listL`                                       |                                               `listL`                                               |
+|          [**Help**](#viewing-help--help)          |                                       `help`                                       |                                               `help`                                                |
+
+
+Back to [Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+# Prefix Summary
 
-| Action           | Format, Examples                                                                                                                                                      |
-|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add Client**   | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Add offer**    | `addoffer l/LISTING_ID n/NAME o/OFFER_PRICE` <br> e.g., `addoffer l/30_SERGARDENS_LOR23_0718 n/Bob o/600000`                                                          |
-| **Clear**        | `clear`                                                                                                                                                               |
-| **Delete**       | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
-| **Delete offer** | `deleteO INDEX` <br> e.g., `deleteO 2`                                                                                                                                |
-| **Edit**         | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
-| **Edit offer**   | `editO INDEX [n/NAME] [o/OFFER_PRICE] [l/LISTING_ID]` <br> e.g., `editO 2 n/Betsy Crower o/123456`                                                                    |
-| **Find**         | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
-| **List**         | `list`                                                                                                                                                                |
-| **Help**         | `help`                                                                                                                                                                |
+| Prefix | Description                                                             | Used in                                                                                                                                                                                                                                                    | Example                       |
+|--------|-------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------|
+| `a/`   | **Address** of the Client or the Listing.                               | [Add Client](#adding-a-client-addc)<br/> [Add Listing](#adding-a-listing-addl) <br/> [Edit Client](#editing-a-client--editc)<br/> [Edit Listing](#editing-a-listing--editl)                                                                                | `a/123, Clementi Rd, 1234665` |
+| `ap/`  | **Asking Price** of the Owner in a Listing.                             | [Add Listing](#adding-a-listing-addl) <br/> [Edit Listing](#editing-a-listing--editl)                                                                                                                                                                      | `ap/500000`                   |
+| `d/`   | **Date and time** of a Meeting with a Client.                           | [Add Meeting](#adding-a-meeting-addm)<br/>[Edit Meeting](#editing-a-meeting--editm)                                                                                                                                                                        | `d/2022-10-20 12:00`          |
+| `e/`   | **Email** of the Client.                                                | [Add Client](#adding-a-client-addc)<br/>[Edit Client](#editing-a-client--editc)                                                                                                                                                                            | `e/johndoe@example.com`       |
+| `l/`   | **Listing ID** by the user for a Listing. Can be specified by the user. | [Add Listing](#adding-a-listing-addl)<br/>[Add Offer](#adding-an-offer-addo)<br/> [Edit Listing](#editing-a-listing--editl)<br/>[Edit Offer](#editing-an-offer--edito)                                                                                     | `l/BEDOK_NORTH_RD_BLK123`     |
+| `n/`   | **Name** of Client or Owner of a Listing                                | [Add Client](#adding-a-client-addc)<br/>[Add Listing](#adding-a-listing-addl) <br/>[Add Offer](#adding-an-offer-addo)<br/>[Edit Client](#editing-a-client--editc)<br/>[Edit Offer](#editing-an-offer--edito)<br/>[Edit Listing](#editing-a-listing--editl) | `n/John Doe`                  |
+| `o/`   | **Offer price** by a Client                                             | [Add Offer](#adding-an-offer-addo)<br/>[Edit Offer](#editing-an-offer--edito)                                                                                                                                                                              | `o/700000`                    |
+| `p/`   | **Phone number** of a Client                                            | [Add Client](#adding-a-client-addc)<br/>[Edit Client](#editing-a-client--editc)                                                                                                                                                                            | `p/12345678`                  |
+| `t/`   | **Tag** to specify a unique trait of a Listing or Client                | [Add Client](#adding-a-client-addc)<br/> [Add Listing](#adding-a-listing-addl) <br/> [Edit Client](#editing-a-client--editc)<br/> [Edit Listing](#editing-a-listing--editl)                                                                                | `t/4room`                     |
+
+Back to [Table of Contents](#table-of-contents)

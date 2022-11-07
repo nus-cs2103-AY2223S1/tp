@@ -25,11 +25,11 @@ refer to this [RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboar
 **Contributions to the DG:**
 * rationale for features
 
-**Contributions to team based tasks:** 
+**Contributions to team based tasks:**
 * Listing class and its features
 * Product demonstration
 
-**Review/mentoring contributions:** 
+**Review/mentoring contributions:**
 * weekly review and merging of peer PRs
 
 **Contributions beyond the project team:** 
