@@ -28,13 +28,6 @@ public interface Logic {
      */
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
-    /**
-     * Returns the TaAssist.
-     *
-     * @see seedu.taassist.model.Model#getTaAssist()
-     */
-    ReadOnlyTaAssist getTaAssist();
-
     /** Returns an unmodifiable view of the filtered list of students */
     ObservableList<Student> getFilteredStudentList();
 

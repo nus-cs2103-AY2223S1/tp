@@ -63,11 +63,6 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyTaAssist getTaAssist() {
-        return model.getTaAssist();
-    }
-
-    @Override
     public ObservableList<Student> getFilteredStudentList() {
         return model.getFilteredStudentList();
     }
