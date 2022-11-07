@@ -9,7 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-This project is based on the Friday-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -451,10 +451,10 @@ The following Sequence Diagram summarises steps 4 to 5.
 **Target user profile**:
 
 * CS1101S Teaching Assistants
-* prefers desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Prefers desktop apps over other types
+* Can type fast
+* Prefers typing to mouse interactions
+* Reasonably comfortable using CLI apps
 
 **Value proposition**
 1. One easy-to-access place to track each student’s individual progress
@@ -887,7 +887,7 @@ For all use cases below, the **System** is `FRIDAY` and the **Actor** is the `us
 
 ### Non-Functional Requirements
 
-1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+1. Should work on any _mainstream OS_ as long as it has Java 11 or above installed.
 2. Should be able to hold up to 100 students without a noticeable sluggishness in performance for typical usage.
 3. Should be able to hold up to 50 aliases without a noticeable sluggishness in performance for typical usage.
 4. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
@@ -896,12 +896,14 @@ For all use cases below, the **System** is `FRIDAY` and the **Actor** is the `us
 
 1. **Mainstream OS**: Windows, Linux, Unix, OS-X
 2. **Private contact detail**: A contact detail that is not meant to be shared with others
-3. **TA / Avenger**: Teaching assistants, namely CS1101S teaching assistants (also called "Avengers"), who are the target audience of our product FRIDAY.
+3. **Teaching Assistant:** Teaching assistants (TA) are people who help and support teachers or lecturers to provide and coordinate effective classroom instruction. For CS1101S, teaching assistants are undergraduate students who have completed the module. The role of a CS1101S TA involves planning, preparing and delivering weekly tutorial sessions, marking assignments and monitoring their students' progress and engagement levels.
 4. **Reading Assessment**: Assessments in the form of online quiz with Multiple-Choice Questions (MCQ). There are a total of two reading assessments, namely RA1 and RA2, throughout the semester. Reading Assessments have weightage in the students' final grade for the module.
 5. **Mastery Check**: An assessment of the students' understanding of topics conducted by the user (the teaching assistants).
 There are two Mastery Checks through the semester. Students will be assessed by their knowledge of the topics covered by presenting to their teaching assistant in pairs.
 Since users have to arrange dates to meet with their students to conduct the Mastery Checks, FRIDAY allows users to record the scheduled dates for each student.
-* **Default Command**: The original command word for a command in FRIDAY. (e.g. `add`,`sort`)
+6. **Default Command**: The original command word for a command in FRIDAY. (e.g. `add`,`sort`)
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
@@ -917,15 +919,13 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
-
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Download the jar file and copy into an empty folder 
+   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-
-   1. Re-launch the app by double-clicking the jar file.<br>
+   1. Resize the window to an optimum size. Move the window to a different location. Close the window. 
+   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
 
@@ -940,19 +940,37 @@ testers are expected to do more *exploratory* testing.
       Expected: No student is added. Error details shown in the status message.
    5. Other incorrect delete commands to try: `add`, `add Ben`, `add n/` <br>
       Expected: Similar to previous.
-
-
+   
 ### Deleting a student
 
 1. Deleting a student while all students are being shown
-   1. Prerequisites: List all students using the `list` command. Multiple students in the list.
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-   1. Test case: `delete 0`<br>
+   1. Prerequisites: List all students using the `list` command. Multiple students in the list. 
+   2. Test case: `delete 1`<br>
+      Expected: First student is deleted from the list. Details of the deleted student shown in the status message. Timestamp in the status bar is updated.
+   3. Test case: `delete 0`<br>
       Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
+### Editing a student
+1. Editing a student's details
+    1. Prerequisites: List all students using the list command. Multiple students in the list.
+    2. Test case: edit 1 n/Bobby t/Bobster
+       Expected: Edits the first student in the list to have a name of Bobby and a Telegram handle of Bobster
+    3. Test case: edit 0 n/Tommy
+       Expected: No student is edited. Error details shown in the status message.
+    4. Other incorrect formats: edit c/Yelan, edit 1, edit 2 m/.
+       Expected: Similar to previous.
+
+### Editing a student's remark
+1. Editing a student's remark
+    1. Prerequisites: List all students using the list command. Multiple students in the list.
+    2. Test Case: remark 1 r/Aspiring to be a CS1101S TA next year
+       Expected: Edits the first student in the list to have a remark Aspiring to be a CS1101S TA next year.
+    3. Test Case: remark 0 r/Loves Math
+       Expected: No student is edited. Error details shown in the status message.
+    4. Other incorrect formats: remark r/Loves coding, remark 2, remark 3 r/.
+       Expected: Similar to previous.
 
 ### Sorting students
 1. Sorting students with different criteria and order
@@ -965,11 +983,120 @@ testers are expected to do more *exploratory* testing.
        Expected: Students not sorted. Error details shown in the status message.
     5. Other incorrect delete commands to try: `sort`, `sort n/`, `sort c/b` <br>
        Expected: Similar to previous.
+    
+### Finding students
+1. Finding students who matches user input keywords
+    1. Prerequisites: List all students using the `list` command. Multiple students in the list.
+    2. Test case: `find alex` <br>
+       Expected: Students whose name or remark or telegram handle containing alex will be displayed.
 
+### Adding aliases
+1. Adding different aliases
+    1. Prerequisites: An alias `del` has been added for `delete`.
+    2. Test case: `alias a/ls k/list` <br>
+       Expected: An alias ls is added for the list command.
+    3. Test case: `alias a/del k/add` <br>
+       Expected: No alias is added. Error details shown in the status message.
+
+### Deleting aliases
+1. Deleting aliases
+    1. Prerequisites: An alias del has been added for delete.
+    2. Test case: unalias a/del <br>
+       Expected: The alias del is deleted.
+    3. Test case: unalias a/ls <br>
+       Expected: No alias is deleted. Error details shown in the status message.
+   
+### Recording grades for students
+1. Editing the grades of a student
+    1. Prerequisites: List all students using the `list` command. Multiple students in the list. The index provided is  
+       valid and the student exists.
+    2. Test case: `grade 1 ra1/95.60`
+       Expected: Edits the first student in the list to have a score of 95.60 in their RA1 grade.
+    3. Test case: `grade 0 ra2/90`
+       Expected: No student is edited. Error details shown in the status message.
+    4. Other incorrect formats: `grade 3, grade ra1/50, grade 2 pa/A, grade 1 ft/200, grade 1 mt/90.33333`
+       Expected: Similar to previous.
+
+### Recording grades for students
+1. Editing the grades of a student
+    1. Prerequisites: List all students using the list command. Multiple students in the list. The index provided is  
+       valid and the student exists.
+    2. Test case: grade 1 ra1/95.60
+        1. Expected: Edits the first student in the list to have a score of 95.60 in their RA1 grade.
+    3. Test case: grade 0 ra2/90
+        1. Expected: No student is edited. Error details shown in the status message.
+    4. Other incorrect formats: grade 3, grade ra1/50, grade 2 pa/A, grade 1 ft/200, grade 1 mt/90.33333
+       Expected: Similar to previous.
+
+### Marking and unmarking a student's Mastery Check
+
+1. Marking a student's Mastery Check as passed
+
+    1. Prerequisites: A student with Mastery Check date 2020-09-01, a student with Mastery Check date 2050-01-02 and a student with no scheduled Mastery Check date have already been added.
+    2. Test case: mark 1
+       Expected: The Mastery Check of the first student is marked as passed. A "(passed)" string is added behind the Mastery Check date of student 1.
+    3. Test case: mark 2
+       Expected: No marking of any Mastery Checks as passed is done. Error details shown in status message.
+    4. Other incorrect mark commands to try: mark, mark 3, ...
+       Expected: Similar to previous.
+
+2. Unmarking a student's Mastery Check
+
+    1. Prerequisites: A student with Mastery Check already marked as passed and a student with Mastery Check date of 2021-03-04 (not marked as passed yet) have already been added.
+    2. Test case: unmark 1
+       Expected: The Mastery Check of the first student is unmarked. The "(passed)" string behind student 1's Mastery Check date is removed.
+    3. Test case: unmark 2
+       Expected: No unmarking of any Mastery Checks is done. Error details shown in status message.
+    4. Other incorrect unmark commands to try: unmark, unmark 0,
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Prerequisites: There is a friday.json file in the data folder.
+   2. Test case: Add in `{ "name" : "@num",
+      "telegramHandle" : "",
+      "consultation" : "0001-01-01",
+      "masteryCheck" : "0001-01-01",
+      "masteryCheckIsDone" : false,
+      "remark" : "",
+      "tagged" : [ ],
+      "gradesList" : [ "0", "0", "0", "0", "0" ]
+      } ` into the list "students" in the friday.json file.
+      Expected: Friday will not load the student list. Error details shown in the logs.
 
+## **Appendix: Effort**
+<b>FRIDAY</b> was built over a period of 6 weeks. It is build upon, AddressBook Level-3, as well as design,plan out and implement<b>FRIDAY</b> 
+
+### Difficulty level
+
+We believe that we have worked hard during this entire project to come with a product that is functional and widely applicable.
+If the difficulty of the individual project is a 5 the difficulty of implementing <b>FRIDAY</b> was a 5. This is because:
+
+* We pushed more complex designs and features that required more planning and trial and error and learning along the way.
+* Working as a team also meant that we had to delegate admin tasks and designate roles on a weekly basis which was a challenge for us as well.
+
+### Challenges Faced
+
+* Evolving and refactoring existing code from AB3 resulted in many problems, such as:
+    * Existing automated test cases failing due to changes in naming.
+    * The refactoring was not done correctly in certain places, resulting in unexpected changes in file names which made it seem like we lost certain essential files.
+
+* Dealing with time delay due to different and clashing schedules of each team member.
+
+* Forking workflow made working on the project at the same time inefficient, especially when multiple members were working on the same file.
+
+### Effort required
+When this projects work was compared to the amount of effort needed for the IP, it can be said that the same amount of effort
+if not more was put into this project as compared to the IP. We believe we put in 100% of the effort each one of us put into our IP and that's a conservative estimate. This project required all members working around the clock
+and a high amount of effort was used to achieve weekly deliverables and ensure a working product was available at all times. 
+
+### Achievements
+* UI redesigned to match a more aesthetically pleasing and purposeful look.
+* Additional features for extra functionality , such as ability to record the particular grades for individual students,
+  the ability to sort the list of students based on our students' attributes,
+  the ability to mark mastery checks as done or undone,
+  the ability to add alias for commands,
+* Addition of new tests for the new commands.
+* Greater understanding of real world software engineering practices.
+* Greater appreciation for teamwork and timeliness.
