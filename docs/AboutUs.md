@@ -9,7 +9,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### Thomas Ho
+### Ho Lok Wah
 
 <img src="images/thomashoooo.png" width="200px">
 
