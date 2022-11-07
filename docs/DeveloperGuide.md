@@ -560,7 +560,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Student Feedback Points/Ratings**: A way the National University of Singapore (NUS) assess tutors and professors' performances by gathering feedback from students.
 * **Teaching Assistant (TA)**: A part-time tutor who supports professors in teaching a module by conducting tutorial/lab sessions.
-* **Teaching Nominations**: Number of nominations submitted by students for a teaching excellence award in NUS. 
+* **Teaching Nominations**: Number of nominations submitted by students for a teaching excellence award in NUS.
 * **Tutor Profile**: A profile containing the tutor's details, such as `NAME`, `PHONE_NUMBER`, `EMAIL`, etc.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -641,7 +641,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-   
+
 ### Saving data
 
 1. Dealing with missing/corrupted data files
@@ -649,9 +649,10 @@ testers are expected to do more *exploratory* testing.
 
     2. Test Case: Before starting Tuthub, enter random characters in the `tuthub.json` file. Launch Tuthub.<br/>
        Expected: Tuthub should start with no tutors in the list. You should see a warning message "`WARNING: Data file not in the correct format. Will be starting with an empty Tuthub`" in the terminal console.
-   
-    5. Test Case: Before starting Tuthub, delete `tuthub.json`. Launch Tuthub.<br/>
+
+    3. Test Case: Before starting Tuthub, delete `tuthub.json`. Launch Tuthub.<br/>
         Expected: Tuthub will start with a sample list of tutors. A new `tuthub.json` file containing the sample data will be created.
-   
-    6. Test Case: While Tuthub is running, delete `tuthub.json`. Try carrying out a valid command, e.g. `view 1`.<br/>
+
+    4. Test Case: While Tuthub is running, delete `tuthub.json`. Try carrying out a valid command, e.g. `view 1`.<br/>
        Expected: Command works as per usual. Upon carrying out the command, a new `tuthub.json` file will be created.
+2. 
