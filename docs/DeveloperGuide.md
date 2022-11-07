@@ -275,56 +275,117 @@ The Sequence diagram below shows the execution of a view command with no flags.
 
 ![tasksOnSequenceDiagram](images/TasksOnSequenceDiagram.png)
 
-### Add/delete medical conditions from patients
+### Multi-valued attributes feature
 
-Users can add a medical condition to a particular patient by providing the following details:
+A multi-valued attribute is a patient details that consists of a list of values. A patient's multi-valued attributes includes tags, tasks, medical conditions, medications and remarks.
+Multi-valued attributes are represented by the `Tag`, `Task`, `Condition`, `Medication` and `Remark` classes respectively.
+
+Users can add a multi-valued attribute to a particular patient by providing the following details:
 1. The patient's index number shown in the displayed patient list.
-2. The condition to be added.
+2. The attribute to be added.
 
-There are two ways a user can add a medical condition:
-1. Add multiple medical conditions at one go when the user first creates a patient.
-2. Add one condition at a time to an existing patient.
+
+There are two ways a user can add a multi-valued attribute:
+1. Add multiple attributes at one go when the user first creates a patient.
+2. Add one attribute at a time to an existing patient.
 
 #### Implementation
 
-A medical condition is represented by `Condition`, and multiple conditions are stored internally as a `ConditionList`.
-`ConditionList` facilitates the add/delete condition mechanism, and each patient only has one associated `ConditionList`.
-`ConditionList` mainly implements the following operations:
-* `ConditionList#add()`: adds a condition to the patient's list of conditions.
-* `ConditionList#delete()`: removes a condition from the patient's list of conditions.
+A multi-valued attribute is represented by `XYZ`, and multiple attributes are stored internally as a `XYZList`.
+`XYZList` facilitates the add/edit/delete multi-valued attribute mechanism, and each patient only has one associated `XYZList`.
+`XYZList` mainly implements the following operations:
+* `XYZList#add()`: adds a multi-valued attribute to the patient's list of attributes.
+* `XYZList#edit()`: edits a multi-valued attribute in the patient's list of attributes.
+* `XYZList#delete()`: removes a multi-valued attribute from the patient's list of attributes.
 
-Figure 1 below summarises what happens when a user executes an add condition command on a specified patient:
-<figure>
-    <img src="images/AddConditionActivityDiagram.png" alt="add_condition_activity_diagram"/>
-    <figcaption>
-        <em>Figure 1: Activity diagram showing the flow of events when a user executes an add condition command</em>
-    </figcaption>
-</figure>
+All `XYZList` classes inherit from the `GenericList` interface so that they can be treated similarly where possible e.g. during testing.
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** `XYZ` is a placeholder for the specific multi-valued attribute type (e.g., `ConditionList`, `Condition`, etc.)
+
+</div>
+
+The activity diagram below summarises the flow of events when a user executes an edit attribute command on a specified patient:
+
+<img src="images/EditXYZActivityDiagram.png" alt="edit_xyz_activity_diagram"/>
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:**
+
+The sequence of events when a user executes an add/delete attribute command is similar to edit.
+
+</div>
 
 #### Interactions 
 
-Given below is an example usage scenario and how the add condition mechanism behaves at each step.
+<div markdown="span" class="alert alert-info">
 
-1. The user executes the `addCondition 1 c/Diabetes` command to add a condition to the first patient in the
-displayed patient list.
+:information_source: **Note:**
 
-2. `UninurseBookParser#parseCommand()` parses the command word `addCondition`, and then creates a corresponding `AddConditionCommandParser` object.
+To better illustrate how a multi-valued attribute is added/edited/deleted from a patient, the add/edit/delete condition mechanism is used as an example scenario.
+The implementation is similar for the other multi-valued attributes.
 
-3. `AddConditionCommandParser#parse()` parses the patient index `1` and the condition `Diabetes` provided, and then creates an `AddConditionCommand` object.
+</div>
 
-4. The `AddConditionCommand` object interacts with the `Model` to add a condition to the specified patient's condition list.
+**Add multi-valued attribute**
 
-5. `Logic` returns a `CommandResult` object, which encapsulates the result of the execution of the add condition command.
+1. The user executes the `add -p 1 c/Diabetes` command to add a condition to the first patient in the displayed patient list.
 
-Figure 2 below shows how `Logic` executes the add condition operation:
-<figure>
-    <img src="images/AddConditionSequenceDiagram.png" alt="add_condition_sequence_diagram"/>
-    <figcaption>
-        <em>Figure 2: Sequence diagram showing interactions within the Logic component when a user executes an add condition command</em>
-    </figcaption>
-</figure>
+2. `UninurseBookParser#parseCommand()` parses the command word `add`, and then creates a corresponding `AddGenericCommandParser` object.
 
-_To be updated with details of delete condition feature ..._
+3. `AddGenericCommandParser#parse()` parses flag and option `-p 1`, and then creates a corresponding `AddConditionCommandParser` object.
+
+4. `AddConditionCommandParser#parse()` parses the patient index `1` and the condition `Diabetes` provided, and then creates an `AddConditionCommand` object.
+
+5. The `AddConditionCommand` object interacts with the `Model` to add a condition to the specified patient's condition list.
+
+6. `Logic` returns a `CommandResult` object, which encapsulates the result of the execution of the add condition command.
+
+The sequence diagram below shows the interactions within the Logic component than happen when a user executes the add condition operation:
+
+<img src="images/AddConditionSequenceDiagram.png" alt="add_condition_sequence_diagram"/>
+
+**Edit multi-valued attribute**
+
+Given below is an example usage scenario and how the edit condition mechanism behaves at each step.
+
+1. The user executes the `edit -p 2 -c 1 c/Hypertension` command to edit the first condition of the second patient in the displayed patient list.
+
+2. `UninurseBookParser#parseCommand()` parses the command word `edit`, and then creates a corresponding `EditGenericCommandParser` object.
+
+3. `EditGenericCommandParser#parse()` parses flags and options `-p 2 -c 1`, and then creates a corresponding `EditConditionCommandParser` object.
+
+4. `EditConditionCommandParser#parse()` parses the patient index `2`, the condition index `1` and the condition `Hypertension` provided, and then creates an `EditConditionCommand` object.
+
+5. The `EditConditionCommand` object interacts with the `Model` to replace the desired condition with the newly edited one in the specified patient's condition list.
+
+6. `Logic` returns a `CommandResult` object, which encapsulates the result of the execution of the edit condition command.
+
+The sequence diagram below shows the interactions within the Logic component than happen when a user executes the edit condition operation:
+
+<img src="images/EditConditionSequenceDiagram.png" alt="edit_condition_sequence_diagram"/>
+
+**Delete multi-valued attribute**
+
+Given below is an example usage scenario and how the delete condition mechanism behaves at each step.
+
+1. The user executes the `delete -p 2 -c 1` command to delete the first condition of the second patient in the displayed patient list.
+
+2. `UninurseBookParser#parseCommand()` parses the command word `delete`, and then creates a corresponding `DeleteGenericCommandParser` object.
+
+3. `DeleteGenericCommandParser#parse()` parses flags and options `-p 2 -c 1`, and then creates a corresponding `DeleteConditionCommandParser` object.
+
+4. `DeleteConditionCommandParser#parse()` parses the patient index `2` and the condition index `1` provided, and then creates a `DeleteConditionCommand` object.
+
+5. The `DeleteConditionCommand` object interacts with the `Model` to delete the condition from the specified patient's condition list.
+
+6. `Logic` returns a `CommandResult` object, which encapsulates the result of the execution of the delete condition command.
+
+The sequence diagram below shows the interactions within the Logic component than happen when a user executes the delete condition operation:
+
+<img src="images/DeleteConditionSequenceDiagram.png" alt="delete_condition_sequence_diagram"/>
 
 ### Undo/redo feature
 
