@@ -49,7 +49,7 @@ Given below are my contributions to the project.
   * PRs reviewed within the team (with non-trivial review comments): [#177](https://github.com/AY2223S1-CS2103T-W16-4/tp/pull/177), [#178](https://github.com/AY2223S1-CS2103T-W16-4/tp/pull/178), [#183](https://github.com/AY2223S1-CS2103T-W16-4/tp/pull/183), [#186](https://github.com/AY2223S1-CS2103T-W16-4/tp/pull/168),
 
 * **Tools**:
-  * Integrated CodeDev into the team repo
+  * Integrated Codecov into the team repo
   * Set up Github pages for Jekyll
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=ThomasHoooo&tabRepo=AY2223S1-CS2103T-W16-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
