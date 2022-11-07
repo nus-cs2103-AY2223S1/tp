@@ -16,7 +16,7 @@ public class TaskDescription {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public final String taskDescription;
+    private final String taskDescription;
 
     /**
      * Constructs a {@code TaskDescription}.
@@ -53,5 +53,9 @@ public class TaskDescription {
     @Override
     public int hashCode() {
         return taskDescription.hashCode();
+    }
+
+    public String getTaskDescription() {
+        return taskDescription;
     }
 }

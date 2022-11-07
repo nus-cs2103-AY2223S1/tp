@@ -124,7 +124,7 @@ public class EditStaffCommand extends Command {
     private void checkForEmptyList(List<Project> projectList, List<Staff> staffList)
             throws CommandException {
         if (projectList.size() == 0) {
-            throw new CommandException(String.format(MESSAGE_INVALID_PROJECT, projectName.fullName));
+            throw new CommandException(String.format(MESSAGE_INVALID_PROJECT, projectName.getFullName()));
         }
 
         if (staffList.size() == 0) {

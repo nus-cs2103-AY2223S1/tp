@@ -54,7 +54,7 @@ public class StaffCard extends UiPart<Region> {
         staffTitle.setText("Title: " + staff.getStaffTitle().toString());
         staffDepartment.setText("Department: " + staff.getStaffDepartment().toString());
         staffContact.setText("Phone Number: " + staff.getStaffContact());
-        boolean isOnLeave = staff.getStaffLeave().staffLeave.equals("true");
+        boolean isOnLeave = staff.getStaffLeave().getStaffLeave().equals("true");
         if (isOnLeave) {
             staffLeave.getChildren().add(new Label("On Leave"));
         } else {
@@ -63,8 +63,8 @@ public class StaffCard extends UiPart<Region> {
 
 
         staff.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .sorted(Comparator.comparing(tag -> tag.getTagName()))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.getTagName())));
     }
 
     @Override

@@ -55,11 +55,11 @@ class JsonAdaptedStaff {
      * Converts a given {@code Staff} into this class for Jackson use.
      */
     public JsonAdaptedStaff(Staff source) {
-        staffName = source.getStaffName().staffName;
-        staffContact = source.getStaffContact().staffContact;
-        staffDepartment = source.getStaffDepartment().staffDepartment;
-        staffLeave = source.getStaffLeave().staffLeave;
-        staffTitle = source.getStaffTitle().staffTitle;
+        staffName = source.getStaffName().getStaffName();
+        staffContact = source.getStaffContact().getStaffContact();
+        staffDepartment = source.getStaffDepartment().getStaffDepartment();
+        staffLeave = source.getStaffLeave().getStaffLeave();
+        staffTitle = source.getStaffTitle().getStaffTitle();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));

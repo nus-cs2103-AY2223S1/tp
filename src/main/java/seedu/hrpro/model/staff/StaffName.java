@@ -17,7 +17,7 @@ public class StaffName {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alpha}][\\p{Alpha} ]*";
 
-    public final String staffName;
+    private final String staffName;
 
     /**
      * Constructs a {@code StaffName}.
@@ -53,5 +53,9 @@ public class StaffName {
     @Override
     public int hashCode() {
         return staffName.hashCode();
+    }
+
+    public String getStaffName() {
+        return staffName;
     }
 }

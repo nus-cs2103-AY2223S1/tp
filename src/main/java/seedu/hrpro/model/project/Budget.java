@@ -16,7 +16,7 @@ public class Budget {
      */
     public static final String VALIDATION_REGEX = "[1-9]{1}\\d+|\\d{1}";
 
-    public final String value;
+    private final String value;
 
     /**
      * Constructs an {@code Budget}.
@@ -52,6 +52,10 @@ public class Budget {
     @Override
     public int hashCode() {
         return value.hashCode();
+    }
+
+    public String getBudget() {
+        return value;
     }
 
 }

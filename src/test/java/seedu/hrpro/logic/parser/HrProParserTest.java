@@ -118,7 +118,7 @@ public class HrProParserTest {
         ProjectName projectName = new ProjectName("CS2103T TP");
         DeleteStaffCommand command = (DeleteStaffCommand) parser.parseCommand(
                 DeleteStaffCommand.COMMAND_WORD + " "
-                        + INDEX_FIRST_STAFF.getOneBased() + " pn/" + projectName.fullName
+                        + INDEX_FIRST_STAFF.getOneBased() + " pn/" + projectName.getFullName()
         );
         Index index = Index.fromZeroBased(0);
         assertEquals(new DeleteStaffCommand(index, projectName), command);
