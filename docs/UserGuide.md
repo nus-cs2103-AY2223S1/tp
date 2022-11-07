@@ -581,6 +581,8 @@ If your changes to the data file makes its format invalid, HobbyList will discar
 | **Clear**                         | `clear`                                                                  | `clear`                                                                                                                                                | 
 | **Exit**                          | `exit`                                                                   | `exit`                                                                                                                                                 |
 
+--------------------------------------------------------------------------------------------------------------------
+
 ## **9. Glossary**
 
 | Terms              | Description                                                                                                                                           |
