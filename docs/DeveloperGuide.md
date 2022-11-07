@@ -621,12 +621,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -678,8 +672,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user with many students to manage	  | view a list of all my students and their work-related info   | I can see my students' workload at a glance                       |
 | `* * *`  | long-term user with many students	  | update my students data easily                               | I can keep updated information relevant to their work and contact |
 | `* * *`  | long-term user			  | view grade and assignment progress of my individual students | keep track of my students progress  	                             |
-
-*{More to be added}*
 
 ### Use cases
 
@@ -819,8 +811,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. Pupilist shows an error message.
 
       Use case resumes at step 3.
-
-  *{More to be added}*
 
 ### Non-Functional Requirements
 
