@@ -118,7 +118,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]…​`
 * The order of the keywords does not matter; e.g. `Friday 10am` will match `10am Friday`.
 * Only full words will be matched; e.g. `Cs2030` will not match `Cs2030S`.
 * Full words are characterized by having a space before and after the word; e.g. Searching `Friday` will only match `Friday` and not `Friday,`
-* Modules matching at least one keyword will be returned (i.e. `OR` search); e.g. `Friday` will return all modules that have lectures or tutorials on `Friday`.
+* Modules matching at least one keyword will be returned; e.g. `Monday Friday` will return all modules that have lectures or tutorials on `Monday` or `Friday`.
 
 Examples:
 
@@ -139,13 +139,9 @@ Opens a window that provides a link to the user guide.
 
 Format: `help`
 
-<div markdown="span" class="alert alert-primary"> **Tip:** 
+<div markdown="span" class="alert alert-primary"> :bulb: **Tip:** 
 You can access this window by clicking the File button on the top left of the app, followed by Help. Or you can just press F1!
 </div>
-
-The help popout window:
-
-<img src="images/help.png"/>
 
 ### Exiting the program: `exit`
 
@@ -153,7 +149,7 @@ Exits the program.
 
 Format: `exit`
 
-<div markdown="span" class="alert alert-primary"> **Tip:** 
+<div markdown="span" class="alert alert-primary"> :bulb: **Tip:** 
 Alternatively, you can click the File button on the top left of the app, followed by the Exit button!
 </div>
 
@@ -176,7 +172,7 @@ Format: `addp n/NAME [p/PHONE_NUMBER] [e/EMAIL] [tg/TELEGRAM] [m/MODULE_CODE] [t
 * The `NAME` field is mandatory while all other fields are optional (click [here](#person-fields) for more details on each individual field). If you attempt to add a person without a name, it will result in an error!
 * A contact can have any number of tags (including 0)
 
-<div markdown="span" class="alert alert-primary"> **Tip:**
+<div markdown="span" class="alert alert-primary"> :bulb: **Tip:**
 You can add the name first and leave other fields blank. Other fields can be added later using the editp command! 
 </div>
 
@@ -231,7 +227,7 @@ Format: `findp KEYWORD [MORE_KEYWORD]…​`
 * The order of the keywords does not matter; e.g. `findp Bob McGhee` will return the contact `McGhee Bob`.
 * Only full words will be matched; e.g. `find ale` will not return the contact `alex`.
 * Full words are characterized by having a space before and after the word; e.g. Searching `Alex` will only match `Alex` and not `Alex-`
-* Contacts matching at least one keyword will be returned (i.e. `OR` search); e.g. `findp mcghee broad` will return the contacts `Bob McGhee` and `Seaward Broad`.
+* Contacts matching at least one keyword will be returned; e.g. `findp mcghee broad` will return the contacts `Bob McGhee` and `Seaward Broad`.
 
 Examples:
 
@@ -251,8 +247,7 @@ Adds a module to the module list.
 Format: `addm m/MODULE_CODE [l/LECTURE_DETAILS] [t/TUTORIAL_DETAILS] [lz/LECTURE_ZOOM_LINK] [tz/TUTORIAL_ZOOM_LINK] [a/ASSIGNMENT_DETAILS]…​`
 
 * The `MODULE_CODE` field is mandatory while all other fields are optional (click [here](#module-fields) for more details on each individual field). If you attempt to add a module without a module code, it will result in an error!
-* The `AssignmentDetails` can take in alphanumerical characters **along with spaces**.
-* A module can have any number of `AssignmentDetails` (including 0)
+* A module can have any number of `ASSIGNMENT_DETAILS` (including 0)
 
 <div markdown="span" class="alert alert-primary"> **Tip:** 
 You can add the module code first and leave other fields blank. Other fields can be added later using the editm command! 
@@ -331,23 +326,23 @@ Examples:
 
 | Field Type      | Field Description                         | Identifier | Optional | Restrictions (if any)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 |-----------------|-------------------------------------------|------------|----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Name            | A person's name                           | n/         |          | Should only contain [alphanumeric](#alphanumeric) characters                                                                                                                                                                                                                                                                                                                                                                                                                                                |           
+| Name            | A person's name                           | n/         |          | Should only contain [alphanumeric](#alphanumeric) characters and spaces.                                                                                                                                                                                                                                                                                                                                                                                                                                    |           
 | Phone Number    | A person's phone number                   | p/         | ✓        | Should only contain numbers and be at least 3 digits long                                                                                                                                                                                                                                                                                                                                                                                                                                                   |           
-| Module Code     | The module code a person is associated to | m/         | ✓        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |           
+| Module Code     | The module code a person is associated to | m/         | ✓        | Should only contain [alphanumeric](#alphanumeric) characters                                                                                                                                                                                                                                                                                                                                                                                                                                                |           
 | Email Address   | A person's email address                  | e/         | ✓        | Should follow the format `local-part@domain`, where:<ol><li>`local-part` should only contain [alphanumeric](#alphanumeric) characters and the following characters: `+` `_` `.` `-` .<li>`domain` consists of two `domain labels` seperated by a `.`<ul><li> The second `domain label` should be at least 2 characters long.<li>`domain label` should start and end with alphanumeric characters.<li>Each `domain label` should only consist of alphanumeric characters, separated by hyphens if necessary. |
-| Telegram Handle | A person's telegram                       | tg/        | ✓        | <ol><li>Should begin with `@` and contain only alphanumeric characters<li>Should be at least 5 characters long, excluding the `@`                                                                                                                                                                                                                                                                                                                                                                           |           
+| Telegram Handle | A person's telegram                       | tg/        | ✓        | <ol><li>Should begin with `@` and contain only [alphanumeric](#alphanumeric) characters<li>Should be at least 5 characters long, excluding the `@`                                                                                                                                                                                                                                                                                                                                                          |           
 | Tags            | A person's tag                            | t/         | ✓        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 
 ## Module Fields
 
-| Field Type         | Field Description                                 | Identifier | Optional | Restrictions (if any)                                  |
-|--------------------|---------------------------------------------------|------------|----------|--------------------------------------------------------|
-| Module Code        | Module code of a module                           | m/         |          | Must be a valid NUS module                             |           
-| Lecture Details    | Details of a lecture, e.g. location and time      | l/         | ✓        |                                                        |           
-| Lecture Zoom Link  | Zoom link of a lecture                            | lz/        | ✓        | Must be a valid [URL](#url) which begins with https:// |           
-| Tutorial Details   | Details of a tutorial, e.g. location and time     | t/         | ✓        |                                                        |          
-| Tutorial Zoom Link | Zoom link of a tutorial                           | tz/        | ✓        | Must be a valid [URL](#url) which begins with https:// |           
-| Assignment Details | Details of an assignment, e.g. title and due date | a/         | ✓        |                                                        |     
+| Field Type         | Field Description                                 | Identifier | Optional | Restrictions (if any)                                                      |
+|--------------------|---------------------------------------------------|------------|----------|----------------------------------------------------------------------------|
+| Module Code        | Module code of a module                           | m/         |          | Must be a valid NUS module                                                 |           
+| Lecture Details    | Details of a lecture, e.g. location and time      | l/         | ✓        |                                                                            |           
+| Lecture Zoom Link  | Zoom link of a lecture                            | lz/        | ✓        | Must be a valid [URL](#url) which begins with https://                     |           
+| Tutorial Details   | Details of a tutorial, e.g. location and time     | t/         | ✓        |                                                                            |          
+| Tutorial Zoom Link | Zoom link of a tutorial                           | tz/        | ✓        | Must be a valid [URL](#url) which begins with https://                     |           
+| Assignment Details | Details of an assignment, e.g. title and due date | a/         | ✓        | Should only contain [alphanumeric](#alphanumeric) characters and spaces.   |     
 
 [Back to top](#welcome-to-socompilers-user-guide)
 
@@ -378,9 +373,7 @@ Examples:
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**:
-
-1. Install the app in the other computer.
+**A**: 1. Install the app in the other computer.
 2. Go to the location where your current app is in, there should be a file called `data` in the same location.
 3. Copy the entire file and either email yourself the file or use a thumb-drive to transfer it to the other computer.
 4. Move the copied file to the same location you placed the [jar file](#jar-file) in the new computer.
@@ -398,21 +391,21 @@ Examples:
 
 #### Command Line Interface
 
-* It is a text-based interface where users input commands (in the form of text) to interact with the computer/program.
+* It is an interface where users input text commands to interact with the computer/program.
 
 #### Graphical User Interface
 
-* It is a form of interface where users can interact with apps/electrical devices through graphical icons and audio indicators.
+* It is an interface where users can interact with apps/electrical devices through graphical icons and audio indicators.
 
 #### Jar file
 
-* It is a way to package multiple Java class files and associated resources(text, images etc.) into one file.
-* It is also typically used to deploy(run) an entire application.
+* It is typically used to deploy(run) an application.
+* For our app, it is the file used to launch the application.
 
 #### Parameters
 
-* It is a special kind of variable used in a function to refer to data provided.
-* In this case, it refers to the different fields you are providing to each person or module you want to add to the app, for example, name, phone number and module code for a person.
+* It is a variable used in a command to refer to data provided.
+* For our app, it refers to the different data fields in command. For example `NAME` in `n/NAME` is a parameter which is to be replaced by a value.
 
 #### Alphanumeric
 
