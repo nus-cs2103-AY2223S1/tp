@@ -7,19 +7,19 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<HBox alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox alignment="TOP_CENTER">
          <children>
             <Label fx:id="oldlabel" alignment="CENTER" contentDisplay="CENTER" text="\$old" textAlignment="CENTER" />
-            <StackPane fx:id="oldPersonPlaceholder" />
-            <Separator fx:id="horizontalSeparator" style="-fx-background-radius: 5; -fx-border-insets: 5; -fx-border-width: 3;">
+            <StackPane fx:id="oldPersonContainer" />
+            <Separator style="-fx-background-radius: 5; -fx-border-insets: 5; -fx-border-width: 3;">
                <padding>
                   <Insets bottom="2.0" top="2.0" />
                </padding>
             </Separator>
             <Label fx:id="newlabel" alignment="CENTER" text="\$new" textAlignment="CENTER" />
-            <StackPane fx:id="newPersonPlaceholder" />
+            <StackPane fx:id="newPersonContainer" />
          </children>
       </VBox>
    </children>

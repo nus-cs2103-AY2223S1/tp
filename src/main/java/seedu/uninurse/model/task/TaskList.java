@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 import seedu.uninurse.model.GenericList;
 import seedu.uninurse.model.ListModificationPair;
-import seedu.uninurse.model.ModificationType;
+import seedu.uninurse.model.ListModificationPair.ModificationType;
 import seedu.uninurse.model.task.exceptions.DuplicateTaskException;
 
 /**

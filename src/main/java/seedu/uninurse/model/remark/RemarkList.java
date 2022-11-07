@@ -8,7 +8,7 @@ import java.util.List;
 
 import seedu.uninurse.model.GenericList;
 import seedu.uninurse.model.ListModificationPair;
-import seedu.uninurse.model.ModificationType;
+import seedu.uninurse.model.ListModificationPair.ModificationType;
 import seedu.uninurse.model.remark.exceptions.DuplicateRemarkException;
 import seedu.uninurse.model.remark.exceptions.RemarkNotFoundException;
 

@@ -1,14 +1,14 @@
 package seedu.uninurse.model;
 
 /**
- * An association class storing the type of modification and the index of modification in a {@code GenericList}
+ * An association class storing the type of modification and the index of modification in a GenericList.
  */
 public class ListModificationPair {
     private final ModificationType type;
     private final int index;
 
     /**
-     * Constructs a {@code ListModificationPair} with a {@code ModificationType} and a index
+     * Constructs a ListModificationPair with a ModificationType and a index.
      */
     public ListModificationPair(ModificationType type, int index) {
         this.type = type;
@@ -29,5 +29,12 @@ public class ListModificationPair {
 
     public int getIndex() {
         return index;
+    }
+
+    /**
+     * ModificationType is an enum that describes what type of modification is performed on a GenericList.
+     */
+    public enum ModificationType {
+        ADD, EDIT, DELETE
     }
 }

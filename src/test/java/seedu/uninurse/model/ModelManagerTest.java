@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.uninurse.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.uninurse.testutil.Assert.assertThrows;
-import static seedu.uninurse.testutil.TypicalPersons.ALICE;
-import static seedu.uninurse.testutil.TypicalPersons.BENSON;
+import static seedu.uninurse.testutil.TypicalPatients.ALICE;
+import static seedu.uninurse.testutil.TypicalPatients.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -96,7 +96,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        UninurseBook uninurseBook = new UninurseBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        UninurseBook uninurseBook = new UninurseBookBuilder().withPatient(ALICE).withPatient(BENSON).build();
         UninurseBook differentUninurseBook = new UninurseBook();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -119,7 +119,7 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().getValue().split("\\s+");
-        modelManager.updateFilteredPersonList(new PatientContainsKeywordsPredicate(Arrays.asList(keywords)));
+        modelManager.updateFilteredPatientList(new PatientContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertNotEquals(modelManager, new ModelManager(uninurseBook, userPrefs));
 
         // resets modelManager to initial state for upcoming tests

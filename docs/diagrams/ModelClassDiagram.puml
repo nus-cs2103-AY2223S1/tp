@@ -14,7 +14,7 @@ Class UserPrefs
 
 Class PersistentUninurseBook
 Class UninurseBookSnapshot
-Class CommandResult
+
 
 Class UniquePersonList
 Class Person
@@ -46,7 +46,7 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 
 PersistentUninurseBook *-down-> "1..*" UninurseBookSnapshot
 UninurseBookSnapshot -up-> "1" ReadOnlyUninurseBook
-UninurseBookSnapshot -down-> "1" CommandResult
+
 
 UninurseBook *--> "1" UniquePersonList
 UniquePersonList --> "~* all" Person

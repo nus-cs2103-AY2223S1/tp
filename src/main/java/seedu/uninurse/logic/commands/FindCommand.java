@@ -46,7 +46,7 @@ public class FindCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireAllNonNull(model);
-        model.updateFilteredPersonList(predicate);
+        model.updateFilteredPatientList(predicate);
         return new CommandResult(String.format(MESSAGE_SUCCESS, model.getFilteredPersonList().size()),
                 COMMAND_TYPE);
     }

@@ -8,7 +8,7 @@ import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandSuccess
 import static seedu.uninurse.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.uninurse.testutil.TypicalPersons.getTypicalUninurseBook;
+import static seedu.uninurse.testutil.TypicalPatients.getTypicalUninurseBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -28,7 +28,7 @@ public class DeletePatientCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Patient personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Patient personToDelete = model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
         DeletePatientCommand deleteCommand = new DeletePatientCommand(INDEX_FIRST_PERSON);
 
         String expectedMessage = String.format(DeletePatientCommand.MESSAGE_SUCCESS, personToDelete);
@@ -52,7 +52,7 @@ public class DeletePatientCommandTest {
     public void execute_validIndexFilteredList_success() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
-        Patient personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Patient personToDelete = model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
         DeletePatientCommand deleteCommand = new DeletePatientCommand(INDEX_FIRST_PERSON);
 
         String expectedMessage = String.format(DeletePatientCommand.MESSAGE_SUCCESS, personToDelete);

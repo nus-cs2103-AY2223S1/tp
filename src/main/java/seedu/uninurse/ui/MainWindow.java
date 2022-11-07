@@ -16,6 +16,8 @@ import seedu.uninurse.commons.core.LogsCenter;
 import seedu.uninurse.logic.Logic;
 import seedu.uninurse.logic.commands.CommandResult;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
+import seedu.uninurse.logic.commands.exceptions.DuplicateEntryException;
+import seedu.uninurse.logic.commands.exceptions.InvalidAttributeIndexException;
 import seedu.uninurse.logic.parser.exceptions.ParseException;
 import seedu.uninurse.model.exceptions.PatientOfInterestNotFoundException;
 
@@ -63,7 +65,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane statusbarContainer;
 
     /**
-     * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
+     * Creates a MainWindow with the given Stage and Logic.
      */
     public MainWindow(Stage primaryStage, Logic logic) {
         super(FXML, primaryStage);
@@ -239,11 +241,11 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isUndo()) {
-                outputPanel.handleUndo(logic.getSavedPatientListTracker());
+                outputPanel.handleUndo(logic.getPersonListTracker());
             }
 
             if (commandResult.isRedo()) {
-                outputPanel.handleRedo(logic.getSavedPatientListTracker());
+                outputPanel.handleRedo(logic.getPersonListTracker());
             }
 
             if (commandResult.isFind()) {
@@ -251,6 +253,11 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             return commandResult;
+        } catch (DuplicateEntryException | InvalidAttributeIndexException e) {
+            logger.info("Invalid command: " + commandText);
+            resultDisplay.setFeedbackToUser(e.getMessage());
+            outputPanel.handleViewPatient(logic.getPatientOfInterest());
+            throw e;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());

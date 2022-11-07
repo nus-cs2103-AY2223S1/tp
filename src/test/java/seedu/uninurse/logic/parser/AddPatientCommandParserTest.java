@@ -31,8 +31,8 @@ import static seedu.uninurse.logic.commands.CommandTestUtil.VALID_TAG_RISK;
 import static seedu.uninurse.logic.commands.CommandTestUtil.VALID_TAG_ROOM;
 import static seedu.uninurse.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.uninurse.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.uninurse.testutil.TypicalPersons.AMY;
-import static seedu.uninurse.testutil.TypicalPersons.BOB;
+import static seedu.uninurse.testutil.TypicalPatients.AMY;
+import static seedu.uninurse.testutil.TypicalPatients.BOB;
 
 import org.junit.jupiter.api.Test;
 
@@ -44,14 +44,14 @@ import seedu.uninurse.model.person.Name;
 import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.model.person.Phone;
 import seedu.uninurse.model.tag.Tag;
-import seedu.uninurse.testutil.PersonBuilder;
+import seedu.uninurse.testutil.PatientBuilder;
 
 public class AddPatientCommandParserTest {
     private final AddPatientCommandParser parser = new AddPatientCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Patient expectedPerson = new PersonBuilder(BOB).withTags(VALID_TAG_RISK).build();
+        Patient expectedPerson = new PatientBuilder(BOB).withTags(VALID_TAG_RISK).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
@@ -74,12 +74,12 @@ public class AddPatientCommandParserTest {
                 + ADDRESS_DESC_BOB + TAG_DESC_RISK, new AddPatientCommand(expectedPerson));
 
         // multiple tags - all accepted
-        Patient expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_RISK, VALID_TAG_ROOM).build();
+        Patient expectedPersonMultipleTags = new PatientBuilder(BOB).withTags(VALID_TAG_RISK, VALID_TAG_ROOM).build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + TAG_DESC_RISK + TAG_DESC_ROOM, new AddPatientCommand(expectedPersonMultipleTags));
 
         // multiple conditions - all accepted
-        Patient expectedPersonMultipleConditions = new PersonBuilder(BOB)
+        Patient expectedPersonMultipleConditions = new PatientBuilder(BOB)
                 .withConditions(VALID_CONDITION_BOB, VALID_CONDITION_AMY).build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + CONDITION_DESC_BOB + CONDITION_DESC_AMY + TAG_DESC_ROOM + TAG_DESC_RISK,
@@ -89,12 +89,12 @@ public class AddPatientCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Patient expectedPerson = new PersonBuilder(AMY).withTags().build();
+        Patient expectedPerson = new PatientBuilder(AMY).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY,
                 new AddPatientCommand(expectedPerson));
 
         // zero conditions
-        expectedPerson = new PersonBuilder(AMY).withConditions().build();
+        expectedPerson = new PatientBuilder(AMY).withConditions().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
                 + TAG_DESC_RISK, new AddPatientCommand(expectedPerson));
     }

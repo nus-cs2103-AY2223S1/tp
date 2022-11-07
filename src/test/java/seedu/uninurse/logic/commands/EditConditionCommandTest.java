@@ -15,7 +15,7 @@ import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_SECOND_ATTRIBUTE;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
-import static seedu.uninurse.testutil.TypicalPersons.getTypicalUninurseBook;
+import static seedu.uninurse.testutil.TypicalPatients.getTypicalUninurseBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -27,7 +27,7 @@ import seedu.uninurse.model.UninurseBook;
 import seedu.uninurse.model.UserPrefs;
 import seedu.uninurse.model.condition.Condition;
 import seedu.uninurse.model.person.Patient;
-import seedu.uninurse.testutil.PersonBuilder;
+import seedu.uninurse.testutil.PatientBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditConditionCommand.
@@ -64,11 +64,11 @@ public class EditConditionCommandTest {
     public void execute_validArgsUnfilteredList_success() {
         // Use third patient in typical persons because it only has one condition, so we only have to
         // replace it rather than retrieve the other unedited conditions
-        Patient patientToEdit = model.getFilteredPersonList().get(INDEX_THIRD_PERSON.getZeroBased());
+        Patient patientToEdit = model.getPatient(model.getFilteredPersonList().get(INDEX_THIRD_PERSON.getZeroBased()));
 
         Condition initialCondition = patientToEdit.getConditions().get(INDEX_FIRST_ATTRIBUTE.getZeroBased());
 
-        Patient editedPatient = new PersonBuilder(patientToEdit).withConditions(TYPICAL_CONDITION_DIABETES).build();
+        Patient editedPatient = new PatientBuilder(patientToEdit).withConditions(TYPICAL_CONDITION_DIABETES).build();
 
         EditConditionCommand editConditionCommand =
                 new EditConditionCommand(INDEX_THIRD_PERSON, INDEX_FIRST_ATTRIBUTE, CONDITION_DIABETES);
@@ -77,7 +77,7 @@ public class EditConditionCommandTest {
                 INDEX_FIRST_ATTRIBUTE.getOneBased(), editedPatient.getName(), initialCondition, CONDITION_DIABETES);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
-        expectedModel.setPerson(patientToEdit, editedPatient);
+        expectedModel.setPatient(patientToEdit, editedPatient);
         expectedModel.setPatientOfInterest(editedPatient);
 
         assertCommandSuccess(editConditionCommand, model, expectedMessage, EditConditionCommand.COMMAND_TYPE,
@@ -96,11 +96,11 @@ public class EditConditionCommandTest {
     @Test
     public void execute_validArgsFilteredList_success() {
         showPersonAtIndex(model, INDEX_THIRD_PERSON);
-        Patient patientToEdit = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Patient patientToEdit = model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
 
         Condition initialCondition = patientToEdit.getConditions().get(INDEX_FIRST_ATTRIBUTE.getZeroBased());
 
-        Patient editedPatient = new PersonBuilder(patientToEdit).withConditions(TYPICAL_CONDITION_DIABETES).build();
+        Patient editedPatient = new PatientBuilder(patientToEdit).withConditions(TYPICAL_CONDITION_DIABETES).build();
 
         EditConditionCommand editConditionCommand =
                 new EditConditionCommand(INDEX_FIRST_PERSON, INDEX_FIRST_ATTRIBUTE, CONDITION_DIABETES);
@@ -111,7 +111,7 @@ public class EditConditionCommandTest {
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
 
         showPersonAtIndex(expectedModel, INDEX_THIRD_PERSON);
-        expectedModel.setPerson(patientToEdit, editedPatient);
+        expectedModel.setPatient(patientToEdit, editedPatient);
         expectedModel.setPatientOfInterest(editedPatient);
 
         assertCommandSuccess(editConditionCommand, model, expectedMessage, EditConditionCommand.COMMAND_TYPE,
@@ -134,7 +134,7 @@ public class EditConditionCommandTest {
 
     @Test
     public void execute_duplicateCondition_throwsCommandException() {
-        Patient patientToEdit = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+        Patient patientToEdit = model.getPatient(model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased()));
         Condition condition = new Condition("H1N1");
         EditConditionCommand editConditionCommand =
                 new EditConditionCommand(INDEX_SECOND_PERSON, INDEX_FIRST_ATTRIBUTE, condition);
@@ -144,7 +144,7 @@ public class EditConditionCommandTest {
 
     @Test
     public void execute_invalidConditionIndex_throwsCommandException() {
-        Patient patient = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Patient patient = model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
         Index outOfBoundConditionIndex = Index.fromOneBased(patient.getConditions().size() + 1);
         EditConditionCommand editConditionCommand =
                 new EditConditionCommand(INDEX_FIRST_PERSON, outOfBoundConditionIndex, CONDITION_DIABETES);
