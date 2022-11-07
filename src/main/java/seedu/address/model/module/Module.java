@@ -2,6 +2,7 @@ package seedu.address.model.module;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.logic.parser.ArgumentMultimap.DOES_NOT_EXIST;
 
 import java.util.Objects;
 
@@ -36,7 +37,7 @@ public class Module {
      * Returns true if a given string is a valid module code.
      */
     public static boolean isValidModule(String test) {
-        if (Objects.equals(test, "-")) {
+        if (Objects.equals(test, DOES_NOT_EXIST)) {
             return true;
         }
         return test.matches(VALIDATION_REGEX);
