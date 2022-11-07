@@ -142,7 +142,7 @@ Format: `add student n/NAME i/STUDENT_ID ph/PHONE e/EMAIL tele/TELEGRAM_HANDLE m
 * `ATTENDANCE` and `PARTICIPATION` can only take in integers greater than 0. If a value is not given, they will automatically be set to 0.
 * `GRADE` can take in `A`, `B`, `C`, `D`, `F`. If a value is not given, it will automatically be set to `PENDING...`.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-success">:bulb: **Tip:**
 A student can have any number of tags (including 0).
 </div>
 
@@ -168,7 +168,7 @@ Shows a list of all students in ModQuik.
 
 * If the list of students is not currently active, it may appear that the command does not have any effect. Navigate to the `Student` tab to see the list of students.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-success">:bulb: **Tip:**
 To switch between tabs, you can click on `Tab` button to switch between the different tabs (`Student`, `Grade Chart`, `Consultation`, `Tutorial`) and the command box.
 Alternatively, you can use the [`switch`] command if you would like to only use the keyboard.
 </div>
@@ -182,13 +182,11 @@ Edits an existing student in a specified module.
 
 Format: `edit student INDEX [n/NAME] [i/STUDENT_ID] [ph/PHONE] [e/EMAIL] [tele/TELEGRAM_HANDLE] [m/MODULE] [tut/TUTORIAL] [g/GRADE] [att/ATTENDANCE] [part/PARTICIPATION] [t/TAG]…`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You may want to use this command to:
-<ul>
-  <li>Update your student's grade after an assessment</li>
-  <li>Update your student's attendance and participation score after a lesson</li>
-  <li>Update your student's particulars</li>
-</ul>
+<div markdown="span" class="alert alert-success">:bulb: **Tip:**
+You may want to use this command to:<br>
+- Update your student's grade after an assessment<br>
+- Update your student's attendance and participation score after a lesson<br>
+- Update your student's particulars<br>
 </div>
 
 * Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …
@@ -275,23 +273,13 @@ You may want to use this command to email a student or a selected group of stude
 
 Format: `extract emails`
 
-<div markdown="span" class="alert alert-primary">:information_source: **How to use:**
-    <ol>
-        <li> Execute the `extract emails` command in the ModQuik command box. The following message will be displayed in the Results Display Box: <br>
-            <img src="images/ExtractEmails1.png">
-            All the emails will be copied onto your clipboard.
-        </li>
-        <li> Go to your web browser and paste the emails onto your address bar. Your mail app will be prompted to open.</li>
-        <li> Open your mail app and all the emails should be pasted as shown: <br>
-            <img src="images/ExtractEmails3.png">
-        </li>
-    </ol>
-</div>
-
-<div markdown="span" class="alert alert-failure">:warning: **Warning:**
-If your mail app does not open, you can paste your clipboard directly into your email recipient box but remember to delete "mailto:" in front of the emails.<br>
-You may also be required to separate the emails.
-    <img src="images/ExtractEmails4.png">
+<div markdown="span" class="alert alert-info">:information_source: **How to use:**<br>
+    1. Execute the `extract emails` command in the ModQuik command box. The following message will be displayed in the Results Display Box: <br>
+    <img src="images/ExtractEmails1.png">
+    2. A link will be copied onto your clipboard. Go to your web browser and paste the emails onto your address bar. Your mail app will be prompted to open.</li>
+    <img src="images/ExtractEmails2.png">
+    3. All the emails should be pasted as shown:<br>
+    <img src="images/ExtractEmails3.png">
 </div>
 
 Examples:
@@ -404,7 +392,7 @@ Examples:
 
 Edits an existing consultation in ModQuik.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-success">:bulb: **Tip:**
 You may want to use this command to edit the date and time of your consultation, or add in questions your student want to ask you in the description closer to the date of consultation.
 </div>
 
@@ -418,7 +406,7 @@ Format: `edit consultation INDEX [n/NAME] [m/MODULE] [v/VENUE] [T/TIMESLOT] [D/D
 
 Examples:
 1. `edit consultation 2 T/14:00-16:00 D/2023-11-21` Edits the timeslot of the 2nd consultation to be `14:00 to 16:00` and sets consultation date to `2023 Nov 21`.
-2. `edit consultation 1 d/Review past year paper; Go through object and class diagrams` Edits the description of the 1st consultation to be `Review past year paper; Go through object and class diagrams`.
+2. `edit consultation 1 v/Zoom` Edits the venue of the 1st consultation to be `Zoom`.
 
 <table>
   <tr>
@@ -485,7 +473,7 @@ Examples:
 
 Edits an existing reminder in ModQuik.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-success">:bulb: **Tip:**
 You may want to add this command to edit any field of an existing reminder in the event that there are changes, such as extension of a deadline.
 </div>
 
@@ -519,7 +507,7 @@ Examples:
 
 Sets the reminder status as _completed_.
 
-<div markdown="span" class="alert alert-primary">:information_source: **Info:**
+<div markdown="span" class="alert alert-info">:information_source: **Info:**
 Reminders that have been completed have a green sidebar and a tick on the left of their name. Reminders that are yet to be done have a yellow sidebar.
 </div>
 
@@ -619,7 +607,7 @@ For example, user might choose to reset the data when the semester ends to prepa
 
 Format: `clear f/FIELD`
 * `FIELD` including `all`, `student`, `tutorial`, `consultation`, `reminder`
-* 
+
 <div markdown="span" class="alert alert-danger">:exclamation: **Warning:**
 Take note that this action is irreversible.
 </div>

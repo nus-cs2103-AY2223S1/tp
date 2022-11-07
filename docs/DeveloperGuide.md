@@ -2,7 +2,7 @@
 layout: page
 title: Developer Guide
 ---
-ModQuik is a convenient tool that allows Teaching Assistants(TAs) to keep track of their classes, monitor their students' grades and set up reminders for their tasks (such as creating tutorial slides or marking homework).
+ModQuik is a convenient tool that allows Teaching Assistants (TAs) to keep track of their classes, monitor their students' grades and set up reminders for their tasks (such as creating tutorial slides or marking homework).
 ModQuik is optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 ModQuik can get one's lesson management tasks done faster than traditional GUI apps if one is a fast typist.
 
@@ -639,17 +639,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 5. The application should be able to run without Internet connectivity.
 6. The source code should be open source.
 
-### Glossary
-| Term                               | Description                                                                                                                                                                                    |
-|------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Teaching Assistant (TA)**        | Tutors who support module coordinators in content creation, preparation of educational resources and course materials.                                                                         |
-| **Command Line Interface (CLI)**   | User interface that allows users to use text as commands to be executed by an application.                                                                                                     |
-| **Graphical User Interface (GUI)** | User interface that allows users to interact with an application through graphics and visuals                                                                                                  |
-| **Command**                        | User-specified instruction that ModQuik will execute.<br> e.g., `add student` and `find`                                                                                                       |
-| **Parameter**                      | A component of the command that the user will need to input.<br> e.g., `sort reminder by/deadline` where deadline is the parameter.                                                            |
-| **Prefix**                         | Abbreviation of the name of the parameter followed by a `/`. User will need to type the prefix before the parameter in ModQuik.<br> e.g., `sort reminder by/deadline` where by/ is the prefix. |
-| **Lexicographically**              | Generalization of the alphabetical order of the dictionaries                                                                                                                                   |
-| **Mainstream OS**                  | Windows, Linux, Unix, OS-X                                                                                                                                                                     |
+### 7.5 Glossary
+**Teaching Assistant (TA)** : Tutors who support module coordinators in content creation, preparation of educational resources and course materials.<br>
+**Command Line Interface (CLI)**: User interface that allows users to use text as commands to be executed by an application.<br>
+**Graphical User Interface (GUI)**: User interface that allows users to interact with an application through graphics and visuals.                                 
+**Command**: User-specified instruction that ModQuik will execute. e.g., `add student` and `find`.<br>
+**Parameter**: A component of the command that the user will need to input. e.g., `sort reminder by/deadline` where deadline is the parameter.<br>
+**Prefix**: Abbreviation of the name of the parameter followed by a `/`. User will need to type the prefix before the parameter in ModQuik. e.g., `sort reminder by/deadline` where by/ is the prefix.<br>
+**Lexicographically**: Generalization of the alphabetical order of the dictionaries<br>
+**Mainstream OS**: Windows, Linux, Unix, OS-X
 
 --------------------------------------------------------------------------------------------------------------------
 
