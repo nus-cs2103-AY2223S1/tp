@@ -4,7 +4,7 @@ title: User Guide
 ---
 {::options toc_levels="1..2" /}
 {:logo: height="200px" width="200px" style="display:block; margin-left:auto; margin-right:auto;"}
-![StudMapLogo](images/studmap/studmap_hd.png){: logo}
+![StudMap Logo](images/studmap/studmap_hd.png){: logo}
 
 # 1. Overview
 
@@ -108,7 +108,6 @@ Here are some of the symbols and syntax to look out for:
 | :bulb:               | Tips that can help you save time using StudMap                             |
 | `code`               | Indicates command or parameter that can be inputted into StudMap           |
 
-
 ---
 
 # 4. Quick Start
@@ -126,56 +125,64 @@ If you’re new to StudMap, this is the tutorial for you! Here are the steps for
 3. Create a folder where you want to use StudMap, and copy `studmap.jar` into it. This will be the home folder
    for StudMap.
 
-4. Double click on `studmap.jar` to start the app. In a few seconds, you should see a new window detailed in the next section.
+4. Double click on `studmap.jar` to start the app. In a few seconds, you should see a new window detailed in the next
+   section.
 
 ## 4.2 Understanding the User Interface
 
-When you first load StudMap, you will likely be greeted with a display similar to the one below, containing some sample data.
-**Don't be overwhelmed!** While there may be many fields and objects to take in at first, let's go through the User Interface and
+When you first load StudMap, you will likely be greeted with a display similar to the one below, containing some sample
+data.
+**Don't be overwhelmed!** While there may be many fields and objects to take in at first, let's go through the User
+Interface and
 explore each element one by one.
 
-   ![Ui](images/ui/ui-getting-started.png)
+![UI Overview](images/ui/ui-getting-started.png)
 
-   Take note of the three main elements of the interface:
+Take note of the three main elements of the interface:
 
 | Element      | Purpose                                                                                                                                                    |
 |--------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Command Box  | This is where you give instructions to StudMap, telling StudMap what you want to do. These instructions are called [Commands](#43-understanding-commands). |
 | Reply Box    | This is where StudMap replies with any useful feedback, for example after running a command.                                                               |
-| Student List | This is where StudMap displays the list of students, with information about each student organized into individual **student cards**.                      |
+| Student List | This is where StudMap displays the list of students, with information about each student organized into individual **
+student cards**.                      |
 
 ### Student Cards
 
-As a student management tool, the core of StudMap is naturally your students. StudMap can store information about your student,
-such as personal particulars or module-related progress, and represents it in a single rectangular panel called a **student card**.
+As a student management tool, the core of StudMap is naturally your students. StudMap can store information about your
+student,
+such as personal particulars or module-related progress, and represents it in a single rectangular panel called a **
+student card**.
 
 The **left half** of each student card contains the student's particulars. Let's zoom in and find out more:
-   ![Ui](images/ui/ui-student-info.png)
-
+![Student Info UI](images/ui/ui-student-info.png)
 
 | Element         | Purpose                                                                                                  |
 |-----------------|----------------------------------------------------------------------------------------------------------|
 | Index           | Order of the student in the list. Used to indicate which student card you want to target with a command. |
-| Student Name    | Name of your student. **Is Compulsory!**                                                                 |
-| Student ID      | Student ID of your student, usually beginning with E. **Is Compulsory!**                                 |
+| Student Name    | Name of your student. **Is
+Compulsory!**                                                                 |
+| Student ID      | Student ID of your student, usually beginning with E. **Is
+Compulsory!**                                 |
 | Phone Number    | Phone number of your student, if available.                                                              |
 | Email           | Email address of your student, if available.                                                             |
 | GitHub Username | GitHub username of your student, if available.                                                           |
 | Telegram Handle | Telegram handle of your student, if available.                                                           |
 
-
 The **right half** of each student card contains module information related to your TA responsibilities:
 
-   ![Ui](images/ui/ui-ta-info.png)
+![TA Info UI](images/ui/ui-ta-info.png)
 
 | Element                  | Purpose                                                                                                                                                                                                                                                                                                               |
 |--------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Module                   | Module you are teaching your student. **Is Compulsory!**                                                                                                                                                                                                                                                              |
+| Module                   | Module you are teaching your student. **Is
+Compulsory!**                                                                                                                                                                                                                                                              |
 | Attendance Percentage    | Percentage of classes that your student has been marked present.                                                                                                                                                                                                                                                      |
 | Classes                  | {::nomarkdown} Detailed record of classes for your student. Each box represents one class: <ul><li>the text in the box indicates the name of the class</li><li>the colour indicates attendance status (Green for present, Red for absent)</li></ul>{:/}                                                               |
 | Participation Percentage | Percentage of participation components that your student has qualified for.                                                                                                                                                                                                                                           |
 | Participation Components | {::nomarkdown} Detailed record of participation for your student. Each box represents one component: <ul><li>the text in the box indicates the name of the component</li><li>the colour indicates participation status (Green for yes, Red for no)</li></ul>{:/}                                                      |
-| Ungraded Assignments     | Number of ungraded assignments (assignments marked as **received**) that you yet to have graded.                                                                                                                                                                                                                      |
+| Ungraded Assignments     | Number of ungraded assignments (assignments marked as **
+received**) that you yet to have graded.                                                                                                                                                                                                                      |
 | Assignment Status        | {::nomarkdown} Detailed record of assignments for your student. Each box represents one assignment: <ul><li>the text in the box indicates the name of the assignment</li><li>the colour indicates assignment status (There are 3 assignment status: Green for graded, Red for received, Yellow for new)</li></ul>{:/} |
 
 <div markdown="block" class="alert alert-info">
@@ -193,11 +200,14 @@ that data from one module (e.g. Attendance for CS2103T) **will not be mixed** wi
 
 Now that you understand the User Interface of StudMap, what can you do to interact with it?
 
-StudMap is designed around the use of a Command Line Interface (CLI). This means that accessing or modifying data on StudMap
-has to be done by typing instructions, or `commands`, that StudMap can understand and execute. 
+StudMap is designed around the use of a Command Line Interface (CLI). This means that accessing or modifying data on
+StudMap
+has to be done by typing instructions, or `commands`, that StudMap can understand and execute.
 
 ### Command Word
-The format of any command is standard. The command is first identified by its **command word**, which usually describes its 
+
+The format of any command is standard. The command is first identified by its **command word**, which usually describes
+its
 main functionality. Examples of some useful commands are:
 
 * `list`, which **lists** the entire student list on StudMap
@@ -205,15 +215,19 @@ main functionality. Examples of some useful commands are:
 * `grade`, which adds information about an assignment you have **graded** for a student
 
 ### Parameters
-Sometimes, you may need to include extra details about your instruction to perform a certain task (e.g. what way do you want to
-`sort` the list?). You can do this by adding **parameters**, or extra options, behind the command word to specify further instructions
+
+Sometimes, you may need to include extra details about your instruction to perform a certain task (e.g. what way do you
+want to
+`sort` the list?). You can do this by adding **parameters**, or extra options, behind the command word to specify
+further instructions
 
 Here's an example of how parameters can be used:
 
 * You wish to change the name of the second student to "Salad".
 * You can type the `edit` command word, which will indicate to StudMap you want to edit a student
-* You can then provide two parameters: `2`, which is the index of the student to be edited, and `n/Salad`, which is the name
-you want
+* You can then provide two parameters: `2`, which is the index of the student to be edited, and `n/Salad`, which is the
+  name
+  you want
 * The final command will look like this: `edit 2 n/Salad`!
 
 <div markdown="block" class="alert alert-primary">
@@ -225,8 +239,10 @@ To learn more about parameters, do check out the section on [Parameters](#52-inf
 
 ### Example Commands
 
-With the power of commands, you can now truly wield StudMap to organize your students and accomplish your TA responsibilities. 
-Commands will allow you to add new students to the list, append assignments to be graded or attendances that have been marked, and so much more!
+With the power of commands, you can now truly wield StudMap to organize your students and accomplish your TA
+responsibilities.
+Commands will allow you to add new students to the list, append assignments to be graded or attendances that have been
+marked, and so much more!
 
 Let’s try out some commands! Type or copy a command into the Command Box and press Enter to execute it.
 
@@ -244,22 +260,22 @@ Let’s try out some commands! Type or copy a command into the Command Box and p
     * This deletes all the students, so you can start with a clean slate!
       <br><br>
 
-This is just a short preview of the features that StudMap has to offer. The [Features](#5-features) section 
+This is just a short preview of the features that StudMap has to offer. The [Features](#5-features) section
 will guide you through all available commands in greater detail!
-
 
 ## 4.4 Migrating to StudMap
 
-You may be concerned: you’re probably already using some Excel sheet of sorts for keeping track of student data – 
+You may be concerned: you’re probably already using some Excel sheet of sorts for keeping track of student data –
 and you certainly don’t want to transfer all this data manually to StudMap! We’ve got you covered.
 
-   Download this [Student Information Template](files/import_template.csv). If you want a sample of how to use it, check
-   out this [Example Template](files/example_template.csv), or check out
-   [Import Command](#534-importing-students-from-csv-file-import) for more details.
+Download this [Student Information Template](files/import_template.csv). If you want a sample of how to use it, check
+out this [Example Template](files/example_template.csv), or check out
+[Import Command](#534-importing-students-from-csv-file-import) for more details.
 
 <br/><br/>
 
-That’s all for the tutorial! Check out the [Features](#5-features) section for more detailed information about each command. We hope you enjoy using StudMap!
+That’s all for the tutorial! Check out the [Features](#5-features) section for more detailed information about each
+command. We hope you enjoy using StudMap!
 
 ---
 
@@ -311,9 +327,9 @@ This will help you understand the guide better!
 
 </div>
 
-Throughout this section, you will see numerous parameters being used by different commands. Here is a consolidated summary of
+Throughout this section, you will see numerous parameters being used by different commands. Here is a consolidated
+summary of
 the parameters and any remarks (e.g. **constraints**) that might be of relevance.
-
 
 | Parameter    | Remarks                                                                                                                                                              |
 |--------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -321,28 +337,37 @@ the parameters and any remarks (e.g. **constraints**) that might be of relevance
 | KEYWORD      | Used in [`filter`](#538-filtering-the-students-filter)                                                                                                               |
 | ORDER        | Used in [`sort`](#537-sorting-the-students-sort), can take two values: asc or dsc                                                                                    |
 | STATUS       | Used to represent status of assignments (new/received/marked), attendance (present/absent) and participation (yes/no)                                                |
-| a/ASSIGNMENT | Assignment to be recorded for your student. <br/>**Constraint:** Must consist of [alphanumerics](#alphanumeric), spaces, dashes and underscores only                 |
+| a/ASSIGNMENT | Assignment to be recorded for your student. <br/>**
+Constraint:** Must consist of [alphanumerics](#alphanumeric), spaces, dashes and underscores only                 |
 | a/ATTRIBUTE  | Attribute to be used for [`sorting`](#537-sorting-the-students-sort)                                                                                                 |
-| c/CLASS      | Class to be recorded for your student <br/>**Constraint:** Must consist of [alphanumerics](#alphanumeric), spaces, dashes and underscores only                       |
-| e/EMAIL      | Email for your student. <br/>**Constraint:** Must be of the format local-part@domain                                                                                 |
+| c/CLASS      | Class to be recorded for your student <br/>**
+Constraint:** Must consist of [alphanumerics](#alphanumeric), spaces, dashes and underscores only                       |
+| e/EMAIL      | Email for your student. <br/>**
+Constraint:** Must be of the format local-part@domain                                                                                 |
 | g/GITNAME    | GitHub Username for your student                                                                                                                                     |
-| h/TELEHANDLE | Telegram Handle for your student. <br/>**Constraint:** Must have `@` before the handle e.g. @handle                                                                  |
+| h/TELEHANDLE | Telegram Handle for your student. <br/>**
+Constraint:** Must have `@` before the handle e.g. @handle                                                                  |
 | id/ID        | Student ID for your student                                                                                                                                          |
-| m/MODULE     | Module for your student. <br/>**Constraint:** Must follow NUS Module naming convention: letters, then 4 digits, and finally an optional letter suffix (i.e. CS2103T) |
+| m/MODULE     | Module for your student. <br/>**
+Constraint:** Must follow NUS Module naming convention: letters, then 4 digits, and finally an optional letter suffix (i.e. CS2103T) |
 | n/NAME       | Name for your student                                                                                                                                                |
-| p/COMPONENT  | Participation component to be recorded for your student. <br/>**Constraint:** Must consist of [alphanumerics](#alphanumeric), spaces, dashes and underscores only    |
-| p/PHONE      | Phone number for your student. <br/>**Constraint:** Must consist of only numbers, and an optional `+` at the beginning. Must have at least 3 digits                  |
-| t/TAG        | Tag for your student <br/>**Constraint:** Must be only [alphanumeric](#alphanumeric)                                                                                 |
+| p/COMPONENT  | Participation component to be recorded for your student. <br/>**
+Constraint:** Must consist of [alphanumerics](#alphanumeric), spaces, dashes and underscores only    |
+| p/PHONE      | Phone number for your student. <br/>**
+Constraint:** Must consist of only numbers, and an optional `+` at the beginning. Must have at least 3 digits                  |
+| t/TAG        | Tag for your student <br/>**
+Constraint:** Must be only [alphanumeric](#alphanumeric)                                                                                 |
 
 <div markdown="block" class="alert alert-info">
 :information_source: Here are some explanations about the format constraints for certain parameters that you may 
 find too restrictive.
 
 * **PHONE:** StudMap currently only allows you to record one phone number for each student, as supporting multiple
-numbers (i.e. Home number) for your student is considered Out of Scope.
+  numbers (i.e. Home number) for your student is considered Out of Scope.
 
-* **MODULE:** StudMap is designed as a tool for NUS TAs, and thus StudMap currently only supports the code format 
-for NUS modules. Future plans for StudMap include expanding this format to more universities. 
+* **MODULE:** StudMap is designed as a tool for NUS TAs, and thus StudMap currently only supports the code format
+  for NUS modules. Future plans for StudMap include expanding this format to more universities.
+
 </div>
 
 ## 5.3 Student List Management
@@ -450,7 +475,7 @@ that has commas in the CSV.
 
 1. Remove the default list of students by typing `clear`
 2. Modify the import template using the CSV editor of your choice (e.g. Excel, Notepad)<br><br>
-   ![example CSV](images/misc/exampleCSV.png)
+   ![Example CSV](images/misc/exampleCSV.png)
    <br><br>
    _Example of a properly edited import template which you can download here: [example csv](files/example_template.csv)_
    <br><br>
@@ -488,7 +513,7 @@ filtering, such as by their module, see [`filter`](#538-filtering-the-students-f
 
 * `find tom` returns `Tom Aito`
 
-  ![Ui](images/ui/ui-find.png)
+  ![Find Command](images/ui/ui-find.png)
   <br><br>
 
 * `find John` returns `john` and `John Doe`
@@ -603,8 +628,9 @@ Need to update outdated student details? You can easily edit that field without 
 
 **Format:** `edit INDEX/ALL [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [id/ID] [g/GITNAME] [h/TELEHANDLE] [t/TAG]…​`
 
-* `INDEX`: You can specify the index of the student you want to edit. The index refers to the index number shown in the displayed student list.
-  The index **must be a positive integer** 1, 2, 3, …​ 
+* `INDEX`: You can specify the index of the student you want to edit. The index refers to the index number shown in the
+  displayed student list.
+  The index **must be a positive integer** 1, 2, 3, …​
 * `ALL`: You can edit all students currently displayed.
 * **At least one of the optional fields** must be provided.
 * Existing values will be updated to the input values.
@@ -624,9 +650,9 @@ Need to update outdated student details? You can easily edit that field without 
 
 **Format:** `mark INDEX/ALL STATUS c/CLASS`
 
-* `INDEX`: You can specify the index of the student you want to mark attendance for. The index refers to the index number
-shown in the displayed student list.
-The index **must be a positive integer** 1, 2, 3, …​
+* `INDEX`: You can specify the index of the student you want to mark attendance for. The index refers to the index
+  number shown in the displayed student list.
+  The index **must be a positive integer** 1, 2, 3, …​
 * `ALL`: You can mark attendance for all students currently displayed.
 * Status accepts two values only: `present` and `absent`
 * Marking an **existing class** as either `present` or `absent` will **overwrite** the existing record
@@ -638,8 +664,11 @@ The index **must be a positive integer** 1, 2, 3, …​
 
 **Examples:**
 
-* `mark 1 present c/T01` marks the first student as present for class `T01`
-* `mark all absent c/T04` marks all students in the list as absent for class `T04`
+* `mark all present c/T01` marks all students in the list as present for class `T01`.<br><br>
+  ![Mark Command](images/ui/ui-mark.png)
+  <br><br>
+* `mark 1 present c/T03` marks the first student as present for class `T03`.
+* `mark all absent c/T04` marks all students in the list as absent for class `T04`.
 
 **See Also:**
 [`unmark`](#543-unmarking-attendance-of-student-unmark)
@@ -660,8 +689,11 @@ The index **must be a positive integer** 1, 2, 3, …​
 
 **Examples:**
 
-* `unmark 1 c/T01` removes the attendance record for class `T01` from the first student
-* `unmark all c/T04` removes the attendance record for class `T04` from all students in the list
+* `unmark all c/wrongclass` removes the attendance record for class `wrongclass` from all students in the list who have
+  such a record. In this case, all 7 students have the record.<br><br>
+  ![Unmark Command](images/ui/ui-unmark.png)
+  <br><br>
+* `unmark 1 c/T01` removes the attendance record for class `T01` from the first student.
 
 **See Also:**
 [`mark`](#542-marking-attendance-of-student-mark)
@@ -694,8 +726,11 @@ you include any lower case in the assignment name, it will be automatically conv
 
 **Examples:**
 
-* `grade 1 new a/A01` changes the assignment grading status for assignment `A01` of the first student in the list
-  to `new`. Add an entry of `A01` into the first student's record if it does not exist yet.
+* `grade 1 marked a/A02` changes the assignment grading status for assignment `A02` of the first student in the list
+  to `marked`. Add an entry of `A02` into the first student's record if it does not exist yet. In this case, it already
+  exists.<br><br>
+  ![Grade Command](images/ui/ui-grade.png)
+  <br><br>
 * `grade all marked a/A02` changes the assignment grading status for assignment `A02` of every student in the list
   to `marked`.
 
@@ -715,8 +750,11 @@ you include any lower case in the assignment name, it will be automatically conv
 
 **Examples:**
 
+* `ungrade all a/A03` removes assignment `A03` from all students in the currently displayed list, if they have it. In
+  this case, only 2 students have such a record.<br><br>
+  ![Ungrade Command](images/ui/ui-ungrade.png)
+  <br><br>
 * `ungrade 1 a/A01` removes assignment `A01` from the first student.
-* `ungrade all a/A01` removes assignment `A01` from all students in the currently displayed list
 
 **See Also:**
 [`grade`](#544-grading-assignment-for-student-grade)
@@ -735,9 +773,17 @@ you include any lower case in the assignment name, it will be automatically conv
 
 **Examples:**
 
-* `participate 1 yes p/P01` records first student as having **participated** for participation component `P01`.
-* `participate 1 no p/P02` records first student as having **not participated** for participation component `P01`.
-* `participate all yes p/P03` records all student as having **participated** for participation component `P03`.
+* `participate 2 yes p/T05-Sharing` records the second student in the list as having **participated** for participation
+  component `T05-Sharing`. If the student does not have a record for the component yet, it is added. In this case, it
+  already exists.<br><br>
+  ![Participate Command](images/ui/ui-participate.png)
+  <br><br>
+* `participate 1 yes p/P01` records the first student in the list as having **participated** for participation
+  component `P01`.
+* `participate 1 no p/P02` records the second student in the list as having **not participated** for participation
+  component `P01`.
+* `participate all yes p/P03` records all students in the list as having **participated** for participation
+  component `P03`.
 
 **See Also:**
 [`unparticipate`](#547-removing-participation-of-student-unparticipate)
@@ -755,8 +801,12 @@ you include any lower case in the assignment name, it will be automatically conv
 
 **Examples:**
 
-* `unparticipate 1 p/P01` removes participation component `P01` from first student in currently displayed list.
-* `unparticipate all p/P03` removes participation component `P03` from all students in currently displayed list.
+* `unparticipate all p/wrongcomponent` removes participation component `wrongcomponent` from all students in the
+  currently displayed list. In this case, 5 students have such a record.<br><br>
+  [Unparticipate Command](images/ui/ui-unparticipate.png)
+  <br><br>
+* `unparticipate 1 p/P01` removes participation component `P01` from the first student in the currently displayed list.
+* `unparticipate all p/P03` removes participation component `P03` from all students in the currently displayed list.
 
 **See Also:**
 [`participate`](#546-recording-participation-of-student-participate)
@@ -868,7 +918,7 @@ If your changes to the data file makes its format invalid, StudMap will discard 
 Confused about the usage of a certain feature? Don't worry, self-help is available on the comprehensive online User
 Guide.
 
-![help message](images/misc/helpMessage.png)
+![Help Message](images/misc/helpMessage.png)
 
 **Format:** `help`
 
@@ -937,5 +987,5 @@ discipline, and four digits, and sometimes a suffix. e.g. `CS2101`, `CS2103T`.
 ### Alphanumeric
 
 An alphanumeric character is one that is either a number (0-9) or a letter (any alphabet, lower or upper case).
-An input described as alphanumeric means that all the characters of the input must follow these constraints (i.e. 
+An input described as alphanumeric means that all the characters of the input must follow these constraints (i.e.
 composed only of letters and/or numbers)
