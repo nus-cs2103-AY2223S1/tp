@@ -83,12 +83,13 @@ The sections below give more details of each component.
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of 4 crucial parts:
-|                 |                                                                                |
-|-----------------|--------------------------------------------------------------------------------|
-|`PersonListPanel`| Displays a list of `TruncatedPatientListCard` that represent `Patient` objects |
-|`OutputPanel`    | Displays an output view based on the command executed                          |
-|`ResultDisplay`  | Displays the feedback of a command to the user                                 |
-|`CommandBox`     | A input field for the user to enter commands into                              |
+
+|                   |                                                                                 |
+|-------------------|---------------------------------------------------------------------------------|
+| `PersonListPanel` | Displays a list of `TruncatedPatientListCard`s that represent `Patient` objects |
+| `OutputPanel`     | Displays an output view based on the command executed                           |
+| `ResultDisplay`   | Displays the feedback of a command to the user                                  |
+| `CommandBox`      | A input field for the user to enter commands into                               |
 
 Other miscellaneous parts (such as `StatusBarFooter`, `HelpWindow`) are also included in the `MainWindow`.
 
@@ -99,14 +100,14 @@ Additionally, the structure of `OutputPanel` is as shown below:
 
 `OutputPanel` is a UI part that loads the appropriate view based on the command result. Similar to `MainWindow`, all views and the `OutputPanel` inherit from the abstract `UiPart` class. The `OutputPanel` supports the following views:
 
-|                        |                                                                                |
-|------------------------|--------------------------------------------------------------------------------|
-|`UpdatedPatientCard`    | Displays details of a `Patient`                                                |
-|`TaskListPanel`         | Displays the list of tasks of a `Patient`, omitting other `Patient` detail     |
-|`TruncatedTaskListPanel`| A Truncated view of the list of tasks of all `Patient`s                        |
-|`ScheduleListPanel`     | A Schedule detailing the tasks of the given day and their respective `Patient`s|
-|`UpdatedPersonListPanel`| Displays a list of `UpdatedPatientCard`s after using a `find` command          |
-|`UndoCard`, `RedoCard`, `ModifiedPatientCard`| Displays the outcome of an `undo`/`redo` command          |
+|                                               |                                                                                 |
+|-----------------------------------------------|---------------------------------------------------------------------------------|
+| `UpdatedPatientCard`                          | Displays details of a `Patient`                                                 |
+| `TaskListPanel`                               | Displays the list of tasks of a `Patient`, omitting other `Patient` detail      |
+| `TruncatedTaskListPanel`                      | A Truncated view of the list of tasks of all `Patient`s                         |
+| `ScheduleListPanel`                           | A Schedule detailing the tasks of the given day and their respective `Patient`s |
+| `UpdatedPersonListPanel`                      | Displays a list of `UpdatedPatientCard`s after using a `find` command           |
+| `UndoCard`, `RedoCard`, `ModifiedPatientCard` | Displays the outcome of an `undo`/`redo` command                                |
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/uninurse/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-T12-4/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
