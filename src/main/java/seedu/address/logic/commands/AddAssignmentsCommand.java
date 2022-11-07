@@ -25,6 +25,9 @@ public class AddAssignmentsCommand extends Command {
             + ": adds assignments. Format: [name] w/[weightage]";
     public static final String MESSAGE_ADD_ASSIGNMENTS_SUCCESS = "Added Assignments to all students.";
 
+    public static final String MESSAGE_NO_STUDENTS = "Please ensure TAB contains at least 1 "
+            + "student before adding assignments.";
+
     private final String assignments;
 
     /**
@@ -53,6 +56,16 @@ public class AddAssignmentsCommand extends Command {
         };
         model.updateFilteredPersonList(predicate);
         List<Person> lastShownList = model.getFilteredPersonList();
+        boolean containsStudent = false;
+        for (Person p: lastShownList) {
+            if (p.getPosition() instanceof Student) {
+                containsStudent = true;
+                break;
+            }
+        }
+        if (!containsStudent) {
+            throw new CommandException(MESSAGE_NO_STUDENTS);
+        }
         int numOfPeople = lastShownList.size();
         String relativePath = "./data/";
         String txt = ".txt";
