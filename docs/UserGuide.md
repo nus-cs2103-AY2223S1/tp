@@ -537,7 +537,8 @@ Format: `export path/<PATH WITH NAME OF FILE TO BE EXPORTED TO>`
 * Only the displayed list of candidates will be exported.
 
 Examples:
-* `export path//Desktop/sample/data.csv` exports the filtered list of candidates to `data.csv` in the `sample` directory of the `Desktop`.
+* `export path//Desktop/sample/data.csv` exports the filtered list of candidates to `data.csv` in the `sample` directory of the `Desktop` (Sample path for MACOS).
+* `export path/C:\Users\John\Desktop\data.json` exports the list of candidates to `data.json` in the `Desktop` (Sample path for WINDOWS).
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Alternatively to export files using GUI, you can either go to `Export` -> `Export` in the Menu Bar or enter the command `export`.
@@ -554,7 +555,8 @@ Format: `import path/<PATH WITH NAME OF FILE TO BE IMPORTED FROM>`
 * Candidates whose name already exists in CLInkedIn will be ignored.
 
 Examples:
-* `import path//Desktop/sample/data.csv` imports the list of candidates from `data.csv` in the `sample` directory of the `Desktop` to the addressbook.
+* `import path//Desktop/sample/data.csv` imports the list of candidates from `data.csv` in the `sample` directory of the `Desktop` to the address book (Sample path for MACOS).
+* `import path/C:\Users\John\Desktop\data.json` imports the list of candidates from `data.json` in the `Desktop` to the address book (Sample path for WINDOWS).
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Alternatively to import files using GUI, you can either go to `Import` -> `Import` in the Menu Bar or enter the command `import`.
