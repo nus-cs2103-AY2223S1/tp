@@ -758,6 +758,8 @@ and after executing the command:
 Deleting a person from Plannit will bring you back to the home page.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 #### 2.4.4. Delete person from module
 You can remove the association between a person and a module (if it exists) using the `delete-person-from-module`
 command.
@@ -777,6 +779,8 @@ Format: `delete-person-from-module m/MODULE_CODE n/NAME`
 * You can only delete the specified person from the specified module if the person was originally associated to the
   module.
 * You can only delete a person from a module if both the specified module and person are displayed on the current screen.
+
+<div style="page-break-after: always;"></div>
 
 Example:
 
