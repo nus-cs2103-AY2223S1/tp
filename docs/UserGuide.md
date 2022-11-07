@@ -338,7 +338,7 @@ Renames the current data file.
 Format: `rename {NEW_NAME}`
 
 Renames the current data file as the `NEW_NAME`
-* `NEW_NAME`only accepts alphanumeric, '-' and '_' characters.
+* `NEW_NAME` only accepts alphanumeric, '-' and '_' characters.
 
 Example:
 * `rename CS2103T` renames the current data file as `CS2103T.json`
