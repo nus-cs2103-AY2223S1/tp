@@ -18,8 +18,6 @@ public class ProjectTaskCommand extends TaskCommand {
 
     public static final String COMMAND_WORD = "project";
 
-    public static final String COMMAND_WORD_FULL = TaskCommand.COMMAND_WORD + " " + COMMAND_WORD;
-
     public static final String MESSAGE_SUCCESS = "Listed all projects";
 
     @Override
