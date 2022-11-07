@@ -256,7 +256,7 @@ Aspect: How to filter properties by prices
 
 Alternative 1 was chosen to enable more efficient parsing of commands.
 
-### Filter feature
+### Filter by Tag feature
 
 The filter feature returns a list of properties whose tags contain any of the given keywords.
 
@@ -349,19 +349,6 @@ Aspect: Input format for `StatusPropertyCommand`
 
 ### Commands
 
-#### \[Proposed\] Search Command
-
-#### Proposed Implementation
-
-The proposed search command allows the user to search for a particular `Property`. It is facilitated by `SearchCommand`.
-It extends the `Command` class.
-
-Users can specify if they want to perform the search for a `Property` or `Client` with the following
-options
-
-1. `-p` Search for a particular property with matching keywords
-2. `-c` Search for a particular client with matching keywords
-
 #### Parsing of commands within the `Logic` component
 
 The parsing of commands begins once the `LogicManager` receives and tries to execute the user input.
@@ -369,19 +356,8 @@ The parsing of commands begins once the `LogicManager` receives and tries to exe
 To parse the different commands in our application, we have individual command parsers for the different commands
 (e.g. `EditCommandParser`).
 
-The steps taken when parsing a search command are as follows:
 
-1. The `SearchCommandParser` will check what type (`Property` or `Client`) the search is for
-and create the corresponding parser
-   1. `search -p` will create the command: `SearchPropertyCommand`
-   2. `search -c` will create the command: `SearchClientCommand`
-3. The respective parsers all implement the `Parser` interface, and the `Parser#parse` method will then be called.
-
-#### Design Considerations:
-
-- Create a `SearchCommand` class
-
-### User Uploaded Images [Haoren]
+### User Uploaded Images
 
 The application allows users to upload their own images for Property and Client models. By default, the images are stored
 in `data/images`, or users can specify their custom directory in `preferences.json`.
