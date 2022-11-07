@@ -226,7 +226,7 @@ This section describes some noteworthy details on how certain features are imple
 
 The Edit Person feature is facilitated by the `EditCommand` which utilises the `FindCommand`. It allows users to edit any editable field of a person given the index of the person, or the name of the person.
 
-If given a name that does not correspond to any person in the SectresBook, the edit features performs the same operations as the Find Command.
+If given a name that does not correspond to any person in the SectresBook, the edit features performs the same operations as the `Find` command.
 
 Given below is an example usage scenario and how the edit mechanism behaves at each step.
 
@@ -317,6 +317,36 @@ The following sequence diagram shows how the find command works:
 * **Alternative 2:** Chooses person if name contains the keyword.
     * Pros: Easier to find person.
     * Cons: Persons list may show other persons that are not desired by the user.
+
+### Edit loan value and history of Person by EditLoan feature
+
+#### Implementation
+
+The Edit Loan feature is facilitated by the `EditLoanCommand` which utilises the `FindCommand`. It allows users to edit the loan value and update the loan history of a person given the index of the person, or the name of the person.
+
+If given a name that does not correspond to any person in the SectresBook, the edit feature performs the same operations as the `Find` command.
+
+Given below is an example usage scenario and how the editLoan mechanism behaves at each step.
+
+Step 1. The user enters the editLoan command, with either the index or the person's name.
+
+Step 2a If an index is entered, the `EditLoanCommandParser` carries this index to the `EditCommand`, which retrieves the `Person` to edit by getting the `Model`'s current `FilteredList<Person>` and retrieving by index.
+
+Step 2b. If a non-number is entered, the `EditLoanCommandParser` invokes the `FindCommandParser#parse` method and executes it at the same time with `FindCommand#execute`. The `FilteredList<Person>` is then checked to ensure that there is exactly one person that corresponds with the search term. Otherwise, the method short-circuits with ambiguity errors (more than 1 person) or invalid person errors (no persons at all). If successful, `EditLoanCommandParser` returns a new `EditLoanCommand` with a one-based-index of 1.
+
+- Example of ambiguity error message:
+> There is more than 1 person with the name [NAME]
+
+- Example of invalid name error message:
+> There is nobody with the name [NAME]
+
+Step 3. `EditLoanCommand#execute` is called by the `LogicManager`. The person to edit is retrieved by the index given and a new edited person is created by copying over non-transformed fields and replacing the transformed field.
+
+Step 4. The `editedPerson` is then set to replace the previous state of the `Person` object in the `Model` with `Model#setPerson`.
+
+The following sequence diagram shows how the `editLoan` feature works with index.
+
+<img src="images/EditLoanSequenceDiagram.png" width="740"/>
 
 ### Find Persons and Notes by Tag feature
 
@@ -777,7 +807,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `SectresBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Add a person**
+#### Use case: UC1 - Add a person
 
 **MSS**
 1. User requests to add a person.
@@ -795,7 +825,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: Update a person**
+#### Use case: UC2 - Update a person
 
 **MSS**
 1. User requests to list persons.
@@ -818,7 +848,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Delete a person**
+#### Use case: UC3 - Delete a person
 
 **MSS**
 
@@ -841,15 +871,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Find a person**
+#### Use case: UC4 - Find a person
 
 **MSS**
 1. User request to find using keyword.
-2. SectressBook shows a list of persons matching keyword.
+2. SectresBook shows a list of persons matching keyword.
 
    Use case ends.
 
-**Use case: Display list of persons**
+#### Use case: UC5 - Display list of persons
 
 **MSS**
 1. User requests to list persons.
@@ -857,7 +887,150 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-*{More to be added}*
+#### Use case: UC6 - Edit Loan of person
+
+**MSS**
+1. User requests to list persons.
+2. SectresBook shows a list of persons.
+3. User requests to update the loan of a specific person in the list.
+4. SectresBook updates loan and loan history of the person.
+
+**Extensions**
+* 2a. The list is empty.
+
+    Use case ends.
+* 3a. The given index is invalid.
+    * 3a1. SectresBook shows an error message.
+
+      Use case resumes at step 2.
+* 3b. The command line arguments are invalid.
+    * 3b1. SectresBook shows an error message.
+
+      Use case resumes at step 2.
+
+
+#### Use case: UC7 - Find Person by their tag
+
+**MSS**
+1. User requests to find using a tag keyword.
+2. SectresBook shows a list of persons matching the tag keyword.
+
+   Use case ends.
+
+#### Use case: UC8 - Add a Note
+
+**MSS**
+1. User requests to add a note.
+2. SectresBook adds the note to the list of notes.
+
+   Use case ends.
+
+**Extensions**
+* 1a. The given note title already exists.
+    * 1a1. SectresBook shows an error message.
+
+      Use case ends.
+* 1b. Necessary fields are incomplete/empty.
+    * 1b1. Sectresbook shows an error message.
+
+      Use case ends.
+
+#### Use case: UC9 - Update a Note
+
+**MSS**
+1. User requests to list notes.
+2. SectresBook shows a list of notes.
+3. User requests to update a specific note in the list.
+4. SectresBook updates information of the note.
+
+   Use case ends.
+
+**Extensions**
+* 2a. The list is empty.
+
+  Use case ends.
+* 3a. The given index is invalid.
+    * 3a1. SectresBook shows an error message.
+
+      Use case resumes at step 2.
+* 3b. The command line arguments are invalid.
+    * 3b1. SectresBook shows an error message.
+
+      Use case resumes at step 2.
+
+#### Use case: UC10 - Delete a Note
+
+**MSS**
+1. User requests to list notes.
+2. SectresBook shows a list of notes.
+3. User requests to delete a specific note in the list.
+4. SectresBook deletes the person.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. SectresBook shows an error message.
+
+      Use case resumes at step 2.
+
+#### Use case: UC11 - Find a Note
+
+**MSS**
+1. User request to find using keyword.
+2. SectresBook shows a list of notes matching keyword.
+
+   Use case ends.
+
+#### Use case: UC12 - Display list of notes
+
+**MSS**
+1. User has completed [UC11](#use-case-uc11---display-list-of-notes)
+2. User requests to list notes.
+3. SectresBook displays the list of all notes stored.
+
+   Use case ends.
+
+#### Use case: UC13 - Hide Note section
+
+**MSS**
+1. User requests to hide the notes section of the Sectresbook.
+2. Sectresbook hides the note section, extending the addressbook section.
+
+   Use case ends.
+
+**Extensions**
+* 1a. Already hiding the notes section.
+
+    Use case ends.
+
+#### Use case: UC14 - Show note section
+
+**MSS**
+1. User requests to show the notes section.
+2. Sectresbook shows the notes section on the right side of the interface.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. Already showing the notes section.
+
+    Use case ends.
+
+#### Use case: UC15 - Exit program
+
+**MSS**
+1. User requests to exit program. 
+2. Sectresbook closes the program.
+
+    Use case ends.
 
 ### Non-Functional Requirements
 
