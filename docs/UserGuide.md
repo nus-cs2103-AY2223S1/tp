@@ -68,7 +68,7 @@ To navigate to see a particular command, you can click on the link in blue.
 The window is empty because no friends have been added yet. Adding more friends will change the look of the window.
 </div>
 
-6. Type the command in the [command box](#user-interface-breakdown) and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+* Type the command in the [command box](#user-interface-breakdown) and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
 
 Some sample commands you can try out:
 
