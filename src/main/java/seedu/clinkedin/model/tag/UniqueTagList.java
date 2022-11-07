@@ -68,9 +68,12 @@ public class UniqueTagList implements Iterable<Tag> {
         requireNonNull(toCheck);
         return toCheck.toStream().anyMatch(this::contains);
     }
+
     /**
      * Adds a tag to the list.
      * The tag must not already exist in the list.
+     * @param toAdd Tag to be added.
+     * @throws DuplicateTagException If adding the tag results in duplicate tags.
      */
     public void add(Tag toAdd) throws DuplicateTagException {
         requireNonNull(toAdd);
@@ -79,10 +82,10 @@ public class UniqueTagList implements Iterable<Tag> {
         }
         internalList.add(toAdd);
     }
-
     /**
-     * Adds a tag to the list.
-     * The tag must not already exist in the list.
+     * Merges the uniqueTagList with this uniqueTagList.
+     * @param toAdd UniqueTagLis to be merged.
+     * @throws DuplicateTagException If merging would result in duplicate tags.
      */
     public void merge(UniqueTagList toAdd) throws DuplicateTagException {
         requireNonNull(toAdd);
@@ -114,10 +117,11 @@ public class UniqueTagList implements Iterable<Tag> {
 
         internalList.set(index, editedTag);
     }
-
     /**
      * Removes the equivalent tag from the list.
      * The tag must exist in the list.
+     * @param toRemove Tag to be removed.
+     * @throws TagNotFoundException If toRemove doesn't exist in the uniqueTagList.
      */
     public void remove(Tag toRemove) throws TagNotFoundException {
         requireNonNull(toRemove);
@@ -141,6 +145,10 @@ public class UniqueTagList implements Iterable<Tag> {
         }
     }
 
+    /**
+     * Replaces the contents of this list with {@code replacement}.
+     * {@code tags} must not contain duplicate tags.
+     */
     public void setTags(UniqueTagList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
@@ -190,9 +198,10 @@ public class UniqueTagList implements Iterable<Tag> {
     public int hashCode() {
         return internalList.hashCode();
     }
-
     /**
      * Returns true if {@code tags} contains only unique tags.
+     * @param tags List of tags.
+     * @return True if the {@code tags} contains only unique tags.
      */
     private boolean tagsAreUnique(List<Tag> tags) {
         for (int i = 0; i < tags.size() - 1; i++) {
@@ -205,6 +214,9 @@ public class UniqueTagList implements Iterable<Tag> {
         return true;
     }
 
+    /**
+     * Returns a stream of the tags in the list.
+     */
     public Stream<Tag> toStream() {
         return internalList.stream();
     }
@@ -218,12 +230,15 @@ public class UniqueTagList implements Iterable<Tag> {
         return builder.substring(2);
     }
 
+    /**
+     * Returns a uniqueTagList as a list of Strings.
+     */
     public List<String> getAsList() {
         return internalList.stream().map(tag -> tag.getTagName()).collect(Collectors.toList());
     }
-
     /**
      * Returns a copy of the UniqueTagList.
+     * @return A copy of the uniqueTagList.
      */
     public UniqueTagList copy() {
         UniqueTagList clone = new UniqueTagList();

@@ -33,9 +33,7 @@ Given below are my contributions to the project.
 
 
 * **Enhancements to existing features**:
-  * Extended the `add` command to support the addition of links for a candidate while adding a new candidate.
-  * Extended the `edit` command to support the modification of existing links of a candidate.
-
+  * Extended the `add` and `edit` command to support the newly added `Link` feature.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=agarwal-anjali&breakdown=true)
 

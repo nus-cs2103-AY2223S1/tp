@@ -572,12 +572,14 @@ Example:
 Exports the data for the displayed list of candidates to the specified location in the specified format. 
 
 Format: `export path/<PATH WITH NAME OF FILE TO BE EXPORTED TO>`
+* The path must be absolute path.
 * The format of the file must be JSON or CSV.
 * Any directory in the path which does not exist will automatically be created.
 * Only the displayed list of candidates will be exported.
 
 Examples:
-* `export path//Desktop/sample/data.csv` exports the filtered list of candidates to `data.csv` in the `sample` directory of the `Desktop`.
+* `export path//Desktop/sample/data.csv` exports the filtered list of candidates to `data.csv` in the `sample` directory of the `Desktop` (Sample path for MACOS).
+* `export path/C:\Users\John\Desktop\data.json` exports the list of candidates to `data.json` in the `Desktop` (Sample path for WINDOWS).
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Alternatively to export files using GUI, you can either go to `Export` -> `Export` in the Menu Bar or enter the command `export`.
@@ -588,12 +590,14 @@ Alternatively to export files using GUI, you can either go to `Export` -> `Expor
 Imports the data for candidates from the specified file.
 
 Format: `import path/<PATH WITH NAME OF FILE TO BE IMPORTED FROM>`
+* The path must be absolute path.
 * The format of the file must be JSON or CSV.
 * Data being import will be merged with the existing data in CLInkedIn.
 * Candidates whose name already exists in CLInkedIn will be ignored.
 
 Examples:
-* `import path//Desktop/sample/data.csv` imports the list of candidates from `data.csv` in the `sample` directory of the `Desktop` to the addressbook.
+* `import path//Desktop/sample/data.csv` imports the list of candidates from `data.csv` in the `sample` directory of the `Desktop` to the address book (Sample path for MACOS).
+* `import path/C:\Users\John\Desktop\data.json` imports the list of candidates from `data.json` in the `Desktop` to the address book (Sample path for WINDOWS).
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Alternatively to import files using GUI, you can either go to `Import` -> `Import` in the Menu Bar or enter the command `import`.
@@ -662,6 +666,7 @@ If your changes to the data file makes its format invalid, CLInkedIn will discar
 | **DeleteTagType** | `deleteTagType TAG_TYPE` <br> e.g., `deleteTagType GPA`                                                                                                                                                                                                               |
 | **Undo**          | `undo`                                                                                                                                                                                                                                                                |
 | **Redo**          | `redo`                                                                                                                                                                                                                                                                |
+| **Statistics**    | `stats`                                                                                                                                                                                                                                                               |
 | **Find**          | `find KEYWORD [MORE_KEYWORDS]` or `find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [MORE_TAGGED_KEYWORDS]`  <br> e.g., `find James Jake` , `find n/Alex p/8764321`                                                                                                           |
 | **List**          | `list`                                                                                                                                                                                                                                                                |
 | **Help**          | `help`                                                                                                                                                                                                                                                                |
