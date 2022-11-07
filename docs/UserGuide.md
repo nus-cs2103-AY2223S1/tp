@@ -156,12 +156,17 @@ Contact management has never been this simple.
 :information_source: Notes on contacts<br>
 
 * Contacts have no labels by default.<br>
+
 * Contact names are limited to alphanumeric characters and spaces. There must be at least one alphanumeric character.<br>
+
 * Contact phone numbers are limited to numeric characters and must be at least three digits long.<br>
+
 * Contact emails should be of the format local-part@domain.<br> 
 The local-part is limited to alphanumeric characters and four special characters "+", "_", ".", and "-". However, the local-part may not start or end with any special characters.<br>
-The domain name consists of domain labels separated by periods, and should end with a domain label at least two characters long. Each domain label should consist of alphanumeric characters, separated only by hyphens, if any. Domain labels must start and end with alphanumeric characters
-* Contact addresses can take any values, but must consist of at least one non-space character.
+The domain name consists of domain labels separated by periods, and should end with a domain label at least two characters long. Each domain label should consist of alphanumeric characters, separated only by hyphens, if any. Domain labels must start and end with alphanumeric characters.<br>
+
+* Contact addresses can take any values, but must consist of at least one non-space character.<br>
+
 * Contact remarks are limited to alphanumeric characters and spaces.<br>
 
 </div>
@@ -175,6 +180,7 @@ Format:  `addC n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [r/REMARK]`
 <div markdown="block" class="alert alert-warning">:warning: There will be an error if you:<br>
 
 * Do not adhere to [field constraints](#section-1-contacts).<br>
+
 * Add a contact that is the same as one already in the address book. Two contacts are the same if they have the same email or phone number.<br>
 
 </div>
@@ -523,6 +529,7 @@ Format: `markT INDEX`
 <div markdown="block" class="alert alert-warning">:warning: There will be an error if you:<br>
 
 * Enter 0 or a negative number as INDEX.<br>
+
 * Enter a number greater than the currently shown list size as INDEX.<br>
 
 </div>
@@ -549,6 +556,7 @@ Format: `unmarkT INDEX`
 <div markdown="block" class="alert alert-warning">:warning: There will be an error if you:<br>
 
 * Enter 0 or a negative number as INDEX.<br>
+
 * Enter a number greater than the currently shown list size as INDEX.<br>
 
 </div>
