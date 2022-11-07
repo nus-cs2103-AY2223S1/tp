@@ -432,7 +432,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list persons as per <u>UC02: List persons</u>
+1.  User requests to list persons as per <ins>UC02: List persons</ins>
 1.  User requests to add a debt to specific persons in the list
 1.  PayMeLah displays the debt is added to the persons
 
@@ -454,7 +454,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list persons as per <u>UC02: List persons</u>
+1.  User requests to list persons as per <ins>UC02: List persons</ins>
 1.  User requests to split a debt among several persons in the list
 1.  PayMeLah displays the split debt is added to the persons
 
@@ -476,7 +476,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list persons as per <u>UC02: List persons</u>
+1.  User requests to list persons as per <ins>UC02: List persons</ins>
 1.  User requests to mark specific debts from a specific person in the list as paid
 1.  PayMeLah displays the debts to be marked as paid
 
@@ -498,7 +498,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list persons as per <u>UC02: List persons</u>
+1.  User requests to list persons as per <ins>UC02: List persons</ins>
 1.  User requests to delete a specific person in the list
 1.  PayMeLah displays the person is deleted
 
@@ -520,7 +520,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list persons as per <u>UC02: List persons</u>
+1.  User requests to list persons as per <ins>UC02: List persons</ins>
 1.  User requests to delete specific debts from a specific person in the list
 1.  PayMeLah displays the debts are deleted from the person
 
@@ -557,7 +557,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list debtors as per <u>UC08: List persons with debts</u>
+1.  User requests to list debtors as per <ins>UC08: List persons with debts</ins>
 1.  User requests to clear the debts of a specific debtor in the list
 1.  PayMeLah displays the debts are cleared from the person
 
