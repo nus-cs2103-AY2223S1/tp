@@ -104,14 +104,12 @@ public class EditCommand extends Command {
                 throw new CommandException(MESSAGE_DUPLICATE_ENTRY);
             }
             model.setExpenditure(entryToEdit, editedEntry);
-            model.updateFilteredExpenditureList(Model.PREDICATE_SHOW_ALL_ENTRIES);
             break;
         case INCOME:
             if (!entryToEdit.isSameEntry(editedEntry) && model.hasIncome(editedEntry)) {
                 throw new CommandException(MESSAGE_DUPLICATE_ENTRY);
             }
             model.setIncome(entryToEdit, editedEntry);
-            model.updateFilteredIncomeList(Model.PREDICATE_SHOW_ALL_ENTRIES);
             break;
         default:
             // should never reach here

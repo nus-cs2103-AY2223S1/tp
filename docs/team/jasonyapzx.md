@@ -56,7 +56,7 @@ The following are my contributions to the project:
   * Developer Guide:
     * Added implementation details of the `add` feature. PRs: [\70](https://github.com/AY2223S1-CS2103T-W17-2/tp/pull/70)
     * Added all use cases for PennyWise into the DG. PRs: [\70](https://github.com/AY2223S1-CS2103T-W17-2/tp/pull/70)
-    * Added test cases for `add`, `delete`, `edit`, `view`, `summary` into the DG. PRs: [\70](https://github.com/AY2223S1-CS2103T-W17-2/tp/pull/70), [\76](https://github.com/AY2223S1-CS2103T-W17-2/tp/pull/76) 
+    * Added test cases for `add`, `delete`, `edit`, `view`, `summary` into the DG. PRs: [\70](https://github.com/AY2223S1-CS2103T-W17-2/tp/pull/70), [\76](https://github.com/AY2223S1-CS2103T-W17-2/tp/pull/76)
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#34](https://github.com/AY2223S1-CS2103T-W17-2/tp/pull/34), [\#71](https://github.com/AY2223S1-CS2103T-W17-2/tp/pull/71), [\#81](https://github.com/AY2223S1-CS2103T-W17-2/tp/pull/81), [\#104](https://github.com/AY2223S1-CS2103T-W17-2/tp/pull/104)

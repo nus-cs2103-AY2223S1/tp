@@ -2,6 +2,7 @@
 !include style.puml
 skinparam arrowThickness 1.1
 skinparam arrowColor UI_COLOR_T4
+skinparam linetype ortho
 skinparam classBackgroundColor UI_COLOR
 
 package UI <<Rectangle>>{
@@ -10,11 +11,15 @@ Class "{abstract}\nUiPart" as UiPart
 Class UiManager
 Class MainWindow
 Class HelpWindow
+Class HelpWindowCell
 Class ResultDisplay
 Class GraphPanel
 Class EntryPane
 Class EntryListPanel
 Class EntryCard
+Class EntryLineChart
+Class EntryPieChart
+Class NoEntryFound
 Class StatusBarFooter
 Class CommandBox
 }
@@ -41,15 +46,23 @@ MainWindow *-down-> "1" GraphPanel
 
 EntryPane *-down-> "2" EntryListPanel
 
-
 EntryListPanel -down-> "*" EntryCard
+
+GraphPanel -down-> "0..1" EntryLineChart
+GraphPanel -down-> "0..1" EntryPieChart
+GraphPanel -down-> "0..1" NoEntryFound
+
+HelpWindow -down-> "*" HelpWindowCell
 
 MainWindow -left-|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
 EntryListPanel --|> UiPart
-EntryCard --|> UiPart
+EntryCard ---|> UiPart
+EntryLineChart --|> UiPart
+EntryPieChart --|> UiPart
+NoEntryFound --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
 GraphPanel --|> UiPart

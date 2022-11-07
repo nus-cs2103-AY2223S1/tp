@@ -40,11 +40,6 @@ public class AddCommandTest {
 
     }
 
-    // @Test
-    // public void constructor_nullEntryType_throwsNullPointerException() {
-    //     assertThrows(NullPointerException.class, () -> new AddCommand(new ExpenditureBuilder().build(), null));
-    // }
-
     @Test
     public void execute_expenditureAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingEntriesAdded modelStub = new ModelStubAcceptingEntriesAdded();
