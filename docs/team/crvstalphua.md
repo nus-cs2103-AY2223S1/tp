@@ -39,7 +39,7 @@ Given below are my contributions to the project.
       developer can see which project has more issues that require attention.
 
 * **Enhancements to existing features**: 
-  * Added tests for add commands (Pull requests: [\#249](https://github.com/AY2223S1-CS2103-F13-1/tp/pull/249))
+  * Added tests for add, mark and unmark commands (Pull requests: [\#249](https://github.com/AY2223S1-CS2103-F13-1/tp/pull/249), [\#262](https://github.com/AY2223S1-CS2103-F13-1/tp/pull/262))
   * Added parser tests for add issue and delete issue (Pull requests: [\#249](https://github.com/AY2223S1-CS2103-F13-1/tp/pull/249))
   * Refactored all Status to Urgency, Description to Title, and Phone to Mobile (Pull requests: [\#134](https://github.com/AY2223S1-CS2103-F13-1/tp/pull/134))
 
