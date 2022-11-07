@@ -229,27 +229,19 @@ The following sequence diagram shows how the filter operation works:
 
 </div>
 
-1. `LogicManager` object takes in `"filter c/n"` which the user keys into the command line.
-2. `LogicManager` object calls the `parseCommand` of the `AddressBookParser` object created during initialisation of `LogicManager` object and passes the `"filter c/n"` as the arguments of `parseCommand`.
-3. `FilterTasksCommandParser` object is created during execution of `parseCommand` of `AddressBookParser`.
-4. `FilterTasksCommand` object is created from `FilterTasksCommandParser`.
-5. `execute` method of `FilterTasksCommand` object is invoked and model is passed in as an argument.
+1. The user executes `t filter m/CS2103T c/y l/n` command to filter the task list to show all CS2103T tasks that have been marked complete and are not linked to any exam.
+2. `LogicManager` calls `AddressBookParser#parseCommand()` with `"t filter m/CS2103T c/y l/n"` as the argument.
+3. `AddressBookParser` calls `FilterTasksCommandParser#parse()` with `"m/CS2103T c/y l/n"` as the argument.
+4. `FilterTasksCommandParser` creates a new `FilterTasksCommand` object with a new `FilterPredicate` object as argument, representing the filter conditions specified by the user.
+5. `LogicManager`calls `FilterTasksCommand#execute()` with `model` as the argument.
+6. `FilterTasksCommand` calls `Model#updateFilteredTaskList()`, causing the task list to be updated based on the new conditions for `module`, `isCompleted` and `isLinked` based on the `FilterPredicate`.
+7. `FilterTasksCommand#execute()`  returns a `CommandResult` object with the `MESSAGE_SUCCESS` message as argument.
 
-Given below is an example usage scenario and how the filter mechanism behaves at each step.
-
-Step 1. The user launches the application. The `AddressBook` will be initialized with the initial address book state.
-
-Step 2. The user executes `t filter m/CS2103T c/y l/n` command to filter the task list to show all CS2103T tasks that have been marked complete and are not linked to any exam. The `filter` command calls `Model#UpdateFilteredTaskList`, causing the task list to be filtered with the given conditions for `module`, `isCompleted` and `isLinked`.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `module`, `isCompleted` and `isLinked` input is invalid, there will be an error message shown and the address book will continue to show the current `taskFilteredList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `module`, `isCompleted` or `isLinked` input is invalid, there will be an error message shown and the address book will continue to show the current `taskFilteredList`.
 
 </div>
 
-Step 3. The user executes `t filter m/CS2103T c/n` command to filter the task list to show all CS2103T tasks that have been marked incomplete. The updated `taskFilterdList` will be filtered based on all the tasks, not only the ones which have been filtered out in the previous filter command from step 2.
-
-Step 4. The user executes `t mark 1`. The first task is no longer in `taskFilteredList` since its `isCompleted` is now false and no longer fulfils the conditions.
-
-The following activity diagram summarizes what happens when a user executes the filter command:
+The following activity diagram summarizes what happens when filter command is executed:
 
 | <img src="images/FilterActivityDiagram.png" width="700" /> |
 |:----------------------------------------------------------:|
@@ -455,19 +447,19 @@ Shown below is a sequence diagram of what occurs when the `execute` method of `L
 </div>
 
 **Sequence of actions made when `execute` method of `LogicManager` is invoked**
-1. `LogicManager` object takes in `"e unlink 1"` which the user keys into the command line.
-2. `LogicManager` object calls the `parseCommand` method of the `AddressBookParser` object created during the initialisation of `LogicManager` object and passes `"unlink exam 1"` as the arguments of `parseCommand`.
-3. `UnlinkExamCommandParser` object is created during the execution of `parseCommand` of `AddressBookParser`.
-4. `UnlinkExamCommandParser` object calls its `parse` method with `"1"` being passed in as argument.
-5. `UnlinkExamCommand` object is created from `UnlinkExamCCommandParser`.
-6. `execute` method of `UnlinkExamCommand` is invoked and model is passed in as an argument.
-7. `getFilteredTaskList` method of `Model` is called to get the filtered task list.
-8. `get` method of `List<Task>` is called to get the task at the first index.
-9. `unlinkTask` method of `Task` is called to set the `linkedExam` of the task at the first index to `null`.
-10. `replaceTask` method of `Model` is called to replace the original task at the first index with the new unlinked task.
-11. `execute` method of `UnlinkExamCommand` returns a `CommandResult` object with the `EXAM_UNLINKED_SUCCESS` message as argument to the `LogicManager` object.
 
-The following activity diagram summarizes what happens when a user executes the unlink exam command:
+1. The user executes `e unlink 1` to unlink the first task in the `FilteredTaskList`.
+2. `LogicManager` calls `AddressBookParser#parseCommand()` with `"e unlink 1"` as the argument.
+3. `AddressBookParser` calls `UnlinkExamCommandParser#parse()` with `"1"` as the argument.
+4. `UnlinkExamCommandParser` creates a new `UnlinkExamCommand` object with a new `Index` object as argument, representing the first index of the task list.
+5. `LogicManager` calls `UnlinkExamCommand#execute()` with `model` as the argument.
+6. `UnlinkExamCommand` calls `Model#getFilteredTaskList()` which returns the current filtered task list.
+7. `List<Task>#get()` is called which returns the first task in the filtered task list.
+8. `Task#unlinkTask()` is called which returns a new `Task` object with the same fields as the first task in the filtered task list, but with its `linkedExam` field set to `null`.
+9. `UnlinkExamCommand` calls `Model#replaceTask()` to replace the original task at the first index with the new unlinked task.
+10. `UnlinkExamCommand#execute()`  returns a `CommandResult` object with the `EXAM_UNLINKED_SUCCESS` message as argument.
+
+The following activity diagram summarizes what happens when unlink exam command is executed:
 
 | <img src="images/UnlinkExamActivityDiagram.png" width="1000" /> |
 |:---------------------------------------------------------------:|
@@ -532,7 +524,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: Add a task into task list**
 
 **MSS**
-1. User requests to add a task.
+1. NUS student requests to add a task.
 2. MODPRO shows the task added.
 3. MODPRO updates the progress bar to include the added task. </br>
    Use case ends.
@@ -604,7 +596,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: Filter the task list**
 
 **MSS**
-1. User requests to filter the task list based on some conditions.
+1. NUS student requests to filter the task list based on some conditions.
 2. MODPRO shows the list of tasks that fulfil the given conditions. </br>
    Use case ends.
 
@@ -631,8 +623,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: Clear the task list**
 
 **MSS**
-1. User requests to clear the task list.
-2. MODPRO clears the task list. </br>
+1. NUS student requests to clear the task list.
+2. MODPRO clears the task list.
+3. MODPRO resets all exam and module progress bars. </br>
    Use case ends.
 
 **Extensions**
@@ -678,7 +671,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: Delete an exam from the exam list**
 
 **MSS**
-1. User requests to delete a specific exam in the exam list.
+1. NUS student requests to delete a specific exam in the exam list.
 2. MODPRO deletes the exam.
 3. MODPRO unlinks all tasks currently linked to the deleted exam. </br>
    Use case ends.
@@ -697,8 +690,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: Unlink task from exam**
 
 **MSS**
-1. User requests to unlink a task from its exam.
-2. MODPRO unlinks the task. </br>
+1. NUS student requests to unlink a task from its exam.
+2. MODPRO unlinks the task.
+3. MODPRO updates the exam progress bar. </br>
    Use case ends.
 
 **Extensions**
@@ -718,7 +712,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: Showing the tasks of an exam**
 
 **MSS**
-1. User requests to list all tasks of a specified exam.
+1. NUS student requests to list all tasks of a specified exam.
 2. MODPRO shows list of all tasks of the specified exam. </br>
    Use case ends.
 
@@ -736,7 +730,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: Clear all lists**
 
 **MSS**
-1. User requests to clear all lists.
+1. NUS student requests to clear all lists.
 2. MODPRO clears task, exam and module lists. </br>
    Use case ends.
 
