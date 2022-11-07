@@ -9,6 +9,10 @@ import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input argument and creates a new DeleteAppointmentCommand object
+ *
+ * @author Gerald Teo Jin Wei
+ * @version 1.4
+ * @since 2022-11-07
  */
 public class DeleteAppointmentCommandParser implements Parser<DeleteAppointmentCommand> {
 
