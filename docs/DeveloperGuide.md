@@ -3,7 +3,7 @@ layout: page
 title: Developer Guide
 ---
 
-Table of Contents
+## **Table of Contents**
 
 1. [Acknowledgements](#1-acknowledgements)<br>
 2. [Setting up, getting started](#2-setting-up-getting-started)<br>
@@ -18,6 +18,8 @@ Table of Contents
    4.1. [Import command](#41-import-command)<br>
    4.2. [View command](#42-view-command)<br>
    4.3. [Sort command](#43-sort-command)<br>
+   4.4. [Copy command](#44-copy-command)<br>
+   4.5. [Lock feature](#45-lock-feature)<br>
 5. [Documentation, logging, testing, configuration, dev-ops](#5-documentation-logging-testing-configuration-dev-ops)<br>
 6. [Appendix: Requirements](#6-appendix-requirements)<br>
    6.1. [Product scope](#61-product-scope)<br>
@@ -140,8 +142,7 @@ The `UI` component,
 
 ### 3.3. Logic component
 
-**
-API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-F11-3/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-F11-3/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -178,8 +179,7 @@ How the parsing works:
 
 ### 3.4. Model component
 
-**
-API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-F11-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-F11-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/UpdatedModelClassDiagramWithPortfolio.png" width="450" />
 
@@ -203,10 +203,9 @@ The `Model` component,
 
 ### 3.5. Storage component
 
-**
-API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-F11-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-F11-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png"/>
+![StorageClassDiagram](images/StorageClassDiagram.png)
 
 The `Storage` component,
 
@@ -243,6 +242,8 @@ The import command mainly relies on the following classes:
 * `ParserUtil`
 * `CsvAdaptedPerson`
 * `StringToTag`
+* `StringToPlan`
+* `StringToNote`
 
 `CsvToBeanBuilder` is provided by the OpenCSV library.
 
@@ -257,13 +258,14 @@ The import command mainly relies on the following classes:
     * If the path is to a `JSON` file, `ImportCommand` creates a new `JsonAddressBookStorage` using the path, then uses
       it to read and add `Person`s to the `Model`.
     * If the path is to a `CSV` file, `ImportCommand` creates a new `CsvToBeanBuilder` using the path, then uses it to
-      obtain a list of `CsvAdaptedPerson`s. `StringToTag#convertToRead()` is called by `CsvToBeanBuilder` to convert
-      strings from the `CSV` file to `Tag`s. `CsvAdaptedPerson#toModelType()` is called to convert
+      obtain a list of `CsvAdaptedPerson`s. `StringToTag`, `StringToPlan` and `StringToNote` are used by `CsvToBeanBuilder` to convert
+      strings from the `CSV` file to the corresponding `CsvAdaptedPerson` fields. `CsvAdaptedPerson#toModelType()` is called to convert
       each `CsvAdaptedPerson` to a `Person` before adding them to the `Model`.
 
-The following sequence diagram shows how the import command works:
+The following sequence diagrams show how the import command works:
 
 ![ImportSequenceDiagram](images/ImportSequenceDiagram.png)
+![ImportSequenceDiagramRef](images/ImportSequenceDiagramRef.png)
 
 #### Design considerations:
 
@@ -274,6 +276,7 @@ Chose to use OpenCSV to read `CSV` files to avoid reinventing the wheel.
 #### Current Implementation
 
 The view command mainly relies on the following classes:
+
 * `Person`
 * `Model`
 * `Index`
@@ -282,27 +285,30 @@ The view command mainly relies on the following classes:
 * `CommandResult`
 
 1. The user executes the `view` command while providing an index of the client as an argument.
-2. `AddressBookParser#parseCommand` is called, which creates and returns a new `ViewCommandParser` that parses the 
+2. `AddressBookParser#parseCommand` is called, which creates and returns a new `ViewCommandParser` that parses the
    provided index.
 3. `ViewCommandParser#parse()` is called, which calls `ViewCommand#parse()` to parse the index of client.
 4. `ViewCommandParser` creates and returns a new `ViewCommand` with the index of client.
 5. `ViewCommand#execute()` is called.
-   1. `ViewCommand#execute()` will get the updated client list using `model#getFilteredPersonList()`.
-   2. `ViewCommand#execute()` will get the specific client using the index given as the parameter.
-   3. `ViewCommand#execute()` then calls `CommandResult` which calls the `Message` to return the success message after each successful execution.
+    1. `ViewCommand#execute()` will get the updated client list using `model#getFilteredPersonList()`.
+    2. `ViewCommand#execute()` will get the specific client using the index given as the parameter.
+    3. `ViewCommand#execute()` then calls `CommandResult` which calls the `Message` to return the success message after each successful execution.
 
 Design considerations:
+
 1. View person and get portfolio of each client
-2. View portfolio of each client   
-- Option 1 is implemented because it was unnecessary to add a new list of clients containing on the portfolio. Since 
-is an existing method that already gets the updated Person list, hence, we have decided to get the portfolio
-of each client through this Person list as each client will have their own portfolio.
+2. View portfolio of each client
+
+- Option 1 is implemented because it was unnecessary to add a new list of clients containing on the portfolio. Since
+  is an existing method that already gets the updated Person list, hence, we have decided to get the portfolio
+  of each client through this Person list as each client will have their own portfolio.
 
 ### 4.3. Sort Command
 
 #### Current Implementation
 
 The sort command mainly relies on the following classes:
+
 * `AddressBookParser`
 * `SortCommand`
 * `SortCommandParser`
@@ -316,14 +322,75 @@ The sort command mainly relies on the following classes:
 3. `SortCommandParser#parse()` is called, which creates and returns a new `SortCommand` with the given `sortParam`.
 4. `SortCommand#execute()` is called.
     1. `SortCommand#execute()` will pass `sortParam` to `model#sort`.
-    2. `model#sort` will call `AddressBook#sort` 
+    2. `model#sort` will call `AddressBook#sort`
     3. `AddressBook#sort` then calls `UniquePersonList#sort` to sort client list.
     4. `UniquePersonList` then updates `internalList` with sorted client list according to `sortParam`.
 
 #### Design considerations:
+
 `sortParam` should be passed to `UniquePersonList#sort` to modify `internalList`.
 
-*{More to be added}*
+### 4.4. Copy Command
+
+#### Current Implementation
+
+The copy command mainly relies on the following classes:
+
+* `AddressBookParser`
+* `CopyCommand`
+* `CopyCommandParser`
+* `ParserUtil`
+* `Model`
+* `Person`
+* `Clipboard`
+
+1. The user executes the `copy` command while providing an index of the client as an argument.
+2. `AddressBookParser#parseCommand` is called, which creates and returns a new `CopyCommandParser` that parses the
+   provided index.
+3. `CopyCommandParser#parse()` is called, which calls `ParserUtil#parseIndex` with index as an argument to check if it is valid.
+4. `CopyCommandParser` creates and returns a new `CopyCommand` with the index of client.
+5. `CopyCommand#execute()` is called.
+    1. `CopyCommand#execute()` will get the updated client list using `model#getFilteredPersonList()`.
+    2. `CopyCommand#execute()` will get the specific client using the index given as the parameter.
+    3. `CopyCommand#execute()` will set `stringSelection` with clients details by calling `person#toClipboardString()`.
+    4. `Toolkit#getDefaultToolkit()#getSystemClipboard()` is called to is initialized `clipboard` to the system's clipboard.
+    5. `clipboard#setContents()` is called with `stringSelection` as parameter.
+
+#### Design considerations:
+
+Java `Clipboard` API is used as it implements a mechanism to transfer data using cut/copy/paste operations.
+
+### 4.5. Lock feature
+
+#### Current Implementation
+
+The lock feature mainly relies on the following classes:
+
+* `CommandResult`
+* `LockCommand`
+* `AddressBookParser`
+* `LockWindow`
+* `MainWindow`
+
+1. The user opens FinBook.
+2. `MainWindow` checks if a password is set. If not, go to step 6.
+3. `MainWindow` displays the password dialog box by calling `LockWindow`.
+4. The user enters a password.
+5. `LockWindow` checks if the password is correct. If not, go to step 3.
+6. FinBook unlocks and the user resumes using FinBook.
+7. The user executes the `lock` command.
+8. `AddressBookParser` creates and returns a new `LockCommand`.
+9. `LockCommand` is executed and returns a `CommandResult` that tells `MainWindow` to display the password dialog box. Go to step 3.
+
+Password verification is handled by the Password4j library.
+
+The following activity diagram shows how the lock feature works:
+
+![LockActivityDiagram](images/LockActivityDiagram.png)
+
+#### Design considerations:
+
+Chose to use battle-tested Password4j to verify passwords to avoid implementing an insecure password system.
 
 --------------------------------------------------------------------------------------------------------------------
 
