@@ -253,9 +253,10 @@ The `EditProfileCommand` extends the `ProfileCommand` abstract class. `ProfileCo
 1. When the user inputs a command to edit a profile, the input is passed to `LogicManager` to be executed.
 2. `LogicManager` will call `NuSchedulerParser#parseCommand()`, which will create a new `ProfileCommandParser`.
 3. The method `ProfileCommandParser#parse()` is then called, and return a new `EditProfileCommandParser`.
-4. The method `EditProfileCommandParser#parse()` will then return a new `EditProfileCommand`, if the user has entered the correct inputs.
-5. The `LogicManager` will call `Command#execute()` method of the `EditProfileCommand`, which will then update the `Profile` with the new details, using the `Model#setProfile()` method.
-6. When the command completes successfully, a `CommandResult` object is returned to the `LogicManager`, which will then display a success message to the user.
+4. The method `EditProfileCommandParser#parse()` will then create a new `EditProfileDescriptor` object.
+5. The method `EditProfileCommandParser#parse()` will then pass this `EditProfileDescriptor` object as a parameter to create a new `EditProfileCommand`. The `EditProfileCommand` is then returned, if the user has entered the correct inputs. 
+6. The `LogicManager` will call `Command#execute()` method of the `EditProfileCommand`, which will then update the `Profile` with the new details, using the `Model#setProfile()` method.
+7. When the command completes successfully, a `CommandResult` object is returned to the `LogicManager`, which will then display a success message to the user.
 
 The following sequence diagram shows how the `EditProfileCommand` works.
 
