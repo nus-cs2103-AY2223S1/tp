@@ -3,12 +3,13 @@ layout: page
 title: User Guide
 ---
 
+* Table of Contents
+  {:toc}
+
+## Introduction
 FRIDAY is a **desktop app for CS1101S Teaching Assistants to organize and track their students’ information and progress, 
 optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). 
 If you can type fast, FRIDAY can get your student management tasks done faster than traditional GUI apps.
-
-* Table of Contents
-{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 ## Quickstart

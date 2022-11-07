@@ -39,7 +39,6 @@ Given below are my contributions to the project.
   * User Guide:
     * Wrote documentation for the features `add` and `delete` [\#125](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/125)
     * Wrote documentation for the `sort` feature [\#107](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/107)
-    * Added "Notes about command format" [\#120](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/120)
     * Added FAQ [\#188](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/188)
   * Developer Guide:
     * Added user stories and use case for the `sort` feature [\#107](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/107)
