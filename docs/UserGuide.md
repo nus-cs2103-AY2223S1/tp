@@ -9,21 +9,9 @@ This guide provides an overview on how to perform the main functionalities of Ha
 
 For advanced users, you can go straight to the [Command Summary](#command-summary).
 
-<h2>Table of Contents</h2>
-
-- **[Quick start](#quick-start)**
-- **[Layout](#layout)**
-- **[Features](#features)**
-   * [General](#general)
-   * [People Management](#people-management)
-   * [Task Management](#task-management)
-- **[Command summary](#command-summary)**
-- **[FAQ](#faq)**
-- **[Glossary](#glossary)**
-- **[Appendix](#appendix)**
-   * [Person Parameters](#person-parameters)
-   * [Task Parameters](#task-parameters)
-
+* Table of Contents
+{:toc}
+ 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
@@ -360,10 +348,9 @@ Examples:
 **Q**: Will my data be lost after closing the application?<br>
 **A**: No, your data will be stored in the `HackAssist.json` file. Data will only be lost if `HackAssist.json` file is deleted.<br>
 **Q**: How do I backup my data?<br>
-**A**: Create a copy of the `HackAssist.json` file in another directory.<br>
+**A**: Create a copy of the `HackAssist.json` file in another directory.
 **Q**: What is the difference between member (members) and person (people)?<br>
 **A**: Member (or team member) refers to `Person` objects in the contact.
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## Glossary
