@@ -17,6 +17,7 @@ Table of Contents
 4. [Implementation](#4-implementation)<br>
    4.1. [Import command](#41-import-command)<br>
    4.2. [View command](#42-view-command)<br>
+   4.3. [Sort command](#43-sort-command)<br>
 5. [Documentation, logging, testing, configuration, dev-ops](#5-documentation-logging-testing-configuration-dev-ops)<br>
 6. [Appendix: Requirements](#6-appendix-requirements)<br>
    6.1. [Product scope](#61-product-scope)<br>
@@ -28,6 +29,7 @@ Table of Contents
    7.1. [Launch and shutdown](#71-launch-and-shutdown)   <br>
    7.2. [Deleting a client](#72-deleting-a-client)  <br>
    7.3. [Saving data](#73-saving-data)<br>
+   7.4. [Sorting clients](#74-sorting-clients)<br>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -296,6 +298,31 @@ Design considerations:
 is an existing method that already gets the updated Person list, hence, we have decided to get the portfolio
 of each client through this Person list as each client will have their own portfolio.
 
+### 4.3. Sort Command
+
+#### Current Implementation
+
+The sort command mainly relies on the following classes:
+* `AddressBookParser`
+* `SortCommand`
+* `SortCommandParser`
+* `ParserUtil`
+* `Model`
+* `UniquePersonList`
+
+1. The user executes the `sort` command while providing a sorting parameter `sortParam` as an argument.
+2. `AddressBookParser#parseCommand` is called, which creates and returns a new `SortCommandParser` with the
+   provided `sortParam`.
+3. `SortCommandParser#parse()` is called, which creates and returns a new `SortCommand` with the given `sortParam`.
+4. `SortCommand#execute()` is called.
+    1. `SortCommand#execute()` will pass `sortParam` to `model#sort`.
+    2. `model#sort` will call `AddressBook#sort` 
+    3. `AddressBook#sort` then calls `UniquePersonList#sort` to sort client list.
+    4. `UniquePersonList` then updates `internalList` with sorted client list according to `sortParam`.
+
+#### Design considerations:
+`sortParam` should be passed to `UniquePersonList#sort` to modify `internalList`.
+
 *{More to be added}*
 
 --------------------------------------------------------------------------------------------------------------------
@@ -356,6 +383,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user ready to start using the app          | purge all current data                                                           | I can get rid of sample/experimental data I used for exploring the app              |
 | `* *`    | user who is a little familiar with the app | search for clients                                                               | I do not have to scroll through all of my clients’ details to find a certain client |
 | `* *`    | user who is a little familiar with the app | sort meetings                                                                    | I can plan for the upcoming days                                                    |
+| `* *`    | user who is a little familiar with the app | sort clients by name                                                             | I can view clients in alphabetical order                                            |
+| `* *`    | user who is a little familiar with the app | sort clients by income                                                           | I can arrange clients according to income                                           |
 | `* *`    | user who is a little familiar with the app | add additional notes that I have discussed with the client                       | I don't have to use another platform to store my notes regarding my client.         |
 | `* *`    | user who is familiar with the app          | copy data to the clipboard with the click of a button or the use of a shortcut   | it is more convenient for me                                                        |
 | `* *`    | returning user                             | import data from an existing save                                                | I can move between devices                                                          |
@@ -655,5 +684,23 @@ testers are expected to do more *exploratory* testing.
        Expected: Creates a new addressbook.json file when there is a new command entered
 
     5. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+
+2. _{ more test cases …​ }_
+
+### 7.4. Sorting Clients
+
+1. Sorting clients when client list has multiple clients in the list
+
+    1. Test case:  `sort n/`<br>
+       Expected: list of clients will be sorted with client names arranged lexicographically
+
+    2. Test case: `sort i/`<br>
+       Expected: list of clients will be sorted with client incomes in ascending order
+
+    3. Test case: `sort m/`<br>
+       Expected: list of clients will be sorted in chronological order
+
+    4. Test case: `sort m/` with client meeting dates saved as `TBC`<br>
+       Expected: list of clients will be sorted in chronological order, with `TBC` entries at the bottom of the list
 
 2. _{ more test cases …​ }_
