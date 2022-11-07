@@ -11,7 +11,7 @@ patient bills for the family clinic.
 
 ---
 
-## Features
+## [Features](#1-features)
 * [Add a patient (addpatient, ap)](#111-add-a-patient-addpatient-ap)
 * [Add an appointment of a patient (addappointment, aa)](#112-add-an-appointment-of-a-patient-addappointment-aa)
 * [Add a bill of an appointment (addbill, ab)](#113-add-a-bill-of-an-appointment-addbill-ab)
@@ -39,6 +39,9 @@ patient bills for the family clinic.
 * [Help (help)](#113-help-help)
 * [Save the data](#114-save-the-data)
 * [Edit the data file](#115-edit-the-data-file)
+
+## [Command Summary Table](#2-command-summary-table)
+## [Frequently Asked Questions](#3-frequently-asked-questions)
 
 ---
 # Quick Start
@@ -908,7 +911,37 @@ HealthContact data are saved in the hard disk automatically after any command th
 HealthContact data are saved as a JSON file `[JAR file location]/data/healthcontact.json`. Advanced users are welcome to update data directly by editing that data file.
 * If the changes to the data file makes its format invalid, HealthContact will discard all data and start with an empty data file at the next run.
 
-# 2. Frequently Asked Questions
+# 2. Command Summary Table
+
+| Feature  |                                      | Command Word        | Shortcut  |
+|----------|--------------------------------------|---------------------|-----------|
+| Add      | a patient                            | `addpatient`        | `ap`      |
+|          | an appointment of a patient          | `addappointment`    | `aa`      |
+|          | a bill for an appointment            | `addbill`           | `ab`      |
+| Edit     | a patient                            | `editpatient`       | `ep`      |
+|          | an appointment of a patient          | `editappointment`   | `ea`      |
+|          | a bill for an appointment            | `editbill`          | `eb`      |
+| Delete   | a patient                            | `deletepatient`     | `dp`      |
+|          | an appointment of a patient          | `deleteappointment` | `da`      |
+|          | a bill for an appointment            | `deletebill`        | `db`      |
+| Find     | a patient                            | `findpatient`       | `fp`      |
+|          | an appointment of a patient          | `findappointment`   | `fa`      |
+|          | a bill for an appointment            | `findbill`          | `fb`      |
+| Sort     | patients                             | `sortpatient`       | `sop`     |
+|          | appointments                         | `sortappointment`   | `soa`     |
+|          | bills                                | `sortbill`          | `sob`     |                                                                                                                                                               |                                                                                                                                                                                                                                                                                                                                                                                                            |
+| Select   | a patient                            | `selectpatient`     | `slp`     |
+|          | an appointment                       | `selectappointment` | `sla`     |
+| Set bill | as paid                              | `setpaid`           | `sp`      |
+|          | as unpaid                            | `setunpaid`         | `sup`     |
+| Undo     | the last change                      | `undo`              |           |
+| Redo     | the last undone change               | `redo`              |           |
+| Clear    | all the data saved                   | `clear`             |           |
+| List     | all patients, appointments and bills | `list`              | `ls`      |
+| Exit     | the program                          | `exit`              |           |
+| Help     | the user with user guide             | `help`              |           |
+
+# 3. Frequently Asked Questions
 1. Q: How do I find out which appointment a bill is for?
 - Use the FindAppointmentCommand to find all appointments for a patient using the patient name on the bill. Then, use the SelectAppointmentCommand to see which appointment is the bill for.
 
