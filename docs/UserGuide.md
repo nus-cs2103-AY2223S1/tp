@@ -492,11 +492,11 @@ Parameters:
 * `DEADLINE` refers to the deadline which is tagged to the task in the displayed task list
 
 Restrictions:
-* INDEX should not be greater than 0 and less than 2147483648
-* INDEX should not be greater than the number of tasks in the task list
-* PRIORITY STATUS must be one of three priorities `HIGH`, `MEDIUM`, `LOW`
-* DEADLINE must be in the format DD-MM-YYYY
-* DEADLINE must not be earlier than the current date
+* `INDEX` should not be greater than 0 and less than 2147483648
+* `INDEX` should not be greater than the number of tasks in the task list
+* `PRIORITY STATUS` must be one of three priorities `HIGH`, `MEDIUM`, `LOW`
+* `DEADLINE` must be in the format DD-MM-YYYY
+* `DEADLINE` must not be earlier than the current date
 
 <div markdown="block" class="alert alert-info">
 
@@ -534,7 +534,7 @@ Restrictions:
 * `DEADLINE` must be in the format DD-MM-YYYY
 * `DEADLINE` must not be earlier than the current date
 * To edit the `PRIORITY_STATUS` of the task, the task must already have a priority status tagged to it
-* The edited `PRIORITY_STATUS` of the task should not be the same as the current PRIORITY_STATUS of the task
+* The edited `PRIORITY_STATUS` of the task should not be the same as the current priority status of the task
 * To edit the `DEADLINE` of the task, the task must already have a deadline tagged to it
 * `DEADLINE` should not be the same as the current deadline tagged to the task
 
