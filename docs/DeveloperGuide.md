@@ -1038,7 +1038,7 @@ testers are expected to do more *exploratory* testing.
        format)<br>
        Expected: Error details shown in the status message.
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Appendix: Effort**
 
