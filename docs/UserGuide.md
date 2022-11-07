@@ -92,8 +92,7 @@ Automatically opens your browser and redirects you to this User Guide page.
 
 
 Format: `help`
-* If TA-Assist is unable to redirect you to the page, i.e. due to a non-existent browser, unsupported operating system, etc.,
-  the following dialog box will be shown instead:
+* If TA-Assist is unable to redirect you to the page, i.e. due to a non-existent browser, unsupported operating system, etc., the following dialog box will be shown instead:
   ![help message](images/helpMessage.png)
 
   You can click on the "**Copy URL**" button to copy the URL shown in the help window, then paste the URL into the address bar of your favourite browser to visit this User Guide page.
@@ -109,6 +108,7 @@ Adds a student to TA-Assist.
 
 Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [c/CLASS_NAME...]`
 * Adds a student named `NAME` into TA-Assist.
+* To add a student with class attributes, the class must exist in TA-Assist.
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 c/CS2103T`
@@ -447,11 +447,12 @@ Comma-Separated Values (CSV) files can be opened with **a spreadsheet applicatio
 
 Format: `export`
 * The exported class data includes:
-  * Student names of the class.
-  * All session names of the class.
+  * Names of students in the class.
+  * Names of sessions for the class.
   * The grades of the students for each session.
 * An example generated CSV file when opened in Microsoft Excel:
-![Example Excel file](images/exampleExcelFile.png)
+
+  ![Example Excel file](images/exampleExcelFile.png)
   * The first column shows all the student names.
   * Subsequent columns show the grades of students for various sessions (e.g. **David Li** scores **0** for **Tutorial 1**).
 
