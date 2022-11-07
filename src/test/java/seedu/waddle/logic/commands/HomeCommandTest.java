@@ -22,6 +22,7 @@ public class HomeCommandTest {
         HomeCommand homeCommand = new HomeCommand();
 
         String expectedMessage = HomeCommand.MESSAGE_ALREADY_HOME_SUCCESS;
+        StageManager.getInstance().setHomeStage();
 
         assertCommandSuccess(homeCommand, model, expectedMessage, expectedModel);
     }
