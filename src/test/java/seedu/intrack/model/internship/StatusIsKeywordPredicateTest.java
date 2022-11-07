@@ -55,12 +55,9 @@ public class StatusIsKeywordPredicateTest {
 
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
-        // Zero keywords
-        StatusIsKeywordPredicate predicate = new StatusIsKeywordPredicate("");
-        assertFalse(predicate.test(new InternshipBuilder().withStatus("Offered").build()));
 
         // Non-matching keyword
-        predicate = new StatusIsKeywordPredicate("Offered");
+        StatusIsKeywordPredicate predicate = new StatusIsKeywordPredicate("Offered");
         assertFalse(predicate.test(new InternshipBuilder().withStatus("Rejected").build()));
 
         // Keyword matches name and email, but does not match status

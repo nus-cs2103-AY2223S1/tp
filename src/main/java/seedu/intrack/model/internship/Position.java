@@ -27,6 +27,7 @@ public class Position {
     public Position(String position) {
         requireNonNull(position);
         checkArgument(isValidPosition(position), MESSAGE_CONSTRAINTS);
+        assert(position.length() != 0);
         positionName = position;
     }
 

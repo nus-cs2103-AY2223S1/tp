@@ -29,7 +29,10 @@ public class PositionTest {
         assertFalse(Position.isValidPosition(" ")); // spaces only
 
         // valid positions
-        assertTrue(Position.isValidPosition("Software Engineer"));
+        assertTrue(Position.isValidPosition("Software Engineer")); // alphabet with capitalisation
+        assertTrue(Position.isValidPosition("data analyst")); // alphabets only
+        assertTrue(Position.isValidPosition("12345")); // numbers only
+        assertTrue(Position.isValidPosition("2nd analyst")); // alphanumeric characters
         assertTrue(Position.isValidPosition("-")); // one character
         assertTrue(Position.isValidPosition("Machine Learning and AI Engineer")); // long position
     }

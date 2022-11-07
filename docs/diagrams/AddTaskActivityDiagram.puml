@@ -10,18 +10,24 @@ if () then ([command is in an invalid format])
     error message;
 
 else ([else])
-    if () then ([index is invalid])
-    :Show invalid index
+    if () then ([taskname is invalid])
+    :Show invalid taskname
     error message;
 
     else ([else])
-        if () then ([taskname or tasktime is invalid])
-        :Show invalid addtask
+        if () then ([tasktime is invalid])
+        :Show invalid tasktime
         error message;
 
         else ([else])
-        :Update the list of tasks of the
-        internship application;
+            if () then ([internship is not selected)
+            :Show internship not selected
+            error message;
+
+            else ([else])
+            :Update the list of tasks of the
+            internship application;
+            endif
         endif
     endif
 endif

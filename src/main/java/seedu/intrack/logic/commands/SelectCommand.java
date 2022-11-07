@@ -32,6 +32,7 @@ public class SelectCommand extends Command {
      * @param targetIndex Index of the Internship to be selected.
      */
     public SelectCommand(Index targetIndex) {
+        assert targetIndex.getOneBased() > 0 : "index should be a positive unsigned integer";
         requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
     }

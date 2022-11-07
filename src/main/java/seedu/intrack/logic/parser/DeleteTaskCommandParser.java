@@ -19,6 +19,7 @@ public class DeleteTaskCommandParser implements Parser<DeleteTaskCommand> {
     public DeleteTaskCommand parse(String args) throws ParseException {
         try {
             Index index = ParserUtil.parseIndex(args);
+            assert index.getOneBased() > 0 : "index should be a positive unsigned integer";
             return new DeleteTaskCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(

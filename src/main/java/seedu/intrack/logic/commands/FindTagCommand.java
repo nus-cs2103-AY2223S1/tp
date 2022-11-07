@@ -22,7 +22,11 @@ public class FindTagCommand extends Command {
 
     private final TagsContainKeywordsPredicate predicate;
 
+    /**
+     * @param predicate Predicate to filter the list with through tags.
+     */
     public FindTagCommand(TagsContainKeywordsPredicate predicate) {
+        requireNonNull(predicate);
         this.predicate = predicate;
     }
 

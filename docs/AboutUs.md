@@ -9,16 +9,17 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
+[[homepage](http://www.comp.nus.edu.sg/~damithch)]
+
 ### John
 
 <img src="images/johnrhimawan.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
 [[github](https://github.com/johnrhimawan)]
 [[portfolio](team/johnrhimawan.md)]
 
 * Role: Developer
-* Responsibilities: Something
+* Responsibilities: Features, Code Quality, Documentation, Testing
 
 ### Kang Qiao
 
@@ -28,7 +29,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/kangqiao322.md)]
 
 * Role: Developer
-* Responsibilities: Something
+* Responsibilities: Features, Testing, Documentation
 
 ### Jet
 
@@ -47,7 +48,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/bigcrushes.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Features, Code Quality, Proof-reading
 
 ### Chantell
 
@@ -57,4 +58,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/chantellyu.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Features, Documentation, UI

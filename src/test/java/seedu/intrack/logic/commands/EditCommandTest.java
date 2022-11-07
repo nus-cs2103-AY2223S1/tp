@@ -33,25 +33,6 @@ public class EditCommandTest {
 
     private Model model = new ModelManager(getTypicalInTrack(), new UserPrefs());
 
-    /*
-    @Test
-    public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Internship selectedInternship = model.getFilteredInternshipList().get(0);
-        // An internship must be selected before Edit can be used
-        model.updateSelectedInternship(a -> a.isSameInternship(selectedInternship));
-
-        Internship editedInternship = new InternshipBuilder().build();
-        EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder(editedInternship).build();
-        EditCommand editCommand = new EditCommand(descriptor);
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_INTERNSHIP_SUCCESS, editedInternship);
-
-        Model expectedModel = new ModelManager(new InTrack(model.getInTrack()), new UserPrefs());
-        expectedModel.setInternship(selectedInternship, editedInternship);
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
-    }
-    */
-
-
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
         Index indexLastInternship = Index.fromOneBased(model.getFilteredInternshipList().size());

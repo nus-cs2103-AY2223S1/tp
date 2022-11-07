@@ -5,7 +5,7 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":InTrackParser" as InTrackParser LOGIC_COLOR
 participant ":AddTaskCommandParser" as AddTaskCommandParser LOGIC_COLOR
-participant "d:AddTaskCommand" as AddTaskCommand LOGIC_COLOR
+participant "at:AddTaskCommand" as AddTaskCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -13,10 +13,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("addtask 1 Technical Interview /at 25-10-2022 12:00")
+[-> LogicManager : execute("addtask Technical Interview /at 25-10-2022 12:00")
 activate LogicManager
 
-LogicManager -> InTrackParser : parseCommand("addtask 1 Technical Interview /at 25-10-2022 12:00")
+LogicManager -> InTrackParser : parseCommand("addtask Technical Interview /at 25-10-2022 12:00")
 activate InTrackParser
 
 create AddTaskCommandParser
@@ -26,29 +26,29 @@ activate AddTaskCommandParser
 AddTaskCommandParser --> InTrackParser
 deactivate AddTaskCommandParser
 
-InTrackParser -> AddTaskCommandParser : parse("1 Technical Interview /at 25-10-2022 12:00")
+InTrackParser -> AddTaskCommandParser : parse("Technical Interview /at 25-10-2022 12:00")
 activate AddTaskCommandParser
 
 create AddTaskCommand
 AddTaskCommandParser -> AddTaskCommand
 activate AddTaskCommand
 
-AddTaskCommand --> AddTaskCommandParser : d
+AddTaskCommand --> AddTaskCommandParser : at
 deactivate AddTaskCommand
 
-AddTaskCommandParser --> InTrackParser : d
+AddTaskCommandParser --> InTrackParser : at
 deactivate AddTaskCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 AddTaskCommandParser -[hidden]-> InTrackParser
 destroy AddTaskCommandParser
 
-InTrackParser --> LogicManager : d
+InTrackParser --> LogicManager : at
 deactivate InTrackParser
 
 LogicManager -> AddTaskCommand : execute()
 activate AddTaskCommand
 
-AddTaskCommand -> Model : getFilteredInternshipList()
+AddTaskCommand -> Model : getSelectedInternship()
 activate Model
 
 Model --> AddTaskCommand

@@ -1,0 +1,26 @@
+@startuml
+start
+:User executes sort command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([command is in an invalid format])
+    :Show invalid command
+    error message;
+
+else ([else])
+    if () then ([sort type is invalid])
+        :Show invalid sort
+        type error message;
+    else ([else]))
+        if () then ([sort order is invalid])
+            :Show invalid sort
+            order error message;
+        else ([else])
+            :Show sorted list of internship applications;
+        endif
+    endif
+endif
+stop
+@enduml

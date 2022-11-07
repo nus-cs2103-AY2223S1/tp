@@ -69,7 +69,8 @@ Given below are my contributions to the project.
   * Updated the missing features in the command summary
   * Update FAQ in UG
 * **Contributions to the DG**:
-  * Added explanation, implementation, diagrams and design considerations for the following feature: `addtask`, `sort`.
+  * Added explanation, implementation, diagrams and design considerations for the following feature: `addtask`.
+  * Added explanation, implementation, diagrams and design considerations for the following feature: `sort`.
   * Updated mentions of AddressBook to InTrack
 * **Contributions to team-based tasks**:
   * Provided idea on evolving AB3 to become an internship tracker

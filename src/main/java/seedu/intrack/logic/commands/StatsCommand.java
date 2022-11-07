@@ -22,6 +22,9 @@ public class StatsCommand extends Command {
         int rejected = model.getFilteredStatusInternshipListSize(new StatusIsKeywordPredicate("Rejected"));
 
         int total = offered + progress + rejected;
+
+        assert(total >= 0);
+
         if (total == 0) {
             return new CommandResult(
                     String.format(Messages.MESSAGE_INTERNSHIPS_STATS_OVERVIEW, offered, 0.00,
