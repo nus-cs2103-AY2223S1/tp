@@ -76,6 +76,8 @@ section of this user guide or to an external website.
 components will be visible.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### Use of the components
 
 | Component                              | Use                                                                                                                                                               |
@@ -254,6 +256,8 @@ This command is typically used to **check a guest in** to your hotel with their 
 
 **Format**: `add n/NAME p/PHONE e/EMAIL rm/ROOM dr/DATE_RANGE ng/NUMBER_OF_GUESTS [rq/REQUEST]`
 
+<div style="page-break-after: always;"></div>
+
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Additional information:**
@@ -379,6 +383,8 @@ will display the guests that already have their rooms cleaned.
 :triangular_flag_on_post: **Common mistake:**<br>
 * Searching for guests using incomplete keywords e.g. `170` will **not match** `170.00`.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 <div markdown="block" class="alert alert-success">
 
@@ -521,6 +527,8 @@ GuestBook data is saved in the hard disk **automatically** after any command tha
 
 GuestBook data is saved as a _JSON file_ `[JAR file location]/data/guestbook.json`.<br>
 Advanced users may change data directly by editing this data file.
+
+<div style="page-break-after: always;"></div>
 
 <div markdown="block" class="alert alert-warning">
 
