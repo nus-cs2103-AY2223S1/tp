@@ -13,18 +13,21 @@ import nus.climods.model.ModelManager;
 import nus.climods.model.UserPrefs;
 import nus.climods.model.module.ModuleList;
 import nus.climods.model.module.UniqueUserModuleList;
+import nus.climods.testutil.ModuleListTestUtil;
 
 class ListCommandTest {
 
     private static final String testAcademicYear = "2022-2023";
-    private final Model model = new ModelManager(new ModuleList(testAcademicYear), new UniqueUserModuleList(),
+    private final Model model =
+        new ModelManager(new ModuleList(ModuleListTestUtil.loadModuleList(testAcademicYear)),
+            new UniqueUserModuleList(),
             new UserPrefs());
 
     @Test
     public void execute_zeroKeywords_allModulesFound() throws ParseException {
         // No faculty code should return the entire catalogue of modules
         String expectedMessage = String.format(Messages.MESSAGE_MODULES_LISTED_OVERVIEW,
-                model.getFilteredModuleList().size());
+            model.getFilteredModuleList().size());
         ListCommand command = new ListCommandParser().parse("");
         CommandResult commandResult = command.execute(model);
 

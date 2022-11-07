@@ -15,12 +15,17 @@ import nus.climods.model.module.LessonTypeEnum;
 import nus.climods.model.module.ModuleList;
 import nus.climods.model.module.UniqueUserModuleList;
 import nus.climods.model.module.UserModule;
+import nus.climods.testutil.ModuleListTestUtil;
 
 
 public class PickCommandTest {
+
     private static final String testAcademicYear = "2022-2023";
-    private final Model model = new ModelManager(new ModuleList(testAcademicYear), new UniqueUserModuleList(),
+    private final Model model =
+        new ModelManager(new ModuleList(ModuleListTestUtil.loadModuleList(testAcademicYear)),
+            new UniqueUserModuleList(),
             new UserPrefs());
+
     private void addCS1010J() {
         model.addUserModule(new UserModule("CS1010J", SemestersEnum.S1));
     }
@@ -35,6 +40,7 @@ public class PickCommandTest {
 
     /**
      * Successful execution of PickCommand.
+     *
      * @throws CommandException
      */
     @Test
@@ -49,6 +55,7 @@ public class PickCommandTest {
 
     /**
      * Recitations not offered in CS1010J
+     *
      * @throws CommandException
      */
     @Test
@@ -60,6 +67,7 @@ public class PickCommandTest {
 
     /**
      * Tut 15 not a valid tutorial for CS1010J
+     *
      * @throws CommandException
      */
     @Test
@@ -71,6 +79,7 @@ public class PickCommandTest {
 
     /**
      * Lecture is unpickable for cs1010j.
+     *
      * @throws CommandException
      */
     @Test
@@ -78,11 +87,12 @@ public class PickCommandTest {
         PickCommand pickCommand = new PickCommand("CS1010J", LessonTypeEnum.LEC, "15");
         addCS1010J();
         assertThrows(CommandException.class, PickCommand.MESSAGE_PICK_UNSELECTABLE_LESSON, ()
-                -> pickCommand.execute(model));
+            -> pickCommand.execute(model));
     }
 
     /**
      * Missing module.
+     *
      * @throws CommandException
      */
     @Test
