@@ -33,7 +33,7 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Tutor> lastShownList = model.getSortedFilteredTutorList();
+        List<Tutor> lastShownList = model.getSortedFilteredTutorLis();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TUTOR_DISPLAYED_INDEX);

@@ -60,7 +60,7 @@ public class FindByEmailCommandTest {
         FindByEmailCommand command = new FindByEmailCommand(predicate);
         expectedModel.updateFilteredTutorList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getSortedFilteredTutorList());
+        assertEquals(Collections.emptyList(), model.getSortedFilteredTutorLis());
     }
 
     @Test
@@ -70,7 +70,7 @@ public class FindByEmailCommandTest {
         FindByEmailCommand command = new FindByEmailCommand(predicate);
         expectedModel.updateFilteredTutorList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ALICE, CARL), model.getSortedFilteredTutorList());
+        assertEquals(Arrays.asList(ALICE, CARL), model.getSortedFilteredTutorLis());
     }
 
     @Test
@@ -80,8 +80,8 @@ public class FindByEmailCommandTest {
         FindByEmailCommand command = new FindByEmailCommand(predicate);
         expectedModel.updateFilteredTutorList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        System.out.println(model.getSortedFilteredTutorList());
-        assertEquals(Arrays.asList(ALICE, CARL), model.getSortedFilteredTutorList());
+        System.out.println(model.getSortedFilteredTutorLis());
+        assertEquals(Arrays.asList(ALICE, CARL), model.getSortedFilteredTutorLis());
     }
 
     /**

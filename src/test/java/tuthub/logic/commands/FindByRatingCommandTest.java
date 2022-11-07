@@ -63,7 +63,7 @@ public class FindByRatingCommandTest {
         FindByRatingCommand command = new FindByRatingCommand(predicate);
         expectedModel.updateFilteredTutorList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getSortedFilteredTutorList());
+        assertEquals(Collections.emptyList(), model.getSortedFilteredTutorLis());
     }
 
     @Test
@@ -73,7 +73,7 @@ public class FindByRatingCommandTest {
         FindByRatingCommand command = new FindByRatingCommand(predicate);
         expectedModel.updateFilteredTutorList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ALICE, CARL), model.getSortedFilteredTutorList());
+        assertEquals(Arrays.asList(ALICE, CARL), model.getSortedFilteredTutorLis());
     }
 
     @Test
@@ -83,7 +83,7 @@ public class FindByRatingCommandTest {
         FindByRatingCommand command = new FindByRatingCommand(predicate);
         expectedModel.updateFilteredTutorList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(BENSON, DANIEL, FIONA), model.getSortedFilteredTutorList());
+        assertEquals(Arrays.asList(BENSON, DANIEL, FIONA), model.getSortedFilteredTutorLis());
     }
 
     /**

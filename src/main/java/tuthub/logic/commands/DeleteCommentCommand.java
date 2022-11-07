@@ -52,7 +52,7 @@ public class DeleteCommentCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Tutor> lastShownList = model.getSortedFilteredTutorList();
+        List<Tutor> lastShownList = model.getSortedFilteredTutorLis();
 
         // Checks if tutor index is in range
         if (tutorIndex.getZeroBased() >= lastShownList.size()) {
