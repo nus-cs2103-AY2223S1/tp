@@ -6,6 +6,7 @@ import java.nio.file.Path;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.condonery.model.client.Client;
 import seedu.condonery.model.property.exceptions.UniquePropertyNotFoundException;
 
 /**
@@ -132,6 +133,14 @@ public class PropertyDirectory implements ReadOnlyPropertyDirectory {
      */
     public Property getUniquePropertyByName(String substring) throws UniquePropertyNotFoundException {
         return properties.getUniquePropertyByName(substring);
+    }
+
+    /**
+     * Edits the client references in all Properties
+     * @param originalClient
+     */
+    public void updateClient(Client originalClient, Client editedClient) {
+        properties.updateClient(originalClient, editedClient);
     }
 
     @Override

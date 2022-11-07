@@ -147,6 +147,9 @@ public class ParserUtil {
         requireNonNull(clients);
         final Set<Client> clientSet = new HashSet<>();
         for (String clientName : clients) {
+            if (clientName.equals("")) {
+                continue;
+            }
             clientSet.add(parseClientName(clientName));
         }
         return clientSet;
