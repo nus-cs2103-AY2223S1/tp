@@ -3,12 +3,16 @@ package seedu.address.logic;
 import java.nio.file.Path;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.DefaultView;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.client.Client;
+import seedu.address.model.issue.Issue;
+import seedu.address.model.project.Project;
+import seedu.address.ui.Ui;
 
 /**
  * API of the Logic component
@@ -30,11 +34,14 @@ public interface Logic {
      */
     ReadOnlyAddressBook getAddressBook();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    ObservableList<Project> getFilteredProjectList();
+
+    ObservableList<Issue> getFilteredIssueList();
+
+    ObservableList<Client> getFilteredClientList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' project book file path.
      */
     Path getAddressBookFilePath();
 
@@ -47,4 +54,10 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    void setUi(Ui ui);
+
+    DefaultView getDefaultView();
+
+    void setDefaultView(DefaultView defaultView);
 }

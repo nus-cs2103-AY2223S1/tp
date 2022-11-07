@@ -6,6 +6,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Objects;
 
+import seedu.address.commons.core.DefaultView;
 import seedu.address.commons.core.GuiSettings;
 
 /**
@@ -51,9 +52,18 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return addressBookFilePath;
     }
 
+    @Override
+    public void setDefaultView(DefaultView defaultView) {
+        this.guiSettings.setDefaultView(defaultView);
+    }
+
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         this.addressBookFilePath = addressBookFilePath;
+    }
+
+    public DefaultView getDefaultView() {
+        return this.guiSettings.getDefaultView();
     }
 
     @Override

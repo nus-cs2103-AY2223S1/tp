@@ -10,6 +10,7 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import seedu.address.commons.core.DefaultView;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
@@ -31,7 +32,9 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private ProjectListPanel projectListPanel;
+    private IssueListPanel issueListPanel;
+    private ClientListPanel clientListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -42,13 +45,16 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane listPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private StackPane listNamePlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -106,21 +112,58 @@ public class MainWindow extends UiPart<Stage> {
         });
     }
 
+    void setDefaultView() {
+        switch (logic.getDefaultView()) {
+        case PROJECT:
+            projectListPanel = new ProjectListPanel(logic.getFilteredProjectList());
+            listPanelPlaceholder.getChildren().add(projectListPanel.getRoot());
+            break;
+        case CLIENT:
+            clientListPanel = new ClientListPanel(logic.getFilteredClientList());
+            listPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
+            break;
+        case ISSUE:
+            issueListPanel = new IssueListPanel(logic.getFilteredIssueList());
+            listPanelPlaceholder.getChildren().add(issueListPanel.getRoot());
+            break;
+        default:
+            assert false : "Code should not reach here";
+            break;
+        }
+    }
+
     /**
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
+        setDefaultView();
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter();
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+    }
+
+    void swapProjectListDisplay() {
+        projectListPanel = new ProjectListPanel(logic.getFilteredProjectList());
+        listPanelPlaceholder.getChildren().clear();
+        listPanelPlaceholder.getChildren().add(projectListPanel.getRoot());
+    }
+
+    void swapIssueListDisplay() {
+        issueListPanel = new IssueListPanel(logic.getFilteredIssueList());
+        listPanelPlaceholder.getChildren().clear();
+        listPanelPlaceholder.getChildren().add(issueListPanel.getRoot());
+    }
+
+    void swapClientListDisplay() {
+        clientListPanel = new ClientListPanel(logic.getFilteredClientList());
+        listPanelPlaceholder.getChildren().clear();
+        listPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
     }
 
     /**
@@ -157,14 +200,26 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleExit() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-                (int) primaryStage.getX(), (int) primaryStage.getY());
+                (int) primaryStage.getX(), (int) primaryStage.getY(), logic.getDefaultView());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    private void handleDefaultView(DefaultView defaultView) {
+        logic.setDefaultView(defaultView);
+    }
+
+    public ClientListPanel getClientListPanel() {
+        return clientListPanel;
+    }
+
+    public ProjectListPanel getProjectListPanel() {
+        return projectListPanel;
+    }
+
+    public IssueListPanel getIssueListPanel() {
+        return issueListPanel;
     }
 
     /**

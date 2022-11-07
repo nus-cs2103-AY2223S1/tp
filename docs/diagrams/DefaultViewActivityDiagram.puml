@@ -1,0 +1,12 @@
+@startuml
+start
+:User executes default view command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+:Set default view to user input;
+:User restarts application;
+:List of previously set entity is shown by default;
+stop
+@enduml

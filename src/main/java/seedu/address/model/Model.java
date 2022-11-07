@@ -4,15 +4,20 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.DefaultView;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Person;
+import seedu.address.model.client.Client;
+import seedu.address.model.issue.Issue;
+import seedu.address.model.project.Project;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Client> PREDICATE_SHOW_ALL_CLIENTS = unused -> true;
+    Predicate<Project> PREDICATE_SHOW_ALL_PROJECTS = unused -> true;
+    Predicate<Issue> PREDICATE_SHOW_ALL_ISSUES = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -35,53 +40,127 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' project book file path.
      */
     Path getAddressBookFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' project book file path.
      */
     void setAddressBookFilePath(Path addressBookFilePath);
 
+    DefaultView getDefaultView();
+
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces project book data with the data in {@code addressBook}.
      */
     void setAddressBook(ReadOnlyAddressBook addressBook);
 
     /** Returns the AddressBook */
     ReadOnlyAddressBook getAddressBook();
 
-    /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
-     */
-    boolean hasPerson(Person person);
+    boolean hasProject(Project project);
+
+    boolean hasIssue(Issue issue);
+    boolean hasClient(Client client);
+
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Returns true if an entity with the given id is present in the project book.
      */
-    void deletePerson(Person target);
+    boolean hasProjectId(int id);
+
+    boolean hasIssueId(int id);
+
+    boolean hasClientId(int id);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Get a entities by id
      */
-    void addPerson(Person person);
+    Project getProjectById(int id);
+    Issue getIssueById(int id);
+    Client getClientById(int id);
+
+    Client getClient(Client client);
+
+    void deleteProject(Project target);
+
+    void deleteIssue(Issue target);
+    void deleteClient(Client target);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * Adds the given client.
+     * {@code client} must not already exist in the project book.
      */
-    void setPerson(Person target, Person editedPerson);
+    void addProject(Project project);
+    void addClient(Client client);
 
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
+    void addIssue(Issue issue);
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
-     * @throws NullPointerException if {@code predicate} is null.
+     * Replaces the given project {@code target} with {@code editedProject}.
+     * {@code target} must exist in the project book.
+     * The client identity of {@code editedProject} must not be the same as another existing project
+     * in the project book.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void setProject(Project target, Project editedProject);
+
+    void setIssue(Issue target, Issue editedIssue);
+
+    void setClient(Client target, Client editedClient);
+
+
+    /**
+     * Generate the next entity ids
+     * @return id
+     */
+    int generateClientId();
+
+    int generateIssueId();
+
+    int generateProjectId();
+
+    ObservableList<Project> getFilteredProjectList();
+
+    ObservableList<Issue> getFilteredIssueList();
+
+    ObservableList<Client> getFilteredClientList();
+
+    void updateFilteredProjectList(Predicate<Project> predicate);
+
+    void updateFilteredIssueList(Predicate<Issue> predicate);
+
+    void updateFilteredClientList(Predicate<Client> predicate);
+
+    void sortProjectsById(int sortProjectsById);
+
+    void sortProjectsByDeadline(int sortProjectsByDeadlineKey);
+
+    void sortProjectsByIssueCount(int sortProjectsByIssueCountKey);
+
+    void sortProjectsByName(int sortProjectsByNameKey);
+
+    void sortIssuesById(int sortIssuesById);
+
+    void sortIssuesByDeadline(int sortIssuesByDeadline);
+
+    void sortIssuesByUrgency(int sortIssuesByUrgency);
+
+    void sortClientsById(int sortClientsById);
+
+    void sortClientsByName(int sortClientsByName);
+
+    void setDefaultView(DefaultView defaultView);
+
+    void sortClientsByPin();
+
+    void sortProjectsByPin();
+
+    void sortIssuesByPin();
+
+    void sortProjectsByCurrentCategory();
+
+    void sortClientsByCurrentCategory();
+
+    void sortIssuesByCurrentCategory();
 }

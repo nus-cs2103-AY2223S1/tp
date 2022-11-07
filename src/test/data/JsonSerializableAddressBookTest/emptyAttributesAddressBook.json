@@ -1,0 +1,51 @@
+{
+  "projects" : [ {
+    "name" : "Individual Project",
+    "repository" : "",
+    "deadline" : "",
+    "client" : {
+      "name" : "",
+      "mobile" : "",
+      "email" : "",
+      "clientId" : "",
+      "pin" : "false"
+    },
+    "projectId" : "1",
+    "pin" : "false"
+  }, {
+    "name" : "Team Project",
+    "repository" : "",
+    "deadline" : "",
+    "client" : {
+      "name" : "John Doe",
+      "mobile" : "",
+      "email" : "",
+      "clientId" : "1",
+      "pin" : "false"
+    },
+    "projectId" : "2",
+    "pin" : "false"
+  }, {
+    "name" : "Group Project",
+    "repository" : "",
+    "deadline" : "",
+    "client" : {
+      "name" : "",
+      "mobile" : "",
+      "email" : "",
+      "clientId" : "",
+      "pin" : "false"
+    },
+    "projectId" : "3",
+    "pin" : "false"
+  } ],
+  "issues" : [ {
+    "title" : "Fix UI Bugs",
+    "urgency" : "NONE",
+    "deadline" : "",
+    "status" : "false",
+    "issueId" : "1",
+    "project" : "3",
+    "pin" : "false"
+  } ]
+}

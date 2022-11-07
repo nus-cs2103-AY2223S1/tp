@@ -1,0 +1,90 @@
+@startuml
+!include style.puml
+
+box Ui MODEL_COLOR_T1
+participant ":MainWindow" as MainWindow MODEL_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":IssueCommandParser" as IssueCommandParser LOGIC_COLOR
+participant ":MarkIssueCommand" as MarkIssueCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":model" as model MODEL_COLOR
+participant "toMarkIssue:Issue" as Issue MODEL_COLOR
+end box
+
+[-> MainWindow : executeCommand("issue -m 1")
+activate MainWindow
+
+MainWindow -> LogicManager : execute("issue -m 1")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("issue -m 1")
+activate AddressBookParser
+
+create IssueCommandParser
+AddressBookParser -> IssueCommandParser
+activate IssueCommandParser
+IssueCommandParser --> AddressBookParser
+deactivate IssueCommandParser
+
+AddressBookParser -> IssueCommandParser : parse("-m", "1")
+activate IssueCommandParser
+
+IssueCommandParser -> IssueCommandParser : parseMarkIssueCommand("1")
+activate IssueCommandParser
+
+create MarkIssueCommand
+IssueCommandParser -> MarkIssueCommand : MarkIssueCommand(newStatus, newIssueId)
+activate MarkIssueCommand
+MarkIssueCommand --> IssueCommandParser
+deactivate MarkIssueCommand
+
+IssueCommandParser --> IssueCommandParser
+deactivate IssueCommandParser
+
+IssueCommandParser --> AddressBookParser
+deactivate IssueCommandParser
+
+AddressBookParser --> LogicManager
+deactivate AddressBookParser
+
+LogicManager -> MarkIssueCommand : execute(model, ui)
+activate MarkIssueCommand
+
+MarkIssueCommand -> model : getIssueById(1)
+activate model
+model --> MarkIssueCommand : Issue
+deactivate model
+
+MarkIssueCommand -> Issue : setStatus(newStatus)
+activate Issue
+Issue --> MarkIssueCommand
+deactivate Issue
+
+create CommandResult
+MarkIssueCommand -> CommandResult
+activate CommandResult
+CommandResult --> MarkIssueCommand
+deactivate CommandResult
+
+MarkIssueCommand --> LogicManager : result
+deactivate MarkIssueCommand
+
+MarkIssueCommand -[hidden]-> LogicManager : result
+destroy MarkIssueCommand
+
+LogicManager --> MainWindow : result
+deactivate LogicManager
+
+MainWindow --> MainWindow : swapIssueListDisplay()
+
+[<-- MainWindow : result
+deactivate MainWindow
+
+@enduml

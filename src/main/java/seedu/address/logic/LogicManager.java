@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.DefaultView;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
@@ -14,8 +15,11 @@ import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.client.Client;
+import seedu.address.model.issue.Issue;
+import seedu.address.model.project.Project;
 import seedu.address.storage.Storage;
+import seedu.address.ui.Ui;
 
 /**
  * The main LogicManager of the app.
@@ -26,12 +30,16 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
+
+    private Ui ui;
     private final AddressBookParser addressBookParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
      */
+
     public LogicManager(Model model, Storage storage) {
+        this.ui = null;
         this.model = model;
         this.storage = storage;
         addressBookParser = new AddressBookParser();
@@ -43,7 +51,7 @@ public class LogicManager implements Logic {
 
         CommandResult commandResult;
         Command command = addressBookParser.parseCommand(commandText);
-        commandResult = command.execute(model);
+        commandResult = command.execute(model, ui);
 
         try {
             storage.saveAddressBook(model.getAddressBook());
@@ -60,8 +68,18 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public ObservableList<Project> getFilteredProjectList() {
+        return model.getFilteredProjectList();
+    }
+
+    @Override
+    public ObservableList<Issue> getFilteredIssueList() {
+        return model.getFilteredIssueList();
+    }
+
+    @Override
+    public ObservableList<Client> getFilteredClientList() {
+        return model.getFilteredClientList();
     }
 
     @Override
@@ -77,5 +95,20 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public void setUi(Ui ui) {
+        this.ui = ui;
+    }
+
+    @Override
+    public DefaultView getDefaultView() {
+        return model.getDefaultView();
+    }
+
+    @Override
+    public void setDefaultView(DefaultView defaultView) {
+        model.setDefaultView(defaultView);
     }
 }

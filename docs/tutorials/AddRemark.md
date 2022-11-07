@@ -5,7 +5,7 @@ title: "Tutorial: Adding a command"
 
 Let's walk you through the implementation of a new command — `remark`.
 
-This command allows users of the AddressBook application to add optional remarks to people in their address book and edit it if required. The command should have the following format:
+This command allows users of the AddressBook application to add optional remarks to people in their project book and edit it if required. The command should have the following format:
 
 `remark INDEX r/REMARK` (e.g., `remark 2 r/Likes baseball`)
 
@@ -28,7 +28,7 @@ package seedu.address.logic.commands;
 import seedu.address.model.Model;
 
 /**
- * Changes the remark of an existing person in the address book.
+ * Changes the remark of an existing person in the project book.
  */
 public class RemarkCommand extends Command {
 
@@ -229,7 +229,7 @@ Now that we have all the information that we need, let’s lay the groundwork fo
 
 ### Add a new `Remark` class
 
-Create a new `Remark` in `seedu.address.model.person`. Since a `Remark` is a field that is similar to `Address`, we can reuse a significant bit of code.
+Create a new `Remark` in `seedu.address.model.client`. Since a `Remark` is a field that is similar to `Address`, we can reuse a significant bit of code.
 
 A copy-paste and search-replace later, you should have something like [this](https://github.com/se-edu/addressbook-level3/commit/4516e099699baa9e2d51801bd26f016d812dedcc#diff-41bb13c581e280c686198251ad6cc337cd5e27032772f06ed9bf7f1440995ece). Note how `Remark` has no constrains and thus does not require input
 validation.
@@ -295,7 +295,7 @@ While the changes to code may be minimal, the test data will have to be updated 
 
 <div markdown="span" class="alert alert-warning">
 
-:exclamation: You must delete AddressBook’s storage file located at `/data/addressbook.json` before running it! Not doing so will cause AddressBook to default to an empty address book!
+:exclamation: You must delete AddressBook’s storage file located at `/data/addressbook.json` before running it! Not doing so will cause AddressBook to default to an empty project book!
 
 </div>
 

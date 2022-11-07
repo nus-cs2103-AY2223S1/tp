@@ -19,7 +19,7 @@ A --> Z
 B -down-> Z
 'shorthand for down
 C -d-> Z
-'arrow lengths take priority
+'arrow lengths take urgency
 D -down> Z
 
 A -up-> 1

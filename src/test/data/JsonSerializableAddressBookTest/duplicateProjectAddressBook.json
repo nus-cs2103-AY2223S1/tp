@@ -1,0 +1,30 @@
+{
+  "projects" : [ {
+    "name" : "Individual Project",
+    "repository" : "johndoe/ip",
+    "deadline" : "2022-03-03",
+    "client" : {
+      "name" : "Alex Yeoh",
+      "mobile" : "87438807",
+      "email" : "alexyeoh@example.com",
+      "clientId" : "1",
+      "pin" : "false"
+    },
+    "projectId" : "1",
+    "pin" : "false"
+  }, {
+    "name" : "Individual Project",
+    "repository" : "johndoe/ip",
+    "deadline" : "2022-03-03",
+    "client" : {
+      "name" : "Alex Yeoh",
+      "mobile" : "87438807",
+      "email" : "alexyeoh@example.com",
+      "clientId" : "1",
+      "pin" : "false"
+    },
+    "projectId" : "1",
+    "pin" : "false"
+  } ],
+  "issues" : [ ]
+}

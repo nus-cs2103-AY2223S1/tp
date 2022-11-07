@@ -1,0 +1,17 @@
+{
+  "projects" : [ {
+    "name" : "Individual Project",
+    "repository" : "johndoe/ip",
+    "deadline" : "2022-03-03",
+    "client" : {
+      "name" : "A",
+      "mobile" : "7",
+      "email" : "alexcom",
+      "clientId" : "1",
+      "pin" : "false"
+    },
+    "projectId" : "1",
+    "pin" : "false"
+  } ],
+  "issues" : [ ]
+}

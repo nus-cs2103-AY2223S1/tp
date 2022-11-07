@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Stores mapping of prefixes to their respective arguments.
@@ -40,6 +41,15 @@ public class ArgumentMultimap {
     }
 
     /**
+     * Returns the first word of the last value of {@code prefix}.
+     */
+    public Optional<String> getFirstWordValue(Prefix prefix) {
+        List<String> values = getAllValues(prefix);
+        return values.isEmpty()
+                ? Optional.empty() : Optional.of(ParserUtil.getFirstWord(values.get(values.size() - 1)));
+    }
+
+    /**
      * Returns all values of {@code prefix}.
      * If the prefix does not exist or has no values, this will return an empty list.
      * Modifying the returned list will not affect the underlying data structure of the ArgumentMultimap.
@@ -49,6 +59,19 @@ public class ArgumentMultimap {
             return new ArrayList<>();
         }
         return new ArrayList<>(argMultimap.get(prefix));
+    }
+
+    /**
+     * Returns all values of {@code prefix}, but only their first word.
+     * If the prefix does not exist or has no values, this will return an empty list.
+     * Modifying the returned list will not affect the underlying data structure of the ArgumentMultimap.
+     */
+    public List<String> getAllFirstWordValues(Prefix prefix) {
+        if (!argMultimap.containsKey(prefix)) {
+            return new ArrayList<>();
+        }
+        return argMultimap.get(prefix).stream().map((s) -> s.split(" ", 2)[0])
+                .collect(Collectors.toList());
     }
 
     /**
