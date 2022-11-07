@@ -258,6 +258,7 @@ Below shows the command format used in FindMyIntern.
   * e.g. if `help 123` is entered, it will be interpreted as `help`
 </div>
 </div>
+<div style="page-break-after: always;"></div>
 
 ### Commands
 
@@ -562,6 +563,16 @@ Filters for internship applications of the specified [application status](#appli
 </div>
 
 * `APPLICATION_STATUS` is case-insensitive.
+
+<div class="d-flex alert alert-info">
+<div class="me-3">
+  <span class="badge text-bg-info">INFO</span>
+</div>
+<div markdown="span">
+**Usage of <code>filter</code> command**<br>
+<code>filter</code> command filter internship applications from the original list instead of the current list.
+</div>
+</div>
 
 <div class="d-flex alert alert-info">
 <div class="me-3">
