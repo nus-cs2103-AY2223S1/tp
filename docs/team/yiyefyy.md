@@ -31,7 +31,7 @@ Given below are my contributions to the project.
     * Edited the list command to allow it to take multiple type of list commands through a new parser and added tests for them. 
     
 * **Contributions to the UG**:
-  * Added documentation for the features `archive` and `showArchive` 
+  * Added documentation for the features `archive` and `showarchive` 
   * Added FAQ questions and answers. 
   * Added glossary section.
 * **Contributions to the UG**:
