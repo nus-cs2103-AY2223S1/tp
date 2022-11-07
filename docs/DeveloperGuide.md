@@ -529,6 +529,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user                    | view contacts related to my search query               | find contacts even when I mistype their name                               |
 | `* *`    | user                    | hide contact details                                   | focus on certain information of each contact                               |
 | `* *`    | user                    | show contact details                                   | view certain information of each contact                                   |
+| `*`      | user                    | customise the order of information for contacts        | view more important information before others                              |
 | `* *`    | user                    | have an autocomplete for my current search query       | search faster by names and minimize the chance of an unsuccessful search   |
 | `* *`    | user with many contacts | specify the default order of my contacts               | avoid re-sorting the list everytime                                        |
 | `* *`    | user with many contacts | sort contacts by name, email, phone number, or address | organise my contacts list                                                  |
@@ -539,7 +540,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user                    | edit a todo                                            | update it or correct my mistakes                                           |
 | `* *`    | user                    | clear all my todos                                     | save time on deleting them one by one                                      |
 | `* *`    | user                    | filter the list of todos shown                         | only view the portion of list I need at the moment                         |
-| `*`      | user                    | customise the order of information for contacts        | view more important information before others                              |
 
 ### Use cases
 
@@ -584,7 +584,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. There is no input after search.
 
-    * 3a1. SoConnect shows the same list of contacts.
+    * 3a1. SoConnect shows an error message and the same list of contacts.
 
       Use case ends.
 
@@ -651,14 +651,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: Hide all contact's phone number**
+**Use case: Hide phone number of all contacts**
 
 **MSS**
 
-1.  User requests phone number to be hidden.
-2.  SoConnect removes phone number from displaying in the contact.
+1. User requests phone number to be hidden.
+2. SoConnect no longer displays phone number of each contact.
 
-    Use case ends.
+   Use case ends.
+
+**Use case: Show phone number of all contacts**
+
+**MSS**
+
+1. User requests phone number to be shown.
+2. SoConnect now displays phone number of all contacts.
+
+   Use case ends.
+
+**Use case: Order contact details**
+
+**MSS**
+
+1. User requests details to be shown in the following order: address, email, phone number, tags.
+2. SoConnect now displays in the following order: address, email, phone number, tags.
+
+   Use case ends.
 
 ### Non-Functional Requirements
 
@@ -701,42 +719,187 @@ testers are expected to do more *exploratory* testing.
 
 ### Launch and shutdown
 
-1. Initial launch
+1. Initial launch.
 
    1. Download the jar file and copy into an empty folder.
 
    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts and todos. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences.
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Contact Management
+   
+#### Adding a contact
 
-### Deleting a contact
+1. Adding a new contact.
+   1. Prerequisite: There is no contact named `John Doe`.
+   2. Test case: `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`.
+   3. Expected: New contact with the same details added in the contact list.
+2. Adding a contact that has existed before.
+   1. Prerequisite: There is a contact named `Betsy Crowe` in the contact list.
+   2. Text case: `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567`.
+   3. Expected: Error message `This person already exists in the SoConnect.` is displayed.
+   
+#### Editing a contact
 
-1. Deleting a contact while all contacts are being shown
+1. Editing an existing contact.
+   1. Prerequisite: There is a contact in the 2nd index of contact list and no existing contact has the name Betsy Crower.
+   2. Test case: `edit 2 n/Betsy Crower`.
+   3. Expected: Edits the name of the 2nd contact to be Betsy Crower.
+   
+#### Listing all contacts
+
+1. Prerequisite: There are some existing contacts.
+2. Test case: `list`.
+3. Expected: Display all contacts.
+
+#### Searching for a contact
+
+1. Searching an existing contact.
+   1. Prerequisite: There is a contact named `Susan` in the contact list.
+   2. Test case: `search n/susan`.
+   3. Expected: Display all contacts that contain `susan` as name, including `Susan`.
+
+#### Sorting contacts
+
+1. Prerequisite: There are some existing contacts.
+2. Test case: `sort n/`.
+3. Expected: Display all contacts with the names sorted from A - Z.
+
+#### Deleting a contact
+
+1. Deleting a contact while all contacts are being shown.
 
    1. Prerequisites: List all contacts using the `list` command. Multiple contacts in the list.
 
-   1. Test case: `delete 1`<br>
+   1. Test case: `delete 1`.<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
+   1. Test case: `delete 0`.<br>
       Expected: No contact is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+#### Clearing all contacts
 
-### Saving data
+1. Prerequisite: There are some existing contacts.
+2. Test case: `clear`.
+3. Expected: All contacts are erased.
 
-1. Dealing with missing/corrupted data files
+### Todo Management
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+#### Adding a todo
 
-1. _{ more test cases …​ }_
+1. Adding a new todo.
+   1. Prerequisite: There is an existing `CS2100` tag and no existing todo has the details that will be provided below. 
+   2. Test case: `todo add d/Watched recorded videos for CS2100 date/24-10-2022 pr/low t/CS2100`.
+   3. Expected: New todo with the same details is shown in the list.
+
+#### Editing a todo
+
+1. Editing an existing todo.
+   1. Prerequisite: There is a todo in the 1st index of contact list.
+   2. Test case: `todo edit 1 d/Read notes for ST2334`.
+   3. Expected: Edits the description of the 1st todo to be Read notes for ST2334.
+
+#### Deleting a todo
+
+1. Prerequisite: There is a todo in the 2nd index of contact list.
+2. Test case: `todo delete 2`.
+3. Expected: Todo in the 2nd index is deleted and is no longer shown.
+
+#### Clearing all todos
+
+1. Prerequisite: There are some existing todos.
+2. Test case: `todo clear`.
+3. Expected: All todos are erased.
+
+#### Filtering todos shown
+
+1. Showing all todos
+   1. Prerequisite: There are some existing todos.
+   2. Test case: `todo show`.
+   3. Expected: All todos are shown.
+
+### Tag Management
+
+#### Creating a tag
+
+1. Prerequisite: There is no tag named `math`.
+2. Test case: `tag create t/math`.
+3. Expected: A new `math` tag is created.
+
+#### Deleting a tag
+
+1. Prerequisite: There is a tag named `english`.
+2. Test case: `tag delete t/english`.
+3. Expected: The `english` tag is deleted and can no longer be used.
+
+#### Editing a tag
+
+1. Prerequisite: There is a tag named `english` and there isn't a tag named `literature`.
+2. Test case: `tag edit t/english t/literature`.
+3. Expected: The `english` tag is now shown as `literature`.
+
+#### Adding a tag to a contact
+
+1. Prerequisite: There is a tag named `english` and a contact in the 1st index in the contact list.
+2. Test case: `tag add 1 t/english`.
+3. Expected: The `english` tag is attributed to the contact in the 1st index.
+
+#### Removing a tag from a contact
+
+1. Prerequisite: There is a tag named `english` attributed to a contact in the 1st index in the contact list.
+2. Test case: `tag remove 1 t/english`.
+3. Expected: The `english` tag is no longer attributed to the contact in the 1st index.
+
+### Customisation
+
+#### Customising order of details
+
+1. Prerequisite: The current contact cards are displayed by name, followed by address, phone number, email and tags.
+2. Test case: `customise order a/ e/ p`.
+3. Expected: The contact cards are now displayed by name, followed by address, email, phone number and tags.
+
+#### Hiding contact details
+
+1. Prerequisite: The current contact cards are displayed by name, followed by address, phone number, email and tags.
+2. Test case: `customise hide a/ e/ p`.
+3. Expected: The contact cards are now displayed by name, followed by tags.
+
+#### Showing contact details
+
+1. Prerequisite: The current contact cards are displayed by name, followed by tags.
+2. Test case: `customise show a/ e/ p`.
+3. Expected: The contact cards now display information such as name, address, email, phone number and tags (might be unordered).
+
+## **Appendix: Effort**
+
+### Morphing of AB3
+Achievements:
+1. Refactored all the packages to suit SoConnect identity.
+2. Added new logic class called `Autocomplete` that can automatically make search suggestion for user.
+3. Added new commands for Contact Management, Todo Management, Tag Management and Customisation.
+4. For Contact Management, we implemented new command `sort` to allow for sorting contacts and replaced the limited `find` command with more advanced `search` command that was inspired by how Google works.
+5. For Todo Management, we put in almost the same effort required to implement Contact Management from scratch, as Todo Management offers almost the same range of functionalities as Contact Management.
+6. For Tag Management, we implemented new classes that mirror the functionalities of Contact and Todo Management, as it is also capable of adding, editing, deleting tags.
+7. For Customisation, we implemented dynamic styling that allows user to modify how the information fields are shown.
+
+Challenges:
+1. As we were adding a lot of functionalities and made modifications to existing AB3 features, we had to spend a lot of time to make sure everything was well integrated and connected.
+2. We had to put a lot of consideration into the commands design, as our product is dealing with not just contacts, but also todos.
+
+### Revamping of UI
+Achievement:
+We transformed the AB3 traditional interface to a sophisticated, modern-looking UI that is more user-friendly and pleasing to use. 
+
+Challenges:
+1. None of us was familiar with JavaFX. Therefore, we needed to put a large amount of time into mastering JavaFX from scratch as well as understanding the structure of AB3.
+2. We had to restructure a lot of .fxml and .css files to allow for easier readability as well as incorporating the UI design into our features.
+3. Since we made many additions, such as Todo Management, Tag Management and Customisation, we had to put a lot of effort into producing a well-integrated and working UI that allows all these features to run smoothly.
