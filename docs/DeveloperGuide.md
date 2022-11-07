@@ -294,7 +294,7 @@ CodeConnect allows users to list all of their tasks with `list` and `list time` 
 
 Listing of tasks is facilitated by `ModelManager`. It contains `filteredTaskList` of type `FilteredList`. 
 It also contains `sortedTaskList` of type `SortedList` that wraps `filteredTaskList` in it. As any changes to `filteredTaskList`
-will be reflected in the `sortedTaskList`, the `Ui` displays `sortedTaskList` in the tasklist panel. SortedList` contains the
+will be reflected in the `sortedTaskList`, the `Ui` displays `sortedTaskList` in the tasklist panel. `SortedList` contains the
 method SortedList#setComparator(Comparator<? super E> comparator). The above method is called in 
 `ModelManager#updateSortedTaskList(Comparator<Task> comparator)` that allows for the sorting of `sortedTaskList` with a comparator.
 
