@@ -1,5 +1,8 @@
 package seedu.address.model.person;
 
+import seedu.address.MainApp;
+import seedu.address.commons.core.LogsCenter;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -8,6 +11,7 @@ import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
+import java.util.logging.Logger;
 
 /**
  * Represents a Person's birthdate in the address book.
@@ -18,9 +22,13 @@ public class Birthdate {
     public static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd-MM-uuuu")
             .withResolverStyle(ResolverStyle.STRICT);
     public static final DateTimeFormatter DISPLAYED_DATE_FORMAT = DateTimeFormatter.ofPattern("d MMM yyyy");
+
     public static final String MESSAGE_INVALID_DATE_FORMAT = "Birthdates have to be of format dd-MM-yyyy! "
             + "Please also ensure this is a valid date!";
     public static final String MESSAGE_FUTURE_DATE = "Birthdates must not be later than the current date!";
+
+    private static final Logger logger = LogsCenter.getLogger(MainApp.class);
+
     private final LocalDate birthdate;
 
     /**
@@ -33,6 +41,7 @@ public class Birthdate {
         checkArgument(isValidDateFormat(birthdate), MESSAGE_INVALID_DATE_FORMAT);
         checkArgument(!isFutureDate(birthdate), MESSAGE_FUTURE_DATE);
         this.birthdate = LocalDate.parse(birthdate, DATE_FORMAT);
+        logger.info("Birthdate created with date: " + this.birthdate);
     }
 
     /**
@@ -45,6 +54,7 @@ public class Birthdate {
         try {
             LocalDate.parse(testDate, DATE_FORMAT);
         } catch (DateTimeParseException e) {
+            logger.warning("Birthdate given is in an invalid format.");
             return false;
         }
         return true;

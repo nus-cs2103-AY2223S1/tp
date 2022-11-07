@@ -3,7 +3,10 @@ package seedu.address.logic.commands;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_RECORDS;
 
 import java.util.List;
+import java.util.logging.Logger;
 
+import seedu.address.MainApp;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -24,10 +27,13 @@ public class ListRecordCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed records for this patient: ";
 
+    private static final Logger logger = LogsCenter.getLogger(MainApp.class);
+
     private final Index targetIndex;
 
     public ListRecordCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
+        logger.info("ListRecordCommand created with index: " + this.targetIndex.getOneBased());
     }
 
     @Override
@@ -46,6 +52,8 @@ public class ListRecordCommand extends Command {
         String feedbackToUser = MESSAGE_SUCCESS + personToListRecords.getName() + "\n"
                 + String.format(Messages.MESSAGE_RECORDS_LISTED_OVERVIEW,
                 model.getFilteredRecordList().size());
+
+        logger.info("Record List View has been successfully displayed.");
 
         return new CommandResult(feedbackToUser, false, false, true);
     }

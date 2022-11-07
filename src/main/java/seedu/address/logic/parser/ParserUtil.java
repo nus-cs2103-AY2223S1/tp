@@ -9,7 +9,10 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Logger;
 
+import seedu.address.MainApp;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
@@ -30,10 +33,12 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+
     public static final String MESSAGE_INVALID_SPACING_NAME = "There can be at most 1 space between parts of patient "
             + "name\n(eg. n/FIRST_NAME MIDDLE_NAME LAST_NAME)";
     public static final String MESSAGE_INVALID_SPACING_ADDRESS = "There can be at most 1 space between parts of patient"
             + " address\n(eg. a/STREET_NAME BUILDING_NAME UNIT_NUMBER)";
+    private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -80,10 +85,12 @@ public class ParserUtil {
         String trimmedBirthdate = birthdate.trim();
 
         if (!Birthdate.isValidDateFormat(trimmedBirthdate)) {
+            logger.warning("Birthdate given is in an invalid format.");
             throw new ParseException(Birthdate.MESSAGE_INVALID_DATE_FORMAT);
         }
 
         if (Birthdate.isFutureDate(trimmedBirthdate)) {
+            logger.warning("Birthdate given is a future date.");
             throw new ParseException(Birthdate.MESSAGE_FUTURE_DATE);
         }
 
@@ -194,10 +201,12 @@ public class ParserUtil {
         String trimmedDate = recordDate.trim();
 
         if (!Record.isValidDateFormat(trimmedDate)) {
+            logger.warning("Record date given is in an invalid format.");
             throw new ParseException(Record.MESSAGE_INVALID_DATE_FORMAT);
         }
 
         if (Record.isFutureDate(trimmedDate)) {
+            logger.warning("Record date given is a future date.");
             throw new ParseException(Record.MESSAGE_FUTURE_DATE);
         }
 
