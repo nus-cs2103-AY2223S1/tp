@@ -234,9 +234,13 @@ Format: `editC INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK]`
 <div markdown="block" class="alert alert-warning">:warning: There will be an error if you:<br>
 
 * Do not adhere to [field constraints](#section-1-contacts).<br>
+
 * Edit the contact such that it becomes a duplicate contact to one already in the contact list. Two contacts are the same if they have the same email or phone number.<br>
+
 * Enter 0 or a negative number as INDEX.<br>
+
 * Enter a number greater than the currently shown list size as INDEX.<br>
+
 * Do not provide at least one of the optional fields.<br>
 
 </div>
