@@ -65,9 +65,7 @@ Hence, you will become familiar with TruthTable's commands in no time.
 If you are a software engineering team lead looking to get started with TruthTable, make sure that you have the 
 [pre-requisites installed](#getting-started).
 
-This document will also guide you on how to 
-[migrate your existing project information onto TruthTable](#migrating-to-truthtable), and get familiar with all 
-of TruthTable's [features](#key-features-of-truthtable). 
+This document will guide you on how to get familiar with all of TruthTable's [features](#key-features-of-truthtable). 
 
 If you are an experienced user of TruthTable, this guide also contains valuable tips on how you can maximise your 
 productivity while using TruthTable.
@@ -328,25 +326,6 @@ Refer to the [command summary section](#command-aliases) to view the commands an
 
 ---
 
-## Migrating to TruthTable
-
-If you're looking to migrate your team information onto TruthTable, here is a step-by-step guide on how to do so.
-
-### Creating the team
-
-### Adding your members
-
-### Adding your links
-
-### Adding your tasks
-
-### Delegating work
-
-### Visualising progress
-
-[Back to Table of Contents](#table-of-contents)
-
----
 ## Commands
 
 <div markdown="block" class="alert alert-primary">**:information_source: Make sure you have 
@@ -687,10 +666,6 @@ Summary of the commands to manage teams can be found [here](#summary-of-team-com
 
 Add a new team to your list of teams, an error will be displayed if the team name is already in use.
 
-<div markdown="span" class="alert alert-primary">:information_source: **Note:** 
-Team name must consist only of alphanumeric characters (i.e., **spaces are NOT allowed**).
-</div>
-
 **Format:** `add team [-h] [-d=TEAM_DESCRIPTION] <TEAM_NAME>`
 
 | Flags                 | Required | Remarks                                               |
@@ -811,6 +786,14 @@ and third members of your team's members list, and a deadline of 2nd Dec 2022 23
 Edits a specified task in the current team's task list.
 
 **Format:** `edit task [-h] ([-n=<NAME>] [-d=<DEADLINE>] [-a[=<ASSIGNEES>...]]...) <TASK_INDEX>`
+
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Command Format:**
+
+Ensure that `TASK_INDEX` is entered before entering any `ASSIGNEES`, as they both take in positive integers. 
+Passing `TASK_INDEX` after `ASSIGNEES` makes it impossible to distinguish which number is actually `TASK_INDEX`.
+</div>
+
 
 | Flags              | Required   | Remarks                                                      |
 |--------------------|------------|--------------------------------------------------------------|
@@ -962,6 +945,15 @@ Set a deadline for an existing task, and the deadline must be in `YYYY-MM-DD HH:
 Assign an existing task to a team member in the user’s team.
 
 **Format:** `assign task [-h] -a[=<TASK_ASSIGNEES>...] [-a[=<TASK_ASSIGNEES>...]]... <TASK_INDEX>`
+
+<div markdown="block" class="alert alert-success">**:bulb: Note**:
+
+The format for the `-a` flag indicates that you must specify at least 1 `-a` flag in your command,
+- the first instance of `-a` indicates that you must specify the `-a` flag, and
+- the second instance of `-a` indicates that you can specify 0 or more `-a` flags.
+<br>
+This results in requiring at least 1 `-a` flag. 
+</div>
 
 | Flags              | Required           | Remarks                                                      |
 |--------------------|--------------------|--------------------------------------------------------------|
