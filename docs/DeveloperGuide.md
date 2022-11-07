@@ -230,33 +230,43 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Custom Fields feature
+### Attributes Feature
 
 #### Implementation
 
-The Custom Fields mechanism is facilitated by the creation of a new `Field` that is stored within the `Fields` object
-that each `Person` object has.
+The attributes mechanism is facilitated by the creation of a new `Attribute` instance that is stored within the
+`AttributesList` object that each `Person`, `Group` and `Task` have, as these three classes extend 
+`AbstractDisplayItem`, both directly and indirectly.
 
-To add a custom field, the user should also provide a unique prefix for the `Field`. The prefix is parsed as a `Prefix`
-object by `AddFieldCommandParser`, and then matched with the known `Prefix` objects stored in `FieldPrefixes`.
-If the `Prefix` and field name has not been stored previously, then the `AddFieldCommand` is executed and the `Fields`
-object of each `Person` is updated accordingly.
+To add a custom attribute, the user should provide an attribute name and an attribute value. These arguments are parsed 
+by the `AddFieldCommandParser`, and then matched with the known attributes in the `AttributeList`.
 
-The following sequence diagram shows how the add field operation works:
+The process of parsing an `Attribute` is also done by `ParserUtil::parseAttribute`, which triages the attribute name
+if the attribute is considered as the default attributes (i.e. `Name`, `Email`, `Phone`, `Address`, `Description`) and
+returns a new instance of that default attribute. If the attribute does not fall within the default attributes, then
+it will create a new anonymous class that extends `AbstractAttribute`.
 
-![Sequence Diagram adding a field to the Model](images/AddFieldSequenceDiagram.png)
+The following sequence diagram shows how the add attribute operation works:
+
+![Sequence Diagram adding an Attribute to the Model](images/AddFieldSequenceDiagram1.png)
 
 #### Design Considerations
 
-* **Alternative 1 (current choice)**: Stores each `Field` in a `Fields` object within each `Person` or `Task'
-  * Pros: Adheres to object-oriented principles, as each `Person` or `Task` has `Fields`
-  * Cons: Needs an additional class `FieldPrefixes` to store the known `Prefix` objects that was
+* **Alternative 1 (current choice)**: Stores each `Attribute` in an `AttributeList` within each `AbstractDisplayItem`
+    instance (e.g. `Person`, `Task`, `Group`).
+  * Pros: Adheres to object-oriented principles, allows storing of non-string attributes.
+  * Cons: Might be more time expensive to check if attribute names are existing, as `equals` method to find matches.
+    <br><br>
+* **Alternative 2**: Stores each `Attribute` in a `Attributes` object within each `AbstractDisplayItem`, with a class
+    to store a `Prefix` and the `AttributeName`
+  * Pros: Adheres to object-oriented principles, more efficient to search for existing attributes with the
+    implementation of `HashMap` for constant-time searching
+  * Cons: Needs an additional class `AttributePrefixes` to store the known `Prefix` objects that was
     added by the user. <br><br>
-* **Alternative 2**: Stores the known `Fields` in a separate static class
-  * Pros: All `Field`-related operations are stored within one accessible component
+* **Alternative 3**: Stores all known `Attribute` instances in a separate static class.
+  * Pros: All `Attribute`-related operations are stored within one accessible component
   * Cons: Might violate composition and encapsulation relationships in the object-oriented design.
 
-*{more alternatives to be added soon}*
 
 ### \[Proposed\] Undo/redo feature
 
@@ -677,18 +687,22 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1. Download the `contactmation.jar` [file](https://github.com/AY2223S1-CS2103T-T11-1/tp/releases) and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file <br>Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   
+2. Clearing the default sample contacts
+    1. Run the `clear` command to remove existing data from the application.<br>
+        Expected: Removes existing sample contacts, groups and/or tasks from the application.
 
-1. Saving window preferences
+### Adding a person
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-
-   1. Re-launch the app by double-clicking the jar file.<br>
-      Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
+1. Adding a person to the application
+   1. Test Case: `person new n/John Doe`<br>
+      Expected: Contact with name John Doe is created with index number 1.
+   2. Test Case: `person new n/Caroline Smith p/86178049 e/caroline@gmail.com t/friend`
+      Expected: Contact with name Caroline Smith is created with index number 2.
+      Phone, Email and tag is present in the GUI.
 
 ### Deleting a person
 
@@ -707,10 +721,54 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Saving data
+### Group Commands
 
-1. Dealing with missing/corrupted data files
+1. Creating a group from the main window
+   1. Test case: `team new cs2103` <br>
+      Expected: A team with name `/cs2103` will appear in the left pane of the GUI.
+2. Navigating to a Group
+   1. Prerequisite: At least one team should be present in the GUI
+   2. Test case: `cg 1` <br>
+      Expected: GUI should now be in the scope of the first team in the list of teams. If the first team is `/cs2103`,
+      you can expect to see a `/cs2103` on the bottom left of the GUI.
+3. Add a person in the group
+   1. Prerequisite: You should now have navigated inside a group.
+   2. Test case: `person new n/Eric` <br>
+      Expected: A person named `Eric` should now be created inside the group.
+4. Navigate back to the root group:
+   1. Prerequisite: You should now have navigated inside a group.
+   2. Test case: `cg /` <br>
+      Expected: You should now be navigated back to the root group (the window that you first see when you start the
+       app).
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_
+### Task Commands
+
+1. Creating a task from a group
+   1. Prerequisite: You should have at least one group, and you should now have navigated into a group.
+   2. Test case: `task add t/Todo d/Finish Work` <br>
+      Expected: A task named todo with description finish work should be visible in the right pane of the GUI.
+2. Mark a task as done
+   1. Prerequisite: You should have at least one task visible in the current state of the GUI.
+   2. Test case: `task mark 1`
+      Expected: The task in the index 1 should now be marked as completed.
+3. Mark a task as not done
+   1. Prerequisite: You should have at least one task visible in the current state of the GUI, and the task should
+      have been marked as done.
+   2. Test case: `task unmark 1`
+      Expected: The task in the index 1 should now be marked as incomplete.
+4. Delete a task from the list of tasks
+   1. Prerequisite: You should have at least one task visible in the current state of the GUI.
+   2. Test case: `task delete 1`
+      Expected: The task in the index 1 should now be removed from the application, and should not be removed from the GUI.
+
+### Attribute Commands
+
+1. Create a new Attribute for a Person
+   1. Prerequisite: You should have at least one person present in the GUI
+   2. Test Case: `field add u/1 github johndoe123` <br>
+      Expected: The attribute "github: johndoe123" should be visible in the GUI
+2. Remove an attribute for a person
+   1. Prerequisite: You should have at least one person present in the GUI, the person should have an attribute
+   2. Test case: `field delete u/1 github` <br>
+      Expected: The attribute "github: johndoe123" from the previous example should not be visible in GUI.
