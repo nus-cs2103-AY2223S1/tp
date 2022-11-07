@@ -8,12 +8,10 @@ title: Gregory Wong's Project Portfolio Page
 HealthContact is a desktop application built for the receptionist of a family clinic who arranges telemedicine services between doctors and patients.
 It helps to keep track and manage patient data, appointments and bills, especially for clinics who do not have apps to expedite the process.
 
-
 Given below are my contributions to the project.
 
 ### Code contributed:
 [Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=specops2016&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=SpecOps2016&tabRepo=AY2223S1-CS2103T-W08-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
-
 ### Enhancements to existing features:
 * SortPatientCommand
     * It allows the user to sort patients by name, phone number, email and address.
@@ -59,7 +57,6 @@ Given below are my contributions to the project.
 * Added the __Sort Feature__ section with 1 Sequence diagram
 * Added the __User Stories__
 
-
 ### Contributions to the team-based tasks:
 * Created milestones
 * Closed milestones
@@ -71,26 +68,7 @@ Given below are my contributions to the project.
 * Added test cases for existing features that were not assigned to me
 * Added developer docs not specific to feature as mentioned above (Appendix: Effort, User Stories)
 
-
-### Review/mentoring contributions:
-* Reviewed PRs
-    * [#1](https://github.com/AY2223S1-CS2103T-W08-1/tp/pull/264)
-    * [#2](https://github.com/AY2223S1-CS2103T-W08-1/tp/pull/158)
-    * [#3](https://github.com/AY2223S1-CS2103T-W08-1/tp/pull/141)
     
 
-### Tools:
-* IntelliJ IDEA
-* Gradle
-* PlantUML
-* CheckStyle
-* SourceTree
 
-### Project management:
-* Managed the team's GitHub repository
-* Managed the team's issue tracker
-* Managed the team's milestones
-* Managed the team's releases
-* Managed the team's project board
-* Managed the team's project website
 
