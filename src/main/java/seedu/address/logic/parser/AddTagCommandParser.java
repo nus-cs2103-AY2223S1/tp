@@ -4,8 +4,10 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY_STATUS;
 
+import java.util.logging.Logger;
 import java.util.stream.Stream;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddTagCommand;
@@ -18,16 +20,13 @@ import seedu.address.model.tag.PriorityTag;
  * to the AddTagCommand.
  */
 public class AddTagCommandParser implements Parser<AddTagCommand> {
+    private final Logger logger = LogsCenter.getLogger(AddTagCommand.class);
     @Override
     public AddTagCommand parse(String args) throws ParseException {
+        logger.info("Parsing arguments for AddTagCommand");
         requireNonNull(args);
         String[] indexWithTags = args.strip().split("\\s", 2);
-        if (indexWithTags.length != 2) {
-            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddTagCommand.MESSAGE_USAGE));
-        }
-        //Checks if any prefixes(Including possible invalid ones) exist
-        if (indexWithTags[0].contains("/")) {
+        if (indexWithTags.length != 2 || !indexWithTags[0].matches("(-|\\+)?\\d+(\\.\\d+)?")) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
                     AddTagCommand.MESSAGE_USAGE));
         }

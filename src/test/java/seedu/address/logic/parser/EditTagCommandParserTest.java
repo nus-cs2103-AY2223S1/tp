@@ -24,6 +24,9 @@ public class EditTagCommandParserTest {
     private EditTagCommandParser parser = new EditTagCommandParser();
     private final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-uuuu");
 
+    private final String invalidCommandFormatMessage = String
+            .format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditTagCommand.MESSAGE_USAGE);
     @Test
     public void parse_allFieldsPresent_success() {
         PriorityTag expectedPriorityTag = new PriorityTagBuilder().withStatus("MEDIUM").build();
@@ -64,16 +67,14 @@ public class EditTagCommandParserTest {
 
     @Test
     public void parse_missingFields_failure() {
-        String expectedMessage = String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
-                EditTagCommand.MESSAGE_USAGE);
 
         //Missing index
         String missingIndex = " " + PREFIX_DEADLINE + "26-12-2022" + " " + PREFIX_PRIORITY_STATUS + "HIGH";
-        assertParseFailure(parser, missingIndex, expectedMessage);
+        assertParseFailure(parser, missingIndex, invalidCommandFormatMessage);
 
         //Missing priority prefix and deadline prefix
         String missingPriorityAndDeadlinePrefix = "4" + " 26-12-2022" + " HIGH";
-        assertParseFailure(parser, missingPriorityAndDeadlinePrefix, expectedMessage);
+        assertParseFailure(parser, missingPriorityAndDeadlinePrefix, invalidCommandFormatMessage);
     }
 
     @Test
@@ -86,6 +87,9 @@ public class EditTagCommandParserTest {
         //Empty Priority field
         String emptyPriorityField = "66 " + PREFIX_DEADLINE + "29-11-2022 " + PREFIX_PRIORITY_STATUS;
         assertParseFailure(parser, emptyPriorityField, PriorityTag.PRIORITY_TAG_CONSTRAINTS);
+
+        //Invalid index(Not a number)
+        assertParseFailure(parser, "abc p/low", invalidCommandFormatMessage);
 
         //Invalid index(Non-positive)
         String invalidIndexMessage = EditTagCommandParser.INVALID_INDEX_EDIT_TAG;

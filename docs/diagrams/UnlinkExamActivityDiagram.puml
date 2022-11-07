@@ -1,0 +1,35 @@
+@startuml
+
+start
+:User executes unlink exam command;
+if () then ([command is invalid])
+  :Display invalid command
+  format error message and
+  unlink exam message usage;
+else ([else])
+  if () then ([index is invalid])
+    :Display error message
+    with valid integer range;
+  else ([else])
+    if () then ([index is outside range of task list])
+      :Display error message
+      with valid indexes for
+      task list;
+    else ([else])
+      if () then ([task is already unlinked])
+        :Display error message
+        that task is already unlinked;
+      else ([else])
+        :Create a copy of the task
+        at the specified index,
+        but unlinked;
+        :Replace the task at
+        the specified index with
+        the unlinked task;
+      endif
+    endif
+  endif
+endif
+stop
+
+@enduml

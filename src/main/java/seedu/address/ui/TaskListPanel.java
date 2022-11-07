@@ -12,6 +12,8 @@ import seedu.address.model.task.Task;
  *
  */
 public class TaskListPanel extends UiPart<Region> {
+    //@@author dlimyy-reused
+    //Reused with minor modifications from AddressBook 3
     private static final String FXML = "TaskListPanel.fxml";
 
     @FXML
@@ -43,5 +45,6 @@ public class TaskListPanel extends UiPart<Region> {
             }
         }
     }
+    //@@author
 }
 

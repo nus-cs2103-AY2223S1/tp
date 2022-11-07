@@ -17,6 +17,7 @@ import static seedu.address.testutil.TypicalTasks.getTypicalAddressBook;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -196,5 +197,40 @@ public class EditTagCommandTest {
 
     private PriorityTag getDefaultEditedPriority() {
         return new PriorityTagBuilder().withStatus("MEDIUM").build();
+    }
+
+    @Test
+    public void testEquals() {
+        Index firstIndex = Index.fromOneBased(1);
+        Index secondIndex = Index.fromOneBased(2);
+        Set<String> firstKeyword = Set.of("priority");
+        Set<String> secondKeyword = Set.of("deadline");
+
+
+        DeleteTagCommand firstDeleteTagCommand = new DeleteTagCommand(firstIndex, firstKeyword);
+        DeleteTagCommand firstDeleteTagCommandCopy = new DeleteTagCommand(firstIndex, firstKeyword);
+        DeleteTagCommand secondDeleteTagCommand = new DeleteTagCommand(firstIndex, secondKeyword);
+        DeleteTagCommand thirdDeleteTagCommand = new DeleteTagCommand(secondIndex, firstKeyword);
+
+
+
+        //Equals to itself
+        assertTrue(firstDeleteTagCommand.equals(firstDeleteTagCommand));
+
+        //Equals to another DeleteTagCommand with the same fields
+        assertTrue(firstDeleteTagCommand.equals(firstDeleteTagCommandCopy));
+
+        //Not equals to another DeleteTagCommand with different index
+        assertFalse(firstDeleteTagCommand.equals(secondDeleteTagCommand));
+
+        //Not equals to another DeleteTagCommand with different keyword
+        assertFalse(firstDeleteTagCommand.equals(thirdDeleteTagCommand));
+
+        //Not equal to null
+        assertFalse(firstDeleteTagCommand.equals(null));
+
+        //Not equal to different object types
+        assertFalse(firstDeleteTagCommand.equals(219129));
+
     }
 }
