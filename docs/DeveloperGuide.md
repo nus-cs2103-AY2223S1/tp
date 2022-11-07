@@ -252,6 +252,10 @@ The following activity diagram summarizes what happens when a user executes an `
 
 ![EditTaskCommandActivityDiagram](images/EditTaskCommandActivityDiagram.png)
 
+The sequence diagram is shown below:
+
+![EditTaskCommandSequenceDiagram](images/EditTaskCommandSequenceDiagram.png)
+
 ### Display of person and task list
 
 #### Motivation
@@ -367,6 +371,10 @@ Once done with the filtered tasklist, the user should be able to revert the list
 #### Implementation
 
 When the `sort` command is entered, a `Comparator<Task>` is created which will be an instance of either `model.task.SortByDeadline` or `model.task.SortByPriority`. This `Comparator<Task>` will be reversed if the task list needs to be sorted in descending order. The `SortedList<Task>` in the `Model` will then be updated to use the new `Comparator<Task>`.
+
+The sequence diagram is shown below:
+
+![SortTaskCommandSequenceDiagram](images/SortTaskCommandSequenceDiagram.png)
 
 ### Email Address in task as reference (foreign key) to person in saved data
 
