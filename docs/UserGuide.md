@@ -131,6 +131,7 @@ Format: `exit`
 <div style="page-break-after: always"></div>
 
 ### The main page
+
 The main page, or home page, of Waddle displays the list of itineraries you have created and stored in the app.
 
 [Commands exclusive to the main page](#commands-on-the-main-page) can help you:
@@ -174,6 +175,7 @@ alphanumeric characters, spaces and these following special characters: `()&!':.
   - e.g. `b/1000.505` will be reflected as $1,000.51.
 
 </div>
+<div style="page-break-after: always"></div>
 
 ### Listing all itineraries : `list`
 
