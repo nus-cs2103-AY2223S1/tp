@@ -39,12 +39,44 @@ public class ListCommandParser implements Parser<ListCommand> {
                 PREFIX_GENDER,
                 PREFIX_TAG);
 
-        Optional<Address> address = argMultimap.getValue(PREFIX_ADDRESS).map(Address::new);
-        Optional<Tag> tag = argMultimap.getValue(PREFIX_TAG).map(Tag::new);
+        Optional<Address> address = getFilteredAddress(argMultimap);
+        Optional<Tag> tag = getFilteredTag(argMultimap);
         Optional<Category> category = getFilteredCategory(argMultimap);
         Optional<Gender> gender = getFilteredGender(argMultimap);
 
         return new ListCommand(address, category, gender, tag, parametersAreValid);
+    }
+
+    private Optional<Tag> getFilteredTag(ArgumentMultimap argumentMultimap) {
+
+        List<Optional<Tag>> tag = new ArrayList<>();
+        argumentMultimap.getValue(PREFIX_TAG).ifPresentOrElse(
+                x -> {
+                    if (Address.isValidAddress(x)) {
+                        tag.add(Optional.of(new Tag(x)));
+                    } else {
+                        tag.add(Optional.empty());
+                        parametersAreValid = false;
+                    }
+                }, () -> tag.add(Optional.empty()));
+        assert (tag.size() == 1);
+        return tag.get(0);
+    }
+
+    private Optional<Address> getFilteredAddress(ArgumentMultimap argumentMultimap) {
+
+        List<Optional<Address>> address = new ArrayList<>();
+        argumentMultimap.getValue(PREFIX_ADDRESS).ifPresentOrElse(
+                x -> {
+                    if (Address.isValidAddress(x)) {
+                        address.add(Optional.of(new Address(x)));
+                    } else {
+                        address.add(Optional.empty());
+                        parametersAreValid = false;
+                    }
+                }, () -> address.add(Optional.empty()));
+        assert (address.size() == 1);
+        return address.get(0);
     }
 
     private Optional<Category> getFilteredCategory(ArgumentMultimap argumentMultimap) {
