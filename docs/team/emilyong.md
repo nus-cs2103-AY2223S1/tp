@@ -13,7 +13,7 @@ The following are my contributions to the project:
 * **New Feature**: Created the `EntryType` class (PRs: [\#33](https://github.com/AY2223S1-CS2103T-W17-2/tp/pull/33)) to encapsulate the `Expenditure` and `Income` entry types in the application
   * What it does: Supports validation of the entry types for user command inputs, and creates an immutable type to specify the type property of an entry in the application
   * Justification:
-    * The application treats expenditure and income entries similarly by making use of an `Entry` class (by [@jasonyapzx](https://github.com/jasonyapzx)) to take advantage of polymorphism
+    * The application treats expenditure and income entries similarly by making use of an `Entry` class (by [@JasonYapzx](https://github.com/JasonYapzx)) to take advantage of polymorphism
     * The `EntryType` class supports encapsulation by bundling the validation of entry types for user command inputs, and provides an enumeration to handle entry types throughout the application
 * **New Feature**: Created the `GraphConfiguration` class (PRs: [\#81](https://github.com/AY2223S1-CS2103T-W17-2/tp/pull/81)) to encapsulate the configurations required for the graph coupled with an executing command in the application
     * What it does: Improves code re-usability and organisation by allowing configurations required for the graphical display in the application to be encapsulated in a single object
@@ -54,7 +54,7 @@ The following are my contributions to the project:
 * **Documentation**:
     * User Guide:
         * Improved documentation with more user-friendly texts (PRs: [\#104](https://github.com/AY2223S1-CS2103T-W17-2/tp/pull/104))
-        * Added screenshots for all commands and user interface (after an initial work by [@jasonYapzx](https://github.com/JasonYapzx))  (PRs: [\#104](https://github.com/AY2223S1-CS2103T-W17-2/tp/pull/104))
+        * Added screenshots for all commands and user interface (after an initial work by [@JasonYapzx](https://github.com/JasonYapzx))  (PRs: [\#104](https://github.com/AY2223S1-CS2103T-W17-2/tp/pull/104))
     * Developer Guide:
         * Added sequence diagram for `edit` command (PRs: [\#82](https://github.com/AY2223S1-CS2103T-W17-2/tp/pull/82))
         * Added activity diagram for `view` command (PRs: [\#82](https://github.com/AY2223S1-CS2103T-W17-2/tp/pull/82))
