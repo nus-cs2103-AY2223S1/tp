@@ -112,7 +112,7 @@ Navigating in between patients and their records is done easily with 2 commands:
 Navigating into each patient's records is done through the [`rlist`](#listing-all-records-of-a-patient-rlist) command.
 
 Example: `rlist 1` will enter the **Record List View** of `Alex Yeoh`
-
+<div style="page-break-after: always;"></div>
 **Record List View:**
 
 ![ui-record-list](images/UiRecords.png){: .shadow}
@@ -174,7 +174,7 @@ Here are some general guidelines for you to better understand the command format
 |-----------------------|------|---------------------------------------------------------------------------------------------------------------------------|
 | PATIENT_INDEX         | NIL  | Index of the patient                                                                                                      |
 | APPOINTMENT_DATE_TIME | d/   | Date and time of the appointment, given in the format dd-MM-yyyy HHmm <br/> Note: Appointments cannot be set in the past! |                                  
-
+<div style="page-break-after: always;"></div>
 #### Record
 
 | Input Fields     | Flag | Description                                                                                                 |
@@ -256,7 +256,7 @@ Format: `showall`
 Format: `exit`
 
 <sub>[return to table of contents](#table-of-contents)</sub>
-
+<div style="page-break-after: always;"></div>
 ### Patient Commands
 > Commands relating to the patient list, such as adding and deleting patients
 > Patient commands can only be called when the Patient List View is displayed (after using `list`)
@@ -493,7 +493,7 @@ Examples:
 * `rfind r/cold d/10-2022` returns a record that matches both `cold` in the record data field, and has a date within Oct 2022.
 
 <sub>[return to table of contents](#table-of-contents)</sub>
-
+<div style="page-break-after: always;"></div>
 #### Clearing all patient records : `rclear`
 
 > Clears all records of a specific patient from Omnihealth.
