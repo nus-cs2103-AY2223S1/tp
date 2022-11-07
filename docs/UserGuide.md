@@ -142,7 +142,7 @@ This may be useful to include eateries near NUS (such as Supper Stretch!).
   e.g. `help 123` will be interpreted as `help`.
 
 * The special `-h` parameter will provide a useful help message for how to use the command. 
-  To avoid any unforeseen behaviour, remove your other inputs and just call the command.
+  To avoid any unforeseen behaviour, remove your other inputs when using `-h`.
   e.g. `find -h` or `add -h`. 
 
 <br>
