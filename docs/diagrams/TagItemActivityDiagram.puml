@@ -15,6 +15,7 @@ if () then ([else])
   :Error: Item has already been tagged;
    stop
  else ([Specified Item does not contain tag])
+endif
   :Tag Command successfully executes.
 Item gets tagged with tag.;
 stop

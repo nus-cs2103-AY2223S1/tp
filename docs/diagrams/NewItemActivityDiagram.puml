@@ -12,6 +12,7 @@ if () then ([else])
   :Error: Insufficient storage space for Items;
   stop
  else ([Storage space for Items is available])
+endif
   :new command successfully executes.
 Item is edited.;
 stop
