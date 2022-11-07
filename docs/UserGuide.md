@@ -86,7 +86,7 @@ This section shows a quick summary of the list of commands that are available in
 | **[Enrol student](#enroll-a-student-into-a-group)**                       | `student enroll <index> g/<groupName>` e.g. `student enrol 1 g/T03` |
 | **[Expel student](#expel-a-student-from-a-group)**                        | `student expel <index> g/<groupName>` e.g. `student expel 1 g/T03`  |
 | **[Filter students by group](#view-all-students-in-a-tutorial-group)**    | `tutorial filter g/<groupName>` e.g. `tutorial filter g/T03`        |
-| **[Reset filters](#reset-filters-and-show-all-students)**                 | `tutorial reset`                                                    |
+| **[Reset filters](#reset-filters-and-show-all-students)**                 | `student unfilter`                                                  |
 
 ### Grades
 
