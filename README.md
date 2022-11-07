@@ -1,4 +1,4 @@
-# Petcode
+# PetCode
 [![CI Status](https://github.com/AY2223S1-CS2103T-T09-2/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S1-CS2103T-T09-2/tp/actions)
 [![codecov](https://codecov.io/gh/AY2223S1-CS2103T-T09-2/tp/branch/master/graph/badge.svg?token=F6VVPXKC9C)](https://codecov.io/gh/AY2223S1-CS2103T-T09-2/tp)
 
@@ -7,7 +7,7 @@
 ## What is PetCode
 PetCode is a software app that aims to facilitate better working experience and boost business management efficiency for pet sale coordinators.
 
-Download [Petcode](https://github.com/AY2223S1-CS2103T-T09-2/tp/releases) to facilitate your business now.
+Download [PetCode](https://github.com/AY2223S1-CS2103T-T09-2/tp/releases) to facilitate your business now.
 
 Visit our [website](https://ay2223s1-cs2103t-t09-2.github.io/tp/) to find out more.
 
