@@ -195,7 +195,7 @@ Examples:
 
 `m add c/cs2100 m/computer organisation mc/4` adds a module with the module code cs2100, the module name computer organisation and the module credit 4.
 
-`m add c/cs2105 m/networking mc/3 adds a module` with the module code cs2105, the module name networking and the module credit 3.
+`m add c/cs2105 m/networking mc/3` adds a module with the module code cs2105, the module name networking and the module credit 3.
 
 | ![AddModuleCommand](images/AddModuleCommandDemo.png) |
 |:----------------------------------------------------:|
@@ -313,6 +313,11 @@ Restrictions:
   * The first two characters of `MODULE` should be alphabetical and the remaining characters should be alphanumeric.
   * `MODULE` should be the module code of an existing module in the stored module list.
 * `DESCRIPTION` should not be empty.
+
+<div markdown="span" class="alert alert-info">
+  
+:information_source: **Note:** `MODULE` is case-insensitive.
+</div>  
 
 Example:
 `t add m/CS2105 d/Assignment 1` adds a task with the module as 'CS2105' and description as 'Assignment 1' into the stored task list.
@@ -461,6 +466,11 @@ Restrictions:
   * `MODULE` should be the module code of an existing module in the stored module list.
 * `COMPLETED` should be `y` or `n`.
 * `LINKED` should be `y` or `n`.
+
+<div markdown="span" class="alert alert-info">
+  
+:information_source: **Note:** `MODULE` is case-insensitive.
+</div>  
 
 Examples:
 
