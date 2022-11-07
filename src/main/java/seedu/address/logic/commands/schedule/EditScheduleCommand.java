@@ -71,6 +71,7 @@ public class EditScheduleCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Schedule> lastShownList = model.getFilteredScheduleList();
+        System.out.println(lastShownList.size());
         if (index.getZeroBased() >= lastShownList.size()) {
             logger.warning("Index is invalid.");
             throw new CommandException(MESSAGE_SCHEDULE_NOT_EXIST);
