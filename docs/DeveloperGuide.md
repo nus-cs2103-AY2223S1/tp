@@ -116,7 +116,7 @@ in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-T17-2/tp/blob/master/
 The `UI` component:
 
 * executes user commands using the `Logic` component.
-* looks out for changes to data in `Model` so that the UI can be updated with the modified data.
+* listens for changes to data in `Model` so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, as the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays the `Food` object residing in the `Model`.
 
@@ -245,7 +245,7 @@ Given below is an example usage scenario and how the profile mechanism behaves a
 
 Step 1. The user launches the application on 19 October 2022.
 
-Step 2. The user inputs `profile`, which calls `LogicManager#execute()`. `NutriGoals#parseCommand()` is subsequently called, creating a `ProfileCommand` object.
+Step 2. The user executes `profile`, which calls `LogicManager#execute()`. `NutriGoals#parseCommand()` is subsequently called, creating a `ProfileCommand` object.
 
 Step 3. The `ProfileCommand` created is executed by `ProfileCommand#execute()`.
 
@@ -278,7 +278,7 @@ Step 1. The user launches the application on 19 October 2022. Suppose the foods 
 2. milk tea: 300 calories, lunch
 3. sushi: 500 calories, lunch
 
-Step 2. The user inputs `edit 2 n/honey milk tea c/310`, which calls `LogicManager#execute()`.
+Step 2. The user executes `edit 2 n/honey milk tea c/310`, which calls `LogicManager#execute()`.
 `NutriGoals#parseCommand()` is subsequently called, creating an `EditCommandParser` object.
 `EditCommandParser#parse()` is then called to make sense of the arguments supplied by the user.
 
@@ -318,7 +318,7 @@ Given below is an example usage scenario and how the list mechanism behaves at e
 Step 1. The user launches the application on 19 October 2022. `NutriGoals` initially displays all foods added on the
 current day, 19 October 2022.
 
-Step 2. The user inputs `list 2022-07-29` command, which calls `LogicManager#execute()`.
+Step 2. The user executes `list 2022-07-29` command, which calls `LogicManager#execute()`.
 `NutriGoals#parseCommand()` is subsequently called, creating a `ListCommandParser` object.
 `ListCommandParser#parse()` is then called to make sense of the date argument supplied by the user.
 
@@ -354,7 +354,7 @@ Given below is an example usage scenario and how the find mechanism behaves at e
 
 Step 1. The user launches the application.
 
-Step 2. The user inputs `find Banana` command, which calls `LogicManager#execute()`.
+Step 2. The user executes `find Banana` command, which calls `LogicManager#execute()`.
 `NutriGoals#parseCommand()` is subsequently called, creating a `FindCommandParser` object.
 `FindCommandParser#parse()` is then called to make sense of the food name supplied by the user.
 
@@ -385,7 +385,7 @@ Given below is an example usage scenario and how set calorie target mechanism be
 
 Step 1. The user launches the application today.
 
-Step 2. The user inputs `target 2103`, which calls `LogicManager#execute()`. 
+Step 2. The user executes `target 2103`, which calls `LogicManager#execute()`. 
 `NutriGoals#parseCommand()` is subsequently called, creating a `TargetCommandParser` object.
 `TargetCommandParser#parser()` is then called to make sense of the arguments supplied by the user.
 
