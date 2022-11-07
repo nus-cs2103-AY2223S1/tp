@@ -772,6 +772,36 @@ testers are expected to do more *exploratory* testing.
    4. Other incorrect delete commands to try: `deletestudent`, `deletestudent x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
+### Adding a grade to a student
+
+1. Adding a grade to a student while student list is being shown
+
+    1. Prerequisites: List all students using the `liststudent` command. There must be at least one student in the list.
+
+    2. Test case: `grade 1 ra1/17 mt/55` <br>
+       Expected: The RA1 score will be set to 17.0 and the Midterm score will be set to 55.0 for the first student in the student list.
+
+    3. Test case: `grade 1 ra1/17 mt/55 pa/40 fn/101` <br>
+       Expected: No marks will be updated. Error details shown in status message.
+
+    4. Other incorrect grade commands to try: `grade 1 ra1/19`, `grade x`, `...` (where x is larger than the list size or where input score for the assessment is greater than the total marks)<br>
+       Expected: Similar to previous.
+
+### Setting mastery check result for a student
+
+1. Setting mastery check result for a student while the expanded student list is being shown
+
+   1. Prerequisites: List all lessons using the `liststudent` command. There must be at least one student existing in the student list.
+   
+   2. Test case: `mc 1 num/1 r/pass` <br>
+      Expected: Mastery check 1 status has been changed from `-` to `PASSED`. Details of the student are shown in the status message.
+   
+   3. Test case: `mc 3 num/1 r/pass` <br>
+      Expected: Mastery check result is not changed. Error details shown in status message.
+   
+   4. Test case: `mc 1 num/1 r/p` <br>
+      Expected: Similar to previous.
+
 ### Adding a task
 
 1. Adding a task while task list is being shown
@@ -802,22 +832,51 @@ testers are expected to do more *exploratory* testing.
    4. Other incorrect delete commands to try: `deletetask`, `deletetask x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-### Adding a grade to a student
+### Adding a note to a lesson
 
-1. Adding a grade to a student while student list is being shown
+1. Adding a note to a lesson while expanded lesson list is being shown
 
-    1. Prerequisites: List all students using the `liststudent` command. There must be at least one student in the list.
+    1. Prerequisites: List all lessons using the `listlesson` command. There must be at least one lesson existing in the lesson list.
+   
+    2. Test case: `addnote n/Get back to jeff on streams li/1 si/1` <br>
+       Expected: A note is added for the first student in the first lesson in the lesson list. Details of the note that was added, student and lesson are shown in the status message.
+   
+    3. Test case: `addnote n/ li/1 si/1` <br>
+       Expected: No note is added. Error details are shown in the status message.
 
-    2. Test case: `grade 1 ra1/17 mt/55` <br>
-       Expected: The RA1 score will be set to 17.0 and the Midterm score will be set to 55.0 for the first student in the student list.
+### Deleting a note from a lesson
 
-    3. Test case: `grade 1 ra1/17 mt/55 pa/40 fn/101` <br>
-       Expected: No marks will be updated. Error details shown in status message.
+1. Deleting a note from a lesson while expanded lesson list is being shown
 
-    4. Other incorrect grade commands to try: `grade 1 ra1/19`, `grade x`, `...` (where x is larger than the list size or where input score for the assessment is greater than the total marks)<br>
+    1. Prerequisites: List all lessons using the `listlesson` command. There must be at least one lesson with at least one note existing in the lesson list.
+
+    2. Test case: `deletenote ni/1 li/1` <br>
+       Expected: The first note from the first lesson in the lesson list is deleted. Details of the note that was deleted, and lesson are shown in the status message.
+
+    3. Test case: `deletenote ni/1 li/1 si/1` <br>
+       Expected: The first note for the first student in the first lesson in the lesson list is deleted.  Details of the note that was deleted, student and lesson are shown in the status message.
+
+    4. Test case: `deletenote ni/1 li/0 si/1` <br>
+       Expected: No note is deleted. Error details are shown in the status message.
+
+    5. Test case: `deletenote ni/x li/1 si/1` <br>
        Expected: Similar to previous.
 
-   
+### Adding participation for a student in a lesson
+
+1. Adding participation for a student in a lesson while the expanded lesson list is being shown.
+
+    1. Prerequisites: List all lessons using the `listlesson` command. There must be at least one lesson existing in the lesson list.
+
+    2. Test case: `addpart p/100 li/1 si/1` <br>
+       Expected: Participation for the 1st student in the 1st lesson in your lesson list is set to 100. Details of student, lesson and participation points added are shown in the status message.
+
+    3. Test case: `addpart p/501 li/1 si/1` <br>
+       Expected: No participation added. Error details shown in status message.
+
+    4. Test case: `addpart p/-1 li/1 si/1` <br>
+       Expected: Similar to previous.
+
 ### Saving data
 
 1. Dealing with missing data file(s).
