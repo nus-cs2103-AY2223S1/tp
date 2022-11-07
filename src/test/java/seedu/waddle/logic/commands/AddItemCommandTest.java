@@ -1,7 +1,15 @@
 package seedu.waddle.logic.commands;
 
-import javafx.collections.ObservableList;
+import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.waddle.testutil.Assert.assertThrows;
+
+import java.nio.file.Path;
+import java.util.function.Predicate;
+
 import org.junit.jupiter.api.Test;
+
+import javafx.collections.ObservableList;
 import seedu.waddle.commons.core.GuiSettings;
 import seedu.waddle.logic.StageManager;
 import seedu.waddle.logic.commands.exceptions.CommandException;
@@ -13,12 +21,6 @@ import seedu.waddle.model.itinerary.Itinerary;
 import seedu.waddle.testutil.ItemBuilder;
 import seedu.waddle.testutil.ItineraryBuilder;
 
-import java.nio.file.Path;
-import java.util.function.Predicate;
-
-import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.waddle.testutil.Assert.assertThrows;
 
 public class AddItemCommandTest {
     @Test
@@ -126,15 +128,16 @@ public class AddItemCommandTest {
             throw new AssertionError("This method should not be called.");
         }
     }
-        /**
-         * A Model stub that contains a single itinerary.
-         */
-        private class ModelStubWithItinerary extends ModelStub {
-            private final Itinerary itinerary;
 
-            ModelStubWithItinerary(Itinerary itinerary) {
-                requireNonNull(itinerary);
-                this.itinerary = itinerary;
-            }
+    /**
+     * A Model stub that contains a single itinerary.
+     */
+    private class ModelStubWithItinerary extends ModelStub {
+        private final Itinerary itinerary;
+
+        ModelStubWithItinerary(Itinerary itinerary) {
+            requireNonNull(itinerary);
+            this.itinerary = itinerary;
         }
+    }
 }
