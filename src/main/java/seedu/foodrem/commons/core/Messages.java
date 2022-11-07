@@ -9,12 +9,12 @@ public class Messages {
     public static final String MESSAGE_INVALID_ITEMS_DISPLAYED_INDEX = "The item index provided is invalid.";
 
     // Singular
-    public static final String MESSAGE_ITEMS_LISTED_OVERVIEW = "%1$d items listed!";
-    public static final String MESSAGE_ITEM_SORTED_OVERVIEW = "%1$d items sorted!";
-    public static final String MESSAGE_ITEM_FILTERED_OVERVIEW = "%1$d items after filtering!";
+    public static final String MESSAGE_ITEMS_LISTED_OVERVIEW = "%1$d item listed!";
+    public static final String MESSAGE_ITEM_SORTED_OVERVIEW = "%1$d item sorted!";
+    public static final String MESSAGE_ITEM_FILTERED_OVERVIEW = "%1$d item after filtering!";
 
     // Plural or Zero
-    public static final String MESSAGE_ITEMS_LISTED_OVERVIEW = "%1$d items listed!";
+    public static final String MESSAGE_ITEM_LISTED_OVERVIEW = "%1$d items listed!";
     public static final String MESSAGE_ITEMS_SORTED_OVERVIEW = "%1$d items sorted!";
     public static final String MESSAGE_ITEMS_FILTERED_OVERVIEW = "%1$d items after filtering!";
 
