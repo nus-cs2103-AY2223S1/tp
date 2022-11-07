@@ -41,7 +41,7 @@ TuitionClassListPanel -down-> "*" TuitionClassCard
 
 StudentCard -down-> "0..1" NextOfKinDescription
 
-MainWindow -left-|> UiPart
+MainWindow -down-|> UiPart
 
 StudentListPanel --|> UiPart
 StudentCard --|> UiPart
