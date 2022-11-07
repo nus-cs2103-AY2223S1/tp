@@ -9,7 +9,8 @@ class MarkCommand
 class MarkPersonDescriptor
 
 MarkPersonDescriptor "1" <-left- MarkCommand
-MarkPersonDescriptor "1" <-right- UnmarkCommand
+
+MarkPersonDescriptor "1" <-left- UnmarkCommand
 
 
 @enduml
