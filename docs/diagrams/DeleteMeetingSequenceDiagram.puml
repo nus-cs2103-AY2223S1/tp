@@ -84,5 +84,3 @@ deactivate DeleteMeetingCommand
 [<--LogicManager
 deactivate LogicManager
 @enduml
-
-@enduml
