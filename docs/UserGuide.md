@@ -511,7 +511,7 @@ Some Frequently Asked Questions:
 ## Glossary
 1. **CS1101S:** CS1101S Programming Methodology is a Computer Science module in National Univeristy of Singapore (NUS), School of Computing. This module introduces the concepts of programming and computational problem-solving, and is the first and foremost introductory module to computing, hence it is usually taken by first year Computer Science undergraduate students.
 
-2. **Teaching Assistant:** Teaching assistants (TA) are undergraduate students who help and support teachers or lecturers to provide and coordinate effective classroom instruction. For CS1101S, the role of a TA involves planning, preparing and delivering weekly tutorial sessions, marking assignments and monitoring their students' progress and engagement levels.
+2. **Teaching Assistant:** Teaching assistants (TA) are people who help and support teachers or lecturers to provide and coordinate effective classroom instruction. For CS1101S, teaching assistants are undergraduate students who have completed the module. The role of a CS1101S TA involves planning, preparing and delivering weekly tutorial sessions, marking assignments and monitoring their students' progress and engagement levels.
 
 3. **CLI:** CLI stands for command line interface. It is a system wherein the user enters textual one line inputs into an input box and the computer responds with a textual or graphical output.
 
