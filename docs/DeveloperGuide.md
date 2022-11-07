@@ -128,7 +128,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 <img src="images/ParserClasses.png" width="600"/>
 
-*Figure 7. Class diagram showing the classes in the `Logic` component used for parsing a command* 
+*Figure 7. Class diagram showing the classes in the `Logic` component used for parsing a command*
 How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
@@ -198,7 +198,7 @@ It will then remove the old appointment and add the newly edited appointment. Th
 * `EditAppointmentDescriptor`- This is a class that takes in the user input's edited Location/Datetime fields to create the newly edited appointment.
 * `DeleteAppointmentCommandParser`- This is a class that parses user input from a `String` to an `DeleteAppointmentCommand` object. Validation for the user's input is performed in this class.
 * `DeleteAppointmentCommand`- This is a class where the logic for the Delete Appointment command is specified and the `execute` method is called. It will access the `Model` layer to ensure that there exists an `Appointment` at the specified appointment index. The appointment will be removed from the `Model`.
- 
+
 Currently, the appointment feature supports 3 different type of command:
 1. `add appointment`
 2. `edit appointment`
@@ -255,7 +255,7 @@ Step 6. `LogicManager` will call `EditAppointmentCommand::execute(model)` method
 
 Step 7. Further validation is performed, such as checking whether an `Appointment` with the same Datetime exists and whether the user's edited Location field is changed.
 
-Step 6. If the command is valid, the `remove` and `add` method of the `MaximumSortedList` containing the client's `Appointments` is called, 
+Step 6. If the command is valid, the `remove` and `add` method of the `MaximumSortedList` containing the client's `Appointments` is called,
 removing the old appointment and adding the newly edited appointment. `Person` and `Model` will be updated accordingly.
 
 Step 7. `EditAppointmentCommand` will create a `CommandResult` object and will return this created object back to `LogicManager`.
@@ -273,7 +273,7 @@ This is shown in the diagram below:
     * Cons: User has to execute the `ea` command multiple times to edit all their desired `Appointments`
 * **Alternative 2**: Multiple `Appointments` can be edited in each command
     * Pros: Lower number of commands needed to be executed to edit all the desired `Appointments`
-    * Cons: Complex input validation as multiple index must be enforced within the command and alongside the existing `Appointments`. The maximum number of `Appointments` to edit must also be enforced. 
+    * Cons: Complex input validation as multiple index must be enforced within the command and alongside the existing `Appointments`. The maximum number of `Appointments` to edit must also be enforced.
 #### Delete Appointment Command
 
 Step 1. When the user inputs an appropriate command `String` into the `CommandBox`, `LogicManager::execute(commandText)` is called. The command `String` is logged and then passed to `AddressBookParser::parseCommand(userInput)` which parses the command.
@@ -303,7 +303,7 @@ This is shown in the diagram below:
     * Cons: User has to execute the `da` command multiple times to delete all their desired `Appointments`
 * **Alternative 2**: Multiple `Appointments` can be deleted in each command
     * Pros: Lower number of commands needed to be executed to delete all the desired `Appointments`
-    * Cons: Complex input validation as multiple index must be enforced within the command and alongside the existing `Appointments`. The maximum number of `Appointments` to delete must also be enforced. 
+    * Cons: Complex input validation as multiple index must be enforced within the command and alongside the existing `Appointments`. The maximum number of `Appointments` to delete must also be enforced.
 
 ### Sort feature
 
@@ -503,8 +503,8 @@ The parameter hints for the command will be shown in the ResultDisplay once the 
 
 Implementation:
 1. `CommandBox` takes in the `ResultDisplay` as one of the arguments for its constructor method
-2. In the `CommandBox` constructor method, `setupCommandHistoryNavigation()` is called which sets up `commandTextField` 
-to listen for the event when a valid command word is typed 
+2. In the `CommandBox` constructor method, `setupCommandHistoryNavigation()` is called which sets up `commandTextField`
+to listen for the event when a valid command word is typed
 3. When the event occurs, `ResultDisplay#setFeedbackToUser()` is called to display the command's message usage in the `ResultDisplay`
 
 ### Command History feature
@@ -616,7 +616,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * `    | financial advisor | view the list of clients that are scheduled for meeting on a given day | be reminded and keep track of the scheduled meetings                                       |
 | `* *`     | financial advisor | have an image of my client                                             | remember and recognise the clients during the meetings                                     |
 | `* *`     | fast-typist       | navigate through the calendar with my keyboard                         | view all my appointments in the calendar quickly                                           |
-| `* *`     | forgetful person  | view which are the upcoming appointments I have                        | know what to prepare for whom                                                              |           
+| `* *`     | forgetful person  | view which are the upcoming appointments I have                        | know what to prepare for whom                                                              |
 | `* *`     | potential user    | see how the app operates with some sample data                         | understand what the app will look like when I actually use it                              |
 | `*`       | financial advisor | view frequently searched clients                                       | do not need to keep searching for the same person constantly                               |
 | `*`       | financial advisor | transferring of data between devices                                   | can switch between devices easily and integrate the data easily                            |
@@ -761,13 +761,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. Financial Advisor Planner shows an error message.
 
       Use case ends.
-    
+
 * 1c. The given date and time has an incorrect format.
 
     * 1c1. Financial Advisor Planner shows an error message.
 
       Use case ends.
-    
+
 * 1d. The input appointment already exists for the specified client
 
     * 1d1. Financial Advisor Planner shows an error message.
@@ -815,14 +815,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1d1. Financial Advisor Planner shows an error message.
 
       Use case ends.
-    
+
 * 1e. The newly edited appointment already exists for the specified client
 
     * 1e1. Financial Advisor Planner shows an error message.
 
       Use case ends.
 
-    
+
 **Use case: UC8 - Sort contacts by keywords**
 
 **MSS**
@@ -923,7 +923,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **CLI**: Command Line Interface
 * **GUI**: Graphical User Interface
-* **MSS**: Main Success Scenario: Describes the most straightforward interaction for a given use case, which assumes that nothing goes wrong 
+* **MSS**: Main Success Scenario: Describes the most straightforward interaction for a given use case, which assumes that nothing goes wrong
 * **FXML**: FX Markup Language, the format in which the GUI layout is stored in
 
 

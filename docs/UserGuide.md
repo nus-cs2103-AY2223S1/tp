@@ -9,7 +9,7 @@ title: User Guide
 
 --------------------------------------------------------------------------------------------------------------------
 ## 1. Introduction
-Financial Advisor Planner (FAP) is a **desktop app for Financial Advisors (FA) to manage their clients, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, FAP can get your client management tasks done faster than traditional GUI apps. With FAP, you can now schedule your appointments, manage and find clients easily. 
+Financial Advisor Planner (FAP) is a **desktop app for Financial Advisors (FA) to manage their clients, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, FAP can get your client management tasks done faster than traditional GUI apps. With FAP, you can now schedule your appointments, manage and find clients easily.
 
 ## 2. Using the User Guide
 
@@ -160,7 +160,7 @@ Format: `help`
 
 #### 5.1.2 Adding a client: `add`
 
-Adds a client to the list of clients. 
+Adds a client to the list of clients.
 
 Format: `add n/NAME p/PHONE e/EMAIL a/ADDRESS i/YEARLY_INCOME m/MONTHLY_CONTRIBUTIONS r/RISK_APPETITE ip/INVESTMENT_PLAN c/CLIENT_TYPE [t/TAG]…​`
 
@@ -169,7 +169,7 @@ Refer to [Prefixes](#4-prefixes) for the types of prefixes.
 * This command is case-sensitive for the parameters NAME, EMAIL, ADDRESS, and INVESTMENT_PLAN.
 * After each execution of add command, the displayed contact list resets to the original contact list.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** 
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
 <br>
 RISK_APPETITE can only have the values ‘HIGH’, ‘MEDIUM’ or ‘LOW’
 <br>
@@ -237,7 +237,7 @@ Refer to [Prefixes](#4-prefixes) for the types of prefixes.
 
 Examples:
 
-john - `HIGH`, Alex Yeoh - `HIGH`, David Li - `MEDIUM`, John Doe - `LOW` 
+john - `HIGH`, Alex Yeoh - `HIGH`, David Li - `MEDIUM`, John Doe - `LOW`
 
 * `find n/ John` returns `john` and `John Doe`
 * `find n/ alex david` returns `Alex Yeoh`, `David Li`
@@ -275,11 +275,9 @@ Types of `KEYWORD`: `name`, `appt`, `risk`, `income`, `monthly`
   * `income` & `monthly` sorts by specified order (<, > or =)
   * `client` sorts by current or potential clients
 
-
 Types of `KEYWORD`: `name`, `appt`, `risk`, `income`, `monthly`, `client`
 
-
-
+* Returns all the contacts sorted by the given keyword
 
 #### 5.1.8 Clearing all entries : `clear`
 
