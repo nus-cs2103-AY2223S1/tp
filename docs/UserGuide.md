@@ -24,41 +24,7 @@ can also serve as a reference for experienced users, with a convenient [Command 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
 
-1. Ensure you have Java `11` or above installed in your computer. To check this, run `java --version` in your command
-   line interface.
-
-2. Download the latest `checkUp.jar` from [here](https://github.com/AY2223S1-CS2103T-W16-3/tp/releases).
-
-3. Copy the file to the folder you want to use as the _home folder_ for your checkUp instance.
-
-4. Navigate to the home folder with `cd PATH_TO_FOLDER` through your command line interface.
-
-5. Run `java -jar checkUp.jar` to start the app. The GUI similar to the below image should appear after startup.
-
-6. Note how the app contains some sample data.<br>
-   ![Ui](images/ug-images/Ui-explanations.png)
-
-7. Type your desired command into the command box and press `<Enter>` to execute it. e.g. typing **`help`** and pressing
-   `<Enter>` will open the help window.<br>
-   Some example commands you can try:
-
-    * **`add`**`n/Amy Toh p/98765432 e/johnd@example.com nok/Jane Doe, Wife, 82858285 pt/inpatient hw/south fn/3 wn/D690
-      m/panadol m/ibuprofen` : Adds a contact named `Amy Toh` to checkUp. 
-
-    * **`delete`** `3` : Deletes the 3rd contact shown in the current patient list panel.
-
-    * **`get`** `/n Alex`: Retrieve contact's information based on the prefix you provided. In this case, patients
-    with the name `Alex` will be displayed.
-
-    * **`view`** `1` : Views the 1st contact shown in the current patient list panel by displaying it on the patient details panel.
-
-8. Refer to the [Features](#features) below for details of each command.
-
-<sup><sub>[back to top](#back-to-topt)</sub></sup>
-
----
 ## Installation Guide
 
 ### System Requirements
@@ -67,10 +33,11 @@ Here is everything you need to install and set up checkUp. For the best possible
 * Windows
 * macOS
 * Linux <br>
+
 You will also require Java 11 or above to run checkUp. If you don't already have Java 11 or above on your system, head over to [Oracle's Java download page](https://www.oracle.com/java/technologies/downloads/). 
 To tell if you already have the correct version of Java installed on your system, refer to [Checking your system's Java version](#checking-your-systems-java-version).
 
-### Installation Requirements
+### Installation 
 1. Download the latest `checkUp.jar` from [here](https://github.com/AY2223S1-CS2103T-W16-3/tp/releases).
 
 2. Copy the file to the folder you want to use as the _home folder_ for your checkUp instance.
@@ -80,39 +47,32 @@ To tell if you already have the correct version of Java installed on your system
 4. The GUI similar to the below will appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/ug-images/Ui-explanations.png)
    
-## Troubleshooting   
-### Checking your system's Java version
-
-This section covers the technical issues you may run into while using checkUp.
-
-**Checking your system's Java version**
-
-To check that your system has the correct Java version (Java 11 and above) to run checkUp, you can follow the steps below:
-
-Open your terminal.
-* Windows
-   * Use Win + S to open search.
-  * Type in 'Terminal' to search for it and click on it to launch.
-
-* macOS
-  * Use Cmd + Space to open Spotlight search.
-  * Type in 'Terminal' to search for it and click on it to launch.
-* Linux
-  * Use Ctrl + Alt + T to open the Terminal.
-  * In your terminal, type in java --version and click enter.
-The following image shows an example what will show up in macOS, but you can expect a similar result in Windows.
-
-
-The number in the red highlight rectangle tells you the Java version installed. 
-For example, the Java version installed on the example system is Java 11.0.16, which is sufficient to run checkUp as it is greater than Java 11.
-
-If you do not see a similar result in the terminal after Step 3, or have an earlier version of Java, 
-head over to [Oracle's Java download page](https://www.oracle.com/java/technologies/downloads/) to install Java.
 
 <sub><sup>[back to top](#back-to-topt)</sup></sub>
 
 ---
+## Quick start
 
+
+1. Type your desired command into the command input field and press `<Enter>` to execute it. e.g. typing **`help`** and pressing
+   `<Enter>` will open the help window.<br>
+   Some example commands you can try:
+
+    * **`add `**`n/Amy Toh p/98765432 e/johnd@example.com nok/Jane Doe, Wife, 82858285 pt/inpatient hw/south fn/3 wn/D690
+      m/panadol m/ibuprofen` : Adds a patient named `Amy Toh` to checkUp.
+
+    * **`delete `** `3` : Deletes the 3rd patient shown in the current patient list panel.
+
+    * **`get `** `/n Alex`: Retrieve patient's information based on the prefix you provided. In this case, patients
+      with the name `Alex` will be displayed.
+
+    * **`view `** `1` : Views the 1st patient shown in the current patient list panel by displaying it on the patient details panel.
+
+2. Refer to the [Features](#features) below for details of each command.
+ 
+<sup><sub>[back to top](#back-to-topt)</sub></sup>
+
+---
 ## Glossary
 
 | Term              | Definition                                                                                 |
@@ -193,18 +153,18 @@ Format: `add {Prefix}/{Parameter}…​`
 
 **The prefixes and their respective parameters are as follows:**
 
-| Status  | Prefix | Parameter                               | Restrictions                                                                |
-|---------|--------|-----------------------------------------|-----------------------------------------------------------------------------|
-| `+`     | n/     | NAME                                    | Alphanumeric characters and spaces only.                                    |
-| `+`     | p/     | PHONE                                   | Numbers only and at least 3 digits.                                         |
-| `+`     | e/     | EMAIL                                   | Must follow a valid email format. See below for more information.           |
-| `+`     | nok/   | NEXT-OF-KIN_NAME, RELATIONSHIP, CONTACT | NAME & RELATIONSHIP: Alphabets and spaces only. <br/>CONTACT: Numbers only. |
-| `+`     | pt/    | PATIENT_TYPE                            | Either `inpatient`/`i` or `outpatient`/`o`.                                 |
-| `-`     | hw/    | HOSPITAL_WING                           | Either `north`, `south`, `east` or `west`.                                  |
-| `-`     | fn/    | FLOOR_NUMBER                            | Positive integer only.                                                      |
-| `-`     | wn/    | WARD_NUMBER                             | One uppercase alphabet followed by 3 digits only.                           |
-| `-`     | ua/    | UPCOMING_APPOINTMENT                    | `dd-MM-yyyy` format only (i.e. `12-06-2022`).                               |
-| `-` `*` | m/     | LONG_TERM_MEDICATION                    | Alphanumeric characters and spaces only.                                    |
+| Status  | Prefix | Parameter                               | Restrictions                                                                        |
+|---------|---|-----------------------------------------|-------------------------------------------------------------------------------------|
+| `+`     | n | NAME                                    | Alphanumeric characters and spaces only.                                            |
+| `+`     | p | PHONE                                   | Numbers only and at least 3 digits.                                                 |
+| `+`     | e | EMAIL                                   | Must follow a valid email format. See below for more information.                   |
+| `+`     | nok | NEXT-OF-KIN_NAME, RELATIONSHIP, CONTACT | NAME & RELATIONSHIP: Alphabets and spaces only. <br/>CONTACT: Numbers only.         |
+| `+`     | pt | PATIENT_TYPE                            | Either `inpatient`/`i` or `outpatient`/`o`.  (case-insensitive)                     |
+| `-`     | hw | HOSPITAL_WING                           | Either `north`, `south`, `east` or `west` (case-insensitive) . **Compulsory for inpatients**.          |
+| `-`     | fn | FLOOR_NUMBER                            | Positive integer only.                    **Compulsory for inpatients**.            |
+| `-`     | wn| WARD_NUMBER                             | One uppercase alphabet followed by 3 digits only.    **Compulsory for inpatients**. |
+| `-`     | ua | UPCOMING_APPOINTMENT                    | `dd-MM-yyyy` format only (i.e. `12-06-2022`).                                       |
+| `-` `*` | m | LONG_TERM_MEDICATION                    | Alphanumeric characters and spaces only.                                            |
 
 **Email Format**
 
@@ -258,19 +218,19 @@ Format: `edit INDEX {Prefix}/{Parameter}...`
 **The prefixes and their respective parameters are as follows:**
 
 
-| Status  | Prefix | Parameter                               | Restrictions                                                                |
-|---------|--------|-----------------------------------------|-----------------------------------------------------------------------------|
-| `+`     |        | INDEX                                   | Positive integer only.                                                      |
-| `-`     | n/     | NAME                                    | Alphanumeric characters and spaces only.                                    |
-| `-`     | p/     | PHONE                                   | Numbers only and at least 3 digits.                                         |
-| `-`     | e/     | EMAIL                                   | Must follow a valid email format. See below for more information.           |
-| `-`     | nok/   | NEXT-OF-KIN_NAME, RELATIONSHIP, CONTACT | NAME & RELATIONSHIP: Alphabets and spaces only. <br/>CONTACT: Numbers only. |
-| `-`     | pt/    | PATIENT_TYPE                            | Either `inpatient`/`i` or `outpatient`/`o`.                                 |
-| `-`     | hw/    | HOSPITAL_WING                           | Either `north`, `south`, `east` or `west`.                                  |
-| `-`     | fn/    | FLOOR_NUMBER                            | Positive integer only.                                                      |
-| `-`     | wn/    | WARD_NUMBER                             | One uppercase alphabet followed by 3 digits only.                           |
-| `-`     | ua/    | UPCOMING_APPOINTMENT                    | `dd-MM-yyyy` format only (i.e. `12-06-2022`).                               |
-| `-` `*` | m/     | LONG_TERM_MEDICATION                    | Alphanumeric characters and spaces only.                                    |
+| Status  | Prefix | Parameter                               | Restrictions                                                                                  |
+|---------|---|-----------------------------------------|-----------------------------------------------------------------------------------------------|
+| `+`     |   | INDEX                                   | Positive integer only.                                                                        |
+| `-`     | n | NAME                                    | Alphanumeric characters and spaces only.                                                      |
+| `-`     | p | PHONE                                   | Numbers only and at least 3 digits.                                                           |
+| `-`     | e | EMAIL                                   | Must follow a valid email format. See below for more information.                             |
+| `-`     | nok | NEXT-OF-KIN_NAME, RELATIONSHIP, CONTACT | NAME & RELATIONSHIP: Alphabets and spaces only. <br/>CONTACT: Numbers only.                   |
+| `-`     | pt | PATIENT_TYPE                            | Either `inpatient`/`i` or `outpatient`/`o`.                                                   |
+| `-`     | hw | HOSPITAL_WING                           | Either `north`, `south`, `east` or `west` (case-insensitive).  **Compulsory for inpatients**. |
+| `-`     | fn | FLOOR_NUMBER                            | Positive integer only.            **Compulsory for inpatients**.                              |
+| `-`     | wn | WARD_NUMBER                             | One uppercase alphabet followed by 3 digits only.  **Compulsory for inpatients**.             |
+| `-`     | ua | UPCOMING_APPOINTMENT                    | `dd-MM-yyyy` format only (i.e. `12-06-2022`).                                                 |
+| `-` `*` | m | LONG_TERM_MEDICATION                    | Alphanumeric characters and spaces only.                                                      |
 
 **Email Format**
 
@@ -280,6 +240,11 @@ Format: `edit INDEX {Prefix}/{Parameter}...`
   and each domain label must be present (i.e. `johndoe@yahoo-.gmail` is not allowed as the domain label after `yahoo`
   and before `gmail` is empty).
 * Examples: `john@checkup.com`, `john-doe@checkup.com`, `john.doe@checkup.com`,  `john_doe@check-up.com`.
+
+**:notebook: Notes about Patient Type:**<br>
+When the patient type is edited from an inpatient to an outpatient and subsequently back to an inpatient, 
+the user will have to manually input the hospital wing, floor number and ward number again.
+</div>
 
 **Requirements**
 * At least one of the optional fields must be provided.
@@ -350,11 +315,11 @@ Format: `appt INDEX {Prefix}/{Parameter}...`
 **The prefixes and their respective parameters are as follows:**
 
 | Status  | Prefix | Parameter             | Restrictions                                  |
-|---------|--------|-----------------------|-----------------------------------------------|
-| `+`     |        | INDEX                 | Positive integer only.                        |
-| `+`     | on/    | DATE                  | `dd-MM-yyyy` format only (i.e. `12-06-2022`). |
-| `+`     | diag/  | DIAGNOSIS             | -                                             |
-| `-` `*` | m/     | MEDICATION_PRESCRIBED | Alphanumeric characters and spaces only.      |
+|---------|-----|-----------------------|-----------------------------------------------|
+| `+`     |     | INDEX                 | Positive integer only.                        |
+| `+`     | on  | DATE                  | `dd-MM-yyyy` format only (i.e. `12-06-2022`). |
+| `+`     | diag | DIAGNOSIS             | -                                             |
+| `-` `*` | m   | MEDICATION_PRESCRIBED | Alphanumeric characters and spaces only.      |
 
 **Upon Execution**
 
@@ -410,10 +375,10 @@ Format: `consult INDEX {Prefix}/{Parameter}...`
 **The prefixes and their respective parameters are as follows:**
 
 | Status  | Prefix | Parameter             | Restrictions                                  |
-|---------|--------|-----------------------|-----------------------------------------------|
-| `+`     |        | INDEX                 | Positive integer only.                        |
-| `+`     | diag/  | DIAGNOSIS             | -                                             |
-| `-` `*` | m/     | MEDICATION_PRESCRIBED | Alphanumeric characters and spaces only.      |
+|---------|------|-----------------------|-----------------------------------------------|
+| `+`     |      | INDEX                 | Positive integer only.                        |
+| `+`     | diag | DIAGNOSIS             | -                                             |
+| `-` `*` | m    | MEDICATION_PRESCRIBED | Alphanumeric characters and spaces only.      |
 
 **Upon Execution**
 
@@ -456,18 +421,18 @@ Format `get /PREDICATE PARAMETER`
 
 **The predicates you can use to get the patients by are as follows:**
 
-| Predicate                             | Parameter            | Description                                           |
-|---------------------------------------|----------------------|-------------------------------------------------------|
-| [n](#by-name-n)                       | NAME                 | Finds patients by name.                               |
-| [nok](#by-next-of-kin-data-nok)       | PATIENT_NAME         | Finds next-of-kin data of patients.                   | 
-| [hw](#by-hospital-wing-hw)            | HOSPITAL_WING        | Finds all the patients in a hospital wing.            |
-| [fn](#by-floor-number-fn)             | FLOOR_NUMBER         | Finds all the patients on a floor number.             |
-| [wn](#by-ward-number-wn)              | WARD_NUMBER          | Finds all the patients in a ward.                     |
-| [m](#by-long-term-medication-m)       | LONG_TERM_MEDICATION | Finds all the patients by their long-term medication. |
-| [inp](#by-patient-type-inp)           | -                    | Finds all the inpatients.                             |
-| [outp](#by-patient-type-outp)         | -                    | Finds all the outpatients.                            |
-| [appt](#by-appointments-appt)         | INDEX                | Finds all past appointments of a patient.             |
-| [appton](#by-appointment-date-appton) | APPOINTMENT_DATE     | Finds all with an appointment on a particular date.   |
+| Predicate                             | Parameter            | Description                                                      |
+|---------------------------------------|----------------------|------------------------------------------------------------------|
+| [n](#by-name-n)                       | NAME                 | Finds patients by name.                                          |
+| [nok](#by-next-of-kin-data-nok)       | PATIENT_NAME         | Finds next-of-kin data of a patient.                             | 
+| [hw](#by-hospital-wing-hw)            | HOSPITAL_WING        | Finds all the patients in a hospital wing.                       |
+| [fn](#by-floor-number-fn)             | FLOOR_NUMBER         | Finds all the patients on a floor number.                        |
+| [wn](#by-ward-number-wn)              | WARD_NUMBER          | Finds all the patients in a ward.                                |
+| [m](#by-long-term-medication-m)       | LONG_TERM_MEDICATION | Finds all the patients by their long-term medication.            |
+| [inp](#by-patient-type-inp)           | -                    | Finds all the inpatients.                                        |
+| [outp](#by-patient-type-outp)         | -                    | Finds all the outpatients.                                       |
+| [appt](#by-appointments-appt)         | INDEX                | Finds all past appointments of a patient.                        |
+| [appton](#by-appointment-date-appton) | APPOINTMENT_DATE     | Finds all the patients with an appointment on a particular date. |
 
 #### by name: `/n`
 
@@ -493,6 +458,7 @@ Format: `get /n NAME`
 
 Finds next-of-kin data for patients matching the input `PATIENT_NAME`, and is hence similar to the `get /n` command.
 
+
 Format: `get /nok PATIENT_NAME`
 
 * The search is case-insensitive. e.g. `get /nok hans` matches `get /nok Hans`.
@@ -508,9 +474,9 @@ Format: `get /hw HOSPITAL_WING`
 
 * `HOSPITAL_WING` only allows the following values: South, North, West, East.
 * The search is case-insensitive. e.g `get /hw souTh` matches `get /hw South`.
-* Only fully inputted values will be used. e.g. `get /hw South No` matches `get /hw south` as `No` does not match
+* Only fully input values will be used. e.g. `get /hw South No` matches `get /hw south` as `No` does not match
   South, North, West or East.
-* `get /hw south /hw north` matches `get /hw south north`.
+* `get /hw south /hw north` matches `get /hw south north`, which will return all the patients in the south and north wing.
 * All the patients in that hospital wing will be displayed. e.g. `get /hw SOUTH` will display `John` `Peter` `Mary`.
 
 #### by floor number: `/fn`
@@ -521,8 +487,8 @@ Format: `get /fn FLOOR_NUMBER`
 
 * `FLOOR_NUMBER` only allows positive integers.
 * All the patients in that floor number will be displayed. e.g. `get /fn 2` will display `John` `Peter` `Mary`.
-* Multiple `FLOOR_NUMBER` can be inputted. e.g. `get /fn 1 3` will display all patients staying in the 1st and 3rd floor.
-* `get /fn 1 /fn 3` matches `get /fn 1 3`.
+* Multiple `FLOOR_NUMBER` can be input. e.g. `get /fn 1 3` will display all patients staying in the 1st and 3rd floor.
+
 
 <sub><sup>[back to top](#back-to-topt), [back to features](#features), [back to segment top](#retrieving-patient-info)</sup></sub>
 
@@ -532,10 +498,10 @@ Finds all the patients in that particular ward number.
 
 Format: `get /wn WARD_NUMBER`
 
-* All the patients in that ward number will be displayed. e.g. `get /wn D12` will display `John` `Peter` `Mary`.
-* Multiple `WARD_NUMBER` can be inputted. e.g. `get /wn D001 E301` will display all patients staying in the ward number
+* All the patients in that ward number will be displayed. e.g. `get /wn D123` will display `John` `Peter` `Mary`.
+* Multiple `WARD_NUMBER` can be input. e.g. `get /wn D001 E301` will display all patients staying in the ward number
   D001 and E301.
-* `get /wn D12 /wn E13` matches `get /wn D12 E13`.
+* `get /wn D123 /wn E133` matches `get /wn D123 E133`.
 
 #### by long term medication: `/m`
 
@@ -576,7 +542,8 @@ Format: `get /appt INDEX`
 
 Example: `get /appt 3` will display <br>
 `On: 12 Jun 2022; Diagnosis: Common viral flu; Prescribed Medication: [lozenges][panadol]`.<br>
-`On: 01 Jan 2001; Diagnosis: headache, medicine given for 3 days; Prescribed Medication: [ibuprofen]`.
+`On: 01 Jan 2001; Diagnosis: headache, medicine given for 3 days; Prescribed Medication: [ibuprofen]` <br>
+in the command result box.
 
 #### by appointment date: `/appton`
 
@@ -586,6 +553,8 @@ Format: `get /appton APPOINTMENT_DATE`
 
 * `APPPOINTMENT_DATE` must be in `dd-MM-yyyy` format.
 * The appointment date refers to date the patient has an appointment with the clinic or hospital.
+* Multiple `APPOINTMENT_DATE` can be input. e.g. `get /appton 14-12-2020 15-12-2020` will display all patients 
+having appointments on 14th December 2020 and 15th December 2020.
 * All the patients having appointments on that date will be displayed. e.g. `get /appton 12-12-2020` will display
   `John` `Peter` `Mary`.
 
@@ -619,7 +588,7 @@ and quality of life commands to improve the user experience.
 These commands are:
 * [Viewing a patient](#viewing-a-patient-view)
 * [Clearing all data](#clearing-all-data--clear)
-* [Viewing help](#open-the-help-page--help)
+* [Opening the help page](#open-the-help-page--help)
 * [Exiting the program](#exiting-the-program--exit)
 * [Mouse interactions](#mouse-interactions)
 * [Keyboard shortcuts](#keyboard-shortcuts)
@@ -641,6 +610,7 @@ It will also automatically focus onto the most recent patient added or edited.
 When the current person displayed on the patient details panel is removed, it defaults to viewing the first patient
 in the patient list panel if present, and empty otherwise.
 </div>
+<br>
 
 **Upon Execution**
 
@@ -667,7 +637,7 @@ Format: `clear`
 * This command is **nuclear**, and cannot be reversed. It should only be executed when absolutely necessary.
 * This command is provided for privacy reasons, or to start afresh.
 
-### Open the Help Page : `help`
+### Opening the Help Page : `help`
 
 Opens the Help Window.
 
@@ -699,7 +669,7 @@ any data created or deleted from the application.
 
 Although CheckUp is built as a Command Line Interface application, it also supports the following mouse interactions:
 
-#### Person List Panel:
+#### Person List Panel
 
 * Double-clicking on patients in the Patient List Panel will automatically open their info in the Patient Details Panel.
 
@@ -709,7 +679,7 @@ Example:
 
 ![Clicking on Patient List Panel Gif](images/ug-images/Person-List-Panel-Clickability.png)
 
-#### Person Details Panel:
+#### Person Details Panel
 
 * Double-clicking on the fields in the Patient Details Panel will automatically prepare them for editing in the Command Input Box.
 
@@ -745,7 +715,8 @@ the data of your previous checkUp home folder.
 | [**edit**](#editing-a-patient-edit)                           | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [nok/NEXT-OF-KIN_NAME, RELATIONSHIP, CONTACT] [pt/PATIENT_TYPE] [hw/HOSPITAL_WING] [fn/FLOOR_NUMBER] [wn/WARD_NUMBER] [ua/UPCOMING_APPOINTMENT] [m/LONG_TERM_MEDICATION]...`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                         |
 | [**delete**](#deleting-a-patient-delete)                      | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                                                                                                |
 | [**appt**](#creating-past-appointment-for-patient-appt)       | `appt INDEX on/DATE diag/DIAGNOSIS [m/MEDICATION]...` <br> e.g., `appt 1 on/12-06-2022 diag/Common cold, viral flu m/panadol m/lozenges`                                                                                                                                                                                                           |                                                                                                                                                                                                                                                                                    |
-| [**delappt**](#deleting-past-appointment-for-patient-delappt) | `delappt INDEX` <br> e.g., `delappt 1`                                                                                                                                                                                                                                                                                                             |
+| [**delappt**](#deleting-past-appointment-for-patient-delappt) | `delappt INDEX` <br> e.g., `delappt 1`                                                                                                                                                                                                                                                                      |
+| [**consult**](#consulting-a-patient-consult)                  |  `consult INDEX diag/DIAGNOSIS [m/MEDICATION_PRESCRIBED]` <br> e.g., `consult 1 diag/Migraine m/Panadol`                                                                                                                                                                                                                                                                                                          |
 | [**list**](#listing-all-patients-list)                        | `list`                                                                                                                                                                                                                                                                                                                                             |
 | [**get /n**](#by-name-n)                                      | `get /n NAME`<br> e.g., `get /n John`                                                                                                                                                                                                                                                                                                              |
 | [**get /nok**](#by-next-of-kin-data-nok)                      | `get /nok PATIENT_NAME`<br> e.g., `get /nok John`                                                                                                                                                                                                                                                                                                  |
@@ -762,5 +733,45 @@ the data of your previous checkUp home folder.
 | [**clear**](#clearing-all-entries--clear)                     | `clear`                                                                                                                                                                                                                                                                                                                                            |
 | [**help**](#open-the-help-page--help)                         | `help`                                                                                                                                                                                                                                                                                                                                             |
 | [**exit**](#exiting-the-program--exit)                        | `exit`                                                                                                                                                                                                                                                                                                                                             |
+
+
+<sub><sup>[back to top](#back-to-topt)</sup></sub>
+
+## Troubleshooting
+### Checking your system's Java version
+
+This section covers the technical issues you may run into while using checkUp.
+
+**Checking your system's Java version**
+
+To check that your system has the correct Java version (Java 11 and above) to run checkUp, you can follow the steps below:
+
+Open your terminal.
+* Windows
+    * Use Win + S to open search.
+    * Type in `Terminal` to open the terminal.
+    * In your terminal, type in `java --version` and click enter.
+
+* macOS
+    * Use Cmd + Space to open Spotlight search.
+    * Type in `Terminal` to open the terminal.
+    * In your terminal, type in `java --version` and click enter.
+
+* Linux
+    * Use Ctrl + Alt + T to open the Terminal.
+    * In your terminal, type in `java --version` and click enter. <br>
+
+
+The following image shows an example what will show up in Windows,
+but you can expect a similar result in other operating systems.
+
+![Troubleshooting](images/ug-images/troubleshooting.png)
+
+
+The number in the red highlight rectangle tells you the Java version installed.
+For example, the Java version installed on the example system is Java 11.0.9, which is sufficient to run checkUp as it is greater than Java 11.
+
+If you do not see a similar result in the terminal after Step 3, or have an earlier version of Java,
+head over to [Oracle's Java download page](https://www.oracle.com/java/technologies/downloads/) to install Java.
 
 <sub><sup>[back to top](#back-to-topt)</sup></sub>
