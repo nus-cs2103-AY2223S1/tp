@@ -98,7 +98,7 @@ Automatically opens your browser and redirects you to this User Guide page.
 
 
 Format: `help`
-* If TA-Assist is unable to redirect you to the page, i.e. due to a non-existant browser, unsupported operating system, etc.,
+* If TA-Assist is unable to redirect you to the page, i.e. due to a non-existent browser, unsupported operating system, etc.,
   the following dialog box will be shown instead:
   ![help message](images/helpMessage.png)
 
