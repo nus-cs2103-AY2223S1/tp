@@ -82,6 +82,7 @@ we will be happy to answer you.
 ####Just want a quick overview of all the features Coydir can offer?
 You can head over to [Command Summary](#command-summary) for a quick look of all the commands you can use.
 
+###Symbols and Syntax
 Here are some symbols to look out for while using this guide:
 
 | Symbol               | Meaning                                      | 
