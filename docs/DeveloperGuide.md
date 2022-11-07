@@ -252,7 +252,7 @@ Step 2. The method `LogicManager#execute` is called on the user input, prompting
 
 Step 3. The `execute` method of `DeleteCommand` is then called on the object, which returns a `CommandResult` object.
 
-Step 4. This finds the `person` from the list from `model#getFilteredPersonList` by its employee ID which is `1` in this case. If there does not exist a `person` object with employee ID of `1`, a `CommandException` will be thrown and a message indicating invalid ID given will be shown. If the `person` object exists, then using `model#deletePerson()`, the `person` object is deleted from the `database`.
+Step 4. This finds the `person` from the database by its employee ID which is `1` in this case. If there does not exist a `person` object with employee ID of `1`, a `CommandException` will be thrown and a message indicating invalid ID given will be shown. If the `person` object exists, then using `model#deletePerson()`, the `person` object is deleted from the `database`.
 
 Step 5. storage#saveDatabase is then called on the current `database`, updates the database to not contain the deleted `person`.
 
@@ -281,7 +281,7 @@ Step 2. The method `LogicManager#execute` is called on the user input, prompting
 
 Step 3. The `execute` method of `FindCommand` is then called on the object.
 
-Step 4. This then calls the `model#updateFilteredPersonList` method, which iterates through the list of `Person` objects returned by the `model#getFilteredPersonList` for the search parameter specified (in this case, name being "Alex"). It then keeps track of any `Person` objects that matches this specified parameter.
+Step 4. This then calls the `model#updateFilteredPersonList` method, which iterates through the list of `Person` objects returned by the database for the search parameter specified (in this case, name being "Alex"). It then keeps track of any `Person` objects that matches this specified parameter.
 
 Step 5. This returns a `CommandResult` object, which is returned to the `LogicManager`, and eventually, the `MainWindow`, prompting the `MainWindow` to call `model#getFilteredPersonList` and display the first-indexed person, if there is any.
 

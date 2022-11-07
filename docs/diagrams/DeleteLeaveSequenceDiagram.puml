@@ -35,7 +35,7 @@ create DeleteLeaveCommand
 DeleteLeaveCommandParser -> DeleteLeaveCommand
 activate DeleteLeaveCommand
 
-DeleteLeaveCommand -> DeleteLeaveCommandParser
+DeleteLeaveCommand --> DeleteLeaveCommandParser
 deactivate DeleteLeaveCommand
 
 DeleteLeaveCommandParser --> DatabaseParser
