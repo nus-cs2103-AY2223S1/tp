@@ -66,10 +66,13 @@ public class EditTaskCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
+        // invalid description
         assertParseFailure(parser, "1" + INVALID_TASKDESCRIPTION_DESC,
-                TaskDescription.MESSAGE_CONSTRAINTS); // invalid description
+                TaskDescription.MESSAGE_CONSTRAINTS);
+
+        // invalid deadline
         assertParseFailure(parser, "1" + INVALID_TASKDEADLINE_DESC,
-                Deadline.MESSAGE_CONSTRAINTS); // invalid deadline
+                Deadline.MESSAGE_CONSTRAINTS);
 
         //invalid deadline followed by valid description
         assertParseFailure(parser, "1" + INVALID_TASKDEADLINE_DESC
