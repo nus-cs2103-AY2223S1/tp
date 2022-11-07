@@ -41,6 +41,8 @@ Given below are my contributions to the project.
     in the design of AB3. Hence, much thought was put into designing the 
     component's behaviour to maximise our user's utility.
 
+<div style="page-break-after: always;"></div>
+  
 * **New Feature**: Interactive UI for `Task` objects
   * What it does:<br>
     Tasks are hidden by default while on the home page and 

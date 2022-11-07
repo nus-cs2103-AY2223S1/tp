@@ -18,7 +18,7 @@ Given below are my contributions to the project.
   * Justification: <br>
     Our application aims to streamline the execution of module deliverables,
     the `goto` command is implemented to allow users to view precise information
-    relevant to the particular module such as the tasks, links and person which
+    relevant to a particular module such as the tasks, links and person which
     are tied to that module, which is critical for our value proposition.
   * Highlights <br>
     The navigation function introduces a new concept of home page and module page which is previously not found
@@ -27,6 +27,8 @@ Given below are my contributions to the project.
     `UniquePersonList` and `isHome` status. Hence, it is not trivial as stringent checks are required to ensure the
     proper integration between `Logic`, `Model` and `Ui` to ensure what is executed matches what is seen by the user
     and that `isHome` status is set to the correct state as an incorrect state would jeopardize a user's experience.
+
+<div style="page-break-after: always;"></div>
 
 ##### Search ([#81](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/81))
 **Enhancements to existing features:** `find` and `list` commands <br>
@@ -49,8 +51,7 @@ has been put into its design.
   * Added implementation details for `home`, `goto`, `find-module` and `list-module` command.
 
 **Contribution to team-based-tasks:**
-* Created a Telegram channel to serve as the team's main medium of communication.
-* Facilitated team discussions and weekly meetings by setting up a Discord channel, along with various text channels for note-taking.
+* Facilitated team discussions and weekly meetings by setting up a Discord channel.
 * Created first draft of `README.md` to match Plannit ([#32](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/32))
 * Implemented initial model framework for Link, Task and Module ([#59](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/59))
 
@@ -59,7 +60,6 @@ has been put into its design.
 * PRs reviewed (with non-trivial review messages):
   [#83](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/83),
   [#89](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/89),
-  [#104](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/104),
   [#114](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/114),
   [#160](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/160),
   [#164](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/164),
