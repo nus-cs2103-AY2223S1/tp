@@ -490,10 +490,10 @@ The following sequence diagram shows how the `MarkCommand` works:
 #### Design considerations
 
 **Aspect: How mark and unmark command executes**
-- Alternative 1 (current choice): Use of PersonDescriptors for identifying and marking/unmarking of fields
+- **Alternative 1 (current choice):** Use of PersonDescriptors for identifying and marking/unmarking of fields
   - Pros: Able to identify the various 2 fields and do the necessary updates where needed
   - Cons: More code to implement which would mean it is more susceptible to bugs
-- Alternative 2: Do direct marking of lists through invoking of marking methods of the specified field
+- **Alternative 2:** Do direct marking of lists through invoking of marking methods of the specified field
   - Pros: Less bug-prone, easier to implement
   - Cons: Marking/unmarking might be limited to only one field
 
