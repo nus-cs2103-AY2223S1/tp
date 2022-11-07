@@ -7,7 +7,7 @@ Example usages:
   * as a student management tool
   * as a tutor and class management tool
 
-* The project aims to provide tuition centers with a dewsktop application (called _myStudents_) to manage admin matters.
+* The project aims to provide tuition centers with a desktop application (called _myStudents_) to manage admin matters.
   * It allows the **storing of student particulars**.
   * It allows **management of the classes and tutors**. For example, it comes with tutor assignment and student allocation capabilities.
   * It provides **tracking of student performance and fee payment status**.

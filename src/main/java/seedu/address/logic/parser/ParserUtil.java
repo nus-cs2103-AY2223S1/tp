@@ -274,13 +274,20 @@ public class ParserUtil {
             throw new ParseException(Time.MESSAGE_CONSTRAINTS);
         }
         String[] splitTime = trimmedTime.split("\\s*(-|to|\\s)\\s*");
+        Time resultTime;
         try {
             splitTime[0] = formatTime(splitTime[0]);
             splitTime[1] = formatTime(splitTime[1]);
         } catch (ParseException e) {
             throw new ParseException(Time.MESSAGE_CONSTRAINTS);
         }
-        return new Time(formatTime(splitTime[0]), formatTime(splitTime[1]));
+
+        try {
+            resultTime = new Time(splitTime[0], splitTime[1]);
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(Time.MESSAGE_CONSTRAINTS);
+        }
+        return resultTime;
     }
 
     /**
