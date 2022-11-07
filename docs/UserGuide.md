@@ -259,7 +259,10 @@ Edits an appointment of a patient, such as name, medical test, slot, and doctor.
 Edits a bill of an appointment.
 
 #### Format: 
-`editbill INDEX [a/amount] [d/bill date]` `eb INDEX [a/amount] [d/bill date]`
+
+`editbill INDEX [a/amount] [d/bill date]`
+
+`eb INDEX [a/amount] [d/bill date]`
 
 * Edits the bill at the specified `INDEX`. The index refers to the index number shown in the displayed bill list.
   The index **must be a positive integer** 1, 2, 3, …​
@@ -311,7 +314,10 @@ Filters appointments by one or more fields using their prefixes, and their corre
 special characters).
 
 #### Format:
-```findappointment <prefix><input> ...``` or ```fa <prefix><input>...```
+
+```findappointment <prefix><input> ...```
+
+```fa <prefix><input>...```
 
 * The command words are `findappointment` or `fa`.
 * The prefixes are n/ for Name, t/ for Medical Test, s/ for Slot and d/ for Doctor.
@@ -339,7 +345,9 @@ Filters bills by one or more fields using their prefixes, and their correspondin
 special characters).
 
 #### Format:
-```findbill <prefix><input> ...``` or ```fb <prefix><input>...```
+```findbill <prefix><input> ...```
+
+```fb <prefix><input>...```
 
 * The command words are `findbill` or `fb`.
 * The prefixes are n/ for Name, p/ for Payment Status, d/ for Date and a/ for Amount.
@@ -363,7 +371,10 @@ special characters).
 Sorts patients by a single field
 
 #### Format:
+
 ```sortpatient <prefix><input> ...```
+
+```sop <prefix><input> ...```
 
 * The command word is `sortpatient`.
 * The prefixes are `c/` for Criteria and `o/` for Order.
@@ -387,7 +398,10 @@ Sorts patients by a single field
 Sorts appointments by a single field
 
 #### Format:
+
 ```sortappointment <prefix><input> ...```
+
+```soa <prefix><input> ...```
 
 * The command word is `sortappointment`.
 * The prefixes are `c/` for Criteria and `o/` for Order.
@@ -411,7 +425,10 @@ Sorts appointments by a single field
 Sorts bills by a single field
 
 #### Format:
+
 ```sortbill <prefix><input> ...```
+
+```sob <prefix><input> ...```
 
 * The command word is `sortbill`.
 * The prefixes are `c/` for Criteria and `o/` for Order.
@@ -500,14 +517,14 @@ Notes on symbols in first column:
 
 Sets the payment status of a bill to "paid".
 
-Format:
+#### Format:
 ```setpaid <index>``` or ```sp <index>```
 
 * The command words are `setpaid` or `sp`.
 * The index refers to the index number of the bill shown in the displayed bill list.
 * The index must be a valid positive integer 1, 2, 3, …​
 
-Example:
+#### Example:
 * ```setpaid 1``` sets the first bill in the displayed bill list as paid, in this case, `Bernice Yu`'s bill.
 
 Before:
@@ -670,6 +687,7 @@ Reverses the most recent command.
 Reverses the most recent undo command.
 
 #### Format:
+
 ```redo```
 
 * The command word is `redo`.
@@ -704,7 +722,6 @@ Deletes all patients, appointments and bills from HealthContact.
 * If the user accidentally clears all data, the user can restore the data by using the `undo` command. If the user closes the application before undoing `clear`, the data will be gone permanently.
 
 #### Format
-
 
 `clear`
 
