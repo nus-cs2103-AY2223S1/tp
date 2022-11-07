@@ -493,19 +493,19 @@ Format: `alias a/ALIAS k/COMMAND_KEYWORD`
 
 Example: Enter `alias a/ls k/list`
 
-![AliasCommandBefore.png](images/AliasCommandBefore.png)
+![AliasCommandBefore.png](images/AliasCommandBefore.PNG)
 
 Outcome: The alias `ls` is added for the viewing all students command `list`.
 
-![AliasCommandAfter.png](images/AliasCommandAfter.png)
+![AliasCommandAfter.png](images/AliasCommandAfter.PNG)
 
 Now, typing `ls` into the command box.
 
-![UsingAliasBefore.png](images/UsingAliasBefore.png)
+![UsingAliasBefore.png](images/UsingAliasBefore.PNG)
 
 Will execute the `list` command.
 
-![UsingAliasAfter.png](images/UsingAliasAfter.png)
+![UsingAliasAfter.png](images/UsingAliasAfter.PNG)
 
 
 ### Deleting aliases: `unalias`
@@ -516,11 +516,11 @@ Format: `unalias a/ALIAS`
 
 Example: Enter `unalias a/ls`
 
-![UnaliasCommandBefore.png](images/UnaliasCommandBefore.png)
+![UnaliasCommandBefore.png](images/UnaliasCommandBefore.PNG)
 
 Outcome: The alias `ls` will be deleted from FRIDAY.
 
-![UnaliasCommandAfter.png](images/UnaliasCommandAfter.png)
+![UnaliasCommandAfter.png](images/UnaliasCommandAfter.PNG)
 
 ### Viewing aliases: `aliaslist`
 
