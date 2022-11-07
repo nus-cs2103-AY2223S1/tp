@@ -5,6 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.clinkedin.testutil.Assert.assertThrows;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.clinkedin.logic.parser.Prefix;
@@ -16,8 +19,7 @@ import seedu.clinkedin.model.tag.exceptions.DuplicateTagTypeException;
 import seedu.clinkedin.model.tag.exceptions.TagNotFoundException;
 import seedu.clinkedin.model.tag.exceptions.TagTypeNotFoundException;
 
-import java.util.HashMap;
-import java.util.Map;
+
 
 class UniqueTagTypeMapTest {
 
@@ -415,43 +417,74 @@ class UniqueTagTypeMapTest {
     }
 
     @Test
-    void getPrefixMap() {
+    public void equals_same_returnsTrue() {
+        TagType tagType1 = new TagType("Skills", new Prefix("st/"));
+        TagType tagType2 = new TagType("Skills", new Prefix("st/"));
+        Tag tag1 = new Tag("Java");
+        Tag tag2 = new Tag("Java");
+        uniqueTagTypeMap.mergeTag(tagType1, tag1);
+
+        UniqueTagTypeMap otherUniqueTagTypeMap = new UniqueTagTypeMap();
+        otherUniqueTagTypeMap.mergeTag(tagType2, tag2);
+
+        assertTrue(uniqueTagTypeMap.equals(otherUniqueTagTypeMap));
     }
 
     @Test
-    void setPrefixMap() {
+    public void equals_notSameTagType_returnsFalse() {
+        TagType tagType1 = new TagType("Skills", new Prefix("st/"));
+        TagType tagType2 = new TagType("Degree", new Prefix("dt/"));
+        Tag tag1 = new Tag("Java");
+        Tag tag2 = new Tag("Java");
+        uniqueTagTypeMap.mergeTag(tagType1, tag1);
+
+        UniqueTagTypeMap otherUniqueTagTypeMap = new UniqueTagTypeMap();
+        otherUniqueTagTypeMap.mergeTag(tagType2, tag2);
+
+        assertFalse(uniqueTagTypeMap.equals(otherUniqueTagTypeMap));
     }
 
     @Test
-    void testEquals() {
-    }
+    public void equals_notSameTag_returnsFalse() {
+        TagType tagType1 = new TagType("Skills", new Prefix("st/"));
+        TagType tagType2 = new TagType("Skills", new Prefix("st/"));
+        Tag tag1 = new Tag("Java");
+        Tag tag2 = new Tag("JavaScript");
+        uniqueTagTypeMap.mergeTag(tagType1, tag1);
 
+        UniqueTagTypeMap otherUniqueTagTypeMap = new UniqueTagTypeMap();
+        otherUniqueTagTypeMap.mergeTag(tagType2, tag2);
 
-    @Test
-    void toStream() {
-    }
-
-    @Test
-    void getTagType() {
-    }
-
-    @Test
-    void testToString() {
+        assertFalse(uniqueTagTypeMap.equals(otherUniqueTagTypeMap));
     }
 
     @Test
-    void getPrefixFromTagType() {
+    public void isEmpty_emptyMap_returnsTrue() {
+        assertTrue(uniqueTagTypeMap.isEmpty());
     }
 
     @Test
-    void getTagTypeFromPrefix() {
+    public void isEmpty_nonEmptyMap_returnsFalse() {
+        TagType tagType = new TagType("Skills", new Prefix("st/"));
+        Tag tag = new Tag("Java");
+        uniqueTagTypeMap.mergeTag(tagType, tag);
+        assertFalse(uniqueTagTypeMap.isEmpty());
     }
 
     @Test
-    void isEmpty() {
+    public void copy_deepcopy_success() {
+        TagType tagType = new TagType("Skills", new Prefix("st/"));
+        Tag tag = new Tag("Java");
+        uniqueTagTypeMap.mergeTag(tagType, tag);
+        UniqueTagTypeMap copy = uniqueTagTypeMap.copy();
+        assertFalse(uniqueTagTypeMap == copy);
+        for (TagType t : uniqueTagTypeMap) {
+            assertFalse(uniqueTagTypeMap.getTagList(t) == copy.getTagList(t));
+        }
     }
 
     @Test
-    void isExist() {
+    public void isExist_nullTagType_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> UniqueTagTypeMap.isExist(null));
     }
 }

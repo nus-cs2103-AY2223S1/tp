@@ -292,7 +292,10 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
     public Stream<TagType> toStream() {
         return StreamSupport.stream(this.spliterator(), false);
     }
-    public static TagType getTagType(Prefix pref) {
+    public static TagType getTagType(Prefix pref) throws PrefixNotFoundException {
+        if (!prefixMap.containsKey(pref)) {
+            throw new PrefixNotFoundException();
+        }
         return prefixMap.get(pref).copy();
     }
     @Override
@@ -327,6 +330,7 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
     }
 
     public static boolean isExist(String otherTagType) {
+        requireNonNull(otherTagType);
         return prefixMap.values().stream().anyMatch(tagType -> tagType.getTagTypeName().equals(otherTagType));
     }
 
