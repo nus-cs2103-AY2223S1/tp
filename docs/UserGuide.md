@@ -64,34 +64,36 @@ Welcome HR executives and Department Heads! Coydir is a desktop app to efficient
 ###Symbols and Syntax
 Here are some symbols to look out for while using this guide:
 
-| Symbol               | Meaning                                      | 
-|----------------------|----------------------------------------------|
+| Symbol               | Meaning                                      |
+| -------------------- | -------------------------------------------- |
 | `code`               | Text relevant to commands or name of a file. |
 | :information source: | Information that is useful to take note of.  |
 | :bulb:               | Tips for Coydir Users.                       |
 | :exclamation:        | Be wary and proceed with caution.            |
 
 ### Navigating the User Guide
-This document might look daunting at first! But fear not, in this section, you will learn how to use 
+
+This document might look daunting at first! But fear not, in this section, you will learn how to use
 this user guide like a professional.
 
-####Interested in how to setup? 
+#### Interested in how to setup?
 
 You can head over to [Quick Start](#quick-start) to install and run Coydir.
 
-####Interested in what Coydir can do?
+#### Interested in what Coydir can do?
 
-You can head over to [Features](#features) to learn how to use the features 
+You can head over to [Features](#features) to learn how to use the features
 offered in Coydir.
 
-####Have some questions that you are unsure of?
-You can head over to [FAQ](#faq) to view some frequently asked questions to get your answer. 
-However, if your question is not answered in the _FAQ_, you can always contact us at _coydir@gmail.com_, and 
+#### Have some questions that you are unsure of?
+
+You can head over to [FAQ](#faq) to view some frequently asked questions to get your answer.
+However, if your question is not answered in the _FAQ_, you can always contact us at _coydir@gmail.com_, and
 we will be happy to answer you.
 
-####Just want a quick overview of all the features Coydir can offer?
-You can head over to [Command Summary](#command-summary) for a quick look of all the commands you can use.
+#### Just want a quick overview of all the features Coydir can offer?
 
+You can head over to [Command Summary](#command-summary) for a quick look of all the commands you can use.
 
 ### The User Interface
 
@@ -392,7 +394,7 @@ Note: You can export this to `.csv`.
    ![](images/batch-add-images/movingFile.png)
 
 _If you are a new user (have not run any command yet), you will not see the `data` folder.
-You can run the [`clear` command](#clearing-the-data--clear) to remove the sample employees first.
+You can run the [`clear` command](#clearing-the-data-clear) to remove the sample employees first.
 After this, you should be able to see the `data` folder._
 
 #### Step 3 (Running CSV file) :
