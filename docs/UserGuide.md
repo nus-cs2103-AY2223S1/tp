@@ -188,8 +188,11 @@ The app comes with some sample patients by default. Type `clear` in the command 
 * Indices for patient attributes (e.g. `TASK_INDEX`, `CONDITION_INDEX`, `TAG_INDEX`, etc.) refers to the index number shown in the attribute list of a patient.<br>
   e.g. `TASK_INDEX` refers to the index number show in the task list of a patient.
 
+* The `|` character is used as a parameter separator in an attribute.
+  e.g. in `m/MEDICATION_TYPE | DOSAGE`, the `|` character is used to separate `MEDICATION_TYPE` and `DOSAGE`.
+
 * Parameters in square brackets and angle brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
   e.g. `d/TASK_DESCRIPTION | <DATE TIME> | <INTERVAL TIME_PERIOD>` can be used as `d/task 1` or `d/task 1 | 22-3-22 1800`.
 
 * Parameters with `…` after them can be used multiple times, including zero times.<br>
@@ -249,7 +252,7 @@ Example: `johndoe@gmail.com`
 
 #### `a/ADDRESS`
 
-`ADDRESS` accepts any values.
+`ADDRESS` accepts any values, excluding prefixes.
 
 `ADDRESS` is specified by a prefix `a/`.
 
@@ -259,7 +262,7 @@ Example:`a/John street, block 123, #01-01`
 
 #### `t/TAG`
 
-`TAG` accepts any values.
+`TAG` accepts any values, excluding prefixes.
 
 `TAG` is specified by a prefix `t/`, and its index by a flag `-t`.
 
@@ -269,7 +272,7 @@ Example:`t/12-A nursing home`
 
 The task parameter has the following constraints:
 
-* `TASK_DESCRIPTION` accepts any values.
+* `TASK_DESCRIPTION` accepts any values, excluding prefixes and `|` separators.
 * `DATE TIME` should be in the format of `DD-MM-YY` or `DD-MM-YY HHMM`. <br>
    e.g. `2-7-22 1345`, `09-4-22`, `08-06-22 0900`, `7-06-22 2130` and `28-10-22` are all valid `DATE TIME`.
 * `INTERVAL TIME_PERIOD` should be in the format of `X day(s)/week(s)/month(s)/year(s)` where `X` is a positive integer.
@@ -280,7 +283,7 @@ Example: `d/Take CT scan | 23-11-22 1530 | 2 months`
 
 #### `c/CONDITION`
 
-`CONDITION` accepts any values.
+`CONDITION` accepts any values, excluding prefixes.
 
 `CONDITION` is specified by a prefix `c/`, and its index by a flag `-c`.
 
@@ -288,7 +291,7 @@ Example:`c/Parkinson's disease`
 
 #### `m/MEDICATION_TYPE | DOSAGE`
 
-`MEDICATION_TYPE` accepts any values.
+`MEDICATION_TYPE` accepts any values, excluding prefixes and `|` separators.
 `DOSAGE` should only contain alphanumeric characters, decimal points and spaces.
 
 `MEDICATION` is specified by a prefix `m/`, and its index by a flag `-m`.
@@ -297,7 +300,7 @@ Example:`m/Amoxicillin | 0.5g every 8 hours`
 
 #### `r/REMARK`
 
-`REMARK` accepts any values.
+`REMARK` accepts any values, excluding prefixes.
 
 `REMARK` is specified by a prefix `r/`, and its index by a flag `-r`.
 
@@ -618,7 +621,7 @@ Format: **`add`** `-p PATIENT_INDEX d/TASK_DESCRIPTION | <DATE TIME> | <INTERVAL
 * Note that tasks are automatically sorted in chronological order upon being added. <br> 
   e.g. If the patient already contains tasks on `24-10-22` and `27-10-22`, the new task will be the 2nd task for the patient after the one on `24-10-22`.
 * If the day portion of the date exceeds the last day of that calendar month, it would default to the last day of the month. <br>
-  e.g `31-4-22` will be automatically converted to `30-4-22` or `30-2-20` will be converted to `29-2-20` since 2020 is a leap year.
+  e.g. `31-4-22` will be automatically converted to `30-4-22` or `30-2-20` will be converted to `29-2-20` since 2020 is a leap year.
 
 </div>
 
@@ -1046,7 +1049,7 @@ Format: **`find`** `[KEYWORD]… [xyz/XYZ_KEYWORD]…`
 
 * `xyz/XYZ_KEYWORD` refers to a keyword for a specific attribute with prefix `xyz`.
 * There should be at least one parameter for the command.
-* The search is case-insensitive. e.g `hans` will match `Hans`.
+* The search is case-insensitive. e.g. `hans` will match `Hans`.
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`.
 * Partial words can be matched e.g. `Han` will match `Hans`.
 * Patients matching at least one keyword in every attribute will be returned (i.e. AND search for different attributes, OR search for same attribute). In more details,
