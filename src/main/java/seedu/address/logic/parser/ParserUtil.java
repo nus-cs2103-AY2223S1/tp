@@ -184,6 +184,9 @@ public class ParserUtil {
             LocalDate date = parseDate(trimmedClassDatetime.substring(0, 10));
             LocalTime startTime = parseTime(trimmedClassDatetime.substring(11, 15));
             LocalTime endTime = parseTime(trimmedClassDatetime.substring(16));
+            if (Class.isFullDayClass(startTime, endTime)) {
+                throw new ParseException(Class.INVALID_FULL_DAY_CLASS_ERROR_MESSAGE);
+            }
             if (!Class.isValidDuration(startTime, endTime)) {
                 throw new ParseException(Class.INVALID_DURATION_ERROR_MESSAGE);
             }

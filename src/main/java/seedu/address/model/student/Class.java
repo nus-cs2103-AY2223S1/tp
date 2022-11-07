@@ -26,6 +26,7 @@ public class Class {
     public static final String INVALID_DATETIME_ERROR_MESSAGE =
             INVALID_DATE_ERROR_MESSAGE + ".\n" + INVALID_TIME_ERROR_MESSAGE;
     public static final String INVALID_DURATION_ERROR_MESSAGE = "EndTime must be after StartTime";
+    public static final String INVALID_FULL_DAY_CLASS_ERROR_MESSAGE = "A class cannot be 24-hour long";
     public static final String VALIDATION_DATETIME_REGEX = "[0-9]{4}-[0-9]{2}-[0-9]{2}";
     public static final String VALIDATION_TIME_REGEX = "[0-9]{4}";
     public static final String VALIDATION_STANDARD_CLASS_REGEX = VALIDATION_DATETIME_REGEX
@@ -300,6 +301,17 @@ public class Class {
             return !startTime.equals(endTime) || startTime.getHour() != 0;
         }
         return endTime.isAfter(startTime) && !endTime.equals(startTime);
+    }
+
+    /**
+     * Returns true if class is a 24-hour class.
+     *
+     * @param startTime LocalTime object.
+     * @param endTime LocalTime object.
+     * @return true if both startTime and endTime are 0000.
+     */
+    public static boolean isFullDayClass(LocalTime startTime, LocalTime endTime) {
+        return endTime.getHour() == 0 && endTime.getMinute() == 0 && startTime.getHour() == 0 && startTime.getMinute() == 0;
     }
 
     @Override
