@@ -6,22 +6,23 @@ participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":TruthTableParser" as TruthTableParser LOGIC_COLOR
 participant "<<class>>\nArgumentTokenizer" as ArgumentTokenizer LOGIC_COLOR
 participant ":CommandLine" as CommandLine LOGIC_COLOR
-participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
+participant "d:AddLinkCommand" as AddLinkCommand LOGIC_COLOR
 participant "result:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
+participant ":Link" as Link MODEL_COLOR
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute(\n"delete person 1")
+[-> LogicManager : execute(\n"add link -n google -l google.com")
 activate LogicManager
 
-LogicManager -> TruthTableParser : parseCommand(\n"delete person 1")
+LogicManager -> TruthTableParser : parseCommand(\n"add link -n google -l google.com")
 activate TruthTableParser
 
 
-TruthTableParser -> ArgumentTokenizer : tokenize(\n"delete person 1")
+TruthTableParser -> ArgumentTokenizer : tokenize(\n"add link -n google -l google.com")
 activate ArgumentTokenizer
 
 ArgumentTokenizer --> TruthTableParser : args
@@ -30,39 +31,46 @@ deactivate ArgumentTokenizer
 TruthTableParser -> CommandLine : parseArgs(args)
 activate CommandLine
 
-create DeleteCommand
-CommandLine -> DeleteCommand
-activate DeleteCommand
+create AddLinkCommand
+CommandLine -> AddLinkCommand
+activate AddLinkCommand
 
-DeleteCommand --> CommandLine : d
-deactivate DeleteCommand
+AddLinkCommand --> CommandLine : a
+deactivate AddLinkCommand
 
-CommandLine --> TruthTableParser : d
+CommandLine --> TruthTableParser : a
 deactivate CommandLine
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 ArgumentTokenizer -[hidden]-> TruthTableParser
 
-TruthTableParser --> LogicManager : d
+TruthTableParser --> LogicManager : a
 deactivate TruthTableParser
 
-LogicManager -> DeleteCommand : execute()
-activate DeleteCommand
+LogicManager -> AddLinkCommand : execute()
+activate AddLinkCommand
 
-DeleteCommand -> Model : deletePerson(1)
+create Link
+AddLinkCommand -> Link
+activate Link
+
+Link --> AddLinkCommand : toAdd
+deactivate Link
+
+AddLinkCommand -> Model : addLink()
 activate Model
 
-Model --> DeleteCommand
+Model --> AddLinkCommand
 deactivate Model
 
 create CommandResult
-DeleteCommand -> CommandResult
+AddLinkCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> DeleteCommand
+CommandResult --> AddLinkCommand
 deactivate CommandResult
 
-DeleteCommand --> LogicManager : result
-deactivate DeleteCommand
+AddLinkCommand --> LogicManager : result
+deactivate AddLinkCommand
 
 [<--LogicManager
 deactivate LogicManager

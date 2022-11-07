@@ -7,32 +7,22 @@ skinparam classBackgroundColor LOGIC_COLOR
 Class "{abstract}\nCommand" as Command
 Class XYZCommand
 
-package "Parser classes"{
-Class "<<interface>>\nParser" as Parser
+Class "<<interface>>\nCommandLine.ITypeConverter" as ITypeConverter #FFA500
 Class TruthTableParser
-Class XYZCommandParser
-Class CliSyntax
 Class ParserUtil
-Class ArgumentMultimap
 Class ArgumentTokenizer
-Class Prefix
-}
+Class CommandLine #FFA500
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> TruthTableParser
 
-TruthTableParser .down.> XYZCommandParser: creates >
+TruthTableParser .down.> ArgumentTokenizer
+TruthTableParser .down.> CommandLine
+CommandLine .down.> ABCConverter
 
-XYZCommandParser ..> XYZCommand : creates >
+CommandLine ..> XYZCommand : creates >
 TruthTableParser ..> Command : returns >
-XYZCommandParser .up.|> Parser
-XYZCommandParser ..> ArgumentMultimap
-XYZCommandParser ..> ArgumentTokenizer
-ArgumentTokenizer .left.> ArgumentMultimap
-XYZCommandParser ..> CliSyntax
-CliSyntax ..> Prefix
-XYZCommandParser ..> ParserUtil
-ParserUtil .down.> Prefix
-ArgumentTokenizer .down.> Prefix
+ABCConverter ..> ParserUtil
+ABCConverter -up-|> ITypeConverter
 XYZCommand -up-|> Command
 @enduml
