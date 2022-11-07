@@ -9,6 +9,10 @@ import static seedu.clinkedin.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.DoubleSummaryStatistics;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -16,6 +20,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.clinkedin.commons.core.GuiSettings;
 import seedu.clinkedin.logic.commands.exceptions.CommandException;
+import seedu.clinkedin.logic.parser.Prefix;
 import seedu.clinkedin.model.AddressBook;
 import seedu.clinkedin.model.Model;
 import seedu.clinkedin.model.ReadOnlyAddressBook;
@@ -125,6 +130,31 @@ public class AddCommandTest {
         }
 
         @Override
+        public void commitAddressBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void undoAddressBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void redoAddressBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean canUndoAddressBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean canRedoAddressBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasPerson(Person person) {
             throw new AssertionError("This method should not be called.");
         }
@@ -154,6 +184,17 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        /**
+         * Updates the comparator of the sorted person list to sort by the given
+         * {@code comparator}
+         *
+         * @param comparator comparator to update sorted persons list with.
+         */
+        @Override
+        public void updateSort(Comparator<Person> comparator) {
+            throw new AssertionError("This method should not be called.");
+        }
+
         @Override
         public void deleteTagTypeForAllPerson(TagType toDelete) {
             throw new AssertionError("This method should not be called.");
@@ -166,6 +207,26 @@ public class AddCommandTest {
 
         @Override
         public int getFilteredNumberOfPersons() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public DoubleSummaryStatistics getStats() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public HashMap<String, Integer> getRatingCount() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setPrefixMap(Map<Prefix, TagType> prefixMap) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addPersonWithoutCommitting(Person person) {
             throw new AssertionError("This method should not be called.");
         }
     }

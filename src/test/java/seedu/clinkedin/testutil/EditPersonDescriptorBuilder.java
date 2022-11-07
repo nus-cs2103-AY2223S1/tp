@@ -11,6 +11,7 @@ import seedu.clinkedin.model.person.Name;
 import seedu.clinkedin.model.person.Note;
 import seedu.clinkedin.model.person.Person;
 import seedu.clinkedin.model.person.Phone;
+import seedu.clinkedin.model.person.Rating;
 import seedu.clinkedin.model.person.Status;
 import seedu.clinkedin.model.person.UniqueTagTypeMap;
 import seedu.clinkedin.model.tag.Tag;
@@ -47,6 +48,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setNewTagTypeMap(tagTypeMap);
         descriptor.setStatus(person.getStatus());
         descriptor.setNote(person.getNote());
+        descriptor.setRating(person.getRating());
     }
 
     /**
@@ -92,7 +94,7 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Status} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withStatus(String status) {
         descriptor.setStatus(new Status(status));
@@ -100,11 +102,22 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code EditPersonDescriptor} that we are
+     * Sets the {@code Note} of the {@code EditPersonDescriptor} that we are
      * building.
      */
     public EditPersonDescriptorBuilder withNote(String note) {
         descriptor.setNote(new Note(note));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Rating} of the {@code EditPersonDescriptor} that we are
+     * building.
+     * @param rating
+     * @return
+     */
+    public EditPersonDescriptorBuilder withRating(String rating) {
+        descriptor.setRating(new Rating(rating));
         return this;
     }
 

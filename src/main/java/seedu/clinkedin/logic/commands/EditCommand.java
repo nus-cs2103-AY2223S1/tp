@@ -2,62 +2,82 @@ package seedu.clinkedin.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_DEGREETAG;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_JOBTYPETAG;
+import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_LINK;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_RATING;
+import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_SKILLTAG;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_STATUS;
-import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.clinkedin.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 
 import seedu.clinkedin.commons.core.Messages;
 import seedu.clinkedin.commons.core.index.Index;
 import seedu.clinkedin.commons.util.CollectionUtil;
 import seedu.clinkedin.logic.commands.exceptions.CommandException;
 import seedu.clinkedin.model.Model;
+import seedu.clinkedin.model.link.Link;
 import seedu.clinkedin.model.person.Address;
 import seedu.clinkedin.model.person.Email;
 import seedu.clinkedin.model.person.Name;
 import seedu.clinkedin.model.person.Note;
 import seedu.clinkedin.model.person.Person;
 import seedu.clinkedin.model.person.Phone;
+import seedu.clinkedin.model.person.Rating;
 import seedu.clinkedin.model.person.Status;
 import seedu.clinkedin.model.person.UniqueTagTypeMap;
-import seedu.clinkedin.model.person.exceptions.TagTypeNotFoundException;
 import seedu.clinkedin.model.tag.TagType;
 import seedu.clinkedin.model.tag.UniqueTagList;
 import seedu.clinkedin.model.tag.exceptions.DuplicateTagException;
 import seedu.clinkedin.model.tag.exceptions.TagNotFoundException;
+import seedu.clinkedin.model.tag.exceptions.TagTypeNotFoundException;
 
 /**
- * Edits the details of an existing person in the clinkedin book.
+ * Edits the details of an existing person in the address book.
  */
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG] "
-            + "[" + PREFIX_STATUS + "STATUS] "
-            + "[" + PREFIX_NOTE + "NOTE]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified by the "
+            + "index number used in the displayed person list (atleast 1 detail to be edited must be provided).\n"
+            + "Parameters: \n- INDEX (must be a positive integer) "
+            + "[" + PREFIX_NAME + "NEW_NAME] "
+            + "[" + PREFIX_PHONE + "NEW_PHONE] "
+            + "[" + PREFIX_EMAIL + "NEW_EMAIL] "
+            + "[" + PREFIX_ADDRESS + "NEW_ADDRESS] \n "
+            + "[" + PREFIX_STATUS + "NEW_STATUS] "
+            + "[" + PREFIX_SKILLTAG + "OLD_SKILL_TAG-NEW_SKILL_TAG] (if tag type not deleted) \n "
+            + "[" + PREFIX_DEGREETAG + "OLD_DEGREE_TAG-NEW_DEGREE_TAG] (if tag type not deleted) "
+            + "[" + PREFIX_JOBTYPETAG + "OLD_JOB_TYPE_TAG-NEW_JOB_TYPE_TAG] (if tag type not deleted)\n "
+            + "[<custom_tag_prefix>/OLD_TAG-NEW_TAG] "
+            + "[" + PREFIX_NOTE + "NEW_NOTE] "
+            + "[" + PREFIX_RATING + "NEW_RATING] "
+            + "[" + PREFIX_LINK + "NEW_LINK]...\n"
+            + "Example: " + COMMAND_WORD + "1 "
+            + PREFIX_NAME + "John Doe "
+            + PREFIX_PHONE + "98765432 "
+            + PREFIX_EMAIL + "johnd@example.com "
+            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 \n "
+            + PREFIX_STATUS + "Application Pending "
+            + PREFIX_SKILLTAG + "Java "
+            + PREFIX_DEGREETAG + "Bachelors "
+            + PREFIX_JOBTYPETAG + "Internship "
+            + PREFIX_NOTE + "Experienced in DevOps. "
+            + PREFIX_RATING + "6 "
+            + PREFIX_LINK + "https://github.com/JohnDoe";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the clinkedin book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -86,7 +106,6 @@ public class EditCommand extends Command {
         try {
             Person personToEdit = lastShownList.get(index.getZeroBased());
             Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
-
             if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
                 throw new CommandException(MESSAGE_DUPLICATE_PERSON);
             }
@@ -117,15 +136,17 @@ public class EditCommand extends Command {
         original.setTagTypeMap(personToEditTags);
         UniqueTagTypeMap toEdit = editPersonDescriptor.getOldTagTypeMap().get();
         UniqueTagTypeMap editTo = editPersonDescriptor.getNewTagTypeMap().get();
-
         original.removeTags(toEdit);
         original.mergeTagTypeMap(editTo);
+
         UniqueTagTypeMap updatedTags = original;
-        Note updatednote = editPersonDescriptor.getNote().orElse(personToEdit.getNote());
+        Note updatedNote = editPersonDescriptor.getNote().orElse(personToEdit.getNote());
         Status updatedStatus = editPersonDescriptor.getStatus().orElse(personToEdit.getStatus());
+        Rating updatedRating = editPersonDescriptor.getRating().orElse(personToEdit.getRating());
+        Set<Link> updatedLinks = editPersonDescriptor.getLinks().orElse(personToEdit.getLinks());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedStatus,
-                updatednote);
+                updatedNote, updatedRating, updatedLinks);
     }
 
     @Override
@@ -159,6 +180,9 @@ public class EditCommand extends Command {
         private UniqueTagTypeMap newTagTypeMap = new UniqueTagTypeMap();
         private Status status;
         private Note note;
+        private Rating rating;
+
+        private Set<Link> links;
 
         public EditPersonDescriptor() {}
 
@@ -175,6 +199,8 @@ public class EditCommand extends Command {
             setNewTagTypeMap(toCopy.oldTagTypeMap);
             setStatus(toCopy.status);
             setNote(toCopy.note);
+            setRating(toCopy.rating);
+            setLinks(toCopy.links);
         }
 
         /**
@@ -184,7 +210,7 @@ public class EditCommand extends Command {
             if (!newTagTypeMap.isEmpty() || !oldTagTypeMap.isEmpty()) {
                 return true;
             }
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, status, note);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, status, note, rating, links);
         }
 
         public void setName(Name name) {
@@ -269,6 +295,22 @@ public class EditCommand extends Command {
             return (newTagTypeMap != null) ? Optional.of(newTagTypeMap) : Optional.empty();
         }
 
+        public Optional<Rating> getRating() {
+            return Optional.ofNullable(rating);
+        }
+
+        public void setRating(Rating rating) {
+            this.rating = rating;
+        }
+
+        public void setLinks(Set<Link> links) {
+            this.links = links;
+        }
+
+        public Optional<Set<Link>> getLinks() {
+            return Optional.ofNullable(links);
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -291,7 +333,11 @@ public class EditCommand extends Command {
                     && getOldTagTypeMap().equals(e.getOldTagTypeMap())
                     && getNewTagTypeMap().equals(e.getNewTagTypeMap())
                     && getStatus().equals(e.getStatus())
-                    && getNote().equals(e.getNote());
+                    && getNote().equals(e.getNote())
+                    && getRating().equals(e.getRating())
+                    && getLinks().equals(e.getLinks());
         }
+
+
     }
 }

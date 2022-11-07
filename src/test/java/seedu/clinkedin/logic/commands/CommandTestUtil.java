@@ -7,6 +7,7 @@ import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_RATING;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_SKILLTAG;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.clinkedin.testutil.Assert.assertThrows;
@@ -19,6 +20,7 @@ import seedu.clinkedin.commons.core.index.Index;
 import seedu.clinkedin.logic.commands.exceptions.CommandException;
 import seedu.clinkedin.model.AddressBook;
 import seedu.clinkedin.model.Model;
+import seedu.clinkedin.model.VersionedAddressBook;
 import seedu.clinkedin.model.person.NameContainsKeywordsPredicate;
 import seedu.clinkedin.model.person.Person;
 import seedu.clinkedin.testutil.EditPersonDescriptorBuilder;
@@ -42,7 +44,8 @@ public class CommandTestUtil {
     public static final String VALID_STATUS_BOB = "Rejected";
     public static final String VALID_NOTE_AMY = "She is strong at Python.";
     public static final String VALID_NOTE_BOB = "He is not strong at Python.";
-
+    public static final String VALID_RATING_AMY = "6";
+    public static final String VALID_RATING_BOB = "4";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -58,6 +61,8 @@ public class CommandTestUtil {
     public static final String STATUS_DESC_BOB = " " + PREFIX_STATUS + VALID_STATUS_BOB;
     public static final String NOTE_DESC_AMY = " " + PREFIX_NOTE + VALID_NOTE_AMY;
     public static final String NOTE_DESC_BOB = " " + PREFIX_NOTE + VALID_NOTE_BOB;
+    public static final String RATING_DESC_AMY = " " + PREFIX_RATING + VALID_RATING_AMY;
+    public static final String RATING_DESC_BOB = " " + PREFIX_RATING + VALID_RATING_BOB;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -65,6 +70,7 @@ public class CommandTestUtil {
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_SKILLTAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_STATUS_DESC = " " + PREFIX_STATUS + ""; // '@' not allowed in status
+    public static final String INVALID_RATING_DESC = " " + PREFIX_RATING + "4.9";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -75,10 +81,11 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withTags(VALID_TAG_FRIEND).withStatus(VALID_STATUS_AMY).build();
+                .withTags(VALID_TAG_FRIEND).withStatus(VALID_STATUS_AMY).withRating(VALID_RATING_AMY).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withStatus(VALID_STATUS_BOB).build();
+                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withStatus(VALID_STATUS_BOB).withRating(VALID_RATING_BOB)
+                .build();
     }
 
     /**
@@ -116,7 +123,7 @@ public class CommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
+        AddressBook expectedAddressBook = new VersionedAddressBook(actualModel.getAddressBook());
         List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedAddressBook, actualModel.getAddressBook());

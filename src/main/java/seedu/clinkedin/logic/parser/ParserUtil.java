@@ -3,26 +3,38 @@ package seedu.clinkedin.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.clinkedin.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.clinkedin.commons.core.index.Index;
 import seedu.clinkedin.commons.util.StringUtil;
+import seedu.clinkedin.logic.parser.exceptions.InvalidExtensionException;
+import seedu.clinkedin.logic.parser.exceptions.InvalidPersonException;
 import seedu.clinkedin.logic.parser.exceptions.ParseException;
+import seedu.clinkedin.model.link.Link;
 import seedu.clinkedin.model.person.Address;
 import seedu.clinkedin.model.person.Email;
 import seedu.clinkedin.model.person.Name;
 import seedu.clinkedin.model.person.Note;
+import seedu.clinkedin.model.person.Person;
 import seedu.clinkedin.model.person.Phone;
+import seedu.clinkedin.model.person.Rating;
 import seedu.clinkedin.model.person.Status;
 import seedu.clinkedin.model.person.UniqueTagTypeMap;
 import seedu.clinkedin.model.tag.Tag;
 import seedu.clinkedin.model.tag.TagType;
 import seedu.clinkedin.model.tag.UniqueTagList;
+import seedu.clinkedin.model.tag.exceptions.DuplicateTagException;
+import seedu.clinkedin.model.tag.exceptions.TagTypeNotFoundException;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -30,6 +42,14 @@ import seedu.clinkedin.model.tag.UniqueTagList;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+
+    /**
+     * Types of file extensions supported for export and/or import.
+     */
+    public enum FileType {
+        CSV,
+        JSON
+    }
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -75,7 +95,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String clinkedin} into an {@code Address}.
+     * Parses a {@code String address} into an {@code Address}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code clinkedin} is invalid.
@@ -146,6 +166,65 @@ public class ParserUtil {
     public static Note parseNote(String note) throws ParseException {
         requireNonNull(note);
         return new Note(note.trim());
+    }
+
+    /**
+     * Parses a {@code String rating} into a {@code Rating}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code rating} is invalid.
+     */
+    public static Rating parseRating(String rating) throws ParseException {
+        requireNonNull(rating);
+        String trimmedRating = rating.trim();
+        if (!Rating.isValidRatingStr(trimmedRating)) {
+            throw new ParseException(Rating.MESSAGE_CONSTRAINTS);
+        }
+        return new Rating(trimmedRating);
+    }
+
+    /**
+     * Parses a {@code String link} into a {@code Link}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code link} is invalid.
+     */
+    public static Link parseLink(String link) throws ParseException {
+        requireNonNull(link);
+        String trimmedLink = link.trim();
+        try {
+            URL url = new URL(trimmedLink);
+            return new Link(url);
+        } catch (MalformedURLException m) {
+            throw new ParseException(m.getMessage());
+        }
+    }
+
+    /**
+     * Parses {@code Collection<String> links} into a {@code Set<Link>}.
+     */
+    public static Set<Link> parseLinks(Collection<String> links) throws ParseException {
+        requireNonNull(links);
+        final Set<Link> linkSet = new HashSet<>();
+        for (String tagName : links) {
+            linkSet.add(parseLink(tagName));
+        }
+        return linkSet;
+    }
+
+    /**
+     * Parses {@code Collection<String> links} into a {@code Set<Link>} if {@code links} is non-empty.
+     * If {@code links} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<Link>} containing zero link.
+     */
+    public static Optional<Set<Link>> parseLinksForEdit(Collection<String> links) throws ParseException {
+        assert links != null;
+
+        if (links.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> linkSet = links.size() == 1 && links.contains("") ? Collections.emptySet() : links;
+        return Optional.of(ParserUtil.parseLinks(linkSet));
     }
 
     /**
@@ -221,10 +300,16 @@ public class ParserUtil {
     public static Prefix parsePrefix(String prefix) throws ParseException {
         requireNonNull(prefix);
         String trimmedPrefix = prefix.trim();
-        if (!Prefix.isValidPrefixName(trimmedPrefix)) {
+        if (!Prefix.isValidPrefixName(trimmedPrefix + "/")) {
             throw new ParseException(Prefix.MESSAGE_CONSTRAINTS);
         }
-        return new Prefix(trimmedPrefix + "/");
+        Prefix p;
+        try {
+            p = new Prefix(trimmedPrefix + "/");
+        } catch (IllegalArgumentException iae) {
+            throw new ParseException(iae.getMessage());
+        }
+        return p;
     }
 
     /**
@@ -298,4 +383,135 @@ public class ParserUtil {
         return noteSet;
     }
 
+    /**
+     * Gets {@code FileType} from {@code String filePath}
+     */
+    public static FileType getFileType(String filePath) throws InvalidExtensionException {
+        requireNonNull(filePath);
+        String trimmedFilePath = filePath.trim();
+
+        int periodIndex = trimmedFilePath.lastIndexOf(".");
+        if (periodIndex == -1) {
+            throw new InvalidExtensionException();
+        }
+        String extension = trimmedFilePath.substring(periodIndex + 1).trim().toUpperCase();
+        FileType fileType;
+        try {
+            fileType = FileType.valueOf(extension);
+        } catch (IllegalArgumentException e) {
+            throw new InvalidExtensionException();
+        }
+
+        return fileType;
+    }
+
+    /**
+     * Parses a person.
+     */
+    public static Person parsePerson(ArrayList<String[]> person) throws InvalidPersonException {
+        boolean atleastOne = person.stream().allMatch(detail -> detail.length >= 1);
+        if (!atleastOne) {
+            throw new InvalidPersonException();
+        }
+        Name name = null;
+        Phone phone = null;
+        Email email = null;
+        Address address = null;
+        Status status = null;
+        Note note = null;
+        UniqueTagTypeMap tagTypeMap = new UniqueTagTypeMap();
+        Rating rating = null;
+        Set<Link> links = new HashSet<>();
+
+        for (String[] detail: person) {
+            String check = detail[0];
+            String tagType = null;
+            if (check.startsWith("Tag:")) {
+                tagType = check.substring(4);
+                check = "Tag:";
+            } else if (!check.startsWith("Links") && detail.length != 2) {
+                throw new InvalidPersonException("More arguments found than possible!");
+            }
+            try {
+                switch (check) {
+                case "Name":
+                    name = new Name(detail[1]);
+                    break;
+                case "Phone":
+                    phone = new Phone(detail[1]);
+                    break;
+                case "Email":
+                    email = new Email(detail[1]);
+                    break;
+                case "Address":
+                    address = new Address(detail[1]);
+                    break;
+                case "Status":
+                    status = new Status(detail[1]);
+                    break;
+                case "Note":
+                    note = new Note(detail[1]);
+                    break;
+                case "Tag:":
+                    String[] prefixTagNamePair = tagType.split("-", 2);
+                    if (prefixTagNamePair.length != 2) {
+                        throw new InvalidPersonException();
+                    }
+                    Prefix p = new Prefix(prefixTagNamePair[0]);
+                    TagType tagTypeName = new TagType(prefixTagNamePair[1], p);
+                    ParserUtil.addTags(tagTypeMap, tagTypeName, detail);
+                    break;
+                case "Rating":
+                    rating = new Rating(detail[1]);
+                    break;
+                case "Links":
+                    for (int i = 1; i < detail.length; i++) {
+                        try {
+                            URL url = new URL(detail[i]);
+                            links.add(new Link(url));
+                        } catch (MalformedURLException m) {
+                            throw new InvalidPersonException();
+                        }
+                    }
+                    break;
+                default:
+                    throw new InvalidPersonException("Invalid attribute found!");
+                }
+            } catch (IllegalArgumentException | DuplicateTagException | TagTypeNotFoundException e) {
+                throw new InvalidPersonException();
+            }
+        }
+        boolean foundAll = checkAllNonNull(name, phone, email, address, tagTypeMap, status, note, rating, links);
+        if (!foundAll) {
+            throw new InvalidPersonException("All attributes not present!");
+        }
+        return new Person(name, phone, email, address, tagTypeMap, status, note, rating, links);
+    }
+
+    private static void addTags(UniqueTagTypeMap tagTypeMap, TagType tagType, String[] tags) {
+        for (int i = 1; i < tags.length; i++) {
+            tagTypeMap.mergeTag(tagType, new Tag(tags[i]));
+        }
+    }
+    private static boolean checkAllNonNull(Name name, Phone phone, Email email,
+                                           Address address, UniqueTagTypeMap tagTypeMap, Status status,
+                                           Note note, Rating rating, Set<Link> links) {
+        if (name == null || phone == null || email == null || address == null || tagTypeMap == null || status == null
+                || note == null || rating == null || links == null) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Parses {@code Collection<String> ratings} into a {@code Set<Rating>}.
+     */
+    public static Set<Rating> parseRatings(List<String> ratings) throws ParseException {
+        requireNonNull(ratings);
+        final Set<Rating> ratingSet = new HashSet<>();
+        for (String ratingName : ratings) {
+            ratingSet.add(parseRating(ratingName));
+        }
+        return ratingSet;
+    }
 }

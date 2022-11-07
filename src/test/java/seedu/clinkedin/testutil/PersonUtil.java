@@ -5,6 +5,7 @@ import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_RATING;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_STATUS;
 
 import seedu.clinkedin.logic.commands.AddCommand;
@@ -43,6 +44,9 @@ public class PersonUtil {
         //            s -> sb.append(PREFIX_TAG + s.tagName + " ")
         //        );
         sb.append(PREFIX_STATUS + person.getStatus().status + " ");
+        sb.append(PREFIX_NOTE + person.getNote().value + " ");
+        sb.append(PREFIX_RATING + person.getRating().toString());
+
         return sb.toString();
     }
 
@@ -61,6 +65,7 @@ public class PersonUtil {
         }
         descriptor.getStatus().ifPresent(status -> sb.append(PREFIX_STATUS).append(status.status).append(" "));
         descriptor.getNote().ifPresent(note -> sb.append(PREFIX_NOTE).append(note.value).append(" "));
+        descriptor.getRating().ifPresent(rating -> sb.append(PREFIX_RATING).append(rating.toString()).append(" "));
         return sb.toString();
     }
 }

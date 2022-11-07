@@ -2,8 +2,10 @@ package seedu.clinkedin.storage;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -11,17 +13,20 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javafx.collections.ObservableMap;
 import seedu.clinkedin.commons.exceptions.IllegalValueException;
+import seedu.clinkedin.model.link.Link;
 import seedu.clinkedin.model.person.Address;
 import seedu.clinkedin.model.person.Email;
 import seedu.clinkedin.model.person.Name;
 import seedu.clinkedin.model.person.Note;
 import seedu.clinkedin.model.person.Person;
 import seedu.clinkedin.model.person.Phone;
+import seedu.clinkedin.model.person.Rating;
 import seedu.clinkedin.model.person.Status;
 import seedu.clinkedin.model.person.UniqueTagTypeMap;
 import seedu.clinkedin.model.tag.Tag;
 import seedu.clinkedin.model.tag.TagType;
 import seedu.clinkedin.model.tag.UniqueTagList;
+import seedu.clinkedin.model.tag.exceptions.TagTypeNotFoundException;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -34,27 +39,30 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
-    private final List<List<JsonAdaptedTag>> tags = new ArrayList<>();
+    private final List<List<JsonAdaptedTag>> tags;
     private final String status;
     private final String note;
+    private final String rating;
+    private final List<JsonAdaptedLink> links;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("clinkedin") String address,
+            @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("tags") List<List<JsonAdaptedTag>> tags, @JsonProperty("status") String status,
-            @JsonProperty("note") String note) {
+            @JsonProperty("note") String note, @JsonProperty("rating") String rating,
+            @JsonProperty("links") List<JsonAdaptedLink> links) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        if (tags != null) {
-            this.tags.addAll(tags);
-        }
+        this.tags = new ArrayList<>(tags);
         this.note = note;
         this.status = status;
+        this.rating = rating;
+        this.links = new ArrayList<>(links);
     }
 
     /**
@@ -65,6 +73,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        tags = new ArrayList<>();
         ObservableMap<TagType, UniqueTagList> map = source.getTags();
         for (TagType t: map.keySet()) {
             Tag tagtype = new Tag(t.getTagTypeName());
@@ -76,6 +85,9 @@ class JsonAdaptedPerson {
         }
         status = source.getStatus().status;
         note = source.getNote().value;
+        rating = source.getRating().toString();
+        links = new ArrayList<>();
+        links.addAll(source.getLinks().stream().map(JsonAdaptedLink::new).collect(Collectors.toList()));
     }
 
     /**
@@ -84,12 +96,20 @@ class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
+        if (tags == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "tags"));
+        }
         final Map<TagType, UniqueTagList> personTags = new HashMap<>();
 
         for (List<JsonAdaptedTag> tags : tags) {
             String tagType = tags.get(0).toModelType().toString();
             tagType = tagType.substring(1, tagType.length() - 1);
-            TagType t = new TagType(tagType, UniqueTagTypeMap.getPrefixFromTagType(tagType));
+            TagType t;
+            try {
+                t = new TagType(tagType, UniqueTagTypeMap.getPrefixFromTagType(tagType));
+            } catch (TagTypeNotFoundException tte) {
+                throw new IllegalValueException(tte.getMessage());
+            }
             List<Tag> tagList = new ArrayList<>();
             for (JsonAdaptedTag jsonAdaptedTag : tags.subList(1, tags.size())) {
                 Tag toModelType = jsonAdaptedTag.toModelType();
@@ -98,6 +118,14 @@ class JsonAdaptedPerson {
             UniqueTagList uniqueTagList = new UniqueTagList();
             uniqueTagList.setTags(tagList);
             personTags.put(t, uniqueTagList);
+        }
+
+        if (links == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "links"));
+        }
+        final List<Link> personLinks = new ArrayList<>();
+        for (JsonAdaptedLink link : links) {
+            personLinks.add(link.toModelType());
         }
 
         if (name == null) {
@@ -148,7 +176,15 @@ class JsonAdaptedPerson {
         }
         final Note modelNote = new Note(note);
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelStatus, modelNote);
+        if (rating == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Rating.class.getSimpleName()));
+        }
+        final Rating modelRating = new Rating(rating);
+
+        final Set<Link> modelLinks = new HashSet<>(personLinks);
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelStatus, modelNote,
+                modelRating, modelLinks);
     }
 
 }

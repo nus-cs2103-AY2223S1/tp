@@ -5,6 +5,7 @@ import static seedu.clinkedin.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javafx.collections.FXCollections;
@@ -215,5 +216,20 @@ public class UniqueTagList implements Iterable<Tag> {
             return builder.toString();
         }
         return builder.substring(2);
+    }
+
+    public List<String> getAsList() {
+        return internalList.stream().map(tag -> tag.getTagName()).collect(Collectors.toList());
+    }
+
+    /**
+     * Returns a copy of the UniqueTagList.
+     */
+    public UniqueTagList copy() {
+        UniqueTagList clone = new UniqueTagList();
+        for (Tag t : this) {
+            clone.add(t.copy());
+        }
+        return clone;
     }
 }

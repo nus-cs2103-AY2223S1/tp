@@ -5,8 +5,8 @@ import static java.util.Objects.requireNonNull;
 import seedu.clinkedin.logic.commands.exceptions.CommandException;
 import seedu.clinkedin.model.Model;
 import seedu.clinkedin.model.person.UniqueTagTypeMap;
-import seedu.clinkedin.model.person.exceptions.TagTypeNotFoundException;
 import seedu.clinkedin.model.tag.TagType;
+import seedu.clinkedin.model.tag.exceptions.TagTypeNotFoundException;
 
 /**
  * Deletes a specified tag type.
@@ -41,6 +41,8 @@ public class DeleteTagTypeCommand extends Command {
         }
 
         model.deleteTagTypeForAllPerson(toDelete);
+        model.setPrefixMap(UniqueTagTypeMap.getPrefixMap());
+        model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_DELETE_TAG_TYPE_SUCCESS, toDelete));
     }
 

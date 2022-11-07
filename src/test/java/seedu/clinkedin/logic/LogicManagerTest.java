@@ -8,6 +8,7 @@ import static seedu.clinkedin.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.clinkedin.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.clinkedin.logic.commands.CommandTestUtil.NOTE_DESC_AMY;
 import static seedu.clinkedin.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static seedu.clinkedin.logic.commands.CommandTestUtil.RATING_DESC_AMY;
 import static seedu.clinkedin.logic.commands.CommandTestUtil.STATUS_DESC_AMY;
 import static seedu.clinkedin.testutil.Assert.assertThrows;
 import static seedu.clinkedin.testutil.TypicalPersons.AMY;
@@ -82,7 +83,7 @@ public class LogicManagerTest {
 
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY + STATUS_DESC_AMY + NOTE_DESC_AMY;
+                + ADDRESS_DESC_AMY + STATUS_DESC_AMY + NOTE_DESC_AMY + RATING_DESC_AMY;
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedPerson);

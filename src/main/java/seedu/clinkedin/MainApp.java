@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -80,16 +82,35 @@ public class MainApp extends Application {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
+                initialData = SampleDataUtil.getSampleAddressBook();
+            } else {
+                initialData = addressBookOptional.get();
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            // Might want to try doing the above using orElseGet().
+            // Might want to keep.
+            //            JFrame dialogFrame = new JFrame();
+            //            JOptionPane.showMessageDialog(dialogFrame,
+            //                    "Sample data being loaded as no entries found.",
+            //                    "Please Note",
+            //                    JOptionPane.INFORMATION_MESSAGE);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
+            // Might want to change this for Sample Data DataConversionException.
+            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook.");
             initialData = new AddressBook();
+            JFrame dialogFrame = new JFrame();
+            JOptionPane.showMessageDialog(dialogFrame,
+                    "Data file not in the correct format. Will be starting with an empty AddressBook.",
+                    "Warning",
+                    JOptionPane.WARNING_MESSAGE);
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook.");
             initialData = new AddressBook();
+            JFrame dialogFrame = new JFrame();
+            JOptionPane.showMessageDialog(dialogFrame,
+                    "Problem while reading from the file. Will be starting with an empty AddressBook.",
+                    "Warning",
+                    JOptionPane.WARNING_MESSAGE);
         }
-
         return new ModelManager(initialData, userPrefs);
     }
 

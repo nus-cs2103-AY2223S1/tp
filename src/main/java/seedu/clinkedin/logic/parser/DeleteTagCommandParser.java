@@ -23,6 +23,20 @@ public class DeleteTagCommandParser implements Parser<DeleteTagCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, CliSyntax.getPrefixes());
 
+        boolean foundAny = CliSyntax.getPrefixTags().stream().anyMatch(pref -> argMultimap
+                .getAllValues(pref).size() > 0);
+        if (!foundAny) {
+            StringBuilder message = new StringBuilder("No valid tag type prefix found! ");
+            if (CliSyntax.getPrefixTags().size() != 0) {
+                message.append("Prefixes must be amongst the following:\n\n");
+                for (Prefix p : UniqueTagTypeMap.getPrefixMap().keySet()) {
+                    message.append(String.format("\tTagType: %s\n\tPrefix: %s\n\n", UniqueTagTypeMap.getPrefixMap()
+                            .get(p).toString(), p.toString()));
+                }
+            }
+            throw new ParseException(message);
+        }
+
         Index index;
 
         try {

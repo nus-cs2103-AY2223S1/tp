@@ -11,6 +11,10 @@ public class ParseException extends IllegalValueException {
         super(message);
     }
 
+    public ParseException(StringBuilder message) {
+        super(message.toString());
+    }
+
     public ParseException(String message, Throwable cause) {
         super(message, cause);
     }

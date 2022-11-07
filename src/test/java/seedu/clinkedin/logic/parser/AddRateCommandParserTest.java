@@ -8,11 +8,13 @@ import static seedu.clinkedin.logic.parser.CommandParserTestUtil.assertParseSucc
 import org.junit.jupiter.api.Test;
 
 import seedu.clinkedin.commons.core.index.Index;
-import seedu.clinkedin.logic.commands.NoteCommand;
-import seedu.clinkedin.model.person.Note;
+import seedu.clinkedin.logic.commands.AddRateCommand;
+import seedu.clinkedin.model.person.Rating;
 
-public class NoteCommandParserTest {
-    private final NoteCommandParser parser = new NoteCommandParser();
+
+
+public class AddRateCommandParserTest {
+    private final AddRateCommandParser parser = new AddRateCommandParser();
 
     @Test
     public void parse_null_throwsNullPointerException() {
@@ -21,26 +23,28 @@ public class NoteCommandParserTest {
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, NoteCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                AddRateCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
         // No index given
-        assertParseFailure(parser, "note/Test",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, NoteCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "rate/4",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddRateCommand.MESSAGE_USAGE));
 
         // No valid prefix given
-        assertParseFailure(parser, "1 Test", String.format(MESSAGE_INVALID_COMMAND_FORMAT, NoteCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "1 Test", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                AddRateCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
-        NoteCommand expectedFindCommand = new NoteCommand(Index.fromOneBased(1), new Note("Test"));
-        assertParseSuccess(parser, "1 note/Test", expectedFindCommand);
+        AddRateCommand expectedFindCommand = new AddRateCommand(Index.fromOneBased(1), new Rating("4"));
+        assertParseSuccess(parser, "1 rate/4", expectedFindCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n \t1 note/Test\t", expectedFindCommand);
+        assertParseSuccess(parser, " \n \t1 rate/4\t", expectedFindCommand);
     }
 }

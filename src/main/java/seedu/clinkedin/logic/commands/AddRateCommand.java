@@ -9,41 +9,43 @@ import seedu.clinkedin.commons.core.Messages;
 import seedu.clinkedin.commons.core.index.Index;
 import seedu.clinkedin.logic.commands.exceptions.CommandException;
 import seedu.clinkedin.model.Model;
-import seedu.clinkedin.model.person.Note;
 import seedu.clinkedin.model.person.Person;
+import seedu.clinkedin.model.person.Rating;
 import seedu.clinkedin.model.person.UniqueTagTypeMap;
 
 /**
- * Changes the note of an existing person in the clinkedin book.
+ * Changes rating of an existing person in the address book.
  */
-public class NoteCommand extends Command {
+public class AddRateCommand extends Command {
 
-    public static final String COMMAND_WORD = "note";
+    public static final String COMMAND_WORD = "addrate";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds an optional note to the person identified"
+            + ": Adds an optional rating to the person identified"
             + "by the index number in the address book. "
-            + "Existing notes will be overwritten by the input.\n"
-            + "Parameters: INDEX (must be a positve integer) "
-            + "note INDEX note/NOTE\n\n"
+            + "Existing rating will be overwritten by the input. \n"
+            + "Parameters: INDEX (must be a positive integer) "
+            + "rate INDEX rate/RATING \n\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + "note/Strong in Java\n\n"
-            + " will add a note 'Strong in Java' to the first person in the address book.";
+            + "rate/4\n\n"
+            + " will add a rating of 4 to the first person in the address book.";
 
-    public static final String MESSAGE_ADD_NOTE_SUCCESS = "Added note to Person: %1$s";
-    public static final String MESSAGE_DELETE_NOTE_SUCCESS = "Removed note from Person: %1$s";
+    public static final String MESSAGE_ADD_RATING_SUCCESS = "Added rating to Person: %1$s";
+    public static final String MESSAGE_DELETE_RATING_SUCCESS = "Removed rating from Person: %1$s";
+    public static final String MESSAGE_RATING_EXIST = "Rating for this person already exists";
 
     private final Index index;
-    private final Note note;
+
+    private final Rating rating;
 
     /**
-     * @param index of the person in the filtered person list to edit the note
-     * @param note  note of the person to be updated to
+     * @param index of the person in the filtered person list to edit the rating
+     * @param rating rating of the person to be updated to
      */
-    public NoteCommand(Index index, Note note) {
-        requireAllNonNull(index, note);
+    public AddRateCommand(Index index, Rating rating) {
+        requireAllNonNull(index, rating);
         this.index = index;
-        this.note = note;
+        this.rating = rating;
     }
 
     @Override
@@ -55,27 +57,19 @@ public class NoteCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
+        if (!personToEdit.getRating().toString().equals("0")) {
+            throw new CommandException(MESSAGE_RATING_EXIST);
+        }
         UniqueTagTypeMap tagMap = new UniqueTagTypeMap();
         tagMap.setTagTypeMap(personToEdit.getTags());
         Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), tagMap, personToEdit.getStatus(), note);
+                personToEdit.getAddress(), tagMap, personToEdit.getStatus(), personToEdit.getNote(), rating,
+                personToEdit.getLinks());
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
-        return new CommandResult(generateSuccessMessage(editedPerson));
-    }
-
-    /**
-     * Generates a command execution success message based on whether
-     * the note is added or removed from {@code personToEdit}.
-     *
-     * @param personToEdit the person whose note is edited
-     * @return the success message
-     */
-    private String generateSuccessMessage(Person personToEdit) {
-        String message = !note.value.isEmpty() ? MESSAGE_ADD_NOTE_SUCCESS : MESSAGE_DELETE_NOTE_SUCCESS;
-        return String.format(message, personToEdit);
+        return new CommandResult(String.format(MESSAGE_ADD_RATING_SUCCESS, editedPerson));
     }
 
     @Override
@@ -86,13 +80,13 @@ public class NoteCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof NoteCommand)) {
+        if (!(other instanceof AddRateCommand)) {
             return false;
         }
 
         // state check
-        NoteCommand e = (NoteCommand) other;
+        AddRateCommand e = (AddRateCommand) other;
         return index.equals(e.index)
-                && note.equals(e.note);
+                && rating.equals(e.rating);
     }
 }

@@ -1,17 +1,25 @@
 package seedu.clinkedin.logic.parser;
 
+import static seedu.clinkedin.commons.util.AppUtil.checkArgument;
+
 /**
  * A prefix that marks the beginning of an argument in an arguments string.
  * E.g. 't/' in 'add James t/ friend'.
  */
 public class Prefix {
     public static final String MESSAGE_CONSTRAINTS =
-            "Prefix names should be alphanumeric and should contain atleast 1 character";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+            "Prefix names should be alphanumeric and should contain at least 1 character";
+    public static final String VALIDATION_REGEX = "\\p{Alnum}+\\/";
 
     private final String prefix;
 
-    public Prefix(String prefix) {
+    /**
+     * Constructs a {@code Prefix}.
+     *
+     * @param prefix A valid prefix name.
+     */
+    public Prefix(String prefix) throws IllegalArgumentException {
+        checkArgument(isValidPrefixName(prefix) || prefix.trim().equals(""), MESSAGE_CONSTRAINTS);
         this.prefix = prefix;
     }
 
@@ -46,5 +54,12 @@ public class Prefix {
      */
     public static boolean isValidPrefixName(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns a copy of the prefix.
+     */
+    public Prefix copy() {
+        return new Prefix(prefix);
     }
 }

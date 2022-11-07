@@ -6,6 +6,7 @@ import static seedu.clinkedin.commons.util.AppUtil.checkArgument;
 import java.util.Objects;
 
 import seedu.clinkedin.logic.parser.Prefix;
+import seedu.clinkedin.model.person.UniqueTagTypeMap;
 
 /**
  * Represents a TagType in the clinkedin book.
@@ -22,14 +23,25 @@ public class TagType {
     public final Prefix p;
     /**
      * Constructs a {@code TagType}.
-     *
      * @param tagType A valid tag type.
+     * @param p A valid prefix.
      */
-    public TagType(String tagType, Prefix p) {
+    public TagType(String tagType, Prefix p) throws IllegalArgumentException {
         requireNonNull(tagType);
         checkArgument(isValidTagType(tagType), MESSAGE_CONSTRAINTS);
         this.tagType = tagType;
         this.p = p;
+    }
+
+    /**
+     * Constructs a {@code TagType}.
+     * @param tagType A valid tag type.
+     */
+    public TagType(String tagType) {
+        requireNonNull(tagType);
+        checkArgument(isValidTagType(tagType), MESSAGE_CONSTRAINTS);
+        this.tagType = tagType;
+        this.p = UniqueTagTypeMap.getPrefixFromTagType(tagType);
     }
 
     /**
@@ -65,5 +77,12 @@ public class TagType {
 
     public Prefix getPrefix() {
         return this.p;
+    }
+
+    /**
+     * Returns a copy of the tag type.
+     */
+    public TagType copy() {
+        return new TagType(tagType, p.copy());
     }
 }

@@ -1,6 +1,7 @@
 package seedu.clinkedin.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.clinkedin.commons.exceptions.IllegalValueException;
@@ -14,13 +15,13 @@ import seedu.clinkedin.model.tag.TagType;
 class JsonAdaptedTagType {
 
     private final String tagType;
-    private final Prefix prefix;
+    private final String prefix;
 
     /**
      * Constructs a {@code JsonAdaptedTag} with the given {@code tagName}.
      */
     @JsonCreator
-    public JsonAdaptedTagType(String tagType, Prefix prefix) {
+    public JsonAdaptedTagType(@JsonProperty("tagType") String tagType, @JsonProperty("prefix") String prefix) {
         this.tagType = tagType;
         this.prefix = prefix;
     }
@@ -30,7 +31,7 @@ class JsonAdaptedTagType {
      */
     public JsonAdaptedTagType(TagType source) {
         this.tagType = source.tagType;
-        this.prefix = source.p;
+        this.prefix = source.getPrefix().getPrefix();
     }
 
     @JsonValue
@@ -47,6 +48,6 @@ class JsonAdaptedTagType {
         if (!TagType.isValidTagType(tagType)) {
             throw new IllegalValueException(TagType.MESSAGE_CONSTRAINTS);
         }
-        return new TagType(tagType, prefix);
+        return new TagType(tagType, new Prefix(prefix));
     }
 }

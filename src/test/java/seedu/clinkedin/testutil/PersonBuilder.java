@@ -1,11 +1,17 @@
 package seedu.clinkedin.testutil;
 
+import java.net.URL;
+import java.util.HashSet;
+import java.util.Set;
+
+import seedu.clinkedin.model.link.Link;
 import seedu.clinkedin.model.person.Address;
 import seedu.clinkedin.model.person.Email;
 import seedu.clinkedin.model.person.Name;
 import seedu.clinkedin.model.person.Note;
 import seedu.clinkedin.model.person.Person;
 import seedu.clinkedin.model.person.Phone;
+import seedu.clinkedin.model.person.Rating;
 import seedu.clinkedin.model.person.Status;
 import seedu.clinkedin.model.person.UniqueTagTypeMap;
 import seedu.clinkedin.model.util.SampleDataUtil;
@@ -20,6 +26,7 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_STATUS = "Application Received";
+    public static final String DEFAULT_RATING = "6";
     public static final String DEFAULT_NOTE = "";
 
     private Name name;
@@ -29,6 +36,9 @@ public class PersonBuilder {
     private UniqueTagTypeMap tags;
     private Status status;
     private Note note;
+    private Rating rating;
+
+    private Set<Link> links;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -41,6 +51,8 @@ public class PersonBuilder {
         tags = new UniqueTagTypeMap();
         status = new Status(DEFAULT_STATUS);
         note = new Note(DEFAULT_NOTE);
+        rating = new Rating(DEFAULT_RATING);
+        links = new HashSet<>();
     }
 
     /**
@@ -56,6 +68,8 @@ public class PersonBuilder {
         tags = tagTypeMap;
         status = personToCopy.getStatus();
         note = personToCopy.getNote();
+        rating = personToCopy.getRating();
+        links = new HashSet<>(personToCopy.getLinks());
     }
 
     /**
@@ -114,8 +128,27 @@ public class PersonBuilder {
         return this;
     }
 
-    public Person build() {
-        return new Person(name, phone, email, address, tags, status, note);
+    /**
+     * Sets the {@code Rating} of the {@code Person} that we are building.
+     * @param rating
+     * @return
+     */
+    public PersonBuilder withRating(String rating) {
+        this.rating = new Rating(rating);
+        return this;
     }
+
+    /**
+     * Parses the {@code links} into a {@code Set<Link>} and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withLinks(URL... links) {
+        this.links = SampleDataUtil.getLinkSet(links);
+        return this;
+    }
+
+    public Person build() {
+        return new Person(name, phone, email, address, tags, status, note, rating, links);
+    }
+
 
 }

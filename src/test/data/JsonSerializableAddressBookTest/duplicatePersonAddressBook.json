@@ -1,18 +1,24 @@
 {
+  "prefixMap" : [ "jtt/", "Job Type", "dt/", "Degree", "st/", "Skills" ],
   "persons": [ {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
-    "tagged": [ "friends" ],
+    "tags": [ [ "Skills", "friends" ] ],
     "status": "Accepted",
-    "note" : ""
+    "note" : "",
+    "rating": "5",
+    "links" : [ ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
     "address": "4th street",
     "status": "Accepted",
-    "note" : ""
+    "note" : "",
+    "rating": "5",
+    "tags" : [ [ "Skills", "colleagues", "friends" ] ],
+    "links" : [ ]
   } ]
 }

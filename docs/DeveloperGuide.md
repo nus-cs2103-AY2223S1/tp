@@ -154,9 +154,282 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Find feature
 
-#### Proposed Implementation
+#### Implementation
+
+The find mechanism is facilitated by `FindCommandParser` which implements `Parser`. It parses the user input and
+returns a `FindCommand` object. The `FindCommand` object then calls the `Model#updateFilteredPersonList()` method to
+update the list of persons shown to the user.
+
+The find mechanism has two modes: generic and prefix-based.
+- The generic mode is used when the user does not specify any prefix.
+- The prefix-based mode is used when the user specifies at least one prefix.
+
+Both modes use the `DetailsContainKeywordsPredicate` class to filter the person list, which uses the
+`containsKeywordsIgnoreCase` method to check if the person's details contain the keywords.
+
+Given below is an example usage scenario of the generic mode and how the find mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `AddressBook` will be initialized with the initial
+address book state, and the `filteredPersons` will be initialized to show all persons.
+
+Step 2. The user executes `find Betsy` command to find the person named `Betsy` in the address book. The `find` command
+calls `FindCommandParser#parse()` which will parse the command.
+
+Step 3. Since this is a generic find command, `FindCommandParser` trims the user input and creates a
+`DetailsContainsKeywordsPredicate` object with the trimmed user input. The `DetailsContainsKeywordsPredicate` object is
+then passed to a newly created `FindCommand` object.
+
+Step 4. The `FindCommand` object calls the `Model#updateFilteredPersonList()` method with the
+`DetailsContainsKeywordsPredicate` object as the argument. The `Model#updateFilteredPersonList()` method will then
+update the `filteredPersons` list in `ModelManager` to show only persons that matches the predicate.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The `DetailsContainsKeywordsPredicate`
+object will check if the person's details contains the keywords using the `containsKeywordsIgnoreCase` method in its
+`test` method.
+
+</div>
+
+Given below is an example usage scenario of the prefix-based mode and how the find mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `AddressBook` will be initialized with the initial
+address book state, and the `filteredPersons` will be initialized to show all persons.
+Step 2. The user executes `find n/Betsy` command to find the person named `Betsy` in the address book. The `find`
+command calls `FindCommandParser#parse()` which will parse the command.
+
+Step 3. Since this is a prefix-based find command, `FindCommandParser` uses `ArgumentTokenizer` to tokenize the user
+input. `ArgumentTokenizer` will then find the prefixes in the user input and put the keywords in the respective
+prefixes into a map. `FindCommandParser` will then create a `DetailsContainsKeywordsPredicate` object with the keywords
+in the map. The `DetailsContainsKeywordsPredicate` object is then passed to a newly created `FindCommand` object.
+
+Step 4. The `FindCommand` object calls the `Model#updateFilteredPersonList()` method with the
+`DetailsContainsKeywordsPredicate` object as the argument. The `Model#updateFilteredPersonList()` method will then
+update the `filteredPersons` list in `ModelManager` to show only persons that matches the predicate.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** For prefix-based find command, the
+`DetailsContainsKeywordsPredicate` object will check if the person's specified details based on the prefixes contains
+the keywords using the `containsKeywordsIgnoreCase` method in its `test` method.
+
+</div>
+
+If the user input is invalid, `FindCommandParser#parse()` will throw a `ParseException` with the respective error. This
+will give the user the correct syntax to use the find command.
+
+The following sequence diagram shows how the find operation works:
+
+<img src="images/FindSequenceDiagram.png" width="550" />
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The following activity diagram summarizes what happens when a user executes a find command:
+
+![FindActivityDiagram](images/FindActivityDiagram.png)
+
+#### Design Considerations
+
+**Aspect: How find executes:**
+
+* **Alternative 1 (current choice):** One `FindCommand` class and `COMMAND_WORD` that handles both generic and
+prefix-based find.
+    * Pros: Less code duplication.
+    * Pros: More user-friendly.
+    * Cons: More complicated logic in `FindCommandParser` class.
+    * Cons: Greater difficulty in implementing (more cases to consider).
+* **Alternative 2:** One `FindCommand` class and `COMMAND_WORD` that handles generic find and multiple find classes
+that handle prefix-based find e.g. `FindNameCommand`, `FindPhoneCommand`, `FindEmailCommand`.
+    * Pros: Easier to implement.
+    * Pros: Less complicated logic in `FindCommandParser` class.
+    * Cons: More code duplication (have to create new classes for each prefix that are almost identical).
+    * Cons: We must ensure that the implementation of each individual command are correct.
+    * Cons: Less user-friendly.
+    * Cons: User must remember the different commands for each prefix.
+
+### Add/Edit/Delete Tags Feature
+
+#### Implementation
+
+The addition, modification and deletion of tags are executed through `AddCommand`, `AddTagCommand`, `DeleteTagCommand`, `EditCommand`, and facilated by `Tag`, `TagType`, `UniqueTagTypeMap` and `UniqueTagList`.
+
+Each candidate in the `UniquePersonList` has a `UniqueTagTypeMap`, which represents a map of the tag types and corresponding tags belonging to the person. `UniqueTagTypeMap` implements the following operations:
+
+* `UniqueTagTypeMap#mergeTagTypeMap()` — Merges a `UniqueTagTypeMap` with the existing `UniqueTagTypeMap` of the candidate.
+* `UniqueTagTypeMap#removeTags()` — Removes the tags from the `UniqueTagTypeMap` of the candidate.
+* `UniqueTagTypeMap#mergeTag()` — Adds a tag of the given tag type to the `UniqueTagTypeMap` of the candidate.
+* `UniqueTagTypeMap#setTagTypeMap()` — Replaces the `UniqueTagTypeMap` of the candidate with the given `UniqueTagTypeMap`.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The `UniqueTagTypeMap` internally uses an `ObservableMap`, backed by a `HashMap`, that maps each tag type of the candidate to a `UniqueTagList` of tags.
+</div>
+
+Given below is an example usage scenario and how the add/edit/delete Tag mechanism behaves at each step:
+
+Step 1. The user executes `addTag 3 st/Java dt/Bachelors` to add a skill tag `Java` and degree tag `Bachelors` to the 3rd candidate in the displayed list of candidates. After being parsed by the `AddTagCommandParser` to an `AddTagCommand`, the `AddTagCommand` initializes a new `UniqueTagTypeMap` with the existing `UniqueTagTypeMap` of candidate `3` by invoking the `UniqueTagTypeMap#setTagTypeMap()`, and merges the new tags by invoking `UniqueTagTypeMap#mergeTagTypeMap()`. After this, a new `Person` is created with the `updatedTags` and all other attributes same as that of the existing `Person`, and the `ModelManager#setPerson` is invoked to modify the addressBook with the updated candidate.
+
+Step 2. The user executes `edit 3 st/Java-JavaScript` to edit the skill tag `Java` to `JavaScript` of the 3rd candidate in the displayed list of candidates. After being parsed by the `EditCommandParser` to an `EditCommand`, the `EditCommand` initializes a new `UniqueTagTypeMap` with the existing `UniqueTagTypeMap` of candidate `3` by invoking the `UniqueTagTypeMap#setTagTypeMap()`, removes the existing tags to be edited by invoking `UniqueTagTypeMap#removeTags()` and adds the edited tags by invoking the `UniqueTagTypeMap#mergeTagTypeMap()`. After this, a new `Person` is created with the `updatedTags` and all other attributes same as that of the existing `Person`, and the `ModelManager#setPerson` is invoked to modify the addressBook with the updated candidate.
+
+Step 3. The user executes `deleteTag 3 st/JavaScript dt/Bachelors` to delete the skill tag `JavaScript` and degree tag `Bachelors` of the 3rd candidate in the displayed list of candidates. After being parsed by the `DeleteTagCommand` to a `DeleteTagCommand`, the `DeleteTagCommand` initializes a new `UniqueTagTypeMap` with the existing `UniqueTagTypeMap` of candidate `3` by invoking the `UniqueTagTypeMap#setTagTypeMap()` and removes the tags to be deleted by invoking `UniqueTagTypeMap#removeTags()`. After this, a new `Person` is created with the `updatedTags` and all other attributes same as that of the existing `Person`, and the `ModelManager#setPerson` is invoked to modify the addressBook with the updated candidate.
+
+#### Design Considerations:
+
+**Aspect: How the addressBook is updated:**
+
+* **Alternative 1 (current choice):** Creates a new person each time a tag is added, edited or deleted.
+    * Pros: Ensures that `Person` and all its attributes are immutable.
+    * Cons: May be inefficient compared to directly updating the attributes of `Person`.
+
+* **Alternative 2:** Modifies the existing `UniqueTagTypeMap` of the candidate each time a tag is added, edited or deleted.
+  itself.
+    * Pros: May be more efficient, as a new `Person` instance is not created every time a tag is added, edited or deleted.
+    * Cons: Allowing `Person` to be mutated may not be safe and defensive.
+
+
+### Create/Edit/Delete Tag Types feature
+
+For the ease of classifying tags and storing candidate information in a more organised way, users can now also create Tag Types and assign tags to the relevant Tag Types.
+
+This feature is facilitated by `UniqueTagTypeMap` class. It implements the `Iterable<TagType>` interface.
+Additionally, it implements the following operations:
+
+* UniqueTagTypeMap#createTagType()  —  Creates a unique Tag Type and adds it to the prefixMap of available Tag Types.
+* UniqueTagTypeMap#setExistingTagType()  —  Edits the Tag Type name and Tag Type alias of an existing Tag Type.
+* UniqueTagTypeMap#removeExistingTagType()  —  Deletes a Tag Type from the prefixMap and, hence, the Tag Type is no more recognised as a valid Tag Type.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The `prefixMap` in `UniqueTagTypeMap` is a HashMap that maps all the existing Tag Type alias to their respective Tag Types. For user convenience, we have already provided the user with the three basic Tag Types a recruiter might need: Skills Tag Type (alias: st/), Degree Tag Type (alias: dt/), and Job Type Tag Type (alias: jtt/)<br>
+</div>
+
+Given below is an example usage scenario and how the create/edit/delete Tag Types mechanism behaves at each step:
+
+Step 1. The user launches the application for the first time. The `prefixMap` in the `UniqueTagTypeMap` will be initialised with the initial 3 Key — Value pairs: st/ — Skills, dt/ — Degree, and jtt/ — Job Type.
+
+Step 2. The user executes `createTagType Grade grdt` command to add a Grade Tag Type to the available Tag Types so that the recruiter can now add Tags of Grade Tag Type to candidates using the alias grdt/. The `createTagTYpe` command calls the `UniqueTagTypeMap#createTagType()`, causing the addition of grdt/ — Grade key-value pair to the `prefixMap`.
+
+Step 3. The user executes the 'editTagType Grade-Score grdt-scrt' to edit the existing Tag Type Grade and rename it as Score. The `editTagType` command calls the `UniqueTagTypeMap#setExistingTagType()` to remove the grdt/ — Grade key-value pair from the `prefixMap` and add scrt/ — Score key-value pair to the `prefixMap`. Furthermore, the `editTagType` command also calls 'Model#editTagTypeForAllPerson()' to edit the Grade Tag Type name and rename it as Score Tag Type for all person who had Tags of Grade Tag Type.
+
+Step 4. The user executes the `deleteTagType Score` to delete the Score Tag Type and all Tags of Score Tag Type for all person in CLInkedIn. The `deleteTagType` command calls the `UniqueTagTypeMap#removeExistingTagType()` to remove the scrt/ — Score key-value pair from the `prefixMap`. Furthermore, it also calls the `Model#deleteTagTypeForAllPerson()` to delete the Score Tag Type and the Tags assigned to the Score Tag TYpe for each person having Tags of Score Tag Type.
+
+### Status feature
+
+#### Implementation
+
+The proposed `Status` feature is added as an attribute under the `Person` class.
+
+A `Status` class is created, and is implemented via a `String`. The String can only take in alphanumeric inputs.
+
+Some example statuses include:
+- Application Received 
+- OA in Progress
+- Shortlisted for Interview
+- Accepted
+- Rejected
+
+The `Status` attribute is mainly implemented by the following methods:
+- `Status` can be added via the `AddCommand`, eg: `add n/John Doe e/john@mail.com p/10384280 s/Application Received` adds a new candidate with name `John Doe`, email `john@mail.com`, phone number `10384280`, and status of `Application Received`.
+- `Status` can be edited via the `EditCommand` eg: `edit 1 s/OA in Progress` edits `Status` field of the 1st candidate in CLInkedIn to `OA in Progress`.
+
+It is also additionally facilitated by these methods:
+- `AddressBookParser#parseCommand()` - Checks the input for `AddCommand` or `EditCommand`
+- `AddCommandParser#parse()` - Checks the input for the status prefix, only adds a candidate into CLInkedIn if the entry has a `Status` prefix and a valid `Status` input
+- `EditCommandParser#parse()` - Checks the input for the status prefix, only edits the candidate's `Status` if the entry has a `Status` prefix and a valid `Status` input
+
+Here is an example of what happens when the recruiter attempts to add a candidate to CLInkedIn:
+1. Recruiter enters the command `add n/John Doe p/999 e/john@mail/com a/singapore s/Application Received`
+2. The command is first parsed by `AddressBookParser#parseCommand()`, which identifies the command word of every command.
+3. Since this is an `AddCommand`, the remaining arguments are passed into `AddCommandParser#parse()`
+4. Each of the different arguments of a candidate (name, phone, email, address, status) are parsed by `AddCommandParser#parse()`
+5. If any of the compulsory arguments of a candidate (name, phone, email, address, status) are not present, the command will fail its execution and `ParseException` will be thrown.
+6. Else, an `AddCommand` object is generated.
+7. Next, the `AddCommand#execute()` is called, which triggers the `Model#addPerson(Person)` command and a `CommandResult` is returned
+
+Here is an example of what happens when the recruiter attempts to edit a candidate's status  CLInkedIn:
+1. Recruiter enters the command `edit 1 s/OA In Progress`
+2. The command is first parsed by `AddressBookParser#parseCommand()`, which identifies the command word of every command.
+3. Since this is an `EditCommand`, the remaining arguments are passed into `EditCommandParser#parse()`
+4. Each of the different arguments to be edited are parsed by `EditCommandParser#parse()`.
+5. An `EditPersonDescriptor` is created and modified depending on the arguments to be edited.
+6. An `EditCommand` object is generated.
+7. Next, the `EditCommand#execute()` is called, which triggers the `Model#setPerson(Person)` and `Model#updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS)` commands
+8. A `CommandResult` is returned.
+
+#### Design Considerations
+
+It is designed to be a mandatory feature, as every candidate under the recruiting process must be at an application stage.
+
+### Note feature
+
+#### Implementation
+
+The proposed `Note` feature is added as an optional attribute under the `Person` class.
+
+A `Note` class is created, and is implemented via a `String`. The String can take in any input, including a blank string.
+
+The `Note` attribute is mainly implemented by the following methods:
+- `Note` can be added via the `AddCommand`
+- `Note` can be edited via the `EditCommand`.
+
+It is also additionally facilitated by these methods:
+- `NoteCommandParser#parse()` - Checks the input for the Note prefix, only adds a candidate into CLInkedIn if the entry has a `Note` prefix and a valid `Note` input
+- `AddressBookParser#parseCommand()` - Checks the input for `AddCommand` or `EditCommand`
+
+Here is an example of what happens when the recruiter attempts to add a candidate to CLInkedIn:
+1. Recruiter enters the command `add n/John Doe p/999 e/john@mail/com a/singapore note/Strong in Python.`
+2. The command is first parsed by `AddressBookParser#parseCommand()`, which identifies the command word of every command.
+3. Since this is an `AddCommand`, the remaining arguments are passed into `AddCommandParser#parse()`
+4. Each of the different arguments of a candidate (name, phone, email, address, Status) are parsed by `AddCommandParser#parse()`
+5. If any of the compulsory arguments of a candidate (name, phone, email, address, Status) are not present, the command will fail its execution and `ParseException` will be thrown.
+6. Next, the `AddCommand#execute()` is called, which triggers the `Model#addPerson(Person)` command and a `CommandResult` is returned
+
+Here is an example of what happens when the recruiter attempts to edit a candidate's Note  CLInkedIn:
+1. Recruiter enters the command `edit 1 note/Missed 2 interviews`
+2. The command is first parsed by `AddressBookParser#parseCommand()`, which identifies the command word of every command.
+3. Since this is an `EditCommand`, the remaining arguments are passed into `EditCommandParser#parse()`
+4. Each of the different arguments to be edited are parsed by `EditCommandParser#parse()`.
+5. An `EditPersonDescriptor` is created and modified depending on the arguments to be edited.
+6. An `EditCommand` object is generated.
+7. Next, the `EditCommand#execute()` is called, which triggers the `Model#setPerson(Person)` and `Model#updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS)` commands
+8. A `CommandResult` is returned.
+
+#### Design Considerations
+
+It is designed to be an optional feature, as it is meant to be a supplementary source of notetaking that recruiters can make on candidates saved.
+
+### Rating feature
+
+#### Implementation
+
+The proposed `Rating` feature is added as an attribute under the `Person` class.
+
+A `Rating` class is created, and is implemented via a `String`. The String can only take in integers from 1 to 10 inclusive.
+
+The `Rating` attribute is mainly implemented by the following methods:
+- `AddRateCommand` - Adds rating to a candidate who **does not currently have a rating**, eg: `addrate 4 rate/9` adds a `Rating` of 9 to the 4th candidate in CLInkedIn. 
+- `DeleteRateCommand` - Deletes rating of a candidate, eg: `deleterate 1` deletes rating of the 1st candidate in CLInkedIn.
+- `AddCommand` - Adds a new candidate with rating, eg: `add n/John Doe e/john@mail.com p/10384280 s/Application Received rate/9` adds a new candidate with name `John Doe`, email `john@mail.com`, phone number `10384280`, status of `Application Received` with rating of `9`. 
+- `EditCommand` - Edits the rating of a candidate, eg: `edit 2 rate/9` edits `Rating` of the 2nd candidate in CLInkedIn to `9`.
+
+It is also additionally facilitated by these methods:
+- `RateCommandParser#parse()` - Checks the input for the rating prefix, only adds the rating to the candidate if the entry has a `Rating` prefix and a valid `Rating` input
+- `AddressBookParser#parseCommand()` - Checks the input for `RateCommand`.
+
+Here is an example of what happens when the recruiter attempts to add a rating to a candidate on CLInkedIn:
+1. Recruiter enters the command `rate 4 rate/8`
+2. The command is first parsed by `AddressBookParser#parseCommand()`, which identifies the command word of every command.
+3. Since this is a `RateCommand`, the remaining arguments are passed into `RateCommandParser#parse()`
+4. The different arguments (index, rating) are parsed by `RateCommandParser#parse()` and a `RateCommand` object is created.
+5. Next, the `RateCommand#execute()` is called, which triggers the `Model#setPerson(Person)` and `Model#updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS)` commands
+6. A `CommandResult` is returned.
+
+#### Design Considerations
+
+**Aspect: Compulsory vs Non-compulsory**
+It is designed to be a non-compulsory feature, as the recruiter might not be able to rate every candidate at every stage of the recruiting process.
+
+**Aspect: Argument type of the `Rating` constructor**
+It is designed to take in a String, as Commands are parsed as a String. However, the constructor will parse the String and the Rating is stored as an Integer.
+
+### Undo/redo feature
+
+#### Implementation
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
@@ -234,33 +507,33 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
+
+### Sort feature 
+
+#### Implementation 
+
+The proposed sorting feature sorts candidates based on their rating. The candidates will then be displayed in descending order of rating. 
+
+It is mainly implemented by the `SortCommand` method. 
+
+Here is an example of what happens when the recruiter attempts to sort candidates on CLInkedIn:
+1. Recruiter enters the command `sort`
+2. The command is first parsed by `AddressBookParser#parseCommand()`, which identifies the command word of every command. 
+3. Since this is a `SortCommand`, there is no parser. A `SortCommand()` object is returned by the parser. 
+4. Next, the `SortCommand#execute(Model model)` is called, which triggers the `Model#updateSort(Comparator)` command 
+5. Lastly, a `CommandResult` is returned.
+
+#### Design Considerations 
+
+As candidates with no ratings are implemented to have a rating of 0, the candidates with no ratings will be ordered below the candidates with ratings.
+
+This is because the recruiter would have no opinion about candidates with no rating, and thus no need to make comparisons that include candidates with no rating. 
+
+The purpose of this feature is such that recruiters can view candidates based on order of desirability, and they would not need to look at candidates with no rating and they do not know their desirability yet. 
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
-
-### \[Implemented\] Create/Edit/Delete Tag Types feature  
-
-For the ease of classifying tags and storing candidate information in a more organised way, users can now also create Tag Types and assign tags to the relevant Tag Types.
-
-This feature is facilitated by `UniqueTagTypeMap` class. It implements the `Iterable<TagType>` interface.  
-Additionally, it implements the following operations:  
-
-* UniqueTagTypeMap#createTagType()  —  Creates a unique Tag Type and adds it to the prefixMap of available Tag Types.
-* UniqueTagTypeMap#setExistingTagType()  —  Edits the Tag Type name and Tag Type alias of an existing Tag Type.
-* UniqueTagTypeMap#removeExistingTagType()  —  Deletes a Tag Type from the prefixMap and, hence, the Tag Type is no more recognised as a valid Tag Type.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The `prefixMap` in `UniqueTagTypeMap` is a HashMap that maps all the existing Tag Type alias to their respective Tag Types. For user convenience, we have already provided the user with the three basic Tag Types a recruiter might need: Skills Tag Type (alias: st/), Degree Tag Type (alias: dt/), and Job Type Tag Type (alias: jtt/)<br>
-</div>
-
-Given below is an example usage scenario and how the create/edit/delete Tag Types mechanism behaves at each step:  
-
-Step 1. The user launches the application for the first time. The `prefixMap` in the `UniqueTagTypeMap` will be initialised with the initial 3 Key — Value pairs: st/ — Skills, dt/ — Degree, and jtt/ — Job Type.
-
-Step 2. The user executes `createTagType Grade grdt` command to add a Grade Tag Type to the available Tag Types so that the recruiter can now add Tags of Grade Tag Type to candidates using the alias grdt/. The `createTagTYpe` command calls the `UniqueTagTypeMap#createTagType()`, causing the addition of grdt/ — Grade key-value pair to the `prefixMap`.
-
-Step 3. The user executes the 'editTagType Grade-Score grdt-scrt' to edit the existing Tag Type Grade and rename it as Score. The `editTagType` command calls the `UniqueTagTypeMap#setExistingTagType()` to remove the grdt/ — Grade key-value pair from the `prefixMap` and add scrt/ — Score key-value pair to the `prefixMap`. Furthermore, the `editTagType` command also calls 'Model#editTagTypeForAllPerson()' to edit the Grade Tag Type name and rename it as Score Tag Type for all person who had Tags of Grade Tag Type.
-
-Step 4. The user executes the `deleteTagType Score` to delete the Score Tag Type and all Tags of Score Tag Type for all person in CLInkedIn. The `deleteTagType` command calls the `UniqueTagTypeMap#removeExistingTagType()` to remove the scrt/ — Score key-value pair from the `prefixMap`. Furthermore, it also calls the `Model#deleteTagTypeForAllPerson()` to delete the Score Tag Type and the Tags assigned to the Score Tag TYpe for each person having Tags of Score Tag Type.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -281,7 +554,7 @@ Step 4. The user executes the `deleteTagType Score` to delete the Score Tag Type
 **Target user profile**:
 Recruting and hiring managers.
 
-**Value proposition**: 
+**Value proposition**:
 Manage candidates using a CLI faster than mouse/GUI driven apps. Make use of Skill, Degree, Job Type, or any other custom tags and rating system to filter candidates for the next hire.
 
 
@@ -298,27 +571,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`      | user                                        | hide private contact details                                                                      | minimize chance of someone else seeing them by accident                             |
 | `*`        | user with many persons in the address book  | sort persons by name                                                                              | locate a person easily                                                              |
 | `* * *`    | user                                        | use the help command                                                                              | view the command summary                                                            |
-| `* * *`    | user                                        | check the total number of candidates                                                              | keep a track of the number of applicants.                                           |                                                      
-| `* * *`    | user                                        | add tags to existing or new candidates                                                            | categorise candidates.                                                              |                                                   
-| `* * *`    | user                                        | add a Skill type tag                                                                              | keep a track of all the relevant skills of candidates.                              |                                                  
-| `* * *`    | user                                        | add a Degree type tag                                                                             | keep track of the highest level of education of candidates. - degree                |                                          
-| `* * *`    | user                                        | add a Job Type type tag                                                                           | view which candidates are applying for internships/full-time/part-time/temporary.   |                         
-| `* * *`    | user                                        | remove tags                                                                                       | remove attributes that are no more relevant.                                        |                        
-| `* * *`    | user                                        | edit tags                                                                                         | update attributes with the most relevant information.                               |                        
-| `* * *`    | user                                        | add the application status of candidates                                                          | keep a track of a candidate’s application progress.                                 |                      
-| `* * *`    | user                                        | update the application status of candidates                                                       | advance a candidate to another status.                                              |                      
-| `**`       | user                                        | add a rating to candidates                                                                        | quantify the merit of a candidate.                                                  |                    
-| `**`       | user                                        | delete the rating of candidates                                                                   | remove wrong/unwanted ratings.                                                      |                   
-| `**`       | user                                        | edit the rating of candidates                                                                     | update the ratings of candidates.                                                   |                    
-| `**`       | user                                        | sort candidates based on their rating                                                             | view candidates based on the order of desirability.                                 |                     
-| `* * *`    | user                                        | search for candidates using keywords                                                              | view the candidates that meet a specific criteria.                                  |                   
-| `* * *`    | user                                        | search candidates based on tags                                                                   | view candidates based on their skills, level of education, etc.                     |                    
-| `* * *`    | user                                        | search candidates based on ratings                                                                | filter candidates based on their suitability.                                       |                     
-| `* * *`    | user                                        | search candidates based on their location                                                         | view eligible candidates for a particular region/country.                           |                     
-| `* * *`    | user                                        | search candidates based on application status                                                     | view all candidates with the same application status.                               |                   
-| `* * *`    | user                                        | add optional notes/comments for candidates                                                        | keep track of additional information.                                               |                  
+| `* * *`    | user                                        | check the total number of candidates                                                              | keep a track of the number of applicants.                                           |
+| `* * *`    | user                                        | add tags to existing or new candidates                                                            | categorise candidates.                                                              |
+| `* * *`    | user                                        | add a Skill type tag                                                                              | keep a track of all the relevant skills of candidates.                              |
+| `* * *`    | user                                        | add a Degree type tag                                                                             | keep track of the highest level of education of candidates. - degree                |
+| `* * *`    | user                                        | add a Job Type type tag                                                                           | view which candidates are applying for internships/full-time/part-time/temporary.   |
+| `* * *`    | user                                        | remove tags                                                                                       | remove attributes that are no more relevant.                                        |
+| `* * *`    | user                                        | edit tags                                                                                         | update attributes with the most relevant information.                               |
+| `* * *`    | user                                        | add the application status of candidates                                                          | keep a track of a candidate’s application progress.                                 |
+| `* * *`    | user                                        | update the application status of candidates                                                       | advance a candidate to another status.                                              |
+| `**`       | user                                        | add a rating to candidates                                                                        | quantify the merit of a candidate.                                                  |
+| `**`       | user                                        | delete the rating of candidates                                                                   | remove wrong/unwanted ratings.                                                      |
+| `**`       | user                                        | edit the rating of candidates                                                                     | update the ratings of candidates.                                                   |
+| `**`       | user                                        | sort candidates based on their rating                                                             | view candidates based on the order of desirability.                                 |
+| `* * *`    | user                                        | search for candidates using keywords                                                              | view the candidates that meet a specific criteria.                                  |
+| `* * *`    | user                                        | search candidates based on tags                                                                   | view candidates based on their skills, level of education, etc.                     |
+| `* * *`    | user                                        | search candidates based on ratings                                                                | filter candidates based on their suitability.                                       |
+| `* * *`    | user                                        | search candidates based on their location                                                         | view eligible candidates for a particular region/country.                           |
+| `* * *`    | user                                        | search candidates based on application status                                                     | view all candidates with the same application status.                               |
+| `* * *`    | user                                        | add optional notes/comments for candidates                                                        | keep track of additional information.                                               |
 | `*`        | user                                        | add links to LinkedIn profiles, Github profiles or Personal websites of candidates                | keep track of more information about candidates.                                    |
-| `*`        | user                                        | copy links of LinkedIn profiles, Github profiles or Personal websites of candidates to clipboard  | easily open these links.                                                            | 
+| `*`        | user                                        | copy links of LinkedIn profiles, Github profiles or Personal websites of candidates to clipboard  | easily open these links.                                                            |
 | `**`       | user                                        | search for candidates based on a combination of multiple criteria                                 | view candidates that meet a particular set of criteria.                             |
 
 *{More to be added}*
@@ -368,28 +641,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to list persons.
 2. AddressBook shows a list of persons.
 3. User requests to edit the name, location, application status, tags, etc. of a specific candidate in the list.
-4. CLInkedIn updates the details of the corresponding candidate.  
+4. CLInkedIn updates the details of the corresponding candidate.
 
    Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.  
+* 2a. The list is empty.
 
    Use case ends.
 
 * 3a. CLInkedIn detects that the candidate does not exist in the list.
 
     * 3a1. CLInkedIn requests for a valid command.
-    * 3a2. User enters new command.  
-      Steps 3a1-3a2 are repeated until the command entered is valid.  
+    * 3a2. User enters new command.
+      Steps 3a1-3a2 are repeated until the command entered is valid.
       Use case resumes from step 4.
 
 * 3b. User requests to edit an invalid tag of a candidate.
 
     * 3b1. CLInkedIn requests to enter a valid tag.
-    * 3b2. User enters new command.  
-      Steps 3b1-3b2 are repeated until the tag entered is valid.  
+    * 3b2. User enters new command.
+      Steps 3b1-3b2 are repeated until the tag entered is valid.
       Use case resumes from step 4.
 
 
@@ -406,17 +679,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. CLInkedIn detects that the custom tag already exists.
     * 1a1. CLInkedIn shows an error message and requests user to re-enter the tag type and tag alias.
-    * 1a2. User enters new tag type and tag alias.  
-      Steps 1a1-1a2 repeats until the user enters a valid tag type.  
+    * 1a2. User enters new tag type and tag alias.
+      Steps 1a1-1a2 repeats until the user enters a valid tag type.
       Use case resumes at step 2.
 * 1b. CLInkedIn detects that the tag alias already exists.
     * 1b1. CLInkedIn shows an error message and requests user to re-enter the tag alias.
-    * 1b2. User enters a new tag alias.  
-      Steps 1b1-1b2 repeats until the user enters a valid tag alias.  
+    * 1b2. User enters a new tag alias.
+      Steps 1b1-1b2 repeats until the user enters a valid tag alias.
       Use case resumes at step 2.
 
-
-    
 *{More to be added}*
 
 ### Non-Functional Requirements
@@ -424,8 +695,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4. User interface should be intuitive for a novice who has never used a command-line address book system. 
+4. User interface should be intuitive for a novice who has never used a command-line address book system.
 5. This product is offered as a free desktop service.
+
 *{More to be added}*
 
 ### Glossary
@@ -433,7 +705,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Candidate**: An entry in CLInkedIn
-* **Personal Information**: Phone number, email, and address of candidate 
+* **Personal Information**: Phone number, email, and address of candidate
 * **Status**: Stage of recruiting process. A chronological order would be Pending Application, Application Received, Passed ATS, OA In Progress, OA Submitted, Pending Interview, Interview Completed and the possible outcomes are Hired and Rejected.
 * **Skill Tag Type**: A type of tag that comprises of all tags of skills like Java, ReactJS, UI/UX, etc.
 * **Degree Tag Type**: A type of tag that comprises of tags of the degrees achieved by the candidate like Bachelors, Masters, PHD, etc.
@@ -448,7 +720,6 @@ Given below are instructions to test the app manually.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
-
 </div>
 
 ### Launch and shutdown

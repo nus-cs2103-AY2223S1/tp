@@ -3,6 +3,7 @@ package seedu.clinkedin.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.clinkedin.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -16,13 +17,14 @@ import seedu.clinkedin.logic.parser.CliSyntax;
 import seedu.clinkedin.logic.parser.Prefix;
 import seedu.clinkedin.logic.parser.exceptions.DuplicatePrefixException;
 import seedu.clinkedin.logic.parser.exceptions.PrefixNotFoundException;
-import seedu.clinkedin.model.person.exceptions.DuplicateTagTypeException;
-import seedu.clinkedin.model.person.exceptions.TagTypeNotFoundException;
 import seedu.clinkedin.model.tag.Tag;
 import seedu.clinkedin.model.tag.TagType;
 import seedu.clinkedin.model.tag.UniqueTagList;
 import seedu.clinkedin.model.tag.exceptions.DuplicateTagException;
+import seedu.clinkedin.model.tag.exceptions.DuplicateTagTypeException;
 import seedu.clinkedin.model.tag.exceptions.TagNotFoundException;
+import seedu.clinkedin.model.tag.exceptions.TagTypeNotFoundException;
+import seedu.clinkedin.model.tag.exceptions.TagTypePrefixPairNotFoundException;
 
 /**
  * A list of tagtypes that enforces uniqueness between its elements and does not
@@ -35,9 +37,8 @@ import seedu.clinkedin.model.tag.exceptions.TagNotFoundException;
  * a tag type also uses TagType#equals(Object) so
  * as to ensure that the tag type with exactly the same fields will be removed.
  *
- * Supports a minimal set of list operations.
+ * Supports a minimal set of map operations.
  *
- * @see TagType#equals(Object)
  */
 public class UniqueTagTypeMap implements Iterable<TagType> {
     private static final Map<Prefix, TagType> initialTagTypeMap = Map.of(
@@ -45,7 +46,7 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
             CliSyntax.PREFIX_DEGREETAG, new TagType("Degree", CliSyntax.PREFIX_DEGREETAG),
             CliSyntax.PREFIX_JOBTYPETAG, new TagType("Job Type", CliSyntax.PREFIX_JOBTYPETAG)
     );
-    private static final Map<Prefix, TagType> prefixMap = new HashMap<>(initialTagTypeMap);
+    private static Map<Prefix, TagType> prefixMap = new HashMap<>(initialTagTypeMap);
     private final ObservableMap<TagType, UniqueTagList> internalMap = FXCollections.observableMap(new HashMap<>());
     private final ObservableMap<TagType, UniqueTagList> internalUnmodifiableMap = FXCollections
             .unmodifiableObservableMap(internalMap);
@@ -79,8 +80,24 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
         }
     }
 
-    public static void setExistingTagType(Prefix toRemovePrefix, Prefix prefix, TagType tagType)
-            throws PrefixNotFoundException, TagTypeNotFoundException, DuplicatePrefixException {
+    public static void setExistingTagType(Prefix toRemovePrefix, TagType toRemoveTagType, Prefix prefix,
+                                          TagType tagType)
+            throws PrefixNotFoundException, TagTypeNotFoundException, DuplicatePrefixException,
+            TagTypePrefixPairNotFoundException, DuplicateTagTypeException {
+        if (!prefixMap.containsKey(toRemovePrefix)) {
+            throw new PrefixNotFoundException();
+        }
+        if (!prefixMap.get(toRemovePrefix).equals(toRemoveTagType)) {
+            throw new TagTypePrefixPairNotFoundException();
+        }
+        if (prefixMap.keySet().contains(prefix) && !toRemovePrefix.equals(prefix)) {
+            throw new DuplicatePrefixException();
+        }
+
+        if (prefixMap.values().stream().anyMatch(val -> val.getTagTypeName().equals(tagType.getTagTypeName()))
+                && !toRemoveTagType.getTagTypeName().equals(tagType.getTagTypeName())) {
+            throw new DuplicateTagTypeException();
+        }
         prefixMap.remove(toRemovePrefix);
         CliSyntax.removeTagPrefix(toRemovePrefix);
         UniqueTagTypeMap.createTagType(prefix, tagType);
@@ -106,7 +123,9 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
         }
         for (TagType t: tagTypeMap) {
             if (this.contains(t)) {
-                this.getTagList(t).merge(tagTypeMap.getTagList(t));
+                UniqueTagList curr = this.getTagList(t);
+                curr.merge(tagTypeMap.getTagList(t));
+                internalMap.put(t, curr);
             } else {
                 internalMap.put(t, tagTypeMap.getTagList(t));
             }
@@ -130,8 +149,10 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
             if (!this.contains(t)) {
                 throw new TagTypeNotFoundException();
             }
-            this.getTagList(t).removeAll(tagTypeMap.getTagList(t));
-            if (this.getTagList(t).getCount() == 0) {
+            UniqueTagList removeFrom = this.getTagList(t);
+            removeFrom.removeAll(tagTypeMap.getTagList(t));
+            this.internalMap.put(t, removeFrom);
+            if (removeFrom.getCount() == 0) {
                 this.removeTagType(t);
             }
         }
@@ -144,7 +165,7 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
         requireAllNonNull(tagType, tagName);
         boolean isExisting = this.contains(tagType);
         if (isExisting) {
-            this.getTagList(tagType).add(tagName);
+            this.internalMap.get(tagType).add(tagName);
         } else {
             UniqueTagList tagList = new UniqueTagList();
             tagList.add(tagName);
@@ -168,8 +189,8 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
             throw new DuplicateTagTypeException();
         }
         UniqueTagList tagList = internalMap.get(target);
-        internalMap.put(editedTagType, tagList);
         this.removeTagType(target);
+        internalMap.put(editedTagType, tagList);
     }
     /**
      * Removes the equivalent tag type from the list.
@@ -188,7 +209,7 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
         if (!this.contains(toGet)) {
             throw new TagTypeNotFoundException();
         }
-        return internalMap.get(toGet);
+        return internalMap.get(toGet).copy();
     }
 
     public void setTagTypeMap(UniqueTagTypeMap replacement) {
@@ -215,6 +236,15 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
         return internalMap.size();
     }
 
+    public int getTagCount() {
+        int count = 0;
+        for (TagType t: this) {
+            assert this.getTagList(t) != null;
+            count += this.getTagList(t).getCount();
+        }
+        return count;
+    }
+
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
@@ -225,6 +255,27 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
     @Override
     public Iterator<TagType> iterator() {
         return internalMap.keySet().iterator();
+    }
+
+    public static Map<Prefix, TagType> getPrefixMap() {
+        return Collections.unmodifiableMap(prefixMap);
+    }
+
+    public static Map<Prefix, TagType> getPrefixMapCopy() {
+        Map<Prefix, TagType> copy = new HashMap<>();
+        for (Prefix p : prefixMap.keySet()) {
+            copy.put(p.copy(), prefixMap.get(p).copy());
+        }
+        return copy;
+    }
+
+    public static void setPrefixMap(Map<Prefix, TagType> map) {
+        Map<Prefix, TagType> newMap = new HashMap<>();
+        for (Prefix p: map.keySet()) {
+            newMap.put(p.copy(), map.get(p).copy());
+        }
+        prefixMap = newMap;
+        CliSyntax.setTagPrefix(newMap.keySet().stream().collect(Collectors.toList()));
     }
 
     @Override
@@ -242,7 +293,7 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
         return StreamSupport.stream(this.spliterator(), false);
     }
     public static TagType getTagType(Prefix pref) {
-        return prefixMap.get(pref);
+        return prefixMap.get(pref).copy();
     }
     @Override
     public String toString() {
@@ -259,7 +310,7 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
                 return pref;
             }
         }
-        throw new TagTypeNotFoundException();
+        throw new TagTypeNotFoundException(tagType);
     }
 
     public static TagType getTagTypeFromPrefix(Prefix prefix) throws TagTypeNotFoundException {
@@ -273,5 +324,22 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
 
     public boolean isEmpty() {
         return internalMap.isEmpty();
+    }
+
+    public static boolean isExist(String otherTagType) {
+        return prefixMap.values().stream().anyMatch(tagType -> tagType.getTagTypeName().equals(otherTagType));
+    }
+
+    /**
+     * Returns a copy of the UniqueTagTypeMap.
+     */
+    public UniqueTagTypeMap copy() {
+        UniqueTagTypeMap copy = new UniqueTagTypeMap();
+        for (TagType tagType: this) {
+            for (Tag tag: this.getTagList(tagType)) {
+                copy.mergeTag(tagType, tag);
+            }
+        }
+        return copy;
     }
 }

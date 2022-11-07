@@ -6,6 +6,7 @@ import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_RATING;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -14,7 +15,7 @@ import seedu.clinkedin.model.Model;
 import seedu.clinkedin.model.person.Person;
 
 /**
- * Adds a person to the clinkedin book.
+ * Adds a person to the address book.
  */
 public class AddCommand extends Command {
 
@@ -27,8 +28,9 @@ public class AddCommand extends Command {
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
             + "[" + PREFIX_TAG + "TAG] "
-            + "[" + PREFIX_STATUS + "STATUS]"
-            + "[" + PREFIX_NOTE + "NOTE]...\n"
+            + PREFIX_STATUS + "STATUS"
+            + "[" + PREFIX_NOTE + "NOTE]"
+            + "[" + PREFIX_RATING + "RATING]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
@@ -37,7 +39,8 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney "
             + PREFIX_STATUS + "Application Pending "
-            + PREFIX_NOTE + "Has a dog.";
+            + PREFIX_NOTE + "Has a dog."
+            + PREFIX_RATING + "4";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
