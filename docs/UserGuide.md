@@ -22,12 +22,13 @@ This document is the official user guide of the Long Time No See (LTNS) app. Thi
       5. [Manually Editing Data File](#editing-the-data-file)
    2. [Client Features](#client-features)<br>
       1. [Adding a Client](#adding-a-client--addclient)
-      2. [Listing all Clients](#listing-all-clients--allclients)
-      3. [Editing a Client](#editing-a-client--editclient)
-      4. [Searching for a Client](#searching-for-clients--findclient)
-      5. [Deleting a Client](#deleting-a-client--deleteclient)
-      6. [Sorting all Clients](#sorting-all-clients--sort)
-      7. [Pin a Client](#pin-a-client-pin)
+      2. [Switching to Client View](#switching-to-the-view-of-currently-listed-clients--clients)
+      3. [Listing all Clients](#listing-all-clients--allclients)
+      4. [Editing a Client](#editing-a-client--editclient)
+      5. [Searching for a Client](#searching-for-clients--findclient)
+      6. [Deleting a Client](#deleting-a-client--deleteclient)
+      7. [Sorting all Clients](#sorting-all-clients--sort)
+      8. [Pin a Client](#pin-a-client-pin)
    3. [Policy Features](#policy-features)<br>
       1. [Adding a Policy](#adding-a-policy--addpolicy)
       2. [Switching to Policy View](#switching-to-the-view-of-currently-listed-policies--policies)
@@ -48,9 +49,6 @@ This document is the official user guide of the Long Time No See (LTNS) app. Thi
 5. [Glossary](#glossary)
 
 
-
-
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
@@ -61,7 +59,7 @@ This document is the official user guide of the Long Time No See (LTNS) app. Thi
 3. Copy the file to the folder you want to use as the _home folder_ for your Long Time No See application.
 
 4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
-![GUI.png](./images/GUI.png)
+![GUI.png](./images/Ui.png)
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
