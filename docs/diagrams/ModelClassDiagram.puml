@@ -16,7 +16,7 @@ Class UniqueStudentList
 Class Student
 Class MasteryCheckStatus
 Class StudentName
-Class MatricNum
+Class GradeProfile
 
 }
 
@@ -35,11 +35,12 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 StudentBook *--> "1" UniqueStudentList
 UniqueStudentList --> "~* all" Student
 Student *--> StudentName
-Student *--> MatricNum
+Student *--> GradeProfile
 Student *--> MasteryCheckStatus
 
-StudentName -[hidden]right-> MatricNum
-MatricNum -[hidden]right-> MasteryCheckStatus
+UniqueStudentList -[hidden]right-> Student
+StudentName -[hidden]right-> GradeProfile
+GradeProfile -[hidden]right-> MasteryCheckStatus
 
 
 ModelManager -->"~* filtered" Student

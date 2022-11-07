@@ -75,6 +75,15 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `TaskListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
+At any time, the `MainWindow` displays 1 of the following 4 lists: default list, expanded student list, expanded task list or expanded lesson list. Each of these lists are made up of different parts. For example, the `ExpandedStudentCard` builds the expanded student list while the `StudentCard` builds the default list.
+
+In the class diagram above, the parts used to build the expanded lists i.e. `ExpandedStudentList`, `ExpandedTaskList` and `ExpandedLessonList` have been abstracted out into the `ExpandedLists` package due to space constraints. Instead, it displays the parts used to build the default list only.
+
+<br>
+<img src="images/ExpandedListClassDiagram.png" width="550">
+
+In the class diagram above, the parts used to build the expanded lists that were abstracted out previously are shown.
+
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-T11-3/tp/tree/master/src/main/java/jarvis/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-T11-3/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
@@ -128,7 +137,13 @@ The `Model` component,
 
 Similar analogues exist for task and lesson data. The class diagram is similar apart from:
 1. the different naming (`TaskBook` and `LessonBook` instead of `StudentBook`, `UniqueTaskList` and `UniqueLessonList` instead of `UniqueStudentList`)
-2. the components of the `Task` and `Lesson` classes. For example, instead of `StudentName` and `MatricNumber`, `Lesson` is composed out of `LessonAttendance`, `TimePeriod` etc.
+2. the components of the `Task` and `Lesson` classes. For example, instead of `StudentName` and `MatricNumber`, `Task` is composed out of `TaskDesc`, `TaskDeadline` etc. 
+
+In particular, the following class diagram shows how a lesson is represented in the `Model` component.
+
+<img src="images/LessonClassDiagram.png" width="450" />
+
+Note that the 3 Lesson subtypes (`Studio`, `MasteryCheck` and `Consult`) inherit from the abstract `Lesson` class. Each lesson consists of smaller components such as `LessonAttendance`, `TimePeriod` etc.
 
 ### Storage component
 
@@ -158,13 +173,27 @@ Classes used by multiple components are in the `jarvis.commons` package.
 This section describes some noteworthy details on how certain features are implemented.
 
 ### List Students / Tasks / Lessons
-To see the full list of students, tasks or lessons, the user keys in the valid command (`liststudent`, `listtask` or `listlesson`). As an example, the user keys in "`liststudent`". Parsing of the user input is done and a `ListStudentCommand` is then generated. The following sequence diagram shows what happens when the `ListStudentCommand` is executed.
 
-<img src="images/ListStudentSequenceDiagram.png" width="550"/>
+For the implementation of the `liststudent`, `listtask` and `listlesson` commands, it is important to explain the layout of the `MainWindow` component of the UI.
 
-1. The list of students in the model is updated to display all students.
+The `MainWindow` contains a `StackPane` which stacks 1 `SplitPane` component and 3 `VBox` components. The `SplitPane` component is a container for the default view of JARVIS, where all 3 lists (i.e. student/task/lesson list) are displayed side by side. Each `VBox` component is a container for the expanded version of one of the 3 lists (i.e. expanded student/task/lesson list). 
 
-The implementation for listing tasks and lessons is similar.
+Upon initialising the app, all 3 `VBox` components are set to "not visible". The `SplitPane` component remains visible, which displays the default view of the app.
+
+For the command, we'll use the example of `liststudent` though the same applies for `listtask` and `listlesson`. 
+
+To see the expanded version of the student list, the user keys in the valid command (`liststudent`). The `MainWindow` passes the command text to `LogicManager`, which then sends it to the parser to generate a `ListStudentCommand`. The `ListStudentCommand` is then executed to produce a `CommandResult` object. This `CommandResult` is returned to `MainWindow` and supplied as an argument to the `handleList` method, which then sets all content of the `StackPane` to "not visible" except for the `VBox` container of the expanded student list.
+
+The following sequence diagram shows what happens after `MainWindow` receives the command text by the user:
+
+<img src="images/ListStudentSequenceDiagram.png" width="800"/>
+
+1. `MainWindow` receives the command text and supplies it as an argument to the `execute` method of `LogicManager` 
+2. The command text is parsed and `LogicManager` executes the command, producing a `CommandResult`
+3. The `CommandResult` is successively returned to `MainWindow`
+4. `MainWindow` calls its own `handleList` method with the `CommandResult` as an argument
+
+The implementation for `listtask` and `listlesson` is similar to this.
 
 ### Mark Task as done / not done
 In order to mark a task as completed, the user keys in a valid command (e.g. `marktask 2`). Parsing of the user input is done (see the sequence diagram for deleting a student in the [Logic component](#logic-component) for a similar parsing sequence) and a `MarkTaskCommand` is then generated. The following sequence diagram shows what happens when the `MarkTaskCommand` is executed.
@@ -213,18 +242,18 @@ The above explanation is also applicable to adding consultation and studio lesso
 They are similar apart from:
 1. the different naming(`AddConsultCommandParser`, `AddStudioCommandParser` etc instead of `AddMasteryCheckParser`)
 2. for `Studio`, all `Student` currently in the `StudentBook` instead of `FilteredStudentList` will be used to create `LessonAttendance` and `LessonNotes`
-   1. Studio are tutorials and all students are expected to attend. 
+   1. Studio are tutorials and all students are expected to attend.
    2. As a result, adding a Studio command does not require user to input student indexes.
 
 ### Adding notes for a lesson
 
 In adding notes for an existing `Lesson` in JARVIS, the user has the option to:
 1. add overall notes for a `Lesson`
-2. add `Student` specific notes for a `Lesson` 
+2. add `Student` specific notes for a `Lesson`
 
 The rationale behind this design is that these are the two main types of notes that a tutor might make during a lesson. This design will help the tutor organise and view his/her notes more easily.
 
-To add an overall note for an existing `Lesson` in JARVIS, the user keys in a valid add note command (e.g addnote n/get back to the class on streams li/1). 
+To add an overall note for an existing `Lesson` in JARVIS, the user keys in a valid add note command (e.g addnote n/get back to the class on streams li/1).
 
 To add a `Student` specific note to an existing `Lesson` in JARVIS, the user similarly keys in a valid add note command, but additionally specifying the student index (e.g addnote n/get back to jeff on streams li/1 si/2).
 
@@ -287,7 +316,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
  | `* * *`  | user                              | add my lessons                                                  | can keep track of lessons I have scheduled with which students                  |
 | `* * *`  | user                              | mark tasks as done                                              | can focus on the remaining tasks                                                |
 | `* * *`  | user                              | mark tasks as not done                                          | can go back and redo tasks that are incomplete                                  |
-| `* * *`  | user                              | mark lessons as completed                                       | can focus on upcoming lessons                                                   | 
+| `* * *`  | user                              | mark lessons as completed                                       | can focus on upcoming lessons                                                   |
 | `* * *`  | clumsy user                       | delete tasks                                                    | can remove tasks I have wrongfully added                                        |
 | `* * *`  | clumsy user                       | delete students                                                 | can remove students I have wrongfully added                                     |
 | `* * *`  | clumsy user                       | delete lessons                                                  | can remove lessons I have wrongfully added                                      |
@@ -301,8 +330,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user ready to start using the app | clear all current data                                          | can get rid of the sample data used for exploring the app and input my own data |
 | `* *`    | user                              | add attendance for a lesson                                      | can keep track of who attended the lesson                                       |
 | `* *`    | user                              | keep track of my students' level of participation               | can prompt students who are less active in class                        |
-| `* *`    | user                              | keep track of my students' grades                               | can help and pay more attention to the weaker students                             |  
-| `* *`    | user                              | take down notes related to a lesson                             | can refer back and remember important things that happened during the lesson      |      
+| `* *`    | user                              | keep track of my students' grades                               | can help and pay more attention to the weaker students                             | 
+| `* *`    | user                              | take down notes related to a lesson                             | can refer back and remember important things that happened during the lesson      |     
 | `* *`    | user                              | detect if there are any lesson schedule conflicts                      | will not wrongly schedule lessons at the same time                               |
 | `*`      | user                              | assign different priorities to my tasks                         | can focus on the more important tasks                                           |
 | `*`      | user ready to start using the app | import my timetable for the semester	                           | can plan my TA duties in sync with tasks from other modules                     |
@@ -386,14 +415,14 @@ Use case ends.
 **Extensions**
 - 1a. JARVIS fails to understand request.
   - 1a1. JARVIS tells Avenger to make a request again.
-  
+
     Use case resumes from step 1.
 
 - 1b. Specified student not found in JARVIS.
   - 1b1. JARVIS informs Avenger that the student does not exist.
   - 1b2. JARVIS displays the list of students.
   - 1b3. JARVIS tells Avenger to make a request again.
-  
+
     Use case resumes from step 1.
 
 **Use case: UC9 - Find student**
@@ -422,7 +451,7 @@ Preconditions: There are existing students in JARVIS.
 
 Preconditions: There are existing students in JARVIS.
 
-**MSS** 
+**MSS**
 
 1. Avenger requests to input grade for a student.
 2. JARVIS successfully adds the grade for the student.
@@ -516,21 +545,21 @@ Use case ends.
 
 - 2a. JARVIS fails to understand request.
   - 2a1. JARVIS tells Avenger to make a request again.
-  - 
+
     Use case resumes from step 2.
-  
+
 - 2b. Specified lesson not found in JARVIS.
   - 2b1. JARVIS informs Avenger that the lesson does not exist.
   - 2b2. JARVIS tells Avenger to make a request again.
-  
+
     Use case resumes from step 2.
-  
+
 - 2c. Specified student not found in JARVIS.
   - 2c1. JARVIS informs Avenger that the student does not exist in the lesson.
   - 2c2. JARVIS tells Avenger to make a request again.
-  
+
     Use case resumes from step 2.
-  
+
 **Use case: UC17 - Mark a student as absent for a lesson**
 
 Refer to <ins>UC16 - Mark a student as present for a lesson</ins> with the only difference being mark a student as absent instead of present.
@@ -538,6 +567,8 @@ Refer to <ins>UC16 - Mark a student as present for a lesson</ins> with the only 
 **Use case: UC18 - Add note for a student in a lesson**
 
 Preconditions: There are existing students and lessons in JARVIS.
+
+**MSS**
 
 1. Avenger performs <ins>view lessons(UC3)</ins>.
 2. Avenger requests to add a note for a student in a lesson.
@@ -548,13 +579,13 @@ Use case ends.
 **Extensions:**
 - 2a. JARVIS fails to understand request.
     - 2a1. JARVIS tells Avenger to make a request again.
-  
+
       Use case resumes from step 2.
-  
+
 - 2b. Specified lesson not found in JARVIS.
     - 2b1. JARVIS informs Avenger that the lesson does not exist.
     - 2b2. JARVIS tells Avenger to make a request again.
-  
+
       Use case resumes from step 2.
 
 - 2c. Specified student not found in JARVIS.
@@ -562,11 +593,12 @@ Use case ends.
     - 2c2. JARVIS tells Avenger to make a request again.
 
       Use case resumes from step 2.
-
-
+    
 **Use case: UC19 - Delete note from a student in a lesson**
 
 Preconditions: There are existing students, lessons and notes for a student in JARVIS.
+
+**MSS**
 
 1. Avenger performs <ins>view lessons(UC3)</ins>.
 2. Avenger requests to delete a note from a student in a lesson.
@@ -597,7 +629,7 @@ Use case ends.
   - 2d2. JARVIS tells Avenger to make a request again.
 
     Use case resumes from step 2.
-  
+
 **Use case: UC20 - Set participation for a student in a lesson**
 
 Refer to <ins>UC18 - Add note for a student in a lesson</ins> with the only difference being setting participation instead of adding note.  
@@ -620,13 +652,13 @@ Use case ends.
   - 2a1. JARVIS tells Avenger to make a request again.
 
     Use case resumes from step 2.
-  
+
 - 2b. Specified student not found in JARVIS.
   - 2b1. JARVIS informs Avenger that the student does not exist.
   - 2b2. JARVIS tells Avenger to make a request again.
 
     Use case resumes from step 2.
-  
+
 **Use case: UC22 - Delete a task**
 
 Refer to <ins>UC21 - Delete a student</ins> with the only difference being task instead of student.
@@ -650,8 +682,8 @@ Use case ends.
   - 1a1. JARVIS tells Avenger to make a request again.
 
     Use case resumes from step 1.
-  
-    
+
+
 ### Non-Functional Requirements
 
 1.  Should work on Windows, Linux, and OS-X platforms that has version 11 of Java (i.e. no other Java versions) installed.
@@ -691,7 +723,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file 
+   1. Double-click the jar file
        Expected: Shows the GUI with a set of sample students, tasks and lists. The window size may not be optimum.
 
 1. Saving window preferences

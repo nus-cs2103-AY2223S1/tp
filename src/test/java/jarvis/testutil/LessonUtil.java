@@ -10,8 +10,12 @@ import static jarvis.logic.parser.ParserUtil.TIME_FORMATTER;
 
 import java.time.LocalDateTime;
 
+import jarvis.logic.commands.AddConsultCommand;
+import jarvis.logic.commands.AddMasteryCheckCommand;
 import jarvis.logic.commands.AddStudioCommand;
+import jarvis.model.Consult;
 import jarvis.model.Lesson;
+import jarvis.model.MasteryCheck;
 import jarvis.model.Studio;
 
 /**
@@ -20,17 +24,26 @@ import jarvis.model.Studio;
 public class LessonUtil {
 
     /**
-     * Returns an add command string for adding the {@code lesson}.
+     * Returns an add command string for adding the {@code Studio}.
      */
     public static String getAddStudioCommand(Studio studio) {
-        return AddStudioCommand.COMMAND_WORD + " " + getStudioDetails(studio);
+        return AddStudioCommand.COMMAND_WORD + " " + getLessonDetails(studio);
     }
 
     /**
-     * Returns the part of command string for the given {@code studio}'s details.
+     * Returns an incomplete add command string for adding the {@code MasteryCheck}.
+     * The String only contains the COMMAND_WORD, lessonDesc, startDate, startTime, endDate and endTime.
      */
-    public static String getStudioDetails(Studio studio) {
-        return getLessonDetails(studio);
+    public static String getPartialAddMasteryCheckCommand(MasteryCheck mc) {
+        return AddMasteryCheckCommand.COMMAND_WORD + " " + getLessonDetails(mc);
+    }
+
+    /**
+     * Returns an incomplete add command string for adding the {@code Consult}.
+     * The String only contains the COMMAND_WORD, lessonDesc, startDate, startTime, endDate and endTime.
+     */
+    public static String getPartialAddConsultCommand(Consult consult) {
+        return AddConsultCommand.COMMAND_WORD + " " + getLessonDetails(consult);
     }
 
     /**

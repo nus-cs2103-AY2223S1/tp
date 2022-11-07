@@ -38,18 +38,18 @@ public class TypicalLessons {
     public static final LocalDateTime DT3 = LocalDateTime.of(2022, 12, 12, 12, 0);
     public static final LocalDateTime DT4 = LocalDateTime.of(2022, 12, 12, 13, 0);
 
-    public static final Consult CONSULT_1 = new Consult(CONSULT_DESCRIPTION_1, new TimePeriod(DT3, DT4),
-            CONSULT_STUDENTS);
-    public static final Consult CONSULT_2 = new Consult(CONSULT_DESCRIPTION_2, new TimePeriod(DT1, DT2),
-            CONSULT_STUDENTS);
-    public static final MasteryCheck MC_1 = new MasteryCheck(MASTERY_CHECK_DESCRIPTION_1, new TimePeriod(DT1, DT2),
-            MASTERY_CHECK_STUDENTS);
-    public static final MasteryCheck MC_2 = new MasteryCheck(MASTERY_CHECK_DESCRIPTION_2, new TimePeriod(DT2, DT4),
-            MASTERY_CHECK_STUDENTS);
-    public static final Studio STUDIO_1 = new Studio(STUDIO_DESCRIPTION_1, new TimePeriod(DT2, DT3),
-            STUDIO_STUDENTS);
-    public static final Studio STUDIO_2 = new Studio(STUDIO_DESCRIPTION_2, new TimePeriod(DT2, DT4),
-            STUDIO_STUDENTS);
+    public static final TimePeriod TP1 = new TimePeriod(DT1, DT2);
+    public static final TimePeriod TP2 = new TimePeriod(DT2, DT3);
+    public static final TimePeriod TP3 = new TimePeriod(DT3, DT4);
+    public static final TimePeriod TP4 = new TimePeriod(DT2, DT4);
+    public static final TimePeriod TP5 = new TimePeriod(DT1, DT3);
+
+    public static final Consult CONSULT_1 = new Consult(CONSULT_DESCRIPTION_1, TP3, CONSULT_STUDENTS);
+    public static final Consult CONSULT_2 = new Consult(CONSULT_DESCRIPTION_2, TP1, CONSULT_STUDENTS);
+    public static final MasteryCheck MC_1 = new MasteryCheck(MASTERY_CHECK_DESCRIPTION_1, TP1, MASTERY_CHECK_STUDENTS);
+    public static final MasteryCheck MC_2 = new MasteryCheck(MASTERY_CHECK_DESCRIPTION_2, TP4, MASTERY_CHECK_STUDENTS);
+    public static final Studio STUDIO_1 = new Studio(STUDIO_DESCRIPTION_1, TP2, STUDIO_STUDENTS);
+    public static final Studio STUDIO_2 = new Studio(STUDIO_DESCRIPTION_2, TP4, STUDIO_STUDENTS);
 
     private TypicalLessons() {} // prevents instantiation
 
