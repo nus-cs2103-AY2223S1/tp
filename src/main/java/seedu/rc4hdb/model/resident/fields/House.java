@@ -4,6 +4,7 @@ import static seedu.rc4hdb.commons.util.AppUtil.checkArgument;
 
 import seedu.rc4hdb.model.StringField;
 
+//@@author alvinjiang1
 /**
  * Represents a Resident's house in RC4HDB.
  * Guarantees: immutable; is valid as declared in {@link #isValidHouse(String)}
@@ -23,7 +24,7 @@ public class House extends StringField implements ResidentField {
      * @param house A valid house string.
      */
     public House(String house) {
-        super(house);
+        super(house.toUpperCase());
         checkArgument(isValidHouse(house), MESSAGE_CONSTRAINTS);
     }
 
@@ -31,7 +32,7 @@ public class House extends StringField implements ResidentField {
      * Returns true if a given string is a valid house.
      */
     public static boolean isValidHouse(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.toUpperCase().matches(VALIDATION_REGEX);
     }
 
 }

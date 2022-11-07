@@ -26,6 +26,10 @@ public class Hour extends StringField {
         this.hour = Integer.parseInt(hour);
     }
 
+    public String toString() {
+        return hour + "00";
+    }
+
     /**
      * Returns true if a given string is a valid hour.
      */

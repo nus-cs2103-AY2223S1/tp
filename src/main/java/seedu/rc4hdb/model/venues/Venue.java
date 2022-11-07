@@ -3,6 +3,7 @@ package seedu.rc4hdb.model.venues;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -111,9 +112,9 @@ public class Venue implements BookingField {
 
     //==================== Start of getters =================================
 
-    public List<Booking> getBookings() {
+    public List<Booking> getReadOnlyBookings() {
         clearExpiredBookings();
-        return bookings;
+        return Collections.unmodifiableList(bookings);
     }
 
     public VenueName getVenueName() {
@@ -147,6 +148,4 @@ public class Venue implements BookingField {
         }
         return false;
     }
-
-    // Todo: Populate venue table with the venues specified in the .txt file and hook up class with storage
 }

@@ -20,7 +20,6 @@ import seedu.rc4hdb.commons.core.index.Index;
 import seedu.rc4hdb.logic.commands.residentcommands.EditCommand;
 import seedu.rc4hdb.logic.parser.ArgumentMultimap;
 import seedu.rc4hdb.logic.parser.ArgumentTokenizer;
-import seedu.rc4hdb.logic.parser.Parser;
 import seedu.rc4hdb.logic.parser.ParserUtil;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 import seedu.rc4hdb.model.resident.ResidentDescriptor;
@@ -29,7 +28,7 @@ import seedu.rc4hdb.model.resident.fields.Tag;
 /**
  * Parses input arguments and creates a new EditCommand object
  */
-public class EditCommandParser implements Parser<EditCommand> {
+public class EditCommandParser implements CommandParser<EditCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand

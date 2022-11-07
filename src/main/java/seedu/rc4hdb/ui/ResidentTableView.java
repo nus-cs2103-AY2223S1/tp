@@ -2,6 +2,7 @@ package seedu.rc4hdb.ui;
 
 import static seedu.rc4hdb.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -28,6 +29,13 @@ import seedu.rc4hdb.model.resident.fields.Tag;
  * Panel containing the list of persons.
  */
 public class ResidentTableView extends UiPart<Region> {
+
+    public static final Integer COLUMN_WIDTH_SMALL_1 = 70;
+    public static final Integer COLUMN_WIDTH_SMALL_2 = 90;
+    public static final Integer COLUMN_WIDTH_MEDIUM_1 = 120;
+    public static final Integer COLUMN_WIDTH_MEDIUM_2 = 140;
+    public static final Integer COLUMN_WIDTH_LARGE = 300;
+    public static final String MATRIC_NUMBER_VARIABLE_NAME = "matricNumber";
 
     private static final String FXML = "ResidentTableView.fxml";
 
@@ -92,7 +100,10 @@ public class ResidentTableView extends UiPart<Region> {
         indexColumn.setCellFactory(this::populateIndexColumn);
         genderColumn.setCellValueFactory(new PropertyValueFactory<>(Gender.IDENTIFIER.toLowerCase()));
         houseColumn.setCellValueFactory(new PropertyValueFactory<>(House.IDENTIFIER.toLowerCase()));
-        matricColumn.setCellValueFactory(new PropertyValueFactory<>("matricNumber"));
+
+        // Because the column identifier is different from the variable name
+        matricColumn.setCellValueFactory(new PropertyValueFactory<>(MATRIC_NUMBER_VARIABLE_NAME));
+
         tagColumn.setCellValueFactory(new PropertyValueFactory<>(Tag.IDENTIFIER.toLowerCase()));
         tagColumn.setCellFactory(this::populateTagColumn);
     }
@@ -136,32 +147,36 @@ public class ResidentTableView extends UiPart<Region> {
     }
 
     /**
-     * Stylizes the {@code ResidentTableView} to maximise column width.
+     * Configures {@code ResidentTableView} properties, column widths and resizability .
      */
     private void configureTableProperties() {
         this.residentTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        setResizeable();
+        setColumnWidth();
+    }
 
-        indexColumn.setResizable(false);
-        indexColumn.setPrefWidth(70);
+    /**
+     * Sets the columns for constant-sized fields to be un-resizable.
+     */
+    private void setResizeable() {
+        List<TableColumn<Resident, ResidentField>> unResizeable = List.of(indexColumn, phoneColumn, roomColumn,
+                genderColumn, houseColumn, matricColumn);
+        unResizeable.forEach(x -> x.setResizable(false));
+    }
 
-        nameColumn.setMinWidth(300);
+    /**
+     * Sets the individual width of several columns.
+     */
+    private void setColumnWidth() {
+        nameColumn.setMinWidth(COLUMN_WIDTH_LARGE);
+        emailColumn.setMinWidth(COLUMN_WIDTH_LARGE);
 
-        phoneColumn.setResizable(false);
-        phoneColumn.setPrefWidth(120);
-
-        emailColumn.setMinWidth(300);
-
-        roomColumn.setResizable(false);
-        roomColumn.setPrefWidth(140);
-
-        genderColumn.setResizable(false);
-        genderColumn.setPrefWidth(90);
-
-        houseColumn.setResizable(false);
-        houseColumn.setPrefWidth(90);
-
-        matricColumn.setResizable(false);
-        matricColumn.setPrefWidth(140);
+        indexColumn.setPrefWidth(COLUMN_WIDTH_SMALL_1);
+        phoneColumn.setPrefWidth(COLUMN_WIDTH_MEDIUM_1);
+        roomColumn.setPrefWidth(COLUMN_WIDTH_MEDIUM_2);
+        genderColumn.setPrefWidth(COLUMN_WIDTH_SMALL_2);
+        houseColumn.setPrefWidth(COLUMN_WIDTH_SMALL_2);
+        matricColumn.setPrefWidth(COLUMN_WIDTH_MEDIUM_2);
     }
 
     /**
@@ -169,20 +184,7 @@ public class ResidentTableView extends UiPart<Region> {
      * in {@code visibleFields} to visible when the list changes.
      */
     private ListChangeListener<String> showColumnsOnChange() {
-        return c -> {
-            // Reset column visibilities to false
-            residentTableView.getColumns().forEach(column -> column.setVisible(false));
-
-            // Filter all columns (including index column) to obtain the columns to show
-            // Recall that column headers is in title-case, i.e. first letter is capitalised
-            residentTableView.getColumns()
-                    .stream()
-                    .filter(column -> c.getList().contains(column.getText().toLowerCase()))
-                    .forEach(column -> column.setVisible(true));
-
-            // Ensure that index column is properly rendered
-            indexColumn.setCellFactory(this::populateIndexColumn);
-        };
+        return setColumnVisibilitiesTo(true);
     }
 
     /**
@@ -190,20 +192,23 @@ public class ResidentTableView extends UiPart<Region> {
      * in {@code hiddenFields} to not visible when the list changes.
      */
     private ListChangeListener<String> hideColumnsOnChange() {
-        return c -> {
-            // Reset column visibilities to true
-            residentTableView.getColumns().forEach(column -> column.setVisible(true));
+        return setColumnVisibilitiesTo(false);
+    }
 
-            // Filter all columns (including index column) to obtain the columns to hide
-            // Recall that column headers is in title-case, i.e. first letter is capitalised
+    private ListChangeListener<String> setColumnVisibilitiesTo(boolean isVisible) {
+        return c -> {
+            // Reset *all* column visibilities to the *opposite* state of the desired visibility
+            residentTableView.getColumns().forEach(column -> column.setVisible(!isVisible));
+
+            // Obtain the filtered list of columns whose visibilities should be set
+            // And then set the visibilities of the *filtered* columns to the desired visibility
             residentTableView.getColumns()
                     .stream()
                     .filter(column -> c.getList().contains(column.getText().toLowerCase()))
-                    .forEach(column -> column.setVisible(false));
+                    .forEach(column -> column.setVisible(isVisible));
 
             // Ensure that index column is properly rendered
             indexColumn.setCellFactory(this::populateIndexColumn);
         };
     }
-
 }

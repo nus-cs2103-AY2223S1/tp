@@ -1,9 +1,11 @@
 package seedu.rc4hdb.storage.venue;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.rc4hdb.storage.venuebook.JsonAdaptedRecurrentBooking.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.rc4hdb.testutil.Assert.assertThrows;
 import static seedu.rc4hdb.testutil.TypicalBookings.HP_5_TO_6PM_STRING;
 import static seedu.rc4hdb.testutil.TypicalBookings.MONDAY_STRING;
+import static seedu.rc4hdb.testutil.TypicalBookings.MR_ALICE_MONDAY_5_TO_6PM;
 import static seedu.rc4hdb.testutil.TypicalResidents.BENSON;
 import static seedu.rc4hdb.testutil.TypicalVenues.MEETING_ROOM_STRING;
 
@@ -37,11 +39,11 @@ public class JsonAdaptedRecurrentBookingTest {
             "98765432", "benson@example.com", "12-01", "M", "U", "A0728394U",
             null);
 
-    // @Test // I can't figure out why this is not passing. @TODO
-    // public void toModelType_validRecurrentBookingDetails_returnsRecurrentBooking() throws IllegalValueException {
-    //     JsonAdaptedRecurrentBooking booking = new JsonAdaptedRecurrentBooking(MR_ALICE_MONDAY_5_TO_6_PM);
-    //     assertEquals(MR_ALICE_MONDAY_5_TO_6_PM, booking.toModelType());
-    // }
+    @Test
+    public void toModelType_validRecurrentBookingDetails_returnsRecurrentBooking() throws IllegalValueException {
+        JsonAdaptedRecurrentBooking booking = new JsonAdaptedRecurrentBooking(MR_ALICE_MONDAY_5_TO_6PM);
+        assertEquals(MR_ALICE_MONDAY_5_TO_6PM, booking.toModelType());
+    }
 
     @Test
     public void toModelType_invalidVenueName_throwsIllegalValueException() {

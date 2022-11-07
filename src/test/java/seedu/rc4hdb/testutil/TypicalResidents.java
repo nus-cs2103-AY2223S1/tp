@@ -95,7 +95,7 @@ public class TypicalResidents {
             .withName("Hoon Meier")
             .withPhone("84824241")
             .withEmail("stefan@example.com")
-            .withRoom("06-33")
+            .withRoom("06-3")
             .withGender("M")
             .withHouse("N")
             .withMatricNumber("A0299388U").build();

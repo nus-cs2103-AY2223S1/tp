@@ -33,6 +33,7 @@ public class VenueAddCommand extends VenueCommand implements ModelCommand {
         super(venueName);
     }
 
+    //@@author nealetham
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);

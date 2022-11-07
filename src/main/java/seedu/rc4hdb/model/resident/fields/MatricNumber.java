@@ -4,6 +4,7 @@ import static seedu.rc4hdb.commons.util.AppUtil.checkArgument;
 
 import seedu.rc4hdb.model.StringField;
 
+//@@author alvinjiang1
 /**
  * Represents a Resident's matriculation number in RC4HDB.
  * Guarantees: immutable; is valid as declared in {@link #isValidMatricNumber(String)}
@@ -26,7 +27,7 @@ public class MatricNumber extends StringField implements ResidentField {
      * @param matricNumber A valid matriculation number string.
      */
     public MatricNumber(String matricNumber) {
-        super(matricNumber);
+        super(matricNumber.toUpperCase());
         checkArgument(isValidMatricNumber(matricNumber), MESSAGE_CONSTRAINTS);
     }
 
@@ -34,7 +35,7 @@ public class MatricNumber extends StringField implements ResidentField {
      * Returns true if a given string is a valid matriculation number.
      */
     public static boolean isValidMatricNumber(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.toUpperCase().matches(VALIDATION_REGEX);
     }
 
 }

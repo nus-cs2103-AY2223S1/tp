@@ -27,8 +27,10 @@ import seedu.rc4hdb.ui.ObservableItem;
  */
 public class DataStorageManager implements DataStorage {
 
-    public static final String MESSAGE_FOLDER_ALREADY_EXIST = "%s folder already exists";
-    public static final String MESSAGE_FOLDER_DOES_NOT_EXIST = "%s folder does not exist.";
+    public static final String MESSAGE_FOLDER_ALREADY_EXIST = "%s sub data folder already exists. "
+            + "Delete the old folder before trying again.";
+
+    public static final String MESSAGE_FOLDER_DOES_NOT_EXIST = "%s sub data folder does not exist.";
 
     private static final Logger logger = LogsCenter.getLogger(DataStorageManager.class);
 

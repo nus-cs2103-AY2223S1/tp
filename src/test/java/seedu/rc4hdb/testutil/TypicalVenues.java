@@ -40,4 +40,5 @@ public class TypicalVenues {
     public static List<Venue> getTypicalVenues() {
         return new ArrayList<>(Arrays.asList(MEETING_ROOM, HALL, DISCUSSION_ROOM));
     }
+
 }

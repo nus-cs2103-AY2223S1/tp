@@ -130,7 +130,7 @@ public class EditCommandTest {
         ResidentDescriptor descriptor = new ResidentDescriptorBuilder().withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_RESIDENT_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_NO_RESIDENT_WITH_INDEX);
     }
 
     /**
@@ -147,7 +147,7 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
                 new ResidentDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_RESIDENT_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_NO_RESIDENT_WITH_INDEX);
     }
 
     @Test

@@ -4,6 +4,7 @@ import static seedu.rc4hdb.commons.util.AppUtil.checkArgument;
 
 import seedu.rc4hdb.model.StringField;
 
+//@@author alvinjiang1
 /**
  * Represents a Resident's gender in RC4HDB.
  * Guarantees: immutable; is valid as declared in {@link #isValidGender(String)}
@@ -22,7 +23,7 @@ public class Gender extends StringField implements ResidentField {
      * @param gender A valid gender string.
      */
     public Gender(String gender) {
-        super(gender);
+        super(gender.toUpperCase());
         checkArgument(isValidGender(gender), MESSAGE_CONSTRAINTS);
     }
 
@@ -30,7 +31,7 @@ public class Gender extends StringField implements ResidentField {
      * Returns true if a given string is a valid gender.
      */
     public static boolean isValidGender(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.toUpperCase().matches(VALIDATION_REGEX);
     }
 
 }

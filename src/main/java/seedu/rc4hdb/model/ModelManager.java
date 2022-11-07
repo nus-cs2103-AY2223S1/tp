@@ -41,10 +41,19 @@ public class ModelManager implements Model {
 
     /* A venue whose bookings are to be displayed in the BookingTableView */
     private final ObservableItem<Venue> currentlyDisplayedVenue;
+
     /* A list of strings that corresponds to the fields of Resident to be displayed on the ResidentTableView */
-    private final ObservableList<String> visibleFields;
+    private final ObservableList<String> visibleFields = FXCollections
+            .observableArrayList(ResidentField.LOWERCASE_FIELDS);
+
     /* A list of strings that corresponds to the fields of Resident to be hidden on the ResidentTableView */
-    private final ObservableList<String> hiddenFields;
+    private final ObservableList<String> hiddenFields = FXCollections.observableArrayList();
+
+    private final ObservableList<String> unmodifiableVisibleFields = FXCollections
+            .unmodifiableObservableList(visibleFields);
+
+    private final ObservableList<String> unmodifiableHiddenFields = FXCollections
+            .unmodifiableObservableList(hiddenFields);
 
     /**
      * Initializes a ModelManager with the given residentBook and userPrefs.
@@ -62,8 +71,7 @@ public class ModelManager implements Model {
 
         // Set up observable instances
         filteredResidents = new FilteredList<>(this.residentBook.getResidentList());
-        visibleFields = FXCollections.observableArrayList(ResidentField.LOWERCASE_FIELDS);
-        hiddenFields = FXCollections.observableArrayList();
+
         List<Venue> venueList = this.venueBook.getVenueList();
         if (venueList.isEmpty()) {
             logger.info("No venues found in venue list.");
@@ -240,8 +248,8 @@ public class ModelManager implements Model {
     //=========== Observable Field List Accessors =============================================================
 
     @Override
-    public ObservableList<String> getVisibleFields() {
-        return visibleFields;
+    public ObservableList<String> getUnmodifiableVisibleFields() {
+        return unmodifiableVisibleFields;
     }
 
     @Override
@@ -250,8 +258,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ObservableList<String> getHiddenFields() {
-        return hiddenFields;
+    public ObservableList<String> getUnmodifiableHiddenFields() {
+        return unmodifiableHiddenFields;
     }
 
     @Override
