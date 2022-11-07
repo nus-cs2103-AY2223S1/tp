@@ -44,7 +44,7 @@ public class PayCommandTest {
         Student expectedPaidStudent = new Student(AMY.getName(), AMY.getPhone(), AMY.getNokPhone(), AMY.getEmail(),
                 AMY.getAddress(), AMY.getAClass(), new Money(0),
                 AMY.getMoneyPaid().addTo(VALID_MONEY), AMY.getRatesPerClass(), AMY.getAdditionalNotes(), AMY.getTags(),
-                AMY.getMarkStatus(), AMY.getDisplayedClass());
+                AMY.getMarkStatus());
 
         Student paidStudent = PayCommand.createPaidStudent(studentPaying, VALID_MONEY);
         assertEquals(expectedPaidStudent, paidStudent);
@@ -55,7 +55,7 @@ public class PayCommandTest {
         Student student = new Student(AMY.getName(), AMY.getPhone(), AMY.getNokPhone(), AMY.getEmail(),
                 AMY.getAddress(), AMY.getAClass(), new Money(Integer.MAX_VALUE),
                 VALID_MONEY, AMY.getRatesPerClass(), AMY.getAdditionalNotes(), AMY.getTags(),
-                AMY.getMarkStatus(), AMY.getDisplayedClass());
+                AMY.getMarkStatus());
 
         assertThrows(CommandException.class, () -> PayCommand.createPaidStudent(student, new Money(Integer.MAX_VALUE)));
     }
@@ -65,7 +65,7 @@ public class PayCommandTest {
         Student student = new Student(AMY.getName(), AMY.getPhone(), AMY.getNokPhone(), AMY.getEmail(),
                 AMY.getAddress(), AMY.getAClass(), new Money(0),
                 VALID_MONEY, AMY.getRatesPerClass(), AMY.getAdditionalNotes(), AMY.getTags(),
-                AMY.getMarkStatus(), AMY.getDisplayedClass());
+                AMY.getMarkStatus());
 
         assertThrows(CommandException.class, () -> PayCommand.createPaidStudent(student, VALID_MONEY));
     }
@@ -75,7 +75,7 @@ public class PayCommandTest {
         Student student = new Student(AMY.getName(), AMY.getPhone(), AMY.getNokPhone(), AMY.getEmail(),
                 AMY.getAddress(), AMY.getAClass(), new Money(299),
                 VALID_MONEY, AMY.getRatesPerClass(), AMY.getAdditionalNotes(), AMY.getTags(),
-                AMY.getMarkStatus(), AMY.getDisplayedClass());
+                AMY.getMarkStatus());
 
         assertThrows(CommandException.class, () -> PayCommand.createPaidStudent(student, VALID_MONEY));
     }

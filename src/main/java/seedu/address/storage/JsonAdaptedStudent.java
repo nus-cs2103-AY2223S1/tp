@@ -41,7 +41,6 @@ class JsonAdaptedStudent {
     private final String additionalNotes;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final Boolean isPresent;
-    private final String displayedClass;
 
     /**
      * Constructs a {@code JsonAdaptedStudent} with the given student details.
@@ -56,8 +55,7 @@ class JsonAdaptedStudent {
                               @JsonProperty("ratesPerClass") Integer ratesPerClass,
                               @JsonProperty("additionalNotes") String additionalNotes,
                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                              @JsonProperty("isPresent") Boolean isPresent,
-                              @JsonProperty("displayedClass") String displayedClass) {
+                              @JsonProperty("isPresent") Boolean isPresent) {
         this.name = name;
         this.phone = phone;
         this.nokPhone = nokPhone;
@@ -72,7 +70,6 @@ class JsonAdaptedStudent {
             this.tagged.addAll(tagged);
         }
         this.isPresent = isPresent;
-        this.displayedClass = displayedClass;
     }
 
     /**
@@ -93,7 +90,6 @@ class JsonAdaptedStudent {
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         isPresent = source.getMarkStatus().isMarked();
-        displayedClass = source.getDisplayedClass().classDateTime;
     }
 
     /**
@@ -201,21 +197,10 @@ class JsonAdaptedStudent {
             modelIsPresent = new Mark(Boolean.FALSE);
         }
 
-        final Class modelDisplayedClass;
-        if (displayedClass != null && !displayedClass.equals("")) {
-            if (!Class.isValidClassString(displayedClass)) {
-                throw new IllegalValueException(Class.MESSAGE_CONSTRAINTS);
-            }
-            modelDisplayedClass = ParserUtil.parseClass(displayedClass);
-        } else {
-            modelDisplayedClass = new Class();
-        }
-
         final Set<Tag> modelTags = new HashSet<>(studentTags);
 
         return new Student(modelName, modelPhone, modelNokPhone, modelEmail, modelAddress, modelClassDateTime,
-                modelMoneyOwed, modelMoneyPaid, modelRatesPerClass, modelAdditionalNotes, modelTags, modelIsPresent,
-                modelDisplayedClass);
+                modelMoneyOwed, modelMoneyPaid, modelRatesPerClass, modelAdditionalNotes, modelTags, modelIsPresent);
     }
 
 }

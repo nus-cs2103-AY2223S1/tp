@@ -67,7 +67,10 @@ public class EditCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the address book.";
     public static final String MESSAGE_CLASS_CONFLICT = "There is a conflict between the class timings.";
-    private static final String MESSAGE_MULTIPLE_CLASSES_PER_DAY = "A student cannot have multiple classes per day";
+    private static final String MESSAGE_MULTIPLE_CLASSES_PER_DAY = "The student has been marked today,"
+            + " so the student cannot have another lesson on the same day.";
+    private static final String MESSAGE_PHONE_SAME_AS_NOK_PHONE = "Please be advised that the student's "
+            + "phone number is the same as the next-of-kin's, but the student will still be updated.\n";
 
     private final Index index;
     private final EditStudentDescriptor editStudentDescriptor;
@@ -100,26 +103,27 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
         }
 
-
         if (!editStudentDescriptor.hasEmptyClass()) {
-            if (editedStudent.hasMultipleClasses()) {
+            if (studentToEdit.hasSameDateAs(editedStudent)) {
                 throw new CommandException(MESSAGE_MULTIPLE_CLASSES_PER_DAY);
             }
-            editedStudent.setDisplayClass(editedStudent.getAClass());
+
+            editedStudent.resetMarkStatus();
+
             ClassStorage.saveClass(editedStudent, index.getOneBased());
             ClassStorage.removeExistingClass(studentToEdit);
         } else if (!studentToEdit.hasEmptyClass()) {
             editedStudent.setClass(studentToEdit.getAClass());
-            editedStudent.setDisplayClass(studentToEdit.getDisplayedClass());
-            if (editedStudent.hasMultipleClasses()) {
-                throw new CommandException(MESSAGE_MULTIPLE_CLASSES_PER_DAY);
-            }
             ClassStorage.updateStudent(studentToEdit, editedStudent);
         }
 
         model.setStudent(studentToEdit, editedStudent);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         model.updateFilteredScheduleList(PREDICATE_SHOW_ALL_STUDENTS);
+        if (editedStudent.hasSharedPhone()) {
+            return new CommandResult(MESSAGE_PHONE_SAME_AS_NOK_PHONE
+                    + String.format(MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent));
+        }
         return new CommandResult(String.format(MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent));
     }
 
@@ -149,11 +153,10 @@ public class EditCommand extends Command {
 
         // Unmodifiable states by the user
         Mark markStatus = studentToEdit.getMarkStatus();
-        Class displayedClass = studentToEdit.getDisplayedClass();;
 
         return new Student(updatedName, updatedPhone, updatedNokPhone, updatedEmail, updatedAddress,
                 updatedClassDateTime, updatedMoneyOwed, updatedMoneyPaid, updatedRatesPerClass, updatedNotes,
-                updatedTags, markStatus, displayedClass);
+                updatedTags, markStatus);
     }
 
     @Override

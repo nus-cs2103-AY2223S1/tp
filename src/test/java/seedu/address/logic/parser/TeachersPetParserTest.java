@@ -26,6 +26,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.MarkCommand;
 import seedu.address.logic.commands.PayCommand;
+import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.Money;
 import seedu.address.model.student.Student;
@@ -100,6 +101,12 @@ public class TeachersPetParserTest {
         MarkCommand command = (MarkCommand) parser.parseCommand(
                 MarkCommand.COMMAND_WORD + " " + INDEX_FIRST_STUDENT.getOneBased());
         assertEquals(new MarkCommand(INDEX_FIRST_STUDENT), command);
+    }
+
+    @Test
+    public void parseCommand_undo() throws Exception {
+        UndoCommand command = (UndoCommand) parser.parseCommand(UndoCommand.COMMAND_WORD);
+        assertEquals(new UndoCommand(), command);
     }
 
     @Test
