@@ -18,7 +18,7 @@ import seedu.address.model.patient.Name;
 public class BillBuilder {
 
     public static final Appointment DEFAULT_APPOINTMENT = APPOINTMENT_1;
-    public static final String DEFAULT_BILL_DATE = "2022-10-17";
+    public static final String DEFAULT_BILL_DATE = "2022-11-17";
     public static final String DEFAULT_AMOUNT = "1234.00";
     public static final String DEFAULT_PAYMENT_STATUS = "unpaid";
 
