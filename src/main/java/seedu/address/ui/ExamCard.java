@@ -56,7 +56,9 @@ public class ExamCard extends UiPart<Region> {
             percentageCompleted.setPadding(new Insets(0, 5, 0, 0));
         }
 
-        percentageCompleted.setProgress(exam.getPercentageCompleted());
+        if (exam.hasTasks()) {
+            percentageCompleted.setProgress(exam.getPercentageCompleted());
+        }
         percentageCompleted.setStyle("-fx-accent:limegreen");
         progressMessage.setText(exam.generateProgressMessage());
 

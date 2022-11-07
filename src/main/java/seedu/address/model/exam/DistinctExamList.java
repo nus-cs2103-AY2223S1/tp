@@ -195,7 +195,7 @@ public class DistinctExamList implements Iterable<Exam> {
      * @param previousExam The exam to be replaced and linked to.
      * @param newExam The exam which will replace {@code previousExam} and will be linked to.
      */
-    public void updateExamFieldForTask(DistinctTaskList taskList, Exam previousExam, Exam newExam) {
+    private void updateExamFieldForTask(DistinctTaskList taskList, Exam previousExam, Exam newExam) {
         List<Task> unlinkedTasks = taskList.unlinkTasksFromExam(previousExam);
         replaceExam(previousExam, newExam, false);
         taskList.linkTasksToExam(newExam, unlinkedTasks);

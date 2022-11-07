@@ -19,7 +19,7 @@ import seedu.address.model.task.FilterPredicate;
  * Parses input arguments and creates a new FilterTasksCommand object
  */
 public class FilterTasksCommandParser implements Parser<FilterTasksCommand> {
-    private static final String RESPONSE_CONSTRAINTS = "Response for filter criteria should be indicated as y or n";
+    public static final String RESPONSE_CONSTRAINTS = "Response for filter criteria should be indicated as y or n";
 
     /**
      * Parses the given {@code String} of arguments in the context of the FilterTasksCommand

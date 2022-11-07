@@ -1,0 +1,25 @@
+{
+  "tasks" : [ {
+    "taskDescription" : "Task A",
+    "status" : "incomplete",
+    "priority" : null,
+    "deadline" : null,
+    "examDate" : null,
+    "examDescription" : null,
+    "moduleCode" : "cs2030"
+  }, {
+    "taskDescription" : "Task A",
+    "status" : "incomplete",
+    "priority" : null,
+    "deadline" : null,
+    "examDate" : null,
+    "examDescription" : null,
+    "moduleCode" : "cs2030"
+  }  ],
+  "modules" : [ {
+    "moduleCode" : "cs2030",
+    "moduleName" : "Programming Methodology",
+    "moduleCredit" : "4"
+  } ],
+  "exams" : [ ]
+}

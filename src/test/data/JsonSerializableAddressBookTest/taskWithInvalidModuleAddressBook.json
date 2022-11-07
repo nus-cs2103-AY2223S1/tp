@@ -1,0 +1,17 @@
+{
+  "tasks" : [ {
+    "taskDescription" : "Task A",
+    "status" : "incomplete",
+    "priority" : null,
+    "deadline" : null,
+    "examDate" : null,
+    "examDescription" : null,
+    "moduleCode" : "cs2030"
+  } ],
+  "modules" : [ {
+    "moduleCode" : "cs1101s",
+    "moduleName" : "Programming Methodology for CS Students",
+    "moduleCredit" : "4"
+  } ],
+  "exams" : [ ]
+}

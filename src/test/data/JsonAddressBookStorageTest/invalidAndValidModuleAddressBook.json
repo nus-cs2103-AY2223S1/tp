@@ -1,0 +1,13 @@
+{
+  "tasks" : [ ],
+  "modules" : [{
+    "moduleCode" : "CS2109S",
+    "moduleName" : "AI and Machine Learning",
+    "moduleCredit" : "4"
+  } ,{
+    "moduleCode" : "cs2030",
+    "moduleName" : "Programming Methodology",
+    "moduleCredit" : "-9999999999999999999"
+  }],
+  "exams" : [ ]
+}
