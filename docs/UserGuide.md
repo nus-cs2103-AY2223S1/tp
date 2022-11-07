@@ -765,7 +765,7 @@ Example:
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Copy the home folder of your SoConnect app over to the other Computer. This folder should contain your `SoConnect.jar` file and your `data` folder.
 
-**Q**: What if I do not have the phone number/email address/address of a person whose contact I am trying to add?
+**Q**: What if I do not have the phone number/email address/address of a person whose contact I am trying to add?<br>
 **A**: When SoConnect has more users, we plan to gather feedback for which information should be made optional. In the meantime, you can go ahead and [add the contact](#721-adding-a-contact-add) by replacing the fields you do not have with dummy information. (e.g. Using `123` for the phone number, `xyz@email.com` for the email, or `xyz` for the address)
 
 **Q**: Do you have any plans to make the app more customisable?<br>
@@ -774,13 +774,13 @@ Example:
 **Q**: Where can I find the data file with the tags I have created?<br>
 **A**: Your [tags](#tag) are stored together with your contacts in `soconnect.json`. The tag list stored affects both your contacts and your todos.
 
-**Q**: Why can't I include a particular tag when adding a contact/todo?
+**Q**: Why can't I include a particular tag when adding a contact/todo?<br>
 **A**: Tags have to be [created](#741-creating-a-tag-tag-create) before they can be added to a contact or todo. You may also want to double-check if you have spelled the tag correctly.
 
-**Q**: Why is the todo I have just added missing from the todo list?
+**Q**: Why is the todo I have just added missing from the todo list?<br>
 **A**: Check if the todo list is currently showing a filtered list of todos. Refer to [`Filtering todos shown`](#735-filtering-todos-shown--todo-show) on how to filter the todo list.
 
-**Q**: Why are the `tag add` and `tag remove` commands not working on todos?
+**Q**: Why are the `tag add` and `tag remove` commands not working on todos?<br>
 **A**: You can use the `todo edit` command to modify the tags of a todo. Refer to [`Editing a todo`](#732-editing-a-todo--todo-edit) for more information.
 
 
