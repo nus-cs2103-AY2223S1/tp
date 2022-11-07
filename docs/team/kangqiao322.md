@@ -3,7 +3,7 @@ layout: page
 title: Kang Qiao's Project Portfolio Page
 ---
 
-### Project: Intrack
+### Project: InTrack
 
 InTrack is a desktop application that helps Computer Science students who are applying for multiple internships to keep
 track of their progress and deadlines across these applications. It is optimised for use via a Command Line Interface
@@ -45,7 +45,7 @@ Given below are my contributions to the project.
     * What it does: Allows users to delete one or more existing tags from an internship application.
     * Justification: This is to allow users to delete tags they no longer want or need from applications.
 
-* **Project management**:
+* **Contributions to team-based tasks**:
     * Ideation for user stories and features.
     * Created Milestone v1.1 and created some issues for the team.
     * Created  the tags to be used for labelling issues.
