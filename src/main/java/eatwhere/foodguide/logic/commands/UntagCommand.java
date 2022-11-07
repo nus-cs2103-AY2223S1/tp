@@ -57,6 +57,16 @@ public class UntagCommand extends Command {
         this.tagsToRemove = new HashSet<>(tagsToRemove);
     }
 
+    /**
+     * Checks whether the input tag matches one in the current Tag list.
+     *
+     * @param o tag that is checked
+     * @return boolean that is true if the tag list contains o
+     */
+    public boolean isContaining(Tag o) {
+        return tagsToRemove.contains(o);
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);

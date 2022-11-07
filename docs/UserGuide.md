@@ -29,7 +29,7 @@ With `Food Guide`, you can search for the available food options in NUS and make
   * [Find](#finding-eateries-by-name--find) / [FindTag](#finding-eateries-by-tag--findtag) /
     [FindLocation](#finding-eateries-by-location--findlocation) / [FindCuisine](#finding-eateries-by-cuisine--findcuisine)
   * [Tag](#add-tag-to-eatery--tag) / [Untag](#remove-tag-from-eatery--untag)
-  * [Add](#add-eatery-add) / [Delete](#delete-eatery--delete)
+  * [Add](#add-eatery--add) / [Delete](#delete-eatery--delete) / [Edit](#edit-eatery--edit)
   * [Fav](#favourite-eatery--fav) / [Unfav](#unfavourite-eatery--unfav)
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
@@ -167,7 +167,7 @@ This resets the list to its default state. Use this after a `find` command view 
 
 <br>
 
-### Find Commands
+### Commands for Finding
 These commands search the list of eateries for ones that match your criteria. All find commands support
 a randomizer functionality to pick out a number of eateries at random.
 
@@ -301,7 +301,7 @@ Example: `findTag restaurant`
 
 <br>
 
-### Adding and Editing Commands
+### Commands for Adding, Editing and Removing
 These commands modify the list of eateries in `Food Guide`, or change existing eateries.
 
 #### Add tag to eatery : `tag`
@@ -373,9 +373,12 @@ Note how the eatery at index 70 disappears after the delete command.
 ![Ui](images/user-guide/UgAddDeleteComparison.png)
 <br><br>
 
-#### Favourite Eatery : `fav`
+<br>
 
-_Favourites an eatery from NUSEatWhere's database._
+### Favourite Eatery : `fav`
+
+_Favourites an eatery from NUSEatWhere's database. <br>
+The favourite tag is standardized to be "<3" when using this command._
 
 **Format:** `fav INDEX [-h]`
 
@@ -389,7 +392,8 @@ Example: `fav 3`
 
 #### Unfavourite Eatery : `unfav`
 
-_Unfavourites an eatery from NUSEatWhere's database._
+_Unfavourites an eatery from NUSEatWhere's database. <br>
+The tag to be removed is standardized to be "<3" when using this command._
 
 **Format:** `unfav INDEX [-h]`
 
@@ -406,6 +410,7 @@ Example: `unfav 3`
 _... Details coming soon ..._
 
 <br>
+
 
 --------------------------------------------------------------------------------------------------------------------
 
