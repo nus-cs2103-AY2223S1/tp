@@ -78,6 +78,7 @@ Here are some of the symbols and text formatting to look out for as you make use
 |   3.   | Person Card    | The card containing personal details.                                                                                                                 |
 |   4.   | Debt List      | The box containing the list of debts owed by a person.                                                                                                |
 |   5.   | Person List    | The box containing the full list of person cards. Only one person card can be viewed at a time.                                                       |
+
 <img src="images/UiDetails.png" width="800" /> <br>
 
 <div style="page-break-after: always;"></div>
