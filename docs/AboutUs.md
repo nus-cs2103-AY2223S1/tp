@@ -14,10 +14,13 @@ You can reach us on our GitHub portfolios, links provided below.
 <img src="images/neethesh26.png" width="200px">
 
 [[github](https://github.com/Neethesh26)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/neethesh26.md)]
 
-* Role:
+* Role: Developer
 * Responsibilities:
+  * Feature (EditLoan, Loan History)
+  * English Proofreading
+  * Meeting coordinator
 
 ### Chen Ruihan
 
@@ -50,8 +53,8 @@ You can reach us on our GitHub portfolios, links provided below.
 [[github](http://github.com/czhongwei)]
 [[portfolio](team/czhongwei.md)]
 
-* Role:
-* Responsibilities:
+* Role: Developer
+* Responsibilities: Find, Birthday, Documentation
 
 ### Jiang Pinran
 
@@ -60,5 +63,9 @@ You can reach us on our GitHub portfolios, links provided below.
 [[github](http://github.com/Pinran-J)]
 [[portfolio](team/pinran-j.md)]
 
-* Role:
+* Role: Developer
 * Responsibilities:
+  * Feature (All notes related)
+  * English Proofreading
+  * Team meeting management
+

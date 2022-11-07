@@ -249,8 +249,7 @@ public class MainWindow extends UiPart<Stage> {
         }
 
         int index = personListView.getItems().indexOf(personsArray[0]);
-        personListView.getSelectionModel().clearSelection();
-        personListView.getSelectionModel().select(index);
+        personListView.getSelectionModel().clearAndSelect(index);
     }
 
     private void handleShowNotePanel(boolean isVisible) {

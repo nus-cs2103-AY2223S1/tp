@@ -2,14 +2,68 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-  {:toc}
+
+## Table of Contents
+* [Acknowledgements](#acknowledgements)
+* [Overview](#overview)
+* [Setting up, getting started](#setting-up-getting-started)
+* [Design](#design)
+  * [Architecture](#architecture)
+  * [UI Component](#ui-component)
+  * [Logic Component](#logic-component)
+  * [Model Component](#model-component)
+  * [Storage Component](#storage-component)
+* [Properties Objects](#properties-objects)
+  * [Properties of Person Objects](#properties-of-person-objects)
+  * [Properties of Note Objects](#properties-of-note-objects)
+* [Implementation](#implementation)
+  * [Person Features](#person-features)
+    * [Edit Feature](#edit-feature)
+    * [Delete Person](#delete-person)
+    * [Find Person](#find-person)
+    * [Edit Loan Feature](#edit-loan-value-and-history-of-person-by-editloan-feature)
+    * [Find by Tag Feature](#find-persons-and-notes-by-tag-featured)
+  * [Notes Features](#notes-features)
+    * [Add Note Feature](#addnote-feature)
+    * [Delete Note Feature](#deletenote-feature)
+    * [Edit Note Feature](#editnote-feature)
+  * [UI Features](#ui-features)
+    * [General UI Design and Mechanism](#general-ui-design-and-mechanism)
+    * [Inspect Feature](#inspect-feature)
+    * [Showing and Hiding Panel Feature](#showing-and-hiding-the-notes-panel-feature)
+  * [[Proposed] Undo redo feature](#proposed-undoredo-feature)
+* [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+* [Appendix](#appendix-requirements)
+  * [Requirements](#appendix-requirements)
+    * [Product scope](#product-scope)
+    * [User stories](#user-stories)
+    * [Use Cases](#use-cases)
+    * [Non-Functional Requirements](#non-functional-requirements)
+    * [Glossary](#glossary)
+  * [Instructions for manual testing](#appendix-instructions-for-manual-testing)
+
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+The background of the program is a large-scale city, attributed to [GiulioDesign94](https://www.deviantart.com/giuliodesign94)'s [Big City](https://www.deviantart.com/giuliodesign94/art/Big-City-198672166).
+
+The icon of this program is an edited image from DepositPhotos, found [here](https://depositphotos.com/471137460/stock-illustration-book-yellow-glowing-neon-icon.html).
+
+This team recognises the rights to the images go to their respective owners.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Overview**
+
+SectresBook helps secretaries to maintain all the information of the members of their club by collating a list of identifiable information, past loan records and future tasks.
+
+Our main target audience is secretaries, but this may be expanded to any person in need of loan tracking and task tracking features provided by our software.
+
+This Developer Guide is written for maintainers of SectresBook.
+
+Designers and developers who wish to extend or morph this product may also use this documentation to gain a better understanding of the design of this software.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -183,7 +237,9 @@ A person object contains editable properties:
     - Records the email address of the person
 4. Address
     - Records the home address of the person
-5. Tag
+5. Birthday
+    - Records the birthday of the person
+6. Tag
     - Optionally tags the person with a variable number of tags for easy reference within the SectresBook.
 
 And a non-editable properties:
@@ -212,7 +268,7 @@ During instantiation, a note object can be declared with any of these properties
 
 -------------------
 
-## **Implementation**
+## Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
 
@@ -224,7 +280,7 @@ This section describes some noteworthy details on how certain features are imple
 
 The Edit Person feature is facilitated by the `EditCommand` which utilises the `FindCommand`. It allows users to edit any editable field of a person given the index of the person, or the name of the person.
 
-If given a name that does not correspond to any person in the SectresBook, the edit features performs the same operations as the Find Command.
+If given a name that does not correspond to any person in the SectresBook, the edit features performs the same operations as the `Find` command.
 
 Given below is an example usage scenario and how the edit mechanism behaves at each step.
 
@@ -315,6 +371,36 @@ The following sequence diagram shows how the find command works:
 * **Alternative 2:** Chooses person if name contains the keyword.
     * Pros: Easier to find person.
     * Cons: Persons list may show other persons that are not desired by the user.
+
+### Edit loan value and history of Person by EditLoan feature
+
+#### Implementation
+
+The Edit Loan feature is facilitated by the `EditLoanCommand` which utilises the `FindCommand`. It allows users to edit the loan value and update the loan history of a person given the index of the person, or the name of the person.
+
+If given a name that does not correspond to any person in the SectresBook, the edit feature performs the same operations as the `Find` command.
+
+Given below is an example usage scenario and how the editLoan mechanism behaves at each step.
+
+Step 1. The user enters the editLoan command, with either the index or the person's name.
+
+Step 2a If an index is entered, the `EditLoanCommandParser` carries this index to the `EditCommand`, which retrieves the `Person` to edit by getting the `Model`'s current `FilteredList<Person>` and retrieving by index.
+
+Step 2b. If a non-number is entered, the `EditLoanCommandParser` invokes the `FindCommandParser#parse` method and executes it at the same time with `FindCommand#execute`. The `FilteredList<Person>` is then checked to ensure that there is exactly one person that corresponds with the search term. Otherwise, the method short-circuits with ambiguity errors (more than 1 person) or invalid person errors (no persons at all). If successful, `EditLoanCommandParser` returns a new `EditLoanCommand` with a one-based-index of 1.
+
+- Example of ambiguity error message:
+> There is more than 1 person with the name [NAME]
+
+- Example of invalid name error message:
+> There is nobody with the name [NAME]
+
+Step 3. `EditLoanCommand#execute` is called by the `LogicManager`. The person to edit is retrieved by the index given and a new edited person is created by copying over non-transformed fields and replacing the transformed field.
+
+Step 4. The `editedPerson` is then set to replace the previous state of the `Person` object in the `Model` with `Model#setPerson`.
+
+The following sequence diagram shows how the `editLoan` feature works with index.
+
+<img src="images/EditLoanSequenceDiagram.png" width="740"/>
 
 ### Find Persons and Notes by Tag feature
 
@@ -706,11 +792,6 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -745,22 +826,37 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​      | I want to …​                                             | So that I can…​                                                        |
-| -------- |--------------|----------------------------------------------------------|------------------------------------------------------------------------|
-| `* * *`  | secretary    | add club members’ information into the address book      | keep track of their contact information.                               |
-| `* * *`  | secretary    | edit a club member’s information                         | stay updated with them if their contact information changes.           |
-| `* * *`  | secretary    | delete a club member’s information from the address book | stop keeping track of them when they leave the club.                   |
-| `* * *`  | user         | search for a person by their name or contact number      | locate details of persons without having to go through the entire list |
-| `* *`    | secretary    | search contacts according to a specific tag              | easily  contact people in a whole group                                |
-| `*`      | user         | maintain a set of tasks to be done                       | keep track of things to be done.                                       |
+| Priority | As a …​                          | I want to …​                                                                          | So that I can…​                                                         |
+|----------|----------------------------------|---------------------------------------------------------------------------------------|-------------------------------------------------------------------------|
+| `* * *`  | secretary                        | add club members’ information into the address book                                   | keep track of their contact information.                                |
+| `* * *`  | secretary                        | edit a club member’s information                                                      | stay updated with them if their contact information changes.            |
+| `* * *`  | secretary                        | delete a club member’s information from the address book                              | stop keeping track of them when they leave the club.                    |
+| `* * *`  | user                             | search for a person by their name or contact number                                   | locate details of persons without having to go through the entire list. |
+| `* *`    | secretary                        | search contacts according to a specific tag                                           | easily  contact people in a whole group.                                |
+| `*`      | user                             | maintain a set of tasks to be done                                                    | keep track of things to be done.                                        |
+| `* * *`  | treasurer                        | see the amount each person owes me                                                    | keep track of my finances.                                              |
+| `*`      | person that keeps track of tasks | see who in my contacts lies under which tasks and which tasks lies under each contact | keep track of my deadlines.                                             |
+| `*`      | treasurer                        | keep track of my club's fund and the budget assigned to every project                 | better organise and plan the club's finances.                           |
+| `*`      | secretary                        | archive the contact information of a club member that has left the club               | contact old club members by looking at archived contacts.               |
+| `* *`    | expert user                      | quickly use the CLI commands to speed up operations                                   | enhance the productivity of meetings and task recording.                |
+| `* *`    | secretary                        | pinpoint all the addresses of members and find the nearest amongst all members        | organise club activities and events that minimise travel time.          |
+| `* * *`  | treasurer                        | identify which member owes the club money                                             |                                                                         |
+| `* *`    | secretary                        | password protect the software                                                         | protect member's personal data.                                         |
+| `* *`    | busy treasurer                   | get reminded of upcoming payments                                                     | ask for payments before they are due.                                   |
+| `*`      | user                             | use the GUI elements to autofill the CLI                                              | recognise and learn the commands for future typing.                     |
+| `* *`    | user                             | configure the GUI elements' size and colours                                          | customise the application to my needs.                                  |
+| `* *`    | secretary                        | set priorities on tasks                                                               | focus on tasks that are more important first.                           |
+| `*`      | secretary                        | get statistics on the number of tasks done                                            | ensure that the club is on track with finishing tasks.                  |
+| `*`      | new user                         | learn how to use the commands using in-app guidance                                   | easily pick up the commands and perform my duties                       |
+| `* *`    | new user                         | have sample data that I can test out commands with                                    | familiarize myself with how the application works.                      |
+| `* * *`  | outgoing secretary               | transfer the data to an incoming secretary                                            | hand over my job without hassle.                                        |
 
-*{More to be added}*
 
 ### Use cases
 
 (For all use cases below, the **System** is the `SectresBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Add a person**
+#### Use case: UC1 - Add a person
 
 **MSS**
 1. User requests to add a person.
@@ -778,7 +874,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: Update a person**
+#### Use case: UC2 - Update a person
 
 **MSS**
 1. User requests to list persons.
@@ -801,7 +897,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Delete a person**
+#### Use case: UC3 - Delete a person
 
 **MSS**
 
@@ -824,15 +920,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Find a person**
+#### Use case: UC4 - Find a person
 
 **MSS**
 1. User request to find using keyword.
-2. SectressBook shows a list of persons matching keyword.
+2. SectresBook shows a list of persons matching keyword.
 
    Use case ends.
 
-**Use case: Display list of persons**
+#### Use case: UC5 - Display list of persons
 
 **MSS**
 1. User requests to list persons.
@@ -840,22 +936,177 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-*{More to be added}*
+#### Use case: UC6 - Edit Loan of person
+
+**MSS**
+1. User requests to list persons.
+2. SectresBook shows a list of persons.
+3. User requests to update the loan of a specific person in the list.
+4. SectresBook updates loan and loan history of the person.
+
+**Extensions**
+* 2a. The list is empty.
+
+    Use case ends.
+* 3a. The given index is invalid.
+    * 3a1. SectresBook shows an error message.
+
+      Use case resumes at step 2.
+* 3b. The command line arguments are invalid.
+    * 3b1. SectresBook shows an error message.
+
+      Use case resumes at step 2.
+
+
+#### Use case: UC7 - Find Person by their tag
+
+**MSS**
+1. User requests to find using a tag keyword.
+2. SectresBook shows a list of persons matching the tag keyword.
+
+   Use case ends.
+
+#### Use case: UC8 - Add a Note
+
+**MSS**
+1. User requests to add a note.
+2. SectresBook adds the note to the list of notes.
+
+   Use case ends.
+
+**Extensions**
+* 1a. The given note title already exists.
+    * 1a1. SectresBook shows an error message.
+
+      Use case ends.
+* 1b. Necessary fields are incomplete/empty.
+    * 1b1. Sectresbook shows an error message.
+
+      Use case ends.
+
+#### Use case: UC9 - Update a Note
+
+**MSS**
+1. User requests to list notes.
+2. SectresBook shows a list of notes.
+3. User requests to update a specific note in the list.
+4. SectresBook updates information of the note.
+
+   Use case ends.
+
+**Extensions**
+* 2a. The list is empty.
+
+  Use case ends.
+* 3a. The given index is invalid.
+    * 3a1. SectresBook shows an error message.
+
+      Use case resumes at step 2.
+* 3b. The command line arguments are invalid.
+    * 3b1. SectresBook shows an error message.
+
+      Use case resumes at step 2.
+
+#### Use case: UC10 - Delete a Note
+
+**MSS**
+1. User requests to list notes.
+2. SectresBook shows a list of notes.
+3. User requests to delete a specific note in the list.
+4. SectresBook deletes the person.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. SectresBook shows an error message.
+
+      Use case resumes at step 2.
+
+#### Use case: UC11 - Find a Note
+
+**MSS**
+1. User request to find using keyword.
+2. SectresBook shows a list of notes matching keyword.
+
+   Use case ends.
+
+#### Use case: UC12 - Display list of notes
+
+**MSS**
+1. User has completed [UC11](#use-case-uc11---display-list-of-notes)
+2. User requests to list notes.
+3. SectresBook displays the list of all notes stored.
+
+   Use case ends.
+
+#### Use case: UC13 - Hide Note section
+
+**MSS**
+1. User requests to hide the notes section of the Sectresbook.
+2. Sectresbook hides the note section, extending the addressbook section.
+
+   Use case ends.
+
+**Extensions**
+* 1a. Already hiding the notes section.
+
+    Use case ends.
+
+#### Use case: UC14 - Show note section
+
+**MSS**
+1. User requests to show the notes section.
+2. Sectresbook shows the notes section on the right side of the interface.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. Already showing the notes section.
+
+    Use case ends.
+
+#### Use case: UC15 - Exit program
+
+**MSS**
+1. User requests to exit program. 
+2. Sectresbook closes the program.
+
+    Use case ends.
 
 ### Non-Functional Requirements
 
-1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should run independently of remote servers.
+2. Should not use a relational database management system to store data.
+3. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 4. Should not require internet connection, all operations are performed locally.
-5. Should not consume a lot of battery to keep it running in the background
+5. Should not consume a lot of battery to keep it running in the background.
+6. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+7. Should be able to hold up to 1000 notes without a noticeable sluggishness in performance for typical usage.
+8. Should be able to respond to any commands within 2 seconds as long as there are under 1000 entries stored in the application.
+9. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+10. Should automatically save any changes to the data in the storage directly.
+11. The product is intended only for a single user (i.e. not a multi-user product)
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Java 11**: Eleventh version of the Java Platform, Standard Edition Development Kit (JDK). SectresBook requires this to be installed to run.
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Note**: A segment of text that describes a task to be done, coupled with tags that reference people in the SectresBook who are associated with the given task.
 * **Secretary**: A person acting as overseers for the administrative functions of a club.
+* **Treasurer**: A club member that manages and accounts for all the funds of a club.
+* **Tag**: A label that groups related people or notes together, such that they can be referred to as a single encapsulated entity specified by the tag.
+* **Graphical User Interface (GUI)**: An image-based interface that is more visually appealing than a command-line interface and encapsulates information through the use of icons and images.
+* **Command Line Interface (CLI)**: A text-based interface that receives typed commands as input and returns textual feedback as output.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -883,29 +1134,238 @@ testers are expected to do more *exploratory* testing.
     1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
-
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
 
     1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-    1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    2. Test case: `delete 1`<br>
+       Expected: First contact is deleted from the list. Result display shows details of the deleted contact.
 
-    1. Test case: `delete 0`<br>
-       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    3. Test case: `delete 0`<br>
+       Expected: No person is deleted. Result display shows error message stating non-positive indices not allowed.
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+    4. Test case: `delete Charlotte`, assuming there is only 1 person with the name `Charlotte` in the Sectresbook.<br>
+       Expected: Person with name `Charlotte` is deleted from the list. Result display shows details of the deleted contact.
+   
+    5. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+2. Deleting a person, but not all persons are shown
 
-### Saving data
+    1. Prerequisites: List a subset of persons using the `find` command. At least 1 person in the list.
+   
+    2. Test case: `delete 1`, assuming there is more than or equal to 1 person in the Sectresbook.<br>
+       Expected: First contact is deleted from the list. Result display shows details of the deleted contact.
+   
+    3. Test case: `delete -1`<br>
+       Expected: No person is deleted from the list. Result display shows error message stating non-positive indices not allowed.
+   
+    4. Test case: `delete Charlotte`, assuming there is only 1 person with the name `Charlotte` in the Sectresbook.<br>
+       Expected: Person with name `Charlotte` is deleted from the list. Result display shows details of the deleted contact shown.
+   
+    5. Test case: `delete Sean`, assuming there is more than 1 person with the name `Sean` in the Sectresbook.<br>
+       Expected: No person is deleted from the list. Sectresbook lists the contacts with `Sean` in their name. Result display shows error message stating more than one person with that name.
 
-1. Dealing with missing/corrupted data files
+    6. Other incorrect delete commands to try: `delete`, `delete phone/PHONE_NUMBER`, `...` (where `PHONE_NUMBER` is a phone number of a person).<br>
+       Expected: No person is deleted from the list. Result display shows error message stating invalid command format.
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+### Editing a person
 
-1. _{ more test cases …​ }_
+1. Editing a person after listing all persons or after finding a list of persons (list should contain more than 0 people).
+
+   1. Test case: `edit 1 phone/98112233`, assuming there is more than or equal to 1 person in the Sectresbook.<br>
+      Expected: Phone number of the first contact in the list is edited. Result display shows details of the edited contact.
+   
+   2. Test case: `edit 5 tag/Friend`, assuming there is less than 5 people currently displayed in the Sectresbook.<br>
+      Expected: No person is edited. Result display shows error message stating invalid index.
+   
+   3. Test case: `edit Charlotte tag/Friend`, assuming there is only 1 person with the name `Charlotte` in the Sectresbook.<br>
+      Expected: The tag of the Person with the name `Charlotte` is edited. Result display shows details of the edited contact.
+   
+   4. Test case: `edit Sean tag/Colleague`, assuming there is more than 1 person with the name `Sean` in the Sectresbook.<br>
+      Expected: No person is edited from the list. Sectresbook shows the list of persons with `Sean` in their name. Result display shows error message stating more than one person with that name.
+   
+   5. Other incorrect edit commands to try: `edit`, `edit 2 phone/TEXT`, `...` (where `TEXT` is an input with only alphabets). <br>
+      Expected: No person is edited in the list. Result display shows error message stating phone number should be only contain numbers and at least 3 digits.
+
+### Editing a loan of a person
+
+1. Editing a loan of a person after listing all persons or after finding a list of persons (list should contain more than 0 people).
+
+   1. Test case: `editLoan 1 amt/10 reason/Logistics`, assuming there is more than or equal to 1 person in the Sectresbook.<br>
+      Expected: Loan amount and history of the first contact is updated. Result display shows details of the edited contact.
+   
+   2. Test case: `editLoan 5 amt/100 reason/Logistics`, assuming there is less than 5 people currently displayed in the Sectresbook.<br>
+      Expected: No person is edited. Result display shows error message stating invalid index provided.
+   
+   3. Test case: `editLoan Charlotte amt/10 reason/Test`, assuming there is only 1 person with the name `Charlotte` in the Sectresbook.<br>
+      Expected: Loan amount and history of the Person with the name `Charlotte` is edited. Result display shows details of the edited contact.
+   
+   4. Test case: `editLoan Sean amt/10 reason/Test`, assuming there is more than 1 person with the name `Sean` in the Sectresbook.<br>
+      Expected: No person is edited from the list. Sectresbook shows the list of persons with `Sean` in their name. Result display shows error message stating more than one person with that name.
+   
+   5. Other incorrect editLoan commands to try: `editLoan`, `editLoan amt/`,`editLoan 1 amt/TEXT reason/TEXT`, `...` (where `TEXT` is an input with only alphabets). <br>
+      Expected: No person is edited in the list. Result display shows error message stating invalid command format.
+
+### Finding a person
+
+1. Finding a person with the given keyword.
+
+   1. Test case: `find Ryan`, assuming there is at least 1 person with the substring `Ryan` in the Sectresbook.<br>
+      Expected: Person list is updated with contacts that contain the substring `Ryan`. Result display shows the number of persons listed.
+
+   2. Test case: `find Jack`, assuming there is no one with the substring `Jack`.<br>
+      Expected: Person list is updated, showing nobody in the list. Result display shows the number of persons listed.
+   
+   3. Test case: `find 8445`, assuming there is at least 1 person with phone number starting with `8445` in the Sectresbook.<br>
+      Expected: Person list is updated with contacts with phone number starting with `8445`. Result display shows the number of persons listed.
+   
+   4. Test case: `find 8445 Ryan`, assuming there is at least 1 person with phone number starting with `8445` and substring `Ryan` in their name in the Sectresbook.<br>
+      Expected: Person list is updated with contacts that contain the substring `Ryan` and phone number starting with `8445`. Result display shows the number of persons listed.
+   
+   5. Incorrect editLoan command to try: `editLoan`. <br>
+      Expected: No change in the list shown. Result display shows message stating invalid command format.
+
+### Listing a person
+
+1. Listing all persons in the Sectresbook. 
+
+   1. Test case: `list`<br>
+      Expected: Person list is updated to show all persons in the Sectresbook. Result display shows success message.
+   
+   2. Test case: `list TEXT`, where `TEXT` is any string input.<br>
+      Expected: Person list is updated to show all persons in the Sectresbook. Result display shows success message.
+
+### Inspecting a person
+
+1. Inspecting a person while all persons are shown.
+
+   1. Test case: `inspect 1`, assuming there is at least 1 person shown in the person list. <br>
+      Expected: Displays the information of the contact with index 1 in the person list. Result display shows success message.
+   
+   2. Test case: `inspect Charlotte`, assuming there is only 1 person with the name `Charlotte` in the Sectresbook.<br>
+      Expected: Displays the information of the contact with name `Charlotte` in the person list. Result display shows success message.
+   
+   3. Test case: `inspect -1`<br>
+      Expected: No change in the person being inspected. Result display shows error message stating inspection failed, name should be alphanumeric characters only.
+   
+   4. Test case: `inspect Jack`, assuming there is more than 1 person with the name `Jack` in the person list.<br>
+      Expected: No change in the person currently being inspected. Result display shows error message stating more than one person with that name.
+   
+   5. Other incorrect inspect commands to try: `inspect`.<br>
+      Expected: No change in the person currently being inspected. Result display shows error message stating nothing to inspect.
+   
+
+### Adding a note
+
+1. Adding a note with title that is yet to exist
+   1. Test case: `addNote title/event content/november 3rd 4pm`<br>
+      Expected: Note with title `event` and content `november 3rd 4pm` added into notes list. Result display shows message stating new note is added. Notes display panel shows new note.
+      
+   2. Test case: `addNote title/event content/november 3rd 4pm tag/progs`<br>
+       Expected: Result display shows message stating new note is added. Notes display panel shows new note.
+   
+   3. Test case: incorrect `addNote` commands (e.g. `addNote`, `addNote title/event`, `addNote content/groceries`)<br>
+      Expected: No new note is added to notes list. Result display shows error message stating invalid command format.
+   
+2. Adding a note with a duplicate title
+   1. Test case: `addNote title/event content/november 3rd 4pm`<br>
+      Expected: No new note is added to notes list. Result display shows message stating that note already exists in the notes list. No change to the notes display panel.
+      
+### Editing a note
+
+1. Editing a note
+    1. Test case: `editNote 1 content/meeting at mpsh`, assuming there exists at least 1 note in the current notes list.<br>
+       Expected: Note at index 1 in the current notes list have its content changed to `meeting at mpsh`. Result display shows message stating note was edited.
+       
+    2. Test case: `editNote progs content/meeting at mpsh`, assuming there exists a note with title `progs`.<br>
+       Expected: Note with title `progs` in the current notes list have its content changed to `meeting at mpsh`. Result display shows message stating note was edited.
+   
+    3. Test case: `editNote 5 content/meeting at mpsh`, assuming there are less than 5 notes in the current notes list.<br>
+       Expected: No note was edited. Result display shows error message stating index provided to be invalid.
+       
+    4. Test case: `editNote content/meeting at mpsh`<br>
+       Expected: No note was edited. Status bar display error message stating at least one field to be edited has to be provided.
+       
+    5. Test case: incorrect `editNote` commands (e.g. `editNote`, `editNote content/abc`)<br>
+       Expected: No note was edited. Result display shows error message stating invalid command format.
+
+### Deleting a note
+
+1. Deleting a note
+   1. Test case: `deleteNote 1`, assuming there exists at least 1 note in the current notes list.<br>
+      Expected: Note at index 1 is removed from the current notes list. Result display shows message stating note was deleted.
+   
+   2. Test case: `deleteNote`<br>
+      Expected: No note was deleted. Result display shows error message stating invalid command format.
+
+### Finding a note
+
+1. Finding a note
+   1. Test case: `findNote progs`<br>
+      Expected: Notes with title containing the keyword `progs` are shown on the notes display panel. Result display shows message stating number of notes listed.
+                If there are no notes with `progs` in the title, notes display panel will be empty.
+   
+   2. Test case: `findNote`<br>
+      Expected: No change to the notes display panel. Status bar display error message stating invalid command format.
+
+### List all notes
+
+1. List notes
+   1. Test case: `listNote`<br>
+      Expected: Notes display panel is populated with all existing notes. Result display shows message stating listed all notes.
+
+### Hide notes
+
+1. Hide notes
+   1. Test case: `hideNotes`, assuming notes display panel is on shown on the GUI.<br>
+      Expected: Notes display panel is hidden from the GUI. Persons list and Inspect section is extended horizontally to fill the GUI. Result display shows message stating notes panel hidden.
+   
+   2. Test case: `hideNotes`, assuming notes display panel is already hidden. Result display shows message stating notes panel hidden.<br>
+      Expected: No change to the GUI. Result display shows message stating notes panel hidden.
+   
+   3. Other `hideNotes` commands with additional arguments (e.g. `hideNotes 1`, `hideNotes abc`)<br>
+         Expected: Additional arguments are ignored, behaviour is same as `hideNotes`.
+
+### Show notes
+
+1. Show notes
+   1. Test case: `showNotes`, assuming notes display panel is hidden from GUI.<br>
+      Expected: Notes display panel appears on the right side of the GUI. Persons list and Inspect section becomes horizontally narrower. Result display shows message stating notes panel shown.
+   
+   2. Test case: `showNotes`, assuming notes display panel is already shown on the GUI.<br>
+      Expected: No change to the GUI. Result display shows message stating notes panel shown.
+
+   3. Other `showNotes` commands with additional arguments (e.g. `showNotes 1`, `showNotes abc`)<br>
+      Expected: Additional arguments are ignored, behaviour is same as `showNotes`.
+
+### Finding person/notes based on tag
+
+1. Find using tag
+   1. Test case: `findTag cs2103`<br>
+      Expected: Persons list display persons tagged with `cs2103`. Notes display panel displays notes tagged with `cs2103`. Result display shows message stating number of people listed in the persons list.<br>
+                If there is no person tagged with `cs2103`, the persons list will be empty.<br>
+                If there is no note tagged with `cs2103`, the notes display panel will be empty.
+   
+### Viewing Help
+
+1. Viewing help bar.
+
+    1. Test case: `help`<br>
+       Expected: The help popup screen is shown.
+
+### Clearing all data
+
+1. Clearing all data
+
+    1. Test case: `clear`<br>
+       Expected: Clears all data from the Sectresbook.
+    
+### Exiting program
+
+1. Exitting the Sectresbook
+
+    1. Test case: `exit`<br>
+       Expected: The program closes. 

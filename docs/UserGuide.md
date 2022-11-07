@@ -556,7 +556,8 @@ Format: `editLoan INDEX <OR> NAME amt/VALUE reason/REASON`
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1,2,3 …​
 * The `VALUE` can be a positive or negative value with up to 2 decimal places.
-* The loan value will be changed by the value given i.e current loan + VALUE.
+* The `VALUE` may not contain delimiters to separate digits, i.e. `$1,000,000` must be expressed as `$1000000` in the program.
+* The loan value will be changed by the value given i.e current loan + `VALUE`.
 
 Examples of usage:
 
@@ -734,7 +735,7 @@ The search is not case-sensitive. For example, `meeting` will match any notes co
 
 Please be informed that only the title will be search. Contents will not be searched through this command. 
 
-Although the title may contain special characters such as `,`, `.`, `?` or `!`, these special characters are not accepted as part of a keyword. This is because punctuation are not normally associated as part of a word. During the parsing of the [title](#title), special charaters are treated as spaces, so adjacent segments of the word containing it are treated as separate words.
+Although the title may contain special characters such as `,`, `.`, `?` or `!`, these special characters are not accepted as part of a keyword. This is because punctuation are not normally associated as part of a word. During the parsing of the [title](#title), special characters are treated as spaces, so adjacent segments of the word containing it are treated as separate words.
   * The keywords `?!` and `t-shirt` will not be allowed, as they contain special characters.
   * `2` will match `shirt 2` but will not match `shirt2`, as `shirt2` is an entire word by itself.
   * To search for `Upcoming club meeting!`, `meeting!` is not allowed as a keyword as it contains a special character, but `meeting` is allowed.
@@ -815,7 +816,7 @@ After executing `showNotes`:
 **Q** Why are `hideNotes` and `showNotes` in plural, but the rest of the operations in singular nouns?<br><br>
 **A** `hideNotes` and `showNotes` are a separate class of commands that are _UI-Centric_, meaning that they only operate on the user interface, as they only shift a panel in the UI, and do not modify any underlying data of the application. The pluarity of the command disambiguates its usage from the other commands that mutates data. For more information, please read our developer guide.
 
-To ease interpretation, you may read `showNotes` as _"show the **notes panel**"_ or `hideNotes` as _"hide the **notes panel**"_, while `listNote` may be read as _"list each individual **note**"_, `findNote` as _"find each **note** matching"_ and `editNote` as _"edit this **note**"_.
+<p>To ease interpretation, you may read `showNotes` as _"show the **notes panel**"_ or `hideNotes` as _"hide the **notes panel**"_, while `listNote` may be read as _"list each individual **note**"_, `findNote` as _"find each **note** matching"_ and `editNote` as _"edit this **note**"_.
 </div>
 
 ### General Features
@@ -831,7 +832,7 @@ Both the People Panel and Notes Panel will show a `FILTERED` indicator to inform
 Format: `findTag TAG [MORE_TAGS]`
 
 * The tag search is not case-sensitive. e.g `finance` will match `Finance`
-* Only the tag is searched.
+* Only tags are searched.
 * Only full words will be matched e.g. `Tech` will not match `Technology`
 * Persons and Notes matching at least one tag will be returned (i.e. `OR` search).
   e.g. `Operations Finance` will return
@@ -1011,7 +1012,7 @@ No. | Word                             | Definition
 ---|----------------------------------|------------------
 1 | **Alphanumeric Characters**      | A combination of alphabetical and numerical characters
 2 | **ASCII Characters**             | Characters from the American Standard Code for Information Interchange character encoding standard
-3| **Command Line Interface (CLI)** | A text-based interface that recieves typed commands as input and returns textual feedback as output.
+3| **Command Line Interface (CLI)** | A text-based interface that receives typed commands as input and returns textual feedback as output.
 4| **Graphical User Interface (GUI)** | An image-based interface that is more visually appealing than a command-line interface and encapsulates information through the use of icons and images.
 5| **Home Folder**                  | The folder that SectresBook is located in. It is also where SectresBook will store its data
 6|**Initialisation** | The moment when a Person or Note is created and added into SectresBook.
