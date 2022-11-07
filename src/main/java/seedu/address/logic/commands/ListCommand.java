@@ -5,7 +5,6 @@ import static seedu.address.model.Model.PREDICATE_LIST_SHOW_ALL_APPOINTMENTS;
 import static seedu.address.model.Model.PREDICATE_LIST_SHOW_ALL_BILLS;
 import static seedu.address.model.Model.PREDICATE_LIST_SHOW_ALL_PATIENTS;
 
-
 import seedu.address.model.Model;
 
 /**
