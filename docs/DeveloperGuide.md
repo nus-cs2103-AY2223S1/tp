@@ -632,6 +632,32 @@ Expected: No profile is added. Error details shown in the status message.
    4. Other incorrect delete commands to try: `profile -d`, `profile -d x`, `...` (where x is larger than the list size, or 1000)<br>
       Expected: Similar to previous.
 
+### Accessing the Help Window
+
+1. Test case: `help`<br>
+   Expected: Help window appears.
+
+2. Incorrect help commands to try:: `help ...` (where ... contains any combination of characters)<br>
+   Expected: No help window appears. Error details shown in the status message.
+
+### Clearing all data
+
+1. Prerequisites: Some data has been added with the `profile -a` and `event -a` commands.
+
+2. Test case: `clear`<br>
+   Expected: All data is deleted from NUScheduler.
+
+3. Incorrect clear commands to try: `clear ...` (where ... contains any combination of characters)<br>
+Expected: No data is deleted. Error details shown in the status message.
+
+### Exiting NUScheduler
+
+1. Test case: `exit`<br>
+   Expected: NUScheduler closes.
+
+2. Incorrect exit commands to try: `exit ...` (where ... contains any combination of characters)<br>
+   Expected: NUScheduler does not close. Error details shown in the status message.
+
 ### Saving data
 
 1. Dealing with missing/corrupted data files
