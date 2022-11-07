@@ -363,7 +363,7 @@ Format: `editT INDEX [d/DESCRIPTION] [D/DEADLINE]`
 
 <div markdown="block" class="alert alert-warning">
 
-:warning:There will be an error if you:<br>
+:warning: There will be an error if you:<br>
 
 * Do not adhere to [field constraints](#section-2-tasks).<br> 
 
@@ -641,7 +641,7 @@ Format: `deleteA LABEL_NAME [MORE_LABEL_NAMES]...`
 
 <div markdown="block" class="alert alert-warning">
 
-:warning:There will be an error if you:<br>
+:warning: There will be an error if you:<br>
 
 * Do not adhere to the [field constraints](#section-3-labels).<br>
 
