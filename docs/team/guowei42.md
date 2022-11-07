@@ -13,7 +13,7 @@ Given below are my contributions to the project.
     * What it does: Allow users to create new TABs to store more names.
     * Justification: This is important as some TAs or professors might be teaching different modules or different tutorial groups. Therefore, this helps them to separate and differentiate them.
   This reflects similarly to features offered by Vim to easily create new tabs without needing to open separate shells.
-    * Highlights: This enhancement's main challenge was that it is compulsory to integrate other core features, like swap and rename. 
+    * Highlights: This enhancement's main challenge was that it is compulsory to integrate other core features, like swap and rename.
 * **New Feature**: Rename Current TAB
   * What it does: Allows users to rename the current TAB to something else.
   * Justification: This allows users to easily differentiate the address books created.

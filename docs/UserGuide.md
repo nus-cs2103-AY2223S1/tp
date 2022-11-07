@@ -10,6 +10,7 @@ TAs and Professors are now taking on more roles in different modules. As such, T
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+<div markdown="block" class="index">
 
 ## Quick start
 
@@ -134,7 +135,7 @@ Professors:
 * Roles: `Coordinator`, `Tutor`, `Lecturer`and/or `Advisor`
 
 TA:
-* Availability: `Available` or `Unavailable` 
+* Availability: `Available` or `Unavailable`
 
 Student
 * Attendance: represented as a fraction _e.g. 9/10_
@@ -460,3 +461,5 @@ Action | Format, Examples
 **Swap** | `swap`
 **Rename** | `rename {NEW_NAME}`<br> e.g., `rename CS2103T`
 **Exit** | `exit`
+
+</div>
