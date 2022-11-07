@@ -709,10 +709,6 @@ testers are expected to do more *exploratory* testing.
    2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-3. _{ more test cases …​ }_
-
-
-
 ### Adding a book
 1. Adding a book while all books are being shown
    1. Prequisites: List all books using the `list books` or `list all` command.
@@ -889,9 +885,9 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+   1. Prerequisites: have the data file `bookface.json` (if the app has not been launched at least once, this file may be missing)
+   2. Test case: change one of the JSON key fields to be incorrect, such as by replacing `name` with `nme`.<br>
+      Upon launching the application, the application will log an error message and will load without any data at all.
 
 ## **Appendix: Effort**
 
