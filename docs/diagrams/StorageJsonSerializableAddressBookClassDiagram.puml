@@ -6,14 +6,14 @@ skinparam classBackgroundColor STORAGE_COLOR
 
 package "JsonSerializableAddressBook Storage" #F4F6F6{
 Class JsonSerializableAddressBook
-abstract Class JsonAdaptedAbstractContainerItem
+Class JsonAdaptedAddressBookParser
+Class JsonAdaptedCustomCommandBuilder
 abstract Class JsonAdaptedDisplayItem
+Class JsonAdaptedAbstractAttribute
 Class JsonAdaptedPerson
 Class JsonAdaptedTask
-Class JsonAdaptedTeam
+Class JsonAdaptedGroup
 Class JsonAdaptedTag
-Class JsonAdaptedFields
-Class JsonAdaptedField
 }
 
 Class HiddenOutside #FFFFFF
@@ -21,15 +21,13 @@ HiddenOutside ..> JsonSerializableAddressBook
 
 JsonSerializableAddressBook --> "*" JsonAdaptedPerson
 JsonSerializableAddressBook --> "*" JsonAdaptedTask
-JsonSerializableAddressBook --> "*" JsonAdaptedTeam
+JsonSerializableAddressBook --> "*" JsonAdaptedGroup
+JsonSerializableAddressBook --> "1" JsonAdaptedAddressBookParser
 JsonAdaptedPerson -up-|> JsonAdaptedDisplayItem
 JsonAdaptedTask -up-|> JsonAdaptedDisplayItem
-JsonAdaptedTask --> "1" JsonAdaptedFields
-JsonAdaptedTask --> "0..1" JsonAdaptedAbstractContainerItem
-JsonAdaptedTeam -up-|> JsonAdaptedAbstractContainerItem
-JsonAdaptedAbstractContainerItem -up-|> JsonAdaptedDisplayItem
-JsonAdaptedPerson --> "*" JsonAdaptedTag
-JsonAdaptedPerson --> "1" JsonAdaptedFields
-JsonAdaptedFields --> "*" JsonAdaptedField
+JsonAdaptedGroup -up-|> JsonAdaptedDisplayItem
+JsonAdaptedAddressBookParser --> "*" JsonAdaptedCustomCommandBuilder
+JsonAdaptedDisplayItem --> "*" JsonAdaptedAbstractAttribute
+JsonAdaptedDisplayItem --> "*" JsonAdaptedTag
 
 @enduml

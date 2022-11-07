@@ -194,11 +194,11 @@ Additional `Attribute`s are stored within `DisplayItem` (`AbstractDisplayItem`, 
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
-The `Storage` component,
+The `Storage` component:
 
-- can save both address book data and user preference data in json format, and read them back into corresponding objects.
-- inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-- depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`).
+- Can save both `AddressBook` data and user preference data in json format, and read them back into corresponding objects.
+- Inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+- Depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`).
 
 #### Storage of different classes from the `Model` component
 
@@ -214,11 +214,36 @@ structure follows closely to the class structure within the `Model` component:
 ![Json adapted version of model classes](images/StorageJsonSerializableAddressBookClassDiagram.png)
 
 These Json adapted classes are able to convert any `String`
-representation of attributes within the json files to its proper class attributes using the `toModelType` method.
+representation of attributes within the Json files to its proper class attributes using the `toModelType` method.
+
+:exclamation: **Note:** Due to the nature of `AddressBookParser` being a singleton class, the `toModelType` method
+in `JsonAdaptedAddressBookParser` is the only instance where its return type is `void`.
 
 The Sequence Diagram below illustrates how the Json file is converted back into an AddressBook.
 
 ![Sequence Diagram reading a Json file to AddressBook](images/PersonRetrievalSequenceDiagram.png)
+
+#### Removing and adding parents to each group, person and task
+
+1. Note that in `JsonSerializableAddressBook`, the parenting is extracted and stored as an additional
+attribute called `itemRelationship`. This attribute is a mapping from the `uuid` of a `person`, `group`
+or `task` to the `uuids` of its respective parents.
+
+
+2. When `Person`, `Group` and `Task` are converted into their `JsonAdapted` classes to be formatted
+correctly in `AddressBook.json`, they will still hold on and store their respective `uuids`.
+
+
+3. When building the `AddressBook` in `JsonSerializableAddressBook`, all `persons`, `groups`
+   and `tasks` are built using `toModelType` without their parents.
+
+
+4. Within the `toModelType` method in `JsonSerializableAddressBook`, parents will then be added using the 
+`setParent` method in each `person`, `group` and `task` class.
+
+
+5. The `AddressBook` with a completed tree-like structure consisting of `persons`, `groups` and `tasks` is returned
+from the `toModelType` method in `JsonSerializableAddressBook`.
 
 ### Common classes
 
