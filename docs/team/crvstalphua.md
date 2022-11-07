@@ -12,7 +12,7 @@ having to manually navigate to different Github repositories to check which task
 
 Given below are my contributions to the project.
 
-* **Code Contributed**: The link to the tP dashboard can be found [here](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=crvstalphua&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=false).
+* **Code Contributed**: The link to the tP dashboard can be found [here](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=crvstalphua&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=crvstalphua&tabRepo=AY2223S1-CS2103-F13-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false).
 
 * **New features implemented**: A summary of the enhancements you implemented.
   * **New Feature**: `Issue` class with `add`, `delete` and `edit` commands (Pull requests: [\#80](https://github.com/AY2223S1-CS2103-F13-1/tp/pull/80), [\#96](https://github.com/AY2223S1-CS2103-F13-1/tp/pull/96))
