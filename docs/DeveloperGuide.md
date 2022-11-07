@@ -6,7 +6,6 @@ title: Developer Guide
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## **Acknowledgements**
 
 This project is based on the [AddressBook Level-3](https://github.com/nus-cs2103-AY2223S1/tp) project created by
@@ -17,7 +16,6 @@ Libraries used:
 * [JavaFX](https://openjfx.io/)
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
@@ -72,6 +70,7 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
+<div style="page-break-after: always;"></div>
 ### UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-F11-1/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
@@ -89,6 +88,7 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
+<div style="page-break-after: always;"></div>
 ### Logic component
 
 The **API** of this component is specified in [`Logic.java`](https://github.com/AY2223S1-CS2103T-F11-1/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
@@ -118,6 +118,7 @@ How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddPersonCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddPersonCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddPersonCommandParser`, `DeletePersonCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+<div style="page-break-after: always;"></div>
 ### Model component
 The **API** of this component is specified in [`Model.java`](https://github.com/AY2223S1-CS2103T-F11-1/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
@@ -137,7 +138,7 @@ The `Model` component,
 
 </div>
 
-
+<div style="page-break-after: always;"></div>
 ### Storage component
 
 The **API** of this component is specified in [`Storage.java`](https://github.com/AY2223S1-CS2103T-F11-1/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
@@ -149,12 +150,13 @@ The `Storage` component,
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
+<div style="page-break-after: always;"></div>
 ### Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
-
+<div style="page-break-after: always;"></div>
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
@@ -181,6 +183,7 @@ The sequence diagram is given below.
 The following activity diagram summarizes what happens when a user executes an `EditInternshipCommand`:
 ![SortPersonActivity](images/EditInternshipActivity.png)
 
+<div style="page-break-after: always;"></div>
 ### Sort Person list
 
 #### Implementation
@@ -205,6 +208,7 @@ The activity diagram is given below.
 
 The sorting mechanism is designed in a way to keep all operations to the `SortPersonCommand` object itself, which will them prompt the `Model` to set the comparator of the person list. This is consistent with the other commands, as they will go through the same process, since each command has their own class and parser (if needed).
 
+<div style="page-break-after: always;"></div>
 ### Find Person
 
 #### Implementation
@@ -225,6 +229,7 @@ The sorting mechanism is designed in a way to keep all operations to the `SortPe
 The sequence diagram is given below.
 ![FindPersonSequence](images/FindPersonSequence.png)
 
+<div style="page-break-after: always;"></div>
 ### Link Person and Internship
 
 #### Implementation
@@ -246,6 +251,7 @@ The sequence diagram is given below.
 The following activity diagram summarizes what happens when a user attempts to link a person and an internship:
 ![LinkActivity](images/LinkActivityDiagram.png)
 
+<div style="page-break-after: always;"></div>
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -347,7 +353,6 @@ The following activity diagram summarizes what happens when a user executes a ne
 * Are actively seeking internship opportunities
 * Having trouble keeping track of multiple internship applications and their progress (over multiple rounds)
 
-
 **Value proposition**:
 
 * Keep track of multiple company contacts and applications’ progress simultaneously (the reply rates from companies are very low)
@@ -355,7 +360,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 * Keep track of internship applications of multiple companies
 * Keep track of contact information of hiring managers, and link them to internship openings
 
-
+<div style="page-break-after: always;"></div>
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
@@ -385,6 +390,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | * *      | Expert user      | Mass import contacts directly                                                          | I can use the app on another device                                                                    |
 | *        | User             | Personalize GUI colors and color themes (light mode, dark mode etc.)                   | I can make the app more visually appealing                                                             |
 
+<div style="page-break-after: always;"></div>
 ### Use cases
 
 (For all use cases below, the **System** is the `InterNUS` and the **Actor** is the `user`, unless specified otherwise)
@@ -527,7 +533,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
        Use case ends.
 
-
+<div style="page-break-after: always;"></div>
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -540,7 +546,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 8. The GUI should work well for standard screen resolutions 1920x1080 and higher and for screen scales 100% and 125%. 
 9. The GUI should be usable for resolutions 1280x720 and higher and for screen scales 150%.
 10. Each contact person can only link to one internship and each internship is only linked to one contact person
-
 
 ### Glossary
 
@@ -573,7 +578,7 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-
+<div style="page-break-after: always;"></div>
 ### Editing a person
 
 1. Editing a person in a filtered list of persons.
@@ -589,7 +594,7 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect edit commands to try: `edit -p 1`, `edit -p x t/colleague`(where x is larger than the list size).<br>
        Expected: Similar to previous.
 
-
+<div style="page-break-after: always;"></div>
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
@@ -605,7 +610,7 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete -p`, `delete -p x`, `...` (where x is larger than the list size).<br>
       Expected: Similar to previous.
 
-
+<div style="page-break-after: always;"></div>
 ### Sorting person list
 
 1. Sorts person list while all persons are being shown
@@ -640,6 +645,7 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect sort person commands to try: `sort -p rbivrv`, `sort -p      `, `sort -p n/ krvnkr`, `...`.<br>
    Expected: Similar to previous.
 
+<div style="page-break-after: always;"></div>
 ### Saving data
 
 1. Dealing with missing/corrupted data files
