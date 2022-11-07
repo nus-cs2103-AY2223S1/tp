@@ -5,34 +5,40 @@ title: Developer Guide
 
 Table of Contents
 
-1. [Acknowledgements](#1-acknowledgements)
-2. [Setting up, getting started](#2-setting-up-getting-started)
-3. [Design](#3-design)  
-   3.1. [Architecture](#31-architecture)  
-   3.2. [UI component](#32-ui-component)   
-   3.3. [Logic component](#33-logic-component)  
-   3.4. [Model component](#34-model-component)   
-   3.5. [Storage component](#35-storage-component)   
-   3.6. [Common classes](#36-common-classes)
-4. [Implementation](#4-implementation)   
-   4.1. [Import command](#41-import-command)
-5. [Documentation, logging, testing, configuration, dev-ops](#5-documentation-logging-testing-configuration-dev-ops)
-6. [Appendix: Requirements](#6-appendix-requirements)   
-   6.1. [Product scope](#61-product-scope)  
-   6.2. [User stories](#62-user-stories)   
-   6.3. [Use cases](#63-use-cases)   
-   6.4. [Non-Functional Requirements](#64-non-functional-requirements)   
-   6.5. [Glossary](#65-glossary)
-7. [Appendix: Instructions for manual testing](#7-appendix-instructions-for-manual-testing)   
-   7.1. [Launch and shutdown](#71-launch-and-shutdown)   
-   7.2. [Deleting a client](#72-deleting-a-client)  
-   7.3. [Saving data](#73-saving-data)
+1. [Acknowledgements](#1-acknowledgements)<br>
+2. [Setting up, getting started](#2-setting-up-getting-started)<br>
+3. [Design](#3-design)<br>
+   3.1. [Architecture](#31-architecture)<br>
+   3.2. [UI component](#32-ui-component)<br>
+   3.3. [Logic component](#33-logic-component)<br>
+   3.4. [Model component](#34-model-component)<br>
+   3.5. [Storage component](#35-storage-component)<br>
+   3.6. [Common classes](#36-common-classes)<br>
+4. [Implementation](#4-implementation)<br>
+   4.1. [Import command](#41-import-command)<br>
+   4.2. [View command](#42-view-command)<br>
+   4.3. [Sort command](#43-sort-command)<br>
+   4.4. [Copy command](#44-copy-command)<br>
+   4.5. [Lock feature](#45-lock-feature)<br>
+5. [Documentation, logging, testing, configuration, dev-ops](#5-documentation-logging-testing-configuration-dev-ops)<br>
+6. [Appendix: Requirements](#6-appendix-requirements)<br>
+   6.1. [Product scope](#61-product-scope)<br>
+   6.2. [User stories](#62-user-stories)<br>
+   6.3. [Use cases](#63-use-cases)<br>
+   6.4. [Non-Functional Requirements](#64-non-functional-requirements)<br>
+   6.5. [Glossary](#65-glossary)<br>
+7. [Appendix: Instructions for manual testing](#7-appendix-instructions-for-manual-testing)<br>
+   7.1. [Launch and shutdown](#71-launch-and-shutdown)   <br>
+   7.2. [Deleting a client](#72-deleting-a-client)  <br>
+   7.3. [Saving data](#73-saving-data)<br>
+   7.4. [Sorting clients](#74-sorting-clients)<br>
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **1. Acknowledgements**
 
-This project is based on the [AddressBook Level-3](https://github.com/nus-cs2103-AY2223S1/tp) project created by the [SE-EDU initiative](https://se-education.org).
+This project is based on the [AddressBook Level-3](https://github.com/nus-cs2103-AY2223S1/tp) project created by
+the [SE-EDU initiative](https://se-education.org).
 
 Libraries used:
 
@@ -199,17 +205,19 @@ The `Model` component,
 
 **API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-F11-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png"/>
+![StorageClassDiagram](images/StorageClassDiagram.png)
 
 The `Storage` component,
 
 * can save both address book data and user preference data in `JSON` format, and read them back into corresponding
   objects.
-* has a `Storage` interface which inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only
+* has a `Storage` interface which inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be
+  treated as either one (if only
   the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects
   that belong to the `Model`)
-* has `CsvAdaptedPerson` which is used to save `Person`s in the address book in `CSV` format, and read them back into corresponding
+* has `CsvAdaptedPerson` which is used to save `Person`s in the address book in `CSV` format, and read them back into
+  corresponding
   `Person`s.
 
 ### 3.6. Common classes
@@ -234,6 +242,8 @@ The import command mainly relies on the following classes:
 * `ParserUtil`
 * `CsvAdaptedPerson`
 * `StringToTag`
+* `StringToPlan`
+* `StringToNote`
 
 `CsvToBeanBuilder` is provided by the OpenCSV library.
 
@@ -248,19 +258,139 @@ The import command mainly relies on the following classes:
     * If the path is to a `JSON` file, `ImportCommand` creates a new `JsonAddressBookStorage` using the path, then uses
       it to read and add `Person`s to the `Model`.
     * If the path is to a `CSV` file, `ImportCommand` creates a new `CsvToBeanBuilder` using the path, then uses it to
-      obtain a list of `CsvAdaptedPerson`s. `StringToTag#convertToRead()` is called by `CsvToBeanBuilder` to convert
-      strings from the `CSV` file to `Tag`s. `CsvAdaptedPerson#toModelType()` is called to convert
+      obtain a list of `CsvAdaptedPerson`s. `StringToTag`, `StringToPlan` and `StringToNote` are used by `CsvToBeanBuilder` to convert
+      strings from the `CSV` file to the corresponding `CsvAdaptedPerson` fields. `CsvAdaptedPerson#toModelType()` is called to convert
       each `CsvAdaptedPerson` to a `Person` before adding them to the `Model`.
 
-The following sequence diagram shows how the import command works:
+The following sequence diagrams show how the import command works:
 
 ![ImportSequenceDiagram](images/ImportSequenceDiagram.png)
+![ImportSequenceDiagramRef](images/ImportSequenceDiagramRef.png)
 
 #### Design considerations:
 
 Chose to use OpenCSV to read `CSV` files to avoid reinventing the wheel.
 
-*{More to be added}*
+### 4.2. View Command
+
+#### Current Implementation
+
+The view command mainly relies on the following classes:
+
+* `Person`
+* `Model`
+* `Index`
+* `Messages`
+* `Index`
+* `CommandResult`
+
+1. The user executes the `view` command while providing an index of the client as an argument.
+2. `AddressBookParser#parseCommand` is called, which creates and returns a new `ViewCommandParser` that parses the
+   provided index.
+3. `ViewCommandParser#parse()` is called, which calls `ViewCommand#parse()` to parse the index of client.
+4. `ViewCommandParser` creates and returns a new `ViewCommand` with the index of client.
+5. `ViewCommand#execute()` is called.
+    1. `ViewCommand#execute()` will get the updated client list using `model#getFilteredPersonList()`.
+    2. `ViewCommand#execute()` will get the specific client using the index given as the parameter.
+    3. `ViewCommand#execute()` then calls `CommandResult` which calls the `Message` to return the success message after each successful execution.
+
+Design considerations:
+
+1. View person and get portfolio of each client
+2. View portfolio of each client
+
+- Option 1 is implemented because it was unnecessary to add a new list of clients containing on the portfolio. Since
+  is an existing method that already gets the updated Person list, hence, we have decided to get the portfolio
+  of each client through this Person list as each client will have their own portfolio.
+
+### 4.3. Sort Command
+
+#### Current Implementation
+
+The sort command mainly relies on the following classes:
+
+* `AddressBookParser`
+* `SortCommand`
+* `SortCommandParser`
+* `ParserUtil`
+* `Model`
+* `UniquePersonList`
+
+1. The user executes the `sort` command while providing a sorting parameter `sortParam` as an argument.
+2. `AddressBookParser#parseCommand` is called, which creates and returns a new `SortCommandParser` with the
+   provided `sortParam`.
+3. `SortCommandParser#parse()` is called, which creates and returns a new `SortCommand` with the given `sortParam`.
+4. `SortCommand#execute()` is called.
+    1. `SortCommand#execute()` will pass `sortParam` to `model#sort`.
+    2. `model#sort` will call `AddressBook#sort`
+    3. `AddressBook#sort` then calls `UniquePersonList#sort` to sort client list.
+    4. `UniquePersonList` then updates `internalList` with sorted client list according to `sortParam`.
+
+#### Design considerations:
+
+`sortParam` should be passed to `UniquePersonList#sort` to modify `internalList`.
+
+### 4.4. Copy Command
+
+#### Current Implementation
+
+The copy command mainly relies on the following classes:
+
+* `AddressBookParser`
+* `CopyCommand`
+* `CopyCommandParser`
+* `ParserUtil`
+* `Model`
+* `Person`
+* `Clipboard`
+
+1. The user executes the `copy` command while providing an index of the client as an argument.
+2. `AddressBookParser#parseCommand` is called, which creates and returns a new `CopyCommandParser` that parses the
+   provided index.
+3. `CopyCommandParser#parse()` is called, which calls `ParserUtil#parseIndex` with index as an argument to check if it is valid.
+4. `CopyCommandParser` creates and returns a new `CopyCommand` with the index of client.
+5. `CopyCommand#execute()` is called.
+    1. `CopyCommand#execute()` will get the updated client list using `model#getFilteredPersonList()`.
+    2. `CopyCommand#execute()` will get the specific client using the index given as the parameter.
+    3. `CopyCommand#execute()` will set `stringSelection` with clients details by calling `person#toClipboardString()`.
+    4. `Toolkit#getDefaultToolkit()#getSystemClipboard()` is called to is initialized `clipboard` to the system's clipboard.
+    5. `clipboard#setContents()` is called with `stringSelection` as parameter.
+
+#### Design considerations:
+
+Java `Clipboard` API is used as it implements a mechanism to transfer data using cut/copy/paste operations.
+
+### 4.5. Lock feature
+
+#### Current Implementation
+
+The lock feature mainly relies on the following classes:
+
+* `CommandResult`
+* `LockCommand`
+* `AddressBookParser`
+* `LockWindow`
+* `MainWindow`
+
+1. The user opens FinBook.
+2. `MainWindow` checks if a password is set. If not, go to step 6.
+3. `MainWindow` displays the password dialog box by calling `LockWindow`.
+4. The user enters a password.
+5. `LockWindow` checks if the password is correct. If not, go to step 3.
+6. FinBook unlocks and the user resumes using FinBook.
+7. The user executes the `lock` command.
+8. `AddressBookParser` creates and returns a new `LockCommand`.
+9. `LockCommand` is executed and returns a `CommandResult` that tells `MainWindow` to display the password dialog box. Go to step 3.
+
+Password verification is handled by the Password4j library.
+
+The following activity diagram shows how the lock feature works:
+
+![LockActivityDiagram](images/LockActivityDiagram.png)
+
+#### Design considerations:
+
+Chose to use battle-tested Password4j to verify passwords to avoid implementing an insecure password system.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -320,6 +450,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user ready to start using the app          | purge all current data                                                           | I can get rid of sample/experimental data I used for exploring the app              |
 | `* *`    | user who is a little familiar with the app | search for clients                                                               | I do not have to scroll through all of my clients’ details to find a certain client |
 | `* *`    | user who is a little familiar with the app | sort meetings                                                                    | I can plan for the upcoming days                                                    |
+| `* *`    | user who is a little familiar with the app | sort clients by name                                                             | I can view clients in alphabetical order                                            |
+| `* *`    | user who is a little familiar with the app | sort clients by income                                                           | I can arrange clients according to income                                           |
 | `* *`    | user who is a little familiar with the app | add additional notes that I have discussed with the client                       | I don't have to use another platform to store my notes regarding my client.         |
 | `* *`    | user who is familiar with the app          | copy data to the clipboard with the click of a button or the use of a shortcut   | it is more convenient for me                                                        |
 | `* *`    | returning user                             | import data from an existing save                                                | I can move between devices                                                          |
@@ -533,12 +665,18 @@ FinBook is not required to handle interaction between client and FA.
 
 ### 6.5. Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **FA**: Financial advisor
-* **Client**: A client is a person whose financial data and details are managed by an FA
-* **Private client detail**: A client detail that is sensitive and not meant to be shared with others
-* **CSV**: A comma-separated values (CSV) file is a delimited text file that uses a comma to separate values
-* **System**: FinBook
+| Term                         | Meaning                                                                                                                                                                                                                                       |
+|------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Mainstream OS                | Windows, Linux, Unix, OS-X                                                                                                                                                                                                                    |
+| FA                           | Financial advisor                                                                                                                                                                                                                             |
+| Client                       | A client is a person whose financial data and details are managed by an FA                                                                                                                                                                    |
+| Private client detail        | A client detail that is sensitive and not meant to be shared with others                                                                                                                                                                      |
+| System                       | FinBook                                                                                                                                                                                                                                       |
+| CLI (Command-line Interface) | A application that users interact with by typing text.                                                                                                                                                                                        |
+| Command                      | A sequence specified text typed by the user to perform an action.                                                                                                                                                                             |
+| JSON                         | JSON (JavaScript Object Notation) is an open standard file format and data interchange format that uses human-readable text to store and transmit data objects consisting of attribute–value pairs and arrays (or other serializable values). |
+| CSV                          | A comma-separated values (CSV) file is a delimited text file that uses a comma to separate values.                                                                                                                                            |
+| Path                         | A path is a string of characters used to uniquely identify a location in a directory structure.                                                                                                                                               |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -600,18 +738,36 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-    1. Test case: Importing an invalid JSON file<br>   
+    1. Test case: Importing an invalid JSON file<br>
        Expected: list of clients will be empty and nothing is shown
 
-    2. Test case: Importing an invalid CSV file<br>   
+    2. Test case: Importing an invalid CSV file<br>
        Expected: list of clients will be empty and nothing is shown
 
-    3. Test case: Editing the JSON file when the application is not launched with invalid datas<br>   
+    3. Test case: Editing the JSON file when the application is not launched with invalid datas<br>
        Expected: list of clients will be empty and nothing is shown
 
     4. Test case: Missing JSON file<br>
        Expected: Creates a new addressbook.json file when there is a new command entered
 
     5. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+
+2. _{ more test cases …​ }_
+
+### 7.4. Sorting Clients
+
+1. Sorting clients when client list has multiple clients in the list
+
+    1. Test case:  `sort n/`<br>
+       Expected: list of clients will be sorted with client names arranged lexicographically
+
+    2. Test case: `sort i/`<br>
+       Expected: list of clients will be sorted with client incomes in ascending order
+
+    3. Test case: `sort m/`<br>
+       Expected: list of clients will be sorted in chronological order
+
+    4. Test case: `sort m/` with client meeting dates saved as `TBC`<br>
+       Expected: list of clients will be sorted in chronological order, with `TBC` entries at the bottom of the list
 
 2. _{ more test cases …​ }_

@@ -49,7 +49,7 @@ public class RemoveCommand extends Command {
         + PREFIX_PLAN + "NTUC Income Plan "
         + "(this will remove the tag: friend and the plan: NTUC Income Plan from the first person in the list.)";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Client: %1$s";
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Removed Client: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one parameter to remove must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This client already exists in the FinBook.";
 

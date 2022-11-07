@@ -16,7 +16,8 @@ public class SortCommand extends Command {
             + "in ascending order. Parameters which can be sorted by are Name, Income and Meeting Date.\n"
             + "Parameters: n/ or i/ or m/\n"
             + "Example (by name): " + COMMAND_WORD + " n/"
-            + "Example (by income): " + COMMAND_WORD + " i/";
+            + "Example (by income): " + COMMAND_WORD + " i/"
+            + "Example (by meeting date): " + COMMAND_WORD + " m/";
 
     private final String sortParam;
 
@@ -29,7 +30,7 @@ public class SortCommand extends Command {
         requireNonNull(model);
         model.sort(sortParam);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()), -1);
+                String.format(Messages.MESSAGE_PERSONS_SORTED_OVERVIEW, model.getFilteredPersonList().size()), -1);
     }
 
     @Override

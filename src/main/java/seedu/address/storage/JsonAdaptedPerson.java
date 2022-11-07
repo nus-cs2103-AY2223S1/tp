@@ -97,12 +97,12 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         income = source.getIncome().value;
-        meetingDate = source.getMeeting().getMeetingDate().value;
+        meetingDate = source.getMeeting().getMeetingDate().get();
         meetingLocation = source.getMeeting().getMeetingLocation().get();
         tagged.addAll(source.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList()));
-        risk = portfolio.getRisk().value;
+        risk = portfolio.getRisk().get();
         planned.addAll(portfolio.getPlans().stream()
             .map(JsonAdaptedPlan::new)
             .collect(Collectors.toList()));

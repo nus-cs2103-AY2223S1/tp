@@ -18,7 +18,6 @@ public class PortfolioWindow extends UiPart<Region> {
 
     private static final String FXML = "Portfolio.fxml";
     private static final String RISK_LEVEL = "Risk Level: ";
-    private static final String NO_RISK_LEVEL = "no risk assessment yet";
     private static final String NO_NOTE = "no notes yet";
     private static final String NO_PLAN = "no plans yet";
 
@@ -51,26 +50,22 @@ public class PortfolioWindow extends UiPart<Region> {
         portfolioVBoxEmpty.setVisible(false);
 
         if (portfolio != null) {
-            if (portfolio.getRisk().value != null && portfolio.getRisk().value != "") {
-                risk.setText(RISK_LEVEL + portfolio.getRisk().value);
-            } else {
-                risk.setText(RISK_LEVEL + NO_RISK_LEVEL);
-            }
+            risk.setText(RISK_LEVEL + portfolio.getRisk().get());
 
             if (portfolio.getPlans().isEmpty()) {
                 plans.getChildren().add(new Label(NO_PLAN));
             } else {
                 portfolio.getPlans().stream()
-                        .sorted(Comparator.comparing(plan -> plan.value))
-                        .forEach(plan -> plans.getChildren().add(new Label(plan.value)));
+                    .sorted(Comparator.comparing(plan -> plan.value))
+                    .forEach(plan -> plans.getChildren().add(new Label(plan.value)));
             }
 
             if (portfolio.getNotes().isEmpty()) {
                 notes.getChildren().add(new Label(NO_NOTE));
             } else {
                 portfolio.getNotes().stream()
-                        .sorted(Comparator.comparing(note -> note.value))
-                        .forEach(note -> notes.getChildren().add(new Label(note.value)));
+                    .sorted(Comparator.comparing(note -> note.value))
+                    .forEach(note -> notes.getChildren().add(new Label(note.value)));
             }
         } else {
             //show empty portfolio
