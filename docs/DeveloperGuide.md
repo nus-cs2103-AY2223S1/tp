@@ -118,8 +118,9 @@ The `UI` component
 
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
+* Updates the currently displayed panel to one of the five different types (clients list, meetings list, products list, detailed client view, detailed meeting view) based on the result of the last command executed.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Client` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Client`, `Meeting`, and `Product` objects residing in the `Model`.
 
 ### 3.3 Logic component
 
@@ -306,8 +307,11 @@ Purpose: Adds a meeting with the given information to the internal model and sto
 
 In keeping with the command execution structure of the overall program, the command specific classes `AddMeetingCommand` and `AddMeetingCommandParser` were added to the commands and parser packages respectively. The main parser `MyInsuRecParser` was also modified to accept the new command word, `addMeeting`.
 
-The following sequence diagram offers a high-level overview of how
-the command is executed.
+Usage scenario of `addMeeting`:
+
+1) User inputs `addMeeting i/1 st/1000 et/1100 d/12122022 dn/Meeting with Alex` to add a meeting with the first client in the list.
+
+Below is a sequence diagram that illustrates the execution of `addMeeting i/1 st/1000 et/1100 d/12122022 dn/Meeting with Alex` command and the interaction with `Model`.
 
 ![AddMeetingSequenceDiagram](images/AddMeetingSequenceDiagram.png)
 
@@ -482,13 +486,13 @@ View panels are one of the main component of the UI and the main component where
 
 The GUI changes view panels depending on the last executed command. For example, a `listMeeting` will cause the meeting list view panel to be displayed, while `viewClient i/1` will cause a detailed client view panel to be displayed.
 
-#### Implementation
+##### Implementation
 
 Below is a sequence diagram that illustrates the execution of `listMeeting` command and the interaction with `Model`, which demonstrates how a view panel changes to `MeetingListPanel`.
 
 ![DifferentViewPanelsSequenceDiagram](images/DifferentViewPanelsSequenceDiagram.png)
 
-#### Rationale
+##### Rationale
 
 We chose to implement the changing of view panels through `CommandResult` due to its simplicity and the intended effects are clear. Furthermore, this is in line with how `HelpCommand` and `ExitCommand` is implemented.
 
@@ -519,7 +523,7 @@ Purpose: In this proposed feature, the user is provided with  multiple possible 
 For example, currently we can define a client's birthday using the `b/` prefix.
 However, since a birthday is essentially a date, a user may prefer to reuse the `d/` prefix instead (see `addMeeting` command).
 
-#### Implementation
+##### Implementation
 
 `AddClientCommandParser` depends on multiple `Prefix` objects such as `PREFIX_BIRTHDAY`, and `PREFIX_DATE` to identify each field in an `AddClientCommand`.
 Currently, `Prefix` class stores the required prefix word as a `String`.
@@ -531,7 +535,7 @@ From then on, the `AddClientCommand` can be built as expected.
 <img src="images/ProposedPrefixSequenceDiagram.png" width="550" />
 
 
-#### Design Considerations
+##### Design Considerations
 
 **Aspect: How prefixes are stored:**
 
