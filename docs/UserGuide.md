@@ -54,6 +54,7 @@ Already done with the set-up? Jump right straight to the [features](#features) s
         * [Summary of all entries in the specified month](#summary-of-all-entries-in-the-specified-month)
     * [View entries by category:](#view-entries-by-category)
     * [View entries by month:](#view-entries-by-month)
+    * [Command summary table](#command-summary-table)
     * [Clearing all entries:](#clearing-all-entries)
     * [Exiting the program:`](#exiting-the-program)
     * [Saving the data](#saving-the-data)
@@ -217,7 +218,7 @@ you still see the most important information about your budgeting. If details of
 ## Understanding the command formats
 
 All commands follow this format except: [`delete`](#deleting-entries),
-[`clear`](#clearing-all-entries), [`exit`](#exiting-the-program) and `help`.<br>
+[`clear`](#clearing-all-entries), [`exit`](#exiting-the-program) and [`help`](#command-summary-table).<br>
 <pre>
     command | entry identifier | input | [optional inputs]
 </pre>
@@ -645,7 +646,9 @@ out for our future software updates!
 | **View (Month)**    | `view t/ENTRY_TYPE mo/MONTH` <br> e.g. `view t/i mo/2022-10`                                                                                            |
 | **Clear**           | `clear`                                                                                                                                                 |
 | **Exit**            | `exit`                                                                                                                                                  |
+| **Help**            | `help`                                                                                                                                                  |
+
 
 <p align="right">
     <a href="#top">Back to Top </a>
-</p>**
+</p>
