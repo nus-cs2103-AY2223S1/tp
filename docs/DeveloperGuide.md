@@ -349,7 +349,7 @@ Step 3: Upon parsing, a new `CommentCommand` is created based on the `index` and
 A new `Comment` is created based on the `comment` parsed. 
 
 Step 4: In the `CommentCommand` execution, the `model#getFilteredTutorList` is called upon to retrieve the list of displayed tutors.
-The `Tutor` whose index matches the `index` is then stored.
+The `Tutor` whose index matches the `index` is then stored (after accounting for 0 based indexing).
 In this case, the first `Tutor` is selected.
 
 Step 5: For this `Tutor`, the `tutor#getComments` is called upon to retrieve the `CommentList` of the `Tutor`.
