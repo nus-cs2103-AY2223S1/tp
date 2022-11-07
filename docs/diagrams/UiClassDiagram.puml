@@ -48,20 +48,20 @@ TaskListPanel -down-> "*" TaskCard
 
 MainWindow -left-|> UiPart
 
-ResultDisplay --|> UiPart
-CommandBox --|> UiPart
-ProjectListPanel --|> UiPart
-ProjectCard --|> UiPart
-StaffListPanel --|> UiPart
-StaffCard --|> UiPart
-TaskListPanel --|> UiPart
-TaskCard --|> UiPart
-StatusBarFooter --|> UiPart
-HelpWindow --|> UiPart
+ResultDisplay ---|> UiPart
+CommandBox ---|> UiPart
+ProjectListPanel ---|> UiPart
+ProjectCard ---|> UiPart
+StaffListPanel ---|> UiPart
+StaffCard ---|> UiPart
+TaskListPanel ---|> UiPart
+TaskCard ---|> UiPart
+StatusBarFooter ---|> UiPart
+HelpWindow ---|> UiPart
 
-ProjectCard ..> Model
-StaffCard ..> Model
-TaskCard ..> Model
+ProjectCard ...> Model
+StaffCard ...> Model
+TaskCard ...> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 

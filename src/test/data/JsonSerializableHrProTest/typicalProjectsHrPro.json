@@ -1,0 +1,174 @@
+{
+  "_comment": "HrPro save file which contains the same Project values as in TypicalProjects#getTypicalHrPro()",
+  "projects" : [ {
+    "projectName" : "Alice Pauline",
+    "budget" : "94351253",
+    "deadline" : "2022-01-01",
+    "tagged" : [ "friends" ],
+    "staffList": [ {
+      "staffName" : "Alice Pauline",
+      "staffContact" : "94351253",
+      "staffTitle" : "Project Manager",
+      "staffDepartment" : "Human resources",
+      "staffLeave" : "true",
+      "tagged" : [ "friends" ]
+    }, {
+      "staffName" : "Benson Meier",
+      "staffContact" : "98765432",
+      "staffTitle" : "Senior Software Engineer",
+      "staffDepartment" : "IT Department",
+      "staffLeave" : "false",
+      "tagged" : [ "owesMoney", "friends" ]
+    }, {
+      "staffName" : "Coconut",
+      "staffContact" : "95352563",
+      "staffTitle" : "Software Engineer",
+      "staffDepartment" : "IT Department",
+      "staffLeave" : "true",
+      "tagged" : [ ]
+    }, {
+      "staffName" : "Daniel Meier",
+      "staffContact" : "87652533",
+      "staffTitle" : "UX Designer",
+      "staffDepartment" : "IT Department",
+      "staffLeave" : "true",
+      "tagged" : [ "friends" ]
+    }, {
+      "staffName" : "Elle Meyer",
+      "staffContact" : "64822246",
+      "staffTitle" : "Senior UX Designer",
+      "staffDepartment" : "IT Department",
+      "staffLeave" : "false",
+      "tagged" : [ ]
+    }, {
+      "staffName" : "Fiona Kunz",
+      "staffContact" : "94824271",
+      "staffTitle" : "Marketing Manager",
+      "staffDepartment" : "Marketing Department",
+      "staffLeave" : "true",
+      "tagged" : [ ]
+    }, {
+      "staffName" : "George Best",
+      "staffContact" : "94824426",
+      "staffTitle" : "Senior Marketing Manager",
+      "staffDepartment" : "Marketing Department",
+      "staffLeave" : "false",
+      "tagged" : [ ]
+    } ]
+  }, {
+    "projectName" : "Benson Meier",
+    "budget" : "98765432",
+    "deadline" : "2022-12-28",
+    "tagged" : [ "owesMoney", "friends" ],
+    "staffList": []
+  }, {
+    "projectName" : "Coconut",
+    "budget" : "95352563",
+    "deadline" : "2022-01-10",
+    "tagged" : [ ],
+    "staffList": []
+  }, {
+    "projectName" : "Daniel Meier",
+    "budget" : "87652533",
+    "deadline" : "2022-08-02",
+    "staffList": [],
+    "tagged" : [ "friends" ]
+  }, {
+    "projectName" : "Elle Meyer",
+    "budget" : "9482224",
+    "deadline" : "2022-10-05",
+    "staffList": [],
+    "tagged" : [ ]
+  }, {
+    "projectName" : "Fiona Kunz",
+    "budget" : "9482427",
+    "deadline" : "2023-09-09",
+    "staffList": [],
+    "tagged" : [ ]
+  }, {
+    "projectName" : "George Best",
+    "budget" : "9482442",
+    "deadline" : "2021-10-05",
+    "staffList": [],
+    "tagged" : [ ]
+  } ],
+  "staff" : [ {
+      "staffName" : "Alice Pauline",
+      "staffContact" : "94351253",
+      "staffTitle" : "Project Manager",
+      "staffDepartment" : "Human resources",
+      "staffLeave" : "true",
+      "tagged" : [ "friends" ]
+    }, {
+      "staffName" : "Benson Meier",
+      "staffContact" : "98765432",
+      "staffTitle" : "Senior Software Engineer",
+      "staffDepartment" : "IT Department",
+      "staffLeave" : "false",
+      "tagged" : [ "owesMoney", "friends" ]
+    }, {
+      "staffName" : "Coconut",
+      "staffContact" : "95352563",
+      "staffTitle" : "Software Engineer",
+      "staffDepartment" : "IT Department",
+      "staffLeave" : "true",
+      "tagged" : [ ]
+    }, {
+      "staffName" : "Daniel Meier",
+      "staffContact" : "87652533",
+      "staffTitle" : "UX Designer",
+      "staffDepartment" : "IT Department",
+      "staffLeave" : "true",
+      "tagged" : [ "friends" ]
+    }, {
+      "staffName" : "Elle Meyer",
+      "staffContact" : "64822246",
+      "staffTitle" : "Senior UX Designer",
+      "staffDepartment" : "IT Department",
+      "staffLeave" : "false",
+      "tagged" : [ ]
+    }, {
+      "staffName" : "Fiona Kunz",
+      "staffContact" : "94824271",
+      "staffTitle" : "Marketing Manager",
+      "staffDepartment" : "Marketing Department",
+      "staffLeave" : "true",
+      "tagged" : [ ]
+    }, {
+      "staffName" : "George Best",
+      "staffContact" : "94824426",
+      "staffTitle" : "Senior Marketing Manager",
+      "staffDepartment" : "Marketing Department",
+      "staffLeave" : "false",
+      "tagged" : [ ]
+    } ],
+  "tasks" : [{
+    "taskDescription" : "Assignment 2101",
+    "taskDeadline": "2022-07-11",
+    "taskMark": "false"
+  }, {
+    "taskDescription" : "Todo 2102",
+    "taskDeadline": "2022-06-12",
+    "taskMark": "true"
+  }, {
+    "taskDescription" : "Todo 2103",
+    "taskDeadline": "2022-02-16",
+    "taskMark": "false"
+  }, {
+    "taskDescription" : "Todo 2104",
+    "taskDeadline": "2022-04-14",
+    "taskMark": "true"
+  }, {
+    "taskDescription" : "Todo 2105",
+    "taskDeadline": "2022-01-11",
+    "taskMark": "false"
+  }, {
+    "taskDescription" : "Todo 2106",
+    "taskDeadline": "2022-03-15",
+    "taskMark": "true"
+  }, {
+    "taskDescription" : "Todo 2107",
+    "taskDeadline": "2022-05-13",
+    "taskMark": "false"
+  }]
+}

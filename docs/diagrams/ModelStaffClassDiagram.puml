@@ -1,0 +1,32 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Staff <<Rectangle>>{
+Class Staff
+Class Tag
+
+Class StaffName
+Class StaffContact
+Class StaffDepartment
+Class StaffLeave
+Class StaffTitle
+}
+
+Class UniqueStaffList
+Class ModelManager
+
+UniqueStaffList *--> "*" Staff
+
+Staff *--> StaffName
+Staff *--> StaffContact
+Staff *--> StaffDepartment
+Staff *--> StaffLeave
+Staff *--> StaffTitle
+Staff *--> "*" Tag
+
+ModelManager -left->"~* filtered" Staff
+
+@enduml
