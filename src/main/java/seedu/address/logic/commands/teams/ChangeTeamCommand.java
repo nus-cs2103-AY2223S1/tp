@@ -1,3 +1,4 @@
+// @@author mohamedsaf1
 package seedu.address.logic.commands.teams;
 
 import static java.util.Objects.requireNonNull;
@@ -13,7 +14,6 @@ import seedu.address.model.Model;
 import seedu.address.model.group.Group;
 import seedu.address.model.item.AbstractSingleItem;
 
-// @@author autumn-sonata
 /**
  * Changes a current working context of the team
  */

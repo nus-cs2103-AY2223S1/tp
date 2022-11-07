@@ -1,3 +1,4 @@
+// @@author mohamedsaf1
 package seedu.address.logic.commands.teams;
 
 import static java.util.Objects.requireNonNull;
@@ -23,12 +24,12 @@ public class AddUserToTeamCommand extends PureCommand {
     public static final String COMMAND_WORD = "assign";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Assigns an existing contact to an existing team with the specified index\n"
-            + "Parameters: "
-            + PREFIX_GROUP + "INDEX of team"
-            + PREFIX_USER + "INDEX of contact\n"
-            + "Where INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " u/1 t/2\n";
+        + ": Assigns an existing contact to an existing team with the specified index\n"
+        + "Parameters: "
+        + PREFIX_GROUP + "INDEX of team"
+        + PREFIX_USER + "INDEX of contact\n"
+        + "Where INDEX (must be a positive integer)\n"
+        + "Example: " + COMMAND_WORD + " u/1 t/2\n";
 
     public static final String ASSIGN_SUCCESS = " Contact %s have been assigned to %s%n";
 
