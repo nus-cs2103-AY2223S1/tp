@@ -31,6 +31,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
         }
 
         Index personIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_GLOBAL_PERSON_INDEX).get());
+
         return new DeleteCommand(personIndex);
 
     }

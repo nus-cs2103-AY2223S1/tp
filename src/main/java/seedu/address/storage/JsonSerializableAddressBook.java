@@ -68,6 +68,7 @@ class JsonSerializableAddressBook {
             }
             addressBook.addTeam(team);
         }
+
         return addressBook;
     }
 

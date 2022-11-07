@@ -49,17 +49,6 @@ public class UniqueTaskList implements Iterable<Task> {
         internalList.add(toAdd);
     }
 
-    public Task getTask(TaskName taskName) {
-        requireNonNull(taskName);
-        System.out.println(internalList.size());
-        for (Task task : internalList) {
-            if (task.getName().equals(taskName)) {
-                return task;
-            }
-        }
-        throw new TaskNotFoundException();
-    }
-
     /**
      * Removes the equivalent task from the list.
      * The task must exist in the list.
