@@ -88,11 +88,7 @@ Below depicts the [GUI](#glossary) of FRIDAY which is annotated with a descripti
 ![Layout](images/layout.png)
 <i> GUI Layout</i>
 
-<<<<<<< HEAD
-#### Understanding Symbols and Syntax
-=======
 #### Understanding Symbols And Syntax
->>>>>>> master
 
 The table explains the general syntax and common occurrences throughout the user guide
 
