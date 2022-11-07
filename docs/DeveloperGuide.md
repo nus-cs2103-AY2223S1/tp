@@ -706,7 +706,7 @@ The following is a more detailed explanation on how `Calendar Display` is implem
 
 ![Calendar Display Activity](images/CalendarDisplayActivityDiagram.png)
 
-*Figure 24. Activity diagram showing what happens when a user selects the Calendar t    ab*
+*Figure 24. Activity diagram showing what happens when a user selects the Calendar tab*
 
 **Calendar Navigation**
 
