@@ -31,7 +31,7 @@ PennyWiseParser -> SummaryCommandParser : parse("mo/2022-08")
 activate SummaryCommandParser
 
 create EntryInYearMonthPredicate
-SummaryCommandParser -> EntryInYearMonthPredicate : EntryInYearMonthPredicate([Month])
+SummaryCommandParser -> EntryInYearMonthPredicate : EntryInYearMonthPredicate(Month)
 activate EntryInYearMonthPredicate
 
 EntryInYearMonthPredicate --> SummaryCommandParser

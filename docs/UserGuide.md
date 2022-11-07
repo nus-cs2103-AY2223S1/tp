@@ -1,5 +1,6 @@
-**---
-layout: page title: PennyWise User Guide
+---
+layout: page
+title: PennyWise User Guide
 ---
 
 ![PennyWise Logo](images/PennyWiseLogo.png)
@@ -136,6 +137,16 @@ this [link](https://www.freecodecamp.org/news/command-line-for-beginners/) to le
 
 6. Congrats! You are now ready to get started on supercharging your financial management flow!
 
+<div markdown="span" class="alert alert-info">:information_source: **For Mac users**
+
+When you first open up the application, you may encounter a warning that the application is from an unidentified developer.
+To resolve this issue, please [open up the "System Preferences" application](https://support.apple.com/en-is/guide/mac-help/mh15217/12.0/mac/12.0) in Mac and select "Security & Privacy".
+Then, allow the system to use PennyWise by clicking on the "Open Anyway" button as shown below.
+
+![Mac Unidentified Developer](images/ug/MacUnidentifiedDeveloper.png)
+
+</div>
+
 <div markdown="span" class="alert alert-info">:information_source: **Info:**
 Curious about the various commands? Refer to the [Features](#features) below to find out more about each command.
 </div>
@@ -165,6 +176,10 @@ incomes, you need to tell PennyWise the following:
 * Amount: what was the amount associated with this particular entry
 * Date: when was this entry logged in PennyWise
 * Category: how this entry is classified
+
+<div markdown="span" class="alert alert-info">:information_source: **Info:**
+In PennyWise, there is an upper limit $1 000 000 for amounts.
+</div>
 
 ### Familiarising yourself with the interface
 
@@ -448,6 +463,7 @@ The command format is provided below:
 
 - Example: `summary`
 - Expected:
+
     <pre>
        Total Expenditure: $154.49
        Total Income: $250.00
@@ -460,6 +476,7 @@ The command format is provided below:
 
 - Examples: `summary mo/2022-10`
 - Expected:
+
     <pre>
           Financials Summarized
           Total Expenditure: $4.20
