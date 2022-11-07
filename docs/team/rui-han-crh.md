@@ -14,10 +14,9 @@ Given below are my contributions to the project.
 **New Features Implemented**
 
 1. **_Loan Property of a Person_**
-   * **What it does**: Implements the ability to track monetary amounts that are represented as loaned amounts. The loan amounts must be between -1 trillion to 1 trillion inclusive.
-   * **Justification**: A treasurer requires the need to keep track of monetary transactions. A loan is a data type created to serve this purpose.
-   * **Highlights**: If the amount is positive, the amount is to be paid _by_ the person. If the amount is negative, the amount is to be paid _to_ the person. 
-
+  * **What it does**: Implements the ability to track monetary amounts that are represented as loaned amounts. The loan amounts must be between -1 trillion to 1 trillion inclusive.
+  * **Justification**: A treasurer requires the need to keep track of monetary transactions. A loan is a data type created to serve this purpose.
+  
 2. **_User Interface Design_**
    * **What it does**: Remodel and redesigned the user interface as shown in the landing page. Various small icons, images, alignment details and transitions are also applied for visual enhancement.
    * **Justification**: The previous UI design did not look appealing, so a more visually appealing design was created. This will help the product's publicity and attractiveness to clients.
@@ -38,8 +37,7 @@ Given below are my contributions to the project.
 **Project management**:
 
 * Called meetings to discuss plans.
-* Provided feedback on Github PRs and organised issues with tags.
-* Created milestones and description of milestones.
+* Created milestones and description of milestones and provided feedback on Github PRs and organised issues with tags.
 
 **Contributions to team-based tasks**:
 
@@ -50,8 +48,7 @@ Given below are my contributions to the project.
 **Review/mentoring contributions**:
 
 * Reviewed contributions by other group members, sometimes suggesting other alternatives for better maintainability.
-* Gave comments on suggestions for bug fixes in the issues tab
-* Tested for bugs and published issues based on bugs found in the issues sections.
+* Gave comments on suggestions for bug fixes in the issues tab and published issues based on more bugs found in the issues sections.
 
 **Contributions beyond the project team**:
 
@@ -63,9 +60,8 @@ Given below are my contributions to the project.
 - UG
   1. Added images and icons
   2. Added the User Interface section of the UG with pointers to which part corresponds to what function and usage. [Link to UI section](#https://ay2223s1-cs2103t-w12-2.github.io/tp/UserGuide.html#user-interface)
-  3. Added description of properties for both people and notes, found [here](#https://ay2223s1-cs2103t-w12-2.github.io/tp/UserGuide.html#properties)
-  4. Added description of command [`inspect`](https://ay2223s1-cs2103t-w12-2.github.io/tp/UserGuide.html#inspecting-a-person--inspect), [`hideNotes`](https://ay2223s1-cs2103t-w12-2.github.io/tp/UserGuide.html#hiding-notes-panel--hidenotes) and [`showNotes`](https://ay2223s1-cs2103t-w12-2.github.io/tp/UserGuide.html#showing-notes-panel--shownotes).
-  5. Added [Glossary](https://ay2223s1-cs2103t-w12-2.github.io/tp/UserGuide.html#glossary) terms.
+  3. Added description of properties for both people and notes, found [here](#https://ay2223s1-cs2103t-w12-2.github.io/tp/UserGuide.html#properties) and description of commands [`inspect`](https://ay2223s1-cs2103t-w12-2.github.io/tp/UserGuide.html#inspecting-a-person--inspect), [`hideNotes`](https://ay2223s1-cs2103t-w12-2.github.io/tp/UserGuide.html#hiding-notes-panel--hidenotes) and [`showNotes`](https://ay2223s1-cs2103t-w12-2.github.io/tp/UserGuide.html#showing-notes-panel--shownotes).
+  4. Added [Glossary](https://ay2223s1-cs2103t-w12-2.github.io/tp/UserGuide.html#glossary) terms.
 - DG
   1. Added Edit _Sequence Diagram_ involving either searching by index or by name and _Sequence Diagram_ for the `inspect` command
   2. Updated the UI _Class Diagram_ to reflect the current state of the UI organisation and the Person _Class Diagram_ by adding the loans property to the Person _Class Diagram_
