@@ -744,26 +744,24 @@ Priorities:
 * Medium (nice to have) - `MEDIUM`
 * Low (unlikely to have) - `LOW`
 
-| **Priority** | **As a...**                          | **I want to...**                                        | **So
-that I can...**                                           |
+| **Priority** | **As a...**                          | **I want to...**                                        | **So that I can...**                                           |
 |--------------|--------------------------------------|---------------------------------------------------------|----------------------------------------------------------------|
-| `HIGH`       | student | add a new expense/income entry | keep track of the details of my expenditures/incomes |
-| `HIGH`       | student | delete an existing expense/income entry | remove an expense/income entry that I do not need
-to track | | `HIGH`       | student | view all my expenses/income | get an overview of all my expenses/income | | `HIGH`
-| student | summarize my expenses/income | easily decide on how to adjust my spending | | `MEDIUM`     | student | edit
-any mistakes in my expenses/income entries | correctly log my budgeting | | `MEDIUM`     | student who spends a lot |
-determine areas where I am spending the most on | zone in on the appropriate areas to cut down my spending | | `MEDIUM`
-| student who spends a lot | categorize my expense entries | have a finer overview of my expense entries | | `MEDIUM`
-| student with multiple income streams | categorize my income entries | have a finer overview of my income entries |
-| `MEDIUM`     | organised student | filter my expenses by tags | have an overview of the areas where I spent |
-| `MEDIUM`     | organised student | filter my incomes by tags | have an overview of the areas where I am earning |
-| `MEDIUM`     | organised student | filter my expenses by date range | identify trends and patterns in my spending
-habits | | `MEDIUM`     | organised student | filter my incomes by date range | identify trends and patterns in my
-income streams | | `MEDIUM`     | potential user | see example data in the application | see how the application works |
-| `LOW`        | visual learner | view my expenses/income using different types of graphs | better visualisation of my
-spending/income patterns and habits | | `LOW`        | forgetful student | view a list of commands and how to use them |
-refer to it when I forget the commands | | `LOW`        | forgetful student | have a list of prompts for commands when I
-am typing | avoid having to constantly refer to the user guide |
+| `HIGH`       | student                              | add a new expense/income entry                          | keep track of the details of my expenditures/incomes           |
+| `HIGH`       | student                              | delete an existing expense/income entry                 | remove an expense/income entry that I do not need to track     |
+| `HIGH`       | student                              | view all my expenses/income                             | get an overview of all my expenses/income                      |
+| `HIGH`       | student                              | summarize my expenses/income                            | easily decide on how to adjust my spending                     |
+| `MEDIUM`     | student                              | edit any mistakes in my expenses/income entries         | correctly log my budgeting                                     |
+| `MEDIUM`     | student who spends a lot             | determine areas where I am spending the most on         | zone in on the appropriate areas to cut down my spending       |
+| `MEDIUM`     | student who spends a lot             | categorize my expense entries                           | have a finer overview of my expense entries                    |
+| `MEDIUM`     | student with multiple income streams | categorize my income entries                            | have a finer overview of my income entries                     |
+| `MEDIUM`     | organised student                    | filter my expenses by tags                              | have an overview of the areas where I spent                    |
+| `MEDIUM`     | organised student                    | filter my incomes by tags                               | have an overview of the areas where I am earning               |
+| `MEDIUM`     | organised student                    | filter my expenses by date range                        | identify trends and patterns in my spending habits             |
+| `MEDIUM`     | organised student                    | filter my incomes by date range                         | identify trends and patterns in my income streams              |
+| `MEDIUM`     | potential user                       | see example data in the application                     | see how the application works                                  |
+| `LOW`        | visual learner                       | view my expenses/income using different types of graphs | better visualisation of my spending/income patterns and habits |
+| `LOW`        | forgetful student                    | view a list of commands and how to use them             | refer to it when I forget the commands                         |
+| `LOW`        | forgetful student                    | have a list of prompts for commands when I am typing    | avoid having to constantly refer to the user guide             |
 
 ### Use cases
 
@@ -908,16 +906,12 @@ In the Glossary, we provide our definitions for some commonly-used terms that yo
 * **Mainstream OS**: Windows, Linux, Unix, macOS
 * **Entry**: An entry refers to either an expenditure or income
 
-|Term                               | Definition                                                                                                                                                          |
+| Term                               | Definition                                                                                                                                                          |
 |------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **
-Field**                          | Represents the Description, Amount, Date, Category and Type of an entry in the application.                                                                         |
-| **
-Identifier**                     | The field code that are entered during user input, so that PennyWise knows what your inputs are e.g. `t/`, `d/`, `a/`, `da/` `c/`.                                  |
-| **JSON
-File**                      | JavaScript Object Notation File. Data interchange format file that uses human-readable text to store and transmit data objects consisting of attribute–value pairs. |
-| **Graphical User Interface (
-GUI)** | The graphical user interface is a form of user interface that allows users to interact with electronic devices through graphical icons.                             |
+| **Field**                          | Represents the Description, Amount, Date, Category and Type of an entry in the application.                                                                         |
+| **Identifier**                     | The field code that are entered during user input, so that PennyWise knows what your inputs are e.g. `t/`, `d/`, `a/`, `da/` `c/`.                                  |
+| **JSON File**                      | JavaScript Object Notation File. Data interchange format file that uses human-readable text to store and transmit data objects consisting of attribute–value pairs. |
+| **Graphical User Interface (GUI)** | The graphical user interface is a form of user interface that allows users to interact with electronic devices through graphical icons.                             |
 
 <p align="right">
     <a href="#top">Back to Top </a>
