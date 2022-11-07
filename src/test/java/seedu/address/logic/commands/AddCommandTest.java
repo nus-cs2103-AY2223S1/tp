@@ -119,12 +119,52 @@ public class AddCommandTest {
         }
 
         @Override
+        public void setStoredIndex(int index) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Path[] getAllAddressBookFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setAllAddressBookFilePath(Path[] updatedPaths) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Path getNextAddressBookPath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void renameAddressBook(String newName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean addAddressBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ReadOnlyAddressBook getAddressBook() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public boolean hasPerson(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasEmail(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasPhone(Person person) {
             throw new AssertionError("This method should not be called.");
         }
 

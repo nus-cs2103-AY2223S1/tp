@@ -3,6 +3,7 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -29,7 +30,7 @@ public class ModelManager implements Model {
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(addressBook, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with TAB: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
@@ -75,6 +76,40 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
+    @Override
+    public void setStoredIndex(int index) {
+        assert(index >= 0);
+        userPrefs.setStoredIndex(index);
+    }
+
+    @Override
+    public Path[] getAllAddressBookFilePath() {
+        return userPrefs.getAllAddressBookFilePath();
+    }
+
+    @Override
+    public void setAllAddressBookFilePath(Path[] updatedPaths) {
+        userPrefs.setAllAddressBookFilePath(updatedPaths);
+    }
+    @Override
+    public boolean addAddressBook() {
+        if (!userPrefs.addAddressBook()) {
+            logger.warning("Maximum amount of TAB created");
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public void renameAddressBook(String name) throws IOException {
+        userPrefs.renameFile(name);
+    }
+
+    @Override
+    public Path getNextAddressBookPath() {
+        return userPrefs.getNextAddressBookPath();
+    }
+
     //=========== AddressBook ================================================================================
 
     @Override
@@ -91,6 +126,18 @@ public class ModelManager implements Model {
     public boolean hasPerson(Person person) {
         requireNonNull(person);
         return addressBook.hasPerson(person);
+    }
+
+    @Override
+    public boolean hasPhone(Person person) {
+        requireNonNull(person);
+        return addressBook.hasPhone(person);
+    }
+
+    @Override
+    public boolean hasEmail(Person person) {
+        requireNonNull(person);
+        return addressBook.hasEmail(person);
     }
 
     @Override

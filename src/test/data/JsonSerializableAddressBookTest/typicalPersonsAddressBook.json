@@ -4,43 +4,73 @@
     "name" : "Alice Pauline",
     "phone" : "94351253",
     "email" : "alice@example.com",
+    "position" : "TA",
     "address" : "123, Jurong West Ave 6, #08-111",
-    "tagged" : [ "friends" ]
+    "remark": "She likes aardvarks.",
+    "details": "Available",
+    "tagged" : [ "CS2103-T01" ]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
+    "position" : "TA",
     "address" : "311, Clementi Ave 2, #02-25",
-    "tagged" : [ "owesMoney", "friends" ]
+    "remark": "He can't take beer!",
+    "details": "Available",
+    "tagged" : [ "CS2103-T69" ]
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "email" : "heinz@example.com",
+    "position" : "Professor",
     "address" : "wall street",
-    "tagged" : [ ]
+    "remark": "She likes aardvarks.",
+    "details": "Unassigned",
+    "tagged" : [ "CS2103-T01"]
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
+    "position" : "TA",
     "address" : "10th street",
-    "tagged" : [ "friends" ]
+    "remark": "He likes apples.",
+    "details": "Available",
+    "tagged" : [ "CS2103-T01" ]
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "email" : "werner@example.com",
+    "position" : "TA",
     "address" : "michegan ave",
-    "tagged" : [ ]
+    "remark": "She is sporty.",
+    "details": "Available",
+    "tagged" : [ "CS2103-T01" ]
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
     "email" : "lydia@example.com",
+    "position" : "Professor",
     "address" : "little tokyo",
-    "tagged" : [ ]
+    "remark": "She is interested to become a TA.",
+    "details": "Unassigned",
+    "tagged" : [ "CS2103-T01" ]
   }, {
     "name" : "George Best",
     "phone" : "9482442",
     "email" : "anna@example.com",
+    "position" : "TA",
     "address" : "4th street",
-    "tagged" : [ ]
+    "remark": "",
+    "details": "Unavailable",
+    "tagged" : [ "CS2103-T01" ]
+  }, {
+    "name" : "Jason Hawkins",
+    "phone" : "96758347",
+    "email" : "kelly@example.com",
+    "position" : "Student",
+    "address" : "5th avenue",
+    "remark" : "",
+    "details" : "attendance - 0/0, grade - 0/0 Assignments: []",
+    "tagged" : [ "CS2103T-T01" ]
   } ]
 }

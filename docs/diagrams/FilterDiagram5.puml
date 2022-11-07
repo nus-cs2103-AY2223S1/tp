@@ -1,0 +1,16 @@
+@startuml
+'https://plantuml.com/object-diagram
+object "<u> alpha:Person" as Alpha {
+    tag = "CS2103-T17"
+}
+object "<u> bravo:Person" as Charlie {
+    tag = "CS2103-T17"
+}
+
+
+map "<u>ab:AddressBook" as __AddressBook__ {
+ <u>:Person1 *-> Alpha
+ <u>:Person2 *--> Charlie
+}
+
+@enduml

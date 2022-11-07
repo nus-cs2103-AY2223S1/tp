@@ -1,0 +1,50 @@
+@startuml
+!include style.puml
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant "s:ShowCommand" as ShowCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":List<Person>" as ListPerson MODEL_COLOR
+end box
+[-> LogicManager : execute(show)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(show)
+activate AddressBookParser
+
+create ShowCommand
+AddressBookParser -> ShowCommand
+activate ShowCommand
+
+ShowCommand --> AddressBookParser : s
+deactivate ShowCommand
+
+AddressBookParser --> LogicManager : s
+deactivate AddressBookParser
+
+LogicManager -> ShowCommand : execute()
+activate ShowCommand
+
+ShowCommand -> Model : getFilteredPersonList()
+activate Model
+
+Model -> ListPerson
+activate ListPerson
+
+ListPerson --> Model : personToShow
+deactivate ListPerson
+
+Model --> ShowCommand : personToShow
+deactivate Model
+
+ShowCommand --> LogicManager
+deactivate ShowCommand
+
+[<-- LogicManager
+deactivate LogicManager
+
+@enduml

@@ -1,0 +1,30 @@
+@startuml
+
+object Assignment1
+
+Assignment1 : grade = 86/100
+Assignment1 : weightage = 15
+
+object Assignment2
+
+Assignment2 : grade = 0/0
+Assignment2 : weightage = 15
+
+object Assignment3
+
+Assignment3 : grade = 0/0
+Assignment3 : weightage = 30
+
+object Assignment4
+
+Assignment4 : grade = 0/0
+Assignment4 : weightage = 40
+
+map assignmentList {
+Assignment1 *--> Assignment1
+Assignment2 *--> Assignment2
+Assignment3 *--> Assignment3
+Assignment4 *--> Assignment4
+}
+
+@enduml

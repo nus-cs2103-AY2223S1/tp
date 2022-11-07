@@ -7,6 +7,8 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.person.position.Position;
+import seedu.address.model.person.position.Student;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -19,21 +21,31 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final Position position;
 
     // Data fields
     private final Address address;
+
+    private final Remark remark;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Position position, Address address,
+                  Remark remark, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, tags, remark);
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.position = position;
         this.address = address;
-        this.tags.addAll(tags);
+        this.remark = remark;
+        if (position instanceof Student && tags.size() != 0) {
+            this.tags.add(tags.iterator().next());
+        } else {
+            this.tags.addAll(tags);
+        }
     }
 
     public Name getName() {
@@ -48,8 +60,19 @@ public class Person {
         return email;
     }
 
+    public Position getPosition() {
+        return position;
+    }
+    public String getDetails() {
+        return getPosition().getDetails();
+    }
+
     public Address getAddress() {
         return address;
+    }
+
+    public Remark getRemark() {
+        return remark;
     }
 
     /**
@@ -74,6 +97,20 @@ public class Person {
     }
 
     /**
+     * Returns true if both persons have the same phone.
+     */
+    public boolean hasSamePhone(Person otherPerson) {
+        return phone.equals(otherPerson.getPhone());
+    }
+
+    /**
+     * Returns true if both persons have the same email.
+     */
+    public boolean hasSameEmail(Person otherPerson) {
+        return email.equals(otherPerson.getEmail());
+    }
+
+    /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
      */
@@ -91,6 +128,7 @@ public class Person {
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
+                && otherPerson.getPosition().equals(getPosition())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getTags().equals(getTags());
     }
@@ -98,7 +136,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, position, address, tags);
     }
 
     @Override
@@ -109,8 +147,12 @@ public class Person {
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
+                .append("; Position: ")
+                .append(getPosition())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append(" Remark: ")
+                .append(getRemark());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

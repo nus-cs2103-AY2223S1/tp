@@ -18,4 +18,9 @@ Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
+Person *--> Position
+
+Student .up.|> Position
+TeachingAssistant .up.|> Position
+Professor .up.|> Position
 @enduml

@@ -1,5 +1,6 @@
 package seedu.address.model;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 
@@ -44,18 +45,49 @@ public interface Model {
      */
     void setAddressBookFilePath(Path addressBookFilePath);
 
+    /** Returns the AddressBook */
+    ReadOnlyAddressBook getAddressBook();
+
     /**
      * Replaces address book data with the data in {@code addressBook}.
      */
     void setAddressBook(ReadOnlyAddressBook addressBook);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    void setStoredIndex(int index);
+
+    /** Returns all address book's paths*/
+    Path[] getAllAddressBookFilePath();
+
+    /**
+     * Replaces all address book data with the data in {@code addressBook}.
+     */
+    void setAllAddressBookFilePath(Path[] updatedPaths);
+
+    /** Returns the next AddressBook */
+    Path getNextAddressBookPath();
+
+    /** Renames the current AddressBook */
+    void renameAddressBook(String newName) throws IOException;
+
+    /**
+     * Creates a new Address Book
+     */
+    boolean addAddressBook();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
     boolean hasPerson(Person person);
+
+    /**
+     * Returns true if a person with the same email as {@code person} exists in the address book.
+     */
+    boolean hasEmail(Person person);
+
+    /**
+     * Returns true if a person with the same phone as {@code person} exists in the address book.
+     */
+    boolean hasPhone(Person person);
 
     /**
      * Deletes the given person.

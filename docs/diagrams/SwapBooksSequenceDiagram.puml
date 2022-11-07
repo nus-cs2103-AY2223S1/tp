@@ -1,0 +1,84 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+!include style.puml
+box UiPart UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+end box
+
+
+
+box Model MODEL_COLOR_T1
+participant ":ModelManager" as ModelManager MODEL_COLOR
+end box
+
+box Storage STORAGE_COLOR_T1
+participant ":Storage" as Storage STORAGE_COLOR
+end box
+
+box ReadOnlyUserPrefs PREF_COLOR
+participant ":UserPrefs" as UserPrefs PREF_COLOR_T1
+end box
+
+[-> MainWindow : handleSwap()
+activate MainWindow
+
+MainWindow -> LogicManager : swapAddressBook()
+activate LogicManager
+
+
+
+LogicManager -> ModelManager : getNextAddressBookPath()
+activate ModelManager
+
+ModelManager -> UserPrefs : getNextAddressBookPath()
+activate UserPrefs
+
+UserPrefs -> UserPrefs : incrementIndex()
+activate UserPrefs
+
+UserPrefs --> UserPrefs
+deactivate UserPrefs
+
+UserPrefs -> UserPrefs : setAddressBookFilePath(Path)
+activate UserPrefs
+
+UserPrefs --> UserPrefs
+deactivate UserPrefs
+
+UserPrefs --> ModelManager : result
+deactivate UserPrefs
+
+ModelManager --> LogicManager
+deactivate ModelManager
+
+
+
+LogicManager -> Storage : readAddressBook(Path)
+activate Storage
+
+Storage --> LogicManager
+deactivate Storage
+
+LogicManager -> Storage : setAddressBook(AddressBookStorage)
+activate Storage
+
+Storage --> LogicManager
+deactivate Storage
+
+
+LogicManager -> ModelManager : setAddressBook(ReadOnlyAddressBook)
+activate ModelManager
+
+ModelManager --> LogicManager
+deactivate ModelManager
+
+LogicManager --> MainWindow
+deactivate LogicManager
+
+[<--MainWindow
+deactivate LogicManager
+@enduml

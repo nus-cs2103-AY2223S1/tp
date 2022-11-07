@@ -15,32 +15,43 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Remark;
+import seedu.address.model.person.position.Position;
 import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Person}.
  */
 class JsonAdaptedPerson {
-
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
     private final String name;
     private final String phone;
     private final String email;
+    private final String position;
+    private final String details;
     private final String address;
+    private final String remark;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("email") String email, @JsonProperty("position") String position,
+            @JsonProperty("address") String address, @JsonProperty("remark") String remark,
+                             @JsonProperty("details") String details,
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.position = position;
+        this.details = details;
         this.address = address;
+        this.remark = remark;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -53,7 +64,10 @@ class JsonAdaptedPerson {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
+        position = source.getPosition().value;
+        details = source.getDetails();
         address = source.getAddress().value;
+        remark = source.getRemark().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -94,16 +108,38 @@ class JsonAdaptedPerson {
         }
         final Email modelEmail = new Email(email);
 
+        if (position == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Position.class.getSimpleName()));
+        }
+        if (!Position.isValidPosition(position)) {
+            throw new IllegalValueException(Position.MESSAGE_CONSTRAINTS);
+        }
+        final Position modelPosition = Position.buildPosition(position, tagged.toString());
+
         if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Address.class.getSimpleName()));
         }
         if (!Address.isValidAddress(address)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
         final Address modelAddress = new Address(address);
 
+        if (remark == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Remark.class.getSimpleName()));
+        }
+        final Remark modelRemark = new Remark(remark);
+
+        if (details == null) {
+            throw new IllegalValueException(Position.DETAILS_MESSAGE_CONSTRAINTS);
+        }
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        modelPosition.setDetails(details);
+        modelPosition.setFilePath(modelTags);
+        return new Person(modelName, modelPhone, modelEmail, modelPosition, modelAddress, modelRemark, modelTags);
     }
 
 }

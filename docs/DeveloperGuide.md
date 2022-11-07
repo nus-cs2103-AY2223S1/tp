@@ -2,14 +2,20 @@
 layout: page
 title: Developer Guide
 ---
+
+## Table of contents
+
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div markdown="block" class="index">
+
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* This project is built upon the [AddressBook Level-3](https://github.com/se-edu/addressbook-level3) project created as part of the [SE-EDU Initiative](https://se-education.org).
+* Libraries used: [JavaFX](https://openjfx.io), [Jackson](https://github.com/FasterXML/jackson), [JUnit 5](https://github.com/junit-team/junit5)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -154,48 +160,251 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Adding a person
 
-#### Proposed Implementation
+In TAB, the addition of a new `Person`(contact) is facilitated by the `AddCommand` command. `AddCommand` extends the abstract `Command` class,
+where it overrides the `Command#execute` method to add in new contacts whenever called.
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+#### Implementation
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+1. The user input to add a `Person` to TAB, is passed to and executed by `LogicManager`, which calls `AddressBookParser#parseCommand` to instantiate a `AddCommandParser`.
+2. The `AddCommandParser#parse` will return a `AddCommand`, provided the user input is valid.
+3. `LogicManager` will then call the `Command#execute` method of `AddCommand`,
+creating a new `Person` through `Model#addPerson` method.
+4. Upon successful execution of the command, a message will be displayed to the user, by returning a `CommandResult`
+to `LogicManager`.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+The sequence diagram below illustrates how the command to add a `Person` works:
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+![AddCommandSequence](images/AddCommandSequence.png)
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+### Editing a contact
 
-![UndoRedoState0](images/UndoRedoState0.png)
+The editing of a contact's details in TAB is facilitated by the `EditCommand` command. `EditCommand` extends the abstract `Command` class,
+where it overrides the `Command#execute` method to edit details of contacts whenever called.
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+#### Implementation
 
-![UndoRedoState1](images/UndoRedoState1.png)
+1. The user input to edit a contact on TAB, is passed to and executed by `LogicManager`, which calls `AddressBookParser#parseCommand` to instantiate a `EditCommandParser`.
+2. The `EditCommandParser#parse` will return a `EditCommand`, provided the user input is valid.
+3. `LogicManager` will then call the `Command#execute` method of `EditCommand`,
+   replacing the old `Person` with a modified `Person` through `Model#setPerson` method.
+4. Upon successful execution of the command, a message will be displayed to the user, by returning a `CommandResult `
+   to `LogicManager`.
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+The sequence diagram below illustrates how the command to edit a `Person` works:
 
-![UndoRedoState2](images/UndoRedoState2.png)
+![EditCommandSequence](images/EditCommandSequence.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+### Adding the attendance of a student
+
+The addition of attendance of a `Student` in TAB is facilitated by `AttendanceCommand` and `AttendanceCommandParser`.
+
+#### Implementation
+
+1. The user input to add the attendance of a student in TAB, is passed to and executed by `LogicManager`,
+which calls `AddressBookParser#parseCommand` to instantiate a `AttendanceCommandParser`.
+2. The `AttendanceCommandParser#parse` will return a `AttendanceCommand`, provided the user input is valid.
+3. `LogicManager` will then call the `Command#execute` method of `AttendanceCommand`.
+4. The internals of `AttendanceCommand` creates a new `Student` with the updated `attendance`.
+5. A `Person` object is created with the `Student` object as `position`, and replaces the `Person` to be edited in the `AddressBook`.
+through the `Model#setPerson` method.
+5. Upon successful execution of the command, a message will be displayed to the user, by returning a `CommandResult `
+   to `LogicManager`.
+
+The sequence diagram below illustrates how the command to add attendance works:
+
+![AddAttendanceSequenceDiagram](images/AddAttendanceSequenceDiagram.png)
+
+### Adding assignments to all students
+
+The addition of assignments in TAB is facilitated by `AddAssignmentsCommand` and `AddAssignmentsCommandParser`.
+
+This feature allows assignments with weightages to be added to each `Student` in TAB. Weightages are separated from the assignment name with the prefix: `w/`
+
+#### Implementation
+
+The `AddAssignmentsCommandParser` parses the user input to check the validity of the Assignment. Then, every `Student` currently listed in TAB will be assigned these Assignments. This is done with the help of the following methods:
+
+* `Student#addAssignment` Adds a single Assignment into the `ArrayList<Assignment>`
+* `Student#setAssignments` Adds every Assignment in the user input into `ArrayList<Assignment>`
+
+Listed below are the possible scenarios as well as the behavior of the feature in each scenario.
+
+Scenario 1: User inputs assignments with weightage that does not add up to 100%
+
+e.g. `assignments assignments/ Assignment 1 w/50, Finals w/40`
+
+It will be detected that the weightage of the assignments does not add up to 100 and a `CommandException` is thrown
+
+Scenario 2: User inputs assignments with negative weightage
+
+e.g. `assignments assignments/ Assignment 1 w/-50, Midterms w/50, Finals w/100`
+
+It will be detected that a particular assignment has a negative weightage and a `CommandException` is thrown
+
+Given below is an example usage scenario and how the Add Assignments mechanism behaves at each step.
+
+Step 1. The user launches the application. `TAB` will initially display all Persons
+
+![AddAssignmentsDiagram1](images/AddAssignmentsDiagram1.png)
+
+Step 2. The user executes `assignments assignments/ Assignment 1 w/15, Assignment 2 w/15, Midterms w/20, Finals w/50`. The `assignments` keyword
+causes `AddressBookParser#parseCommand()` to call `AddAssignmentsCommandParser#parse()`. This returns a `AddAssignmentsCommand`
+
+Step 3. The internals of `AddAssignmentCommand` loops through all the people in the list, checking if they have the position of student
+
+![AddAssignmentsDiagram2](images/AddAssignmentsDiagram2.png)
+
+Step 4. `Assignment` objects will be created according to the user input and added to the `assignmentsList` field in `Student`
+
+The following sequence diagram shows how the AddAssignments operation works:
+
+![AddAssignmentsDiagram3](images/AddAssignmentsDiagram3.png)
+
+The following activity diagram summarizes what happens in AddressBookParser when a user executes a AddAssignment command:
+
+![AddAssignmentsDiagram4](images/AddAssignmentsDiagram4.png)
+
+Design considerations:
+
+Aspect: How AddAssignments executes:
+* Alternative 1: Only adds assignments to indexed student
+    * Pros: Each student can have different assignments
+    * Cons: Will be tedious when there is a large number of students in `TAB`
+* Alternative 2: Save Assignments in a json file to be read so every student added after will be automatically instanciated with those assignments
+    * Pros: Eliminates the need to run AddAssignments command for new students
+    * Cons: Difficulty in implementation
+
+### Adding the grade of a student
+
+#### Implementation
+
+The proposed add grade feature is facilitated by `GradeCommand` which extends `Command` with an index of the student, an index of the assignment, and a grade to be stored.
+It overwrites the following operations:
+* `GradeCommand#execute()` - Executes the command, storing the given grade of an assignment of a specified student.
+* `GradeCommand#equals(Object o)` - Checks if two objects are equal.
+
+A `GradeCommandParser` facilitates the parsing of the user input. It implements `Parser<GradeCommand>.`
+
+After the command is parsed, the given grade is stored inside the `Assignment` of the specified `Student`. This is done with the help of the following methods:
+* `Student#updateOverallGrade(Index indexOfAssignment, Sting Grade)` - Calls `setAssignmentGrade()` with the given index and grade, and update the overall grade of the `Student`.
+* `Student#setAssignmentGrade(Index indexOfAssignment, String grade)` - Checks whether the index of the assignment is valid. If so, calls `setGrade()` of the corresponding `Assignment` with the given grade.
+* `Assignment#setGrade(String grade)` - Stores the given grade inside the `Assignment`.
+
+Given below is an example usage scenario and how the add grade feature behaves at each step.
+
+Step 1. The user launches the application. The `AddressBook` will initially display all Persons with their `Positions`.
+
+![AddGradeDiagram0](images/AddGradeDiagram0.png)
+
+Step 2. The user executes `grade 1 assignment/1 grade/86/100`. The `grade` keyword causes `AddressBookParser#parseCommand()` to call `GradeCommandParser#parse()`. This returns a `GradeCommand`.
+
+![AddGradeDiagram1](images/AddGradeDiagram1.png)
+
+Step 3. The grade of the specified `Assignment` is added.
+
+![AddGradeDiagram2](images/AddGradeDiagram2.png)
+
+Step 4. The internals of `GradeCommand` creates a new `Student` with the updated `overallGrade` and `assignmentList`.
+
+Step 5. A `Person` object is created with the `Student` object as `position`, and replaces the `Person` to be edited in the `AddressBook`.
+
+Step 6. The `AddressBook` displays the updated list of `Person`.
+
+The following sequence diagram shows how the add grade operation works:
+
+![AddGradeSequenceDiagram](images/AddGradeSequenceDiagram.png)
+
+#### Design considerations:
+
+* **Alternative 1 (current choice):** `Student#updateOverallGrade()` calls `Student#setAssignmentGrade()` and returns the updated overall grade of the student
+    * Pros: The updated `overallGrade` can be easily used to create the new `Student` object.
+    * Cons: Can be confusing as in whether the `assignmentsList` of the `Student` is updated as well.
+* **Alternative 2:** `Student#updateOverallGrade()` does not return a value and only handle the calculation of the overall grade with the updated `assignmentsList` provided
+    * Pros: Separates the operations done on the `overallGrade` and the `assignmentsList`.
+    * Cons: The updated `overallGrade` and `assignmentsList` are not available for creating new `Student` object.
+
+### Editing the availability of a TA
+
+The addition of availability of a `TeachingAssistant` in TAB is facilitated by `AvailabilityCommand` and `AvailabilityCommandParser`.
+
+#### Implementation
+
+1. The user input to add the availability of a TA in TAB, is passed to and executed by `LogicManager`,
+   which calls `AddressBookParser#parseCommand` to instantiate a `AvailabilityCommandParser`.
+2. The `AvailabilityCommandParser#parse` will return a `AvailabilityCommand`, provided the user input is valid.
+3. `LogicManager` will then call the `Command#execute` method of `AvailabilityCommand`.
+4. The internals of `AvailabilityCommand` creates a new `TeachingAssistant` with the updated `availability`.
+5. A `Person` object is created with the `Student` object as `position`, and replaces the `Person` to be edited in the `AddressBook`.
+   through the `Model#setPerson` method.
+5. Upon successful execution of the command, a message will be displayed to the user, by returning a `CommandResult `
+   to `LogicManager`.
+
+The sequence diagram below illustrates how the command to add availability works:
+
+![AddAvailabilitySequenceDiagram](images/AddAvailabilitySequenceDiagram.png)
+
+### Editing the roles of a Professor
+
+The addition of roles of a `Professor` in TAB is facilitated by `RolesCommand` and `RolesCommandParser`.
+
+#### Implementation
+
+1. The user input to add the availability of a TA in TAB, is passed to and executed by `LogicManager`,
+   which calls `AddressBookParser#parseCommand` to instantiate a `RolesCommandParser`.
+2. The `RolesCommandParser#parse` will return a `RolesCommand`, provided the user input is valid.
+3. `LogicManager` will then call the `Command#execute` method of `RolesCommand`.
+4. The internals of `RolesCommand` creates a new `Professor` with the updated `role`.
+5. A `Person` object is created with the `Professor` object as `position`, and replaces the `Person` to be edited in the `AddressBook`.
+   through the `Model#setPerson` method.
+5. Upon successful execution of the command, a message will be displayed to the user, by returning a `CommandResult `
+   to `LogicManager`.
+
+The sequence diagram below illustrates how the command to add roles works:
+
+![AddRolesSequenceDiagram](images/AddRolesSequenceDiagram.png)
+
+### Filter by tutorial group
+
+#### Implementation
+
+The filtering feature is facilitated by `FilterCommand`. It extends `Command` with a checking predicate, stored internally as a `TagContainsKeywordPredicate`. It overwrites the following operations:
+
+* `FilterCommand#execute()` — Executes the command, filtering the list of people according to whether they have a matching tag.
+* `FilterCommand#equals(Object o)` — Checks if two objects are equal.
+
+Given below is a Class Diagram of this feature.
+
+![FilterDiagram1](images/FilterDiagram1.png)
+
+Given below is an example usage scenario and how the filtering mechanism behaves at each step.
+
+Step 1. The user launches the application. The `AddressBook` will initially display all Persons.
+
+![FilterDiagram2](images/FilterDiagram2.png)
+
+Step 2. The user executes `filter CS2103-T17` command to filter people that have the `CS2103-T17 tag`. The `filter` keyword causes `AddressBookParser#parseCommand()` to call `FilterCommandParser#parse()`. This creates a `TagContainsKeywordPredicate` with the keyword `CS2103-T17`, and returns a `FilterCommand` containing this predicate.
+
+![FilterDiagram3](images/FilterDiagram3.png)
+
+Step 3. `Model` then loops through all people in the list, checking if they have a `CS2103-T17` tag.
+
+![FilterDiagram4](images/FilterDiagram4.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the filter command fails its execution, this step will not be reached. A Message will be displayed, letting the reader know how the filter command should be used.
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The filtered list will then be displayed to the user.
 
-![UndoRedoState3](images/UndoRedoState3.png)
+![FilterDiagram5](images/FilterDiagram5.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
 
-</div>
 
-The following sequence diagram shows how the undo operation works:
+The following sequence diagram shows how the filter operation works:
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+![FilterDiagram6](images/FilterDiagram6.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
@@ -207,37 +416,130 @@ The `redo` command does the opposite — it calls `Model#redoAddressBook()`,
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. `AddressBook` removes the filter, showing all persons.
 
-![UndoRedoState4](images/UndoRedoState4.png)
+![FilterDiagram2](images/FilterDiagram2.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+The following activity diagram summarizes what happens in AddressBookParser when a user executes a filter command:
 
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
+<img src="images/FilterDiagram7.png" width="250" />
 
 #### Design considerations:
 
-**Aspect: How undo & redo executes:**
+**Aspect: How filter executes:**
 
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+* **Alternative 1 (current choice):** Updates the displayed list by hiding information.
+    * Pros: Uses less memory
+    * Cons: May have performance issues in terms of memory usage.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+* **Alternative 2:** Creates a new Address Book.
+    * Pros: Does not modify the master address book.
+    * Cons: May have performance issues in terms of memory usage.
 
-_{more aspects and alternatives to be added}_
+### Display details of contacts in secondary panel
 
-### \[Proposed\] Data archiving
+#### Implementation
 
-_{Explain here how the data archiving feature will be implemented}_
+This feature is facilitated by `ShowCommand`, which extends `Command` with an index, stored internally as `index`.
+It overwrites the following operations:
+* `ShowCommand#execute()` — Executes the command, displaying the details of the contact at the specified index.
+* `ShowCommand#equals(Object o)` — Checks if two objects are equal.
 
+Given below is an example usage scenario and how the displaying mechanism behaves at each step.
+
+Step 1. The user launches the application. The `AddressBook` will initially display all Persons with their `Positions`.
+
+![ShowDiagram1](images/ShowDiagram1.png)
+
+Step 2. The user executes `show 1` command to display the details of the first contact shown. The `show` keyowrd causes
+`AddressBookParser#parseCommand()` to call `ShowCommandParser#parse()`. This returns a `ShowCommand` containing the
+`index 1`.
+
+![ShowDiagram2](images/ShowDiagram2.png)
+
+Step 3. `Model` retrieves the `Person` object located at `index 1`. This returns a `CommandResult` containing the `Person`
+object.
+
+![ShowDiagram3](images/ShowDiagram3.png)
+
+Step 4. `MainWindow` from `UI` component will process the `CommandResult` and display the details found inside the
+included `Person` object.
+
+The following show diagram shows how the show operation works:
+
+![ShowSequenceDiagram](images/ShowSequenceDiagram.png)
+
+#### Design Considerations
+* **Alternative 1 (current choice):** Passing `Person` object to `MainWindow`
+    * Pros: Reduced coupling throughout the program
+    * Cons: Changing of many method signatures, unintuitive to implement at first.
+
+* **Alternative 2:** Passing `index` to `MainWindow` to retrieve details from `Model`
+    * Pros: More intuitive to implement in the sense that only `MainWindow` would be primarily modified.
+    * Cons: Increased coupling, violation of Law of Demeter.
+
+### Multiple Teacher’s Address Books (TABs)
+**Feature Summary**
+- Users are able to create multiple TABs (currently limited to 5).
+  - Through `new` command
+- Users are able to swap between the TABs
+  - Through `swap` command
+
+**Implementation**
+
+Current implementation consists of two parts. First part is creating new books, second part is swapping between books.
+
+**Creating new Books**
+
+This feature builds on `MainWindow` class to facilitate communication between the UI and backend functions. It
+communicates with `Logic` to create new TABs and uses `Model` class to alter the current `UserPref` instance.
+
+**Swapping between Books**
+
+This feature, similar to creating new TABs builds on `MainWindow` class and communicates with `Logic` class to swap
+between TABs. It uses `Model` class to fetch the next TAB from `UserPref`. The TABs' information are stored as an
+array under `preferences.json` as well as the current TAB's index. `UserPref` loops around the array when it reaches
+the end. `Logic` then make use of the path information to call `storage` to update the current TAB.
+
+**Example**
+Given below is an example usage scenario and how the creation of new TAB mechanism behaves at each step.
+
+Step 1: User enters the `new` command into the Command-Line Interface (CLI) or user navigates via `Files -> New Book` to
+create a new TAB.
+
+The following sequence diagram shows how creation of new book work:
+![Creating New Book](images/CreateNewBookSequenceDiagram.png)
+
+Step 1.1: User adds X amount of TABs (up to 5):
+
+![Swapping Books](images/CreatingNewBookState0.png)
+
+![Swapping Books](images/CreatingNewBookState1.png)
+
+Step 2: User enters the `swap` command or navigates via `Files -> New Book` to toggle between TABs:
+
+![Swapping Books](images/SwapState0.png)
+
+The following sequence diagram shows how swapping works:
+NOTE: Sequence Diagram Only includes added portions
+![Swapping Books](images/SwapBooksSequenceDiagram.png)
+
+**Design Considerations**
+
+- Alternative 1 (current choice): Toggle between books
+  - Pros:
+    - Swapping between TAB occurs within 1 window
+    - Open for future features
+  - Cons:
+    - Might be more prone to bugs due to complex implementations
+    - Might be slower to load between books
+- Alternative 2: Multiple copies of .java applications
+  - Pros
+    - Easier to implement
+    - Can have multiple books open at once
+  - Cons:
+    - User need to create multiple books
+    - Less open to future feature extensions (communicate between books)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -257,42 +559,44 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Teaching Staff, either a Teaching Assistant or a Professor
+* Teaches multiple classes simultaneously
+* Has a need to manage the contacts of their students
+* Requires to filter their students/contacts by their classes
+* Prefers to filter and profile their students/contacts through other information
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Customizing their focus to each student’s needs
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​            | I want to …​                                                             | So that I can…​                                                                       |
+|---------|--------------------|--------------------------------------------------------------------------|---------------------------------------------------------------------------------------|
+| `* * *` | Teaching Assistant | store all my student’s contacts in one place                             | easily contact whoever needs to be contacted.                                         |
+| `* * *` | Teaching Assistant | remove student contacts who dropped the module                           | have an updated address book for the current semester                                 |
+| `* * *` | Teaching Assistant | view the performance of students                                         | know who is doing well and who needs more help                                        |
+| `* * *` | Professor          | store all my TAs’ contacts in one place                                  | know who to contact should I need help                                                |
+| `* * *` | Professor          | view the availability of the TAs                                         | I know who to reach out to should one be unavailable to teach due to medical reasons. |
+| `* * *` | Professor          | remove contacts of TAs from my address book when they are no longer a TA | my address book is updated for the current semester                                   |
+| `* * *` | New User           | view the summary of all commands                                         | know the features of TAB                                                              |
+| `* * *` | New User           | go through a tutorial to get started.                                    | understand how to use TAB                                                             |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Teachers Address Book (TAB)` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 - Delete a person**
 
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  TAB shows a list of persons
 3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+4.  TAB deletes the person
 
     Use case ends.
 
@@ -304,24 +608,246 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. TAB shows an error message.
 
       Use case resumes at step 2.
+
+**Use case: UC02 - Add a person**
+
+**MSS**
+
+1.  User enters the command to add a particular person.
+2.  TAB shows that the command is successful and displays the added person.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given student details are invalid.
+  * 1a1. TAB shows an error message.
+
+  Use case resumes at step 1.
+
+**Use case: UC03 - Edit a person’s details**
+
+**MSS**
+
+1.  User enters the command to edit a particular person’s details.
+2.  TAB shows that the command is successful and displays the edited person.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The new student details are invalid.
+    * 1a1. TAB shows an error message.
+
+  Use case resumes at step 1.
+
+* 1b. The given index is invalid.
+    * 1b1. TAB shows an error message.
+
+  Use case resumes at step 1.
+
+**Use case: UC04 - Show details of a person**
+
+**MSS**
+
+1.  User requests to view details of a person.
+2.  TAB shows the details of the specified person.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given index is invalid.
+
+    * 1a1. TAB shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: UC05 - Add remarks of a person**
+
+**MSS**
+
+1.  User enters the command to input a remark on a specific person.
+2.  TAB shows that the command is successful and displays the edited person.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given index is invalid.
+
+    * 1a1. TAB shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: UC06 - Edit attendance of a student**
+
+**MSS**
+
+1.  User enters the command to edit attendance of a student.
+2.  TAB shows that the command is successful and displays the edited student.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given index is invalid.
+
+    * 1a1. TAB shows an error message.
+
+      Use case resumes at step 1.
+
+* 1b. The person at the given index is not a student.
+
+    * 1b1. TAB shows an error message.
+
+      Use case resumes at step 1.
+
+* 1c. The new attendance details are invalid.
+
+    * 1c1. TAB shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: UC07 - Add assignments to all students**
+
+**MSS**
+
+1.  User enters the command to add assignments to all students.
+2.  TAB shows that the command is successful and displays assignments in the students' details.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The new assignment details are invalid.
+
+    * 1a1. TAB shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: UC08 - Edit the grade of a student**
+
+**MSS**
+
+1.  User enters the command to edit the grade of an student's assignment.
+2.  TAB shows that the command is successful and displays the updated student details.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given index of the person and/or assignment is invalid.
+
+    * 1a1. TAB shows an error message.
+
+      Use case resumes at step 1.
+
+* 1b. The person at the given index is not a student.
+
+    * 1b1. TAB shows an error message.
+
+      Use case resumes at step 1.
+
+* 1c. The new grade details are invalid.
+
+    * 1c1. TAB shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: UC09 - Edit the availability of a TA**
+
+**MSS**
+
+1.  User enters the command to edit the availability of a TA.
+2.  TAB shows that the command is successful and displays the updated TA's details.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given index is invalid.
+
+    * 1a1. TAB shows an error message.
+
+      Use case resumes at step 1.
+
+* 1b. The person at the given index is not a TA.
+
+    * 1b1. TAB shows an error message.
+
+      Use case resumes at step 1.
+
+* 1c. The new availability details are invalid.
+
+    * 1c1. TAB shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: UC10 - Edit the roles of a Professor**
+
+**MSS**
+
+1.  User enters the command to edit the roles of a Professor.
+2.  TAB shows that the command is successful and displays the updated Professor's details.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given index is invalid.
+
+    * 1a1. TAB shows an error message.
+
+      Use case resumes at step 1.
+
+* 1b. The person at the given index is not a Professor.
+
+    * 1b1. TAB shows an error message.
+
+      Use case resumes at step 1.
+
+* 1c. The new role details are invalid.
+
+    * 1c1. TAB shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: UC11 - Find persons by name**
+
+**MSS**
+
+1.  User enters the command to find specific persons by name.
+2.  TAB shows that the command is successful and displays the matching persons.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given name is invalid.
+
+    * 1a1. TAB shows an error message.
+
+      Use case resumes at step 1.
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 students or TAs without a noticeable sluggishness in performance for typical usage.
+3. All user operations should complete within 2 seconds.
+4. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+5. Unauthorised users can only read data without modifying anything.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Authorised Users**: Professors and Teaching Assistants handling their respective modules
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -349,7 +875,21 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+1. Saving which TAB the user exited
+
+    1. Create a couple of TABs
+
+    1. Swap to the desired TAB<br>
+    
+    1. Exit and relaunch the application
+       Expected: The most recent TAB is opened.
+
+1. Exiting
+
+   1. Launch TAB
+
+   1. Enter into the command box `exit` or click the cross button at the top right corner
+      Expected: Application closes.
 
 ### Deleting a person
 
@@ -366,12 +906,95 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Creating a new TAB
+1. Creating a new TAB while there are < 5 TABs
 
-### Saving data
+    1. Prerequisites: There are a total of < 5 TABs
 
-1. Dealing with missing/corrupted data files
+    1. Test case: `new`<br>
+       Expected: A new blank TAB is created. This is reflected at the bottom left corner of the application as a new name.
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Test case: Use the keyboard shortcut `Ctrl+Shift+N`<br>
+      Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+   1. Other correct new commands to try: `new x`(where x is any input)<br>
+      Expected: Similar to previous.
+
+1. Creating a new TAB after having a total of 5 TABs
+
+    1. Prerequisites: There are 5 total TABs present
+
+    1. Test case: `new`<br>
+       Expected: Error details shown in the status message.
+
+   1. Test case: Use the keyboard shortcut `Ctrl+Shift+N`<br>
+      Expected: Similar to previous.
+
+### Swapping TABs
+1. Swapping TABs while there are > 1 TABs
+
+   1. Prerequisites: > 1 TABs present
+
+   1. Test case: `swap`<br>
+     Expected: Swaps between TABs created. This is reflected at the bottom left corner of the application as another name and the contents present.
+
+   1. Test case: Use the keyboard shortcut `Shift+Tab`<br>
+     Expected: Similar to previous.
+
+   1. Other correct swap commands to try: `swap x`(where x is any input)<br>
+     Expected: Similar to previous.
+
+1. Swapping TABS while there is only 1 TAB
+
+    1. Prerequisites: There 1 TAB in total
+
+    1. Test case: `swap`<br>
+       Expected: Nothing happens.
+
+    1. Test case: Use the keyboard shortcut `Shift+Tab`<br>
+       Expected: Similar to previous.
+
+    1. Other correct swap commands to try: `swap x`(where x is any input)<br>
+       Expected: Similar to previous.
+
+### Renaming TABs
+1. Renaming with alphanumeric characters and `-` and `_`
+
+    1. Test case: `rename CS2103T`<br>
+       Expected: Renames the current TAB with `cs2103t`. This is reflected at the bottom left corner of the application as a lower cased name and keeps the name after re-launch.
+
+    1. Other correct rename commands to try: `rename x`(where x is any valid input)<br>
+       Expected: Similar to previous.
+
+1. Renaming to a file that is already present
+
+    1. Prerequisites: There is a TAB named `x` (where x is any valid TAB name). There are 2 TABs.
+In this case, assume {TAB1} stands for the TAB named `x` and {TAB2} is the **current active** TAB.
+
+    1. Test case: `rename x`<br>
+       Expected: Error details shown in the status message.
+
+    1. Test case: Test case: `rename X`(where `X` is any variation of uppercase/lowercase characters)<br>
+       Expected: Similar to previous.
+
+    1. Test case: Test case: `rename`<br>
+       Expected:  Error details shown in the status message.
+
+1. Renaming with invalid inputs
+    1. Test case: Test case: `rename`<br>
+       Expected: Error details shown in the status message.
+
+    1. Test case: Test case: `rename x`(where `x` contains any other non-alphanumeric characters than `-` and `_`)<br>
+       Expected: Similar to previous.
+
+</div>
+
+## **Appendix: Effort**
+
+Our team discussed extensively the features we want to include in this tP. Having former TAs in our group, we seeded out problems and issues TAs might face so we would produce a product they would need and want.
+
+One of the biggest problems we faced was how to neatly list the persons in TAB to only show what needs to be seen. We solved this by implementing one of our biggest features: the New feature, which allows users to create new addressbooks so that each addressbook can be used to store students from each module. Swapping and editing each addressbook is also fast and easy
+
+Another one of our big features is our Assignments feature. This feature enabled users to add Assignments to each student, grade each of them individually, and view these statistics on graphs. This entire feature took weeks and a lot of group effort to complete and is one of our proudest features.
+
+In all, our team has placed a large amount of effort to craft this specific product made for teachers and through the weeks we have learnt a lot about teamwork and software engineering practises.

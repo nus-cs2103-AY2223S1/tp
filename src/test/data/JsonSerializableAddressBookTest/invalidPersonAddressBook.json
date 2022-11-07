@@ -1,8 +1,12 @@
 {
   "persons": [ {
-    "name": "Hans Muster",
-    "phone": "9482424",
-    "email": "invalid@email!3e",
-    "address": "4th street"
+    "name" : "Alex Yeoh",
+    "phone" : "87438807",
+    "email" : "invalid@email!3e",
+    "position" : "Student",
+    "address" : "Blk 30 Geylang Street 29, #06-40",
+    "remark" : "",
+    "details" : "attendance - 0/0, grade - 11/12 Assignments: [(t2 Score: 0/0 Weightage: 50%), (t3 Score: 0/0 Weightage: 50%)]",
+    "tagged" : [ "CS2103-T01" ]
   } ]
 }

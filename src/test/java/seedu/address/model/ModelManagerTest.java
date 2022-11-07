@@ -73,6 +73,31 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void setAllAddressBookFilePath_nullPath_throwsAssertionError() {
+        assertThrows(NullPointerException.class, () -> modelManager.setAllAddressBookFilePath(null));
+    }
+
+    @Test
+    public void setAllAddressBookFilePath_validPath_setsAddressBookFilePath() {
+        Path[] path = {Paths.get("address/book/file/path")};
+        modelManager.setAllAddressBookFilePath(path);
+        assertEquals(path[0], modelManager.getAllAddressBookFilePath()[0]);
+    }
+
+    @Test
+    public void setStoredIndex_invalidIndex_assertionException() {
+        int testIndex = -1;
+        assertThrows(AssertionError.class, () -> modelManager.setStoredIndex(testIndex));
+    }
+
+    @Test
+    public void setStoredIndex_validIndex_setsStoredIndex() {
+        int testIndex = 10;
+        modelManager.setStoredIndex(testIndex);
+        assertEquals(testIndex, modelManager.getUserPrefs().getStoredIndex());
+    }
+
+    @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.hasPerson(null));
     }

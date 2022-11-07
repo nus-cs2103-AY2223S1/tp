@@ -3,12 +3,18 @@
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "alice@example.com",
+    "position" : "Professor",
     "address": "123, Jurong West Ave 6, #08-111",
-    "tagged": [ "friends" ]
+    "remark": "",
+    "details": "Coordinator",
+    "tagged": [ "CS2103-T01" ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
-    "address": "4th street"
+    "position" : "TA",
+    "address": "4th street",
+    "remark": "",
+    "details": "Available"
   } ]
 }

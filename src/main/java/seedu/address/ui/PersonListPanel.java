@@ -8,6 +8,8 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Person;
 
 /**
@@ -20,13 +22,24 @@ public class PersonListPanel extends UiPart<Region> {
     @FXML
     private ListView<Person> personListView;
 
+    private MainWindow mw;
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Person> personList) {
+    public PersonListPanel(ObservableList<Person> personList, MainWindow mw) {
         super(FXML);
         personListView.setItems(personList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
+        this.mw = mw;
+    }
+
+    @FXML
+    private void displayInfo() throws CommandException, ParseException {
+        int personIndex = personListView.getSelectionModel().getSelectedIndex() + 1;
+        int size = personListView.getItems().size();
+        if (personIndex > 0 && personIndex <= size) {
+            mw.handlePersonListPanelEdits("show " + personIndex);
+        }
     }
 
     /**

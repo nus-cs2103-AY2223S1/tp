@@ -8,6 +8,9 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Remark;
+import seedu.address.model.person.position.Position;
+import seedu.address.model.person.position.Student;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -19,12 +22,21 @@ public class PersonBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
+    public static final String DEFAULT_POSITION = "TA";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+
+    public static final String DEFAULT_FILE_PATH = "./data/CS2103.txt";
+    public static final String DEFAULT_REMARK = "She likes aardvarks.";
+    public static final String DEFAULT_TAG = "CS2103T-T17";
 
     private Name name;
     private Phone phone;
     private Email email;
+    private Position position;
+    private String details;
     private Address address;
+
+    private Remark remark;
     private Set<Tag> tags;
 
     /**
@@ -34,7 +46,25 @@ public class PersonBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
+        position = Position.buildPosition(DEFAULT_POSITION, DEFAULT_FILE_PATH);
+        details = "Available";
         address = new Address(DEFAULT_ADDRESS);
+        remark = new Remark(DEFAULT_REMARK);
+        tags = new HashSet<>();
+        tags.add(new Tag(DEFAULT_TAG));
+    }
+
+    /**
+     * Creates a {@code PersonBuilder} with the default details but no tags.
+     */
+    public PersonBuilder(boolean isEditedPerson) {
+        name = new Name(DEFAULT_NAME);
+        phone = new Phone(DEFAULT_PHONE);
+        email = new Email(DEFAULT_EMAIL);
+        position = Position.buildPosition(DEFAULT_POSITION, DEFAULT_FILE_PATH);
+        details = "Available";
+        address = new Address(DEFAULT_ADDRESS);
+        remark = new Remark(DEFAULT_REMARK);
         tags = new HashSet<>();
     }
 
@@ -45,7 +75,10 @@ public class PersonBuilder {
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
+        position = personToCopy.getPosition();
+        details = position.getDetails();
         address = personToCopy.getAddress();
+        remark = personToCopy.getRemark();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -61,7 +94,11 @@ public class PersonBuilder {
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
     public PersonBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+        if (position instanceof Student) {
+            this.tags = SampleDataUtil.getTagSet(tags[0]);
+        } else {
+            this.tags = SampleDataUtil.getTagSet(tags);
+        }
         return this;
     }
 
@@ -89,8 +126,32 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Details} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withDetails(String details) {
+        this.details = details;
+        return this;
+    }
+    /**
+     * Sets the {@code Remark} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withRemark(String remark) {
+        this.remark = new Remark(remark);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Position} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withPosition(String position) {
+        this.position = Position.buildPosition(position, DEFAULT_FILE_PATH);
+        this.position.setDetails(details);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, tags);
+        return new Person(name, phone, email, position, address, remark, tags);
     }
 
 }

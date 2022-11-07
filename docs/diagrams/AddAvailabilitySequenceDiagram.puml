@@ -1,0 +1,89 @@
+@startuml
+!include style.puml
+!$userInput = ("avail 1 avail/...")
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AvailabilityCommandParser" as AvailabilityCommandParser LOGIC_COLOR
+participant "a:AvailabilityCommand" as AvailabilityCommand LOGIC_COLOR
+participant "CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "editedPerson:Person" as editedPerson MODEL_COLOR
+end box
+
+[-> LogicManager : execute("$userInput")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("$userInput")
+activate AddressBookParser
+
+create AvailabilityCommandParser
+AddressBookParser -> AvailabilityCommandParser
+activate AvailabilityCommandParser
+
+AvailabilityCommandParser --> AddressBookParser
+deactivate AvailabilityCommandParser
+
+AddressBookParser -> AvailabilityCommandParser : parse("1 avail/...")
+activate AvailabilityCommandParser
+
+create AvailabilityCommand
+AvailabilityCommandParser -> AvailabilityCommand
+activate AvailabilityCommand
+
+AvailabilityCommand --> AvailabilityCommandParser : a
+deactivate AvailabilityCommand
+
+AvailabilityCommandParser --> AddressBookParser : a
+deactivate AvailabilityCommandParser
+AvailabilityCommandParser -[hidden]-> AddressBookParser
+destroy AvailabilityCommandParser
+
+AddressBookParser --> LogicManager : a
+deactivate AddressBookParser
+
+LogicManager -> AvailabilityCommand : execute()
+activate AvailabilityCommand
+
+create editedPerson
+AvailabilityCommand --> editedPerson
+activate editedPerson
+
+editedPerson -> AvailabilityCommand
+deactivate editedPerson
+
+AvailabilityCommand -> Model : hasPerson(editedPerson)
+activate Model
+
+Model -> AvailabilityCommand
+deactivate Model
+
+AvailabilityCommand -> Model : setPerson(personToEdit, editedPerson)
+activate Model
+
+Model --> AvailabilityCommand
+deactivate Model
+
+AvailabilityCommand -> Model : updateFilteredPersonList(...)
+activate Model
+
+Model --> AvailabilityCommand
+deactivate Model
+
+create CommandResult
+AvailabilityCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AvailabilityCommand
+deactivate CommandResult
+
+AvailabilityCommand --> LogicManager : result
+deactivate AvailabilityCommand
+
+[<-- LogicManager
+deactivate LogicManager
+
+@enduml

@@ -1,0 +1,17 @@
+@startuml
+'https://plantuml.com/class-diagram
+class ShowCommand
+class Index {}
+
+ShowCommand *-- Index
+
+class ShowCommand {
+-COMMAND_WORD
+-index
+equals()
+execute()
+}
+class Index {
+-zeroBasedIndex = 1
+}
+@enduml

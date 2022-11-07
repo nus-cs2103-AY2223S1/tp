@@ -23,6 +23,8 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
     @Override
     Path getAddressBookFilePath();
 
+    void setAddressBook(AddressBookStorage addressBookStorage);
+
     @Override
     Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException;
 

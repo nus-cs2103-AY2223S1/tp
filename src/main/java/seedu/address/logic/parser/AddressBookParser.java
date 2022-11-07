@@ -6,15 +6,26 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.address.logic.commands.AddAssignmentsCommand;
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AttendanceCommand;
+import seedu.address.logic.commands.AvailabilityCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.GradeCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.NewBookCommand;
+import seedu.address.logic.commands.RemarkCommand;
+import seedu.address.logic.commands.RenameCommand;
+import seedu.address.logic.commands.RolesCommand;
+import seedu.address.logic.commands.ShowCommand;
+import seedu.address.logic.commands.SwapCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -59,8 +70,17 @@ public class AddressBookParser {
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
+        case FilterCommand.COMMAND_WORD:
+            return new FilterCommandParser().parse(arguments);
+
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+
+        case NewBookCommand.COMMAND_WORD:
+            return new NewBookCommand();
+
+        case SwapCommand.COMMAND_WORD:
+            return new SwapCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
@@ -68,6 +88,29 @@ public class AddressBookParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
+        case RemarkCommand.COMMAND_WORD:
+            return new RemarkCommandParser().parse(arguments);
+
+        case AvailabilityCommand.COMMAND_WORD:
+            return new AvailabilityCommandParser().parse(arguments);
+
+        case AttendanceCommand.COMMAND_WORD:
+            return new AttendanceCommandParser().parse(arguments);
+
+        case GradeCommand.COMMAND_WORD:
+            return new GradeCommandParser().parse(arguments);
+
+        case RolesCommand.COMMAND_WORD:
+            return new RolesCommandParser().parse(arguments);
+
+        case RenameCommand.COMMAND_WORD:
+            return new RenameCommandParser().parse(arguments);
+
+        case ShowCommand.COMMAND_WORD:
+            return new ShowCommandParser().parse(arguments);
+
+        case AddAssignmentsCommand.COMMAND_WORD:
+            return new AddAssignmentsCommandParser().parse(arguments);
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

@@ -1,0 +1,54 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+!include style.puml
+box UiPart UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":ModelManager" as ModelManager MODEL_COLOR
+end box
+
+box ReadOnlyUserPrefs PREF_COLOR
+participant ":UserPrefs" as UserPrefs PREF_COLOR_T1
+end box
+[-> MainWindow : handleNewBook()
+activate MainWindow
+
+MainWindow -> LogicManager : addAddressBook()
+activate LogicManager
+
+LogicManager -> ModelManager : addAddressBook()
+activate ModelManager
+
+ModelManager -> UserPrefs : addAddressBook()
+activate UserPrefs
+
+UserPrefs --> ModelManager
+deactivate UserPrefs
+
+ModelManager --> LogicManager
+deactivate ModelManager
+
+LogicManager -> ModelManager : getAllAddressBookFilePath()
+activate ModelManager
+
+ModelManager -> UserPrefs : getAllAddressBookFilePath()
+activate UserPrefs
+
+UserPrefs --> ModelManager
+deactivate UserPrefs
+
+ModelManager --> LogicManager
+deactivate ModelManager
+
+LogicManager --> MainWindow : result
+deactivate LogicManager
+
+[<--MainWindow
+deactivate LogicManager
+@enduml

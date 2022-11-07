@@ -9,8 +9,10 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric "
+            + "or in {Module}-{Tutorial Group} format";
+
+    public static final String VALIDATION_REGEX = "^[a-zA-Z0-9]+[-][a-zA-Z0-9]+$"; // "\p{Alnum}+"
 
     public final String tagName;
 
@@ -23,6 +25,7 @@ public class Tag {
         requireNonNull(tagName);
         checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
         this.tagName = tagName;
+        String module1 = tagName.split("-")[0];
     }
 
     /**

@@ -1,0 +1,89 @@
+@startuml
+!include style.puml
+!$userInput = ("roles 1 roles/...")
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":RolesCommandParser" as RolesCommandParser LOGIC_COLOR
+participant "a:RolesCommand" as RolesCommand LOGIC_COLOR
+participant "CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "editedPerson:Person" as editedPerson MODEL_COLOR
+end box
+
+[-> LogicManager : execute("$userInput")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("$userInput")
+activate AddressBookParser
+
+create RolesCommandParser
+AddressBookParser -> RolesCommandParser
+activate RolesCommandParser
+
+RolesCommandParser --> AddressBookParser
+deactivate RolesCommandParser
+
+AddressBookParser -> RolesCommandParser : parse("1 roles/...")
+activate RolesCommandParser
+
+create RolesCommand
+RolesCommandParser -> RolesCommand
+activate RolesCommand
+
+RolesCommand --> RolesCommandParser : a
+deactivate RolesCommand
+
+RolesCommandParser --> AddressBookParser : a
+deactivate RolesCommandParser
+RolesCommandParser -[hidden]-> AddressBookParser
+destroy RolesCommandParser
+
+AddressBookParser --> LogicManager : a
+deactivate AddressBookParser
+
+LogicManager -> RolesCommand : execute()
+activate RolesCommand
+
+create editedPerson
+RolesCommand --> editedPerson
+activate editedPerson
+
+editedPerson -> RolesCommand
+deactivate editedPerson
+
+RolesCommand -> Model : hasPerson(editedPerson)
+activate Model
+
+Model -> RolesCommand
+deactivate Model
+
+RolesCommand -> Model : setPerson(personToEdit, editedPerson)
+activate Model
+
+Model --> RolesCommand
+deactivate Model
+
+RolesCommand -> Model : updateFilteredPersonList(...)
+activate Model
+
+Model --> RolesCommand
+deactivate Model
+
+create CommandResult
+RolesCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> RolesCommand
+deactivate CommandResult
+
+RolesCommand --> LogicManager : result
+deactivate RolesCommand
+
+[<-- LogicManager
+deactivate LogicManager
+
+@enduml

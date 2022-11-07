@@ -13,6 +13,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.position.Position;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -96,6 +97,28 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String positionLine} into an {@code Position}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code positionLine} is invalid.
+     */
+    public static Position parsePosition(String position, String tags) throws ParseException {
+        requireNonNull(position);
+        requireNonNull(tags);
+
+        String relativePath = "./data/";
+        String txt = ".txt";
+        String tag = "";
+        String[] handleTag = tags.split("-");
+        String module = handleTag[0].replace("[", "");
+        String filePath = relativePath + module + txt;
+        if (!Position.isValidPosition(position)) {
+            throw new ParseException(Position.MESSAGE_CONSTRAINTS);
+        }
+        return Position.buildPosition(position, filePath);
+    }
+
+    /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -104,9 +127,11 @@ public class ParserUtil {
     public static Tag parseTag(String tag) throws ParseException {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
+        String module = trimmedTag.split("-")[0];
         if (!Tag.isValidTagName(trimmedTag)) {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
+
         return new Tag(trimmedTag);
     }
 
@@ -121,4 +146,20 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    /**
+     * Parses and checks the validity of file name.
+     */
+    public static String parseRename(String newName) throws ParseException {
+        requireNonNull(newName);
+        String regexPattern = "^[A-za-z0-9-_]{1,255}$";
+        String messageConstraints = "File name is limited to alphanumeric characters, '-' and '_'";
+        String trimmedTag = newName.trim();
+        String lowerCase = trimmedTag.toLowerCase();
+        if (!lowerCase.matches(regexPattern)) {
+            throw new ParseException(messageConstraints);
+        }
+        return lowerCase;
+    }
+
 }

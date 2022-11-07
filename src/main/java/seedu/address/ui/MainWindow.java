@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -12,10 +14,13 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.RenameCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Person;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -24,6 +29,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
+    private static final String USERGUIDE_URL = "https://ay2223s1-cs2103t-t17-1.github.io/tp/UserGuide.html";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -33,13 +39,19 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
-    private HelpWindow helpWindow;
+    private InfoDisplay infoDisplay;
 
     @FXML
     private StackPane commandBoxPlaceholder;
 
     @FXML
     private MenuItem helpMenuItem;
+
+    @FXML
+    private MenuItem swapBook;
+
+    @FXML
+    private MenuItem newBook;
 
     @FXML
     private StackPane personListPanelPlaceholder;
@@ -49,6 +61,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private StackPane infoDisplayPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -64,8 +79,6 @@ public class MainWindow extends UiPart<Stage> {
         setWindowDefaultSize(logic.getGuiSettings());
 
         setAccelerators();
-
-        helpWindow = new HelpWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -74,6 +87,8 @@ public class MainWindow extends UiPart<Stage> {
 
     private void setAccelerators() {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
+        setAccelerator(swapBook, KeyCombination.valueOf("Shift+Tab"));
+        setAccelerator(newBook, KeyCombination.valueOf("Ctrl+Shift+N"));
     }
 
     /**
@@ -110,7 +125,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList(), this);
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -121,6 +136,9 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        infoDisplay = new InfoDisplay();
+        infoDisplayPlaceholder.getChildren().add(infoDisplay.getRoot());
     }
 
     /**
@@ -136,19 +154,63 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Opens the help window or focuses on it if it's already opened.
+     * Resets what the status bar shows.
+     */
+    public void refreshStatusBar() {
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        statusbarPlaceholder.getChildren().set(0, statusBarFooter.getRoot());
+    }
+
+    /**
+     * Opens the help window in a new browser window
      */
     @FXML
     public void handleHelp() {
-        if (!helpWindow.isShowing()) {
-            helpWindow.show();
-        } else {
-            helpWindow.focus();
-        }
+        UrlLauncher helpController = new UrlLauncher();
+        helpController.launchWebPage(USERGUIDE_URL);
     }
 
     void show() {
         primaryStage.show();
+    }
+
+    /**
+     * Creates a new address book
+     */
+    @FXML
+    private void handleNewBook() {
+        try {
+            if (!logic.addAddressBook()) {
+                resultDisplay.setFeedbackToUser("Maximum amount of TAB created");
+            } else {
+                refreshStatusBar();
+            }
+        } catch (IOException | DataConversionException e) {
+            resultDisplay.setFeedbackToUser("Sorry! Error creating File");
+        }
+    }
+
+    /**
+     * Swaps between the Books
+     */
+    @FXML
+    private void handleRename() {
+        try {
+            Files.delete(logic.getAddressBookFilePath());
+            logic.resetCurrentAddressBook();
+            refreshStatusBar();
+        } catch (IOException e) {
+            resultDisplay.setFeedbackToUser("Sorry! Error deleting File");
+        }
+    }
+
+    /**
+     * Swaps between the Books
+     */
+    @FXML
+    private void handleSwap() {
+        logic.swapAddressBook();
+        refreshStatusBar();
     }
 
     /**
@@ -159,7 +221,6 @@ public class MainWindow extends UiPart<Stage> {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
-        helpWindow.hide();
         primaryStage.hide();
     }
 
@@ -177,9 +238,28 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            infoDisplay.clearInfo();
+
+            if (commandResult.hasPersonToShow()) {
+                Person personToShow = commandResult.getPersonToShow();
+                assert personToShow != null;
+                infoDisplay.setInfo(personToShow);
+            }
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            }
+
+            if (commandResult.isNewBook()) {
+                handleNewBook();
+            }
+
+            if (commandResult.getFeedbackToUser().equals(RenameCommand.MESSAGE_RENAME_SUCCESS)) {
+                handleRename();
+            }
+
+            if (commandResult.isSwap()) {
+                handleSwap();
             }
 
             if (commandResult.isExit()) {
@@ -192,5 +272,9 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
+    }
+
+    public void handlePersonListPanelEdits(String s) throws CommandException, ParseException {
+        this.executeCommand(s);
     }
 }

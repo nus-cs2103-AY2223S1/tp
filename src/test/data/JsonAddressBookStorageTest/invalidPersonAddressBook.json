@@ -1,8 +1,12 @@
 {
   "persons": [ {
-    "name": "Person with invalid name field: Ha!ns Mu@ster",
-    "phone": "9482424",
-    "email": "hans@example.com",
-    "address": "4th street"
+    "name" : "Person with invalid name field: Ha!ns Mu@ster",
+    "phone" : "87438807",
+    "email" : "alexyeoh@example.com",
+    "position" : "Student",
+    "address" : "Blk 30 Geylang Street 29, #06-40",
+    "remark" : "",
+    "details" : "attendance - 0/0, grade - 11/12 Assignments: [(t2 Score: 0/0 Weightage: 50%), (t3 Score: 0/0 Weightage: 50%)]",
+    "tagged" : [ "CS2103-T01" ]
   } ]
 }

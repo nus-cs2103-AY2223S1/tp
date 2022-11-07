@@ -1,0 +1,89 @@
+@startuml
+!include style.puml
+!$userInput = ("attendance 1 attendance/...")
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AttendanceCommandParser" as AttendanceCommandParser LOGIC_COLOR
+participant "a:AttendanceCommand" as AttendanceCommand LOGIC_COLOR
+participant "CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "editedPerson:Person" as editedPerson MODEL_COLOR
+end box
+
+[-> LogicManager : execute("$userInput")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("$userInput")
+activate AddressBookParser
+
+create AttendanceCommandParser
+AddressBookParser -> AttendanceCommandParser
+activate AttendanceCommandParser
+
+AttendanceCommandParser --> AddressBookParser
+deactivate AttendanceCommandParser
+
+AddressBookParser -> AttendanceCommandParser : parse("1 avail/...")
+activate AttendanceCommandParser
+
+create AttendanceCommand
+AttendanceCommandParser -> AttendanceCommand
+activate AttendanceCommand
+
+AttendanceCommand --> AttendanceCommandParser : a
+deactivate AttendanceCommand
+
+AttendanceCommandParser --> AddressBookParser : a
+deactivate AttendanceCommandParser
+AttendanceCommandParser -[hidden]-> AddressBookParser
+destroy AttendanceCommandParser
+
+AddressBookParser --> LogicManager : a
+deactivate AddressBookParser
+
+LogicManager -> AttendanceCommand : execute()
+activate AttendanceCommand
+
+create editedPerson
+AttendanceCommand --> editedPerson
+activate editedPerson
+
+editedPerson -> AttendanceCommand
+deactivate editedPerson
+
+AttendanceCommand -> Model : hasPerson(editedPerson)
+activate Model
+
+Model -> AttendanceCommand
+deactivate Model
+
+AttendanceCommand -> Model : setPerson(personToEdit, editedPerson)
+activate Model
+
+Model --> AttendanceCommand
+deactivate Model
+
+AttendanceCommand -> Model : updateFilteredPersonList(...)
+activate Model
+
+Model --> AttendanceCommand
+deactivate Model
+
+create CommandResult
+AttendanceCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AttendanceCommand
+deactivate CommandResult
+
+AttendanceCommand --> LogicManager : result
+deactivate AttendanceCommand
+
+[<-- LogicManager
+deactivate LogicManager
+
+@enduml
