@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.ArgumentMultimap.DOES_NOT_EXIST;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
@@ -140,7 +141,7 @@ public class ParserUtil {
     public static Module parseModule(String module) throws ParseException {
         requireNonNull(module);
         String trimmedModule = module.trim();
-        if (!Module.isValidModule(trimmedModule)) {
+        if (trimmedModule.equals(DOES_NOT_EXIST) || !Module.isValidModule(trimmedModule)) {
             throw new ParseException(Module.MESSAGE_CONSTRAINTS);
         }
         return new Module(trimmedModule);

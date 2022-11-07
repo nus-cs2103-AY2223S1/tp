@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.CanHelpWithTaskPredicate;
@@ -39,7 +40,7 @@ public class FindContactCommand extends Command {
     }
 
     public static FindContactCommand withoutArgs() {
-        return new FindContactCommand(new CanHelpWithTaskPredicate(1));
+        return new FindContactCommand(new CanHelpWithTaskPredicate(Index.fromOneBased(1)));
     }
 
     @Override

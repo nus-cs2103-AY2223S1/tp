@@ -57,9 +57,8 @@ h4, h5, h6 {
   @include page-break-before;
 }
 
-.post-content h2 {
+.post-content .page-new+h2 {
   @media print {
-    @include page-break-before;
     margin-top: 0; // We are starting a new page anyway
   }
 }

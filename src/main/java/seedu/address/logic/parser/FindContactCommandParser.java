@@ -62,7 +62,7 @@ public class FindContactCommandParser implements Parser<FindContactCommand> {
             return new FindContactCommand(new ModuleTakenPredicate(keywordsSpaceSeparated));
 
         } else if (searchPrefix.equals(PREFIX_TASK)) {
-
+        
             Index taskIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_TASK).get());
             return new FindContactCommand(new CanHelpWithTaskPredicate(taskIndex));
 

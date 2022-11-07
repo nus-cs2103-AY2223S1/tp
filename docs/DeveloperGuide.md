@@ -2,14 +2,25 @@
 layout: page
 title: Developer Guide
 ---
+
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Introduction
+
+CodeConnect is a **desktop app** specially designed for **Computer Science students from NUS**. With this app, not only can you manage your **tasks and contacts** effectively in one unified place, you can also conveniently search for peers to seek help or collaboration on a particular task.
+
+This developer guide serves both as a **guide for new contributors** to navigate and start working on the project and as a reference to various code and feature **design decisions** for existing developers.
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## Acknowledgements
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+We use the following libraries in CodeConnect:
+
+* [JChronic](https://mvnrepository.com/artifact/com.rubiconproject.oss/jchronic)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -93,7 +104,7 @@ Here's a (partial) class diagram of the `Logic` component:
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, it uses the `CodeConnectParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
@@ -110,7 +121,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `CodeConnectParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `CodeConnectParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
@@ -137,7 +148,7 @@ The `Model` component,
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+![Storage component class diagram](images/StorageClassDiagram.png)
 
 The `Storage` component,
 * can save address book data, task list data  and user preference data in json format, and read them back into corresponding objects.
@@ -229,12 +240,8 @@ The `add` command follows the [general command implementation flow](#logic-compo
 #### Design Considerations
 
 * A natural date parser is used because it gives the most flexibility possible in the type of date formats that can be entered, including relative dates ("tomorrow") and abbreviations ("2 Jan").
-* Uniquely, the LocalDateTime within Deadline is expected to be formatted to and from strings by the class's users. This is because different formats and strictnesses are appropriate in different situations.
-  * `ParserUtil.parseDeadline` handles user input, so it uses the NaturalDateParser.
-  * The `Storage` component uses a fixed format string so that saved data can be unambiguously restored.
-  * Deadline(String) uses the format used before natural date parsing to reduce changes to test code.
-* Deadline has a validation function for the input to its string constructor, just like other field classes. The validation is performed by attempting to parse it and checking for errors, as there is no cheaper method in this case.
 * When a date range is specified, the end of the range is used; e.g. a task that's due "tomorrow" will be due 23:59 tomorrow. This is the most common interpretation in our experience.
+* `Deadline`, as a thin data class, only provides constructors from preparsed LocalDateTimes and its own serialization. Parsing user input is handled by other methods, such as `ParserUtil.parseDeadline`. This improves cohesion of the class.
 * The `add` command shares the `m/` prefix for modules with the other commands.
   * The `by/` prefix is chosen for the deadline, as it is a good compromise between brevity and comprehensibility ("do this *by* a certain date").
 
@@ -264,11 +271,11 @@ However, users could forget to input spaces when inputting indexes of multiple t
 marked/unmarked. This was considered to be an acceptable trade-off as users would be completing tasks one at a time
 most of the time, so a mass mark/unmark feature is a nice-to-have one.
 
-### \[Proposed\] Edit task feature
+### Edit task feature
 
 #### About
 
-CodeConnect will allow the user to edit an existing task in the task list.
+CodeConnect allows the user to edit an existing task in the task list.
 
 Example of command use:
 - `edit 1 m/CS1101S`
