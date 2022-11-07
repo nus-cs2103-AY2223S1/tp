@@ -240,7 +240,7 @@ step-by-step!
 |  Optional Input  |                  NIL                   |
 
 - Letters followed by a forward slash is called an identifier and will be used to specify a specific parameter<br>
-  e.g. `t/ ` refers to the entry type parameter.
+  e.g. `t/` refers to the entry type parameter.
 
 - PennyWise will always take the **LAST OCCURRENCE** of a command identifier should there be more than 1 of the same command
   identifier in a given command. <br/>
@@ -558,7 +558,8 @@ simply use the [`view t/e` command](#view-entries-by-category). If you would lik
 
 <div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
 Note that if you manually switch between the income list display and expenditure list display, all filters (if any)
-will be cleared and a pie chart will be drawn. Manual toggling is equivalent to typing the command `view t/e` or `view t/i`.
+will be cleared and a pie chart will be drawn. Manual toggling is equivalent to typing the command 
+[`view t/e`](#view-entries-by-category) or [`view t/i`](#view-entries-by-category).
 </div>
 
 ### Command summary table
