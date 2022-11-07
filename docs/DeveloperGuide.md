@@ -661,11 +661,15 @@ This feature allows the user to navigate to their previously entered commands us
 `CommandHistory` has an index pointer which tracks where the user is currently at in the command history list
 and also manages the writing and reading of commands to and from the command history list.
 
-The following sequence diagram summarizes how a valid command is saved in TextCommandHistoryStorage:
+
 ![Add to command history storage](images/AddToCommandHistorySequenceDiagram.png)
+
+*Figure 16: Sequence Diagram showing how a valid command is saved in TextCommandHistoryStorage*
 <br><br>
-The following sequence diagram summarizes how an up arrow key navigates to the previous command:
+
 ![Navigate command history](images/NavigateCommandHistorySequenceDiagram.png)
+
+*Figure 17: Sequence Diagram showing how an up arrow key navigates to the previous command*
 
 ### Calendar features
 The calendar feature allows a calendar to display with the corresponding appointments of the month in a calendar format. The feature consists of the following features:
@@ -682,7 +686,7 @@ Upon initialisation of the `CalendarDisplay`, it will display the current month 
 
 ![Calendar Class Diagram](images/CalendarUiClassDiagram.png)
 
-*Figure x. Class diagram showing the classes for the Calendar in the `Ui`.*
+*Figure 18. Class diagram showing the classes for the Calendar in the `Ui`*
 
 **Calendar Display**
 
@@ -696,8 +700,9 @@ The following is a more detailed explanation on how `Calendar Display` is implem
 5. A `CalendarEventListPanel` object is created for each day of the month, and `EventButtons` are added to each `CalendarEventListPanel` if there is an appointment falling on that particular day.
 6. Following which, when appointments are added,`Model#updateCalendarEventList()` is called which then updates the `Calendar Display` as well.
 
-The following activity diagram summarizes what happens when a user selects the Calendar tab:
 ![Calendar Display Activity](images/CalendarDisplayActivityDiagram.png)
+
+*Figure 19. Activity diagram showing what happens when a user selects the Calendar tab`*
 
 **Calendar Navigation**
 
@@ -710,8 +715,10 @@ These are the ways that a user can use the `Calendar Navigation` feature.
 2. Pressing N or B key to view the next/previous month in the calendar
 3. Typing the date in the Jump Box and pressing the ENTER key to view the input month and year of the date.
 
-The following activity diagram summarizes what happens when a user selects a navigation feature:
+
 ![Calendar Navigation Activity](images/CalendarNavigationActivityDiagram.png)
+
+*Figure 20. Activity diagram showing what happens  when a user selects a navigation feature*
 
 #### Calendar Pop-up
 The calendar Pop-up allows user to view the details of the appointment in the calendar
@@ -723,8 +730,9 @@ These are the ways that a user can use the `Calendar Pop-up` feature.
 2. Pressing SHIFT or SHIFT + TAB key to view the next/previous appointment in the calendar
 3. Clicking on a desired appointment to view the appointment in the calendar
 
-The following activity diagram summarizes what happens when a user selects an appointment in the calendar tab:
 ![Calendar Pop-Up Activity](images/CalendarPopUpActivityDiagram.png)
+
+*Figure 21. Activity diagram showing what happens  when a user selects an appointment in the calendar tab*
 
 ### \[Proposed\] Undo/redo feature
 
@@ -1242,6 +1250,52 @@ testers are expected to do more *exploratory* testing.
        Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
+
+### Adding a client
+1. Adding a client
+
+2. Prerequisites: Arguments are valid, parameters that are compulsory are provided. Clients added must not be a duplicate client that is already in the contact book.
+
+3. Test case: `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 i/1000 m/200 r/HIGH ip/Savings Plan c/CURRENT t/friends t/owesMoney`<br>
+   Expected: Client is added. Details of the newly added client is shown in the status message.
+
+4. Test case: `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 i/1000 m/200 r/HIGH ip/Savings Plan c/CURRENT`<br>
+   Expected: Client is added. Details of the newly added client is shown in the status message.
+
+5. Test case: `add n/John Doe`<br>
+   Expected: No client is added. Error details will show that there is invalid command format.
+
+6. Test case: `add n/John Doe p/98765432`<br>
+   Expected: No client is added. Error details will show that there is invalid command format.
+
+7. Test case: `add n/John Doe p/98765432 e/johnd@example.com... a/311, Clementi Ave 2, #02-25 i/1000 m/200 r/HIGH ip/Savings Plan c/CURRENT`<br>
+   Expected: No client is added. Error details will show that there is invalid email format.(where ... represents email string that exceeds the character limit of 320)
+
+8Test case: `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 i/1000 m/200 r/HIGH ip/Savings Plan c/CURRENT t/friends...`<br>
+   Expected: No client is added. Error details will show that there is a invalid tag format.(where ... represents tag string that exceeds the character limit of 50)
+
+### Editing a client
+1. Editing a client
+
+2. Prerequisites: Arguments are valid, at least one parameter is provided. Client's whose name is being edited must not be a duplicate client that is already in the contact book. At least one client in the list.
+
+3. Test case: `edit 1 p/91234567 e/johndoe@example.com`<br>
+   Expected: Client at index 1 of the displayed list is edited. Details of the newly edited client is shown in the status message.
+
+4. Test case: `edit 1 n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 i/1000 m/200 r/HIGH ip/Savings Plan c/CURRENT`<br>
+   Expected: Client at index 1 of the displayed list is edited. Details of the newly edited client is shown in the status message.
+
+5. Test case: `edit 1 n/John Doe`<br>
+   Expected: No fields of client is edited. Error details will show that there is no change in fields of the edited client. (where client at index 1 has the name of John Doe)
+
+6. Test case: `edit 1`<br>
+   Expected: No fields of client is edited. Error details will show that there must be a field being provided.
+
+7. Test case: `edit n/John Doe p/98765432 e/johnd@example.com... a/311, Clementi Ave 2, #02-25 i/1000 m/200 r/HIGH ip/Savings Plan c/CURRENT`<br>
+   Expected: No fields of client is edited. Error details will show that there is invalid email format.(where ... represents email string that exceeds the character limit of 320)
+
+8. Test case: `edit n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 i/1000 m/200 r/HIGH ip/Savings Plan c/CURRENT t/friends...`<br>
+Expected: No fields of client is edited. Error details will show that there is a invalid tag format.(where ... represents tag string that exceeds the character limit of 50)
 
 ### Adding an appointment
 
