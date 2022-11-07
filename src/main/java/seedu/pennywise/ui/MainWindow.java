@@ -20,6 +20,7 @@ import seedu.pennywise.commons.core.GuiSettings;
 import seedu.pennywise.commons.core.LogsCenter;
 import seedu.pennywise.logic.Logic;
 import seedu.pennywise.logic.commands.CommandResult;
+import seedu.pennywise.logic.commands.ViewCommand;
 import seedu.pennywise.logic.commands.exceptions.CommandException;
 import seedu.pennywise.logic.parser.exceptions.ParseException;
 import seedu.pennywise.model.GraphConfiguration;
@@ -154,6 +155,7 @@ public class MainWindow extends UiPart<Stage> {
                     false,
                     expenditureGraphConfig);
             this.updateGraph(expenditureCommandResult);
+            this.resultDisplay.setFeedbackToUser(String.format(ViewCommand.MESSAGE_SUCCESS, EntryType.ENTRY_TYPE_EXPENDITURE_LABEL, GraphType.GRAPH_TYPE_CATEGORY_LABEL));
         });
         entryPane.getIncome().setOnSelectionChanged((EventHandler<Event>) evt -> {
             Object data = entryPane.getIncome().getUserData();
@@ -179,6 +181,8 @@ public class MainWindow extends UiPart<Stage> {
                     false,
                     incomeGraphConfig);
             this.updateGraph(incomeCommandResult);
+            this.resultDisplay.setFeedbackToUser(String.format(ViewCommand.MESSAGE_SUCCESS, EntryType.ENTRY_TYPE_INCOME_LABEL, GraphType.GRAPH_TYPE_CATEGORY_LABEL));
+
         });
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -193,6 +197,7 @@ public class MainWindow extends UiPart<Stage> {
                 logic.getExpensePieChartData());
 
         graphPanelPlaceholder.getChildren().add(this.currGraphPanel.getRoot());
+
     }
 
 
