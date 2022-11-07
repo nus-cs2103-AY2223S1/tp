@@ -110,8 +110,12 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
-        // TODO: refine later
+        StringBuilder sb = new StringBuilder();
+        sb.append("Person List:\n");
+        persons.forEach(sb::append);
+        sb.append("\n\nPrefix Map:\n");
+        prefixMap.forEach((prefix, tagType) -> sb.append(prefix + " " + tagType + "\n"));
+        return sb.toString();
     }
 
     @Override
@@ -139,7 +143,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                        && persons.equals(((AddressBook) other).persons));
+                && persons.equals(((AddressBook) other).persons)
+                && prefixMap.equals(((AddressBook) other).prefixMap));
     }
 
     @Override
