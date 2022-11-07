@@ -14,8 +14,8 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](https://github.com/Tan-Jin-Waye)]
 [[portfolio](team/tan-jin-waye.md)]
 
-* Role: TBC
-* Responsibilities: Logic, Storage
+* Role: Developer
+* Responsibilities: Logic, Storage, DG Documentation
 
 ### Lian Guo Yang
 

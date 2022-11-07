@@ -48,6 +48,7 @@ Given below are my contributions to the project.
     * [Transfer Person related Commands](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/20) (discussed by team).
 
 * **Team Based Tasks**:
+  * Allocate tasks for v1.3 and v1.4 
   * Consolidate and close Issues as part of PE-Dry Run
 
 * **Reviewing/Mentoring Contributions**:
@@ -55,8 +56,6 @@ Given below are my contributions to the project.
   * [Left Comments on 23 PRs](https://github.com/AY2223S1-CS2103T-W10-1/tp/pulls?q=is%3Apr+commenter%3ATan-Jin-Waye).
 
 * **Community**:
-  * To be updated
+  * Participated in [PE-Dry Run](https://github.com/AY2223S1-CS2103T-T13-1/tp/issues?q=is%3Aissue+Tan-Jin-Waye%2Fped)
 
-* **Tools**:
-  * To be updated
 
