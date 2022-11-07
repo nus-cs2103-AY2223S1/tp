@@ -192,6 +192,7 @@ An `Exercise` contains the following attributes:
 <div style="page-break-after: always;"></div>
 
 **Date Implementation**
+
 <img src="images/DateClassDiagram.png" width="250" />
 
 The default format for date follows `dd/MM/uuuu`. `uuuu` is chosen over `yyyy` because this avoids unexpected exceptions
@@ -423,7 +424,7 @@ Given below is an example usage scenario for how the mechanism for generating a 
 
 Step 1. The user launches the application, and already has 2 exercises, squat and deadlift, at index 1 and 2, in the exercise tracker.
 
-Step 2: The user enters the command `:gen 1,2 l/easy` to generate an easy workout routine consisting of the exercises squat and deadlift.
+Step 2: The user enters the command `:gen 1,2 level/easy` to generate an easy workout routine consisting of the exercises squat and deadlift.
 
 The following sequence diagram shows how the `GenerateCommand` works.
 A `Name` object `exerciseName` is returned to `g:GenerateCommand` by calling a method in `:Model`. 
@@ -941,10 +942,10 @@ testers are expected to do more *exploratory* testing.
     2. Test case: `:range last/5`.<br>
        Expected: List exercises completed in the last 5 days.
 
-    3. Test case: `:range start/01/01/2022 end 31/01/2022`.<br>
+    3. Test case: `:range start/01/01/2022 end/31/01/2022`.<br>
        Expected: List exercises completed between 01/01/2022 and 31/01/2022.
 
-    4. Test case: `:range start/01/01/202222 end 31/01/202222`.<br>
+    4. Test case: `:range start/01/01/202222 end/31/01/202222`.<br>
        Expected: The Result Display Window will indicate that the date input format is invalid.
 
     5. Other incorrect `:range` commands to try: `:range`, `range last/abc`, `range start/01/01/2022`, ...<br>

@@ -15,10 +15,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute\n(":gen 1,2 l/easy")
+[-> LogicManager : execute\n(":gen 1,2 level/easy")
 activate LogicManager
 
-LogicManager -> ExerciseTrackerParser : parseCommand\n(":gen 1,2 l/easy")
+LogicManager -> ExerciseTrackerParser : parseCommand\n(":gen 1,2 level/easy")
 activate ExerciseTrackerParser
 
 create GenerateCommandParser
@@ -28,7 +28,7 @@ activate GenerateCommandParser
 GenerateCommandParser --> ExerciseTrackerParser
 deactivate GenerateCommandParser
 
-ExerciseTrackerParser -> GenerateCommandParser : parse\n("1,2 l/easy")
+ExerciseTrackerParser -> GenerateCommandParser : parse\n("1,2 level/easy")
 activate GenerateCommandParser
 
 create GenerateCommand
