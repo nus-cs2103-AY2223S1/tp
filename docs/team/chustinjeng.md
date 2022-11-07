@@ -4,7 +4,7 @@
 ## Overview
 
 ---
-MineFriends is an application for Minecraft multiplayer players to keep track of their Minecraft friends. It aims to help players to find the right people to play the right game mode at the right time.
+Minefriends is an application for Minecraft multiplayer players to keep track of their Minecraft friends. It aims to help players to find the right people to play the right game mode at the right time.
 
 ## Summary of Contributions
 

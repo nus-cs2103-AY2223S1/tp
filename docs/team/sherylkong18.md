@@ -2,7 +2,7 @@
 
 ## Overview
 
-MineFriends is an all new friend-tracking program to help Minecraft players find the right friends at the right time to play the right game with.
+Minefriends is an all new friend-tracking program to help Minecraft players find the right friends at the right time to play the right game with.
 
 ## Summary of Contributions
 
@@ -20,7 +20,7 @@ The link to my contributions in the code dashboard is [here](https://nus-cs2103-
   - Country 
   
 **UI enhancement**
-- I created and added the _MineFriends and Creeper_ logo to our main screen.
+- I created and added the _Minefriends and Creeper_ logo to our main screen.
 - I implemented the exploding-creeper animation shown when an invalid command is entered.
 
 ### Contributions to the User Guide
