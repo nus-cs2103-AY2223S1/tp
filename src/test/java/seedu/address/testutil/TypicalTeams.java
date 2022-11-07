@@ -5,6 +5,7 @@ import java.util.Arrays;
 
 import seedu.address.model.person.Person;
 import seedu.address.model.team.Description;
+import seedu.address.model.team.Link;
 import seedu.address.model.team.Task;
 import seedu.address.model.team.Team;
 import seedu.address.model.team.TeamName;
@@ -16,19 +17,25 @@ public class TypicalTeams {
 
     public static final ArrayList<Person> TYPICAL_MEMBERS = new ArrayList<>(
             Arrays.asList(TypicalPersons.BENSON, TypicalPersons.ALICE));
-    public static final ArrayList<Task> TYPICAL_TASKS = new ArrayList<Task>(
+
+    public static final ArrayList<Person> TYPICAL_MEMBERS_CARL = new ArrayList<>(
+            Arrays.asList(TypicalPersons.BENSON, TypicalPersons.CARL));
+    public static final ArrayList<Task> TYPICAL_TASKS = new ArrayList<>(
             Arrays.asList(TypicalTasks.TASK_1, TypicalTasks.TASK_2));
 
-    public static final Team FIRST = new Team(new TeamName("first"),
+    public static final ArrayList<Link> TYPICAL_LINKS = new ArrayList<>(
+            Arrays.asList(TypicalLinks.LINK_GOOGLE, TypicalLinks.LINK_FACEBOOK));
+
+    public static final Team FIRST_TEAM = new Team(new TeamName("first"),
             Description.DEFAULT_DESCRIPTION);
-    public static final Team DEFAULT = new Team(new TeamName("default"),
+    public static final Team DEFAULT_TEAM = new Team(new TeamName("default"),
             Description.DEFAULT_DESCRIPTION);
-    public static final Team DEFAULT_EDITED = new Team(new TeamName("default"),
+    public static final Team DEFAULT_TEAM_EDITED = new Team(new TeamName("default"),
             new Description("For Testing"));
-    public static final Team FIRST_DUPLICATE = new Team(new TeamName("first"),
+    public static final Team FIRST_TEAM_DUPLICATE = new Team(new TeamName("first"),
             Description.NO_DESCRIPTION.DEFAULT_DESCRIPTION);
-    public static final Team SECOND = new Team(new TeamName("second"),
+    public static final Team FIRST_TEAM_DETAILS = new Team(new TeamName("first"),
+            Description.DEFAULT_DESCRIPTION, TYPICAL_MEMBERS, TYPICAL_TASKS, TYPICAL_LINKS);
+    public static final Team SECOND_TEAM = new Team(new TeamName("second"),
             Description.DEFAULT_DESCRIPTION, TYPICAL_MEMBERS, TYPICAL_TASKS, new ArrayList<>());
-    public static final Team FIRST_EDITED = new Team(new TeamName("first"),
-            Description.DEFAULT_DESCRIPTION);
 }

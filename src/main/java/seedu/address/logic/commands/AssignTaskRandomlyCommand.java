@@ -83,10 +83,4 @@ public class AssignTaskRandomlyCommand extends Command {
                 tasks.get(taskIndex.getZeroBased()).getName(), assignee.getName()));
     }
 
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof AssignTaskRandomlyCommand // instanceof handles nulls
-                && taskIndex.equals(((AssignTaskRandomlyCommand) other).taskIndex)); // state check
-    }
 }

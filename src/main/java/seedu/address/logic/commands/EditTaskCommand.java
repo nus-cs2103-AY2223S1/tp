@@ -18,6 +18,7 @@ import static seedu.address.logic.parser.CliSyntax.LABEL_TASK_ASSIGNEES;
 import static seedu.address.logic.parser.CliSyntax.LABEL_TASK_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.LABEL_TASK_INDEX;
 import static seedu.address.logic.parser.CliSyntax.LABEL_TASK_NAME;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -112,7 +113,7 @@ public class EditTaskCommand extends Command {
         if (arguments.name != null) {
             editTaskDescriptor.setName(arguments.name);
         }
-        List<Task> taskList = model.getTeam().getTaskList();
+        List<Task> taskList = model.getTeam().getFilteredTaskList();
 
         if (index.getZeroBased() >= taskList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
@@ -142,25 +143,9 @@ public class EditTaskCommand extends Command {
         }
 
         model.setTask(taskToEdit, editedTask);
+        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
 
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        // short circuit if same object
-        if (other == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(other instanceof EditTaskCommand)) {
-            return false;
-        }
-
-        // state check
-        EditTaskCommand e = (EditTaskCommand) other;
-        return index.equals(e.index) && arguments.equals(e.arguments);
     }
 
     private static class Arguments {
@@ -179,21 +164,6 @@ public class EditTaskCommand extends Command {
                 description = FLAG_TASK_ASSIGNEES_DESCRIPTION, arity = "*")
         private List<Index> assignees = new ArrayList<>();
 
-        @Override
-        public boolean equals(Object other) {
-            if (other == this) {
-                return true;
-            }
-
-            if (!(other instanceof Arguments)) {
-                return false;
-            }
-
-            Arguments target = (Arguments) other;
-            return this.name != null && this.name.equals(target.name)
-                    && this.deadline != null && this.deadline.equals(target.deadline)
-                    && this.assignees.equals(target.assignees);
-        }
     }
 
     /**
@@ -248,26 +218,6 @@ public class EditTaskCommand extends Command {
 
         public void setAssignees(List<Index> assignees) {
             this.assignees = assignees;
-        }
-
-        @Override
-        public boolean equals(Object other) {
-            // short circuit if same object
-            if (other == this) {
-                return true;
-            }
-
-            // instanceof handles nulls
-            if (!(other instanceof EditTaskCommand.EditTaskDescriptor)) {
-                return false;
-            }
-
-            // state check
-            EditTaskCommand.EditTaskDescriptor e = (EditTaskCommand.EditTaskDescriptor) other;
-
-            return getName().equals(e.getName())
-                    && getDeadline().equals(e.getDeadline())
-                    && getAssignees().equals(e.getAssignees());
         }
 
     }

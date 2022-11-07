@@ -62,11 +62,4 @@ public class DeleteTaskCommand extends Command {
         return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS, taskToDelete));
     }
 
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof DeleteTaskCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteTaskCommand) other).targetIndex)); // state check
-    }
-
 }

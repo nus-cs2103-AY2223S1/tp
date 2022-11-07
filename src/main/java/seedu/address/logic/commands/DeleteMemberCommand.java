@@ -49,7 +49,7 @@ public class DeleteMemberCommand extends Command {
             return new CommandResult(HELP_MESSAGE + commandSpec.commandLine().getUsageMessage());
         }
         requireNonNull(model);
-        List<Person> teamMembers = model.getTeam().getTeamMembers();
+        List<Person> teamMembers = model.getTeam().getFilteredMemberList();
 
         if (targetIndex.getZeroBased() >= teamMembers.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -58,13 +58,6 @@ public class DeleteMemberCommand extends Command {
         Person personToDelete = teamMembers.get(targetIndex.getZeroBased());
         model.getTeam().removeMember(personToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof DeleteMemberCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteMemberCommand) other).targetIndex)); // state check
     }
 
 }

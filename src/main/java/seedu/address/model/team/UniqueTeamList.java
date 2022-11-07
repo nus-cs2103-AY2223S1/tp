@@ -24,6 +24,9 @@ public class UniqueTeamList implements Iterable<Team> {
 
     private final ObservableList<Team> internalTeams = FXCollections.observableArrayList();
 
+    private final ObservableList<Team> internalUnmodifiableList =
+            FXCollections.unmodifiableObservableList(internalTeams);
+
     /**
      * Returns true if the list contains a team with the same name as the given argument.
      */
@@ -69,7 +72,7 @@ public class UniqueTeamList implements Iterable<Team> {
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Team> asUnmodifiableObservableList() {
-        return this.internalTeams;
+        return this.internalUnmodifiableList;
     }
 
     /**
@@ -119,5 +122,12 @@ public class UniqueTeamList implements Iterable<Team> {
                 team.setMember(target, editedPerson);
             }
         }
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof UniqueTeamList // instanceof handles nulls
+                && internalTeams.equals(((UniqueTeamList) other).internalTeams));
     }
 }

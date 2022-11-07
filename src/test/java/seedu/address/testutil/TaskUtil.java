@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.team.Task;
@@ -16,6 +17,31 @@ import seedu.address.model.team.Task;
  * Utility class to convert {@code Task} to String arguments for testing
  */
 public class TaskUtil {
+    public static String getAddTaskCommand(Task task) {
+        return AddTaskCommand.FULL_COMMAND + " " + getTaskDetails(task);
+    }
+
+    /**
+     * Returns the part of command string for the given {@code person}'s details.
+     */
+    public static String getTaskDetails(Task task) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("\"").append(task.getName().toString()).append("\" ");
+        sb.append(FLAG_ASSIGNEE_STR).append(" 1 2").append(" "); //TODO add proper indexes
+        sb.append(FLAG_DEADLINE_STR + " ").append(task.getDeadlineInputAsString());
+        return sb.toString();
+    }
+
+    /**
+     * Returns the part of command string for the given {@code person}'s details.
+     */
+    public static String getTaskDetailsWithNameFlag(Task task) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(FLAG_NAME_STR + "\" ").append(task.getName().toString()).append("\" ");
+        sb.append(FLAG_ASSIGNEE_STR).append(" 1 2").append(" "); //TODO add proper indexes
+        sb.append(FLAG_DEADLINE_STR + " ").append(task.getDeadlineInputAsString());
+        return sb.toString();
+    }
 
     /**
      * Converts {@code Task} to required arguments, along with assignee index and deadline.

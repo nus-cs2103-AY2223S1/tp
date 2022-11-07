@@ -106,22 +106,6 @@ public class EditTeamCommand extends Command {
         return new CommandResult(String.format(MESSAGE_EDIT_TEAM_SUCCESS, editedTeam));
     }
 
-    @Override
-    public boolean equals(Object other) {
-        // short circuit if same object
-        if (other == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(other instanceof EditTeamCommand)) {
-            return false;
-        }
-
-        // state check
-        EditTeamCommand e = (EditTeamCommand) other;
-        return arguments.equals(e.arguments);
-    }
 
     private static class Arguments {
         @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG},
@@ -134,18 +118,6 @@ public class EditTeamCommand extends Command {
                 description = FLAG_TEAM_DESCRIPTION_DESCRIPTION)
         private Description description;
 
-        @Override
-        public boolean equals(Object other) {
-            if (other == this) {
-                return true;
-            } else if (other instanceof Arguments) {
-                Arguments target = (Arguments) other;
-                return this.name != null && this.name.equals(target.name)
-                        && this.description != null && this.description.equals(target.description);
-            } else {
-                return false;
-            }
-        }
     }
 
     /**
@@ -189,25 +161,6 @@ public class EditTeamCommand extends Command {
 
         public void setDescription(Description description) {
             this.description = description;
-        }
-
-        @Override
-        public boolean equals(Object other) {
-            // short circuit if same object
-            if (other == this) {
-                return true;
-            }
-
-            // instanceof handles nulls
-            if (!(other instanceof EditTeamDescriptor)) {
-                return false;
-            }
-
-            // state check
-            EditTeamDescriptor descriptor = (EditTeamDescriptor) other;
-
-            return getName().equals(descriptor.getName())
-                    && getDescription().equals(descriptor.getDescription());
         }
 
     }

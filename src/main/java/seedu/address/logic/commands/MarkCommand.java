@@ -67,10 +67,4 @@ public class MarkCommand extends Command {
                 markedTask.getName()));
     }
 
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof MarkCommand // instanceof handles nulls
-                && taskIndex.equals(((MarkCommand) other).taskIndex)); // state check
-    }
 }
