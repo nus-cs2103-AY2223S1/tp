@@ -380,7 +380,7 @@ The following sequence diagram demonstrates the above operations (excluding [`ja
 
 ![MailSequenceDiagram](./images/MailSequenceDiagram.png)
 
-### Comment feature
+### Comment Feature
 
 This command adds a comment to a tutor in `Tuthub`'s displayed list.
 
@@ -400,7 +400,7 @@ The `CommentCommandParser` verifies the appropriateness of the user input (`inde
 Step 3: Upon parsing, a new `CommentCommand` is created based on the `index` and the `comment`.
 A new `Comment` is created based on the `comment` parsed. 
 
-Step 4: In the `CommentCommand` execution, the `model#getSortedFilteredTutorList()` is called upon to retrieve the list of displayed tutors.
+Step 4: In the `CommentCommand` execution, the `ModelManager#getSortedFilteredTutorList()` is called upon to retrieve the list of displayed tutors.
 The `Tutor` whose index matches the `index` is then stored (after accounting for 0 based indexing).
 In this case, the first `Tutor` is selected.
 
@@ -421,7 +421,7 @@ Step 6: The `Comment` stored in the `CommentCommand` is then added to the `Comme
     - Pros: Easier to implement.
     - Cons: It is harder to add and remove comments from each tutor, as the previous comments need to be copied and then added manually by the user.
 
-### Delete Comment feature
+### Delete Comment Feature
 
 This command deletes a comment from a tutor in `Tuthub`'s displayed list.
 
@@ -442,7 +442,7 @@ Step 3: Upon parsing, a new `DeleteCommentCommand` is created based on the `tuto
 Both indexes are converted to 0 based indexing.
 In this case, the `tutorIndex` and `commentIndex` are both set to `0`.
 
-Step 4: In the `DeleteCommentCommand` execution, the `model#getSortedFilteredTutorList()` is called upon to retrieve the list of displayed tutors.
+Step 4: In the `DeleteCommentCommand` execution, the `ModelManager#getSortedFilteredTutorList()` is called upon to retrieve the list of displayed tutors.
 The `Tutor` whose index matches the `tutorIndex` is then stored. 
 In this case, the first `Tutor` is selected.
 
