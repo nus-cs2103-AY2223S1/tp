@@ -30,6 +30,7 @@ Given below are my contributions to the project.
 * **Enhancements to existing features**:
     * Added error messages which shows up when the user tries to mark an already marked task. An error message also shows up when the user tries to unmark an already unmarked task. (Pull requests [\#241](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/241), [\#244](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/244))
     * Updated the task edit feature to allow modifications to deadline. (Pull request [\#183](https://github.com/AY2223S1-CS2103T-W09-3/tp/issues/183))
+    * Added various test cases to increase the code coverage. (Pull request [\#271](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/271), [\#275](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/275), [\#277](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/277), [\#282](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/282))
 
 * **Documentation**:
     * User Guide:
