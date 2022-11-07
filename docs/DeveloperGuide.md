@@ -2,6 +2,9 @@
 layout: page
 title: Developer Guide
 ---
+
+Welcome to the NotionUS developer guide!
+
 * Table of Contents
   {:toc}
 
