@@ -337,7 +337,7 @@ TruthTable allows you to manage members, tasks, links, and members.
 <div markdown="block" class="alert alert-primary">**:information_source: Persons and Members**
 
 The persons in TruthTable (as seen in the [persons section](#persons-section)) may not be in a team. Hence, not all 
-persons are members. However, the members of a team must have a record in the persons section.
+persons are members. However, any member of a team must be an existing person in TruthTable.
 
 This is why TruthTable distinguishes between persons and member commands.
 </div>
