@@ -194,9 +194,7 @@ Of course, this is not yet the end of your journey with PayMeLah - there are sti
 Be very careful with how a command is formatted! If the `…` is found within the diamond brackets `<>` that correspond to an input as in `<person index…>`, then only the input itself is to be repeated. However, if the `…` is found outside the `<>` as in `[t/<tag>]…`, then both the prefix and input must be repeated.
 </div>
 
-</div>
 <div style="page-break-after: always;"></div>
-<div markdown="block" class="alert alert-info">
 
 * Inputs can be in any order.<br>
   e.g. if the command specifies `d/<description> m/<money>`, `m/<money> d/<description>` is also acceptable.
