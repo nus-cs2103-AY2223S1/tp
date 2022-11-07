@@ -47,6 +47,9 @@ public class EditModuleCommand extends Command {
     public static final String MESSAGE_NO_FIELDS_PROVIDED =
             String.format("Please provide at least one of the fields to edit: %1$sMODULE CODE, "
                     + "%2$sMODULE NAME, %3$sMODULE CREDIT", PREFIX_MOD_CODE, PREFIX_MOD_NAME, PREFIX_MOD_CREDIT);
+    public static final String MESSAGE_TASKS_EXAMS_RELATED_MODIFIED = "\n"
+            + "Warning! All the tasks and exams related to the initial module "
+            + "now have this edited Module as their new module.";
 
     private final Index index;
     private final EditModuleDescriptor editModuleDescriptor;
@@ -96,9 +99,8 @@ public class EditModuleCommand extends Command {
 
             if (isModuleFieldUpdated) {
                 return new CommandResult(String.format(MESSAGE_EDIT_MODULE_SUCCESS, editedModule,
-                        editedModule.getModuleName(), editedModule.getModuleCredit()) + "\n"
-                        + "Warning! All the tasks and exams related to the initial module "
-                        + "now have this edited Module as their new module.");
+                        editedModule.getModuleName(), editedModule.getModuleCredit())
+                        + MESSAGE_TASKS_EXAMS_RELATED_MODIFIED);
             }
 
         } catch (DuplicateModuleException e) {
@@ -136,6 +138,17 @@ public class EditModuleCommand extends Command {
         private ModuleCode moduleCode;
         private ModuleName moduleName;
         private ModuleCredit moduleCredit;
+
+        public EditModuleDescriptor() {}
+
+        /**
+         * Copy constructor.
+         */
+        public EditModuleDescriptor(EditModuleCommand.EditModuleDescriptor toCopy) {
+            setModuleCode(toCopy.moduleCode);
+            setModuleName(toCopy.moduleName);
+            setModuleCredit(toCopy.moduleCredit);
+        }
 
         /**
          * Returns true if at least one field is edited.
@@ -183,9 +196,9 @@ public class EditModuleCommand extends Command {
             // state check
             EditModuleDescriptor e = (EditModuleDescriptor) other;
 
-            return moduleCode.equals(e.moduleCode)
-                    && moduleName.equals(e.moduleName)
-                    && moduleCredit.equals(e.moduleCredit);
+            return getModuleCode().equals(e.getModuleCode())
+                    && getModuleName().equals(e.getModuleName())
+                    && getModuleCredit().equals(e.getModuleCredit());
         }
     }
 }

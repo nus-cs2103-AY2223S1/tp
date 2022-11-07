@@ -222,8 +222,10 @@ public class EditTaskCommandTest {
         // null -> returns false
         assertFalse(standardCommand.equals(null));
 
+        //@@author tlx02
         // different types -> returns false
-        assertFalse(standardCommand.equals(new ClearCommand()));
+        assertFalse(standardCommand.equals(new ClearTasksCommand()));
+        //@@author
 
         // different index -> returns false
         assertFalse(standardCommand.equals(new EditTaskCommand(INDEX_SECOND_TASK, DESC_TUTORIAL)));

@@ -23,7 +23,6 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.exam.Exam;
 import seedu.address.model.exam.exceptions.DuplicateExamException;
 import seedu.address.model.module.Module;
-import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.exceptions.DuplicateTaskException;
 import seedu.address.testutil.ModuleBuilder;
@@ -121,42 +120,12 @@ public class AddModuleCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Person person) {
-            throw new AssertionError("This should never be called");
-        }
-
-        @Override
-        public void deletePerson(Person target) {
-            throw new AssertionError("This should never be called");
-        }
-
-        @Override
-        public void addPerson(Person person) {
-            throw new AssertionError("This should never be called");
-        }
-
-        @Override
         public void addModule(Module module) {
             throw new AssertionError("This should never be called");
         }
 
         @Override
-        public void setPerson(Person target, Person editedPerson) {
-            throw new AssertionError("This should never be called");
-        }
-
-        @Override
-        public ObservableList<Person> getFilteredPersonList() {
-            throw new AssertionError("This should never be called");
-        }
-
-        @Override
         public ObservableList<Module> getFilteredModuleList() {
-            throw new AssertionError("This should never be called");
-        }
-
-        @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This should never be called");
         }
 

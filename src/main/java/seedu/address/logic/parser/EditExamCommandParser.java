@@ -9,14 +9,19 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.ParserUtil.parseIndex;
 
+import java.util.regex.Pattern;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditExamCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.Module;
+
 /**
  * Parses input arguments and creates a new EditExamCommand object
  */
 public class EditExamCommandParser implements Parser<EditExamCommand> {
+    private final Pattern pattern = Pattern.compile("(-|\\+)?\\d+(\\.\\d+)?");
+
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditExamCommand
@@ -30,9 +35,7 @@ public class EditExamCommandParser implements Parser<EditExamCommand> {
 
         Index index;
 
-        try {
-            Integer.parseInt(argMultimap.getPreamble());
-        } catch (NumberFormatException ne) {
+        if (!pattern.matcher(argMultimap.getPreamble().strip()).matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditExamCommand.MESSAGE_USAGE));
         }
 
