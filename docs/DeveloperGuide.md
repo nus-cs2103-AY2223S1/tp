@@ -2,6 +2,7 @@
 layout: page
 title: Developer Guide
 ---
+
 * Table of Contents
 {:toc}
 
@@ -195,58 +196,6 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Creating a buyer: `addbuyer`
-
-The structure for executing an `addbuyer` command follows the flow as mentioned in the “Logic component” section of this guide.
-
-The `Buyer` class represents a buyer with buyer-specific fields. `PriceRange`, `Characteristics`, and `Priority`
-denote his budget, requirements for the property, and buyer priority respectively.
-
-These three fields are all optional. When the user chooses not to indicate a buyer’s price range or desired characteristics, the `priceRange` and `desiredCharacteristics` field of a buyer may be null. Hence, they have both been implemented using `Optional<T>`.
-When the user chooses not to indicate a buyer priority, the buyer's priority will be set to the default priority as `NORMAL`.
-When the user creates a buyer, the entry time is also automatically stored as an `LocalDateTime`.
-
-This is the class diagram of a `Buyer`.
-
-![BuyerClassDiagram](images/BuyerClassDiagram.png)
-
-The object diagram below shows the new objects in the internal state when a valid `addbuyer` command `addbuyer -n Jane -ph 89991237 -e jane@gmail.com -a Bishan Street 12 -r 2000-5000` is input by the user.
-Note that a new `LocalDateTime` object is created by default and a new `Priority` object is also created albeit the user did not specify the priority parameter in the command.
-In addition, a new `Optional<PriceRange>` object containing a new `PriceRange` object is created since the user specified a price range parameter while a new `Optional<Characteristics>` containing null is created since the user did not specify the characteristics parameter.
-The latter is omitted from the diagram for simplicity purposes.
-
-![BuyerObjectDiagram](images/AddBuyerObjectDiagram-Final_state.png)
-
-#### Design considerations:
-No duplicate buyers can be added to the buyer list. This means that no two buyers with the same phone or email can exist. We considered using only name to identify a buyer, so that two people with the name but different contact numbers can be added. However, we decided against it as there could be two people with the exact same name. Therefore, we decided to use phone or email since these should be unique to every person.
-The entry time is added towards later of the development to help facilitate a more flexible implementation of the `sortbuyers` command.
-We considered whether to allow the user to specify a date and time by adding an additional `-d` flag, but later decided against it since we see little value for allowing such feature.  
-
-### Creating a property: `addprop`
-
-The structure for executing an `addprop` command follows the flow as mentioned in the "Logic component" section of this guide.
-
-The `Property` class represents a property with property-specific fields. `Price` and `Characteristics` denote the price and feature of the property respectively.
-
-The `price` field is mandatory while the `characteristics` field is optional. When the user chooses not to indicate a property's characteristics, the `characteristics` field of a property may be null. Hence, it has been implemented using `Optional<T>`.
-When the user creates a property, the entry time is also automatically stored as an `LocalDateTime`.
-
-This is the class diagram of a `Property`.
-
-![PropertyClassDiagram](images/PropertyClassDiagramNew.png)
-
-The object diagram below shows the new objects in the internal state when a valid `addprop` command `addprop -n Peak Residences -a 333 Thompson Road -p 1000000 -d long property description -owner Bob -ph 91234567` is input by the user.
-Note that a new `LocalDateTime` object is created by default.
-In addition, a new `Optional<Characteristics>` containing null is created since the user did not specify the characteristics parameter.
-It is omitted from the diagram for simplicity purposes.
-
-![PropertyObjectDiagram](images/AddPropertyObjectDiagram-Final_state.png)
-
-#### Design considerations:
-No duplicate properties can be added to the property list. This means that no two properties with the same address can exist. We used name and price to identify a property in previous iterations, but later decided against it since in real life there could be identical properties with the exact same name and price. The only thing unique to the property would be the unit number recorded in the address.
-The entry time is added towards later of the development to help facilitate a more flexible implementation of the `sortprops` command.
-We considered whether to allow the user to specify a date and time by adding an additional `-d` flag, but later decided against it since we see little value for allowing such feature.
-
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
@@ -412,50 +361,93 @@ From the diagram, it can be seen that a `Property` object consists of the follow
 
 ![Alternative Property and Buyer implementation](images/AlternativeBuyerAndProperty.png)
 
-
-### Creating a buyer
-
-The `Buyer` class represents a buyer with buyer-specific fields. `PriceRange`, `Characteristics`, and `Priority`
-denote his budget, requirements for the property, and buyer priority respectively.  
-
-These three fields are all optional. When the user chooses not to indicate a buyer’s price range or desired characteristics, the `priceRange` and `desiredCharacteristics` field of a buyer may be null. Hence, they have both been implemented using `Optional<T>`.
-When the user chooses not to indicate a buyer priority, the buyer's priority will be set to the default priority as `NORMAL`.
-When the user creates a buyer, the time of creation is also automatically stored as a `LocalDateTime`.
+### Creating a buyer: `addbuyer`
 
 The structure for executing an `addbuyer` command follows the flow as mentioned in the “Logic component” section of this guide.
 
+The `Buyer` class represents a buyer with buyer-specific fields. `PriceRange`, `Characteristics`, and `Priority`
+denote his budget, requirements for the property, and buyer priority respectively.
+
+These three fields are all optional:<br>
+- When the user chooses not to indicate a buyer’s price range or desired characteristics, the `priceRange` and `desiredCharacteristics` field of a buyer may be null. Hence, they have both been implemented using `Optional<T>`.<br>
+- When the user chooses not to indicate a buyer priority, the buyer's priority will be set to the default priority as `NORMAL`.
+- When the user creates a buyer, the time of creation is also automatically stored as an `LocalDateTime`.
+
+This is the class diagram of a `Buyer`.
+
+![BuyerClassDiagram](images/BuyerClassDiagram.png)
+
+Following the execution of this sample `addbuyer` command:
+`addbuyer -n Jane -ph 89991237 -e jane@gmail.com -a Bishan Street 12 -r 2000-5000`, the following object diagram represents
+the internal state of the newly created `Buyer`.
+
+![BuyerObjectDiagram](images/AddBuyerObjectDiagram-Final_state.png)
+
+Note that the following objects are created by default:
+1. A new `LocalDateTime` object.
+2. A new `Priority` object, representing *NORMAL* priority.
+3. A new `Optional<PriceRange>` object. In this context, since a price range was specified in the command, this `Optional<PriceRange>` contains a `PriceRange` object.
+4. A new `Optional<Characteristics>` object containing a null pointer, as no characteristics flag was specified in the command above.
+
+The `Optional<Characteristics>` object has been omitted from the object diagram for brevity.
+
 #### Design considerations:
-Duplicate buyers should not be able to be added into the buyer list. This means that we need some sort of criterion to differentiate
-between buyers.
+The buyer list should not allow for creation of duplicate buyers. This means that some condition(s) defining equality
+between two separate `Buyer` objects should be specified.
 
-Originally, we disallowed creation of two buyers that have the same name. However, we found this to be too rigid as there could very well
-exist two distinct buyers that have the same name. Instead, we decided to make use of phone numbers and emails to identify identical buyers,
-as these fields should be unique to each person.
+Originally, a buyer's `Name` was used to distinguish a singular buyer from others. However, this was changed
+in later iterations as it was realised that there could very well exist two unique buyers with similar names.
 
-The time of creation field was added towards the later part of development to help facilitate a more flexible implementation of the `sortbuyers` command.  
+Instead, the `Phone` and `Email` of the `Buyer` are used to distinguish a buyer, as there cannot be two buyers that have
+the exact same phone numbers and email addresses.
+
+The entry time was added towards later parts of development to help facilitate a more flexible implementation of the `sortbuyers` command.
+Early discussions allowed a user to provide the date and time manually using a `-d` flag, but this feature was scrapped as
+it was found to provide little to no value.
 
 The activity diagram for the creation of a buyer can be seen below.
 
 ![Add buyer activity diagram](images/AddBuyerActivityDiagram.png)
 
-### Creating a property
+### Creating a property: `addprop`
+
+The structure for executing an `addprop` command follows the flow as mentioned in the "Logic component" section of this guide.
 
 The `Property` class represents a property with property-specific fields. `Price` and `Characteristics` denote the price and feature of the property respectively.
 
 The `price` field is mandatory while the `characteristics` field is optional. When the user chooses not to indicate a property's characteristics, the `characteristics` field of a property may be null. Hence, it has been implemented using `Optional<T>`.
-When the user creates a property, the time of creation is also automatically stored as a `LocalDateTime`.
+When the user creates a property, the entry time is also automatically stored as an `LocalDateTime`.
 
-The structure for executing an `addprop` command follows the flow as mentioned in the "Logic component" section of this guide.
+This is the class diagram of a `Property`.
+
+![PropertyClassDiagram](images/PropertyClassDiagramNew.png)
+
+Following the execution of this sample `addprop` command:
+`addprop -n Peak Residences -a 333 Thompson Road -p 1000000 -d long property description -owner Bob -ph 91234567`, the following
+object diagram represents the internal state of the newly created `Property`.
+
+![PropertyObjectDiagram](images/AddPropertyObjectDiagram-Final_state.png)
+
+Note that the following objects are created by default:
+1. A new `LocalDateTime` object.
+2. A new `Optional<Characteristics>` object containing a null pointer, as no characteristics flag was specified in the command.
+
+The `Optional<Characteristics>` object has been omitted form the object diagram for brevity.
+
 
 #### Design considerations:
-No duplicate properties can be added to the property list. This means that we need some sort of criterion to differentiate between
-properties.
+The property list should not allow for creation of duplicate properties. This means that some condition(s) defining equality
+between two separate `Property` objects should be specified.
 
-Originally, we disallowed creation of two properties that have the same name and price. However, we found this to be to rigid as
-there could very well be two distinct properties that exist which have both the same name and price. Instead, we decided to make
-use of the property's address to distinguish it from another property, as the address of a property should be unique to it.
+Originally, `PropertyName` and `Price` were used to distinguish a singular property from others. However, this was changed
+in later iterations as it was realised that there could very well exist two entirely separate properties with identical names and prices.
 
-The time of creation field was added towards the later part of development to help facilitate a more flexible implementation of the `sortprops` command.
+Instead, the `Address` of the `Property` is used to distinguish a property, as there cannot be two properties existing at the exact
+same address.
+
+The entry time was added towards later parts of development to help facilitate a more flexible implementation of the `sortprops` command.
+Early discussions allowed a user to provide the date and time manually using a `-d` flag, but this feature was scrapped as
+it was found to provide little to no value.
 
 The activity diagram for the creation of a property can be seen below.
 
@@ -927,16 +919,25 @@ Use case ends.
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should work on any computer fewer than five years old. 
-3. Should be able to hold up to 1000 buyers without a noticeable sluggishness in performance for typical usage.
-4. Should be able to respond within two seconds.
-5. Should be downloaded and available to use within one minute.
-6. Should work without requiring an installer.
-7. Should avoid to include hard-to-test features
-8. Should not depend on a remote server.
-9. Should save data locally in a human editable text file.
-10. Should be able to be packaged into a JAR file.
-11. Should have a GUI with readable font, at least size 11, and resizable.
-12. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+
+3. Should be able to hold up to 1000 buyers without noticeable sluggishness in performance for typical usage.
+4. Should be able to hold up to 1000 properties without noticeable sluggishness in performance for typical usage.
+5. Should be able to respond to any given command within two seconds.
+6. Should be downloaded and available to use within one minute.
+7. Should work without requiring an installer.
+8. Should be fully initialised and ready for use within three seconds of launch.
+9. Should not depend on a remote server.
+10. Should not require access to an internet connection.
+11. Should save data locally in a human editable text file.
+12. Should be able to be packaged into a JAR file.
+13. Should have a graphical user interface with readable font, at least size 11, and resizable.
+14. Should have a graphical user interface which is intuitive and user-friendly.
+15. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+16. Should be entirely open-source, so data privacy is ensured.
+17. A user should be able to use all features of the app without confusion after reading the User Guide.
+18. Should be able to be deleted entirely within 30 seconds.
+19. Should not cause performance issues on the machine on which it is running, i.e. become a resource hog.
+20. Should not require the user to have any prior technical knowledge or expertise.
 
 ### Glossary
 
@@ -950,11 +951,10 @@ Use case ends.
 
 ## **Appendix: Instructions for manual testing**
 
-Given below are instructions to test the app manually.
+This section gives you some information as to how to test the application manually.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
-
 </div>
 
 ### Launch and shutdown
@@ -972,29 +972,95 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Adding a buyer
+1. Test case: `addbuyer -n Tim -ph 87321237 -e tim@gmail.com -a S648234`<br>
+   Expected: New buyer should be added into the list with relevant details. "New buyer added" message should be displayed
+   with details of the buyer that was added.
+
+2. Test case: `addbuyer -n Jane -a Street`<br>
+   Expected: "Invalid command format" error message should be displayed, with information regarding the syntax of the `addbuyer` command
+   and a correct example of the command.
 
 ### Deleting a buyer
 
-1. Deleting a buyer while all buyers are being shown
+1. Test case: `delete 1`<br>
+   Expected: First buyer is deleted from the list. "Deleted Buyer" message should be displayed on the screen
+   with details of the deleted contact.
 
-   1. Prerequisites: List all buyers using the `list` command. Multiple buyers in the list.
+2. Test case: `delete 0`<br>
+   Expected: No buyer is deleted. Error details shown in the status message. 
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+3. Other incorrect delete commands to try: `delete`, `delete x`, `...`, `delete test` (where x is larger than the list size)<br>
+   Expected: Similar to previous.
+   
+### Editing a buyer
 
-   1. Test case: `delete 0`<br>
-      Expected: No buyer is deleted. Error details shown in the status message. Status bar remains the same.
+1. Test case: `editbuyer 1 -n Tommy Jones`
+   Expected: First buyer in the list should have their name changed to "Tommy Jones". "Edited Buyer" message should also be
+   displayed on the screen with details of the edited contact.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+2. Test case: `editbuyer -n Tommy Jones`
+   Expected: "Invalid command format" error message should be displayed, along with information regarding the syntax of the `editbuyer`
+   command and a correct example.
 
-1. _{ more test cases …​ }_
+3. Test case: `editbuyer 1`
+   Expected: "At least one field to edit must be provided" error message should be displayed.
 
-### Saving data
+### Finding a buyer
 
-1. Dealing with missing/corrupted data files
+**Prerequisites**: A buyer that has 'John' in his name must exist in the buyer list.
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+1. Test case: `findbuyers John`
+   Expected: Buyer list should be filtered to contain only buyers that have 'John' as a substring in their name (case-insensitive).
+   "x buyers listed" message should be displayed, where x refers to the number of buyers in the new filtered list.
 
-1. _{ more test cases …​ }_
+2. Test case: `findbuyers`
+   Expected: "Invalid command format" error message should be displayed, along with information regarding the syntax of the `findbuyers`
+   command and a correct example.
+
+### Filtering buyers
+
+**Prerequisites**: A buyer that has normal priority must exist in the buyer list.
+
+1. Test case: `filterbuyers -pr NORMAL`
+   Expected: Buyer list should be filtered to contain only buyers that have NORMAL as their priority.
+   "x buyers listed" message should be displayed, where x refers to the number of buyers in the new filtered list.
+
+2. Test case: `filterbuyers`, `filterbuyers 1`, `filterbuyers x`
+   Expected: "Invalid command format" error message should be displayed, along with information regarding the syntax of the `filterbuyers`
+   command and a correct example.
+
+### Listing all buyers
+
+**Prerequisites**: Buyer list should be filtered to show a subset of the original list.
+
+1. Test case: `listbuyers`
+   Expected: Buyer list should return to its original state containing all buyers. "Listed all buyers" message should be displayed
+   on the screen.
+
+3. Test case: `listbuyers 1`, `listbuyers x`
+   Expected: Same behaviour as above.
+
+### Matching buyers to properties
+
+1. Test case: `matchbuyer 5`
+   Expected: Buyer list should be filtered to contain all properties that match a given buyer based on their price range and 
+   characteristics. "x matched properties for the buyer" message should be displayed on the screen, with x representing the number
+   of matched properties found, along with the buyer's information.
+
+2. Test case: `matchbuyer`, `matchbuyer 5 30`, `matchbuyer x`
+   Expected: "Invalid command format" error message should be displayed, along with information regarding the syntax of the `matchbuyer`
+   command and a correct example.
+
+### Sorting buyers
+
+1. Test case: `sortbuyers -n ASC`
+   Expected: Buyer list should be sorted in increasing alphabetical order. "Sorted buyers by:" message should be displayed on the screen
+   with correct criteria and order.
+
+2. Test case: `sortbuyers`, `sortbuyers x`, `sortbuyers 1`
+   Expected: "Invalid command format" error message should be displayed, along with information regarding the syntax of the `sortbuyers`
+   command and a correct example.
+
+3. Test case: `sortbuyers -n`, `sortbuyers -n oops`, `sortbuyers -n 1`
+   Expected: "Order should be ASC or DESC" error mesage should be displayed.
