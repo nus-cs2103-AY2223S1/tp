@@ -2,8 +2,13 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
+import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalPersons.CARL;
 import static seedu.address.testutil.TypicalPersons.getTypicalTruthTable;
+import static seedu.address.testutil.TypicalTasks.TASK_1_DETAILS;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import picocli.CommandLine;
@@ -15,9 +20,21 @@ import seedu.address.testutil.TypicalTasks;
 
 public class TasksSummaryCommandTest {
     private Model model = new ModelManager(getTypicalTruthTable(), new UserPrefs());
-    private Model expectedModel = model;
+    private Model expectedModel = new ModelManager(getTypicalTruthTable(), new UserPrefs());
     private final Command commandToBeTested = new TasksSummaryCommand();
     private final CommandLine commandLine = new CommandLine(commandToBeTested);
+
+    @BeforeEach
+    public void setUp() {
+        model.getTeam().addMember(ALICE);
+        model.getTeam().addMember(BENSON);
+        model.getTeam().addMember(CARL);
+        expectedModel.getTeam().addMember(ALICE);
+        expectedModel.getTeam().addMember(BENSON);
+        expectedModel.getTeam().addMember(CARL);
+        model.getTeam().addTask(TASK_1_DETAILS);
+        expectedModel.getTeam().addTask(TASK_1_DETAILS);
+    }
 
     @Test
     public void execute_helpFlagSupplied_success() {
@@ -28,7 +45,6 @@ public class TasksSummaryCommandTest {
 
     @Test
     public void execute_success() {
-        model.getTeam().addTask(TypicalTasks.TASK_3);
         CommandResult expectedResult = new CommandResult(String.format(TasksSummaryCommand.MESSAGE_TASK_SUMMARY,
                 TaskUtil.getTaskSummary(model)));
         assertCommandSuccess(commandToBeTested, model, expectedResult, expectedModel);

@@ -83,12 +83,4 @@ public class ListTasksCommand extends Command {
         }
         return new CommandResult("Invalid command format!\n" + MESSAGE_USAGE);
     }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof ListTasksCommand
-                && hasCompleteFlag == ((ListTasksCommand) other).hasCompleteFlag
-                && hasIncompleteFlag == ((ListTasksCommand) other).hasIncompleteFlag); // instanceof handles nulls
-    }
 }

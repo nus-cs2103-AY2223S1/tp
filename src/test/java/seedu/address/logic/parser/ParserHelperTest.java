@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -18,6 +19,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.testutil.ParserHelper;
 
 public class ParserHelperTest {
     private static final String INVALID_NAME = "R@chel";
@@ -168,5 +170,22 @@ public class ParserHelperTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseDeadTime_validDateTime_success() throws Exception {
+        LocalDateTime parsedDateTime = ParserUtil.parseLocalDateTime("2022-12-25 23:59");
+        LocalDateTime expectedDateTime = LocalDateTime.of(2022, 12, 25, 23, 59);
+        assertEquals(parsedDateTime, expectedDateTime);
+    }
+
+    @Test
+    public void parseDeadTime_invalidOnlyTime_throwsException() throws Exception {
+        assertThrows(ParseException.class, () -> ParserUtil.parseLocalDateTime("23:59"));
+    }
+
+    @Test
+    public void parseDeadTime_invalidDatime_throwsException() throws Exception {
+        assertThrows(ParseException.class, () -> ParserUtil.parseLocalDateTime("2022-12-25 24:25"));
     }
 }

@@ -485,7 +485,7 @@ public class TruthTableParserTest {
         String commandString = AddTaskCommand.FULL_COMMAND + " "
                 + "validTaskName"
                 + FLAG_DEADLINE_STR + " "
-                + "23:59" + "2022-12-02";
+                + "2022-12-02" + "24:25";
         assertThrows(ParseException.class, () -> parser.parseCommand(commandString));
     }
 
