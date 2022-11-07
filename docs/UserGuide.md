@@ -674,6 +674,8 @@ In the above example, we are adding a contact with name `Bobbie`, email `bobbie@
 Adding a person to Plannit will bring you back to the home page.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 #### 2.4.2. Add person to module
 You can add a person to a module using the `add-person-to-module` command. In other
 words, an association between a person and a module will be created.
