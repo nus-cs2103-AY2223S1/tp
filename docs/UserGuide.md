@@ -73,10 +73,10 @@ Here are some of the symbols and text formatting to look out for as you make use
 
 | Number | Component Name | Details                                                                                                                                               |
 |:------:|----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
-|   1.   | Command Box    | The box where you enter commands for PayMeLah to carry out.                                                                                           | 
+|   1.   | Command Box    | The box where you enter commands for PayMeLah to carry out.                                                                                           |
 |   2.   | Message Box    | The box where a success message will be displayed when PayMeLah carries out a command successfully, or an error message when PayMeLah fails to do so. |
-|   3.   | Person Card    | The card containing personal details.                                                                                                                 | 
-|   4.   | Debt List      | The box containing the list of debts owed by a person.                                                                                                | 
+|   3.   | Person Card    | The card containing personal details.                                                                                                                 |
+|   4.   | Debt List      | The box containing the list of debts owed by a person.                                                                                                |
 |   5.   | Person List    | The box containing the full list of person cards. Only one person card can be viewed at a time.                                                       |
 <img src="images/UiDetails.png" width="800" /> <br>
 
@@ -84,20 +84,20 @@ Here are some of the symbols and text formatting to look out for as you make use
 
 | Number | Component Name  | Details                                       |
 |:------:|-----------------|-----------------------------------------------|
-|   1.   | Person Index    | The index of the person in the person list.   | 
+|   1.   | Person Index    | The index of the person in the person list.   |
 |   2.   | Name            | The person’s name.                            |
-|   3.   | Phone Number    | The person’s phone number.                    | 
-|   4.   | Telegram Handle | The person’s Telegram handle.                 | 
-|   5.   | Tags            | The tags attached to the person.              | 
-|   6.   | Address         | The person’s address.                         | 
-|   7.   | Total Debt      | The total amount of money owed by the person. | 
+|   3.   | Phone Number    | The person’s phone number.                    |
+|   4.   | Telegram Handle | The person’s Telegram handle.                 |
+|   5.   | Tags            | The tags attached to the person.              |
+|   6.   | Address         | The person’s address.                         |
+|   7.   | Total Debt      | The total amount of money owed by the person. |
 
 <img src="images/PersonCard.png" width="800" /> <br>
 <div style="page-break-after: always;"></div>
 
 | Number | Component Name | Details                                     |
 |:------:|----------------|---------------------------------------------|
-|   1.   | Debt Index     | The index of the debt in the debt list.     | 
+|   1.   | Debt Index     | The index of the debt in the debt list.     |
 |   2.   | Description    | The debt’s description.                     |
 |   3.   | Money          | The amount of money owed for the debt.      |
 |   4.   | Date/Time      | The date and time of the debt.              |
@@ -392,7 +392,7 @@ Example:
 
 #### Splitting a debt: `splitdebt`
 
-Splits a debt among several people in PayMeLah for you to track. <br>  
+Splits a debt among several people in PayMeLah for you to track. <br>
 This command will help you with the Maths of dividing shared costs equally among people in PayMeLah. Sharing is made easy as PayMeLah does the Maths for you!
 
 Format: `splitdebt <person index…> d/<description> m/<money> [date/<date>] [time/<time>]`
@@ -548,7 +548,7 @@ Examples:
 * `find d/burger m/10` will match anyone who both owes money for `burger` and owes `$10.00` for something (or someone who owes `$10.00` for `burger`).
 * `find above/10 below/20 d/fries` will match anyone who both owes money for `fries` and owes between `$10.00` and `$20.00` inclusive for something (or someone who owes between `$10.00` and `$20.00` inclusive for `fries`).
 * `find before/2022-11-30 after/2022-11-01 time/11:00` will match anyone who both owes money for something between `2022-11-01` and `2022-11-30` inclusive (the month of November 2022) and owes money for something at `11:00` (or someone who owes money for something at `11:00` during the month of November 2022).
-* `find tele/janesmith above/10 below/20 before/2022-11-30 after/2022-11-01` will match anyone with the Telegram handle `@janesmith` who both owes between `$10.00` and `$20.00` inclusive for something and owes money for something during the month of November 2022 (or someone who owes between `$10.00` and `$20.00` inclusive for something during the month of November 2022). 
+* `find tele/janesmith above/10 below/20 before/2022-11-30 after/2022-11-01` will match anyone with the Telegram handle `@janesmith` who both owes between `$10.00` and `$20.00` inclusive for something and owes money for something during the month of November 2022 (or someone who owes between `$10.00` and `$20.00` inclusive for something during the month of November 2022).
 
 <div style="page-break-after: always;"></div>
 
