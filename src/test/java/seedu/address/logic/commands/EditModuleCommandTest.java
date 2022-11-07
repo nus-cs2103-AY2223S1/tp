@@ -36,19 +36,6 @@ public class EditModuleCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
-    //@Test
-    //public void execute_allFieldsSpecifiedUnfilteredList_success() {
-    //    Module editedModule = new ModuleBuilder().build();
-    //    EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder(editedModule).build();
-    //    EditModuleCommand editModuleCommand = new EditModuleCommand(INDEX_FIRST_MODULE, descriptor);
-
-    //    String expectedMessage = String.format(EditModuleCommand.MESSAGE_EDIT_MODULE_SUCCESS, editedModule);
-
-    //    Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-    //    expectedModel.setModule(model.getFilteredModuleList().get(0), editedModule);
-    //    assertCommandSuccess(editModuleCommand, model, expectedMessage, expectedModel);
-    //}
-
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
         Index indexLastModule = Index.fromOneBased(model.getFilteredModuleList().size());
