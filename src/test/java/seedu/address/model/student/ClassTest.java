@@ -147,4 +147,11 @@ public class ClassTest {
                 LocalTime.of(12, 0), LocalTime.of(15, 0), "2022-12-12 1200-1500");
         assertFalse(classWithDifferentDate.isSameDateAs(date));
     }
+
+    @Test
+    public void isFullDayClassTest() {
+        LocalTime startTime = LocalTime.of(0, 0);
+        LocalTime endTime = LocalTime.of(0, 0);
+        assertTrue(Class.isFullDayClass(startTime, endTime));
+    }
 }

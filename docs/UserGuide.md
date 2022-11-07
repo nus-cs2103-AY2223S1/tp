@@ -56,7 +56,7 @@ For a full list of commands and detailed instructions, head to the [Features](#f
 1. Ensure you have Java `11` or above installed in your Computer.
 2. Download the latest `teachersPet.jar` from [here](https://github.com/AY2223S1-CS2103T-T09-4/tp/releases).
 3. Copy the file to the folder you want to use as the *home folder* for your application.
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.
+4. Double-click the file to start the app. A GUI similar to the below should appear in a few seconds.
    Note how the app contains some sample data.
 
 ![UI introduction](images/UG-screenshots/UiIntro.png)
@@ -99,8 +99,9 @@ Basic Instructions:
 - Words in `UPPER_CASE` are the parameters to be supplied by the user. e.g., in `add n/NAME`, `NAME` is a parameter
   which can be used as `add n/John Doe`.
 - Items in square brackets are optional. e.g., `n/NAME [t/TAG]` can be used as `n/John Doe t/python` or as `n/John Doe`.
-- Items with `…` after them can be used multiple times including zero times. e.g., `[t/TAG]…` can be used as ` ` (e.g.
-  0 times), `t/python`, `t/javascript t/react` etc.
+- Items with `…` after them can be used multiple times including zero times. e.g., If you see `[t/TAG]…`, you can choose 
+not to provide a tag by not using the `t/` prefix, provide one tag like `t/python` or provide multiple tags
+like `t/javascript t/react` etc.
 - Parameters with a prefix can be in any order. e.g., if the command specifies `n/NAME p/CONTACT_NUMBER`, `p/CONTACT_NUMBER n/NAME`
   is also acceptable.
 - If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence
@@ -241,8 +242,11 @@ Edits an existing student in the list.
     - Examples: `2022-10-09 1100-1230`, `MON 1100-1230`, `Mon 1100-1230`
     - Invalid inputs: `2022-10-9 1100-1230`, `2022-10-09 1100-1000`
 
-    <div markdown="span" class="alert alert-danger">❗ **Caution:** If a chosen date is occupied by another student, a class conflict error will arise.
-    </div>
+<div markdown="span" class="alert alert-info">ℹ **Note:** If the end time is 12AM, it is referring to 12AM of the next day.
+</div>
+
+<div markdown="span" class="alert alert-danger">❗ **Caution:** If a chosen date is occupied by another student, a class conflict error will arise.
+</div>
 
 3. Amount Paid (`paid/`):
     - Amount Paid stands for the amount that has been paid by the Student.
