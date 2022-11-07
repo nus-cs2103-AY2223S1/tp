@@ -317,6 +317,16 @@ To change [application status](#application-status), see [`mark` command](#marki
   <span class="badge text-bg-warning">WARNING</span>
 </div>
 <div markdown="span">
+**Link formats**<br>
+See [Appendix: Link formats](#link-formats) for the link formats allowed. Not following these formats will result in an error.
+</div>
+</div>
+
+<div class="d-flex alert alert-warning">
+<div class="me-3">
+  <span class="badge text-bg-warning">WARNING</span>
+</div>
+<div markdown="span">
 **Date/time formats**<br>
 See [Appendix: Date/time formats](#datetime-formats) for the date/time formats allowed. Not following these formats will result in an error.
 </div>
@@ -364,6 +374,16 @@ Edits an existing internship application in FindMyIntern.
 <div markdown="span">
 **Changing application status**<br>
 To change [application status](#application-status), see [`mark` command](#marking-an-internship-application-status-mark).
+</div>
+</div>
+
+<div class="d-flex alert alert-warning">
+<div class="me-3">
+  <span class="badge text-bg-warning">WARNING</span>
+</div>
+<div markdown="span">
+**Link formats**<br>
+See [Appendix: Link formats](#link-formats) for the link formats allowed. Not following these formats will result in an error.
 </div>
 </div>
 
@@ -753,6 +773,7 @@ This section specifies **the input details** that you have to be aware of in Fin
 
 - [Field Constraints](#field-constraints)
 - [Application Status](#application-status)
+- [Link Formats](#link-formats)
 - [Date/Time Formats](#datetime-formats)
 
 ### Field Constraints
@@ -775,7 +796,7 @@ There are no constraints for a field if the constraints box is empty for that fi
     </tr>
     <tr>
       <td><code>l/LINK</code></td>
-      <td>Links must be of the format <code>HOSTNAME.PATH</code>, where both <code>HOSTNAME</code> and <code>PATH</code> are alphanumeric</td>
+      <td>See <a href="#link-formats">link formats</a></td>
     </tr>
     <tr>
       <td><code>d/DESCRIPTION</code></td>
@@ -841,6 +862,48 @@ Application status as an input field **must be one of the following**:
       <td><code>rejected</code></td>
       <td>You have rejected or been rejected for this internship</td>
       <td>&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="btn-group btn-group-sm mt-2 mb-4">
+<a href="#appendix" class="btn btn-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-up me-2"></i>Back to appendix</a>
+<a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
+</div>
+
+### Link Formats
+
+For `Link`, the format allowed is `[SCHEME][HOSTNAME.]SLD.TLD[.MORE_TLDS][/PATH]`.
+
+The constraints are:
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Field</th>
+      <th scope="col">Constraints</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>SCHEME</code></td>
+      <td><ul><li>Only <code>http://</code> and <code>https://</code> are allowed</li></ul></td>
+    </tr>
+    <tr>
+      <td><code>HOSTNAME</code></td>
+      <td><ul><li>Must only contain alphabets and numbers</li><li>Must be at least 2 characters and at most 8 characters long</li></lu></ul></td>
+    </tr>
+    <tr>
+        <td><code>SLD</code></td>
+        <td><ul><li>Must only contain alphabets, numbers and the character '-'</li><li>Must be at least 1 character and at most 63 characters long</li></ul></td>
+    </tr>
+    <tr>
+      <td><code>TLD</code></td>
+      <td><ul><li>Must only contain alphabets and numbers</li><li>Must be at least 2 characters and at most 8 characters long</li></lu></ul></td>
+    </tr>
+    <tr>
+        <td><code>PATH</code></td>
+        <td><ul><li>Must only contain alphabets, numbers and the characters '+&@#/%=~$.?'</li></ul></td>
     </tr>
   </tbody>
 </table>

@@ -69,9 +69,12 @@ Given below are my contributions to the project.
     * [#158](https://github.com/AY2223S1-CS2103T-T14-1/tp/pull/158)
     * [#161](https://github.com/AY2223S1-CS2103T-T14-1/tp/pull/161)
     * [#163](https://github.com/AY2223S1-CS2103T-T14-1/tp/pull/163)
+    * [#167](https://github.com/AY2223S1-CS2103T-T14-1/tp/pull/167)
     * [#168](https://github.com/AY2223S1-CS2103T-T14-1/tp/pull/168)
     * [#171](https://github.com/AY2223S1-CS2103T-T14-1/tp/pull/171)
     * [#172](https://github.com/AY2223S1-CS2103T-T14-1/tp/pull/172)
+    * [#177](https://github.com/AY2223S1-CS2103T-T14-1/tp/pull/177)
+    * [#179](https://github.com/AY2223S1-CS2103T-T14-1/tp/pull/179)
 
 * **Contributions beyond the project team**:
   * Reported bugs and provided suggestions for other teams: [Bugs](https://github.com/Puakii/ped/issues)
