@@ -52,8 +52,8 @@ This document is to assist you in using MODPRO smoothly and effectively to track
 - [Features](#features)
   - [Modules-Related Features](#modules-related-features)
     - [Adding a module](#adding-a-module)
-    - [Listing the modules](#listing-modules)
-    - [Finding a module](#finding-modules)
+    - [Listing the modules](#listing-the-modules)
+    - [Finding a module](#finding-a-module)
     - [Deleting a module](#deleting-a-module)
     - [Editing a module](#editing-a-module)
   - [Tasks-Related Features](#tasks-related-features)
@@ -62,9 +62,9 @@ This document is to assist you in using MODPRO smoothly and effectively to track
     - [Editing a task](#editing-a-task)
     - [Marking a task](#marking-a-task)
     - [Unmarking a task](#unmarking-a-task)
-    - [Listing the tasks](#listing-tasks)
+    - [Listing the tasks](#listing-the-tasks)
     - [Filtering the task list](#filtering-the-task-list)
-    - [Finding a task](#finding-tasks)
+    - [Finding a task](#finding-a-task)
     - [Sorting the task list](#sorting-the-task-list)
     - [Adding the tags to a task](#adding-a-tag-to-a-task)
     - [Editing the tags of a task](#editing-the-tags-of-a-task)
@@ -165,28 +165,29 @@ Examples:
 `m add c/cs2100 m/computer organisation mc/4` adds a module with the module
 code `cs2100`, the module name `computer organisation` and the modular credit `4`
 
-### Listing Modules
-Lists modules stored in module list.
+### Listing the modules
+Lists all modules in stored module list.
 
 Format: `m list`
-* Displays modules that are stored in the module list.
 
-Example:
-
-`m list` displays modules that are stored in the module list.
-
-### Finding module(s)
-Finds modules stored in the module list by the module code.
+### Finding a module
+Finds modules in the stored module list whose module code matches the `KEYWORD` partially or fully.
 
 Format: `m find KEYWORD`
-* Finds all modules whose module code contains the `KEYWORD` inputted by the user partially or fully and displays them as a list.
-* The `KEYWORD` is case-insensitive. For example, one can find a module with the module code of 'cs2030s' even if the `KEYWORD` inputted is ‘CS2030S’
+
+Parameters:
+* `KEYWORD` refers to the keyword inputted by the user.
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** `KEYWORD` is case-insensitive.
+</div>
 
 Examples:
 
-`m find cs` finds modules whose module code contains the `KEYWORD` 'cs' such as 'cs2030s', 'cs2040s'
+`m find CS` finds modules whose module code contains the `KEYWORD` 'CS' such as 'CS2030S', 'CS2040S'
 
-`m find 30` finds modules whose module code contains the `KEYWORD` '30' such as 'cs2030s'
+`m find 30` finds modules whose module code contains the `KEYWORD` '30' such as 'CS2030S'
 
 ### Deleting a module
 Deletes the specified module according to the index given.
@@ -325,15 +326,11 @@ Examples:
 :bulb: **Tip:** You can sort and filter tasks based on their completion status. The percentage of completed tasks are also shown for each exam and module. 
 </div>
 
-### Listing Tasks
-Lists tasks stored in task list
+### Listing the tasks
+Lists all tasks in the stored task list
 
 Format: `t list`
-* Displays tasks that are stored in the task list
 
-Example:
-
-`t list` displays tasks that are stored in the task list
 
 ### Filtering the task list
 Filters the task list based on module code, completion status, and/or link status.
@@ -351,18 +348,24 @@ Examples:
 
 `t filter l/n` filters out all tasks that are currently not linked to any exam.
 
-### Finding task(s)
-Finds tasks stored in the task list by the task's description.
+### Finding a task
+Finds tasks in the stored task list whose task description matches the `KEYWORD` partially or fully.
 
 Format: `t find KEYWORD`
-* Finds all tasks whose task description contains the `KEYWORD` inputted by the user partially or fully and displays them as a list.
-* The `KEYWORD` is case-insensitive. For example, one can find a task with the task description of 'homework1' even if the `KEYWORD` inputted is ‘HOMEWORK1’
+
+Parameters:
+* `KEYWORD` refers to the keyword inputted by the user.
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** `KEYWORD` is case-insensitive.
+</div>
 
 Examples:
 
-`t find work` finds tasks that contain the `KEYWORD` 'work' such as 'homework1', 'homework2', 'worktodo'
+`t find work` finds tasks that contain the `KEYWORD` 'work' such as 'homework one', 'homework two', 'worktodo'
 
-`t find do paper` finds tasks that contain the `KEYWORD` 'do paper', such as 'do paper 1', 'do paper 2'
+`t find do paper` finds tasks that contain the `KEYWORD` 'do paper', such as 'do paper one', 'do paper two'
 
 ### Sorting the task list
 Sorts the tasks in the task list based on the criteria specified
@@ -481,52 +484,77 @@ Example:
 ## Exams-related Features
 
 ### Adding an exam
-Adds exam into exam list. 
+Adds an exam into the stored exam list.
 
 Format: `e add m/MODULE ex/EXAM_DESCRIPTION ed/EXAM_DATE`
 
-* Adds an exam to the exam list.
-* `MODULE` refers to the module code of the module of the exam
-* `EXAM_DESCRIPTION` refers to the description of the exam
-* `EXAM_DATE` refers to the date of the exam
-* The exam cannot be added if it is the same exam as an existing exam in the exam list. Otherwise, an error message will be displayed.
-* `MODULE` has to exist in the module list and be a valid module code with at least 6 characters long with the first two being alphabetic characters. Otherwise, an error message will be displayed. 
-* `EXAM_DESCRIPTION` should not be empty. Otherwise, an error message will be displayed to the user. 
-* `EXAM_DATE` must be in the format `DD-MM-YYYY`, otherwise an error message will be shown. For example, 2022-12-28, 20-13-2022 are not in `DD-MM-YYYY` format
-* `EXAM_DATE` must not be earlier than today's date, otherwise an error message will be shown. For example, 20-08-2022 is an invalid input if the current date is 26-10-2022.
+Parameters:
+* `MODULE` refers to the module code of the module of the exam to be added.
+* `EXAM_DESCRIPTION` refers to the description of the exam to be added.
+* `EXAM_DATE` refers to the date of the exam to be added.
 
-Examples:
+<div markdown="span" class="alert alert-info">
 
-`e add m/cs2030s ex/midterms ed/20-11-2022` adds the exam with the exam module as 'cs2030s',
+:information_source: **Note:** `MODULE` is case-insensitive.
+</div>
+
+Restrictions:
+* `MODULE`
+  * `MODULE` should be at least 6 characters long.  
+  * The first two characters of `MODULE` should be alphabetical and the remaining characters should be alphanumeric. 
+  * `MODULE` should be the module code of an existing module in the stored module list.
+* `EXAM_DESCRIPTION` should not be empty.
+* `EXAM_DATE` should be in the format DD-MM-YYYY and not earlier than the current date
+* The exam to be added should not be the same as any existing exam in the stored exam list.
+
+Example:
+
+`e add m/CS2030S ex/midterms ed/20-11-2022` adds the exam with the exam module as 'CS2030S',
 exam description as 'midterms', exam date as '20-11-2022' into the exam list. 
 
 
 ### Editing an exam
-Edits the specified exam by updating the existing values to the input values.
+Edits the specified exam, by updating the existing values to the input values.
    
-Format: `e edit INDEX (must be a positive integer) [m/MODULE]* [ex/EXAM_DESCRIPTION]* [ed/EXAM_DATE]*`
-* Edits the exam at the specified INDEX in the exam list.
-* `MODULE` refers to the module code of the module of the exam 
-* `EXAM_DESCRIPTION` refers to the description of the exam
-* `EXAM_DATE` refers to the date of the exam
-* `INDEX` must be a positive integer 1, 2, 3, … 
-* If `INDEX` is a non-positive or more than the number of exams in the exam list, an error message will be displayed. 
-* The exam cannot be edited if it is the same exam as an existing exam in the exam list. An error message will be displayed to inform the user that the exam already exists in the exam list. 
-* At least one optional field of the exam to edit must be provided. Otherwise, an error message will be shown.
-* `MODULE` has to exist in the module list and be a valid module code with at least 6 characters long with the first two being alphabetic characters. Otherwise, an error message will be displayed.
-* `EXAM_DESCRIPTION` should not be empty. Otherwise, an error message will be displayed to the user. 
-* `EXAM_DATE` must be in the format `DD-MM-YYYY`, otherwise an error message will be shown. For example, 2022-12-28, 20-13-2022 are not in `DD-MM-YYYY` format
-* `EXAM_DATE` must not be earlier than today's date, otherwise an error message will be shown. For example, 20-08-2022 is an invalid input if the current date is 26-10-2022.
+Format: `e edit INDEX [m/MODULE]* [ex/EXAM_DESCRIPTION]* [ed/EXAM_DATE]*`
+
+Parameters
+* `INDEX` refers to the index number (shown in the displayed exam list) of the exam to be edited.
+* `MODULE` refers to the module code of the module that will replace the existing module of the exam specified.
+* `EXAM_DESCRIPTION` refers to the exam description that will replace the existing exam description of the exam specified.
+* `EXAM_DATE` refers to the exam date that will replace the existing exam date of the exam specified.
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** `MODULE` is case-insensitive.
+</div>
+
+Restrictions:
+* `INDEX`
+   * `INDEX` should be an integer greater than 0 and less than 2147483648 
+   * `INDEX` should not be more than the number of exams in the stored exam list.
+* `MODULE`
+   * `MODULE` should be at least 6 characters long. 
+   * The first two characters of `MODULE` should be alphabetical and the remaining characters should be alphanumeric.
+   * `MODULE` should be the module code of an existing module in the stored module list.
+* `EXAM_DESCRIPTION` should not be empty.
+* `EXAM_DATE` should be in the format DD-MM-YYYY and not earlier than the current date 
+* The input values should not be the same as existing values. 
+* The edited exam should not be the same as any existing exam in the stored exam list.
+
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Warning:** If the exam is linked to some tasks, and the module of the exam is changed, the tasks will be unlinked from the exam.
+</div>
 
 Examples:
 
 `e edit 1 ex/finals ed/20-12-2022` changes the exam description of the first exam in the exam list to ‘finals’ and the exam date to ‘20-12-2022’.
 
-`e edit 2 m/cs2030s ex/midterms ed/22-12-2022` changes the exam description of the second exam in the exam list to ‘midterms’, the exam module to ‘cs2030s’ and the exam date as ‘22-12-2022’.
-<div markdown="span" class="alert alert-info">
+`e edit 2 m/CS2030S ex/midterms ed/22-12-2022` changes the exam description of the second exam in the exam list to ‘midterms’, the exam module to ‘CS2030S’ and the exam date as ‘22-12-2022’.
 
-:information_source: **Note:** If the module of the exam is edited, and the exam is linked to some tasks, the tasks would be unlinked to the exam.
-</div>
+
+
 
 
 ### Deleting an exam
