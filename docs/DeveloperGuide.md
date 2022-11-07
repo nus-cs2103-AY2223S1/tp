@@ -238,7 +238,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Aspect: How add item executes:**
 
-* **Alternative 1 (current choice): ** User inputs all required fields in a single input
+* **Alternative 1 (current choice):** User inputs all required fields in a single input
   * Pros: easier to implement
   * Cons: user input is very long and may be more prone to typos
 
@@ -929,14 +929,59 @@ testers are expected to do more *exploratory* testing.
 ### Deleting an order
 
 1. Deleting an order while all orders are being shown 
-   1. Prerequisites: List all orders using the `listo` command. Multiple orders in the list. 
-   2. Test case: `deleteo 1` <br>
+   * Prerequisites: List all orders using the `listo` command. Multiple orders in the orders list. 
+   * Test case: `deleteo 1` <br>
    Expected: First order is deleted from the list. Details of the deleted order shown in the status message. 
-   3. Test case: `deleteo 0` <br>
+   * Test case: `deleteo 0` <br>
    Expected: No order is deleted. Error details shown in the status message. 
-   4. Other incorrect delete commands to try: `deleteo`, `deleteo x`, `...` (where x is larger than the list size) <br>
+   * Other incorrect delete commands to try: `deleteo`, `deleteo x`, `...` (where x is larger than the list size) <br>
    Expected: Similar to previous.
-2. Deleting an order while 
+2. Deleting an order while only some orders are being shown 
+   * Prerequisites: Find orders using the `findo` keyword. For example, with the sample data loaded in TrackO, the 
+   command `findo i/pillow` can be used. A number of orders (less than total orders) in the orders list.
+   * Test case: `deleteo 1` <br> 
+   Expected: First order in the current list is deleted from the list. Details of the deleted order shown in the 
+   status message.
+   * Test case: `deleteo 0` <br>
+   Expected: No order is deleted. Error details shown in the status message.
+   * Other incorrect delete commands to try: `deleteo`, `deleteo x`, `...` (where x is larger than the current 
+   list size) <br>
+   Expected: Similar to previous.
+
+### Editing an order
+
+1. Editing an order while all orders are being shown
+   * Prerequisites: List all orders using the `listo` command. Multiple orders in the orders list.
+   * Test case with sample data: `edito 4 p/91234567` (Note: the order at the index must not be 
+   labelled as paid / delivered / completed) <br>
+     Expected: Phone number of the fourth order in the list is updated to `91234567`. Updated details of the edited 
+   order shown in the status message.
+   * Test case: `edito 0` <br>
+     Expected: No order is edited. Error details shown in the status message.
+   * Other incorrect edit commands to try: `edito`, `edito x`, `...` (where x is the index of a completed order) <br>
+     Expected: Similar to previous.
+
+### Marking an order
+
+1. Marking an order while all orders are being shown
+   * Prerequisites: List all orders using the `listo` command. Multiple orders in the orders list.
+   * Test case with sample data: `marko 3 -p` (Note: the order at the index must not already be paid) <br>
+     Expected: First order in the list is marked as paid. Details of the marked order shown in the status message.
+   * Test case: `marko 0 -p` <br>
+     Expected: No order is marked. Error details shown in the status message.
+   * Other incorrect mark commands to try: `marko`, `marko x`, `...` (where x is less than the size of the list) <br>
+     Expected: Similar to previous.
+2. Marking an order while only some orders are being shown
+   * Prerequisites: Find orders using the `findo` keyword. For example, with the sample data loaded in TrackO, the
+     command `findo i/mattress` can be used. A number of orders (less than total orders) in the orders list.
+   * Test case: `marko 1 -d` <br>
+     Expected: First order in the current list is marked as delivered. Details of the marked order shown in the
+     status message.
+   * Test case: `marko 0 -d` <br>
+     Expected: No order is marked. Error details shown in the status message.
+   * Other incorrect mark commands to try: `marko`, `marko x -p`, `...` (where x is the index of an order already paid)
+   <br>
+     Expected: Similar to previous.
 
 ### Saving data
 
