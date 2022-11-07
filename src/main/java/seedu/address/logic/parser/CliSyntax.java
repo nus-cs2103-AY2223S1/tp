@@ -34,4 +34,8 @@ public class CliSyntax {
 
     /* Filtering Prefix */
     public static final Prefix PREFIX_KEYWORD = new Prefix("k/");
+
+    public static final Prefix PREFIX_FIND_ALL = new Prefix("-all");
+    public static final Prefix PREFIX_FIND_ANY = new Prefix("-any");
+
 }
