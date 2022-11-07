@@ -414,7 +414,7 @@ This is done by accessing the `UniqueRemarkList` of the focused client, and exec
 
 The following sequence diagram shows how the edit transaction operation works in Logic Manager:
 
-![EditRemarkSequenceDiagram](images/EditTransactionSequence.png)
+![EditRemarkSequenceDiagram](images/EditRemarkSequence.png)
 
 The activity diagram for this feature is the same as that of the [Editing client feature](#editing-client-feature)
 
