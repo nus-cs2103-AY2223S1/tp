@@ -34,10 +34,10 @@ public class FilterOrderCommandParserTest {
     public void parse_validArgs_returnsFilterOrderCommand() {
         String input = PREFIX_ORDER_ADDITIONAL_REQUESTS + "fluffy "
                 + PREFIX_ORDER_STATUS + "Delivering "
-                + PREFIX_ORDER_PRICE_RANGE + "10.1-59.4";
+                + PREFIX_ORDER_PRICE_RANGE + "10.1,59.4";
         String inputWithSpaces = "\n" + PREFIX_ORDER_ADDITIONAL_REQUESTS + "fluffy \t"
                 + PREFIX_ORDER_STATUS + "Delivering \n "
-                + PREFIX_ORDER_PRICE_RANGE + "10.1-59.4 \n";
+                + PREFIX_ORDER_PRICE_RANGE + "10.1,59.4 \n";
         FilterOrderCommand expectedCommand = new FilterOrderCommand(
                 new AdditionalRequestPredicate<>(Arrays.asList("fluffy")),
                 new OrderStatusPredicate<>(OrderStatus.DELIVERING),
@@ -111,8 +111,8 @@ public class FilterOrderCommandParserTest {
             }
         };
 
-        String input = " " + PREFIX_ORDER_PRICE_RANGE + "10.1-59.4";
-        String inputWithSpaces = "\n \t \n " + PREFIX_ORDER_PRICE_RANGE + "" + "\t 10.1-59.4 \n";
+        String input = " " + PREFIX_ORDER_PRICE_RANGE + "10.1,59.4";
+        String inputWithSpaces = "\n \t \n " + PREFIX_ORDER_PRICE_RANGE + "" + "\t 10.1,59.4 \n";
         FilterOrderCommand expectedCommand = new FilterOrderCommand(defaultPredicate, defaultPredicate,
                 new PriceRangePredicate<>(new Price(10.1), new Price(59.4)));
         try {

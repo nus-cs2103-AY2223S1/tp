@@ -536,7 +536,7 @@ public class PredicateParserTest {
         PriceRangePredicate<Order> priceRangePredicate = new PriceRangePredicate<>(lowerBound, upperBound);
 
         try {
-            String input = lowerBound.getPrice() + "-" + upperBound.getPrice();
+            String input = lowerBound.getPrice() + "," + upperBound.getPrice();
             Predicate<Order> result = PredicateParser.parseOrder(input, PREFIX_ORDER_PRICE_RANGE.getPrefix());
             assertEquals(result, priceRangePredicate);
         } catch (IllegalValueException e) {
