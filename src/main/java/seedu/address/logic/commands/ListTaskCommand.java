@@ -7,6 +7,7 @@ import java.util.Comparator;
 
 import seedu.address.model.Model;
 import seedu.address.model.task.DeadlineComparator;
+import seedu.address.model.task.DefaultComparator;
 import seedu.address.model.task.Task;
 
 /**
@@ -48,6 +49,7 @@ public class ListTaskCommand extends Command {
         if (comparator instanceof DeadlineComparator) {
             return MESSAGE_LIST_DEADLINE_SUCCESS;
         } else {
+            assert(comparator instanceof DefaultComparator);
             return MESSAGE_LIST_DEFAULT_SUCCESS;
         }
     }

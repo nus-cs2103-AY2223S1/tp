@@ -44,7 +44,7 @@ public class FindContactCommandParser implements Parser<FindContactCommand> {
                     keywordsSpaceSeparated.add(ParserUtil.parseName(keyword).toString());
                 }
             }
-            // ["name", "name name"] -> ["name", "name", "name"]
+            assert(!keywordsSpaceSeparated.isEmpty());
             return new FindContactCommand(new NameContainsKeywordsPredicate(keywordsSpaceSeparated));
 
         } else if (searchPrefix.equals(PREFIX_MODULE)) {
@@ -58,11 +58,12 @@ public class FindContactCommandParser implements Parser<FindContactCommand> {
                     keywordsSpaceSeparated.add(keyword);
                 }
             }
-            // ["mod1", "mod2 mod3"] -> ["mod1", "mod2", "mod3"]
+            assert(!keywordsSpaceSeparated.isEmpty());
             return new FindContactCommand(new ModuleTakenPredicate(keywordsSpaceSeparated));
 
         } else if (searchPrefix.equals(PREFIX_TASK)) {
             Index taskIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_TASK).get());
+            assert(taskIndex.getZeroBased() >= 0);
             return new FindContactCommand(new CanHelpWithTaskPredicate(taskIndex));
         } else {
 

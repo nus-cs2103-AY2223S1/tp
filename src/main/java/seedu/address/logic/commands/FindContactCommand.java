@@ -50,6 +50,7 @@ public class FindContactCommand extends Command {
         if (predicate instanceof CanHelpWithTaskPredicate) {
             CanHelpWithTaskPredicate taskPredicate = (CanHelpWithTaskPredicate) predicate;
             List<Task> lastShownList = model.getSortedTaskList();
+            assert(taskPredicate.getTaskIndex().getZeroBased() >= 0);
             if (taskPredicate.getTaskIndex().getZeroBased() >= lastShownList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
             }
