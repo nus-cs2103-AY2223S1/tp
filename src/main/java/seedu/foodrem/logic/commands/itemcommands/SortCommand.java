@@ -40,7 +40,9 @@ public class SortCommand extends Command {
     public CommandResult<String> execute(Model model) {
         requireNonNull(model);
         model.updateSortedItemList(comparator);
-        return CommandResult.from(String.format(Messages.MESSAGE_ITEMS_SORTED_OVERVIEW,
+        return CommandResult.from(String.format(model.getCurrentList().size() == 1
+                        ? Messages.MESSAGE_ITEM_SORTED_OVERVIEW
+                        : Messages.MESSAGE_ITEMS_SORTED_OVERVIEW,
                 model.getCurrentList().size()));
     }
 
