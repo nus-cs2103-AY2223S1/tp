@@ -10,7 +10,7 @@ Teacher’s Pet is a desktop application for managing contacts of students and c
 Given below are my contributions to the project.
 
 * **New Feature**: Added find by tag feature
-  * What it does: allows searching up of students based on their tags
+  * What it does: Allows searching up of students based on their tags.
   * Justification: This feature allows for users to find students based on tags which is an integral part of our
   application. Without this feature, the tags would be much less helpful.
   * Highlights: The user is able to input multiple tags in order to find students who contain more than one tag.
@@ -24,8 +24,8 @@ Given below are my contributions to the project.
   phone number.
 
 * **New Feature**: Add Schedule List Panel and styled UI
-  * What it does: Designed the UI to improve readability and user experience. Added Schedule List Panel in order to
-  display persistent schedule for ease of reference.
+  * What it does: Improve readability and user experience. Schedule List Panel display persistent schedule for ease of 
+  reference.
   * Justification: This feature speeds up the workflow of the user as they can reference the schedule list to know what
   students they have in the day and can quickly find out information like the phone, address and class date time of the
   student without searching the student up directly. Moreover, users are able to perform their other tasks and have a
@@ -33,7 +33,7 @@ Given below are my contributions to the project.
   * Highlights: The schedule list will refresh automatically whenever there are changes made to the student list panel.
 
 * **New Feature**: Attempted to add the ability to find the next available class **(not included in the final product)**
-  * What it does: outputs the next available class based on the specified time range and duration of class
+  * What it does: Outputs the next available class based on the specified time range and duration of class.
   * Justification: This feature is an integral part of this application as without it, it will be really tedious
     for the user to find an available class, and the schedule feature of the application will not be complete.
   * Highlights: Finding the next available class in the specified requirements is much faster than manually checking
