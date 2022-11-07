@@ -10,7 +10,7 @@ Class Physician
 Class NextOfKin
 Class Person
 Class Address
-Class DateTime
+Class DateSlot
 Class Gender
 Class Email
 Class Name
@@ -32,7 +32,7 @@ Person *--> "1" Gender
 Person *--> "1" Address
 Person *--> "*" Tag
 Patient .up.|> Person
-Patient *--> "*" DateTime
+Patient *--> "*" DateSlot
 Patient *--> "0..1" Physician
 Patient *--> "0..1" NextOfKin
 
