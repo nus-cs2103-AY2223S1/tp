@@ -2,8 +2,20 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-{:toc}
+
+<h2>Table of Contents</h2>
+
+- **[Acknowledgements](#acknowledgements)**
+- **[Setting up, getting started](#setting-up-getting-started)**
+- **[Design](#design)**
+   * [Architecture](#architecture)
+   * [UI Component](#ui-component)
+   * [Logic Component](#logic-component)
+   * [Model Component](#model-component)
+   * [Storage Component](#storage-component)
+- **[Implementation](#implementation)**
+   * [Display of person and task list](#display-of-person-and-task-list)
+  
 
 --------------------------------------------------------------------------------------------------------------------
 
