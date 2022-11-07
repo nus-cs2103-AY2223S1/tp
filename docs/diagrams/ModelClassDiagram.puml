@@ -26,6 +26,7 @@ Class TaskList
 Class Task
 Class Link
 
+Class "<<ObservableList>>\nisHome" as isHome
 }
 
 Class HiddenOutside #FFFFFF
@@ -40,12 +41,12 @@ ModelManager -left-> "1" AddressBook
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-ModelManager -->" ~* filtered" Person
-ModelManager -->"~* filtered" Module
-
+ModelManager -->"~* filtered" Person : " "
+ModelManager -->"~* filtered" Module : " "
 
 AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
+UniquePersonList --> " ~* all" Person
+
 AddressBook *--> "1" UniqueModuleList
 UniqueModuleList --> "~* all" Module
 
@@ -55,7 +56,7 @@ Person *--> "1" Phone
 Module -right--> "*" Person :> contains
 
 Module *--> "1" ModuleCode
-Module *--> "1" ModuleTitle
+Module *--> "0..1" ModuleTitle
 Module *--> "1" TaskList
 TaskList --> "*" Task :> contains
 Module *--> "*" Link
@@ -68,4 +69,5 @@ ModuleCode -[hidden]right-> ModuleTitle
 Email -[hidden]right-> Name
 Name -[hidden]right-> Phone
 
+ModelManager -> "1" isHome
 @enduml
