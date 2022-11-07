@@ -44,7 +44,6 @@ Here are some symbols used throughout this user guide:
 | :information_source: | Important things you should take note of |
 | :bulb:               | Useful information                       |
 | :exclamation:        | Warning                                  |
-| :wrench:             | Help with common issues                  |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -127,6 +126,9 @@ The app comes with some sample patients by default. Type `clear` in the command 
 {:refdef: style="text-align: center;"}
 ![Ui](images/Ui.png)
 {: refdef}
+<div align="center"><i> UniNurse user interface </i></div>
+
+<br>
 
 5. Type your command in the command box and hit `Enter` to execute the command. Here are some example commands
    you can try:
@@ -357,6 +359,8 @@ Format: **`help`**
 {: refdef}
 <div align="center"><i> Help window displayed after running the </i><code>help</code><i> command </i></div>
 
+<br>
+
 [Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
 
 <br>
@@ -406,6 +410,8 @@ Examples:
   * Address: `Jane street blk 420 #01-69`
   * Medical conditions: `Dementia`, `High blood pressure`
 
+<br>
+
 [Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
 
 <br>
@@ -445,6 +451,8 @@ Example:
 
 * `edit -p 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
 
+<br>
+
 [Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
 
 <br>
@@ -466,6 +474,8 @@ Examples:
 You can use the `undo` command to undo an accidental `delete` command.
 
 </div>
+
+<br>
 
 [Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
 
@@ -997,6 +1007,8 @@ You can view a list of all patients using the `list` command.
 
 Format: `list`
 
+<br>
+
 [Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
 
 <br>
@@ -1015,6 +1027,8 @@ Examples:
 ![result for `focus -p 2`](images/focusBerniceResult.png)
 {: refdef}
 <div align="center"><i> Patient details displayed after running the </i><code>focus -p 2</code><i> command </i></div>
+
+<br>
 
 [Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
 
@@ -1054,6 +1068,8 @@ Examples:
 {: refdef}
 <div align="center"><i> Patient list displayed after running the </i><code>find alice meier</code><i> command </i></div>
 
+<br>
+
 [Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
 
 <br>
@@ -1080,6 +1096,8 @@ Examples:
 ![result for `view 25-11-22`](images/viewSpecificDayResult.png)
 {: refdef}
 <div align="center"><i> Patient and task list displayed after running the </i><code>view 25-11-22</code><i> command </i></div>
+
+<br>
 
 [Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
 
@@ -1133,6 +1151,8 @@ Examples:
 {: refdef}
 <div align="center"><i> Patient and task list displayed after running the </i><code>view -p 2</code><i> command </i></div>
 
+<br>
+
 [Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
 
 <br>
@@ -1158,7 +1178,8 @@ Examples:
 
 :bulb: **Tip:**
 
-This command replaces `PATIENT_INDEX` in the [previous command](#viewing-all-tasks-of-a-patient-view--p) with the special flag `--all`.
+This command replaces `PATIENT_INDEX` in the [previous command](#viewing-all-tasks-of-a-patient-view--p) with the special flag<br>
+`--all`.
 
 </div>
 
@@ -1206,6 +1227,10 @@ Example:
 
 <br>
 
+[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+
+<br>
+
 ### Clearing all entries: `clear`
 
 You can clear all patient entries in the displayed patient list with the `clear` command.
@@ -1224,6 +1249,8 @@ You can use the `undo` command to undo an accidental `clear` command.
 
 </div>
 
+<br>
+
 [Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
 
 <br>
@@ -1234,6 +1261,8 @@ You can exit UniNurse with the `exit` command.
 
 Format: **`exit`**
 
+<br>
+
 [Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
 
 <br>
@@ -1242,6 +1271,8 @@ Format: **`exit`**
 
 UniNurse automatically saves its data in the hard disk after any command that changes the data.
 You do not need to save manually.
+
+<br>
 
 [Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
 
@@ -1267,6 +1298,8 @@ data file at the next run.
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
 the data of your previous UniNurse home folder.
+
+<br>
 
 [Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
 
