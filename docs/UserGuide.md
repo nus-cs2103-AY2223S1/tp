@@ -21,8 +21,9 @@ This section aims to help you navigate the user guide.
 2. [Section 3, Quick start](#3-quick-start) has been provided to help you set up **Financial Advisor Planner**.
 3. [Section 4, Prefixes](#4-prefixes) has been provided where the prefixes are documented.
 4. [Section 5, Features](#5-features) has been provided where the main features and their commands are documented.
-5. [Section 7, Command Summary](#7-command-summary) has been provided where the commands are summarised in a list for easy reference.
-6. [Section 8, Glossary](#8-glossary) has been provided where certain terms that are used in this document are defined.
+5. [Section 6, FAQ](#6-faq) has been provided where commonly asked questions are answered.
+6. [Section 7, Command Summary](#7-command-summary) has been provided where the commands are summarised in a list for easy reference.
+7. [Section 8, Glossary](#8-glossary) has been provided where certain terms that are used in this document are defined.
 
 ### 2.2 Tips for reading the User Guide
 
@@ -463,7 +464,7 @@ _Details coming soon ..._
 **Q**: Why do you allow duplicate email and phone number in your add command, given that there won't be two people with the same email or number?<br>
 **A**: Currently we only have duplicate checks for name. We will implement duplicate checks for email and phone number in the future.<br>
 **Q**: Why can't I add appointments even though I typed the date_time correctly?<br>
-**A**: Check that you have typed the date_time in the correct case with the correct spacing. We apologise for the strict requirement and we promise we are working on relaxing the requirements!<br>
+**A**: Check that Month, Day, Hour, Minutes is a 2 digit number and Year is a 4 digit number!<br>
 
 --------------------------------------------------------------------------------------------------------------------
 
