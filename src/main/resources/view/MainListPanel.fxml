@@ -4,7 +4,7 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<VBox xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
   <ListView fx:id="mainListView" style="-fx-background-radius: 30px;" VBox.vgrow="ALWAYS">
       <VBox.margin>
          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
