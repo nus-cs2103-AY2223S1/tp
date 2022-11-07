@@ -263,6 +263,10 @@ Step 2. The user executes `edit 3 st/Java-JavaScript` to edit the skill tag `Jav
 
 Step 3. The user executes `deleteTag 3 st/JavaScript dt/Bachelors` to delete the skill tag `JavaScript` and degree tag `Bachelors` of the 3rd candidate in the displayed list of candidates. After being parsed by the `DeleteTagCommand` to a `DeleteTagCommand`, the `DeleteTagCommand` initializes a new `UniqueTagTypeMap` with the existing `UniqueTagTypeMap` of candidate `3` by invoking the `UniqueTagTypeMap#setTagTypeMap()` and removes the tags to be deleted by invoking `UniqueTagTypeMap#removeTags()`. After this, a new `Person` is created with the `updatedTags` and all other attributes same as that of the existing `Person`, and the `ModelManager#setPerson` is invoked to modify the addressBook with the updated candidate.
 
+The following sequence diagram shows how the `addTag` command operation works. The `deleteTag` command also operates in a similar fashion.
+
+![AddTagCommandSequenceDiagram](images/AddTagCommandSequenceDiagram.png)
+
 #### Design Considerations:
 
 **Aspect: How the addressBook is updated:**
@@ -314,7 +318,7 @@ The proposed `Status` feature is added as an attribute under the `Person` class.
 A `Status` class is created, and is implemented via a `String`. The String can only take in alphanumeric inputs.
 
 Some example statuses include:
-- Application Received 
+- Application Received
 - OA in Progress
 - Shortlisted for Interview
 - Accepted
@@ -463,12 +467,10 @@ It is designed to take in a String, as Commands are parsed as a String. However,
 
 The following sequence diagram shows how the `Export` command operation works for a **CSV** file:
 
-<center>
 
 ![ExportSequenceDiagram](images/ExportSequenceDiagram.png)
 ![ExportToCSVRefSequenceDiagram](images/ExportToCSVRefSequenceDiagram.png)
 
-</center>
 
 ##### Import
 * In order to import from a CSV file, the `Import` command creates and uses an instance of the `CSVReader` class from the `OpenCSV` package to read the CSV file line by line. 
@@ -478,12 +480,10 @@ The following sequence diagram shows how the `Export` command operation works fo
 
 The following sequence diagram shows how the `Import` command operation works for a **CSV** file:
 
-<center>
 
 ![ImportSequenceDiagram](images/ImportSequenceDiagram.png)
 ![ImportFromCsvRefSequenceDiagram](images/ImportFromCsvRefSequenceDiagram.png)
 
-</center>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the user executes the `import` or `export` command through the GUI Window, internally the `import` or `export` command is invoked, by appending `import ` or `export ` before the file path specified in the GUI Window respectively, and then passing the resultant `String` as an argument while invoking the `MainWindow#executeCommand()` method.
 </div>
