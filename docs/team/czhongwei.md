@@ -31,7 +31,16 @@ Given below are my contributions to the project.
 
 
 * **Contributions to the DG:**
-    * to be added soon
+  * Added content to `find` feature section:
+    * Brief description, explanation and design considerations
+    * Sequence diagram
+  * Added more User stories
+  * Added more Non-Functional Requirements
+  * Added more instructions for manual testing
+  * Did final polishing and checks for UG:
+    * Language use
+    * Spelling mistakes
+    * Formatting
 
 
 * **Review/mentoring contributions**:
