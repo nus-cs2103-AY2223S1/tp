@@ -52,11 +52,11 @@ Already done with the set-up? Jump straight to the [features](#features) section
     * [Summary of entries:](#summary-of-entries)
         * [Summary of all entries in the currently shown list](#summary-of-all-entries-in-the-currently-shown-list)
         * [Summary of all entries in the specified month](#summary-of-all-entries-in-the-specified-month)
-    * [View entries by category:](#view-entries-by-category)
-    * [View entries by month:](#view-entries-by-month)
+    * [View entries by category](#view-entries-by-category)
+    * [View entries by month](#view-entries-by-month)
     * [Command summary table](#command-summary-table)
-    * [Clearing all entries:](#clearing-all-entries)
-    * [Exiting the program:`](#exiting-the-program)
+    * [Clearing all entries](#clearing-all-entries)
+    * [Exiting the program](#exiting-the-program)
     * [Saving the data](#saving-the-data)
     * [Editing the data file](#editing-the-data-file)
 * [FAQ](#faq)
@@ -114,8 +114,7 @@ this [link](https://www.freecodecamp.org/news/command-line-for-beginners/) to le
     2. Run the following command: `java -version`
     3. If Java 11 is not installed, please download Java 11
        from [Oracle](https://www.oracle.com/java/technologies/downloads/#java11). For Mac users, you may use
-       the [Azul build of OpenJDK 11 (JDK FX) version](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx)
-       .
+       the [Azul build of OpenJDK 11 (JDK FX) version](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx).
 2. Download the latest [pennywise.jar](https://github.com/AY2223S1-CS2103T-W17-2/tp/releases) application file.
 3. Copy the file to the folder you want to use as the home folder for PennyWise.
 4. Double-click the file to start the app. You should see a user interface similar to what is shown below in a few
