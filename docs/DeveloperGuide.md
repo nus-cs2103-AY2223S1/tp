@@ -878,9 +878,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Java 11**: Eleventh version of the Java Platform, Standard Edition Development Kit (JDK). SectresBook requires this to be installed to run.
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Note**: A segment of text that describes a task to be done, coupled with tags that reference people in the SectresBook who are associated with the given task.
 * **Secretary**: A person acting as overseers for the administrative functions of a club.
+* **Treasurer**: A club member that manages and accounts for all the funds of a club.
+* **Tag**: A label that groups related people or notes together, such that they can be referred to as a single encapsulated entity specified by the tag.
+* **Graphical User Interface (GUI)**: An image-based interface that is more visually appealing than a command-line interface and encapsulates information through the use of icons and images.
+* **Command Line Interface (CLI)**: A text-based interface that receives typed commands as input and returns textual feedback as output.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
