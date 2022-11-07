@@ -29,7 +29,7 @@ As of 3/11/2022, I have contributed 3572 LoC. [RepoSense link](https://nus-cs210
 * User Guide: to be added soon
   * Added documentation for the `autocomplete` feature.
   * Update documentation for `todo show` command.
-* Developer Guide: 
+* Developer Guide:
   * Added implementation details for the `autocomplete` feature.
 
 **Community**:
