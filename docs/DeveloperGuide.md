@@ -56,7 +56,9 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/
+
+/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -1240,14 +1242,14 @@ testers are expected to do more *exploratory* testing.
 
     1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
     1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
     1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. Shut down application
+3. Shut down application
 
     1. Prerequisites: Application must currently be running.
     
@@ -1256,26 +1258,93 @@ testers are expected to do more *exploratory* testing.
 
     2. Test case: Close the application using the command `exit`.
        Expected: The application exits.
+
+### Adding a module
+
+1. Adding a module while all modules are being shown
+
+    1. Prerequisites: 
+       - All modules are being shown (i.e. run `list module -a` first).
+       - You are not currently `cd`'d into a module (`cd ..` if you are).
+       - The module does not already exist in the module list.
+
+    2. Test case: `add module CS2103T`<br>
+       Expected: Module CS2103T is being added to the module list. Details of the added module shown in the status message.
+
+    3. Test case: `add module CS2100 -n "Computer Organisation" -cr 4`<br>
+       Expected: Module CS2100 is being added to the module list. Details of the added module shown in the status message.
+
+    4. Test case: `CS2103T` already exists and you input `add module CS2103T`<br>
+       Expected: No module is added. Error stating module already exists appears is displayed.
+
+    5. Test case: `add module CS2100 -n "Computer Organisation"`<br>
+       Expected: No module is added. Error showing command input syntax displayed. 
+
+### Removing a module
+
+1. Removing a module while all modules are being shown
+
+    1. Prerequisites:
+        - All modules are being shown (i.e. run `list module -a` first).
+        - You are not currently `cd`'d into a module (`cd ..` if you are).
+        - The module exists in the module list.
+
+    2. Test case: `remove mod CS2103T` when `CS2103T` does not exist in the module list.<br>
+       Expected: Module CS2103T is being removed from the module list. Tasks associated with the module are also removed
+       from the task book. Details of the deleted task shown in the status message.
+
+    3. Test case: `remove mod CS2100` when `CS2100 does not exist in the modules list<br>
+       Expected: No module is deleted. Error stating that module does not exist is displayed.
+
+### Editing a module
+
+1. Removing a module while all modules are being shown
+
+    1. Prerequisites:
+        - All modules are being shown (i.e. run `list module -a` first).
+        - You are not currently `cd`'d into a module (`cd ..` if you are).
+        - The module exists in the module list.
+
+    2. Test case: `edit module CS2103T -c CS2100` where `CS2103T` exists and `CS2100` does not exist in module list.<br>
+       Expected: Module with code CS2103T is replaced with CS2100. Message indicating a successful edit is displayed.
+
+    3. Test case: `edit module MA1521 -n "calculus"` when `MA1521` does not exist in module list.<br>
+       Expected: No module is edited. Error stating that module does not exist is displayed.
+
+    4. Test case: `edit module MA1521 -d 2000-12-1` when `MA1521` exists in module list.<br>
+       Expected: No module is edited. Error containing proper command syntax is displayed.
        
-### Removing a task
+### Changing the currently selected module
 
-1. Removing a task while all tasks are being shown
-    1. Prerequisites: All tasks (at least one, done and undone) are shown, and user is not currently `cd`'ed into a module.
+1. **Changing the currently selected module using the `cd` command**
 
-    2. Test case: `remove task 1`<br>
-       Expected: First task (as displayed on the UI) is deleted from the list. 
-       Details of the deleted task shown in the status message.
+    1. Prerequisites: A module with module code `CS2109S` exists.
+   
+    1. Test case: `cd CS2109S`<br>
+       Expected: The module with code `CS2109S` is shown with the `selected` tag in the UI, and only tasks with module code `CS2109S` are shown in the UI.
+   
+    1. Test case: `cd ..`<br>
+       Expected: The `selected` tag is removed from the module with code `CS2109S` in the UI, and the UI now displays tasks belonging to all modules.
 
-    3. Test case: `remove task 0`<br>
-       Expected: No task is deleted. Error details shown in the status message. Status bar remains the same.
-       
-    4. Test case: `remove task -1`<br>
-       Expected: No task is deleted. Error details shown in the status message. Status bar remains the same.
+1. **Using the `cd ..` command while no current module is set**
 
-    4. Other incorrect remove commands to try: `remove`, `remove -t x`, `...` (where x is larger than the displayed 
-       list size)<br>
-       Expected: Similar to previous.
+    1. Prerequisites: No current module is set, i.e. The user is not currently `cd`'d into any module.
 
+    1. Test case: `cd ..`<br>
+       Expected: No change to modules/tasks, an error message "Already showing all modules" is displayed to the user.
+
+1. **Using the `cd` command with an invalid module code**
+
+    1. Test case: `cd morethannine`, or any other module code that does not conform to specifications (between 6 and 9 alphanumeric characters)<br>
+       Expected: The command is unsuccessful, no changes to modules/tasks, and an error message including the module code constraints is displayed to the user.
+
+1. **Using the `cd` command with a valid module code that does not exist**
+
+    1. Prerequisites: There does not exist a module with code `CS1010`.
+
+    1. Test case: `cd CS1010`<br>
+       Expected: The command is unsuccessful, no changes to modules/tasks, and an error message indicating that the module does not exist is displayed to the user.
+    
 ### Adding a task
 
 1. Adding a task while not cd-ed into a module
@@ -1321,37 +1390,47 @@ testers are expected to do more *exploratory* testing.
        Expected: Task is added to the task list. Details of the added task shown in the status message, displayed task
        count of module `CS2103T` and active tasks are incremented by one.
        
-### Changing the currently selected module
+### Removing a task
 
-1. **Changing the currently selected module using the `cd` command**
+1. Removing a task while all tasks are being shown
+    1. Prerequisites: All tasks (at least one, done and undone) are shown, and user is not currently `cd`'ed into a module.
 
-    1. Prerequisites: A module with module code `CS2109S` exists.
-   
-    1. Test case: `cd CS2109S`<br>
-       Expected: The module with code `CS2109S` is shown with the `selected` tag in the UI, and only tasks with module code `CS2109S` are shown in the UI.
-   
-    1. Test case: `cd ..`<br>
-       Expected: The `selected` tag is removed from the module with code `CS2109S` in the UI, and the UI now displays tasks belonging to all modules.
+    2. Test case: `remove task 1`<br>
+       Expected: First task (as displayed on the UI) is deleted from the list. 
+       Details of the deleted task shown in the status message.
 
-1. **Using the `cd ..` command while no current module is set**
+    3. Test case: `remove task 0`<br>
+       Expected: No task is deleted. Error details shown in the status message. Status bar remains the same.
+       
+    4. Test case: `remove task -1`<br>
+       Expected: No task is deleted. Error details shown in the status message. Status bar remains the same.
 
-    1. Prerequisites: No current module is set, i.e. The user is not currently `cd`'d into any module.
+    4. Other incorrect remove commands to try: `remove`, `remove -t x`, `...` (where x is larger than the displayed 
+       list size)<br>
+       Expected: Similar to previous.
 
-    1. Test case: `cd ..`<br>
-       Expected: No change to modules/tasks, an error message "Already showing all modules" is displayed to the user.
+### Editing a task
 
-1. **Using the `cd` command with an invalid module code**
+1. Editing a task while all tasks are being shown
 
-    1. Test case: `cd morethannine`, or any other module code that does not conform to specifications (between 6 and 9 alphanumeric characters)<br>
-       Expected: The command is unsuccessful, no changes to modules/tasks, and an error message including the module code constraints is displayed to the user.
+2. Removing a module while all modules are being shown
 
-1. **Using the `cd` command with a valid module code that does not exist**
+    1. Prerequisites:
+        - All tasks are being shown (i.e. run `list task -a` first).
+        - The task exist in the task book.
 
-    1. Prerequisites: There does not exist a module with code `CS1010`.
+    2. Test case: `edit task 1 -d "return book"` where `1` is a valid index.<br>
+       Expected: The task with index 1 in the current task book is edited to have a new description. Message indicating
+       a successful task edit is displayed.
 
-    1. Test case: `cd CS1010`<br>
-       Expected: The command is unsuccessful, no changes to modules/tasks, and an error message indicating that the module does not exist is displayed to the user.
+    3. Test case: `edit task 1 -p high` where `1` is a valid index.<br>
+       Expected: The task with index 1 in the current task book is edited to have a new priority. Depending on what the
+       other tasks parameters are, the task may change index to showcase the change in priority. Message indicating
+       a successful task edit is displayed.
 
+    4. Test case: `edit task 3 -p low` where `3` is an invalid index.<br>
+       Expected: No task is edited. Error indicating the valid index range is displayed.
+       
 ### Marking tasks as done (and undone)
 
 1. **Marking a task as done:**
