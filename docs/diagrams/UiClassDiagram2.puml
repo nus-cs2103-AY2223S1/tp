@@ -1,0 +1,65 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR_T4
+skinparam classBackgroundColor UI_COLOR
+
+package UI <<Rectangle>>{
+Class "<<interface>>\nUi" as Ui
+Class "{abstract}\nUiPart" as UiPart
+Class UiManager
+Class MainWindow
+Class StudentListPanel
+Class StudentCard
+Class TutorListPanel
+Class TutorCard
+Class TuitionClassListPanel
+Class TuitionClassCard
+Class NextOfKinDescription
+}
+
+package Model <<Rectangle>> {
+Class HiddenModel #FFFFFF
+}
+
+package Logic <<Rectangle>> {
+Class HiddenLogic #FFFFFF
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Ui
+
+UiManager .left.|> Ui
+UiManager -down-> "1" MainWindow
+MainWindow *-down-> "1" StudentListPanel
+MainWindow *-down-> "1" TutorListPanel
+MainWindow *-down-> "1" TuitionClassListPanel
+
+StudentListPanel -down-> "*" StudentCard
+TutorListPanel -down-> "*" TutorCard
+TuitionClassListPanel -down-> "*" TuitionClassCard
+
+StudentCard -down-> "0..1" NextOfKinDescription
+
+MainWindow -left-|> UiPart
+
+StudentListPanel --|> UiPart
+StudentCard --|> UiPart
+TutorCard --|> UiPart
+TuitionClassCard --|> UiPart
+NextOfKinDescription --|> UiPart
+
+StudentCard .right.> Model
+TutorCard .right.> Model
+TuitionClassCard .right.> Model
+MainWindow .down.> Model
+UiManager -right-> Logic
+MainWindow -right-> Logic
+
+StudentListPanel -[hidden]right- TutorListPanel
+TutorListPanel -[hidden]right- TuitionClassListPanel
+
+MainWindow -[hidden]-|> UiPart
+MainWindow -[hidden]-|> UiPart
+
+@enduml
