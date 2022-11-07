@@ -488,7 +488,7 @@ Examples:
     <td>After executing example command to add reminder to update grades</td>
   </tr>
   <tr>
-    <td><img src="images/Reminder.png" width=350></td>
+    <td><img src="images/Reminder.png" width=380></td>
     <td><img src="images/AddReminder.png" width=350></td>
   </tr>
 </table>
