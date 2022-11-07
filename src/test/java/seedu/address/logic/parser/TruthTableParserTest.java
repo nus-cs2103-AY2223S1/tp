@@ -2,6 +2,8 @@ package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_WITH_HELP_COMMAND;
+import static seedu.address.commons.core.Messages.MESSAGE_MISSING_ARGUMENTS_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.parser.CliSyntax.FLAG_ASSIGNEE_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_COMPLETE_TASKS_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_DEADLINE_STR;
@@ -26,8 +28,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import picocli.CommandLine;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddLinkCommand;
@@ -129,6 +133,7 @@ public class TruthTableParserTest {
         assertEquals(person.getPhone(), ParserHelper.getOption(Phone.class, FLAG_PHONE_STR, command));
         assertEquals(person.getEmail(), ParserHelper.getOption(Email.class, FLAG_EMAIL_STR, command));
     }
+
     @Test
     public void parseCommand_addTask() throws Exception {
         Task task = new TaskBuilder().build();
@@ -449,10 +454,27 @@ public class TruthTableParserTest {
         assertEquals(INDEX_ONE, ParserHelper.getParameterPosition(Index.class, 0, command));
     }
 
+    @Test
+    public void parseCommand_addPersonIncompleteParameters_throwsMissingArgumentException() {
+        String command = AddPersonCommand.FULL_COMMAND + " "
+                + FLAG_NAME_STR + " " + VALID_NAME_BOB;
+        assertThrows(ParseException.class,
+                () -> parser.parseCommand(command));
+    }
 
     @Test
-    public void parseCommand_unrecognisedInput_throwsParseException() {
+    public void parseCommand_addPersonMissingParameters_throwsMissingArgumentException() {
+        String command = AddPersonCommand.FULL_COMMAND + " "
+                + FLAG_NAME_STR;
+        assertThrows(ParseException.class,
+                () -> parser.parseCommand(command));
+    }
 
+    @Test
+    public void parseCommand_knownCommandNoParameters_throwsParseException() {
+        String command = AddPersonCommand.FULL_COMMAND;
+        assertThrows(ParseException.class,
+                () -> parser.parseCommand(command));
     }
 
     @Test
@@ -460,4 +482,7 @@ public class TruthTableParserTest {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_WITH_HELP_COMMAND,
                 HelpCommand.MESSAGE_USAGE), () -> parser.parseCommand("unknownCommand"));
     }
+
+
+
 }
