@@ -48,7 +48,7 @@ deactivate DatabaseParser
 LogicManager -> RateCommand : execute()
 activate RateCommand
 
-RateCommand -> Model : getFilteredPersonList()
+RateCommand -> Model : getPersonList()
 activate Model
 
 Model --> RateCommand
