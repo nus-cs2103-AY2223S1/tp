@@ -479,7 +479,20 @@ Use case ends.
 
 **Use case: UC-02 - Add a new person**
 
-**Use case: UC-03 - Add a new person by GitHub username**
+**MSS**
+1. User adds a person to the address book and specifies certain attributes to be added.
+2. System is updated to include the newly added person.
+
+Use case ends.
+
+**Extensions:**
+* 1a. The given name input has an invalid format
+  * 1a1. System shows an error message
+         Use case resumes at step 1.
+
+* 1b. One of the specified attributes has an invalid format
+  * 1b1. System shows an error message
+         Use case resumes at step 1.
 
 **Use case: UC-04 - View a person's Contact Detail Page**
 
@@ -557,13 +570,94 @@ Use Case ends.
     * 1b1. System shows an error message.
       Use case resumes at step 1.
 
-**Use case: UC-08 - Set timezone to a person**
+**Use case: UC-08 - Set timezone of a person**
+
+**Preconditions:**
+* Person has been added to the system.
+* User is inside the person's Contact Detail Page.
+
+**MSS:**
+1. User sets a person's timezone to a certain value.
+2. System is updated to reflect the person's new attribute.
+3. System shows the updated Contact Detail Page.
+
+Use Case ends.
+
+**Extensions**
+* 1a. A value for the timezone already exists for that person.
+    * 1a1. System updates the person's timezone to the value given by the user.
+      Use case resumes at step 3.
+
+* 1b. A value for the timezone does not exist for that person.
+    * 1b1. System adds the timezone attribute to the person using the value given by the user.
+      Use case resumes at step 3.
+
+* 1c. The input value given is of the wrong format
+    * 1c1. System shows an error.
+      Use case resumes at step 1.
 
 **Use case: UC-09 - Delete timezone from a person**
 
-**Use case: UC-10 - Set role to a person**
+**Preconditions:**
+* Person has been added to the system.
+* User is inside the person's Contact Detail Page.
+
+**MSS:**
+1. User deletes the timezone of the person.
+2. System is updated to reflect the removal.
+3. System shows the updated Contact Detail Page.
+
+Use Case ends.
+
+**Extensions**
+* 1a. That person does not have a timezone attribute.
+    * 1a1. System shows an error message.
+      Use case resumes at step 1.
+
+
+**Use case: UC-10 - Set role of a person**
+
+**Preconditions:**
+* Person has been added to the system.
+* User is inside the person's Contact Detail Page.
+
+**MSS:**
+1. User sets a person's role to a certain value.
+2. System is updated to reflect the person's new attribute.
+3. System shows the updated Contact Detail Page.
+
+Use Case ends.
+
+**Extensions**
+* 1a. A value for the role already exists for that person.
+    * 1a1. System updates the person's role to the value given by the user.
+      Use case resumes at step 3.
+
+* 1b. A value for the role does not exist for that person.
+    * 1b1. System adds the role attribute to the person using the value given by the user.
+      Use case resumes at step 3.
+
+* 1c. The input value given is of the wrong format
+    * 1c1. System shows an error.
+      Use case resumes at step 1.
 
 **Use case: UC-11 - Delete role from a person**
+
+**Preconditions:**
+* Person has been added to the system.
+* User is inside the person's Contact Detail Page.
+
+**MSS:**
+1. User deletes the role of the person.
+2. System is updated to reflect the removal.
+3. System shows the updated Contact Detail Page.
+
+Use Case ends.
+
+**Extensions**
+* 1a. That person does not have a role attribute.
+    * 1a1. System shows an error message.
+      Use case resumes at step 1.
 
 ### Non-Functional Requirements
 
