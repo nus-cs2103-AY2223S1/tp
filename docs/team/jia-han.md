@@ -23,6 +23,7 @@ Around 900 lines of code according to the [RepoSense Link](https://nus-cs2103-ay
     - Allows for relevant and valid tutor information to be stored.
   - Highlights:
     - `Email` automatically appends NUS email domain if not given.
+    - As the `Tutor` class is linked to many components in the codebase (such as the `Storage` and `Model` testutils) and is prone to bugs, it is a tedious process and required an in-depth tracing of the codebase to implement properly.
 
 
 ### Contributions to the UG
