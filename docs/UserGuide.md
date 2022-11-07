@@ -45,18 +45,14 @@ This one-stop, convenient, and efficient platform empowers Internship Campus Rec
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.
    Some example commands you can try:
-
-   * **`list`** : Lists all applicants.
 
    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 c/3.50/4.00 g/male u/Nanyang Polytechnic gd/05-2024 m/Computer Science ji/173296 jt/Software Engineer Intern t/rejected t/KIV` : Adds an applicant named `John Doe` to InternConnect.
 
    * **`view`**`1` : Views the 1st applicant shown in the current list.
 
    * **`delete`**`3` : Deletes the 3rd applicant shown in the current list.
-
-   * **`exit`** : Exits the app.
 
 6. Refer to [Features](#3-features) for details of each command.
 
@@ -72,7 +68,7 @@ This one-stop, convenient, and efficient platform empowers Internship Campus Rec
   e.g., in `CURRENT_CAP`, `CURRENT_CAP` is a parameter which can be used as `3.5`.
 * None of the fields inserted into the command should be blank, except when removing `Tag` through the `edit` command
 
-* Identity fields and Data fields are mandatory
+* Identity fields and Data fields are mandatory for `add` command
 
 * Tag fields are optional
 
@@ -126,7 +122,6 @@ which contains `workday-nus`, `edu`, and `sg` as `DOMAIN_LABEL` separated by `.`
 |---------|-----------|--------------|-------------------------------------------------|
 | **Tag** | `t`       | 30           | Can only contain alphabet characters and spaces |
 
---------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
 ## 3. Features
@@ -214,7 +209,7 @@ Format: `edit INDEX parameter/NEW_PARAMETER_DETAIL [parameter/NEW_PARAMETER_DETA
 * For `parameter` arguments, please refer to the `parameter` of each field in the [Fields](#2-fields) section above.
 * Edits the applicant at the specified `INDEX`.
 * The index refers to the index number shown in the displayed applicants list.
-* The index **must be a positive integer** 1, 2, 3, ... and not exceed the total records listed.
+* The index **must be a positive integer** 1, 2, 3, ... and **not exceed the total records listed**.
 * At least one of the parameter fields must be provided.
 * Existing values will be updated to the input values.
 * When modifying tags, the existing tags of the applicant will be removed i.e. adding of tags is not cumulative.
@@ -302,6 +297,7 @@ Exports the displayed list from InternConnect.
 Format: `export`
 
 * Exported JSON file will be stored in `data/export/` folder
+* Current date time will be used as the JSON file name
 
 Examples:
 * `find u/NUS` followed by `export` exports the displayed list from the `find` command to a JSON file.
