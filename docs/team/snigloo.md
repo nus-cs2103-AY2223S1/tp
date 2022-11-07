@@ -3,7 +3,7 @@ layout: page
 title: Shawn Ng's Project Portfolio Page
 ---
 
-NotionUS is a desktop task tracking application used for tasks, and specially tailored toward university students. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 15 kLoC.
+NotionUS is a desktop task tracking application used for tasks, and specially tailored toward university students. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 ### Project: NotionUS
 
@@ -16,7 +16,7 @@ for the code that I contributed.
   * UI Redesign
     * Editing CSS
     * Editing JXML files and UI classes
-    * Re-learnt JavaFX to understand AddressBook's style of having separate JXML files from UI class files
+    * Had to re-learnt JavaFX to understand AddressBook's style of having separate JXML files from UI class files
   * Adding list name `ls -n` command and related tests
   * Changing the implementation of the `find` function and related tests
     * Keywords used when finding names now do not have to match entire task name (a new contains method)
