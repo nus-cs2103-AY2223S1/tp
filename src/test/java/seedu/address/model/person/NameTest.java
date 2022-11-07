@@ -27,8 +27,8 @@ public class NameTest {
         // invalid name
         assertFalse(Name.isValidName("")); // empty string
         assertFalse(Name.isValidName(" ")); // spaces only
-        assertFalse(Name.isValidName("^")); // only non-alphanumeric characters
-        assertFalse(Name.isValidName("peter*")); // contains non-alphanumeric characters
+        assertFalse(Name.isValidName("Marcus 'the legend' Pang")); // contains single quotes
+        assertFalse(Name.isValidName("Devansh \"the god\" Shah")); // contains double quotes
 
         // valid name
         assertTrue(Name.isValidName("peter jack")); // alphabets only
@@ -36,5 +36,7 @@ public class NameTest {
         assertTrue(Name.isValidName("peter the 2nd")); // alphanumeric characters
         assertTrue(Name.isValidName("Capital Tan")); // with capital letters
         assertTrue(Name.isValidName("David Roger Jackson Ray Jr 2nd")); // long names
+        assertTrue(Name.isValidName("Chang Jing !@#$%^&*() Yan")); // contains non-quote characters
+        assertTrue(Name.isValidName("Chang Jing `coder` Yan")); // contains backtick (not a quote)
     }
 }
