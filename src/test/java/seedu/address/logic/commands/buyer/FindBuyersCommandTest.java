@@ -1,13 +1,18 @@
 package seedu.address.logic.commands.buyer;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.core.Messages.MESSAGE_BUYERS_LISTED_OVERVIEW;
+import static seedu.address.logic.commands.buyer.BuyerCommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalBuyers.KEYWORD_MATCHING_MEIER;
+import static seedu.address.testutil.TypicalBuyers.getTypicalBuyers;
 import static seedu.address.testutil.TypicalBuyers.getTypicalBuyersBook;
+import static seedu.address.testutil.TypicalBuyers.getTypicalBuyersWithMeier;
 import static seedu.address.testutil.TypicalProperties.getTypicalPropertyBook;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.buyer.FindBuyersCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -47,23 +52,23 @@ public class FindBuyersCommandTest {
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
-    //    @Test
-    //    public void execute_zeroKeywords_noPersonFound() {
-    //        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-    //        NameContainsKeywordsPredicate predicate = preparePredicate(" ");
-    //        FindBuyersCommand command = new FindBuyersCommand(predicate);
-    //        expectedModel.updateFilteredPersonList(predicate);
-    //        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-    //        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
-    //    }
+    @Test
+    public void execute_noKeywords_allBuyersFound() {
+        String expectedMessage = String.format(MESSAGE_BUYERS_LISTED_OVERVIEW, 7);
+        BuyerNameContainsSubstringPredicate predicate = new BuyerNameContainsSubstringPredicate("");
+        FindBuyersCommand command = new FindBuyersCommand(predicate);
+        expectedModel.updateFilteredBuyerList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(getTypicalBuyers(), model.getFilteredBuyerList());
+    }
 
-    //    @Test
-    //    public void execute_multipleKeywords_multiplePersonsFound() {
-    //        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-    //        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
-    //        FindBuyersCommand command = new FindBuyersCommand(predicate);
-    //        expectedModel.updateFilteredPersonList(predicate);
-    //        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-    //        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
-    //    }
+    @Test
+    public void execute_oneKeyword_multiplePersonsFound() {
+        String expectedMessage = String.format(MESSAGE_BUYERS_LISTED_OVERVIEW, 2);
+        BuyerNameContainsSubstringPredicate predicate = new BuyerNameContainsSubstringPredicate(KEYWORD_MATCHING_MEIER);
+        FindBuyersCommand command = new FindBuyersCommand(predicate);
+        expectedModel.updateFilteredBuyerList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(getTypicalBuyersWithMeier(), model.getFilteredBuyerList());
+    }
 }

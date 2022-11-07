@@ -135,4 +135,8 @@ public class TypicalBuyers {
     public static List<Buyer> getTypicalBuyers() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
+
+    public static List<Buyer> getTypicalBuyersWithMeier() {
+        return new ArrayList<>(Arrays.asList(BENSON, DANIEL));
+    }
 }
