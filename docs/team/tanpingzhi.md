@@ -7,9 +7,7 @@ title: Ping Zhi's Project Portfolio Page
 
 NutriGoals is a desktop app that tracks a user’s diet and calorie consumption. Studies have shown the benefits of
 keeping track of your daily food consumption – the more consistent you are, the more likely you are to achieve the
-various fitness goals that you have set for yourself! However, without the right tools, tracking what you have consumed
-can be tedious and at times disorganised. With NutriGoals, you can keep track of your consumption quickly and easily,
-without worrying about organising your data.
+various fitness goals that you have set for yourself!
 Given below are my contributions to the project.
 
 * **New Feature**: TargetCommand (PR [#35](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/35))
