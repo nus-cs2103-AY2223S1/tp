@@ -16,7 +16,7 @@ still having the benefits of a Graphical User Interface (GUI).
 ### Summary of Contributions
 
 #### Code contributed
-[View my contributions](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=tienyu2000&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
+Code contributions for the project: [RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=tienyu2000&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 #### Enhancements implemented
 
@@ -35,59 +35,60 @@ still having the benefits of a Graphical User Interface (GUI).
     
 
 #### Contributions to User Guide
-- What you can do
-  - Deleting your internship application:
-  - Undoing your previous command:
-  - Redoing your previous command:
+Added the implementation of the following commands to the User Guide:
+- `undo` : [Undoing a command](https://github.com/AY2223S1-CS2103T-T10-3/tp/pull/154)
+- `redo`: [Redoing a command](https://github.com/AY2223S1-CS2103T-T10-3/tp/pull/154)
 
 #### Contributions to Developer Guide
-- Design
-  - Architecture
-  - UI component
-  - Logic component
-  - Model component
-  - Storage component
-  - Common classes
-- Implementation
-  - Undo/Redo feature
-- User Stories
-  - As a student who constantly changes my mind, I want to redo an undone command so that I can revert
+- Outlined the design of the application
+- `Undo` and `Redo` command [feature implementation, design considerations,
+sequence diagrams, state diagrams and activity diagrams](https://github.com/AY2223S1-CS2103T-T10-3/tp/pull/98)
+- Use-case documentation contributions to UC06 - [Redo a command](https://github.com/AY2223S1-CS2103T-T10-3/tp/pull/79)
+- User-stories documentation contributions to: 
+  - As a student who constantly changes my mind, I want to [redo an undone command](https://github.com/AY2223S1-CS2103T-T10-3/tp/pull/79) so that I can revert
   back the changes I had originally made.
-- Use cases
-  - UC06 - Redo a command
-- UML diagrams added/updated
-  - Architecture diagram
-  - Better model class diagram
-  - Logic class diagram
-  - Model class diagram
-  - Storage class diagram
-  - UI class diagram
-  - Architecture sequence diagram
-  - Undo sequence diagram
-  - Redo sequence diagram
-  - Delete sequence diagram
-  - Parser classes
-  - Commit activity diagram
-  - Undo redo state 0
-  - Undo redo state 1
-  - Undo redo state 2
-  - Undo redo state 3
-  - Undo redo state 4
-  - Undo redo state 5
-  - Undo redo state 6
+
+
 
 #### Contributions to team-based tasks 
-- Added stage specific tips 
-  - Application Sent
-  - Application Rejected
-
-#### Review/mentoring contributions 
+- Updated [UML diagrams](https://github.com/AY2223S1-CS2103T-T10-3/tp/pull/98) in Developer's Guide
 
 #### Contributions beyond the project team
-[Bugs reported in other team's products](https://github.com/tienyu2000/ped/issues)
+[PE-D bugs reported in other team's products](https://github.com/tienyu2000/ped/issues)
+
+<div style="page-break-after: always;"></div>
 
 #### Contributions to User Guide (Extracts)
 
+1. Feature description <br></br>
+
+   #### Undoing your previous command
+    What if you accidentally made a mistake and performed a wrong <em>undoable</em> command?
+Workbook can help you to undo your changes after performing an
+undesirable <em>undoable</em> command and restore itself to the
+previous version!<br></br>
+
+    WorkBook keeps track of all your previous <em>undoable</em> commands and its current version, allowing you to `undo` as many times
+to restore any desired state of your WorkBook.<br></br>
+
+    Format: `undo`
+   * Undo the previous <em>undoable</em> command.
+   * You can perform the `undo` command as many times as the number of tracked Workbook versions
+     i.e. stacking 2 undo commands sequentially will revert the WorkBook back 2
+     versions ago, assuming you performed at least 2 <em>undoable</em> commands previously!
+   * When you perform an <em>undoable</em> command, it will be stacked on top of the
+     previous <em>undoable</em> command in the stack. The `undo` command will undo the first <em>undoable</em> command at the
+     top of the stack.
+
+   * If you have not executed an <em>undoable</em> command previously, the WorkBook will remain in its current version
+     and return an error message: "No previous changes to undo!".
+   
+<div markdown="block" class="alert alert-info">
+
+2. Screenshot images<br></br>
+   1. ![AfterUndo1](../images/AfterUndo1.png)
+
+<div style="page-break-after: always;"></div>
 
 #### Contributions to Developer Guide (Extracts)
 
@@ -138,15 +139,7 @@ The redo feature complements the undo feature by allowing users to restore to it
      * Cons: We must ensure that the implementation of each individual command are correct.
 
 
-3. UML diagrams
-
-![UndoRedoState0](../images/UndoRedoState0.png)
-![UndoRedoState1](../images/UndoRedoState1.png)
-![UndoRedoState2](../images/UndoRedoState2.png)
-![UndoRedoState3](../images/UndoRedoState3.png)
-![UndoRedoState4](../images/UndoRedoState4.png)
-![UndoRedoState5](../images/UndoRedoState5.png)
+3. UML diagrams<br></br>
 ![UndoRedoState6](../images/UndoRedoState6.png)
 ![UndoSequenceDiagram](../images/UndoSequenceDiagram.png)
-![RedoSequenceDiagram](../images/RedoSequenceDiagram.png)
-<img src="../images/CommitActivityDiagram.png" width="250" />
+<img src="../images/CommitActivityDiagram.png" width=250/>
