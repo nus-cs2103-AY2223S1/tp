@@ -85,21 +85,24 @@ The following figures show the overall GUI of **FAP**
 --------------------------------------------------------------------------------------------------------------------
 ## 4. Prefixes
 
-Prefixes are an indicator for a specific type of parameter to be input during any command. The following section shows the type of prefixes that are used in the app.
+Prefixes are an indicator for a specific type of parameter to be input during any command. The following section shows the type of prefixes that are used in the app and it shows which prefixes are used for the find command
 
-Format: `Prefix/Parameter`
-1. n/NAME
-2. p/PHONE
-3. e/EMAIL
-4. a/ADDRESS
-5. i/YEARLY_INCOME
-6. m/MONTHLY_CONTRIBUTIONS
-7. c/CLIENT_TYPE
-8. r/RISK_APPETITE
-9. ip/INVESTMENT_PLAN
-10. t/TAG
-11. l/Location 
-12. d/DATE_AND_TIME
+Prefix | Parameter              | add                | edit               | find               | aa                 | ea                 |
+-------|------------------------|--------------------|--------------------|--------------------|--------------------|--------------------|
+n      | NAME                   | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x:                | :x:                |
+p      | PHONE                  | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x:                | :x:                |
+e      | EMAIL                  | :heavy_check_mark: | :heavy_check_mark: | :x:                | :x:                | :x:                |
+a      | ADDRESS                | :heavy_check_mark: | :heavy_check_mark: | :x:                | :x:                | :x:                |
+i      | YEARLY_INCOME          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x:                | :x:                |
+m      | MONTHLY_CONTRIBUTIONS  | :heavy_check_mark: | :heavy_check_mark: | :x:                | :x:                | :x:                |
+c      | CLIENT_TYPE            | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x:                | :x:                |
+r      | RISK_APPETITE          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x:                | :x:                |
+ip     | INVESTMENT_PLAN        | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x:                | :x:                |
+t      | TAG                    | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x:                | :x:                |
+l      | LOCATION               | :x:                | :x:                | :x:                | :heavy_check_mark: | :heavy_check_mark: |
+d      | DATE_AND_TIME          | :x:                | :x:                | :x:                | :heavy_check_mark: | :heavy_check_mark: |
+
+
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Prefix l/Location is a lower case L, and not an uppercase i. </div>
