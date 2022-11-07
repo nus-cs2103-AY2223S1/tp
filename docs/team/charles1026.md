@@ -53,17 +53,14 @@ __Code Contributed__: All my code contribution can be viewed here:
     multiple commands.
   
 ##### Other code contributions
-- Fixed Patient Details Panel display bugs.
-- Fixed `UpcomingAppointment` and `PastAppointment` date parsing bugs.
-- Fixed `Person` duplicate check not case sensitive bug.
-- Fixed duplicate `PastAppointment` not caught bug.
+- Fixed Patient Details Panel display bugs; Fixed `UpcomingAppointment` and `PastAppointment` date parsing bugs; 
+  `Person` duplicate check not case-sensitive bug; And, fixed duplicate `PastAppointment` not caught bug.
 - Added unit tests for all the enhancements in the section above.
 
 ##### Contributions to the UG
 - Updated documentation for `add` and `edit` commands to reflect changes made to them.
-- Documented `view`, `delappt` and `consult` commands.
-- Documented the Patient Details Panel, clickability and keyboard shortcuts enhancements.
-- Updated command summary.
+- Documented `view`, `delappt` and `consult` commands and Patient Details Panel, clickability and keyboard 
+  shortcuts enhancements.
 - Created example and feedback images for all the commands to improve user readability.
 - Reorganised the whole Features section to a 3 segment structure to group related commands together and improve user readability
 - Added all hyperlinks across the whole user guide to improve navigability.
