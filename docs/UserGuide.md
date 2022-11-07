@@ -967,17 +967,20 @@ Please close any .csv files that are currently open before clicking on the "*Exp
 
 ### Troubleshooting
 
-Warnings issued when Mac users are trying to open the software by double-clicking the icon.
-“myStudent.jar” cannot be opened because it is from an unidentified developer.
-Instead of double-clicking the software icon, you may want to right-click the icon and choose `Open`, then click `Open` in the pop-up window. Note that you only need to do this for the first time. For future usage, simply double-click the icon to launch the software.
+1. **“myStudent.jar” cannot be opened because it is from an unidentified developer.**
 
-Still unable to launch the software?
-Make sure that you have installed `Java 11` or above by doing the following checking:
+* Please skip this problem if you are not a Mac user.
+* This is a possible warning issued when Mac users are trying to open the software by double-clicking the icon. 
+* Instead of double-clicking the software icon, you may want to right-click the icon and choose `Open`, then click `Open` in the pop-up window. Note that you only need to do this for the first time. For future usage, simply double-click the icon to launch the software.
 
-For Mac Users:
+
+2. **Unable to launch the software.**
+* Make sure that you have installed `Java 11` or above by doing the following checking:
+
+  * **For Mac Users**:
 Open your terminal and type `java -version` and press <kbd>enter</kbd>. Information returned should show the current version of Java installed on your computer.
 
-For Windows Users:
+  * **For Windows Users**:
 Open the command prompt and type `java -version` and press <kbd>enter</kbd>. Information returned should show the current version of Java installed on your computer.
 
-If you do not have `Java 11` or above installed, please it install from [here](https://www.oracle.com/sg/java/technologies/downloads/).
+* If you do not have `Java 11` or above installed, please it install from [here](https://www.oracle.com/sg/java/technologies/downloads/).
