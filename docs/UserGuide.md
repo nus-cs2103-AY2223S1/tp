@@ -120,7 +120,7 @@ Upon completing this section, you should be able to explore SoConnect on your ow
 
 #### 6.2.1. Command
 
-Command is the action you want SoConnect to perform. Most commands require [parameters](#622-parameter) after the command so that SoConnect has the required information to perform the action. 
+Command is the action you want SoConnect to perform. Most commands require [parameters](#622-parameter) after the command so that SoConnect has the required information to perform the action.
 
 e.g. `help`
 
@@ -135,7 +135,7 @@ e.g. `n/NAME`
 In the command box, you need to type the [command](#621-command) along with the required [parameters](#622-parameter). You can leave the parameter field empty if it is optional, which is indicated by wrapped square brackets in the command format, e.g. `search [e/EMAIL]` <br>
 The parameters required for each command can be found in [Command Summary](#9-command-summary) and [Commands](#7-commands).
 
-<div markdown="block" class="alert alert-primary"> 
+<div markdown="block" class="alert alert-primary">
 
 **:memo: Note**<br>
 
@@ -579,7 +579,7 @@ Format: `tag delete t/TAG`
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Info**<br> 
+**:information_source: Info**<br>
 When `TAG` is deleted, `TAG` is removed from all the contacts which previously had it.
 </div>
 
@@ -607,7 +607,7 @@ Format: `tag edit t/TAG1 t/TAG2`
 **:information_source: Info**<br>
 * The new Tag must not have the same name as any other existing tags.
 * `TAG1` represents the current name of the tag and `TAG2` represents the new name of the tag.
-* This command will replace `TAG1` in all contacts and todos to `TAG2`. 
+* This command will replace `TAG1` in all contacts and todos to `TAG2`.
 
 </div>
 
@@ -646,7 +646,7 @@ A contact can have any number of tags. Add as many as you want.
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Info**<br> 
+**:information_source: Info**<br>
 The tag has to be created first before you can add it into a contact.
 
 Refer to [`Creating a Tag`](#741-creating-a-tag-tag-create) on how to create a tag.

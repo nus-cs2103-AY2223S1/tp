@@ -42,7 +42,7 @@ As of 7/11/2022, I have contributed 3562 LoC. [RepoSense link](https://nus-cs210
   * Added images for all the commands.
   * Added documentation for the `autocomplete` feature.
   * Updated documentation for `todo show`.
-* Developer Guide: 
+* Developer Guide:
   * Added implementation details for the `autocomplete`.
   * Added UML sequence diagram for `autocomplete`.
   * Added UML activity diagram for `autocomplete`.

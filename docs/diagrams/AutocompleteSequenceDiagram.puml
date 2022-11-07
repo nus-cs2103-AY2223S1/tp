@@ -25,12 +25,6 @@ activate AutocompleteManager
 AutocompleteManager --> AutocompleteManager
 deactivate AutocompleteManager
 
-AutocompleteManager --> AutocompleteManager : getLastPrefixArgument(n/John p/12345678 a/N, ...)
-activate AutocompleteManager
-
-AutocompleteManager --> AutocompleteManager
-deactivate AutocompleteManager
-
 AutocompleteManager --> AutocompleteManager : updateFilteredPersonList(n/John p/12345678)
 activate AutocompleteManager
 
@@ -45,12 +39,6 @@ deactivate AutocompleteManager
 
 AutocompleteManager --> CommandBox : list of autocomplete entries
 deactivate AutocompleteManager
-
-CommandBox --> CommandBox : populatePopup(...)
-activate CommandBox
-
-CommandBox --> CommandBox
-deactivate CommandBox
 
 CommandBox --> CommandBox
 deactivate CommandBox

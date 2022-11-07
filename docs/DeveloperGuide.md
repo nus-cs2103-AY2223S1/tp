@@ -733,7 +733,7 @@ testers are expected to do more *exploratory* testing.
        Expected: The most recent window size and location is retained.
 
 ### Contact Management
-   
+
 #### Adding a contact
 
 1. Adding a new contact.
@@ -744,14 +744,14 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisite: There is a contact named `Betsy Crowe` in the contact list.
    2. Text case: `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567`.
    3. Expected: Error message `This person already exists in the SoConnect.` is displayed.
-   
+
 #### Editing a contact
 
 1. Editing an existing contact.
    1. Prerequisite: There is a contact in the 2nd index of contact list and no existing contact has the name Betsy Crower.
    2. Test case: `edit 2 n/Betsy Crower`.
    3. Expected: Edits the name of the 2nd contact to be Betsy Crower.
-   
+
 #### Listing all contacts
 
 1. Prerequisite: There are some existing contacts.
@@ -797,7 +797,7 @@ testers are expected to do more *exploratory* testing.
 #### Adding a todo
 
 1. Adding a new todo.
-   1. Prerequisite: There is an existing `CS2100` tag and no existing todo has the details that will be provided below. 
+   1. Prerequisite: There is an existing `CS2100` tag and no existing todo has the details that will be provided below.
    2. Test case: `todo add d/Watched recorded videos for CS2100 date/24-10-2022 pr/low t/CS2100`.
    3. Expected: New todo with the same details is shown in the list.
 
@@ -897,7 +897,7 @@ Challenges:
 
 ### Revamping of UI
 Achievement:
-We transformed the AB3 traditional interface to a sophisticated, modern-looking UI that is more user-friendly and pleasing to use. 
+We transformed the AB3 traditional interface to a sophisticated, modern-looking UI that is more user-friendly and pleasing to use.
 
 Challenges:
 1. None of us was familiar with JavaFX. Therefore, we needed to put a large amount of time into mastering JavaFX from scratch as well as understanding the structure of AB3.
