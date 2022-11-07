@@ -699,14 +699,14 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 ---
 ## Glossary
 
-| Terms       | Definition                                             |
-|-------------|--------------------------------------------------------|
-| Class Date  | The 1-1 tutoring time slot of a student                |
-| Day-of-Week | 3-letter Abbreviation; case-insensitive e.g., Mon, MON |
-| INDEX       | The index number shown in the Student List             |
-| INDEX-s     | The index number shown in the Schedule List            |
-| Prefix      | e.g., `n/`, `p/`, `np/`                                |
-| Parameter   | e.g., `NAME`, `EMAIL`, `ADDRESS`                       |
+| Terms       | Definition                                                                                              |
+|-------------|---------------------------------------------------------------------------------------------------------|
+| Class Date  | The 1-1 tutoring time slot of a student                                                                 |
+| Day-of-Week | 3-letter Abbreviation; case-insensitive e.g., Mon, MON                                                  |
+| INDEX       | The index number shown in the Student List                                                              |
+| INDEX-s     | The index number shown in the Schedule List                                                             |
+| Prefix      | e.g., `n/`, `p/`, `np/`                                                                                 |
+| Parameter   | The values passed into your Commands e.g., when calling `edit 1 n/NAME` , the parameter here is `NAME`  |
 
 [↑ Back to top](#table-of-contents)
 
