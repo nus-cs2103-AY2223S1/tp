@@ -64,7 +64,7 @@ public class AssignMemberCommandTest {
     }
 
     @Test
-    public void execute_PersonAlreadyExistsInTeamUnfilteredList_throwsCommandException() {
+    public void execute_personAlreadyExistsInTeamUnfilteredList_throwsCommandException() {
         Index teamIndex = INDEX_FIRST_TEAM;
         Index personIndex = INDEX_FIRST_PERSON;
         AssignMemberCommand assignMemberCommand = new AssignMemberCommand(personIndex, teamIndex);

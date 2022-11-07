@@ -64,7 +64,7 @@ public class UnAssignMemberCommandTest {
     }
 
     @Test
-    public void execute_PersonDoesNotExistInTeamUnfilteredList_throwsCommandException() {
+    public void execute_personDoesNotExistInTeamUnfilteredList_throwsCommandException() {
         Index teamIndex = INDEX_SECOND_TEAM;
         Index personIndex = INDEX_FIRST_PERSON;
         UnAssignMemberCommand unAssignMemberCommand = new UnAssignMemberCommand(personIndex, teamIndex);
