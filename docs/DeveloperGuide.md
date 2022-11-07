@@ -22,14 +22,14 @@ title: Developer Guide
   * [Add Exam Feature](#add-exam-feature)
   * [Unink Exam Command](#unlink-exam-command)
   * [Find Tasks Feature](#find-tasks-feature)
-* [Documentation, logging, testing, configuration, dev-ops](#documentation)
+* [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 * [Appendix: Requirements](#ui-component)
   * [Product scope](#product-scope)
   * [User stories](#user-stories)
   * [Use cases](#use-cases)
   * [Non-Functional Requirements](#non-functional-requirements)
   * [Glossary](#glossary)
-* [Appendix: Instructions for manual testing]()
+* [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
   * [Launch and Shutdown](#launch-and-shutdown)
   * [Adding a module](#adding-a-module)
   * [Adding a tag to a task](#adding-a-tag-to-a-task)
@@ -41,9 +41,9 @@ title: Developer Guide
   * [Adding an exam](#adding-an-exam)
   * [Editing an exam](#editing-an-exam)
   * [Finding a task](#finding-a-task)
-  * [Find a module](#find-a-module)
+  * [Finding a module](#finding-a-module)
   * [Listing modules](#listing-modules)
-  * [Listing tasks](#listing tasks)
+  * [Listing tasks](#listing-tasks)
   * [Marking a task](#marking-a-task)
   * [Editing a task](#editing-a-task)
   * [Adding a task](#adding-a-task)
@@ -60,7 +60,10 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* This project is based on the [AddressBook-Level3](https://github.com/se-edu/addressbook-level3) project created by the [SE-EDU initiative](https://se-education.org/)
+* List of libraries used
+  * [JavaFx](https://openjfx.io/)
+  * [Junit5](https://junit.org/junit5/)    
 
 --------------------------------------------------------------------------------------------------------------------
 
