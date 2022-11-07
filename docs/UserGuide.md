@@ -2,7 +2,7 @@
 layout: page
 title: User Guide
 ---
-Friendnancial is a tool to help **financial advisors** manage their clients and friends. It provides an **address book** with features implemented specifically for financial advisors such as storing **insurance information** and **reminders**. Thus Friendnancial is an integrated one-stop solution for financial advisors to manage their contacts!
+Friendnancial is a tool to help **financial advisors** manage their clients and friends. It provides an **address book** with features implemented specifically for financial advisors such as storing **insurance information** and **reminders**. Thus, Friendnancial is an integrated one-stop solution for financial advisors to manage their contacts!
 
 Friendnancial is a **desktop application, optimized for use by financial advisors via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Friendnancial can get your contact management tasks done faster than traditional GUI apps, saving your precious time.
 
@@ -58,13 +58,13 @@ Friendnancial is a **desktop application, optimized for use by financial advisor
 * Items in square brackets are optional.<br>
   e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
+* Items with `…`​ after them can be used multiple times, or not used.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command, but is specified multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
@@ -139,11 +139,11 @@ Prefixes:
 * "ci" - critical illness insurance
 * "li" - life insurance
 
-Format: `insurance INDEX [hi/] [di/] [ci/] [li/]` (Number of insurance prefixes can range from 0-4)
+Format: `insurance INDEX [hi/] [di/] [ci/] [li/]` (Number of insurance prefixes can range from 0 to 4)
 
 <div markdown="span" class="alert alert-warning">:warning: **Note:**
-When editing insurances, the existing insurances of the person will be removed.
-You can remove all the person’s tags by typing `insurance [INDEX]` without
+When editing insurance, the existing insurance fields of the person will be removed.
+You can remove all the person’s insurance fields by typing `insurance [INDEX]` without
     specifying any insurances after it.
 </div>
 
@@ -259,23 +259,23 @@ Friendnancial data is saved in the hard disk automatically after any command tha
 **A**: There is no save command as all your contacts and reminders are automatically saved for you. After closing the application, all updated information will be displayed again the next time you open the application.
 
 **Q**: Is my data secure?<br>
-**A**: Yes your data is secure as it is only stored locally on your device. It is akin to using private Excel spreadsheets on your laptop to store your clients information.
+**A**: Yes your data is secure as it is only stored locally on your device. It is akin to using private Excel spreadsheets on your laptop to store your clients' information.
 
-**Q**: Am I able to sync my contacts on Friendnancial with the contacts on my mobile phone?
-**A**: Currently, this is not possible. However it is something that we are working on for a future version of Friendnential. We are also working on integration between Friendnancial and even more applications such as Telegram and Google Calendar.
+**Q**: Am I able to sync my contacts on Friendnancial with the contacts on my mobile phone?<br>
+**A**: Currently, this is not possible. However, it is something that we are working on for a future version of Friendnancial. We are also working on integration between Friendnancial and even more applications such as Telegram and Google Calendar.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command Summary
 
-| Action     | Format, Examples                                                                                                                                                                    |
-|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG] a/ADDRESS b/BIRTHDAY` <br> e.g., `add n/James Ho p/92224444 e/jamesho@example.com t/friend a/Blk 441 Hougang Ave 8 S530441 b/18-08-2000` |
-| **Clear**  | `clear`                                                                                                                                                                             |
-| **Delete** | `delete INDEX` or `delete n/NAME`<br> e.g., `delete 3`, `delete n/paul`                                                                                                             |
-| **Find**   | `find [n/KEYWORD, t/TAG, b/BIRTHDAY]`<br> e.g., `find n/James Jake`                                                                                                                 |
-| **List**   | `list`                                                                                                                                                                              |
-| **Remind** | `remind INDEX r/REMINDER d/DATE` <br> e.g., `remind 2 r/update client information d/20-10-2022`                                                                                     |
-| **DeleteR** | `deleteR INDEX`<br> e.g., `deleteR 1`                                                                                                                                               |
-| **Insurance**   | `insurance INDEX [hi/] [di/] [ci/] [li/]`                                                                                                                                           |
-| **Help**   | `help`                                                                                                                                                                              |
+| Action        | Format, Examples                                                                                                                                                                      |
+|---------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**       | `add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…​ a/ADDRESS b/BIRTHDAY` <br> e.g., `add n/James Ho p/92224444 e/jamesho@example.com t/friend a/Blk 441 Hougang Ave 8 S530441 b/18-08-2000` |
+| **Clear**     | `clear`                                                                                                                                                                               |
+| **Delete**    | `delete INDEX` or `delete n/NAME`<br> e.g., `delete 3`, `delete n/paul`                                                                                                               |
+| **Find**      | `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG] [b/BIRTHDAY]`<br> e.g., `find n/James Jake`                                                                                    |
+| **List**      | `list`                                                                                                                                                                                |
+| **Remind**    | `remind INDEX r/REMINDER d/DATE` <br> e.g., `remind 2 r/update client information d/20-10-2022`                                                                                       |
+| **DeleteR**   | `deleteR INDEX`<br> e.g., `deleteR 1`                                                                                                                                                 |
+| **Insurance** | `insurance INDEX [hi/] [di/] [ci/] [li/]`                                                                                                                                             |
+| **Help**      | `help`                                                                                                                                                                                |
