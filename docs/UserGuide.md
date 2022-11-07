@@ -55,7 +55,7 @@ If you encounter any issues in launching and using the app, feel free refer to t
 </div>
 
 ## Modes
-In TA-Assist, you can switch into a mode called the **focus** mode, which lets you run tasks that are specific to (module) class. Therefore,
+In TA-Assist, you can switch into a mode called the **focus** mode, which lets you run tasks that are specific to a (module) class. Therefore,
 [some commands](#features-available-in-focus-mode) can only be executed when you are in focus mode. Commands that you can run in the default (unfocused) mode can also
 be run in focus mode. On the other hand, commands that are available only in focus mode cannot be executed in the default (unfocused) mode.
 
@@ -80,7 +80,7 @@ Let's first begin with the commands available in the default mode.
 | `focus`    | `focus c/CLASS_NAME`                                               |
 | `clear`    | `clear`                                                            |
 
-*Click [here](# Focus Mode Commands) for the commands only available in the focus mode.*
+*Click [here](#focus-mode-commands) for the commands only available in the focus mode.*
 
 {% include note.html content="
 
@@ -153,7 +153,7 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd student in the student list.
 * `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
-* `focus c/CS2103T` followed by`delete 3` deletes the 3rd student in the CS2103T class.
+* `focus c/CS2103T` followed by `delete 3` deletes the 3rd student in the CS2103T class.
 
 ### Locate student by name: `find`
 
@@ -464,10 +464,10 @@ Format: `export`
   * Student names of the class.
   * All session names of the class.
   * The grades of the students corresponding to each session.
-* An example generated csv file when opened in Microsoft Excel:
+* An example generated CSV file when opened in Microsoft Excel:
 ![Example Excel file](images/exampleExcelFile.png)
   * First column shows all the student names.
-  * Subsequent columns show the grade for a student for a session (e.g. **David Li** scores **0** for **Tutorial 1**).
+  * Subsequent columns show the grades for a student for various sessions (e.g. **David Li** scores **0** for **Tutorial 1**).
 
 ### Exit focus mode: `unfocus`
 

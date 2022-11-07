@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.taassist.logic.commands.AssignCommand.MESSAGE_SUCCESS;
 import static seedu.taassist.testutil.Assert.assertThrows;
 import static seedu.taassist.testutil.TypicalModuleClasses.CS1101S;
 import static seedu.taassist.testutil.TypicalStudents.ALICE;
@@ -106,6 +107,15 @@ class AssignCommandTest {
 
         // different student -> returns false
         assertNotEquals(assignFirstCommand, assignSecondCommand);
+    }
+
+    @Test
+    public void execute_getCommandMessage_showsCorrectMessage() {
+        List<Student> studentsAssigned = List.of(ALICE, BOB);
+        ModuleClass moduleClass = CS1101S;
+        String actualMessage = AssignCommand.getCommandMessage(studentsAssigned, moduleClass);
+        String expectedMessage = String.format(MESSAGE_SUCCESS, moduleClass, ALICE.getName() + ", " + BOB.getName());
+        assertEquals(expectedMessage, actualMessage);
     }
 
     /**
