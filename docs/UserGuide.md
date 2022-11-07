@@ -1,4 +1,4 @@
----
+**---
 layout: page title: PennyWise User Guide
 ---
 
@@ -31,7 +31,7 @@ Already done with the set-up? Jump right straight to the [features](#features) s
     * [Tip Box](#tip-box)
     * [Danger Box](#danger-box)
     * [Formatting](#formatting)
-* [Quick start](#quick-start)
+* [Quick Start](#quick-start)
 * [Before Using PennyWise](#before-using-pennywise)
     * [What is an Entry](#what-is-an-entry)
     * [Familiarising yourself with the interface](#familiarising-yourself-with-the-interface)
@@ -97,7 +97,7 @@ Danger zone! Do pay attention to the information here carefully.
     <a href="#top">Back to Top </a>
 </p>
 
-## Quick start
+## Quick Start
 
 If you are unfamiliar with using command prompt, head to
 this [link](https://www.freecodecamp.org/news/command-line-for-beginners/) to learn more.
@@ -151,7 +151,7 @@ Curious about the various commands? Refer to the [Features](#features) below to 
 ### What is an Entry
 
 Think of PennyWise as a helpful personal budgeting assistant. Whenever you spend or earn money, all you need to do is
-tell PennyWise and PennyWise will help you log and save it as a new Entry! An Entry is what PennyWise terms as a
+tell PennyWise and PennyWise will log it and save it! An Entry is what PennyWise terms as a
 particular expenditure or income logged into the application. PennyWise defines an expenditure and income as things that
 you spend money on, and things that make you money respectively! Not only that, PennyWise will help you analyse your
 data, so you can easily get an overview of your overall expenditure or income.
@@ -168,19 +168,18 @@ incomes, you need to tell PennyWise the following:
 
 ### Familiarising yourself with the interface
 
-To familiarise yourself with our user interface, please refer to the following diagram and table to get comfortable with
-the application.
+Let's get acquainted with the application with the help of the following diagram!
 
-When you first open up the application, this is the *default view*, which shows the list of expenditures (or incomes):
+When you first open up the application, this is the *default view*, which shows the list of expenditures:
 
 ![UserInterfaceExplanation](images/ug/UserInterfaceExplanation.png)
 
-|                                       `Component`                                        |                                                       `Explanation`                                                        |
-|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------:|
-|     ![](https://img.shields.io/static/v1?label=&message=List%20Display&color=862e9c)     |            where you view your entry lists (Expenditure or Income) <br> - can be modified by the `view` command            |
-|    ![](https://img.shields.io/static/v1?label=&message=Graph%20Display&color=5c940d)     | where you view your entries in a graphical overview (Pie Chart or Line Graph) <br> - can be modified by the `view` command |
-| ![](https://img.shields.io/static/v1?label=&message=Command%20Input%20Box&color=e67700)  |                                       where you enter your commands to use PennyWise                                       |
-| ![](https://img.shields.io/static/v1?label=&message=Command%20Output%20Box&color=d9480f) |                                  where you see the output of your commands from PennyWise                                  |
+|                                        Component                                         |                                                                       Explanation                                                                       |
+|:----------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------:|
+|     ![](https://img.shields.io/static/v1?label=&message=List%20Display&color=862e9c)     |          Where you view your entry lists (Expenditure or Income) <br> This can be filtered by the [`view`](#view-entries-by-category) command           |
+|    ![](https://img.shields.io/static/v1?label=&message=Graph%20Display&color=5c940d)     | Where you view your entries in a graphical overview (Pie Chart or Line Graph) <br> This can be modified by the [`view`](#view-entries-by-month) command |
+| ![](https://img.shields.io/static/v1?label=&message=Command%20Input%20Box&color=e67700)  |                                                     Where you enter your commands to use PennyWise                                                      |
+| ![](https://img.shields.io/static/v1?label=&message=Command%20Output%20Box&color=d9480f) |                                                Where you see the output of your commands from PennyWise                                                 |
 
 <div markdown="block" class="alert alert-danger">:exclamation: **Warning**
 If the application is resized to a smaller screen, certain graphical components will be hidden. This is to ensure that
@@ -188,15 +187,15 @@ you still see the most important information about your budgeting. If details of
 
 1. Pie Chart Legend <br/>
 
-- The Pie Chart Legend will be hidden should the application be of a smaller size. This ensures your categorical
-  overview can still be seen at a glance!
-  ![ChartLegend](images/ug/ChartLegend.png)
+   - The Pie Chart Legend will be hidden should the application be of a smaller size. This ensures your categorical
+     overview can still be seen at a glance!
+     ![ChartLegend](images/ug/ChartLegend.png)
 
 2. Line Graph Dates
 
-- Certain Line Graph dates will be hidden should the application be of a smaller size. This ensures you can still view
-  the trend of your entries easily.
-  ![LineGraphDates](images/ug/LineGraphDates.png)
+   - Certain Line Graph dates will be hidden should the application be of a smaller size. This ensures you can still view
+     the trend of your entries easily.
+     ![LineGraphDates](images/ug/LineGraphDates.png)
 
 </div>
 
@@ -218,11 +217,11 @@ step-by-step!
 |      Input       | `d/Lunch a/15.60 da/15-08-2022 c/Food` |
 |  Optional Input  |                  NIL                   |
 
-- Letters followed by a forward slash is called a prefix and will be used to specify a specific parameter<br>
+- Letters followed by a forward slash is called an identifier and will be used to specify a specific parameter<br>
   e.g. `t/ ` refers to the entry type parameter.
 
-- PennyWise will always take the **LAST OCCURRENCE** of a command prefix should there be more than 1 of the same command
-  prefix in a given command. <br/>
+- PennyWise will always take the **LAST OCCURRENCE** of a command identifier should there be more than 1 of the same command
+  identifier in a given command. <br/>
   e.g. PennyWise will add the following `Income` with the description: "October Allowance" upon running the following command.
   <pre>
     <code>
@@ -232,7 +231,7 @@ step-by-step!
   You should expect to see this output:
     <pre>
     <code>
-        New entry added: October Allowance; Date: 01-10-2022; Amount: 200.00; Tag: Allowance.
+        New entry added: October Allowance; Date: 01-10-2022; Amount: 200.00; Tag: Allowance
     </code>
   </pre>
 
@@ -251,16 +250,16 @@ step-by-step!
   e.g. `d/Lunch` as a descriptor for "Lunch" is accepted by PennyWise, however `D/Lunch` would not be accepted.
 
 <div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
-- Adding identifiers that are not used in the command will result in an error.
+Adding identifiers that are not used in the command will result in an error.
 </div>
 
 ### Categorising your expenses and income
 
 For **ALL** entries, categories are <ins>COMPULSORY</ins> and every entry can only contain <ins>one</ins> category. The
-following table lists the`Expenditure` and `Income` entries categories. The category names are <ins>
+following table lists the `Expenditure` and `Income` entries categories. The category names are <ins>
 case-insensitive</ins>. E.g. `Food` is same as `food`.
 
-|   `Expenditure`   |    `Income`     |
+|    Expenditure    |     Income      |
 |:-----------------:|:---------------:|
 |     **Food**      |   **Salary**    |
 |   **Groceries**   |  **Allowance**  |
@@ -281,7 +280,7 @@ Having multiple duplicate entries will make it difficult for you to track your e
 Having them differentiated will make it easier for you to recall what you spent your money on!
 </div>
 
-If you have multiple similar entries, you can simply use the [edit](#editing-entries)
+If you want to log similar entries, you can simply use the [edit](#editing-entries)
 command to alter the original entry's specifications.
 
 For example, when executing the following [add commands](#adding-entries) one after another, PennyWise will recognise (
@@ -355,7 +354,7 @@ Adds an entry to the specified list.
 
 ![AddCommandIncome](images/ug/AddCommandIncome.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Do not see the entry you just added?:**
+<div markdown="span" class="alert alert-danger">:exclamation: **Can't see the entry you just added?:**
 If you did a [view by month](#view-entries-by-month) command before adding new entries, and you cannot find the entry you just added in the
 List Display, don't worry! This is because List Display is still filtered by the month specified.
 If the entry you just added does not fall within the month, it will not be shown. Simply use the [view by category](#view-entries-by-category)
@@ -430,7 +429,7 @@ It's been a long month with its ups and down. You wonder how your finances did t
 find out!
 
 Format: `summary [mo/MONTH]` <br/>
-To summarise the entries in PennyWise, we compute 3 simple statistic to let you have a quick overview of your
+To summarise the entries in PennyWise, we compute 3 simple statistics to let you have a quick overview of your
 expenditure and income.
 
 | Statistic             | Explanation                                                 |
@@ -523,25 +522,18 @@ Format: `view t/ENTRY_TYPE mo/MONTH`
     - Expected: `Show graphically all income by month` and a Line Graph on the right of the application
     The List Display will also be filtered to show only income in Jan 2022.
 
-<div markdown="span" class="alert alert-info">:information_source: **Info:**
-
-The `MONTH` field determines whether you get a pie chart or a line graph. Including the `MONTH` field gives you a line graph, whereas excluding it gives you a pie chart.
-</div>
-
 <div markdown="block" class="alert alert-primary">:bulb: **Tip:**
 You can think of the view entries by month command as applying a month filter to the entry list,
-and view entries by category command as clearing any filters on the entry list.
+and view entries by category command as clearing any filters on the entry list. <br/>
+To switch back to the [default view](#familiarising-yourself-with-the-interface) of the list of expenditures, 
+simply use the [`view t/e` command](#view-entries-by-category). If you would like to switch back to the 
+[default view](#familiarising-yourself-with-the-interface) of the list of income, you can use the 
+[`view t/i` command](#view-entries-by-category).
 </div>
 
 <div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
 Note that if you manually switch between the income list display and expenditure list display, all filters (if any)
 will be cleared and a pie chart will be drawn. Manual toggling is equivalent to typing the command `view t/e` or `view t/i`.
-</div>
-
-
-<div markdown="span" class="alert alert-info">:information_source: **Info:**
-To switch back to the [default view](#familiarising-yourself-with-the-interface) of the list of expenditures, simply use the [`view t/e` command](#view-entries-by-category).
-If you would like to switch back to the [default view](#familiarising-yourself-with-the-interface) of the list of income, you can use the [`view t/i` command](#view-entries-by-category).
 </div>
 
 ### Command summary table
@@ -561,7 +553,7 @@ Format: `clear` <br/>
 Clears all entries in PennyWise.
 
 <div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
-Danger zone! This command is irreversible- it is not possible to retrieve entries that are cleared.
+Danger zone! This command is irreversible, it is not possible to retrieve entries that are cleared.
 </div>
 
 ### Exiting the program
@@ -578,11 +570,11 @@ save manually.
 
 ### Editing the data file
 
-PennyWise data are saved as a file `[JAR file location]/data/pennywise.json`. Advanced users with knowledge about JSON
-file format are welcome to update data directly by editing that data file.
+PennyWise data are saved as a file `[JAR file location]/data/pennywise.json`. Advanced users with knowledge of JSON
+file format are welcomed to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, PennyWise will discard all data and start with an empty data file at the next run.
+If your changes to the data file violate the format, PennyWise will discard all data and start with an empty data file at the next run.
 </div>
 
 <p align="right">
@@ -627,23 +619,15 @@ out for our future software updates!
 
 | Action              | Format, Examples                                                                                                                                        |
 |---------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **
-Add**             | `add t/ENTRY_TYPE d/DESCRIPTION a/AMOUNT da/DATE c/CATEGORY` <br> e.g. `add t/e d/Lunch a/15.60 da/10-10-2022 c/Food`                                   |
-| **
-Delete**          | `delete INDEX_OF_ENTRY t/ENTRY_TYPE` <br> e.g. `delete 2 t/e`                                                                                           |
-| **
-Edit**            | `edit INDEX_OF_ENTRY t/ENTRY_TYPE [d/EDITED_DESCRIPTION a/EDITED_AMOUNT da/EDITED_DATE c/EDITED_CATEGORY]`<br> e.g. `edit 2 t/i a/150.00 da/22-10-2022` |
-| **
-Summary**         | `summary [mo/MONTH]`<br> e.g. `summary mo/2022-09`                                                                                                      |
-| **View (
-Category)** | `view t/ENTRY_TYPE` <br> e.g. `view t/e`                                                                                                                |
-| **View (
-Month)**    | `view t/ENTRY_TYPE mo/MONTH` <br> e.g. `view t/i mo/2022-10`                                                                                            |
-| **
-Clear**           | `clear`                                                                                                                                                 |
-| **
-Exit**            | `exit`                                                                                                                                                  |
+| **Add**             | `add t/ENTRY_TYPE d/DESCRIPTION a/AMOUNT da/DATE c/CATEGORY` <br> e.g. `add t/e d/Lunch a/15.60 da/10-10-2022 c/Food`                                   |
+| **Delete**          | `delete INDEX_OF_ENTRY t/ENTRY_TYPE` <br> e.g. `delete 2 t/e`                                                                                           |
+| **Edit**            | `edit INDEX_OF_ENTRY t/ENTRY_TYPE [d/EDITED_DESCRIPTION a/EDITED_AMOUNT da/EDITED_DATE c/EDITED_CATEGORY]`<br> e.g. `edit 2 t/i a/150.00 da/22-10-2022` |
+| **Summary**         | `summary [mo/MONTH]`<br> e.g. `summary mo/2022-09`                                                                                                      |
+| **View (Category)** | `view t/ENTRY_TYPE` <br> e.g. `view t/e`                                                                                                                |
+| **View (Month)**    | `view t/ENTRY_TYPE mo/MONTH` <br> e.g. `view t/i mo/2022-10`                                                                                            |
+| **Clear**           | `clear`                                                                                                                                                 |
+| **Exit**            | `exit`                                                                                                                                                  |
 
 <p align="right">
     <a href="#top">Back to Top </a>
-</p>
+</p>**
