@@ -260,10 +260,10 @@ The following activity diagram summarizes what happens when a user executes a de
 The delete student command is designed to be used in conjunction with find student command. For instance, the user would first use find student using project name to find the student taking FYP using `find machine`
 to find students taking machine learning projects before doing `delete -s i/A0123456X` to remove student from FYP Manager.
 
-This integration between delete student command with find student command is important because FYPManager can store large number of students with FYP, making it not fesiable for users to scroll through the list.
-By utilizing find student, users can find the student with only partial information and retrieve the student ID Using this student ID, users can delete the student from the FYPManager once he/she drops the FYP.
+This integration between delete student command with find student command is important because FypManager can store large number of students with FYP, making it not feasible for users to scroll through the list.
+By utilizing find student, users can find the student with only partial information and retrieve the student ID Using this student ID, users can delete the student from the FypManager once he/she drops the FYP.
 
-<div style="page-break-after: always;"></div>
+### Deleting a deadline from a student in the FYP manager
 
 #### Implementation details
 
@@ -272,7 +272,7 @@ The delete deadline feature is facilitated by `DeleteDeadlineCommandParser` and 
 Given below is an example usage scenario and how the delete deadline mechanism behaves at each step:
 
 1. The user enters delete deadline command and provides the student ID and rank of deadline to be deleted.
-2. `FYPManagerParser` creates a new `DeleteDeadlineCommandParser` after preliminary processing of user input.
+2. `FypManagerParser` creates a new `DeleteDeadlineCommandParser` after preliminary processing of user input.
 3. `DeleteDeadlineCommandParser` creates a new `DeleteDeadlineCommand` based on the processed input.
 4. `LogicManager` executes the `DeleteDeadlineCommand`.
 5. `DeleteCommand` calls `Model#getIndexByStudentId(index)` and passes the studentId, and gets the desired student.
@@ -298,91 +298,8 @@ The following activity diagram summarizes what happens when a user executes a de
 The delete deadline command is designed to be used in conjunction with find student command. For instance, the user would first use find student using project name to find the student taking FYP using `find machine`
 to find students taking machine learning projects before doing `delete -d i/A0123456X r/1` to remove student from FYP Manager.
 
-This integration between delete deadline command with find student command is important because FYPManager can store large number of students with FYP, making it not fesiable for users to scroll through the list.
-By utilizing find student, users can find the student with only partial information and retrieve the student ID Using this student ID, users can delete the deadline from the FYPManager once he/she drops the deadline task.
-
-
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedFypManager`. It extends `FypManager` with an undo/redo history, stored internally as an `fypManagerStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedFypManager#commit()` — Saves the current FYP manager state in its history.
-* `VersionedFypManager#undo()` — Restores the previous FYP manager state from its history.
-* `VersionedFypManager#redo()` — Restores a previously undone FYP manager state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitFypManager()`, `Model#undoFypManager()` and `Model#redoFypManager()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedFypManager` will be initialized with the initial FYP manager state, and the `currentStatePointer` pointing to that single FYP manager state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete -s i/A0123456A` command to delete student with studentId of A0123456A in the FYP manager. The `delete` command calls `Model#commitFypManager()`, causing the modified state of the FYP manager after the `delete 5` command executes to be saved in the `fypManagerStateList`, and the `currentStatePointer` is shifted to the newly inserted FYP manager state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add -s n/David …​` to add a new student. The `add -s` command also calls `Model#commitFypManager()`, causing another modified FYP manager state to be saved into the `fypManagerStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitFypManager()`, so the FYP manager state will not be saved into the `fypManagerStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the student was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoFypManager()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous FYP manager state, and restores the FYP manager to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial FypManager state, then there are no previous FypManager states to restore. The `undo` command uses `Model#canUndoFypManager()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoFypManager()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the FYP manager to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `fypManagerStateList.size() - 1`, pointing to the latest FYP manager state, then there are no undone FypManager states to restore. The `redo` command uses `Model#canRedoFypManager()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `Exit`. Commands that do not modify the FYP manager, such as `Exit`, will usually not call `Model#commitFypManager()`, `Model#undoFypManager()` or `Model#redoFypManager()`. Thus, the `fypManagerStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitFypManager()`. Since the `currentStatePointer` is not pointing at the end of the `fypManagerStateList`, all FYP manager states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire FYP manager.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the student being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-<div style="page-break-after: always;"></div>
+This integration between delete deadline command with find student command is important because FypManager can store large number of students with FYP, making it not fesiable for users to scroll through the list.
+By utilizing find student, users can find the student with only partial information and retrieve the student ID Using this student ID, users can delete the deadline from the FypManager once he/she drops the deadline task.
 
 ### `Mark` Feature
 #### Proposed Implementation
@@ -661,6 +578,88 @@ We give an example usage scenario of `SortProjectNameCommand` and `SortProjectSt
 The following activity diagram summarizes what happens when the user runs a `SortCommand`:
 
 ![SortCommandActivityDiagram](images/SortCommandActivityDiagram.jpg)
+
+### \[Proposed\] Undo/redo feature
+
+#### Proposed Implementation
+
+The proposed undo/redo mechanism is facilitated by `VersionedFypManager`. It extends `FypManager` with an undo/redo history, stored internally as an `fypManagerStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+
+* `VersionedFypManager#commit()` — Saves the current FYP manager state in its history.
+* `VersionedFypManager#undo()` — Restores the previous FYP manager state from its history.
+* `VersionedFypManager#redo()` — Restores a previously undone FYP manager state from its history.
+
+These operations are exposed in the `Model` interface as `Model#commitFypManager()`, `Model#undoFypManager()` and `Model#redoFypManager()` respectively.
+
+Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `VersionedFypManager` will be initialized with the initial FYP manager state, and the `currentStatePointer` pointing to that single FYP manager state.
+
+![UndoRedoState0](images/UndoRedoState0.png)
+
+Step 2. The user executes `delete -s i/A0123456A` command to delete student with studentId of A0123456A in the FYP manager. The `delete` command calls `Model#commitFypManager()`, causing the modified state of the FYP manager after the `delete 5` command executes to be saved in the `fypManagerStateList`, and the `currentStatePointer` is shifted to the newly inserted FYP manager state.
+
+![UndoRedoState1](images/UndoRedoState1.png)
+
+Step 3. The user executes `add -s n/David …​` to add a new student. The `add -s` command also calls `Model#commitFypManager()`, causing another modified FYP manager state to be saved into the `fypManagerStateList`.
+
+![UndoRedoState2](images/UndoRedoState2.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitFypManager()`, so the FYP manager state will not be saved into the `fypManagerStateList`.
+
+</div>
+
+Step 4. The user now decides that adding the student was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoFypManager()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous FYP manager state, and restores the FYP manager to that state.
+
+![UndoRedoState3](images/UndoRedoState3.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial FypManager state, then there are no previous FypManager states to restore. The `undo` command uses `Model#canUndoFypManager()` to check if this is the case. If so, it will return an error to the user rather
+than attempting to perform the undo.
+
+</div>
+
+The following sequence diagram shows how the undo operation works:
+
+![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The `redo` command does the opposite — it calls `Model#redoFypManager()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the FYP manager to that state.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `fypManagerStateList.size() - 1`, pointing to the latest FYP manager state, then there are no undone FypManager states to restore. The `redo` command uses `Model#canRedoFypManager()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+
+</div>
+
+Step 5. The user then decides to execute the command `Exit`. Commands that do not modify the FYP manager, such as `Exit`, will usually not call `Model#commitFypManager()`, `Model#undoFypManager()` or `Model#redoFypManager()`. Thus, the `fypManagerStateList` remains unchanged.
+
+![UndoRedoState4](images/UndoRedoState4.png)
+
+Step 6. The user executes `clear`, which calls `Model#commitFypManager()`. Since the `currentStatePointer` is not pointing at the end of the `fypManagerStateList`, all FYP manager states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+
+![UndoRedoState5](images/UndoRedoState5.png)
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+<img src="images/CommitActivityDiagram.png" width="250" />
+
+#### Design considerations:
+
+**Aspect: How undo & redo executes:**
+
+* **Alternative 1 (current choice):** Saves the entire FYP manager.
+  * Pros: Easy to implement.
+  * Cons: May have performance issues in terms of memory usage.
+
+* **Alternative 2:** Individual command knows how to undo/redo by
+  itself.
+  * Pros: Will use less memory (e.g. for `delete`, just save the student being deleted).
+  * Cons: We must ensure that the implementation of each individual command are correct.
+
+_{more aspects and alternatives to be added}_
+
+<div style="page-break-after: always;"></div>
 
 #### Future Implementations
 * Sorting of deadlines could be considered as well
