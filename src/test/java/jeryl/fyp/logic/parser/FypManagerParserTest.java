@@ -161,8 +161,8 @@ public class FypManagerParserTest {
 
         //invalid input
         final String invalidInput = "sort -sp";
-        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () ->
-                parser.parseCommand(invalidInput));
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand(invalidInput));
+    }
 
     @Test
     public void parseCommand_sortProjectName() throws Exception {
