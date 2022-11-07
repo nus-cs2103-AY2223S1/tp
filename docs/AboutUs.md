@@ -27,7 +27,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/desmondyst.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: `Mark` command, User guide, Developer Guide
 
 ### Lee Ian Ee
 
