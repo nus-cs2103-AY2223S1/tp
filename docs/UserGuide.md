@@ -269,6 +269,7 @@ Traverse/Scroll **down**: `<Down>`
     <div markdown="span" class="alert alert-primary">
     :bulb: **Tip**
     
-    - Valid academic year examples: `2022-2023`, `2018-2019`
-    - Invalid academic year examples: `2022-2022`, `2023-2022`, `22-23`
+    - **Valid** ✅ academic year examples: `2022-2023`, `2018-2019`
+       
+    - **Invalid** ❌ academic year examples: `2022-2022`, `2023-2022`, `22-23`
     </div>
