@@ -8,6 +8,9 @@ title: Developer Guide
 TaskBook is a **desktop app for managing contacts and tasks, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TaskBook can get your contact and task management tasks done faster than traditional GUI apps.
 
 This developer's guide consists of the following sections. Note that TaskBook is developed with Java 11.
+
+## Table of Contents
+
 * Table of Contents
 {:toc}
 
@@ -29,11 +32,6 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Design**
-
-<div markdown="span" class="alert alert-primary">
-
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S1-CS2103T-T13-4/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
-</div>
 
 ### Architecture
 
@@ -86,7 +84,7 @@ The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `Re
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-T13-4/tp/tree/master/src/main/java/taskbook/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-T13-4/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
-The `UI` component,
+The `UI` component
 
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
@@ -509,7 +507,7 @@ The Todo, Deadline and Event task types is facilitated by `TaskList`. It extends
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts and task assignments to and from contacts faster than a typical mouse/GUI driven app
+**Value proposition**: TaskBook is the most personalized method for NUS students to manage their tasks, by connecting tasks with the people they know. Through connections, students will be better able to manage the complicated web of tasks they are involved in from a day to day basis. TaskBook will only help with task management and does not currently provide services outside of task and contact management, like reminders and workspaces. TaskBook is optimized for CLI inputs.
 
 
 ### User stories
@@ -904,7 +902,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Component**: A clearly divided section of the application, with its own responsibility and interactions with other components.
+* **Contact**: A contact detail which is made up of name, phone, email, address, and tags.
+* **Person**: A contact detail which is made up of name, phone, email, address, and tags.
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Task**: A task is made up of name, assignment, description, done status, and tags.
+* **Todo**: A type of task with no extra parameters.
+* **Deadline**: A type of task with a deadline.
+* **Event**: A type of task with an event.
+* **Command**: An instruction which can be executed by the user.
+* **Invalid command**: A command which is invalid.
+* **Sorting**: Re-ordering of the contact or task list by a certain rule.
+* **Saving**: Refers specifically to saving to hard drive.
+* **Undo**: Reversal of a previous state.
+* **Redo**: Reversal back to a previously undone state.
+* **Command History**: History of commands executed, including invalid commands.
+* **Done**: The completion status of a task.
+* **Mark**: Mark a task as done.
+* **Unmark**: Mark a task as undone.
+* **Tag**: A tag of a contact or task.
+* **GUI**: Graphical User Interface.
+* **CLI**: Command Line Interface.
 
 --------------------------------------------------------------------------------------------------------------------
 
