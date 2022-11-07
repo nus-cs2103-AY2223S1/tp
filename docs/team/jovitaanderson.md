@@ -2,7 +2,6 @@
 layout: page
 title: Jovita Anderson's Project Portfolio Page
 ---
-
 ### Project: FinBook
 
 FinBook is a desktop app for Financial Assistant (FA) to manage their client details and ensure that your data is
@@ -43,16 +42,15 @@ Given below are my contributions to the project.
 * **Documentation**:
     * **User Guide**:
         * Update `add` and `edit` command to include meeting date.
-        * Add FinBook's product description, legend for symbol and icons, description and purpose of FinBook's User
+        * Add FinBook's product description, legend for symbol and icons, description FinBook's User
           Interface components and explanation of command format of FinBook's CLI. ([#86](https://github.com/AY2223S1-CS2103T-F11-3/tp/pull/86))
         * Add a prefix format description with stated parameter restrictions, and examples. ([#187](https://github.com/AY2223S1-CS2103T-F11-3/tp/pull/187))
         * Add User Interface of FinBook and Command format images.
         * Add `copy` command feature. ([#84](https://github.com/AY2223S1-CS2103T-F11-3/tp/pull/84))
-        * Add `delete` single and multiple clients feature. ([#75](https://github.com/AY2223S1-CS2103T-F11-3/tp/pull/75]))
+        * Add `delete` single and multiple clients feature. ([#75](https://github.com/AY2223S1-CS2103T-F11-3/tp/pull/75))
 
     * **Developer Guide**:
-        * Add Table of Contents ([#75](https://github.com/AY2223S1-CS2103T-F11-3/tp/pull/75]))
-        * Model diagram (created and updated).
+        * Model diagram (created and updated).([#51](https://github.com/AY2223S1-CS2103T-F11-3/tp/pull/51))
         * Update user stories. ([#97](https://github.com/AY2223S1-CS2103T-F11-3/tp/pull/97))
         * Add test cases for deleting a client.
         * Add Copy command in the implementation process
