@@ -3,7 +3,7 @@ layout: page
 title: uNivUSal
 ---
 
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
+[![CI Status](https://github.com/AY2223S1-CS2103T-T08-3/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S1-CS2103T-T08-3/tp/actions)
 [![codecov](https://codecov.io/gh/AY2223S1-CS2103T-T08-3/tp/branch/master/graph/badge.svg?token=Y4F4ICZLXL)](https://codecov.io/gh/AY2223S1-CS2103T-T08-3/tp)
 ![Ui](images/Ui.png)
 
