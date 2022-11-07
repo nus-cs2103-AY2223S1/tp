@@ -1095,10 +1095,10 @@ testers are expected to do more *exploratory* testing.
        Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
 
     3. Test case: `delete 0`<br>
-       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+       Expected: No person is deleted. Error details shown in the status message. Result display remains the same.
 
     4. Test case: `delete Charlotte`, assuming there is only 1 person with the name `Charlotte` in the Sectresbook.<br>
-       Expected: Person with name `Charlotte` is deleted from the list. Details of the deleted contact shown in the status mesasge.
+       Expected: Person with name `Charlotte` is deleted from the list. Details of the deleted contact shown in the status message.
    
     5. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
@@ -1111,7 +1111,7 @@ testers are expected to do more *exploratory* testing.
        Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
    
     3. Test case: `delete -1`<br>
-       Expected: No person is deleted from the list. Error details shown in the status message. Status bar remains the same.
+       Expected: No person is deleted from the list. Error details shown in the status message. Result display remains the same.
    
     4. Test case: `delete Charlotte`, assuming there is only 1 person with the name `Charlotte` in the Sectresbook.<br>
        Expected: Person with name `Charlotte` is deleted from the list. Details of the deleted contact shown in the status message.
@@ -1120,7 +1120,7 @@ testers are expected to do more *exploratory* testing.
        Expected: No person is deleted from the list. Sectresbook lists the contacts with `Sean` in their name. Error details shown in the status message.
 
     6. Other incorrect delete commands to try: `delete`, `delete phone/PHONE_NUMBER`, `...` (where `PHONE_NUMBER` is a phone number of a person).<br>
-       Expected: No person is deleted from the list. Error details shown the status message. Status bar remains the same.
+       Expected: No person is deleted from the list. Error details shown the status message. Result display remains the same.
 
 ### Editing a person
 
@@ -1130,16 +1130,16 @@ testers are expected to do more *exploratory* testing.
       Expected: Phone number of the first contact in the list is edited. Details of the edited contact shown in the status message.
    
    2. Test case: `edit 5 tag/Friend`, assuming there is less than 5 people currently displayed in the Sectresbook.<br>
-      Expected: No person is edited. Error details shown in the status message. Status bar remains the same.
+      Expected: No person is edited. Error details shown in the status message. Result display remains the same.
    
    3. Test case: `edit Charlotte tag/Friend`, assuming there is only 1 person with the name `Charlotte` in the Sectresbook.<br>
       Expected: The tag of the Person with the name `Charlotte` is edited. Details of the edited contact shown in the status message.
    
    4. Test case: `edit Sean tag/Colleague`, assuming there is more than 1 person with the name `Sean` in the Sectresbook.<br>
-      Expected: No person is edited from the list. Sectresbook shows the list of persons with `Sean` in their name. Error details shown the status message. Status bar remains the same.
+      Expected: No person is edited from the list. Sectresbook shows the list of persons with `Sean` in their name. Error details shown the status message. Result display remains the same.
    
    5. Other incorrect edit commands to try: `edit`, `edit 2 phone/TEXT`, `...` (where `TEXT` is an input with only alphabets). <br>
-      Expected: No person is edited in the list. Error details shown in the status message. Status bar remains the same.
+      Expected: No person is edited in the list. Error details shown in the status message. Result display remains the same.
 
 ### Editing a loan of a person
 
@@ -1149,16 +1149,16 @@ testers are expected to do more *exploratory* testing.
       Expected: Loan amount and history of the first contact is updated. Details of the edited contact shown in the status message.
    
    2. Test case: `editLoan 5 amt/100 reason/Logistics`, assuming there is less than 5 people currently displayed in the Sectresbook.<br>
-      Expected: No person is edited. Error details shown in the status message. Status bar remains the same.
+      Expected: No person is edited. Error details shown in the status message. Result display remains the same.
    
    3. Test case: `edit Charlotte amt/10 reason/Test`, assuming there is only 1 person with the name `Charlotte` in the Sectresbook.<br>
       Expected: Loan amount and history of the Person with the name `Charlotte` is edited. Details of the edited contact shown in the status message.
    
    4. Test case: `edit Sean amt/10 reason/Test`, assuming there is more than 1 person with the name `Sean` in the Sectresbook.<br>
-      Expected: No person is edited from the list. Sectresbook shows the list of persons with `Sean` in their name. Error details shown the status message. Status bar remains the same.
+      Expected: No person is edited from the list. Sectresbook shows the list of persons with `Sean` in their name. Error details shown the status message. Result display remains the same.
    
    5. Other incorrect editLoan commands to try: `editLoan`, `editLoan amt/`,`editLoan 1 amt/TEXT reason/TEXT`, `...` (where `TEXT` is an input with only alphabets). <br>
-      Expected: No person is edited in the list. Error details shown in the status message. Status bar remains the same.
+      Expected: No person is edited in the list. Error details shown in the status message. Result display remains the same.
 
 ### Finding a person
 
@@ -1177,7 +1177,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Person list is updated with contacts that contain the substring `Ryan` and phone number starting with `8445`. Details of the number of persons listed shown in status message.
    
    5. Incorrect editLoan command to try: `editLoan`. <br>
-      Expected: No change in the list shown. Error details shown in the status message. Status bar remains the same.
+      Expected: No change in the list shown. Error details shown in the status message. Result display remains the same.
 
 ### Listing a person
 
@@ -1200,13 +1200,13 @@ testers are expected to do more *exploratory* testing.
       Expected: Displays the information of the contact with name `Charlotte` in the person list. Success message is shown as the status message.
    
    3. Test case: `inspect -1`<br>
-      Expected: No change in the person being inspected. Error details shown in the status message. Status bar remains the same.
+      Expected: No change in the person being inspected. Error details shown in the status message. Result display remains the same.
    
    4. Test case: `inspect Jack`, assuming there is more than 1 person with the name `Jack` in the person list.<br>
-      Expected: No change in the person currently being inspected. Error details shown in the status message. Status bar remains the same.
+      Expected: No change in the person currently being inspected. Error details shown in the status message. Result display remains the same.
    
    5. Other incorrect inspect commands to try: `inspect`.<br>
-      Expected: No change in the person currently being inspected. Error details shown in the status message. Status bar remains the same.
+      Expected: No change in the person currently being inspected. Error details shown in the status message. Result display remains the same.
 
 ### Viewing Help
 
