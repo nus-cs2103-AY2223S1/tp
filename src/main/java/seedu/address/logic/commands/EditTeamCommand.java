@@ -98,7 +98,7 @@ public class EditTeamCommand extends Command {
         List<Team> filteredListWithTargetTeam = teamList.stream()
                 .filter(editedTeam::isSameTeam).collect(Collectors.toList());
 
-        if ((!editedTeam.isSameTeam(currentTeam)) && (filteredListWithTargetTeam.size() == 1)) {
+        if ((!editedTeam.isSameTeam(currentTeam)) && (filteredListWithTargetTeam.size() != 0)) {
             throw new CommandException(MESSAGE_DUPLICATE_TEAM);
         }
 
