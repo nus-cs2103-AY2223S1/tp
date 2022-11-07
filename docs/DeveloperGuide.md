@@ -231,92 +231,44 @@ For supported commands, the following activity diagram summarizes what happens w
 
 <img src="images/CommandDisplayHelpActivityDiagram.png" />
 
-### \[Proposed\] Undo/redo feature
+### Searching through Food Guide
 
-#### Proposed Implementation
+Users are currently able to search individual fields of eateries in `Food Guide` by the following commands:
+* `find`: search by `Name`
+* `findLocation`: search by `Location`
+* `findCuisine`: search by `Cuisine`
+* `findPrice`: search by `Price`
+* `findTags`: search by `Tags`
 
-The proposed undo/redo mechanism is facilitated by `VersionedFoodGuide`. It extends `FoodGuide` with an undo/redo history, stored internally as an `addressBookfoodGuideStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+#### Implementation
 
+<p align="center">
+<img src="images/FindPriceSequenceDiagram.png" /> <br>
+The Sequence diagram *illustrates the interactions within the `Logic` component for the `execute("findPrice $")` API call.*
+</p>
 
-* `VersionedFoodGuide#commit()` — Saves the current food guide state in its history.
-* `VersionedFoodGuide#undo()` — Restores the previous food guide state from its history.
-* `VersionedFoodGuide#redo()` — Restores a previously undone food guide state from its history.
+Augmenting `AB3`'s current implementation of `find`, each `find` command currently has its own `CommandParser` 
+which returns its respective `Command`. To execute the command `"findPrice $"`, `FoodGuideParser` creates 
+a `FindPriceCommandParser` to parse the user command and create a `findPriceCommand` object. 
 
-These operations are exposed in the `Model` interface as `Model#commitFoodGuide()`, `Model#undoFoodGuide()` and `Model#redoFoodGuide()` respectively.
+In order to keep track of the user's inputted search terms, we utilize `XYZContainsKeywordsPredicate` 
+(XYZ is a placeholder for the field being searched, e.g. `LocationContainsKeywordsPredicate`). 
+`XYZContainsKeywordsPredicate` implements the Java functional interface `Predicate<Eatery>`, 
+taking in an `Eatery` object while containing the user's inputted search terms in the form of a list.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+The `Predicate` returns `True` if, for the field being searched, 
+ANY of the search terms in said `Predicate`'s list matches the value stored in an eatery's field. 
 
-Step 1. The user launches the application for the first time. The `VersionedFoodGuide` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+In particular, the current implementation of `find` and `findLocation`, we perform a case-insensitive substring search. 
+For each respective `Predicate` object, it tests `True` if _any_ of the user's inputted search terms 
+is a substring of the eatery's stored name or location respectively. For example, given an eatery with the location
+`"(Frontier, Air-Con)"`, `LocationContainsKeywordsPredicate` will test `True` for any of (but not limited to) 
+the following search terms:
+* `"("` and `")"`, 
+* `"-"` and `","`,
+* `"Front",` `"Frontier,"` and `"air-con"`
 
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th eatery in the address book. The `delete` command calls `Model#commitFoodGuide()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `foodGuideStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new eatery. The `add` command also calls `Model#commitFoodGuide()`, causing another modified address book state to be saved into the `foodGuideStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitFoodGuide()`, so the address book state will not be saved into the `foodGuideStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the eatery was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoFoodGuide()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial FoodGuide state, then there are no previous FoodGuide states to restore. The `undo` command uses `Model#canUndoFoodGuide()` to check if this is the case. If so, it will return an error to the user rather
-
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoFoodGuide()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `foodGuideStateList.size() - 1`, pointing to the latest address book state, then there are no undone FoodGuide states to restore. The `redo` command uses `Model#canRedoFoodGuide()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitFoodGuide()`, `Model#undoFoodGuide()` or `Model#redoFoodGuide()`. Thus, the `foodGuideStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitFoodGuide()`. Since the `currentStatePointer` is not pointing at the end of the `foodGuideStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-
-* Pros: Easy to implement.
-* Cons: May have performance issues in terms of memory usage.
-
-
-
-
-
-* **Alternative 2:** Individual command knows how to undo/redo by itself.
-
-* Pros: Will use less memory (e.g. for `delete`, just save the eatery being deleted).
-* Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
+Each `XYZContainsKeywordsPredicate` is then used by `ModelManager` to update the current list of displayed eateries.
 
 --------------------------------------------------------------------------------------------------------------------
 
