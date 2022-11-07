@@ -24,7 +24,7 @@ FindCommand - allows users to search for the desired FYP projects with specified
 
   * Justifications: Originally meant to find names in AB3, the enhanced FindCommand now allows users to search with more
   fields. Professors would be interested in searching for projects that they are interested in, and they
-  would want to filter the projects by certain fields: for instance, by specialisation (which could be expressed via 
+  would want to filter the projects by certain fields: for instance, by specialisation (which could be expressed via
   a student's tags), or by the project names, etc.
 
   * The appeal: This makes it easier for Professors to sieve out the projects that they are interested in, and they can

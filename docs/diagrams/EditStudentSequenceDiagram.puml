@@ -51,33 +51,18 @@ activate EditCommand
 EditCommand -> Model :getIndexByStudentId(studentId)
 activate Model
 
-Model --> EditCommand : i
-deactivate Model
-
-alt student does not exist
-
-EditCommand -> Model : i >= studentList.size()
-activate Model
-
-Model --> EditCommand : CommandException
-deactivate Model
-
-else else
-
-EditCommand -> Model : hasStudent(e) && isSameStudentId(i)
-activate Model
-
-alt is a duplicate student
-Model --> EditCommand : CommandException
-deactivate Model
-
-else else
-Model --> EditCommand : hasStudent(e) && isSameStudentId(i)
+Model --> EditCommand
 deactivate Model
 
 activate EditCommand
 EditCommand -> EditCommand : createEditedStudent(studentToEdit, editStudentDescriptor)
 deactivate EditCommand
+
+EditCommand -> Model :setStudent(studentToEdit, editedStudent)
+activate Model
+
+Model --> EditCommand
+deactivate Model
 
 create CommandResult
 EditCommand -> CommandResult
@@ -85,8 +70,7 @@ activate CommandResult
 
 CommandResult --> EditCommand
 deactivate CommandResult
-end
-end
+
 EditCommand --> LogicManager : result
 deactivate EditCommand
 
