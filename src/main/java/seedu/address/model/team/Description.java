@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Description {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Team descriptions cannot contain either single (') or double quotes (\"), and should not be blank";
+            "Team descriptions should not be blank and cannot contain quotation marks (' or \")";
 
     public static final String VALIDATION_REGEX = "^[^'\\s\"][^'\"]+$";
     public static final String NO_DESCRIPTION_STRING = "No description added";

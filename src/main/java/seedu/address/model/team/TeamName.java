@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class TeamName {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Team names cannot contain either single (') or double quotes (\"), and should not be blank";
+            "Team names should not be blank and cannot contain quotation marks (' and \")";
 
     public static final String VALIDATION_REGEX = "^[^'\\s\"][^'\"]+$";
 

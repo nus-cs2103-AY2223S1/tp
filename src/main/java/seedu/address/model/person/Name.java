@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Name {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Person names cannot contain either single (') or double quotes (\"), and should not be blank";
+            "Person names should not be blank and cannot contain quotation marks (' and \")";
 
     /*
      * The first character of the address must not be a whitespace,

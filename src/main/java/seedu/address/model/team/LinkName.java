@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class LinkName {
     public static final String MESSAGE_CONSTRAINTS =
-            "Link names cannot contain either single (') or double quotes (\"), and should not be blank";
+            "Link names cannot contain single (') or double quotes (\"), and should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,
