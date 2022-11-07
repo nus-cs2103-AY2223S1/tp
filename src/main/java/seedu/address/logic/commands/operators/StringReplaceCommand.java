@@ -34,7 +34,6 @@ public class StringReplaceCommand extends Command {
             target = replacers.get(1);
         } else {
             if (replacers.size() != 1 || txt == null) {
-                System.out.println(replacers);
                 throw new CommandException(INVALID_INPUT);
             }
             target = replacers.get(0);
@@ -63,7 +62,6 @@ public class StringReplaceCommand extends Command {
 
     @Override
     public Command setInput(Object additionalData) throws CommandException {
-        System.out.print(additionalData);
         if (additionalData == null || additionalData.toString().trim() == "") {
             txt = null;
             return this;
