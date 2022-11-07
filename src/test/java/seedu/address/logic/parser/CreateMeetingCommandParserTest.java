@@ -5,7 +5,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
-// import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import org.junit.jupiter.api.Test;
 
@@ -64,7 +63,7 @@ public class CreateMeetingCommandParserTest {
     @Test
     public void parse_emptyDateTime_throwsParseException() {
         assertParseFailure(parser, "Amy ;;; Do CS2103 Project ;;; ;;; University Town",
-            String.format("Meeting date:  is not in dd-MM-yyyy format"));
+            String.format("Meeting date cannot be empty"));
     }
 
     @Test

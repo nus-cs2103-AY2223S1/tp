@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.CreateMeetingCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.AddressBook;
@@ -28,6 +30,7 @@ import seedu.address.model.meeting.UniqueMeetingList;
 import seedu.address.model.meeting.exceptions.DuplicateMeetingException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.testutil.MeetingBuilder;
 import seedu.address.testutil.PersonBuilder;
 
@@ -55,9 +58,13 @@ public class CreateMeetingCommandTest {
         Meeting validMeeting = new MeetingBuilder().build();
         CreateMeetingCommandTest.ModelStubWithMeeting modelStub =
             new CreateMeetingCommandTest.ModelStubWithMeeting(validMeeting);
-        String actualFeedBack = createMeetingCommand.execute(modelStub).getFeedbackToUser();
 
-        assertEquals(CreateMeetingCommand.DUPLICATE_MEETINGS, actualFeedBack);
+        assertThrows(CommandException.class, () -> createMeetingCommand.execute(modelStub));
+        try {
+            String actualFeedBack = createMeetingCommand.execute(modelStub).getFeedbackToUser();
+        } catch (CommandException ce) {
+            assertEquals(CreateMeetingCommand.DUPLICATE_MEETINGS, ce.getMessage());
+        }
     }
 
     @Test
@@ -67,8 +74,13 @@ public class CreateMeetingCommandTest {
         CreateMeetingCommandTest.ModelStubAcceptingMeetingCreated modelStub =
             new CreateMeetingCommandTest.ModelStubAcceptingMeetingCreated();
 
-        String actualFeedback = createMeetingCommand.execute(modelStub).getFeedbackToUser();
-        assertEquals(CreateMeetingCommand.PERSON_NOT_FOUND, actualFeedback);
+        assertThrows(CommandException.class, () -> createMeetingCommand.execute(modelStub));
+        try {
+            String actualFeedBack = createMeetingCommand.execute(modelStub).getFeedbackToUser();
+        } catch (CommandException ce) {
+            assertEquals(String.format(PersonNotFoundException.PERSON_NOT_FOUND, "Ben") + "\n"
+                + CreateMeetingCommand.PERSON_NOT_FOUND, ce.getMessage());
+        }
     }
 
     @Test
@@ -78,8 +90,12 @@ public class CreateMeetingCommandTest {
         CreateMeetingCommandTest.ModelStubAcceptingMeetingCreated modelStub =
             new CreateMeetingCommandTest.ModelStubAcceptingMeetingCreated();
 
-        String actualFeedback = createMeetingCommand.execute(modelStub).getFeedbackToUser();
-        assertEquals(CreateMeetingCommand.DUPLICATE_PERSON_TO_MEET, actualFeedback);
+        assertThrows(CommandException.class, () -> createMeetingCommand.execute(modelStub));
+        try {
+            String actualFeedback = createMeetingCommand.execute(modelStub).getFeedbackToUser();
+        } catch (CommandException ce) {
+            assertEquals(CreateMeetingCommand.DUPLICATE_PERSON_TO_MEET, ce.getMessage());
+        }
     }
 
     @Test
@@ -89,8 +105,13 @@ public class CreateMeetingCommandTest {
         CreateMeetingCommandTest.ModelStubAcceptingMeetingCreated modelStub =
             new CreateMeetingCommandTest.ModelStubAcceptingMeetingCreated();
 
-        String actualFeedback = createMeetingCommand.execute(modelStub).getFeedbackToUser();
-        assertEquals(CreateMeetingCommand.IMPRECISE_NAME_PREDICATE, actualFeedback);
+        assertThrows(CommandException.class, () -> createMeetingCommand.execute(modelStub));
+        try {
+            String actualFeedback = createMeetingCommand.execute(modelStub).getFeedbackToUser();
+        } catch (CommandException ce) {
+            assertEquals(CreateMeetingCommand.IMPRECISE_NAME_PREDICATE
+                + "\nName of person to meet: Amy Lee matches multiple contacts", ce.getMessage());
+        }
     }
 
     @Test
@@ -100,8 +121,13 @@ public class CreateMeetingCommandTest {
         CreateMeetingCommandTest.ModelStubAcceptingMeetingCreated modelStub =
             new CreateMeetingCommandTest.ModelStubAcceptingMeetingCreated();
 
-        String actualFeedback = createMeetingCommand.execute(modelStub).getFeedbackToUser();
-        assertEquals(CreateMeetingCommand.PERSON_NOT_FOUND, actualFeedback);
+        assertThrows(CommandException.class, () -> createMeetingCommand.execute(modelStub));
+        try {
+            String actualFeedback = createMeetingCommand.execute(modelStub).getFeedbackToUser();
+        } catch (CommandException ce) {
+            assertEquals(PersonNotFoundException.NO_PERSON_DETECTED + "\n"
+                + CreateMeetingCommand.PERSON_NOT_FOUND, ce.getMessage());
+        }
     }
 
     @Test
