@@ -130,6 +130,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasTutorExcept(Tutor excludedTutor, Tutor tutor) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deleteTutor(Tutor target) {
             throw new AssertionError("This method should not be called.");
         }
