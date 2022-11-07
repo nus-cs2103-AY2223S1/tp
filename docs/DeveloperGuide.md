@@ -190,8 +190,10 @@ The `Model` component,
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list and an `Appointment` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag and one `Appointment` object per unique appointment, instead of each `Person` needing their own `Tag` and `Appointment` objects.<br>
 
+<br>
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
+<br>
 *Figure 8. Improved class diagram showing the classes in the `Model`*
 </div>
 
