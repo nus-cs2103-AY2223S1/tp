@@ -49,7 +49,6 @@ AddressBookParser --> LogicManager : r
 deactivate AddressBookParser
 
 LogicManager -> EditCommand : execute()
-
 ref over EditCommand: execute edit command
 
 EditCommand --> LogicManager : result

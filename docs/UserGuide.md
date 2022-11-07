@@ -187,7 +187,7 @@ Examples:
 * `deleteR 2` deletes the 2nd reminder in the reminder list.
 
 
-## Utilities
+# Utilities
 
 ### Listing All Persons : `list`
 
