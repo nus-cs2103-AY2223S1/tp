@@ -875,7 +875,21 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+1. Saving which TAB the user exited
+
+    1. Create a couple of TABs
+
+    1. Swap to the desired TAB<br>
+    
+    1. Exit and relaunch the application
+       Expected: The most recent TAB is opened.
+
+1. Exiting
+
+   1. Launch TAB
+
+   1. Enter into the command box `exit` or click the cross button at the top right corner
+      Expected: Application closes.
 
 ### Deleting a person
 
@@ -892,7 +906,86 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Creating a new TAB
+1. Creating a new TAB while there are < 5 TABs
+
+    1. Prerequisites: There are a total of < 5 TABs
+
+    1. Test case: `new`<br>
+       Expected: A new blank TAB is created. This is reflected at the bottom left corner of the application as a new name.
+
+   1. Test case: Use the keyboard shortcut `Ctrl+Shift+N`<br>
+      Expected: Similar to previous.
+
+   1. Other correct new commands to try: `new x`(where x is any input)<br>
+      Expected: Similar to previous.
+
+1. Creating a new TAB after having a total of 5 TABs
+
+    1. Prerequisites: There are 5 total TABs present
+
+    1. Test case: `new`<br>
+       Expected: Error details shown in the status message.
+
+   1. Test case: Use the keyboard shortcut `Ctrl+Shift+N`<br>
+      Expected: Similar to previous.
+
+### Swapping TABs
+1. Swapping TABs while there are > 1 TABs
+
+   1. Prerequisites: > 1 TABs present
+
+   1. Test case: `swap`<br>
+     Expected: Swaps between TABs created. This is reflected at the bottom left corner of the application as another name and the contents present.
+
+   1. Test case: Use the keyboard shortcut `Shift+Tab`<br>
+     Expected: Similar to previous.
+
+   1. Other correct swap commands to try: `swap x`(where x is any input)<br>
+     Expected: Similar to previous.
+
+1. Swapping TABS while there is only 1 TAB
+
+    1. Prerequisites: There 1 TAB in total
+
+    1. Test case: `swap`<br>
+       Expected: Nothing happens.
+
+    1. Test case: Use the keyboard shortcut `Shift+Tab`<br>
+       Expected: Similar to previous.
+
+    1. Other correct swap commands to try: `swap x`(where x is any input)<br>
+       Expected: Similar to previous.
+
+### Renaming TABs
+1. Renaming with alphanumeric characters and `-` and `_`
+
+    1. Test case: `rename CS2103T`<br>
+       Expected: Renames the current TAB with `cs2103t`. This is reflected at the bottom left corner of the application as a lower cased name and keeps the name after re-launch.
+
+    1. Other correct rename commands to try: `rename x`(where x is any valid input)<br>
+       Expected: Similar to previous.
+
+1. Renaming to a file that is already present
+
+    1. Prerequisites: There is a TAB named `x` (where x is any valid TAB name). There are 2 TABs.
+In this case, assume {TAB1} stands for the TAB named `x` and {TAB2} is the **current active** TAB.
+
+    1. Test case: `rename x`<br>
+       Expected: Error details shown in the status message.
+
+    1. Test case: Test case: `rename X`(where `X` is any variation of uppercase/lowercase characters)<br>
+       Expected: Similar to previous.
+
+    1. Test case: Test case: `rename`<br>
+       Expected:  Error details shown in the status message.
+
+1. Renaming with invalid inputs
+    1. Test case: Test case: `rename`<br>
+       Expected: Error details shown in the status message.
+
+    1. Test case: Test case: `rename x`(where `x` contains any other non-alphanumeric characters than `-` and `_`)<br>
+       Expected: Similar to previous.
 
 </div>
 
