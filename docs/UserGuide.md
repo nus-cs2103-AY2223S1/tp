@@ -11,6 +11,7 @@ Waddle allows you to plan your travels in **3 simple steps**.
 3. Make a schedule for your trip
 
 **It's that simple**.
+
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always"></div>
 
@@ -138,7 +139,7 @@ The main page, or home page, of Waddle displays the list of itineraries you have
 
 [Commands exclusive to the main page](#commands-on-the-main-page) can help you:
 * [add](#creating-a-new-itinerary--add) new itineraries
-* [view](#listing-all-itineraries--list) or [find](#locating-itineraries-by-description--find) existing itineraries
+* [list](#listing-all-itineraries--list) or [find](#locating-itineraries-by-name--find) existing itineraries
 * [edit](#editing-the-details-of-an-itinerary--edit) or [delete](#deleting-an-itinerary--delete) existing itineraries
 * [clear](#clearing-itineraries--clear) all existing itineraries
 
@@ -177,7 +178,7 @@ alphanumeric characters, spaces and these following special characters: `()&!':.
   - e.g. `b/1000.505` will be reflected as $1,000.51.
 
 </div>
-<div style="page-break-after: always"></div>
+
 
 ### Listing all itineraries : `list`
 
@@ -185,9 +186,9 @@ Shows a list of all itineraries in Waddle.
 
 Format: `list`
 
-### Locating itineraries by description : `find`
+### Locating itineraries by name : `find`
 
-Finds itineraries with descriptions containing any of the given keywords.
+Finds itineraries with names containing any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -227,8 +228,6 @@ Format: `edit INDEX [d/DESCRIPTION] [c/COUNTRY] [sd/START_DATE] [du/DURATION] [p
 Examples:
 * `edit 1 du/15 sd/2023-11-03` Edits the duration and start date of the first itinerary to be `15` and `2023-11-03` respectively.
 * `edit 2 c/India` Edits the country of the second itinerary to be `India`.
-
-<div style="page-break-after: always"></div>
 
 ### Deleting an itinerary : `delete`
 
@@ -297,7 +296,7 @@ Adds an item to the wishlist without a scheduled day and time.
 Format: `add d/DESCRIPTION du/DURATION [p/PRIORITY] [c/COST] `
 
 * `DESCRIPTION` cannot be blank and must only contain alphanumeric characters, spaces and these following special characters: `()&!':.,-`.
-* `DURATION` is the time taken for the item in _minutes_. The duration must be more than 0 minutes and not more than 1440 minutes (1 day).
+* `DURATION` is the time taken for the item in _minutes_. The duration must be more than 0 minutes and shorter than 1440 minutes (1 day).
     - e.g. `du/100` is 100 minutes (or 1 hour and 40 minutes).
 
 * `PRIORITY` is used to rank the importance of an item. It must be a number from 1 to 5, with 1 being the highest priority.
@@ -492,7 +491,7 @@ If your changes to the data file makes its format invalid, Waddle will discard a
 ### Home page commands
 
 | Action                                                           | Format, Examples                                                                                                                                                  |
-| ------------------------------------------------------------------ |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | [**Help**](#viewing-help--help)                                  | `help`                                                                                                                                                            |
 | [**Add Itinerary**](#creating-a-new-itinerary--add)              | `add d/DESCRIPTION sd/START DATE du/DURATION [c/COUNTRY] [p/NUMBER OF WADDLERS] [b/BUDGET]`<br> e.g., `add d/Germanyyyy sd/2025-05-10 du/14 c/Germany p/4 b/7500` |
 | [**List Itineraries**](#listing-all-itineraries--list)           | `list`                                                                                                                                                            |
@@ -508,7 +507,7 @@ If your changes to the data file makes its format invalid, Waddle will discard a
 ### Item planning page commands
 
 | Action                                                       | Format, Examples                                                                                         |
-| -------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+|--------------------------------------------------------------|----------------------------------------------------------------------------------------------------------|
 | [**Add Item**](#adding-an-item--add)                         | `add d/DESCRIPTION [p/PRIORITY] [c/COST] [du/DURATION]`<br> e.g.,`add d/Visit Taj Mahal p/5 c/40 du/180` |
 | [**Edit Item**](#editing-the-details-of-an-item--edit)       | `edit INDEX [d/DESCRIPTION] [p/PRIORITY] [c/COST] [du/DURATION]`<br> e.g., `edit 4.1 c/50`               |
 | [**Delete Item**](#deleting-an-item--delete)                 | `delete INDEX`<br> e.g., `delete 3`                                                                      |
@@ -517,5 +516,5 @@ If your changes to the data file makes its format invalid, Waddle will discard a
 | [**View Vacant Timeslots**](#viewing-vacant-timeslots--free) | `free`                                                                                                   |
 | [**Return to Main Page**](#returning-to-main-page--home)     | `home`                                                                                                   |
 | [**Copy to clipboard**](#copying-to-clipboard--copy)         | `copy`                                                                                                   |
-| [**Export to PDF**](#exporting-to-pdf-file--pdf)             | `pdf`                                                                                                    |
+| [**Export to PDF**](#exporting-as-pdf-file--pdf)             | `pdf`                                                                                                    |
 | [**Exit**](#exiting-waddle--exit)                            | `exit`                                                                                                   |
