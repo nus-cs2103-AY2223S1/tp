@@ -7,14 +7,14 @@ import seedu.address.logic.commands.DeleteEventCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parse input index supplied and creates new DeleteEventCommand object
+ * Parses input arguments and creates a new DeleteEventCommand object.
  */
 public class DeleteEventCommandParser {
 
     /**
      * Parses the given String of arguments in the required format by the DeleteEventCommand
      * and returns a DeleteEventCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public DeleteEventCommand parse(String args) throws ParseException {
         try {

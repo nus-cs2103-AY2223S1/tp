@@ -16,13 +16,13 @@ import seedu.address.model.event.UidList;
 import seedu.address.model.person.Person;
 
 /**
- * Untags customers in Person List to an event.
+ * Untags persons in the person list from an event in the event list of the application.
  */
 public class UntagEventCommand extends Command {
     public static final String COMMAND_WORD = "untagEvent";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Untags 1 or more persons to an event in the address book "
-            + "by the index number used in the displayed person and event lists. "
+            + ": Untags 1 or more persons previously tagged to the event from the event in the event list "
+            + "by the index number used in the displayed person and event lists.\n"
             + "Parameters: "
             + "EVENT_INDEX (must be a positive integer) "
             + PREFIX_PERSONS + "PERSON_INDEX [MORE_PERSON_INDEXES] (each PERSON_INDEX must be a positive integer)\n"
@@ -34,6 +34,7 @@ public class UntagEventCommand extends Command {
     private final List<Index> personIndexes;
 
     /**
+     * Creates an UntagEventCommand.
      * @param eventIndex index of the event to be untagged with persons.
      * @param personIndexes index of persons to be untagged to the event.
      */

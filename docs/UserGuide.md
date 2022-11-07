@@ -31,7 +31,7 @@ Interface (GUI). If you can type fast, Duke The Market can help you organise you
 
    * **`addPerson`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/m d/22/03/1993` : Adds a person named `John Doe` to the application.
 
-   * **`deletePerson`**`3` : Deletes the 3rd person shown in the current persons list.
+   * **`deletePerson`**`3` : Deletes the 3rd person shown in the current person list.
 
    * **`clear`** : Deletes all persons and events.
 
@@ -112,7 +112,7 @@ Shows a list of all persons in the application.
 
 Format: `listPersons [s/FIELD]`
 
-* Sorts the persons by the specified field in **ascending** order. `FIELD` must take one of the following values:
+* Sorts all persons by a specified field. `FIELD` must take one of the following values:
   * `n` or `N` sort by name in ascending lexicographical order, ignoring case differences
   * `d` or `D` sort by date of birth from oldest to youngest
   * `g` or `G` sort by gender, females first followed by males
@@ -139,10 +139,10 @@ Examples:
 
 Edits an existing person in the application.
 
-Format: `editPerson INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [d/DOB]`
+Format: `editPerson PERSON_INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [d/DOB]`
 
-- Edits the person at the specified `INDEX`. The `INDEX` refers to the index number shown in the displayed person list.
-  The `INDEX` must be **a positive integer** 1, 2, 3, …​, and it must be within the range of the person list index. This command is invalid if `INDEX` is a non-positive integer.
+- Edits the person at the specified `PERSON_INDEX`. The `PERSON_INDEX` refers to the index number shown in the displayed person list.
+  The `PERSON_INDEX` must be **a positive integer** 1, 2, 3, …​, and it must be within the range of the person list index. This command is invalid if `PERSON_INDEX` is a non-positive integer.
 - Existing values will be updated to the input values.
 - At least one of the optional fields must be provided.
 - Date format accepted is: `dd/mm/yyyy`.
@@ -178,11 +178,11 @@ Examples:
 
 Deletes the specified person from the application.
 
-Format: `deletePerson INDEX`
+Format: `deletePerson PERSON_INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The `INDEX` refers to the index number shown in the displayed person list.
-* The `INDEX` must be **a positive integer** 1, 2, 3, …​, and it must be within the range of the person list index. This command is invalid if `INDEX` is a non-positive integer.
+* Deletes the person at the specified `PERSON_INDEX`.
+* The `PERSON_INDEX` refers to the index number shown in the displayed person list.
+* The `PERSON_INDEX` must be **a positive integer** 1, 2, 3, …​, and it must be within the range of the person list index. This command is invalid if `PERSON_INDEX` is a non-positive integer.
 
 Examples:
 * `listPersons` followed by `deletePerson 2` deletes the 2nd person in the application.
@@ -222,10 +222,10 @@ will not run and will output the error message `This event already exists in the
 
 Edits an existing event in the application.
 
-Format: `editEvent INDEX [e/EVENT_TITLE] [d/DATE] [t/TIME] [p/PURPOSE]`
+Format: `editEvent EVENT_INDEX [e/EVENT_TITLE] [d/DATE] [t/TIME] [p/PURPOSE]`
 
-* Edits the event at the specified `INDEX`. The `INDEX` refers to the index number shown in the displayed event list.
-  The `INDEX` must be **a positive integer** 1, 2, 3, …​, and it must be within the range of the event list index. This command is invalid if `INDEX` is a non-positive integer.
+* Edits the event at the specified `EVENT_INDEX`. The `EVENT_INDEX` refers to the index number shown in the displayed event list.
+  The `EVENT_INDEX` must be **a positive integer** 1, 2, 3, …​, and it must be within the range of the event list index. This command is invalid if `EVENT_INDEX` is a non-positive integer.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * Only alphanumeric characters are allowed for event title (`e`).
@@ -262,11 +262,11 @@ Examples:
 
 Deletes an existing event in the application.
 
-Format: `deleteEvent INDEX`
+Format: `deleteEvent EVENT_INDEX`
 
-* Removes the event at the specified `INDEX`.
-* The `INDEX` refers to the index number shown in the displayed event list.
-* The `INDEX` must be **a positive integer** 1, 2, 3, …, and it must be within the range of the event list index. This command is invalid if `INDEX` is a non-positive integer.
+* Removes the event at the specified `EVENT_INDEX`.
+* The `EVENT_INDEX` refers to the index number shown in the displayed event list.
+* The `EVENT_INDEX` must be **a positive integer** 1, 2, 3, …, and it must be within the range of the event list index. This command is invalid if `EVENT_INDEX` is a non-positive integer.
 
 Examples:
 * `listEvents` followed by `deleteEvent 2` deletes the 2nd event in the application.
@@ -278,7 +278,7 @@ Shows a list of all events in the application.
 
 Format: `listEvents [s/FIELD]`
 
-* Sorts the events by the specified field in **ascending** order. `FIELD` must take one of the following values:
+* Sorts the events by a specified field. `FIELD` must take one of the following values:
   * `e` or `E` sort by event title in ascending lexicographical order, ignoring case differences
   * `d` or `D` sort by date from oldest to newest
 
@@ -335,10 +335,10 @@ Example:
 
 ### Creating mailing list for an event : `mailEvent`
 
-Format: `mailEvent INDEX`
+Format: `mailEvent EVENT_INDEX`
 
-* The `INDEX` refers to the index number shown in the displayed event list.
-* The `INDEX` must be **a positive integer** 1, 2, 3, …, and it must be within the range of the event list index. This command is invalid if `INDEX` is a non-positive integer.
+* The `EVENT_INDEX` refers to the index number shown in the displayed event list.
+* The `EVENT_INDEX` must be **a positive integer** 1, 2, 3, …, and it must be within the range of the event list index. This command is invalid if `EVENT_INDEX` is a non-positive integer.
 * The mailing list is saved as a CSV file at the following location: <br> `[JAR file location]/data/EVENT_TITLE.csv`.
   The CSV file has 2 columns: `Name` and `Email`, representing the name and email for every person tagged to the event.
 
@@ -348,10 +348,10 @@ in the event list.
 
 ### Generating pie chart statistic of the tagged persons of an event : `makeStats`
 
-Format: `makeStats INDEX t/STATISTIC_TYPE`
+Format: `makeStats EVENT_INDEX t/STATISTIC_TYPE`
 
-* The `INDEX` refers to the index number shown in the displayed event list.
-* The `INDEX` must be **a positive integer** 1, 2, 3, …, and it must be within the range of the event list index. This command is invalid if `INDEX` is a non-positive integer.
+* The `EVENT_INDEX` refers to the index number shown in the displayed event list.
+* The `EVENT_INDEX` must be **a positive integer** 1, 2, 3, …, and it must be within the range of the event list index. This command is invalid if `EVENT_INDEX` is a non-positive integer.
 * The `STATISTIC_TYPE` refers to the type of statistical data being generated and it must take one of the following values:
   * `a` generate a pie chart showing the distribution of ages across age groups
   * `g` generate a pie chart showing the distribution of genders
@@ -405,17 +405,17 @@ If your changes to the data file makes its format invalid, the application will 
 | Action           | Format, Examples                                                                                                                                                                      |
 |------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **AddPerson**    | `addPerson n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GENDER d/DOB` <br> e.g., `addPerson n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/m d/20/03/2002` |
-| **DeletePerson** | `deletePerson INDEX`<br> e.g., `deletePerson 3`                                                                                                                                       |
-| **EditPerson**   | `editPerson INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [d/DOB]`<br> e.g.,`editPerson 2 n/James Lee e/jameslee@example.com`                                             |
+| **DeletePerson** | `deletePerson PERSON_INDEX`<br> e.g., `deletePerson 3`                                                                                                                                |
+| **EditPerson**   | `editPerson PERSON_INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [d/DOB]`<br> e.g.,`editPerson 2 n/James Lee e/jameslee@example.com`                                      |
 | **FindPersons**  | `findPersons KEYWORD [MORE_KEYWORDS]`<br> e.g., `findPersons James Jake`                                                                                                              |
 | **ListPersons**  | `listPersons [s/FIELD]` <br> e.g., `listPersons s/n`                                                                                                                                  |
 | **AddEvent**     | `addEvent e/EVENT_TITLE d/DATE t/TIME p/PURPOSE`<br> e.g.,`addEvent e/Shoe Sale d/30/05/2022 t/11:00 p/30 dollar discount on all shoes`                                               |
-| **DeleteEvent**  | `deleteEvent INDEX`<br> e.g., `deleteEvent 2`                                                                                                                                         |
-| **EditEvent**    | `editEvent INDEX [e/EVENT_TITLE] [d/DATE] [t/TIME] [p/PURPOSE]`<br> e.g., `editEvent 2 e/Chocolate Sale p/10 dollars off all chocolates`                                               |
+| **DeleteEvent**  | `deleteEvent EVENT_INDEX`<br> e.g., `deleteEvent 2`                                                                                                                                   |
+| **EditEvent**    | `editEvent EVENT_INDEX [e/EVENT_TITLE] [d/DATE] [t/TIME] [p/PURPOSE]`<br> e.g., `editEvent 2 e/Chocolate Sale p/10 dollars off all chocolates`                                        |
 | **FindEvents**   | `findEvents KEYWORD [MORE_KEYWORDS]`<br> e.g., `findEvents Sale Discount`                                                                                                             |
 | **ListEvents**   | `listEvents [s/FIELD]`<br> e.g., `listEvents s/e`                                                                                                                                     |
-| **MakeStats**    | `makeStats INDEX t/STATISTIC_TYPE`<br> e.g., `makeStats 1 t/g`                                                                                                                        |
-| **MailEvent**    | `mailEvent INDEX`<br> e.g., `mailEvent 3`                                                                                                                                             |
+| **MakeStats**    | `makeStats EVENT_INDEX t/STATISTIC_TYPE`<br> e.g., `makeStats 1 t/g`                                                                                                                  |
+| **MailEvent**    | `mailEvent EVENT_INDEX`<br> e.g., `mailEvent 3`                                                                                                                                       |
 | **TagEvent**     | `tagEvent EVENT_INDEX p/PERSON_INDEX [MORE_PERSON_INDEXES]` <br> e.g., `tagEvent 2 p/1 3`                                                                                             |
 | **UntagEvent**   | `untagEvent EVENT_INDEX p/PERSON_INDEX [MORE_PERSON_INDEXES]` <br> e.g., `untagEvent 3 p/4 5`                                                                                         |
 | **Clear**        | `clear`                                                                                                                                                                               |

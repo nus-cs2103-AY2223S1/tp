@@ -9,7 +9,7 @@ import java.util.Objects;
 
 /**
  * Represents a field to sort Persons by.
- * Guarantees: immutable; is valid as declared in {@link #isValidSortField(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidPersonSortField(String)}
  */
 public class PersonSortField {
 
@@ -53,7 +53,7 @@ public class PersonSortField {
      */
     public static PersonSortField createSortField(String sortFieldLetter) {
         requireNonNull(sortFieldLetter);
-        checkArgument(isValidSortField(sortFieldLetter), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidPersonSortField(sortFieldLetter), MESSAGE_CONSTRAINTS);
         return mapLetterToSortField(sortFieldLetter);
     }
 
@@ -71,12 +71,12 @@ public class PersonSortField {
     /**
      * Returns true if the given {@code String} is a valid sort field.
      *
-     * @param test {@code String} to test.
+     * @param sortFieldToTest {@code String} to test.
      * @return boolean result of test.
      */
-    public static boolean isValidSortField(String test) {
-        requireNonNull(test);
-        return test.matches(VALIDATION_REGEX);
+    public static boolean isValidPersonSortField(String sortFieldToTest) {
+        requireNonNull(sortFieldToTest);
+        return sortFieldToTest.matches(VALIDATION_REGEX);
     }
 
 

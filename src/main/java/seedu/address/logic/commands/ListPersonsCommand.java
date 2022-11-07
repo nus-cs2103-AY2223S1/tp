@@ -8,13 +8,14 @@ import seedu.address.model.Model;
 import seedu.address.model.person.PersonSortField;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all persons in the person list of the application.
  */
 public class ListPersonsCommand extends Command {
 
     public static final String COMMAND_WORD = "listPersons";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all persons in the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts and lists all persons in the person list "
+            + "of the application.\n"
             + "Parameters: " + "[" + PREFIX_SORT + "FIELD] (must be n, N, d, D, g or G)\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_SORT + "n";
 

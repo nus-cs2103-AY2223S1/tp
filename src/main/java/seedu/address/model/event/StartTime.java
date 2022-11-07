@@ -9,7 +9,7 @@ import java.time.LocalTime;
 
 
 /**
- * Represents an Event's starting time in the address book.
+ * Represents an Event's starting time in the event list of the application.
  * Guarantees: immutable; is valid as declared in {@link #isValidStartTimeFormat(String)} and
  * {@link #isValidStartTimeValue(String)}
  */
@@ -45,20 +45,20 @@ public class StartTime implements Comparable<StartTime> {
 
     /**
      * Checks if a given string follows the valid StartTime input format.
-     * @return boolean value.
      */
-    public static boolean isValidStartTimeFormat(String test) {
-        return test.matches(VALIDATION_REGEX);
+    public static boolean isValidStartTimeFormat(String startTimeToTest) {
+        requireNonNull(startTimeToTest);
+        return startTimeToTest.matches(VALIDATION_REGEX);
     }
 
     /**
      * Checks if a given string can be parsed to a valid StartTime value.
-     * @param test string input, the format check for test should be done before calling this function.
-     * @return boolean value.
+     * @param startTimeToTest string input, the format check for test should be done before calling this function.
      */
-    public static boolean isValidStartTimeValue(String test) {
+    public static boolean isValidStartTimeValue(String startTimeToTest) {
+        requireNonNull(startTimeToTest);
         try {
-            String[] parsedTime = test.split(TIME_DELIMITER, 2);
+            String[] parsedTime = startTimeToTest.split(TIME_DELIMITER, 2);
             LocalTime.of(Integer.parseInt(parsedTime[0]), Integer.parseInt(parsedTime[1]));
         } catch (DateTimeException e) {
             return false;
@@ -74,7 +74,6 @@ public class StartTime implements Comparable<StartTime> {
 
     /**
      * Returns the String representation of the StartTime for storage logging in the format of hh:mm.
-     * @return String
      */
     public String toLogFormat() {
         return String.format("%s:%s", TIME_FORMATTER.format(this.time.getHour()),

@@ -99,7 +99,7 @@ public class StatisticsDataListTest {
         assertFalse(modelDataList.equals(expectedDataList));
 
         //after increment with addToStatistics(), values are same
-        modelDataList.addToStatistic(TEST_NAME);
+        modelDataList.incrementStatistic(TEST_NAME);
         assertTrue(modelDataList.equals(expectedDataList));
     }
 
@@ -107,7 +107,7 @@ public class StatisticsDataListTest {
 
         StatisticDataListStub(ObservableList<StatisticData> dataList) {
             super();
-            super.chartDataList.setAll(dataList);
+            super.getChartDataList().setAll(dataList);
         }
     }
 }

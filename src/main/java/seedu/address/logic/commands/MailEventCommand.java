@@ -19,28 +19,30 @@ import seedu.address.model.event.UidList;
 import seedu.address.model.person.Person;
 
 /**
- * Creates mailing list of customer name and email address in an event.
+ * Creates mailing list of an event in the event list of the application.
+ * The mailing list contains the names and email addresses of all attendees of the event.
  */
 public class MailEventCommand extends Command {
     public static final String COMMAND_WORD = "mailEvent";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Creates mailing list of all persons in an event in csv format, "
-            + "and stores the csv file in the /data folder. "
+            + "and stores the csv file in the /data folder.\n"
             + "Parameters: "
             + "EVENT_INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 3";
     public static final String MESSAGE_MAIL_EVENT_SUCCESS = " Generated mailing list for event: %s, "
             + "stored %s.csv file in /data folder.";
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save mailing list to file: %s.csv";
-    public static final String EVENT_EMPTY_ERROR_MESSAGE = "There is no person in the event: %s.";
-    private final Index eventIndex;
+    public static final String EVENT_EMPTY_ERROR_MESSAGE = "There are no attendees in the event: %s,"
+            + " the mailing list file won't be created.";
+    private final Index index;
     /**
-     * Constructor of MailEvent Command.
+     * Creates a MailEventCommand.
      * @param eventIndex index of the event to create mailing list with.
      */
     public MailEventCommand(Index eventIndex) {
         requireNonNull(eventIndex);
-        this.eventIndex = eventIndex;
+        this.index = eventIndex;
     }
 
     @Override
@@ -48,11 +50,11 @@ public class MailEventCommand extends Command {
         requireNonNull(model);
         List<Person> lastShownPersonList = model.getFilteredPersonList();
         List<Event> lastShownEventList = model.getFilteredEventList();
-        //check if index is in range of eventlist
-        if (eventIndex.getZeroBased() >= lastShownEventList.size() || eventIndex.getZeroBased() < 0) {
+        //check if index is in range of event list
+        if (index.getZeroBased() >= lastShownEventList.size()) {
             throw new CommandException(MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
         }
-        Event eventToMail = lastShownEventList.get(eventIndex.getZeroBased());
+        Event eventToMail = lastShownEventList.get(index.getZeroBased());
         String eventTitle = eventToMail.getEventTitle().toString();
         // check if there is any person in the event
         if (eventToMail.getUids().size() == 0) {
@@ -75,7 +77,7 @@ public class MailEventCommand extends Command {
     /**
      * Returns a list of names and emails of all persons tagged to an event.
      * @param event an event for mailing list generation.
-     * @param personList a list of all persons in the contact list.
+     * @param personList a list of all persons in the person list.
      */
     private static List<String[]> getMailingList(Event event, List<Person> personList) {
         UidList uids = event.getUids();

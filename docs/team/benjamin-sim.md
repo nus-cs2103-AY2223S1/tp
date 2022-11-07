@@ -17,7 +17,7 @@ Given below are my contributions to the project.
   * **New Feature**: Added the ability to sort persons when listing them (Pull requests [#53](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/53), [#83](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/83))
     * What it does: Allows the user to sort all persons in the application by their name, gender or date of birth.
 
-    * Justification: Sorting persons improves the user's productivity as he can easily locate people in the contact list.
+    * Justification: Sorting persons improves the user's productivity as he can easily locate people in the person list.
 
     * Highlights: This feature required redesigning the original `list` command. Furthermore, designing how the sorting operation would function was challenging as it required detailed analysis of how data was handled and presented on the GUI.
 

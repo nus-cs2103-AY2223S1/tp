@@ -16,8 +16,8 @@ Given below are my contributions to the project.
 * **Enhancements implemented**:
   * **New Feature** Added date of birth field to Person, also created the date of birth field type. (later to be evolved into date field type) (Pull requests [#55](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/55), [#62](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/62), [#101](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/101))
           * What it does:
-          1. Allows the user to add a person with a date of birth field to the contact list.
-          2. Allows the user to edit the date of birth of an existing person in the contact list.
+          1. Allows the user to add a person with a date of birth field to the person list.
+          2. Allows the user to edit the date of birth of an existing person in the person list.
           3. Date of birth field type is later evolved to serve as the date field type of the date field in both persons and events as well (Related `addEvent` and `editEvent` commands implemented by another team member).
         * Justification: Date of birth is a common field in personal profile, and it can be used in demographic
       analysis for marketing event attendees (related command `makeStats` see below).

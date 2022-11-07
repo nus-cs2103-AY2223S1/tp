@@ -11,7 +11,7 @@ import seedu.address.logic.commands.UntagEventCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new UntagEventCommand object
+ * Parses input arguments and creates a new UntagEventCommand object.
  */
 public class UntagEventCommandParser implements Parser<UntagEventCommand> {
     /**
@@ -22,9 +22,9 @@ public class UntagEventCommandParser implements Parser<UntagEventCommand> {
     public UntagEventCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_PERSONS);
 
-        Index eventIndex;
+        Index index;
         try {
-            eventIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
+            index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     UntagEventCommand.MESSAGE_USAGE), pe);
@@ -34,7 +34,7 @@ public class UntagEventCommandParser implements Parser<UntagEventCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UntagEventCommand.MESSAGE_USAGE));
         }
         List<Index> personIndexes = ParserUtil.parseIndexes(argMultimap.getValue(PREFIX_PERSONS).get());
-        return new UntagEventCommand(eventIndex, personIndexes);
+        return new UntagEventCommand(index, personIndexes);
     }
 
     /**
