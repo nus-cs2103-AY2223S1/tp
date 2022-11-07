@@ -46,10 +46,10 @@ Code contribution for this project is listed in [RepoSense](https://nus-cs2103-a
 - Updated the **testing for the storage components** that increased code coverage by `5.58%`. [#168](https://github.com/AY2223S1-CS2103T-T11-1/tp/pull/168)
 - Made builder classes for **easier testing of model classes**. [#155](https://github.com/AY2223S1-CS2103T-T11-1/tp/pull/155)
   - Add `GroupBuilder`, `PersonBuilder` and `TaskBuilder` for easy building of `Group`, `Person` and `Task` during testing. [#155](https://github.com/AY2223S1-CS2103T-T11-1/tp/pull/155)
-  - Add `TypicalGroups`, `TypicalPersons` and `TypicalTasks` for standardised test cases of valid `Group`, `Person` and `Task`. [#155](https://github.com/AY2223S1-CS2103T-T11-1/tp/pull/155)
-  - Add `invalidGroupAddressBook`, `invalidTaskAddressBook` to existing `invalidPersonAddressBook` for checking of Json file data retrieval. [#155](https://github.com/AY2223S1-CS2103T-T11-1/tp/pull/155)
-  - Add `invalidAndValidGroupAddressBook`, `invalidAndValidTaskAddressBook` to existing `invalidAndValidPersonAddressBook` for checking of errors in Json file data retrieval. [#155](https://github.com/AY2223S1-CS2103T-T11-1/tp/pull/155)
-  - Add typical, duplicate and invalid Json files in `JsonAddressBookStorageTest` for testing of save and load functions in `JsonSerializableAddressBookTest`. [#155](https://github.com/AY2223S1-CS2103T-T11-1/tp/pull/155)
+  - Add `TypicalGroups`, `TypicalPersons` and `TypicalTasks` for standardised test cases of valid `Group`, `Person` and `Task`. [#166](https://github.com/AY2223S1-CS2103T-T11-1/tp/pull/166)
+  - Add `invalidGroupAddressBook`, `invalidTaskAddressBook` to existing `invalidPersonAddressBook` for checking of Json file data retrieval. [#166](https://github.com/AY2223S1-CS2103T-T11-1/tp/pull/166)
+  - Add `invalidAndValidGroupAddressBook`, `invalidAndValidTaskAddressBook` to existing `invalidAndValidPersonAddressBook` for checking of errors in Json file data retrieval. [#166](https://github.com/AY2223S1-CS2103T-T11-1/tp/pull/166)
+  - Add typical, duplicate and invalid Json files in `JsonAddressBookStorageTest` for testing of save and load functions in `JsonSerializableAddressBookTest`. [#166](https://github.com/AY2223S1-CS2103T-T11-1/tp/pull/166)
   - Add additional test data in `SampleDataUtil` that is a duplicate of the test data Json files. [#157](https://github.com/AY2223S1-CS2103T-T11-1/tp/pull/157)
 
 ### Contributions to the user guide
@@ -78,7 +78,7 @@ I structured the user guide and rewrote the following sections [#172](https://gi
 ### Contributions to the developer guide
 
 - Wrote the storage component section. [#47](https://github.com/AY2223S1-CS2103T-T11-1/tp/pull/47)
-- Added the `PlantUML` diagrams relating to the storage components in the storage section.
+- Added the `PlantUML` diagrams relating to the storage components in the storage section. [#47](https://github.com/AY2223S1-CS2103T-T11-1/tp/pull/47)
 
 ### Pull Requests reviewed
 
