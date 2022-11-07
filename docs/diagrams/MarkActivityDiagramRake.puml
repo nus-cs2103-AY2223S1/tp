@@ -1,5 +1,5 @@
 @startuml
-title: Activity: Generation of debts-to-mark DebtList from debt indices
+title: Activity: Generation of debts-to-mark DebtList from debt indices and person-to-edit
 
 start
 repeat
