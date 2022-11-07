@@ -318,7 +318,7 @@ The proposed `Status` feature is added as an attribute under the `Person` class.
 A `Status` class is created, and is implemented via a `String`. The String can only take in alphanumeric inputs.
 
 Some example statuses include:
-- Application Received 
+- Application Received
 - OA in Progress
 - Shortlisted for Interview
 - Accepted
@@ -341,6 +341,10 @@ Here is an example of what happens when the recruiter attempts to add a candidat
 5. If any of the compulsory arguments of a candidate (name, phone, email, address, status) are not present, the command will fail its execution and `ParseException` will be thrown.
 6. Else, an `AddCommand` object is generated.
 7. Next, the `AddCommand#execute()` is called, which triggers the `Model#addPerson(Person)` command and a `CommandResult` is returned
+
+Following is a sequence diagram that illustrates what happens when a Person with status is added to CLInkedIn:
+
+![AddCommandStatusSequenceDiagram](images/AddCommandStatusSequenceDiagram.png)
 
 Here is an example of what happens when the recruiter attempts to edit a candidate's status  CLInkedIn:
 1. Recruiter enters the command `edit 1 s/OA In Progress`
@@ -463,12 +467,10 @@ It is designed to take in a String, as Commands are parsed as a String. However,
 
 The following sequence diagram shows how the `Export` command operation works for a **CSV** file:
 
-<center>
 
 ![ExportSequenceDiagram](images/ExportSequenceDiagram.png)
 ![ExportToCSVRefSequenceDiagram](images/ExportToCSVRefSequenceDiagram.png)
 
-</center>
 
 ##### Import
 * In order to import from a CSV file, the `Import` command creates and uses an instance of the `CSVReader` class from the `OpenCSV` package to read the CSV file line by line. 
@@ -478,12 +480,10 @@ The following sequence diagram shows how the `Export` command operation works fo
 
 The following sequence diagram shows how the `Import` command operation works for a **CSV** file:
 
-<center>
 
 ![ImportSequenceDiagram](images/ImportSequenceDiagram.png)
 ![ImportFromCsvRefSequenceDiagram](images/ImportFromCsvRefSequenceDiagram.png)
 
-</center>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the user executes the `import` or `export` command through the GUI Window, internally the `import` or `export` command is invoked, by appending `import ` or `export ` before the file path specified in the GUI Window respectively, and then passing the resultant `String` as an argument while invoking the `MainWindow#executeCommand()` method.
 </div>
@@ -605,8 +605,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
-
 
 ### Sort feature 
 
@@ -635,7 +633,38 @@ As candidates with no ratings are implemented to have a rating of 0, the candida
 
 This is because the recruiter would have no opinion about candidates with no rating, and thus no need to make comparisons that include candidates with no rating. 
 
-The purpose of this feature is such that recruiters can view candidates based on order of desirability, and they would not need to look at candidates with no rating and they do not know their desirability yet. 
+The purpose of this feature is such that recruiters can view candidates based on order of desirability, and they would not need to look at candidates with no rating and they do not know their desirability yet.
+
+### Statistics feature
+
+#### Implementation
+
+The statistics feature displays a pie chart of the ratings of the candidates in CLInkedIn. 
+It is mainly implemented by the `StatsCommand` class.
+
+Here is an example of what happens when the recruiter attempts to view the statistics of the candidates on CLInkedIn:
+1. Recruiter enters the command `stats`
+2. The command is first parsed by `AddressBookParser#parseCommand()`, which identifies the command word of every command.
+3. Since this is a `StatsCommand`, there is no parser. A `StatsCommand()` object is returned by the parser.
+4. Next, the `StatsCommand#execute(Model model)` is called, which triggers the `Model#getRatingCount()` command
+5. The `StatsCommand#execute(Model model)` then creates a map of the ratings and their respective counts.
+6. A `CommandResult` is returned with the data to be displayed.
+7. `MainWindow#executeCommand()` then calls `ResultDisplay#setChartToUse()` to set the chart to be displayed, which uses `CommandResult#getPieChartStats()` to get the data.
+8. Lastly, the pie chart is displayed.
+
+#### Design Considerations
+
+The pie chart is displayed using the JavaFX library.
+
+The count of each rating is stored in a map, where the key is the rating and the value is the count of the rating.
+
+The percentage of each rating is calculated by dividing the count of the rating by the total number of candidates.
+
+Both the count and percentage of each rating is displayed in the pie chart.
+
+A pie chart is used to display the statistics as it is easy to understand and visually appealing, but future iterations of CLInkedIn may use a bar chart instead.
+
+Future iterations of CLInkedIn may also allow the user to view the statistics of a specific tag, as well as other attributes of the candidates.
 
 ### View feature
 
@@ -660,7 +689,7 @@ Here is an example of what happens when the recruiter attempts to view a candida
 
 The following sequence diagram shows how the view operation works:
 
-![ViewSequenceDiagram](images/ViewSequenceDiagram.png)
+![ViewSequenceDiagram](images/ViewCommandSequenceDiagram.png)
 
 #### Design Considerations
 
@@ -668,19 +697,7 @@ The `ViewCommand` is able to show the full details of a candidate in the result 
 
 The user is also able to view the full details of a candidate by clicking on the candidate card in the `PersonCard` component in CLInkedIn. This allows the user to view the full details of a candidate without having to type in the command.
 
-### Add feature
 
-#### Implementation
-
-The proposed `Add` feature allows the user to add a candidate to CLInkedIn. It is mainly implemented by the `AddCommand` method.
-
-Here is an example of what happens when the recruiter attempts to add a candidate to CLInkedIn:
-
-1. The user enters the command `add n/John Doe p/98765432
-
-### \[Proposed\] Data archiving
-
-Data archiving will be implemented to allow the user to archive candidates that are no longer relevant to the current job opening. This will allow the user to keep track of candidates that have been rejected in the past, and also allow the user to view the full details of the candidate. This is a proposed feature and will be implemented in a future release.
 
 --------------------------------------------------------------------------------------------------------------------
 

@@ -53,6 +53,7 @@ In this user guide, you will find instructions on how to install CLInkedIn and a
     - [Deleting optional rating `deleteRate`](#deleting-optional-rating-deleterate)
     - [Adding optional links `addLink`](#adding-optional-links-addlink)
     - [Deleting optional links `deleteLink`](#deleting-optional-links-deletelink)
+    - [Adding multiple attributes to candidates at once `addTo`](#adding-multiple-attributes-to-candidates-at-once-addto)
   - [**Modifying contacts view in CLInkedIn**](#modifying-contacts-view-in-clinkedin)
     - [Viewing the details of a person `view`](#viewing-the-details-of-a-person--view)
     - [Listing all persons `list`](#listing-all-persons--list)
@@ -292,6 +293,10 @@ Examples:
 * `addTag 3 st/Java` Adds a Skill tag `Java` to the 3rd candidate.
 * `edit 2 dt/Bachelors` Adds a Degree tag `Bachelors` to the 2nd candidate.
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+To add multiple attributes to a candidate at once, you may use the [`addTo`](#adding-multiple-attributes-to-an-existing-candidate--addto) command. The `addTo` command parameters for adding tags are the same as the `addTag` command.
+</div>
+
 ### Deleting a tag of an existing candidate : `deleteTag`
 
 Deletes a tag of an existing person in the address book.
@@ -313,6 +318,7 @@ Format: `addNote INDEX note/NOTE`
 * The index refers to the index number shown in the displayed person list.
 * The index must be a positive integer 1, 2, 3, …​
 * The note's content will be taken as the input after the `note/` prefix.
+* Adding multiple notes to a person at once is possible by including multiple `note/` prefixes in the command. Eg. `addNote 1 note/Good at Java note/Good at Python` will add boths notes `Good at Java` and `Good at Python` to the 1st person in the list.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Note:**
 A person can have any number of notes (including 0).
@@ -327,6 +333,10 @@ Examples:
 
 - `addNote 4 note/Strong in Java` adds a note `Strong in Java` to the 4th person in the address book.
 - Executing `addNote 4 note/Has a dog` sequentially appends a note `Has a dog` to the 4th person in the address book. The person now has two notes.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+To add multiple attributes to a candidate at once, you may use the [`addTo`](#adding-multiple-attributes-to-an-existing-candidate--addto) command. The `addTo` command parameters for adding notes are the same as the `addNote` command.
+</div>
 
 ### Deleting optional information: `deleteNote`
 
@@ -363,6 +373,10 @@ Example:
 
 - `addRate 2 rate/5` adds a rating of `5` to the 2nd person in the address book.
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+To add multiple attributes to a candidate at once, you may use the [`addTo`](#adding-multiple-attributes-to-an-existing-candidate--addto) command. The `addTo` command parameters for adding a rating are the same as the `addRate` command.
+</div>
+
 ### Deleting optional rating: `deleteRate`
 
 Deletes rating of candidates. 
@@ -394,6 +408,10 @@ Example:
 If the link is not a platform recognised by CLInkedIn (LinkedIn, GitHub, Instagram, Telegram, Twitter, Snapchat, Discord, Facebook) then a general icon for links is displayed.
 </div>
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+To add multiple attributes to a candidate at once, you may use the [`addTo`](#adding-multiple-attributes-to-an-existing-candidate--addto) command. The `addTo` command parameters for adding links are the same as the `addLink` command.
+</div>
+
 ### Deleting optional links: `deleteLink`
 
 Deletes all links of a candidate.
@@ -406,6 +424,29 @@ Format: `deleteLink INDEX`
 Examples:
 
 - `deleteLink 4` deletes all links of the 4th candidate in the address book.
+
+### Adding multiple attributes to candidates at once: `addTo`
+
+Adds multiple attributes to a candidate at once. This incorporates the `addTag`, `addNote`, `addRate` and `addLink` commands. This command is useful when you want to add multiple attributes to a candidate at once, using the prefixes of the aforementioned commands.
+
+Format: `addTo INDEX [<alias>/TAG]…​ [note/NOTE] [rate/RATING] [l/LINK]…​`
+
+- The index refers to the index number shown in the displayed person list.
+- The index must be a positive integer 1, 2, 3, …​
+- The prefixes are optional, **but at least one of them must be provided.**
+- The prefixes of the attributes to be added must be used.
+- The attributes to be added must be valid.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Note:**
+The `addTo` command requires all parameters to follow the correct format as specified in the [`addTag`](#adding-tags--addtag), [`addNote`](#adding-optional-information--addnote), [`addRate`](#adding-optional-rating--addrate) and [`addLink`](#adding-optional-links--addlink) commands.
+</div>
+
+Examples:
+- `addTo 1 st/Java st/Python` adds the skill tags `Java` and `Python` to the 1st candidate.
+- `addTo 2 note/Strong in Java` adds a note `Strong in Java` to the 2nd candidate.
+- `addTo 3 rate/5` adds a rating of `5` to the 3rd candidate.
+- `addTo 4 l/https://www.instagram.com l/https://github.com` adds links to instagram (`https://www.instagram.com`) and github (`https://github.com`) pages to the 4th candidate.
+- `addTo 5 st/Java rate/5 note/Strong in Java` adds the skill tag `Java`, a rating of `5` and a note `Strong in Java` to the 5th candidate.
 
 ## Modifying contacts view in CLInkedIn
 
@@ -531,12 +572,14 @@ Example:
 Exports the data for the displayed list of candidates to the specified location in the specified format. 
 
 Format: `export path/<PATH WITH NAME OF FILE TO BE EXPORTED TO>`
+* The path must be absolute path.
 * The format of the file must be JSON or CSV.
 * Any directory in the path which does not exist will automatically be created.
 * Only the displayed list of candidates will be exported.
 
 Examples:
-* `export path//Desktop/sample/data.csv` exports the filtered list of candidates to `data.csv` in the `sample` directory of the `Desktop`.
+* `export path//Desktop/sample/data.csv` exports the filtered list of candidates to `data.csv` in the `sample` directory of the `Desktop` (Sample path for MACOS).
+* `export path/C:\Users\John\Desktop\data.json` exports the list of candidates to `data.json` in the `Desktop` (Sample path for WINDOWS).
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Alternatively to export files using GUI, you can either go to `Export` -> `Export` in the Menu Bar or enter the command `export`.
@@ -547,12 +590,14 @@ Alternatively to export files using GUI, you can either go to `Export` -> `Expor
 Imports the data for candidates from the specified file.
 
 Format: `import path/<PATH WITH NAME OF FILE TO BE IMPORTED FROM>`
+* The path must be absolute path.
 * The format of the file must be JSON or CSV.
 * Data being import will be merged with the existing data in CLInkedIn.
 * Candidates whose name already exists in CLInkedIn will be ignored.
 
 Examples:
-* `import path//Desktop/sample/data.csv` imports the list of candidates from `data.csv` in the `sample` directory of the `Desktop` to the addressbook.
+* `import path//Desktop/sample/data.csv` imports the list of candidates from `data.csv` in the `sample` directory of the `Desktop` to the address book (Sample path for MACOS).
+* `import path/C:\Users\John\Desktop\data.json` imports the list of candidates from `data.json` in the `Desktop` to the address book (Sample path for WINDOWS).
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Alternatively to import files using GUI, you can either go to `Import` -> `Import` in the Menu Bar or enter the command `import`.
@@ -588,6 +633,21 @@ If your changes to the data file makes its format invalid, CLInkedIn will discar
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CLInkedIn home folder.
 
+**Q**: What are the available commands?<br>
+**A**: Refer to the [Command Summary](#command-summary) for a list of available commands. Alternatively, from the main window of CLInkedIn, you can type `help` to view the list of available commands.
+
+**Q**: How do I save my data?<br>
+**A**: CLInkedIn data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+**Q**: How do I import data from a file?<br>
+**A**: Refer to the [Importing data into CLInkedIn](#importing-data-into-clinkedin-import) section for more details.
+
+**Q**: How do I export data to a file?<br>
+**A**: Refer to the [Exporting the data in CLInkedIn](#exporting-the-data-in-clinkedin-export) section for more details.
+
+**Q**: What are the available formats for importing and exporting data?<br>
+**A**: CLInkedIn supports importing and exporting data in CSV and JSON formats.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
@@ -601,11 +661,13 @@ If your changes to the data file makes its format invalid, CLInkedIn will discar
 | **Edit**          | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [st/OLD_SKILL_TAG-NEW_SKILL_TAG] [dt/OLD_DEGREE_TAG-NEW_DEGREE_TAG] [jtt/OLD_JOB_TYPE_TAG-NEW_JOB_TYPE_TAG] [<alias>/OLD_TAG-NEW_TAG]…​`<br> e.g.,`edit 1 p/91234567 e/johndoe@example.com dt/Bachelors-Masters` |
 | **AddTag**        | `addTag INDEX [st/SKILL_TAG] [dt/DEGREE_TAG] [jtt/JOB_TYPE_TAG] [<alias>/TAG]…​`<br> e.g., `addTag 3 st/Java`                                                                                                                                                         |
 | **deleteTag**     | `deleteTag INDEX [st/SKILL_TAG] [dt/DEGREE_TAG] [jtt/JOB_TYPE_TAG] [<alias>/TAG]…​`<br> e.g., `deleteTag 2 dt/Bachelors`<br/>                                                                                                                                         |
+| **addTo**         | `addTo INDEX [st/SKILL_TAG] [dt/DEGREE_TAG] [jtt/JOB_TYPE_TAG] [<alias>/TAG]…​`<br> e.g., `addTo 1 st/Java`</br>                                                                                                                                                           |
 | **Create**        | `create TAG_TYPE TAG_ALIAS` <br> e.g., `create GPA gpat`                                                                                                                                                                                                              |
 | **EditTagType**   | `editTagType OLD_TAG_TYPE-NEW_TAG_TYPE OLD_TAG_ALIAS-NEW_TAG_ALIAS` <br> e.g., `editTagType GPA-Grade gpat-grdt`                                                                                                                                                      |
 | **DeleteTagType** | `deleteTagType TAG_TYPE` <br> e.g., `deleteTagType GPA`                                                                                                                                                                                                               |
 | **Undo**          | `undo`                                                                                                                                                                                                                                                                |
 | **Redo**          | `redo`                                                                                                                                                                                                                                                                |
+| **Statistics**    | `stats`                                                                                                                                                                                                                                                               |
 | **Find**          | `find KEYWORD [MORE_KEYWORDS]` or `find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [MORE_TAGGED_KEYWORDS]`  <br> e.g., `find James Jake` , `find n/Alex p/8764321`                                                                                                           |
 | **List**          | `list`                                                                                                                                                                                                                                                                |
 | **Help**          | `help`                                                                                                                                                                                                                                                                |
