@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static tracko.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Order's customer name in the order list.
+ * Represents a Order's customer name.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
 public class Name {

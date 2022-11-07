@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static tracko.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Order's customer email in the order list.
+ * Represents an Order's customer email.
  * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}
  */
 public class Email {

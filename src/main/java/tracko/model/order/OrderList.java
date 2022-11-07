@@ -13,8 +13,7 @@ import tracko.model.item.exceptions.ItemNotFoundException;
 
 /**
  * A list of orders.
- *
- * Supports a minimal set of list operations
+ * Supports a minimal set of list operations.
  */
 public class OrderList implements Iterable<Order> {
 

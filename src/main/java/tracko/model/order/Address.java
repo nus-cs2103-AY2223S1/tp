@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static tracko.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Order's customer address in the address book.
+ * Represents an Order's customer address.
  * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
  */
 public class Address {

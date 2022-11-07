@@ -29,10 +29,9 @@ public class ModelManager implements Model {
     private final SortedList<Order> sortedOrders;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given TrackO and userPrefs.
      */
     public ModelManager(ReadOnlyTrackO trackO, ReadOnlyUserPrefs userPrefs) {
-        // After iteration, remove addressbook-related data/fields
         requireAllNonNull(trackO, userPrefs);
 
         logger.fine("Initializing with TrackO: " + trackO + " and user prefs " + userPrefs);

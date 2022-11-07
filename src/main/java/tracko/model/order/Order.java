@@ -12,7 +12,7 @@ import tracko.model.item.InventoryItem;
 import tracko.model.item.Quantity;
 
 /**
- * Represents an Order in the address book.
+ * Represents an Order in TrackO.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Order {
