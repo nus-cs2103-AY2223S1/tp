@@ -123,7 +123,7 @@ How the parsing works:
 The `Model` component,
 
 * stores the project book data i.e., all `Project`, `Client`, and `Issue` objects (which are contained in separate `UniqueEntityList` objects).
-* stores the currently 'selected' `Peoject`, `CLient`, or `Issue` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Project>`, `ObservableList<Client>` or `ObservableList<Issue>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the currently 'selected' `Project`, `Client`, or `Issue` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Project>`, `ObservableList<Client>` or `ObservableList<Issue>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -613,7 +613,7 @@ which retrieves the issue with the parsed issueId from the `IssueList` in the sy
 Compulsory argument: VALID_ISSUE_ID
 Example use: `issue -u 2`
 
-The following sequence diagram shows how the mark command operation works for mark an issue entity (unmark works in the same manner):
+The following sequence diagram shows how the mark command operation works for marking an issue entity (unmark works in the same manner):
 Example: `issue -m 1`
 
 ![MarkSequenceDiagram](images/MarkSequenceDiagram.png)
@@ -1133,7 +1133,7 @@ testers are expected to do more *exploratory* testing.
     3. Test case: `project l`<br>
        Expected: Displayed list does not change. Error details shown in the status message. Status bar remains the same.
 
-    4. Other incorrect list commands to try: `project list`, `project -list`, `...`.Same for entities `issue` and `client`.<br>
+    4. Other incorrect list commands to try: `project list`, `project -list`, `...`. Same for entities `issue` and `client`.<br>
        Expected: Similar to previous.
 
 ### Setting default view
@@ -1169,7 +1169,7 @@ testers are expected to do more *exploratory* testing.
     4. Test case: `client -a n/John Doe p/1`<br>
        Expected: Client with `name` John Doe is added to client list. View of client list is shown.
 
-    5. Other incorrect add commands to try: `project -a`, `project -a r/Project/Home`, `project -a n/Project d/x`, `project -a n/Project y/`, `...` (where x improperly formatted, and y is an invalid prefix). Same for entities `issue` and `client`. <br>
+    5. Other incorrect add commands to try: `project -a`, `project -a r/Project/Home`, `project -a n/Project d/x`, `project -a n/Project y/`, `...` (where x is improperly formatted, and y is an invalid prefix). Same for entities `issue` and `client`. <br>
        Expected: No adding occurs. Error details shown in the status message. Status bar remains the same.
 
 ### Deleting an entity
