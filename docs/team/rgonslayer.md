@@ -1,6 +1,9 @@
-# Chew Yew Keng's Project Portfolio Page
+---
+layout: page
+title: Muhammad Mus'ab Bin Mustaffa's Project Portfolio Page
+---
 
- ## Project: Financial Advisor Planner
+## Project: Financial Advisor Planner
 
  Financial Advisor Planner is a desktop client management application used for financial advisors to manage their clients. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
@@ -15,7 +18,7 @@
   - Allow users to find and sort based on Special Tags as well
   - Justification: Financial Advisors(FA) require a way to view their clients information easily, pulling out information that can only have fixed values helps to make reading the information easily.
 - ### Code contributed: [reposense](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=rgonslayer&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
-- 
+
 - ### Enhancements implemented:
   - Add Income field to contacts: Allows users to add yearly income of clients to the app
   - Add Monthly Contributions field to contacts: Allows users to add monthly contributions of clients to the app
