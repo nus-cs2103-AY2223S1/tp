@@ -685,6 +685,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **SoC**: School of Computing, a computing school in NUS.
 * **Private Contact Detail**: A contact detail that is not meant to be shared with others.
 * **Autocomplete**: A feature that shows a list of completed words or strings without the user needing to type them in full.
+* **Autocomplete Entry:** A sentence that has been completed with autocomplete.
 * **Todo**: A task that the user needs to complete.
 
 --------------------------------------------------------------------------------------------------------------------
