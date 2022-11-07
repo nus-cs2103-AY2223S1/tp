@@ -1,17 +1,17 @@
 ---
-layout: page 
-title: **uNivUSal Developer Guide**
+layout: page
+title: Developer Guide
 ---
 
 * [Acknowledgements](#acknowledgements)
 * [Setting up, getting started](#setting-up-getting-started)
 * [Design](#design)
-  * [Architecture](#architecture)
-  * [UI component](#ui-component)
-  * [Logic component](#logic-component)
-  * [Model component](#model-component)
-  * [Storage component](#storage-component)
-  * [Common classes](#common-classes)
+    * [Architecture](#architecture)
+    * [UI component](#ui-component)
+    * [Logic component](#logic-component)
+    * [Model component](#model-component)
+    * [Storage component](#storage-component)
+    * [Common classes](#common-classes)
 * [Implementation](#implementation)
 * [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 * [Appendix: Requirements](#appendix-requirements)
@@ -34,7 +34,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S1-CS2103T-T08-3/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -47,7 +47,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-T08-3/tp/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S1-CS2103T-T08-3/tp/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -72,7 +72,7 @@ Each of the four main components (also shown in the diagram above),
 * defines its *API* in an `interface` with the same name as the Component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
-For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
+For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside components being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
 <img src="images/ComponentManagers.png" width="300" />
 
@@ -80,13 +80,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-T08-3/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-T08-3/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-T08-3/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -97,14 +97,14 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-T08-3/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command & saves it into the `HistoryList` class.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
@@ -125,7 +125,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-T08-3/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -137,7 +137,7 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `uNivUSal`, which `Person` references. This allows `uNivUSal` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -146,7 +146,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-T08-3/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -203,36 +203,36 @@ When users click on the certain social media boxes of the Person in their contac
 Given below is an example usage scenario and how the Social feature behaves at each step.
 
 Step 1. The user executes `include 1 s/TELEGRAM #/JohnDoe123` to add the Telegram account `JohnDoe123` to the Telegram social media of the person at index `1` in the list.
-        The `AddressBookParser` then calls `IncludeCommand(1, TELEGRAM, JohnDoe123)` to add the command to the queue.
-        The `IncludeCommand` then calls `Social.addTelegram(JohnDoe123)` of the first person in the list to add the Telegram username `JohnDoe123`. 
+The `AddressBookParser` then calls `IncludeCommand(1, TELEGRAM, JohnDoe123)` to add the command to the queue.
+The `IncludeCommand` then calls `Social.addTelegram(JohnDoe123)` of the first person in the list to add the Telegram username `JohnDoe123`.
 
 Step 2. The user executes `include 1 s/WHATSAPP #/12345678` to add the Whatsapp account `12345678` to the Whatsapp social media of the  person at index `1` in the list.
-        The `AddressBookParser` then calls `IncludeCommand(1, WHATSAPP, 12345678)` to add the command to the queue.
-        The `IncludeCommand` then calls `Social.addWhatsapp(12345678)` of the first person in the list to add the Whatsapp account `12345678`.
+The `AddressBookParser` then calls `IncludeCommand(1, WHATSAPP, 12345678)` to add the command to the queue.
+The `IncludeCommand` then calls `Social.addWhatsapp(12345678)` of the first person in the list to add the Whatsapp account `12345678`.
 
 Step 3. The user executes `prefer 1 s/TELEGRAM` to set the preferred mode of communication of the person at index `1` in the list to the Telegram social media account.
-        The `AddressBookParser` then calls `PreferCommand.prefer(1, TELEGRAM)` to add the command to the queue.
-        The `PreferCommand` then calls `Social.prefer(TELEGRAM)` of the first person in the list to set the Telegram account as the preferred social media.
+The `AddressBookParser` then calls `PreferCommand.prefer(1, TELEGRAM)` to add the command to the queue.
+The `PreferCommand` then calls `Social.prefer(TELEGRAM)` of the first person in the list to set the Telegram account as the preferred social media.
 
 Step 4. The user realises that the added Telegram account of the first person is wrong. The user executes `include 1 s/TELEGRAM #/TomDoe321` to set the Telegram account `TomDoe321` to be the latest Telegram social media account of the first person in the list.
-        The `AddressBookParser` then calls `IncludeCommand(1, TELEGRAM, TomDoe321)` to add the command to the queue.
-        The `IncludeCommand` then calls `Social.addTelegram(TomDoe321)` of the first person in the list to add the Telegram username `TomDoe321`.
+The `AddressBookParser` then calls `IncludeCommand(1, TELEGRAM, TomDoe321)` to add the command to the queue.
+The `IncludeCommand` then calls `Social.addTelegram(TomDoe321)` of the first person in the list to add the Telegram username `TomDoe321`.
 
 Step 5. The user realises that the preferred mode of communication of the first person in the list is actually Whatsapp. The user executes `prefer 1 s/WHATSAPP` to set the preferred mode of communication of the first person in the list to the Whatsapp social media account.
-        The `AddressBookParser` then calls `PreferCommand.prefer(1, WHATSAPP)` to add the command to the queue.
-        The `PreferCommand` then calls `Social.prefer(WHATSAPP)` of the first person in the list to set the Whatsapp account as the preferred social media.
+The `AddressBookParser` then calls `PreferCommand.prefer(1, WHATSAPP)` to add the command to the queue.
+The `PreferCommand` then calls `Social.prefer(WHATSAPP)` of the first person in the list to set the Whatsapp account as the preferred social media.
 
 Step 6. The user realises that the first person in the contact list does not have a Telegram account. THe user executes `exclude 1 s/TELEGRAM` to delete the Telegram social media account of the first person in the contact list.
-        The `AddressBookParser` then calls `ExcludeCommand(1, TELEGRAM)` to add the command to the queue.
-        The `ExcludeCommand` then calls `Social.deleteTelegram()` of the first person in the list to remove the Telegram account information.
+The `AddressBookParser` then calls `ExcludeCommand(1, TELEGRAM)` to add the command to the queue.
+The `ExcludeCommand` then calls `Social.deleteTelegram()` of the first person in the list to remove the Telegram account information.
 
 The following sequence diagram shows how the `IncludeCommand(1, TELEGRAM, JohnDoe123)` command works:
 
 ![CreateGroupSequenceDiagram](images/SocialMediaAddSequenceDiagram.png)
 
-### \[Proposed\] History feature
+### History feature
 
-#### Proposed Implementation
+#### Implementation
 
 The proposed history feature is facilitated by managing commands with the new `HistoryList` component. Additionally, it implements the following features:
 
@@ -356,13 +356,13 @@ The following activity diagram summarizes what happens when a user executes a ne
 **Aspect: How undo & redo executes:**
 
 * **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+    * Pros: Easy to implement.
+    * Cons: May have performance issues in terms of memory usage.
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+    * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
 
@@ -431,18 +431,22 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                                                                | So that I can…​                                           |
-| -------- | ------------------------------------------ |-----------------------------------------------------------------------------|-----------------------------------------------------------|
-| `* * *`  | potential user exploring the app           | see usage instructions                                                      | refer to instructions when I forget how to use the App    |
-| `* * *`  | user ready to start using the app          | add a new person                                                            | access them later on                                      |
-| `* * *`  | user who just started using the app        | edit a person’s name                                                        | correct any mistakes i might have made previously         |
+| Priority | As a …​                                    | I want to …​                                                                | So that I can…​                                                         |
+| -------- | ------------------------------------------ |-----------------------------------------------------------------------------|-------------------------------------------------------------------------|
+| `* * *`  | potential user exploring the app           | see usage instructions                                                      | refer to instructions when I forget how to use the App                  |
+| `* * *`  | user ready to start using the app          | add a new person                                                            | access them later on                                                    |
+| `* * *`  | user who just started using the app        | edit a person’s name                                                        | correct any mistakes i might have made previously                       |
 | `* * *`  | user currently using the app               | delete a person                                                             | remove entries that I no longer need and clear space in my address book |
-| `* * *`  | currently using the app                    | list out all the information in my address book                             | see all the data I currently have                         |
-| `* * *`  | user currently using the app               | see the preferred modes of communication of the contacts in my address book | know what venue to contact them by                        |
-| `* * *`  | user currently using the app               | set the preferred modes of communication of the contacts in my address book | know what venue to contact them by next time              |
-| `* * *`  | user currently using the app               | add the different social media accounts of the contacts in my address book  | contact them through these social media                   |
-| `* * *`  | user currently using the app               | delete the social media accounts of the contacts in my address book         | remove social media accounts I entered wrongly            |
-| `* * *`  | user currently using the app               | open the social media accounts of the contacts in my address book           | quickly contact them                                      |
+| `* * *`  | currently using the app                    | list out all the information in my address book                             | see all the data I currently have                                       |
+| `* * *`  | user currently using the app               | see the preferred modes of communication of the contacts in my address book | know what venue to contact them by                                      |
+| `* * *`  | user currently using the app               | set the preferred modes of communication of the contacts in my address book | know what venue to contact them by next time                            |
+| `* * *`  | user currently using the app               | add the different social media accounts of the contacts in my address book  | contact them through these social media                                 |
+| `* * *`  | user currently using the app               | delete the social media accounts of the contacts in my address book         | remove social media accounts I entered wrongly                          |
+| `* * *`  | user currently using the app               | open the social media accounts of the contacts in my address book           | quickly contact them                                                    |
+| `* * *`  | user currently using the app               | view the history of previously typed commands                               | remember what I have typed previously                                   |
+| `* * *`  | user currently using the app               | delete a specific field of a person                                         | remove fields of people that may no longer be correct                   |
+| `* * *`  | user currently using the app               | find someone from their name or phone number                                | quickly contact them                                                    |
+| `* * *`  | user currently using the app               | easily see the occupation of others in a profile picture                    | know from a glance which contact is a TA, Professor or student          |
 
 
 ### Use cases
@@ -458,8 +462,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User enters command ‘help’
 2. uNivUSal displays help message to user
 
-    Use case ends.
-<br>
+   Use case ends.
+   <br>
 
 **Use case: UC02 - Edit a person**
 
@@ -482,8 +486,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests for the list of people in uNivUSal
 2. uNivUSal displays the list of people to user
 
-    Use case ends.
-<br>
+   Use case ends.
+   <br>
 
 **Use case: UC04 - Delete a person**
 
@@ -495,8 +499,67 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4. User deletes person from uNivUSal using delete command and the person’s index
 5. uNivUSal displays updated list
 
-    Use case ends.
-<br>
+   Use case ends.
+   <br>
+
+**Use case: Delete a person's specified field**
+
+**MSS**
+
+1. User requests to list people
+2. uNivUSal shows a list of people
+3. User selects person to be deleted based on the index & specified field
+4. User deletes person's field from uNivUSal using delete command, the person’s index & specified field
+5. uNivUSal displays updated list
+
+   Use case ends.
+   <br>
+
+**Extensions**
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. uNivUSal shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The given field is invalid.
+
+    * 3b1. uNivUSal shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Find a person**
+
+**MSS**
+
+1. User requests to list people
+2. uNivUSal shows a list of people
+3. User selects person to be found based on the case-insensitive search with name or phone number
+5. uNivUSal displays updated list
+
+   Use case ends.
+   <br>
+
+**Use case: See history**
+
+**MSS**
+
+1. User enters command ‘history’
+2. System provides a list of previously typed commands
+
+   Use case ends.
+   <br>
+
+**Extensions**
+* 2a. The history list is empty.
+
+    * 2a1. uNivUSal shows an error message.
+
+      Use case ends.
 
 **Use case: UC05 - Clear uNivUSal**
 
@@ -505,8 +568,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User enters command ‘clear’
 2. System clears all the contacts in uNivUSal
 
-    Use case ends.
-<br>
+   Use case ends.
+   <br>
 
 **Use case: UC06 - Add a person**
 
@@ -516,7 +579,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. User enters command ‘add’
 
    Use case ends.
-<br>
+   <br>
 
 **Extensions**
 
@@ -524,7 +587,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. The given person is invalid.
 
     * 3a1. uNivUSal shows an error message.
 
@@ -539,8 +602,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. User requests to add a social media account to a specific contact in the list.
 4. uNivUSal adds the social media account to the contact.
 
-    Use case ends.
-<br>
+   Use case ends.
+   <br>
 
 **Extensions**
 * 2a. The list is empty.
@@ -552,9 +615,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. uNivUSal shows an error message.
 
       Use case resumes at step 2.
-  
-* 3b. The given social media account is invalid.
 
+* 3b. The given social media account is invalid.
     * 3b1. uNivUSal shows an error message.
 
       Use case resumes at step 2.
@@ -645,7 +707,64 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3b1. uNivUSal shows an error message.
 
       Use case resumes at step 2.
-  
+
+**Use case: Add an existing person in the contacts to a group**
+
+**MSS**
+
+1. User requests to list contacts.
+2. uNivUSal shows a list of contacts.
+3. User uses command to add a specific contact into a group.
+4. uNivUSal adds the contact to the specified group.
+
+   Use case ends.
+   <br>
+
+**Extensions**
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. uNivUSal shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The given group name is invalid.
+
+    * 3b1. uNivUSal shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Ungroup a person from a group**
+
+**MSS**
+
+1. User requests to list contacts.
+2. uNivUSal shows a list of contacts.
+3. User uses command to remove a specific contact from a group.
+4. uNivUSal removes the contact from the specified group.
+
+   Use case ends.
+   <br>
+
+**Extensions**
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. uNivUSal shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The contact is not currently in the specified group.
+
+    * 3b1. uNivUSal shows an error message.
+
+      Use case resumes at step 2.
 
 ### Non-Functional Requirements
 
@@ -675,75 +794,89 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+    1. Download the jar file and copy into an empty folder
 
    2.Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 2. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   2. Re-launch the app by double-clicking the jar file.<br>
+    2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
 
 
-### Deleting a person
+### Deleting a person or specific field
 
-1. Deleting a person while all persons are being shown
+1. Deleting a person or specific field while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   2. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    2. Test case: `delete 1`<br>
+       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   3. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    3. Test case: `delete 0`<br>
+       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
-   
+    4. Test case: `delete 1 o/`<br>
+       Expected: First contact's `OCCUPATION` is deleted from the list. Details of the deleted `OCCUPATION` of the contact shown in the status message.
+
+    5. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to 3.
+
+### Changing profile picture 
+
+1. Profile picture updates based on the person's `OCCUPATION`
+
+     1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+
+     2. Test case: `delete 1 o/`<br>
+        Expected: The person's profile picture updates to a default profile picture.
+
+     3. Test case: `edit 1 o/TA`<br>
+        Expected: The person's profile picture updates to a TA profile picture.
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 
 ### Quick edit
 
 1. Ensuring quick edit does nothing
-   1. Prerequisites: Have at least 1 person shown in the main window, close, and restart the app.
+    1. Prerequisites: Have at least 1 person shown in the main window, close, and restart the app.
 
-   2. Click one of the person cards shown. On some platforms, a double click may be necessary. Clicking more than twice is fine.<br>
-      Expected: an edit command shows up in the command box.
+    2. Click one of the person cards shown. On some platforms, a double click may be necessary. Clicking more than twice is fine.<br>
+       Expected: an edit command shows up in the command box.
 
-   3. Run the edit command.<br>
-      Expected: the command runs without any problems.
+    3. Run the edit command.<br>
+       Expected: the command runs without any problems.
 
-   4. Undo the last command: `undo` <br>
-      Expected: the undo command fails to undo any action because the last action does not modify the person.
-   
+    4. Undo the last command: `undo` <br>
+       Expected: the undo command fails to undo any action because the last action does not modify the person.
+
 ## Social class tests
 
 ### Adding a social account
 1. Adding a social account to an existing contact.
-   1. Prerequisites: List all contacts using the list command. First contact has no social accounts filled out.
-   2. Test case: `include 1 s/WHATSAPP #/12345678` <br>
-      Expected: Whatsapp with number 12345678 added into the first contact of the list. Details of success command shown in status message.
-   3. Test case: `include 1 s/WHATELEMAILGRAM #/failtest` <br>
-      Expected: No Social details added. Error details shown in the status message. Contacts remain the same.
-   4. Other incorrect include commands to try: `include 0 s/TELEGRAM #/failtest`, `include 1 s/TELEGRAM`.
+    1. Prerequisites: List all contacts using the list command. First contact has no social accounts filled out.
+    2. Test case: `include 1 s/WHATSAPP #/12345678` <br>
+       Expected: Whatsapp with number 12345678 added into the first contact of the list. Details of success command shown in status message.
+    3. Test case: `include 1 s/WHATELEMAILGRAM #/failtest` <br>
+       Expected: No Social details added. Error details shown in the status message. Contacts remain the same.
+    4. Other incorrect include commands to try: `include 0 s/TELEGRAM #/failtest`, `include 1 s/TELEGRAM`.
 
 ### Deleting a social account
 1. Deleting a social account to an existing contact.
-   1. Prerequisites: List all contacts using the list command. First contact has social accounts filled out.
-   2. Testcase: `exclude 1 s/WHATSAPP` <br>
-      Expected: Whatsapp of first contact of the list becomes `<none>`. Details of success command shown in status message.
-   3. Testcase: `exclude 1 s/WHATELEMAILGRAM`
-      Expected: No Social details change. Error details shown in the status message. Contacts remain the same.
-   4. Other incorrect exclude commands to try: `exclude 0 s/TELEGRAM`
+    1. Prerequisites: List all contacts using the list command. First contact has social accounts filled out.
+    2. Testcase: `exclude 1 s/WHATSAPP` <br>
+       Expected: Whatsapp of first contact of the list becomes `<none>`. Details of success command shown in status message.
+    3. Testcase: `exclude 1 s/WHATELEMAILGRAM`
+       Expected: No Social details change. Error details shown in the status message. Contacts remain the same.
+    4. Other incorrect exclude commands to try: `exclude 0 s/TELEGRAM`
 
 ### Setting a social account as preferred
 1. Deleting a social account to an existing contact.
@@ -756,9 +889,9 @@ testers are expected to do more *exploratory* testing.
 
 ### Opening a social account using CLI
 1. Deleting a social account to an existing contact.
-    1. Prerequisites: List all contacts using the list command. First contact has social accounts filled out. 
+    1. Prerequisites: List all contacts using the list command. First contact has social accounts filled out.
     2. Testcase:`open 1 s/WHATSAPP` <br>
-      Expected: Default web browser opens link to the Whatsapp chat of the first contact. Details of success command shown in status message.
+       Expected: Default web browser opens link to the Whatsapp chat of the first contact. Details of success command shown in status message.
     3. Testcase:`open 1 s/WHATELEMAILGRAM`
        Expected: No Social details change. Error details shown in the status message. Contacts remain the same. No links opened on default browser.
     4. Other incorrect open commands to try: `prefer 0 s/TELEGRAM`
@@ -771,4 +904,32 @@ testers are expected to do more *exploratory* testing.
     3. Testcase: Click on the Whatsapp social box of the second person in the contact list.
        Expected: Popup window with error details shown. No Social details change. Contacts remain the same. No links opened on default browser.
 
+## Grouping class tests
+
+### Adding a person to a group
+1. Adding an existing contact to a group.
+    1. Prerequisites: List all contacts using the list command. 
+    2. Test case: `addtogroup 1 friends` <br>
+       Expected: The person in index 1 of the list is added to the group "friends". Details of success command shown in status message.
+    3. Test case: `addtogroup 1 my friends` <br>
+       Expected: Invalid group name is detected. Error details shown in the status message. Contacts remain unchanged.
+    4. Other incorrect include commands to try: `addtogroup 0 friends`, `addtogroup 1 n/friends`.
+
+### Removing a person from a group
+1. Removing an existing contact from an existing group.
+    1. Prerequisites: List all contacts using the list command. First contact belongs to the group "friends".
+    2. Testcase: `ungroup 1 friends` <br>
+       Expected: The person in index 1 of the list is removed from the group "friends". Details of success command shown in status message.
+    3. Testcase: `ungroup 1 groupThatDoesntExist`<br>
+       Expected: Invalid group is detected as the person is not in the group. Error details shown in the status message. Contacts remain the same.
+    4. Other incorrect exclude commands to try: `ungroup 0 friends`
+
+### Opening a group window
+1. Opening the group window of an existing group.
+    1. Prerequisites: The uNivUSal application is open.
+    2. Testcase:`group friends` <br>
+       Expected: A new uNivUSal window opens, displaying all the members of the group "friends".
+    3. Testcase:`open groupThatDoesntExist` <br>
+       Expected: Invalid group is detected as the group does not exist. Error details shown in the status message. AddressBook remains unchanged.
+    4. Other incorrect open commands to try: `group g/friends`
 
