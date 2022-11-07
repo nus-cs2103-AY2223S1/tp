@@ -103,7 +103,7 @@ Here's a (partial) class diagram of the `Logic` component:
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `HobbyListParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a activity).
+1. The command can communicate with the `Model` when it is executed (e.g. to add an activity).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
@@ -612,11 +612,9 @@ testers are expected to do more *exploratory* testing.
     1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Deleting an activity
 
-### Deleting a activity
-
-1. Deleting a activity while all activities are being shown
+1. Deleting an activity while all activities are being shown
 
     1. Prerequisites: List all activities using the `list` command. Multiple activities in the list.
 
@@ -629,12 +627,18 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
-
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. Test case: delete a name field in the save file.<br>
+       Expected: Save file gets wiped.
 
-1. _{ more test cases …​ }_
+    2. Test case: set an activity's date to `test`.<br>
+       Expected: Save file gets wiped.
+
+    3. Test case: set an activity's status to `test`.<br>
+        Expected: Save file gets wiped.
+
+    4. Test case: set an activity's rating to `test`.<br>
+       Expected: Save file gets wiped.
