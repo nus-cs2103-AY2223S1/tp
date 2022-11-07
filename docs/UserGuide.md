@@ -486,7 +486,7 @@ Format: `addMeeting i/INDEX d/DATE st/START_TIME et/END_TIME dn/DESCRIPTION`
 as shown by executing the [`listClient`](#712-list-clients-listclient) command.
 * `DATE` should be given in the format DDMMYYYY. 
   * For example, 01022022 represents 1 February 2022.
-*  `DATE` in the past are not acceptable.
+* `DATE` before today is not acceptable.
 * `START_TIME` and `END_TIME` should be given in 24 Hours HHMM format. 
   * For example, 1234 represents the 12:34PM.
 
@@ -587,7 +587,7 @@ Format: `editMeeting i/INDEX [d/DATE] [st/START TIME] [et/END TIME] [dn/DESCRIPT
 * `INDEX` refers to the index number shown by executing [`listMeeting`](#722-list-meetings-listmeeting) command.
 * `INDEX` **must be a positive integer** 1, 2, 3, …
 * If `INDEX` is a non-positive integer or not shown in `listMeeting`, an error will be shown!
-* `DATE` in the past are not acceptable.
+* `DATE` before today is not acceptable.
 * At least one optional detail must be modified.
 * Details that are not edited will be kept as is.
 

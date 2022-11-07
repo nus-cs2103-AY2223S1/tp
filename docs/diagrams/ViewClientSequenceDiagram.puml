@@ -4,8 +4,9 @@
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":MyInsuRecParser" as MyInsuRecParser LOGIC_COLOR
-participant "command:ViewClientCommand" as ViewClientCommand LOGIC_COLOR
-participant "result:CommandResult" as CommandResult LOGIC_COLOR
+participant ":ViewClientCommandParser" as ViewClientCommandParser LOGIC_COLOR
+participant "a:ViewClientCommand" as ViewClientCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
@@ -18,20 +19,36 @@ activate LogicManager
 LogicManager -> MyInsuRecParser : parseCommand("viewClient i/1")
 activate MyInsuRecParser
 
+create ViewClientCommandParser
+MyInsuRecParser -> ViewClientCommandParser
+activate ViewClientCommandParser
+
+ViewClientCommandParser --> MyInsuRecParser
+deactivate ViewClientCommandParser
+
+MyInsuRecParser -> ViewClientCommandParser : parse("viewClient i/1")
+activate ViewClientCommandParser
+
 create ViewClientCommand
-MyInsuRecParser -> ViewClientCommand
+ViewClientCommandParser -> ViewClientCommand
 activate ViewClientCommand
 
-ViewClientCommand --> MyInsuRecParser : command
+ViewClientCommand --> ViewClientCommandParser : a
 deactivate ViewClientCommand
 
-MyInsuRecParser --> LogicManager : command
+ViewClientCommandParser --> MyInsuRecParser : a
+deactivate ViewClientCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ViewClientCommandParser -[hidden]-> MyInsuRecParser
+destroy ViewClientCommandParser
+
+MyInsuRecParser --> LogicManager : a
 deactivate MyInsuRecParser
 
 LogicManager -> ViewClientCommand : execute()
 activate ViewClientCommand
 
-ViewClientCommand -> Model : model.getFilteredClientList()
+ViewClientCommand -> Model : getFilteredClientList()
 activate Model
 
 Model --> ViewClientCommand : clientList
@@ -43,7 +60,7 @@ create CommandResult
 ViewClientCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> ViewClientCommand : result
+CommandResult --> ViewClientCommand
 deactivate CommandResult
 
 ViewClientCommand --> LogicManager : result
