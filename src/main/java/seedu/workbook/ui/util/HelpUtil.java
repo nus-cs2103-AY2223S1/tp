@@ -5,16 +5,25 @@ package seedu.workbook.ui.util;
  */
 public class HelpUtil {
 
-    public static final String ADD_EXAMPLE= "add c/COMPANY r/ROLE s/STAGE [d/DATETIME] [e/EMAIL] "
+    public static final String ADD_HEADER = "Add an Internship: ";
+    public static final String ADD_EXAMPLE = "add c/COMPANY r/ROLE s/STAGE [d/DATETIME] [e/EMAIL] "
             + "[l/PROGRAMMING LANGUAGE]… [t/TAG]…";
+    public static final String EDIT_HEADER = "Edit an Internship: ";
     public static final String EDIT_EXAMPLE = "edit INDEX [c/COMPANY] [r/ROLE] [s/STAGE] [d/DATETIME] [e/EMAIL] "
             + "[l/PROGRAMMING LANGUAGE]… [t/TAG]…";
+    public static final String DELETE_HEADER = "Delete an Internship: ";
     public static final String DELETE_EXAMPLE = "delete INDEX";
+    public static final String CLEAR_HEADER = "Clear all Internships: ";
     public static final String CLEAR_EXAMPLE = "clear";
+    public static final String LIST_HEADER = "List all Internships: ";
     public static final String LIST_EXAMPLE = "list";
+    public static final String FIND_HEADER = "Filter Internships: ";
     public static final String FIND_EXAMPLE = "find  c/COMPANY | r/ROLE | s/STAGE";
+    public static final String UNDO_HEADER = "Undo a command: ";
     public static final String UNDO_EXAMPLE = "undo";
+    public static final String REDO_HEADER = "Redo a command: ";
     public static final String REDO_EXAMPLE= "redo";
+    public static final String EXIT_HEADER = "Exit application: ";
     public static final String EXIT_EXAMPLE = "exit";
     public static final String USERGUIDE_URL = "https://ay2223s1-cs2103t-t10-3.github.io/tp/UserGuide.html";
     public static final String URL_MESSAGE = "Refer to the user guide for more information: " + USERGUIDE_URL;
