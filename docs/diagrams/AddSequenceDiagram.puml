@@ -12,8 +12,6 @@ end box
 box Model MODEL_COLOR_T1
 participant "tutor:Tutor" as Tutor MODEL_COLOR
 participant ":ModelManager" as ModelManager MODEL_COLOR
-participant ":Tuthub" as Tuthub MODEL_COLOR
-participant ":UniqueTutorList" as UniqueTutorList MODEL_COLOR
 end box
 
 [-> LogicManager: execute("add n/John Doe ...")
@@ -52,24 +50,6 @@ activate AddCommand
 
 AddCommand -> ModelManager : addTutor(tutor)
 activate ModelManager
-
-ModelManager -> Tuthub : addTutor(tutor)
-activate Tuthub
-
-Tuthub -> UniqueTutorList: add(tutor)
-activate UniqueTutorList
-
-UniqueTutorList -> UniqueTutorList : add(tutor)
-activate UniqueTutorList
-
-UniqueTutorList --> UniqueTutorList
-deactivate UniqueTutorList
-
-UniqueTutorList --> Tuthub
-deactivate UniqueTutorList
-
-Tuthub --> ModelManager
-deactivate Tuthub
 
 ModelManager --> AddCommand
 deactivate ModelManager
