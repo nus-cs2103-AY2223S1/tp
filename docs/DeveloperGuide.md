@@ -325,6 +325,45 @@ Hence, heavy abstraction should be used here. Such examples include:
 There are several ways to deal with storing this optional value, but the one that was used for this particular implementation was storing the optional field as an empty `""` string. This is because the optional field constructor with a value did not allow null values. Hence, any empty strings appearing in the json save file must have been due to the use of the default constructor.
 
 
+### Searching through Food Guide
+
+Users are currently able to search individual fields of eateries in `Food Guide` by the following commands:
+* `find`: search by `Name`
+* `findLocation`: search by `Location`
+* `findCuisine`: search by `Cuisine`
+* `findPrice`: search by `Price`
+* `findTags`: search by `Tags`
+
+#### Implementation
+
+<p align="center">
+<img src="images/FindPriceSequenceDiagram.png" /> <br>
+The Sequence diagram *illustrates the interactions within the `Logic` component for the `execute("findPrice $")` API call.*
+</p>
+
+Augmenting `AB3`'s current implementation of `find`, each `find` command currently has its own `CommandParser` 
+which returns its respective `Command`. To execute the command `"findPrice $"`, `FoodGuideParser` creates 
+a `FindPriceCommandParser` to parse the user command and create a `findPriceCommand` object. 
+
+In order to keep track of the user's inputted search terms, we utilize `XYZContainsKeywordsPredicate` 
+(XYZ is a placeholder for the field being searched, e.g. `LocationContainsKeywordsPredicate`). 
+`XYZContainsKeywordsPredicate` implements the Java functional interface `Predicate<Eatery>`, 
+taking in an `Eatery` object while containing the user's inputted search terms in the form of a list.
+
+The `Predicate` returns `True` if, for the field being searched, 
+ANY of the search terms in said `Predicate`'s list matches the value stored in an eatery's field. 
+
+In particular, the current implementation of `find` and `findLocation`, we perform a case-insensitive substring search. 
+For each respective `Predicate` object, it tests `True` if _any_ of the user's inputted search terms 
+is a substring of the eatery's stored name or location respectively. For example, given an eatery with the location
+`"(Frontier, Air-Con)"`, `LocationContainsKeywordsPredicate` will test `True` for any of (but not limited to) 
+the following search terms:
+* `"("` and `")"`, 
+* `"-"` and `","`,
+* `"Front",` `"Frontier,"` and `"air-con"`
+
+Each `XYZContainsKeywordsPredicate` is then used by `ModelManager` to update the current list of displayed eateries.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
