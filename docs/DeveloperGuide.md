@@ -737,7 +737,7 @@ These are the ways that a user can use the `Calendar Pop-up` feature.
 ![Calendar Pop-Up Activity](images/CalendarPopUpActivityDiagram.png)
 
 *Figure 26. Activity diagram showing what happens  when a user selects an appointment in the calendar tab*
-
+<div style="page-break-after: always"></div>
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed future Implementation
