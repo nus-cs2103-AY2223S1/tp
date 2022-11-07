@@ -756,6 +756,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1b1. TrackAScholar displays an error message showing parameter requirements. <br>
     Use case resumes at step 1.
 
+[Return to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 **Use case: UC06 - Remove all applicants with a specified application status**
@@ -821,7 +823,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1a1. TrackAScholar displays an error message prompting correct input format. <br>
       Use case resumes at step 1.
-    
+
 --------------------------------------------------------------------------------------------------------------------
 
 **Use case: UC09 - Filter applicants by application status**
@@ -843,7 +845,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1b1. TrackAScholar displays an error message showing parameter requirements. <br>
       Use case resumes at step 1.
-    
+
 --------------------------------------------------------------------------------------------------------------------
 
 **Use case: UC10 - Sorts all applicants by name, scholarship or application status**
@@ -865,6 +867,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1b1. TrackAScholar displays an error message showing parameter requirements. <br>
       Use case resumes at step 1.
+    
 
 --------------------------------------------------------------------------------------------------------------------
 
