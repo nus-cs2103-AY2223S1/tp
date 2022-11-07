@@ -35,7 +35,5 @@ package Schedule {
 Schedule *--> "1" Venue
 Schedule *--> "1" ClassType
 Schedule *--> "1" Weekdays
-
-
 @enduml
 
