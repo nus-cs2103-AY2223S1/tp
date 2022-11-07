@@ -541,7 +541,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Tutor Profile**: A profile containing the tutor's details, such as `NAME`, `PHONE_NUMBER`, `GENDER`, `EMAIL`, etc.
+* **Student Feedback Points**: A way the National University of Singapore (NUS) assess tutors and professors' performances by gathering feedback from students.
+* **Teaching Assistant (TA)**: A part-time tutor who supports professors in teaching a module by conducting tutorial/lab sessions.
+* **Teaching Nominations**: Number of nominations submitted by students for a teaching excellence award in NUS. 
+* **Tutor Profile**: A profile containing the tutor's details, such as `NAME`, `PHONE_NUMBER`, `EMAIL`, etc.
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
