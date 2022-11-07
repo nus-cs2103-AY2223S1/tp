@@ -44,7 +44,7 @@ With `Food Guide`, you can search for the available food options in NUS and make
 ## Using the User Guide
 This user guide aims to orientate users (such as _you!_) on how to install, use, and troubleshoot `Food Guide`.
 
-For all new users, we highly recommend you check out the [Quick Start](#Quick-start) section, which covers the
+For all new users, we highly recommend you check out the [Quick Start](#quick-start) section, which covers the
 installation instructions and the basic features of our application.
 
 After getting acquainted with `Food Guide`, you should take a look at our [Features](#features) section, which
@@ -476,7 +476,7 @@ Do make a backup as an invalid data file will cause `Food Guide` to override it 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## Command Summary
 
 | Command Word    | Action                                  | Format                                                                                |
 |:----------------|:----------------------------------------|:--------------------------------------------------------------------------------------|
