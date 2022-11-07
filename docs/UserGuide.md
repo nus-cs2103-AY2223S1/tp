@@ -735,8 +735,6 @@ Examples:
 * `list` followed by `edit -p 2 -d 3 d/| 25-10-22 | 2 weeks` edits the date and recurrence of the 3rd task for the 2nd patient in the patient list to 25th October 2022 and every 2 weeks, while keeping the original description and time. If the task was a non-recurring task, then this edit transforms the task into a recurring task with a recurrence of every 2 weeks.
 * `find David` followed by `edit -p 1 -d 2 d/Change bandage | | 4 days` edits the description and recurrence of the 2nd task of the 1st patient in the results of `find` command to `Change bandage` and every 4 days, while keeping the original date and time. If the task was a non-recurring task, then this edit transforms the task into a recurring task with a recurrence of every 4 days.
 
-<div style="page-break-after: always;"></div>
-
 <div markdown="block" class="alert alert-info">
 
 :information_source: **Notes:**
@@ -1212,7 +1210,7 @@ If today's date is 2022-11-04, `view --today` will display those 2 tasks.
 
 <br>
 
-[Back to Table of Contents ↑](#table-of-contents)
+<div style="page-break-after: always;"></div>
 
 <div markdown="block" class="alert alert-success">
 
