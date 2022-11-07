@@ -381,7 +381,7 @@ and create the corresponding parser
 
 - Create a `SearchCommand` class
 
-### User Uploaded Images [Haoren]
+### User Uploaded Images
 
 The application allows users to upload their own images for Property and Client models. By default, the images are stored
 in `data/images`, or users can specify their custom directory in `preferences.json`.
