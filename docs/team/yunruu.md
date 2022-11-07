@@ -39,10 +39,14 @@ Given below are my contributions to the project.
 
 - **Enhancements to existing features**:
   - Renamed `Edit` command from AB3 to `EditContact` ([#62](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/62))
-  - Update Contacts Tab UI ([#78](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/78))
-  - Update Tasks Tab UI ([101](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/101))
-  - Update overall UI ([126](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/126), [#138](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/138), [#145](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/145), [#77](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/77), [#78](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/78), [#148](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/148))
+  - Updated Contacts Tab UI ([#78](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/78))
+  - Updated Tasks Tab UI ([101](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/101))
+  - Updated overall UI ([126](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/126), [#138](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/138), [#145](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/145), [#77](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/77), [#78](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/78), [#148](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/148))
 - **Documentation**:
-  - User Guide: to be added soon
-  - Developer Guide: to be added soon
-- **Reviewing/Mentoring**: [#22](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/22), [#84](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/84), [#124](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/124), [#140](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/140), [#147](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/147), [#222](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/222), [#232](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/232), [#233](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/233)
+  - User Guide:
+    - Updated `edit_contact` and `list_task` documentation ([#31](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/31), [#194](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/194))
+    - Added documentation for `select_task` and `select_contact` commands ([#117](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/117))
+  - Developer Guide:
+    - Updated glossary ([#32](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/32))
+    - Added documentation for implementation of tasks main panel ([#85](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/85))
+- **Reviewing**: [#22](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/22), [#84](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/84), [#124](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/124), [#140](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/140), [#147](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/147), [#222](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/222), [#232](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/232), [#233](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/233)
