@@ -48,7 +48,7 @@ Given below are my largest contributions to the project.
     * Updating the [`Model` component](https://ay2223s1-cs2103t-w13-3.github.io/tp/DeveloperGuide.html#model-component) [#132](https://github.com/AY2223S1-CS2103T-W13-3/tp/pull/198)
     * Adapt [NFRs](https://ay2223s1-cs2103t-w13-3.github.io/tp/DeveloperGuide.html#non-functional-requirements) from CS2103T tP Constraints [#25](https://github.com/AY2223S1-CS2103T-W13-3/tp/pull/25)
 
-* Contributions to team-based tasks
+* **Contributions to team-based tasks**:
   * Setting up the [Project Notes](https://drive.google.com/drive/folders/1a8jihoOt0452rXVICKvYSJxma2WtFeSp) Google Drive
   * Maintaining issue tracker
   * Enabling assertions in Gradle
