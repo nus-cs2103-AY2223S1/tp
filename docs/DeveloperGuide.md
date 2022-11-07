@@ -156,7 +156,7 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Sort feature
 #### Rationale
-Students in FRIDAY have details such as name, Telegram handle, consultation and Mastery Check dates, and grades. 
+Students in FRIDAY have details such as name, Telegram handle, consultation and Mastery Check dates, and grades.
 This feature enables the sorting of students using the aforementioned details as criteria. With many students to keep track of, we
 decided to add this feature to allow users to quickly organize their students in different ways.
 
@@ -214,7 +214,7 @@ The following Sequence Diagram summarises the aforementioned steps.
 
 ### Alias feature
 #### Rationale
-Some advanced users might want to customise the command words. 
+Some advanced users might want to customise the command words.
 This feature will allow them to do so, enabling these users to be more efficient in using FRIDAY.
 
 #### Implementation
@@ -232,14 +232,14 @@ Given below is an example usage scenario and how the alias mechanism behaves at 
 1. The user launches the application for the first time. FRIDAY will initialise a `Friday`
 with an empty `AliasMap`.
 
-2. The user executes `alias a/ls k/list` command to add an alias `ls` for the default command `list`. `FridayParser` will parse 
-`alias` and create a new `AliasCommandParser`.`AliasCommandParser` will parse `a/ls k/list` and create an `AlliasCommand` with `Alias("ls")` 
-and a `ReservedKeyword("list")`. When executing the `AliasCommand`, the command will check that `list` is in the `LIST_RESERVED_KEYWORD`,`ls` is not in the 
+2. The user executes `alias a/ls k/list` command to add an alias `ls` for the default command `list`. `FridayParser` will parse
+`alias` and create a new `AliasCommandParser`.`AliasCommandParser` will parse `a/ls k/list` and create an `AlliasCommand` with `Alias("ls")`
+and a `ReservedKeyword("list")`. When executing the `AliasCommand`, the command will check that `list` is in the `LIST_RESERVED_KEYWORD`,`ls` is not in the
 `AliasMap` and `ls` is a valid alias. After all the conditions are fulfilled, `Model#addAlias(Alias("ls"), ReservedKeyword("list"))` will be called to add
 this alias-keyword mapping into `AliasMap`.
 
-3. The user executes `ls` using the alias of the `list` command. `Model#getKeyword("ls")` will check `AliasMap` in `Model` 
-for an alias-keyword mapping. As there is a mapping of `ls` to `list`, `Model#getKeyword("ls")` will return `list`. 
+3. The user executes `ls` using the alias of the `list` command. `Model#getKeyword("ls")` will check `AliasMap` in `Model`
+for an alias-keyword mapping. As there is a mapping of `ls` to `list`, `Model#getKeyword("ls")` will return `list`.
 `list` will then be assigned to `commandWord` in `FridayParser`. `commandWord` will then be used to get the command to be executed.
 `ListCommand` will then be executed.
 
@@ -258,10 +258,10 @@ _
 
 ### Grade Feature
 #### Rationale
-FRIDAY allows the user to record their students' grades for assessments and examinations in CS1101S. There are 5 
-assessments in CS1101S, namely Reading Assessment 1 (RA1), Reading Assessment 2 (RA2), Practical Assessment, Midterm 
-exam, and the Final exam. Each student in FRIDAY will have a list of their grades for the 5 assessments, showing the 
-name of the assessment and the student's score for the assessment. Users are able to view and edit the individual 
+FRIDAY allows the user to record their students' grades for assessments and examinations in CS1101S. There are 5
+assessments in CS1101S, namely Reading Assessment 1 (RA1), Reading Assessment 2 (RA2), Practical Assessment, Midterm
+exam, and the Final exam. Each student in FRIDAY will have a list of their grades for the 5 assessments, showing the
+name of the assessment and the student's score for the assessment. Users are able to view and edit the individual
 students' grades for the assessments.
 
 #### Implementation
@@ -273,9 +273,9 @@ The grades are then stored in a `GradesList` which is unique for every student a
 ![Grade Command Activity Diagram](images/GradeCommandActivityDiagram.png)
 
 The 5 grades are stored as `Grade` objects in a unique `GradesList` for each student. `GradesList` uses a `HashMap` for
-the data structure in storing the `Grade` objects as it allows for fast access of the individual grades. It is also 
+the data structure in storing the `Grade` objects as it allows for fast access of the individual grades. It is also
 useful for potential future implementation where there may be more grades in the module, hence allowing FRIDAY to be
-expandable and adaptable for such possible scenarios. `ArrayList` is only utilised when the order of the grades is 
+expandable and adaptable for such possible scenarios. `ArrayList` is only utilised when the order of the grades is
 necessary, such as when displaying the grades in the GUI and for storage purposes.
 
 Given below is an example usage scenario and how the grading mechanism behaves at each step.
@@ -295,14 +295,14 @@ The following Sequence Diagram summarises the aforementioned steps.
 
 |                                                                                                 | **Pros**                                                                                                                           | **Cons**                                                                                                                                                                                      |
 |-------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Option 1 (current choice)** <br> Fix the examinations in the list of grades for every student | Standardised for every student, without the need to check, create or delete examinations for every student, and easy to implement. | Less freedom for users. Unaccounted for unforeseen circumstances (e.g. There is a change in the assessments for the CS1101S module).                                                          | 
+| **Option 1 (current choice)** <br> Fix the examinations in the list of grades for every student | Standardised for every student, without the need to check, create or delete examinations for every student, and easy to implement. | Less freedom for users. Unaccounted for unforeseen circumstances (e.g. There is a change in the assessments for the CS1101S module).                                                          |
 | **Option 2** <br> Allow users to create and delete their own examinations                       | Provides freedom for users and flexibility for changes in the grading system of the module.                                        | Not standardised for every student, and more prone to user error, as each examination will thus need to create new unique prefixes and identity to know which examination it is referring to. |
 
 **Aspect: Should we allow users to set the scores of each grade in their own way (e.g. "99%", "A", "65/70", etc.)**
 
 |                                                                                             | **Pros**                                                                                                                                         | **Cons**                                                                                                                                                                                                                                   |
 |---------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Option 1 (current choice)** <br> Standardise scoring of each grade in terms of percentage | Standardised and neat for every assessment and for every student, applicable for the 5 assessments in the CS1101S module, and easy to implement. | Less flexible for assessments whereby percentage scores are not applicable. (e.g. Pass/Fail assessments, alphabetical grading, etc.), and the possible need to manually calculate the percentage.                                          | 
+| **Option 1 (current choice)** <br> Standardise scoring of each grade in terms of percentage | Standardised and neat for every assessment and for every student, applicable for the 5 assessments in the CS1101S module, and easy to implement. | Less flexible for assessments whereby percentage scores are not applicable. (e.g. Pass/Fail assessments, alphabetical grading, etc.), and the possible need to manually calculate the percentage.                                          |
 | **Option 2** <br> Users can input the scores in any String they desire                      | More flexibility and freedom for user                                                                                                            | Very difficult to check for valid scores due to large number of possibility, not standardised for every student and grade, less able to compare the students' strengths and weaknesses in certain assessments, and difficult to implement. |
 
 
@@ -368,7 +368,7 @@ The `MarkMasteryCheckCommand` checks for the following conditions to determine i
 1. The given student's Mastery Check is not empty.
 2. The given student's Mastery Check has not already been marked as passed.
 3. The given student's Mastery Check date is not beyond the current date.
-   * e.g. A student with their Mastery Check scheduled for 2030-09-01 cannot be marked as passed if the current date is 2022-11-07. 
+   * e.g. A student with their Mastery Check scheduled for 2030-09-01 cannot be marked as passed if the current date is 2022-11-07.
 
 Only if all 3 of these conditions are met will the `MarkMasteryCheckCommand` set `isPassed` of the given student's Mastery Check to `true`, hence marking it as passed.
 
@@ -412,7 +412,7 @@ Only if both of these conditions are met will the `UnmarkMasteryCheckCommand` se
 Given below is an example usage scenario and how the marking mechanism behaves at each stage.
 
 1. The user launches the application for the first time. FRIDAY will open with a list populated with sample students whose Mastery Checks have `isPassed` set to `false` by default.
-2. The user executes the `mark 1` command to mark the Mastery Check of the first student as passed. 
+2. The user executes the `mark 1` command to mark the Mastery Check of the first student as passed.
 3. The user realises this was a mistake, as they actually wanted to mark the Mastery Check of another student as passed.
 4. The user executes the `unmark 1` command to unmark the Mastery Check of the first student. `UnmarkMasteryCheckCommandParser` checks that the command is valid. If so, it creates a new `UnmarkMasteryCheckCommand` with 1 as the `index`.
 5. The `UnmarkMasteryCheckCommand` checks student 1's Mastery Check for the 2 conditions listed above. Since student 1's Mastery Check meets both of these conditions, the `UnmarkMasteryCheckCommand` sets the value of the student's Mastery Check's `isPassed` to `false`.
@@ -514,7 +514,7 @@ For all use cases below, the **System** is `FRIDAY` and the **Actor** is the `us
 
 **Extensions**
 
-* 1a. The given details are not supported in FRIDAY. 
+* 1a. The given details are not supported in FRIDAY.
 
     * 1a1. FRIDAY shows an error message listing the supported details.
 
@@ -792,7 +792,7 @@ For all use cases below, the **System** is `FRIDAY` and the **Actor** is the `us
     * 3b1. FRIDAY shows an error message.
 
       Use case resumes at step 2.
-  
+
 <br>
 
 **Use Case 11: Add an alias.**
@@ -807,9 +807,9 @@ For all use cases below, the **System** is `FRIDAY` and the **Actor** is the `us
 **Extensions**
 
 * 2a. The given alias is invalid.
-    
+
     * 2a1. FRIDAY shows an error message showing what is an invalid alias.
-  
+
       Use case resumes at step 1
 
 * 2b. The given default command is invalid.

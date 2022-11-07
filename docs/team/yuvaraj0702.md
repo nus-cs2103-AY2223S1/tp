@@ -24,7 +24,7 @@ The user interacts with it using a CLI, and it has a GUI created with JavaFX. It
       Reason: Understand teammates code and make improvements. Understand the new grade class and change data types to prevent errors.<br>
     - Assisting in refactoring of code to comply to the needs of this project.(V1.2 and V1.3)
       <br>Effort: Medium<br>
-      Reason: Had to scan through all files to ensure that no instances of old names were left behind. 
+      Reason: Had to scan through all files to ensure that no instances of old names were left behind.
       <br>
       <br>
     - **Contributions to the UG**:
@@ -39,7 +39,7 @@ The user interacts with it using a CLI, and it has a GUI created with JavaFX. It
     - Added Non-functional requirements [Branch Link](https://github.com/Yuvaraj0702/tp/tree/update_DG)
       <br>
       <br>
-    - **Contributions to team-based tasks**: 
+    - **Contributions to team-based tasks**:
     - Delegation of issues to team members.
     - Creation of GitHub Issues for user stories.
     - Fixing of issues [Issues fixed](https://github.com/AY2223S1-CS2103T-W15-4/tp/issues?q=is%3Aissue+is%3Aclosed+assignee%3AYuvaraj0702)
