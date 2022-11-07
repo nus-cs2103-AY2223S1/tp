@@ -118,13 +118,13 @@ Upon completing this section, you should be able to explore SoConnect on your ow
 
 ### 6.2. Key Definitions
 
-### 6.2.1 Command
+#### 6.2.1. Command
 
 Command is the action you want SoConnect to perform. Most commands require [parameters](#622-parameter) after the command so that SoConnect has the required information to perform the action. 
 
 e.g. `help`
 
-### 6.2.2 Parameter
+#### 6.2.2. Parameter
 
 A parameter has a prefix and information which are written together without a space in between. The information are words in `UPPER_CASE` and are to be provided by you. The prefix, which ends with a `/`, is specified before the information and determines the information type. Do note that some commands only require the prefix as a parameter.  <br>
 
@@ -160,7 +160,7 @@ The parameters required for each command can be found in [Command Summary](#9-co
 
 ### 6.4. How to Use the CLI
 
-If you already know about [Command Line Interface (CLI)](#CLI), you can skip this part and read the [Commands](#7-commands).
+If you already know about [Command Line Interface (CLI)](#cli), you can skip this part and read the [Commands](#7-commands).
 
 To use the CLI, you can type a command, which is supposed to be typed in a certain [format](#63-command-format), in the command box and press Enter. SoConnect will perform a specific action. You could try using the CLI using some examples provided below. <br>
 
@@ -226,9 +226,9 @@ If you are an advanced user, SoConnect allows you to freely edit its data files 
 
 <div markdown="span" class="alert alert-warning">
 
-:exclamation: **Caution:**
-If your changes to a data file renders it invalid, SoConnect will discard the data file and start with an empty data file at the next run.
-* Familiarise yourself with the format of the data files before attempting any changes.
+**:warning: Warning**<br>
+If your changes to a data file renders it invalid, SoConnect will discard the data file and start with an empty data file at the next run.<br>
+* Familiarise yourself with the format of the data files before attempting any changes.<br>
 * Backup your data files in a separate folder before attempting any changes.
 
 </div>
@@ -252,7 +252,7 @@ A contact of a person consists of
 
 <div markdown="block" class="alert alert-primary">
 
-**:memo: Note:**<br>
+**:memo: Note**<br>
 * You might forget that you have already [added a contact](#721-adding-a-contact-add), but no need to worry about having duplicate contacts! We help you to detect duplicate contacts by checking existing contacts for the exact same name (case-sensitive) whenever you add a new contact or [edit an existing contact](#722-editing-a-contact--edit).
 * What if you are trying to add the contacts of 2 different people with the same name? You can make use of the case-sensitivity of names and numbers to help you differentiate between the contacts. (e.g. `Alex Yeoh`,`Alex yeoh`,`Alex Yeoh 1`,`Alex Yeoh 2` can all be added as 4 different valid contacts)
 * Names currently only accept [alphanumeric](#alphanum) characters and spaces to help you avoid mistakes when typing them. If a name you are trying to add has special characters like `,` or `/`, it is alright to leave the special characters out for now as SoConnect does not require you to store the exact legal names of your contacts.
@@ -269,7 +269,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`
 
 <div markdown="block" class="alert alert-primary">
 
-**:memo: Note:**
+**:memo: Note**<br>
 
 [Tags](#tag) have to be created first before you can add them to a contact.
 
@@ -297,9 +297,9 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]`
 * At least 1 of the 4 optional parameters must be provided.
 * Existing information will be updated with the parameters provided. Information of the parameters not provided will remain unchanged.
 
-<div markdown="block" class="alert alert-primary">
+<div markdown="block" class="alert alert-info">
 
-**:memo: Note:**
+**:information_source: Info**<br>
 
 To edit the tags of a contact, you can refer to [adding a tag](#744-adding-a-tag-to-a-contact-tag-add) and [removing a tag](#745-removing-a-tag-from-a-contact-tag-remove).
 
@@ -307,7 +307,7 @@ To edit the tags of a contact, you can refer to [adding a tag](#744-adding-a-tag
 
 **Example Input in Command Box**
 ```
-`edit 1 p/91234567 e/johndoe@example.com`
+edit 1 p/91234567 e/johndoe@example.com
 ```
 
 **Example Result: Comparing the Before and After**
@@ -381,7 +381,7 @@ How *[tags](#tag) (t/TAG)* are sorted:
 
 <div markdown="block" class="alert alert-primary">
 
-**:memo: Note:**<br>
+**:memo: Note**<br>
 * When sorting by tags, unlike other parameters, you have to specify a value (an existing `TAG`) to sort by.
 * For other parameters (i.e. `n/ e/ a/ p/`), values provided are ignored. (e.g. sorting by `n/Alfred` is a valid command, the list will be sorted by name alphabetically, and the name given `Alfred` is ignored)
 
@@ -391,9 +391,9 @@ Format: `sort [n/] [p/] [e/] [a/] [t/TAG]…​`
 * At least 1 of the optional parameters must be provided.
 * To sort in reverse order from the orders given above, use these modified parameters: `[n/!] [p/!] [e/!] [a/!] [t/!TAG]`.
 
-<div markdown="block" class="alert alert-primary">
+<div markdown="block" class="alert alert-success">
 
-**:memo: Note:**
+**:bulb: Tip**<br>
 
 You can use multiple parameters to sort if you want to organise your contacts even more! Your list will be sorted by the first parameter you provide as per usual. Here's how the other parameters will be used:
 1. Contacts with identical values for the first parameter are identified. (e.g. same phone number, same email, same address, or contains the same tag)
@@ -413,7 +413,7 @@ sort n/!
 
 **Example Input in Command Box**
 ```
-`sort t/friend n/`
+sort t/friend n/
 ```
 
 **Example Result**
@@ -450,7 +450,7 @@ A todo consists of
 
 <div markdown="block" class="alert alert-primary">
 
-**:memo: Note:**<br>
+**:memo: Note**<br>
 * You might forget that you have already [added a todo](#731-adding-a-todo-todo-add), but no need to worry about having duplicate todos! We help you to detect duplicate todos by checking existing todos whenever you add a new todo or [edit an existing todo](#732-editing-a-todo--todo-edit). Duplicate todos are todos with the exact same information for every parameter.
 * What if you want to add 2 todos with the same description? You are still able to do so, as long as the todos have different tags, dates, or priorities.
 * Priority of a todo can strictly only be `low`, `medium`, or `high`. `Coming soon in v1.5`, we will add smarter priorities (to accept other variations such as `Low`, `Medium`, `High`, `L`, `M`, `H`).
@@ -470,7 +470,7 @@ Format: `todo add d/DESCRIPTION date/DATE pr/PRIORITY [t/TAG]…​`
 
 <div markdown="block" class="alert alert-primary">
 
-**:memo: Note:**
+**:memo: Note**
 
 [Tags](#tag) have to be created first before you can add them to a todo.
 
@@ -552,7 +552,7 @@ A tag consists of a category name that can be a maximum of 10 characters.
 
 <br>
 
-#### 7.4.1. Creating a Tag: `tag create`
+#### 7.4.1. Creating a tag: `tag create`
 
 You can create a new `TAG` and add it into the tag list.
 
@@ -563,10 +563,7 @@ Format: `tag create t/TAG`
 tag create t/friends
 ```
 
-**Output in Command Result Box**
-```
-New Tag created: [friends]
-```
+**Example Result**
 
    (insert image of a successful creation of the `friends` tag)
 
@@ -574,14 +571,16 @@ Great! You have successfully learnt how to add your first `TAG` you have made. N
 
 <br>
 
-#### 7.4.2. Deleting a Tag: `tag delete`
+#### 7.4.2. Deleting a tag: `tag delete`
 
 You can delete a `TAG` from the tag list.
 
 Format: `tag delete t/TAG`
 
 <div markdown="block" class="alert alert-info">
-**:information_source: Note:** When `TAG` is deleted, `TAG` is removed from all the contacts which previously had it.
+
+**:information_source: Info**<br> 
+When `TAG` is deleted, `TAG` is removed from all the contacts which previously had it.
 </div>
 
 **Expected Input in Command Box**
@@ -589,10 +588,7 @@ Format: `tag delete t/TAG`
 tag delete t/friends
 ```
 
-**Output in Command Result Box**
-```
-Tag deleted: [friends]
-```
+**Example Result**
 
    (insert successful deletion of `Test2` tag)
 
@@ -600,15 +596,15 @@ Wonderful! You have successfully deleted a tag.
 
 <br>
 
-#### 7.4.3. Editing a Tag: `tag edit`
+#### 7.4.3. Editing a tag: `tag edit`
 
 If you make a mistake or want to update your `TAG`, you can simply update it with this command.
 
 Format: `tag edit t/TAG1 t/TAG2`
 
 <div markdown="block" class="alert alert-info">
-**:information_source: Note:** 
 
+**:information_source: Info**<br>
 * The new Tag must not have the same name as any other existing tags.
 * `TAG1` represents the current name of the tag and `TAG2` represents the new name of the tag.
 * This command will replace `TAG1` in all contacts and todos to `TAG2`. 
@@ -620,10 +616,7 @@ Format: `tag edit t/TAG1 t/TAG2`
 tag edit t/friends t/bestFriends
 ```
 
-**Output in Command Result Box**
-```
-Tag has changed from [friends] to [bestFriends]
-```
+**Example Result**
 
 * You can refer to the Before and After comparison below.
 
@@ -637,7 +630,7 @@ Fantastic! You have successfully learnt how to change tags.
 
 <br>
 
-#### 7.4.4. Adding a Tag to a Contact: `tag add`
+#### 7.4.4. Adding a tag to a contact: `tag add`
 
 You can add a `TAG` from the tag list to a contact.
 * `Coming soon in v1.5`, we will upgrade `tag add` to add tags to todos.
@@ -645,14 +638,18 @@ You can add a `TAG` from the tag list to a contact.
 
 Format: `tag add INDEX t/TAG`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-success">
+
+**:bulb: Tip**<br>
 A contact can have any number of tags. Add as many as you want.
 </div>
 
 <div markdown="block" class="alert alert-info">
-**:information_source: Note:** The tag has to be created first before you can add it into a contact.
 
-Refer to [`Creating a Tag`](#creating-a-tag-tag-create) on how to create a tag.
+**:information_source: Info**<br> 
+The tag has to be created first before you can add it into a contact.
+
+Refer to [`Creating a Tag`](#741-creating-a-tag-tag-create) on how to create a tag.
 </div>
 
 **Example Input in Command Box**
@@ -660,10 +657,7 @@ Refer to [`Creating a Tag`](#creating-a-tag-tag-create) on how to create a tag.
 tag add 1 t/friends
 ```
 
-**Output in Command Result Box**
-```
-Tag added: [friends]
-```
+**Example Result**
 
    (insert image of a successful addition of the `friends` tag to contact `1`)
 
@@ -671,7 +665,7 @@ Awesome! You have successfully learnt to add a tag to a contact.
 
 <br>
 
-#### 7.4.5. Removing a Tag from a Contact: `tag remove`
+#### 7.4.5. Removing a tag from a contact: `tag remove`
 
 You can remove a `TAG` from a contact.
 * `Coming soon in v1.5`, we will upgrade `tag remove` to remove tags from todos.
@@ -684,10 +678,7 @@ Format: `tag remove INDEX t/TAG`
 tag remove 1 t/friends
 ```
 
-**Output in Command Result Box**
-```
-Tag removed: [friends]
-```
+**Example Result**
 
    (insert image of contact `1` without the `friend` tag with the resu )
 
@@ -701,7 +692,7 @@ Welcome to the Customisation Commands section! In this section, you can learn to
 
 <div markdown="block" class="alert alert-primary">
 
-**:memo: Note:**<br>
+**:memo: Note**<br>
 * You might be wondering why you can only customise contacts and not [todos](#todo). Fret not, we are working hard on making that possible for you! `Coming soon in v1.5`, we will introduce customisation commands for todos.
 
 </div>
@@ -718,10 +709,14 @@ Format: `customise order [t/] [p/] [e/] [a/]`
 * You can change the order of the following information: Tags, Phone Number, Email, Address.
 * Unspecified information will be ordered last according to the default order (Tags > Phone Number > Email > Address).
 
-Example:
+**Expected Input in Command Box**
+```
+customise order a/ e/ p/
+```
 
-* `customise order a/ e/ p/` SoConnect will show address first, followed by email, phone number and tags.
-* `customise order a/` SoConnect will show address first. The rest of the information will follow the default order. Therefore, address will be followed by tags, phone number and email.
+**Example Result**
+
+(insert image)
 
 <br>
 
@@ -735,9 +730,14 @@ Format: `customise hide [t/] [p/] [e/] [a/]`
 * After you use this command, the information specified is hidden.
 * If the information that you specify is already hidden, it will stay hidden.
 
-Example:
-* `customise hide e/` SoConnect no longer shows emails in the list of contacts.
-* `customise hide p/ t/` SoConnect no longer shows phone numbers and tags in the list of contacts.
+**Expected Input in Command Box**
+```
+customise hide p/ t/
+```
+
+**Output in Command Result Box**
+
+(insert image)
 
 <br>
 
@@ -752,9 +752,14 @@ Format: `customise show [t/] [p/] [e/] [a/]`
 * If the information that you specify is already shown, it will stay shown.
 * `Coming soon in v1.5`, we will include `customise show all`, a shortcut to show all information.
 
-Example:
-* `customise show a/` SoConnect now shows addresses in the list of contacts.
-* `customise show p/ t/` SoConnect now shows phone numbers and tags in the list of contacts.
+**Expected Input in Command Box**
+```
+customise show p/ t/
+```
+
+**Output in Command Result Box**
+
+(insert image)
 
 <br>
 
@@ -765,7 +770,7 @@ Example:
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Copy the home folder of your SoConnect app over to the other Computer. This folder should contain your `SoConnect.jar` file and your `data` folder.
 
-**Q**: What if I do not have the phone number/email address/address of a person whose contact I am trying to add?
+**Q**: What if I do not have the phone number/email address/address of a person whose contact I am trying to add?<br>
 **A**: When SoConnect has more users, we plan to gather feedback for which information should be made optional. In the meantime, you can go ahead and [add the contact](#721-adding-a-contact-add) by replacing the fields you do not have with dummy information. (e.g. Using `123` for the phone number, `xyz@email.com` for the email, or `xyz` for the address)
 
 **Q**: Do you have any plans to make the app more customisable?<br>
@@ -774,19 +779,19 @@ Example:
 **Q**: Where can I find the data file with the tags I have created?<br>
 **A**: Your [tags](#tag) are stored together with your contacts in `soconnect.json`. The tag list stored affects both your contacts and your todos.
 
-**Q**: Why can't I include a particular tag when adding a contact/todo?
+**Q**: Why can't I include a particular tag when adding a contact/todo?<br>
 **A**: Tags have to be [created](#741-creating-a-tag-tag-create) before they can be added to a contact or todo. You may also want to double-check if you have spelled the tag correctly.
 
-**Q**: Why is the todo I have just added missing from the todo list?
+**Q**: Why is the todo I have just added missing from the todo list?<br>
 **A**: Check if the todo list is currently showing a filtered list of todos. Refer to [`Filtering todos shown`](#735-filtering-todos-shown--todo-show) on how to filter the todo list.
 
-**Q**: Why are the `tag add` and `tag remove` commands not working on todos?
+**Q**: Why are the `tag add` and `tag remove` commands not working on todos?<br>
 **A**: You can use the `todo edit` command to modify the tags of a todo. Refer to [`Editing a todo`](#732-editing-a-todo--todo-edit) for more information.
 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 9. Command summary
+## 9. Command Summary
 
 | Action                                                                    | Format and Examples                                                                                                                                                                                                  |
 |---------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -817,78 +822,80 @@ Example:
 
 ## 10. Glossary
 
-**<a id="autocomplete">Autocomplete</a>**
-
-A feature that shows a list of completed words or strings without the user needing to type them in full.
-
-<br>
-
-**<a id="cli">CLI</a>**
-
-A text-based user interface used to run programs.
-
-<br>
-
-**<a id="gui">GUI</a>**
-
-A graphical user interface (GUI) is a form of user interface that allows users to interact with programs through graphical icons and audio indicator.
-
-<br>
-
-**<a id="javafx">JavaFX</a>**
-
-A Java library used to develop client applications.
-
-<br>
-
-**<a id="kloc">kLoC</a>**
-
-Stands for thousands of lines of code.
-
-<br>
-
-**<a id="mainstream-os">Mainstream OS</a>**
-
-Windows, Linux, Unix, OS-X.
-
-<br>
-
-**<a id="nus">NUS</a>**
-
-National University of Singapore.
-
-<br>
-
-**<a id="contact">Private Contact Detail</a>**
-
-A contact detail that is not meant to be shared with others.
-
-<br>
-
-**<a id="soc">SoC</a>**
-
-School of Computing, a computing school in NUS.
-
-<br>
-
-**<a id="todo">Todo</a>**
-
-A task that the user needs to complete.
-
-<br>
-
-**<a id="alphanum">Alphanumeric</a>**
+**<a id="alphanum"></a>Alphanumeric**
 
 Alphabet letters and numbers only.
 
 <br>
 
-**<a id="tag">Tag</a>**
+**<a id="autocomplete"></a>Autocomplete**
+
+A feature that shows a list of completed words or strings without the user needing to type them in full.
+
+<br>
+
+**<a id="cli"></a>CLI**
+
+A text-based user interface used to run programs.
+
+<br>
+
+**<a id="gui"></a>GUI**
+
+A graphical user interface (GUI) is a form of user interface that allows users to interact with programs through graphical icons and audio indicator.
+
+<br>
+
+**<a id="javafx"></a>JavaFX**
+
+A Java library used to develop client applications.
+
+<br>
+
+**<a id="json"></a>JSON**
+
+JSON stands for JavaScript Object Notation. JSON is a lightweight format for storing and transporting data.
+
+<br>
+
+**<a id="kloc"></a>kLoC**
+
+Stands for thousands of lines of code.
+
+<br>
+
+**<a id="mainstream-os"></a>Mainstream OS**
+
+Windows, Linux, Unix, OS-X.
+
+<br>
+
+**<a id="nus"></a>NUS**
+
+National University of Singapore.
+
+<br>
+
+**<a id="contact"></a>Private Contact Detail**
+
+A contact detail that is not meant to be shared with others.
+
+<br>
+
+**<a id="soc"></a>SoC**
+
+School of Computing, a computing school in NUS.
+
+<br>
+
+**<a id="tag"></a>Tag**
 
 A category which you can place contacts and todos in.
 
 <br>
 
-**<a id="json">JSON</a>**
+**<a id="todo"></a>Todo**
 
-JSON stands for JavaScript Object Notation. JSON is a lightweight format for storing and transporting data.
+A task that the user needs to complete.
+
+<br>
