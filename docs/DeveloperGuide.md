@@ -680,8 +680,12 @@ Preconditions: The current working team is set to the team that has the existing
 2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be
    able to accomplish most of the tasks faster using commands than using the mouse.
-4. Does not require internet connection.
+4. Should not require internet connection.
 5. Any changes to the data should be saved permanently and automatically.
+6. Must be able to be packaged into an executable JAR file that is less than 100MB.
+7. The data should be stored locally in a readable and human-editable format.
+8. No database management system should be used.
+9. Should be able to respond to user requests in less than 1 second when there are less than 1000 persons' data stored.
 
 ### Glossary
 
