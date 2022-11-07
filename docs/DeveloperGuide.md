@@ -695,6 +695,8 @@ It is an interface where users input text commands to interact with the computer
 
 It is an interface where users can interact with apps/electrical devices through graphical icons and audio indicators.
 
+<div style="page-break-after: always;"></div>
+
 #### School of Computing (SOC)
 
 It refers to the School of Computing from the National University of Singapore.
