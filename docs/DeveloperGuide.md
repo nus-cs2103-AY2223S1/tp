@@ -1381,7 +1381,7 @@ Expected: No fields of client is edited. Error details will show that there is a
     1. Test Case: `find`
        Expected: Nothing happens. Financial Advisor Planner shows error message.
 
-## Find by risk tag
+#### Find by risk tag
 1. Finding a client by their risk tag:
 
     1. Prerequisites: User input is valid, prefixes are present and Financial Advisor Planner contains clients.
@@ -1401,7 +1401,7 @@ Expected: No fields of client is edited. Error details will show that there is a
     1. Test Case: `find`
        Expected: Nothing happens. Financial Advisor Planner shows error message.
 
-## Find by income
+#### Find by income
 1. Finding a client by their income:
 
     1. Prerequisites: User input is valid, prefixes are present and Financial Advisor Planner contains clients.
@@ -1421,7 +1421,7 @@ Expected: No fields of client is edited. Error details will show that there is a
     1. Test Case: `find`
        Expected: Nothing happens. Financial Advisor Planner shows error message.
 
-## Sorting Clients
+### Sorting Clients
 1. Sorts the list of clients by a given keyword
 
     1. Prerequisites: User input is valid and Financial Advisor Planner contains clients.
@@ -1438,7 +1438,7 @@ Expected: No fields of client is edited. Error details will show that there is a
    1. Test Case: `sort ris`
       Expected: Nothing happens. Financial Advisor Planner shows error message.
 
-## Deleting a client
+### Deleting a client
 
 1. Deleting a client while all client are being shown
 
