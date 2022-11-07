@@ -979,7 +979,7 @@ Do the test cases sequentially to ensure correct expectation.
     1. Test case: `sort reminder by/deadline`<br>
        Expected: Reminders are first sorted by deadline. If the reminders have the same deadline, it will be sorted by priority. If the reminders have the same priority and deadline, it will be sorted lexicographically.
 
-    1. Other incorrect sort reminder commands to try: `sort`, `sort reminders`, `...` (where x is larger than the list size)<br>
+    1. Other incorrect sort reminder commands to try: `sort`, `sort reminders`, `...`<br>
        Expected: Similar to previous.
 
 ### 8.6 Switch tabs
