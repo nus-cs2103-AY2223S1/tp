@@ -464,7 +464,7 @@ Format: `tag delete t/TAG`
 **:information_source: Note:** When `TAG` is deleted, `TAG` is removed from all the contacts which previously had it.
 </div>
 
-**Expected Output in Command Box**
+**Expected Input in Command Box**
 ```
 tag delete t/friends
 ```
@@ -491,6 +491,7 @@ Format: `tag edit t/TAG1 t/TAG2`
 
 * The new Tag must not have the same name as any other existing tags.
 * `TAG1` represents the current name of the tag and `TAG2` represents the new name of the tag.
+* This would replace `TAG1` in all contacts and todos to `TAG2`. 
 
 </div>
 
@@ -520,6 +521,7 @@ Fantastic! You have successfully learnt how to change tags.
 
 You can add a `TAG` from the tag list to a contact.
 * `Coming soon in v1.5`, we will upgrade `tag add` to add tags to todos.
+* Consider using [Adding a todo](#731-adding-a-todo-todo-add) or [Editing a todo](#732-editing-a-todo--todo-edit) to add tags to todos.
 
 Format: `tag add INDEX t/TAG`
 
@@ -553,6 +555,7 @@ Awesome! You have successfully learnt to add a tag to a contact.
 
 You can remove a `TAG` from a contact.
 * `Coming soon in v1.5`, we will upgrade `tag remove` to remove tags from todos.
+* Consider using [Editing a todo](#732-editing-a-todo--todo-edit) to remove tags from todos.
 
 Format: `tag remove INDEX t/TAG`
 
