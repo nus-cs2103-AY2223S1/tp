@@ -6,13 +6,10 @@ import static seedu.waddle.commons.core.Messages.MESSAGE_ITEM_PAST_MIDNIGHT;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.List;
 import java.util.Optional;
 
 import seedu.waddle.commons.core.Text;
 import seedu.waddle.commons.core.index.Index;
-import seedu.waddle.logic.PdfFieldInfo;
-import seedu.waddle.logic.PdfFiller;
 import seedu.waddle.logic.commands.exceptions.CommandException;
 import seedu.waddle.model.item.exceptions.Period;
 
