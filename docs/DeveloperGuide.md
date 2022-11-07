@@ -88,7 +88,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S1-CS2103T-T15-1/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
@@ -102,7 +102,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/coydir/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/coydir/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-T15-1/tp/tree/master/src/main/java/coydir/Main.java) and [`MainApp`](https://github.com/AY2223S1-CS2103T-T15-1/tp/tree/master/src/main/java/coydir/MainApp.java). It is responsible for,
 
 - At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 - At shut down: Shuts down the components and invokes cleanup methods where necessary.
@@ -135,13 +135,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/coydir/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-T15-1/tp/tree/master/src/main/java/coydir/ui/Ui.java)
 
 ![Structure of the UI Component](images/diagrams/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/coydir/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-T15-1/tp/tree/master/src/main/java/coydir/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-T15-1/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -152,7 +152,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/coydir/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-T15-1/tp/tree/master/src/main/java/coydir/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -160,7 +160,7 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, it uses the `DatabaseParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
@@ -178,12 +178,12 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 How the parsing works:
 
-- When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+- When called upon to parse a user command, the `DatabaseParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `DatabaseParser` returns back as a `Command` object.
 - All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/coydir/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-T15-1/tp/tree/master/src/main/java/coydir/model/Model.java)
 
 <img class="centerImage" src="images/diagrams/ModelClassDiagram.png" width="850" /><br>
 
@@ -196,7 +196,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/coydir/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-T15-1/tp/tree/master/src/main/java/coydir/storage/Storage.java)
 
 <img class="centerImage" src="images/diagrams/StorageClassDiagram.png" width="450"/><br>
 
@@ -226,13 +226,13 @@ Below is a sequence diagram and explanation of how `add` is executed.
 
 <img class="centerImage" src="images/diagrams/AddCommandUML.png" /><br>
 
-Step 1. The user enters the command `add n/Jon j/janitor`.
+Step 1. The user enters the command `add n/Jon j/janitor d/General Management`.
 
-Step 2. User input is parsed by `AddCommandParser` which creates the`AddCommand` object, then the method `LogicManager#execute` is called to create the AddCommand object.
+Step 2. The method `LogicManager#execute` is called on the user input, prompting for `AddCommandParser` to parse the user input and create the `AddCommand` object.
 
 Step 3. The `execute` method of AddCommand is then called on the object, which returns a `CommandResult` object.
 
-Step 4. This adds the `person` from the list from the model. The `employeeID` is set and if there already exist a `person` object with the same field data, a `CommandException` will be thrown and a message indicating duplicate person will be shown. If the `person` object does not exist, then using `model#addPerson()`, the `person` object is added to the `database`.
+Step 4. This adds the `person` from the list to the model. The `employeeID` is set and if there already exist a `person` object with the same field data, a `CommandException` will be thrown and a message indicating duplicate person will be shown. If the `person` object does not exist, then using `model#addPerson()`, the `person` object is added to the `database`.
 
 Step 5. `storage#saveDatabase` is then called on the current `database`, updates the database to contain the new `person`.
 
@@ -244,11 +244,11 @@ This section explains the implementation of the `delete` feature. The command ta
 
 Below is a sequence diagram and explanation of how `delete` is executed.
 
-<img class="centerImage" src="images/diagrams/DeleteCommandUML.png" width="550" /><br>
+<img class="centerImage" src="images/diagrams/DeleteSequenceDiagram.png" width="550" /><br>
 
 Step 1. The user enters the command `delete 1`.
 
-Step 2. User input is parsed by `DeleteCommandParser` which creates the `DeleteCommand` object, then the method `LogicManager#execute` is called to create the `DeleteCommand` object.
+Step 2. The method `LogicManager#execute` is called on the user input, prompting for `DeleteCommandParser` to parse the user input and create the `DeleteCommand` object.
 
 Step 3. The `execute` method of `DeleteCommand` is then called on the object, which returns a `CommandResult` object.
 
@@ -277,7 +277,7 @@ Below is a sequence diagram and explanation of how `find` is executed. In this s
 
 Step 1. The user enters the command `find n/Alex`.
 
-Step 2. User input is parsed by `FindCommandParser` which creates a `PersonMatchesKeywordsPredicate`, which is a predicate used to create the `FindCommand` object, then the method `LogicManager#execute` is called to create the `FindCommand` object.
+Step 2. The method `LogicManager#execute` is called on the user input, prompting for `FindCommandParser` to parse the user input and create the `FindCommand` object.
 
 Step 3. The `execute` method of `FindCommand` is then called on the object.
 
@@ -295,7 +295,7 @@ Below is a sequence diagram and explanation of how `view` is executed.
 
 Step 1. The use enters the command `view 1`.
 
-Step 2. User input is parsed by `ViewCommandParser` which created the `ViewCommand` object, then the method `LogicManager#execute` is called to create the `ViewCommand` object.
+Step 2. The method `LogicManager#execute` is called on the user input, prompting for `ViewCommandParser` to parse the user input and create the `ViewCommand` object.
 
 Step 3. The `execute` method of `ViewCommand` is then called on the object, which returns a `CommandResult` object.
 
@@ -319,7 +319,7 @@ Below is a sequence diagram and explanation of how `rate` is executed. In this e
 
 Step 1. The user enters the command "rate id/1 r/3".
 
-Step 2. The user input is parsed by `RateCommandParser` which creates an `RateCommand` object.
+Step 2. The method `LogicManager#execute` is called on the user input, prompting for `RateCommandParser` to parse the user input and create the `RateCommand` object.
 
 Step 3. The `execute` method of `RateCommand` is then called on the object.
 
@@ -349,7 +349,7 @@ Below is a sequence diagram and explanation of how `add-leave` is executed. In t
 
 Step 1. The user enters the command "add-leave id/1 sd/01-01-2022 ed/01-01-2022".
 
-Step 2. The user input is parsed by `AddLeaveCommandParser` which creates an `AddLeaveCommand` object.
+Step 2. The method `LogicManager#execute` is called on the user input, prompting for `AddLeaveCommandParser` to parse the user input and create the `AddLeaveCommand` object.
 
 Step 3. The `execute` method of `AddLeaveCommand` is then called on the object.
 
@@ -379,7 +379,7 @@ Below is a sequence diagram and explanation of how `delete-leave` is executed. I
 
 Step 1. The user enters the command "delete-leave id/1 i/1".
 
-Step 2. The user input is parsed by `DeleteLeaveCommandParser` which creates a `DeleteLeaveCommand`.
+Step 2. The method `LogicManager#execute` is called on the user input, prompting for `DeleteLeaveCommandParser` to parse the user input and create the `DeleteLeaveCommand` object.
 
 Step 3. The `execute` method of `DeleteLeaveCommand` is then called on the object.
 
@@ -416,25 +416,25 @@ UML Diagram:
 
 **Steps:**
 
-**Step 1**: User launches the application.
+Step 1. User launches the application.
 
-**Step 2**: User executes `batch-add filename` command. In the `LogicManager` class, the `DatabaseParser` method is called.
+Step 2. User executes `batch-add filename` command. In the `LogicManager` class, the `DatabaseParser` method is called.
 This will return a new `BatchAddCommandParser` object and `parse` function is then called.
 A helper function in `ParserUtil` helps to trim the filename and check if it is valid.
 
 Note: If no argument is provided or file not in CSV format, a`ParseException` will be thrown.
 
-**Step 3**: The `parse` function returns a `BatchAddCommand` which is then executed. In this `execute` function, the first
+Step 3. The `parse` function returns a `BatchAddCommand` which is then executed. In this `execute` function, the first
 step would be to read the information in the CSV file (`getInfo` function). A `BufferedReader` object is used to read the CSV file and converts
 each row to a string of arguments (following the add command requirements) and creates a new `AddCommand`. These new `AddCommands` will be added
 into a `List<AddCommand>`.
 
 Note: If file does not exist in the folder, a `FileNotFound` exception is thrown too.
 
-**Step 4**: Once `getInfo` returns a `List<AddCommand>`, the list will then be iterated through to execute each `AddCommand`.
+Step 4. Once `getInfo` returns a `List<AddCommand>`, the list will then be iterated through to execute each `AddCommand`.
 If there is any duplicate Person found, the function call will be aborted and the database will be reverted to its original state.
 
-**Step 5**: `storage#saveDatabase` is then called on the current `database`, updates the database to contain the new persons added.
+Step 5. `storage#saveDatabase` is then called on the current `database`, updates the database to contain the new persons added.
 
 <h4 id="batch-add-feature-design-considerations">Design Considerations</h4>
 
