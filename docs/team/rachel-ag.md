@@ -15,25 +15,28 @@ management tasks done faster than traditional GUI apps. Given below are my contr
     * Justification: Knowing the role one has applied for is important to identify the skills required for the job. 
   This feature improves the product significantly as it can easily remind user which role he has applied for during the
   internship application. 
-    * Highlights: This addition affects existing commands and many test cases needed to be changed too.
+    * Highlights: This addition affects existing commands and many test cases needed to be changed.
 * **New Feature**: Added the `Date` field
     * What it does: allows the user to record the date of the internship application deadline 
   (Pull request [\#26](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/26)).
     * Justification: Important dates (such as interview dates, test dates, etc.) are crucial components of an internship
   application. This feature improves the product significantly not only because it reminds the user about important
   dates, but also because it helps prevent any schedule clashes.
-    * Highlights: This addition affects existing commands and many test cases needed to be changed too.
+    * Highlights: This addition affects existing commands and many test cases needed to be changed.
 * **New Feature**: Added the `ApplicationProcess` field
     * What it does: allows the user to record the current state of the internship application process
   (Pull request [\#26](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/26)).
     * Justification: Knowing which stage of application one is currently at is important to prepare accordingly. This
   feature improves the product significantly since it reminds the user which stage of the application they are currently at.
-    * Highlights: This addition affects existing commands and many test cases needed to be changed too.
+    * Highlights: This addition affects existing commands and many test cases needed to be changed.
+
+<div style="page-break-after: always;"></div>
+
 * **New Feature**: Added the `Website` field
     * What it does: allows the user to record the website containing the details for the internship 
   (Pull request [\#26](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/26)).
     * Justification: To allow user to easily access more details about the internship, if there is any.
-    * Highlights: This addition affects existing commands and many test cases needed to be changed too.
+    * Highlights: This addition affects existing commands and many test cases needed to be changed.
 * **New Feature**: Added keyboard shortcuts for the help window
     * What it does: allow user to close the help window and copy the user guide url link without any mouse usage
     (Pull request [\#141](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/141)).
@@ -46,14 +49,13 @@ management tasks done faster than traditional GUI apps. Given below are my contr
 * **Enhancements to existing features**: 
   * Wrote additional tests to increase coverage (Pull request [\#64](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/64))
   * Updated `help` command to display the command summary and execute automatically when user run the app for the first time (Pull request [\#77](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/77))
-  * Made small changes to GUI to make it more user-friendly (Pull requests [\#102](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/102), [\#130](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/130))
+  * Made small changes to the GUI to make it more user-friendly (Pull requests [\#102](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/102), [\#130](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/130))
   * Fixed bugs from Practical Examination Dry Run (Pull requests [\#176](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/176), [\#214](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/214), [\#215](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/215), [\#217](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/217), [\#224](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/224))
 
 * **Documentation**:
     * User Guide:
-        * Added documentation for the features `add` (Pull requests [\#29](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/29), [\#68](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/68))
-        * Added documentation for the features `help` (Pull request [\#141](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/141))
-        * Added undo compatibility in command summary (Pull request [\#138](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/138))
+        * Added documentation for `add` (Pull requests [\#29](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/29), [\#68](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/68))
+        * Added documentation for `help` (Pull request [\#141](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/141))
         * Added the glossary section (Pull request [\#138](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/138))
     * Developer Guide:
         * Added use case for add internship (Pull request [\#29](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/29))
