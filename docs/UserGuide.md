@@ -46,7 +46,8 @@ It consists of a step-by-step installation guide and an explanation of the key G
 |:------------------------------:|:-------------------------------------:|
 | ![wide layout](images/Ui2.png) | ![narrow layout](images/UiNarrow.png) |
 
-5. Tell WorkBook what you want to do by typing your command in `Enter command here...` at the top of the application and pressing <kbd>⏎ Enter</kbd> to execute it.
+5. Tell WorkBook what you want to do by typing your command in `Enter command here...` at the top of the application and pressing <kbd>Enter</kbd> on your keyboard to execute it.
+
 6. Before diving right into using WorkBook, familiarise yourself with the [things to note](#4-things-to-note) to not hinder your tracking process!
 
 ### 2.1 Understanding WorkBook's GUI
@@ -85,10 +86,6 @@ For the narrow layout, everything else is the same except for the labelled light
 
 **Highlights** <br>
 `commands` or `PARAMETERS`
-
-**Keyboard Inputs**<br>
-
-<button>enter</button>   <button>&uarr;</button>   <button>&darr;</button>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -478,7 +475,7 @@ Format: `exit`
 ### 6.1. Saving
 
 Conveniently, any inputted command that changes any part of your internship application is **automatically saved**!
-Hence, you need not worry about pressing <kbd>ctrl</kbd> + <kbd>s</kbd> everytime you update your list of internship applications.
+Hence, you need not worry about pressing <kbd>ctrl</kbd> + <kbd>s</kbd> on your keyboard everytime you update your list of internship applications.
 
 ### 6.2. Editing
 
