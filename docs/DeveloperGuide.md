@@ -3,8 +3,6 @@ layout: page
 title: Developer Guide
 ---
 
-<div style="page-break-after: always;">
-
 # **SoCompiler Developer Guide**
 
 SoCompiler is a **desktop app for managing contacts and module information, optimized for use via a [Command Line Interface](#command-line-interface-cli) 
@@ -18,7 +16,7 @@ In order to be a successful SoCompiler Developer, you need a general understandi
 * Java language
 * JavaFx
 
-</div>
+<div style="page-break-after: always;"></div>
 
 ## **Table of Contents**
 
