@@ -522,20 +522,19 @@ The following activity diagram summarizes what happens when a user executes am h
 
 <img src="images/helpMessage.png" width="550" />
 
-<div style="page-break-after: always;"></div>
 
-###  `Exit` Feature
+###  `List` Feature
 #### Proposed Implementation
-The proposed `Exit` Feature allows the professor to list all FYP students in the FYP Manager.
-The `Exit` feature mechanism is facilitated by `ExitCommand`. It extends from the abstract class `Command`.
+The proposed `List` Feature allows the professor to list all FYP students in the FYP Manager.
+The `List` feature mechanism is facilitated by `ListCommand`. It extends from the abstract class `Command`.
 To summarize, it implements the following operation:
-* `ListCommand#execute()` — oversees the execution process for `ExitCommand`.
+* `ListCommand#execute()` — oversees the execution process for `ListCommand`.
 
-Given below is an example usage scenario of `ExitCommand`:
-1. The user enters the `Exit` command
-2. `FypManagerParser` creates a new `ExitCommand` after preliminary check of user input.
-3. `LogicManager` executes the `ExitCommand` using the `LogicManager#execute()` method.
-4. `ExitCommand` updates a `ObservableList<Student>`, and then creates a `CommandResult` and returns it to `LogicManager` to complete the command.
+Given below is an example usage scenario of `ListCommand`:
+1. The user enters the `List` command
+2. `FypManagerParser` creates a new `ListCommand` after preliminary check of user input.
+3. `LogicManager` executes the `ListCommand` using the `LogicManager#execute()` method.
+4. `ListCommand` updates a `ObservableList<Student>`, and then creates a `CommandResult` and returns it to `LogicManager` to complete the command.
 
 The following sequence diagram shows how the list command works:
 
