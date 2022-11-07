@@ -175,7 +175,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
    ![EditCommand](../images/tracing/EditCommand.png)
 
 1. As you just traced through some code involved in parsing a command, you can take a look at this class diagram to see where the various parsing-related classes you encountered fit into the design of the `Logic` component.
-   <img src="../images/ParserClasses.png" width="600"/>
+   <img src="../images/diagrams/ParserClasses.png" width="600"/>
 
 1. Let’s continue stepping through until we return to `LogicManager#execute()`.
 
