@@ -76,7 +76,7 @@ public class AddStuCommand extends Command {
 
         //check if module exists
         if (toAdd.getStudentModuleInfo().size() > 0 || toAdd.isTeachingAssistant()) {
-            List<Module> moduleList = model.getFilteredModuleList();
+            List<Module> moduleList = model.getAllModuleList();
             List<ModuleCode> studentModules = new ArrayList<>();
             studentModules.addAll(toAdd.getStudentModuleInfo());
             studentModules.addAll(toAdd.getTeachingAssistantInfo());
