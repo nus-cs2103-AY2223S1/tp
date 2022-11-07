@@ -519,7 +519,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 * 1a. User enters invalid input
   * 1a1. REal-Time shows an error message.
-  * 
     Use case resumes at Step 1.
 
 **Use case: UC05 - Delete an offer**

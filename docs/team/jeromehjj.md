@@ -19,11 +19,11 @@ Given below are my contributions to the project.
 
 * **Enhancements implemented:**
   * **New Feature:** `AddOfferCommand` and `AddOfferCommandParser`(Pull request [#46](https://github.com/AY2223S1-CS2103T-W15-2/tp/pull/46))
-    * What it does: 
-      * Allows users to add their offers made for a listing in the application. 
-    * Highlights: 
+    * What it does:
+      * Allows users to add their offers made for a listing in the application.
+    * Highlights:
       * Implemented the `Offer` class with new `Price` field so that prices can be added into an offer by
-      the user. Added a `AddOfferCommandParser` to parse the input by the user when adding offers. 
+      the user. Added a `AddOfferCommandParser` to parse the input by the user when adding offers.
       * Added `parsePrice` in `ParserUtil` class to parse prices that are valid
       * Implemented an auto-sorting feature when adding offers so that it is sorted by the `listingId` field.
       * Added necessary tests in `AddOfferCommandTest`, `AddOfferCommandParserTest`, `ParserUtilTest` and `PriceTest`(Pull request [#163](https://github.com/AY2223S1-CS2103T-W15-2/tp/pull/163))
