@@ -3,7 +3,7 @@ layout: page
 title: Connor Lim's Project Portfolio Page
 ---
 
-# Project: AddressBook Level 3
+# Project: Contactmation
 
 Contactmation is a powerful **desktop based project and task management solution** that **helps you efficiently and
 effectively manage many projects at once** through the a CLI.
