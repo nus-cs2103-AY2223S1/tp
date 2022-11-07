@@ -1,8 +1,15 @@
 <!-- markdownlint-disable-file first-line-h1 -->
+```info
+The following legend describes the symbols used in this section:
 
-Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
+| Priority | Symbol  |     Meaning      |
+|:--------:|:-------:|:----------------:|
+|   High   | `* * *` |    Must have     |
+|  Medium  |  `* *`  |   Nice to have   |
+|   Low    |   `*`   | Unlikely to have |
+```
 
-| Priority | As a               | I can                                       | So that                                                               |
+| Priority | As a...            | I can...                                    | So that...                                                            |
 |:--------:|--------------------|---------------------------------------------|-----------------------------------------------------------------------|
 | `* * *`  | purchasing manager | add a new item to my inventory              | I can keep track of the data related to the new item                  |
 | `* * *`  | purchasing manager | delete an item from my inventory            | remove an inventory item that I no longer need to track               |
