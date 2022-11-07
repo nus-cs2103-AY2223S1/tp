@@ -11,7 +11,7 @@ import seedu.address.model.patient.Name;
  */
 public class AppointmentBuilder {
 
-    public static final String DEFAULT_NAME = "Amy Bee";
+    public static final String DEFAULT_NAME = "George Best";
     public static final String DEFAULT_MEDICAL_TEST = "Computed Tomography";
     public static final String DEFAULT_SLOT = "2022-10-10 16:08";
     public static final String DEFAULT_DOCTOR = "Shashank S Joshi";

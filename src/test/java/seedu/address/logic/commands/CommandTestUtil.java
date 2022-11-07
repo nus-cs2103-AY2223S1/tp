@@ -28,6 +28,7 @@ import seedu.address.model.bill.Bill;
 import seedu.address.model.bill.NameContainsKeywordsPredicateBill;
 import seedu.address.model.patient.NameContainsKeywordsPredicatePatient;
 import seedu.address.model.patient.Patient;
+import seedu.address.testutil.EditAppointmentDescriptorBuilder;
 import seedu.address.testutil.EditPatientDescriptorBuilder;
 
 /**
@@ -111,7 +112,6 @@ public class CommandTestUtil {
     public static final EditAppointmentCommand.EditAppointmentDescriptor DESC_APPOINTMENT_7;
     public static final EditAppointmentCommand.EditAppointmentDescriptor DESC_APPOINTMENT_8;
 
-
     static {
         DESC_AMY = new EditPatientDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
@@ -119,9 +119,13 @@ public class CommandTestUtil {
         DESC_BOB = new EditPatientDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
-        //TODO
-        DESC_APPOINTMENT_7 = null;
-        DESC_APPOINTMENT_8 = null;
+
+        DESC_APPOINTMENT_7 = new EditAppointmentDescriptorBuilder().withName(VALID_NAME_AMY)
+                .withSlot(VALID_SLOT_7).withDoctor(VALID_DOCTOR_DECKER)
+                .withMedicalTest(VALID_MEDICAL_TEST_7).build();
+        DESC_APPOINTMENT_8 = new EditAppointmentDescriptorBuilder().withName(VALID_NAME_BOB)
+                .withDoctor(VALID_DOCTOR_CAITIE).withMedicalTest(VALID_MEDICAL_TEST_8)
+                .withSlot(VALID_SLOT_8).build();
     }
 
     /**
