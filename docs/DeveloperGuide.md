@@ -396,7 +396,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 ### Use Cases
-Software System: Travelr
+**Software System: Travelr**
 
 **Use case: UC01 Delete a Trip**
 
@@ -424,10 +424,7 @@ Software System: Travelr
     * 3b1. Travelr shows an error message.
 
       Use Case Ends
-
-
-Software System: Travelr
-
+    
 **Use case: UC02 Select a Trip**
 
 **Actor: User**
