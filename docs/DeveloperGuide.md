@@ -778,7 +778,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: List all clients**
+**Use case: UC5 - List all clients**
 
 **MSS**
 
@@ -794,7 +794,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: Add Client to DevEnable**
+**Use case: UC6 - Add Client to DevEnable**
 
 **MSS**
 
@@ -810,7 +810,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC6 - Delete client**
+**Use case: UC7 - Delete client**
 
 **MSS**
 
@@ -826,7 +826,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC7 - Edit client**
+**Use case: UC8 -  Edit client**
 
 **MSS**
 
@@ -842,7 +842,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC8 - Edit details of project**
+**Use case: UC9 - Edit details of project**
 
 **MSS**
 
@@ -864,7 +864,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC11 - Add client**
+**Use case: UC10 - Add client**
 
 **MSS**
 
@@ -880,7 +880,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC12 - Delete client**
+**Use case: UC11 - Delete client**
 
 **MSS**
 
@@ -897,7 +897,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC13 - Edit client**
+**Use case: UC12 - Edit client**
 
 **MSS**
 
@@ -914,7 +914,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC14 - Find projects**
+**Use case: UC13 - Find projects**
 
 **MSS**
 
@@ -931,7 +931,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC15 - Find clients**
+**Use case: UC14 - Find clients**
 
 **MSS**
 
@@ -948,7 +948,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: Add issue to DevEnable**
+**Use case: UC15 - Add issue to DevEnable**
 
 **MSS**
 
@@ -964,7 +964,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC6 - Delete issue from project**
+**Use case: UC16 - Delete issue from project**
 
 **MSS**
 
@@ -980,7 +980,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC7 - Edit issue of project**
+**Use case: UC17 - Edit issue of project**
 
 **MSS**
 
@@ -996,7 +996,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 	  
-**Use case: List all issues**
+**Use case: UC18 - List all issues**
 
 **MSS**
 
@@ -1012,7 +1012,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: Mark issue as complete**	
+**Use case: UC19 - Mark issue as complete**	
 
 **MSS**
 
@@ -1030,7 +1030,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 	Use Case ends.
 
-**Use case: Mark issue as incomplete**	
+**Use case: UC20 - Mark issue as incomplete**	
 
 **MSS**
 
@@ -1048,7 +1048,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 	Use Case ends.
 
-**Use case: UC16 - Find issues**
+**Use case: UC21 - Find issues**
 
 **MSS**
 
@@ -1066,7 +1066,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
 
 
-**Use Case: View a sorted list of projects**
+**Use Case: UC22 - View a sorted list of projects**
 
 **MSS**
 
@@ -1075,7 +1075,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 	Use Case ends
 
-**Use Case: View a sorted list of clients**
+**Use Case: UC23 - View a sorted list of clients**
 
 **MSS**
 
@@ -1084,7 +1084,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 	Use Case ends
 
-**Use Case: View a sorted list of issues**
+**Use Case: UC24 - View a sorted list of issues**
 
 **MSS**
 
@@ -1093,7 +1093,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 	Use Case ends
 
-**Use Case: Pin/Unpin a project**
+**Use Case: UC25 - Pin/Unpin a project**
 
 **MSS**
 
@@ -1109,7 +1109,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 	Use Case ends.
 
 
-**Use Case: Pin/Unpin a issue**
+**Use Case: UC26 - Pin/Unpin a issue**
 
 **MSS**
 
@@ -1124,7 +1124,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 	Use Case ends.
 
-**Use Case: Pin/Unpin a client**
+**Use Case: UC27 - Pin/Unpin a client**
 
 **MSS**
 
@@ -1139,7 +1139,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 	Use Case resumes at Step 1.
 
-**Use Case: Set default view of DevEnable to project list**
+**Use Case: UC28 - Set default view of DevEnable to project list**
 
 **Guarantees:** On startup, DevEnable shows project list initially.
 
@@ -1148,7 +1148,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests for the project list to be the default view
 2. DevEnable sets the default view to be the project list.
 
-**Use Case: Set default view of DevEnable to client list**
+**Use Case: UC29 - Set default view of DevEnable to client list**
 
 **Guarantees:** On startup, DevEnable shows client list initially.
 
@@ -1157,7 +1157,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests for the client list to be the default view
 2. DevEnable sets the default view to be the client list.
 
-**Use Case: Set default view of DevEnable to issue list**
+**Use Case: UC30 - Set default view of DevEnable to issue list**
 
 **Guarantees:** On startup, DevEnable shows issue list initially.
 
@@ -1167,7 +1167,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. DevEnable sets the default view to be the issue list.
 
 
-**Use case: UC17 - View list of commands**
+**Use case: UC31 - View list of commands**
 
 **MSS**
 
@@ -1176,7 +1176,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use Case: Clear project book**
+**Use Case: UC32 - Clear project book**
 
 **Guarantees:** Project book is empty after clear
 
@@ -1187,7 +1187,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 	Use case ends
 
-**Use Case: Exit project book**
+**Use Case: UC33 - Exit project book**
 
 **MSS**
 
@@ -1195,7 +1195,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. DevEnable exits
 
 	Use Case ends
-
+	
 ### Non-Functional Requirements
 
 1.  The product should work on any _mainstream OS_ as long as it has Java `11` or above installed.
