@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+
+
+<HBox stylesheets="HelpWindow.css" styleClass="commandContainer" alignment="CENTER_LEFT" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="20.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label fx:id="commandLabel" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="125.0" styleClass="commandHeader" text="commandHeader">
+         <HBox.margin>
+            <Insets left="5.0" />
+         </HBox.margin>
+      </Label>
+      <Label fx:id="exampleLabel" styleClass="commandText" text="exampleLabel" />
+   </children>
+</HBox>
