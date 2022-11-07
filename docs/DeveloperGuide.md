@@ -94,6 +94,12 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
+#### Overall structure of the UI component
+
+We currently have two tabs for the different displays (Contacts and Calendar). Users can switch between these tabs by entering certain keys or clicking on the tabs. Our team decided that we needed a method to update our UI dynamically upon update of an `Appointment` or update of a `Person`. Also, we wanted our application to support navigation using keystrokes as well as clicking the different components.
+
+
+
 ### Logic component
 
 **API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
@@ -134,7 +140,11 @@ Here are the other classes in Logic (omitted from the class diagram above) that 
 <img src="images/CalendarLogicClassDiagram.png" width="600"/>
 
 How the `Logic` component works during the user's interaction with the Calendar:
-1. When the user interacts with the Calendar Ui, such as by getting the next month in the Calendar, `Model`
+1. `CalendarLogic` listens to any changes in `Model`'s `filteredCalendarEventList`, upon interaction with the Calendar Ui.
+2. `CalendarLogic` will then update the corresponding Calendar components in `Ui` that are dependent on these `CalendarEvents`.  
+
+More about our `Ui` design decisions [can be found here](#ui-component) 
+
 *Figure 8. Class diagram showing the classes in the `Logic` component used for during the User's interaction with the Calendar*
 
 ### Model component
@@ -448,18 +458,26 @@ The following sequence diagram summarizes how an up arrow key navigates to the p
 ### Calendar features
 The calendar feature allows a calendar to display with the corresponding appointments of the month in a calendar format. The feature consists of the following features:
 
-
 * `Calendar Display` — Can display appointments of a month in a calendar format.
 * `Calendar Navigation` — Can navigate between months with/without a mouse.
 * `Calendar Pop-Up` — Can view the details of each appointment.
+
+#### Overall implementation of Calendar
+
+The main calendar display is implemented using the `CalendarDisplay` class, which acts as the main container for the entire Calendar feature. This main container consists of a `topCalendar`, which is a `FlowPane` that contains the current month to be displayed, and the different navigation buttons as well as the `JumpBox`. Also, it contains `calendarGrid`, which is a GridPane that contains all the dates and `Appointment` buttons within the calendar.
+
+Upon initialisation of the `CalendarDisplay`, it will display the current month and year, using the `CalendarLogic#drawCalendar` method. The current month and year is obtained using the default `Java` package's `GregorianCalendar` class.
 
 **Calendar Display**
 
 Implementation:
 
 The following is a more detailed explanation on how `Calendar Display` works.
-1. When the app first launches, `MainWindow#fillInnerParts()` is called, which then initialises the `Calendar Display`. This then initialises the `CalendarLogic` and the relevant methods to build the the `Calendar Display`.
-2. Following which, when appointments are added,`Model#updateCalendarEventList()` is called which then updates the `Calendar Display` as well.
+1. When the app first launches, `MainWindow#fillInnerParts()` is called, which then initialises the `Calendar Display`.
+2. The `CalendarLogic` class is initialised, where the current month to be displayed in the Calendar is set using `Java`'s `GregorianCalendar` class. 
+3. Next, `CalendarLogic#drawCalendar` is called which initialises the header of the Calendar, `topCalendar`, where the current month is displayed.
+4. Also, `CalendarLogic#drawCalendar` will initialise the body of the Calendar where  
+5. Following which, when appointments are added,`Model#updateCalendarEventList()` is called which then updates the `Calendar Display` as well.
 
 The following activity diagram summarizes what happens when a user selects the Calendar tab:
 ![Calendar Display Activity](images/CalendarDisplayActivityDiagram.png)
