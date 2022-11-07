@@ -1085,29 +1085,148 @@ testers are expected to do more *exploratory* testing.
     1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
-
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
 
     1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-    1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    2. Test case: `delete 1`<br>
+       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
 
-    1. Test case: `delete 0`<br>
+    3. Test case: `delete 0`<br>
        Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+    4. Test case: `delete Charlotte`, assuming there is only 1 person with the name `Charlotte` in the Sectresbook.<br>
+       Expected: Person with name `Charlotte` is deleted from the list. Details of the deleted contact shown in the status mesasge.
+   
+    5. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+2. Deleting a person, but not all persons are shown
 
-### Saving data
+    1. Prerequisites: List a subset of persons using the `find` command. At least 1 person in the list.
+   
+    2. Test case: `delete 1`, assuming there is more than or equal to 1 person in the Sectresbook.<br>
+       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
+   
+    3. Test case: `delete -1`<br>
+       Expected: No person is deleted from the list. Error details shown in the status message. Status bar remains the same.
+   
+    4. Test case: `delete Charlotte`, assuming there is only 1 person with the name `Charlotte` in the Sectresbook.<br>
+       Expected: Person with name `Charlotte` is deleted from the list. Details of the deleted contact shown in the status message.
+   
+    5. Test case: `delete Sean`, assuming there is more than 1 person with the name `Sean` in the Sectresbook.<br>
+       Expected: No person is deleted from the list. Sectresbook lists the contacts with `Sean` in their name. Error details shown in the status message.
 
-1. Dealing with missing/corrupted data files
+    6. Other incorrect delete commands to try: `delete`, `delete phone/PHONE_NUMBER`, `...` (where `PHONE_NUMBER` is a phone number of a person).<br>
+       Expected: No person is deleted from the list. Error details shown the status message. Status bar remains the same.
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+### Editing a person
 
-1. _{ more test cases …​ }_
+1. Editing a person after listing all persons or after finding a list of persons (list should contain more than 0 people).
+
+   1. Test case: `edit 1 phone/98112233`, assuming there is more than or equal to 1 person in the Sectresbook.<br>
+      Expected: Phone number of the first contact in the list is edited. Details of the edited contact shown in the status message.
+   
+   2. Test case: `edit 5 tag/Friend`, assuming there is less than 5 people currently displayed in the Sectresbook.<br>
+      Expected: No person is edited. Error details shown in the status message. Status bar remains the same.
+   
+   3. Test case: `edit Charlotte tag/Friend`, assuming there is only 1 person with the name `Charlotte` in the Sectresbook.<br>
+      Expected: The tag of the Person with the name `Charlotte` is edited. Details of the edited contact shown in the status message.
+   
+   4. Test case: `edit Sean tag/Colleague`, assuming there is more than 1 person with the name `Sean` in the Sectresbook.<br>
+      Expected: No person is edited from the list. Sectresbook shows the list of persons with `Sean` in their name. Error details shown the status message. Status bar remains the same.
+   
+   5. Other incorrect edit commands to try: `edit`, `edit 2 phone/TEXT`, `...` (where `TEXT` is an input with only alphabets). <br>
+      Expected: No person is edited in the list. Error details shown in the status message. Status bar remains the same.
+
+### Editing a loan of a person
+
+1. Editing a loan of a person after listing all persons or after finding a list of persons (list should contain more than 0 people).
+
+   1. Test case: `editLoan 1 amt/10 reason/Logistics`, assuming there is more than or equal to 1 person in the Sectresbook.<br>
+      Expected: Loan amount and history of the first contact is updated. Details of the edited contact shown in the status message.
+   
+   2. Test case: `editLoan 5 amt/100 reason/Logistics`, assuming there is less than 5 people currently displayed in the Sectresbook.<br>
+      Expected: No person is edited. Error details shown in the status message. Status bar remains the same.
+   
+   3. Test case: `edit Charlotte amt/10 reason/Test`, assuming there is only 1 person with the name `Charlotte` in the Sectresbook.<br>
+      Expected: Loan amount and history of the Person with the name `Charlotte` is edited. Details of the edited contact shown in the status message.
+   
+   4. Test case: `edit Sean amt/10 reason/Test`, assuming there is more than 1 person with the name `Sean` in the Sectresbook.<br>
+      Expected: No person is edited from the list. Sectresbook shows the list of persons with `Sean` in their name. Error details shown the status message. Status bar remains the same.
+   
+   5. Other incorrect editLoan commands to try: `editLoan`, `editLoan amt/`,`editLoan 1 amt/TEXT reason/TEXT`, `...` (where `TEXT` is an input with only alphabets). <br>
+      Expected: No person is edited in the list. Error details shown in the status message. Status bar remains the same.
+
+### Finding a person
+
+1. Finding a person with the given keyword.
+
+   1. Test case: `find Ryan`, assuming there is at least 1 person with the substring `Ryan` in the Sectresbook.<br>
+      Expected: Person list is updated with contacts that contain the substring `Ryan`. Details of the number of persons listed shown in status message.
+
+   2. Test case: `find Jack`, assuming there is no one with the substring `Jack`.<br>
+      Expected: Person list is updated, showing nobody in the list. Details of the number of persons listed shown in status message.
+   
+   3. Test case: `find 8445`, assuming there is at least 1 person with phone number starting with `8445` in the Sectresbook.<br>
+      Expected: Person list is updated with contacts with phone number starting with `8445`. Details of the number of persons listed shown in status message.
+   
+   4. Test case: `find 8445 Ryan`, assuming there is at least 1 person with phone number starting with `8445` and substring `Ryan` in their name in the Sectresbook.<br>
+      Expected: Person list is updated with contacts that contain the substring `Ryan` and phone number starting with `8445`. Details of the number of persons listed shown in status message.
+   
+   5. Incorrect editLoan command to try: `editLoan`. <br>
+      Expected: No change in the list shown. Error details shown in the status message. Status bar remains the same.
+
+### Listing a person
+
+1. Listing all persons in the Sectresbook. 
+
+   1. Test case: `list`<br>
+      Expected: Person list is updated to show all persons in the Sectresbook. Success message is shown as the status message.
+   
+   2. Test case: `list TEXT`, where `TEXT` is any string input.<br>
+      Expected: Person list is updated to show all persons in the Sectresbook. Success message is shown as the status message.
+
+### Inspecting a person
+
+1. Inspecting a person while all persons are shown.
+
+   1. Test case: `inspect 1`, assuming there is at least 1 person shown in the person list. <br>
+      Expected: Displays the information of the contact with index 1 in the person list. Success message is shown as the status message.
+   
+   2. Test case: `inspect Charlotte`, assuming there is only 1 person with the name `Charlotte` in the Sectresbook.<br>
+      Expected: Displays the information of the contact with name `Charlotte` in the person list. Success message is shown as the status message.
+   
+   3. Test case: `inspect -1`<br>
+      Expected: No change in the person being inspected. Error details shown in the status message. Status bar remains the same.
+   
+   4. Test case: `inspect Jack`, assuming there is more than 1 person with the name `Jack` in the person list.<br>
+      Expected: No change in the person currently being inspected. Error details shown in the status message. Status bar remains the same.
+   
+   5. Other incorrect inspect commands to try: `inspect`.<br>
+      Expected: No change in the person currently being inspected. Error details shown in the status message. Status bar remains the same.
+
+### Viewing Help
+
+1. Viewing help bar.
+
+   1. Test case: `help`<br>
+      Expected: The help popup screen is shown.
+
+### Clearing all data
+
+1. Clearing all data
+
+    1. Test case: `clear`<br>
+       Expected: Clears all data from the Sectresbook.
+        
+
+### Exiting program
+
+1. Exitting the Sectresbook
+
+   1. Test case: `exit`<br>
+      Expected: The program closes. 
+
