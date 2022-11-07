@@ -542,15 +542,9 @@ _{More to be added}_
 
     Use case ends.
 
-- 1b. The given specifications are nurses and areas only.
+- 1b. There are no patients/nurses that satisfy the specifications.
 
-  - 1b1. Healthcare Xpress shows an error message.
-
-    Use case ends.
-
-- 1c. There are no patients/nurses that satisfy the specifications.
-
-  - 1c1. Healthcare Xpress shows a blank list.
+  - 1b1. Healthcare Xpress shows a blank list.
 
     Use case ends.
 
@@ -597,7 +591,7 @@ _{More to be added}_
 
 **Extensions**
 
-- 2a. The given id number is invalid.
+- 2a. The given uid number is invalid.
 
   - 2a1. Healthcare Xpress shows an error message.
 
@@ -607,13 +601,13 @@ _{More to be added}_
 
   Use case ends.
 
-**Use case: UC04 - Mark a Patient**
+**Use case: UC04 - Unmark a Patient's DateSlot**
 
 **MSS**
 
 1.  Medical administrator requests to <ins>list patients / nurses (UC01)</ins> or <ins>find a specific patient / nurse (UC02)</ins>.
-2.  Medical administrator requests to mark a specific patient.
-3.  Healthcare Xpress marks the patient as visited.
+2.  Medical administrator requests to unmark a specific patient's specific dateslot.
+3.  Healthcare Xpress unmarks the patient's specific dateslot as failed visit.
 
     Use case ends.
 
@@ -621,29 +615,95 @@ _{More to be added}_
 
 - 1a. Only nurse/nurses are shown.
 
-  - 1a1. Medical administrator requests to mark a nurse.
+  - 1a1. Medical administrator requests to unmark a nurse.
 
   - 1a2. Healthcare Xpress shows an error message.
 
     Use case ends.
 
-- 2a. The given id number is invalid.
+- 2a. The given uid number is invalid.
 
   - 2a1. Healthcare Xpress shows an error message.
 
     Use case resumes at step 1.
 
-- 2b. The given id number is not a patient.
+- 2b. The given uid number is not a patient.
 
   - 2b1. Healthcare Xpress shows an error message.
 
     Use case resumes at step 1.
 
+- 2c. The given index of the dateslot is out of bound of the dateslot list of the patient. 
+
+  - 2c1. Healthcare Xpress shows an error message. 
+    
+    Use cases resumes at step 1.
+
+- 2d. The given index gives a dateslot that has not pass.
+
+  - 2d1. Healthcare Xpress shows an error message.
+
+    Use cases resumes at step 1.
+
 - \*a. At any time, medical administrator chooses to exit the program.
 
   Use case ends.
 
-**Use case: UC05 - Edit a Patient / Nurse**
+**Use case: UC05 - Undo Unmark a Patient's DateSlot**
+
+**MSS**
+
+1.  Medical administrator requests to <ins>list patients / nurses (UC01)</ins> or <ins>find a specific patient / nurse (UC02)</ins>.
+2.  Medical administrator requests to undo unmark a specific patient's specific dateslot.
+3.  Healthcare Xpress undo unmarks the patient's specific dateslot as success visit.
+
+    Use case ends.
+
+**Extensions**
+
+- 1a. Only nurse/nurses are shown.
+
+  - 1a1. Medical administrator requests to undo unmark a nurse.
+
+  - 1a2. Healthcare Xpress shows an error message.
+
+    Use case ends.
+
+- 2a. The given uid number is invalid.
+
+  - 2a1. Healthcare Xpress shows an error message.
+
+    Use case resumes at step 1.
+
+- 2b. The given uid number is not a patient.
+
+  - 2b1. Healthcare Xpress shows an error message.
+
+    Use case resumes at step 1.
+
+- 2c. The given index of the dateslot is out of bound of the dateslot list of the patient.
+
+  - 2c1. Healthcare Xpress shows an error message.
+
+    Use cases resumes at step 1.
+
+- 2d. The given index gives a dateslot that has not pass.
+
+  - 2d1. Healthcare Xpress shows an error message.
+
+    Use cases resumes at step 1.
+
+- 2e. The given index gives a dateslot that is in success visit status.
+
+  - 2e1. Healthcare Xpress shows an error message.
+
+    Use cases resumes at step 1.
+
+- \*a. At any time, medical administrator chooses to exit the program.
+
+  Use case ends.
+
+**Use case: UC06 - Edit a Patient / Nurse**
 
 **MSS**
 
@@ -655,7 +715,7 @@ _{More to be added}_
 
 **Extensions**
 
-- 2a. The given id number is invalid.
+- 2a. The given uid number is invalid.
 
   - 2a1. Healthcare Xpress shows an error message.
 
@@ -671,69 +731,13 @@ _{More to be added}_
 
   Use case ends.
 
-**Use case: UC06 - Add Tag / Tags to a Patient / Nurse**
+**Use case: UC07 - Add Home-Visit Date(s) and Slot(s) to a Patient**
 
 **MSS**
 
 1.  Medical administrator requests to <ins>list patients / nurses (UC01)</ins> or <ins>find a specific patient / nurse (UC02)</ins>.
-2.  Medical administrator requests to add a tag / many tags to a patient / nurse and provides each tag's details.
-3.  Healthcare Xpress adds the tag / tags of specific details to the patient / nurse.
-
-    Use case ends.
-
-**Extensions**
-
-- 2a. The given id number is invalid.
-
-  - 2a1. Healthcare Xpress shows an error message.
-
-    Use case resumes at step 1.
-
-- 2b. The given details is invalid / in the wrong format.
-
-  - 2b1. Healthcare Xpress shows an error message.
-
-    Use case resumes at step 1.
-
-- \*a. At any time, medical administrator chooses to exit the program.
-
-  Use case ends.
-
-**Use case: UC07 - Delete a Specific Tag / Many Tags from a Patient / Nurse**
-
-**MSS**
-
-1.  Medical administrator requests to <ins>list patients / nurses (UC01)</ins> or <ins>find a specific patient / nurse (UC02)</ins>.
-2.  Medical administrator requests to delete a specific tag / many tags from a patient / nurse.
-3.  Healthcare Xpress deletes the tag / tags from the patient / nurse.
-
-    Use case ends.
-
-**Extensions**
-
-- 2a. The given id number is invalid.
-
-  - 2a1. Healthcare Xpress shows an error message.
-
-    Use case resumes at step 1.
-
-- 2b. The given index of the tag / tags is out of bounds.
-
-  - 2b2. Healthcare Xpress shows an error message.
-
-    Use case resumes at step 1.
-
-- \*a. At any time, medical administrator chooses to exit the program.
-
-  Use case ends.
-
-**Use case: UC08 - Add a Home-Visit Date and Time to a Patient**
-
-**MSS**
-
-1.  Medical administrator requests to <ins>list patients / nurses (UC01)</ins> or <ins>find a specific patient / nurse (UC02)</ins>.
-2.  Medical administrator requests to add a date and time with or without recurring status to a patient.
-3.  Healthcare Xpress add the date and time for home-visits to the patient.
+2.  Medical administrator requests to add date(s) and slot(s) to a patient.
+3.  Healthcare Xpress add the date(s) and slot(s) for home-visits to the patient.
 
     Use case ends.
 
@@ -741,25 +745,25 @@ _{More to be added}_
 
 - 1a. Only nurse/nurses are shown.
 
-  - 1a1. Medical administrator request to add a date and time to the nurse.
+  - 1a1. Medical administrator request to add date(s) and slot(s) to the nurse.
 
   - 1a2. Healthcare Xpress shows an error message.
 
     Use case ends.
 
-- 2a. The given id number is invalid.
+- 2a. The given uid number is invalid.
 
   - 2a1. Healthcare Xpress shows an error message.
 
     Use case resumes at step 1.
 
-- 2b. The given id number is not a patient.
+- 2b. The given uid number is not a patient.
 
   - 2b1. Healthcare Xpress shows an error message.
 
     Use case resumes at step 1.
 
-- 2c. The given date and time is invalid or in wrong format.
+- 2c. The given date and slot is invalid or in wrong format.
 
   - 2c1. Healthcare Xpress shows an error message.
 
@@ -769,13 +773,13 @@ _{More to be added}_
 
   Use case ends.
 
-**Use case: UC09 - Delete a Home-Visit Date and Time from a Patient**
+**Use case: UC08 - Delete Home-Visit Date(s) and Slot(s) from a Patient**
 
 **MSS**
 
 1.  Medical administrator requests to <ins>list patients / nurses (UC01)</ins> or <ins>find a specific patient / nurse (UC02)</ins>.
-2.  Medical administrator requests to delete date and time from a patient.
-3.  Healthcare Xpress deletes the date and time for home-visits from the patient.
+2.  Medical administrator requests to delete date(s) and slot(s) from a patient.
+3.  Healthcare Xpress deletes the date(s) and slot(s) for home-visits from the patient.
 
     Use case ends.
 
@@ -789,29 +793,41 @@ _{More to be added}_
 
     Use case ends.
 
-- 2a. The given id number is invalid.
+- 2a. The given uid number is invalid.
 
   - 2a1. Healthcare Xpress shows an error message.
 
     Use case resumes at step 1.
 
-- 2b. The given id number is not a patient.
+- 2b. The given uid number is not a patient.
 
   - 2b1. Healthcare Xpress shows an error message.
 
     Use case resumes at step 1.
 
+- 2c. The given index of the dateslot is out of bound of the dateslot list of the patient.
+
+  - 2c1. Healthcare Xpress shows an error message.
+
+    Use cases resumes at step 1.
+
+- 2d. The dateslot(s) given is/are assigned.
+
+  - 2d1. Healthcare Xpress deletes the matching home-visits from the nurses.
+
+    Use cases resumes at step 3. 
+
 - \*a. At any time, medical administrator chooses to exit the program.
 
   Use case ends.
 
-**Use case: UC10 - Update a Home-Visit Date and Time for a Patient**
+**Use case: UC09 - Update Home-Visit Date(s) and Slot(s) for a Patient**
 
 **MSS**
 
 1.  Medical administrator requests to <ins>list patients / nurses (UC01)</ins> or <ins>find a specific patient / nurse (UC02)</ins>.
-2.  Medical administrator requests to update date and time from a patient.
-3.  Healthcare Xpress updates the date and time for home-visits from the patient.
+2.  Medical administrator requests to update date and slot from a patient.
+3.  Healthcare Xpress updates the date and slot for home-visits from the patient.
 
     Use case ends.
 
@@ -825,61 +841,91 @@ _{More to be added}_
 
     Use case ends.
 
-- 2a. The given id number is invalid.
+- 2a. The given uid number is invalid.
 
   - 2a1. Healthcare Xpress shows an error message.
 
     Use case resumes at step 1.
 
-- 2b. The given id number is not a patient.
+- 2b. The given uid number is not a patient.
 
   - 2b1. Healthcare Xpress shows an error message.
 
     Use case resumes at step 1.
 
-- 2c. The new date and time given is invalid or in wrong format.
+- 2c. The new date(s) and slot(s) given is/are invalid or in wrong format.
 
   - 2c1. Healthcare Xpress shows an error message.
 
     Use case resumes at step 1.
 
-- 2d. The patient has been assigned to a nurse and the new updated date and time crashes with that nurse existing schedule.
+- 2d. The given date and slot indexes are out of bounds of the date and slot list of the patient.
 
-  - 2d2. Healthcare Xpress shows an error message.
+  - 2d1. Healthcare Xpress shows an error message.
 
-    Use case ends.
+    Use case resumes at step 1. 
+
+- 2e. The given date and slot indexes are more than the dates and slots given. 
+
+  - 2e1. Healthcare Xpress shows an error message.
+  
+    Use case resumes at step 1.
+
+- 2f. The old date(s) and slot(s) to be updated is/are assigned. 
+
+  - 2f1. Healthcare Xpress deletes the matching home-visits from the nurses.
+
+    Use case resumes at step 3.
 
 - \*a. At any time, medical administrator choose to exit the program.
 
   Use case ends.
 
-**Use case: UC11 - Assign a patient to the nurse**
+**Use case: UC10 - Assign a patient's dateslot(s) to the nurse**
 
 **MSS**
 
 1.  Medical administrator requests to <ins>list patients / nurses (UC01)</ins> or <ins>find a specific patient / nurse (UC02)</ins>.
-2.  Medical administrator requests to assign a patient to a nurse.
-3.  Healthcare Xpress assigns the patient to the nurse.
+2.  Medical administrator requests to assign a patient's dateslot(s) to a nurse.
+3.  Healthcare Xpress assigns the patient's dateslot(s) to the nurse.
 
     Use case ends.
 
 **Extensions**
 
-- 2a. Any given id number is invalid.
+- 2a. Any given uid number is invalid.
 
   - 2a1. Healthcare Xpress shows an error message.
 
     Use case resumes at step 1.
 
-- 2b. The given id numbers are both patients or nurses.
+- 2b. The given uid numbers are both patients or nurses.
 
   - 2b1. Healthcare Xpress shows an error message.
 
     Use case resumes at step 1.
 
-- 2c. The given id number's nurse has another home-visit at the same date and time.
+- 2c. The given uid number's nurse has another home-visit at the same date and time.
 
   - 2c1. Healthcare Xpress shows an error message.
+
+    Use case resumes at step 1.
+
+- 2d. The given uid number's nurse are unavailable on that date.
+
+  - 2d1. Healthcare Xpress shows an error message.
+
+    Use case resumes at step 1.
+
+- 2e. The given index of the date slot is out of bound of the date slot list of the patient.
+
+  - 2e1. Healthcare Xpress shows an error message.
+
+    Use case resumes at step 1.
+
+- 2f. The given index of the date slot gives a date slot that has pass. 
+
+  - 2f1. Healthcare Xpress shows an error message.
 
     Use case resumes at step 1.
 
@@ -887,67 +933,46 @@ _{More to be added}_
 
   Use case ends.
 
-**Use case: UC12 - Remove a patient / all patients from a nurse**
+**Use case: UC11 - Deassign patient's dateslot(s) / nurse's homevisit(s)**
 
 **MSS**
 
 1.  Medical administrator requests to <ins>list patients / nurses (UC01)</ins> or <ins>find a specific patient / nurse (UC02)</ins>.
-2.  Medical administrator requests to remove a patient or all patients from a nurse.
-3.  Healthcare Xpress removes the patient / all patients from the nurse.
+2.  Medical administrator requests to deassign patient's dateslot(s) / deassign nurse'homevisit(s).
+3.  Healthcare Xpress deassigns the patient's dateslot(s) from the respective nurse / deassigns the nurse's homevisit(s).
 
     Use case ends.
 
 **Extensions**
 
-- 2a. Any given id number is invalid.
+- 2a. The given uid number is invalid.
 
   - 2a1. Healthcare Xpress shows an error message.
 
     Use case resumes at step 1.
 
-- 2b. One given id number is not a nurse.
+- 2b. The given index of the date slot is out of bound of the date slot list of the patient.
 
   - 2b1. Healthcare Xpress shows an error message.
 
     Use case resumes at step 1.
 
-- 2c. Two given id numbers is both patients or both nurses.
+- 2c. The given index of the date slot gives a date slot that has pass.
 
   - 2c1. Healthcare Xpress shows an error message.
 
-    Use case resumes at step 1.
+    Use case resumes at step 1. 
+
+- 2d. The given index of the date slot gives a date slot that has not been assigned.
+
+  - 2d1. Healthcare Xpress shows an error message.
+
+    Use case resumes at step 1. 
 
 - \*a. At any time, medical administrator choose to exit the program.
 
   Use case ends.
 
-**Use case: UC13 - Swap a patient's nurse**
-
-**MSS**
-
-1.  Medical administrator requests to <ins>list patients / nurses (UC01)</ins> or <ins>find a specific patient / nurse (UC02)</ins>.
-2.  Medical administrator requests to swap a patient's nurse.
-3.  Healthcare Xpress swaps the patient's nurse to a new nurse.
-
-    Use case ends.
-
-**Extensions**
-
-- 2a. Any given id number is invalid.
-
-  - 2a1. Healthcare Xpress shows an error message.
-
-    Use case resumes at step 1.
-
-- 2b. The three given id numbers do not belong to two nurses and one patient.
-
-  - 2b1. Healthcare Xpress shows an error message.
-
-    Use case resumes at step 1.
-
-- \*a. At any time, medical administrator choose to exit the program.
-
-  Use case ends.
 
 ### Non-Functional Requirements
 
