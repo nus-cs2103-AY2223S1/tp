@@ -1,0 +1,69 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":StudentCommandParser" as StudentCommandParser LOGIC_COLOR
+participant "d:StudentCommand" as StudentCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("student n/John Doe m/CS4226 m/CS5242 p/98765432 e/JohnD@example.com g/M")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(command)
+activate AddressBookParser
+
+create StudentCommandParser
+AddressBookParser -> StudentCommandParser
+activate StudentCommandParser
+
+StudentCommandParser --> AddressBookParser
+deactivate StudentCommandParser
+
+AddressBookParser -> StudentCommandParser : parse(studentDetails)
+activate StudentCommandParser
+
+create StudentCommand
+StudentCommandParser -> StudentCommand
+activate StudentCommand
+
+StudentCommand --> StudentCommandParser : d
+deactivate StudentCommand
+
+StudentCommandParser --> AddressBookParser : d
+deactivate StudentCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+StudentCommandParser -[hidden]-> AddressBookParser
+destroy StudentCommandParser
+
+AddressBookParser --> LogicManager : d
+deactivate AddressBookParser
+
+LogicManager -> StudentCommand : execute()
+activate StudentCommand
+
+StudentCommand -> Model : addPerson(person)
+activate Model
+
+Model --> StudentCommand
+deactivate Model
+
+create CommandResult
+StudentCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> StudentCommand
+deactivate CommandResult
+
+StudentCommand --> LogicManager : result
+deactivate StudentCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

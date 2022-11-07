@@ -67,6 +67,8 @@ Given below are my contributions to the project.
     * Added Sequence Diagram and activity diagram for `github` command: [#74](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/76)
 
     * Added manual test cases for `student` and `github` command [#194](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/194)
+
+    * Added implementation details of modified `student` command [#212](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/212)
     
 * **Review/mentoring contributions Links**
 

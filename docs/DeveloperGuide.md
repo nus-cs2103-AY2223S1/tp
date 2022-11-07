@@ -151,6 +151,37 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### `student` command to add students' contacts (modification of AB3 `add` command)
+
+#### Implementation
+
+The `student`, `prof` and `ta` commands add students, Professors and Teaching Assistant's Contact into the contact list. Since `student`, `prof` and `ta` commands are similar in nature, we will only discuss about `student` command here.
+
+The adding of students' contacts is facilitated by `StudentCommand`. It extends `Command` with a `Person` field that refers to the `Student` that is going to be added into the contact list. Note that `Student` extends from `Person`. Additionally, it implements the following operations:
+
+* StudentCommand#execute() - Executes the Student command.
+
+Given below is an example usage scenario and how adding of student operation mechanism behaves at each step.
+
+Step 1. The user types `student n/John Doe m/CS4226 m/CS5242 p/98765432 e/JohnD@example.com g/M` and presses enter.
+
+Step 2. The `student n/John Doe m/CS4226 m/CS5242 p/98765432 e/JohnD@example.com g/M` will be parsed by `AddressBook#parseCommand()` which will return a `StudentCommandParser`.
+
+Step 3. The `StudentCommandParser` will parse `n/John Doe m/CS4226 m/CS5242 p/98765432 e/JohnD@example.com g/M` using `parse()`. This will return a `StudentCommand`
+
+Step 4. The `StudentCommand` will then be executed using `StudentCommand#execute()`.
+
+Step 5. The `Model#addPerson(Person)` method will be called and the student will be added into the contact list.
+
+Step 6. A `CommandResult` indicating successful completion of the command will be returned.
+
+
+The sequence diagram below shows how a `StudentCommand` is executed. Due to space constraints `student n/John Doe m/CS4226 m/CS5242 p/98765432 e/JohnD@example.com g/M` is shortened to command and `n/John Doe m/CS4226 m/CS5242 p/98765432 e/JohnD@example.com g/M` is shortened to studentDetails.
+
+![StudentCommandSequenceDiagram](images/StudentCommandSequenceDiagram.png)
+
+
+
 ### Delete multiple contacts (enhancement to delete feature)
 
 `DeleteCommand` now accepts multiple inputs and allows multiple `Person` to be deleted from the `Model` in a single command.
@@ -171,7 +202,7 @@ The sequence diagram below shows how a `DeleteCommand` with multiple inputs is e
 
 #### Implementation
 
-The Fast Template Feature is facilitated by `TemplateCommand`. It extends 'Command' with a String`personChosen` class field that stores the chosen Person. The chosen Person refers to the Person that the User wants the template of, i.e. `prof / ta / student`. Additonally, it implements the following operations:
+The Fast Template Feature is facilitated by `TemplateCommand`. It extends 'Command' with a String`personChosen` class field that stores the chosen Person. The chosen Person refers to the Person that the User wants the template of, i.e. `prof / ta / student`. Additionally, it implements the following operations:
 - TemplateCommand#execute() - Executes the template command, whose command word is `tt`.
 - TemplateCommand#isValidPerson(String p) - Returns the boolean indicating whether the string p refers to a valid person. I.e. is a command word for a Person
 
@@ -211,7 +242,7 @@ The following sequence diagram shows how the github feature works.
 
 #### Implementation
 
-The Open Github Profile Page Feature is facilitated by `GithubCommand`. It extends 'Command' with an `Index` class field that stores the target index. The target index refers to the index of the Address that users want to execute the Github command on. Additonally, it implements the following operations:
+The Open Github Profile Page Feature is facilitated by `GithubCommand`. It extends `Command` with an `Index` field that stores the target index. The target index refers to the index of the Address that users want to execute the GitHub command on. Additionally, it implements the following operations:
 - GithubCommand#execute() - Executes the GitHub command.
 
 Given below is an example usage scenario and how the GitHub operation mechanism behaves at each step.
@@ -228,7 +259,7 @@ Step 4. The `GithubCommand` will then be executed using `GithubCommand#execute()
 :information_source: **Note:** executes() checks if the GitHub username field of target person is empty. If it is empty an exception will be thrown.
 </div>
 
-Step 5. The `Model#openGithub()` method will be called and the githubProfile page associated to target address would be opened on the user's default browser using `java.awt.Desktop.getDesktop.browse(uri)`.
+Step 5. The `Model#openGithub(Person)` method will be called and the githubProfile page associated to target contact would be opened on the user's default browser using `java.awt.Desktop.getDesktop.browse(uri)`.
 
 Step 6. A `CommandResult` indicating successful completion of the command will be returned.
 
