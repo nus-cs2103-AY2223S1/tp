@@ -153,7 +153,7 @@ public class EditPropertyCommand extends Command {
                 String.format(MESSAGE_EDIT_PROPERTY_SUCCESS, newEditedProperty),
                 false,
                 false,
-                "property-" + newEditedProperty.getCamelCaseName()
+                "property-" + newEditedProperty.getName().toString()
             );
         }
         return new CommandResult(String.format(MESSAGE_EDIT_PROPERTY_SUCCESS, newEditedProperty));
