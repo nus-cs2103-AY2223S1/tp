@@ -52,9 +52,8 @@ LogicManager -> DeletePersonCommand : execute()
 activate DeletePersonCommand
 
 
-activate Model
 DeletePersonCommand -> Model : getPersonUsingName(Emma)
-
+activate Model
 
 Model -> Model : hasPersonInFilteredList(Emma)
 activate Model
@@ -100,8 +99,6 @@ activate CommandResult
 
 CommandResult --> DeletePersonCommand
 deactivate CommandResult
-CommandResult -[hidden]-> DeletePersonCommand
-destroy CommandResult
 
 DeletePersonCommand --> LogicManager : result
 deactivate DeletePersonCommand
