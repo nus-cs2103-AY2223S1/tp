@@ -32,6 +32,7 @@ Given below are my contributions to the project.
 
   * **Testing**
     * Added unit tests for date, added date related tests for add and edit persons' features.
+    * Added unit tests for makeStats, StatisticsData and \StatisticsDataList.
   * **Refactoring** Refactored the old `add` command into the `addPerson` command to distinguish from `addEvent` command.
 
 * **Documentation**:
@@ -42,6 +43,7 @@ Given below are my contributions to the project.
   * Contributions to the Developer Guide:
     * Added implementation details of date of birth field in `addPerson` ([Link](https://ay2223s1-cs2103-f09-2.github.io/tp/DeveloperGuide.html#add-date-of-birth))
       and `editPerson` ([Link](https://ay2223s1-cs2103-f09-2.github.io/tp/DeveloperGuide.html#edit-date-of-birth)) feature.
+    * Did overall final v1.4 reformat of diagrams and features section of developer guide
 
 * **Contributions to team-based tasks**:
   * Created the demo of product in V1.2.

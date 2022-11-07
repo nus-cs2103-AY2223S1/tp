@@ -54,7 +54,7 @@ deactivate AddressBook
 ModelManager --> MailEventCommand : EventList
 deactivate ModelManager
 
-MailEventCommand --> UniqueEventList : get(eventIndex)
+MailEventCommand -> UniqueEventList : get(eventIndex)
 activate UniqueEventList
 
 UniqueEventList --> MailEventCommand : event

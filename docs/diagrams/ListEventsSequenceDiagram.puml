@@ -4,28 +4,36 @@
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant "ListEventsCommandParser" as ListEventsCommandParser LOGIC_COLOR
 participant "u:ListEventsCommand" as ListEventsCommand LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":ModelManager" as ModelManager MODEL_COLOR
 participant "filteredEvents:FilteredList" as eventList MODEL_COLOR
-
 end box
-[-> LogicManager : execute("listEvents")
+
+[-> LogicManager : execute(cmd)
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("listEvents")
+LogicManager -> AddressBookParser : parseCommand(cmd)
 activate AddressBookParser
 
+create ListEventsCommandParser
+AddressBookParser -> ListEventsCommandParser :
+activate ListEventsCommandParser
+
 create ListEventsCommand
-AddressBookParser -> ListEventsCommand
+ListEventsCommandParser -> ListEventsCommand :parse(cmd)
 activate ListEventsCommand
 
-ListEventsCommand --> AddressBookParser
+ListEventsCommand --> ListEventsCommandParser : l
 deactivate ListEventsCommand
 
-AddressBookParser --> LogicManager : u
+ListEventsCommandParser --> AddressBookParser : l
+deactivate ListEventsCommandParser
+
+AddressBookParser --> LogicManager : l
 deactivate AddressBookParser
 AddressBookParser -[hidden]-> LogicManager
 destroy AddressBookParser

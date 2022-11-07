@@ -55,16 +55,14 @@ MakeStatsCommand -[hidden]-> LogicManager : result
 
 MakeStatsCommand --> MainWindow : result
 activate MainWindow
-LogicManager --> MainWindow : getPieChartData()
+LogicManager <- MainWindow : getPieChartData()
+LogicManager --> MainWindow :
 
-MainWindow --> StatsWindow : setPieChart()
+MainWindow -> StatsWindow : handleStats()
 activate StatsWindow
 StatsWindow --> MainWindow
 
-MainWindow --> StatsWindow : handleStats()
-
 StatsWindow -->] : show()
-StatsWindow --> MainWindow
 deactivate StatsWindow
 
 MainWindow --> MakeStatsCommand

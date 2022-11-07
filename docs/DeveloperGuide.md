@@ -378,7 +378,7 @@ in the model. Additionally, saving of the updated events list has been excluded 
 
 ### Add Person
 
-The Add Person feature that is accessed through the `addPerson` command allows users to add persons of the `Person` class to the contact list in the application.
+The Add Person feature that is accessed through the `addPerson` command allows users to add persons of the `Person` class to the person list in the application.
 
  The `person` added by the user will have 6 compulsory user-specified fields:
 - Name of the `person`
@@ -424,7 +424,7 @@ activities related to gender field are considered and shown in this activity dia
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**Parser exceptions are thrown and caught if
 gender field is not provided in the command, or the gender is not of valid format; Duplicated person exception is
-thrown if the person to add already exists in the contact list. Error message is displayed on the GUI subsequently.
+thrown if the person to add already exists in the person list. Error message is displayed on the GUI subsequently.
 </div>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**Due to limitations of PlantUML, there are a few extra branch nodes that are created. Do ignore these.
@@ -477,7 +477,7 @@ thrown if the person to add already exists in the addressbook. Error message is 
 
 ### Edit Person
 
-The Edit Person feature that is accessed through the `editPerson` command allows users to edit persons of the `Person` class in the contact list of the application.
+The Edit Person feature that is accessed through the `editPerson` command allows users to edit persons of the `Person` class in the person list of the application.
 
  The `person` edited by the user allows the user to edit one or more of the 6 existing fields:
 - Name of the `person`
@@ -520,7 +520,7 @@ in edit person command, therefore, it is not compulsory to provide the gender fi
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**Parser exceptions are thrown and caught if
 the gender is not of valid format; Invalid person exception is thrown if the person to edit doesn't exist in the
-contact list. Error message is displayed on the GUI subsequently.
+person list. Error message is displayed on the GUI subsequently.
 </div>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**Due to limitations of PlantUML, there are a few extra branch nodes that are created. Do ignore these.
@@ -594,7 +594,7 @@ The following sequence diagram shows the methods calls related to the make stats
 
 **Target user profile**: Duke The Market aims to help marketers of department stores better manage customer profiles and keep track of target customers during market plan rollouts.
 
-* needs to manage a significant number of customer contacts
+* needs to manage a significant number of customer persons
 * prefers desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
@@ -603,7 +603,7 @@ The following sequence diagram shows the methods calls related to the make stats
 * needs to track customer activity in own department store
 * needs to generate statistics based of customer data
 
-**Value proposition**: A one-stop marketing tool that allows department stores to manage and organize their customer contacts for usage in the company’s various marketing plans
+**Value proposition**: A one-stop marketing tool that allows department stores to manage and organize their customer persons for usage in the company’s various marketing plans
 
 
 ### User stories
@@ -615,13 +615,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | new user                                             | see usage instructions                                                                                        | refer to instructions when I forget how to use the App                                       |
 | `* * *`  | frequent user                                        | update new data immediately                                                                                   | I can exit and enter the product freely                                                      |
 | `* * *`  | frequent user                                        | enter and exit the product in a short amount of time                                                          | use the product on the fly                                                                   |
-| `* * *`  | marketer                                             | add a new customer contact                                                                                    | keep track of all customers and enlarge the customer base over time                          |
-| `* * *`  | marketer                                             | delete a customer contact                                                                                     | remove entries that I no longer need                                                         |
-| `* * *`  | marketer                                             | find a customer contact by name                                                                               | locate details of customers without having to go through the entire list                     |
+| `* * *`  | marketer                                             | add a new customer person                                                                                    | keep track of all customers and enlarge the customer base over time                          |
+| `* * *`  | marketer                                             | delete a customer person                                                                                     | remove entries that I no longer need                                                         |
+| `* * *`  | marketer                                             | find a customer person by name                                                                               | locate details of customers without having to go through the entire list                     |
 | `* * *`  | pre-event marketer                                   | view all the upcoming marketing events in the system sorted in the order that they were added into the system | have a high level overview of all marketing events and be mentally prepared for each of them |
 | `* * *`  | pre-event marketer who handles many marketing events | add marketing events                                                                                          | keep the system up to date with changes that happen to the marketing plans                   |
 | `* * *`  | pre-event marketer who handles many marketing events | delete marketing events                                                                                       | remove marketing events that I no longer need                                                |
-| `* *`    | marketer with many customer contacts                 | sort all customer contacts by name, date of birth or gender                                                    | locate people more easily and obtain contact lists of different demographic groups           |
+| `* *`    | marketer with many customer persons                 | sort all customer persons by name, date of birth or gender                                                    | locate people more easily and obtain person lists of different demographic groups           |
 
 *{More to be added}*
 
@@ -768,7 +768,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file Expected: Shows the GUI with a set of sample persons. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -784,7 +784,7 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all persons using the `listPersons` command. Multiple persons in the list.
 
    1. Test case: `deletePerson 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First person is deleted from the list. Details of the deleted person shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `deletePerson 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
@@ -797,7 +797,7 @@ testers are expected to do more *exploratory* testing.
     1. 1. Prerequisites: List only some persons using the `find` command and specify certain keywords.
 
      1. Test case: `deletePerson 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First person is deleted from the list. Details of the deleted person shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `deletePerson x` (where x is the index of a person that is not shown currently but is in the list)<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
@@ -812,7 +812,7 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: Application is running.
 
    1. Test case: `addPerson n/person a/street e/person@gmail.com p/12345678 d/01/01/2000 g/m`<br>
-      Expected: A contact is added to the end of the list. Details of the added contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: A person is added to the end of the list. Details of the added person shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `addPerson n/person`<br>
       Expected: No person is added. Error details shown in the status message. Status bar remains the same.
