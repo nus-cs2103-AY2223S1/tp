@@ -14,7 +14,7 @@ Given below are my contributions to the project.
 [Link to tP Code Dashboard](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=guokweijie&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=guokweijie&tabRepo=AY2223S1-CS2103T-W08-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 ### Enhancements implemented:
-* FindPatientCommand, FindAppointmentCommand, FindPatientCommandParser and FindAppointmentCommandParser
+* Implemented FindPatientCommand, FindAppointmentCommand, FindPatientCommandParser and FindAppointmentCommandParser
   * FindPatientCommand filters patients by name, phone number, email, address, remarks and tags
   * FindAppointmentCommand filters appointments by name, medical test, slot and doctor
   * Both commands are case-insensitive and allow the user to filter by one or multiple fields in a single command
@@ -55,8 +55,8 @@ Given below are my contributions to the project.
 * Managed and scribed the project Google document and made team submissions
 
 ### Review/mentoring contributions:
-* Reviewed PRs:
+* Some of the PRs I reviewed:
   * [#1](https://github.com/AY2223S1-CS2103T-W08-1/tp/pull/174), [#2](https://github.com/AY2223S1-CS2103T-W08-1/tp/pull/172), [#3](https://github.com/AY2223S1-CS2103T-W08-1/tp/pull/158)
-* Mentored teammates for features:
+* Mentored teammates for features, User Guide and Developer Guide:
   * FindBillCommand and FindBillCommandParser (code was also referenced)
   * FindBillCommandTest and FindBillCommandParserTest (code was also referenced)
