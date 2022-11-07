@@ -32,6 +32,8 @@ The following is a short overview of the features and capabilities of NotionUS:
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -106,6 +108,7 @@ The GUI should be updated as shown below:
 Click to return to: [Quick Start](#quick-start), [Back to Top](#)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## GUI Features
 
@@ -129,6 +132,7 @@ While the _Command Box_ is in focus, use the `Up` and `Down` arrow keys on your 
 Click to return to: [GUI Features](#gui-features), [Back to Top](#)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Command Features
 
@@ -201,6 +205,7 @@ For example, `add -m GEA1000 -m CS2100 -p -n Project` will be interpreted as `ad
 
 </div>
 
+<div style="page-break-after: always;"></div>
 
 ### Getting help : `help`
 
@@ -502,6 +507,7 @@ Format: `exit`
 Click to return to: [Command Features](#command-features), [Back to Top](#)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Other Features
 
@@ -521,6 +527,7 @@ If your changes to the data file makes its format invalid, NotionUS will discard
 Click to return to: [Back to Top](#)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## FAQ
 
@@ -540,6 +547,7 @@ Click to return to: [Back to Top](#)
 
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Command summary
 
