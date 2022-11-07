@@ -1,0 +1,21 @@
+@startuml
+start
+title Sort Command Activity Diagram
+:User enters Sort command;
+:User input is parsed;
+
+if () then ([user input is valid])
+    :Create and execute Sort command;
+    if () then ([valid keyword])
+        :Sort list of clients by keyword;
+    else ([else])
+        :Show error message;
+
+    endif
+
+else ([else])
+    : Show error message;
+endif
+-Display result/Show error message
+stop
+@enduml
