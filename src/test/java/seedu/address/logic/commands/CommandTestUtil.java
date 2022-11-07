@@ -78,9 +78,9 @@ public class CommandTestUtil {
     public static final String INVALID_GENDER_DESC = " " + PREFIX_GENDER + "unknown";
     public static final String INVALID_TYPE_DESC = " " + PREFIX_TYPE + "c";
 
-    public static final String STATS_DESC_GENDER = " " + PREFIX_TYPE + VALID_GENDER_TYPE;
+    public static final String TYPE_DESC_GENDER = " " + PREFIX_TYPE + VALID_GENDER_TYPE;
 
-    public static final String STATS_DESC_AGE = " " + PREFIX_TYPE + VALID_AGE_TYPE;
+    public static final String TYPE_DESC_AGE = " " + PREFIX_TYPE + VALID_AGE_TYPE;
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

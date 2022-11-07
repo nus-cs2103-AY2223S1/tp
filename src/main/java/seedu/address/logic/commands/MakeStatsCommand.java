@@ -4,6 +4,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -26,7 +27,6 @@ public class MakeStatsCommand extends Command {
 
     public static final String SHOWING_STATS_MESSAGE = "Opened statistics window.";
     public static final String NO_STATS_MESSAGE = "No person is tagged to event, no statistics to generate.";
-    public static final String INDEX_OUT_OF_BOUNDS_MESSAGE = "Event index given is out of event list range.";
 
     public final Index index;
     public final boolean isGenderStatistic;
@@ -45,7 +45,7 @@ public class MakeStatsCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         ObservableList<Event> eventList = model.getFilteredEventList();
         if (eventList.size() <= index.getZeroBased() || index.getZeroBased() < 0) {
-            throw new CommandException(INDEX_OUT_OF_BOUNDS_MESSAGE);
+            throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
         }
         Event targetEvent = eventList.get(index.getZeroBased());
         ObservableList<Person> personList = targetEvent.getUids().getPersons(model);
@@ -61,14 +61,6 @@ public class MakeStatsCommand extends Command {
         model.setData(generatedStats.asUnmodifiableObservableList());
         return new CommandResult(SHOWING_STATS_MESSAGE,
         false, true, false);
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof MakeStatsCommand // instanceof handles nulls
-                && index.equals(((MakeStatsCommand) other).index) // state check
-                && isGenderStatistic == ((MakeStatsCommand) other).isGenderStatistic);
     }
 
     /**
@@ -94,4 +86,11 @@ public class MakeStatsCommand extends Command {
         return newDataList;
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof MakeStatsCommand // instanceof handles nulls
+                && index.equals(((MakeStatsCommand) other).index) // state check
+                && isGenderStatistic == ((MakeStatsCommand) other).isGenderStatistic);
+    }
 }

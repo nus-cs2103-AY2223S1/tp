@@ -35,9 +35,9 @@ public class StatisticsDataListTest {
         //StatisticDataList does not contain the specified StatisticData
         assertFalse(modelDataList.contains(new StatisticData(TEST_NAME, TEST_VALUE)));
 
-        modelDataList.addStatistic(new StatisticData(TEST_NAME, 1.0));
+        modelDataList.addStatistic(new StatisticData(TEST_NAME, TEST_VALUE));
 
-        ////StatisticDataList contains the specified StatisticData
+        //StatisticDataList contains the specified StatisticData
         assertTrue(modelDataList.contains(new StatisticData(TEST_NAME, TEST_VALUE)));
     }
 

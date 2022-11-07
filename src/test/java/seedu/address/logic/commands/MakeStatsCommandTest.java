@@ -9,6 +9,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_TOO_LARGE_EVENT;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -37,7 +38,7 @@ public class MakeStatsCommandTest {
 
         //Index out of bounds
         assertCommandFailure(new MakeStatsCommand(INDEX_TOO_LARGE_EVENT, Boolean.FALSE),
-                model, MakeStatsCommand.INDEX_OUT_OF_BOUNDS_MESSAGE);
+                model, Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
 
         //Event has no person tagged to it
         assertCommandFailure(new MakeStatsCommand(INDEX_SECOND, Boolean.TRUE),
