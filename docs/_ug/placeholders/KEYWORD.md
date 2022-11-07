@@ -14,4 +14,4 @@ The KEYWORD is the text we use to search for an item.
 
 **Invalid Examples:**
 
-* 黃瓜
+* Одноразовый
