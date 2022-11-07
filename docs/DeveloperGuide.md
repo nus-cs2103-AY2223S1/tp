@@ -47,6 +47,8 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
+<div style="page-break-after: always;"></div>
+
 Given below is a quick overview of main components and how they interact with each other.
 
 **Main components of the architecture**
@@ -95,6 +97,8 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-W13-3/tp/blob/master/src/main/java/paymelah/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-W13-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
+
+<div style="page-break-after: always;"></div>
 
 The `UI` component,
 
@@ -192,9 +196,9 @@ Consider a scenario where the user wishes to add a $10 food debt to multiple peo
 
 To enable the user to retroactively add a `Debt` that is backdated, the `AddDebtCommandParser` can take in optional `<date>` and `<time>` parameters. By making these parameters optional, a default behaviour can be implemented such that when neither parameter is specified, a `Debt` object with the current date and time is created. This will improve the efficiency at which users can input new `Debt` objects for the (expected) most common scenario where they add the `Debt` into PayMeLah on the actual day the debt occurred.
 
-Consider an example of a valid `adddebt` command, `adddebt 1 2 d/food m/10`. The new objects in the final internal state after this example has been parsed is given by the object diagram below. Note that new `DebtDate` and `DebtTime` objects are created even though the user did not specify date and time parameters in their input command.
-
 <img src="images/AddDebtObjectDiagram.png" width="750" />
+
+Consider an example of a valid `adddebt` command, `adddebt 1 2 d/food m/10`. The new objects in the final internal state after this example has been parsed is given by the object diagram above. Note that new `DebtDate` and `DebtTime` objects are created even though the user did not specify date and time parameters in their input command.
 
 <div style="page-break-after: always;"></div>
 
@@ -239,7 +243,7 @@ Receiving the `Index` of the specified `Person` from the `ClearDebtsCommandParse
 The `ClearDebtsCommand` object will create a new `Person` object with identical fields from the `Person` object previously obtained except for a new empty `DebtList`.
 This new `Person` object replaces the original `Person` object in the `Model` component.
 
-Consider an example of a valid `cleardebts` command `cleardebts 1`. The objects in the internal state after this example has been parsed, and after the constructed `ClearDebtsCommand` has been executed, is given by the object diagrams below.
+Consider an example of a valid `cleardebts` command `cleardebts 1`. The objects in the internal state after this example has been parsed, and after the constructed `ClearDebtsCommand` has been executed, is given by the object diagrams on the next page.
 
 <img src="images/ClearDebtsObjectDiagram.png" width="450" />
 <img src="images/ClearDebtsObjectDiagramAfter.png" width="400" />
@@ -260,14 +264,14 @@ Receiving this set of `Index` objects, and the `Index` of the specified `Person`
 The `DeleteDebtCommand` object will create a new `Person` object with identical fields from the `Person` object previously obtained except for a new `DebtList` that does not contain the previously obtained `Debt` objects to be removed.
 This new `Person` object replaces the original `Person` object in the `Model` component.
 
-The sequence diagram below details such behaviour of PayMeLah when a user enters `deletedebt 1 debt/2 3` to be executed.
+The following sequence diagram details such behaviour of PayMeLah when a user enters `deletedebt 1 debt/2 3` to be executed.
 
 <img src="images/DeleteDebtSequenceDiagram.png" width="1100" />
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteDebtCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-Consider an example of a valid `deletedebt` command `deletedebt 1 debt/2 3`. The new objects in the internal state after this example has been parsed, and after the constructed `DeleteDebtCommand` has been executed, is given by the object diagrams below.
+Consider an example of a valid `deletedebt` command `deletedebt 1 debt/2 3`. The new objects in the internal state after this example has been parsed, and after the constructed `DeleteDebtCommand` has been executed, is given by the following object diagrams.
 
 <img src="images/DeleteDebtObjectDiagram.png" width="450" />
 <img src="images/DeleteDebtAfterObjectDiagram.png" width="280" />
@@ -292,7 +296,7 @@ The command `find n/gary d/burger` can be used to accomplish this. The sequence 
 
 <img src="images/FindSequenceDiagram.png" width="1100" />
 
-Note that due to the universal nature of find-by-anything, this command is dependent on lots of components:
+Note that due to the universal nature of find-by-anything, this command is dependent on lots of components, as given in the following page:
 
 <img src="images/FindClassDiagram.png" width="750" />
 
@@ -337,9 +341,12 @@ An example of the new objects in the internal state when a valid `mark` command 
 <img src="images/MarkObjectDiagram.png" width="450" />
 <img src="images/MarkAfterObjectDiagram.png" width="280" />
 
-The activity diagrams below detail the behaviour of PayMeLah when a user inputs a `mark` command of valid syntax to be executed.
+The following activity diagrams on the next pages detail the behaviour of PayMeLah when a user inputs a `mark` command of valid syntax to be executed.
 
 <img src="images/MarkActivityDiagram.png" width="450" />
+
+<div style="page-break-after: always;"></div>
+
 <img src="images/MarkActivityDiagramRake.png" width="450" />
 
 <div style="page-break-after: always;"></div>
@@ -579,6 +586,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+<div style="page-break-after: always;"></div>
+
 **UC08: List persons with debts**
 
 **MSS**
@@ -752,6 +761,8 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `add n/Alex Yeoh`<br>
        Expected: PayMeLah throws an error informing that there is already an `Alex Yeoh` in the list
 
+<div style="page-break-after: always;"></div>
+
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
@@ -799,6 +810,8 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `adddebt 1 d/Taxi m/20 date/2022-10-11`<br>
        Expected: PayMeLah throws an error informing that there is already an identical debt belonging to the first person
 
+<div style="page-break-after: always;"></div>
+
 ### Splitting a debt
 
 1. Splitting a debt with valid inputs
@@ -845,6 +858,8 @@ testers are expected to do more *exploratory* testing.
 
     1. Test cases: `deletedebt 1 debt/3`, `deletedebt 1 debt/1 2 3`, `deletedebt 1 debt/4`<br>
        Expected: No debt is deleted. Error details shown in the status message (invalid debt index).
+
+<div style="page-break-after: always;"></div>
 
 ### Clearing debts
 
