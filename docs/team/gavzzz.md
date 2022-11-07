@@ -29,7 +29,7 @@ future commands would make use of the Client class instead.
 * Implemented GUI panels for Client, Listing and Meeting  (Pull requests [\#93]())
 * Wrote additional tests for existing features for the client class. (Pull requests [\#157]())
 
-* **Documentation**:
+**Documentation**:
   * User Guide:
     * Added documentation for the features `addC`, `editC`, `deleteC` and `findC`
   * Developer Guide:
