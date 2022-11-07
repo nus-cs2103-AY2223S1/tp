@@ -1,0 +1,89 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":FoodGuideParser" as FoodGuideParser LOGIC_COLOR
+participant ":FavouriteCommandParser" as FavouriteCommandParser LOGIC_COLOR
+participant "f:FavouriteCommand" as FavouriteCommand LOGIC_COLOR
+participant "t:TagCommand" as TagCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("fav 1")
+activate LogicManager
+
+LogicManager -> FoodGuideParser : parseCommand("fav 1")
+activate FoodGuideParser
+
+create FavouriteCommandParser
+FoodGuideParser -> FavouriteCommandParser
+activate FavouriteCommandParser
+
+FavouriteCommandParser --> FoodGuideParser
+deactivate FavouriteCommandParser
+
+FoodGuideParser -> FavouriteCommandParser : parse("1")
+activate FavouriteCommandParser
+
+create FavouriteCommand
+FavouriteCommandParser -> FavouriteCommand
+activate FavouriteCommand
+
+create TagCommand
+FavouriteCommand -> TagCommand : super(index, tagsToAdd)
+activate TagCommand
+
+TagCommand --> FavouriteCommand
+deactivate TagCommand
+
+FavouriteCommand --> FavouriteCommandParser
+deactivate FavouriteCommand
+
+FavouriteCommandParser --> FoodGuideParser
+deactivate FavouriteCommandParser
+
+FavouriteCommandParser -[hidden]-> FoodGuideParser
+destroy FavouriteCommandParser
+
+FoodGuideParser --> LogicManager
+deactivate FoodGuideParser
+
+LogicManager -> FavouriteCommand : execute()
+activate FavouriteCommand
+
+FavouriteCommand -> TagCommand : super.execute()
+activate TagCommand
+
+TagCommand -> Model : getFilteredEateryList()
+activate Model
+
+Model --> TagCommand
+deactivate Model
+
+TagCommand -> Model : setEatery(eateryToTag, taggedEatery)
+activate Model
+
+Model --> TagCommand
+deactivate Model
+
+create CommandResult
+TagCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> TagCommand
+deactivate CommandResult
+
+TagCommand --> FavouriteCommand
+deactivate TagCommand
+
+FavouriteCommand --> LogicManager : result
+deactivate FavouriteCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
