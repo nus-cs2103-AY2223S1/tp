@@ -46,16 +46,6 @@ public class UntagCommand extends Command {
     private final Set<Tag> tagsToRemove;
 
     /**
-     * Checks whether the input tag matches one in the current Tag list.
-     *
-     * @param o tag that is checked
-     * @return boolean that is true if the tag list contains o
-     */
-    public boolean isContaining(Tag o) {
-        return tagsToRemove.contains(o);
-    }
-
-    /**
      * @param index of the eatery in the filtered eatery list to untag
      * @param tagsToRemove tags to remove from the eatery
      */
@@ -65,6 +55,16 @@ public class UntagCommand extends Command {
 
         this.index = index;
         this.tagsToRemove = new HashSet<>(tagsToRemove);
+    }
+
+    /**
+     * Checks whether the input tag matches one in the current Tag list.
+     *
+     * @param o tag that is checked
+     * @return boolean that is true if the tag list contains o
+     */
+    public boolean isContaining(Tag o) {
+        return tagsToRemove.contains(o);
     }
 
     @Override

@@ -6,7 +6,6 @@ import static eatwhere.foodguide.logic.parser.ParserUtil.arePrefixesPresent;
 import eatwhere.foodguide.commons.core.Messages;
 import eatwhere.foodguide.commons.core.index.Index;
 import eatwhere.foodguide.logic.commands.FavouriteCommand;
-import eatwhere.foodguide.logic.commands.TagCommand;
 import eatwhere.foodguide.logic.parser.exceptions.DisplayCommandHelpException;
 import eatwhere.foodguide.logic.parser.exceptions.ParseException;
 
