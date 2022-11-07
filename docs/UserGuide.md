@@ -107,8 +107,8 @@ Basic Instructions:
   of the parameter will be taken. e.g., if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 - Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will
   be ignored. e.g., if the command specifies `help 123`, it will be interpreted as `help`.
-- Commands that require the use of index from the Schedule panel list (right side) will be represented as `INDEX-s`,
-  while index from the Student's Details panel list (left side) will be represented as `INDEX`.
+- Commands that require the use of index from the Schedule List (right side) will be represented as `INDEX-s`,
+  while index from the Student List (left side) will be represented as `INDEX`.
 
 ### Callouts:
 
@@ -298,14 +298,14 @@ The student's next class will be set a week later at the same time, provided if 
 Format: `mark INDEX-s`
 
 - Marks the student as present at the specified `INDEX-s`.
-- The `INDEX-s` refers to the index number shown in the Schedule panel (bottom right).
+- The `INDEX-s` refers to the index number shown in the Schedule list (bottom right).
 - The `INDEX-s` must be a positive integer. e.g., `1, 2, 3, ...`.
 
 <div markdown="span" class="alert alert-success">💡 **Tip:** If you want to unmark a student, you may do so via the `undo` command.
 </div>
 
 Example:
-- `mark 2` marks the 2nd student in the Schedule panel.
+- `mark 2` marks the 2nd student in the Schedule List.
 
 ![UiMark](images/UG-screenshots/UiMark.png)
 
@@ -329,12 +329,12 @@ The application will reduce the student's owed amount by the amount paid.
 Format: `pay INDEX-s AMOUNT_PAID`
 
 - Marks the student as present at the specified `INDEX-s`.
-- The `INDEX-s` refers to the index number shown in the Schedule panel (bottom right).
+- The `INDEX-s` refers to the index number shown in the Schedule List (bottom right).
 - The `INDEX-s` must be a positive integer. e.g., `1, 2, 3, ...`.
 - The `AMOUNT_PAID` must be an integer and cannot be negative. e.g., `0, 1, 2, ...`.
 
 Example:
-- `pay 2 40` indicates that the 2nd student in the Schedule panel has paid $40.
+- `pay 2 40` indicates that the 2nd student in the Schedule List has paid $40.
 
 ![UiPay](images/UG-screenshots/UiPay.png)
 
@@ -543,7 +543,7 @@ duration between 1000-1030 for a 60 minutes class, and it is the next suitable t
 
 ### Sort the displayed students: `sort`
 
-Sorts the list of students in the Student's Details panel by the specified `TYPE` and `ORDER`.
+Sorts the list of students in the Student List by the specified `TYPE` and `ORDER`.
 
 Format: `sort TYPE [ORDER]`
 
@@ -562,7 +562,7 @@ Format: `sort TYPE [ORDER]`
 
 #### Sort by Name
 
-Sorts the list of students in the Students' Details panel by `name` and given `ORDER`.
+Sorts the list of students in the Student List by `name` and given `ORDER`.
 
 If `ORDER` is left blank, it will be `asc` by default.
 
@@ -576,7 +576,7 @@ Examples:
 
 #### Sort by Class Date
 
-Sorts the list of students in the Students' Details panel by `CLASS` and given `ORDER`.
+Sorts the list of students in the Student List by `CLASS` and given `ORDER`.
 
 If `ORDER` is left blank, it will be `ASC` by default.
 
@@ -590,7 +590,7 @@ Examples:
 
 #### Sort by Money Owed
 
-Sorts the list of students in the Students' Details panel by `OWED`(Amount of Money Owed) and given `ORDER`.
+Sorts the list of students in the Student List by `OWED`(Amount of Money Owed) and given `ORDER`.
 
 If `ORDER` is left blank, it will be `DESC` by default.
 
@@ -611,12 +611,12 @@ Deletes the specified student(s) from the student list.
 Format: `delete INDEX [MORE_INDEXES]`
 
 - Deletes the student(s) at the specified `INDEX(ES)`.
-- The `INDEX(ES)` refers to the index numbers shown in the Student's Details panel (bottom left section of the display).
-- The `INDEX(ES)` must be a positive integer within the size of the displayed student list. e.g., `1, 2, 3, ...`.
+- The `INDEX(ES)` refers to the index numbers shown in the Student List (bottom left section of the display).
+- The `INDEX(ES)` must be a positive integer within the size of the Student List. e.g., `1, 2, 3, ...`.
 
 Examples:
-- `list` followed by `delete 1 2` deletes the 1st and 2nd student in the Student's Details panel.
-- `find Betsy` followed by `delete 1` deletes the 1st student in the Student's Details panel.
+- `list` followed by `delete 1 2` deletes the 1st and 2nd student in the Student List.
+- `find Betsy` followed by `delete 1` deletes the 1st student in the Student List.
 
 <div markdown="span" class="alert alert-success">💡 **Tip:** Deleting a student by mistake can be reversed by 
 <a href="#undo-the-last-command-undo">undo</a> command!
@@ -699,14 +699,14 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 ---
 ## Glossary
 
-| Terms       | Definition                                                 |
-|-------------|------------------------------------------------------------|
-| Class Date  | The 1-1 tutoring time slot of a student                    |
-| Day-of-Week | 3-letter Abbreviation; case-insensitive e.g., Mon, MON     |
-| INDEX       | The index number shown in the Student's Details panel list |
-| INDEX-s     | The index number shown in the Schedule panel list          |
-| Prefix      | e.g., `n/`, `p/`, `np/`                                    |
-| Parameter   | e.g., `NAME`, `EMAIL`, `ADDRESS`                           |
+| Terms       | Definition                                             |
+|-------------|--------------------------------------------------------|
+| Class Date  | The 1-1 tutoring time slot of a student                |
+| Day-of-Week | 3-letter Abbreviation; case-insensitive e.g., Mon, MON |
+| INDEX       | The index number shown in the Student List             |
+| INDEX-s     | The index number shown in the Schedule List            |
+| Prefix      | e.g., `n/`, `p/`, `np/`                                |
+| Parameter   | e.g., `NAME`, `EMAIL`, `ADDRESS`                       |
 
 [↑ Back to top](#table-of-contents)
 
