@@ -138,7 +138,6 @@ facing, you can refer to this guide.
   - [Viewing all Students](#viewing-all-students)
   - [Clearing the list of Students](#clearing-the-list-of-students)
   - [Getting help](#getting-help)
-* Advanced Features
 * Frequently Asked Questions
 * [Glossary](#glossary)
 
