@@ -38,7 +38,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/hoang227.md)]
 
 * Role: Developer
-* Responsibilities: _To be determined_
+* Responsibilities: Deliverables, Testing and Documentation
 
 ### Amadeus Chi Song yi
 
