@@ -806,7 +806,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Adding a grade to a student while student list is being shown
 
-    1. Prerequisites: List all students using the `liststudent` or `listall` command. There must be at least one student in the list.
+    1. Prerequisites: List all students using the `liststudent` command. There must be at least one student in the list.
 
     2. Test case: `grade 1 ra1/17 mt/55` <br>
        Expected: The RA1 score will be set to 17.0 and the Midterm score will be set to 55.0 for the first student in the student list.
