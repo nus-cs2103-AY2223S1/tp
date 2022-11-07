@@ -38,7 +38,7 @@ Given below are my contributions to the project.
     * Group Allocator 
 
 * **Enhancements to existing features**:
-    * `to be added soon`
+    * Added constraints to `Assessment`.
 
 * **Documentation**:
     * User Guide:
@@ -46,7 +46,4 @@ Given below are my contributions to the project.
     * Developer Guide:
         * (#72): Added to the Developer Guide
 * **Community**:
-    * `to be added soon`
-
-* **Tools**:
-    * `to be added soon`
+    *  Helped to review code of a total of 18 pull requests
