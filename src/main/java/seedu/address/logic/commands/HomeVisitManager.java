@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -172,17 +173,15 @@ public class HomeVisitManager {
     }
 
     private void removeHomeVisitFromUnavailableDate(Date unavailableDate) {
-        int count = 0;
+        List<HomeVisit> toBeUpdatedHomeVisitList = new ArrayList<>(homeVisitList);
         for (HomeVisit homeVisit : homeVisitList) {
             Boolean isSameDate = checkSameDate(homeVisit, unavailableDate);
             if (isSameDate) {
-                homeVisitList.remove(homeVisit);
-            }
-            count++;
-            if (count >= homeVisitList.size()) {
-                break;
+                toBeUpdatedHomeVisitList.remove(homeVisit);
             }
         }
+        homeVisitList.clear();
+        homeVisitList.addAll(toBeUpdatedHomeVisitList);
         removeFullyScheduledDate(unavailableDate.getDate());
     }
 

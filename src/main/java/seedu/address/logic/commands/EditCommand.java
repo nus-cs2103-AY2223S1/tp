@@ -698,7 +698,7 @@ public class EditCommand extends Command {
 
         private List<DateSlot> editActionForDateSlot() throws CommandException {
             checkDateSlotAndIndex();
-            DateSlotManager editor = new DateSlotManager(originalDateSlotList);
+            DateSlotManager editor = new DateSlotManager(originalDateSlotList, toBeUpdateDateSlotsIndexes);
             InternalHomeVisitRemoverFromDateSlot homeVisitRemover = new InternalHomeVisitRemoverFromDateSlot(model, personList,
                     originalDateSlotList, toBeUpdateDateSlotsIndexes);
             homeVisitRemover.removeHomeVisitsForDateSlot();
