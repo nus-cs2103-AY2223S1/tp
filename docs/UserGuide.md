@@ -109,6 +109,8 @@ YellowBook's commands are mnemonically named. A [Command Summary](#command-summa
 --------------------------------------------------------------------------------------------------------------------
 ## Icons
 
+<div markdown="block" class="alert alert-info">
+
 **Meaning of the icons used:**
 
 :information_source:: Useful information
@@ -118,6 +120,8 @@ YellowBook's commands are mnemonically named. A [Command Summary](#command-summa
 :warning:: Warning on incorrect usage
 
 :exclamation:: Caution
+
+</div>
 
 ## Features
 
@@ -876,7 +880,7 @@ Advanced users who wish to edit the data file should note the following:
 - `Id` field of a `Task` is unique and should be an number greater than zero
 - Fields for [`Contacts`](#section-1-contacts), [`Tasks`](#section-2-tasks) and [`Labels`](#section-3-labels) should comply with the respective field constraints. 
 
-<div markdown="block" class="alert alert-warning">:exclamation:
+<div markdown="block" class="alert alert-danger">:exclamation:
 If your changes to the data file makes its format invalid, YellowBook will discard all data and start with an empty data file at the next run.
 </div>
 
