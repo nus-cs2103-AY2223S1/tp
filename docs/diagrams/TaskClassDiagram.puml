@@ -39,9 +39,9 @@ class Student {
 }
 
 
-Task --> "1" TaskName
-Task --> "1" TaskDescription
-Task --> "1" TaskDeadline
+Task *--> "1" TaskName
+Task *--> "1" TaskDescription
+Task *--> "1" TaskDeadline
 Task --> "*" Student
 
 @enduml
