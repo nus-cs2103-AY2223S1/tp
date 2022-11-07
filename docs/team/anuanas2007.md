@@ -34,7 +34,7 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * User Guide:
-        * Added Notes, Tips and FAQs in User Guide. (Pull requests [\#189](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/189/files), [\#245](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/245/files))
+        * Added Notes, Tips and FAQs in User Guide. (Pull requests [\#189](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/189), [\#245](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/245))
         * Rearranged the order of commands for uniformity. [\#249](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/249)
     * Developer Guide:
         * Added implementation details of the `taskedit` and `taskdelete` features. [\#164](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/164)
