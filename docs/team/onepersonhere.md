@@ -39,7 +39,7 @@ I implemented the help screen to show the user a list of commands and their desc
 
 * Content Page Layout
 * Autocomplete feature
-* Frequently Asked Questions(FAQ)
+* Frequently Asked Questions (FAQ)
 
 ### Contributions to the Developer's Guide
 
