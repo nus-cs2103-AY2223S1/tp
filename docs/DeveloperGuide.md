@@ -142,8 +142,7 @@ The `UI` component,
 
 ### 3.3. Logic component
 
-**
-API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-F11-3/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-F11-3/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -180,8 +179,7 @@ How the parsing works:
 
 ### 3.4. Model component
 
-**
-API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-F11-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-F11-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/UpdatedModelClassDiagramWithNoteAndMeeting.png" width="450" />
 
@@ -205,8 +203,7 @@ The `Model` component,
 
 ### 3.5. Storage component
 
-**
-API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-F11-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-F11-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 ![StorageClassDiagram](images/StorageClassDiagram.png)
 
@@ -752,8 +749,6 @@ testers are expected to do more *exploratory* testing.
 
     4. Test case: Missing JSON file<br>
        Expected: Creates a new addressbook.json file when there is a new command entered
-
-    5. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 ### 7.4. Sorting Clients
 
