@@ -34,6 +34,8 @@ public class EditBillCommand extends Command {
 
     public static final String MESSAGE_EDIT_BILL_SUCCESS = "Edited Bill: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_BILL_DATE_EARLIER_THAN_SLOT =
+            "The bill date must not be earlier than appointment slot";
 
     private final Index indexOfBill;
     private final EditBillDescriptor editBillDescriptor;
@@ -73,6 +75,11 @@ public class EditBillCommand extends Command {
     private static Bill createEditedBill(Bill billToEdit,
                                          EditBillDescriptor editBillDescriptor) throws CommandException {
         assert billToEdit != null;
+
+        if (editBillDescriptor.getBillDate().orElse(billToEdit.getBillDate()).localDate
+                        .isBefore(billToEdit.getAppointment().getSlot().localDateTime.toLocalDate())) {
+            throw new CommandException(MESSAGE_BILL_DATE_EARLIER_THAN_SLOT);
+        }
 
         Amount updatedAmount = editBillDescriptor.getAmount().orElse(billToEdit.getAmount());
         BillDate updatedBillDate = editBillDescriptor.getBillDate().orElse(billToEdit.getBillDate());
