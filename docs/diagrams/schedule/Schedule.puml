@@ -7,13 +7,13 @@ skinparam classBackgroundColor MODEL_COLOR
 package Schedule {
     show member
     Class Schedule {
-        moduleCode
-        classGroup
-        startTime
-        endTime
+        moduleCode: String
+        classGroup: String
+        startTime: String
+        endTime: String
     }
     Class Venue {
-        name
+        name: String
     }
     Enum "<<enum>>\nWeekdays" as Weekdays {
         Monday
@@ -35,6 +35,5 @@ package Schedule {
 Schedule *--> "1" Venue
 Schedule *--> "1" ClassType
 Schedule *--> "1" Weekdays
-
 @enduml
 
