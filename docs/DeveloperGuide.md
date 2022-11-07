@@ -417,7 +417,7 @@ Aside from rating, the other fields are stored as strings. The accepted format i
 | Address        | Any nonempty ASCII text                                                                                                                                         |
 | Content        | Any nonempty ASCII text                                                                                                                                         |
 | Date           | A date in the format DD/MM/YYYY, D/MM/YYYY, DD/M/YYYY, D/M/YYYY, or with dashes instead of slashes                                                              |
-| Name           | Nonempty alphanumeric string with spaces, capitalisation preserved, duplicate spaces removed for the actual name                                                |
+| Name           | Nonempty alphanumeric string with spaces, capitalization preserved, duplicate spaces removed for the actual name                                                |
 | Rating         | An integer or floating point number from 0 (inclusive) to 6 (exclusive), rounded down (after interpreted as a floating point number) for the actual rating      |
 | Tag            | Alphanumeric token without spaces, interpreted as lowercase for the actual tag                                                                                  |
 
