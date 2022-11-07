@@ -486,6 +486,7 @@ To locate a schedule uniquely with schedule, a user needs to know the module cod
 
 ### 5.10. ViewSchedule feature
 
+
 #### Implementation
 
 The proposed view schedule functionality is accomplished by `ViewScheduleCommand` which extends the `Command` class. The `ViewScheduleCommand` overrides the following method:
@@ -494,10 +495,22 @@ The proposed view schedule functionality is accomplished by `ViewScheduleCommand
 
 The following sequence diagram shows how view schedule operation works :
 
-![EditScheduleSequence](/Users/mr.yueng/Library/CloudStorage/OneDrive-NationalUniversityofSingapore/2022_fall_sem_NUS/CS2103T Software Engineering/tp/docs/images/ViewScheduleSequenceDiagram.png)
-
+![EditScheduleSequence](images/ViewScheduleSequenceDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+### 5.10. ViewTimetable feature
+
+
+
+
+
+
+
 
 ## **6. Documentation, logging, testing, configuration, dev-ops**
 
