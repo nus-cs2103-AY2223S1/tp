@@ -421,7 +421,7 @@ testers are expected to do more *exploratory* testing.
    2. Re-launch the app by double-clicking the jar file.<br>
       Expected: The most recent window size and location is retained.
 
-### Adding a Task or Deadline
+### Adding a Task
 
 1. Adding a Task
 
@@ -431,16 +431,16 @@ testers are expected to do more *exploratory* testing.
    3. Test case: `add_task n/Foo d/Foo`<br>
       Expected: No task is added. Error details shown in the status message.
 
-2. Adding a Deadline
+2. Adding a Task with deadline
    1. Prerequisites: deadline "Bar" isn't already added. If added, delete it first.
    2. Test case: `add_task n/Bar d/Bar dl/02-02-2022 2200`<br>
       Expected: Deadline "Bar" is added to the task list. Details of the added deadline shown in the status message.
    3. Test case: `add_task n/Bar d/Bar dl/02-02-2022 2200`<br>
       Expected: No deadline is added. Error details shown in the status message.
 
-### Mark / Unmark a Task or Deadline
+### Mark / Unmark a Task
 
-1. Marking a Task or Deadline
+1. Marking a Task as completed
 
    1. Prerequisites: task "Foo" is already added. If not added, add it first. Foo should be the first index in the task list.
    2. Test case: `mark 1`<br>
@@ -450,7 +450,7 @@ testers are expected to do more *exploratory* testing.
    4. Test case: `mark 0`<br>
       Expected: No task is marked as completed. Error details shown in the status message.
 
-2. Unmarking a Task or Deadline
+2. Unmarking a Task as incomplete
 
    1. Prerequisites: task "Bar" is already added. If not added, add it first. Foo should be the first index in the task list and already marked as complete.
    2. Test case: `unmark 1`<br>
@@ -471,9 +471,9 @@ testers are expected to do more *exploratory* testing.
    3. Test case: type `ctrl + tab`<br>
       Expected: The current list is switched to the other list.
 
-### Viewing Task, Deadline and Contact Assocation
+### Viewing Task and Contact Assocation
 
-1. Select Task or Deadline to view Contact Assocation
+1. Select Task to view Contact Assocation
 
    1. Prerequisites: task "Foo" is already added and assigned to contact "Alex". If not added, add it first. Foo should be the first index in the task list.
    2. Test case: `select_task 1`<br>
@@ -481,7 +481,7 @@ testers are expected to do more *exploratory* testing.
    3. Test case: `select_task 0`<br>
       Expected: No task is selected. Error details shown in the status message.
 
-2. Select Contact to view Task or Deadline Association
+2. Select Contact to view Task Association
 
    1. Prerequisites: contact "Alex" is already added and assigned to task "Foo". If not added, add it first. Alex should be the first index in the contact list.
    2. Test case: `select_contact 1`<br>
@@ -489,9 +489,9 @@ testers are expected to do more *exploratory* testing.
    3. Test case: `select_contact 0`<br>
       Expected: No contact is selected. Error details shown in the status message.
 
-### Finding Task, Deadline or Contact
+### Finding Task or Contact
 
-1. Find Task or Deadline
+1. Find Task
 
    1. Prerequisites: task "Foo" is already added and "Bar" is not added. If not added, add it first.
    2. Test case: `find_task Foo`<br>
@@ -506,11 +506,11 @@ testers are expected to do more *exploratory* testing.
    3. Test case: `find_contact Bob`<br>
       Expected: No contacts are listed in the contact list. Details of the listed contacts shown in the status message.
 
-### Deleting a Task, Deadline or Contact
+### Deleting a Task or Contact
 
-1. Deleting a Contact, Task or Deadline while all Contact, Task or Deadline are being shown
+1. Deleting a Contact or Task while all Contact, Task or Deadline are being shown
 
-   1. Prerequisites: List all Contacts, Tasks or Deadlines using the `list_contact` or `list_task` command.
+   1. Prerequisites: List all Contacts or Tasks using the `list_contact` or `list_task` command.
    2. Test case: `delete_contact 1` or `delete_task 1`<br>
       Expected: First Contact or Task is deleted from the list. Details of the deleted Contact or Task shown in the status message.
    3. Test case: `delete_contact 0` or `delete_task 0`<br>
@@ -518,12 +518,12 @@ testers are expected to do more *exploratory* testing.
    4. Other incorrect delete commands to try: `delete_contact` / `delete_task`, `delete_contact x` / `delete_task x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-### Editing a Task, Deadline or Contact
+### Editing a Task or Contact
 
-1. Editing a Contact, Task or Deadline while all Contact, Task or Deadline are being shown
+1. Editing a Contact or Task while all Contact, Task or Deadline are being shown
 
    1. Prerequisites: List all Contacts, Tasks or Deadlines using the `list_contact` or `list_task` command. There should be at least one contact or task.
-   2. Test case: `edit_contact 1 n/Alex Yeoh p/98765432
+   2. Test case: `edit_contact 1 n/Alex Yeoh p/98765432`
       Expected: First Contact is edited to have the name "Alex Yeoh" and phone number "98765432". Details of the edited Contact shown in the status message.
    3. Test case: `edit_contact 0 n/Alex Yeoh p/98765432`<br>
       Expected: No Contact is edited. Error details shown in the status message. Status bar remains the same.
