@@ -3,7 +3,6 @@ package seedu.workbook.logic.parser;
 import static seedu.workbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.workbook.logic.commands.CommandTestUtil.COMPANY_DESC_AMY;
 import static seedu.workbook.logic.commands.CommandTestUtil.COMPANY_DESC_BOB;
-import static seedu.workbook.logic.commands.CommandTestUtil.DATETIME_DESC_AMY;
 import static seedu.workbook.logic.commands.CommandTestUtil.DATETIME_DESC_BOB;
 import static seedu.workbook.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.workbook.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
@@ -84,11 +83,9 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_optionalFieldsMissing_success() {
-        // zero tags
-        Internship expectedInternship = new InternshipBuilder(AMY).withTags().build();
+        Internship expectedInternship = new InternshipBuilder(AMY).withDateTime("").withEmail("").withTags().build();
         assertParseSuccess(parser,
-                COMPANY_DESC_AMY + ROLE_DESC_AMY + EMAIL_DESC_AMY
-                        + STAGE_DESC_AMY + DATETIME_DESC_AMY,
+                COMPANY_DESC_AMY + ROLE_DESC_AMY + STAGE_DESC_AMY,
                 new AddCommand(expectedInternship));
     }
 
