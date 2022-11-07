@@ -10,7 +10,7 @@ This document contains everything you need to know about TruthTable.
 TruthTable is a **desktop application** that enables team leaders to **manage their software
 engineering teams** using a single application.
 
-TruthTable is **optimised for use via a [Command Line Interface (CLI)](#command-line-interface)** while still having 
+TruthTable is **optimized for use via a [Command Line Interface (CLI)](#command-line-interface)** while still having 
 the benefits of a [Graphical User Interface (GUI)](#graphical-user-interface). 
 
 <div markdown="block" class="alert alert-info">**Unsure what CLI means?**
@@ -31,11 +31,11 @@ links and slides created by your team, you may be using task management applicat
 <a href="https://www.notion.so/" target="_blank">Notion</a> to track your team's progress as well. This is where 
 TruthTable comes in.
 
-TruthTable allows you to collate and organise your tasks, links, and members' information **all in one place**.
+TruthTable allows you to collate and organize your tasks, links, and members' information **all in one place**.
 
 ### Seeing is believing
 
-It is often difficult to visualise and communicate your team's progress to stakeholders. TruthTable solves this
+It is often difficult to visualize and communicate your team's progress to stakeholders. TruthTable solves this
 through its clean and comprehensive user interface.
 
 At a glance, you can see the number of tasks completed by your team, and **determine the team's overall progress**.
@@ -67,7 +67,7 @@ If you are a software engineering team lead looking to get started with TruthTab
 
 This document will guide you on how to get familiar with all of TruthTable's [features](#key-features-of-truthtable). 
 
-If you are an experienced user of TruthTable, this guide also contains valuable tips on how you can maximise your 
+If you are an experienced user of TruthTable, this guide also contains valuable tips on how you can maximize your 
 productivity while using TruthTable.
 
 Here are the alerts to look out for while using this guide:
@@ -115,7 +115,7 @@ The file can be located under the "Assets" section of the page as seen in the im
 
 3. Double-click on `truthtable.jar` to start the application. A window which looks similar to the screenshot below 
    should 
-appear in a few seconds. We have also added some sample data for you to play around and familiarise yourself with 
+appear in a few seconds. We have also added some sample data for you to play around and familiarize yourself with 
    TruthTable's [features](#commands)! ![Ui](images/Ui.png)
 
 4. Before we dive into TruthTable's features, let's try and understand how to 
@@ -277,7 +277,7 @@ Here's a summary of what each highlighted section represents.
 
 Use of quotation marks around parameters (`""` and `''`) is optional.
 
-**However**, if you are specifying a parameter with multiple words, you will need to wrap the words in a quotes.
+**However**, if you are specifying a parameter with multiple words, you will need to wrap the words in quotes.
 Otherwise, TruthTable will not carry out the command properly.
 
 For instance,
@@ -353,7 +353,7 @@ Consequently, the commands are split into **5** main sections:
 <div markdown="block" class="alert alert-primary">**:information_source: Command Format**
 
 The format for each command adheres to the structure laid out in the 
-[help command section](#example-command-help-message-add-person---help).
+[help command section](#example-command-help-message-assign-task---help).
 </div>
 
 <div markdown="block" class="alert alert-primary">**:information_source: Parameters and Constraints**
@@ -1407,7 +1407,7 @@ the data of your previous TruthTable home folder.
 
 An instruction that is used to perform some feature.
 
-Find out more in the [understanding TruthTable's CLI section](#understanding-truthtables-cli).
+Find out more in the [Understanding TruthTable's CLI section](#understanding-truthtables-cli).
 
 ### Parameter
 
@@ -1466,11 +1466,11 @@ A visual [user interface](#user-interface) which allows the user to interact wit
 such as shapes, diagrams, and buttons. 
 
 Examples include
-- Operating systems like (Microsoft Windows, Apple's macOS, Apple's IOS, Linux)
+- Operating systems like Microsoft Windows, Apple's macOS, Apple's IOS, Linux
 
 ### User Interface
 
-The user interface is some interface of which we interact with computers and communicate with the device in.
+The user interface is some interface of which we interact with computers and devices in.
 
 Examples include
 - Monitors
@@ -1484,7 +1484,7 @@ For instance, the input box in the [command section](#command-section) is a comp
 
 ### JSON File
 
-A file which is used to store data in, which adheres to a format called 
+A file which is used to store data, which adheres to a format called 
 <a href="https://en.wikipedia.org/wiki/JSON" target="_blank">JavaScript Object Notation (JSON)</a>.
 
 [Back to Table of Contents](#table-of-contents)
