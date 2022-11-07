@@ -160,13 +160,20 @@ Format: `help [COMMAND]`
 Examples:
 
 * `help add -s` - This shows a detailed help message on the `add -s` command.
+  
+  ![help add -s](images/helpSingleCommand.png)
+
 * `help` - This shows an open window revealing the URL to the user guide which could be copied to the user's clipboard.
+
+  ![help add](images/helpMessage.png)
 
 #### 3.1.2. List of FYPs: `list`
 
 Shows a list of final year projects with the student IDs.
 
 Format: `list`
+
+![list](images/list-command.png)
 
 #### 3.1.3. Sorting the FYP list: `sort`
 
@@ -180,7 +187,12 @@ The two fields that the user can sort by are:
 Format for each variant of `sort`:
 
 1. `ProjectName`: `sort [-p]`
+
+![sort -p](images/sort-p.png)
+
 2. `ProjectStatus`: `sort -s`
+
+![sort -s](images/sort-s.png)
 
 <div markdown="block" class="alert alert-info">
 
@@ -218,11 +230,14 @@ Format: `add [-s] i/STUDENT_ID n/STUDENT_NAME p/FYP_NAME e/EMAIL [t/TAG]…​`
 A student can have any number of tags! (including 0)
 </div>
 
+![Adding a student](images/add-student.png)
+
 Examples:
 
 * `add -s i/A0123456G n/Jane Doe p/Neural Network e/e0123456@u.nus.edu t/NN t/Difficult`
 * `add -s i/A0987654X n/Alex Yeoh p/Data Caching e/e09876567@u.nus.edu`
 * `add i/A0987654X n/Alex Yeoh p/Data Caching e/e09876567@u.nus.edu`
+
 
 #### 3.2.2. Removing students FYP: `delete -s`
 
@@ -235,6 +250,9 @@ Removes a FYP from the FYP manager. The specified student ID must exist in the F
 </div>
 
 Format: `delete [-s] i/STUDENT_ID`
+
+![Before deleting student](images/delete-student-1.png)
+![After deleting student](images/delete-student-2.png)
 
 Examples:
 
@@ -255,6 +273,8 @@ Format: `mark i/STUDENT_ID s/STATUS`
 * Parsing of status is  *case-sensitive*: <br>
     * **DONE** instead of *Done*, *done*, etc.
 
+![Marking a student](images/mark-command.png)
+
 Examples:
 
 * `mark i/A0123456G s/DONE`
@@ -273,9 +293,20 @@ The four fields that the user can search by are:
 Format for each variant of `find`:
 
 1. `ProjectName`: `find [-p] KEYWORD/[KEYWORD2/KEYWORD3/…]`
+
+![find -p](images/find-p.png)
+
 2. `StudentId`: `find -i KEYWORD/[KEYWORD2/KEYWORD3/…]`
+
+![find -i](images/find-i.png)
+
 3. `StudentName`: `find -n KEYWORD/[KEYWORD2/KEYWORD3/…]`
+
+![find -n](images/find-n.png)
+
 4. `Tags`: `find -t KEYWORD/[KEYWORD2/KEYWORD3/…]`
+
+![find -t](images/find-t.png)
 
 <div markdown="block" class="alert alert-info">
 
@@ -311,6 +342,9 @@ Format: `edit STUDENT_ID [n/STUDENT_NAME] [p/FYP_NAME] [e/EMAIL] [t/TAG]…​`
 
 * At least one of the optional fields must be present.
 
+![Before editing student](images/edit-student-1.png)
+![After editing student](images/edit-student-2.png)
+
 Examples:
 
 * `edit A0123456G p/Food Genetics` sets the project name of the student with student ID `A0123456G` into
@@ -331,6 +365,9 @@ Example:
 
 * `add -d i/A0123456G n/Random Task d/23-10-2022 23:59`
 
+![Before adding deadline](images/add-deadline-1.png)
+![After adding deadline](images/add-deadline-2.png)
+
 #### 3.3.2 Removing a student's deadline: `delete -d`
 
 Removes a deadline assigned to a student specified by ID & a priority rank (Below highlighted task has a priority rank of 2). The specified deadline must exist in the student's deadline list previously.
@@ -340,7 +377,6 @@ Format: `delete -d i/STUDENT_ID r/DEADLINE_RANK`
 Example:
 
 * `delete -d i/A0123456G r/1`
-
 
 --------------------------------------------------------------------------------------------------------------------
 
