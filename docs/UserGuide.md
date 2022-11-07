@@ -161,6 +161,7 @@ which contains `workday-nus`, `edu`, and `sg` as `DOMAIN_LABEL` separated by `.`
 
 </div>
 
+<div style="page-break-after: always;"></div>
 
 ### 3.1 Viewing help: `help`
 
@@ -197,7 +198,7 @@ Format: `view INDEX`
 
 * Views the applicant at the specified `INDEX`.
 * The index refers to the index number shown in the displayed applicants list.
-* The index **must be a positive integer** 1, 2, 3, ... and **not exceed the total records listed**
+* The index **must be a positive integer** 1, 2, 3, ... and not exceed the total records listed.
 
 <div style="page-break-after: always;"></div>
 
@@ -228,7 +229,7 @@ Format: `delete INDEX`
 
 * Deletes the applicant at the specified `INDEX`.
 * The index refers to the index number shown in the displayed applicants list.
-* The index **must be a positive integer** 1, 2, 3, ... and not exceed the total records listed
+* The index **must be a positive integer** 1, 2, 3, ... and not exceed the total records listed.
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd applicant in the address book.
@@ -270,7 +271,6 @@ Search Types:
 | **Job ID**          | Substring                 |
 | **Job Title**       | Matching word             |
 | **Tag**             | Matching word             |
-
 Examples:
 * `find n/Bobby` Returns applicants with names matching `bobby` and `Bobby Cortez`
 * `find g/Female c/3.5 2` returns female applicants with a CAP value of `3.5` or `2.0`

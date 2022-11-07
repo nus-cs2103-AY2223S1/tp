@@ -199,7 +199,6 @@ The `Storage` component,
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
---------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
 ## 4. Implementation Highlights
@@ -355,6 +354,8 @@ The following sequence diagram shows how the `import` command works:
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ImportCommandParser`
 should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 #### Design Considerations
 
