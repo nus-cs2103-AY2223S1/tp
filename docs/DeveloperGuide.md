@@ -303,7 +303,7 @@ The following sequence diagram shows how the `findTask` operation works:
 ![AddTaskSequenceDiagram]()
 
 The following activity diagram summarizes what happens when a user executes a `findTask` command:
-![AddTaskActivityDiagram]()
+![AddTaskActivityDiagram](images/FindTaskCommandActivityDiagram.png)
 
 ### Filtering of tasks by Task Category, Task Deadline or Both
 
