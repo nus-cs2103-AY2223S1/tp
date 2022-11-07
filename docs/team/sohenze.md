@@ -31,14 +31,14 @@ CLI, and the application responds with its GUI, created with JavaFX.
     * Notable Implications:
       * This feature safeguards users from mistakenly editing an inventory item into one that already exists in
       the application and creating a duplicate in the process.
-      * Implementing this feature required deep consideration on the equivalency of inventory items from the perspective
+      * Implementing this feature required deep consideration of the equivalency of inventory items from the perspective
       of the user.
     * Relevant pull request(s): [#84](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/84)
   
   * Enhancement: **Item Tag**
     * Context: Tag(s) are a property of inventory items and was previously only partially implemented by a teammate.
     * Changes Made: Built upon a teammate's enhancement by implementing tag(s) in the UI and Storage component
-    to allow tag(s) to be displayed to the user in the GUI, and to be saved to and read from the data file respectively.
+    to allow tag(s) to be displayed to the user in the GUI, and to be saved to and read from the data file, respectively.
     * Relevant pull request(s): [#101](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/101)
   
   * Enhancement: **Order's timeCreated** (time of creation)
@@ -46,13 +46,13 @@ CLI, and the application responds with its GUI, created with JavaFX.
     implemented by a teammate.
     * Changes Made: Built upon a teammate's enhancement by implementing timeCreated in the UI and Storage component
     to allow timeCreated to be displayed to the user in the GUI, and to be saved to and read from 
-    the data file respectively.
+    the data file, respectively.
     * Relevant pull request(s): [#108](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/108)
     
   * Feature: **Sort Order Command**
     * Function: Allows the user to sort the displayed order list in the application based on the orders' time
     of creation.
-    * Purpose: Supplementary feature of an application that manages orders which provides users further ease of use.
+    * Purpose: Supplementary feature of an application that manages orders which provides users with further ease of use.
     * Notable Implications:
       * Wrapped the existing FilteredList within a SortedList under JavaFX collections and displayed the SortedList
       to the user instead. This supported both features and allowed the user to sort filtered orders as well.
