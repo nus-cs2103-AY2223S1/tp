@@ -738,7 +738,7 @@ Hence, we needed to adapt our idea to incorporate new features into this brownfi
 For example, we changed all index fields to require a `i/` prefix instead of the no prefix implementation from AB-3.
 
 Mark and unmark command was a challenge because the models were implemented with immutable fields.
-hHaving a mutable boolean field in a task model resulted in misbehavior with the GUI and storage.
+Having a mutable boolean field in a task model resulted in misbehavior with the GUI and storage.
 We opted to create a new task entirely when a mark or unmark command is executed as a workaround to this problem.
 
 Trying to parse the arguments for `task find` was also a big challenge, because there was a lot of possible combinations of fields we could use, but we managed to break up the command's execute method into several smaller methods that could be reused, thus not only saving lines of code and increasing code readability, but also applying SLAP.
