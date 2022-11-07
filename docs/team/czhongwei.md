@@ -3,7 +3,7 @@ layout: page
 title: Chee Zhong Wei's Project Portfolio Page
 ---
 
-###Project: SectresBook
+### Project: SectresBook
 
 SectresBook helps secretaries to maintain all the information of the members of their club by collating a list of identifiable information, past records and future tasks.
 
