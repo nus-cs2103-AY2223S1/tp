@@ -950,7 +950,7 @@ be present* in the current table. The error message mentioned above means that t
 *not fully present* in the table. Please make sure to *only* enter letters corresponding to the columns you see on your 
 screen when typing these commands. 
 
-**Q: How can I resize the columns in table?**
+**Q: How can I resize the columns in the table?**
 
 **A:** Column resizing can be done the same way as they do in Excel. However, we only allow the resizing of the `Name` and `Email` columns.
 They other have a fixed size to allow for your ease of viewing. Alternatively, you could also use the `showonly` and `hideonly` commands if you
@@ -1048,7 +1048,7 @@ commands. The tables below contain the full summary of our commands and how they
 | **Create File** | `file create FOLDER_NAME` <br> e.g. `file create rc4_data_2022` |
 | **Delete File** | `file delete FOLDER_NAME` <br> e.g. `file delete rc4_data_2022` |
 | **Switch File** | `file switch FOLDER_NAME` <br> e.g. `file switch rc4_data_2022` |
-| **Import File** | `import FOLDER_NAME` <br> e.g. `import students`                |
+| **Import File** | `file import FILE_NAME` <br> e.g. `file import students`        |
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 

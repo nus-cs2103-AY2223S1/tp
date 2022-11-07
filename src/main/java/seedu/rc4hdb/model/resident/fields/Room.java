@@ -4,6 +4,7 @@ import static seedu.rc4hdb.commons.util.AppUtil.checkArgument;
 
 import seedu.rc4hdb.model.StringField;
 
+//@@ alvinjiang1
 /**
  * Represents a Resident's Room in RC4HDB.
  * Guarantees: immutable; is valid as declared in {@link #isValidRoom(String)}
@@ -35,7 +36,18 @@ public class Room extends StringField implements ResidentField {
      * Returns true if a given string is a valid room.
      */
     public static boolean isValidRoom(String test) {
-        return test.matches(VALIDATION_REGEX);
+        String[] splitString = test.split("-");
+        if (splitString.length != 2) {
+            return false;
+        }
+        try {
+            int floorNo = Integer.parseInt(splitString[0]);
+            int roomNo = Integer.parseInt(splitString[1]);
+            return floorNo > 0 && floorNo < 30
+                    && roomNo > 0 && roomNo < 30;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 
 }

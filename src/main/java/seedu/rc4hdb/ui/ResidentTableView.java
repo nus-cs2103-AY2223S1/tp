@@ -30,12 +30,14 @@ import seedu.rc4hdb.model.resident.fields.Tag;
  */
 public class ResidentTableView extends UiPart<Region> {
 
-    private static final String FXML = "ResidentTableView.fxml";
+    public static final Integer COLUMN_WIDTH_SMALL_1 = 70;
+    public static final Integer COLUMN_WIDTH_SMALL_2 = 90;
+    public static final Integer COLUMN_WIDTH_MEDIUM_1 = 120;
+    public static final Integer COLUMN_WIDTH_MEDIUM_2 = 140;
+    public static final Integer COLUMN_WIDTH_LARGE = 300;
+    public static final String MATRIC_NUMBER_VARIABLE_NAME = "matricNumber";
 
-    // The COLUMN_WIDTH_SIZE fields are provided here for ease of change.
-    private static final int COLUMN_WIDTH_SMALL = 90; // Index, Gender, House columns use this width.
-    private static final int COLUMN_WIDTH_MEDIUM = 140; // Phone, Room, Matric columns use this width.
-    private static final int COLUMN_WIDTH_LARGE = 300; // Name, Email columns use this width.
+    private static final String FXML = "ResidentTableView.fxml";
 
     @FXML
     private TableView<Resident> residentTableView;
@@ -98,7 +100,10 @@ public class ResidentTableView extends UiPart<Region> {
         indexColumn.setCellFactory(this::populateIndexColumn);
         genderColumn.setCellValueFactory(new PropertyValueFactory<>(Gender.IDENTIFIER.toLowerCase()));
         houseColumn.setCellValueFactory(new PropertyValueFactory<>(House.IDENTIFIER.toLowerCase()));
-        matricColumn.setCellValueFactory(new PropertyValueFactory<>("matricNumber"));
+
+        // Because the column identifier is different from the variable name
+        matricColumn.setCellValueFactory(new PropertyValueFactory<>(MATRIC_NUMBER_VARIABLE_NAME));
+
         tagColumn.setCellValueFactory(new PropertyValueFactory<>(Tag.IDENTIFIER.toLowerCase()));
         tagColumn.setCellFactory(this::populateTagColumn);
     }
@@ -163,14 +168,15 @@ public class ResidentTableView extends UiPart<Region> {
      * Sets the individual width of several columns.
      */
     private void setColumnWidth() {
-        indexColumn.setPrefWidth(COLUMN_WIDTH_SMALL);
         nameColumn.setMinWidth(COLUMN_WIDTH_LARGE);
-        phoneColumn.setPrefWidth(COLUMN_WIDTH_MEDIUM);
         emailColumn.setMinWidth(COLUMN_WIDTH_LARGE);
-        roomColumn.setPrefWidth(COLUMN_WIDTH_MEDIUM);
-        genderColumn.setPrefWidth(COLUMN_WIDTH_SMALL);
-        houseColumn.setPrefWidth(COLUMN_WIDTH_SMALL);
-        matricColumn.setPrefWidth(COLUMN_WIDTH_MEDIUM);
+
+        indexColumn.setPrefWidth(COLUMN_WIDTH_SMALL_1);
+        phoneColumn.setPrefWidth(COLUMN_WIDTH_MEDIUM_1);
+        roomColumn.setPrefWidth(COLUMN_WIDTH_MEDIUM_2);
+        genderColumn.setPrefWidth(COLUMN_WIDTH_SMALL_2);
+        houseColumn.setPrefWidth(COLUMN_WIDTH_SMALL_2);
+        matricColumn.setPrefWidth(COLUMN_WIDTH_MEDIUM_2);
     }
 
     /**
@@ -178,20 +184,7 @@ public class ResidentTableView extends UiPart<Region> {
      * in {@code visibleFields} to visible when the list changes.
      */
     private ListChangeListener<String> showColumnsOnChange() {
-        return c -> {
-            // Reset column visibilities to false
-            residentTableView.getColumns().forEach(column -> column.setVisible(false));
-
-            // Filter all columns (including index column) to obtain the columns to show
-            // Recall that column headers is in title-case, i.e. first letter is capitalised
-            residentTableView.getColumns()
-                    .stream()
-                    .filter(column -> c.getList().contains(column.getText().toLowerCase()))
-                    .forEach(column -> column.setVisible(true));
-
-            // Ensure that index column is properly rendered
-            indexColumn.setCellFactory(this::populateIndexColumn);
-        };
+        return setColumnVisibilitiesTo(true);
     }
 
     /**
@@ -199,20 +192,23 @@ public class ResidentTableView extends UiPart<Region> {
      * in {@code hiddenFields} to not visible when the list changes.
      */
     private ListChangeListener<String> hideColumnsOnChange() {
-        return c -> {
-            // Reset column visibilities to true
-            residentTableView.getColumns().forEach(column -> column.setVisible(true));
+        return setColumnVisibilitiesTo(false);
+    }
 
-            // Filter all columns (including index column) to obtain the columns to hide
-            // Recall that column headers is in title-case, i.e. first letter is capitalised
+    private ListChangeListener<String> setColumnVisibilitiesTo(boolean isVisible) {
+        return c -> {
+            // Reset *all* column visibilities to the *opposite* state of the desired visibility
+            residentTableView.getColumns().forEach(column -> column.setVisible(!isVisible));
+
+            // Obtain the filtered list of columns whose visibilities should be set
+            // And then set the visibilities of the *filtered* columns to the desired visibility
             residentTableView.getColumns()
                     .stream()
                     .filter(column -> c.getList().contains(column.getText().toLowerCase()))
-                    .forEach(column -> column.setVisible(false));
+                    .forEach(column -> column.setVisible(isVisible));
 
             // Ensure that index column is properly rendered
             indexColumn.setCellFactory(this::populateIndexColumn);
         };
     }
-
 }

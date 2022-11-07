@@ -37,7 +37,7 @@ public class VenueBuilder {
      */
     public VenueBuilder(Venue venueToCopy) {
         venueName = venueToCopy.getVenueName();
-        bookings = new ArrayList<>(venueToCopy.getBookings());
+        bookings = new ArrayList<>(venueToCopy.getReadOnlyBookings());
     }
 
     /**

@@ -13,6 +13,7 @@ import seedu.rc4hdb.logic.commands.CommandResult;
 import seedu.rc4hdb.logic.commands.StorageCommand;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
 import seedu.rc4hdb.model.ReadOnlyResidentBook;
+import seedu.rc4hdb.model.resident.exceptions.DuplicateResidentException;
 import seedu.rc4hdb.storage.Storage;
 
 /**
@@ -24,8 +25,6 @@ public class ImportCommand extends FileCommand implements StorageCommand {
     public static final String COMMAND_WORD = "import";
 
     public static final String MESSAGE_SUCCESS = "Successfully imported %s.";
-
-    public static final String MESSAGE_FILE_EXISTS = "%s already exists.";
 
     public static final String MESSAGE_FILE_DOES_NOT_EXIST = "%s does not exist. Please provide an existing file.";
 
@@ -55,13 +54,15 @@ public class ImportCommand extends FileCommand implements StorageCommand {
             storage.saveResidentBook(residentBook, folderPath);
             return new CommandResult(String.format(MESSAGE_SUCCESS, csvFileName));
         } catch (FileAlreadyExistsException e) {
-            throw new CommandException(String.format(MESSAGE_FILE_EXISTS, folderName), e);
+            throw new CommandException(e.getMessage(), e);
         } catch (NoSuchElementException e) {
             throw new CommandException(String.format(MESSAGE_FILE_DOES_NOT_EXIST, csvFileName), e);
         } catch (DataConversionException e) {
             throw new CommandException(String.format(MESSAGE_INVALID_FILE_DATA, csvFileName, e.getMessage()), e);
         } catch (IOException e) {
             throw new CommandException(String.format(MESSAGE_FAILED, "importing"), e);
+        } catch (DuplicateResidentException e) {
+            throw new CommandException(e.getMessage(), e);
         }
     }
 
