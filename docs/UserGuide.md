@@ -811,11 +811,6 @@ Now, let's use `sclear` to clear all schedules of CS2101 and CS2103T in the sche
 
 ![sclear_step2](images/userguide/sclear_step2.png)
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 65f782b333f41fa3333805f3a48c7be16933fd02
 ### 4.5. Clearing all entries: `clear`
 
 Clears all entries from ProfNUS.
@@ -884,26 +879,14 @@ If your changes to the data file makes its format invalid, ProfNUS will discard 
 
 ### 6.4. Schedule Manager Command Summary
 
-<<<<<<< HEAD
 | Action                                                    | Format                                                       | Example                                                      |
-| --------------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+|-----------------------------------------------------------| ------------------------------------------------------------ | ------------------------------------------------------------ |
 | [View your schedule list](#442-view-your-schedule-sview)  | `sview [c/MODULE_CODE]... [w/WEEKDAY]...`                    | `sview c/CS2040S w/Monday`                                   |
-| [View your timetable](#447-view-your-timetable-tview)     | `tview [MODE]`                                               | `tview v`                                                    |
+| [View your timetable](#443-view-your-timetable-tview)     | `tview [MODE]`                                               | `tview v`                                                    |
 | [Add your schedule](#444-add-your-schedule-sadd)          | `sadd c/MODULE_CODE w/WEEKDAY ct/PERIOD cc/CLASS_TYPE cg/CLASS_GROUP cv/VENUE` | `sadd c/CS1101S w/Tuesday ct/10:00-12:00 cc/lec cg/L1 cv/I3-AUD` |
 | [Edit your schedule](#445-edit-your-schedule-sedit)       | `sedit INDEX [c/MODULE_CODE] [w/WEEKDAY] [ct/PERIOD] [cc/CLASS_TYPE] [cg/CLASS_GROUP] [cv/VENUE]` | `sedit 1 w/Monday ct/09:00-10:00 cc/tut cv/COM1-B103`        |
 | [Delete your schedule](#446-delete-your-schedule-sdelete) | `sdelete INDEX`                                              | `sdelete 1`                                                  |
 | [Clear your schedule](#447-clear-your-schedule-sclear)    | `sclear [c/MODULE_CODE]...`                                  | `sclear c/CS2103T m/CS1101S`                                 |
-=======
-| Action                                                    | Format                                                                                            | Example                                                          |
-|-----------------------------------------------------------|---------------------------------------------------------------------------------------------------|------------------------------------------------------------------|
-| [View your schedule list](#442-view-your-schedule-sview)  | `sview [c/MODULE_CODE]... [w/WEEKDAY]...`                                                         | `sview c/CS2040S w/Monday`                                       |
-| [View your timetable](#447-view-your-timetable-tview)     | `tview [MODE]`                                                                                    | `tview v`                                                        |
-| [Add your schedule](#444-add-your-schedule-sadd)          | `sadd c/MODULE_CODE w/WEEKDAY ct/PERIOD cc/CLASS_TYPE cg/CLASS_GROUP cv/VENUE`                    | `sadd c/CS1101S w/Tuesday ct/10:00-12:00 cc/lec cg/L1 cv/I3-AUD` |
-| [Edit your schedule](#445-edit-your-schedule-sedit)       | `sedit INDEX [c/MODULE_CODE] [w/WEEKDAY] [ct/PERIOD] [cc/CLASS_TYPE] [cg/CLASS_GROUP] [cv/VENUE]` | `sedit 1 w/Monday ct/09:00-10:00 cc/tut cv/COM1-B103`            |
-| [Delete your schedule](#446-delete-your-schedule-sdelete) | `sdelete INDEX`                                                                                   | `sdelete 1`                                                      |
-| [Clear your schedule](#447-clear-your-schedule-sclear)    | `sclear [c/MODULE_CODE]...`                                                                       | `sclear c/CS2103T m/CS1101S`                                     |
->>>>>>> 65f782b333f41fa3333805f3a48c7be16933fd02
-
 
 ### 6.5. Miscellaneous Command Summary
 
