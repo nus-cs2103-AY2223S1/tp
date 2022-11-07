@@ -74,8 +74,7 @@ public class FindCommandParser implements Parser<FindCommand> {
             predicateList.addPredicate(new AddressContainsKeywordsPredicate(addressKeywords));
         }
         if (argMultimap.getValue(PREFIX_CAP).isPresent()) {
-            List<String> capKeywords = generateKeywords(argMultimap, PREFIX_CAP);
-            CollectionUtil.checkCapKeywords(capKeywords);
+            List<String> capKeywords = CollectionUtil.roundCapKeywords(generateKeywords(argMultimap, PREFIX_CAP));
             predicateList.addPredicate(new CapContainsKeywordsPredicate(capKeywords));
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {

@@ -2,8 +2,8 @@ package seedu.address.commons.util;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.util.CollectionUtil.checkCapKeywords;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.commons.util.CollectionUtil.roundCapKeywords;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.Arrays;
@@ -87,8 +87,15 @@ public class CollectionUtilTest {
 
     @Test
     public void invalidCap_throwsParseException() {
-        assertThrows(ParseException.class, () -> checkCapKeywords(Arrays.asList("asdf", "3a", "a2")));
-        assertThrows(ParseException.class, () -> checkCapKeywords(Arrays.asList("!", "@", "#", "/", "3.0/", "/3.0")));
+        assertThrows(ParseException.class, () -> roundCapKeywords(Arrays.asList("asdf", "3a", "a2")));
+        assertThrows(ParseException.class, () -> roundCapKeywords(Arrays.asList("!", "@", "#", "/", "3.0/", "/3.0")));
+    }
+
+    @Test
+    public void validCap_returnsRoundedCap() throws ParseException {
+        List<String> keywords = Arrays.asList("3", "3.1", "3.12", "3.152", "4.125", "4.859", "4.999");
+        assertTrue(CollectionUtil.roundCapKeywords(keywords).equals(
+                Arrays.asList("3.00", "3.10", "3.12", "3.15", "4.13", "4.86", "5.00")));
     }
 
     /**

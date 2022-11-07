@@ -67,7 +67,7 @@ public class FindCommandParserTest {
                 .newListOfContainsKeywordsPredicates();
         AddressContainsKeywordsPredicate addressPredicate = new AddressContainsKeywordsPredicate(
                 Arrays.asList("Main", "Street"));
-        CapContainsKeywordsPredicate capPredicate = new CapContainsKeywordsPredicate(Arrays.asList("3.5"));
+        CapContainsKeywordsPredicate capPredicate = new CapContainsKeywordsPredicate(Arrays.asList("3.50"));
         EmailContainsKeywordsPredicate emailPredicate = new EmailContainsKeywordsPredicate(Arrays.asList("gmail"));
         GenderContainsKeywordsPredicate genderPredicate = new GenderContainsKeywordsPredicate(Arrays.asList("Female"));
         GraduationDateContainsKeywordsPredicate graduationDatePredicate = new GraduationDateContainsKeywordsPredicate(
