@@ -467,6 +467,7 @@ The following sequence diagram shows how edit student command works:
 <img src="images/EditSequenceDiagram.png" width="550" />
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `EditCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+Also, due to puml limitations, we are not able to clearly show self-invocation methods well. Do take note that arrow supposed to start at beginning of activation bar and end at end of activation bar.
 
 </div>
 
