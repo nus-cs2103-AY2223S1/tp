@@ -455,6 +455,7 @@ In this case, the first `Comment` of the first `Tutor` is deleted.
 The following sequence diagram demonstrates the above operations (excluding the parsing details):
 
 ![DeleteCommentSequenceDiagram](./images/DeleteCommentSequenceDiagram.png)
+
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
