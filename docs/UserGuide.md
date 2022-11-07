@@ -5,7 +5,7 @@ title: User Guide
 
 ![NotionUS](images/NotionUS_FullLogo.png)
 
-## Welcome to the NotionUS
+## Welcome to NotionUS
 
 **NotionUS** is a lightweight but powerful application that can help you manage your assignments and tasks. It sports 
 a sleek and minimalist design which allows you to clearly see your outstanding tasks at a glance.
@@ -120,7 +120,7 @@ Here is an example of autocomplete in action:
 
 ![Autocomplete](images/user-guide/Autocomplete.png)
 
-However, it is recommended to read through the [Features](#features) section to understand the syntax for commands that require additional input.
+However, it is recommended to read through the [Features](#command-features) section to understand the syntax for commands that require additional input.
 
 #### Returning to a previous command : `Up`/`Down` keys
 
@@ -308,7 +308,7 @@ Example: `mark 2`
 
 #### Unmarking a task: `unmark`
 
-Unmark a task, ie mark a task as incomplete.
+Unmark a task, i.e. mark a task as incomplete.
 
 Note: Using `unmark` on a task that is not complete will not change its completion status.
 

@@ -24,7 +24,7 @@ public class MarkCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": marks the task identified by the index number used in the displayed task list as done.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Parameters: " + COMMAND_WORD + " INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_MARK_AS_DONE_SUCCESS = "Marked as done! Task: %1$s";
