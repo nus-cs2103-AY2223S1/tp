@@ -307,7 +307,7 @@ that is used to type all commands.
 
 </div>
 
-:bulb: **Tip**: The [cg](#navigate-to-a-team) command is also used to view all your other groups again.
+:bulb: **Tip**: The [cg](#navigate-to-a-team) command is also used to view all your other groups again. To do this, just type `cg ..` or `cg /` into the command box.
 
 Following the above example, `cg 2` needs to be typed into the command box for you to view
 `Research_And_Development`, since the `Research_And_Development` department is listed as group 2 in the 
@@ -434,7 +434,7 @@ can be used on groups.
 
 Team-related commands in Contactmation begin with the `team` keyword.
 
-### Create a Team
+### Create a team
 
 Contactmation provides the `team new` command to create a new team with a specified team name.
 
@@ -451,7 +451,7 @@ you can type in `TEAM NAME`.
 
 ![Create Team Screenshot](images/user-guide-img/CreateTeamScreenshot.PNG)
 
-### Delete a Team
+### Delete a team
 
 To delete a team from Contactmation, you can use the `team delete` command followed by the team number seen in
 the current display of the team list.
@@ -463,7 +463,7 @@ the current display of the team list.
 - `team delete 1`
     - The above command deletes team number 1 in the list of teams.
     
-### Navigate to a Team
+### Navigate to a team
 
 To perform commands specific to a team, you will have to navigate first to that specific team. You can use the `cg`
 command to navigate to a specified team. This command updates the group scope that is currently being displayed in
@@ -499,7 +499,7 @@ command (`cg`) in Contactmation follows a similar syntax to the change directory
 
 </div>
 
-### Add New contacts within a Team
+### Add new contacts within a team
 
 Once you have navigated to a team, you can add a new contact within that team, which is done through the same command
 as adding a contact to Contactmation.
@@ -524,7 +524,7 @@ the application window.
 - `team remove 3`
     - This command removes contact number 3 in the specified team.
     
-### Creating and Deleting a Subteam
+### Creating and Deleting a subteam
 
 Contactmation allows the creation and deletion of a subteam within a team using the same command as
 [creating a team](#create-a-team) and [deleting a team](#delete-a-team).
@@ -537,7 +537,7 @@ can be used on people.
 
 Contact-related commands precede with the `person` keyword.
 
-### Create a Contact
+### Create a contact
 
 Let us start off by adding a person to Contactmation. To add a contact, you can use the command `person new`, 
 followed by the name of the person. You can also choose to provide the phone number, email and address 
@@ -863,6 +863,13 @@ This depends on the type of computer you are using.
 Due to the wide variety of Linux distributions out there, you will need to search online
 on how you can check for `Java 11` for your respective distribution.
 
+Generally, the process in checking for your `Java` version on your Linux distribution is to:
+
+1. Open the terminal.
+
+
+2. Type `java -version` and see if there is an output. If there is no output, then `Java` is not installed. If there is an output, then check if the version for `Java` is correct. Refer to part 3-5 of the Windows section of this question for more information.
+
 Here are some helpful [guides](https://phoenixnap.com/kb/check-java-version-linux) 
 for popular Linux distributions such as Ubuntu.
 
@@ -884,29 +891,53 @@ group is a subgroup of the root group.
 
 You can do this by exiting using the [exit](#exits-the-program-exit) command.
 
+> How do I check whether I have access rights to Contactmation on my computer?
+
+Contactmation must be stored in a location that does not have administrative rights to function properly,
+such as `C:/` program files.
+
+You can simply save Contactmation into your `D:/` drive instead of your `C:/` drive, or store Contactmation
+on your Desktop.
+
+To check the location of Contactmation, do the following steps:
+
+1. Right-click on Contactmation.
+
+2. Click on `Properties`.
+
+3. You should see the following pop-up:
+
+![address book pop up](images/AddressBookUgLocation.png)
+
+4. Here, we can see that under `Location`, we have `C:/` and `Desktop`. This means
+that the location Contactmation does not need administrative rights to access. Therefore,
+there should be no problem in starting and running Contactmation.
+
 > Why is there an error in my result display stating: `Unable to save your information!`?
 
 This is due to an error in saving your Contactmation details in a separate file.
 To combat this, use the following steps:
 
-1. Your home folder should look something like this at first.
+1. Check if you need administrative rights to access the home folder where Contactmation is stored.
+
+2. Your home folder should look something like this at first.
 
 ![Save file folder](images/FaqSaveFileError.png)
 
-2. There are several files of note, which consists of the `data` folder, `config` file and `preferences`
+3. There are several files of note, which consists of the `data` folder, `config` file and `preferences`
 file. If the `data` folder is not present, then the following steps can be ignored for the
 `data` folder. If the `data` folder is present, then you should also find an `addressbook` file
 within the `data` folder. The following steps are for `config`, `preferences` and the `addressbook` file.
 
-3. Right-click on the file, and select `Properties`. You will be greeted a pop-up similar to this:
+4. Right-click on the file, and select `Properties`. You will be greeted a pop-up similar to this:
 
 ![Save file property pop up](images/FaqSaveFileError2.png)
 
-4. Under `Attributes` in the `General` section, ensure that `Read-only` is **not ticked**.
+5. Under `Attributes` in the `General` section, ensure that `Read-only` is **not ticked**.
 
-5. Click `Apply` and `OK` to save your changes.
+6. Click `Apply` and `OK` to save your changes.
 
-6. Repeat steps 3 to 5 with the `config`, `preferences` and the `addressbook` file.
+7. Repeat steps 4 to 6 with the `config`, `preferences` and the `addressbook` file.
 
 > Will this application also apply to a general, non-professional user?
 
