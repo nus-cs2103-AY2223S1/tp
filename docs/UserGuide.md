@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-IdENTify is a **desktop app made for Ear, Nose and Throat (ENT) administrative staff to manage patients' contact details and appointments, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, idENTify can get your patients/appointments' management tasks done faster than traditional GUI apps.
+idENTify is a **desktop app made for Ear, Nose and Throat (ENT) administrative staff to manage patients' contact details and appointments, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, idENTify can get your patients/appointments' management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -19,7 +19,7 @@ This table might be useful for you to understand more about what those terms mea
 | **GUI**                    | Stands for **G**raphical **U**ser **I**nterface. It is a type of user interface through which users interact with electronic devices via visual indicator representations.                                                                             |
 | **Command Line Interface** | A command-line interface (CLI) is a text-based user interface (UI) used to run programs, manage computer files and interact with the computer.                                                                                                         |
 | **Parameters**             | A parameter is a kind of variable that is used to pass information or data between functions or procedures in a computer. For example, adding a patient into idENTify requires the name of the patient, and the name is a parameter.                   |
-| **Alphanumeric**           | Text that consists only of letters and numbers. For example, abc12 is alphanumeric, but (O_O) is not.                                                                                                                                                  |
+| **Alphanumeric**           | Text that consists only of letters and numbers. For example, `abc12` is alphanumeric, but `(O_O)` is not.                                                                                                                                              |
 | **Recurring**              | Something that occurs repeatedly or periodically. For example, an appointment that repeats every 7 days is considered recurring.                                                                                                                       |
 | **Sort**                   | A process that involves arranging the data into some meaningful order to make it easier to understand, analyze or visualize. For example, sorting patients by name would arrange all patients alphabetically by name.                                  |
 | **Case-sensitive**         | Difference between upper-case and lower-case letters matters. Therefore, not case-sensitive or case-insensitive means capital and lower-case letters are treated as the same.                                                                          |
