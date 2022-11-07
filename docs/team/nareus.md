@@ -9,7 +9,7 @@ title: Project Portfolio Page for Naren Sreekanth
 ##### New Feature: `filter` command
 - Created a new filter feature to filter residents according to the fields by adding and modifying classes such as `AttributesMatchAllKeywordsPredicate`, `AttributesMatchAnyKeywordsPredicate`, `FilterCommand`, `FilterCommandParser` and `Rc4hdbParser` classes.
 - This required a deep level of understanding of each field and how the command can filter the list correctly. New predicate classes were created in order to build this feature. 
-- The implementation was also made to accept strings that contain the value and not just equal to it. <br>
+- The implementation was also made to accept strings that contain the value which took a considerable amount of redesigning how tags are filtered. <br>
 ##### Major Enhancement: Adding specifiers to the `filter` command
 - Enhanced the filter feature to filter according to different specifiers for multiple types of filters by adding `ResidentStringDescriptor` and `Specifier` classes and also modifying the above classes.
 - A new structure of classes was made to store the descriptions within the command, including the specifiers, which took multiple levels of redesign throughout the project. <br>
