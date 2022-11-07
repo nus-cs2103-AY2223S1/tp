@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Kenneth's Project Portfolio Page [@Kennethsim2000](https://github.com/Kennethsim2000)
+title: Kenneth's Project Portfolio Page [Kennethsim2000](https://github.com/Kennethsim2000/)
 ---
 
 ### Project: HackAssist
@@ -13,11 +13,11 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added the Description, Name, Priority and PriorityEnum attributes of a Task (Pull requests [\#40](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/40)).
   * What it does: Creates the basic format of how a task is created.
-  * Justification: A task can be represented by its taskname, a quick description of what the taks is about, and the priority of the task(HIGH,MEDIUM,LOW).
+  * Justification: A task can be represented by its taskname, a quick description of what the task is about, and the priority of the task(HIGH,MEDIUM,LOW).
 
 * **New Feature**: Added the ability to filter a task by task category. (Pull requests [\#88](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/88)).
   * What it does: Allows the user to only display tasks of a particular task category.
-  * Justification: This feature improves the product significantly because a user can choose to display only tasks related to frontend, allowing the user to better focus on the task.
+  * Justification: This feature improves the product significantly because a user can choose to display only tasks of a certain category, allowing the user to better focus on these tasks.
   
 * **New Feature**: Added the tabpane and allowed tasklist to be displayed on the GUI. (Pull requests [\#62](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/62)).
   * What it does: Allows the user to toggle between both the tasklist and contactlist.
@@ -25,12 +25,11 @@ Given below are my contributions to the project.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&tabAuthor=Kennethsim2000&tabRepo=AY2223S1-CS2103T-F12-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
-* **Enhancements to existing features**:
 
 **Bug Fixes:**
 
-* **Display Email in person assigned taskcard**: The person's email is displayed after the person name, reflected in the taskcard component. (Pull requests [\#170](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/170)).
-  * Justification: The contact list allows for a two contacts to have the same name but no duplicate emails. Thus, to be able to tell two contacts with the same name apart, we provide additional information such as the email.
+* **Display Email in assigned person in the taskcard**: The person's email is displayed after the person name, reflected in the taskcard component. (Pull requests [\#170](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/170)).
+  * Justification: The contact list allows for two contacts to have the same name but no duplicate emails. Thus, to be able to tell two contacts with the same name apart, we provide additional information such as the email.
 
 **Tests:**
 
