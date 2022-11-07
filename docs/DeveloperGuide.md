@@ -720,16 +720,19 @@ to occur would likely give the user more matches that were irrelevant instead of
 **Target user profile**:
 * property agent
 * needs to manage a significant number of buyers and properties concurrently
-* often overwhelmed by a disorganised information
+* often overwhelmed by the large amount of disorganised information
 * wants to keep track of all information neatly categorised in one place
 * takes too long to manually go through each property to find one that matches a buyer's requirements
 * can type fast and prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
 **Value proposition**: <br>
-Improves efficiency and convenience by allowing quick text-based inputs --
-use of commands to quickly execute functionalities such as adding, deleting, and filtering entries. Coupled with the
-automation of matching between suitable properties and buyers.
+Property agents can make use of Cobb’s flexible filtering and sorting systems to understand key demographics of their customer base. 
+They can also leverage on Cobb’s finding system to quickly locate buyers that they want to retrieve information about. 
+Finally, they can make use of Cobb’s matching systems to match-make buyers and properties or vice-versa, boosting sales potential.
+These features allow them to manage their database easily and replace tedious manual searching work with a quick command.
+Quick text-based inputs also allow them to save time.
+Cobb's GUI layout also neatly categorises buyers and properties and their respective details, making it easy to take in at a glance. 
 
 ### User stories
 
@@ -1088,7 +1091,7 @@ testers are expected to do more *exploratory* testing.
    Expected: Property list should be filtered to contain only properties that have 'house' as a substring in their name (case-insensitive).
    "x properties listed" message should be displayed, where x refers to the number of properties in the new filtered list.
 
-2. Test case: `findbuyers`
+2. Test case: `findprops`
    Expected: "Invalid command format" error message should be displayed, along with information regarding the syntax of the `findprops`
    command and a correct example.
 
@@ -1108,12 +1111,12 @@ testers are expected to do more *exploratory* testing.
 
 **Prerequisites**: A property that has an owner with name containing "Johnny" must exist in the property list.
 
-1. Test case: `filterproperties -o Johnny`
+1. Test case: `filterprops -o Johnny`
    Expected: Buyer list should be filtered to contain only properties whose owners have names containing "Johnny".
    "x properties listed" message should be displayed, where x refers to the number of properties in the new filtered list.
 
-2. Test case: `filterproperties`, `filterproperties 1`, `filterproperties x`
-   Expected: "Invalid command format" error message should be displayed, along with information regarding the syntax of the `filterproperties`
+2. Test case: `filterprops`, `filterprops 1`, `filterprops x`
+   Expected: "Invalid command format" error message should be displayed, along with information regarding the syntax of the `filterprops`
    command and a correct example.
 
 ### Listing all buyers
@@ -1131,11 +1134,11 @@ testers are expected to do more *exploratory* testing.
 
 **Prerequisites**: Property list should be filtered to show a subset of the original list.
 
-1. Test case: `listproperties`
+1. Test case: `listprops`
    Expected: Property list should return to its original state containing all properties. "Listed all properties" message should be displayed
    on the screen.
 
-2. Test case: `listproperties 1`, `listproperties x`
+2. Test case: `listprops 1`, `listprops x`
    Expected: Same behaviour as above.
 
 ### Matching buyers to properties
