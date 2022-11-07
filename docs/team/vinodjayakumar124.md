@@ -34,7 +34,10 @@ Given below are my contributions to the project.
       * Justification: Marketers who use the application would need to add events in order to keep track of their 
       upcoming events on it. Also, when changes to marketing events occur such as a change in time, they need to be 
       able to edit those details. Lastly, should the entire event be cancelled, they need to able to delete the entire 
-      event. 
+      event.
+      
+    * **Testing**: Added some tests for the `Event` classes and `addEvent`, `deleteEvent` and `editEvent` features
+  (Pull request [#233](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/233)).
 
     * **Refactoring** Refactored the original `edit` command into the `editPerson` command to distinguish from 
   `editEvent` command. (Pull request [#125](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/125)).
