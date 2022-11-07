@@ -5,7 +5,7 @@ title: Pang Kuang Wei's Project Portfolio Page
 
 ### Project: SoConnect
 
-SoConnect is a **contact management and task management desktop app** that aims to help NUS SoC students stay better connected to their school life, both in terms of social connections and school tasks. To better cater to NUS SoC students, SoConnect is **optimized for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). SoConnect has 42 kLoC. SoConnect is written in Java and uses JavaFX.
+SoConnect is a **contact management and task management desktop app** that aims to help NUS SoC students stay better connected to their school life, both in terms of social connections and school tasks. To better cater to NUS SoC students, SoConnect is **optimized for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). SoConnect has around 42 kLoC. SoConnect is written in Java and uses JavaFX.
 
 Given below are my contributions to the project.
 
@@ -19,7 +19,7 @@ Given below are my contributions to the project.
     * What it does: Allows the user to show certain information of all contacts displayed.
     * Justification: This feature improves the product significantly because a user can focus on certain information.
     * Highlights: This enhancement affects the user interface. It required an in-depth analysis of different possible implementations and understanding of the implementation of the user interface.
-  * **Customise Order**: Added the ability to order contacts' information.
+  * **Customise Order Feature**: Added the ability to order contacts' information.
     * What it does: Allows the user to customise the order of information shown in all contacts shown.
     * Justification: This feature improves the product significantly because a user can see information they consider more important above other information.
     * Highlights: This enhancement affects the user interface. It required an in-depth analysis of different possible implementations and understanding of the implementation of the user interface.
@@ -30,7 +30,7 @@ Given below are my contributions to the project.
     * Added documentation of customise features.
   * Developer Guide:
     * Added documentation of implementation of customise order feature.
-    * Added UML diagram for customise order feature
+    * Added UML diagram for customise order feature.
 * **Contributions to team-based tasks**:
   * In charge of testing.
 * **Review/mentoring contributions**:
