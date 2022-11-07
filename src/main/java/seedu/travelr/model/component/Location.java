@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.travelr.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Trip's location in the address book.
+ * Represents a Trip's location in Travelr.
  * Guarantees: immutable; is valid as declared in {@link #isValidLocation(String)}
  */
 public class Location {
@@ -21,9 +21,9 @@ public class Location {
     public final String locationName;
 
     /**
-     * Constructs a {@code Name}.
+     * Constructs a {@code Location}.
      *
-     * @param location A valid name.
+     * @param location A valid location.
      */
     public Location(String location) {
         requireNonNull(location);
@@ -32,7 +32,7 @@ public class Location {
     }
 
     /**
-     * Returns true if a given string is a valid title.
+     * Returns true if a given string is a valid location.
      */
     public static boolean isValidLocation(String test) {
         return test.matches(VALIDATION_REGEX);

@@ -18,7 +18,7 @@ import seedu.travelr.model.trip.Trip;
 
 
 /**
- * Represents the DeleteEventFromTripCommand.
+ * Deletes an Event from a Trip's Itinerary in Travelr.
  */
 public class DeleteEventFromTripCommand extends Command {
 
@@ -41,7 +41,7 @@ public class DeleteEventFromTripCommand extends Command {
     private Title tripToDeleteFrom;
 
     /**
-     * Creates an AddCommand to add the specified {@code Trip}
+     * Creates a DeleteEventFromTripCommand to delete the specified {@code Event} from the specified {@code Trip}.
      */
     public DeleteEventFromTripCommand(Title event, Title trip) {
         requireNonNull(event);

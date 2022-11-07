@@ -8,8 +8,8 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 /**
- * Represents a Trip's date in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}
+ * Represents a Trip's date in Travelr.
+ * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}.
  */
 public class DateField {
 
@@ -22,9 +22,9 @@ public class DateField {
     public final LocalDate dateValue;
 
     /**
-     * Constructs a {@code Name}.
+     * Constructs a {@code DateField}.
      *
-     * @param date A valid name.
+     * @param date A valid date.
      */
     public DateField(String date) {
         requireNonNull(date);
@@ -33,7 +33,7 @@ public class DateField {
     }
 
     /**
-     * Returns true if a given string is a valid title.
+     * Returns true if a given string is a valid date.
      */
     public static boolean isValidDate(String test) {
         try {

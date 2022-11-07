@@ -11,7 +11,7 @@ import seedu.travelr.model.Model;
 import seedu.travelr.model.trip.Trip;
 
 /**
- * Represents the DisplayTripCommand
+ * Displays a trip identified using it's displayed index from Travelr.
  */
 public class DisplayTripCommand extends Command {
 
@@ -28,7 +28,7 @@ public class DisplayTripCommand extends Command {
     private final Index targetIndex;
 
     /**
-     * @param targetIndex
+     * Creates a DisplayTripCommand to display the Trip at the specified {@code Index}.
      */
     public DisplayTripCommand(Index targetIndex) {
         requireNonNull(targetIndex);

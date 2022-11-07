@@ -17,7 +17,7 @@ import seedu.travelr.model.event.Event;
 import seedu.travelr.model.trip.Trip;
 
 /**
- * Represents the AddEventToTripCommand. Extends the Command class.
+ * Adds an existing Event in Travelr to a Trip's Itinerary.
  */
 public class AddEventToTripCommand extends Command {
 
@@ -41,7 +41,7 @@ public class AddEventToTripCommand extends Command {
     private final Title tripToAddInto;
 
     /**
-     * Creates an AddCommand to add the specified {@code Trip}
+     * Creates an AddEventToTripCommand to add the specified {@code Event} to the specified {@code Trip}.
      */
     public AddEventToTripCommand(Title event, Title trip) {
         requireNonNull(event);

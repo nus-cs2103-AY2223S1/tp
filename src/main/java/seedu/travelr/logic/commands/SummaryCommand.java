@@ -4,7 +4,7 @@ import seedu.travelr.logic.commands.exceptions.CommandException;
 import seedu.travelr.model.Model;
 
 /**
- * Represents a SummaryCommand.
+ * Displays a summary of the user's trips and events to the user.
  */
 public class SummaryCommand extends Command {
 

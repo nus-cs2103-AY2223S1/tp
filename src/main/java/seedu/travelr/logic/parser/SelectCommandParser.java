@@ -8,14 +8,14 @@ import seedu.travelr.logic.parser.exceptions.ParseException;
 import seedu.travelr.model.event.EventInItineraryPredicate;
 
 /**
- * Parses input arguments and creates a new SelectCommand object
+ * Parses input arguments and creates a new SelectCommand object.
  */
 public class SelectCommandParser implements Parser<SelectCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the SelectCommand
      * and returns a SelectCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform to the expected format.
      */
     public SelectCommand parse(String args) throws ParseException {
         try {

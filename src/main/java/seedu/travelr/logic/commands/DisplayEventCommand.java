@@ -12,7 +12,7 @@ import seedu.travelr.model.event.Event;
 
 
 /**
- * Represents the DisplayEventCommand
+ * Displays an event identified using it's displayed index from Travelr.
  */
 public class DisplayEventCommand extends Command {
 
@@ -29,7 +29,7 @@ public class DisplayEventCommand extends Command {
     private final Index targetIndex;
 
     /**
-     * @param targetIndex
+     * Creates a DisplayEventCommand to display the Event at the specified {@code Index}.
      */
     public DisplayEventCommand(Index targetIndex) {
         requireNonNull(targetIndex);

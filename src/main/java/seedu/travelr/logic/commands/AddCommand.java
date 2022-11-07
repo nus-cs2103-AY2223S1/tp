@@ -36,7 +36,7 @@ public class AddCommand extends Command {
     private final Trip toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Trip}
+     * Creates an AddCommand to add the specified {@code Trip}.
      */
     public AddCommand(Trip trip) {
         requireNonNull(trip);

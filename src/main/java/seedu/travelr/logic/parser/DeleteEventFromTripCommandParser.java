@@ -11,15 +11,15 @@ import seedu.travelr.logic.parser.exceptions.ParseException;
 import seedu.travelr.model.component.Title;
 
 /**
- * Represents the DeleteEventFromTripCommandParser.
+ * Parses input arguments and creates a new DeleteEventFromTripCommand object.
  */
 public class DeleteEventFromTripCommandParser implements Parser<DeleteEventFromTripCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
-     * and returns an AddCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the DeleteEventFromTripCommand
+     * and returns a DeleteEventFromTripCommand object for execution.
      *
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform to the expected format.
      */
     public DeleteEventFromTripCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =

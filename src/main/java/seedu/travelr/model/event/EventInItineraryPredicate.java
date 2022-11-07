@@ -3,7 +3,7 @@ package seedu.travelr.model.event;
 import java.util.function.Predicate;
 
 import seedu.travelr.commons.core.index.Index;
-import seedu.travelr.model.list.Itineraries;
+import seedu.travelr.model.list.Itinerary;
 
 /**
  * Tests that an {@code Event}'s is found in the given trip's itinerary.
@@ -11,7 +11,7 @@ import seedu.travelr.model.list.Itineraries;
 public class EventInItineraryPredicate implements Predicate<Event> {
 
     private final Index index;
-    private Itineraries itinerary;
+    private Itinerary itinerary;
 
     /**
      * Creates a new EventInItineraryPredicate.
@@ -24,7 +24,7 @@ public class EventInItineraryPredicate implements Predicate<Event> {
     /**
      * Sets the itinerary for this predicate.
      */
-    public void setItinerary(Itineraries itinerary) {
+    public void setItinerary(Itinerary itinerary) {
         this.itinerary = itinerary;
     }
 

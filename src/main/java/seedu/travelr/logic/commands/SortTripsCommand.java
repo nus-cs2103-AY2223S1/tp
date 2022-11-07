@@ -33,7 +33,7 @@ public class SortTripsCommand extends Command {
     private final String sortBy;
 
     /**
-     * Creates an SortTripsCommand to sort the trips.
+     * Creates a SortTripsCommand to sort Trips according to the specified {@code Comparator}.
      */
     public SortTripsCommand(Comparator<Trip> comparator, String sortBy) {
         this.comparator = comparator;

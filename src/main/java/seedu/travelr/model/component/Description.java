@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.travelr.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Trip's title in the address book.
+ * Represents a Trip's description in Travelr.
  * Guarantees: immutable; is valid as declared in {@link #isValidDescription(String)}
  */
 public class Description {
@@ -21,9 +21,9 @@ public class Description {
     public final String value;
 
     /**
-     * Constructs a {@code Name}.
+     * Constructs a {@code Description}.
      *
-     * @param value A valid name.
+     * @param value A valid description.
      */
     public Description(String value) {
         requireNonNull(value);
@@ -32,7 +32,7 @@ public class Description {
     }
 
     /**
-     * Returns true if a given string is a valid title.
+     * Returns true if a given string is a valid description.
      */
     public static boolean isValidDescription(String test) {
         return test.matches(VALIDATION_REGEX);

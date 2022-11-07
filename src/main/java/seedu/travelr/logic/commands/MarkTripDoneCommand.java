@@ -13,7 +13,7 @@ import seedu.travelr.model.trip.Trip;
 
 
 /**
- * Represents the MarkTripDoneCommand. Extends the Command class.
+ * Marks a Trip as completed.
  */
 public class MarkTripDoneCommand extends Command {
 
@@ -28,12 +28,10 @@ public class MarkTripDoneCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Trip marked as done: %1$s";
     public static final String MESSAGE_ALREADY_MARKED_DONE = "This trip already marked as done";
-
-    //private final Title eventToAdd;
     private final Index index;
 
     /**
-     * Creates an AddCommand to add the specified {@code Trip}
+     * Creates a MarkTripCommand to mark the specified {@code Trip} as completed.
      */
     public MarkTripDoneCommand(Index index) {
         requireNonNull(index);

@@ -12,7 +12,7 @@ import seedu.travelr.model.Model;
 import seedu.travelr.model.trip.Trip;
 
 /**
- * Represents the AddEventToTripCommand. Extends the Command class.
+ * Marks a Trip as incomplete.
  */
 public class UnmarkDoneTripCommand extends Command {
 
@@ -32,7 +32,7 @@ public class UnmarkDoneTripCommand extends Command {
     private final Index index;
 
     /**
-     * Creates an AddCommand to add the specified {@code Trip}
+     * Creates an UnmarkDoneTripCommand to mark the specified {@code Trip} as incomplete.
      */
     public UnmarkDoneTripCommand(Index index) {
         requireNonNull(index);

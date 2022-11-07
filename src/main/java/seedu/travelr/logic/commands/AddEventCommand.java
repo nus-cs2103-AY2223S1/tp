@@ -10,7 +10,7 @@ import seedu.travelr.model.event.Event;
 
 
 /**
- * Represents the AddEventCommand. Extends the Command class
+ * Adds an Event to Travelr.
  */
 public class AddEventCommand extends Command {
 
@@ -30,7 +30,7 @@ public class AddEventCommand extends Command {
     private final Event toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Trip}
+     * Creates an AddEventCommand to add the specified {@code Event}.
      */
     public AddEventCommand(Event event) {
         requireNonNull(event);

@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 import javafx.collections.transformation.FilteredList;
 
 /**
- * Tests that an {@code Event}'s is found in Travelr's bucket list.
+ * Tests that an {@code Event}'s is found in Travelr's Bucket List.
  */
 public class AllInBucketListPredicate implements Predicate<Event> {
     private FilteredList<Event> bucketList;

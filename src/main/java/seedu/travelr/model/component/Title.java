@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.travelr.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Trip's title in the address book.
+ * Represents a Trip's title in Travelr.
  * Guarantees: immutable; is valid as declared in {@link #isValidTitle(String)}
  */
 public class Title {
@@ -23,9 +23,9 @@ public class Title {
     public final String fullTitle;
 
     /**
-     * Constructs a {@code Name}.
+     * Constructs a {@code Title}.
      *
-     * @param title A valid name.
+     * @param title A valid title.
      */
     public Title(String title) {
         requireNonNull(title);
@@ -42,7 +42,7 @@ public class Title {
     }
 
     /**
-     * Returns true if a given string is not just
+     * Returns true if a given string is not empty.
      * @return
      */
     public static boolean titleIsNotEmpty(String test) {

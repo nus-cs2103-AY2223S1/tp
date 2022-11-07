@@ -11,10 +11,10 @@ import seedu.travelr.model.component.Description;
 import seedu.travelr.model.component.Location;
 import seedu.travelr.model.component.Title;
 import seedu.travelr.model.event.Event;
-import seedu.travelr.model.list.Itineraries;
+import seedu.travelr.model.list.Itinerary;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Trip in Travelr.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Trip {
@@ -27,10 +27,10 @@ public class Trip {
     private final DateField dateField;
 
     // Data fields
-    private final Itineraries events = new Itineraries();
+    private final Itinerary events = new Itinerary();
 
     /**
-     * Used in JsonAdaptedTrips
+     * Used in JsonAdaptedTrips.
      * Every field must be present and not null.
      */
     public Trip(Title title, Description description, Set<Event> events,
@@ -45,7 +45,7 @@ public class Trip {
     }
 
     /**
-     * Constructs trip
+     * Constructs Trip.
      * Every field must be present and not null.
      */
     public Trip(Title title, Description description, Set<Event> events, Location location, DateField dateField) {
@@ -59,7 +59,7 @@ public class Trip {
     }
 
     /**
-     * Constructs a trip. used in Add Command
+     * Constructs a Trip.
      * Every field must be present and not null.
      */
     public Trip(Title title, Description description, Location location, DateField dateField) {
@@ -116,7 +116,7 @@ public class Trip {
     }
 
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable Events set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public Set<Event> getEvents() {
@@ -124,15 +124,15 @@ public class Trip {
     }
 
     /**
-     * Returns the itinerary of this trip.
+     * Returns the Itinerary of this Trip.
      */
-    public Itineraries getItinerary() {
+    public Itinerary getItinerary() {
         return this.events;
     }
 
     /**
-     * Returns true if both persons have the same name.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both Trips have the same title.
+     * This defines a weaker notion of equality between two Trips.
      */
     public boolean isSameTrip(Trip otherTrip) {
         if (otherTrip == this) {
@@ -144,8 +144,8 @@ public class Trip {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if this Trip and another Object have the same title.
+     * This defines a weaker notion of equality between this Trip and another Object.
      */
     @Override
     public boolean equals(Object other) {
@@ -199,7 +199,7 @@ public class Trip {
     }
 
     /**
-     * Compares this trip against another trip based on whether they are completed.
+     * Compares this Trip against another Trip based on whether they are completed.
      */
     public int compareCompletion(Trip trip) {
         int thisCompletion = done ? 1 : 0;

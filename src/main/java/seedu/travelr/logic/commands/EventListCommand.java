@@ -6,7 +6,7 @@ import seedu.travelr.model.Model;
 import seedu.travelr.model.event.AllInBucketListPredicate;
 
 /**
- * Represents the EventListCommand
+ * Displays the list of Events in Travelr's Bucket List.
  */
 public class EventListCommand extends Command {
 
