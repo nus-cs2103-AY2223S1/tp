@@ -31,19 +31,22 @@ which would burden developers greatly.
 * Updated the help window to be more useful, containing a summary of commands and their syntax in addition to a link to the user guide.
 * Added tests for `FindCommand`, `FindLocationCommand`, `FindTagCommand`, `FindPriceCommand`
 ([#157](https://github.com/AY2223S1-CS2103T-W11-1/tp/pull/157)).
+* Added tests for existing commands for the individual command help feature.
 
 **Documentation**:
 * User Guide: 
-  * Added implementation details for `exit, `edit`, and `clear`.
+  * Added implementation details for `exit`, `edit`, and `clear`.
+  * Grouped commands into different groups based on their type and purpose.
   * Expanded upon the FAQ section.
   * Miscellaneous grammatical and expression improvements for clarity.
 
 * Developer Guide:
   * Added implementation details for handling displaying individual command help, and a diagram for
   the processing of commands.
+  * Initial update of PlantUML diagrams to change class names.
 
 **Community and Team Help**:
-* Owner of the GitHub team organisation and repo.
+* As owner of the GitHub team organisation and repo, handled project administration and set-up.
 * PRs reviewed/commented on (non-exhaustive):
 [#42](https://github.com/AY2223S1-CS2103T-W11-1/tp/pull/42),
 [#147](https://github.com/AY2223S1-CS2103T-W11-1/tp/pull/147),
