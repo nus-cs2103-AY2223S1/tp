@@ -150,7 +150,7 @@ This is the view after executing the `viewClient` command.
 
 ### 4.5 Detailed Meeting View
 
-This is the view after executing the `viewMeeing` command.
+This is the view after executing the `viewMeeting` command.
 
 ![viewMeetingWithDescription](images/ui-description/viewMeetingWithDescription.png)
 
