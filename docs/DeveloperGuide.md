@@ -755,8 +755,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2b. The project does not exist.
-    * 2b1. DevEnable displays an error message that the project does not exist.
+* 2a. The project does not exist.
+    * 2a1. DevEnable displays an error message that the project does not exist.
 
       Use case ends.
 
@@ -772,8 +772,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2b. The project does not exist.
-    * 2b1. DevEnable displays an error message that the project does not exist.
+* 2a. The project does not exist.
+    * 2a1. DevEnable displays an error message that the project does not exist.
 
       Use case ends.
 
@@ -820,8 +820,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2b. The client does not exist.
-    * 2b1. DevEnable displays an error message that the client does not exist.
+* 2a. The client does not exist.
+    * 2a1. DevEnable displays an error message that the client does not exist.
 
       Use case ends.
 
@@ -836,8 +836,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2c. The client does not exist.
-    * 2c1. DevEnable displays an error message that the client does not exist.
+* 2a. The client does not exist.
+    * 2a1. DevEnable displays an error message that the client does not exist.
 
       Use case ends.
 
@@ -990,8 +990,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2b. The issue does not exist.
-    * 2b1. DevEnable displays an error message that the issue does not exist.
+* 2a. The issue does not exist.
+    * 2a1. DevEnable displays an error message that the issue does not exist.
 
       Use case ends.
 	  
