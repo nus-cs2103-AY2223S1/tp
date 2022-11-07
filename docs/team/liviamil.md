@@ -42,11 +42,12 @@ Given below are my contributions to the project.
 * **Documentation**:
     * User Guide:
         * Revamped User Guide for better navigation by segmentation and add in links. [#110](https://github.com/AY2223S1-CS2103T-T08-3/tp/pull/110)
-        * Added documentation for the `person fields`, and features `sort`, `fav`, `social`
-        * Did cosmetic tweaks and bug fixes to existing documentation of features. [#31](https://github.com/AY2223S1-CS2103T-T08-3/tp/pull/31), [#125](https://github.com/AY2223S1-CS2103T-T08-3/tp/pull/125)
-    * Developer Guide:
-        * Added implementation details of the `sort` feature, including the UML diagrams.
-        * Complete use cases for features `sort`, `social`.
+        * Added documentation for the `person fields`, and features `sort`, `fav`, `social`, `list` [#125](https://github.com/AY2223S1-CS2103T-T08-3/tp/pull/125)
+        * Did cosmetic tweaks and bug fixes to existing documentation of features. [#31](https://github.com/AY2223S1-CS2103T-T08-3/tp/pull/31), [#123](https://github.com/AY2223S1-CS2103T-T08-3/tp/pull/123)
+    * Developer Guide: 
+        * Added implementation details of the `sort` feature, including the UML diagrams. [#119](https://github.com/AY2223S1-CS2103T-T08-3/tp/pull/119)
+        * Added use cases for features `list`, `sort`, `social`. [#229](https://github.com/AY2223S1-CS2103T-T08-3/tp/pull/229)
+        * Added manual testing examples for `list`, `sort`, `social`.
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments) examples: [\#40](https://github.com/AY2223S1-CS2103T-T08-3/tp/pull/40)
