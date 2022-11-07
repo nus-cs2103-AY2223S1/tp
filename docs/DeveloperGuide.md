@@ -660,7 +660,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file Expected: Shows the GUI with a set of sample data. The window size may not be optimum.
 
 2. Saving window preferences
 
@@ -687,13 +687,13 @@ Do the test cases sequentially to ensure correct expectation.
        Expected:  A new student is added to the student list. A success message containing details of the added student is shown in result display box and the list of students is shown.
 
     4. Test case: `add student n/Mary i/A0000000J ph/12345678 e/mary@example.com tele/mary m/CS2103T tut/W17`<br>
-       Expected: Conflicting student error message is shown.
+       Expected: Duplicate student error message is shown.
 
-    5. Test case: `add student n/John  i/A0000000B ph/87654321 e/john@example.com tele/john m/missing_module tut/W17`<br>
+    5. Test case: `add student n/John i/A0000000B ph/87654321 e/john@example.com tele/john m/missing_module tut/W17`<br>
        Expected: Error message is shown as module code is invalid. No student is added.
 
-    6. Test case: `add student n/John  i/A0000000B ph/87654321 e/john@example.com tele/john` <br>
-       Expected: Error message is shown as missing prefix. No student is added.
+    6. Test case: `add student n/John i/A0000000B ph/87654321 e/john@example.com tele/john` <br>
+       Expected: Error message is shown as there are missing prefixes. No student is added.
 
     7. Other incorrect add student commands to try: `add student`, `add student n/testing i/sususu ph/ e/ tele/ m/ tut/`, `...` <br>
        Expected: Error message is shown in the result display box.
@@ -702,10 +702,10 @@ Do the test cases sequentially to ensure correct expectation.
 
     1. Prerequisites: Switch to another tab that is not student, for example, using the `switch f/tutorial` command.
 
-    2. Test case: `add student n/Mary i/A123456789J ph/12345678 e/mary@example.com tele/mary m/CS2103T tut/W17`<br>
+    2. Test case: `add student n/Jack i/A123456789J ph/12345678 e/jack@example.com tele/jack m/CS2103T tut/W17`<br>
        Expected: Error message is shown as student id format is invalid. Main display remains the same.
 
-    3. Test case: `add student n/Mary i/A1234567J ph/12345678 e/mary@example.com tele/mary m/CS2103T tut/W17`<br>
+    3. Test case: `add student n/Jack i/A1234567J ph/12345678 e/jack@example.com tele/jack m/CS2103T tut/W17`<br>
        Expected:  A success message containing details of the added student is shown. Main display changes to student and student list is updated.
 
 #### 8.2.2 Editing a student
@@ -886,7 +886,7 @@ Do the test cases sequentially to ensure correct expectation.
 
     1. Prerequisites: Ensure reminder data are empty by using `clear f/reminder` (you may skip this if you do not have any reminders).
 
-    2. Test case: `add reminder n/Mark HW 1 D/2023-03-22 T/14:00 d/10 papers p/HIGH`<br>
+    2. Test case: `add reminder n/Mark HW1 D/2023-03-22 T/14:00 d/10 papers p/HIGH`<br>
        Expected:  A new reminder is added to the reminder list. A success message containing details of the added reminder is shown in result display box and the reminder list on the right is updated.
 
     3. Test case: `add reminder n/Mark HW1 D/2023-03-22 T/14:00 d/10 papers p/HIGH`<br>
@@ -933,7 +933,7 @@ Do the test cases sequentially to ensure correct expectation.
 
 1. Marking a reminder while all reminders are being shown.
 
-    1. Prerequisites: At least 1 incomplete reminder in the reminder list.
+    1. Prerequisites: At least 1 reminder in the reminder list and status of the first reminder is incomplete.
 
     2. Test case: `mark reminder 1`<br>
        Expected: The status of the first reminder will become completed. Reminder list will be updated and colour of reminder will turn from yellow to green. 
@@ -948,7 +948,7 @@ Do the test cases sequentially to ensure correct expectation.
 
 1. Unmarking a reminder while all reminders are being shown.
 
-    1. Prerequisites: At least 1 completed reminder in the reminder list.
+    1. Prerequisites: At least 1 reminder in the reminder list and status of the first reminder is completed.
 
     2. Test case: `unmark reminder 1`<br>
        Expected: The status of the first reminder will become incomplete. Reminder list will be updated and colour of reminder will turn from green to yellow.
