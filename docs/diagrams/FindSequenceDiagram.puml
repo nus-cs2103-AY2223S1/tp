@@ -10,7 +10,7 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":TuthubParser" as TuthubParser LOGIC_COLOR
 participant ":FindByPrefixCommandParser" as FindByPrefixCommandParser LOGIC_COLOR
-participant ":FindByNameCommand" as FindByNameCommand LOGIC_COLOR
+participant "f:FindByNameCommand" as FindByNameCommand LOGIC_COLOR
 participant ":NameContainsKeywordsPredicate" as NameContainsKeywordsPredicate LOGIC_COLOR
 participant "result:CommandResult" as CommandResult LOGIC_COLOR
 end box
@@ -49,13 +49,16 @@ create FindByNameCommand
 FindByPrefixCommandParser -> FindByNameCommand
 activate FindByNameCommand
 
-FindByNameCommand --> FindByPrefixCommandParser
+FindByNameCommand --> FindByPrefixCommandParser : f
 deactivate FindByNameCommand
 
-FindByPrefixCommandParser --> TuthubParser
+FindByPrefixCommandParser --> TuthubParser : f
 deactivate FindByPrefixCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FindByPrefixCommandParser -[hidden]-> TuthubParser
+destroy FindByPrefixCommandParser
 
-TuthubParser --> LogicManager
+TuthubParser --> LogicManager : f
 deactivate TuthubParser
 
 LogicManager --> FindByNameCommand : execute()
