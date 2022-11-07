@@ -95,7 +95,7 @@ Don't be overwhelmed, here's a rundown of the different sections of OmniHealth:
 
 **OmniHealth's GUI:**
 
-<img src="images/UiAnnotated.png" alt="ui-annotated" width="400"/>
+<img src="images/UiAnnotated.png" alt="ui-annotated" width="550" align="middle"/>
 
 ### Navigation
 Managing your patient database is made easy with OmniHealth and navigating it is easier!
@@ -182,7 +182,7 @@ Here are some general guidelines for you to better understand the command format
 | RECORD_DETAILS   | r/   | Details of the record, taking any value but cannot be blank                                                 |
 | MEDICATION       | m/   | Medication prescribed, if any                                                                               |                                                                          
 
-<sub>[return to table of contents ⬆](#table-of-contents)</sub>
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 <div style="page-break-after: always;"></div>
 
@@ -206,7 +206,7 @@ What you should expect to find:
 ![help message](images/helpMessage.png)
 Format: `help`
 
-<sub>[return to table of contents ⬆](#table-of-contents)</sub>
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 #### Listing all patients: `list`
 
@@ -216,7 +216,7 @@ Returns to the patient list from the record list screen.
 
 Format: `list`
 
-<sub>[return to table of contents ⬆](#table-of-contents)</sub>
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 #### Listing all records of a patient: `rlist`
 
@@ -234,7 +234,7 @@ Examples:
 * `rlist 1` displays all records of the 1st patient in the displayed patient list.
 * `find Betsy` followed by `rlist 1` displays all records of the 1st patient in the results of the find command.
 
-<sub>[return to table of contents ⬆](#table-of-contents)</sub>
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 #### Displaying the full list: `showall`
 
@@ -245,7 +245,7 @@ Examples:
 
 Format: `showall`
 
-<sub>[return to table of contents ⬆](#table-of-contents)</sub>
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 #### Exiting the program: `exit`
 
@@ -253,7 +253,7 @@ Format: `showall`
 
 Format: `exit`
 
-<sub>[return to table of contents ⬆](#table-of-contents)</sub>
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 ### Patient Commands
 > Commands relating to the patient list, such as adding and deleting patients
@@ -288,7 +288,7 @@ Examples:
 * `add n/John Doe b/08-08-1988 p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe b/16-06-1996 e/betsycrowe@example.com a/Ang Mo Kio Ave 5, block 13, #02-033 p/1234567 t/PollenAllergy`
 
-<sub>[return to table of contents ⬆](#table-of-contents)</sub>
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 #### Deleting a patient: `delete`
 
@@ -305,7 +305,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd patient in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the find command.
 
-<sub>[return to table of contents ⬆](#table-of-contents)</sub>
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 #### Editing a patient: `edit`
 
@@ -328,7 +328,7 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing tags.
 
-<sub>[return to table of contents ⬆](#table-of-contents)</sub>
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 #### Finding patients by name: `find`
 
@@ -347,7 +347,7 @@ Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
 
-<sub>[return to table of contents ⬆](#table-of-contents)</sub>
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 #### Clearing all patient entries: `clear`
 
@@ -355,7 +355,7 @@ Examples:
 
 Format: `clear`
 
-<sub>[return to table of contents ⬆](#table-of-contents)</sub>
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 ### Appointment Commands
 
@@ -386,7 +386,7 @@ Examples:
 * `appt 1 d/11-09-2024 1200` adds an appointment for the patient with index 1, with a date and time of 11/09/2024, 1200.
 * `appt 2 d/15-11-2025 1400` adds an appointment for the patient with index 2, with a date and time of 15/11/2024, 1400.
 
-<sub>[return to table of contents ⬆](#table-of-contents)</sub>
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 #### Clearing an appointment: `apptcl`
 
@@ -403,7 +403,7 @@ Format: `apptcl PATIENT_INDEX`
 Examples:
 * `apptcl 1` clears the appointment (if any) of the patient with index 1.
 
-<sub>[return to table of contents ⬆](#table-of-contents)</sub>
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 ### Record Commands
 
@@ -428,7 +428,7 @@ Examples:
 * `radd d/11-09-2001 1200 r/Patient tested negative for COVID-19 m/Paracetamol 500mg m/Dextromethorphan`
 * `radd d/28-02-2020 2030 r/Patient experienced vomiting`
 
-<sub>[return to table of contents ⬆](#table-of-contents)</sub>
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 #### Deleting a record: `rdelete`
 
@@ -443,7 +443,7 @@ Format: `rdelete RECORD_INDEX`
 Examples:
 * `rlist 1` then `rdelete 2` deletes the 2nd record from the 1st patient’s listed records.
 
-<sub>[return to table of contents ⬆](#table-of-contents)</sub>
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 #### Editing a record: `redit`
 
@@ -467,7 +467,7 @@ Examples:
 *  `redit 1 d/12-12-2012 1200` Edits the date of the 1st record to be `12-12-2012 1200`.
 *  `redit 2 r/Fever m/` Edits the data of the 2nd record to be `Fever` and clears all existing medication.
 
-<sub>[return to table of contents ⬆](#table-of-contents)</sub>
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 #### Finding records by keyword: `rfind`
 
@@ -490,7 +490,7 @@ Examples:
 * `rfind r/Covid-19` returns a record with `Covid-19` and `Contracted covid-19` stored in its record data field.
 * `rfind r/cold d/10-2022` returns a record that matches both `cold` in the record data field, and has a date within Oct 2022.
 
-<sub>[return to table of contents ⬆](#table-of-contents)</sub>
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 #### Clearing all patient records : `rclear`
 
@@ -498,7 +498,7 @@ Examples:
 
 Format: `rclear`
 
-<sub>[return to table of contents ⬆](#table-of-contents)</sub>
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 ### Saving & Loading
 
@@ -516,7 +516,7 @@ OmniHealth's data are saved as a JSON file `[JAR file location]/data/patientlist
 If your changes to the data file makes its format invalid, OmniHealth will discard all data and start with an empty data file at the next run.
 </div>
 
-<sub>[return to table of contents ⬆](#table-of-contents)</sub>
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 <div style="page-break-after: always;"></div>
 
@@ -541,7 +541,7 @@ choose to overwrite the file. You can now open the application in the new comput
 free services such as Google Drive to store your data online if you wish!
 The data file can be found in the JSON file under `[JAR file location]/data/patientlist.json`.
 
-<sub>[return to table of contents ⬆](#table-of-contents)</sub>
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 <div style="page-break-after: always;"></div>
 
@@ -567,4 +567,4 @@ The data file can be found in the JSON file under `[JAR file location]/data/pati
 | **Find Record**          | `rfind [d/RECORD_DATE] [r/RECORD_DETAILS] [m/MEDICATION] `<br> e.g., `rfind d/10-2022 r/Covid-19 m/Panadol`                                                                             |
 | **Clear Records**        | `rclear`                                                                                                                                                                                |
 
-<sub>[return to table of contents ⬆](#table-of-contents)</sub>
+<sub>[return to table of contents](#table-of-contents)</sub>
