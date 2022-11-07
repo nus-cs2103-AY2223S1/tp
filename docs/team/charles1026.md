@@ -44,8 +44,7 @@ __Code Contributed__: All my code contribution can be viewed here:
     if new information needs to be added.
 - Creating keyboard shortcuts: `CommandBox` and `CommandHistory`
   - What it does: `UP` and `DOWN` arrow keys to navigate previous commands, `Ctrl + Shift + C` to clear the command text.
-  - Justification: Allows medical staff to quickly navigate previous commands and clear input text quickly to reduce
-    the amount of key presses to carry out repetitive tasks.
+  - Justification: Allows medical staff to navigate previous commands and clear input text quickly.
 - Consulting a patient: `consult`
   - What it does: Create a past appointment for the current date and clear the upcoming appointment for the current 
     date(if present). The patient is selected by his/her index.
@@ -86,9 +85,8 @@ __Code Contributed__: All my code contribution can be viewed here:
 
 ###### Contributions to team-based tasks
 - Ensured team was on schedule to meet deadlines and milestone submissions.
-- Split and planned tasks for team members.
 - Checked for code quality and adherence to coding standards.
 
 ###### Review/mentoring contributions
-- Reviewed PRs for team members through the SDLC versions.
-- Aided teammates with debugging and highlighted errors / potential coding standards breaches to teammates.
+- Reviewed [PRs](https://github.com/AY2223S1-CS2103T-W16-3/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3A%40me)
+  for team members through the SDLC versions.
