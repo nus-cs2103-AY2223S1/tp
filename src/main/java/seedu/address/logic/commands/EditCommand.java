@@ -34,11 +34,11 @@ public class EditCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the task identified "
             + "by the index number used in the displayed task list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: " + COMMAND_WORD + " TASK_NUMBER "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_MODULE + "MODULE] "
             + "[" + PREFIX_DEADLINE + "DEADLINE] "
-            + "[" + PREFIX_TAG + "TAG*]\n"
+            + "[" + PREFIX_TAG + "TAG]*\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_MODULE + "CS1231S "
             + PREFIX_DEADLINE + "2022-11-11";
