@@ -328,6 +328,8 @@ Format: `delete user`
 
 [Scroll back to top](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ## Contact list features
 
 These are features that allow you to manage the list of persons in ConnectNUS, so you can keep track of the details you need.
@@ -339,8 +341,6 @@ You may:
 - [Edit contacts](#editing-contacts)
 - [Delete contacts](#deleting-contacts)
 - [Clear all contacts](#clearing-all-contacts)
-
-<div style="page-break-after: always;"></div>
 
 ### Adding contacts
 
@@ -390,6 +390,8 @@ Examples:
 
 [Scroll back to top](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ### Editing contacts
 
 Edit a specified contact from your contact list.
@@ -430,6 +432,8 @@ Examples:
 * `list `followed by  `delete 1` deletes the first contact in the list of all contacts the user has added.
 
 [Scroll back to top](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ### Clearing all contacts
 
@@ -503,7 +507,7 @@ Examples:
 
 * `module 1 curr/CS2101 prev/CS2030S plan/CS2102 rm/GEA1000` adds the first 3 modules into the first contact's respective lists and removes GEA1000 from all module lists
 
-![Edit Modules](images/EditModules.png)
+<img src="images/EditModules.png" width="500">
 
 [Scroll back to top](#table-of-contents)
 
@@ -538,7 +542,7 @@ Examples:
 
 * `modsleft 1` outputs the list of remaining CS Core Requirement modules that you have yet to clear.
 
-![Modules Left](images/ModulesLeft.png)
+<img src="images/ModulesLeft.png" width="500">
 
 [Scroll back to top](#table-of-contents)
 
@@ -557,7 +561,7 @@ Examples:
 
 * `nextsem` moves all current modules into the previous modules list of the user and all contacts and removes all modules in the current modules list.
 
-![Next Semester](images/AfterNextSem.png)
+<img src="images/AfterNextSem.png" width="500">
 
 [Scroll back to top](#table-of-contents)
 
@@ -610,7 +614,7 @@ Format for contact: `timetable INDEX`
 
 A window similar to this will be shown:
 
-<img src="images/TimetableWindow.png" width="300" />
+<img src="images/TimetableWindow.png" width="250" />
 
 * Shows the timetable of the user or specified `INDEX`.
   * The index refers to the index number shown in the displayed contact list.
@@ -690,13 +694,15 @@ Examples:
 
 * `filtertag friends` lists all contacts with a friends tag.
 
-<img src="images/FilterTagFriends.png" width="250">
+<img src="images/FilterTagFriends.png" width="200">
 
 * `filtertag friends family` lists all contacts with either a friends or family tag.
 
 <img src="images/FilterTagFriendsFamily.png" width="250">
 
 [Scroll back to top](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ### Filtering Current Modules
 
@@ -715,6 +721,8 @@ Examples:
 <img src="images/FilterCurrModCS1000.png" width="250">
 
 [Scroll back to top](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ### Filtering Previous Modules
 
@@ -735,6 +743,8 @@ Examples:
 
 [Scroll back to top](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ### Filtering Planned Modules
 
 Filters the planned modules lists of contacts to return a list of persons with any of the planned modules specified, so you can
@@ -753,6 +763,7 @@ Examples:
 
 [Scroll back to top](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
 
 ## Data features
 
@@ -769,7 +780,6 @@ ConnectNUS data is saved in the hard disk automatically after any command that c
 
 [Scroll back to top](#table-of-contents)
 
-
 ### Editing the data file
 
 ConnectNUS data is saved as a JSON file `[JAR file location]/data/ConnectNUS.json`. Advanced users are welcome to update data directly by editing that data file,
@@ -781,6 +791,7 @@ so you can quickly manipulate the data based on areas you wish to edit.
 
 [Scroll back to top](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
 
 ## Other features
 
@@ -801,15 +812,15 @@ Examples:
 
 * To demonstrate the `undo`/`redo` feature, we will first add a contact into our contact list by inputting the command `add n/Ruijie p/91234567 e/kohrj@gmail.com a/Kent Ridge Avenue g/rjkoh t/Classmate curr/CS2100 prev/CS1101S plan/CS2109` which adds module contact Ruijie to our contact list with all the details specified.
 
-![Undo/Redo 0](images/UndoRedoExample0.png)
+<img src="images/UndoRedoExample0.png" width="500">
 
 * `undo` undoes the latest action of adding "Ruijie" as a contact.
 
-![Undo/Redo 1](images/UndoRedoExample1.png)
+<img src="images/UndoRedoExample1.png" width="500">
 
 * `redo` redoes the latest undo action of undoing "Ruijie" as a contact.
 
-![Undo/Redo 2](images/UndoRedoExample2.png)
+<img src="images/UndoRedoExample2.png" width="500">
 
 [Scroll back to top](#table-of-contents)
 
@@ -828,6 +839,8 @@ Exits the program.
 Format: `exit`
 
 [Scroll back to top](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ## Command summary
 
