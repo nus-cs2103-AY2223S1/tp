@@ -203,10 +203,10 @@ Edits the roles of an existing professor in TAB.
 Format: `roles INDEX roles/ROLE1, ROLE2,...`
 
 Edits the roles of the person (whose position must be professor) at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-*  Multiple roles may be added and must be separated by a comma.
+*  Each professor may only have 1 role
 
 Examples:
-*  `roles 1 roles/Coordinator, Lecturer, Advisor` edits the roles of the 1st person to be `Coordinator, Lecturer, Advisor`.
+*  `roles 1 roles/Coordinator` edits the roles of the 1st person(must be a professor) to be `Coordinator`.
 
 
 ### Locating persons by name: `find`
@@ -352,7 +352,7 @@ Action | Format, Examples
 **Assignments** | `assignments assignments/ ASSIGNMENT_1 w/ASSIGNMENT_1_WEIGHTAGE, ASSIGNMENT_2 w/ASSIGNMENT_2_WEIGHTAGE…​`<br> e.g., `assignments assignments/ Assignment 1 w/15, Assignment 2 w/15, Midterms w/30, Finals w/40`
 **Grade** | `grade INDEX assignment/INDEX grade/GRADE` <br> e.g., `grade 2 assignment/1 grade/68/80`
 **Availability** | `avail INDEX avail/AVAILABILITY` <br> e.g., `avail 1 avail/Available`
-**Roles** | `roles INDEX roles/ROLE1, ROLE2,...` <br> e.g., `roles 1 roles/Coordinator, Lecturer, Advisor`
+**Roles** | `roles INDEX roles/ROLE1, ROLE2,...` <br> e.g., `roles 1 roles/Coordinator`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **Filter** | `filter TAG`<br> e.g., `filter CS2103T-T17`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
