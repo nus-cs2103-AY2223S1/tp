@@ -28,14 +28,19 @@ Given below are my contributions to the project.
     * Added the `findEvents` command [\#128](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/128)
         * What it does: Displays all events that match the keywords that have been inputted.
         * Justification: This feature helps the user to better locate the events that they are looking for if they are already managing many events.
+    * Implemented automated testing for `DateTest`, `StartTimeTest`, `FindEventCommandTest`, `ListEventCommandTest` and `DeleteEventTest` [\#231](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/231),
 
 * **Documentation**:
     * User Guide:
         * Added documentation for the `findEvents` command.
         * Removed documentation for the `tag` feature.
         * Updated documentation for `findPersons` command.
+        * Standardised the overall user guide for V1.4.
     * Developer Guide:
         * Added documentation for V1.1 and the `listEvents` command.
+        * Did the manual testing and effort section for V1.4.
+    * ReadMe:
+        * Updated the ReadMe for V1.4.
 
 * **Contributions to team-based tasks**:
     * Setting up the GitHub team org/repo.
@@ -43,5 +48,14 @@ Given below are my contributions to the project.
     * Distributing workload amongst team members.
 
 * **Community**:
-    * PRs reviewed (with non-trivial review comments): [\#57](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/57), [\#99](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/99), [\#108](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/108), [\#133](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/133).
-    * Reported bugs and suggestions for other teams in the class (examples: [\#125](https://github.com/AY2223S1-CS2103T-W17-1/tp/issues/125), [\#129](https://github.com/AY2223S1-CS2103T-W17-1/tp/issues/129), [\#164](https://github.com/AY2223S1-CS2103T-W17-1/tp/issues/164), [\#165](https://github.com/AY2223S1-CS2103T-W17-1/tp/issues/165))
+    * PRs reviewed (with non-trivial review comments): 
+      [\#57](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/57),
+      [\#99](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/99),
+      [\#108](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/108),
+      [\#133](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/133),
+      [\#240](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/240),
+    * Reported bugs and suggestions for other teams in the class (examples: 
+      [\#125](https://github.com/AY2223S1-CS2103T-W17-1/tp/issues/125),
+      [\#129](https://github.com/AY2223S1-CS2103T-W17-1/tp/issues/129),
+      [\#164](https://github.com/AY2223S1-CS2103T-W17-1/tp/issues/164),
+      [\#165](https://github.com/AY2223S1-CS2103T-W17-1/tp/issues/165))
