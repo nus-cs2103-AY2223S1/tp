@@ -159,7 +159,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Adding a Task into the TaskList
+### Adding a task into the taskl ist
 
 #### Motivation
 Allows insertion of new task into the tasklist. 
@@ -198,7 +198,7 @@ The following activity diagram summarizes what happens when a user executes a Ad
   * Pros: Much more intuitive for a task to be assigned to a person name than person email.
   * Cons: This reduces the flexibility of having two person with the same full name.
 
-### Deleting a Task from the TaskList
+### Deleting a task from the task list
 
 #### Motivation
 Allows removal of task from tasklist based on the index of the task.
@@ -252,13 +252,9 @@ The following activity diagram summarizes what happens when a user executes an `
 
 ![EditTaskCommandActivityDiagram](images/EditTaskCommandActivityDiagram.png)
 
-The sequence diagram is shown below:
-
-![EditTaskCommandSequenceDiagram](images/EditTaskCommandSequenceDiagram.png)
-
 ### Display of person and task list
 
-#### 1. Motivation
+#### Motivation
 
 Given below is a partial class diagram of the **old UI**.
 
@@ -276,7 +272,7 @@ to be able to be assigned to multiple tasks. Thus, this would introduce the prob
 Therefore, it is necessary to have a **separate list panel** for tasks, as well as people. This would allow the information for tasks to be
 cleanly displayed seperate from the information releveant to people
 
-#### 2. Implementation of the new UI
+#### Implementation of the new UI
 
 As you can see from the diagrm, the `MainWindow` is filled with both the person and task list
 Similar to the person list, the task list will contain all the tasks currently stored in the application
@@ -287,7 +283,7 @@ By having separate list panels, it will be easier to display the tasks and peopl
 Each task is given a card, similar to the `PersonCard`, that displays the information regarding the task.
 The user can navigate between the dispays using a tab at the top of the UI display.
 
-#### 3. Alternatives considered
+#### Alternatives considered
 
 We went through several iterations and design alternatives when considering the design of our User Interface
 
@@ -323,7 +319,7 @@ Step 4. John is edited to James via the Edit command. This will be reflected in 
 
 Step 5. James is deleted as a Person. The task is changed to be not assigned to anyone.
 
-### Finding a Task by keywords
+### Finding a task by keywords
 
 #### Implementation
 
@@ -341,7 +337,7 @@ The following activity diagram summarizes what happens when a user executes a `f
 
 ![AddTaskActivityDiagram](images/FindTaskCommandActivityDiagram.png)
 
-### Filtering of Task by its Category, Deadline or Both
+### Filtering of task by its category, deadline or both
 
 #### Implementation
 
@@ -360,7 +356,7 @@ The following activity diagram summarizes what happens when a user executes a `f
 ![AddTaskActivityDiagram](images/FilterCommandActivityDiagram.png)
 
 
-### Redisplay full task list after Finding or Filtering
+### Redisplay full task list after finding or filtering
 
 #### Implementation
 
@@ -372,11 +368,7 @@ Once done with the filtered tasklist, the user should be able to revert the list
 
 When the `sort` command is entered, a `Comparator<Task>` is created which will be an instance of either `model.task.SortByDeadline` or `model.task.SortByPriority`. This `Comparator<Task>` will be reversed if the task list needs to be sorted in descending order. The `SortedList<Task>` in the `Model` will then be updated to use the new `Comparator<Task>`.
 
-The following sequence diagram shows what happens when the command is entered:
-
-![SortTaskCommandSequenceDiagram](images/SortTaskCommandSequenceDiagram.png)
-
-### Email Address in Task as Reference (Foreign Key) to Member in Saved Data
+### Email Address in task as reference (foreign key) to member in saved data
 
 #### Motivation
 
@@ -386,7 +378,7 @@ To assign a task to a team member (represented by a `Person` object), we need to
 
 We use a person's email as foreign key as it can uniquely identify a person in our person list. By implementing a foreign key this way, a change in person object is reflected in the task associated to that person. An alternative to this is to keep a person object in a task object but this will prevent the change in the person object that is supposed to be associated with the task object from being displayed in the task as they are two separate objects.
 
-#### Design Considerations
+#### Design considerations
 
 **Aspect: How to Relate a Task and a Person in the Saved Data**
 
@@ -402,7 +394,7 @@ We use a person's email as foreign key as it can uniquely identify a person in o
   * Pros: -.
   * Cons: Changes in `person` object are more prone to not be reflected in their associated `task`.
 
-### Persistent Storage for Task
+### Persistent storage for task
 
 #### Motivation
 
@@ -424,7 +416,7 @@ An overview of this process is shown below in the form of an activity diagram.
 
 ![StorageSaveActivityDiagram](images/StorageSaveActivityDiagram.png)
 
-#### Design Considerations
+#### Design considerations
 
 **Aspect: When to save data?**
 
@@ -442,7 +434,7 @@ An overview of this process is shown below in the form of an activity diagram.
 
 Our current choice of implementation is preferred considering the main use of HackAssist. HackAssist is created mainly for Hackathons where the environment is hectic and stressful and thus, users may tend to forget to save. Moreover, although the computation cost of automatic savings are higher, the difference is not obvious during usage. Thus, we consider the cost of losing saved changes to be worse.
 
-### Persistent Storage for Member
+### Persistent storage for member
 
 The motivation, implementation and design considerations are similar to [Persistent Storage for Task](#persistent-storage-for-task)
 
