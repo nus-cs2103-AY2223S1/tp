@@ -20,11 +20,28 @@ Class UniqueTutorialList
 Class UniqueReminderList
 }
 
-Class Student
+Class Student {
+    -id: StudentId
+    -grade: Grade
+    -email: Email
+    -name: Name
+    -phone: Phone
+    -attendance: Attendance
+    -participation: Participation
+    -telegramHandle: TelegramHandle
+}
 
-Class Consultation
+Class Consultation {
+    -name: ConsultationName
+    -description: ConsultationDescription
+}
 
-Class Reminder
+Class Reminder {
+    -name: ReminderName
+    -priority: ReminderPriority
+    -description: ReminderDescription
+    -status: ReminderStatus
+}
 
 Class Tutorial
 Class TutorialName
@@ -43,6 +60,10 @@ Class DatetimeRange
 }
 
 }
+
+show Student members
+show Consultation members
+show Reminder members
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
