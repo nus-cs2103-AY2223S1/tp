@@ -372,10 +372,9 @@ The AssignTaskCommandParser relies on the ArgumentMultimap abstraction, which he
 ### Task Class Design Considerations:
 ![TaskClassDiagram](images/TaskClassDiagram.png)
 
-The `Task` class composes of the `Contact` class. A `Contact` object is a reference to a `Teammate` in the `AddressBook`, 
-and contains the name of the `Teammate`. We chose this implementation over composing `Task` and `Teammate` directly so 
-that it will be easier to save the `Task`'s assigned contacts in the storage. Furthermore, this prevents duplicated 
-copies of `Teammate` objects created when we restart the app and populate the `Task`s with their assigned contacts.
+The `Task` class composes of the `Contact` class. A `Contact` object is a reference to a `Teammate` in the `AddressBook`, and contains the name of the `Teammate`. We chose this implementation over composing `Task` and `Teammate` directly so that it will be easier to save the `Task`'s assigned contacts in the storage. Furthermore, this prevents duplicated copies of `Teammate` objects created when we restart the app and populate the `Task`s with their assigned contacts.
+
+All `Tasks` are iterated through with their assigned `Contact`s updated upon edition/deletion of a `Teammate`, to ensure `Contact` is always accurate and points to an existing `Teammate`.
 
 
 ### \[Proposed\] Undo/redo feature
