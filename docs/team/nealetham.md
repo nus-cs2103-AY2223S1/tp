@@ -48,8 +48,8 @@ Given below is a summary of my notable contributions to the project. You can fin
 
 These are the UML diagrams I have updated/added to the DG.
 
-![](https://github.com/AY2223S1-CS2103T-W12-3/tp/blob/master/docs/images/UiClassDiagram.png)
+![UiClassDiagram](../images/UiClassDiagram.png)
 
-![](https://github.com/AY2223S1-CS2103T-W12-3/tp/blob/master/docs/images/CommandHistoryClassDiagram.png)
+![CommandHistoryClassDiagram](../images/CommandHistoryClassDiagram.png)
 
-![](https://github.com/AY2223S1-CS2103T-W12-3/tp/blob/master/docs/images/CommandHistoryActivityDiagram.png)
+![CommandHistoryActivityDiagram](../images/CommandHistoryActivityDiagram.png)
