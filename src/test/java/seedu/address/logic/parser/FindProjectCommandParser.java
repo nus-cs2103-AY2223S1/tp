@@ -26,7 +26,7 @@ public class FindProjectCommandParser {
     }
 
     @Test
-    public void parse_argsWithNoPefix_throwsParseException() {
+    public void parse_argsWithNoPrefix_throwsParseException() {
         assertParseFailure(parser, "-f", "abcd", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 FindProjectCommand.MESSAGE_FIND_PROJECT_USAGE));
     }
@@ -53,7 +53,7 @@ public class FindProjectCommandParser {
     @Test
     public void parse_validMultiPrefixWithRepetitionArgs_returnsFindCommand() {
 
-        List<String> projectName = Arrays.asList("DevEnable");
+        List<String> projectName = Arrays.asList("DevEnable", "AB3");
         List<String> repository = Arrays.asList("tp/F-13", "tp/AB3");
         List<String> projectId = Arrays.asList("3, 7");
         List<String> clientLabel = Arrays.asList("Sally James", "Harry Potter");
