@@ -18,13 +18,13 @@ If you are an [SOC](#SOC) student, this app is perfect for you! SoCompiler can g
 
 Even if you are not, fret not! Just have a quick look at the [command summary](#command-summary) (they are rather intuitive) and start typing to give it a try!
 
-For first-time users, we also recommend you to first read through the various [person fields](#person-fields) as well as [module fields](#module-fields) to familarise yourself with what each field represent and their constraints.
+For first-time users, we also recommend you to first read through the various [person fields](#person-fields) as well as [module fields](#module-fields) to familiarise yourself with what each field represent and their constraints.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Table of Contents
 
-- [Overview](#welcome-to-socompilers-user-guide)
+- [Overview](#socompiler-user-guide)
 - [Quick Start](#quick-start)
 - [Things to note](#things-to-note)
 - [Commands](#commands)
@@ -62,7 +62,7 @@ For first-time users, we also recommend you to first read through the various [p
 3. Move the downloaded file to the folder you want to use as the _home folder_ for your SoCompiler. For example, you can just move it to your Desktop for ease of access.
 
 
-4. Double-click the file to start the app. The [GUI](#graphical-user-interface) similar to the one below should appear in a few seconds. Note how the app
+4. Double-click the file to start the app. A [GUI](#graphical-user-interface) similar to the one below should appear in a few seconds. Note how the app
    contains some sample data.<br>
 
    ![Ui](images/Ui.png)
@@ -82,7 +82,7 @@ For first-time users, we also recommend you to first read through the various [p
 * C: Contact List. This is where all contacts are displayed with their individual fields.
 * D: Module List. This is where all modules are displayed with their individual fields.
 
-[Back to top](#welcome-to-socompilers-user-guide)
+[Back to top](#socompiler-user-guide)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -107,7 +107,7 @@ For first-time users, we also recommend you to first read through the various [p
 
 </div>
 
-[Back to top](#welcome-to-socompilers-user-guide)
+[Back to top](#socompiler-user-guide)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -170,7 +170,7 @@ Alternatively, you can click the File button on the top left of the app, followe
 
 SoCompiler data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-[Back to top](#welcome-to-socompilers-user-guide)
+[Back to top](#socompiler-user-guide)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -247,7 +247,7 @@ Examples:
 * `findp yeoh yu` returns contacts `Alex Yeoh` and `Bernice Yu`
   <img src="images/findp.png"/>
 
-[Back to top](#welcome-to-socompilers-user-guide)
+[Back to top](#socompiler-user-guide)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -329,7 +329,7 @@ Examples:
 * `findm Friday` returns modules `CS2101` and `CS2103T`, assuming both modules have lectures and/or tutorials on Friday.
   <img src="images/findm2.png"/>
 
-[Back to top](#welcome-to-socompilers-user-guide)
+[Back to top](#socompiler-user-guide)
 
 ------------------------------------------------------------------------------------------------------------------------
 
@@ -357,7 +357,7 @@ Examples:
 | Tutorial Zoom Link | Zoom link of a tutorial                           | tz/        | ✓        | Must be a valid [URL](#url) which begins with https://                     |           
 | Assignment Details | Details of an assignment, e.g. title and due date | a/         | ✓        | Should only contain [alphanumeric](#alphanumeric) characters and spaces.   |     
 
-[Back to top](#welcome-to-socompilers-user-guide)
+[Back to top](#socompiler-user-guide)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -379,7 +379,7 @@ Examples:
 | [exit](#looking-for-help-help)                            | General        | `exit`                                                                                                                                         |
 | [help](#exiting-the-program-exit)                         | General        | `help`                                                                                                                                         |
 
-[Back to top](#welcome-to-socompilers-user-guide)
+[Back to top](#socompiler-user-guide)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -396,17 +396,17 @@ Examples:
 `NAME` are optional. These fields can be updated later with the
 [editp](#editing-a-contact-editp) or [editm](#editing-a-module-editm) commands.
 
-[Back to top](#welcome-to-socompilers-user-guide)
+[Back to top](#socompiler-user-guide)
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## GLOSSARY
 
-#### Command Line Interface
+#### Command Line Interface (CLI)
 
 * It is an interface where users input text commands to interact with the computer/program.
 
-#### Graphical User Interface
+#### Graphical User Interface (GUI)
 
 * It is an interface where users can interact with apps/electrical devices through graphical icons and audio indicators.
 
@@ -436,4 +436,4 @@ Examples:
 * It refers to the School of Computing from the National University of Singapore.
 
 --------------------------------------------------------------------------------------------------------------------
-[Back to top](#welcome-to-socompilers-user-guide)
+[Back to top](#socompiler-user-guide)
