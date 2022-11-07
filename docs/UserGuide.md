@@ -258,6 +258,12 @@ Friendnancial data is saved in the hard disk automatically after any command tha
 **Q**: Where is the save command?<br>
 **A**: There is no save command as all your contacts and reminders are automatically saved for you. After closing the application, all updated information will be displayed again the next time you open the application.
 
+**Q**: Is my data secure?<br>
+**A**: Yes your data is secure as it is only stored locally on your device. It is akin to using private Excel spreadsheets on your laptop to store your clients information.
+
+**Q**: Am I able to sync my contacts on Friendnancial with the contacts on my mobile phone?
+**A**: Currently, this is not possible. However it is something that we are working on for a future version of Friendnential. We are also working on integration between Friendnancial and even more applications such as Telegram and Google Calendar.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command Summary
