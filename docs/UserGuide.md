@@ -353,6 +353,10 @@ Format: `addRate INDEX rate/<RATING>`
 - The index must be a positive integer 1, 2, 3, …​
 - The rating must be an integer between 1 and 10 inclusive.
 
+<div markdown="span" class="alert alert-warning">:exclamation: **Warning:**
+`rate/0` is **not** a valid rating. If you input `addrate 1 rate/0`, there will be no rating shown. If you input `edit 1 rate/0`, you will remove the current rating of the candidate.
+</div>
+
 Example:
 
 - `addRate 2 rate/5` adds a rating of `5` to the 2nd person in the address book.
