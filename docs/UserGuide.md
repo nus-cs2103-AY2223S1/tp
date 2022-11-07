@@ -272,6 +272,7 @@ Here's an example of how the item planning page looks like:
 ![item planning page](images/itemPlanningUi.png)
 
 <div style="page-break-after: always"></div>
+
 [Commands exclusive to the planning page](#commands-on-the-planning-page) can help you:
 * [add](#adding-an-item--add) new items
 * [edit](#editing-the-details-of-an-item--edit) or [delete](#deleting-an-item--delete) existing items
@@ -401,6 +402,7 @@ Examples:
 * `unplan 4.5` would unschedule the 5th item in the Day 4 item list.
 
 <div style="page-break-after: always"></div>
+
 ### Copying to clipboard : `copy`
 
 Copies the itinerary in a text format onto your device's clipboard so you can paste it anywhere.
