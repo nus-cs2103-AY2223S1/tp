@@ -138,7 +138,7 @@ public class EditClientCommand extends Command {
                 String.format(MESSAGE_EDIT_CLIENT_SUCCESS, editedClient),
                 false,
                 false,
-                "client-" + editedClient.getCamelCaseName()
+                "client-" + editedClient.getName().toString()
             );
         }
         return new CommandResult(String.format(MESSAGE_EDIT_CLIENT_SUCCESS, editedClient));

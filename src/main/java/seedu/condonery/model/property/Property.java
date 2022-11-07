@@ -66,7 +66,7 @@ public class Property {
         if (imageDirectoryPath == null) {
             return null;
         }
-        return imageDirectoryPath.resolve("property-" + getCamelCaseName());
+        return imageDirectoryPath.resolve("property-" + getName());
     }
 
     public PropertyTypeEnum getPropertyTypeEnum() {
@@ -100,26 +100,6 @@ public class Property {
 
     public PropertyStatusEnum getPropertyStatusEnum() {
         return propertyStatusEnum;
-    }
-
-    /**
-     * Returns the name of the property in lowerCamelCase.
-     * This function is used when getting the file name for image storage.
-     * @return property name in lowerCamelCase.
-     */
-    public String getCamelCaseName() {
-        String[] words = name.toString().split("[\\W_]+");
-        StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < words.length; i++) {
-            String word = words[i];
-            if (i == 0) {
-                word = word.isEmpty() ? word : word.toLowerCase();
-            } else {
-                word = word.isEmpty() ? word : Character.toUpperCase(word.charAt(0)) + word.substring(1).toLowerCase();
-            }
-            builder.append(word);
-        }
-        return builder.toString();
     }
 
     /**

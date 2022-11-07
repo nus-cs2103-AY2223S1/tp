@@ -116,7 +116,7 @@ public class AddPropertyCommand extends Command {
                     String.format(MESSAGE_SUCCESS, newPropertyToAdd),
                     false,
                     false,
-                    "property-" + newPropertyToAdd.getCamelCaseName());
+                    "property-" + newPropertyToAdd.getName().toString());
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS, newPropertyToAdd));
     }

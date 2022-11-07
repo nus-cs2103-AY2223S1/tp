@@ -69,7 +69,7 @@ public class Client {
 
     public Path getImagePath() {
         requireAllNonNull(imageDirectoryPath);
-        return imageDirectoryPath.resolve("client-" + getCamelCaseName());
+        return imageDirectoryPath.resolve("client-" + getName().toString());
     }
 
     /**
@@ -83,26 +83,6 @@ public class Client {
 
         return otherClient != null
                 && otherClient.getName().equals(getName());
-    }
-
-    /**
-     * Returns the name of the client in lowerCamelCase.
-     * This function is used when getting the file name for image storage.
-     * @return client name in lowerCamelCase.
-     */
-    public String getCamelCaseName() {
-        String[] words = name.toString().split("[\\W_]+");
-        StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < words.length; i++) {
-            String word = words[i];
-            if (i == 0) {
-                word = word.isEmpty() ? word : word.toLowerCase();
-            } else {
-                word = word.isEmpty() ? word : Character.toUpperCase(word.charAt(0)) + word.substring(1).toLowerCase();
-            }
-            builder.append(word);
-        }
-        return builder.toString();
     }
 
     /**
