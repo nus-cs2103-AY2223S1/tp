@@ -434,6 +434,7 @@ If your changes to the data file makes its format invalid, FRIDAY will ignore al
 | **Getting Help**                             | `help`                                                                                                   |
 | **Exiting FRIDAY**                           | `exit`                                                                                                   |
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 ##Glossary
 
 1. CLI: CLI stands for command line interface. It is a system wherein the user enters textual one line inputs into an input box and the computer responds with a textual or graphical output.

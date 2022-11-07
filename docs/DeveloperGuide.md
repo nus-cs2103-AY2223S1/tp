@@ -340,7 +340,7 @@ The following sequence diagram summarizes the aforementioned steps.
     * Cons: The expected student may not appear at the top of the list due to lexicography.
 * **Alternative 2: Allow users to find by block keywords**
     * Pros: Possibly more accurate searches.
-    * Cons: Higher possibly that search is unsuccessful due to error in keywords.
+    * Cons: Higher possibility that search is unsuccessful due to error in keywords.
 
 ### Mark feature
 FRIDAY allows users to mark the Mastery Checks of certain students as passed.
@@ -373,12 +373,12 @@ The following Sequence Diagram summarises the aforementioned steps.
 ### Design considerations
 
 **Aspect: Should we allow users to mark empty Mastery Checks as passed**
-* **Alternative 1 (current choice): Do not allow marking of empty Mastery Checks**
-  * Pros: More intuitive and makes more sense.
-  * Cons: Difficult to implement as in FRIDAY's architecture, where students with empty Mastery Checks share the same static instance. Marking one of these student's Mastery Check students would also mark the other students' empty Mastery Checks as passed.
-* **Alternative 2: Allow marking of empty Mastery Checks**
-  * Pros: Could be useful in certain cases, for example when a student is exempted from having to complete the Mastery Check.
-  * Cons: These cases are rare. Also does not make sense to allow this as there is an empty Mastery Check means that the student has not scheduled or completed any Mastery Check. Hence, there is nothing to be marked as passed.
+
+|              | **Pros**   | **Cons**                                                                                                                                                                                                                |
+| -------------|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Option 1 (current choice)** <br> Do not allow marking of empty Mastery Checks | More intuitive and makes more sense | May be useful in certain cases                                                                                                                                                                                          |
+| **Option 2** <br> Allow marking of empty Mastery Checks | Could be useful in certain cases, for example when a student is exempted from having to complete the Mastery Check | These cases are rare. Also does not make sense to allow this as there is an empty Mastery Check means that the student has not scheduled or completed any Mastery Check. Hence, there is nothing to be marked as passed |
+
 
 ### Unmark feature
 FRIDAY allows users to unmark the Mastery Checks of certain students as passed. This would be useful in cases where the user accidentally marks the Mastery Check of a student who has not passed their Mastery Check.
@@ -411,12 +411,11 @@ The following Sequence Diagram summarises steps 4 to 5.
 ### Design considerations
 
 **Aspect: Should we allow users to unmark empty Mastery Checks as passed**
-* **Alternative 1 (current choice): Do not allow unmarking of empty Mastery Checks**
-    * Pros: More intuitive and makes more sense.
-    * Cons: Difficult to implement as in FRIDAY's architecture, where students with empty Mastery Checks share the same static instance. Unmarking one of these student's Mastery Check students would also unmark the other students' empty Mastery Checks as passed.
-* **Alternative 2: Allow unmarking of empty Mastery Checks**
-    * Pros: Could be useful in certain cases, for example when the user accidentally marks a student with an empty Mastery Check as passed.
-    * Cons: This would require the marking of empty Mastery Checks to be allowed. Refer to the design considerations in implementing the `mark` command for the cons of doing so.
+
+|                                                                                   | **Pros**   | **Cons**                                                                                                                                                             |
+|-----------------------------------------------------------------------------------|------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Option 1 (current choice)** <br> Do not allow unmarking of empty Mastery Checks | More intuitive and makes more sense | May be useful in certain cases                                                                                                                                       |
+| **Option 2** <br> Allow marking of empty Mastery Checks                           | Could be useful in certain cases, for example when the user accidentally marks a student with an empty Mastery Check as passed | This would require the marking of empty Mastery Checks to be allowed. Refer to the design considerations in implementing the `mark` command for the cons of doing so |
 
 --------------------------------------------------------------------------------------------------------------------
 
