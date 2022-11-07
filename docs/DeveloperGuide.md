@@ -584,6 +584,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | **Index**          | A number that you can use to refer to a particular activity                                         |
 | **Tag**            | A word (eg. `Entertainment`, `Sport`) that you can attach to the activities to easily identify them |
 | **Date**           | A yyyy-mm-dd format date (eg. `2002-02-19`) that you can attach to the activities for matching date |
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
