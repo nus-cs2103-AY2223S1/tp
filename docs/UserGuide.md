@@ -421,7 +421,7 @@ Format: `scores s/SESSION_NAME`
 
 Example:
 
-* `scores s/Tutorial 11` shows the grades of all students for the session **tutorial 1**, as shown below.
+* `scores s/Tutorial 11` shows the grades of all students for the session **Tutorial 11**, as shown below.
   
   <img class="center" src="images/sampleScoresGui.png" width="600"/>
 
