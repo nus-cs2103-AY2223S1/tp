@@ -11,7 +11,7 @@ title: Modtrekt User Guide
     - [General Command Syntax](#general-command-syntax)
     - [Command Quirks](#command-quirks)
 - [Features](#features)
-    - [Parameters and constraints](#parameters-and-constraints)
+    - [Parameters and constraints summary](#parameters-and-constraints-summary)
     - [General](#general)
         - [help command](#help-command-help)
         - [exit command](#exit-command-exit)
