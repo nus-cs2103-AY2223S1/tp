@@ -525,7 +525,7 @@ Purpose: In this proposed feature, the user is provided with  multiple possible 
 For example, currently we can define a client's birthday using the `b/` prefix.
 However, since a birthday is essentially a date, a user may prefer to reuse the `d/` prefix instead (see `addMeeting` command).
 
-##### Implementation
+#### Implementation
 
 `AddClientCommandParser` depends on multiple `Prefix` objects such as `PREFIX_BIRTHDAY`, and `PREFIX_DATE` to identify each field in an `AddClientCommand`.
 Currently, `Prefix` class stores the required prefix word as a `String`.
@@ -537,7 +537,7 @@ From then on, the `AddClientCommand` can be built as expected.
 <img src="images/ProposedPrefixSequenceDiagram.png" width="550" />
 
 
-##### Design Considerations
+#### Design Considerations
 
 **Aspect: How prefixes are stored:**
 
