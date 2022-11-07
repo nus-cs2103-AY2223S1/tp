@@ -114,6 +114,16 @@ These are the GUI components of TaskBook. Components are all described from top 
      * **Event** - A task that involves you attending some event at some date. In the Task List, these tasks are labelled as [E], and are bright purple.
    * **Assignment** - An indicator on whether the task is assigned by you to someone else, or vice versa. 
    * **Assignor/Assignee** - The contact that has been assigned a task by you, or vice versa. This can be yourself.
+
+<figure>
+<p align = "center">
+<img src="images/GuiStatusBar.png">
+</p>
+<figcaption align = "center"><b>The Status Bar (Bottom of the TaskBook window).</b>
+</figcaption>
+</figure>
+
+{:start="6"}
 6. **Status Bar** - Indicates the location in your computer where TaskBook is tracking your Contact List and Task List.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -311,6 +321,7 @@ Adds a task of type todo into your task list.
 
 * `NAME` must be written in full.
 * `NAME` is case-sensitive.
+* `NAME` must exist in the contacts list.
 
 </div>
 
@@ -359,6 +370,7 @@ Adds a task of type deadline into the task list.
 
 * `NAME` must be written in full.
 * `NAME` is case-sensitive.
+* `NAME` must exist in the contacts list.
 
 </div>
 
@@ -406,6 +418,7 @@ Adds a task of type event into your task list.
 
 * `NAME` must be written in full.
 * `NAME` is case-sensitive.
+* `NAME` must exist in the contacts list.
 
 </div>
 
@@ -491,7 +504,6 @@ Edits the specified task in your task list.
 * Edits the task at the specified `INDEX` with the parameters provided.
 * The index refers to the index number shown in the displayed task list.
 * The index **must be a positive integer** 1, 2, 3, …​
-* Parameters you include within the `<>` **must** be different from the original.
 * Only one of assignor `m/` or assignee `o/` can be specified.
     * A task can be **re-assigned to** "Person Y" by providing parameter `o/Person Y`.
     * A task can be **re-assigned by** "Person X" by providing parameter `m/Person X`.
@@ -890,31 +902,31 @@ The tag parameter `#/TAG` accepts only alphanumeric inputs and **no blank spaces
 
 ## Command summary
 
-| Action                        | Format                                                                          | Examples                                                                         |
-|-------------------------------|---------------------------------------------------------------------------------|----------------------------------------------------------------------------------|
-| **Help**                      | `help [c/COMMAND]`                                                              | `help c/help`                                                                    |
-| **View All Tasks**            | `task list`                                                                     | N/A                                                                              |
-| **View Contacts**             | `contact list`                                                                  | N/A                                                                              |
-| **Add Contact**               | `contact add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [#/TAG]…`                  | `contact add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123` |
-| **Add Todo: Assigned by**     | `task todo m/NAME d/DESCRIPTION [#/TAG]…`                                       | `task todo m/John d/Finish user guide #/cs2103 #/homework`                       |
-| **Add Todo: Assigned to**     | `task todo o/NAME d/DESCRIPTION [#/TAG]…`                                       | `task todo o/Sam d/Finish the assignment #/compulsory`                           |
-| **Add Deadline: Assigned by** | `task deadline m/NAME d/DESCRIPTION t/DATE [#/TAG]…`                            | `task deadline m/John d/Finish user guide t/2022-12-31 #/cs2103 #/homework`      |
-| **Add Deadline: Assigned to** | `task deadline o/NAME d/DESCRIPTION t/DATE [#/TAG]…`                            | `task deadline o/Sam d/Finish the assignment t/Jan 31 2022 #/compulsory`         |
-| **Add Event: Assigned by**    | `task event m/NAME d/DESCRIPTION t/DATE [#/TAG]…`                               | `task event m/John d/Finish user guide t/2022-12-31 #/cs2103 #/homework`         |
-| **Add Event: Assigned to**    | `task event o/NAME d/DESCRIPTION t/DATE [#/TAG]…`                               | `task event o/Sam d/Finish the assignment t/Jan 31 2022 #/compulsory`            |
-| **Edit Contact**              | `contact edit i/INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [#/TAG]…` | `contact edit i/2 n/James Lee e/jameslee@example.com #/friend`                   |
-| **Edit Task**                 | `task edit i/INDEX [m/NAME] [o/NAME] [d/DESCRIPTION] [t/DATE] [#/TAG]…`         | `task edit i/2 o/James Lee #/classmate`                                          |
-| **Delete Contact**            | `contact delete i/INDEX`                                                        | `contact delete i/3`                                                             |
-| **Delete Task**               | `task delete i/INDEX`                                                           | `task delete i/3`                                                                |
-| **Sort Contacts**             | `contact sort s/SORT_TYPE`                                                      | `contact sort s/a`                                                               |
-| **Sort Tasks**                | `task sort s/SORT_TYPE`                                                         | `task sort s/a`                                                                  |
-| **Find Contacts**             | `contact find q/QUERY`                                                          | `contact find q/ea`                                                              |
-| **Find Tasks**                | `task find <q/QUERY a/ASSIGNMENT x/DONE>`                                       | `task find a/FROM q/ea`                                                          |
-| **Mark Task**                 | `task mark i/INDEX`                                                             | `task mark i/3`                                                                  |
-| **Unmark Task**               | `task unmark i/INDEX`                                                           | `task unmark i/3`                                                                |
-| **Undo**                      | `undo`                                                                          | N/A                                                                              |
-| **Redo**                      | `redo`                                                                          | N/A                                                                              |
-| **Exiting the program**       | `bye`                                                                           | N/A                                                                              |
-| **History: Previous Command** | `UP` arrow key                                                                  | N/A                                                                              |
-| **History: Next Command**     | `DOWN` arrow key                                                                | N/A                                                                              |
+| Action                        | Format                                                                          | Examples                                                                             |
+|-------------------------------|---------------------------------------------------------------------------------|--------------------------------------------------------------------------------------|
+| **Help**                      | `help [c/COMMAND]`                                                              | `help c/help`                                                                        |
+| **View All Tasks**            | `task list`                                                                     | N/A                                                                                  |
+| **View Contacts**             | `contact list`                                                                  | N/A                                                                                  |
+| **Add Contact**               | `contact add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [#/TAG]…`                  | `contact add n/James Lee p/98765432 e/jameslee@example.com a/John street, block 123` |
+| **Add Todo: Assigned by**     | `task todo m/NAME d/DESCRIPTION [#/TAG]…`                                       | `task todo m/Alex Yeoh d/Finish user guide #/cs2103 #/homework`                      |
+| **Add Todo: Assigned to**     | `task todo o/NAME d/DESCRIPTION [#/TAG]…`                                       | `task todo o/Alex Yeoh d/Finish the assignment #/compulsory`                         |
+| **Add Deadline: Assigned by** | `task deadline m/NAME d/DESCRIPTION t/DATE [#/TAG]…`                            | `task deadline m/Alex Yeoh d/Finish user guide t/2022-12-31 #/cs2103 #/homework`     |
+| **Add Deadline: Assigned to** | `task deadline o/NAME d/DESCRIPTION t/DATE [#/TAG]…`                            | `task deadline o/Alex Yeoh d/Finish the assignment t/Jan 31 2022 #/compulsory`       |
+| **Add Event: Assigned by**    | `task event m/NAME d/DESCRIPTION t/DATE [#/TAG]…`                               | `task event m/Alex Yeoh d/Finish user guide t/2022-12-31 #/cs2103 #/homework`        |
+| **Add Event: Assigned to**    | `task event o/NAME d/DESCRIPTION t/DATE [#/TAG]…`                               | `task event o/Alex Yeoh d/Finish the assignment t/Jan 31 2022 #/compulsory`          |
+| **Edit Contact**              | `contact edit i/INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [#/TAG]…` | `contact edit i/2 e/berniceyu@gmail.com #/friend`                                    |
+| **Edit Task**                 | `task edit i/INDEX [m/NAME] [o/NAME] [d/DESCRIPTION] [t/DATE] [#/TAG]…`         | `task edit i/2 o/Bernice Yu #/classmate`                                             |
+| **Delete Contact**            | `contact delete i/INDEX`                                                        | `contact delete i/3`                                                                 |
+| **Delete Task**               | `task delete i/INDEX`                                                           | `task delete i/3`                                                                    |
+| **Sort Contacts**             | `contact sort s/SORT_TYPE`                                                      | `contact sort s/a`                                                                   |
+| **Sort Tasks**                | `task sort s/SORT_TYPE`                                                         | `task sort s/a`                                                                      |
+| **Find Contacts**             | `contact find q/QUERY`                                                          | `contact find q/ea`                                                                  |
+| **Find Tasks**                | `task find <q/QUERY a/ASSIGNMENT x/DONE>`                                       | `task find a/FROM q/ea`                                                              |
+| **Mark Task**                 | `task mark i/INDEX`                                                             | `task mark i/3`                                                                      |
+| **Unmark Task**               | `task unmark i/INDEX`                                                           | `task unmark i/3`                                                                    |
+| **Undo**                      | `undo`                                                                          | N/A                                                                                  |
+| **Redo**                      | `redo`                                                                          | N/A                                                                                  |
+| **Exiting the program**       | `bye`                                                                           | N/A                                                                                  |
+| **History: Previous Command** | `UP` arrow key                                                                  | N/A                                                                                  |
+| **History: Next Command**     | `DOWN` arrow key                                                                | N/A                                                                                  |
 
