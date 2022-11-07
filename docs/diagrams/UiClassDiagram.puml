@@ -15,6 +15,16 @@ Class PersonListPanel
 Class PersonCard
 Class StatusBarFooter
 Class CommandBox
+Class TeamListPanel
+Class TeamCard
+Class TeamDetailsPanel
+Class TeamDetailsCard
+Class TaskListPanel
+Class TaskCard
+Class MemberListPanel
+Class MemberCard
+Class LinkListPanel
+Class LinkCard
 }
 
 package Model <<Rectangle>> {
@@ -35,6 +45,8 @@ MainWindow *-down-> "1" ResultDisplay
 MainWindow *-down-> "1" PersonListPanel
 MainWindow *-down-> "1" StatusBarFooter
 MainWindow --> "0..1" HelpWindow
+MainWindow *-down-> "1" TeamListPanel
+MainWindow *-down-> "1" TeamDetailsPanel
 
 PersonListPanel -down-> "*" PersonCard
 
@@ -46,6 +58,15 @@ PersonListPanel --|> UiPart
 PersonCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
+TeamDetailsCard -down-|> UiPart
+TeamCard --|> UiPart
+MemberCard --|> UiPart
+MemberListPanel --|> UiPart
+TaskCard --|> UiPart
+TaskListPanel --|> UiPart
+TeamDetailsPanel --|> UiPart
+LinkListPanel --|> UiPart
+LinkCard --|> UiPart
 
 PersonCard ..> Model
 UiManager -right-> Logic
@@ -55,6 +76,22 @@ PersonListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
+
+TeamListPanel --> "1..*" TeamCard
+
+TeamDetailsPanel --> "1" TeamDetailsCard
+TeamDetailsCard --> "1" TaskListPanel
+TeamDetailsCard--> "1" MemberListPanel
+TaskListPanel --> "*" TaskCard
+MemberListPanel --> "*" MemberCard
+TeamDetailsCard --> "1" LinkListPanel
+LinkListPanel --> "*" LinkCard
+
+TeamCard ..> Model
+LinkCard ..> Model
+TeamDetailsCard ..> Model
+TaskCard ..> Model
+MemberCard ..> Model
 
 MainWindow -[hidden]-|> UiPart
 @enduml
