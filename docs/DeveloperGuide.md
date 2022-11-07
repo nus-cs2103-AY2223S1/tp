@@ -565,7 +565,53 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-**Use case: UC6 - Exit the program**
+**Use case: UC6 - Sorting the tutor list**
+
+**MSS**
+
+1. User requests to sort the currently displayed tutor list.
+2. Tuthub sorts the list of tutors based on a prefix (`Rating` or `TeachingNomination`) in a specific order (ascending or descending).
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given `order` is invalid.
+    * 1a1. Tuthub displays an error message.
+    * Step 1a1 is repeated until the proper `order` ("`a`" or "`d`") is entered.
+
+      Use case resumes from step 1.
+
+* 1b. The given `prefix` is invalid.
+    * 1a1. Tuthub displays an error message.
+    * Step 1a1 is repeated until the proper `prefix` ("`r/`" or "`tn/`") is entered.
+
+      Use case resumes from step 1.
+
+**Use case: UC7 - Contacting tutors by email**
+
+**MSS**
+
+1. User requests to mail a single tutor or all tutors.
+2. Tuthub opens the user's default mail client with the "to" specified.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given input is invalid.
+    * 1a1. Tuthub displays an error message.
+    * Step 1a1 is repeated until the proper input (a valid index or "all") is entered.
+      
+      Use case resumes from step 1.
+
+* 2a. The user's default mail client is not found or fails to be launched.
+    * 2a1. Tuthub displays an error message.
+    * Step 2a1 is repeated until the user's default mail client can be accessed.
+      
+      Use case ends.
+
+**Use case: UC8 - Exit the program**
 
 **MSS**
 
@@ -672,6 +718,63 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
+
+### Sorting the tutor list
+
+1. Sorting the tutor list while all tutors are being shown
+
+    1. Prerequisites: List all tutors using the `list` command. Multiple tutors in the list.
+
+    2. Test case: `sort a r/`<br>
+       Expected: The tutor list should be sorted by rating in ascending order (low to high). This can be seen by viewing tutor profiles.
+
+    3. Test case: `sort d tn/`<br>
+       Expected: The tutor list should be sorted by teaching nominations in descending order (high to low). This can be seen by viewing tutor profiles.
+
+    4. Test case: `sort m r/`<br>
+       Expected: No sorting occurs. Error details shown in the status message (`order` is invalid).
+
+    5. Test case: `sort a n/`<br>
+       Expected: No sorting occurs. Error details shown in the status message (`prefix` is invalid).
+
+    6. Test case: `sort a`<br>
+       Expected: No sorting occurs. Error details shown in the status message (Wrong command format).
+
+    7. Other incorrect sort commands to try: `sort`, `sort x p`, `...` (where x is any character other than `a` and `d`, and p is any prefix other than `r/` and `tn/`)<br>
+       Expected: Similar to 4 and 5.
+
+2. Sorting the tutor list after a filter (`find`)
+   1. Prerequisites: Filter the tutor list by executing a `find` command. 
+
+   2. Test case: `sort a r/`<br>
+      Expected: The currently displayed tutor list should be sorted by rating in ascending order (low to high). This can be seen by viewing tutor profiles. 
+
+   3. Test case: `sort d tn/`<br>
+      Expected: The currently displayed tutor list should be sorted by teaching nominations in descending order (high to low). This can be seen by viewing tutor profiles.
+
+   4. Incorrect sort commands from first case.
+      Expected: Same expected results as the first case.
+
+### Mailing tutor(s)
+
+1. Mailing the tutor list while all tutors are being shown
+
+    1. Prerequisites: List all tutors using the `list` command. Multiple tutors in the list.
+
+    2. Test case: `mail 1`<br>
+       Expected: The user's default mail client should be launched with the "to" specified as the first tutor's email.
+
+    3. Test case: `mail all`<br>
+       Expected: The user's default mail client should be launched with the "to" specified as the all tutor emails in this list.
+
+    4. Test case: `mail 0`<br>
+       Expected: User's default mail client not displayed. Error details shown in the status message.
+
+    5. Test case: `mail a`<br>
+       Expected: User's default mail client not displayed. Error details shown in the status message. 
+   
+    6. Other incorrect mail commands to try: `mail`, `mail x`, `mail c` (where x is larger than the current list size, and c is any word excluding `all`)<br>
+       Expected: Similar to 4 and 5.
 
 ### Saving data
 

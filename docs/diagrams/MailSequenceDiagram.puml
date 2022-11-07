@@ -48,7 +48,7 @@ deactivate TuthubParser
 LogicManager --> MailCommand : execute()
 activate MailCommand
 
-MailCommand -> Model : getTutorList()
+MailCommand -> Model : getSortedFilteredTutorList()
 activate Model
 
 Model --> MailCommand
