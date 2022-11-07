@@ -10,14 +10,14 @@ Tuthub is a desktop app for NUS professors who wish to track and choose their ne
 Around 2.8k lines of code according to the [RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=leirdas&breakdown=true)
 
 ### Enhancements implemented
-- **Enhancement**: Updates to the `Tutor` model including[#107](https://github.com/AY2223S1-CS2103T-T15-3/tp/pull/107):
+- **Enhancement**: Updates to the `Tutor` model including ([#107](https://github.com/AY2223S1-CS2103T-T15-3/tp/pull/107)):
   - Added `TeachingNomination` field and associated test code.
   - Purpose:
     - Allows for relevant and valid tutor information to be stored.
     - To include some form of metric for professors to assess the performance of a tutor.
   - Highlights:
     - Adding an attribute to the `Tutor` object was quite a tedious process since it was linked to many components of the codebase. It required proper tracing of the codebase to figure out which part of the codebase would require cahnges while implementing this enhancement.
-- **Modified Feature: `find`[#129](https://github.com/AY2223S1-CS2103T-T15-3/tp/pull/129)**
+- **Modified Feature**: `find` ([#129](https://github.com/AY2223S1-CS2103T-T15-3/tp/pull/129))
   - Modified the find feature to be able to search by the attribute of the tutor specified.
   - Added test cases.
   - Purpose:
