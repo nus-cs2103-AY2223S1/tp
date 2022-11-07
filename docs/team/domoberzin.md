@@ -54,32 +54,8 @@ Given below are my contributions to the project.
   * Highlights: Some commands do not even require flags, for example, `add module CS2103T`.
   * Credits: [Jonathan](https://github.com/jontmy) for introducing and implementing the JCommander skeleton
 
-* **Major Enhancement**: Overhauled the Developer Guide (DG) to better represent the inner workings of our application. 
-  * What it does: Allows the user to get a lower-level understanding of our application.
-  * Justification: The original DG was crafted to describe the inner-workings of the AB3 codebase. Additionally, our application
-  was vastly different from AB3, so extensive modifications to the UML Docs, Use Cases and Architecture of the DG.
-  * Highlights: Since we did not require the modelling of a Person object, all mentions of Person had to be refactored
-  to model a Task or Module object instead.
-  * Credits: Original AB3 DG as a point of reference.
-
-* **Major Enhancement**: Added pictures to illustrate the execution of every command in our application to the User Guide.
-  * What it does: Gives the user a visual representation of the effects their commands have.
-  * Justification: Users may get a better understanding of the commands, and how they work, through the visual representations
-  of the before-and-after of executing a particular command.
-  * Highlights: Pictures are labelled `1` and `2`, with `1` indicating the state of the application prior to the
-  execution of the command, and `2` indicating the state after the command has been executed.
-  * Credits: [All other team members](https://github.com/orgs/AY2223S1-CS2103T-W10-4/people) for their input, feedback 
-  and modifications of the sample images.
-
 * **Minor Enhancement**: Allow case-insensitive module codes in commands, so the user can enter a module code as `CS2103T`, 
 `cS2103t` or `cs2103t`, and the command would work in the same manner.
-
-* **Minor Enhancement**: Add a glossary section to the User Guide, to educate the reader on certain terminology that may be 
-foreign to them.
-
-* **Minor Enhancement**: Add JavaDocs for new methods and classes.
-
-* **Minor Enhancement**: Explain how module data is automatically fetched from NUSMods via module code in the User Guide.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=domoberzin&breakdown=true&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
@@ -90,3 +66,17 @@ for another team and gave suggestions for improvements. Bug reports can be found
 
 * **Other contributions**: 
   * Part of the team that conducted the product demonstration.
+
+<div style="page-break-after: always;"></div>
+
+* **Documentation**:
+  * User Guide:
+    * Added pictures to illustrate the execution of every command in our application to the User Guide.
+    * Added a glossary section to the User Guide, to educate the reader on certain terminology that may be foreign to them.
+    * Added a section on how module data is automatically fetched from NUSMods via module code.
+    * Added sections on the commands for adding and removing tasks.
+  * Developer Guide:
+    * Added a section on the implementation of the task-related commands.
+    * Added information on how NUSMods API and the fallback files are used for module information.
+    * Added use cases and user stories
+  

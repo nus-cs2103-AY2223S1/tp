@@ -61,5 +61,3 @@ Given below are my contributions to the project.
   * Updated the command summary in the user guide for accuracy.
 
 * **Community**: Thoroughly tested [another team's project](https://github.com/AY2223S1-CS2103T-T12-2/tp), reporting bugs found with screenshots and detailed instructions on how to reproduce them [here](https://github.com/jontmy/ped/issues).
-
-* **Other contributions**: Demonstrated ModtRekt in the accompanying module CS2101 in week 12.
