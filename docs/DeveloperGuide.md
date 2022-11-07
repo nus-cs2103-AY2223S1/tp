@@ -361,7 +361,8 @@ This command adds a comment to a tutor in `Tuthub`'s displayed list.
 <ins>Implementation</ins>
 
 The `comment` command involves the logic and model part of Tuthub.
-Most updates are made within the `ModelManager`, which are:
+This involves the updating of the `CommentList` of the tutor via:
+- `CommentList#addComment(Comment comment)` - Adds the `Comment` to the `CommentList`
 
 Given below is an example usage scenario when the user enters a `comment` command in the command box and how the comment is added to the tutor.
 
@@ -370,11 +371,16 @@ Step 1: The user enters the command `comment 1 c/Often late`.
 Step 2: The `TuthubParser` verifies the `CommentCommand#COMMAND_WORD`, and requests `CommentCommandParser` to parse.
 The `CommentCommandParser` verifies the appropriateness of the user input (`index` and `comment`).
 
-Step 3: Upon parsing, a new `CommentCommand` is created based on the index and the comment.
+Step 3: Upon parsing, a new `CommentCommand` is created based on the `index` and the `comment`.
+A new `Comment` is created based on the `comment` parsed. 
 
-Step 4: In the `CommentCommand` execution, the `model#setTutor` is called upon with the `comment` added to the tutor. Then, a new `CommandResult` is created and stored in `LogicManager`.
+Step 4: In the `CommentCommand` execution, the `model#getFilteredTutorList` is called upon to retrieve the list of displayed tutors.
+The `Tutor` whose index matches the `index` is then stored (after accounting for 0 based indexing).
+In this case, the first `Tutor` is selected.
 
-The following sequence diagram demonstrates the above operations (excluding the parsing details):
+Step 5: For this `Tutor`, the `tutor#getComments` is called upon to retrieve the `CommentList` of the `Tutor`.
+
+Step 6: The `Comment` stored in the `CommentCommand` is then added to the `CommentList` through `CommentList#addComment`.
 
 ![CommentSequenceDiagram](./images/CommentSequenceDiagram.png)
 
