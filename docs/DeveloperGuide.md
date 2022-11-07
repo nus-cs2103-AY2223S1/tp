@@ -22,6 +22,7 @@ If you are a developer that recently joined the PayMeLah development team, or a 
 * Jackson for providing the API for parsing JSON files.
 * JUnit for providing a unit testing framework.
 * [Zephyr](https://stackoverflow.com/users/6485651/zephyr) for providing [inspiration](https://stackoverflow.com/a/52458162) for the right-aligned label in the `PersonListPanel` class.
+* Our application is based on the [AddressBook-Level 3 (AB-3)](https://se-education.org/addressbook-level3/) project. All features present in our application are in addition to those already present in AB-3.
 
 --------------------------------------------------------------------------------------------------------------------
 
