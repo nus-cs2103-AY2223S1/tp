@@ -15,7 +15,7 @@ import seedu.address.model.Model;
 import seedu.address.model.task.Task;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a task identified using it's displayed index from the address book.
  */
 public class TaskDeleteCommand extends Command {
 

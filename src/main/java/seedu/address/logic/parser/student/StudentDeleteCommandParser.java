@@ -13,8 +13,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class StudentDeleteCommandParser implements Parser<StudentDeleteCommand> {
     /**
-     * Parses the given {@code String} of arguments in the context of the DeleteCommand
-     * and returns a DeleteCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the StudentDeleteCommand
+     * and returns a StudentDeleteCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public StudentDeleteCommand parse(String args) throws ParseException {

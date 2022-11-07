@@ -19,12 +19,12 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new EditCommand object
+ * Parses input arguments and creates a new TaskEditCommand object
  */
 public class TaskEditCommandParser implements Parser<TaskEditCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the EditCommand
+     * Parses the given {@code String} of arguments in the context of the TaskEditCommand
      * and returns an TaskEditCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */

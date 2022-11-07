@@ -13,7 +13,7 @@ import seedu.address.model.student.TutorialGroup;
 
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all tutorial groups in the address book to the user.
  */
 public class TutorialGroupListCommand extends Command {
 

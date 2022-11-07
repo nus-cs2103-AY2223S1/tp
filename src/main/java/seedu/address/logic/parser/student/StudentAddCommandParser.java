@@ -29,8 +29,8 @@ import seedu.address.model.tag.Tag;
  */
 public class StudentAddCommandParser implements Parser<StudentAddCommand> {
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
-     * and returns an AddCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the StudentAddCommand
+     * and returns an StudentAddCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public StudentAddCommand parse(String args) throws ParseException {

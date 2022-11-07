@@ -18,8 +18,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class GradeViewCommandParser implements Parser<GradeViewCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the EditCommand
-     * and returns an EditCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the GradeViewCommand
+     * and returns an GradeViewCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public GradeViewCommand parse(String args) throws ParseException {

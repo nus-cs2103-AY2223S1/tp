@@ -14,7 +14,7 @@ import seedu.address.model.student.TutorialGroup;
 
 
 /**
- * Adds a tutorial group to the address book.
+ * Filters a tutorial group from the address book.
  */
 public class TutorialGroupFilterCommand extends Command {
     public static final String COMMAND_WORD = "tutorial filter";
@@ -27,7 +27,7 @@ public class TutorialGroupFilterCommand extends Command {
     private final TutorialGroup toFilter;
 
     /**
-     * Creates an TaskAddCommand to add the specified {@code Person}
+     * Creates an TutorialGroupFilterCommand to add the specified {@code TutorialGroup}
      */
     public TutorialGroupFilterCommand(TutorialGroup tutorialGroup) {
         requireNonNull(tutorialGroup);
@@ -42,7 +42,6 @@ public class TutorialGroupFilterCommand extends Command {
             throw new CommandException(MESSAGE_TUTORIAL_NOT_FOUND);
         }
 
-        //model.addTutorialGroup(toFilter);
         List<Student> students = model.getFilteredStudentList();
         model.updateFilteredStudentListByTg(toFilter);
         String result = "";

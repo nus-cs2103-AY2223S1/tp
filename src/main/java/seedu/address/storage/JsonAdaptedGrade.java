@@ -17,7 +17,7 @@ class JsonAdaptedGrade {
     private final boolean grade;
 
     /**
-     * Constructs a {@code JsonAdaptedTask} with the given person details.
+     * Constructs a {@code JsonAdaptedTask} with the given grade details.
      */
     @JsonCreator
     public JsonAdaptedGrade(@JsonProperty("grade") boolean grade) {
@@ -32,9 +32,9 @@ class JsonAdaptedGrade {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Task} object.
+     * Converts this Jackson-friendly adapted grade object into the model's {@code Task} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted grade.
      */
     public Grade toModelType() throws IllegalValueException {
         return this.grade ? Grade.GRADED : Grade.UNGRADED;

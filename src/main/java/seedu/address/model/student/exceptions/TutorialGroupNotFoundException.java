@@ -1,8 +1,8 @@
 package seedu.address.model.student.exceptions;
 
 /**
- * Signals that the operation will result in duplicate Persons (Persons are considered duplicates if they have the same
- * identity).
+ * Signals that the operation will result in TutorialGroup not found (TutorialGroup are considered not found if they
+ * are null).
  */
 public class TutorialGroupNotFoundException extends RuntimeException {
     public TutorialGroupNotFoundException() {

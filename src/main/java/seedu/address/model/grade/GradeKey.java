@@ -27,7 +27,7 @@ public class GradeKey {
     /**
      * Checks if two keys to the Grade are equal.
      * @param otherGradeKey the other Grade key
-     * @return true if the student and the task are equal, false otherwise
+     * @return true if the gradeKey and the task are equal, false otherwise
      */
     @Override
     public boolean equals(final Object otherGradeKey) {

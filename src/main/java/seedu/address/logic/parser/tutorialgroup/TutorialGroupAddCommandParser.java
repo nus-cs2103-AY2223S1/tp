@@ -15,13 +15,13 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.TutorialGroup;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new TutorialGroupAddCommand object
  */
 public class TutorialGroupAddCommandParser implements Parser<TutorialGroupAddCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the TaskAddCommand
-     * and returns an TaskAddCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the TutorialGroupAddCommand
+     * and returns an TutorialGroupAddCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public TutorialGroupAddCommand parse(String args) throws ParseException {

@@ -9,13 +9,13 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new TutorialGroupDeleteCommand object
  */
 public class TutorialGroupDeleteCommandParser implements Parser<TutorialGroupDeleteCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the DeleteCommand
-     * and returns a DeleteCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the TutorialGroupDeleteCommand
+     * and returns a TutorialGroupDeleteCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public TutorialGroupDeleteCommand parse(String args) throws ParseException {

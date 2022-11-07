@@ -22,7 +22,7 @@ import seedu.address.model.task.TaskDescription;
 import seedu.address.model.task.TaskName;
 
 /**
- * Adds a person to the address book.
+ * Adds a task to the address book.
  */
 public class TaskAddCommand extends Command {
 
@@ -52,7 +52,7 @@ public class TaskAddCommand extends Command {
     private final List<String> studentNames;
 
     /**
-     * Creates an TaskAddCommand to add the specified {@code Person}
+     * Creates an TaskAddCommand to add the specified {@code Task}
      */
     public TaskAddCommand(TaskName taskName, TaskDescription taskDesc, TaskDeadline taskDeadline,
                           List<String> studentNames) {

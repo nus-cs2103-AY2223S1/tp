@@ -11,7 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.student.Student;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all students in the address book to the user.
  */
 public class StudentListCommand extends Command {
 

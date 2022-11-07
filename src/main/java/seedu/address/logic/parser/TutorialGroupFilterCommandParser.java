@@ -15,14 +15,14 @@ import seedu.address.model.student.TutorialGroup;
 
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new TutorialGroupFilterCommand object
  */
 public class TutorialGroupFilterCommandParser implements Parser<TutorialGroupFilterCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the TaskAddCommand
-     * and returns an TaskAddCommand object for execution.
-     * @return tutorialFilterCommand
+     * Parses the given {@code String} of arguments in the context of the TutorialGroupFilterCommand
+     * and returns an TutorialGroupFilterCommand object for execution.
+     * @return TutorialGroupFilterCommand
      * @throws ParseException if the user input does not conform the expected format
      */
     public TutorialGroupFilterCommand parse(String args) throws ParseException {

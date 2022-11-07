@@ -19,7 +19,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 
 
 /**
- * Parses input arguments and creates a new EditCommand object
+ * Parses input arguments and creates a new GradeEditCommand object
  */
 public class GradeEditCommandParser implements Parser<GradeEditCommand> {
 

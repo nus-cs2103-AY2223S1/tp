@@ -14,7 +14,7 @@ class JsonAdaptedGradeKey {
     private final JsonAdaptedTask task;
 
     /**
-     * Constructs a {@code JsonAdaptedTask} with the given person details.
+     * Constructs a {@code JsonAdaptedTask} with the given student and task details.
      */
     @JsonCreator
     public JsonAdaptedGradeKey(@JsonProperty("student") JsonAdaptedStudent student,
@@ -24,7 +24,7 @@ class JsonAdaptedGradeKey {
     }
 
     /**
-     * Converts a given {@code Person} into this class for Jackson use.
+     * Converts a given {@code GradeKey} into this class for Jackson use.
      */
     public JsonAdaptedGradeKey(GradeKey source) {
         student = new JsonAdaptedStudent(source.getStudent());
@@ -32,7 +32,7 @@ class JsonAdaptedGradeKey {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Task} object.
+     * Converts this Jackson-friendly adapted gradeKey object into the model's {@code GradeKey} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */

@@ -7,7 +7,7 @@ import seedu.address.commons.util.StringUtil;
 
 
 /**
- * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Task}'s {@code TaskName} matches any of the keywords given.
  */
 public class TaskNameContainsKeywordsPredicate implements Predicate<Task> {
     private final List<String> keywords;

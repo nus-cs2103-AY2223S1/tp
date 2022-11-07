@@ -179,7 +179,7 @@ public class ParserUtil {
      * Parses a {@code String taskDescription} into a {@code TaskDescription}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code taskName} is invalid.
+     * @throws ParseException if the given {@code taskDescription} is invalid.
      */
     public static TaskDescription parseTaskDescription(String taskDescription) throws ParseException {
         requireNonNull(taskDescription);
@@ -194,7 +194,7 @@ public class ParserUtil {
      * Parses a {@code String taskDeadline} into a {@code taskDeadline}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code taskName} is invalid.
+     * @throws ParseException if the given {@code taskDeadline} is invalid.
      */
     public static TaskDeadline parseTaskDeadline(String taskDeadline) throws ParseException {
         requireNonNull(taskDeadline);
@@ -211,7 +211,7 @@ public class ParserUtil {
      * Parses a {@code String grade} into a {@code Grade}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code taskName} is invalid.
+     * @throws ParseException if the given {@code Grade} is invalid.
      */
     public static Grade parseGrade(String grade) throws ParseException {
         requireNonNull(grade);
@@ -221,6 +221,4 @@ public class ParserUtil {
         }
         return (trimmedGrade.equals("T")) ? Grade.GRADED : Grade.UNGRADED;
     }
-
-    // TODO: Add student to task parser util properly.
 }

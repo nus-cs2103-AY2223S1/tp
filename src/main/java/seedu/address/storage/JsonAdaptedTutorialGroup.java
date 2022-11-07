@@ -18,7 +18,7 @@ class JsonAdaptedTutorialGroup {
     //private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     * Constructs a {@code JsonAdaptedTutorialGroup} with the given tutorial group details.
      */
     @JsonCreator
     public JsonAdaptedTutorialGroup(@JsonProperty("tutorialName") String name) {
@@ -26,14 +26,14 @@ class JsonAdaptedTutorialGroup {
     }
 
     /**
-     * Converts a given {@code Person} into this class for Jackson use.
+     * Converts a given {@code TutorialGroup} into this class for Jackson use.
      */
     public JsonAdaptedTutorialGroup(TutorialGroup source) {
         name = source.toString();
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this Jackson-friendly adapted tutorial group object into the model's {@code TutorialGroup} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
@@ -41,10 +41,6 @@ class JsonAdaptedTutorialGroup {
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
-        //if (!Name.isValidName(name)) {
-        //    throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
-        //}
-        //final Name modelName = new Name(name);
 
         return new TutorialGroup(name);
     }

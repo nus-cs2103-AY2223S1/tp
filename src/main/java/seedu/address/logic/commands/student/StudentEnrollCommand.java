@@ -23,7 +23,7 @@ import seedu.address.model.student.TutorialGroup;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing student in the address book.
  */
 public class StudentEnrollCommand extends Command {
 
@@ -47,8 +47,8 @@ public class StudentEnrollCommand extends Command {
     private final EditStudentDescriptor editStudentDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editStudentDescriptor details to edit the person with
+     * @param index of the student in the filtered student list to edit
+     * @param editStudentDescriptor details to edit the student with
      */
     public StudentEnrollCommand(Index index, EditStudentDescriptor editStudentDescriptor) {
         requireNonNull(index);
@@ -90,8 +90,8 @@ public class StudentEnrollCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code Student} with the details of {@code studentToEdit}
+     * edited with {@code editStudentDescriptor}.
      */
     private static Student createEditedStudent(Student studentToEdit, EditStudentDescriptor editStudentDescriptor) {
         assert studentToEdit != null;
@@ -124,7 +124,7 @@ public class StudentEnrollCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
+     * Stores the details to edit the student with. Each non-empty field value will replace the
      * corresponding field value of the person.
      */
     public static class EditStudentDescriptor {
@@ -137,7 +137,7 @@ public class StudentEnrollCommand extends Command {
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
+         * A defensive copy of {@code tutorialGroup} is used internally.
          */
         public EditStudentDescriptor(EditStudentDescriptor toCopy) {
             setTutorialGroup(toCopy.tutorialGroup);

@@ -21,7 +21,7 @@ import seedu.address.model.task.TaskDescription;
 import seedu.address.model.task.TaskName;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new TaskAddCommand object
  */
 public class TaskAddCommandParser implements Parser<TaskAddCommand> {
 

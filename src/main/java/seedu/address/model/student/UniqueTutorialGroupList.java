@@ -23,7 +23,7 @@ public class UniqueTutorialGroupList implements Iterable<TutorialGroup> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent person as the given argument.
+     * Returns true if the list contains an equivalent tutorial group as the given argument.
      */
     public boolean contains(TutorialGroup toCheck) {
         requireNonNull(toCheck);
@@ -31,8 +31,8 @@ public class UniqueTutorialGroupList implements Iterable<TutorialGroup> {
     }
 
     /**
-     * Adds a person to the list.
-     * The person must not already exist in the list.
+     * Adds a tutorial group to the list.
+     * The tutorial group must not already exist in the list.
      */
     public void add(TutorialGroup toAdd) {
         requireNonNull(toAdd);
@@ -44,8 +44,8 @@ public class UniqueTutorialGroupList implements Iterable<TutorialGroup> {
 
 
     /**
-     * Removes the equivalent person from the list.
-     * The person must exist in the list.
+     * Removes the equivalent tutorial group from the list.
+     * The tutorial group must exist in the list.
      */
     public void remove(TutorialGroup toRemove) {
         requireNonNull(toRemove);
@@ -60,8 +60,8 @@ public class UniqueTutorialGroupList implements Iterable<TutorialGroup> {
     }
 
     /**
-     * Replaces the contents of this list with {@code tasks}.
-     * {@code tasks} must not contain duplicate persons.
+     * Replaces the contents of this list with {@code tutorial group}.
+     * {@code tasks} must not contain duplicate tutorial groups.
      */
     public void setTutorialGroups(List<TutorialGroup> groups) {
         requireAllNonNull(groups);
@@ -97,7 +97,7 @@ public class UniqueTutorialGroupList implements Iterable<TutorialGroup> {
     }
 
     /**
-     * Returns true if {@code tasks} contains only unique tasks.
+     * Returns true if {@code tutorial group} contains only unique tutorial group.
      */
     private boolean tutorialGroupsAreUnique(List<TutorialGroup> tasks) {
         for (int i = 0; i < tasks.size() - 1; i++) {
