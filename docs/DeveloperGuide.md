@@ -44,19 +44,19 @@ Afterwards, it talks about notable implementations within the components. Detail
 You may refer to the [table of contents](#table-of-contents) below to quick jump to any particular section.
 
 #### Legend
-1. Text in [blue](#legend) are hyperlinks that direct you to the relevant section of the page or to other websites
-2. Text in **bold** are used to emphasize important details to look out for or to distinguish headers from the rest of the text
-3. Text in `code snippets such as this` are used to show program or code related or used in FABook
+* Text in [blue](#legend) are hyperlinks that direct you to the relevant section of the page or to other websites
+* Text in **bold** are used to emphasize important details to look out for or to distinguish headers from the rest of the text
+* Text in `code snippets such as this` are used to show program or code related or used in FABook
 
 <div markdown="span" class="alert alert-primary">
 
-4. :bulb: **Tips**
+* :bulb: **Tips**
 
 </div>
 
 <div markdown="span" class="alert alert-info">
 
-5. :information_source: **Notes**
+* :information_source: **Notes**
 
 </div>
 
