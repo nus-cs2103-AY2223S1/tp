@@ -91,28 +91,6 @@
             </VBox>
           </items>
         </SplitPane>
-
-        <!--        <VBox fx:id="studentList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">-->
-        <!--          <padding>-->
-        <!--            <Insets bottom="10" left="10" right="10" top="10" />-->
-        <!--          </padding>-->
-        <!--          <StackPane fx:id="studentListPanelPlaceholder" VBox.vgrow="ALWAYS" />-->
-        <!--        </VBox>-->
-
-        <!--        <VBox fx:id="questionList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">-->
-        <!--          <padding>-->
-        <!--            <Insets bottom="10" left="10" right="10" top="10" />-->
-        <!--          </padding>-->
-        <!--          <StackPane fx:id="questionListPanelPlaceholder" VBox.vgrow="ALWAYS" />-->
-        <!--        </VBox>-->
-
-        <!--        <VBox fx:id="tutorialList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">-->
-        <!--          <padding>-->
-        <!--            <Insets bottom="10" left="10" right="10" top="10" />-->
-        <!--          </padding>-->
-        <!--          <StackPane fx:id="tutorialListPanelPlaceholder" VBox.vgrow="ALWAYS" />-->
-        <!--        </VBox>-->
-
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
     </Scene>
