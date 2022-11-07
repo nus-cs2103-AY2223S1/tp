@@ -5,33 +5,34 @@ title: Chee Zhong Wei's Project Portfolio Page
 
 ###Project: SectresBook
 
-Sectresbook helps secretaries to maintain all the information of the members of their club by collating a list
-of identifiable information, past records and future tasks.
+SectresBook helps secretaries to maintain all the information of the members of their club by collating a list of identifiable information, past records and future tasks.
 
 Given below are my contributions to the project.
 
-* **New Feature:** `To be added`
-    * What it does: TODO
-    * Justification: TODO
-    * Highlights: TODO
-    * Credits: TODO
-
-* **Code contributed:** [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=w12&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&tabAuthor=czhongwei&tabRepo=AY2223S1-CS2103T-W12-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
-* **Project Management:**
-    * to be added soon
+* **Code contributed:** [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=w12-2&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=czhongwei&tabRepo=AY2223S1-CS2103T-W12-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 
 * **Enhancements implemented:**
-    * to be added soon
+    * Enhancement: Locate persons by starting digits of phone number in `find`
+      * Originally, `find` only searches for a person that contains the whole keyword in their names
+      * Now, `find` also searches for a person with starting digits of the phone number (at least 2) that matches the keywords provided
+    * Enhancement: Added `Birthday` attribute to `Person`
+      * Each `Person` stores an additional information `Birthday`, which is in dd/mm/yyyy format
+      * The regular expression for `Birthday` includes checks for 29th February on leap years and invalid dates
+    * Enhancement: Changed prefixes of properties
+      * Changed prefixes of properties in commands to better differentiate them
 
 
 * **Contributions to the UG:**
-    * to be added soon
+  * Editted section to include enchancements : `find`
+    * Brief description and explanation
+  * Added screenshots for different features
+  * Wrote up the opening paragraph of the UG
 
 
 * **Contributions to the DG:**
     * to be added soon
 
 
-* **Community:**
-    * to be added soon
+* **Review/mentoring contributions**:
+  * Read through, checked and approved team PRs.
