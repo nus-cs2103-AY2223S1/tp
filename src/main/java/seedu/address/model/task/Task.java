@@ -50,6 +50,11 @@ public class Task {
         this.isDone = isDone;
     }
 
+    /**
+     * Gets the name of the task.
+     *
+     * @return TaskName for the given task.
+     */
     public TaskName getName() {
         return this.taskName;
     }
@@ -69,6 +74,11 @@ public class Task {
         }
     }
 
+    /**
+     * Gets the deadline of the task.
+     *
+     * @return The deadline of the given task.
+     */
     public Optional<LocalDate> getDeadline() {
         return this.deadline;
     }
@@ -77,11 +87,21 @@ public class Task {
         return deadline.isAfter(EARLIEST_DATE) && deadline.isBefore(LATEST_DATE);
     }
 
+    /**
+     * Gets the deadline of the task.
+     *
+     * @return The deadline of the given task in String format.
+     */
     public String getDeadlineString() {
         Optional<String> date = getDeadline().map(LocalDate::toString);
         return date.orElse("");
     }
 
+    /**
+     * Shows whether the task is done or not
+     *
+     * @return The boolean whether the task is done or not.
+     */
     public boolean getIsDone() {
         return this.isDone;
     }
