@@ -6,7 +6,54 @@ skinparam classBackgroundColor STORAGE_COLOR
 skinparam classAttributeIconSize 0
 
 package Storage {
-class StorageManager
+
+package "VenueBook Storage" #F4F6F6{
+Class "<<interface>>\nVenueBookStorage" as VenueBookStorage
+Class JsonAdaptedRecurrentBooking
+Class JsonSerializableVenueBook
+Class JsonAdaptedVenue
+Class JsonVenueBookStorage
 }
+
+package "ResidentBook Storage" #F4F6F6{
+Class "<<interface>>\nResidentBookStorage" as ResidentBookStorage
+Class JsonResidentBookStorage
+Class JsonSerializableResidentBook
+Class JsonAdaptedResident
+Class JsonAdaptedTag
+}
+
+Class "<<interface>>\nStorage" as Storage
+Class "<<interface>>\nDataStorage" as DataStorage
+Class StorageManager
+Class DataStorageManager
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Storage
+
+Storage -left-|> "1" VenueBookStorage
+Storage -right-|> "1" "ResidentBookStorage"
+
+StorageManager .up.|> Storage
+StorageManager -->  "1" DataStorage
+
+DataStorageManager .up.|> DataStorage
+DataStorageManager -up-> "1" "ResidentBookStorage"
+
+DataStorageManager --> "1" VenueBookStorage
+
+JsonVenueBookStorage .up.|> VenueBookStorage
+JsonVenueBookStorage ..> JsonSerializableVenueBook
+JsonSerializableVenueBook --> "*" JsonAdaptedVenue
+JsonAdaptedVenue --> "*" JsonAdaptedRecurrentBooking
+JsonAdaptedRecurrentBooking -up-> "1" JsonAdaptedResident
+
+JsonResidentBookStorage .up.|> ResidentBookStorage
+JsonResidentBookStorage ..> JsonSerializableResidentBook
+JsonSerializableResidentBook --> "*" JsonAdaptedResident
+JsonAdaptedResident --> "*" JsonAdaptedTag
+}
+
+
 
 @enduml
