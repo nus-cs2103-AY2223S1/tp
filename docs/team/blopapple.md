@@ -56,15 +56,17 @@ Added the ability to dynamically edit a task for a patient.
 * Added documentation for the `focus` feature [\#433](https://github.com/AY2223S1-CS2103T-T12-4/tp/pull/433)
 
 ### Contributions to Developer Guide
-* Updated User Profile [\#46]()
-* Updated Value Proposition [\#46]()
-* Updated User Stories [\#46]()
-* Updated Glossary [\#49]()
-* Added implementation details of `listTask` feature [\#230]()
-* Added implementation details of `viewTask` feature [\#230]()
+* Updated User Profile [\#69](https://github.com/AY2223S1-CS2103T-T12-4/tp/pull/69)
+* Updated Value Proposition [\#69](https://github.com/AY2223S1-CS2103T-T12-4/tp/pull/69)
+* Updated Glossary [\#69](https://github.com/AY2223S1-CS2103T-T12-4/tp/pull/69)
+* Updated User Stories [\#435](https://github.com/AY2223S1-CS2103T-T12-4/tp/pull/435)
+* Added implementation details of `listTask` feature [\#230](https://github.com/AY2223S1-CS2103T-T12-4/tp/pull/230)
+* Added implementation details of `viewTask` feature [\#230](https://github.com/AY2223S1-CS2103T-T12-4/tp/pull/230)
+* Updated use cases [\#404](https://github.com/AY2223S1-CS2103T-T12-4/tp/pull/404)
+* Updated UI component [\#440](https://github.com/AY2223S1-CS2103T-T12-4/tp/pull/440)
 
 ### Contributions to team-based tasks
-* Managed the code quality of the codebase
-* Helped with code reviews for major feature changes
+* Managed the code quality of the codebase [\#381](https://github.com/AY2223S1-CS2103T-T12-4/tp/pull/381), [\#387](https://github.com/AY2223S1-CS2103T-T12-4/tp/pull/387), [\#399](https://github.com/AY2223S1-CS2103T-T12-4/tp/pull/399), [\#400](https://github.com/AY2223S1-CS2103T-T12-4/tp/pull/400), [\#431](https://github.com/AY2223S1-CS2103T-T12-4/tp/pull/431)
+* Helped with code reviews for major feature changes [\#186](https://github.com/AY2223S1-CS2103T-T12-4/tp/pull/186), [\#191](https://github.com/AY2223S1-CS2103T-T12-4/tp/pull/191), [\#218](https://github.com/AY2223S1-CS2103T-T12-4/tp/pull/218), [\#250](https://github.com/AY2223S1-CS2103T-T12-4/tp/pull/250), [\#252](https://github.com/AY2223S1-CS2103T-T12-4/tp/pull/252), [\#256](https://github.com/AY2223S1-CS2103T-T12-4/tp/pull/256)
 
 ### Contributions beyond project team
