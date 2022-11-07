@@ -221,6 +221,7 @@ Examples:
 *  `edit 1 p/91234567 e/bob@example.com` Edits the phone number and email address of the 1st applicant to be `91234567` and `bob@example.com` respectively.
 *  `edit 2 n/Betty` Edits the name of the 2nd applicant to be `Betty`.
 
+
 ### 3.6 Deleting an applicant: `delete`
 
 Deletes the specified applicant from InternConnect.
