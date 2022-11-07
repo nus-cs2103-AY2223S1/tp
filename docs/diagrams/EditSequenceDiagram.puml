@@ -5,7 +5,7 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":TuthubParser" as TuthubParser LOGIC_COLOR
 participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
-participant ":EditCommand" as EditCommand LOGIC_COLOR
+participant "e:EditCommand" as EditCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -35,13 +35,16 @@ create EditCommand
 EditCommandParser -> EditCommand:EditCommand(tutor, editTutorDescriptor)
 activate EditCommand
 
-EditCommand --> EditCommandParser
+EditCommand --> EditCommandParser : e
 deactivate EditCommand
 
-EditCommandParser --> TuthubParser
+EditCommandParser --> TuthubParser : e
 deactivate EditCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditCommandParser -[hidden]-> TuthubParser
+destroy EditCommandParser
 
-TuthubParser --> LogicManager
+TuthubParser --> LogicManager : e
 deactivate TuthubParser
 
 LogicManager -> EditCommand : execute()
