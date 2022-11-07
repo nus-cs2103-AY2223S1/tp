@@ -48,7 +48,6 @@ This user guide is optimized for TrackAScholar's most recent version, v1.4.
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
 
 ## **Legend** 
 
