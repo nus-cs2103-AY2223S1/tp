@@ -14,14 +14,14 @@ Given below is a quick overview of the main components and how they interact wit
 * Shutting down the components during shut down
 * Invoking cleanup methods where necessary during shut down
 
-[`Commons`](#common-classes) represents a collection of classes used by multiple other components.
-
 The rest of the App consists of four components.
 
 * [UI](#ui-component): Handles the User Interface of the App
 * [Logic](#logic-component): Handles the execution of commands
 * [Model](#model-component): Holds the data of the App in memory
 * [Storage](#storage-component): Reads data from and writes data to the hard disk
+
+[Commons](#common-classes) contain a collection of classes used by multiple other components.
 
 #### How the architecture components interact with each other
 
