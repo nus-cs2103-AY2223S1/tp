@@ -434,7 +434,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to list persons as per <ins>UC02: List persons</ins>
 1.  User requests to add a debt to specific persons in the list
-1.  PayMeLah displays the debt is added to the persons
+1.  PayMeLah displays that the debt is added to the persons
 
     Use case ends.
 
@@ -456,7 +456,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to list persons as per <ins>UC02: List persons</ins>
 1.  User requests to split a debt among several persons in the list
-1.  PayMeLah displays the split debt is added to the persons
+1.  PayMeLah displays that the split debt is added to the persons
 
     Use case ends.
 
@@ -478,7 +478,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to list persons as per <ins>UC02: List persons</ins>
 1.  User requests to mark specific debts from a specific person in the list as paid
-1.  PayMeLah displays the debts to be marked as paid
+1.  PayMeLah displays the debts are marked as paid
 
     Use case ends.
 
