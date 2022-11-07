@@ -26,8 +26,8 @@ can also serve as a reference for experienced users, with a convenient [Command 
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your computer. To check this, run `java --version` in your command
-   line interface.
+1. Ensure you have Java `11` or above installed in your computer. To tell if you already have the correct version 
+of Java installed on your system, refer to [Checking your system's Java version](#checking-your-systems-java-version).
 
 2. Download the latest `checkUp.jar` from [here](https://github.com/AY2223S1-CS2103T-W16-3/tp/releases).
 
@@ -67,10 +67,11 @@ Here is everything you need to install and set up checkUp. For the best possible
 * Windows
 * macOS
 * Linux <br>
+
 You will also require Java 11 or above to run checkUp. If you don't already have Java 11 or above on your system, head over to [Oracle's Java download page](https://www.oracle.com/java/technologies/downloads/). 
 To tell if you already have the correct version of Java installed on your system, refer to [Checking your system's Java version](#checking-your-systems-java-version).
 
-### Installation Requirements
+### Installation 
 1. Download the latest `checkUp.jar` from [here](https://github.com/AY2223S1-CS2103T-W16-3/tp/releases).
 
 2. Copy the file to the folder you want to use as the _home folder_ for your checkUp instance.
