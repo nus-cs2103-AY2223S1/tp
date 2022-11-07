@@ -241,13 +241,13 @@ The `TruthTable` object is designed to have a list of teams called `UniqueTeamLi
 The following is an example of how a team is added:
 
 Precondition: Team name is valid (it cannot be empty or begin with a space)
-1. User keys in the add team command with the name of the team to be added (e.g. `add_team CS2103`)
+1. User keys in the add team command with the name of the team to be added (e.g. `add team CS2103`)
 2. A team is created added to the team list.
 
 If the team name provided is invalid, an appropriate exception will be thrown and the respective error message will be
 shown to the user.
 
-The following activity diagram summarises the action taken when the `AddTeamCommand` is executed.
+The following activity diagram summarizes the action taken when the `AddTeamCommand` is executed.
 ![AddTeamActivityDiagram](images/AddTeamActivityDiagram.png)
 
 ### Add a Task Feature
@@ -259,13 +259,13 @@ a task is added:
 
 Precondition: Task name is valid (it cannot be empty or have quotation marks).
 
-1. User keys in the add task command with the name of the task to be added (e.g. `add_task Complete Resume`)
+1. User keys in the add task command with the name of the task to be added (e.g. `add task Complete Resume`)
 2. A task is created and added to the current team's task list.
 
 If the task name provided is invalid, an appropriate exception will be thrown and the respective error message will be
 shown to the user.
 
-The following activity diagram summarises the action taken when `AddTaskCommand` is executed:
+The following activity diagram summarizes the action taken when `AddTaskCommand` is executed:
 ![AddTaskActivityDiagram](images/AddTaskActivityDiagram.png)
 
 _Activity diagram of adding a task_
@@ -458,7 +458,7 @@ executed:
 
 - Users can collate different project-related information (e.g. Github project PRs, issues, links to Zoom meetings, and
   Google Docs)
-- Users can visualise teams’ progress easily
+- Users can visualize teams’ progress easily
 - Users can delegate tasks to their teammates conveniently
 - CLI interface to manage project tasks much more quickly than GUI based products
 
@@ -1237,3 +1237,10 @@ testers are expected to do more *exploratory* testing.
 
     2. Test case: `delete link 1`<br>
        Expected: The first link will be deleted from the link list
+   
+    3. Test case: `delete link 0`<br>
+       Expected: No link is deleted. Error details shown in the output box.
+
+    4. Other incorrect delete commands to try: `delete link`, `delete link X`, `...`
+       (where X is a positive integer larger than the link list size)<br>
+       Expected: Similar to previous.

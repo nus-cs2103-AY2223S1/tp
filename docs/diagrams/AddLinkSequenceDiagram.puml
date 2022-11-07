@@ -11,6 +11,7 @@ participant "result:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
+participant ":Link" as Link MODEL_COLOR
 participant ":Model" as Model MODEL_COLOR
 end box
 
@@ -48,7 +49,14 @@ deactivate TruthTableParser
 LogicManager -> AddLinkCommand : execute()
 activate AddLinkCommand
 
-AddLinkCommand -> Model : AddLink()
+create Link
+AddLinkCommand -> Link
+activate Link
+
+Link --> AddLinkCommand : toAdd
+deactivate Link
+
+AddLinkCommand -> Model : addLink()
 activate Model
 
 Model --> AddLinkCommand
