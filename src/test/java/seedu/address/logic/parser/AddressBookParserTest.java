@@ -202,7 +202,7 @@ public class AddressBookParserTest {
         String input = FilterOrderCommand.COMMAND_WORD + " "
                 + PREFIX_ORDER_ADDITIONAL_REQUESTS + "fat "
                 + PREFIX_ORDER_STATUS + "Delivering "
-                + PREFIX_ORDER_PRICE_RANGE + "34.5-79.9";
+                + PREFIX_ORDER_PRICE_RANGE + "34.5,79.9";
         assertEquals(parser.parseCommand(input), command);
     }
 

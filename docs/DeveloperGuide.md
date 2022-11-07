@@ -533,13 +533,13 @@ depends on how far the pet's price is away from the range.
 
 #### Sample calculation of the score
 
-| Field         | Pet         | Order       | Indicator        | Weight | Sub-score      |
-|---------------|-------------|-------------|------------------|--------|----------------|
-| Age           | 4           | 5           | 1 - abs(4 - 5)   | 30     | 0 * 30 = 0     |
-| Color         | White       | Black       | 0                | 100    | 0 * 100 = 0    |
-| Color pattern | Dotted      | None        | 0                | 100    | 0 * 100 = 0    |
-| Species       | Persian cat | Persian cat | 1                | 500    | 1 * 500 = 500  |
-| Price (range) | 50          | 90, 100     | 1 - abs(90 - 50) | 5      | -39 * 5 = -195 |
+| Field         | Pet         | Requested by Order | Indicator        | Weight | Sub-score      |
+|---------------|-------------|--------------------|------------------|--------|----------------|
+| Age           | 4           | 5                  | 1 - abs(4 - 5)   | 30     | 0 * 30 = 0     |
+| Color         | White       | Black              | 0                | 100    | 0 * 100 = 0    |
+| Color pattern | Dotted      | None               | 0                | 100    | 0 * 100 = 0    |
+| Species       | Persian cat | Persian cat        | 1                | 500    | 1 * 500 = 500  |
+| Price (range) | 50          | 90, 100            | 1 - abs(90 - 50) | 5      | -39 * 5 = -195 |
 
 In the implementation of our Match feature, the attributes `Color`, `ColorPattern` and `Species` are **must-have
 attributes** and thus the indicators for these attributes are **must-have indicators**. The attributes `Age` and `Price`

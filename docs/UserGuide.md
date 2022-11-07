@@ -173,7 +173,7 @@ of the terms commonly used in PetCode.
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * If the command format contains round brackets `()`, it means the command format inside `()` is omitted and can be found in another command.<br>
-  e.g. in `add-b n/NAME ph/PHONE_NUMBER e/EMAIL a/ADDRESS l/LOCATION o/add-o(order1 prefixes and fields)…​`, the detailed command format inside `()` is omitted and can be found in [Adding an order to a buyer](#adding-an-order-to-a-buyer--add-o).
+  e.g. in `add-b n/NAME ph/PHONE_NUMBER e/EMAIL a/ADDRESS l/LOCATION o/add-o(order1 prefixes and parameters)…​`, the detailed command format inside `()` is omitted and can be found in [Adding an order to a buyer](#adding-an-order-to-a-buyer--add-o).
 
 * Unless otherwise specified, the order of prefixes does not matter.<br>
   e.g. if the command specifies `n/NAME ph/PHONE_NUMBER`, `ph/PHONE_NUMBER n/NAME` is also acceptable, unless stated otherwise in a particular command.
@@ -312,7 +312,7 @@ Different countries have different regulations on pet sale, and you may need to 
 
 What if the buyer that you want to add already has some orders?
 You can add a buyer and his/her orders in one shot! Check it out below :point_down: <br><br>
-Format: `add-b n/NAME ph/PHONE_NUMBER e/EMAIL a/ADDRESS l/LOCATION o/add-o(order1 prefixes and fields) o/add-o(order2 prefixes and fields)…​`
+Format: `add-b n/NAME ph/PHONE_NUMBER e/EMAIL a/ADDRESS l/LOCATION o/add-o(order1 prefixes and parameters) o/add-o(order2 prefixes and parameters)…​`
 
 <div markdown="span" class="alert alert-primary">
 
@@ -348,6 +348,10 @@ Check out [Add Command using the popup window](#adding-a-contact-with-a-popup-wi
 
 </div>
 
+To help you better understand the hierarchy of the second sample command, we illustrate its structure as follows:
+
+![img.png](images/AddBuyerCommandIllustration.png)
+
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
 
@@ -378,7 +382,7 @@ Example:
 Similar to the [Add Buyer](#adding-a-buyer-add-b) command, you may feel the need to add a supplier together with all the pets he/she sells in one shot.
 Check it out below :point_down:
 
-Format: `add-s n/NAME ph/PHONE_NUMBER e/EMAIL a/ADDRESS l/LOCATION p/add-p(pet1 prefixeds and fields) p/add-p(pet2 prefixeds and fields)…​`
+Format: `add-s n/NAME ph/PHONE_NUMBER e/EMAIL a/ADDRESS l/LOCATION p/add-p(pet1 prefixeds and parameters) p/add-p(pet2 prefixeds and parameters)…​`
 
 <div markdown="span" class="alert alert-primary">
 
@@ -406,6 +410,10 @@ Examples:
 Check out [Add Command using the popup window](#adding-a-contact-with-a-popup-window--add) to add multiple pets when adding a supplier **without prefixes**.
 
 </div>
+
+To help you better understand the hierarchy of the second sample command, we illustrate its structure as follows:
+
+![img.png](AddSupplierCommandIllustration.png)
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
@@ -557,7 +565,7 @@ We have designed an algorithm to give each pet in the storage a score. Pets with
 Pets with higher scores (i.e. more fitting to the order) are displayed on top. If you want to know how we design the algorithm, check out our [Developer Guide](DeveloperGuide.md). <br>
 
 In the current version of PetCode, the score calculation in the algorithm uses a default set of weightages. In the future, you may be able to define your own
-weightages for different fields, such as price, age, species and so on.
+weightages for different parameters, such as price, age, species and so on.
 
 </div>
 
@@ -572,6 +580,7 @@ Example:
 
 </div>
 
+Using the original set of sample data without any modification.
 The following picture shows the display list before the match command is executed.
 
 ![before match command](images/BeforeMatch.png)
@@ -579,6 +588,24 @@ The following picture shows the display list before the match command is execute
 The following picture shows the display list after `match 1` is executed.
 
 ![after match command](images/AfterMatch.png)
+
+To have a deeper understanding of what it does, take a look at the two illustrations below. Take the four pets Shiro,
+Ashy, Page and Snowy as examples. Plum and Buddy are ignored fore simplicity.
+
+**We assign a score to each pet according to how many attributes they have are the same as requested, and how much
+deviation, if they don’t fit, the attributes have from expected values.** The higher the score, the more suitable the pet.
+In this table, Shiro has all requested attributes except its price. However, its price is too far away from the
+acceptable range fifty to ninety, so a very low score. Ashy does not satisfy any requirement, so another low score. In
+the next row, some of Page’s attributes fit and the others do not, so an intermediate score. Finally, although Snowy is
+a little bit old, it satisfies all other requirements. Because the difference between its age and the expected age is
+not too big, it has a high overall score.
+
+![img.png](images/MatchCommandIllustration1.png)
+
+The next thing our app will do is sort the pets by their scores. This sorted list will be displayed on the screen. Now,
+as a smart pet sale coordinator who wants to maximise utility and profit, you may want to sell Snowy to this customer.
+
+![img.png](images/MatchCommandIllustration2.png)
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
@@ -965,7 +992,7 @@ For example, `"John"` is the same as `"John"`, not the same as `"john"`, `"  joh
 ## Summaries
 ### List of Prefixes
 
-These prefixes are for you to indicate different fields when you add a new [buyer](#adding-a-buyer-add-b), a new [deliverer](#adding-a-deliverer-add-d), a new [supplier](#adding-a-supplier-add-s), a new [order](#adding-an-order-to-a-buyer-add-o), or a new [pet](#adding-a-pet-to-a-supplier--add-p).
+These prefixes are for you to indicate different parameters when you add a new [buyer](#adding-a-buyer-add-b), a new [deliverer](#adding-a-deliverer-add-d), a new [supplier](#adding-a-supplier-add-s), a new [order](#adding-an-order-to-a-buyer-add-o), or a new [pet](#adding-a-pet-to-a-supplier--add-p).
 
 | Prefix    | Category        | Meaning                           | Usage                                                                                                                                                                                                                                                                                                                                       | Example                                         |
 |-----------|-----------------|-----------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------|
