@@ -858,11 +858,43 @@ Prerequisite: Only 1 guest to be edited. The guest's index should exist.
       Expected: No guest is edited, because the parameters are invalid. Error details shown in the status message.
       Status bar remains the same.
 
-### MarkRoomsClean/MarkRoomsUnclean
+### MarkRoomsUnclean
 
-1. MarkRoomsClean
-    Test case: 
-2. MarkRoomsUnclean
+Prerequisite: All guests room cleaning status will be edited.
+There should be at least one guest in the list.
+
+   1. Test case: `markroomsunclean`<br>
+      Expected: all guests are marked as unclean, the icon will appear red instead of green
+   2. Test case: `markroomunclean`<br>
+      Expected: The error will throw: "unknown command", because the user is **missing out the `s`**
+   3. Test case: `markRoomsUnclean`<br>
+      Expected: The error will throw: "unknown command", because the user is **Capitalising the `R` or `U`**
+
+### Bill
+
+Prerequisite: Only one guest's bill will be edited.
+The guest should exist in GuestBook. The format and content of the command should be valid.
+The bill value cannot exceed 999,999,999,999.99.
+
+We assume that there is a guest named John in the list.
+
+   1. Test case: `bill 1 b/10`
+      Expected: the bill for guest will be added from $0 to $10.
+   2. Test case: `bill 1 b/-10`
+      Expected: the bill for guest will be subtracted from $10 to $0.
+   3. Test case: `bill 2 b/10`
+      Expected: the error will throw because the second guest is not existing in the list.
+   4. Test case: `bill 1 b/9999999999999`
+      Expected: the error will throw because the bill exceed 999,999,999,999.99.
+   5. Test case: `bill 1 b/-10`
+      Expected: the error will throw because the bill cannot be negative.
+
+### Clear
+Prerequisite: all guests in the guestbook will be deleted.
+This command is irreversible.
+
+   1. Test case: `clear`
+      Expected: all guests in the guest book will be deleted
 
 ### Saving data
 
