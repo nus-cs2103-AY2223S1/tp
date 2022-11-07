@@ -1,0 +1,27 @@
+@startuml
+start
+:Check Subcommand;
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([subcommand is users])
+:Create and execute ListUsersCommand;
+:UI updates to show all users;
+elseif () then ([subcommand is books])
+:Create and execute ListBooksCommand;
+:UI updates to show all books;
+elseif () then ([subcommand is loans))
+:Create and execute ListLoansCommand;
+:UI updates to show all loans;
+elseif () then ([subcommand is overdue))
+:Create and execute ListOverdueCommand;
+:UI updates to show all overdue loans;
+elseif () then ([subcommand is all])
+:Create and execute ListAllCommand;
+:UI updates to show all books and users;
+else ([unknown subcommand])
+:Show error message;
+
+endif
+stop
+@enduml
