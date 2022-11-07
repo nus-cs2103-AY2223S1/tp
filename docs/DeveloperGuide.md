@@ -834,6 +834,7 @@ testers are expected to do more *exploratory* testing.
     2. Test case: `clear`
 
         Expected: All contacts are deleted from the contact list.
+        
 7. Saveme
    
     1. Prerequisites: A task with the same name and module as below does not already exist. (It does not exist in the sample data) A contact with the name "John Doe" exists. (if you're following this guide, there will be one)
