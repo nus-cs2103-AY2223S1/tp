@@ -14,11 +14,11 @@ public class StringUtil {
 
     /**
      * Returns true if the {@code sentence} contains the {@code word}.
-     *   Ignores case, but does not require a full word match.
+     *   Ignores case, and does not require a full word match.
      *   <br>examples:<pre>
      *       containsWordIgnoreCase("ABc def", "abc") == true
      *       containsWordIgnoreCase("ABc def", "DEF") == true
-     *       containsWordIgnoreCase("ABc def", "ABcD") == false //not a full word match
+     *       containsWordIgnoreCase("ABc def", "AB") == true //partial word match
      *       </pre>
      * @param sentence cannot be null
      * @param word cannot be null, cannot be empty, must be a single word
@@ -53,6 +53,8 @@ public class StringUtil {
      * e.g.{@code Integer.MIN_VALUE}, ..., 1, 2, 3, ..., {@code Integer.MAX_VALUE} <br>
      * Will return false for any other non integers.
      * e.g. empty string, " 2 " (untrimmed), "3 0" (contains whitespace), "1 a" (contains letters)
+     * @param s The given string.
+     * @return true if the given string is an integer.
      * @throws NullPointerException if {@code s} is null.
      */
     public static boolean isValidInteger(String s) {
