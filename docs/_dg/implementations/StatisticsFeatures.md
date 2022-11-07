@@ -1,19 +1,22 @@
 <!-- markdownlint-disable-file first-line-h1 -->
 
 #### General Implementation Details
+
+The statistics command is implemented as a standalone command that ties together the `Item` and `Tag` class. By performing calculations, it returns relevant statistics to the user.
+
+The class diagram is as such:
+
 <!-- TODO: ADD ITEM CLASS DIAGRAM -->
 
 #### General Design Considerations
-
-#### Displaying Statistics
-
-##### Overview
-
 The `stats` command calculates and provides users a list of statistics relating to FoodRem's inventory. The list of statistics provided is as follows:
 * Top three most expensive items
 * Total amount of expired food
 * Top three most common tags
 
+#### Displaying Statistics
+
+##### Overview
 The activity diagram is as such:
 
 <!-- TODO: ACTIVITY DIAGRAM -->
