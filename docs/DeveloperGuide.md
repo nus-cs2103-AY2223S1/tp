@@ -205,7 +205,7 @@ The following sequence diagram shows how the `add student` command works:
 `add tutorial`, `add consultation` and `add reminder` commands work similar to the above but have different fields.
 </div>
 
-The following activity diagram illustrates what happens when the `add Student` command is called to add a student into ModQuik. There is a need to check that the given student id does not already exist in ModQuik.
+The following activity diagram illustrates what happens when the `add student` command is executed. ModQuik will check if the given student id does not already exist.
 
 ![AddStudentActivityDiagram](images/AddStudentActivityDiagram.png)
 
@@ -255,6 +255,9 @@ The implementation of the `delete student` command involves deleting the Student
 The following sequence diagram shows how the `delete student` command works:
 
 ![DeleteStudentSequenceDiagram](images/DeleteStudentSequenceDiagram.png)
+
+The following activity diagram illustrates what happens when the `delete student` command is executed.
+![DeleteStudentActivityDiagram](images/DeleteStudentActivityDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
 `delete tutorial`, `delete consultation` and `delete reminder` commands work similar to the above.
@@ -667,9 +670,9 @@ testers are expected to do more *exploratory* testing.
        Expected: The most recent window size and location is retained.
 
 
-### Student
+### 8.2 Student
 
-#### Adding a student
+#### 8.2.1 Adding a student
 
 Do the test cases sequentially to ensure correct expectation.
 
@@ -705,23 +708,7 @@ Do the test cases sequentially to ensure correct expectation.
     3. Test case: `add student n/Mary i/A1234567J ph/12345678 e/mary@example.com tele/mary m/CS2103T tut/W17`<br>
        Expected:  A success message containing details of the added student is shown. Main display changes to student and student list is updated.
 
-
-#### Deleting a student
-
-1. Deleting a student while student tab is being shown
-
-    1. Prerequisites: Switch to student tab using `switch f/student` command (you can skip this if the main display is already student). Multiple student in the list.
-
-    2. Test case: `delete student 1`<br>
-       Expected: First student is deleted from the list. Details of the deleted student shown in the status message. Student list is updated.
-
-    3. Test case: `delete consultation 0`<br>
-       Expected: No student is deleted. Error details shown in the status message. Student list remains the same.
-
-    4. Other incorrect delete student commands to try: `delete`, `delete x`, `...` (where x is larger than the student list size)<br>
-       Expected: Similar to previous.
-
-#### Editing a student
+#### 8.2.2 Editing a student
 
 1. Editing a student while student tab is being shown.
 
@@ -733,7 +720,7 @@ Do the test cases sequentially to ensure correct expectation.
     3. Test case: `edit student 0`<br>
        Expected: No student is edited. Error message shown in result display box.
 
-#### Finding a student
+#### 8.2.3 Finding a student
 
 1. Finding a student while student tab is being shown.
 
@@ -746,9 +733,8 @@ Do the test cases sequentially to ensure correct expectation.
     3. Test case: `find n/Mary`<br>
        Expected: 1 student is listed. Details of the find command shown in the status message.
 
-### 8.2 Student
 
-#### 8.2.1 Deleting a student
+#### 8.2.4 Deleting a student
 
 1. Deleting a student while all students are being shown
 
@@ -862,7 +848,20 @@ Do the test cases sequentially to ensure correct expectation.
        Expected:  A success message containing details of the added consultation is shown. Main display changes to consultation and consultation list is updated.
 
 
-#### 8.4.2 Deleting a consultation
+#### 8.4.2 Editing a consultation
+
+1. Editing a consultation while consultation tab is being shown.
+
+    1. Prerequisites: Switch to consultation tab using the `switch f/consultation` command (you may skip this if the main display is already consultation). There exists at least 1 consultation in the list.
+
+    2. Test case: `edit consultation 1 v/AS16`<br>
+       Expected: Venue of first consultation is edited. Details of the edited tutorial shown in the status message.
+
+    3. Test case: `edit consultation 0`<br>
+       Expected: No consultation is edited. Error message shown in result display box.
+
+
+#### 8.4.3 Deleting a consultation
 
 1. Deleting a consultation while consultation tab is being shown
 
@@ -876,18 +875,6 @@ Do the test cases sequentially to ensure correct expectation.
 
     4. Other incorrect delete consultation commands to try: `delete`, `delete x`, `...` (where x is larger than the consultation list size)<br>
        Expected: Similar to previous.
-
-#### 8.4.3 Editing a consultation
-
-1. Editing a consultation while consultation tab is being shown.
-
-    1. Prerequisites: Switch to consultation tab using the `switch f/consultation` command (you may skip this if the main display is already consultation). There exists at least 1 consultation in the list.
-
-    2. Test case: `edit consultation 1 v/AS16`<br>
-       Expected: Venue of first consultation is edited. Details of the edited consultation shown in the status message.
-
-    3. Test case: `edit consultation 0`<br>
-       Expected: No consultation is edited. Error message shown in result display box.
 
 ### 8.5 Reminder
 
