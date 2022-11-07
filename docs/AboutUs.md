@@ -25,7 +25,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/rezwanarefin01.md)]
 
 * Role: Team Lead.
-* Responsibilities: Code Quality, Git Expert, Logic IC.
+* Responsibilities: Code Quality, Git Expert, Logic IC, Consistency.
 
 ### Edbert Geraldy Cangdinata
 
