@@ -34,7 +34,7 @@ public class MainWindow extends UiPart<Stage> {
     private final String feedbackToUser =
             "JSON file is invalid. File will not be saved until the error is corrected."
             + "\nYou may delete the JSON file if you want a fresh restart or"
-            + " revert any changes to json file if you still want the data.";
+            + " revert any changes to JSON file if you still want the data.";
 
     // Independent Ui parts residing in this Ui container
     private StudentListPanel studentListPanel;
