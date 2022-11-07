@@ -1,5 +1,7 @@
 @startuml
 !include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor BLACK
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
@@ -51,13 +53,13 @@ create AttributesMatchAllKeywordsPredicate
 FilterCommand -> AttributesMatchAllKeywordsPredicate
 activate AttributesMatchAllKeywordsPredicate
 
+AttributesMatchAllKeywordsPredicate --> FilterCommand
+deactivate AttributesMatchAllKeywordsPredicate
+
 FilterCommand -> Model : filterResident(residentToFilter)
 activate Model
 Model --> FilterCommand
 deactivate Model
-
-AttributesMatchAllKeywordsPredicate --> FilterCommand
-deactivate AttributesMatchAllKeywordsPredicate
 
 create CommandResult
 FilterCommand -> CommandResult
@@ -68,6 +70,8 @@ deactivate CommandResult
 
 FilterCommand --> LogicManager : res
 deactivate FilterCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FilterCommand -[hidden]-> LogicManager
 destroy FilterCommand
 
 [<--LogicManager

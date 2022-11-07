@@ -20,10 +20,11 @@ title: Developer Guide
 * [**Implementation**](#implementation)
     * [Resident class](#the-resident-class)
     * [Displaying data](#displaying-data)
-    * [Show/Hide fields](#show-onlyhide-only-feature-for-resident-fields)
+    * [Showing/hiding table columns](#manipulating-table-columns-using-showonly-and-hideonly)
     * [Filter fields](#filter-feature-to-filter-residents-according-to-fields)
     * [File management system](#multiple-data-files)
     * [Command history](#command-history)
+    * [Venue and booking](#venue-and-booking)
 * [**Acknowledgements**](#acknowledgements)
 * [**Conclusion**](#conclusion)
 * [**Appendix: Project requirements**](#appendix-project-requirements)
@@ -80,31 +81,23 @@ RC4HDB aims to provide a complex set of features which are simple to use. Keepin
 we are pursuing an iterative approach, adding new features and functionalities amidst the evolving requirements.
 This gives rise to the following main guiding principles for RC4HDB:
 
-**Maintainability**
+#### Maintainability
 
-This project was adapted from an application called [`AddressBook Level 3 (AB3)`](https://se-education.org/addressbook-level3/).
-`AB3` was developed in a manner that facilitates easy modification of components. This design allows the functionalities
-implemented to be easily changed depending on the goals of the developers. Building upon the existing components in `AB3`, we are to
-add additional classes to the major components which include [**`UI`**](#ui-component), [**`Logic`**](#logic-component) , [**`Model`**](#model-component), [**`Storage`**](#storage-component).
+This project was adapted from an application called [`AddressBook Level 3 (AB3)`](https://se-education.org/addressbook-level3/). `AB3` was developed in a manner that facilitates easy modification of components. This design allows the functionalities implemented to be easily changed depending on the goals of the developers. Building upon the existing components in `AB3`, we have added additional classes to the major components which include [**`UI`**](#ui-component), [**`Logic`**](#logic-component), [**`Model`**](#model-component), [**`Storage`**](#storage-component).
 
-**Command Line Interface (CLI) Oriented**
+#### Command Line Interface (CLI) Oriented
 
-[**CLI**](#glossary) gives the user an easy way to type commands. This is especially useful for a target audience which is familiar with the process of performing admin tasks
-using a computer. For users who type fast, RC4HDB will be highly efficient and quick to respond, improving their existing processes of managing their housing database.
+[**CLI**](#glossary) gives the user an easy way to type commands. This is especially useful for a target audience which is familiar with the process of performing admin tasks using a computer. For users who type fast, RC4HDB will be highly efficient and quick to respond, improving their existing processes of managing their housing database.
 
-<div markdown="span" class="alert alert-primary">
+#### Color coding of components
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
-</div>
-
-For the rest of the Developer Guide, `Model`, `Logic`, `Storage`, and `UI` will be standardised with 
-the following colours.
+To make it easier for readers to identify the components each class belong to in our UML diagrams, we have color coded each of our main components, `Model`, `Logic`, `Storage`, and `UI` with the following colors .
 
 ![Colors for UML diagrams](./images/ColorCoding.png)
 
 ### Architecture
 
-<img src="images/ArchitectureDiagram.png" width="280" />
+![ArchitectureDiagram](images/ArchitectureDiagram.png)
 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
@@ -125,12 +118,11 @@ The rest of the App consists of four components.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
-
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+![ArchitectureSequenceDiagram](images/ArchitectureSequenceDiagram.png)
 
 Each of the four main components (also shown in the diagram above),
 
@@ -166,7 +158,7 @@ The `UI` component,
 
 Here's a (partial) class diagram of the `Logic` component:
 
-<img src="images/LogicClassDiagram.png" width="550"/>
+![LogicClassDiagram](images/LogicClassDiagram.png)
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `Rc4hdbParser` class to parse the user command.
@@ -176,16 +168,19 @@ How the `Logic` component works:
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![DeleteSequenceDiagram](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
+
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
-<img src="images/ParserClasses.png" width="600"/>
+
+![Parser class diagram](images/ParserClasses.png)
 
 How the parsing works:
 * When called upon to parse a user command, the `Rc4hdbParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `Rc4hdbParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `CommandParser` interface so that they can be treated similarly where possible e.g, during testing.
+* Note that not all `CommandParser` classes depend on `CliSyntax`, `ArgumentTokenizer`, `ArgumentMultimap` and `ParserUtil`. e.g. `FileCommandParser` and `VenueCommandParser`.
 
 ![Class structure of Command](images/CommandDiagram.png)
 
@@ -199,30 +194,27 @@ the abstraction of commands.
 
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-![UML diagram for Model component](./images/LatestModelClassDiagram.png)
-
+![UML diagram for Model component](./images/ModelClassDiagram.png)
 
 The `Model` component,
 
 * stores the `ResidentBook` and `VenueBook` data, i.e. all `Resident` and `Venue` objects (which are further 
-  contained in a `UniqueResidentList` object and `UniqueVenueList` object respectively)
+  contained in a `UniqueResidentList` object and `UniqueVenueList` object respectively).
 * stores the currently selected venues and bookings, and the current set of visible and hidden table columns in 
-  separate `ObservableList` objects
-    * The `Resident` objects are contained in a `FilteredList<Resident>` which are exposed to the outside as an `ObservableList`.
+  separate `ObservableList` objects.
+    * The `Resident` objects are contained in a `FilteredList<Resident>` which are exposed to the outside as an unmodifiable `ObservableList`.
+    * The `visibleFields` and `hiddenFields` are also exposed to the outside as unmodifiable `ObservableList` instances.
     * The UI can 'observe' these lists so that the UI automatically changes when the data in these lists change.
 * stores a `UserPref` object that represents the user's preferences.
-* does not depend on any of the other components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+* does not depend on any of the other components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components).
 
 <!-- The references to Resident fields have been removed to reduce clutter -->
-
-
-
 
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-W12-3/tp/tree/master/src/main/java/seedu/rc4hdb/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+![StorageClassDiagram](images/StorageClassDiagram.png)
 
 The `Storage` component,
 * can save resident book data, venue book data and user preference data in json format, and read them back into corresponding objects.
@@ -242,10 +234,21 @@ Classes used by multiple components are in the `seedu.rc4hdb.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented. We have included other implementations that we have considered, along with reasons for choosing the current implementation over the others.
 
+Here is a list of the details discussed:
+* [Resident class](#the-resident-class)
+* [Displaying data](#displaying-data)
+* [Show only/Hide only commands](#show-onlyhide-only-commands)
+* [Filter command](#filter-command)
+* [Multiple data files](#multiple-data-files)
+* [Command history](#command-history)
+* [Venue and booking](#venue-and-booking)
+
+---
+
 ### The Resident Class
+
 `RC4HDB` seeks to serve as a housing management database, and as such, one of the first tasks at hand was to modify the
-existing `AddressBook` application to one that makes use of the `Resident` class, which contains much more useful
-information as compared to the current fields that are supported by `Person`. `Person` contained the fields `Name`,
+existing `AddressBook` application to one that makes use of the `Resident` class, which contains much more useful information as compared to the current fields that are supported by `Person`. `Person` contained the fields `Name`,
 `Phone`, `Email`, `Address` and `Tags`. We decided to keep all of the above fields except `Address`. In addition,
 we added the additional fields `Room`, `House`, `Gender`, `MatricNumber`, all of which are crucial information for the
 housing management staff.
@@ -253,26 +256,20 @@ housing management staff.
 <br>
 
 #### Refactoring of Classes
-Refactoring of classes to make use of `Resident` related fields and information was a priority for us in the intiial
-stages of development. With `Resident` not yet implemented, it was difficult for us to progress to other features that
-required the fields of said class. After this refactoring was done, all packages now fall under `seedu.rc4hdb`, the
-`Person` class was no longer needed, and `Resident` was able to replace it in all existing commands.  The example below
-shows the updated Sequence diagram for the executing of our `delete` command.
-<img src="images/DeleteSequenceDiagram2.png" />
 
+Refactoring of classes to make use of `Resident` related fields and information was a priority for us in the initial stages of development. With `Resident` not yet implemented, it was difficult for us to progress to other features that required the fields of said class. After this refactoring was done, all packages now fall under `seedu.rc4hdb`, the `Person` class was no longer needed, and `Resident` was able to replace it in all existing commands.
+
+---
 
 ### Displaying Data
 
-There are two main types of data that is stored and displayed, the `Resident`, and the `Venue`.
-As such, we have naturally separated the display of the two. The `MainWindow` contains two components, a `ResidentTabView` and a `VenueTabView`, which are
-responsible for displaying the respective information.
+There are two main types of data that is stored and displayed, the `Resident`, and the `Venue`. As such, we have naturally separated the display of the two. The `MainWindow` contains two components, a `ResidentTabView` and a `VenueTabView`, which are responsible for displaying the respective information.
 
 #### Resident Information
 
-The `ResidentTabView` contains a `ResidentTableView` which is implemented via the `TableView` class of `JavaFX`. This is represented
-as a table, where each row corresponds to a `Resident` in `RC4HDB`, and each column corresponds to a field belonging to that `Resident`.
+The `ResidentTabView` contains a `ResidentTableView` which is implemented via the `TableView` class of `JavaFX`. This is represented as a table, where each row corresponds to a `Resident` in `RC4HDB`, and each column corresponds to a field belonging to that `Resident`.
 
-##### Design considerations
+#### Design considerations
 
 Aspect: Display format
 
@@ -341,7 +338,9 @@ of any sizeable overhead.
 
 <br>
 
-### Show only/hide only feature for resident fields
+---
+
+### Manipulating table columns using `showonly` and `hideonly`
 
 #### Changes to Model component:
 
@@ -350,59 +349,73 @@ update its columns based on user commands that affected the model. There needed 
 `ResidentTableView` class to synchronise its columns with the corresponding field lists in `ModelManager`. 
 From the below diagram, we can see that there is no association between `ModelManager` and `ResidentTableView`. 
 
-![MainWindowRelationships](images/MainWindowRelationships.png)
+![Reference relationships between MainWindow and the other components](images/MainWindowRelationships.png)
 
-One possible implementation was to store a reference to the `ResidentTableView` in `ModelManager`, to update the 
+One possible implementation was to store a reference to `ResidentTableView` in `ModelManager`, to update the 
 UI directly whenever a command modified the field lists in `ModelManager`. However, this would increase the coupling 
 between the UI and the model components, which would make integration and reuse of the module significantly harder. 
 
-Our solution for this was to use getters to obtain the unmodifiable `ObservableList<String>` instances of the 
-fields to show and hide from `ModelManager`, before passing them into the constructor of `ResidentTableView`. 
-Within `ResidentTableView`, we attached listeners to each of these unmodifiable lists, updating the column visibilities 
-whenever the base `ObservableList<String>` objects in `ModelManager` changed.
+Our solution for this was to pass the field lists from `ModelManager` to `LogicManager` and then to `MainWindow`, 
+as *unmodifiable* `ObservableList<String>` instances. These unmodifiable instances were then passed as arguments 
+into the constructor of `ResidentTableView`, where we attached listeners to each of the lists. These listeners 
+would update the column visibilities whenever the base `ObservableList<String>` instances in `ModelManager` changed.
 
-This allowed us to apply the Observer pattern in our code, thereby minimising the coupling between `ResidentTableView`
-and `ModelManager`.
+This allowed us to apply the Observer pattern in our code, as the `ModelManager` class being observed is not coupled 
+to the `ResidentTableView` class that is observing it (i.e. observing the field lists in `ModelManager`).
 
 One interesting point to note is that there is a need to hold a reference to these unmodifiable `ObservableList<String>`
 instances in `ModelManager`. This is because the `unmodifiableObservableList` method of `FXCollections` creates a wrapper 
-around and adds a *weak listener* to the original, backing `ObservableList`. If no reference to this wrapped 
-(unmodifiable) list is held, it would end up being garbage collected. More information can be found [here](https://stackoverflow.com/questions/44341400/whats-the-purpose-of-fxcollections-unmodifiableobservablelist).
+and adds a *weak listener* to the original, backing `ObservableList`. If no reference to this wrapper 
+(unmodifiable) list is held, it would end up being garbage collected, and the automatic UI updates would not work 
+correctly. More information can be found [here](https://stackoverflow.com/questions/44341400/whats-the-purpose-of-fxcollections-unmodifiableobservablelist).
 
 <br>
+
+#### Restrictions on manipulating columns:
+
+We decided to provide users with the flexibility of displaying or hiding any combination of the columns in the table 
+view, with two exceptions: 
+
+1. The user can only specify columns to show or hide that are in the current table view. 
+   
+    * This is to make the showing and hiding of columns more intuitive, as compared to our [previous implementation](#optional-reading-predecessors-to-showonly-and-hideonly). 
+
+2. The user must have at least one column on his screen.
+
+    * This is to avoid confusion with the table view shown when the list of residents is empty.
+
+The activity diagram shown below for the column manipulation feature models the intended behaviour of RC4HDB based on 
+user input, assuming the user enters valid fields (letters) in the correct command format.
+
+![Activity diagram for intended behaviour of RC4HDB for column manipulation feature](images/ManipulatingColumnsActivityDiagram.png)
 
 #### Use of abstract classes for `showonly` and `hideonly`
 
 The `hideonly` command alone is sufficient for users to hide their unwanted columns from the table view. However, 
-we added support for both commands in order to improve the quality-of-life of RC4HDB users. Users can save time by 
-using the complement command depending on the relative number of fields they want to show or hide. 
+we added support for both commands in order to improve the quality-of-life for RC4HDB users. Users can save time by 
+using the complement command (`showonly` vs `hideonly`) depending on the relative number of fields they want to show or hide. 
 
-After making this change, however, there were instances of undesirable code duplication in both the commands and the 
-command parsers for the `showonly` and `hideonly` features.
+After making this change, however, there were instances of undesirable code duplication in the commands and command
+parsers for the `showonly` and `hideonly` features. For example, some input validation and utility methods were 
+common among these classes.
 
-Our solution was to abstract these commonalities into an abstract class, namely, `ColumnManipulatorCommand` for 
-the `showonly` and `hideonly` commands (as well as `list` and `reset), and `ColumnManipulatorCommandParser` for the 
-`showonly` and`hideonly` command parsers.
+Our solution was to abstract some of these commonalities into an abstract class, namely, 
+`ColumnManipulatorCommand` for the `showonly` and `hideonly` commands (as well as `list` and `reset`), 
+and `ColumnManipulatorCommandParser` for the `showonly` and`hideonly` command parsers. The UML diagram for the 
+inheritance relationship is shown below. 
 
-![AbstractClassesForShowHideFeature](images/AbstractClassesForShowHideFeature.png)
+![Use of abstract classes for column manipulation feature](images/AbstractClassesForShowHideFeature.png)
 
-Some of these commonalities include input validation for the column identifiers, as well as utility methods for 
-generating the complement list from a given list. 
-
-Adding these abstract classes also increased the extendability of our application, as one of the future developments
-for our application would be to implement column manipulation features for the venue booking tables.
+Adding these abstract classes also increased the extensibility of our application, as one of the future developments
+for RC4HDB would be to implement the column manipulation features for the venue booking tables.
 
 <br>
 
 #### Choice of `ObservableList<String>` over `ObservableList<Field>`
 
-While the lists of fields to show and hide could be represented in either an `ObservableList<String>`
-or an `ObservableList<Field>`, we decided to use an `ObservableList<String>` to minimise the additional need for 
-getters if `Field` was used instead. 
-
-The only information required by the lists of fields to show and hide in `ModelManager` was the column identifier, 
-and hence the use of an `ObservableList<Field>` was redundant as none of the additional `Field` attributes 
-had to be referenced.
+The only information required by the `ResidentTableView` (to manipulate the columns) is the field identifier. Hence, the use of an 
+`ObservableList<Field>` is redundant as none of the additional `Field` attributes need to be referenced. Using an 
+`ObservableList<Field>` would also require the use of getters to extract the field identifier, which was unnecessary.
 
 <br>
 
@@ -411,8 +424,8 @@ had to be referenced.
 For our previous iteration of RC4HDB, the `showonly` and `hideonly` features were handled by the `list /i` and 
 `list /e` features, which have since been removed. 
 
-For these overloaded `list` commands, the user could show or hide columns by specifying which columns should be 
-included or excluded when listing. 
+For these overloaded `list` commands, the user could show or hide columns by specifying columns to include or exclude
+when listing. 
 
 However, there were two main issues with `list /i` and `list /e`:
 
@@ -424,12 +437,17 @@ excluded from the table had to be re-specified if additional columns were to be 
    
 While it was convenient for the column manipulation feature to be bundled with the list command, we ultimately decided
 to decrease coupling between both features, by replacing `list /i` and `list /e` with the `showonly` and `hideonly` 
-commands. To make our commands more intuitive, we also made the `showonly` and `hideonly` commands state-dependent, so
+commands. The feature to restore the full set of resident fields was implemented in the `reset` command, which does 
+not affect the list of residents.
+
+To make our commands more intuitive, we also made the `showonly` and `hideonly` commands state-dependent, so
 that the user did not have to re-specify columns that were already hidden.
 
 <br>
 
-### Filter feature to filter residents according to fields
+---
+
+### Filter command
 
 The previous AddressBook implementation only had a find command to search for specific residents according to the field.
 Thus, a new command has been implemented to have an additional feature to filter the list of residents using every field
@@ -489,9 +507,11 @@ that contain the attributes instead of having it to be exactly equal.
 
 <br>
 
+---
+
 ### Multiple data files
 
-#### Background
+#### Motivation
 
 In the original `AddressBook`, the `Storage` component was implemented with the intent of users only being able to use a single data file. However, in `RC4HDB`, our target users would potentially benefit from being able to store their data in multiple files. Thus, we have decided to implement **file commands** which will provide users a way to **create**, **delete** and **switch** data files.
 
@@ -531,15 +551,17 @@ With our earlier issue of a lack of `Storage` reference in `Command` resolved, a
 
 #### Create and delete file commands
 
-Due to file creation and deletion not requiring an update to `Model`, but requiring access to `Storage`, we implement `FileCreateCommand` and `FileDeleteCommand` as storage commands. The file creation and deletion logic was then delegated to `Storage`, which saw new methods, `createResidentBookFile(Path)` and `deleteResidentBookFile(Path)` being implemented.
+Due to file creation and deletion not requiring an update to `Model`, but requiring access to `Storage`, we implement `FileCreateCommand` and `FileDeleteCommand` as storage commands. The file creation and deletion logic was then delegated to `Storage`, resulting in new methods, `createResidentBookFile(Path)` and `deleteResidentBookFile(Path)` being implemented.
 
 <br>
 
 #### Switch file command
 
-Due to file switching requiring an update to not only `Storage`, but also `Model`, we implement `FileSwitchCommand` as a storage model command. Similarly, the `setResidentBookFilePath(Path)` method was implemented to support the switching of files. As for the manipulation of `Model`, we made use of existing methods to update the user preferences to use the data file that the user intends to switch to as the data file that the application will read from when it first starts up. Additionally, the `FileSwitchCommand` also results in the `Model` updating its old data with the data from the file the user intends to switch to.
+Due to file switching requiring an update to not only `Storage`, but also `Model`, we implemented `FileSwitchCommand` as a storage model command. Similarly, the `setResidentBookFilePath(Path)` method was implemented to support the switching of files. As for the manipulation of `Model`, we made use of existing methods to update the user preferences and use the data file that the user intends to switch to as the data file that the application will read from when it first starts up. Additionally, the `FileSwitchCommand` also results in the `Model` updating its old data with the data from the file the user intends to switch to.
 
 <br>
+
+---
 
 ### Command history
 
@@ -567,89 +589,179 @@ To illustrate how `CommandHistory` works, an activity diagram when using the `UP
 
 The activity diagram for the `DOWN_ARROW_KEY` is largely similar to the one above.
 
-### \[Proposed\] Undo/redo feature
+<<<<<<< HEAD
+<br>
 
-#### Proposed Implementation
+---
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+### Venue and booking
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+#### Motivation
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+As our [target user](#target-user-profile) would benefit greatly from being able to manage venues and bookings in RC4, we have decided to add a venue booking system in **RC4HDB**.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+<br>
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+#### Planning the Ui
 
-![UndoRedoState0](images/UndoRedoState0.png)
+Using the top-down approach, we started by deciding on how we could display booking data in a format that our **target user** would benefit most. 
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+After consideration, we came up with two different formats for booking representation:
+* Booking list display for each venue
+* Weekly timetable (similar to NUSMods)
 
-![UndoRedoState1](images/UndoRedoState1.png)
+<br>
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+##### Booking list
 
-![UndoRedoState2](images/UndoRedoState2.png)
+Pros:
+* Well suited for adhoc bookings
+* Easier to implement commands to check if a venue has been booked during a certain date and time period
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+Cons:
+* Does not represent empty time slots well
+* Not temporally intuitive
 
-</div>
+<br>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+##### Weekly timetable
 
-![UndoRedoState3](images/UndoRedoState3.png)
+Pros:
+* Easier for users to distinguish between time periods where venue is booked and venue is not booked
+* Well suited for recurrent bookings
+* Format is familiar to **target user**
+* Temporally intuitive
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+Cons:
+* Difficult to implement adhoc bookings
+* Only able to display the week's bookings for a single venue at a time
 
-</div>
+After considering both choices, we decided that a weekly timetable format would better serve our **target user**. However, due to limitations in time, we decided to implement only recurrent bookings and leave adhoc bookings to be implemented in a future iteration.
 
-The following sequence diagram shows how the undo operation works:
+<br>
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+#### Ui implementation
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+Considering the fact that our Ui has no space for a timetable to be added in, we decided to make use of `Tab` and `TabView` from the JavaFX library. This allows us to keep our [`ResidentTableView`](#resident-information), while adding our timetable. However, we realised that users will need a way to view what venues are currently being tracked in **RC4HDB**. Thus, we decided to complement our timetable with a `ListView` which contains the list of venues being tracked.
 
-</div>
+With this, we went on implementing the following Ui parts:
+* `VenueTabView`
+* `BookingTableView`
+* `VenueListView`
+* `VenueListCard`
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+<br>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+##### Venue tab view
 
-</div>
+This is just the Ui container component which contains the `BookingTableView` and `VenueListView`. We included this to reduce the clutter from having everything in the `MainWindow` class.
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+<br>
 
-![UndoRedoState4](images/UndoRedoState4.png)
+##### Booking table view
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+In order to implement a table-like timetable format, we made use of the `TableView` class in the JavaFX library. This allows us to easily achieve a table-like Ui graphic. Each row of the table will correspond to the bookings for a day of the week, with the columns corresponding to the time period of the booking, in 1-hour units. To be consistent with our previous implementation of `ResidentTableView`, where we made use of the Observer pattern, we will be adding a listener to a `Venue` that exists in the `Model` component.
 
-![UndoRedoState5](images/UndoRedoState5.png)
+<br>
 
-The following activity diagram summarizes what happens when a user executes a new command:
+##### Venue list view
 
-<img src="images/CommitActivityDiagram.png" width="250" />
+To complement our `BookingTableView`, we added a `VenueListView` to display the venues that are currently being tracked by **RC4HDB**. The `VenueListView` is implemented with a `ListView` as a base, and each venue in the list is wrapped by a `VenueListCard` class which serves to beautify the list.
 
-#### Design considerations:
+<br>
 
-**Aspect: How undo & redo executes:**
+##### Interaction between each Ui part
 
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+The following diagram describes the interactions between each newly introduced Ui component.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+![VenueBookingUiClassDiagram](images/VenueBookingUiClassDiagram.png)
 
-_{more aspects and alternatives to be added}_
+<br>
 
-### \[Proposed\] Data archiving
+#### Planning the data format
 
-_{Explain here how the data archiving feature will be implemented}_
+After deciding on how we would like to display our venue and booking data, we had to design our `Venue` and `Booking` data classes to fit our chosen `Ui` design.
+
+<br>
+
+##### Booking data
+
+Considering that we are only going to implement `RecurrentBooking`, we minimally require:
+* an association to the venue or venue identifier that is being booked by the booking
+* an association to the resident that is making the booking
+* a time period for the booking
+* a day of the week for the booking
+
+<br>
+
+##### Venue data
+
+In order to be able to keep track of venues, we implemented a `Venue` class, which has a unique identifier, in the form of `VenueName`. `VenueName` was implemented with the `Name` field in `Resident` in mind, as both are `VenueName` and `Name` served similar purposes before `Name` was no longer the unique identifier for `Resident`. Since each booking was tagged to a venue, we decided to add a list of bookings in `Venue`, to keep track of the bookings made for each venue.
+
+<br>
+
+##### Daily schedule
+
+However, considering our usage of a `BookingTableView` Ui component, we had to transform the bookings for a venue into a format suitable for a table. To do so, we decided to add a `DailySchedule` data class, which will represent a row in our timetable implementation of the Ui. We will then pass a list of 7 `DailySchedule` to `BookingTableView` to represent a timetable of the bookings for a week, for a specified venue.
+
+<br>
+
+#### Data format implementation
+
+Considering the requirements for venue and booking data, we have come up with the following design to suit our venue and booking data needs.
+
+![VenueBookingClassDiagram](images/VenueBookingClassDiagram.png)
+
+<br>
+
+#### Model updates
+
+With the new forms of data that **RC4HDB** has to keep track of, the `Model` component has to be updated to accommodate the venue and booking data. However, since bookings are stored in `Venue`, we only need to keep track of the venues in model, and we will have access to booking data. For our purposes, the `UniqueResidentList` implementation actually suits our venue data tracking needs, being the need for uniqueness of venues. Thus, we decided to reuse the `UniqueResidentList`, `ResidentBook` code for our `UniqueVenueList`, `VenueBook` classes.
+
+The diagram below showcases the additional classes that were added into the `Model` component to support the venue and booking management feature.
+
+![VenueModelUpdateClassDiagram](images/VenueModelUpdateClassDiagram.png)
+
+As seen in the diagram, the `ModelManager` component contains a `VenueBook` and an `ObservableItem<Venue>`. Similarly to how `UniqueResidentList` contains an internal list which is wrapped with a `FilteredList` and listened to by the `ResidentTableView`, the `VenueListView` listens in on an unmodifiable version of the internal list in `UniqueVenueList` to update the list of venues that are tracked in our `Model`.
+
+Additionally, the `BookingTableView` listens in on the `currentlyDisplayedVenue` for any additions to the list of bookings stored within the venue in `currentlyDisplayedVenue` and for when the venue in `currentlyDisplayedVenue` is replaced by another venue. This provides us an avenue to update the `BookingTableView` from the `ModelManager`.
+
+<br>
+
+#### Storage updates
+
+With the addition of venue and booking data, we have to update the `Storage` component in order to allow for local storage of the new data required. Similarly to how we reused code from `UniqueResidentList` and `ResidentBook`, we reused the existing code that allows for storage of `ResidentBook` data in order to store our `VenueBook` data. 
+
+The following diagram showcases the additions to the `Storage` component to support the venue and booking data storage:
+
+![VenueStorageUpdateClassDiagram](images/VenueStorageUpdateClassDiagram.png)
+
+<br>
+
+#### Logic updates
+
+However, due to our application being [CLI](#command-line-interface-cli-oriented) oriented, we have to add another venue command, `VenueViewCommand`, to allow users to switch between viewing the bookings of a specified venue.
+
+To support basic venue creation and deletion, booking and un-booking, and the switching of venue view we added the following venue commands:
+* `VenueAddCommand`
+* `VenueDeleteCommand`
+* `VenueViewCommand`
+* `BookCommand`
+* `UnbookCommand`
+
+Since all of the above commands have something to do with `Venue`, we created an abstract `VenueCommand` class with common logic between the above commands.
+
+These commands will serve as a basic toolkit for our users to manage venue bookings.
+
+<br>
+
+##### Venue command flow
+
+The following sequence diagram showcases the general flow of control for a `VenueCommand`. In the diagram, we used `VenueAddCommand` as an example.
+
+![VenueAddCommandSequenceDiagram](images/VenueAddCommandSequenceDiagram.png)
+
+<br>
 
 ---
 
@@ -683,13 +795,13 @@ If you are interested in joining our team, do take a look at our [GitHub reposit
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Appendix: Project requirements**
 
 ### Product scope
 
-**Target user profile**:
+#### Target user profile:
 
 * works in the housing management team for [**RC4**](#glossary) with several other co-workers
 * has a need to manage a significant number of residents in [**RC4**](#glossary)
@@ -700,7 +812,7 @@ If you are interested in joining our team, do take a look at our [GitHub reposit
 * prefers typing to mouse interactions
 * is reasonably comfortable using [**CLI**](#glossary) apps
 
-**Value proposition**:
+#### Value proposition:
 
 * manage contacts faster than a typical mouse/Graphic User Interface (GUI) driven app
 * requires less technical knowledge to perform complex tasks
@@ -711,26 +823,38 @@ If you are interested in joining our team, do take a look at our [GitHub reposit
 Our user stories have been packaged with the relevant functionalities that we will implement/have implemented.
 
 They have been extensively documented [here](https://github.com/AY2223S1-CS2103T-W12-3/tp/issues?q=is%3Aissue+label%3Atype.Story), and have been prioritized accordingly:
-1. High `* * *` - must have
-2. Moderate `* *` - nice to have
-3. Low `*` - unlikely to have
+1. 🟥 High: Must have
+2. 🟧 Medium: Good to have
+3. 🟨 Low: Nice to have
 
-| Priority | As a ...      | I want to ...                                                                      | So that ...                                                                         | Story Type |
-|----------|---------------|------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|------------|
-| `***`    | user          | view relevant information about [**RC4**](#glossary) residents                     |                                                                                     | Story      |
-| `***`    | user          | view the full list of residents                                                    |                                                                                     | Story      |
-| `***`    | advanced user | show, hide and reset columns without affecting the list of residents displayed     | I can de-clutter my screen without affecting the current list of residents          | Story      |
-| `***`    | user          | import my old data into the application                                            |                                                                                     | Story      |
-| `***`    | user          | view a smaller list of [**RC4**](#glossary) residents that pass certain conditions |                                                                                     | Story      |
-| `**`     | advanced user | give residents roles                                                               | I can further categorize them                                                       | Epic       |
-| `**`     | user          | search for residents using a portion of their names                                | I do not have to remember their exact names                                         | Story      |
-| `**`     | user          | export residents' data in a familiar format                                        |                                                                                     | Story      |
-| `**`     | new user      | see sample data                                                                    | I can see how the app will look like when in use                                    | Story      |
-| `**`     | user          | delete multiple residents' data from the app quickly                               | I can save time                                                                     | Story      |
-| `**`     | user          | use the system without referring to the user guide                                 |                                                                                     | Story      |
-| `**`     | user          | switch between different data files                                                |                                                                                     | Story      |
-| `*`      | advanced user | toggle input commands without repeating the command word                           | I can increase the efficiency of operations                                         | Epic       |
-| `*`      | user          | update settings                                                                    | I can customize the app for my use                                                  | Epic       |
+
+| Priority | As a ...          | I want to ...                                       | So that I can ...                                           |
+|----------|-------------------|-----------------------------------------------------|-------------------------------------------------------------|
+| 🟥       | basic user        | add new entries                                     | keep track of new residents                                 |
+| 🟥       | basic user        | delete existing entries                             | remove residents who have left RC4                          |
+| 🟥       | basic user        | edit existing entries                               | update any outdated or wrongly entered information          |
+| 🟥       | basic user        | view all existing entries                           | get an overview of all residents                            |
+| 🟥       | basic user        | search for existing entries                         | view their resident information                             |
+| 🟥       | intermediate user | filter through entries via certain keywords         | view these residents                                        |
+| 🟥       | basic user        | add new venues                                      | make these venues available for booking                     |
+| 🟥       | basic user        | delete existing venues                              | prevent any bookings to be made                             |
+| 🟥       | basic user        | add new bookings                                    | block certain time periods                                  |
+| 🟥       | basic user        | delete existing bookings                            | free up these time periods for others                       |
+| 🟥       | basic user        | view all bookings for a venue                       | see which time periods are free for booking                 |
+| 🟥       | basic user        | view all existing venues                            | view all existing venues                                    |
+| 🟥       | basic user        | switch between the resident tab and bookings tab    | better visualize my data                                    |
+| 🟧       | intermediate user | hide certain columns                                | de-clutter my screen                                        |
+| 🟧       | intermediate user | show previously hidden columns                      | get back to working on those data                           |
+| 🟧       | intermediate user | delete multiple entries at a time                   | save time from individually removing them                   |
+| 🟧       | basic user        | search for residents using a portion of their names | still find them without having to remember their full names |
+| 🟧       | basic user        | add miscellaneous information to entries            | keep track of a little more information                     |
+| 🟧       | advanced user     | create a new data file                              | maintain another list of residents                          |
+| 🟧       | advanced user     | delete a file                                       | remove unused list of residents                             |
+| 🟧       | advanced user     | switch between files                                | work on different files on the same system                  |
+| 🟧       | advanced user     | import my data into the application                 | use RC4HDB to perform my tasks                              |
+| 🟧       | new user          | see sample data                                     | how the application would like when in use                  |
+| 🟧       | new user          | use the system without referring to the guide       | concentrate on my task                                      |
+| 🟨       | basic user        | access commands I have previously entered           | save time on retyping them                                  |
 
 *{More to be added}*
 
