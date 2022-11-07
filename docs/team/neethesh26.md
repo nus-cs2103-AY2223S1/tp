@@ -56,6 +56,8 @@ Given below are my contributions to the project.
 * Added `editLoan` command description.
 * Compiled and formatted the Summary portion for the commands.
 
+<div style="page-break-after: always;"></div>
+
 ### Contributions to the DG
 
 -----------------------------------
