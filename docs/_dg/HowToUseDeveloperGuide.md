@@ -18,6 +18,8 @@ As a **developer**, the first three sections would be most applicable to you. Th
 
 If you are in the **marketing** or **product** team or want to know why FoodRem was created, the section on [Requirements](#requirements) covers the [Product Scope](#product-scope), [User Stories](#user-stories), [Use Cases](#use-cases), and [Non-Functional Requirements](#non-functional-requirements).
 
+{% include page-break.html %}
+
 If you are a **tester**, the section on [Instructions for manual testing](#instructions-for-manual-testing) would be most applicable to you. It covers how to launch and shut down the application and how to test some commands in FoodRem.
 
 Last but not least, [Effort](#effort) shares the difficulties in implementing FoodRem and the challenges faced.

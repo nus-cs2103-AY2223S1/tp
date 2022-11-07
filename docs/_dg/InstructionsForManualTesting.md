@@ -128,8 +128,8 @@ Prerequisite: Suppose a tag with name of `fruits` currently exists in FoodRem an
 
 ### Help
 
-1. Test Case: `help`<br> Expected Output: A pop-up window shows up with the help information.
-1. Test Case: `help new`<br> Expected Output: A pop-up window shows up with the help information for `new` command.
+1. Test Case: `help`<br> Expected Output: A pop-up window, the [[ help-window:Help Window ]] shows up with the help information.
+1. Test Case: `help new`<br> Expected Output: The [[ help-window:Help Window ]] shows up with the help information for `new` command.
 
 ### Reset
 
