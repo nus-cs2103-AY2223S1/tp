@@ -684,15 +684,15 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all persons using the `contact list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
+   1. Test case: `contact delete i/1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
+   1. Test case: `contact delete i/0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `contact delete`, `contact delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 ### UI for Command History Navigation
@@ -702,3 +702,30 @@ testers are expected to do more *exploratory* testing.
    * A quick way to test is to execute `1`, `12`, `123`, etc...
 
 1. Ensure that the input field is selected and in focus. Press `UP` and `DOWN` arrow keys and ensure that the command history displayed is per the order of execution.
+
+
+## **Appendix: Effort**
+
+The general difficulty level of TaskBook was medium. As the project direction was chosen to morph AB-3, most of the components from AB-3, including Logic, UI, Model and Storage could be reused without needing any major revamps. However, the difficulty came in the form of additional features that were implemented above the existing AB-3 components. They will be further elaborated below in **Effort Required**.
+
+### Challenges Faced
+
+**Model**
+* Implementing Sorting and Filtering? {TODO: @Kevin}
+
+**Storage**
+* Storing and loading of Tasks which each has a dependency relationship with a contact.
+* Storage and loading of Tasks while maintaining the `Todo`, `Event` and `Deadline` subclasses.
+
+### Effort Required
+The focus of TaskBook was to introduce Task management features on top of contact management features in AB-3.
+While AB-3 only deals with a single `Person` entity, TaskBook introduced the `Task` entity.
+Although effort was saved through reusing and adapting components from AB-3, a substantial effort was still required to incorporate `Task`-specific methods into the program.
+Furthermore, `Task` was made extensible to 3 specific entities, `Todo`, `Event` and `Deadline`, which each required their respective models and commands.
+
+A significant part of the effort in storing and loading of Tasks was saved using Jackson's `@JsonTypeInfo` and `@JsonSubTypes` annotations. This allowed for Tasks in the `TaskList` to be saved and loaded in their actual subtypes.
+
+{TODO: Talk about effort for 2nd stage aka v1.3 - QOL features}
+
+### Achievements
+
