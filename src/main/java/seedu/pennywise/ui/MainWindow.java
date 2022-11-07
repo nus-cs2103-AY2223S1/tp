@@ -155,7 +155,11 @@ public class MainWindow extends UiPart<Stage> {
                     false,
                     expenditureGraphConfig);
             this.updateGraph(expenditureCommandResult);
-            this.resultDisplay.setFeedbackToUser(String.format(ViewCommand.MESSAGE_SUCCESS, EntryType.ENTRY_TYPE_EXPENDITURE_LABEL, GraphType.GRAPH_TYPE_CATEGORY_LABEL));
+            this.resultDisplay.setFeedbackToUser(
+                    String.format(
+                            ViewCommand.MESSAGE_SUCCESS,
+                            EntryType.ENTRY_TYPE_EXPENDITURE_LABEL,
+                            GraphType.GRAPH_TYPE_CATEGORY_LABEL));
         });
         entryPane.getIncome().setOnSelectionChanged((EventHandler<Event>) evt -> {
             Object data = entryPane.getIncome().getUserData();
@@ -181,7 +185,11 @@ public class MainWindow extends UiPart<Stage> {
                     false,
                     incomeGraphConfig);
             this.updateGraph(incomeCommandResult);
-            this.resultDisplay.setFeedbackToUser(String.format(ViewCommand.MESSAGE_SUCCESS, EntryType.ENTRY_TYPE_INCOME_LABEL, GraphType.GRAPH_TYPE_CATEGORY_LABEL));
+            this.resultDisplay.setFeedbackToUser(
+                    String.format(
+                            ViewCommand.MESSAGE_SUCCESS,
+                            EntryType.ENTRY_TYPE_INCOME_LABEL,
+                            GraphType.GRAPH_TYPE_CATEGORY_LABEL));
 
         });
         resultDisplay = new ResultDisplay();
