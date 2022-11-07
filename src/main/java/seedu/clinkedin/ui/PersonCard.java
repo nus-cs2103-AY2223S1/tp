@@ -123,17 +123,20 @@ public class PersonCard extends UiPart<Region> {
         rating.setPadding(new Insets(1));
 
         CornerRadii corn = new CornerRadii(2.5);
-        if (ratingNumber == 0) {
-            // do not show anything
-        } else if (ratingNumber <= 3 && ratingNumber >= 1) {
+
+        if (ratingNumber <= 3 && ratingNumber >= 1) {
             Color red = Color.rgb(235, 50, 50);
             Background redBg = new Background(new BackgroundFill(red, corn, Insets.EMPTY));
             rating.setBackground(redBg);
-        } else if (ratingNumber <= 6) {
+        }
+
+        if (ratingNumber >= 4 && ratingNumber <= 6) {
             Color yellow = Color.rgb(236, 180, 16);
             Background yellowBg = new Background(new BackgroundFill(yellow, corn, Insets.EMPTY));
             rating.setBackground(yellowBg);
-        } else {
+        }
+
+        if (ratingNumber >= 7 && ratingNumber <= 10){
             Color green = Color.rgb(16, 185, 67);
             Background greenBg = new Background(new BackgroundFill(green, corn, Insets.EMPTY));
             rating.setBackground(greenBg);
