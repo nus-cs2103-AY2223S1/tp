@@ -195,7 +195,7 @@ __Format:__ `find KEYWORD [MORE_KEYWORDS]...`
   * Unlike `NAME`, these items (`TELEGRAM`, `GITHUB`, `PHONE` and `EMAIL`) are not separated by spaces. If full words are needed for matching, you will have to type the full item out each time you search.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-`TELEGRAM`, `GITHUB`, `PHONE` and `EMAIL` are unique. if your partial text input is too common and list too many batchmates, simply type a few more letters! It is still better than typing the entire item!
+`TELEGRAM`, `GITHUB`, `PHONE` and `EMAIL` are unique. If your partial text input is too common and list too many batchmates, simply type a few more letters! It is still better than typing the entire item!
 </div>
 
 <div markdown="block" class="alert alert-info">
