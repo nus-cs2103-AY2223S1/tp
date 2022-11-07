@@ -66,9 +66,8 @@ public class SampleDataUtil {
                     getTagSet("High-End", "Sold")),
             new Client(new Name("Walter Wong"), new Address("7 Leedon Heights, D'leedon, S267953"),
                     getTagSet("High-End", "Reserved")),
-            new Client(new Name("Jac"), new Address("JacAddress"), getTagSet("Urgent")),
+            new Client(new Name("Jacob"), new Address("JacobAddress"), getTagSet("Urgent")),
             new Client(new Name("Jack"), new Address("JackAddress"), getTagSet("Friend")),
-            new Client(new Name("Hamster"), new Address("Hamster"), getTagSet("Friend", "Rich")),
             new Client(new Name("Casey"), new Address("CaseyAddress"), getTagSet("Rich")),
             new Client(new Name("Bobby"), new Address("BobbyAddress"), getTagSet("Rich")),
             new Client(new Name("Samuel"), new Address("SamuelAddress"), getTagSet("Friend"))

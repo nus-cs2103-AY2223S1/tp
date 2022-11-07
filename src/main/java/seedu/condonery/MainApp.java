@@ -1,11 +1,16 @@
 package seedu.condonery;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.util.Optional;
 import java.util.logging.Logger;
 
 import javafx.application.Application;
+import javafx.collections.ObservableList;
 import javafx.stage.Stage;
 import seedu.condonery.commons.core.Config;
 import seedu.condonery.commons.core.LogsCenter;
@@ -19,8 +24,10 @@ import seedu.condonery.model.Model;
 import seedu.condonery.model.ModelManager;
 import seedu.condonery.model.ReadOnlyUserPrefs;
 import seedu.condonery.model.UserPrefs;
+import seedu.condonery.model.client.Client;
 import seedu.condonery.model.client.ClientDirectory;
 import seedu.condonery.model.client.ReadOnlyClientDirectory;
+import seedu.condonery.model.property.Property;
 import seedu.condonery.model.property.PropertyDirectory;
 import seedu.condonery.model.property.ReadOnlyPropertyDirectory;
 import seedu.condonery.model.util.SampleDataUtil;
@@ -92,11 +99,28 @@ public class MainApp extends Application {
 
         try {
             propertyDirectoryOptional = storage.readPropertyDirectory();
+            initialPropertyDirectoryData =
+                propertyDirectoryOptional.orElseGet(SampleDataUtil::getSamplePropertyDirectory);
             if (!propertyDirectoryOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample PropertyDirectory");
+                ObservableList<Property> propertyList = initialPropertyDirectoryData.getPropertyList();
+                for (Property property : propertyList) {
+                    InputStream initialStream = this.getClass().getResourceAsStream(
+                        "/images/sampleproperty-" + property.getName().toString());
+                    if (initialStream == null) {
+                        continue;
+                    }
+                    Path outputPath = userPrefs
+                        .getUserImageDirectoryPath().resolve("property-" + property.getName().toString());
+                    new File(outputPath.toString()).mkdirs();
+
+                    Files.copy(
+                        initialStream,
+                        userPrefs.getUserImageDirectoryPath().resolve("property-" + property.getName().toString()),
+                        StandardCopyOption.REPLACE_EXISTING);
+
+                }
             }
-            initialPropertyDirectoryData =
-                    propertyDirectoryOptional.orElseGet(SampleDataUtil::getSamplePropertyDirectory);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty PropertyDirectory");
             initialPropertyDirectoryData = new PropertyDirectory();
@@ -107,11 +131,28 @@ public class MainApp extends Application {
 
         try {
             clientDirectoryOptional = storage.readClientDirectory();
-            if (!clientDirectoryOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample PropertyDirectory");
-            }
             initialClientDirectoryData =
-                    clientDirectoryOptional.orElseGet(SampleDataUtil::getSampleClientDirectory);
+                clientDirectoryOptional.orElseGet(SampleDataUtil::getSampleClientDirectory);
+            if (!clientDirectoryOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample ClientDirectory");
+                ObservableList<Client> clientList = initialClientDirectoryData.getClientList();
+                for (Client client : clientList) {
+                    InputStream initialStream = this.getClass().getResourceAsStream(
+                        "/images/sampleclient-" + client.getName().toString());
+                    if (initialStream == null) {
+                        continue;
+                    }
+                    Path outputPath = userPrefs
+                        .getUserImageDirectoryPath().resolve("client-" + client.getName().toString());
+                    new File(outputPath.toString()).mkdirs();
+
+                    Files.copy(
+                        initialStream,
+                        userPrefs.getUserImageDirectoryPath().resolve("client-" + client.getName().toString()),
+                        StandardCopyOption.REPLACE_EXISTING);
+
+                }
+            }
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty ClientDirectory");
             initialClientDirectoryData = new ClientDirectory();

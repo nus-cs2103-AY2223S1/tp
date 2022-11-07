@@ -14,7 +14,7 @@ end box
 LogicManager -> RangePropertyCommand : execute(model)
 activate RangePropertyCommand
 
-RangePropertyCommand -> Model : updateFilteredPropertyList(predicate)
+RangePropertyCommand -> Model : updateFilteredPropertyList(...)
 activate Model
 
 Model -> RangePropertyCommand
