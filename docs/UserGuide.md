@@ -354,7 +354,7 @@ Format(WHATSAPP): `include INDEX s/WHATSAPP #/WHATSAPP_PHONE_NUMBER`
 
 Format(Telegram): `include INDEX s/TELEGRAM #/TELEGRAM_USERNAME`
 
-Format(Email): `include INDEX s/EMAIL #/EMAIL
+Format(Email): `include INDEX s/EMAIL #/EMAIL_ACCOUNT`
 
 Format(Instagram): `include INDEX s/INSTAGRAM #/INSTAGRAM_USERNAME`
 
@@ -363,6 +363,14 @@ Examples:
 * `include 1 s/TELEGRAM #/JohnDoe321`
 * `include 1 s/EMAIL #/johnd@example.com`
 * `include 1 s/INSTAGRAM #/johndoe`
+
+> **Note** <br>
+> EMAIL_ACCOUNT should be of the format `local-part@domain` <br>
+> WHATSAPP_PHONE_NUMBER should only contain numbers, and it should be at least 3 digits long
+
+> **Note** <br>
+> If the person already has an existing email account in uNivUSal, it will be added to the social.<br>
+> But the Phone number will not be added as the person's WHATSAPP_PHONE_NUMBER
 
 ### h. Delete a person's socials : `exclude`
 
@@ -375,6 +383,7 @@ Format: `exclude INDEX s/SOCIAL`
   * Telegram
   * Email
   * Instagram
+  * Preferred
 * `SOCIAL` is case-insensitive
 
 Examples:
@@ -513,7 +522,7 @@ _Details coming soon ..._
 | **Favorite**          | `fav INDEX`                                                                                                                                                                                                  |
 | **Include**           | `include INDEX s/SOCIAL #/SOCIAL_INFO`                                                                                                                                                                       |
 | **Exclude**           | `exclude INDEX s/SOCIAL`                                                                                                                                                                                     |
-| **Prefer**            | `open INDEX s/SOCIAL`                                                                                                                                                                                        |
+| **Prefer**            | `prefer INDEX s/SOCIAL`                                                                                                                                                                                      |
 | **Open**              | `open INDEX s/SOCIAL`                                                                                                                                                                                        |
 | **Social**            | `social SOCIAL`                                                                                                                                                                                              |                                                                                                                                                                      |
 | **Email All**         | `emailall GROUPNAME`                                                                                                                                                                                         |
