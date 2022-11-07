@@ -246,7 +246,7 @@ Instead, each command allows you to specify the `-h` and `--help` flag, which br
 and parameters for the command. Alternatively, you can also refer to this user guide to find out the details of
 any command.
 
-#### Example Command Help Message: `add person --help`
+#### Example Command Help Message: `assign task --help`
 
 ![Command Help Message](images/CommandHelpMessage.png)
 
