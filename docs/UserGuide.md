@@ -21,7 +21,7 @@ If you can type fast, Condonery can get your contact management tasks done faste
 1. Copy the file to the folder you want to use as the _home folder_ for your Condonery.
 
 1. Double-click the file to start the app. The interface will look like this.
-   ![Ui](images/Ui.png)
+   ![Ui](images/ug_condonery.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.
    Some example commands you can try:
@@ -215,7 +215,7 @@ Optional arguments:
   * If no clients matches the search, an error message will be shown.
 * The `-i` flag allows the user to upload images of the property. A file chooser dialog will appear after running the command.<br>
 
-![file_chooser](images/ug_add_property_image.png)
+![file_chooser](images/ug_add_property.png)
 
 </div>
 
@@ -293,8 +293,6 @@ Format: `find -p NAME [MORE_NAMES]`
 Examples:
 * `find -p Wall Street` returns `Wall Street` and `Wall Street Prime`
 * `find -p Pinnacle@Duxton Bishan` returns `Pinnacle@Duxton`, `Bishan 8`<br>
-
-[//]: # (Image to be added later)
 
 ### Deleting a property : `delete -p`
 
@@ -412,7 +410,7 @@ Format: `select -p INDEX`
 </div>
 
 Examples:
-* `select -p 5` returns the fifth property in the property directory, alongside the list of interested clients in the client directory.
+* `select -p 3` returns the third property in the property directory, alongside the list of interested clients in the client directory.
 
 ### Clearing all entries : `clear -p`
 
@@ -453,7 +451,7 @@ Optional arguments:
   * If no properties matches the search, an error message will be shown.
 * The `-i` flag allows the user to upload images of the client. A file chooser dialog will appear after running the command.<br>
 
-![file_chooser](images/ug_add_client_image.png)
+![file_chooser](images/ug_add_client.png)
 
 </div>
 
@@ -527,9 +525,6 @@ Format: `find -c NAME [MORE_NAMES]`
 Examples:
 * `find -c Janice` returns `Janice Tan` and `Janice Ong`
 * `find -c Dustin Chan` returns `Dustin Ong`, `Jane Chan`<br>
-
-[//]: # (Image to be added later)
-[//]: # (  ![result for 'find alex david']&#40;images/findAlexDavidResult.png&#41;)
 
 ### Deleting a client profile: `delete -c`
 
