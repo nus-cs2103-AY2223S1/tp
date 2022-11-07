@@ -14,10 +14,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("add c/Google p/SWE \ne/support@google.com w/https://careers.google.com/ \n s/5000 Park Way t/Urgent")
+[-> LogicManager : execute("add c/Google p/SWE \ne/support@google.com w/https://careers.google.com/ \n s/5000 t/Urgent")
 activate LogicManager
 
-LogicManager -> InTrackParser : parseCommand("add c/Google p/SWE \ne/support@google.com w/https://careers.google.com/ \n s/5000 Park Way t/Urgent")
+LogicManager -> InTrackParser : parseCommand("add c/Google p/SWE \ne/support@google.com w/https://careers.google.com/ \n s/5000 t/Urgent")
 activate InTrackParser
 
 create AddCommandParser
@@ -27,7 +27,7 @@ activate AddCommandParser
 AddCommandParser --> InTrackParser
 deactivate AddCommandParser
 
-InTrackParser -> AddCommandParser : parse("add c/Google p/SWE \ne/support@google.com w/https://careers.google.com/ \n s/5000 Park Way t/Urgent")
+InTrackParser -> AddCommandParser : parse("c/Google p/SWE \ne/support@google.com w/https://careers.google.com/ \n s/5000 t/Urgent")
 activate AddCommandParser
 
 create Internship
