@@ -538,7 +538,7 @@ Format: `clear` <br/>
 Clears all entries in PennyWise.
 
 <div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
-Danger zone! This command is irreversible- it is not possible to retrieve entries that are cleared.
+Danger zone! This command is irreversible, it is not possible to retrieve entries that are cleared.
 </div>
 
 ### Exiting the program
