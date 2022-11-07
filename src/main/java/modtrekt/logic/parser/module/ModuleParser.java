@@ -24,7 +24,7 @@ import modtrekt.model.module.Module;
 public class ModuleParser {
 
     private static final Path backupFilePath = Paths
-            .get("backupData/modules.json");
+            .get("modules.json");
 
     private static final HttpClient httpClient = HttpClient.newBuilder()
             .version(HttpClient.Version.HTTP_2)
