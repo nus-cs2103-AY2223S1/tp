@@ -30,6 +30,8 @@ Given below are my contributions to the project.
   * Authored [21 issues](https://github.com/AY2223S1-CS2103T-W11-2/tp/issues?q=is%3Aissue+is%3Aclosed+author%3Abryanngzh) to help keep track of current issues and progress.
   * Reviewed [57 pull requests](https://github.com/AY2223S1-CS2103T-W11-2/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3Abryanngzh) to ensure quality and consistency across the database.
 
+<div style="page-break-after: always;"></div>
+
 * **Documentation**:
   * User Guide:
     * Added module section to User Guide for `mview` and `mlist` commands. [#179](https://github.com/AY2223S1-CS2103T-W11-2/tp/pull/179)
