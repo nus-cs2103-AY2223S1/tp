@@ -18,7 +18,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/jeromehjj.md)]
 
 * Role: Developer
-* Responsibilities: _To be determined_
+* Responsibilities: Deliverables and Deadlines, Scheduling and Tracking
 
 ### Isaac Li Haoyang
 
