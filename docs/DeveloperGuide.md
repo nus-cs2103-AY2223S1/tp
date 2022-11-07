@@ -685,6 +685,34 @@ testers are expected to do more *exploratory* testing.
 
 ### Finding a customer
 
+1. Search for customers within bobaBot using approximate pronunciation
+
+    1. Prerequisites: Ensure that the sample data is loaded with customers `Alex Yeoh`, `Bernice Yu`,... when launching the JAR file.
+
+    2. Test case: `find Charlet`<br>
+       Expected: `Charlotte Oliveiro` should be listed.
+   
+2. Search for a specific customer within bobaBot using email
+
+    1. Prerequisites: Ensure that the sample data is loaded with customers `Alex Yeoh`, `Bernice Yu`,... when launching the JAR file.
+
+    2. Test case: `find e/alexyeoh@example.com`<br>
+       Expected: `Alex Yeoh` should be listed.
+   
+3. Search for a specific customer within bobaBot using phone
+
+   1. Prerequisites: Ensure that the sample data is loaded with customers `Alex Yeoh`, `Bernice Yu`,... when launching the JAR file.
+
+   2. Test case: `find p/92492021`<br>
+      Expected: `Irfan Ibrahim` should be listed.
+
+4. Search for customers within bobaBot using occurrence of keyword
+
+   1. Prerequisites: Ensure that the sample data is loaded with customers `Alex Yeoh`, `Bernice Yu`,... when launching the JAR file.
+
+   2. Test case: `find al`<br>
+      Expected: `Alex Yeoh` and `Roy Balakrishnan` should be listed.
+   
 ### Deleting a customer
 
 1. Deleting a customer via `PHONE_NUMBER`
