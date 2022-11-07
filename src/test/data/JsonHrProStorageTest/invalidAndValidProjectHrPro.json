@@ -1,0 +1,15 @@
+{
+  "projects": [ {
+    "projectName": "Valid Project",
+    "budget": "9482424",
+    "deadline": "2022-01-02",
+    "staffList": []
+  }, {
+    "projectName": "Project with invalid date",
+    "budget": "9482424",
+    "deadline": "invalid date",
+    "staffList": []
+  } ],
+  "staff": [],
+  "tasks": []
+}

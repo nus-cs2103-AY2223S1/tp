@@ -1,0 +1,16 @@
+{
+  "projects": [ {
+    "projectName": "Alice Pauline",
+    "budget": "94351253",
+    "deadline": "2022-01-01",
+    "staffList": [],
+    "tagged": [ "friends" ]
+  }, {
+    "projectName": "Alice Pauline",
+    "budget": "94351253",
+    "deadline": "2025-04-09",
+    "staffList": []
+  } ],
+  "staff" : [],
+  "tasks" : []
+}

@@ -1,0 +1,88 @@
+@startuml
+!include style.puml
+
+actor  user     as user
+
+box Ui UI_COLOR_T1
+participant ":MainWindow"  as mainWindow UI_COLOR
+participant ":ResultDisplay" as resultDisplay UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":logicManager"  as logicManager LOGIC_COLOR
+participant ":hrProParser"  as hrProParser LOGIC_COLOR
+participant ":hrProParser"  as hrProParser LOGIC_COLOR
+participant ":sortTaskCommand"  as sortTaskCommand LOGIC_COLOR
+participant ":CommandResult" as commandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":modelManager" as modelManager MODEL_COLOR
+participant ":hrPro" as hrPro MODEL_COLOR
+participant ":uniqueTaskList" as uniqueTaskList MODEL_COLOR
+end box
+
+user -> mainWindow : input sorttask
+activate mainWindow
+
+mainWindow -> logicManager : execute "sorttask"
+activate logicManager
+
+logicManager -> hrProParser : parseCommand("sorttask")
+activate hrProParser
+
+create sortTaskCommand
+hrProParser -> sortTaskCommand
+activate sortTaskCommand
+
+sortTaskCommand --> hrProParser
+deactivate sortTaskCommand
+
+hrProParser --> logicManager
+deactivate hrProParser
+
+logicManager -> sortTaskCommand : execute()
+activate sortTaskCommand
+
+sortTaskCommand -> modelManager : sortTasks()
+activate modelManager
+
+modelManager -> hrPro : sortTasks()
+activate hrPro
+
+hrPro -> uniqueTaskList : sort()
+activate uniqueTaskList
+
+uniqueTaskList --> hrPro
+deactivate uniqueTaskList
+
+hrPro --> modelManager
+deactivate hrPro
+
+modelManager --> sortTaskCommand
+deactivate modelManager
+
+create commandResult
+sortTaskCommand -> commandResult
+activate commandResult
+
+commandResult --> sortTaskCommand
+deactivate commandResult
+
+sortTaskCommand --> logicManager
+deactivate sortTaskCommand
+sortTaskCommand -[hidden]-> logicManager
+destroy sortTaskCommand
+
+logicManager --> mainWindow
+deactivate logicManager
+
+mainWindow -> resultDisplay : setFeedbackToUser(s)
+activate resultDisplay
+
+resultDisplay --> mainWindow
+deactivate resultDisplay
+
+mainWindow --> user : s
+deactivate mainWindow
+@enduml

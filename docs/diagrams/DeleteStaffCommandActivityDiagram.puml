@@ -1,0 +1,36 @@
+@startuml
+!include style.puml
+
+start
+:User inputs\n delstaff command;
+:Parse input;
+if () then ([valid input])
+    :Check for empty List;
+    if () then ([Not empty])
+        :Try to get Staff \nat INDEX;
+        if () then ([Valid INDEX and Staff])
+            :Try to get Project \nwith PROJECT_NAME;
+            if () then ([Successfully get Project])
+
+                : Find Staff with STAFF_NAME\nfrom Project;
+                if () then ([Found])
+                    :Delete Staff from Staff List;
+                    : Update displayed Staff List with\nProject's updated Staff list;
+                    : Return success\n message;
+                else ([else])
+                    :Throw exception for Invalid Staff;
+                endif
+            else ([else])
+                : Throw exception for\nProject not displayed\n or within HR Pro Max++ ;
+            endif
+        else ([else])
+            : Throw exception for\n invalid Staff INDEX;
+    endif
+    else ([else])
+    :Throw CommandException;
+    endif
+else ([else])
+: Throw parseException;
+endif
+stop
+@enduml

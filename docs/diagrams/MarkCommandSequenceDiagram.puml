@@ -1,0 +1,87 @@
+@startuml
+!include style.puml
+
+actor  user     as user
+
+box Ui UI_COLOR_T1
+participant ":CommandBox"  as commandBox UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":logicManager"  as logicManager LOGIC_COLOR
+participant ":HrProParser"  as hrProParser LOGIC_COLOR
+participant ":MarkCommandParser"  as markCommandParser LOGIC_COLOR
+participant ":MarkCommand"  as markCommand LOGIC_COLOR
+participant ":CommandResult" as commandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":modelManager" as modelManager MODEL_COLOR
+participant ":HrPro" as hrPro MODEL_COLOR
+end box
+
+user -> commandBox : input mark 1
+activate commandBox
+
+commandBox -> logicManager : execute "mark 1"
+activate logicManager
+
+
+logicManager -> hrProParser : parseCommand("mark 1")
+activate hrProParser
+
+create markCommandParser
+hrProParser -> markCommandParser :
+activate markCommandParser
+
+markCommandParser --> hrProParser
+
+hrProParser -> markCommandParser : parse("1")
+
+create markCommand
+markCommandParser -> markCommand
+activate markCommand
+
+markCommand --> markCommandParser
+deactivate markCommand
+
+markCommandParser --> hrProParser
+deactivate markCommandParser
+markCommandParser -[hidden]-> hrProParser
+destroy markCommandParser
+
+hrProParser --> logicManager
+deactivate hrProParser
+
+logicManager -> markCommand : execute()
+deactivate logicManager
+activate markCommand
+
+markCommand -> modelManager : markTask(INDEX)
+activate modelManager
+
+modelManager -> hrPro : markTask(INDEX)
+activate hrPro
+
+hrPro --> modelManager
+deactivate hrPro
+
+modelManager --> markCommand
+deactivate modelManager
+
+create commandResult
+markCommand -> commandResult :
+activate commandResult
+
+commandResult --> markCommand
+deactivate commandResult
+
+markCommand --> commandBox
+deactivate markCommand
+markCommand -[hidden]-> commandBox
+destroy markCommand
+
+commandBox --> user :
+deactivate commandBox
+
+@enduml
