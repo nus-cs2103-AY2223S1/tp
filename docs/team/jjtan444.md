@@ -40,7 +40,12 @@ Given below are my contributions to the project.
 * Improved `findProj` command to be able to find `Project` with keywords that matches part of the `Project` name.
 * Improved `findTask` command to be able to find `Task` with keywords that matches part of the `TaskDescription`.
 * Improved `findStaff` command to be able to find `Staff` with multiple keywords.
+* Check for code quality
 
+* **Project management**:
+  * Project demonstration for submission.
+  * Increased overall test quality [\#124](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/124), 
+  [\#230](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/230), [\#233](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/233).
 
 * **Documentation**:
   * User Guide:
@@ -48,6 +53,7 @@ Given below are my contributions to the project.
     * Update User Guide for `findProj`, `findTask`, `findStaff` commands [\#191](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/191).
     * Language and formatting edits for User Guide [\#188](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/188), [\#191](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/191),
       [\#201](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/201).
+    
   * Developer Guide:
     * Update use case for `Project` [\#83](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/83).
     * Added use cases for `Staff` [\#83](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/83), [\#218](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/218).
