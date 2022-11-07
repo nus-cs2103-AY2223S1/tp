@@ -338,13 +338,12 @@ The following sequence diagram summarizes the aforementioned steps.
 
 #### Design considerations
 
-**Aspect: Should we allow users to find block keywords:**
-* **Alternative 1 (current choice): Allow user to find by single keywords**
-    * Pros: Provides more search results and the expected student is part of the list.
-    * Cons: The expected student may not appear at the top of the list due to lexicography.
-* **Alternative 2: Allow users to find by block keywords**
-    * Pros: Possibly more accurate searches.
-    * Cons: Higher possibility that search is unsuccessful due to error in keywords.
+**Aspect: Should we allow users to find block keywords :**
+
+|                                                                                                                          | **Pros**                       | **Cons**                                                                                                                                                                                 |
+|--------------------------------------------------------------------------------------------------------------------------|--------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Option 1 (current choice)** <br> Allow user to find by single keywords                                   | Provides more search results and the expected student is part of the list.| The expected student may not appear at the top of the list due to lexicography.                                                                                                                  |
+| **Option 2** <br> Allow users to find by block keywords | Possibly more accurate searches.         | Higher possibly that search is unsuccessful due to error in keywords. |
 
 ### Mark feature
 FRIDAY allows users to mark the Mastery Checks of certain students as passed.
