@@ -119,6 +119,12 @@ public class Module {
      * @param target the schedule to be deleted
      */
     public void deleteSchedule(Schedule target) {
+//        for (Schedule schedule: schedules) {
+//            if (schedule.equals(target)) {
+//                System.out.println("yes");
+//                schedules.remove(schedule);
+//            }
+//        }
         schedules.remove(target);
     }
 

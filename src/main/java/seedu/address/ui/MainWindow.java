@@ -347,7 +347,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleShowTabSchedule() {
-        scheduleListPanel = new ScheduleListPanel(logic.getFilteredScheduleList());
+        scheduleListPanel = new ScheduleListPanel(logic.getAllScheduleList());
         scheduleListPanelPlaceholder.getChildren().add(scheduleListPanel.getRoot());
         tabPane.getSelectionModel().select(SCHEDULE);
     }

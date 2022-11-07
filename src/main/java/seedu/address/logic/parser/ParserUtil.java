@@ -433,10 +433,10 @@ public class ParserUtil {
             if (endMin != 0 && endMin != 30) {
                 throw new ParseException(Schedule.MESSAGE_TIMESLOT_CONSTRAINT);
             }
-            if (startHour < 7) {
+            if (startHour < 8) {
                 throw new ParseException(Schedule.MESSAGE_CLASS_STARTINGTIME_CONSTRAINT);
             }
-            if (endHour > 22) {
+            if (endHour > 22 || (endHour == 22 && endMin != 0)) {
                 throw new ParseException(Schedule.MESSAGE_CLASS_ENDINGTIME_CONSTRAINT);
             }
             if ((startHour > endHour) || ((startHour == endHour) && (startMin >= endMin))) {
