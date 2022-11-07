@@ -200,7 +200,7 @@ Consider an example of a valid `adddebt` command, `adddebt 1 2 d/food m/10`. The
 
 The following activity diagrams detail the behaviour of PayMeLah when a user inputs an `adddebt` command of valid syntax to be executed.
 
-<img src="images/AddDebtActivityDiagram.png" width="450" />0
+<img src="images/AddDebtActivityDiagram.png" width="450" />
 
 <div style="page-break-after: always;"></div>
 
