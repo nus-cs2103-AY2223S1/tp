@@ -29,7 +29,7 @@ effectively manage many projects at once** through the a CLI.
     - Fixed no error message when trying to add a Task with an empty
       name. ([#137](https://github.com/AY2223S1-CS2103T-T11-1/tp/issues/137))
     - Fixed random print statements appearing in the
-      console. ([#129](https://github.com/AY2223S1-CS2103T-T11-1/tp/issues/137))
+      console. ([#129](https://github.com/AY2223S1-CS2103T-T11-1/tp/issues/129))
     - Fixed non-specific error message when adding existing user to already-assigned
       group. ([#108](https://github.com/AY2223S1-CS2103T-T11-1/tp/issues/108))
 
