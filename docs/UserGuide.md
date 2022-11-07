@@ -39,10 +39,13 @@ Take note of the following symbols and formatting used in this document:
 
 ## Quick Start
 
-1. Ensure that you have Java `11` installed in your computer.
+Here is a quick overview of how to get our application started! Complete these few steps to get your EZLead journey 
+started!
+
+1. Ensure that you have Java `11` installed in your computer. You can check your java version using the `java -version` command.
 2. Download the latest EZLead.jar from [here](https://github.com/AY2223S1-CS2103T-W09-3/tp/releases/download/v1.3.2/EzLead.jar).
-3. Copy the file to the folder you want to use as the home folder for your EZLead app.
-4. Double-click the file to start the app.
+3. Create a home folder for your EZLead app wherever you wish to store it and copy the jar file to it.
+4. Double-click the file to start the app. The app will contain some sample data
 5. Type the command in the command box and press Enter to execute it.<br>Some example commands you can try:
   * `userlist`: Shows the global list of all members and their details.
   * `add n/John Doe p/99853657 e/john@gmail.com a/414, North Bridge Ave 5, #09-86 t/friends t/owesMoney`: Adds a member named `John Doe` to the app.
@@ -50,6 +53,8 @@ Take note of the following symbols and formatting used in this document:
   * `clear`: Deletes all teams, members and tasks.
   * `exit`: Exits the app.
 6. Refer to the [Features](#features) section in this user guide for more details on commands
+
+[Back to Top ↑](#introduction)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -114,7 +119,7 @@ Opens the User List window.
 
 Format: `userlist`
 
-#### 1.2 Listing all students : `list`
+#### 1.2 Listing all members : `list`
 
 Shows a list of all members in the User List window.
 
@@ -336,6 +341,8 @@ However, EZLead cannot verify validity of the data if it was manually modified. 
 to load in an EMPTY state.
 
 ![JSONSaveFile.png](images/JSONSaveFile.png)
+
+[Back to Top ↑](#introduction)
 
 --------------------------------------------------------------------------------------------------------------------
 
