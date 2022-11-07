@@ -985,21 +985,20 @@ Examples:
 
 **Q: I have accidentally deleted an entry, is there any way for me to undo it?**
 
-**A**: Currently, we do not offer such an option, but you can look forward to RC4HDB v1.5, as we will be implementing that
-in the near future!
+**A:** Currently, we do not offer such an option, but you can look forward to RC4HDB v1.5, as we will be implementing that in the near future!
 
 <br>
 
 **Q: The text on the screen is too small, is there any way for me to resize it?**
 
-**A**: RC4HDB does not allow the text size to be changed, however, you can enlarge the text by changing your screen resolution. You may
+**A:** RC4HDB does not allow the text size to be changed, however, you can enlarge the text by changing your screen resolution. You may
 refer to this [link](https://support.microsoft.com/en-us/windows/change-your-screen-resolution-in-windows-5effefe3-2eac-e306-0b5d-2073b765876b) for Windows, and this [link](https://www.wikihow.com/Change-the-Screen-Resolution-on-a-Mac) for Mac.
 
 <br>
 
 **Q: Do I need an internet connection to be able to use RC4HDB?**
 
-**A**: You do not need an internet connection to use RC4HDB as everything is done on your device.
+**A:** You do not need an internet connection to use RC4HDB as everything is done on your device.
 
 <br>
 
