@@ -14,13 +14,17 @@ WorkBook (WB) is a desktop app for CS/tech students who are applying for interns
 This displays my code contributions for the project: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=jacobkwan&breakdown=true)
 
 #### Enhancements implemented
-- New Feature: Default WorkBook state of having internship applications sorted by date 
-- New Feature: Adding Language Tags
+- [New Feature: Default WorkBook state of having internship applications sorted by date](https://github.com/AY2223S1-CS2103T-T10-3/tp/pull/83) 
+- [New Feature: Adding Language Tags](https://github.com/AY2223S1-CS2103T-T10-3/tp/pull/89)
 
 #### Contributions to User Guide
+- Overall refinement of tone and structure
+- [Miscellaneous bug fixing](https://github.com/AY2223S1-CS2103T-T10-3/tp/pull/167)
+- [Usage of `delete`](https://github.com/AY2223S1-CS2103T-T10-3/tp/pull/38)
+- [Command summary](https://github.com/AY2223S1-CS2103T-T10-3/tp/pull/100/files)
 
 #### Contributions to Developer Guide
-- Outlined user story for the sort functionality 
+- [Added instructions for manual testing](https://github.com/AY2223S1-CS2103T-T10-3/tp/pull/173)
 - NFRs
 - Glossary
 
@@ -29,9 +33,9 @@ This displays my code contributions for the project: [RepoSense link](https://nu
 
 #### Review/mentoring contributions
 - Integration: Managed team repo, handled releases.
-- Reviewed a bulk of the pull requests (34+) to maintain code quality and initiate discussions where applicable.
+- Reviewed a bulk of the pull requests (45+) to maintain code quality and initiate discussions where applicable.
     - [example of a non trivial PR review](https://github.com/AY2223S1-CS2103T-T10-3/tp/pull/87)
     - [another example](https://github.com/AY2223S1-CS2103T-T10-3/tp/pull/152)
 
 #### Contributions beyond the project team
-- Reported an above average number of bugs in the PE-D (12)
+- Reported an above average number of bugs in the [PE-D](https://github.com/jacobkwan/ped/issues) (12)
