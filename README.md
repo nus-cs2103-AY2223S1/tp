@@ -12,7 +12,10 @@ YellowBook is optimised for use via a Command Line Interface (CLI).
 ## Documentation
 * [User Guide](https://ay2223s1-cs2103t-f11-4.github.io/tp/UserGuide.html)
 * [Developer Guide](https://ay2223s1-cs2103t-f11-4.github.io/tp/DeveloperGuide.html)
-* [About Us](https://github.com/AY2223S1-CS2103T-F11-4/tp/blob/master/docs/AboutUs.md)
+* [About Us](https://ay2223s1-cs2103t-f11-4.github.io/tp/AboutUs.html)
 
 ## Acknowledgements
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+
+Libraries used:
+[JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5), [Mockito](https://github.com/mockito/mockito)
