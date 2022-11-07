@@ -1056,7 +1056,7 @@ testers are expected to do more *exploratory* testing.
 ### Difficulty level
 
 We believe that we have worked hard during this entire project to come with a product that is functional and widely applicable.
-If the difficulty of the individual project is a 5 the difficulty of implementing <b>FRIDAY</b> was a 5. This is because:
+If the difficulty of the individual project is a 5 the difficulty of implementing <b>FRIDAY</b> was a 8. This is because:
 
 * We pushed more complex designs and features that required more planning and trial and error and learning along the way.
 * Working as a team also meant that we had to delegate admin tasks and designate roles on a weekly basis which was a challenge for us as well.
@@ -1073,7 +1073,7 @@ If the difficulty of the individual project is a 5 the difficulty of implementin
 
 ### Effort required
 When this projects work was compared to the amount of effort needed for the IP, it can be said that the same amount of effort
-if not more was put into this project as compared to the IP. We believe we put in 100% of the effort each one of us put into our IP and that's a conservative estimate. This project required all members working around the clock
+if not more was put into this project as compared to the IP. We believe we put in 160% of the effort each one of us put into our IP and that's a conservative estimate. This project required all members working around the clock
 and a high amount of effort was used to achieve weekly deliverables and ensure a working product was available at all times. 
 
 ### Achievements
