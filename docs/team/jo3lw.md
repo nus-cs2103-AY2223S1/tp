@@ -5,7 +5,9 @@ title: Joel Wong's Project Portfolio Page
 
 ### Project: JeeqTracker
 
-JeeqTracker is a desktop application created for home-based business owners / resellers that helps them manage the clients that they interact with by keeping track of their BUY / SELL transactions, and REMARKS of clients. It is written in Java, and has about 10 kLoC.
+JeeqTracker is a desktop application created for **home-based business owners / resellers** that helps them manage the clients
+that they interact with by keeping track of their **`BUY / SELL`** transactions, and **`REMARKS`** of clients.
+It is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
 
