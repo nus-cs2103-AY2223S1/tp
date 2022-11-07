@@ -519,6 +519,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | CS2103T TA | add student's attendance                            | track student's attendance for grading purposes                     |
 | `* * *`  | CS2103T TA | add students' response count                        | keep track of student's participation                               |
 | `* * `   | CS2103T TA | add help tag to a student                           | see which students need more attention                              |
+| `* *`    | CS2103T TA | remove help tag from a student                      | remove help tag when the student does not need help anymore         |
 | `* * `   | CS2103T TA | find specific student(s)                            | see the details of the specific student(s)                          |
 | `* * *`  | CS2103T TA | list out all my students                            | have an overview of all the students under me                       |
 | `* * *`  | CS2103T TA | add questions asked by students during the tutorial | address them in the future                                          |
@@ -662,6 +663,24 @@ otherwise)
 
 1. User requests to add help tag to a specific student in the list.
 2. SETA adds a help tag to that student.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given index is invalid.
+    * 1a1. SETA shows an error message.
+
+      Use case ends.
+
+****
+
+**Use case: Remove help tag**
+
+**MSS**
+
+1. User requests to remove help tag to a specific student in the list.
+2. SETA removes a help tag from that student.
 
    Use case ends.
 
@@ -985,6 +1004,19 @@ exploratory* testing.
        Expected: No help tag added. Error details shown in status message. Status bar remains the same.
     4. Other incorrect marktut commands to try: `helpstu`, `helpstu x` (where x is larger than list size)
        , `helpstu -1` <br>
+       Expected: Similar to previous
+
+### Remove help tag from a student
+
+1. Remove help tag from a student while all students are being shown.
+
+    1. Prerequisites: List all students using the `liststu` command. Multiple students in the list.
+    2. Test case: `unhelpstu 1`<br>
+       Expected: Help tag removed from first student in the list. Details of student shown in the status message.
+    3. Test case: `unhelpstu 0`<br>
+       Expected: Help tag not removed. Error details shown in status message. Status bar remains the same.
+    4. Other incorrect marktut commands to try: `unhelpstu`, `unhelpstu x` (where x is larger than list size)
+       , `unhelpstu -1` <br>
        Expected: Similar to previous
 
 ### Find a student
