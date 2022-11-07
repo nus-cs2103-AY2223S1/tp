@@ -4,6 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -46,6 +47,36 @@ public class FindClientCommandParserTest {
         assertParseSuccess(parser, "-f",
                 " n/Harry Jaime m/103835180 e/potter@reddit.com-sg c/1",
                 expectedFindCommand);
+    }
+
+    @Test
+    public void parse_validSinglePrefixWithNoRepetitionArgs_returnsFindCommand() {
+
+        List<String> name = Arrays.asList("Harry");
+        List<String> email = Arrays.asList("potter@reddit.com-sg");
+        List<String> phone = Arrays.asList("103835180");
+        List<String> clientId = Arrays.asList("1");
+        List<String> empty = new ArrayList<>();
+
+        //name
+        FindClientCommand expectedFindCommandName =
+                new FindClientCommand(new ClientContainsKeywordsPredicate(name, empty, empty, empty));
+        assertParseSuccess(parser, "-f", " n/Harry", expectedFindCommandName);
+
+        //email
+        FindClientCommand expectedFindCommandEmail =
+                new FindClientCommand(new ClientContainsKeywordsPredicate(empty, email, empty, empty));
+        assertParseSuccess(parser, "-f", " e/potter@reddit.com-sg", expectedFindCommandEmail);
+
+        //phone (mobile)
+        FindClientCommand expectedFindCommandMobile =
+                new FindClientCommand(new ClientContainsKeywordsPredicate(empty, empty, phone, empty));
+        assertParseSuccess(parser, "-f", " m/103835180", expectedFindCommandMobile);
+
+        //client id
+        FindClientCommand expectedFindCommandId =
+                new FindClientCommand(new ClientContainsKeywordsPredicate(empty, empty, empty, clientId));
+        assertParseSuccess(parser, "-f", " c/1", expectedFindCommandId);
     }
 
     @Test

@@ -4,6 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -53,6 +54,49 @@ public class FindProjectCommandParserTest {
         assertParseSuccess(parser, "-f",
                 " n/DevEnable r/tp/F-13 p/3 c/1 l/Sally",
                 expectedFindCommand);
+    }
+
+    @Test
+    public void parse_validSinglePrefixWithNoRepetitionArgs_returnsFindCommand() {
+
+        //all prefixes are given with valid keywords
+        List<String> projectName = Arrays.asList("DevEnable");
+        List<String> repository = Arrays.asList("tp/F-13");
+        List<String> projectId = Arrays.asList("3");
+        List<String> clientLabel = Arrays.asList("Sally");
+        List<String> clientId = Arrays.asList("1");
+        List<String> emptyStrings = new ArrayList<>();
+
+
+        // project name
+        FindProjectCommand expectedFindCommandName =
+                new FindProjectCommand(new ProjectContainsKeywordsPredicate(projectName, emptyStrings, emptyStrings,
+                        emptyStrings, emptyStrings));
+        assertParseSuccess(parser, "-f", " n/DevEnable", expectedFindCommandName);
+
+        //repository
+        FindProjectCommand expectedFindCommandRepo =
+                new FindProjectCommand(new ProjectContainsKeywordsPredicate(emptyStrings, repository, emptyStrings,
+                        emptyStrings, emptyStrings));
+        assertParseSuccess(parser, "-f", " r/tp/F-13", expectedFindCommandRepo);
+
+        //client name (label)
+        FindProjectCommand expectedFindCommandLabel =
+                new FindProjectCommand(new ProjectContainsKeywordsPredicate(emptyStrings, emptyStrings, clientLabel,
+                        emptyStrings, emptyStrings));
+        assertParseSuccess(parser, "-f", " l/Sally", expectedFindCommandLabel);
+
+        //client id
+        FindProjectCommand expectedFindCommandClientId =
+                new FindProjectCommand(new ProjectContainsKeywordsPredicate(emptyStrings, emptyStrings, emptyStrings,
+                        clientId, emptyStrings));
+        assertParseSuccess(parser, "-f", " c/1", expectedFindCommandClientId);
+
+        //project id
+        FindProjectCommand expectedFindCommandProjectId =
+                new FindProjectCommand(new ProjectContainsKeywordsPredicate(emptyStrings, emptyStrings, emptyStrings,
+                        emptyStrings, projectId));
+        assertParseSuccess(parser, "-f", " p/3", expectedFindCommandProjectId);
     }
 
     @Test

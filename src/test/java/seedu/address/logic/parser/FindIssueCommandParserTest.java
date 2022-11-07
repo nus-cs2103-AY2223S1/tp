@@ -4,6 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -51,6 +52,52 @@ public class FindIssueCommandParserTest {
         assertParseSuccess(parser, "-f",
                 " t/This is an issue title p/1 i/7 s/completed u/LOW n/DevEnable",
                 expectedFindCommand);
+    }
+
+    @Test
+    public void parse_validSinglePrefixWithNoRepetitionArgs_returnsFindCommand() {
+
+        List<String> issueTitle = Arrays.asList("This is an issue title");
+        List<String> projectName = Arrays.asList("DevEnable");
+        List<String> urgency = Arrays.asList("LOW");
+        List<String> status = Arrays.asList("completed");
+        List<String> issueId = Arrays.asList("7");
+        List<String> projectId = Arrays.asList("1");
+        List<String> empty = new ArrayList<>();
+
+        //title
+        FindIssueCommand expectedFindCommandTitle =
+                new FindIssueCommand(new IssueContainsKeywordsPredicate(issueTitle, empty, empty, empty, empty, empty));
+        assertParseSuccess(parser, "-f", " t/This is an issue title", expectedFindCommandTitle);
+
+        //name
+        FindIssueCommand expectedFindCommandName =
+                new FindIssueCommand(new IssueContainsKeywordsPredicate(empty, empty, empty, projectName,
+                        empty, empty));
+        assertParseSuccess(parser, "-f", " n/DevEnable", expectedFindCommandName);
+
+        //urgency
+        FindIssueCommand expectedFindCommandUrgency =
+                new FindIssueCommand(new IssueContainsKeywordsPredicate(empty, empty, urgency, empty,
+                        empty, empty));
+        assertParseSuccess(parser, "-f", " u/LOW", expectedFindCommandUrgency);
+
+        //status
+        FindIssueCommand expectedFindCommandStatus =
+                new FindIssueCommand(new IssueContainsKeywordsPredicate(empty, status, empty, empty, empty, empty));
+        assertParseSuccess(parser, "-f",
+                " s/completed", expectedFindCommandStatus);
+
+        //issue id
+        FindIssueCommand expectedFindCommandIssueId =
+                new FindIssueCommand(new IssueContainsKeywordsPredicate(empty, empty, empty, empty, empty, issueId));
+        assertParseSuccess(parser, "-f", " i/7", expectedFindCommandIssueId);
+
+        //project id
+        FindIssueCommand expectedFindCommandProjectId =
+                new FindIssueCommand(new IssueContainsKeywordsPredicate(empty, empty, empty, empty, projectId, empty));
+        assertParseSuccess(parser, "-f", " p/1", expectedFindCommandProjectId);
+
     }
 
     @Test
