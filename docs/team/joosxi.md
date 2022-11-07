@@ -48,7 +48,7 @@ Given below are my contributions to the project.
     * (#219): Update User Guide by resizing big images
 
 * **Project management**:
-  * `to be added soon`
+  * Backend Developer
 
 * **Enhancements to existing features**:
   * `Edit Command`: Enhanced edit command to be able to
@@ -65,8 +65,5 @@ Given below are my contributions to the project.
     * Documentation of `Edit command`
 
 * **Community**:
-  * `to be added soon`
-
-* **Tools**:
-  * `to be added soon`
+  * Helped to review code of a total of 13 pull requests
 

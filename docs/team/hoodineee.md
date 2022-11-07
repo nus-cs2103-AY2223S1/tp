@@ -20,7 +20,8 @@ Given below are my contributions to the project.
         * Justification: Since our application is targeted at reducing the administrative workload of teachers, it is
           essential for the application to be able to keep track of the Grades for each Subject taken by each student.
 
-* **Code contributed**:
+* **Code contributed**: 
+[Reposense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=hoodineee&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
     * `Pull Requests`:
         * (#15): Added a skeletal Personal Portfolio Page
         * (#37), (#41): Updated User Guide
