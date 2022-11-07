@@ -325,14 +325,14 @@ should end at the destroy marker (X) but due to a limitation of PlantUML, the li
 
 **Aspect: How the UI window is split to show a panel of list of all applicants and another panel to view details of an applicant:**
 
-![guiDesignConsideration1](images/guiDesignConsideration1.png)
 - **Alternative 1 (current implementation):** Window is split into half below the result display box.
     - Pros: Symmetrical and looks more regular.
     - Cons: Pane to view details of an applicant is smaller.
-![guiDesignConsideration2](images/guiDesignConsideration2.png)
+![guiDesignConsideration1](images/guiDesignConsideration1.png)
 - **Alternative 2:** Window is split from the top, so both command box and result display box are halved.
     - Pros: Can have a larger pane to view details of an applicant.
     - Cons: Need to scroll more to see typed command and result displayed.
+![guiDesignConsideration2](images/guiDesignConsideration2.png)
 
 
 ### 4.3 Import Feature
@@ -615,13 +615,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1b. The specified applicant is a duplicate to another applicant in the list.
 
-    * 1a1. InternConnect shows an error message.
+    * 1b1. InternConnect shows an error message.
 
       Use case ends.
 
 * 1c. The specified applicant has an invalid data value.
 
-    * 1a1. InternConnect shows an error message.
+    * 1c1. InternConnect shows an error message.
 
       Use case ends.
 
@@ -737,7 +737,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2b. The given index is not a positive integer or is out of bounds.
 
-    * 2a1. InternConnect shows an error message.
+    * 2b1. InternConnect shows an error message.
 
       Use case ends.
 
@@ -846,7 +846,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1c. The given file has invalid value, incorrect format, and/or duplicate applicants.
 
     * 1c1. InternConnect wipes all data from the file.
-    * 1b2. InternConnect fills the data with an empty data.
+    * 1c2. InternConnect fills the data with an empty data.
 
       Use case resumes from step 2.
 
