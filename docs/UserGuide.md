@@ -6,6 +6,8 @@ title: User Guide
 * Table of Contents
   {:toc}
 
+--------------------------------------------------------------------------------------------------------------------
+
 ## Introduction
 
 Welcome to the User Guide of **FRIDAY**!
@@ -36,16 +38,16 @@ If you are interested to try, jump to [Quick Start](#quick-start) to learn how t
 
 This section guides you along the process of downloading and opening FRIDAY.
 
-1. Ensure you have Java 11 or above installed in your computer.
+1. Ensure you have [Java](#glossary) 11 or above installed in your computer.
 
-2. Download the latest JAR file `friday.jar` from [here](https://github.com/AY2223S1-CS2103T-W15-4/tp/releases).
+2. Download the latest [JAR](#glossary) file `friday.jar` from [here](https://github.com/AY2223S1-CS2103T-W15-4/tp/releases).
 
 3. Copy the file to the folder you want to use as the *home folder* for your FRIDAY.
 
 4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Startup.png](images/Startup.png)
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the [command](#glossary) in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
     * **`add n/Alex Yeoh t/al3xx c/2022-10-25`** : Adds a student named `Alex Yeoh` to FRIDAY.
 
@@ -81,9 +83,9 @@ Please make yourself familiar with the content here before moving to other secti
 
 #### Understanding the GUI
 
-Figure 2 depicts the GUI of FRIDAY which is annotated with a description of each GUI component
+Figure 2 depicts the [GUI](#glossary) of FRIDAY which is annotated with a description of each GUI component
 
-[Layout](images/layout.png)
+![Layout](images/layout.png)
 <i> Figure 2 Layout</i>
 
 #### Understanding Symbols and syntax
@@ -99,14 +101,14 @@ The table explains the general syntax and common occurrences throughout the user
 
 #### Understanding command terms and general information
 
-Some terms that you may encounter along the way may confuse you. To help you understand all these terms this user guide has a dedicated [glossary](#Glossary) section with all the key terms 
+Some terms that you may encounter along the way may confuse you. To help you understand all these terms this user guide has a dedicated [glossary](#glossary) section with all the key terms 
 and hyperlinks to the first occurrence of the word in each section of the User guide.
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about CLI:**<br>
 
-* [Layout](images/layout.png)
+* ![Layout](images/layout.png)
   <i> Figure 3 Layout</i>
 * In this image above we have a labelled box in red called the command box. CLI or command line interface refers to
   <b>commands</b> in the form of text/<b>lines</b> that you as a user enter in the command box to create a response
@@ -117,7 +119,7 @@ and hyperlinks to the first occurrence of the word in each section of the User g
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+* Words in `UPPER_CASE` are the [parameters](#glossary) to be supplied by the user.<br>
 
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
@@ -152,7 +154,7 @@ and hyperlinks to the first occurrence of the word in each section of the User g
 
 ## Features
 
-This section contains all the information and details of each feature of **FRIDAY**. These features are split into 5 sections depending on their purpose and function:
+This section contains all the information and details of each feature of **FRIDAY**. These features are split into 5 sections based on their purpose and function:
 1. [Student management](#student-management)
 2. [Organizing students](#organizing-students)
 3. [Grading students](#grading-students)
@@ -163,8 +165,8 @@ This section contains all the information and details of each feature of **FRIDA
 
 These features allow you to add and delete students, and edit their details.
 
-Before you dive into using the features, you may want to have a look at the common parameters used.
-The table below shows a list of command parameters that will be used.
+Before you dive into using the features, you may want to have a look at the common [parameters](#glossary) used.
+The table below shows a list of [command](#glossary) parameters that will be used.
 
 <table>
 <tr><th>Parameter Name</th><th>Description</th><th>Example</th></tr>
@@ -179,11 +181,11 @@ The table below shows a list of command parameters that will be used.
 
 ### Adding a student: `add`
 
-Adds a student to FRIDAY, with the given name, Telegram handle, consultation date, Mastery Check date, and tags.
+Adds a student to FRIDAY, with the given name, [Telegram handle](#glossary), consultation date, [Mastery Check](#glossary) date, and tags.
 
 Format: `add n/NAME [t/TELEGRAM_HANDLE] [c/CONSULTATION_DATE] [m/MASTERY_CHECK_DATE] [tag/TAG]...`
 
-* The student details and their associated prefixes are:
+* The student details and their associated [prefixes](#glossary) are:
     * Name - `n`
     * Telegram Handle - `t`
     * Consultation date - `c`
@@ -221,7 +223,7 @@ Format: `delete INDEX`
 
 ### Editing a student: `edit`
 
-You may not have all your students' details at the start, or you may have typed in the wrong details for a specific student. You can use the `edit` feature to add in or edit a student's details after getting this information. This feature is also useful for adding Mastery Check and Consultation dates you have scheduled with your students.
+You may not have all your students' details at the start, or you may have typed in the wrong details for a specific student. You can use the `edit` feature to add in or edit a student's details after getting this information. This feature is also useful for adding [Mastery Check](#glossary) and Consultation dates you have scheduled with your students.
 
 Format: `edit INDEX [n/NAME] [t/TELEGRAM_HANDLE] [c/CONSULTATION] [m/MASTERY_CHECK] [tag/TAG]...`
 
@@ -274,12 +276,13 @@ Outcome: The student at the 1st index (Alex Yap) will have the remark "Aspiring 
 
 [Table of Contents](#table-of-contents)
 
+
 ## Organizing students
 
 These features allow you to organize your list of students to suit your needs.
 
 ### Command Parameters
-Before you dive into using the features, you may want to have a look at the parameters used.
+Before you dive into using the features, you may want to have a look at the [parameters](#glossary) used.
 The table below shows a list of command parameters that will be used.
 
 <table>
@@ -291,20 +294,20 @@ The table below shows a list of command parameters that will be used.
 
 ### Sorting students: `sort`
 
-Sorts all students in FRIDAY with the given criteria, in ascending or descending order. This will come in useful by allowing you to see which students have Mastery Checks closest to the current date by sorting the list according to the students' Mastery Check dates, as shown in the example below.
+Sorts all students in FRIDAY with the given criteria, in ascending or descending order. This will come in useful by allowing you to see which students have [Mastery Checks](#glossary) closest to the current date by sorting the list according to the students' Mastery Check dates, as shown in the example below.
 
 Format: `sort CRITERIA/ORDER`
 
 * `CRITERIA` can be
     * `n` (name)
-    * `t` (Telegram handle)
+    * `t` ([Telegram handle](#glossary))
     * `c` (consultation)
-    * `m` (Mastery Check)
-    * `ra1` (Reading Assessment 1)
-    * `ra2` (Reading Assessment 2)
-    * `pa` (Practical Assessment)
-    * `mt` (Midterm Test)
-    * `ft` (Final Examination)
+    * `m` ([Mastery Check](#glossary))
+    * `ra1` ([Reading Assessment 1](#glossary))
+    * `ra2` ([Reading Assessment 2](#glossary))
+    * `pa` ([Practical Assessment](#glossary))
+    * `mt` ([Midterm Test](#glossary))
+    * `ft` ([Final Examination](#glossary))
 * `ORDER` can be
     * `a` (ascending)
     * `d` (descending)
@@ -353,18 +356,19 @@ Outcome: The only student in the list whose details match the keyword "alex" is 
 
 ### Viewing all students: `list`
 
-Lists all students in FRIDAY. This command helps you to reset the sorting and finding done by the `sort` and `find` commands respectively.
+Lists all students in FRIDAY. This helps you to reset the sorting and finding done by the `sort` and `find` commands respectively.
 
 Format: `list`
 
 [Table of Contents](#table-of-contents)
+
 
 ## Grading students
 
 These features allow you to record your students grades.
 
 ### Command Parameters
-Before you dive into using the features, you may want to have a look at the parameters used.
+Before you dive into using the features, you may want to have a look at the [parameters](#glossary) used.
 The table below shows a list of command parameters that will be used.
 
 <table>
@@ -384,11 +388,11 @@ The `grade` command allows you to record the grades obtained for the assessments
 Format: `grade INDEX [ra1/RA1_SCORE] [ra2/RA2_SCORE] [pa/PRACTICAL_SCORE] [mt/MIDTERM_SCORE] [ft/FINALS_SCORE]`
 
 * The examinations and their associated prefixes are:
-  * Reading Assessment 1 - `ra1`
-  * Reading Assessment 2 - `ra2`
-  * Practical Assessment - `pa`
-  * Midterm Test - `mt`
-  * Final Test `ft`
+  * [Reading Assessment 1](#glossary) - `ra1`
+  * [Reading Assessment 2](#glossary) - `ra2`
+  * [Practical Assessment](#glossary) - `pa`
+  * [Midterm Test](#glossary) - `mt`
+  * [Final Test](#glossary) `ft`
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Note:** <br>
@@ -409,7 +413,7 @@ Outcome: The student at the 1st index (Alex Yap) will have their grades updated.
 
 ### Marking a student's Mastery Check as passed: `mark`
 
-After a student has passed their Mastery Check, you can use the `mark` command to mark their Mastery Check as passed. This will update the list of students with the status of the specified student's Mastery Check.
+After a student has passed their [Mastery Check](#glossary), you can use the `mark` command to mark their Mastery Check as passed. This will update the list of students with the status of the specified student's Mastery Check.
 
 The Mastery Check of a student can only be marked as passed if:
 1. It has not already been marked as passed.
@@ -436,7 +440,7 @@ As you can see, a "(passed)" status is added to student 1's Mastery Check after 
 
 ### Unmarking a student's Mastery Check: `unmark`
 
-Unmarks the Mastery Check of a specified student and removes its "(passed)" status. This will come in handy if you accidentally mark the Mastery Check of a student as passed, even though that is not the case.
+Unmarks the [Mastery Check](#glossary) of a specified student and removes its "(passed)" status. This will come in handy if you accidentally mark the Mastery Check of a student as passed, even though that is not the case.
 
 The Mastery Check of a student can only be unmarked if:
 1. It has already been marked as passed.
@@ -474,7 +478,7 @@ The table below shows a list of command parameters that will be used.
 
 ### Adding aliases: `alias`
 
-Adds an alias for a command into FRIDAY, which you can use in place of the default command keywords.<br>
+Adds an [alias](#glossary) for a command into FRIDAY, which you can use in place of the default command keywords.<br>
 This allows you to be more efficient in using FRIDAY.
 
 Format: `alias a/ALIAS k/COMMAND_KEYWORD`
@@ -491,7 +495,7 @@ Now, typing `a n/John Doe` will add a student named John Doe into FRIDAY.
 
 ### Deleting aliases: `unalias`
 
-Deletes an existing alias, which is no longer needed, in FRIDAY.
+Deletes an existing [alias](#glossary), which is no longer needed, in FRIDAY.
 
 Format: `unalias a/ALIAS`
 
@@ -500,7 +504,7 @@ Example:
 
 ### Viewing aliases: `aliaslist`
 
-Views all aliases in FRIDAY, so that you know what aliases you have created and the commands they are for.
+Views all [aliases](#glossary) in FRIDAY, so that you know what aliases you have created and the commands they are for.
 
 Format: `aliaslist`
 
@@ -606,6 +610,7 @@ Some Frequently Asked Questions:
 | **Exiting FRIDAY**                           | `exit`                                                                                                   |
 
 [Table of Contents](#table-of-contents)
+
 ---------------------------------------------------------------------------------------------------------------------
 
 ## Glossary
@@ -640,5 +645,7 @@ Some Frequently Asked Questions:
 15. **Mastery Check:** A pass/fail assessment on students to assess their understanding of the concepts taught. There are 2 Mastery checks per semester.
 
 16. **Alias:** A nickname or an alternate name that you can set for a command.
+
+17. **Telegram Handle:** The username in the widely-used messaging application Telegram.
 
 [Table of Contents](#table-of-contents)
