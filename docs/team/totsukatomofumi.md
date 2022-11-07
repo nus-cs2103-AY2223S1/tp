@@ -3,9 +3,9 @@ layout: page
 title: Totsuka Tomofumi's Project Portfolio Page
 ---
 
-### Project: myStudents
+### Project: myStudent
 
-myStudents helps tuition center admins manage details of the students, tutors and classes. It is optimized for CLI users so that frequent tasks can be done faster by typing in commands.
+myStudent helps tuition center admins manage details of the students, tutors and classes. It is optimized for CLI users so that frequent tasks can be done faster by typing in commands.
 
 Given below are my contributions to the project.
 

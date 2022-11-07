@@ -3,7 +3,7 @@ layout: page
 title: Tan Tze Yeong's Project Portfolio Page
 ---
 
-### Project: myStudents
+### Project: myStudent
 
 myStudent is **an easy-to-use, portable and aesthetically-pleasing desktop application for tuition centre admins
 for managing the students, tutors and tuition classes of a tuition center**. 

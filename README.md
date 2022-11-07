@@ -7,13 +7,13 @@ Example usages:
   * as a student management tool
   * as a tutor and class management tool
 
-* The project aims to provide tuition centers with a desktop application (called _myStudents_) to manage admin matters.
+* The project aims to provide tuition centers with a desktop application (called _myStudent_) to manage admin matters.
   * It allows the **storing of student particulars**.
   * It allows **management of the classes and tutors**. For example, it comes with tutor assignment and student allocation capabilities.
   * It provides **tracking of student performance and fee payment status**.
 
-* It is named `myStudents` because it is created for admin staff to manage the center's own students.
+* It is named `myStudent` because it is created for admin staff to manage the center's own students.
 
-* For the detailed documentation of this project, see the **[myStudents Product Website](https://ay2223s1-cs2103t-f12-4.github.io/tp/)**.
+* For the detailed documentation of this project, see the **[myStudent Product Website](https://ay2223s1-cs2103t-f12-4.github.io/tp/)**.
 
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
