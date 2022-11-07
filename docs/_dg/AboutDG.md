@@ -5,6 +5,6 @@ This Developer Guide provides in-depth documentation on how FoodRem is designed 
 
 You can use this guide to maintain, upgrade, and evolve FoodRem.
 
-This Developer Guide is accurate as of **31 October 2022**.
+This Developer Guide is accurate as of **7 November 2022**.
 
 Head over to [How to use the Developer Guide](#how-to-use-the-developer-guide) to get started!

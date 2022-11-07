@@ -17,9 +17,12 @@
 
 #### General Implementation Details
 
-The Item functionality is represented by an internal `UniqueItemList` stored in FoodRem. An item is represented as an `Item` object, which is stored within this `UniqueItemList`. 
+![model_diagram](images/ItemClassDiagram.png)
 
-Each `Item` can store a number of attributes. The related attributes are:
+The `Item` object is composed of classes representing the attribute available in them. Items are stored in a `UniqueItemList` while tags are stored in a `UniqueTagList`. These lists restrict the maximum number of items and tags in FoodRem.
+
+The related attributes of an item are:
+
 * `ItemName`: The name of the Item. 
 * `ItemQuantity`: The number of units of an Item.
 * `ItemUnit`: The unit of measurement of an Item.
@@ -29,21 +32,21 @@ Each `Item` can store a number of attributes. The related attributes are:
 * `ItemRemark`: Any attached remarks to the Item.
 
 Regarding the attributes, here are a few things to note:
-* All attributes except `ItemName` is optional.
+
 * The Item value is the `ItemPrice` multiplied by the `ItemQuantity`. This is used for the [Statistics](#statistics-features) feature.
+* Each attribute in `Item` is dependent on a respective `Validator` and `ItemComparator`. `Validator` is an interface that facilitates validation of fields when `Item` is created. `ItemComparator` is `Comparator` that facilitates sorting of items by its respective fields.
 
-The class diagram is as such:
-
-![model_diagram](images/BetterModelClassDiagram.png)
+![model_diagram](images/ItemFieldClassDiagram.png)
 
 #### General Design Considerations
 
 The design of Items models very closely to the implementation of a `Person` class in the original AddressBook3 (AB3) codebase, of which FoodRem adapted from. However, there are a few modifications made:
+
 * The `Person` class was modified to fit the business logic of FoodRem. For example, renaming it to `Item`, and including different attributes, as mentioned above. 
 * Addition of new helper and getter methods
 * Addition of [Tags](#tag-related-features), where Items stores its own sets of associated `Tag` objects in an internal `Set<Tag>`.
 
-It should be noted that the `UniqueItemList` referenced in `ModelManager` is immutable. To interact with Items, `ObservableList` instances and its child classes, `FilteredList` and `SortedList`, are used in the Commands. For example, (filtering an item by its tag name)[#filtering-items-by-tag-name] would modify the `filteredItems` list (which is a `FilteredList`).
+It should be noted that the `UniqueItemList` referenced in `ModelManager` is immutable. To interact with Items, `ObservableList` instances and its child classes, `FilteredList` and `SortedList`, are used in the Commands. For example, [filtering an item by its tag name](#filtering-items-by-tag-name) would modify the `filteredItems` list (which is a `FilteredList`).
 
 #### Creating an Item
 
@@ -101,6 +104,25 @@ This diagram excludes the instantiation of the objects that represents attribute
 Similar to the `new` command, it should be noted that when checking for duplicates in the `UniqueItemList` inside the `Model`, Items cannot have the same name. For example, if an `Item` with the name `Potato` already exists inside the inventory, then you cannot edit an existing `Item` to have the name `Potato`.
 
 When providing multiple arguments with the same delimiter, the last instance of the repeat delimiter is taken during the `parse` command.
+
+#### Incrementing and Decrementing the quantity of an Item
+
+##### Overview
+
+The `inc` and `dec` feature increments or decrements the quantity of an item. 
+
+##### Feature Details
+
+![HelpActivityDiagram](images/DecrementActivityDiagram.png)
+
+1. The user can specify to increment or decrement the quantity of an item by a specific quantity.
+1. The user can also specify to increment or decrement without a provided quantity.
+
+##### Feature Considerations
+
+When implementing this feature, we realised that it is common to increment or decrement just by one unit. We thus decided to provide a default behaviour when incrementing or decrementing an item quantity. 
+
+Another command that have such default behaviour is the `rmk` (remark) feature, where users will delete a current remark if one is not provided. 
 
 #### Sorting an Item
 
