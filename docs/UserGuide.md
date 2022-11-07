@@ -132,7 +132,7 @@ General displayed information are:
 There are also additional information unique to each role
 
 Professors:
-* Roles: `Coordinator`, `Tutor`, `Lecturer`and/or `Advisor`
+* Roles: `Coordinator`, `Tutor`, `Lecturer`, `Advisor` or `Unassigned`
 
 TA:
 * Availability: `Available` or `Unavailable`
@@ -452,7 +452,7 @@ Action | Format, Examples
 **Assignments** | `assignments assignments/ ASSIGNMENT_1 w/ASSIGNMENT_1_WEIGHTAGE, ASSIGNMENT_2 w/ASSIGNMENT_2_WEIGHTAGE…​`<br> e.g., `assignments assignments/ Assignment 1 w/15, Assignment 2 w/15, Midterms w/30, Finals w/40`
 **Grade** | `grade INDEX assignment/INDEX grade/GRADE` <br> e.g., `grade 2 assignment/1 grade/68/80`
 **Availability** | `avail INDEX avail/AVAILABILITY` <br> e.g., `avail 1 avail/Available`
-**Roles** | `roles INDEX roles/ROLE1, ROLE2,...` <br> e.g., `roles 1 roles/Coordinator`
+**Roles** | `roles INDEX roles/ROLE` <br> e.g., `roles 1 roles/Coordinator`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **Filter** | `filter TAG`<br> e.g., `filter CS2103T-T17`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
