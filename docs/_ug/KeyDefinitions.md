@@ -20,7 +20,7 @@ Restrictions for all attributes can be found in the [Placeholders](#placeholders
 
 #### Tag
 
-A Tag in FoodRem serves as a means to categorise items. These tags are also unique and case-sensitive.
+A [[ tag:Tag ]] in FoodRem serves as a means to categorise items. These tags are also unique and case-sensitive.
 
 We can tag multiple items with the same tag and each item can have multiple tags. These Tags are optional.
 
