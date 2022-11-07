@@ -12,10 +12,10 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TEAMMATE;
 import static seedu.address.testutil.TypicalTasks.getTypicalTaskPanel;
 import static seedu.address.testutil.TypicalTeammates.getTypicalAddressBook;
 
-import org.junit.jupiter.api.Test;
-
 import java.util.HashSet;
 import java.util.Set;
+
+import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
