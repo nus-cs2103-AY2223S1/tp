@@ -242,7 +242,7 @@ public class ParserUtil {
      * Leading and trailing whitespaces will be trimmed.
      */
     public static List<String> parseKeywords(String keywords) throws ParseException {
-        // currently does not throw error when empty field eg. r/ or m/
+        assert keywords != null;
         String trimmedArgs = keywords.trim();
 
         if (trimmedArgs.equals(FindRecordCommandParser.PREFIX_NOT_SPECIFIED)) {
@@ -262,6 +262,7 @@ public class ParserUtil {
      * @throws ParseException if the given inputs is invalid.
      */
     public static String parseDateKeyword(String dateToParse) throws ParseException {
+        assert dateToParse != null;
         String trimmedArgs = dateToParse.trim();
 
         //@@author ljxsean-reused

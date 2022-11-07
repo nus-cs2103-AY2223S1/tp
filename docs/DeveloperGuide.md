@@ -336,6 +336,7 @@ Given below is an example usage scenario for the command.
   * User executes `rdelete 1` to delete the 1st record in the displayed record list. The `rdelete` command calls `Model#deleteRecord(Record)` which performs the deletion of records from the `DisplayedPerson` held by the `Model`.
 
 [<*Back to ToC*>](#table-of-contents)
+<div style="page-break-after: always;"></div>
 
 ### Edit record feature
 
@@ -365,6 +366,7 @@ Given below is an example usage scenario for the command.
   record containing the date/time of `12-12-2012 1200`, record data of `Fever` and sets the medications to empty.
 
 [<*Back to ToC*>](#table-of-contents)
+<div style="page-break-after: always;"></div>
 
 ### Find records feature
 
@@ -524,6 +526,7 @@ Given below is an example usage scenario for the command.
 
 **Step 3:** The patient's appointment(if any) will be cleared. 
 
+<div style="page-break-after: always;"></div>
 Below is an activity diagram illustrating an example process of how the `Appointment` commands can be utilised.
 
 ![AppointmentActivityDiagram](images/AppointmentActivityDiagram.png)
@@ -558,7 +561,7 @@ Given below is an example usage scenario for the command.
 [<*Back to ToC*>](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-
+<div style="page-break-after: always;"></div>
 ## **Appendix: Requirements**
 
 ### Product scope
@@ -605,6 +608,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 [<*Back to ToC*>](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
 ### Use cases
 
 (For all use cases below, the **System** is the `OmniHealth` and the **Actor** is the `user`, unless specified otherwise)
@@ -880,6 +884,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 [<*Back to ToC*>](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
 ### Non-Functional Requirements
 
 1. Should work as long as Java `11` or above is installed.
@@ -917,7 +922,7 @@ when using a mouse. (Designed with CLI in mind)
 [<*Back to ToC*>](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-
+<div style="page-break-after: always;"></div>
 ## **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
