@@ -4,10 +4,11 @@ title: Developer Guide
 ---
 
 ## **Table of Contents**
+
 {:.no_toc}
 
 1. Table of Contents
-{:toc}
+   {:toc}
 
 ---
 
@@ -44,7 +45,7 @@ The rest of the app consists of four components.
 - [**`Logic`**](#logic-component): Parses and executes the commands.
 - [**`Model`**](#model-component): Holds the data of the app in memory.
 - [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
- 
+
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple components.
 
 #### How the architecture components interact with each other
@@ -66,7 +67,7 @@ The sections below give more details of each component.
 
 ### UI Component
 
-The API of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-T12-2/tp/blob/master/src/main/java/swift/ui/Ui.java). 
+The API of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-T12-2/tp/blob/master/src/main/java/swift/ui/Ui.java).
 
 Here's a partial class diagram of the `UI` component.
 
@@ -113,7 +114,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 How the parsing works:
 
-- When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddContactCommandParser`) 
+- When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddContactCommandParser`)
 - The `XYZCommandParser` class then uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddContactCommand`), which the `AddressBookParser` returns back as a `Command` object.
 - All `XYZCommandParser` classes (e.g., `AddContactCommandParser`, `DeleteTaskCommandParser`, ...) inherit from the `Parser` interface, so that they can be treated similarly where possible, e.g. during testing.
 
@@ -179,7 +180,6 @@ The implementation of the contact-task relation is facilitated by `PersonTaskBri
 - `PersonTaskBridgeList#remove(PersonTaskBridge)` - Removes an existing relation between a `Person` and a `Task` from the list.
 - `PersonTaskBridgeList#removePerson(Person)` and `PersonTaskBridgeList#removeTask(Task)` - Removes all existing relations between a `Person` and `Task` objects from the list.
 
-
 These operations will be exposed in the `Model` interface.
 
 The following class diagram summarizes the relationship between `PersonTaskBridge` and other classes:
@@ -192,12 +192,12 @@ The following class diagram summarizes the relationship between `PersonTaskBridg
 
 - **Alternative 1 (current choice):** Stores `Person` and `Task` UUID in `PersonTaskBridge`.
 
-    - Pros: No need to handle the case of changing index when `Person` or `Task` are filtered. Easier to maintain data integrity.
-    - Cons: Requires changes in `Person` and `Task` schema and storage.
+  - Pros: No need to handle the case of changing index when `Person` or `Task` are filtered. Easier to maintain data integrity.
+  - Cons: Requires changes in `Person` and `Task` schema and storage.
 
 - **Alternative 2:** Stores `Person` and `Task` index in `PersonTaskBridge`.
-    - Pros: No change is needed for `Person` and `Task` schema.
-    - Cons: Requires changes to `PersonTaskBridge` objects every time a command changes `Person` or `Task` object index.
+  - Pros: No change is needed for `Person` and `Task` schema.
+  - Cons: Requires changes to `PersonTaskBridge` objects every time a command changes `Person` or `Task` object index.
 
 ### View tasks details
 
@@ -212,6 +212,7 @@ The implementation of the task tab UI is facilitated by `TaskCard` and `TaskList
 The implementation of Command Suggestions and Command Auto-Completion is facilitated by `CommandSuggestor` in the `Logic` Component. The `CommandBox` UI component listens for changes in the command box textField and calls methods from `CommandSuggestor` to reflect command suggestions and allow autocompletion.
 
 `CommandSuggestor` mainly implements the following operations:
+
 - `CommandSuggestor#suggestCommand` - Suggests a command with the corresponding syntax based on the user's current input
 - `CommandSuggestor#autocompleteCommand` - Completes the current user input according to the shown command suggestion
 
@@ -238,6 +239,7 @@ This section covers the user requirements we attempt to meet in Swift+.
 ### Target User Profile
 
 Swift+ is designed for **software engineering project leads** who,
+
 - need to keep track of many tasks with clients and colleagues.
 - can type fast.
 - prefer typing to mouse interactions.
@@ -250,12 +252,13 @@ Swift+ allows users to manage tasks with clients and colleagues **faster** than 
 ### User stories
 
 Priority levels:
+
 - High (must have) - `* * *`
 - Medium (nice to have) - `* *`
 - Low (unlikely to have) - `*`
 
 | Priority | As a …​        | I want to …​             | So that I can…​                                                            |
-|----------|----------------|--------------------------|----------------------------------------------------------------------------|
+| -------- | -------------- | ------------------------ | -------------------------------------------------------------------------- |
 | `* * *`  | new user       | see usage instructions   | refer to instructions when I forget how to use the app                     |
 | `* * *`  | user           | add a new contact        | add a new contact to keep track of                                         |
 | `* * *`  | user           | view all contacts        | get an overview of all contacts in my app                                  |
@@ -345,7 +348,6 @@ Priority levels:
 
 - 3a. The given index is invalid.
 
-
   - 3a1. AddressBook shows an error message.
 
     Use case resumes at step 2.
@@ -420,7 +422,31 @@ testers are expected to do more *exploratory* testing.
    2. Re-launch the app by double-clicking the jar file.<br>
       Expected: The most recent window size and location is retained.
 
-3. _{ more test cases …​ }_
+3. Adding a Task
+
+4. Adding a Deadline
+
+5. Completing a Task or Deadline
+
+6. Switching Lists
+
+7. Viewing Task, Deadline and Contact Assocation
+
+8. Finding Task, Deadline or Contact
+
+9. Deleting a Task, Deadlines or Contact
+
+10. Editing a Task, Deadline or Contact
+
+11. Clearing all entries
+
+12. Saving data
+
+    1. Shutdown the app by typing `exit` into the command box.
+    2. Re-launch the app by double-clicking the jar file.<br>
+       Expected: The most recent state is saved.
+
+13. Viewing Help
 
 ### Deleting a person / task
 
