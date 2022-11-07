@@ -1,0 +1,71 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":RealTimeParser" as RealTimeParser LOGIC_COLOR
+participant ":DeleteListingCommandParser" as DeleteListingCommandParser LOGIC_COLOR
+participant "l:DeleteListingCommand" as DeleteListingCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+-> LogicManager : execute("delL 1")
+activate LogicManager
+
+LogicManager -> RealTimeParser : parseCommand("delL 1")
+activate RealTimeParser
+
+create DeleteListingCommandParser
+RealTimeParser -> DeleteListingCommandParser
+activate DeleteListingCommandParser
+
+DeleteListingCommandParser --> RealTimeParser
+deactivate DeleteListingCommandParser
+
+RealTimeParser -> DeleteListingCommandParser : parse("1")
+activate DeleteListingCommandParser
+
+create DeleteListingCommand
+DeleteListingCommandParser -> DeleteListingCommand
+activate DeleteListingCommand
+
+DeleteListingCommand --> DeleteListingCommandParser : l
+deactivate DeleteListingCommand
+
+DeleteListingCommandParser --> RealTimeParser : l
+deactivate DeleteListingCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+DeleteListingCommandParser -[hidden]-> RealTimeParser
+destroy DeleteListingCommandParser
+
+RealTimeParser --> LogicManager : l
+deactivate RealTimeParser
+
+LogicManager -> DeleteListingCommand : execute()
+activate DeleteListingCommand
+
+DeleteListingCommand -> Model : deleteListing(1)
+activate Model
+
+Model --> DeleteListingCommand
+deactivate Model
+
+create CommandResult
+DeleteListingCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DeleteListingCommand
+deactivate CommandResult
+
+DeleteListingCommand --> LogicManager : result
+deactivate DeleteListingCommand
+
+
+[<--LogicManager
+deactivate LogicManager
+destroy DeleteListingCommand
+@enduml

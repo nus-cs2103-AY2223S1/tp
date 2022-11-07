@@ -6,7 +6,7 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":RealTimeParser" as RealTimeParser LOGIC_COLOR
 participant ":AddClientCommandParser" as AddClientCommandParser LOGIC_COLOR
-participant "o: AddClientCommand" as AddClientCommand LOGIC_COLOR
+participant "c: AddClientCommand" as AddClientCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -41,9 +41,9 @@ activate AddClientCommandParser
 create AddClientCommand
 AddClientCommandParser -> AddClientCommand
 activate AddClientCommand
-return o
-return o
-return o
+return c
+return c
+return c
 destroy AddClientCommandParser
 
 

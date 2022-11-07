@@ -526,32 +526,33 @@ REal-Time manages **_Listings_** owned by Clients.
 #### Implementation
 
 To add an `Listing` object, the `AddListingCommand` must be executed. This stores the `Listing` object into the
-`UniqueListingList`. Following the command execution pathway, the implementation of adding clients uses the exposed
+`UniqueListingList`. Following the command execution pathway, the implementation of adding listings uses the exposed
 `Model#addListing(Listing)` method in the `Model` API.
 
 The `AddListingCommand` is parsed by the `AddListingCommandParser`.
 `AddListingCommandParser#parse()` parses the user input to return a `AddListingCommand` object that will be executed.
 
-Given below is an example usage scenario and how the add clients mechanism behaves at each step.
+Given below is an example usage scenario and how the add listings mechanism behaves at each step.
 
 Step 1. The user opens up the `REal-Time` application for the first time and observes that there are some sample data
 in the `UniqueListingList`.
 
-Step 2. The user keys in the command word for adding a client, `addO`, followed by the compulsory parameters needed to
-add a client, namely the `Name` component prefixed by `n/`, `Price` component prefixed by `o/` and the `ListingId`
-component prefixed by `l/`. In this scenario, the user keys in `addO n/John Doe l/BEDOK_SOUTH o/600000` into the command box
+Step 2. The user keys in the command word for adding a listing, `addL`, followed by the compulsory parameters needed to
+add a listing, namely the `ListingId` component prefixed by `l/`, `Address` component prefixed by `a/`, the `Owner name`
+component prefixed by `n/` and `Asking price` component prefixed by `ap/`. In this scenario, the user keys in
+`addL l/007 a/100 Charming avenue n/John Doe ap/800000` into the command box
 which will execute the `AddListingCommandParser` to check through the arguments and ensure that the compulsory fields are
-present. It will then create the `Price`, `ListingId` and `Name` objects needed to instantiate an `Client` object. The
+present. It will then create the `ListingId`, `Address`, `Name` and `Price` objects needed to instantiate an `Listing` object. The
 parser returns a `AddListingCommand` object with the `Listing` object ready to be added into `Model`
 
-Step 3. The `AddListingCommand` calls the `Model#addListing(Listing)` to add the client and its relevant attributes.
+Step 3. The `AddListingCommand` calls the `Model#addListing(Listing)` to add the listing and its relevant attributes.
 
 Step 4. Depending on whether the `UniqueListingList` already contains data or is an empty list, the added Listing will
 be sorted automatically by the `ListingId` in lexicographical order. This is done using the `Collections#sort()` method
 and implementing a natural order by implementing the `Comparable` interface and overriding the `Comparable#compareTo()`
 method.
 
-The sequence diagram below shows the add client process.
+The sequence diagram below shows the add listing process.
 
 ![addListingSequenceDiagram](images/AddListingSequenceDiagram.png)
 
@@ -583,7 +584,7 @@ class.
 The `DeleteListingCommand` is parsed by the `DeleteListingCommandParser`. `DeleteListingCommandParser#parse()` parses the user
 input to return a `DeleteListingCommand` that will be executed.
 
-Given below is an example usage scenario and how the delete client mechanism behaves at each step.
+Given below is an example usage scenario and how the delete listing mechanism behaves at each step.
 
 Step 1. The user enters `delO 1` in the command box.  This calls the `LogicManager#execute()` method which calls the
 `RealTimeParser#parse` method to be executed and will determine that the command is a `DeleteListingCommand` after parsing.
@@ -594,7 +595,7 @@ Step 2. A `DeleteListingCommandParser` object is instantiated with the necessary
 Step 3. The `DeleteListingCommand#execute()` method is called which calls the `Model#deleteListing(Listing)` method to delete
 the Listing at the specified `Index` in `Model`.
 
-The sequence diagram below shows the delete client process.
+The sequence diagram below shows the delete listing process.
 
 ![deleteListingSequenceDiagram](images/DeleteListingSequenceDiagram.png)
 
@@ -625,7 +626,7 @@ To edit an `Listing`, the `EditListingCommand` is executed. The `EditListingComm
 The `EditListingCommand` is parsed by the `EditListingCommandParser`. `EditListingCommandParser#parse()` parses the user input
 to return a `EditListingCommand` that will be executed.
 
-Given below is an example usage scenario and how the edit client mechanism behaves at each step.
+Given below is an example usage scenario and how the edit listing mechanism behaves at each step.
 
 Step 1. The user enters `editO 1 l/Bukit_timah_rd o/1000000` in the command box. This calls the `LogicManager#execute()`
 method which calls the `RealTimeParser#parse` method to be executed and will determine that the command is a
