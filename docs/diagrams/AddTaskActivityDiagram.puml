@@ -24,9 +24,10 @@ else ([else])
             :Show internship not selected
             error message;
 
-        else ([else])
-        :Update the list of tasks of the
-        internship application;
+            else ([else])
+            :Update the list of tasks of the
+            internship application;
+            endif
         endif
     endif
 endif
