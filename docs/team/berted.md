@@ -24,8 +24,8 @@ Given below are my contributions to the project.
 You may visit the following [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=berted&breakdown=true).
 
 #### Project management:
-* Authored [46 issues](https://github.com/AY2223S1-CS2103T-T12-1/tp/issues?q=is%3Aissue+author%3ABerted) to help keep track of current issues and progress.
-* Reviewed [45 pull requests](https://github.com/AY2223S1-CS2103T-T12-1/tp/pulls?q=is%3Apr+reviewed-by%3ABerted) to ensure quality and consistency across the database.
+* Authored [45+ issues](https://github.com/AY2223S1-CS2103T-T12-1/tp/issues?q=is%3Aissue+author%3ABerted) to help keep track of current issues and progress.
+* Reviewed [55+ pull requests](https://github.com/AY2223S1-CS2103T-T12-1/tp/pulls?q=is%3Apr+reviewed-by%3ABerted) to ensure quality and consistency across the database.
 
 #### Enhancements to Existing Features
 * Fields such as `Address`, `Phone Number`, and `e-mail` are made optional to better support the requirements of TA-Assist.
@@ -35,6 +35,7 @@ You may visit the following [RepoSense link](https://nus-cs2103-ay2223s1.github.
 
 #### Documentation (UG)
 * Added details on `scores` command.
+* Added details on auto-backup functionality.
 * Added details on parameter constraints.
 * Fixed grammatical errors.
 
