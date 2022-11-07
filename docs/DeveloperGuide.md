@@ -701,13 +701,13 @@ depend on the state resulting from the earlier test cases.
 
 </div>
 
-### Launch and shutdown
+### Launch
 
 Initial launch
 1. Download the jar file and copy into an empty folder
 2. Double-click the jar file
 
-**Expected:** Shows a window with an empty contact list
+**Expected:** Shows a window with an empty contact list, and a help window too if the app is being used for the first time.
 
 ### Adding a friend
 
