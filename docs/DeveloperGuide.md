@@ -196,6 +196,14 @@ The following sequence diagram demonstrates the above operations (excluding the 
 
 ![AddSequenceDiagram](./images/AddSequenceDiagram.png)
 
+Extra information on how `ModelManager` handles adding of tutors:
+
+The `ModelManager` class calls on the `addTutor` method of `Tuthub`, which calls on the `add` method of the `UniqueTutorList` currently present in Tuthub. `UniqueTutorList` enforces the checking of uniqueness before the tutor is added and displayed in the `observableList`.
+
+The following sequence diagram demonstrates the above operations:
+
+![AddSequenceModelDiagram](./images/AddSequenceModelDiagram.png)
+
 <ins>Design considerations</ins>:
 
 **Aspect: Implementation of `add`**
