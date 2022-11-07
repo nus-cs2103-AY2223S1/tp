@@ -1147,8 +1147,6 @@ testers are expected to do more *exploratory* testing.
      * Step 2: `cancel` <br>
        Expected: System notifies that the command has been aborted and exits the command sequence.
 
-<div style="page-break-after: always;"></div>
-
 ### Listing all orders
 
 1. Listing all orders after calling `findo`
@@ -1251,8 +1249,6 @@ testers are expected to do more *exploratory* testing.
    * Other incorrect mark commands to try: `marko`, `marko x -p`, `...` (where x is the index of an order already paid)
    <br>
      Expected: Similar to previous.
-
-<div style="page-break-after: always;"></div>
 
 ### Getting help: help
 
