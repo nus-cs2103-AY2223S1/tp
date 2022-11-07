@@ -9,6 +9,7 @@ DevEnable is a **desktop app for developers to manager their projects, optimized
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Quick start
 
@@ -34,6 +35,8 @@ DevEnable is a **desktop app for developers to manager their projects, optimized
 6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## Features
 
@@ -70,6 +73,7 @@ DevEnable is a **desktop app for developers to manager their projects, optimized
   only `2` will be taken as the argument for `p/`.
 
 </div>
+<div style="page-break-after: always;"></div>
 
 ### Viewing help : `help`
 
@@ -88,6 +92,7 @@ Format: `clear`
 Exits the project book.
 
 Format: `exit`
+<div style="page-break-after: always;"></div>
 
 ### Field Details
 
@@ -105,13 +110,16 @@ Format: `exit`
 
 > NOTE: Multiple issues can have the exact same fields (other than the issue id), as it is possible for a project to
 > have multiple of the same issues.
+<div style="page-break-after: always;"></div>
 
 ### Add Command: `-a`
 
 Adds a project, client, or issue to the project book. A unique ID will be automatically generated.
 
 <img src="images/AddIssueCommand1.png" width="500" />
+
 <img src="images/AddIssueCommand2.png" width="500" />
+<div style="page-break-after: always;"></div>
 
 Format: 
 * Project: `project -a n/PROJECT_NAME [r/REPOSITORY] [c/CLIENT_ID] [d/DEADLINE]`
@@ -127,13 +135,16 @@ Examples:
   list of clients and to the project with `PROJECT_ID` 2.
 * `issue -a t/Design GUI u/0 d/2022-09-12 p/3` Adds an issue with `TITLE` Design GUI, `URGENCY` NONE(0) and `DEADLINE`
   2022-09-12 to the overall list of issues and to the list of issues of the project with `PROJECT_ID` 3.
+<div style="page-break-after: always;"></div>
 
 ### Edit Command: `-e`
 
 Edits the specified existing project, client or issue.
 
 <img src="images/EditProjectCommand1.png" width="500" />
+
 <img src="images/EditProjectCommand2.png" width="500" />
+<div style="page-break-after: always;"></div>
 
 Format: 
 * Project: `project -e p/PROJECT_ID [n/PROJECT_NAME] [r/REPOSITORY] [c/CLIENT_ID] [d/DEADLINE]`
@@ -153,13 +164,16 @@ Examples:
 * `project -e p/4 n/ThirdProject d/2022-02-02 r/Jackson/ThirdProject c/2` Edits the project with `PROJECT_ID` 4 to
   have the new `PROJECT_NAME` ThirdProject, new `DEADLINE` 2022-02-02, new `REPOSITORY` Jackson/ThirdProject and new
   client with `CLIENT_ID` 2.
+<div style="page-break-after: always;"></div>
 
 ### Delete Command: `-d`
 
 Removes the specified existing project, client or issue.
 
 <img src="images/DeleteClientCommand1.png" width="500" />
+
 <img src="images/DeleteClientCommand2.png" width="500" />
+<div style="page-break-after: always;"></div>
 
 Format: 
 * Project: `project -d PROJECT_ID`
@@ -176,6 +190,7 @@ Examples:
 * `project -d 1` Deletes project with `PROJECT_ID` 1.
 * `client -d 6` Deletes client with `CLIENT_ID` 6.
 * `issue -d 3` Deletes issue with `ISSUE_ID` 3.
+<div style="page-break-after: always;"></div>
 
 ### List Command: `-l`
 
@@ -185,13 +200,16 @@ Format:
 * Project: `project -l`
 * Client: `client -l`
 * Issue: `issue -l`
+<div style="page-break-after: always;"></div>
 
 ### Find Command: `-f`
 
 Finds and lists all the projects, clients or issues matching the search criteria.
 
 <img src="images/FindProjectCommand1.png" width="500" />
+
 <img src="images/FindProjectCommand2.png" width="500" />
+<div style="page-break-after: always;"></div>
 
 Format: 
 * Project: `project -f [n/PROJECT_NAME] [p/PROJECT_ID] [r/REPOSITORY] [l/CLIENT_LABEL] [c/CLIENT_ID]`
@@ -224,13 +242,16 @@ Examples:
 * `issue -f t/enhancement p/DevEnable AB3 u/HIGH u/LOW` Finds and lists all the issues with `TITLE` enhancement and
   `URGENCY` HIGH or LOW and tied to project with `PROJECT_NAME` containing DevEnable or AB3.
 * `issue -f s/Incomplete` Finds and lists all the issues with the `STATUS` Incomplete.
+<div style="page-break-after: always;"></div>
 
 ### Pin Command: `-p`
 
 Pins a project, client, or issue to the top of the project list, client list or issue list.
 
 <img src="images/PinIssueCommand1.png" width="500" />
+
 <img src="images/PinIssueCommand2.png" width="500" />
+<div style="page-break-after: always;"></div>
 
 Format: 
 * Project: `project -p PROJECT_ID`
@@ -248,12 +269,14 @@ Examples:
 * `project -p 1` Pins the project with `PROJECT_ID` 1.
 * `client -p 4` Pins the client with `CLIENT_ID` 4.
 * `issue -p 2` Pins the issue with `ISSUE_ID` 2.
+<div style="page-break-after: always;"></div>
 
 ### Sort Command: `-s`
 
 Sorts all projects, clients or issues based on a specified key.
 
 <img src="images/SortIssueCommand1.png" width="500" />
+
 <img src="images/SortIssueCommand2.png" width="500" />
 
 > IMPORTANT: Unlike other commands, input 0/1 as the argument for each prefix (e.g.p/0)
@@ -282,6 +305,7 @@ Examples:
 * `client -s n/1` Sort list of clients based on `CLIENT_NAME` in reverse alphabetical order.
 * `project -s i/0` Sorts list of projects based on `ISSUE_COUNT` from the highest incomplete issue count to the lowest.
 * `issue -s u/1` Sorts list of issues based on `URGENCY` from highest to lowest.
+<div style="page-break-after: always;"></div>
 
 ### Default View Command `-v`
 
@@ -294,13 +318,16 @@ Format:
   * Sets list of clients as default view
 * Issue: `issue -v`
   * Sets list of issues as default view
-
+<div style="page-break-after: always;"></div>
+  
 ### Mark/Unmark Issue Command: `-m`
 
 Marks specified existing issue as completed or incomplete
 
 <img src="images/MarkIssueCommand1.png" width="500" />
+
 <img src="images/MarkIssueCommand2.png" width="500" />
+<div style="page-break-after: always;"></div>
 
 Format: 
 * Mark: `issue -m ISSUE_ID`
@@ -315,6 +342,7 @@ Note:
 Examples:
 * `issue -m 1` Changes the `STATUS` of the issue with `ISSUE_ID` 1 to completed.
 * `issue -m 4` Changes the `STATUS` of the issue with `ISSUE_ID` 4 to incomplete.
+<div style="page-break-after: always;"></div>
 
 ### Saving the data
 
@@ -336,6 +364,7 @@ If your changes to the data file makes its format invalid, DevEnable will discar
 **A**: Install the app in the other computer and overwrite the data file it creates with the file that contains the data of your previous DevEnable home folder.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Command summary
 
