@@ -726,8 +726,9 @@ Format: `venue add VENUE_NAME`
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The **VENUE_NAME** must follow this <a>[format](#format-for-venue-fields)</a>. </div>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** To view all venues, switch over to the bookings tab and refer to the list at the side!</a>. </div>
-
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+To view all venues, switch over to the bookings tab and refer to the list on the right!
+</div>
 
 Examples:
 * `venue add Meeting Room 3` adds a venue called `Meeting Room 3`.
@@ -745,8 +746,9 @@ Format: `venue delete VENUE_NAME`
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The **VENUE_NAME** must follow this <a>[format](#format-for-venue-fields)</a>. </div>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** To view all venues, switch over to the bookings tab and refer to the list at the side!</a>. </div>
-
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+To view all venues, switch over to the bookings tab and refer to the list on the right!
+</div>
 
 Examples:
 * `venue delete Meeting Room` deletes a venue called `Meeting Room`.
@@ -783,8 +785,9 @@ Format: `venue book INDEX v/VENUE_NAME tp/TIME_PERIOD d/DAY`
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The **VENUE_NAME**, **TIME_PERIOD**, and **DAY** must follow this <a>[format](#format-for-venue-fields)</a>. </div>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** To view the bookings, switch over to the bookings tab!</a>. </div>
-
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+To view all venues, switch over to the bookings tab and refer to the list on the right!
+</div>
 
 Examples:
 * `venue book 2 v/Meeting Room tp/8-9 d/TUE` books the Meeting Room from 8am to 9am on Tuesday.
@@ -802,7 +805,9 @@ Format: `venue unbook v/VENUE_NAME tp/TIME_PERIOD d/DAY`
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The **VENUE_NAME**, **TIME_PERIOD**, and **DAY** must follow this <a>[format](#format-for-venue-fields)</a>. </div>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** To view the bookings, switch over to the bookings tab!</a>. </div>
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+To view all venues, switch over to the bookings tab and refer to the list on the right!
+</div>
 
 Examples:
 * `venue unbook v/Meeting Room tp/8-9 d/TUE` deletes the 8am to 9am Meeting Room booking on Tuseday.
