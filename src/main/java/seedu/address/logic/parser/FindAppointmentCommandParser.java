@@ -83,7 +83,7 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
             String trimmedArgs = argMultimap.getValue(PREFIX_SLOT).get().trim();
 
             if (!trimmedArgs.matches("^[0-9 :-]+$")) {
-                throw new ParseException("Only numbers, - and : and spaces are allowed as input for finding by slot");
+                throw new ParseException("Only numbers, -, : and spaces are allowed as input for finding by slot");
             }
 
             Predicate<Slot> slotPredicate = (slot -> slot.toString().contains(trimmedArgs.toLowerCase()));

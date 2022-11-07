@@ -68,7 +68,7 @@ email address, home address, remarks and tags.
 
 #### Command word
 
-`addpatient`, `ap`
+`addpatient` or `ap`
 
 #### Format
 
@@ -112,7 +112,7 @@ slot, and doctor.
 
 #### Command word
 
-`addappointment`, `aa`
+`addappointment` or `aa`
 
 #### Format
 
@@ -165,7 +165,7 @@ Adds a bill attached to an appointment with input information including amount a
 
 #### Command word
 
-`addbill`, `ab`
+`addbill` or `ab`
 
 #### Format
 
@@ -206,7 +206,7 @@ Notes on symbols in first column:
 Edits a patient's information, such as name, phone number, address, email, remarks, and tags.
 
 #### Command word:
-`editpatient`, `ep`
+`editpatient` or `ep`
 
 #### Format:
 `Command word <index of patient> <prefix><input> ...`
@@ -248,7 +248,7 @@ Edits a patient's information, such as name, phone number, address, email, remar
 Edits an appointment of a patient, such as name, medical test, slot, and doctor.
 
 #### Command word:
-`editappointment`, `ea`
+`editappointment` or `ea`
 #### Format:
 `Command word <index of appointment> <prefix><input> ...`
 
@@ -280,7 +280,7 @@ Edits an appointment of a patient, such as name, medical test, slot, and doctor.
 Edits the bill of an appointment.
 
 #### Command word:
-`editbill`, `eb`
+`editbill` or `eb`
 
 #### Format: 
 
@@ -306,23 +306,33 @@ Edits the bill of an appointment.
 ### 1.3.1 Find patient(s) `findpatient`, `fp`
 
 Filters patients by one or more fields using their prefixes, and their corresponding inputs (numbers, letters,
-special characters).
+special characters). The filtered patients are then listed as an indexed list.
 
 #### Command word:
-`findpatient`, `fp`
+`findpatient` or `fp`
 
 #### Format:
 ```Command word <prefix><input> ...``` <br>
 
 * The command words are ``findpatient`` or ``fp``.
-* The prefixes are n/ for Name, p/ for Phone, e/ for Email, a/ for Address, r/ for Remark, t/ for Tag.
-* The filter is case-insensitive. e.g. han will match Han
-* The user can filter using full words or partial words. e.g. han will match Hannah
-* The user can filter using a combination of inputs for a field, according to the constraints of the field.
-  e.g. e/@gmail.com
-* The user can filter using one field or multiple fields at once. e.g. n/John p/91234567
+* The prefixes that can be used are provided in the parameter list below.
+* The filter is case-insensitive, e.g. han will match Han.
+* The user can filter using full words or partial words, e.g. han will match Hannah.
+* The user can only filter according to the input constraints of each field as shown in the parameter list below.
+* The user can filter using one field or multiple fields at once, but each field can only be used once in a single command(except tags).
 * If there are no prefixes keyed in, an error message will be shown with the correct command format.
 * If the input after a prefix is empty/invalid, an error message with the constraint of the field will be shown.
+
+#### Parameter List
+| Prefix  | Meaning       | Input Constraint                                                                                 |
+|---------|---------------|--------------------------------------------------------------------------------------------------|
+| `n/`    | Name          | Non-empty alphanumeric characters and spaces                                                     |
+| `p/`    | Phone number  | A number consisting of one or more digits, and spaces before and/or after the number are allowed |
+| `e/`    | Email address | Non-empty characters                                                                             |
+| `a/`    | Home address  | Non-empty characters                                                                             |
+| `r/`    | Remark        | Non-empty characters                                                                             |
+| `t/`    | Tag           | One alphanumeric word, and spaces before and/or after the number are allowed                     |
+
 
 #### Examples:
 * ```findpatient n/ale``` returns `Alex Yeoh` and `alex tan`.
@@ -339,20 +349,28 @@ Filters appointments by one or more fields using their prefixes, and their corre
 special characters).
 
 #### Command word:
-`findappointment`, `fa`
+`findappointment` or `fa`
 
 #### Format:
 ```Command word <prefix><input> ...```
 
 * The command words are `findappointment` or `fa`.
-* The prefixes are n/ for Name, s/ for Slot, d/ for Doctor, t/ for Medical Test.
-* The filter is case-insensitive. e.g. han will match Han
-* The user can filter using full words or partial words. e.g. han will match Hannah
-* The user can filter using a combination of inputs for a field, according to the constraints of the field.
-  e.g. s/x-ray
+* The prefixes that can be used are listed in the parameter list below.
+* The filter is case-insensitive, e.g. han will match Han.
+* The user can filter using full words or partial words, e.g. han will match Hannah.
+* The user can only filter according to the input constraints of each field as shown in the parameter list below.
 * The user can filter using one field or multiple fields at once, but each field can only be used once in a single command.
 * If there are no prefixes keyed in, an error message will be shown with the correct command format.
 * If the input after a prefix is empty/invalid, an error message with the constraint of the field will be shown.
+
+#### Parameter List
+| Prefix | Meaning       | Input Constraint                             |
+|--------|---------------|----------------------------------------------|
+| `n/`   | Name          | Non-empty alphanumeric characters and spaces |
+| `t/`   | Medical Test  | Non-empty characters                         |
+| `s/`   | Slot          | Only numbers, "-", ":" and spaces            |
+| `d/`   | Doctor        | Only alphanumeric characters and spaces      |
+
 
 #### Examples:
 * ```findappointment t/x-ray``` returns `Bernice Yu` with `X-ray` appointment.
@@ -370,20 +388,27 @@ Filters bills by one or more fields using their prefixes, and their correspondin
 special characters).
 
 #### Command word:
-`findbill`, `fb`
+`findbill` or `fb`
 
 #### Format:
 ```Command word <prefix><input> ...```
 
 * The command words are `findbill` or `fb`.
-* The prefixes are n/ for Name, p/ for Payment Status, d/ for Date and a/ for Amount.
-* The filter is case-insensitive. e.g. han will match Han
-* The user Can filter using full words or partial words. e.g. han will match Hannah
-* The user can filter using a combination of character(s) for a field, according to the constraints of the field.
-  e.g. a/23.45
+* The prefixes that can be used are listed in the parameter list below.
+* The filter is case-insensitive, e.g. han will match Han.
+* The user Can filter using full words or partial words, e.g. han will match Hannah.
+* The user can only filter according to the input constraints of each field as shown in the parameter list below.
 * The user can filter using one field or multiple fields at once, but each field can only be used once in a single command.
 * If there are no prefixes keyed in, an error message will be shown with the correct command format.
 * If the input after a prefix is empty/invalid, an error message with the constraint of the field will be shown.
+
+#### Parameter List
+| Prefix | Meaning        | Input Constraint                                                                                       |
+|--------|----------------|--------------------------------------------------------------------------------------------------------|
+| `n/`   | Name           | Non-empty alphanumeric characters and spaces                                                           |
+| `d/`   | Bill date      | Only numbers, "-" and spaces are allowed                                                               |
+| `a/`   | Amount         | Positive number with at most two decimal places, and spaces before and/or after the number are allowed |
+| `p/`   | Payment Status | Only "paid" or "unpaid" in any case                                                                    |
 
 #### Examples:
 `findbill n/Ber p/unpaid` returns `Bernice Yu`'s unpaid bill.
@@ -397,7 +422,7 @@ special characters).
 Sorts patients by a single field.
 
 #### Command word:
-`sortpatient`, `sop`
+`sortpatient` or `sop`
 
 #### Format:
 
@@ -424,7 +449,7 @@ Sorts patients by a single field.
 Sorts appointments by a single field.
 
 #### Command word:
-`sortappointment`, `soa`
+`sortappointment` or `soa`
 
 #### Format:
 ```Command word c/<input> o/<input> ...```
@@ -452,7 +477,7 @@ Sorts appointments by a single field.
 Sorts bills by a single field.
 
 #### Command word:
-`sortbill`, `sob`
+`sortbill` or `sob`
 
 #### Format:
 ```Command word c/<input> o/<input> ...```
@@ -488,7 +513,7 @@ so that these two lists shows the appointments and bills for the selected patien
 
 #### Command word
 
-`selectpatient`, `slp`
+`selectpatient` or `slp`
 
 #### Format
 
@@ -517,7 +542,7 @@ so that bill list shows the bill for the selected appointment only.
 
 #### Command word
 
-`selectappointment`, `sla`
+`selectappointment` or `sla`
 
 #### Format
 
@@ -546,7 +571,7 @@ Notes on symbols in first column:
 Sets the payment status of a bill to "paid".
 
 #### Command word:
-`setpaid`, `sp`
+`setpaid` or `sp`
 
 #### Format:
 ```Command word <index of bill>```
@@ -571,7 +596,7 @@ After:
 Sets the payment status of a bill to "unpaid".
 
 #### Command word:
-`setunpaid`, `sup`
+`setunpaid` or `sup`
 
 #### Format:
 ```Command word <index of bill>```
@@ -597,7 +622,7 @@ After:
 Removes all conditions previously applied to the list and shows all patients, appointments and bills.
 
 #### Command word:
-`list`, `ls`
+`list` or `ls`
 
 #### Format
 ```Command word```
@@ -615,7 +640,7 @@ Removes all conditions previously applied to the list and shows all patients, ap
 Deletes a patient by the index number of the patient in the list.
 
 #### Command word:
-`deletepatient`, `dp`
+`deletepatient` or `dp`
 
 #### Format:
 ```Command word <index of patient>```
@@ -645,7 +670,7 @@ After:
 Deletes an appointment by the index number of the appointment in the list.
 
 #### Command word:
-`deleteappointment`, `da`
+`deleteappointment` or `da`
 
 #### Format:
 ```Command word <index of appointment>```
@@ -675,7 +700,7 @@ After:
 Deletes a bill by the index number of the bill in the list.
 
 #### Command word:
-`deletebill`, `db`
+`deletebill` or `db`
 
 #### Format:
 ```Command word <index of bill>```
