@@ -26,16 +26,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/parth-io.md)]
 
 * Role: Developer
-* Responsibilities: -
 
 ### Edward Mualim
 
 <img src="images/edfernape.png" width="200px">
 
-[[github](https://github.com/edfernape)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/edfernape)] [[portfolio](team/edfernape.md)]
 
 * Role: Developer
-* Responsibilities: -
 
 ### Teh Yi Kuang
 
@@ -45,7 +43,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/tykcodes.md)]
 
 * Role: Developer
-* Responsibilities: -
 
 ### Kiyan Ang Ping Young
 
@@ -55,4 +52,3 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/kynapy.md)]
 
 * Role: Developer
-* Responsibilities: -
