@@ -62,9 +62,6 @@ deactivate Model
 CheckoutCommand --> LogicManager
 deactivate CheckoutCommand
 
-CheckoutCommand -[hidden]-> LogicManager : result
-destroy CheckoutCommand
-
 [<--LogicManager
 deactivate LogicManager
 @enduml
