@@ -641,7 +641,7 @@ Step 6. The Person List is retrieved from the `MainWindow` and its selection mod
 
 Step 7. The Inspection Panel is retrieved from the main window and has its properties updated from the person's information that was returned.
 
-The following sequence diagram shows how the find command works:
+The following sequence diagram shows how the inspect command works:
 
 <img src="images/InspectSequenceDiagram.png" width="740"/>
 

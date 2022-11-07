@@ -101,4 +101,7 @@ deactivate ResultDisplay
 
 deactivate ListView
 
+<-- MainWindow
+deactivate MainWindow
+
 @enduml
