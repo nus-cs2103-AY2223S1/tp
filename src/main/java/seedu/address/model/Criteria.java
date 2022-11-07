@@ -41,6 +41,8 @@ public class Criteria {
         return criteria;
     }
 
+
+
     @Override
     public boolean equals(Object otherCriteria) {
         return otherCriteria instanceof Criteria

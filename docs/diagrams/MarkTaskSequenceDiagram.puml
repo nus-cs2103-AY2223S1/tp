@@ -5,10 +5,8 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":MarkCommandParser" as MarkCommandParser LOGIC_COLOR
-participant ":MarkCommand" as MarkCommand LOGIC_COLOR
-participant "taskToMark:Task" as TargetTask LOGIC_COLOR
-participant "markedTask:Task" as MarkedTask LOGIC_COLOR
-participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant "c:MarkCommand" as MarkCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
@@ -16,10 +14,10 @@ participant ":Model" as Model MODEL_COLOR
 end box
 
 
-[-> LogicManager : execute("mark 1")
+[-> LogicManager : execute("t mark 1")
 activate LogicManager
 
-LogicManager -> AddressBookParser: parseCommand("mark 1")
+LogicManager -> AddressBookParser: parseCommand("t mark 1")
 activate AddressBookParser
 
 create MarkCommandParser
@@ -39,36 +37,21 @@ activate MarkCommand
 MarkCommand --> MarkCommandParser
 deactivate MarkCommand
 
-MarkCommandParser --> AddressBookParser
+MarkCommandParser --> AddressBookParser : c
 deactivate MarkCommandParser
 
 MarkCommandParser -[hidden]-> AddressBookParser
 destroy MarkCommandParser
 
-AddressBookParser --> LogicManager
+AddressBookParser --> LogicManager : c
 deactivate AddressBookParser
 
 LogicManager -> MarkCommand: execute()
 activate MarkCommand
 
-MarkCommand -> Model : getFilteredTaskList().get(targetIndex.getZeroBased())
-activate Model
-
-Model --> MarkCommand : taskToMark
-deactivate Model
-
-MarkCommand -> TargetTask : mark()
-activate TargetTask
-
-create MarkedTask
-TargetTask -> MarkedTask
-activate MarkedTask
-
-MarkedTask --> TargetTask
-deactivate MarkedTask
-
-TargetTask --> MarkCommand
-deactivate TargetTask
+ref over MarkCommand, Model
+get taskToMark and create markedTask
+endref
 
 MarkCommand -> Model : replaceTask(taskToMark, markedTask, true)
 activate Model
@@ -86,7 +69,11 @@ deactivate CommandResult
 MarkCommand --> LogicManager : result
 deactivate MarkCommand
 
+MarkCommand -[hidden]-> LogicManager
+destroy MarkCommand
+
 [<--LogicManager
 deactivate LogicManager
+
 
 @enduml

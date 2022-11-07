@@ -39,6 +39,7 @@ public class DeleteExamCommandTest {
         expectedModel.deleteExam(examToDelete);
 
         assertCommandSuccess(deleteExamCommand, model, expectedMessage, expectedModel);
+        assertFalse(model.getFilteredTaskList().get(SECOND_INDEX.getZeroBased()).isLinked());
     }
 
     @Test
