@@ -16,6 +16,7 @@ import seedu.codeconnect.commons.core.GuiSettings;
 import seedu.codeconnect.commons.core.LogsCenter;
 import seedu.codeconnect.model.person.CanHelpWithTaskPredicate;
 import seedu.codeconnect.model.person.Person;
+import seedu.codeconnect.model.task.DeadlineComparator;
 import seedu.codeconnect.model.task.DefaultComparator;
 import seedu.codeconnect.model.task.Task;
 
@@ -232,10 +233,11 @@ public class ModelManager implements Model {
     @Override
     public void updateSortedTaskList(Comparator<Task> comparator) {
         requireNonNull(comparator);
+        assert comparator instanceof DefaultComparator || comparator instanceof DeadlineComparator;
         if (comparator instanceof DefaultComparator) {
             sortedTasks.setComparator(new DefaultComparator(taskList));
         } else {
-            sortedTasks.setComparator(comparator);
+            sortedTasks.setComparator(new DeadlineComparator(taskList));
         }
     }
 
