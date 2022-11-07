@@ -47,7 +47,7 @@ destroy RemarkCommandParser
 LogicManager -> RemarkCommand : execute()
 activate RemarkCommand
 
-RemarkCommand -> Model : getFilteredInternshipList()
+RemarkCommand -> Model : getSelectedInternshipList()
 activate Model
 
 Model --> RemarkCommand
