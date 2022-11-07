@@ -134,7 +134,7 @@ public class HelpWindow extends UiPart<Stage> {
     private static final String DELETE_USAGE_HELP = "Delete Person from list: \n"
             + "delete id/ID ";
     private static final String EDIT_USAGE_HELP = "Edit Person from list: \n"
-            + "edit [c/Category] [n/Name] [g/gender] [p/Phone] [e/Email] [a/Address] [t/Tags] [dt/Date&Time]"
+            + "edit [n/Name] [g/gender] [p/Phone] [e/Email] [a/Address] [t/Tags] [dt/Date&Time]"
             + "*[] is optional.";
     private static final String EXIT_USAGE_HELP = "";
     private static final String FIND_USAGE_HELP = "Find a person from the list that contains keyword\n"
