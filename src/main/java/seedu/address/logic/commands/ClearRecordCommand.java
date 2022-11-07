@@ -28,7 +28,7 @@ public class ClearRecordCommand extends Command {
         requireNonNull(model);
 
         if (!model.isRecordListDisplayed()) {
-            logger.warning("Patient List View is not currently being displayed.");
+            logger.warning("Record List View is not currently being displayed.");
             throw new CommandException(MESSAGE_RECORD_COMMAND_PREREQUISITE);
         }
 
