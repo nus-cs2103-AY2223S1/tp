@@ -6,6 +6,8 @@ import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -14,6 +16,7 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.appointment.UpcomingAppointment;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.FloorNumber;
 import seedu.address.model.person.HospitalWing;
@@ -214,6 +217,11 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parseFloorNumber_notNumber_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseFloorNumber("a"));
+    }
+
+    @Test
     public void parseFloorNumber_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseFloorNumber(INVALID_FLOOR_NUMBER));
     }
@@ -301,5 +309,24 @@ public class ParserUtilTest {
                 Arrays.asList(new Medication(VALID_MEDICATION_1), new Medication(VALID_MEDICATION_2)));
 
         assertEquals(expectedMedicationSet, actualMedicationSet);
+    }
+
+    @Test
+    void parseUpcomingAppointment_earilerDate_failure() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseUpcomingAppointment("12-02-2000"));
+    }
+
+    @Test
+    void parseUpcomingAppointment_invalidDate_failure() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseUpcomingAppointment("hello"));
+    }
+
+    @Test
+    void parseUpcomingAppointment_validDate_success() {
+        try {
+            ParserUtil.parseUpcomingAppointment(LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM-uuuu")));
+        } catch (ParseException e) {
+            throw new AssertionError("This should not happen");
+        }
     }
 }
