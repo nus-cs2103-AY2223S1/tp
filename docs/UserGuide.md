@@ -522,7 +522,7 @@ Finds all persons whose names contain any of the given keywords.
 * The search is case-insensitive, e.g. `hans` will match `Hans`.
 * The order of the keywords does not matter, e.g. `Hans Bo` will match `Bo Hans`.
 * Persons with names partially matching the keywords will be returned, e.g. `han` will match `Hans`.
-* Persons with names matching at least one keyword will be returned, e.g. `hans bo` will return `Hans Gruber`, `Bo
+* Persons with names matching at least one keyword will be returned, e.g. `hans bo` will match `Hans Gruber`, `Bo
   Yang`.
 
 **Command Aliases:**
@@ -623,7 +623,7 @@ should **not** use both `-n` and `-e` in the `find member` command.
 * The search is case-insensitive, e.g. `hans` will match `Hans`.
 * The order of the keywords does not matter, e.g. `Hans Bo` will match `Bo Hans`.
 * Persons with names/emails partially matching the keywords will be returned, e.g. `han` will match `Hans`.
-* Persons matching at least one keyword will be returned, e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
+* Persons matching at least one keyword will be returned, e.g. `Hans Bo` will match `Hans Gruber`, `Bo Yang`.
 
 **Command Aliases:**
 - `find m`
@@ -881,7 +881,7 @@ To reset the task list, see the [list tasks command](#list-tasks-in-team-list-ta
 * The search is case-insensitive. e.g. `user guide` will match `User Guide`
 * The order of the keywords does not matter. e.g. `User Guide` will match `guide user`
 * Tasks with names partially matching the keywords will be returned, e.g. `user` will match `userguide`.
-* Tasks with names matching at least one keyword will be returned, e.g. `guide case` will return `use case`, `user
+* Tasks with names matching at least one keyword will be returned, e.g. `guide case` will match `use case`, `user
   guide`.
 
 **Command Aliases:**
