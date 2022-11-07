@@ -61,7 +61,7 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
   * Updated the GUI color scheme (Pull requests [\#153](https://github.com/AY2223S1-CS2103T-W09-1/tp/pull/153))
-  * Wrote additional tests for existing features to increase coverage from xx% to xx% (to be added) (Pull requests [\#36](), [\#38]())
+  * Wrote additional tests for existing features to increase coverage from 69.67% to 73.20% (to be added) (Pull requests [\#245](https://github.com/AY2223S1-CS2103T-W09-1/tp/pull/245), [\#247](https://github.com/AY2223S1-CS2103T-W09-1/tp/pull/247))
 
 * **Documentation**:
   * User Guide:
