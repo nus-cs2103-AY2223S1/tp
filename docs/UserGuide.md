@@ -617,9 +617,9 @@ Examples:
 _Figure 2. Grade Chart Tab_
 
 <a name="clear"></a>
-### 5.6 Clearing all data: `clear`
+### 5.6 Clearing data: `clear`
 
-Clears all data in a specific field or the entire app.
+Clears all existing data in a specific field (including student, tutorial, reminder and consultation) or the entire app.
 
 For example, user might choose to reset the data when the semester ends to prepare for the upcoming semester.
 
