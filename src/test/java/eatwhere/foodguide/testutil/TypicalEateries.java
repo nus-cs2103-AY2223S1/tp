@@ -36,7 +36,8 @@ public class TypicalEateries {
     public static final Eatery CARL = new EateryBuilder().withName("Carl Cafeteria")
             .withLocation("Block S3, Faculty of Science")
             .withCuisine("Western")
-            .withPrice("$$$").build();
+            .withPrice("$$$")
+            .withTags("steak").build();
     public static final Eatery DANIEL = new EateryBuilder().withName("Daniel Diner")
             .withLocation("Block S4, Faculty of Science")
             .withCuisine("Mixed")
