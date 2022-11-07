@@ -203,4 +203,14 @@ class TaskListTest {
         assertEquals(newTaskList, taskList);
     }
 
+    @Test
+    public void toString_taskListWithTasks_returnsTrue() {
+        taskList.add(TASK_1);
+        taskList.add(TASK_2);
+        StringBuilder sb = new StringBuilder();
+        sb.append(String.format("%d. %s\n", 1, TASK_1));
+        sb.append(String.format("%d. %s\n", 2, TASK_2));
+        assertEquals(sb.toString(), taskList.toString());
+    }
+
 }
