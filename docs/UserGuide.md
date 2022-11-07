@@ -63,8 +63,6 @@ InterNUS is a convenient and powerful desktop app for NUS CS students to **manag
 
 Having troubles finding who to contact for your various internship applications? Don’t worry! InterNUS also allows you to manage contact person during your applications. After your internship, InterNUS can still be used to manage your work contact list!
 
-<div style="page-break-after: always;"></div>
-
 ## 1.2. Person List
 
 Store the information of key contacts in InterNUS. During the internship-hunting period, add the contacts of hiring managers and link them to your bookmarked internship positions. What about the multiple colleagues you'll meet during your internship stints? InterNUS makes it easy to manage these contacts and lets you see at a glance where you worked at together.
@@ -72,8 +70,6 @@ Store the information of key contacts in InterNUS. During the internship-hunting
 <div markdown="block" class="alert alert-info">
 **:information_source: Note:** Each person can be linked to a maximum of one internship, and vice  versa.
 </div>
-
-<div style="page-break-after: always;"></div>
 
 ## 1.3. Internship List
 
@@ -162,15 +158,14 @@ The UI components description:
 
 5. The screen should appear in a few seconds when the app first launches as shown in the figure below. Note how the app contains some sample data.
 
-|  ![Ui](images/darktheme.png)  |
-|:-----------------------------:|
-| InterNUS GUI with sample data |
+  |  ![Ui](images/darktheme.png)  |
+  |:-----------------------------:|
+  | InterNUS GUI with sample data |
 
-   
 
-7. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
 
-8. Refer to the [Features](#4-features) below for details of each command.
+7. Refer to the [Features](#4-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -317,8 +312,6 @@ Format: `link p/PERSON_INDEX i/INTERNSHIP_INDEX`
 
 Examples:
 - `link p/1 i/1` links the person at index **1** to the internship at index **1**.
-
-<div style="page-break-after: always;"></div>
 
 ### 4.4.2. Unlinking a person and an internship : `unlink`
 
