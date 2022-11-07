@@ -48,7 +48,7 @@ deactivate AddressBookParser
 LogicManager -> GithubCommand : execute()
 activate GithubCommand
 
-GithubCommand -> Model : openGithub(1)
+GithubCommand -> Model : openGithub(person)
 activate Model
 
 Model --> GithubCommand

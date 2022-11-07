@@ -58,13 +58,17 @@ Given below are my contributions to the project.
 
     * Rectified various formatting and style errors: [#120](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/120)
 
-    * Developer Guide:
+  * Developer Guide:
 
-      * Added implementation details and Use Case for the `github` command: [#74](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/76)
+    * Added implementation details and Use Case for the `github` command: [#74](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/76)
 
-      * Update Model class diagram and Storage class diagram: [#194](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/194)
+    * Update Model class diagram and Storage class diagram: [#194](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/194)
 
-      * Added Sequence Diagram and activity diagram for `github` command: [#74](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/76)
+    * Added Sequence Diagram and activity diagram for `github` command: [#74](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/76)
+
+    * Added manual test cases for `student` and `github` command [#194](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/194)
+
+    * Added implementation details of modified `student` command [#212](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/212)
     
 * **Review/mentoring contributions Links**
 
