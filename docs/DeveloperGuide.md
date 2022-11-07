@@ -20,13 +20,13 @@ You can use this guide to maintain, upgrade, and evolve **Teacher’s Pet**.
   * [Storage](#storage-component)
 * [Implementation](#implementation)
   * [Edit Class Feature](#edit-class-feature)
-  * [Next Available Class Feature](#next-available-class-feature)
   * [Statistics Display Feature](#statistics-display-feature)
   * [Mark Student Feature](#mark-student-feature)
   * [Schedule List Feature](#schedule-list-feature)
   * [Sort-by](#sort-by-feature)
   * [Undo Command Feature](#undo-command-feature)
   * [Find by Feature](#find-by-feature)
+  * [[Proposed] Next Available Class Feature](#proposed-next-available-class-feature)
 * [Appendix](#appendix-requirements)
   * [Target User Profile](#target-user-profile)
   * [Value Proposition](#value-proposition)
@@ -254,48 +254,6 @@ The following activity diagram summarizes what happens when a teacher executes a
         1. Harder to implement.
         2. Only can set the class to a date at most 1 week away.
 
-### Next Available Class Feature
-
-This feature allows the teacher to find then next available class by specifying the time range and the duration that
-he or she is looking at. For example, if the teacher wants to have a 1-hour class in the range of 1000-1600, but is not
-sure when is the next available date, he or she can simply run `avail 1000-1600 60` and the first available class would
-be output to the teacher.
-
-#### Implementation Details
-
-The main logic of the available class resides in `UniqueStudentlist::getAvailableClass`, where it takes a given
-`TimeRange` parameter and outputs the next available class.
-
-The `TimeRange` class stores the `startTimeRange`, `endTimeRange` and `duration` (in minutes).
-
-The `AvailCommandParser` reads the input and passes it to `ParserUtil` which returns a `TimeRange` object. If the
-duration provided is not valid or if the endTime is not valid, a `ParseException` will be thrown. If there are no 
-exceptions being thrown, `AvailCommandParser` will create an `AvailCommand`.
-
-During the execution of `AvailCommand`, a call will be made to `Model` in order to get the available class. `Model`
-will then call `TeachersPet::getAvailableClass`. The `TeachersPet::getAvailableClass` will then call 
-`UniqueStudentList::getAvailableClass` which will subsequently return a `Class` object, which will be displayed to 
-the user.
-
-The following sequence diagram shows how the avail operation works:
-
-![AvailClassSequenceDiagram](images/DG-images/AvailClassSequenceDiagram.png)
-
-The following activity diagram summarizes what happens when a teacher executes an avail class command:
-
-![AvailClassActivityDiagram](images/DG-images/AvailClassActivityDiagram.png)
-
-#### Design Considerations:
-##### Aspect: Input format for avail class:
-
-* **Alternative 1**: avail
-    * Pros: Easy to implement.
-    * Cons: It will be hard coded to find the next available class of a one-hour slot. Inflexible.
-
-* **Alternative 2**: avail 0000-2359 0 (in minutes)
-    * Pros: More flexible, allowing teacher to specify what the time range is and the duration of class interested in.
-    * Cons: Harder to implement.
-
 ### Statistics Display Feature
 
 This feature allows the teacher to get an overall view of his/her teaching statistics, which includes the number of students, total money owed and total money paid by the current list of students.
@@ -403,7 +361,7 @@ This feature allows the user(teacher) to sort the students from Teacher's Pet by
 
 #### Implementation Details
 
-The proposed `sort` mechanism is facilitated within [TeachersPet.java](https://github.com/AY2223S1-CS2103T-T09-4/tp/tree/master/src/main/java/seedu/address/model/TeachersPet.java).
+The `sort` mechanism is facilitated within [TeachersPet.java](https://github.com/AY2223S1-CS2103T-T09-4/tp/tree/master/src/main/java/seedu/address/model/TeachersPet.java).
 The `SortCommand` object will be creating a comparator based on the argument received and pass it to `TeachersPet` so that it will return the
 list of students as per usual. Additionally, it implements the following operation:
 - `TeachersPet#SortStudents(ComparatorM<Student>)` -- Updates the `students` by sorting the list with the given `Comparator`.
@@ -416,8 +374,8 @@ The following diagram illustrates how the operation works:
 
 </div>
 
----
 
+---
 ### Undo command feature
 
 #### Implementation Details
@@ -457,9 +415,9 @@ The following sequence diagram shows how the undo operation works:
 
 This feature allows the user (teacher) to find a list of students from Teacher's Pet by one of the specified keywords.
 
-#### Proposed Implementation
+#### Implementation Details
 
-The proposed `find` mechanism is facilitated within [TeachersPet.java](https://github.com/AY2223S1-CS2103T-T09-4/tp/tree/master/src/main/java/seedu/address/model/TeachersPet.java).
+The `find` mechanism is facilitated within [TeachersPet.java](https://github.com/AY2223S1-CS2103T-T09-4/tp/tree/master/src/main/java/seedu/address/model/TeachersPet.java).
 There are 7 different variations of `find`:
 1. Find by name: Find all matching student(s) with any matching full keyword(s) from name of student using `find n/[KEYWORDS]`.
 2. Find by email: Find all matching student(s) with any matching full keyword(s) from email of student using `find e/[KEYWORDS]`.
@@ -489,7 +447,52 @@ Below is an example of the general flow of a find by address command.
 The Sequence Diagram below shows how the components interact with each other when the user issues a find command:
 
 ![FindByAddressSequenceDiagram](images/DG-images/FindByAddressSequenceDiagram.png)
---------------------------------------------------------------------------------------------------------------------
+
+---
+
+### [Proposed] Next Available Class Feature
+
+This feature allows the teacher to find then next available class by specifying the time range and the duration that
+he or she is looking at. For example, if the teacher wants to have a 1-hour class in the range of 1000-1600, but is not
+sure when is the next available date, he or she can simply run `avail 1000-1600 60` and the first available class would
+be output to the teacher.
+
+#### Proposed Implementation
+
+The main logic of the available class resides in `UniqueStudentlist::getAvailableClass`, where it takes a given
+`TimeRange` parameter and outputs the next available class.
+
+The `TimeRange` class stores the `startTimeRange`, `endTimeRange` and `duration` (in minutes).
+
+The `AvailCommandParser` reads the input and passes it to `ParserUtil` which returns a `TimeRange` object. If the
+duration provided is not valid or if the endTime is not valid, a `ParseException` will be thrown. If there are no
+exceptions being thrown, `AvailCommandParser` will create an `AvailCommand`.
+
+During the execution of `AvailCommand`, a call will be made to `Model` in order to get the available class. `Model`
+will then call `TeachersPet::getAvailableClass`. The `TeachersPet::getAvailableClass` will then call
+`UniqueStudentList::getAvailableClass` which will subsequently return a `Class` object, which will be displayed to
+the user.
+
+The following sequence diagram shows how the avail operation works:
+
+![AvailClassSequenceDiagram](images/DG-images/AvailClassSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a teacher executes an avail class command:
+
+![AvailClassActivityDiagram](images/DG-images/AvailClassActivityDiagram.png)
+
+#### Design Considerations:
+##### Aspect: Input format for avail class:
+
+* **Alternative 1**: avail
+    * Pros: Easy to implement.
+    * Cons: It will be hard coded to find the next available class of a one-hour slot. Inflexible.
+
+* **Alternative 2**: avail 0000-2359 0 (in minutes)
+    * Pros: More flexible, allowing teacher to specify what the time range is and the duration of class interested in.
+    * Cons: Harder to implement.
+
+---
 
 ## Appendix: Requirements
 
