@@ -18,5 +18,5 @@ This table breaks down the different components of FoodRem's GUI.
 {: .layout-table }
 
 ```note
-The _Help Window_ is not part of the main GUI and is only shown after a [Help Command](#receive-help-during-usage-help) is run.
+The [[ help-window:_Help Window_ ]] is not part of the main GUI and is only shown after a [Help Command](#receive-help-during-usage-help) is run.
 ```
