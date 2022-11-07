@@ -16,7 +16,6 @@ import seedu.clinkedin.model.UserPrefs;
 import seedu.clinkedin.model.person.Note;
 import seedu.clinkedin.model.person.Person;
 import seedu.clinkedin.model.person.UniqueTagTypeMap;
-import seedu.clinkedin.model.person.exceptions.DuplicateNoteException;
 
 public class AddNoteCommandTest {
     private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
@@ -35,15 +34,15 @@ public class AddNoteCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_throwsDuplicateNoteException() {
         Note note = new Note("She is strong at Java.");
-        AddNoteCommand addNoteCommand = new AddNoteCommand(Index.fromOneBased(1), note);
-        assertThrows(DuplicateNoteException.class, () -> addNoteCommand.execute(model));
+        AddNoteCommand addNoteCommand = new AddNoteCommand(Index.fromZeroBased(0), note);
+        assertThrows(CommandException.class, () -> addNoteCommand.execute(model));
     }
 
     @Test
-    public void execute_noChangeInValue_throwsDuplicateNoteException() {
+    public void execute_noChangeInValue_throwsDuplicateNoteException() throws CommandException {
         Person personToEdit = model.getFilteredPersonList().get(0);
-        AddNoteCommand addNoteCommand = new AddNoteCommand(Index.fromOneBased(1), personToEdit.getNote());
-        assertThrows(DuplicateNoteException.class, () -> addNoteCommand.execute(model));
+        AddNoteCommand addNoteCommand = new AddNoteCommand(Index.fromZeroBased(0), personToEdit.getNote());
+        assertThrows(CommandException.class, () -> addNoteCommand.execute(model));
     }
 
     @Test
