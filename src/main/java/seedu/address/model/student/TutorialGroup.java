@@ -19,7 +19,7 @@ public class TutorialGroup {
      */
     public static final String VALIDATION_REGEX = "[T][0-9]{2}";
 
-    public static final String DEFAULT_TUTORIAL_GROUP = "T00";
+    public static final String DEFAULT_TUTORIAL_GROUP = "";
 
     private final String tutorialGroup;
 
@@ -37,15 +37,6 @@ public class TutorialGroup {
         tutorialGroup = group;
     }
 
-    /**
-     * Constructs a defualt {@code TutorialGroup}.
-     */
-    public TutorialGroup() {
-        // requireNonNull(group);
-        // checkArgument(isValidTutorialGroup(group), MESSAGE_CONSTRAINTS);
-        // implement later
-        tutorialGroup = DEFAULT_TUTORIAL_GROUP;
-    }
 
     /**
      * Returns true if a given string is a valid tutorial group.
