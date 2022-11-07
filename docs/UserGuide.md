@@ -118,7 +118,7 @@ This user guide will help you get started and understand how FABook can **seamle
 <br>
 
 * Parameters can be in **any order**.
-  e.g You can input either `create n/NAME p/HP_NUMBER` or ` create p/HP_NUMBER n/NAME`.
+  e.g You can input either `create n/NAME p/HP_NUMBER` or `create p/HP_NUMBER n/NAME`.
   <br>
 
 * Only the last occurrence of a parameter that is expected once will be taken **if you specify it more than once.**
@@ -524,7 +524,7 @@ You can use this command when:
 **Constraints**
 * `INDEX` is the index of the client in the currently displayed list.
 * `MEETINGTIME` should be in the format `DD-MM-YYYY-HH:MM`.
-* mt/ should be put before each separate meeting time.
+* `mt/` should be put before each separate meeting time.
 * The client's existing meeting times remain unchanged.
 
 Format: `meeting INDEX mt/MEETINGTIME...`
@@ -675,7 +675,7 @@ Your FABook data are saved in the hard disk automatically after any command that
 
 ### Editing the data file
 
-FABook data are saved as a text file `[JAR file location]/data/addressbook.json`. If you are an advanced user, you are welcome to update data directly by editing that data file.
+FABook data are saved as a text file `[JAR file location]/data/FABook.json`. If you are an advanced user, you are welcome to update data directly by editing that data file.
 
 <div markdown="block" class="alert alert-block alert-danger">
 
