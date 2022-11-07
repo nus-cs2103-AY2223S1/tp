@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalTeams.getTypicalAddressBookWithTeams;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -40,6 +41,11 @@ public class CreateTeamCommandIntegrationTest {
     public void execute_duplicateTeam_throwsCommandException() {
         Team teamInList = model.getAddressBook().getTeamList().get(0);
         assertCommandFailure(new CreateTeamCommand(teamInList), model, CreateTeamCommand.MESSAGE_DUPLICATE_TEAM);
+    }
+
+    @Test
+    public void execute_nullTeamNameUnfilteredList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new CreateTeamCommand(null));
     }
 
 }

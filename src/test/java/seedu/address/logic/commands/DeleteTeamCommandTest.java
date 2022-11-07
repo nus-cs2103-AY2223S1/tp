@@ -46,7 +46,6 @@ public class DeleteTeamCommandTest {
         assertCommandFailure(deleteTeamCommand, model, Messages.MESSAGE_INVALID_TEAM_DISPLAYED_INDEX);
     }
 
-
     @Test
     public void equals() {
         DeleteTeamCommand deleteFirstCommand = new DeleteTeamCommand(INDEX_FIRST_TEAM);
