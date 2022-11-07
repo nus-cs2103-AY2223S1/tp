@@ -47,7 +47,16 @@ public class DeleteExamCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredExamList().size() + 1);
         DeleteExamCommand deleteExamCommand = new DeleteExamCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteExamCommand, model, Messages.MESSAGE_INVALID_EXAM_DISPLAYED_INDEX);
+        assertCommandFailure(deleteExamCommand, model, String.format(
+                Messages.MESSAGE_INVALID_EXAM_INDEX_TOO_LARGE, model.getFilteredExamList().size() + 1));
+    }
+
+    @Test
+    public void execute_noExamInList_throwsCommandException() {
+        model.updateFilteredExamList(e -> false);
+        DeleteExamCommand deleteExamCommand = new DeleteExamCommand(FIRST_INDEX);
+
+        assertCommandFailure(deleteExamCommand, model, DeleteExamCommand.MESSAGE_NO_EXAM_IN_LIST);
     }
 
     @Test
