@@ -1,0 +1,21 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class TutorialGroup{
++ {static} String MESSAGE_CONSTRAINTS
++ {static} String VALIDATION_REGEX
++ {static} String DEFAULT_TUTORIAL_GROUP
+- String tutorialGroup
+
++ {static} boolean isValidTutorialGroup(String test)
++ addStudentToTutorialGroup(Student student)
++ ArrayList<Student> getStudents()
++ boolean isSameTutorialGroup(TutorialGroup group)
+}
+
+class Student {
+}
+
+TutorialGroup --> "*" Student
+
+@enduml

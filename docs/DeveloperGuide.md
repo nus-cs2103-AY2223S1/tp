@@ -3,6 +3,12 @@ layout: page
 title: Developer Guide
 ---
 
+## Welcome to the TAA Developer Guide!
+*Teaching Assistant Assistant (TAA)* is a **desktop app for Teaching Assistants (TA) to track student progress and tasks,
+optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
+
+This developer guide serves the purpose of helping developers to quickly gain the knowledge they need to start contributing in developing TAA.
+
 * Table of Contents
 {:toc}
 
@@ -164,9 +170,11 @@ The sort task by deadline mechanism will be implemented without the need to ente
 
 Additionally, its feature is exposed in the `List` interface by calling its `sort` method.
 
+The sort method wil automatically sort its tasks by ascending order whenever a new task is added or an existing task is edited.
+
 Given below is an example usage scenario of adding a new task and how the task sorted by deadline mechanism behaves.
 
-Step 1. The user launches the application and enters the respective `taskAdd` command.
+Step 1. The user launches the application and enters the respective `task add` command.
 
 Step 2. If the command is successful, a `task` object is created and will eventually be passed to `UniqueTaskList`.
 
@@ -180,6 +188,8 @@ Step 6. The `sort` method takes in an object of type Comparator which compares t
 
 Step 7. The `sort` method then iterate the object of type `ObservableList<Task>` and arrange them according to their deadline in ascending order.
 
+The _Sequence Diagram_ below shows how the components interact with each other for the scenario during task sort when a user adds a new task. Similar interactions take place when a user edits a task or removes a task.
+<img src="images/SortTask.png" width="550"/>
 #### Design considerations:
 
 **Aspect: How sorting task by deadline executes:**
@@ -228,6 +238,9 @@ The task feature is facilitated by `Task`. It implements the following operation
 * Editing Tasks using the Task's index
 * Marking Tasks as done using the Task's index (In Progress)
 * Viewing Tasks
+
+Below is the class diagram for Task.
+<img src="images/TaskClassDiagram.png" width="950" />
 
 #### Design Considerations
 
@@ -296,6 +309,9 @@ If a `Task` has no `Student`s,
 2. **Display the students for a task in a pop-up dialog box.** This is rejected because we wish to minimise the number of mouse clicks needed to switch from viewing the students under Task 1 to viewing the students under Task 2.
     * In the current design, the user only needs to click once on Task 2 to collapse Task 1 and expand Task 2.
     * This alternative design requires the user to click on the **Close** button on Task 1's dialog box, and then click again on Task 2.
+
+Here's an activity diagram to demonstrate the Expanding TaskListCard feature.
+<img src="images/TaskExpandActivityDiagram.png" width="350"/>
 
 ### Grade feature
 

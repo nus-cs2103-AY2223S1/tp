@@ -1,0 +1,22 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+if () then ([else])
+else ([task button is clicked])
+  :Show available tasks;
+  if () then ([else])
+  else ([task card is clicked])
+    if () then ([else])
+    else ([task.getStudents().size() != 0])
+      if () then ([!isExpanded])
+        : Expand card;
+      else ([isExpanded])
+        : Collapse card;
+endif
+endif
+endif
+endif
+stop
+
+@enduml
