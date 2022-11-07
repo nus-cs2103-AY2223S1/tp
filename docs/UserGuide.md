@@ -47,6 +47,7 @@ Boxes like this indicate extra information you might be curious about.
 Boxes like this indicate more tips to help you make the most out of CodeConnect.
 
 </div>
+<div style="page-break-after: always;"></div>
 
 ## Quick start
 
