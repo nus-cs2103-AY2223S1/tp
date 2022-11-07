@@ -107,10 +107,33 @@ _None_
 The data file is only saved when you exit the application using this command.
 ```
 
-**Example Input:**
+**Example:**
+
+<!-- Hardcoding due to unique command format -->
+<!-- markdownlint-disable no-inline-html -->
+<div class="command-container" markdown="1">
+<div class="input-container" markdown="1">
+
+**Command Input Box:**
+
+Possible inputs:
 
 ```text
 exit
 ```
 
-**Expected Output:**<br>FoodRem application will close.
+</div>
+<div class="input-container" markdown="1">
+
+**Expected Outcomes:**
+
+* All FoodRem application windows will close
+* Your inventory data is saved.
+
+</div>
+</div>
+<!-- markdownlint-restore -->
+
+```note
+If your inventory data cannot be saved successfully, FoodRem will not close in order to prevent data loss.
+```
