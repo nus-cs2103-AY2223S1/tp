@@ -694,6 +694,8 @@ Reverses the most recent undo command.
 * The command word is `redo`.
 * The command can be used multiple times to redo multiple commands.
 * If there are no commands to redo, an error message will be shown.
+* Executing any command other than undo/redo will clear the redo stack. (i.e. Redo will not work after executing any command other than undo/redo)
+
 
 
 #### Examples:
