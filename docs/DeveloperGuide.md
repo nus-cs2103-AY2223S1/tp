@@ -262,9 +262,9 @@ The following sequence diagram shows how the `HistoryCommand()` command works:
 
 The grouping feature is facilitated by managing groups with the existing `model` component. Additionally, it implements the following features:
 
-* `#AddToGroup()` - Adds a person to a group.
-* `#Ungroup()` - Removes a person from a group.
-* `#Group()` - Opens a group window to view group members.
+* `AddToGroup#createGroupedPerson()` - Creates a person with the specified group.
+* `Ungroup#createUngroupedPerson()` - Creates a person with the specified group removed.
+* `Group#isShowGroup` - Opens a group window to view group members.
 
 Given below is an example usage scenario and how the grouping mechanism behaves at each step.
 
@@ -274,7 +274,7 @@ Step 2. The `AddToGroupCommandParser#parse` then parses the arguments.
 
 Step 3. A `AddToGroupCommand` object is then created.
 
-Step 4. `AddToGroupCommand#execute` will then call `setPerson(target, editedPerson)`, hence updating the person in `AddressBook` to be in the group "friends".
+Step 4. `AddToGroupCommand#execute` will then call `Model#setPerson(target, editedPerson)`, hence updating the person in `AddressBook` to be in the group "friends".
 
 Step 5. `CommandResult` contains the success message and the person is successfully added to the group "friends".
 
@@ -842,9 +842,8 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-    1. Download the jar file and copy into an empty folder
-
-   2.Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Download the jar file and copy into an empty folder
+   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 2. Saving window preferences
 
