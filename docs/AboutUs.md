@@ -34,7 +34,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](https://github.com/leeianee)] [[portfolio](team/leeianee.md)]
 
 * Role: Developer
-* Responsibilities: Code Quality
+* Responsibilities: `Add` command, User guide, Developer Guide
 
 ### Marcus Isaac Goh Wei Jie
 
@@ -54,4 +54,4 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/puakii.md)]
 
 * Role: Developer
-* Responsibilities: `find` command, refactoring from `Person` to `Internship`, user guide and developer guide
+* Responsibilities: `Find` command, refactoring from `Person` to `Internship`, user guide and developer guide
