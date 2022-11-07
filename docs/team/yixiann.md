@@ -141,6 +141,7 @@ Other PRs:
 * Update find to match new find [[PR#371]]
 * Update help command to use ITEM_NAME and TAG_NAME instead of NAME [[PR#374]]
 * Fix sorting by name [[PR#375]]
+* Set height of text area to be 450 [[PR#376]]
 * Add minor changes in the Userguide [[PR#429]]
 * Fix broken glossary term for expiry date and broken link for flags [[PR#432]]
 * Fix getColor for tags [[PR#434]]
