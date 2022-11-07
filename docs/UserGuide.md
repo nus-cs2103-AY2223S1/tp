@@ -307,7 +307,7 @@ To edit the tags of a contact, you can refer to [adding a tag](#744-adding-a-tag
 
 **Example Input in Command Box**
 ```
-`edit 1 p/91234567 e/johndoe@example.com`
+edit 1 p/91234567 e/johndoe@example.com
 ```
 
 **Example Result: Comparing the Before and After**
@@ -413,7 +413,7 @@ sort n/!
 
 **Example Input in Command Box**
 ```
-`sort t/friend n/`
+sort t/friend n/
 ```
 
 **Example Result**
