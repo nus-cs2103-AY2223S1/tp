@@ -1,28 +1,28 @@
 package seedu.address.logic.commands.deletecommands;
-/*
-//import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-//import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-//import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-//import static seedu.address.logic.commands.CommandTestUtil.showPetAtIndex;
-//import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
-//import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
-//import static seedu.address.testutil.TypicalPets.getTypicalPetsAddressBook;
 
-//import org.junit.jupiter.api.Test;
-//
-//import seedu.address.commons.core.Messages;
-//import seedu.address.commons.core.index.Index;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.showPetAtIndex;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
+import static seedu.address.testutil.TypicalPets.getTypicalPetsAddressBook;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
-//import seedu.address.model.ModelManager;
-//import seedu.address.model.UserPrefs;
-//import seedu.address.model.pet.Pet;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.pet.Pet;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
  * {@code DeletePetCommand}.
  */
-/*
+
 public class DeletePetCommandTest {
 
     private Model modelForPets = new ModelManager(getTypicalPetsAddressBook(), new UserPrefs());
@@ -35,8 +35,15 @@ public class DeletePetCommandTest {
 
         String expectedMessage = String.format(DeletePetCommand.MESSAGE_DELETE_PET_SUCCESS, petToDelete);
 
+        //reset modelForPets
+        modelForPets.updateFilteredPetList(pet -> true);
+        modelForPets.switchToPetList();
+
+        //reset expectedModel
         ModelManager expectedModel = new ModelManager(modelForPets.getAddressBook(), new UserPrefs());
         expectedModel.deletePet(petToDelete);
+        expectedModel.updateFilteredPetList(pet -> true);
+        expectedModel.switchToPetList();
 
         assertCommandSuccess(deletePetCommand, modelForPets, expectedMessage, expectedModel);
     }
@@ -58,9 +65,15 @@ public class DeletePetCommandTest {
 
         String expectedMessage = String.format(DeletePetCommand.MESSAGE_DELETE_PET_SUCCESS, personToDelete);
 
+        //set up modelForPets
+        modelForPets.updateFilteredPetList(pet -> true);
+        modelForPets.switchToPetList();
+
+        //set up expectedModel
         Model expectedModel = new ModelManager(modelForPets.getAddressBook(), new UserPrefs());
         expectedModel.deletePet(personToDelete);
         showNoPet(expectedModel);
+        expectedModel.updateFilteredPetList(pet -> true);
 
         assertCommandSuccess(deletePetCommand, modelForPets, expectedMessage, expectedModel);
     }
@@ -98,16 +111,16 @@ public class DeletePetCommandTest {
 
         // different person -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
-        }
+    }
 
     /**
      * Updates {@code model}'s filtered list to show no Pets.
      */
-/*
+
     private void showNoPet(Model model) {
         model.updateFilteredPetList(p -> false);
 
         assertTrue(model.getFilteredPetList().isEmpty());
     }
 }
-*/
+

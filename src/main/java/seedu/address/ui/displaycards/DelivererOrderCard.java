@@ -71,8 +71,6 @@ public class DelivererOrderCard extends UiPart<Region> {
         // Set buyer information for delivering
         toAddress.setText("To: " + order.getBuyer().getAddress().value);
         buyerPhone.setText("Buyer contact: " + order.getBuyer().getPhone().value);
-        // TODO: implement this
-        estimatedArrivalDate.setText("TODO: implement order arrival date");
     }
 
     @Override
