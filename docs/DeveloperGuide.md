@@ -17,10 +17,10 @@ title: Developer Guide for bobaBot
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
-<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
 ## **Design**
 
 <div markdown="span" class="alert alert-primary">
@@ -63,12 +63,14 @@ Each of the four main components (also shown in the diagram above),
 * defines its *API* in an `interface` with the same name as the Component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
+<div style="page-break-after: always;"></div>
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
 <img src="images/ComponentManagers.png" width="300" />
 
 The sections below give more details of each component.
 
+<div style="page-break-after: always;"></div>
 ### UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-W09-1/tp/blob/master/src/main/java/seedu/boba/ui/Ui.java)
@@ -87,6 +89,7 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `BobaBotModel` component, as it displays `Person` object residing in the `BobaBotModel`.
 
+<div style="page-break-after: always;"></div>
 ### Logic component
 
 **API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-W09-1/tp/blob/master/src/main/java/seedu/boba/logic/Logic.java)
@@ -117,6 +120,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 
+<div style="page-break-after: always;"></div>
 ### Command Classes
 
 The class diagram below expands the details of Command and Parser part in the Logic component above, showing the details of how commands are parsed and created
@@ -130,6 +134,7 @@ The diagram also includes some new classes involved. For example, the `find` com
 <img src="images/CommandClasses.png" width="1200"/>
 
 
+<div style="page-break-after: always;"></div>
 ### BobaBotModel component
 
 **API** : [`BobaBotModel.java`](https://github.com/AY2223S1-CS2103T-W09-1/tp/blob/master/src/main/java/seedu/boba/model/BobaBotModel.java)
@@ -151,6 +156,7 @@ The `BobaBotModel` component,
 </div>
 
 
+<div style="page-break-after: always;"></div>
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-W09-1/tp/blob/master/src/main/java/seedu/boba/storage/Storage.java)
@@ -168,6 +174,7 @@ Classes used by multiple components are in the `seedu.boba.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
@@ -211,6 +218,7 @@ The following activity diagram summarizes the flow of when a user enters an add 
 * **Future Extension:** bobaBot can support autocompletion of prefixes to reduce keystrokes for the user.
 
 
+<div style="page-break-after: always;"></div>
 ### Edit feature
 The Edit feature is facilitated by `LogicManager`. The `EditCommandParser` parses the command arguments, and returns
 an `EditCommand` that is executed by the `LogicManager`.
@@ -251,6 +259,7 @@ The following activity diagram summarizes the flow of when a user enters an edit
 
 * **Future Extension:** bobaBot can support multiple editing so user do not have to edit customers one by one.
 
+<div style="page-break-after: always;"></div>
 ### Increase/ Decrease feature
 The Increase/ Decrease feature is facilitated by `LogicManager`. The `IncreaseCommandParser` or `DecreaseCommandParser` parses the command arguments, and returns
 an `IncreaseCommand` or `DecreaseCommand` that is executed by the `LogicManager`.
@@ -267,6 +276,7 @@ This feature is an extension to the above Edit feature to ease the process of ed
 
 **Pros and Cons are the same as the above Edit Feature.**
 
+<div style="page-break-after: always;"></div>
 ### Delete feature
 The Delete feature is facilitated by `LogicManager`. The `DeleteCommandParser` parses the command arguments, and returns
 a `DeleteCommand` that is executed by the `LogicManager` and returns a `CommandResult` as feedback to the user.
@@ -309,6 +319,7 @@ The activity diagram below illustrates how the `delete` operation works.
 * **Future Extension:** bobaBot can support multiple deletions so user do not have to delete customers one by one.
 
 
+<div style="page-break-after: always;"></div>
 ### Find feature
 The Find feature is facilitated by `LogicManager`. The `FindCommandParser` parses the command arguments, and returns
 an `FindCommand` that is executed by the `LogicManager`.
@@ -347,6 +358,7 @@ or just search for occurrence of keywords (including name) vaguely.
 * **Future Extension:** bobaBot can support priority in listing of search results.
 
 
+<div style="page-break-after: always;"></div>
 ### Undo/Redo feature
 
 The undo/redo mechanism is facilitated by `VersionedBobaBot`. It extends `BobaBot` with an undo/redo history, stored internally as an `bobaBotStateList` and `currentStatePointer`. Additionally, it implements the following operations:
@@ -427,6 +439,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
+<div style="page-break-after: always;"></div>
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
@@ -459,6 +472,7 @@ _{Explain here how the data archiving feature will be implemented}_
 **Value proposition**: manage customers faster than a typical mouse/GUI driven app
 
 
+<div style="page-break-after: always;"></div>
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
@@ -473,6 +487,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
+<div style="page-break-after: always;"></div>
 ### Use cases
 
 (For all use cases below, the **System** is `bobaBot` and the **Actor** is the `user`, unless specified otherwise)
