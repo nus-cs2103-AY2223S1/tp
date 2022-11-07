@@ -448,11 +448,18 @@ This action is irreversible.
 
 ## FAQ
 
-**Transferring data to friends or other devices**:
+**Where is my data saved?**
 NUSEatWhere's `Food Guide` automatically saves your data (including your tags and any new eateries) into a file
-`foodguide.json` in the `data` folder. Make a copy of this file and transfer it to your friend or the other device
-by any means of file sharing (thumbdrive, email, Google Drive, etc.) In the other installation of
+`foodguide.json` in the `data` folder.
+
+**Transferring data to friends or other devices**:
+Make a copy of the data file (`foodguide.json` in the `data` folder) and transfer it to your friend or the other device
+by any means of file sharing (thumbdrive, email, Google Drive, etc.). In the other installation of
 `Food Guide`, replace the default data file with your data.
+
+**Manually editing `Food Guide` data**:
+If you are familiar with the `json` file format, you may edit the data file `foodguide.json` directly.
+Do make a backup as an invalid data file will cause `Food Guide` to override it with an empty file.
 
 --------------------------------------------------------------------------------------------------------------------
 
