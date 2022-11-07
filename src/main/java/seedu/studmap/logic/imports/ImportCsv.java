@@ -16,6 +16,7 @@ import seedu.studmap.model.student.StudentData;
  */
 public class ImportCsv {
 
+    public static final String FILE_IS_NULL = "File is null!";
     public static final String FILE_DOES_NOT_EXIST = "File does not exist!";
 
     public static final String FILE_CANNOT_BE_READ = "File cannot be read!";
@@ -24,6 +25,9 @@ public class ImportCsv {
 
     public static final String CSV_WRONG_FORMAT = "CSV template is wrongly formatted! "
             + "Please use the one in the UG strictly.";
+
+    public static final String MISSING_COMPULSORY_ATTRIBUTE = "Row %d has missing compulsory attribute %s!\n";
+    public static final String DUPLICATE_STUDENT = "Row %d is a duplicate entry!\n";
 
     public final String delimiter = "\\,";
 
@@ -51,25 +55,20 @@ public class ImportCsv {
 
     private int rowNumber;
 
-    private enum Attributes {
-        NAME,
-        STUDENTID,
-        MODULE,
-        PHONE,
-        EMAIL,
-        GITHUB,
-        TELEGRAM
-    }
-
     /**
      * Executes the ImportCSV process, taking a model and file and updating the model with the imported students.
      *
      * @param model Model to update
-     * @param file CSV file containing import data
+     * @param file  CSV file containing import data
      * @return Error message containing logs during import
      * @throws ImportException
      */
     public String execute(Model model, File file) throws ImportException {
+
+        if (file == null) {
+            throw new ImportException(FILE_IS_NULL);
+        }
+
         log = new StringBuilder();
         if (!file.exists()) {
             throw new ImportException(FILE_DOES_NOT_EXIST);
@@ -102,6 +101,7 @@ public class ImportCsv {
 
     /**
      * Checks if the file is a CSV file.
+     *
      * @param filename Filename to check
      * @return Boolean if file is CSV
      */
@@ -113,6 +113,7 @@ public class ImportCsv {
 
     /**
      * Checks if the first line follows the proper header template
+     *
      * @param firstLine First line of the CSV
      * @return Boolean if first line correctly follows the template
      */
@@ -131,8 +132,9 @@ public class ImportCsv {
 
     /**
      * Processes the CSV line input, creating a Student and updating the Model with it.
+     *
      * @param inputLine Input from CSV
-     * @param model Model to update
+     * @param model     Model to update
      */
     public void processLine(String[] inputLine, Model model) {
         StudentData studentData = new StudentData();
@@ -169,7 +171,7 @@ public class ImportCsv {
             } catch (ParseException e) {
                 if (currentAttribute == Attributes.NAME || currentAttribute == Attributes.STUDENTID
                         || currentAttribute == Attributes.MODULE) {
-                    log.append(String.format("Row %d has missing compulsory attribute %s!\n",
+                    log.append(String.format(MISSING_COMPULSORY_ATTRIBUTE,
                             rowNumber, currentAttribute));
                     return;
                 }
@@ -178,10 +180,23 @@ public class ImportCsv {
 
         Student newStudent = new Student(studentData);
         if (model.hasStudent(newStudent)) {
-            log.append(String.format("Row %d is a duplicate entry!\n", rowNumber));
+            log.append(String.format(DUPLICATE_STUDENT, rowNumber));
             return;
         }
         model.addStudent(newStudent);
+    }
+
+    /**
+     * Attributes used by ImportCsv.
+     */
+    public enum Attributes {
+        NAME,
+        STUDENTID,
+        MODULE,
+        PHONE,
+        EMAIL,
+        GITHUB,
+        TELEGRAM
     }
 
 }

@@ -1,12 +1,15 @@
 package seedu.studmap.model.student;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.studmap.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Student's ID in the student map.
  * Guarantees: immutable
  */
 public class StudentID {
+
+    public static final String MESSAGE_CONSTRAINTS = "StudentID cannot be empty!";
 
     public final String value;
 
@@ -17,7 +20,15 @@ public class StudentID {
      */
     public StudentID(String studentID) {
         requireNonNull(studentID);
+        checkArgument(isValidStudentID(studentID), MESSAGE_CONSTRAINTS);
         this.value = studentID;
+    }
+
+    /**
+     * Returns true if a given string is a valid student ID.
+     */
+    public static boolean isValidStudentID(String studentID) {
+        return studentID != null && !studentID.isEmpty();
     }
 
     @Override
