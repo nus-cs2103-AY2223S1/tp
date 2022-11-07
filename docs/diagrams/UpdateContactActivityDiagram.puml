@@ -1,0 +1,21 @@
+@startuml
+start
+:User executes update contact command;
+
+if () then ([all fields are present with exactly 1 input])
+    if () then ([person to edit is a patient])
+        if () then ([contact category is Next of Kin or Physician])
+        :Update contact and return;
+        else ([else])
+        :Show error message about invalid contact category;
+        endif
+    else ([else])
+    :Show error message about invalid category;
+    endif
+else ([else])
+:Show error message about invalid command format;
+endif
+stop
+@enduml
+
+

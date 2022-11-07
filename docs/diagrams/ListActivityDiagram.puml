@@ -1,0 +1,18 @@
+@startuml
+start
+:User executes list command;
+
+if () then ([no criteria given])
+    if () then ([one or more invalid arguments])
+    :Show error message about invalid arguments
+    :Filter list of patients and nurses based on given specifications;
+    :Display filtered list of patients and nurses;
+    else ([else])
+    endif
+else ([else])
+:display all patients and nurses;
+endif
+stop
+@enduml
+
+
