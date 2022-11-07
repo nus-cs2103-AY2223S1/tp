@@ -68,7 +68,7 @@ public class CalculateCommandTest {
     }
 
     @Test
-    public void execute_unsupportedOperator_Fail() {
+    public void execute_unsupportedOperator_fail() {
         String exp = "2^^30";
         CalculateCommand calculateCommand = new CalculateCommand(exp);
 
