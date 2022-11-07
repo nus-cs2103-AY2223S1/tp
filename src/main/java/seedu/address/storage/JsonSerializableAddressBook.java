@@ -19,7 +19,8 @@ import seedu.address.model.person.Person;
 @JsonRootName(value = "addressbook")
 class JsonSerializableAddressBook {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_PERSON = "The list contains duplicate %1$s.";
+    public static final String PERSON_IDENTIFIER = "person(s)";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
 
@@ -34,7 +35,8 @@ class JsonSerializableAddressBook {
     /**
      * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created
+     *               {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
@@ -50,7 +52,7 @@ class JsonSerializableAddressBook {
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             Person person = jsonAdaptedPerson.toModelType();
             if (addressBook.hasPerson(person)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+                throw new IllegalValueException(String.format(MESSAGE_DUPLICATE_PERSON, PERSON_IDENTIFIER));
             }
             addressBook.addPerson(person);
         }

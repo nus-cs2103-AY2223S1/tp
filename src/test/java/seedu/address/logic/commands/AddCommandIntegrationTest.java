@@ -11,10 +11,12 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonType;
 import seedu.address.testutil.PersonBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code AddCommand}.
+ * Contains integration tests (interaction with the Model) for
+ * {@code AddCommand}.
  */
 public class AddCommandIntegrationTest {
 
@@ -27,19 +29,26 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_newPerson_success() {
-        Person validPerson = new PersonBuilder().build();
+        Person validPerson = new PersonBuilder().withUid("100").build();
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.addPerson(validPerson);
 
         assertCommandSuccess(new AddCommand(validPerson), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, validPerson), expectedModel);
+                String.format(AddCommand.MESSAGE_SUCCESS, PersonType.PATIENT, validPerson), expectedModel);
     }
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
         Person personInList = model.getAddressBook().getPersonList().get(0);
-        assertCommandFailure(new AddCommand(personInList), model, AddCommand.MESSAGE_DUPLICATE_PERSON);
+        String personIdentifier = "";
+        if (personInList.isPatient()) {
+            personIdentifier = PersonType.PATIENT.toString();
+        } else {
+            personIdentifier = "person";
+        }
+        assertCommandFailure(new AddCommand(personInList), model, String.format(AddCommand.MESSAGE_DUPLICATE_PERSON,
+                personIdentifier));
     }
 
 }

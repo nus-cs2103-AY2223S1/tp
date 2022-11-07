@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -40,17 +41,18 @@ public class ModelManager implements Model {
         this(new AddressBook(), new UserPrefs());
     }
 
-    //=========== UserPrefs ==================================================================================
+    // =========== UserPrefs
+    // ==================================================================================
+
+    @Override
+    public ReadOnlyUserPrefs getUserPrefs() {
+        return userPrefs;
+    }
 
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
         requireNonNull(userPrefs);
         this.userPrefs.resetData(userPrefs);
-    }
-
-    @Override
-    public ReadOnlyUserPrefs getUserPrefs() {
-        return userPrefs;
     }
 
     @Override
@@ -75,12 +77,8 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
-    //=========== AddressBook ================================================================================
-
-    @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
-    }
+    // =========== AddressBook
+    // ================================================================================
 
     @Override
     public ReadOnlyAddressBook getAddressBook() {
@@ -88,9 +86,25 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setAddressBook(ReadOnlyAddressBook addressBook) {
+        this.addressBook.resetData(addressBook);
+    }
+
+    @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
         return addressBook.hasPerson(person);
+    }
+
+    @Override
+    public boolean hasSimilarPerson(Person person) {
+        requireNonNull(person);
+        return addressBook.hasSimilarPerson(person);
+    }
+
+    @Override
+    public Optional<Person> findSimilarPerson(Person person) {
+        return addressBook.findSimilarPerson(person);
     }
 
     @Override
@@ -107,14 +121,15 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         addressBook.setPerson(target, editedPerson);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    // =========== Filtered Person List Accessors
+    // =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Person} backed by the
+     * internal list of
      * {@code versionedAddressBook}
      */
     @Override

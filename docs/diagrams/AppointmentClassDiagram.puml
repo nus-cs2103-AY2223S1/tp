@@ -1,0 +1,19 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Model <<Rectangle>> {
+    class Patient
+    Class Nurse
+    Class Appointment
+    Patient "1" - "0..1" Nurse
+    (Patient, Nurse) .. Appointment
+    Class Slot
+    Class VisitStatus
+    Appointment --> Slot
+    Appointment --> VisitStatus
+}
+
+@enduml

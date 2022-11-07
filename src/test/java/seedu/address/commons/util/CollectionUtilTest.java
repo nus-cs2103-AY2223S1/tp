@@ -65,7 +65,7 @@ public class CollectionUtilTest {
         assertNullPointerExceptionNotThrown(Collections.emptyList());
 
         // list with all non-null elements
-        assertNullPointerExceptionNotThrown(Arrays.asList(new Object(), "ham", Integer.valueOf(1)));
+        assertNullPointerExceptionNotThrown(Arrays.asList(new Object(), "ham", 1));
         assertNullPointerExceptionNotThrown(Arrays.asList(new Object()));
 
         // confirms nulls inside nested lists are not considered
@@ -83,7 +83,8 @@ public class CollectionUtilTest {
     }
 
     /**
-     * Asserts that {@code CollectionUtil#requireAllNonNull(Object...)} throw {@code NullPointerException}
+     * Asserts that {@code CollectionUtil#requireAllNonNull(Object...)} throw
+     * {@code NullPointerException}
      * if {@code objects} or any element of {@code objects} is null.
      */
     private void assertNullPointerExceptionThrown(Object... objects) {
@@ -91,7 +92,8 @@ public class CollectionUtilTest {
     }
 
     /**
-     * Asserts that {@code CollectionUtil#requireAllNonNull(Collection<?>)} throw {@code NullPointerException}
+     * Asserts that {@code CollectionUtil#requireAllNonNull(Collection<?>)} throw
+     * {@code NullPointerException}
      * if {@code collection} or any element of {@code collection} is null.
      */
     private void assertNullPointerExceptionThrown(Collection<?> collection) {

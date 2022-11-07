@@ -1,0 +1,46 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Model <<Rectangle>> {
+Class BasePerson
+Class Physician
+Class NextOfKin
+Class Person
+Class Address
+Class DateSlot
+Class Gender
+Class Email
+Class Name
+Class Patient
+Class Phone
+Class Tag
+Class Uid
+}
+
+Physician .up.|> BasePerson
+NextOfKin .up.|> BasePerson
+Person .up.|> BasePerson
+BasePerson *--> "1" Name
+BasePerson *--> "1" Phone
+BasePerson *--> "1" Email
+
+Person *--> "1" Uid
+Person *--> "1" Gender
+Person *--> "1" Address
+Person *--> "*" Tag
+Patient .up.|> Person
+Patient *--> "*" DateSlot
+Patient *--> "0..1" Physician
+Patient *--> "0..1" NextOfKin
+
+Uid -[hidden]right-> Name
+Name -[hidden]right-> Gender
+Gender -[hidden]right-> Phone
+Phone -[hidden]right-> Address
+Address -[hidden]right-> Email
+
+@enduml
+

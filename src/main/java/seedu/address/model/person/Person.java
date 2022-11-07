@@ -7,53 +7,69 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.category.Category;
 import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Person in the address book.
- * Guarantees: details are present and not null, field values are validated, immutable.
+ * Guarantees: details are present and not null, field values are validated,
+ * immutable.
  */
-public class Person {
+public class Person extends BasePerson {
 
     // Identity fields
-    private final Name name;
-    private final Phone phone;
-    private final Email email;
+    private final Uid uid;
+    private final Gender gender;
 
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
+    // Check fields
+    private final int similarityThreshold = 5;
+
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
+    public Person(Uid uid, Name name, Gender gender, Phone phone, Email email, Address address, Set<Tag> tags) {
+        super(name, phone, email);
+        requireAllNonNull(address, tags);
+        if (Objects.isNull(uid)) {
+            this.uid = new Uid();
+        } else {
+            this.uid = uid;
+        }
+        this.gender = gender;
         this.address = address;
         this.tags.addAll(tags);
     }
 
-    public Name getName() {
-        return name;
+    /**
+     * @return the id
+     */
+    public Uid getUid() {
+        return uid;
     }
 
-    public Phone getPhone() {
-        return phone;
-    }
-
-    public Email getEmail() {
-        return email;
+    public Gender getGender() {
+        return gender;
     }
 
     public Address getAddress() {
         return address;
     }
 
+    public Category getCategory() {
+        return null;
+    }
+
+    public String getCategoryIndicator() {
+        return "person";
+    }
+
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable tag set, which throws
+     * {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public Set<Tag> getTags() {
@@ -69,8 +85,7 @@ public class Person {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getName().equals(getName());
+        return otherPerson != null && otherPerson.getUid().equals(getUid());
     }
 
     /**
@@ -88,7 +103,10 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
-        return otherPerson.getName().equals(getName())
+
+        return otherPerson.getUid().equals(getUid())
+                && otherPerson.getName().equals(getName())
+                && otherPerson.getGender().equals(getGender())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
@@ -98,19 +116,19 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(uid, getName(), gender, getPhone(), getEmail(), address, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append("; Phone: ")
-                .append(getPhone())
-                .append("; Email: ")
-                .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress());
+        builder.append(getUid().toFormattedString())
+                .append(" ")
+                .append(super.toString())
+                .append(" ")
+                .append(getGender().toFormattedString())
+                .append(" ")
+                .append(getAddress().toFormattedString());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
@@ -120,4 +138,38 @@ public class Person {
         return builder.toString();
     }
 
+    /**
+     * Returns true if both persons are similar to each other.
+     */
+    public boolean isSimilarPerson(Person otherPerson) {
+        int counter = 0;
+        if (otherPerson == this) {
+            return true;
+        }
+
+        if (otherPerson.getName().equals(getName())) {
+            counter++;
+        }
+
+        if (otherPerson.getGender().equals(getGender())) {
+            counter++;
+        }
+
+        if (otherPerson.getPhone().equals(getPhone())) {
+            counter++;
+        }
+
+        if (otherPerson.getEmail().equals(getEmail())) {
+            counter++;
+        }
+
+        if (otherPerson.getAddress().equals(getAddress())) {
+            counter++;
+        }
+
+        if (otherPerson.getTags().equals(getTags())) {
+            counter++;
+        }
+        return counter >= similarityThreshold;
+    }
 }

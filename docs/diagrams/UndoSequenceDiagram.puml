@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":HealthcareXpressParser" as HealthcareXpressParser LOGIC_COLOR
 participant "u:UndoCommand" as UndoCommand LOGIC_COLOR
 end box
 
@@ -14,18 +14,18 @@ end box
 [-> LogicManager : execute(undo)
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand(undo)
-activate AddressBookParser
+LogicManager -> HealthcareXpressParser : parseCommand(undo)
+activate HealthcareXpressParser
 
 create UndoCommand
-AddressBookParser -> UndoCommand
+HealthcareXpressParser -> UndoCommand
 activate UndoCommand
 
-UndoCommand --> AddressBookParser
+UndoCommand --> HealthcareXpressParser
 deactivate UndoCommand
 
-AddressBookParser --> LogicManager : u
-deactivate AddressBookParser
+HealthcareXpressParser --> LogicManager : u
+deactivate HealthcareXpressParser
 
 LogicManager -> UndoCommand : execute()
 activate UndoCommand

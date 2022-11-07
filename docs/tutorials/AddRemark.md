@@ -43,7 +43,7 @@ public class RemarkCommand extends Command {
 
 ### Hook `RemarkCommand` into the application
 
-Now that we have our `RemarkCommand` ready to be executed, we need to update `AddressBookParser#parseCommand()` to recognize the `remark` keyword. Add the new command to the `switch` block by creating a new `case` that returns a new instance of `RemarkCommand`.
+Now that we have our `RemarkCommand` ready to be executed, we need to update `HealthcareXpressParser#parseCommand()` to recognize the `remark` keyword. Add the new command to the `switch` block by creating a new `case` that returns a new instance of `RemarkCommand`.
 
 You can refer to the changes in this [diff](https://github.com/se-edu/addressbook-level3/commit/35eb7286f18a029d39cb7a29df8f172a001e4fd8#diff-399c284cb892c20b7c04a69116fcff6ccc0666c5230a1db8e4a9145def8fa4ee).
 
@@ -216,7 +216,7 @@ public RemarkCommand parse(String args) throws ParseException {
 
 <div markdown="span" class="alert alert-primary">
 
-:information_source: Don’t forget to update `AddressBookParser` to use our new `RemarkCommandParser`!
+:information_source: Don’t forget to update `HealthcareXpressParser` to use our new `RemarkCommandParser`!
 
 </div>
 

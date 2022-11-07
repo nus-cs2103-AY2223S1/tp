@@ -9,51 +9,51 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### John Benedict Yan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/johnbenedictyan.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/johnbenedictyan)]
+[[portfolio](team/johnbenedictyan.md)]
 
-* Role: Project Advisor
+* Role: Team Lead and Code Quality In-Charge
+* Responsibilities: Commons
 
-### Jane Doe
+### Phoong Xiang Han
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/xhphoong.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/xhphoong)]
+[[portfolio](team/xhphoong.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Documentation In-Charge
+* Responsibilities: Logic
 
-### Johnny Doe
+### Yee Hao
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yeehaoo.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/yeehaoo)] [[portfolio](team/yeehaoo.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Deliverables and deadlines, and Scheduling and tracking In-Charge
+* Responsibilities: Model
 
-### Jean Doe
+### Malcolm Low
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/mlzt2000.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/mlzt2000)]
+[[portfolio](team/mlzt2000.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Integration In-Charge
+* Responsibilities: User Interface
 
-### James Doe
+### Lim Zhan Feng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/lolfoollors.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/lolfoollors)]
+[[portfolio](team/lolfoollors.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Testing In-Charge
+* Responsibilities: Storage

@@ -1,0 +1,20 @@
+@startuml
+start
+:User executes add patient command;
+
+if () then ([all the compulsory fields are present and valid])
+
+        if () then ([there is potential duplication])
+        : Show error message about the potential duplication;
+        else ([else])
+        :Add Patient into addressBook;
+        :Save the updated addressBook;
+        endif
+else ([else])
+:Show error message about the missing or invalid fields;
+
+endif
+stop
+@enduml
+
+

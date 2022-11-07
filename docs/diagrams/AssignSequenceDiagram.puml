@@ -1,0 +1,100 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":HealthcareXpressParser" as HealthcareXpressParser LOGIC_COLOR
+participant ":AssignCommandParser" as AssignCommandParser LOGIC_COLOR
+participant "a:AssignCommand" as AssignCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant ":InternalEditor" as InternalEditor LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("assign userInput")
+activate LogicManager
+
+LogicManager -> HealthcareXpressParser : parseCommand("assign userInput")
+activate HealthcareXpressParser
+
+create AssignCommandParser
+HealthcareXpressParser -> AssignCommandParser
+activate AssignCommandParser
+
+AssignCommandParser --> HealthcareXpressParser
+deactivate AssignCommandParser
+
+HealthcareXpressParser -> AssignCommandParser : parse("userInput")
+activate AssignCommandParser
+
+create AssignCommand
+AssignCommandParser -> AssignCommand : uid1, uid2, indexList
+activate AssignCommand
+
+AssignCommand --> AssignCommandParser :
+deactivate AssignCommand
+
+AssignCommandParser --> HealthcareXpressParser :
+deactivate AssignCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AssignCommandParser -[hidden]-> HealthcareXpressParser
+destroy AssignCommandParser
+
+HealthcareXpressParser --> LogicManager :
+deactivate HealthcareXpressParser
+
+LogicManager -> AssignCommand : execute()
+activate AssignCommand
+
+create InternalEditor
+AssignCommand -> InternalEditor
+activate InternalEditor
+InternalEditor -> AssignCommand
+deactivate InternalEditor
+
+AssignCommand -> InternalEditor: editPatient(p,l)
+activate InternalEditor
+InternalEditor -> Model : setPerson(p1, p2)
+activate Model
+Model -> InternalEditor
+deactivate Model
+
+InternalEditor -> Model : updateFilteredPersonList(predicate)
+activate Model
+Model -> InternalEditor
+deactivate Model
+
+deactivate InternalEditor
+
+AssignCommand -> InternalEditor: editNurse(p,l)
+activate InternalEditor
+InternalEditor -> Model : setPerson(p1, p2)
+activate Model
+Model -> InternalEditor
+deactivate Model
+
+InternalEditor -> Model : updateFilteredPersonList(predicate)
+activate Model
+Model -> InternalEditor
+deactivate Model
+
+InternalEditor -> AssignCommand
+deactivate InternalEditor
+
+create CommandResult
+AssignCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AssignCommand
+deactivate CommandResult
+
+AssignCommand --> LogicManager : result
+deactivate AssignCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
+

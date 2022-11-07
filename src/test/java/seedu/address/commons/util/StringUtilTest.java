@@ -10,7 +10,8 @@ import org.junit.jupiter.api.Test;
 
 public class StringUtilTest {
 
-    //---------------- Tests for isNonZeroUnsignedInteger --------------------------------------
+    // ---------------- Tests for isNonZeroUnsignedInteger
+    // --------------------------------------
 
     @Test
     public void isNonZeroUnsignedInteger() {
@@ -45,8 +46,8 @@ public class StringUtilTest {
         assertTrue(StringUtil.isNonZeroUnsignedInteger("10"));
     }
 
-
-    //---------------- Tests for containsWordIgnoreCase --------------------------------------
+    // ---------------- Tests for containsWordIgnoreCase
+    // --------------------------------------
 
     /*
      * Invalid equivalence partitions for word: null, empty, multiple words
@@ -61,14 +62,14 @@ public class StringUtilTest {
 
     @Test
     public void containsWordIgnoreCase_emptyWord_throwsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class, "Word parameter cannot be empty", ()
-            -> StringUtil.containsWordIgnoreCase("typical sentence", "  "));
+        assertThrows(IllegalArgumentException.class, "Word parameter cannot be empty", () ->
+            StringUtil.containsWordIgnoreCase("typical sentence", "  "));
     }
 
     @Test
     public void containsWordIgnoreCase_multipleWords_throwsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class, "Word parameter should be a single word", ()
-            -> StringUtil.containsWordIgnoreCase("typical sentence", "aaa BBB"));
+        assertThrows(IllegalArgumentException.class, "Word parameter should be a single word", () ->
+            StringUtil.containsWordIgnoreCase("typical sentence", "aaa BBB"));
     }
 
     @Test
@@ -78,27 +79,28 @@ public class StringUtilTest {
 
     /*
      * Valid equivalence partitions for word:
-     *   - any word
-     *   - word containing symbols/numbers
-     *   - word with leading/trailing spaces
+     * - any word
+     * - word containing symbols/numbers
+     * - word with leading/trailing spaces
      *
      * Valid equivalence partitions for sentence:
-     *   - empty string
-     *   - one word
-     *   - multiple words
-     *   - sentence with extra spaces
+     * - empty string
+     * - one word
+     * - multiple words
+     * - sentence with extra spaces
      *
      * Possible scenarios returning true:
-     *   - matches first word in sentence
-     *   - last word in sentence
-     *   - middle word in sentence
-     *   - matches multiple words
+     * - matches first word in sentence
+     * - last word in sentence
+     * - middle word in sentence
+     * - matches multiple words
      *
      * Possible scenarios returning false:
-     *   - query word matches part of a sentence word
-     *   - sentence word matches part of the query word
+     * - query word matches part of a sentence word
+     * - sentence word matches part of the query word
      *
-     * The test method below tries to verify all above with a reasonably low number of test cases.
+     * The test method below tries to verify all above with a reasonably low number
+     * of test cases.
      */
 
     @Test
@@ -123,7 +125,7 @@ public class StringUtilTest {
         assertTrue(StringUtil.containsWordIgnoreCase("AAA bBb ccc  bbb", "bbB"));
     }
 
-    //---------------- Tests for getDetails --------------------------------------
+    // ---------------- Tests for getDetails --------------------------------------
 
     /*
      * Equivalence Partitions: null, valid throwable object
@@ -132,7 +134,7 @@ public class StringUtilTest {
     @Test
     public void getDetails_exceptionGiven() {
         assertTrue(StringUtil.getDetails(new FileNotFoundException("file not found"))
-            .contains("java.io.FileNotFoundException: file not found"));
+                .contains("java.io.FileNotFoundException: file not found"));
     }
 
     @Test

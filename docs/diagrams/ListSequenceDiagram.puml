@@ -1,0 +1,48 @@
+@startuml
+
+participant ":LogicManager" as LogicManager
+participant ":HealthcareXpressParser" as HealthcareXpressParser
+participant ":ListCommandParser" as ListCommandParser
+participant ":ListCommand" as ListCommand
+participant ":CommandResult" as CommandResult
+
+participant ":Model" as Model
+
+[-> LogicManager : execute("list c/n g/f")
+activate LogicManager
+
+LogicManager -> HealthcareXpressParser : parseCommand("list c/n g/f")
+activate HealthcareXpressParser
+
+create ListCommandParser
+HealthcareXpressParser -> ListCommandParser
+activate ListCommandParser
+
+ListCommandParser --> HealthcareXpressParser
+
+HealthcareXpressParser -> ListCommandParser : parse("list c/n g/f")
+
+create ListCommand
+ListCommandParser --> ListCommand
+activate ListCommand
+ListCommand --> ListCommandParser
+ListCommandParser --> HealthcareXpressParser : ListCommand
+deactivate ListCommandParser
+HealthcareXpressParser --> LogicManager : ListCommand
+deactivate HealthcareXpressParser
+
+LogicManager --> ListCommand : execute()
+ListCommand --> Model: filter(predicate)
+activate Model
+Model --> ListCommand
+deactivate Model
+
+create CommandResult
+ListCommand --> CommandResult
+CommandResult --> ListCommand
+ListCommand --> LogicManager : CommandResult
+deactivate ListCommand
+<- LogicManager : CommandResult
+
+@enduml
+
