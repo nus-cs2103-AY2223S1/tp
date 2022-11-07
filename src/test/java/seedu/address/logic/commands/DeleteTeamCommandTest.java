@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showTeamAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TEAM;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TEAM;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_TEAM;
 import static seedu.address.testutil.TypicalTeams.getTypicalAddressBookWithTeams;
 
 import org.junit.jupiter.api.Test;
@@ -49,7 +49,6 @@ public class DeleteTeamCommandTest {
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        showTeamAtIndex(model, INDEX_FIRST_TEAM);
 
         Team teamToDelete = model.getFilteredTeamList().get(INDEX_FIRST_TEAM.getZeroBased());
         DeleteTeamCommand deleteTeamCommand = new DeleteTeamCommand(INDEX_FIRST_TEAM);
@@ -58,18 +57,13 @@ public class DeleteTeamCommandTest {
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteTeam(teamToDelete);
-        showNoTeam(expectedModel);
 
         assertCommandSuccess(deleteTeamCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showTeamAtIndex(model, INDEX_FIRST_TEAM);
-
-        Index outOfBoundIndex = INDEX_SECOND_TEAM;
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getTeamList().size());
+        Index outOfBoundIndex = INDEX_THIRD_TEAM;
 
         DeleteTeamCommand deleteTeamCommand = new DeleteTeamCommand(outOfBoundIndex);
 
