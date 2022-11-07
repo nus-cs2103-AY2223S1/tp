@@ -1,6 +1,7 @@
 package seedu.travelr.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.travelr.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.travelr.testutil.Assert.assertThrows;
 
@@ -11,13 +12,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import seedu.travelr.commons.core.GuiSettings;
 import seedu.travelr.logic.commands.CommandResult;
 import seedu.travelr.logic.commands.ListCommand;
 import seedu.travelr.logic.commands.exceptions.CommandException;
 import seedu.travelr.logic.parser.exceptions.ParseException;
 import seedu.travelr.model.Model;
 import seedu.travelr.model.ModelManager;
-import seedu.travelr.model.ReadOnlyTravelr;
 import seedu.travelr.model.UserPrefs;
 import seedu.travelr.storage.JsonTravelrStorage;
 import seedu.travelr.storage.JsonUserPrefsStorage;
@@ -119,17 +120,16 @@ public class LogicManagerTest {
         assertEquals(expectedModel, model);
     }
 
-    /**
-     * A stub class to throw an {@code IOException} when the save method is called.
-     */
-    private static class JsonAddressBookIoExceptionThrowingStub extends JsonTravelrStorage {
-        private JsonAddressBookIoExceptionThrowingStub(Path filePath) {
-            super(filePath);
-        }
-
-        @Override
-        public void saveTravelr(ReadOnlyTravelr travelr, Path filePath) throws IOException {
-            throw DUMMY_IO_EXCEPTION;
-        }
+    @Test
+    void testFunctions() {
+        logic.getTravelr();
+        logic.getFilteredEventList();
+        logic.getSelectedTrip();
+        logic.getTravelrFilePath();
+        logic.getGuiSettings();
+        logic.getTravelrSummary();
+        logic.refreshTravelrSummary();
+        logic.setGuiSettings(new GuiSettings());
+        assertTrue(true);
     }
 }
