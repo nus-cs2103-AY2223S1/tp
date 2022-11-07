@@ -37,13 +37,17 @@ import seedu.address.model.person.Physician;
  */
 public class TypicalPersons {
 
+    public static final List<String> ASSIGNED_DATE_SLOT_STRING_ONE = new ArrayList<>(List.of("2022-10-15,1:5",
+            "2022-12-22,2:8"));
+    public static final List<String> ASSIGNED_DATE_SLOT_STRING_TWO = new ArrayList<>(List.of("2022-12-10,2:8",
+            "2023-01-11,3:5"));
     public static final Person ALICE = new PersonBuilder()
             .withUid("1").withCategory("P")
             .withName("Alice Pauline").withGender("F")
             .withAddress("123, Jurong West Ave 6, #08-111")
             .withEmail("alice@example.com")
             .withPhone("94351253")
-            .withDatesSlots("2022-11-11,2")
+            .withDatesSlots("2022-12-24,2", "2022-12-11,2")
             .withTags("friends")
             .withAttendingPhysician("John Doe", "81234567", "johndoe@example.com").build();
 
@@ -60,7 +64,7 @@ public class TypicalPersons {
             .withUid("3").withCategory("P")
             .withName("Carl Kurz").withGender("M")
             .withPhone("95352563")
-            .withDatesSlots("2022-11-10,1", "2022-12-10,2")
+            .withAssignedDatesSlots(ASSIGNED_DATE_SLOT_STRING_TWO)
             .withEmail("heinz@example.com")
             .withAddress("wall street").build();
     public static final Person DANIEL = new PersonBuilder()
@@ -69,7 +73,7 @@ public class TypicalPersons {
             .withGender("M")
             .withPhone("87652533")
             .withEmail("cornelia@example.com")
-            .withDatesSlots("2022-11-10,4", "2022-09-10,2")
+            .withDatesSlots("2022-12-19,4", "2022-09-10,2", "2022-12-10,2")
             .withAttendingPhysician("John Doe", "81234567", "johndoe@example.com")
             .withAddress("10th street")
             .withTags("friends").build();
@@ -78,10 +82,9 @@ public class TypicalPersons {
             .withName("Elle Meyer").withGender("F")
             .withPhone("9482224")
             .withEmail("werner@example.com")
-            .withDatesSlots("2022-11-15,4")
             .withAddress("michegan ave")
-            .withHomeVisits("2022-10-15,1:6")
-            .withUnavailableDateList("2022-11-11")
+            .withHomeVisits("2022-10-15,1:6", "2023-01-11,3:3")
+            .withUnavailableDateList("2022-12-24")
             .withFullyScheduledDateList().build();
     public static final Person FIONA = new PersonBuilder()
             .withUid("6").withCategory("P")
@@ -89,20 +92,32 @@ public class TypicalPersons {
             .withGender("F")
             .withPhone("9482427")
             .withEmail("lydia@example.com")
-            .withDatesSlots("2022-10-15,1")
+            .withAssignedDatesSlots(ASSIGNED_DATE_SLOT_STRING_ONE)
             .withAddress("little tokyo").build();
     public static final Person GEORGE = new PersonBuilder()
             .withUid("7")
-            .withCategory("P")
+            .withCategory("N")
             .withName("George Best")
             .withGender("M")
             .withPhone("9482442")
             .withEmail("anna@example.com")
-            .withAddress("4th street").build();
+            .withAddress("4th street")
+            .withUnavailableDateList("2022-11-10", "2022-12-13").build();
+
+    public static final Person LILY = new PersonBuilder()
+            .withUid("8")
+            .withCategory("N")
+            .withName("Lily Wang")
+            .withGender("F")
+            .withPhone("93091031")
+            .withEmail("lily@example.com")
+            .withAddress("5th street")
+            .withHomeVisits("2022-12-10,2:3", "2022-12-22,2:6")
+            .withUnavailableDateList("2022-11-10", "2022-12-13").build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder()
-            .withUid("8").withCategory("P")
+            .withUid("9").withCategory("P")
             .withName("Hoon Meier")
             .withGender("M")
             .withPhone("8482424")
@@ -110,7 +125,7 @@ public class TypicalPersons {
             .withEmail("stefan@example.com")
             .withAddress("little india").build();
     public static final Person IDA = new PersonBuilder()
-            .withUid("9")
+            .withUid("10")
             .withCategory("P")
             .withName("Ida Mueller")
             .withGender("F")
@@ -156,6 +171,6 @@ public class TypicalPersons {
     }
 
     public static List<Person> getTypicalPersons() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE, LILY));
     }
 }

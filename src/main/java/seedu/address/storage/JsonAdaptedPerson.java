@@ -72,12 +72,12 @@ class JsonAdaptedPerson {
             @JsonProperty("homeVisits") List<JsonAdaptedHomeVisit> homeVisit,
             @JsonProperty("unavailableDates") List<JsonAdaptedDate> unavailableDateList,
             @JsonProperty("fullyAssignedDates") List<JsonAdaptedDate> fullyAssignedDateList,
-            @JsonProperty("phys name") String pName,
-            @JsonProperty("phys phone") String pPhone,
-            @JsonProperty("phys email") String pEmail,
-            @JsonProperty("nok name") String nName,
-            @JsonProperty("nok phone") String nPhone,
-            @JsonProperty("nok email") String nEmail) {
+            @JsonProperty("pName") String pName,
+            @JsonProperty("pPhone") String pPhone,
+            @JsonProperty("pEmail") String pEmail,
+            @JsonProperty("nName") String nName,
+            @JsonProperty("nPhone") String nPhone,
+            @JsonProperty("nEmail") String nEmail) {
 
         this.uid = uid;
         this.name = name;

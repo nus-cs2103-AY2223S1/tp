@@ -59,7 +59,9 @@ public class DateSlot implements Comparable<DateSlot> {
         this.hasAssigned = DEFAULT_BOOLEAN;
         this.isSuccessVisit = DEFAULT_BOOLEAN;
         this.nurseUidNo = DEFAULT_EMPTY_ASSIGNED_NURSE;
-        checkDateTime();
+        if (this.hasVisited == false) {
+            checkDateTime();
+        }
     }
 
     /**
@@ -147,7 +149,7 @@ public class DateSlot implements Comparable<DateSlot> {
      * Mark DateSlot as fail to visit.
      */
     public void markFail() {
-        this.isSuccessVisit = DEFAULT_BOOLEAN;
+        this.isSuccessVisit = false;
     }
 
     /**
@@ -205,7 +207,7 @@ public class DateSlot implements Comparable<DateSlot> {
         return this.nurseUidNo;
     }
 
-    public LocalDateTime getDateSlotTime() {
+    public LocalDateTime getDateTime() {
         return this.dateSlotTime;
     }
 
@@ -225,7 +227,24 @@ public class DateSlot implements Comparable<DateSlot> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DateSlot // instanceof handles nulls
-                        && dateSlotTime.equals(((DateSlot) other).dateSlotTime)); // state check
+                && dateSlotTime.equals(((DateSlot) other).dateSlotTime)
+                && hasVisited.equals(((DateSlot) other).hasVisited)
+                && hasAssigned.equals(((DateSlot) other).hasAssigned)
+                && isSuccessVisit.equals(((DateSlot) other).isSuccessVisit)
+                && nurseUidNo.equals(((DateSlot) other).nurseUidNo)); // state check
+    }
+
+    /**
+     * Clone a dateslot.
+     * @return a new dateSlot
+     */
+    public DateSlot clone() {
+        String dateSlotInString = this.getDateSlotInString();
+        Boolean hasVisited = this.getHasVisited();
+        Boolean hasAssigned = this.getHasAssigned();
+        Boolean isSuccessVisit = this.getIsSuccessVisit();
+        Long nurseUidNo = this.getNurseUidNo();
+        return new DateSlot(dateSlotInString, hasAssigned, hasVisited, isSuccessVisit, nurseUidNo);
     }
 
     @Override
@@ -235,7 +254,7 @@ public class DateSlot implements Comparable<DateSlot> {
 
     @Override
     public int compareTo(DateSlot o) {
-        return dateSlotTime.compareTo(o.getDateSlotTime());
+        return dateSlotTime.compareTo(o.getDateTime());
     }
 
 }
