@@ -350,6 +350,8 @@ Examples:
 * `delete 1` would delete the 1st item in the unscheduled item list.
 * `delete 2.1` would delete the 1st item in the Day 2 item list.
 
+<div style="page-break-after: always"></div>
+
 ### Viewing vacant timeslots : `free`
 
 Displays the vacant timeslots available for scheduling items.
