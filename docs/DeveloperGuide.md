@@ -311,22 +311,22 @@ The following activity diagram summarizes what happens when FilterTasksCommand i
 
 ### Mark Task Command
 
-####Command Format
+#### Command Format
 
 `t mark INDEX` where `INDEX` is the index (shown in the displayed task list) of the task to be marked.
 
-####What is the feature about
+#### What is the feature about
 
 The `t mark` command allows users to indicate a specific task is completed.
 The task specified will be ticked.
 
-####How does the feature work
+#### How does the feature work
 
 The mark task feature is currently implemented through the `MarkTaskCommand` which extends the abstract class `Command`.
 A copy of the task to be marked will be created, with its `TaskStatus` set to `COMPLETE`. This marked task will then replace the
 original task in the `DistinctTaskList`.
 
-####UML diagrams
+#### UML diagrams
 Shown below is a sequence diagram of what occurs when the execute method of LogicManager is invoked.
 
 |  ![MarkTaskSequenceDiagram](images/MarkTaskSequenceDiagram.png)  |
@@ -369,22 +369,22 @@ The following activity diagram summarizes what happens when MarkCommand is execu
 
 ### Edit Task Command
 
-####Command Format
+#### Command Format
 
 `t edit INDEX [m/MODULE]* [d/DESCRIPTION]*` where `INDEX` is the index of the task to edit, and `MODULE` and `DESCRIPTION` are the module and description to replace the current values of the specified task.
 
-####What is the feature about
+#### What is the feature about
 
 The `t edit` command allows users to update the specified task with the fields provided. The provided fields will replace the existing fields.
 
-####How does the feature work
+#### How does the feature work
 
 The edit task feature is currently implemented through the `EditTaskCommand` which extends the abstract class `Command`.
 A copy of the task to be edited will be created, with its existing `MODULE` and `DESCRIPTION` replaced with the new
 values provided. This edited task will then replace the
 original task in the `DistinctTaskList`.
 
-####UML diagrams
+#### UML diagrams
 Shown below is a sequence diagram of what occurs when the `execute` method of
 `LogicManager` is invoked.
 
