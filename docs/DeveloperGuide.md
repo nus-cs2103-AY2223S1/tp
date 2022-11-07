@@ -897,3 +897,13 @@ testers are expected to do more *exploratory* testing.
 ### Creating a new
 
 </div>
+
+## **Appendix: Effort**
+
+Our team discussed extensively the features we want to include in this tP. Having former TAs in our group, we seeded out problems and issues TAs might face so we would produce a product they would need and want.
+
+One of the biggest problems we faced was how to neatly list the persons in TAB to only show what needs to be seen. We solved this by implementing one of our biggest features: the New feature, which allows users to create new addressbooks so that each addressbook can be used to store students from each module. Swapping and editing each addressbook is also fast and easy
+
+Another one of our big features is our Assignments feature. This feature enabled users to add Assignments to each student, grade each of them individually, and view these statistics on graphs. This entire feature took weeks and a lot of group effort to complete and is one of our proudest features.
+
+In all, our team has placed a large amount of effort to craft this specific product made for teachers and through the weeks we have learnt a lot about teamwork and software engineering practises.

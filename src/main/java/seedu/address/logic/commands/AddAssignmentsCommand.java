@@ -84,7 +84,7 @@ public class AddAssignmentsCommand extends Command {
                 }
                 Student currPosition = (Student) personToEdit.getPosition();
                 Student editedPosition = new Student(currPosition.getAttendance(),
-                        currPosition.getOverallGrade(),
+                        "0/0",
                         currPosition.setAssignments(assignments), filePath1);
 
 
