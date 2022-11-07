@@ -125,7 +125,9 @@ Shows a message explaining how to access the help page.
 ![help message](images/helpMessage.png)
 
 Format: `help`
+
 Example Usage: `help`
+
 Example Result: Help message Pop up appears
 
 ### Clearing all entries : `clear`
@@ -138,7 +140,9 @@ This action is irreversible!
 
 
 Format: `clear`
+
 Example Usage: `clear`
+
 Example Result: Clears all Application data.
 
 ### Exiting the program : `exit`
@@ -146,7 +150,9 @@ Example Result: Clears all Application data.
 Exits the program.
 
 Format: `exit`
+
 Example Usage: `exit`
+
 Example Result: Exits the app
 
 ### Saving the data
@@ -249,12 +255,12 @@ Search for clients based on certain [metrics](#metric)
 
 Format: `findClient [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [b/BIRTHDAY] [i/INCOME] [ra/RISK_APPETITE] [ti/TITLE] [cov/COVERAGE]…​ [cmp/COMPANY_CODE]`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Note:**
+<div markdown="span" class="alert alert-primary">:information_source: **Note:**
 At least one metric has to be specified for the command to be valid
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Title, Coverage and Company Code refer to the Assigned Policy information of the client. More details can be found in the [Policies](#policy_features) section
+Title, Coverage and Company Code refer to the Assigned Policy information of the client. More details can be found in the [Policies](#policy-features) section
 </div>
 
 The following table illustrates the details of each metric and their search range:
@@ -442,7 +448,7 @@ Search for policies based on certain [metrics](#metric)
 
 Format: `findPolicy [ti/TITLE] [cov/COVERAGE]…​ [cmp/COMPANY_CODE]`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Note:**
+<div markdown="span" class="alert alert-primary">:information_source: **Note:**
 At least one metric has to be specified for the command to be valid
 </div>
 
@@ -456,9 +462,9 @@ The following table illustrates the details of each metric and their search rang
 
 Example Usage:
 * `findPolicy ti/Health plan` returns policies with the title `health plan` and `life plan`
-* `findPolicy cov/LIFE cov/HEALTH` returns policies that cover both LIFE and HEALTH
-* `findPolicy cmp/PRU` returns policies that belong to Prudential Assurance Company
-* `findPolicy ti/Shield cov/LIFE` returns polices with Shield in its title and covers the LIFE coverage type
+* `findPolicy cov/LIFE cov/HEALTH` returns policies that cover both `LIFE` and `HEALTH`
+* `findPolicy cmp/PRU` returns policies that belong to `Prudential Assurance Company`
+* `findPolicy ti/Shield cov/LIFE` returns polices with `Shield` in its title and covers the `LIFE` coverage type
 
 ### Assigning a Policy to a Client : `assign` 
 
@@ -587,7 +593,7 @@ Search for events based on certain [metrics](#metric)
 
 Format: `findEvent [desc/EVENT_DESCRIPTION] [n/NAME] [date/EVENT_DATE]`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Note:**
+<div markdown="span" class="alert alert-primary">:information_source: **Note:**
 At least one metric has to be specified for the command to be valid
 </div>
 
