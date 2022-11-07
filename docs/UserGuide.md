@@ -105,7 +105,6 @@ For more commands and their details, refer to the [Features](#features) section 
 
 </div>
 <div style="page-break-after: always"></div>
-
 ### Universal commands
 Most commands in Waddle can only be used on the [main page](#the-main-page) or the [planning page](#the-planning-page). However, the commands in this section may be used on either page at any time.
 
@@ -137,7 +136,6 @@ Using the [`select` command](#selecting-an-itinerary--select)  will bring you to
 
 <div style="page-break-after: always"></div>
 ### Commands on the main page
-
 ### Creating a new itinerary : `add`
 
 Adds an itinerary to Waddle.
@@ -272,7 +270,6 @@ Using the [`home` command](#returning-to-main-page--home)  will bring you to the
 
 <div style="page-break-after: always"></div>
 ### Commands on the item planning page
-
 ### Adding an item : `add`
 
 Adds an item to the wishlist without a scheduled day and time.
@@ -436,7 +433,6 @@ Format: `home`
 
 <div style="page-break-after: always"></div>
 ### Advanced
-
 ### Saving the data
 
 Waddle data is saved in the hard disk automatically upon any change in the data. There is no need to save manually.
@@ -461,7 +457,6 @@ If your changes to the data file makes its format invalid, Waddle will discard a
 
 <div style="page-break-after: always"></div>
 ## Command summary
-
 ### Home page commands
 
 | Action                                                           | Format, Examples                                                                                                                                                  |
