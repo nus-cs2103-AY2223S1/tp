@@ -476,10 +476,10 @@ During the execution, the following validity checks will be conducted:
 
 ##### Aspect: How medit executes
 
-|                                                              | Pros                                                | Cons                                                    |
-| ------------------------------------------------------------ | --------------------------------------------------- | ------------------------------------------------------- |
-| **Option 1** <br/> Edit by module code, class type, and class group | Allows convenience if he knows the schedule details | Too much information to type.                           |
-| **Option 2** <br/> Edit by making use of indexing in list    | Allows convenience if schedule detail is forgotten  | Have to use `view` command to obtain the schedule list. |
+|                                                              | Pros                                                | Cons                                                     |
+| ------------------------------------------------------------ | --------------------------------------------------- |----------------------------------------------------------|
+| **Option 1** <br/> Edit by module code, class type, and class group | Allows convenience if he knows the schedule details | Too much information to type.                            |
+| **Option 2** <br/> Edit by making use of indexing in list    | Allows convenience if schedule detail is forgotten  | Have to use `sview` command to obtain the schedule list. |
 
 Reason for choosing Option 2:
 
@@ -490,27 +490,30 @@ To locate a schedule uniquely with schedule, a user needs to know the module cod
 
 #### Implementation
 
-The proposed view schedule functionality is accomplished by `ViewScheduleCommand` which extends the `Command` class. The `ViewScheduleCommand` overrides the following method:
+The proposed ViewSchedule functionality is accomplished by `ViewScheduleCommand` which extends the `Command` class. The `ViewScheduleCommand` overrides the following method:
 
 - `ViewScheduleCommand#execute(Model model)` — Executes the command and displays the selected schedules / all schedules
 
 The following sequence diagram shows how view schedule operation works :
 
-![EditScheduleSequence](images/ViewScheduleSequenceDiagram.png)
+![ViewScheduleSequence](images/sview_Sequence.png)
+
+
+### 5.11. Viewing the Timetable feature
+
+The proposed ViewTimetable functionality is accomplished by `ViewTimetableCommand` which extends the `Command` class. The `ViewTimetableCommand` overrides the following method:
+
+- `ViewTimetableCommand#execute(Model model)` — Executes the command and displays the timetables in vertical or horizontal verson.
+
+The following sequence diagram shows how view schedule operation works with input command `tview v`.
+
+
+![ViewTimetableSequence](images/tview_v_Sequence.png)
+
+
+
 
 --------------------------------------------------------------------------------------------------------------------
-
-
-
-
-
-### 5.10. Viewing the timetable feature
-
-
-
-
-
-
 
 
 ## **6. Documentation, logging, testing, configuration, dev-ops**

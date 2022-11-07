@@ -68,3 +68,4 @@ destroy ViewScheduleCommand
 [<--LogicManager
 deactivate LogicManager
 @enduml
+
