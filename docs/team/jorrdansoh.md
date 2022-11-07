@@ -16,7 +16,7 @@ Given below are my contributions to the project.
   * Highlights: The current list of sorting criteria is: name, Telegram handle, consultation, Mastery Check, and grades.
   * Effort: The sort feature was not easy to implement due to the number of sorting criteria and the restrictions of existing 
             design principles. Furthermore, to ensure good code quality, many iterations of the sorting
-            mechanism were needed to ultimately produce a functional feature that is also elegantly-written.   
+            mechanism were needed to ultimately produce a functional feature that is also well-implemented.   
 
 
 * **Code Contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=jorrdansoh&breakdown=true)
@@ -26,7 +26,6 @@ Given below are my contributions to the project.
   * Created GitHub Issues for user stories and bug reports
   * Delegated GitHub Issues to team members
   * Released v1.2.trial and v1.3 JAR on GitHub
-  * Formatted Developer Guide template for team use [\#55](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/55)
   * Added target user profile and acknowledgements to Developer Guide [\#59](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/59)
 
 
@@ -38,9 +37,9 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * Updated documentation for the features `add` and `delete` [\#125](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/125)
+    * Wrote documentation for the features `add` and `delete` [\#125](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/125)
     * Wrote documentation for the `sort` feature [\#107](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/107)
-    * Updated "Notes about command format" [\#120](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/120)
+    * Added "Notes about command format" [\#120](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/120)
     * Added FAQ [\#188](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/188)
   * Developer Guide:
     * Added user stories and use case for the `sort` feature [\#107](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/107)
