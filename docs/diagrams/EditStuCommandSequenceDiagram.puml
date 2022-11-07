@@ -47,10 +47,11 @@ deactivate EditStuCommand
 
 EditStuCommandParser --> ProfNUSParser
 deactivate EditStuCommandParser
+destroy EditStuCommandParser
 
 ProfNUSParser --> LogicManager: e
 deactivate ProfNUSParser
-destroy EditStuCommandParser
+
 
 LogicManager -> EditStuCommand
 activate EditStuCommand
