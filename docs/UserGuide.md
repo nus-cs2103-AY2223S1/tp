@@ -65,7 +65,7 @@ To begin planning your travels with Waddle, simply set it up as follows:
    Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-And you're ready to waddle! To execute any command, type it command in the command box and press Enter. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+And you're ready to waddle! To execute any command, type the command in the command box and press Enter. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * **`list`** : Lists all itineraries.
@@ -133,7 +133,7 @@ The main page, or home page, of Waddle displays the list of itineraries you have
 
 [Commands exclusive to the main page](#commands-on-the-main-page) can help you:
 * [add](#creating-a-new-itinerary--add) new itineraries
-* [view](#listing-all-itineraries--list) or [find](#locating-itineraries-by-name--find) existing itineraries
+* [list](#listing-all-itineraries--list) or [find](#locating-itineraries-by-name--find) existing itineraries
 * [edit](#editing-the-details-of-an-itinerary--edit) or [delete](#deleting-an-itinerary--delete) existing itineraries
 * [clear](#clearing-itineraries--clear) all existing itineraries
 
@@ -269,10 +269,10 @@ Here's an example of how the item planning page looks like:
 
 <div style="page-break-after: always"></div>
 
-[Commands exclusive to the planning page](#commands-on-the-planning-page) can help you:
+[Commands exclusive to the planning page](#commands-on-the-item-planning-page) can help you:
 * [add](#adding-an-item--add) new items
 * [edit](#editing-the-details-of-an-item--edit) or [delete](#deleting-an-item--delete) existing items
-* [view](viewing-vacant-time-slots--free) the vacant time slots on your itinerary
+* [view](#viewing-vacant-timeslots--free) the vacant time slots on your itinerary
 * [schedule](#scheduling-an-item--plan) or [unschedule](#unscheduling-an-item--unplan) items
 * export your itinerary via your [clipboard](#copying-to-clipboard--copy) or as a [pdf](#exporting-as-pdf-file--pdf) file
 
@@ -481,7 +481,7 @@ If your changes to the data file makes its format invalid, Waddle will discard a
 ### Home page commands
 
 | Action                                                           | Format, Examples                                                                                                                                                  |
-| ------------------------------------------------------------------ |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | [**Help**](#viewing-help--help)                                  | `help`                                                                                                                                                            |
 | [**Add Itinerary**](#creating-a-new-itinerary--add)              | `add d/DESCRIPTION sd/START DATE du/DURATION [c/COUNTRY] [p/NUMBER OF WADDLERS] [b/BUDGET]`<br> e.g., `add d/Germanyyyy sd/2025-05-10 du/14 c/Germany p/4 b/7500` |
 | [**List Itineraries**](#listing-all-itineraries--list)           | `list`                                                                                                                                                            |
@@ -497,7 +497,7 @@ If your changes to the data file makes its format invalid, Waddle will discard a
 ### Item planning page commands
 
 | Action                                                       | Format, Examples                                                                                         |
-| -------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+|--------------------------------------------------------------|----------------------------------------------------------------------------------------------------------|
 | [**Add Item**](#adding-an-item--add)                         | `add d/DESCRIPTION [p/PRIORITY] [c/COST] [du/DURATION]`<br> e.g.,`add d/Visit Taj Mahal p/5 c/40 du/180` |
 | [**Edit Item**](#editing-the-details-of-an-item--edit)       | `edit INDEX [d/DESCRIPTION] [p/PRIORITY] [c/COST] [du/DURATION]`<br> e.g., `edit 4.1 c/50`               |
 | [**Delete Item**](#deleting-an-item--delete)                 | `delete INDEX`<br> e.g., `delete 3`                                                                      |
@@ -506,5 +506,5 @@ If your changes to the data file makes its format invalid, Waddle will discard a
 | [**View Vacant Timeslots**](#viewing-vacant-timeslots--free) | `free`                                                                                                   |
 | [**Return to Main Page**](#returning-to-main-page--home)     | `home`                                                                                                   |
 | [**Copy to clipboard**](#copying-to-clipboard--copy)         | `copy`                                                                                                   |
-| [**Export to PDF**](#exporting-to-pdf-file--pdf)             | `pdf`                                                                                                    |
+| [**Export to PDF**](#exporting-as-pdf-file--pdf)             | `pdf`                                                                                                    |
 | [**Exit**](#exiting-waddle--exit)                            | `exit`                                                                                                   |
