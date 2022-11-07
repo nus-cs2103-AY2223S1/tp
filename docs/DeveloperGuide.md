@@ -30,7 +30,7 @@ to the project. You can also use this as a reference, if you are interested in d
 * [Jackson](https://github.com/FasterXML/jackson) for providing the API for parsing JSON files.
 * [JUnit](https://junit.org/junit5/) for providing a unit testing framework.
 * StudMap's Developer Guide is adapted
-  from [AB3's Developer Guide](https://se-education.org/addressbook-level3/DeveloperGuide.html);
+  from [AB3's Developer Guide](https://se-education.org/addressbook-level3/DeveloperGuide.html).
 
 ---
 
