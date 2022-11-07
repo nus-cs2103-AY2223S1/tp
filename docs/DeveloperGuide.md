@@ -336,11 +336,13 @@ The `task assign` feature allows the user to assign/unassign contacts to a task.
 
 The selection of tasks is implemented by acting on the current filtered `TaskPanel` with a one-based `Index` specified by the user, getting the target `Task` at the specified index. The selection of teammates is implemented by acting on the current filtered `AddressBook` with one or more one-based `Index` specified by the user, getting the target `Teammate` at the specified index. The selection of teammate can also be done through specifying the full name of the teammate, which is matched with the target `Teammate` in the filtered `AddressBook`.
 
+#### Example Usage of `task assign`
+
+The following sequence diagram shows how the assign task feature works:
+
 ![AssignTaskSequenceDiagram](images/AssignTaskSequenceDiagram.png)
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AssignTaskCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
-
-#### Example Usage of `task assign`
 
 Step 1. User launches Arrow. The `TaskPanel` and `AddressBook` is populated with existing `Task` and `Teammate` entries respectively.
 
