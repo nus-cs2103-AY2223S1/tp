@@ -38,6 +38,8 @@ Regarding the attributes, here are a few things to note:
 
 ![model_diagram](images/ItemFieldClassDiagram.png)
 
+#### General Design Considerations
+
 The design of Items models very closely to the implementation of a `Person` class in the original AddressBook3 (AB3) codebase, of which FoodRem adapted from. However, there are a few modifications made:
 
 * The `Person` class was modified to fit the business logic of FoodRem. For example, renaming it to `Item`, and including different attributes, as mentioned above. 
