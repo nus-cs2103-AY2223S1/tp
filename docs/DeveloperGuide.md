@@ -2,14 +2,54 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-{:toc}
+## Table of Contents
+* [Acknowledgements](#acknowledgements)
+* [Setting up, getting started](#setting-up-getting-started)
+* [Design](#design)
+    * [Architecture](#architecture)
+    * [UI component](#ui-component)
+    * [Logic component](#logic-component)
+    * [Model component](#model-component)
+    * [Storage component](#storage-component)
+    * [Common classes](#common-classes)
+* [Implementation](#implementations)
+    * [Filter transaction feature](#filter-feature-for-transactions)
+    * [Buy / Sell transaction feature](#buy-feature-for-transactions)
+    * [Edit transaction feature](#editing-feature-for-transactions)
+    * [Delete Client/Transaction/Remark feature](#delete-clienttransactionremark-feature)
+    * [Sort feature]()
+* [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+* [Appendix: Requirements](#appendix-requirements)
+    * [Product Scope](#product-scope)
+    * [User Stories](#user-stories)
+    * [Use cases](#use-cases)
+      * [Delete a client](#use-case-uc01---delete-a-client)
+      * [Delete a transaction](#use-case-uc02---delete-a-transaction)
+      * [Delete a remark](#use-case-uc03---delete-a-remark)
+      * [Find a client](#use-case-uc04---find-a-client)
+      * [Add a remark to a client](#use-case-uc05---add-a-remark-to-a-client-br)
+      * [Requesting help](#use-case-uc06---requesting-help)
+      * [Clearing all data](#use-case-uc07---clearing-all-data)
+    * [Non-Functional Requirements](#non-functional-requirements)
+    * [Glossary](#glossary)
+* [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+  * [Launch and shutdown](#launch-and-shutdown)
+  * [Delete a client](#deleting-a-client)
+  * [Delete a transaction]()
+  * [Delete a remark]()
+  * [Saving data](#saving-data)
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+This project is based on the **AddressBook-Level3** project created by the **[SE-EDU initiative](https://se-education.org)**
+
+The following are some **reused/adapted** ideas, code, and documentation from AB3:
+* `client` is inspired from [Person](https://github.com/nus-cs2103-AY2223S1/tp/blob/master/src/main/java/seedu/address/model/person/Person.java)
+* `find` is reused
+* The User Interface is adapted from [AB3](https://github.com/nus-cs2103-AY2223S1/tp/blob/master/src/main/resources/view/MainWindow.fxml)
+* Developer Guide is built up from [AB3](https://se-education.org/addressbook-level3/DeveloperGuide.html)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -163,13 +203,9 @@ Classes used by multiple components are in the `seedu.jeeqtracker.commons` packa
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## **Implementations**
 
 This section describes some noteworthy details on how certain features are implemented.
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
 
 ### Filter feature for transactions
 
@@ -216,7 +252,7 @@ The following activity diagram summarizes what happens when a user executes the 
     * Pros: Performs faster as the command only filters through one client transactions. Also, user would be able to know which client the filtered transactions are from.
     * Cons: User would have to manually select each client and filter the transactions.
 
-### \[Proposed\] Buy feature for transactions
+### Buy feature for transactions
 
 The proposed sort mechanism is facilitated by `BuyCommand`. It extends `Command` and `BuyCommandParser` which extends from `Parser`.
 To invoke the buy command, `BuyCommandParser` will parse the arguments from the user input via `BuyCommandParser#parse()` and returns the buy command
@@ -266,7 +302,7 @@ The following activity diagram summarizes what happens when a user executes the 
 _{more aspects and alternatives to be added}_
 
 --------------------------------------------------------------------------------------------------------------
-### \[Proposed\] Editing feature for transactions
+### Editing feature for transactions
 #### Implementation
 The edit transaction mechanism is facilitated by EditTransactionCommand which extends from `EditCommand` (which extends from `Command`) and
 `EditCommandParser` which extends from `Parser`. To invoke the edit command, `EditCommandParser` will parse the arguments from user input with
@@ -294,38 +330,45 @@ _{more aspects and alternatives to be added}_
 
 ### Delete Client/Transaction/Remark feature
 
-#### Current Implementation
+This feature allows the user to delete a specific `client`, `transaction`, or `remark` of their choice.
+Deletion removes the whole entity, and none of its fields are kept.
+
+**Implementation details**
 
 The deletion mechanism for `clients`, `transactions`, and `remarks` is facilitated by a `DeleteCommandParser` and `DeleteCommand`.
 
-The following class diagram shows the parent-child relation of `DeleteClientCommand`, `DeleteTransactionCommand`, `DeleteRemarkCommand` relative to the `DeleteCommand`. The concrete classes consists of the logic to delete an item stated by the name of their command.
+The `DeleteClientCommand`, `DeleteTransactionCommand`, `DeleteRemarkCommand` extends the `DeleteCommand` abstract class. These classes contains the logic to delete an entity stated by the name of their command, as depicted by the **class diagram** below.
 
 ![DeleteCommandClassDiagram](images/DeleteCommandClassDiagram.png)
 
-The `DeleteCommandParser` will take in the `userInput`, parse it, and return the correct concrete command type that is either `DeleteClientCommand`, `DeleteTransactionCommand`, or `DeleteRemarkCommand` which will be executed to achieve the deletion functionality.
+The deletion process occurs in these `3` main steps:
 
-This process of deleting the first client in the list is depicted by the following sequence diagram (for user input `delete 1 m/client`):
+1) The `DeleteCommandParser` will parse the `userInput`, and return one of the concrete class `DeleteClientCommand`, `DeleteTransactionCommand`, or `DeleteRemarkCommand`.<br/>
+2) The Command received in step 1 will be executed to delete the entity of its type, and return a `CommandResult`<br/>
+3) The `CommandResult` contains the message to print to the `Application's Reply`<br/>
+
+The **sequence diagram** below shows how a client is deleted for user input `delete 1 m/client`.
 
 ![DeleteSequenceDiagram](images/DeleteSequenceDiagram.png)
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FilterTransCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
 
-The process of deleting a `transaction` is almost the same as the process stated above, with a main difference in how the `DeleteTransactionCommand` and `Model` interact as shown in the sequence diagram below.
+The process of deleting a `transaction` is almost the same as the process stated above, with a main difference in how the `DeleteTransactionCommand` and **Model** interact as shown in the sequence diagram below.
 
 ![DeleteTransactionDiagram](images/DeleteTransactionDiagram.png)
 
 
 The process for deleting a `remark` is the same as the process of deleting a `transaction`, except for the following differences:
-    - `userInput` is changed to `delete 1 m/remark`
-    - `parse("1 m/remark")` returns `d`, which is a `DeleteRemarkCommand`
-    - `deleteTransaction(1)` is changed to `deleteRemark(1)`
+* `userInput` is changed to `delete 1 m/remark`
+* `parse("1 m/remark")` returns `d`, which is a `DeleteRemarkCommand` instead of a `DeleteTransactionCommand`
+* `deleteTransaction(1)` is changed to `deleteRemark(1)`
 
 #### Design Considerations:
 
 **Aspect: How delete executes:**
 
-* **Alternative 1 (current choice):** Delete either Client/Transaction/Remark specified by `mode (m) flag` selected by `index`
+* **Alternative 1 (current choice):** Delete either Client/Transaction/Remark specified by `mode (m) flag` after the index.
     * Pros: Easy to implement and lesser commands overall since flag is used to specify each command.
     * Cons: May be more clunky to use as users have to type in a longer command.
 
@@ -406,7 +449,7 @@ The **use case diagram** below showcases the tasks that the user can perform in 
 
 Users are able to perform several tasks within the application that is broken down into **Client tasks**, **Transaction tasks**, and **Remark tasks**. For a more detailed interaction between user and the system, read the use case descriptions below.
 
-**Use case: UC01 - Delete a client**
+#### **Use case: UC01 - Delete a client**
 
 **MSS**
 
@@ -429,7 +472,7 @@ Users are able to perform several tasks within the application that is broken do
 
       Use case resumes at step 2.
 
-**Use case: UC02 - Delete a transaction**
+#### **Use case: UC02 - Delete a transaction**
 
 **MSS**
 
@@ -449,7 +492,7 @@ Users are able to perform several tasks within the application that is broken do
     
     Use case resumes at step 2.
 
-**Use case: UC03 - Delete a remark**
+#### **Use case: UC03 - Delete a remark**
 
 1. User requests to view remark details of a client
 2. JeeqTracker displays a list of remarks of that client
@@ -466,7 +509,7 @@ Users are able to perform several tasks within the application that is broken do
 
     Use case resumes at step 2.
 
-**Use case: Find a Client**
+#### **Use case: UC04 - Find a Client**
 
 **MSS**
 
@@ -481,8 +524,8 @@ Users are able to perform several tasks within the application that is broken do
 
   Use case ends.
 
-**Use case: Add a Remark to a Client** <br>
-**Preconditions: Alice is a valid Client in JeeqTracker** 
+#### **Use case: UC05 - Add a Remark to a Client** <br>
+**Preconditions: Alice is a valid Client in JeeqTracker**
 
 **MSS**
 
@@ -500,7 +543,7 @@ Users are able to perform several tasks within the application that is broken do
 
         Use case resumes at 2.
 
-**Use case: Requesting help**
+#### **Use case: UC06 - Requesting help**
 
 **MSS**
 
@@ -511,22 +554,14 @@ Users are able to perform several tasks within the application that is broken do
 
     Use case ends.
 
-**Use case: Clearing all data**
+#### **Use case: UC07 - Clearing all data**
 
 **MSS**
 
 1. User requests to clear all data in JeeqTracker
-2. JeeqTracker returns a confirmation to clear all data
-3. User confirms
-4. JeeqTracker clears all data in JeeqTracker
+2. JeeqTracker clears all data in JeeqTracker (All `clients`, `transactions`, `remarks` are deleted)
 
-**Extensions**
-
-* 3a. User inputs the wrong word for confirmation.
-    * 3a1. JeeqTracker shows an error message.
-
-      Use case resumes at 2.
-
+    Use case ends.
 
 *{More to be added}*
 
@@ -570,7 +605,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file<br/>Expected: Shows the GUI with a set of sample clients. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -578,8 +613,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
+   
 
 ### Deleting a client
 
@@ -624,9 +658,13 @@ testers are expected to do more *exploratory* testing.
     
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Dealing with missing/corrupted data file
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Delete the `jeeqtracker.json` file to simulate missing data file. Launch the application<br/>Expected: A new `jeeqtracker.json` file is created with sample some sample data.
+   
+2. Dealing with invalid data in data file
+
+    1. Open the `jeeqtracker.json` file. Change one field to an invalid data, e.g. change the `price` field to contain value `123abc`. Launch the application<br/>Expected: Application starts up with no data. 
 
 1. _{ more test cases …​ }_
 
@@ -661,3 +699,4 @@ It is definitely much more than the original developer guide.
 
 Overall, our team has spent **a lot more effort in our application, user guide, developer guide** than the original
 AB3.
+
