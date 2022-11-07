@@ -21,6 +21,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.ui.schedule.ScheduleGridPanel;
+import seedu.address.ui.schedule.ScheduleGridPanelVertical;
 import seedu.address.ui.schedule.ScheduleListPanel;
 import seedu.address.ui.theme.Theme;
 import seedu.address.ui.theme.ThemeException;
@@ -36,6 +37,7 @@ public class MainWindow extends UiPart<Stage> {
     private static final int MODULELIST = 2;
     private static final int MODULE = 3;
     private static final int SCHEDULE = 4;
+    private static final int TIMETABLEV = 5;
 
     private static final String FXML = "MainWindow.fxml";
     private int timetableModel = 0;
@@ -53,6 +55,8 @@ public class MainWindow extends UiPart<Stage> {
     private ModulePanel modulePanel;
     private ScheduleListPanel scheduleListPanel;
     private ScheduleGridPanel scheduleGridPanel;
+
+    private ScheduleGridPanelVertical scheduleGridPanelVertical;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private Theme theme;
@@ -86,6 +90,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane scheduleGridPanelPlaceholder;
+
+    @FXML
+    private StackPane scheduleGridPanelVerticalPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -175,6 +182,10 @@ public class MainWindow extends UiPart<Stage> {
         scheduleGridPanel.constructHorizontalTimetable();
         scheduleGridPanelPlaceholder.getChildren().add(scheduleGridPanel.getRoot());
 
+        scheduleGridPanelVertical = new ScheduleGridPanelVertical(logic.getAllScheduleList());
+        scheduleGridPanelVertical.constructVerticalTimetable();
+        scheduleGridPanelVerticalPlaceholder.getChildren().add(scheduleGridPanelVertical.getRoot());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -183,6 +194,15 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        applyTheme(Theme.DARK);
+        scheduleGridPanel.setScrollPaneStyle(theme);
+        // scheduleGridPanel.setGridPaneStyle(theme);
+        scheduleGridPanelVertical.setScrollPaneStyle(theme);
+        // scheduleGridPanelVertical.setGridPaneStyle(theme);
+
+        // resultDisplay.setFeedbackToUser("Welcome to ProfNUS!");
+
     }
 
     /**
@@ -298,19 +318,27 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     public void handleShowTabScheduleGrid() {
         scheduleGridPanel = new ScheduleGridPanel(logic.getAllScheduleList());
-        tabPane.getSelectionModel().select(TIMETABLE);
+        scheduleGridPanel.constructHorizontalTimetable();
+        scheduleGridPanelVertical = new ScheduleGridPanelVertical(logic.getAllScheduleList());
+        scheduleGridPanelVertical.constructVerticalTimetable();
+
+        scheduleGridPanel.setScrollPaneStyle(theme);
+        // scheduleGridPanel.setGridPaneStyle(theme);
+        scheduleGridPanelVertical.setScrollPaneStyle(theme);
+        // scheduleGridPanelVertical.setGridPaneStyle(theme);
+
         if (timetableModel == 0) { // horizontal Timetable
-            scheduleGridPanel.constructHorizontalTimetable();
+            tabPane.getSelectionModel().select(TIMETABLE);
             scheduleGridPanelPlaceholder.getChildren().add(scheduleGridPanel.getRoot());
             resultDisplay.setFeedbackToUser("Show the Horizontal Timetable!");
         } else if (timetableModel == 1) { // vertical Timetable
-            scheduleGridPanel.constructVerticalTimetable();
-            scheduleGridPanelPlaceholder.getChildren().add(scheduleGridPanel.getRoot());
+            tabPane.getSelectionModel().select(TIMETABLEV);
+            scheduleGridPanelVerticalPlaceholder.getChildren().add(scheduleGridPanelVertical.getRoot());
             resultDisplay.setFeedbackToUser("Show the Vertical Timetable!");
         } else {
             resultDisplay.setFeedbackToUser("Something wrong....");
         }
-        scheduleGridPanel.setScrollPaneStyle(theme);
+
     }
 
 
@@ -319,7 +347,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleShowTabSchedule() {
-        scheduleListPanel = new ScheduleListPanel(logic.getFilteredScheduleList());
+        scheduleListPanel = new ScheduleListPanel(logic.getAllScheduleList());
         scheduleListPanelPlaceholder.getChildren().add(scheduleListPanel.getRoot());
         tabPane.getSelectionModel().select(SCHEDULE);
     }
@@ -358,6 +386,9 @@ public class MainWindow extends UiPart<Stage> {
     public void applyLightTheme() {
         applyTheme(Theme.LIGHT);
         scheduleGridPanel.setScrollPaneStyle(theme);
+        // scheduleGridPanel.setGridPaneStyle(theme);
+        scheduleGridPanelVertical.setScrollPaneStyle(theme);
+        // scheduleGridPanelVertical.setGridPaneStyle(theme);
         resultDisplay.setFeedbackToUser("Switched to light mode!");
     }
 
@@ -366,6 +397,9 @@ public class MainWindow extends UiPart<Stage> {
     public void applyDarkTheme() {
         applyTheme(Theme.DARK);
         scheduleGridPanel.setScrollPaneStyle(theme);
+        // scheduleGridPanel.setGridPaneStyle(theme);
+        scheduleGridPanelVertical.setScrollPaneStyle(theme);
+        // scheduleGridPanelVertical.setGridPaneStyle(theme);
         resultDisplay.setFeedbackToUser("Switched to dark mode!");
     }
 
@@ -395,31 +429,24 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
-
             if (commandResult.isExit()) {
                 handleExit();
             }
-
             if (commandResult.isShowModuleList()) {
                 handleShowTabModules();
             }
-
             if (commandResult.isShowStudentList()) {
                 handleShowTabStudents();
             }
-
             if (commandResult.isShowTargetModule()) {
                 handleShowTabModuleInfo();
             }
-
             if (commandResult.isShowModule()) {
                 handleShowTabModule();
             }
-
             if (commandResult.isShowScheduleList()) {
                 handleShowTabSchedule();
             }
@@ -431,17 +458,13 @@ public class MainWindow extends UiPart<Stage> {
                 timetableModel = 1;
                 handleShowTabScheduleGrid();
             }
-
             if (commandResult.isShowLight()) {
                 applyLightTheme();
             }
-
             if (commandResult.isShowDark()) {
                 applyDarkTheme();
             }
-
             return commandResult;
-
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());

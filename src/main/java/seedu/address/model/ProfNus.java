@@ -248,7 +248,9 @@ public class ProfNus implements ReadOnlyProfNus {
      */
     public void removeSchedule(Schedule key) {
         Module module = getModuleByModuleCode(key.getModule());
+        System.out.println(module.getSchedules().size());
         module.deleteSchedule(key);
+        System.out.println(module.getSchedules().size());
     }
 
 
