@@ -261,7 +261,7 @@ Examples:
 * `delete -s i/A0987654X`
 * `delete i/A0987654X`
 
-After running `add -s i/A0987654X n/Alex Yeoh p/Data Caching e/e09876567@u.nus.edu` from the previous part, we have Alex Yeoh as a new student in the list.
+Suppose we have Alex Yeoh as a new student in the list with the details given in the image below.
 
 ![Before deleting student](images/delete-student-1.png)
 
@@ -271,17 +271,17 @@ Running either of the example delete student command above will result in this s
 
 #### 3.2.3. Marking project status: `mark`
 
-Marks a FYP as "Done"/"In Progress"/"Yet to Start", etc.
+Marks a FYP as Done/In Progress/Yet to Start, etc.
 
 Format: `mark i/STUDENT_ID s/STATUS`
 
 * Current supported statuses are as follows:
-    * **"DONE"** - Done
-    * **"IP"** - In Progress
-    * **"YTS"** - Yet To Start
+    * `DONE` - Done
+    * `IP` - In Progress
+    * `YTS` - Yet To Start
 
 * Parsing of status is  *case-sensitive*: <br>
-    * **DONE** instead of *Done*, *done*, etc.
+    * `DONE` instead of `Done`, `done`, etc.
 
 Examples:
 
@@ -289,7 +289,7 @@ Examples:
 * `mark i/A0234567H s/YTS`
 * `mark i/A0210283B s/IP`
 
-  From the previous example, we have Charlotte Oliveiro as one of the students who have completed the project. Suppose there are new things for Charlotte to do, which requires us to change the project status to IP (In Progress). The mark command will result in the state below.
+  Suppose initially we have Charlotte Oliveiro as one of the students who have completed the project. Suppose there are new things for Charlotte to do, which requires us to change the project status from `DONE` to `IP`. Running the last example of mark command will result in the state below.
 
   ![Marking a student](images/mark-command.png)
 
@@ -391,16 +391,20 @@ Example:
 
   Before:
   
-  ![Before adding deadline](images/add-deadline-1.png)
+  <img src="images/add-deadline-1.png" width=50%>
   
   After:
 
-  ![After adding deadline](images/add-deadline-2.png)
+  <img src="images/add-deadline-2.png" width=50%>
 
 #### 3.3.2 Removing a student's deadline: `delete -d`
 
-Removes a deadline assigned to a student specified by ID & a priority rank (Below highlighted task has a priority rank of 2). The specified deadline must exist in the student's deadline list previously.
-![Priority](images/Priority.png) <br>
+Removes a deadline assigned to a student specified by ID & a priority rank (for example, below highlighted task has a priority rank of 2).
+
+<img src="images/Priority.png" width=80%>
+
+The specified deadline must exist in the student's deadline list previously.
+
 Format: `delete -d i/STUDENT_ID r/DEADLINE_RANK`
 
 Example:
