@@ -125,7 +125,9 @@
           float: footnote page;
           font-size: 0.6rem;
           text-align: left;
-          color: inherit;
+          color: black;
+          font-style: normal;
+          text-decoration: none;
 
           // Make it look nice(r) on Chrome
           vertical-align: top;
