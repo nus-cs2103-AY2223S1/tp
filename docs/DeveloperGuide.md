@@ -800,6 +800,71 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Adding a task
+1. Adding a task to the task list.
+   1. Prerequisite: The module `cs2030s` is present in the module list, and `cs2040s` is not present in the module list.
+   2. Test case: `t add m/cs2030s d/assignment`<br>
+      Expected: A task with module `cs2030s` and description `assignment` is added to the task list. A message is displayed to show that task has been added successfully.
+   3. Test case: `t add m/cs2040s d/assignment`<br>
+      Expected: Task will not be added, and an error message will be shown to say that the module does not exist.
+   4. Test case: `t add m/cs d/assignment`<br>
+      Expected: Task will not be added, and an error message will be shown to say that the module code is invalid.
+   5. Test case: `t add m/cs2040s d/`<br>
+      Expected: Task will not be added, and an error message will be shown to say that the description should not be empty.
+
+### Filtering the task list
+1. Filtering the task list by module, completion status and link status.
+   1. Prerequisite: First task with module `cs2030s`, which is `complete` and `linked`. Second task with module `cs2030s`, which is `incomplete` and `unlinked`.
+   2. Test case: `t filter m/cs2030s`<br>
+      Expected: Task list displays both tasks.
+   3. Test case: `t filter m/cs2040s`<br>
+      Expected: Task list does not display both tasks.
+   4. Test case: `t filter c/y`<br>
+      Expected: Task list displays first task only.
+   5. Test case: `t filter l/n`<br>
+      Expected: Task list displays second task only.
+   6. Test case: `t filter m/cs`<br>
+      Expected: Task list does not change, and an error message will be shown to say that the module code is invalid.
+   7. Test case: `t filter c/yes`<br>
+      Expected: Task list does not change, and an error message will be shown to say that response to condition is invalid.
+
+### Clearing the task list
+1. Clearing non-empty task list.
+   1. Prerequisite: Task with module `cs2030s`, which is marked `complete`.
+   2. Test case: `t clear`<br>
+      Expected: Task list is cleared. `cs2030s` module progress bar resets.
+
+### Deleting an exam
+1. Deleting an exam from the exam list.
+   1. Prerequisite: One exam in the exam list. One task in the task list linked to the exam.
+   2. Test case: `e del 1`<br>
+      Expected: Exam is deleted, task becomes unlinked.
+   3. Test case: `e del 2`<br>
+      Expected: Both lists remain unchanged, and an error message will be shown to say that the exam list index is invalid.
+
+### Unlinking an exam
+1. Unlink an exam from a task.
+   1. Prerequisite: One exam in the exam list. First task in the task list linked to the exam. Second task is unlinked.
+   2. Test case: `e unlink 1`<br>
+      Expected: First task becomes unlinked.
+   3. Test case: `e unlink 2`<br>
+      Expected: Task list remains unchanged, and an error message will be shown to say that the task is already unlinked.
+   4. Test case: `e unlink 3`<br>
+      Expected: Both lists remain unchanged, and an error message will be shown to say that the task list index is invalid.
+
+### Showing tasks of an exam
+1. Show all tasks linked to an exam. 
+   1. Prerequisite: Two exams in the exam list and two tasks in the task list. Link first task to first exam and second task to second exam.
+   2. Test case: `e showt 1`<br>
+      Expected: Task list displays first task only.
+   3. Test case: `e showt 3`<br>
+      Expected: Both lists remain unchanged, and an error message will be shown to say that the exam list index is invalid.
+
+### Clearing all lists
+1. Clear all module, task and exam lists.
+   1. Test case: `clearall`<br>
+      Expected: Module, task and exam lists clared.
+
 ### Saving data
 
 1. Dealing with missing/corrupted data files
