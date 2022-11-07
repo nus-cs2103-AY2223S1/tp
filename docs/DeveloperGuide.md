@@ -16,7 +16,7 @@ This developer guide serves the purpose of helping developers to quickly gain th
 
 ## **Acknowledgements**
 
-- {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+- Mockito for mocking objects in tests
 
 ---
 
@@ -62,7 +62,7 @@ The rest of the App consists of four components.
 
 The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `student delete 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+![ArchitectureSequenceDiagram](images/ArchitectureSequenceDiagram.png)
 
 Each of the four main components (also shown in the diagram above),
 
@@ -173,47 +173,6 @@ This section describes some noteworthy details on how certain features are imple
 | **[Mass Actions](#mass-actions-feature)**                  | Allows the user to perform actions on multiple students at once |
 | **[Expanding Task List](#expanding-tasklistcard-feature)** | Allows the user to expand the task list to see more details     |
 
-### Sort task by deadline feature
-
-#### Implementation
-
-The sort task by deadline mechanism will be implemented without the need to enter additional commands.
-
-Additionally, its feature is exposed in the `List` interface by calling its `sort` method.
-
-The sort method wil automatically sort its tasks by ascending order whenever a new task is added or an existing task is edited.
-
-Given below is an example usage scenario of adding a new task and how the task sorted by deadline mechanism behaves.
-
-Step 1. The user launches the application and enters the respective `task add` command.
-
-Step 2. If the command is successful, a `task` object is created and will eventually be passed to `UniqueTaskList`.
-
-Step 3. `UniqueTaskList` will add the `Task` object to an object of type `ObservableList<Task>`
-
-Step 4. `UniqueTaskList` will then call its own method `sortByDeadline`
-
-Step 5. `sortByDeadline` will call the `sort` method of the same object of type `ObservableList<Task>` from Step 5.
-
-Step 6. The `sort` method takes in an object of type Comparator which compares two different `Task` objects' based on its deadline variable.
-
-Step 7. The `sort` method then iterate the object of type `ObservableList<Task>` and arrange them according to their deadline in ascending order.
-
-The _Sequence Diagram_ below shows how the components interact with each other for the scenario during task sort when a user adds a new task. Similar interactions take place when a user edits a task or removes a task.
-<img src="images/SortTask.png" width="550"/>
-#### Design considerations:
-
-**Aspect: How sorting task by deadline executes:**
-
-- **Alternative 1 (current choice):** sort tasks by default.
-
-    - Pros: Easy to implement.
-    - Cons: Might not be ideal if users do not want it to be sorted.
-
-- **Alternative 2:** Individual command to sort tasks.
-    - Pros: User has a choice whether they want their list to be sorted.
-    - Cons: More classes to implement e.g. taskSortCommand.java and taskSortCommandParser.java.
-
 ### Tutorial group feature
 
 #### Implementation
@@ -271,62 +230,6 @@ the `Model` to find the students that are assigned to the task.
 Show below is an activity diagram of how a task is edited.
 
 ![Task Edit Activity Diagram](images/TaskEditActivityDiagram.png)
-
-### Mass Actions feature
-
-#### Description
-The idea behind Mass Actions is to be able to chain together multiple commands without having to type them out one
-by one. This is useful for when the user wants to perform the same action on multiple students or tutorial groups.
-
-#### Implementation
-The mass actions feature requires a rework of the parsers, particularly StudentDeleteCommandParser
-and TaskDeleteCommandParser. Instead of parsing a single index, the parsers will parse a range of indices,
-then loop through each index, getting the task before deleting it.
-
-#### Design Considerations
-The implementation is different from the original AB3 implementation, as there were some special considerations
-to keep in mind. The key issue was that we had to do two separate loops, one for getting the list of tasks/students
-to delete, before then proceeding to delete them. This is because if we attempt to do it in a single loop, we
-encounter an error where the list of tasks/students is modified while we are iterating through it.
-
-#### Alternative Considerations
-Another way of doing this instead of completely reworking the commands would be to overload the constructor,
-however, it seemingly would not be as clean as the current implementation, as the current implementation is able
-to handle one or more indices, while the alternative implementation would be doing double work to cover the case with
-one index.
-
-### Expanding `TaskListCard` feature
-
-#### Description
-
-In TAA, the user can specify which `Student`s a `Task` has to be completed for. In the UI, each `Task` is displayed as a `TaskListCard`. The `TaskListCard` can be clicked to show or hide the `Student`s.
-
-The part of the UI highlighted in blue and grey are the `TaskListCard`s. The blue card has been clicked to show the `Student`s, while the grey card has a collapsed `Student` list.
-
-<img src="images/TaskListCard.png" width="650" />
-
-#### Implementation
-
-Every `TaskListCard` contains:
-* a `VBox optionalInfo` UI component which displays the students' names to the user,
-* a `boolean isExpanded` attribute to determine whether to show the `optionalInfo`, and
-* a `void onCardClicked()` method to toggle `isExpanded`.
-
-#### Design Considerations
-
-If a `Task` has no `Student`s,
-* clicking on its `TaskListCard` does nothing, and
-* `"No students are assigned to this task."` is displayed to the user.
-
-#### Alternative Designs Considered
-
-1. **Always show the students for all tasks.** This is rejected because tutorial groups contain many students. This allows very few tasks to be displayed on the UI at one time. This prevents the user from having an at-a-glance view of their tasks.
-2. **Display the students for a task in a pop-up dialog box.** This is rejected because we wish to minimise the number of mouse clicks needed to switch from viewing the students under Task 1 to viewing the students under Task 2.
-    * In the current design, the user only needs to click once on Task 2 to collapse Task 1 and expand Task 2.
-    * This alternative design requires the user to click on the **Close** button on Task 1's dialog box, and then click again on Task 2.
-
-Here's an activity diagram to demonstrate the Expanding TaskListCard feature.
-<img src="images/TaskExpandActivityDiagram.png" width="350"/>
 
 ### Grade feature
 
@@ -435,6 +338,105 @@ In the interest of future extensibility and fast implementation, `Grade` was mad
       - Cumbersome implementation.
 
 The `HashMap` Java Collection was chosen because of faster lookups, since in the current iteration of TAA, the `GradeMap` is only used to add and retrieve grades. However, in the future, `GradeMap` can be changed easily to use a `TreeMap` instead. A `TreeMap` implementation would prove useful if more than 2 grades are added and a filter feature is desired, for example, get a list of `Student`s who scored more than a `B` in a particular `Task`. `ArrayList` was rejected because it is cumbersome to implement and is not as performant.
+
+### Sort task by deadline feature
+
+#### Implementation
+
+The sort task by deadline mechanism will be implemented without the need to enter additional commands.
+
+Additionally, its feature is exposed in the `List` interface by calling its `sort` method.
+
+The sort method wil automatically sort its tasks by ascending order whenever a new task is added or an existing task is edited.
+
+Given below is an example usage scenario of adding a new task and how the task sorted by deadline mechanism behaves.
+
+Step 1. The user launches the application and enters the respective `task add` command.
+
+Step 2. If the command is successful, a `task` object is created and will eventually be passed to `UniqueTaskList`.
+
+Step 3. `UniqueTaskList` will add the `Task` object to an object of type `ObservableList<Task>`
+
+Step 4. `UniqueTaskList` will then call its own method `sortByDeadline`
+
+Step 5. `sortByDeadline` will call the `sort` method of the same object of type `ObservableList<Task>` from Step 5.
+
+Step 6. The `sort` method takes in an object of type Comparator which compares two different `Task` objects' based on its deadline variable.
+
+Step 7. The `sort` method then iterate the object of type `ObservableList<Task>` and arrange them according to their deadline in ascending order.
+
+The _Sequence Diagram_ below shows how the components interact with each other for the scenario during task sort when a user adds a new task. Similar interactions take place when a user edits a task or removes a task.
+
+<img src="images/SortTask.png" width="550"/>
+
+#### Design considerations:
+
+**Aspect: How sorting task by deadline executes:**
+
+- **Alternative 1 (current choice):** sort tasks by default.
+
+    - Pros: Easy to implement.
+    - Cons: Might not be ideal if users do not want it to be sorted.
+
+- **Alternative 2:** Individual command to sort tasks.
+    - Pros: User has a choice whether they want their list to be sorted.
+    - Cons: More classes to implement e.g. `taskSortCommand.java` and `taskSortCommandParser.java`.
+
+### Mass Actions feature
+
+#### Description
+The idea behind Mass Actions is to be able to chain together multiple commands without having to type them out one
+by one. This is useful for when the user wants to perform the same action on multiple students or tutorial groups.
+
+#### Implementation
+The mass actions feature requires a rework of the parsers, particularly StudentDeleteCommandParser
+and TaskDeleteCommandParser. Instead of parsing a single index, the parsers will parse a range of indices,
+then loop through each index, getting the task before deleting it.
+
+#### Design Considerations
+The implementation is different from the original AB3 implementation, as there were some special considerations
+to keep in mind. The key issue was that we had to do two separate loops, one for getting the list of tasks/students
+to delete, before then proceeding to delete them. This is because if we attempt to do it in a single loop, we
+encounter an error where the list of tasks/students is modified while we are iterating through it.
+
+#### Alternative Considerations
+Another way of doing this instead of completely reworking the commands would be to overload the constructor,
+however, it seemingly would not be as clean as the current implementation, as the current implementation is able
+to handle one or more indices, while the alternative implementation would be doing double work to cover the case with
+one index.
+
+### Expanding `TaskListCard` feature
+
+#### Description
+
+In TAA, the user can specify which `Student`s a `Task` has to be completed for. In the UI, each `Task` is displayed as a `TaskListCard`. The `TaskListCard` can be clicked to show or hide the `Student`s.
+
+The part of the UI highlighted in blue and grey are the `TaskListCard`s. The blue card has been clicked to show the `Student`s, while the grey card has a collapsed `Student` list.
+
+<img src="images/TaskListCard.png" width="650" />
+
+#### Implementation
+
+Every `TaskListCard` contains:
+* a `VBox optionalInfo` UI component which displays the students' names to the user,
+* a `boolean isExpanded` attribute to determine whether to show the `optionalInfo`, and
+* a `void onCardClicked()` method to toggle `isExpanded`.
+
+#### Design Considerations
+
+If a `Task` has no `Student`s,
+* clicking on its `TaskListCard` does nothing, and
+* `"No students are assigned to this task."` is displayed to the user.
+
+#### Alternative Designs Considered
+
+1. **Always show the students for all tasks.** This is rejected because tutorial groups contain many students. This allows very few tasks to be displayed on the UI at one time. This prevents the user from having an at-a-glance view of their tasks.
+2. **Display the students for a task in a pop-up dialog box.** This is rejected because we wish to minimise the number of mouse clicks needed to switch from viewing the students under Task 1 to viewing the students under Task 2.
+    * In the current design, the user only needs to click once on Task 2 to collapse Task 1 and expand Task 2.
+    * This alternative design requires the user to click on the **Close** button on Task 1's dialog box, and then click again on Task 2.
+
+Here's an activity diagram to demonstrate the Expanding TaskListCard feature.
+<img src="images/TaskExpandActivityDiagram.png" width="350"/>
 
 ---
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -617,9 +619,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case resume from step 2.
 
-
-_{More to be added}_
-
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -728,10 +727,10 @@ Difficulty Level: 12
 
 #### Effort required
 Justification for the difficulty level: 
-1. Moving parts - While AB3 uses only one entity type, Persons, which was adapted to be our Student, we have
-multiple entities, namely Student, Task, Tutorial Group, and Grade. This means that we have to implement
+1. **Moving parts** - While AB3 uses only one entity type, Persons, which was adapted to be our Student, we have
+multiple entities, namely `Student`, `Task`, `TutorialGroup`, and `Grade`. This means that we have to implement
 multiple classes, and multiple classes that interact with each other.
-2. Different purposes - While _some_ of the code for AB3 commands could be reused, there were many cases where
+2. **Different purposes** - While _some_ of the code for AB3 commands could be reused, there were many cases where
 the code had to be redesigned and rewritten in order to fit the purpose of our application.
     1. For example, the Task Edit Command had to be completely rewritten because we required the ability to 
 search through the current model's list of students using a list of strings, and then generating a CommandOutput
@@ -740,7 +739,7 @@ from that
 Tutorial Group filtering.
     3. The grade command uses a Map to store the grades of students, which is a new data structure that we had to
 to add into the code, not previously used in AB3.
-3. New features - We have many new features that were not present in AB3, such as the ability to grade students,
+3. **New features** - We have many new features that were not present in AB3, such as the ability to grade students,
 filter, as well as introducing tasks, tutorial groups and grades.
 
 ### Challenges Faced
