@@ -42,7 +42,7 @@ public class FindCommand extends Command {
             + "[" + PREFIX_REASON + "REASON] "
             + "[" + PREFIX_DATE_TIME_START + "DATE_START] "
             + "[" + PREFIX_DATE_TIME_END + "DATE_END] "
-            + "[" + PREFIX_TAG_APPOINTMENT + "APPOINTMENT_TAG...]\n"
+            + "[" + PREFIX_TAG_APPOINTMENT + "APPOINTMENT_TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John "
             + PREFIX_PHONE + "9876 "
