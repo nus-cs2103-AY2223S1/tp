@@ -1,11 +1,11 @@
 <!--markdownlint-disable-file first-line-h1 -->
 
-This section gives you a high-level overview of how the application is structured and what the key components are in FoodRem.
+This section gives you a high-level overview of how the application is structured and what the key components of FoodRem are.
 
 The [Architecture](#architecture) section gives an overview of how the main components in FoodRem interact with one another.
 
-FoodRem has four main components and each section describe smaller subcomponents within them.
-The main conponents are namely:
+FoodRem has four main components, and each section describe smaller subcomponents within them.
+The main components are namely:
 
 1. [Ui Component](#ui-component)
 1. [Logic Component](#logic-component)
