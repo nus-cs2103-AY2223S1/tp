@@ -48,10 +48,9 @@ of these terms in the hopes that it will clear your doubts.
    Note:
    If you are an Apple user, you may not be able to double-click the jar file to 
    start the app.
-   
-   In that case, you can either right click the jar file and run it from the 
-   drop-down menu, or run the following command 
-   in the terminal:java -jar HR_Pro_Max++.jar
+
+   In that case, you can either right click the jar file and run it from the drop-down 
+   menu, or run the following command in the terminal: java -jar HR_Pro_Max++.jar
    ```
    ![Ui](images/Ui.png)
 6. You can proceed to the next section for a quick [overview of the user interface](#user-interface).
@@ -136,8 +135,8 @@ For information on all commands that are related to Staff, refer to the [Staff C
 * Parameters can be in any order.<br>
   e.g. if the command specifies `pn/PROJECT_NAME pb/PROJECT_BUDGET`, `pb/PROJECT_BUDGET pn/PROJECT_NAME` is also acceptable.
 
-* If a command requires both index and parameters, the index has to come before the parameters. The parameters behind the index can be arranged in any order.<br>
-  e.g. For the `delstaff` command, its format is `delstaff INDEX pn/PROJECT_NAME` and this must be strictly adhered to. Putting the index at the back will give an error.
+* If a command requires both INDEX and parameters, the INDEX has to come before the parameters. The parameters behind the INDEX can be arranged in any order.<br>
+  e.g. For the `delstaff` command, its format is `delstaff INDEX pn/PROJECT_NAME` and this must be strictly adhered to. Putting the INDEX at the back will give an error.
 
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `sp/92341234 sp/96785678`, only `sp/96785678` will be taken.
@@ -204,7 +203,7 @@ Format: `list`
 --------------------------------------------------------------------------------------------------------------------
 ### Finding Projects : `findproj`
 
-Finds all Projects whose names match any of the specified keywords (case-insensitive) and displays them as a list with index numbers.
+Finds all Projects whose names match any of the specified keywords (case-insensitive) and displays them as a list with INDEX numbers.
 
 Format: `findproj KEYWORD [MORE_KEYWORDS]`
 
@@ -330,15 +329,15 @@ Format: `addstaff INDEX sn/STAFF_NAME sl/LEAVE_STATUS sd/STAFF_DEPARTMENT st/STA
 
 ```yaml
 Note:
- - Staff names must be unique.
- - INDEX refers to the numbering of the Project in the currently displayed Project
-   list which the Staff will be added to.
- - All fields for Staff members are required, except `TAGS`
- - If no Projects are currently shown on the Project list, addstaff will give an error.
-   Use list to display all Projects. If no Projects are present, add a Project first
-   using the addproj command.
- - If Staff is added successfully, the displayed Staff list will be updated to show the
-   Staff list of the Project where the Staff is added to.
+  - Staff names must be unique.
+  - INDEX refers to the numbering of the Project in the currently displayed Project
+    list which the Staff will be added to.
+  - All fields for Staff members are required, except `TAGS`
+  - If no Projects are currently shown on the Project list, addstaff will give an error.
+    Use list to display all Projects. If no Projects are present, add a Project first
+    using the addproj command.
+  - If Staff is added successfully, the displayed Staff list will be updated to show the
+    Staff list of the Project where the Staff is added to.
 ```
 
 Examples:
@@ -362,14 +361,17 @@ Note:
   - PROJECT_NAME refers to the Project in displayed Project list where the Staff is deleted
     from.
   - Recommended to use the view command on a Project before deleting a Staff from it.
-  - A possible interaction is if you view the Staff list of Project A then try
-    to delete Staff at index 1 (call this Staff Tom) from Project B, it will delete
-    Staff Tom from Project B if Staff Tom is also part of Project B. Staff Tom in Project A
-    will not be deleted in this scenario.
-  - The index must be a positive integer 1, 2, 3, …​
+  - The INDEX must be a positive integer 1, 2, 3, …​
   - If Staff is deleted successfully, it will update the displayed Staff list to show the
     Staff list of the Project where the Staff was deleted from.
 ```
+
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:** A possible interaction is if you view the Staff list of Project A then try
+    to delete Staff at INDEX 1 (call this Staff Tom) from Project B, it will delete
+    Staff Tom from Project B if Staff Tom is also part of Project B. Staff Tom in Project A
+    will not be deleted in this scenario.
+</div>
 
 Examples:
 
@@ -389,7 +391,7 @@ Format: `view INDEX`
 ```yaml
 Note:
   - INDEX refers to the numbering of the Projects in the displayed Project list.
-  - The index must be a positive integer 1, 2, 3, …​
+  - The INDEX must be a positive integer 1, 2, 3, …​
 ```
 Examples:
 * `list` followed by `view 2` displays the Staff list of the 2nd Project in Project list on the bottom right.
@@ -416,12 +418,12 @@ Note:
     Staff to be edited.
   - PROJECT_NAME refers to the numbering of the Project in the displayed Project list
     where the Staff is to be edited.
-  - Index must be a positive integer 1, 2, 3, ...
+  - INDEX must be a positive integer 1, 2, 3, ...
 ```
 
 <div markdown="span" class="alert alert-primary">
 :bulb: **Tip:** A possible interaction is if you view the Staff list of Project A then try
-    to edit Staff at index 1 (call this Staff Tom) from Project B, it will try to edit
+    to edit Staff at INDEX 1 (call this Staff Tom) from Project B, it will try to edit
     Staff Tom from Project B if Staff Tom is also part of Project B. Staff Tom in Project A
     will not be edited in this scenario.
 </div>
@@ -442,7 +444,7 @@ Format: `findstaff KEYWORD [MORE_KEYWORDS]`
 ```yaml
 Note:
   - KEYWORD must not be an empty string.
-  - For `findstaff` to work as expected, the current active Staff list must be non-empty.
+  - For findstaff to work as expected, the current active Staff list must be non-empty.
   - The findstaff command is case-insensitive such that 'hans' will match 'HANS'.
   - The findstaff command will match Staff name if there is a partial match, 'ha' or
     'hA' will both match 'HANS'.
@@ -479,8 +481,8 @@ Format: `addtask tdesc/TASK_DESCRIPTION td/TASK_DEADLINE`
 
 ```yaml
 Note:
-  - Both Task fields `TASK_DESCRIPTION` and `TASK_DEADLINE` must be present.
-  - The `TASK_DEADLINE` follows the YYYY-MM-DD format.
+  - Both Task fields TASK_DESCRIPTION and TASK_DEADLINE must be present.
+  - The TASK_DEADLINE follows the YYYY-MM-DD format.
 ```
 
 Examples:
@@ -503,7 +505,7 @@ Note:
 ```
 
 Examples:
-* `deltask 1` deletes the Task at index 1 of the Task list.
+* `deltask 1` deletes the Task at INDEX 1 of the Task list.
 * If the Task list has only 4 elements, `deltask 5` would return an error message of
 `The task index provided is invalid`.
 
