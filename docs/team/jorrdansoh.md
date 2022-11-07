@@ -22,7 +22,7 @@ Given below are my contributions to the project.
 * **Code Contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=jorrdansoh&breakdown=true)
 
 
-* **Project Management**:
+* **Contributions to Team-Based Tasks**:
   * Created GitHub Issues for user stories and bug reports
   * Delegated GitHub Issues to team members
   * Released v1.2.trial and v1.3 JAR on GitHub
