@@ -335,6 +335,8 @@ that he/she wants to add.
 Step 2. The 'InTrackParser' then parses the user input and checks if the command word and arguments are correct before creating a new
 `RemarkCommandParser`.
 
+A `CommandException` will be thrown if an internship is not selected.
+
 Step 3. The `RemarkCommandParser` then parses the user input and checks if the input variables are correct by checking for the presence of
 the prefixes. It also checks whether the command is in the correct format. The correct format of the input is `r/REMARK_CONTENT`.
 
@@ -347,7 +349,7 @@ Step 4. If the format is correct, `RemarkCommandParser` will create a `RemarkCom
 Step 5. The `LogicManager` executes the `RemarkCommand`.
 
 Step 6. The `RemarkCommand` obtains a list of `Internship`s via the `getSelectedInternshipList()` method
-which is exposed to the `Model` interface as `Model#getSelectedInternshipList()`
+which is exposed to the `Model` interface as `Model#getSelectedInternshipList()`.
 
 Step 7. The `RemarkCommand` obtains the `Internship` object that the user wants to add the remark to via the
 `get(0)` method from list of `Internship`s.
