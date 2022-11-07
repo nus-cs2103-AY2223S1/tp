@@ -696,13 +696,15 @@ testers are expected to do more *exploratory* testing.
 1. Splitting a debt with valid inputs
 
     1. Prerequisites: There are at least 3 persons in the list.
-    1. Test cases: `splitdebt 1 2 3 d/Test m/4`
+   
+    1. Test cases: `splitdebt 1 2 3 d/Test m/4`<br>
        Expected: The corresponding debt with the description "Test" and value "$1.34" and  is added to the persons 1, 2, and 3 in the list.
 
 1. Splitting a debt with invalid inputs
 
     1. Test cases: `splitdebt 0 d/kfc m/$10`, `splitdebt d/kfc m/$10`, `splitdebt 1 m/$10`, `splitdebt 1 d/kfc`<br>
        Expected: No debt is added. Error details shown in the status message (invalid format).
+   
     1. Test case: `splitdebt 1 d/kfc m/-10`<br>
        Expected: No debt is added. Error details shown in the status message (invalid money format).
 
@@ -717,10 +719,10 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a debt with valid inputs
 
-   1. Prerequisites: The second person in the list has 5 debts.
+    1. Prerequisites: The second person in the list has 5 debts.
     
-   1. Test cases: `deletedebt 2 debt/2 4`
-          Expected: The second and fourth debts are removed from the second person in the list.
+    1. Test cases: `deletedebt 2 debt/2 4`<br>
+       Expected: The second and fourth debts are removed from the second person in the list.
 
 1. Deleting a debt with invalid inputs
 
@@ -732,7 +734,7 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: The first person in the list has 2 debts.
 
     1. Test cases: `deletedebt 1 debt/3`, `deletedebt 1 debt/1 2 3`, `deletedebt 1 debt/4`<br>
-       Expected: No debt is deleted. Error details shown in the status message (invalid person index).
+       Expected: No debt is deleted. Error details shown in the status message (invalid debt index).
 
 ### Clearing debts
 
@@ -740,9 +742,10 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisites: There are persons in the list.
 
-    1. Test cases: `cleardebts 1`
+    1. Test cases: `cleardebts 1`<br>
        Expected: The first person in the list appears without any debts.
-    1. Other valid commands include any use of `cleardebts` with a correspondingly valid person index.
+   
+    1. Other valid commands include any use of `cleardebts` with a correspondingly valid person index.<br>
        Expected: The corresponding person in the list appears without any debts.
 
 1. Clearing debts with invalid inputs
@@ -756,6 +759,72 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `cleardebts 4`, `cleardebts 5`, `cleardebts 6`<br>
        Expected: No debts are removed. Error details shown in the status message (invalid person index).
+
+### Sorting
+
+1. Sorting when all persons are being displayed
+
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+
+    1. Test cases: `sort n/+`, `sort m/-`, `sort date/+`<br>
+       Expected: All persons are sorted accordingly as mentioned in UG.
+   
+    1. Test cases: `sort t/+`, `sort n/?` and other invalid commands with sort.<br>
+       Expected: Persons list is not sorted. Error details shown in the status message.
+
+1. Sorting while only some persons are displayed
+
+    1. Prerequisites: Filter the persons list using commands such as `find` and `listdebtors`. Multiple persons remaining.
+
+    1. Test cases: Similar to positive test cases above.<br>
+       Expected: All persons are sorted accordingly, but only previously displayed persons are displayed. Use the `list` command to list all persons and verify all persons are indeed sorted correctly.
+
+    1. Negative test cases and expected outcome similar to above.
+
+### List debtors
+
+1. Listing all debtors
+
+    1. Prerequisites: One or more persons in PayMeLah have debt(s).
+
+    1. Test case: `listdebtors`<br>
+       Expected: All person(s) who have any debt are listed.
+
+    1. Test case: Clear every person's debts using `cleardebts`, then enter the command `listdebtors`<br>
+       Expected: No person listed. PayMeLah shows a message explaining no one has debts.
+
+1. Listing debtors who owe above a certain amount
+
+    1. Prerequisites: One or more persons in PayMeLah have debt(s) whose sum is greater or equal to $10, but none more than or equal to $1000.
+
+    1. Test case: `listdebtors m/10`<br>
+       Expected: All person(s) who owe more than or equal to $10 of debt are listed.
+
+    1. Test case: `listdebtors m/1000`<br>
+       Expected: Similar to expected outcome of negative test case above.
+
+### Undo
+
+1. Successful undo of a command
+
+    1. Test case: Enter `add n/newPerson`, then `undo`<br>
+       Expected: A person with name `newPerson` is added, then removed after `undo` is entered.
+
+    1. Test cases: Enter `add n/newPerson`, then filter the persons list using commands such as `find` and `listdebtors`, then `undo`<br>
+       Expected: Similar to above, but filter on persons list is reset and all persons are displayed.
+
+2. Unsuccessful undo of a command
+
+    1. Prerequisites: PayMeLah has just been launched, no command has been entered yet.
+
+    1. Test case: `undo`<br>
+       Expected: PayMeLah warns that there are no commands to undo.
+
+    1. Test case: Enter a command which does not modify PayMeLah's data, such as `find` and `statement`, then `undo`.<br>
+       Expected: PayMeLah warns that there are no commands to undo.
+   
+    1. Test case: Add 11 persons using `add n/newPerson1` ... `add n/newPerson11`. Then enter `undo` 11 times.<br>
+       Expected: The addition of `newPerson2` to `newPerson11` are reverted successfully, but PayMeLah warns that there are no commands to undo when attempting to do so the 11th time.
 
 ### Saving data
 
