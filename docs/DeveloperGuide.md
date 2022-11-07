@@ -99,6 +99,7 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
+<div style="page-break-after: always"></div>
 #### Overall structure of the UI component
 
 We currently have two tabs for the different displays (Contacts and Calendar). Users can switch between these tabs by entering certain keys or clicking on the tabs. Our team decided that we needed a method to update our UI dynamically upon update of an `Appointment` or update of a `Person`. Also, we wanted our application to support navigation using keystrokes as well on top of clicking the different UI components.
@@ -122,7 +123,7 @@ The use of the `ObservableList` class follows the **observer design pattern**, w
       * Maintenance of code is simple, as well as making code more readable.
       * `UI` components can update according to multiple data changes in `Model`.
     * Cons: Implementing state-management is difficult and requires change throughout the entire architecture of the application.
-
+<div style="page-break-after: always"></div>
 #### `FocusModel`
 
 ##### Reason for use:
