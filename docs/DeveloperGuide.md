@@ -109,11 +109,10 @@ You can jump into the various sections from the Table of Contents to view differ
 click on [Scroll back to top](#table-of-contents), which can be found at the end of every section, to access the Table
 of Contents to quickly jump to another section without manually scrolling through the Developer Guide.
 
-As recommended in the introduction, we would like to direct you to read the [Glossary](#glossary) section next.
+we would recommend you to read the [Glossary](#glossary) section next.
 
 [Scroll back to top](#table-of-contents)
 
---------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
 ## **Glossary**
@@ -335,6 +334,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
+<div style="page-break-after: always;"></div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
@@ -486,8 +486,8 @@ Removal of modules does not check the module lists to see if the module is prese
 [Scroll back to top](#table-of-contents)
 
 <div style="page-break-after: always;"></div>
-### Checking Modules Left
 
+### Checking Modules Left
 This feature compares the user's current and previous modules list with a fixed list of CS Core Requirements or focus area
 modules. The program then finds the difference between the user's lists and the fixed list and outputs it onto the `ResultDisplay`.
 
@@ -496,6 +496,8 @@ modules. The program then finds the difference between the user's lists and the 
 Below is an activity diagram to illustrate the behaviour of checking Modules left within `Logic`.
 
 ![Modules Left Activity Diagram](images/ModulesLeftActivityDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 #### Design Considerations
 
@@ -750,6 +752,7 @@ Step 4. The user now decides that deleting the user was a mistake, and decides t
 than attempting to perform the undo.
 
 </div>
+<div style="page-break-after: always;"></div>
 
 The following sequence diagram shows how the undo operation works:
 
@@ -1211,6 +1214,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 3a2. CS Student enters new data.
   * Steps 3a1-3a2 are repeated until the data entered are correct.
     Use case resumes at step 4.
+
+<div style="page-break-after: always;"></div>
 
 **System: ConnectNUS**
 
