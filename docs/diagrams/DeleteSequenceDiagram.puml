@@ -1,5 +1,7 @@
 @startuml
 !include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor BLACK
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
@@ -44,7 +46,7 @@ deactivate Rc4hdbParser
 
 LogicManager -> DeleteCommand : execute()
 activate DeleteCommand
-DeleteCommand -> Model : deletePerson(1)
+DeleteCommand -> Model : deleteResident(1)
 activate Model
 Model --> DeleteCommand
 deactivate Model

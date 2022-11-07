@@ -1,14 +1,14 @@
 @startuml
 !include style.puml
 skinparam arrowThickness 1.1
-skinparam arrowColor LOGIC_COLOR
+skinparam arrowColor BLACK
 skinparam classBackgroundColor LOGIC_COLOR
 skinparam classStereotypeFontColor #000000
 
 package Logic {
 
 Class "<<interface>>\nModelCommand" as ModelCommand
-Class "<<interface>>\nParser" as Parser<ColumnManipulatorCommand>
+Class "<<interface>>\nCommandParser" as CommandParser
 Class "{abstract}\nColumnManipulatorCommand" as ColumnManipulatorCommand
 Class "{abstract}\nColumnManipulatorCommandParser" as ColumnManipulatorCommandParser
 Class ShowOnlyCommand
@@ -21,7 +21,8 @@ Class HideOnlyCommandParser
 }
 
 ColumnManipulatorCommand .up.|> ModelCommand
-ColumnManipulatorCommandParser .up.|> Parser
+ColumnManipulatorCommandParser .up.|> CommandParser
+ColumnManipulatorCommandParser ..> ColumnManipulatorCommand
 ListCommand -up-|> ColumnManipulatorCommand
 ResetCommand -up-|> ColumnManipulatorCommand
 ShowOnlyCommand -up-|> ColumnManipulatorCommand
