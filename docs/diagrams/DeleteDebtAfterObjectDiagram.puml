@@ -12,11 +12,9 @@ title Final state after executing the <plain><font:monospaced><back:lightgray>De
 
 
 Package Model {
-package Person {
     class NewPerson as "__newPerson1:Person__"
         class DebtList as "__newList:DebtList__"
         class Debt1Copy as "__copyOf1:Debt__"
-    }
 }
 
 

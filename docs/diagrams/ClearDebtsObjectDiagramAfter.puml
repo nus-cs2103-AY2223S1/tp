@@ -10,12 +10,10 @@ hide empty members
 title Final state after executing the <plain><font:monospaced><back:lightgray>ClearDebtsCommand</back></font></plain>
 
 package Model {
-package Person {
 
 class NewPerson as "__newPerson1:Person__"
     class NewDebtList as "__newList:DebtList__"
 
-}
 }
 
 

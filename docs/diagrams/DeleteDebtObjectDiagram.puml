@@ -17,14 +17,13 @@ class DebtIndex3 as "__3:Index__"
 }
 
 Package Model {
-package Person {
 class OldPerson as "__person1:Person__"
     class DebtList as "__initialList:DebtList__"
     class Debt1 as "__1:Debt__"
     class Debt2 as "__2:Debt__"
     class Debt3 as "__3:Debt__"
 }
-}
+
 
 DeleteDebtCommand -l-> "person index" PersonIndex1
 DeleteDebtCommand ----> "debt index" DebtIndex2
