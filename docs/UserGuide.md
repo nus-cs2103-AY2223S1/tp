@@ -3,8 +3,8 @@ layout: page
 title: User Guide
 ---
 
-FRIDAY is a **desktop app for CS1101S Teaching Assistants to organize and track their students’ information and progress, 
-optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). 
+FRIDAY is a **desktop app for CS1101S Teaching Assistants to organize and track their students’ information and progress,
+optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
 If you can type fast, FRIDAY can get your student management tasks done faster than traditional GUI apps.
 
 * Table of Contents
@@ -13,9 +13,11 @@ If you can type fast, FRIDAY can get your student management tasks done faster t
 --------------------------------------------------------------------------------------------------------------------
 ## Quick start
 
+This section guides you along the process of downloading and opening FRIDAY.
+
 1. Ensure you have Java 11 or above installed in your computer.
 
-2. Download the latest `friday.jar` from [here](https://github.com/AY2223S1-CS2103T-W15-4/tp/releases).
+2. Download the latest JAR file `friday.jar` from [here](https://github.com/AY2223S1-CS2103T-W15-4/tp/releases).
 
 3. Copy the file to the folder you want to use as the *home folder* for your FRIDAY.
 
@@ -27,14 +29,16 @@ If you can type fast, FRIDAY can get your student management tasks done faster t
     * **`add n/Alex Yeoh t/al3xx c/2022-10-25`** : Adds a student named `Alex Yeoh` to FRIDAY.
 
     * **`list`** : Lists all students.
-    
+
     * **`delete 2`** : Deletes the 2nd student shown in the current list.
 
     * **`clear`** : Deletes all students.
 
     * **`exit`** : Exits FRIDAY.
-   
+
 6. Refer to the [Features](#features) below for details of each command.
+
+[Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 ## About
@@ -44,11 +48,11 @@ This User Guide has been structured in a way to help you find information easily
 ,Section - reading this document you can find a multitude of tips on how to use this User Guide. The following sections 
 documents the main features of FRIDAY
 
-* Student management
-* Organizing students
-* Grading students
-* Miscellaneous features
-* Features for advanced users
+1. [Student management](#Student management)
+2. [Organizing students](#Organizing students)
+3. [Grading students](#Grading students)
+4. [Miscellaneous features](#Miscellaneous features)
+5. [Features for advanced users](#Features for advanced users)
 
 ### Reading this document
 This section on reading the document will introduce you to some technical terms and formats that will be used throughout the guide.
@@ -119,13 +123,21 @@ and hyperlinks to the first occurrence of the word in each section of the User g
 
 </div>
 
----------------------------------------------------------------------------------------------------------------------
+[Table of Contents](#table-of-contents)
+
 
 ## Features
 
+This section contains all the information and details of each feature of **FRIDAY**. These features are split into 5 sections depending on their purpose and function:
+1. [Student management](#Student management)
+2. [Organizing students](#Organizing students)
+3. [Grading students](#Grading students)
+4. [Miscellaneous features](#Miscellaneous features)
+5. [Features for advanced users](#Features for advanced users)
+
 ## Student management
 
-Overview: These features allow you to add, delete and edit your students' details.
+These features allow you to add and delete students, and edit their details.
 
 ### Adding a student: `add`
 
@@ -161,7 +173,7 @@ Outcome: a student named Alex Yeoh is added.
 
 ### Deleting a student: `delete`
 
-Deletes the student at the given index from FRIDAY.
+You may need to delete students from your list in certain cases, such as when they decide to drop the module. The `delete` function allows you to do this and deletes the student at the given index from FRIDAY.
 
 Format: `delete INDEX`
 
@@ -177,14 +189,14 @@ Format: `delete INDEX`
 
 ### Editing a student: `edit`
 
-Edits a student's details in FRIDAY.
+You may not have all your students' details at the start, or you may have typed in the wrong details for a specific student. You can use the `edit` feature to add in or edit a student's details after getting this information. This feature is also useful for adding Mastery Check and Consultation dates you have scheduled with your students.
 
 Format: `edit INDEX [n/NAME] [t/TELEGRAM_HANDLE] [c/CONSULTATION] [m/MASTERY_CHECK] [tag/TAG]...`
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Note:** <br>
 * The index of the student must be specified and there should be exactly one INDEX parameter.
-* You can choose which field to edit for the student. Name, Telegram handle, consultation, Mastery Check, and tag(s) are 
+* You can choose which field to edit for the student. Name, Telegram handle, consultation, Mastery Check, and tag(s) are
 optional fields, but there should be at least one field specified for the `edit` command to be valid.<br>
 </div>
 
@@ -208,7 +220,7 @@ Mastery Check date as 2022-11-06, consultation date as 2022-10-10, and tags as "
 
 ### Editing a remark for a student: `remark`
 
-Adds a remark for a specified student.
+You may have noted something interesting about a student, which you wish to save as a remark in your list. The `remark` feature allows you to add this remark to the specified student.
 
 Format: `remark INDEX [r/REMARK]`
 
@@ -220,7 +232,7 @@ Format: `remark INDEX [r/REMARK]`
 <div markdown="block" class="alert alert-primary">
 **:bulb: Tip:** <br>
 * The index of the student can be seen from the student list.<br>
-* The remark is optional. If you do not include the remark (i.e. input `remark INDEX` as your command), FRIDAY will 
+* The remark is optional. If you do not include the remark (i.e. input `remark INDEX` as your command), FRIDAY will
 remove any existing remark for the specified student.<br>
 </div>
 
@@ -230,13 +242,15 @@ Outcome: The student at the 1st index (Alex Yap) will have the remark "Aspiring 
 
 ![RemarkCommandOutcome.png](images/RemarkCommandOutcome.png)
 
+[Table of Contents](#table-of-contents)
+
 ## Organizing students
 
-Overview: These features allow you to organize your students to suit your needs.
+These features allow you to organize your list of students to suit your needs.
 
 ### Sorting students: `sort`
 
-Sorts all students in FRIDAY with the given criteria, in ascending or descending order.
+Sorts all students in FRIDAY with the given criteria, in ascending or descending order. This will come in useful by allowing you to see which students have Mastery Checks closest to the current date by sorting the list according to the students' Mastery Check dates, as shown in the example below.
 
 Format: `sort CRITERIA/ORDER`
 
@@ -267,17 +281,17 @@ How criteria are sorted:
   will be shown before students with Telegram handles.
 </div>
 
-Example: enter `sort m/a` with an unsorted list of students.
+Example: Enter `sort m/a` with an unsorted list of students.
 
 ![SortCommand.png](images/SortCommand.png)
 
-Outcome: students are sorted by Mastery Check date, from earliest to latest.
+Outcome: Students are sorted by Mastery Check date, from earliest to latest.
 
 ![SortCommandOutcome.png](images/SortCommandOutcome.png)
 
 ### Finding individual student details: `find`
 
-View a particular student's details.
+You can search for keywords using the `find` command and FRIDAY will show you the students whose details match these keywords.
 
 Format: `find KEYWORDS`
 
@@ -288,11 +302,11 @@ Note: Multiple keywords can be entered and each keyword is separated by a space.
 Note: when searching for exam grade use format `find [exam_name:EXAM_SCORE]`
 </div>
 
-Example:
+Example: Enter `find alex`
 
 ![FindCommand.png](images/FindCommand.png)
 
-Outcome:
+Outcome: The only student in the list whose details match the keyword "alex" is shown.
 
 ![FindCommandOutcome.png](images/FindCommandOutcome.png)
 
@@ -302,13 +316,15 @@ Lists all students in FRIDAY. This command helps you to reset the sorting and fi
 
 Format: `list`
 
+[Table of Contents](#table-of-contents)
+
 ## Grading students
 
-Overview: These features allow you to record your students grades.
+These features allow you to record your students grades.
 
 ### Recording grades for a student: `grade`
 
-Records the grades of the assessments and examinations for a specified student.
+The `grade` command allows you to record the grades obtained for the assessments and examinations by a specified student.
 
 Format: `grade INDEX [ra1/RA1_SCORE] [ra2/RA2_SCORE] [pa/PRACTICAL_SCORE] [mt/MID_TERM_SCORE] [ft/FINALS_SCORE]`
 
@@ -332,7 +348,7 @@ decimal places allowed. `0`, `100.00` and `69.1` are examples of valid scores.
 * The scores are optional, but there should be at least one score specified for `grade` command to be valid.
 </div>
 
-Example:`grade 1 ra1/90 ra2/80.1 pa/100.00 mt/85.23 ft/78`
+Example: Enter `grade 1 ra1/90 ra2/80.1 pa/100.00 mt/85.23 ft/78`.
 
 Outcome: The student at the 1st index (Alex Yap) will have their grades updated.
 
@@ -343,6 +359,11 @@ Outcome: The student at the 1st index (Alex Yap) will have their grades updated.
 
 After a student has passed their Mastery Check, you can use the `mark` command to mark their Mastery Check as passed. This will update the list of students with the status of the specified student's Mastery Check.
 
+The Mastery Check of a student can only be marked as passed if:
+1. It has not already been marked as passed.
+2. The student has a scheduled Mastery Check date (i.e. the student's Mastery Check field is not empty).
+3. The scheduled date of the Mastery Check is not beyond the current date.
+
 Format: `mark INDEX`
 
 <div markdown="block" class="alert alert-primary">
@@ -351,12 +372,12 @@ Format: `mark INDEX`
 * The index of the student can be seen from the student list.<br>
 </div>
 
-Example before entering `mark 1`:
+Example: Enter `mark 1`.
 
 ![MarkCommandBefore.png](images/MarkCommandBefore.png)
 
 
-Outcome after entering `mark 1`:
+Outcome: The Mastery Check of the first student in the list has been marked as passed.
 
 ![MarkCommandOutcome.png](images/MarkCommandOutcome.png)
 
@@ -365,6 +386,10 @@ As you can see, a "(passed)" status is added to student 1's Mastery Check after 
 ### Unmarking a student's Mastery Check: `unmark`
 
 Unmarks the Mastery Check of a specified student and removes its "(passed)" status. This will come in handy if you accidentally mark the Mastery Check of a student as passed, even though that is not the case.
+
+The Mastery Check of a student can only be unmarked if:
+1. It has already been marked as passed.
+2. The student has a scheduled Mastery Check date (i.e. the student's Mastery Check field is not empty)
 
 Format: `unmark INDEX`
 
@@ -384,9 +409,11 @@ Example after entering `unmark 1`:
 
 As you can see, the "(passed)" status has been removed from student 1's Mastery Check after the `unmark` command is run.
 
+[Table of Contents](#table-of-contents)
+
 ## Miscellaneous features
 
-Overview: Other features that aid you in using FRIDAY.
+Other features that aid you in using FRIDAY.
 
 ### Getting User Guide link: `guide`
 
@@ -413,9 +440,11 @@ Exits FRIDAY. See you again soon!
 
 Format: `exit`
 
+[Table of Contents](#table-of-contents)
+
 ## Features for advanced users
 
-Overview: These features help you personalize your FRIDAY experience and improve your productivity when using FRIDAY.
+These features help you personalize your FRIDAY experience and improve your productivity when using FRIDAY.
 
 ### Adding aliases: `alias`
 
@@ -424,7 +453,7 @@ This allows you to be more efficient in using FRIDAY.
 
 Format: `alias a/ALIAS k/COMMAND_KEYWORD`
 
-* `COMMAND_KEYWORD` must be a default command keyword (e.g `add` in Adding students)
+* `COMMAND_KEYWORD` must be a default command keyword (e.g. `add` in Adding students)
 * `ALIAS` must not be a default command keyword and contain exactly one word
 
 Example:
@@ -470,7 +499,7 @@ Format: `exit`
 
 ### Saving the data
 
-FRIDAY's data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+FRIDAY's data is saved in the hard disk automatically after any command that changes the data. There is no need for you to save manually.
 
 ### Editing the data file
 
@@ -481,10 +510,14 @@ Advanced users are welcome to update data directly by editing the data file.
 If your changes to the data file makes its format invalid, FRIDAY will ignore all data and start with an empty file in the next run.<br>
 </div>
 
+[Table of Contents](#table-of-contents)
+
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
+
+Some Frequently Asked Questions:
 
 **Q**: How do I transfer my data to another computer?<br>
 **A**: Install FRIDAY in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FRIDAY home folder.
@@ -497,7 +530,7 @@ If your changes to the data file makes its format invalid, FRIDAY will ignore al
        minimally must be of version 7. All versions above Windows 7 should be compatible. All MacOS versions above Version 10.10 (Yosemite) will be compatible with FRIDAY.
 
 **Q**: What if I am not good at typing. Is FRIDAY for me?<br>
-**A**: Yes Friday is still for you. Why you may ask? The commands are still very short and even if you are a slow typist, 
+**A**: Yes Friday is still for you. Why you may ask? The commands are still very short and even if you are a slow typist,
        you will be saving time as compared to pen and paper or an Excel sheet. <br>
        Furthermore, FRIDAY is more aesthetically pleasing and has all the necessary features easily accessible at your fingertips.
 
@@ -509,6 +542,8 @@ If your changes to the data file makes its format invalid, FRIDAY will ignore al
 3. Cloud compatibility
 4. Easy import and export of data
 5. Undoing previous actions
+
+[Table of Contents](#table-of-contents)
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -534,6 +569,7 @@ If your changes to the data file makes its format invalid, FRIDAY will ignore al
 | **Getting Help**                             | `help`                                                                                                   |
 | **Exiting FRIDAY**                           | `exit`                                                                                                   |
 
+[Table of Contents](#table-of-contents)
 ---------------------------------------------------------------------------------------------------------------------
 
 ## Glossary
@@ -544,7 +580,7 @@ If your changes to the data file makes its format invalid, FRIDAY will ignore al
 
 3. **Java:** Java is a programming language introduced in the 90's. It is used to create many applications that you use today. Including this one.
 
-4. **.jar:** Specifies the file format of the file.
+4. **JAR:** The file format of FRIDAY.
 
 5. **Command:** The text that you enter in the input box is a command.
 
@@ -565,3 +601,5 @@ If your changes to the data file makes its format invalid, FRIDAY will ignore al
 13. **Mastery Check:** A pass/fail assessment on students to assess their understanding of the concepts taught. There are 2 Mastery checks per semester.
 
 14. **Alias:** A nickname or an alternate name that you can set for a command.
+
+[Table of Contents](#table-of-contents)
