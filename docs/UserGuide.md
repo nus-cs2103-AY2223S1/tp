@@ -3,8 +3,93 @@ layout: page
 title: User Guide
 ---
 
+<style>
+h1, h2, h3, h4, h5, h6 {
+  color: #000000;
+}
 
+watson{
+    color:#00a120;
+    background-color:transparent;
+    font-size: 1.2em;
+}
 
+.red-text{
+    color:#D00000;
+    background-color:transparent;
+    font-size: 1.2em;
+}
+
+.green-text{
+    color:#008000;
+    background-color:transparent;
+    font-size: 1.2em;
+}
+
+.orange-text{
+    color:#E36414;
+    background-color:transparent;
+    font-size: 1.2em;
+}
+
+.big-font{
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.infobox {
+    font-size: 1.2em;
+}
+
+.flex-box {
+    display: flex;
+    margin: auto;
+}
+
+.special-box {
+    position: relative;
+    padding: .75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius : .25rem;
+}
+
+.warning-box {
+    background-color: #FFD60A;
+    color: #000000;
+    position: relative;
+    padding: .75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius : .25rem;
+}
+
+.info-box {
+    background-color: #A2D6F9;
+    color: #000000;
+    position: relative;
+    padding: .75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius : .25rem;
+}
+
+.special-img {
+    position: relative;
+    border-radius: 15px;
+    border: 2px solid #000000;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.img-caption {
+    position: relative;
+    text-align: center;
+    font-decoration: italic;
+}
+
+</style>
 
 # Hello! I Am <watson>Watson!</watson>
 <div class="infobox">
@@ -873,6 +958,27 @@ The link will bring you to this guide!
 
 ---
 
-## Glossary
+# Frequently Asked Questions
+
+**Q:** How do I check my `Java` version?  
+**A:** Open Terminal if you’re on Mac or Command Prompt if you’re on Windows. Type “java -version” and press Enter.
+
+**Q:** How do I install `Java 11`?  
+**A:** Download `Java 11` to your computer via this [link](https://www.oracle.com/java/technologies/downloads/).
+
+**Q:** What if the app does not open when I double-click it?  
+**A:** Uninstall the application and reinstall the application again.
+
+**Q:** How do I transfer my data to another Computer?  
+**A:** 
+  1) Install the app in the other computer 
+  2) Delete the empty data file that the new app create. The empty data file should be found in the same folder that 
+the app was installed in.
+  3) Copy and paste the data file with all your previous data into the folder containing the newly installed app. That 
+data file should be found in the folder of your previous Watson app.
+
+
+
+# Glossary
 
 * **Operating System**: The software that runs on your computer.
