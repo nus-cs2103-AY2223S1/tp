@@ -21,9 +21,8 @@ public class GetWardNumberCommand extends GetCommand {
 
     public static final String WARD_NUMBER_PREFIX = "/wn";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " " + WARD_NUMBER_PREFIX
-            + ": Gets all patients within the same ward number and displays them as a list with index numbers. "
-            + "The specified keywords are case-insensitive.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Gets all patients within the same ward number and "
+            + "displays them as a list with index numbers. The specified keywords are case-insensitive.\n"
             + "Parameters: "
             + WARD_NUMBER_PREFIX + " WARD NUMBER\n"
             + "Example: "

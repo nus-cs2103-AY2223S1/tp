@@ -27,6 +27,6 @@ Class Medication {
 
 UpcomingAppointment -up-|> Appointment
 PastAppointment -up-|> Appointment
-Medication "*\nmedication" -->  PastAppointment
+Medication "*\nmedication" <--  PastAppointment
 
 @enduml

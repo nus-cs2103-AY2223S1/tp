@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_CONSULT_SUCCESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DIAGNOSIS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICATION;
 
@@ -31,8 +32,6 @@ public class ConsultCommand extends Command {
             + PREFIX_MEDICATION + "ibuprofen "
             + PREFIX_DIAGNOSIS + "headache, medicine given for 3 days ";
 
-    public static final String MESSAGE_SUCCESS = "Consulted Patient: %1$s";
-
     private final Index index;
     private final PastAppointment appt;
     private final EditCommand.EditPersonDescriptor editPersonDescriptor;
@@ -59,11 +58,17 @@ public class ConsultCommand extends Command {
         }
         Person person = lastShownList.get(index.getZeroBased());
 
-        if (person.getUpcomingAppointment().get().value.equals(LocalDate.now()
-                .format(DateTimeFormatter.ofPattern("dd-MM-uuuu")))) {
+        if (isPresentUpcomingAppointment(person)
+                && person.getUpcomingAppointment().get().value.equals(LocalDate.now()
+                        .format(DateTimeFormatter.ofPattern("dd-MM-uuuu")))) {
             CommandResult editResult = new EditCommand(index, editPersonDescriptor).execute(model);
         }
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, person.getName()));
+        return new CommandResult(String.format(MESSAGE_CONSULT_SUCCESS, person.getName()));
     }
+
+    private boolean isPresentUpcomingAppointment(Person person) {
+        return !person.getUpcomingAppointment().get().toString().equals("Upcoming Appointment Date: None");
+    }
+
 }

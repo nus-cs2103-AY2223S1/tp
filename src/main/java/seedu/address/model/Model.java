@@ -100,12 +100,6 @@ public interface Model {
     void updateCurrentlyViewedPerson(Person person, Index index);
 
     /**
-     * Returns count of people stored in the address book.
-     * @return count of people stored in the address book
-     */
-    int getPersonCount();
-
-    /**
      * Returns a string representation of the address book's census.
      */
     String getCensus();

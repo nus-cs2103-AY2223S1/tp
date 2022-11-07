@@ -22,9 +22,9 @@ NextofKin : ...
 PatientType : ...
 Phone : ...
 
-Name -left-> John
-Phone -up-> John
-NextofKin -down-> John
-PatientType -right-> John
-Email -down-> John
+Name <-left- John
+Phone <-up- John
+NextofKin <-down- John
+PatientType <-right- John
+Email <-down- John
 @enduml

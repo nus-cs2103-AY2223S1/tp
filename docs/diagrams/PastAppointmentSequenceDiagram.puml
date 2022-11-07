@@ -6,7 +6,7 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":CreatePastAppointmentCommandParser" as CreatePastAppointmentCommandParser LOGIC_COLOR
-participant ":CreatePastAppointmentCommand" as CreatePastAppointmentCommand LOGIC_COLOR
+participant "cmd:CreatePastAppointmentCommand" as CreatePastAppointmentCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -24,7 +24,7 @@ create CreatePastAppointmentCommandParser
 AddressBookParser -> CreatePastAppointmentCommandParser
 activate CreatePastAppointmentCommandParser
 
-CreatePastAppointmentCommandParser -> AddressBookParser
+CreatePastAppointmentCommandParser --> AddressBookParser
 deactivate CreatePastAppointmentCommandParser
 
 AddressBookParser -> CreatePastAppointmentCommandParser : parse("appt 1...")
@@ -36,20 +36,20 @@ create CreatePastAppointmentCommand
 CreatePastAppointmentCommandParser -> CreatePastAppointmentCommand
 activate CreatePastAppointmentCommand
 
-CreatePastAppointmentCommand --> CreatePastAppointmentCommandParser : d
+CreatePastAppointmentCommand --> CreatePastAppointmentCommandParser : cmd
 deactivate CreatePastAppointmentCommand
 
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-CreatePastAppointmentCommandParser --> AddressBookParser : d
+CreatePastAppointmentCommandParser --> AddressBookParser : cmd
 destroy CreatePastAppointmentCommandParser
 
-AddressBookParser --> LogicManager : d
+AddressBookParser --> LogicManager : cmd
 deactivate AddressBookParser
 
 LogicManager -> CreatePastAppointmentCommand : execute()
 activate CreatePastAppointmentCommand
 
-CreatePastAppointmentCommand -> Model : addPastAppointment(d)
+CreatePastAppointmentCommand -> Model : addPastAppointment(appt)
 activate Model
 
 Model --> CreatePastAppointmentCommand

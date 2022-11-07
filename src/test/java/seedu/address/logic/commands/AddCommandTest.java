@@ -165,11 +165,6 @@ public class AddCommandTest {
         }
 
         @Override
-        public int getPersonCount() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public String getCensus() {
             throw new AssertionError("This method should not be called.");
         }

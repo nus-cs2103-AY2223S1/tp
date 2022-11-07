@@ -77,7 +77,7 @@ public class GetCommandParserTest {
 
     @Test
     public void parseCommand_getName() throws Exception {
-        List<String> names = Arrays.asList("kartik", "zhehao", "ryan");
+        List<String> names = Arrays.asList("kartik", "zhehao", "ryan", "peiyee");
         GetNameCommand command = new GetNameCommand(new NameContainsKeywordsPredicate(names));
         assertEquals(parser.parse(GetNameCommand.NAME_PREFIX + " "
                 + names.stream().collect(Collectors.joining(" "))), command);

@@ -198,13 +198,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public int getPersonCount() {
-        return addressBook.getPersonList().size();
-    }
-
-    @Override
     public String getCensus() {
-        return addressBook.getCensus(this);
+        return addressBook.getCensus();
     }
 
     /**
