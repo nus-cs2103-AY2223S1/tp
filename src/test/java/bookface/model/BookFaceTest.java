@@ -2,6 +2,7 @@ package bookface.model;
 
 import static bookface.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static bookface.testutil.Assert.assertThrows;
+import static bookface.testutil.TypicalBooks.GET_MOTIVATED;
 import static bookface.testutil.TypicalPersons.ALICE;
 import static bookface.testutil.TypicalPersons.getTypicalBookFaceData;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -81,6 +82,16 @@ public class BookFaceTest {
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> bookFace.getPersonList().remove(0));
+    }
+
+    @Test
+    public void setBook_nullEditedBook_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> bookFace.setBook(GET_MOTIVATED, null));
+    }
+
+    @Test
+    public void returnLoanedBook_nullBook_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> bookFace.returnLoanedBook(null));
     }
 
     /**
