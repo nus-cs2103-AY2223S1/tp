@@ -49,8 +49,8 @@ Given below are my contributions to the project.
       * AddExamCommand, 
       * EditExamCommand
     * Developer Guide:
-        * AddExamCommand
-        * FindTasksCommand
+        * Implementation details for AddExamCommand
+        * Implementation details for FindTasksCommand
         * Manual Testing for commands that I implemented.
         * Use Cases, User Stories for commands that I implemented. 
 
