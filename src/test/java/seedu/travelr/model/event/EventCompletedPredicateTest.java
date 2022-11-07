@@ -3,12 +3,11 @@ package seedu.travelr.model.event;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
-import javafx.collections.FXCollections;
-import javafx.collections.transformation.FilteredList;
-
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.FXCollections;
+import javafx.collections.transformation.FilteredList;
 import seedu.travelr.model.trip.Trip;
 
 class EventCompletedPredicateTest {
