@@ -392,7 +392,7 @@ Shown below is a sequence diagram of what occurs when the execute method of Logi
 |:------------------------------------------------------------:|
 |              Sequence diagram of AddExamCommand              |
 
-Step 1. The user types an `e add` command. 
+Step 1. The user types an `e add m/cs2030s ex/midterms ed/20-12-2022` command. 
 
 Step 2. The command calls `LogicManager#execute()` with 
 the command input as the argument, which then calls `AddressBookParser#parseCommand() ` 
@@ -401,7 +401,7 @@ with command input as the argument.
 Step 3. `AddressBookParser#parseCommand()` matches the command to be 
 an add exam command through the command word and the feature type, which then calls `AddExamCommandParser#parse()`.
 
-Step 4. `AddExamCommandParser#parse()` then parses the command to get `Module`, `ExamDescription` 
+Step 4. `AddExamCommandParser#parse()` then parses `m/cs2030s ex/midterms ed/20-12-2022` to get `Module`, `ExamDescription` 
 and the `ExamDate` objects of the exam by calling their respective `ParserUtil` parse methods.
 Then, an `Exam` object is created with the three objects as arguments. 
 
@@ -458,17 +458,17 @@ Shown below is a sequence diagram of what occurs when the execute method of Logi
 |:----------------------------------------------------------------:|
 |               Sequence diagram of FindTasksCommand               |
 
-Step 1. The user types an `t find` command.
+Step 1. The user types an `t find task` command.
 
 Step 2. The command calls `LogicManager#execute()` with
 the command input as the argument, which then calls `AddressBookParser#parseCommand() `
 with command input as the argument.
 
 Step 3. `AddressBookParser#parseCommand()` matches the command to be
-a find tasks command through the command word and the feature type, which then calls `FindTasksCommandParser#parse()`.
+a find tasks command through the command word and the feature type, which then calls `FindTasksCommandParser#parse()` which takes in `task` as its argument.
 
 Step 4. `FindTasksCommandParser#parse()` will create a `DescriptionContainsKeywordsPredicate` object which is a predicate that takes in the keyword inputted by user and
-tests if the task description matches the keyword.
+tests if the task description matches the keyword- `task`
 Then it will create and return  `FindTasksCommand` object,that takes in a single argument-the `DescriptionContainsKeywordsPredicate` object, 
  to `LogicManager` object.
 
@@ -533,7 +533,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`   | NUS student  | find a task by task description through a command | quickly locate the task instead of having to go through the whole list of tasks just to find it.     |
 | `* *`   | NUS student  | find a module by module code through a command    | quickly locate the module instead of having to go through the whole list of modules just to find it. |                                                   |                                                                                                 |
 | `* * *` | NUS student  | add my exams to the exam list                     | add my upcoming exams to the exam list to track my revision progress.                                |
-| `* * *` | NUS student  | edit the exams in the exam list                   | change the exam details easily if I input the wrong details.                                         |
+| `* * *` | NUS student  | edit the exams in the exam list                   | change and correct the exam details easily if I input the wrong details.                             |
 | `* * *` | NUS student  | view the list of modules I have                   | see the modules I am taking and my study progress for the modules.                                   |
    
 *{More to be added}*
@@ -570,6 +570,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. The provided command is in an invalid command format.
+  
     * 1a1. MODPRO shows an error message. </br>
       Use case ends.
 
@@ -705,6 +706,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. NUS student requests to add an exam. 
 2. MODPRO adds the exam into the exam list.
 
+   Use case ends. 
+
 **Extensions**
 * 1a. The description of the exam is empty
     * 1a1. MODPRO shows an error message. </br>
@@ -734,6 +737,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. NUS student requests to edit a specific exam in the exam list by specifying the index number of the exam to be edited.  
 2. MODPRO updates the specified exam with the new values provided.
 
+   Use case ends. 
+
 **Extensions**
 * 1a. The given exam description is empty. 
     * 1a1. MODPRO shows an error message. </br>
@@ -762,6 +767,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1i. No fields are provided to edit the exam. 
     * 1i1. MODPRO shows an error message. </br>
       Use case ends. 
+* 2a. The module of the specified exam is changed and the exam is linked to some tasks previously. 
+    * 2a1. MODPRO unlinks these tasks from the exam, and the updates the progress bar of the exam. 
+      Use case ends.
 
 ### Non-Functional Requirements
 

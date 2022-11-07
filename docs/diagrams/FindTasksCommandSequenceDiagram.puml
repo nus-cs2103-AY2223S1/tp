@@ -14,10 +14,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("t find task one")
+[-> LogicManager : execute("t find task")
 activate LogicManager
 
-LogicManager -> AddressBookParser: parseCommand("t find...")
+LogicManager -> AddressBookParser: parseCommand("t find task")
 activate AddressBookParser
 
 create FindTasksCommandParser
@@ -27,7 +27,7 @@ activate FindTasksCommandParser
 FindTasksCommandParser --> AddressBookParser
 deactivate FindTasksCommandParser
 
-AddressBookParser -> FindTasksCommandParser: parse()
+AddressBookParser -> FindTasksCommandParser: parse(task)
 activate FindTasksCommandParser
 
 create DescriptionContainsKeywordsPredicate
