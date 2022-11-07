@@ -14,7 +14,6 @@ import seedu.taassist.logic.commands.exceptions.CommandException;
 import seedu.taassist.logic.parser.TaAssistParser;
 import seedu.taassist.logic.parser.exceptions.ParseException;
 import seedu.taassist.model.Model;
-import seedu.taassist.model.ReadOnlyTaAssist;
 import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.session.Session;
 import seedu.taassist.model.student.Student;
@@ -60,11 +59,6 @@ public class LogicManager implements Logic {
         }
 
         return commandResult;
-    }
-
-    @Override
-    public ReadOnlyTaAssist getTaAssist() {
-        return model.getTaAssist();
     }
 
     @Override
