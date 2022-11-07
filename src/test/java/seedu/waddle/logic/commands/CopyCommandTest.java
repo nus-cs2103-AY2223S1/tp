@@ -34,7 +34,7 @@ public class CopyCommandTest {
     }
 
     @Test
-    public void execute_correctStage_firstItinerary() {
+    public void execute_correctStage_correctOutput() {
         // copy does not work on linux
         if (SystemUtils.IS_OS_LINUX) {
             return;
@@ -52,7 +52,7 @@ public class CopyCommandTest {
         String expectedClipboardData = "Spring Trip" + System.lineSeparator()
                 + "    Country: Australia" + System.lineSeparator()
                 + "    Duration: 14 Days" + System.lineSeparator()
-                + "    Dates: 2022-01-01 - 2022-01-14" + System.lineSeparator()
+                + "    Dates: 2023-01-01 - 2023-01-14" + System.lineSeparator()
                 + "    Waddlers: 1" + System.lineSeparator()
                 + "    Budget: $300.00" + System.lineSeparator()
                 + System.lineSeparator() + "Day 1" + System.lineSeparator()

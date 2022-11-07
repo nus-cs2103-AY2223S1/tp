@@ -10,7 +10,7 @@ import seedu.waddle.model.Model;
 import seedu.waddle.model.itinerary.Itinerary;
 
 /**
- * Export an itinerary into pdf format.
+ * Export an itinerary into PDF format.
  */
 public class PdfCommand extends Command {
 

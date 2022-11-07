@@ -6,13 +6,10 @@ import static seedu.waddle.commons.core.Messages.MESSAGE_ITEM_PAST_MIDNIGHT;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.List;
 import java.util.Optional;
 
 import seedu.waddle.commons.core.Text;
 import seedu.waddle.commons.core.index.Index;
-import seedu.waddle.logic.PdfFieldInfo;
-import seedu.waddle.logic.PdfFiller;
 import seedu.waddle.logic.commands.exceptions.CommandException;
 import seedu.waddle.model.item.exceptions.Period;
 
@@ -149,10 +146,11 @@ public class Day {
      */
     public String getVacantSlots() {
         if (this.itemList.getSize() == 0) {
-            return "Day " + (this.dayNumber + 1) + ":\n    Free!\n";
+            return "Day " + (this.dayNumber + 1) + ":" + System.lineSeparator()
+                    + "    Free!" + System.lineSeparator();
         }
         StringBuilder vacantSlots = new StringBuilder("Day ");
-        vacantSlots.append((this.dayNumber + 1)).append(":").append(System.getProperty("line.separator"));
+        vacantSlots.append((this.dayNumber + 1)).append(":").append(System.lineSeparator());
 
         ArrayList<Period> vacantPeriods = new ArrayList<>();
         Period toBeSplit = new Period(LocalTime.MIN, LocalTime.MAX);
@@ -172,7 +170,7 @@ public class Day {
         }
         for (Period period : vacantPeriods) {
             vacantSlots.append("    ").append(period.getStartString()).append(" - ")
-                    .append(period.getEndString()).append(System.getProperty("line.separator"));
+                    .append(period.getEndString()).append(System.lineSeparator());
         }
 
         return vacantSlots.toString();
@@ -215,35 +213,5 @@ public class Day {
                 .append(System.lineSeparator());
 
         return dayText.toString();
-    }
-
-    public List<PdfFieldInfo> getPdfFieldInfoList() {
-        List<PdfFieldInfo> fieldList = new ArrayList<>();
-        for (int i = 0; i < this.itemList.getSize(); i++) {
-            Item item = this.itemList.get(i);
-            PdfFieldInfo time = new PdfFieldInfo("time" + i, item.getTimeString(Text.INDENT_NONE));
-            PdfFieldInfo activity = new PdfFieldInfo("item" + i, item.getDescription().toString());
-            fieldList.add(time);
-            fieldList.add(activity);
-        }
-        int remainder = (fieldList.size() / 2) % PdfFiller.MAX_DISPLAY;
-        if (remainder != 0) {
-            for (int i = 0; i < PdfFiller.MAX_DISPLAY - remainder; i++) {
-                int nextPos = remainder + i;
-                PdfFieldInfo time = new PdfFieldInfo("time" + nextPos, "");
-                PdfFieldInfo activity = new PdfFieldInfo("item" + nextPos, "");
-                fieldList.add(time);
-                fieldList.add(activity);
-            }
-        }
-        if (fieldList.size() == 0) {
-            for (int i = 0; i < PdfFiller.MAX_DISPLAY; i++) {
-                PdfFieldInfo time = new PdfFieldInfo("time" + i, "");
-                PdfFieldInfo activity = new PdfFieldInfo("item" + i, "");
-                fieldList.add(time);
-                fieldList.add(activity);
-            }
-        }
-        return fieldList;
     }
 }

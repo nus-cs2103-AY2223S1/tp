@@ -227,7 +227,7 @@ public class ParserUtil {
         String trimmedStartTime = startTime.trim();
         LocalTime time;
         try {
-            time = LocalTime.parse(startTime);
+            time = LocalTime.parse(trimmedStartTime);
         } catch (DateTimeParseException e) {
             throw new ParseException(StartTime.MESSAGE_CONSTRAINTS);
         }

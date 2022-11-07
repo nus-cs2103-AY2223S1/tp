@@ -15,7 +15,7 @@ import seedu.waddle.model.Model;
 import seedu.waddle.model.itinerary.Itinerary;
 
 /**
- * Lists all persons in the address book to the user.
+ * Copies the itinerary onto the user's clipboard.
  */
 public class CopyCommand extends Command {
 

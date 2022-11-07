@@ -6,7 +6,7 @@ import static seedu.waddle.commons.util.AppUtil.checkArgument;
  * Represents an Item's duration in minutes.
  */
 public class Duration {
-    public static final String MESSAGE_CONSTRAINTS = "Duration must be more than 0 minutes and shorter than"
+    public static final String MESSAGE_CONSTRAINTS = "Duration must be more than 0 minutes and shorter than "
             + "1440 minutes (1 day).";
     private final int duration;
 

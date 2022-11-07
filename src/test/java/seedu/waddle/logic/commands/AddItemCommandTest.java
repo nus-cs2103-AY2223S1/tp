@@ -2,77 +2,56 @@ package seedu.waddle.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.waddle.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.waddle.commons.core.GuiSettings;
+import seedu.waddle.logic.StageManager;
 import seedu.waddle.logic.commands.exceptions.CommandException;
 import seedu.waddle.model.Model;
 import seedu.waddle.model.ReadOnlyUserPrefs;
 import seedu.waddle.model.ReadOnlyWaddle;
-import seedu.waddle.model.Waddle;
+import seedu.waddle.model.item.Item;
 import seedu.waddle.model.itinerary.Itinerary;
+import seedu.waddle.testutil.ItemBuilder;
 import seedu.waddle.testutil.ItineraryBuilder;
 
-public class AddCommandTest {
 
+public class AddItemCommandTest {
     @Test
-    public void constructor_nullItinerary_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+    public void constructor_nullItem_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddItemCommand(null));
     }
 
     @Test
-    public void execute_itineraryAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingItineraryAdded modelStub = new ModelStubAcceptingItineraryAdded();
+    public void execute_itemAcceptedByModel_addSuccessful() throws Exception {
+        Item validItem = new ItemBuilder().build();
         Itinerary validItinerary = new ItineraryBuilder().build();
+        AddItemCommandTest.ModelStubWithItinerary modelStub = new ModelStubWithItinerary(validItinerary);
+        StageManager stageManager = StageManager.getInstance();
+        stageManager.setWishStage(validItinerary);
+        CommandResult commandResult = new AddItemCommand(validItem).execute(modelStub);
 
-        CommandResult commandResult = new AddCommand(validItinerary).execute(modelStub);
-
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validItinerary), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validItinerary), modelStub.itinerariesAdded);
+        assertEquals(String.format(AddItemCommand.MESSAGE_SUCCESS, validItem), commandResult.getFeedbackToUser());
     }
 
     @Test
-    public void execute_duplicateItinerary_throwsCommandException() {
+    public void execute_duplicateItem_throwsDuplicateItemException() {
+        Item validItem = new ItemBuilder().build();
         Itinerary validItinerary = new ItineraryBuilder().build();
-        AddCommand addCommand = new AddCommand(validItinerary);
-        ModelStub modelStub = new ModelStubWithItinerary(validItinerary);
+        validItinerary.addItem(validItem);
+        AddItemCommand addItemCommand = new AddItemCommand(validItem);
+        AddItemCommandTest.ModelStub modelStub = new ModelStubWithItinerary(validItinerary);
+        StageManager stageManager = StageManager.getInstance();
+        stageManager.setWishStage(validItinerary);
 
         assertThrows(CommandException.class,
-                AddCommand.MESSAGE_DUPLICATE_ITINERARY, () -> addCommand.execute(modelStub));
-    }
-
-    @Test
-    public void equals() {
-        Itinerary summer = new ItineraryBuilder().withName("Summer").build();
-        Itinerary winter = new ItineraryBuilder().withName("Winter").build();
-        AddCommand addSummerCommand = new AddCommand(summer);
-        AddCommand addWinterCommand = new AddCommand(winter);
-
-        // same object -> returns true
-        assertTrue(addSummerCommand.equals(addSummerCommand));
-
-        // same values -> returns true
-        AddCommand addSummerCommandCopy = new AddCommand(summer);
-        assertTrue(addSummerCommand.equals(addSummerCommandCopy));
-
-        // different types -> returns false
-        assertFalse(addSummerCommand.equals(1));
-
-        // null -> returns false
-        assertFalse(addSummerCommand.equals(null));
-
-        // different itinerary -> returns false
-        assertFalse(addSummerCommand.equals(addWinterCommand));
+                AddItemCommand.MESSAGE_DUPLICATE_ITEM, () -> addItemCommand.execute(modelStub));
     }
 
     /**
@@ -160,36 +139,5 @@ public class AddCommandTest {
             requireNonNull(itinerary);
             this.itinerary = itinerary;
         }
-
-        @Override
-        public boolean hasItinerary(Itinerary itinerary) {
-            requireNonNull(itinerary);
-            return this.itinerary.isSameItinerary(itinerary);
-        }
     }
-
-    /**
-     * A Model stub that always accept the itinerary being added.
-     */
-    private class ModelStubAcceptingItineraryAdded extends ModelStub {
-        final ArrayList<Itinerary> itinerariesAdded = new ArrayList<>();
-
-        @Override
-        public boolean hasItinerary(Itinerary itinerary) {
-            requireNonNull(itinerary);
-            return itinerariesAdded.stream().anyMatch(itinerary::isSameItinerary);
-        }
-
-        @Override
-        public void addItinerary(Itinerary itinerary) {
-            requireNonNull(itinerary);
-            itinerariesAdded.add(itinerary);
-        }
-
-        @Override
-        public ReadOnlyWaddle getWaddle() {
-            return new Waddle();
-        }
-    }
-
 }

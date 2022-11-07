@@ -40,7 +40,7 @@ public class CommandTestUtil {
     public static final String VALID_COUNTRY_WINTER = "Japan";
     public static final String VALID_COUNTRY_TEST = "Test Country";
 
-    public static final String VALID_START_DATE_SUMMER = "2022-08-01";
+    public static final String VALID_START_DATE_SUMMER = "2023-08-01";
     public static final String VALID_START_DATE_WINTER = "2023-01-01";
     public static final String VALID_START_DATE_TEST = "2011-11-11";
     public static final String VALID_DURATION_SUMMER = "26";
@@ -78,11 +78,11 @@ public class CommandTestUtil {
     public static final String BUDGET_DESC_WINTER = " " + PREFIX_BUDGET + VALID_BUDGET_WINTER;
     public static final String BUDGET_DESC_TEST = " " + PREFIX_BUDGET + VALID_BUDGET_TEST;
 
-    public static final String INVALID_NAME_DESC = " " + PREFIX_DESCRIPTION + "Family Trip&"; // '&' not allowed
+    public static final String INVALID_NAME_DESC = " " + PREFIX_DESCRIPTION + "Family Trip^"; // '&' not allowed
     public static final String INVALID_COUNTRY_DESC = " " + PREFIX_COUNTRY + "Germany("; // '(' not allowed in country
     public static final String INVALID_START_DATE_DESC = " " + PREFIX_START_DATE + "Jan 01"; // wrong format
-    // only numbers allowed for duration
-    public static final String INVALID_DURATION_DESC = " " + PREFIX_ITINERARY_DURATION + "3 days";
+    public static final String INVALID_DURATION_DESC = " " + PREFIX_ITINERARY_DURATION
+            + "3 days"; // only numbers allowed for duration
     public static final String INVALID_PEOPLE_DESC = " " + PREFIX_PEOPLE + "five"; // only numbers allowed for people
     public static final String INVALID_BUDGET_DESC = " " + PREFIX_BUDGET + "$100"; // only numbers allowed for budget
 

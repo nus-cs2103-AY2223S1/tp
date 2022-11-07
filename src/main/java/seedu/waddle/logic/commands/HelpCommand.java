@@ -3,7 +3,7 @@ package seedu.waddle.logic.commands;
 import seedu.waddle.model.Model;
 
 /**
- * Format full help instructions for every command for display.
+ * Opens the help window with a URL to the user guide.
  */
 public class HelpCommand extends Command {
 

@@ -38,10 +38,10 @@ public class EditCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_DESCRIPTION + "NAME] "
             + "[" + PREFIX_COUNTRY + "COUNTRY] "
-            + "[" + PREFIX_START_DATE + "START DATE] "
+            + "[" + PREFIX_START_DATE + "START_DATE] "
             + "[" + PREFIX_ITINERARY_DURATION + "DURATION] "
-            + "[" + PREFIX_PEOPLE + "PEOPLE] "
-            + "[" + PREFIX_BUDGET + "BUDGET]...\n"
+            + "[" + PREFIX_PEOPLE + "NUMBER_OF_WADDLERS] "
+            + "[" + PREFIX_BUDGET + "BUDGET]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_COUNTRY + "Australia "
             + PREFIX_START_DATE + "2022-07-30 ";

@@ -18,7 +18,7 @@ public class UnplanCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Unschedules an item identified "
             + "by the index number used in the day list.\n"
-            + "Parameters: DAY_INDEX.TASK_INDEX (must be an existing index) "
+            + "Parameters: DAY_INDEX.TASK_INDEX (must exist in the day list) "
             + "Example: " + COMMAND_WORD + " 1.2 ";
 
     public static final String MESSAGE_SUCCESS = "Item unscheduled: %1$s";

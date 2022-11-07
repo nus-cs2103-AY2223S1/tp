@@ -14,7 +14,7 @@ import seedu.waddle.model.itinerary.People;
 public class ItineraryBuilder {
     public static final String DEFAULT_NAME = "Summer";
     public static final String DEFAULT_COUNTRY = "FRANCE";
-    public static final String DEFAULT_START_DATE = "2022-10-14";
+    public static final String DEFAULT_START_DATE = "2023-10-14";
     public static final String DEFAULT_DURATION = "1";
     public static final String DEFAULT_PEOPLE = "1";
     public static final String DEFAULT_BUDGET = "2000.00";
