@@ -19,10 +19,10 @@ BookFace replaces a paper-based system or manual tracking of books, providing gr
 
 * **Documentation contributions**:
     * User Guide:
-        * Added a command summary  ([Link to section](https://ay2223s1-cs2103-f14-4.github.io/tp/UserGuide.html#command-summary) | Pull request [#60](https://github.com/AY2223S1-CS2103-F14-4/tp/pull/60))
+      * Added a command summary  ([Link to section](https://ay2223s1-cs2103-f14-4.github.io/tp/UserGuide.html#command-summary), Pull request [#60](https://github.com/AY2223S1-CS2103-F14-4/tp/pull/60))
 
     * Developer Guide:
-        * Added implementation details for the List feature ([Link to section](https://ay2223s1-cs2103-f14-4.github.io/tp/DeveloperGuide.html#list-feature) | Pull request [#139](https://github.com/AY2223S1-CS2103-F14-4/tp/pull/139))
+      * Added implementation details for the List feature ([Link to section](https://ay2223s1-cs2103-f14-4.github.io/tp/DeveloperGuide.html#list-feature), Pull request [#139](https://github.com/AY2223S1-CS2103-F14-4/tp/pull/139))
 * **Project Management**
   * Managed releases `v1.2` and `v1.3` on Github
   * Created demonstration videos for `v1.2` and `v1.3`<br>

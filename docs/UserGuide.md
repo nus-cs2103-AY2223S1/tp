@@ -40,7 +40,7 @@ BookFace replaces a paper-based system or manual tracking of books, providing gr
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `BookFace.jar` from here.
+2. Download the latest `BookFace.jar` from [here](https://github.com/AY2223S1-CS2103-F14-4/tp/releases/tag/v1.4).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your BookFace.
 
