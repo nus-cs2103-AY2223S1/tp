@@ -281,7 +281,7 @@ Note: FoodWhere comes with preloaded data, and can be started on a fresh state w
 
 Step 1. The user launches the application for the first time. FoodWhere will be initialized with the preloaded data.
 
-Step 2. The user executes `rlist` to list **all** reviews on the FoodWhere User Interface.
+Step 2. The user executes `rlist` to list **all** reviews on the FoodWhere user interface.
 
 ![ListReview](images/ListReview.png)
 
@@ -308,7 +308,7 @@ Note: FoodWhere comes with preloaded data, and can be started on a fresh state w
 
 Step 1. The user launches the application for the first time. FoodWhere will be initialized with the preloaded data.
 
-Step 2. The user list all the reviews by entering the `rlist` command.
+Step 2. The user list all the reviews by entering the `rlist` command. Ensure that there is an existing Review with index 2 in the review list.
 
 Step 3. The user executes `rdel 2` command to delete the last review with index 2.
 
@@ -337,7 +337,7 @@ Given below is an example usage scenario and how the listing of all reviews mech
 
 Note: FoodWhere comes with preloaded data, and can be started on a fresh state with the `clear` command.
 
-Step 1. The user launches the application for the first time. FoodWhere will be initialized with the preloaded data.
+Step 1. The user launches the application for the first time. FoodWhere will be initialized with the preloaded data. Ensure that there is an existing Review with index 2 in the review list.
 
 Step 2. The user executes `redit 2 r/5` command to edit `Review` with index 2 to edit its rating to 5.
 
@@ -559,7 +559,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                    | I want to …​                                                                                                                  | So that I can…​                                                                                                                                         | Implemented in current version                    |
+| Priority | As a …​                   | I want to …​                                                                                                                 | So that I can…​                                                                                                                                        | Implemented in current version                    |
 |----------|---------------------------|------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------|
 | `* * *`  | user                      | create reviews for a food stall                                                                                              | record which food stall that I have visited have nice food                                                                                             | Yes                                               |
 | `* * *`  | user                      | view reviews for a food stall                                                                                                | easily find out the best food I have eaten                                                                                                             | Yes                                               |
@@ -581,20 +581,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | user                      | store individual food ratings of a place                                                                                     | see which food I have reviewed from a place                                                                                                            | Yes                                               |
 | `*`      | user                      | search food places by food type                                                                                              | organize my work to sure variety in food type in my reviews (for example, same/different types of food in the same review or to facilitate comparison) | Yes (by Tag)                                      |
 | `*`      | user                      | send the reviews through other social media platforms                                                                        | share the review with my friends without having to make separate posts                                                                                 | No                                                |
-| `* * *`  | user                      | include a date/day on my reviews                                                                                             | track how much reviewing I have done over time                                                                                                         | Yes (by Content)                                  |
-| `*`      | user                      | see review that are most recent (sorting)                                                                                    | get the most updated review                                                                                                                            | No                                                |
+| `* * *`  | user                      | include a date/day on my reviews                                                                                             | track how much reviewing I have done over time                                                                                                         | Yes (by Date)                                     |
+| `*`      | user                      | see review that are most recent by date (sorting)                                                                            | get the most updated review                                                                                                                            | Yes                                               |
 | `*`      | user                      | archive existing stalls / review                                                                                             | not be distracted by previous reviews made                                                                                                             | Yes (by copying data file to another location)    |
 | `* * *`  | new user                  | check out what tools are available in this application                                                                       | learn how to use the application                                                                                                                       | Yes                                               |
-| `* * *`  | user helping another user | import data                                                                                                                  | get existing lists from friends/coworkers to work on                                                                                                   | Yes (by copying data into `foodwhere.json` file   |
+| `* * *`  | user helping another user | import data                                                                                                                  | get existing lists from friends/coworkers to work on                                                                                                   | Yes (by copying data into `foodwhere.json` file)  |
 | `* * *`  | user                      | export data                                                                                                                  | archive my data entries somewhere else                                                                                                                 | Yes (by copying data file to another location)    |
 | `*`      | user                      | set a deadline to review a particular stall                                                                                  | remind myself to complete the task                                                                                                                     | No                                                |
 | `*`      | experienced user          | see statistics of total number of reviews or stalls created                                                                  | keep track of my performance and targets for the year                                                                                                  | No                                                |
-| `*`      | user                      | include custom rating metrics on my review (star system? Health benefits?)                                                   | be more nuanced on my review                                                                                                                           | No                                                |
+| `*`      | user                      | include custom rating metrics on my review (star system? Health benefits?)                                                   | be more nuanced on my review                                                                                                                           | No (Current rating system is by star only)        |
 | `* * *`  | user                      | include stall opening and closing times                                                                                      | plan my schedule on when to visit the stall accordingly                                                                                                | Yes (by Tag)                                      |
 | `*`      | impatient user            | manage up to 1000 stalls and reviews in reasonable time                                                                      | minimize my waiting time                                                                                                                               | Yes                                               |
 | `*`      | impatient user            | open the app quickly                                                                                                         | not wait so long                                                                                                                                       | Yes                                               |
 | `*`      | impatient user            | get a visualization for any loading times                                                                                    | know how long I need to wait                                                                                                                           | No                                                |
-| `* *`    | user                      | search for past reviews by substring                                                                                         | see places I’ve been to before                                                                                                                         | No (Exact string match as of now by Review name)  |
+| `* *`    | user                      | search for past reviews by substring                                                                                         | see places I’ve been to before                                                                                                                         | No (Exact string match as of now by Stall name)   |
 | `* *`    | user                      | filter for past reviews by stall                                                                                             | see places I’ve been to before                                                                                                                         | Yes (find Review by stall name)                   |
 | `*`      | advanced user             | add command aliases                                                                                                          | speed up my workflow                                                                                                                                   | No                                                |
 | `*`      | user                      | plan my social media posting schedule of my current reviews <br/> (i.e. I want to post about this stall at this future date) | manage my social media presence                                                                                                                        | No                                                |                                                                                                                                                     
@@ -826,7 +826,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes from step 3.
 * 2b. User uses the find food stalls command with the wrong syntax.
-    * 2a1. FoodWhere sends an error message to the User, indicating that the syntax is incorrect, and attaches the correct syntax format in the message.
+    * 2b1. FoodWhere sends an error message to the User, indicating that the syntax is incorrect, and attaches the correct syntax format in the message.
 
       Use case ends.
 
@@ -955,7 +955,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 #### Other requirements
 
 1.  Images used in FoodWhere's UI need to adhere to copyright.
-1.  FoodWhere's codebase should be following the Object-oriented paradigm primarily.
+1.  FoodWhere's codebase should be following the Object-Oriented paradigm primarily.
 1.  FoodWhere's development must be strictly conducted under a framework where milestones must be met without delays and each milestone (v1.2, v1.3, v1.4) must have a usable product.
 1.  FoodWhere should be developed with respect to its very specific target user profile.
 1.  FoodWhere should be developed in a team.
@@ -982,16 +982,18 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1. Download the JAR file and copy into an empty folder.
 
-   2. Double-click the jar file<br>
+   2. Double-click the JAR file.<br>
       Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 2. Saving window preferences
 
+   Prerequisites: The JAR file is in a folder that is not write-protected.
+
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the JAR file.<br>
       Expected: The most recent window size and location is retained.
 
 3. Exiting the program
@@ -1018,7 +1020,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Adding a review to a stall
 
-    1. Prerequisites: At least one stall entry exists
+    1. Prerequisites: At least one stall entry exists.
 
     2. Test case: `radd s/1 d/20/09/2022 c/The food was good, the chicken rice was fresh. r/4 t/opensDaily t/worthyTrip`<br>
        Expected: A new review is added to the list as a review of the first stall with tags `opensdaily` and `worthytrip` as tags are saved in lowercase. Details of the newly added review shown in the status message. GUI updates to show the newly added review and its details.
@@ -1074,7 +1076,7 @@ testers are expected to do more *exploratory* testing.
     3. Test case: `rdel 0`<br>
        Expected: No review is deleted. Error details shown in the status message. GUI does not update.
 
-    4. Other incorrect stall delete commands to try: `rdel`, `rdel a`, `rdel -1`, `rdel x`(where x is larger than the list size)<br>
+    4. Other incorrect review delete commands to try: `rdel`, `rdel a`, `rdel -1`, `rdel x`(where x is larger than the list size)<br>
        Expected: Similar to previous.
 
 ### Editing a stall
@@ -1224,13 +1226,13 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. Test case: Simulate data file is missing by deleting `foodwhere.json` in data folder<br>
+   1. Test case: Simulate data file is missing by deleting `foodwhere.json` in data folder.<br>
       Expected: Upon launching FoodWhere, the GUI displays the default stalls and reviews list.
    
-   2. Test case: Simulate data file goes corrupt by editing a data field to an invalid value while FoodWhere is running<br>
+   2. Test case: Simulate data file goes corrupt by editing a data field to an invalid value while FoodWhere is running.<br>
       Condition: No command that edits data is executed after editing the data file with invalid value<br>
       Expected: FoodWhere runs normally and does not crash. However, upon closing and re-launching the program, the GUI displays an empty stalls and reviews list.
    
 2. Commands that change data will modify data file 
-   1. Test case: Run any command that affects the data. E.g. `sadd`, `radd`, `sdel`, `rdel` and exit the program with the `exit` command<br>
+   1. Test case: Run any command that affects the data. E.g. `sadd`, `radd`, `sdel`, `rdel` and exit the program with the `exit` command.<br>
       Expected: Upon re-launching FoodWhere, the edits made to the data are preserved.
