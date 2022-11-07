@@ -261,7 +261,7 @@ Format: `remark INDEX [r/REMARK]`
 
 <div markdown="block" class="alert alert-primary">
 **:bulb: Tip:** <br>
-* The remark is optional. If you do not include the remark (i.e. input `remark INDEX` as your command), FRIDAY will
+* The remark is optional. If you do not include the remark (i.e. input `remark INDEX` as your command), FRIDAY will 
 remove any existing remark for the specified student.<br>
 </div>
 
@@ -391,7 +391,7 @@ Format: `grade INDEX [ra1/RA1_SCORE] [ra2/RA2_SCORE] [pa/PRACTICAL_SCORE] [mt/MI
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Note:** <br>
-* The index of the student must be specified and there should be exactly one INDEX parameter.
+* The index of the student must be specified and there should be exactly one `INDEX` parameter.
 </div>
 
 <div markdown="span" class="alert alert-primary">
@@ -417,9 +417,9 @@ The Mastery Check of a student can only be marked as passed if:
 
 Format: `mark INDEX`
 
-<div markdown="block" class="alert alert-primary">
-**:bulb: Tip:** <br>
-* The index of the student must be specified and there should be exactly one INDEX parameter.<br>
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:** <br>
+* The index of the student must be specified and there should be exactly one `INDEX` parameter.
 </div>
 
 Example: Enter `mark 1`.
