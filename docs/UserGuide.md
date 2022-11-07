@@ -715,7 +715,7 @@ Prefixes that start with `p` are for Project details.
 
 Prefixes that start with `s` are for Project Staff member details.
 
-Prefixes that start with `t` and are 2 letters long are for Task details.
+Prefixes that start with `t` and are 2 or more letters long are for Task details.
 
 The prefix `t/` is for tags that are used for Projects and Staff only.
 
