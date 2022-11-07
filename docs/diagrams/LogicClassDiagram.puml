@@ -8,6 +8,7 @@ skinparam classBackgroundColor LOGIC_COLOR
 package Logic {
 
 Class SoConnectParser
+Class AutocompleteManager
 Class XYZCommand
 Class CommandResult
 Class "{abstract}\nCommand" as Command
@@ -29,6 +30,7 @@ HiddenOutside ..> Logic
 
 LogicManager .right.|> Logic
 LogicManager -right->"1" SoConnectParser
+LogicManager -left->"1" AutocompleteManager
 SoConnectParser ..> XYZCommand : creates >
 
 XYZCommand -up-|> Command

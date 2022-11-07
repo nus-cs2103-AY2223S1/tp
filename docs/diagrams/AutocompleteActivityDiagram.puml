@@ -1,0 +1,31 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User types in the command box;
+if () then ([is a valid search command])
+    :Gets valid search arguments;
+    if () then ([has at least one prefix and the last prefix has a valid argument])
+        :Gets the last prefix and argument;
+        :Generates a list of autocomplete entries;
+    else ([no])
+        :Gets an invalid argument;
+        :Generates an empty list of autocomplete entry;
+    endif
+else ([no])
+    :Gets an invalid search arguments;
+    :Generates an empty list of autocomplete entry;
+endif
+if () then ([is an empty list of autocomplete entry])
+    :Hides autocomplete display box;
+else ([no])
+    :Populates the autocomplete display box;
+    :Shows the autocomplete display box;
+endif
+stop
+
+
+
+
+
+@enduml
