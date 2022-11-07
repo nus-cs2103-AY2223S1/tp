@@ -191,7 +191,7 @@ Examples:
 * `addStudent nm/John Doe id/928C class/1A pn/Bob Doe hp/98765432 e/bobdoe@gmail.com exam/CA1 50`
 
 <div markdown="span" class="alert alert-primary">:bulb:
-**Tip:** Optional fields can be added later using the [edit command](#414-editing-a-student-record--edit).
+**Tip:** Optional fields can be added later using the [edit command](#422-editing-a-student-record--edit).
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb:
