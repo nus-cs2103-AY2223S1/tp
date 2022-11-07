@@ -14,7 +14,6 @@ Waddle allows you to plan your travels in **3 simple steps**.
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always"></div>
-
 ## Table of Contents
 1. [**Quick start**](#quick-start)
 2. [**Features**](#features)
@@ -51,7 +50,6 @@ Waddle allows you to plan your travels in **3 simple steps**.
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always"></div>
-
 ## Quick start
 To begin planning your travels with Waddle, simply set it up as follows:
 
@@ -82,7 +80,6 @@ For more commands and their details, refer to the [Features](#features) section 
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always"></div>
-
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -127,7 +124,6 @@ Exits the Waddle program.
 Format: `exit`
 
 <div style="page-break-after: always"></div>
-
 ### The main page
 The main page, or home page, of Waddle displays the list of itineraries you have created and stored in the app.
 
@@ -140,7 +136,6 @@ The main page, or home page, of Waddle displays the list of itineraries you have
 Using the [`select` command](#selecting-an-itinerary--select)  will bring you to the [planning page](#the-planning-page) of the selected itinerary.
 
 <div style="page-break-after: always"></div>
-
 ### Commands on the main page
 
 ### Creating a new itinerary : `add`
@@ -172,7 +167,6 @@ alphanumeric characters, spaces and these following special characters: `()&!':.
   - e.g. `b/1000.505` will be reflected as $1,000.51.
 
 </div>
-
 
 ### Listing all itineraries : `list`
 
@@ -255,7 +249,6 @@ Examples:
 * `select 1`
 
 <div style="page-break-after: always"></div>
-
 ### The planning page
 The planning page of an itinerary displays the list of items you have added to the itinerary. Items on the Wishlist that have not been added to you schedule yet will appear on top in order of priority, while scheduled items will appear in order of date and time.
 
@@ -268,7 +261,6 @@ Here's an example of how the item planning page looks like:
 ![item planning page](images/itemPlanningUi.png)
 
 <div style="page-break-after: always"></div>
-
 [Commands exclusive to the planning page](#commands-on-the-planning-page) can help you:
 * [add](#adding-an-item--add) new items
 * [edit](#editing-the-details-of-an-item--edit) or [delete](#deleting-an-item--delete) existing items
@@ -279,7 +271,6 @@ Here's an example of how the item planning page looks like:
 Using the [`home` command](#returning-to-main-page--home)  will bring you to the [main page](#the-main-page) of the selected itinerary.
 
 <div style="page-break-after: always"></div>
-
 ### Commands on the item planning page
 
 ### Adding an item : `add`
@@ -352,7 +343,6 @@ Examples:
 * `delete 2.1` would delete the 1st item in the Day 2 item list.
 
 <div style="page-break-after: always"></div>
-
 ### Viewing vacant timeslots : `free`
 
 Displays the vacant timeslots available for scheduling items.
@@ -371,7 +361,6 @@ Format: `plan INDEX d/DAY_NUMBER st/START_TIME`
 * `START_TIME` should be given in the format `hh:mm`, or `hh:mm:ss` where `hh` is the hour in 24-hour format, `mm` is the minute, and `ss` is the seconds.
 * The end time of the item is automatically calculated by adding the `DURATION` of the item to the `START_TIME`.
 * You can only add an item if there is no clash in timing between the start and end time of the new item, and the start and end time of any existing scheduled item.
-
 
 <div markdown="block" class="alert alert-info">
 
@@ -399,7 +388,6 @@ Examples:
 * `unplan 4.5` would unschedule the 5th item in the Day 4 item list.
 
 <div style="page-break-after: always"></div>
-
 ### Copying to clipboard : `copy`
 
 Copies the itinerary in a text format onto your device's clipboard so you can paste it anywhere.
@@ -420,7 +408,6 @@ Here's an example of how the copied text would look like:
 </div>
 
 <div style="page-break-after: always"></div>
-
 ### Exporting as PDF file : `pdf`
 
 Exports the itinerary as a PDF file. The file can be found under the "Waddle" folder in your "Documents" folder.
@@ -448,7 +435,6 @@ Returns you to the main itinerary list page.
 Format: `home`
 
 <div style="page-break-after: always"></div>
-
 ### Advanced
 
 ### Saving the data
@@ -466,7 +452,6 @@ If your changes to the data file makes its format invalid, Waddle will discard a
 --------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always"></div>
-
 ## FAQ
 
 **Q**: How do I transfer my data to another computer?<br>
@@ -475,7 +460,6 @@ If your changes to the data file makes its format invalid, Waddle will discard a
 --------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always"></div>
-
 ## Command summary
 
 ### Home page commands
@@ -493,7 +477,6 @@ If your changes to the data file makes its format invalid, Waddle will discard a
 | [**Exit**](#exiting-waddle--exit)                                | `exit`                                                                                                                                                            |
 
 <div style="page-break-after: always"></div>
-
 ### Item planning page commands
 
 | Action                                                       | Format, Examples                                                                                         |
