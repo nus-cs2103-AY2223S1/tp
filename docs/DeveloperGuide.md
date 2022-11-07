@@ -675,9 +675,8 @@ with the shortest and easiest to type command possible. It also allowed for comm
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​             | I want to …​                                                                               | So that I can…​                                                                             |
-|----------|---------------------|--------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|
+| -------- | ------------------- | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------- |
 | `* * *`  | student developer   | track multiple projects spread across different websites in one place.                     |                                                                                             |
-| `* * *`  | forgetful developer | see all the tasks for my projects on one page                                              | I will remember what needs to be an experienced developer,                                  |
 | `* * *`  | developer           | see the projects automatically sorted in accordance with the deadline                      | I can manage and clear those with a higher urgency first                                    |
 | `* * *`  | user                | add projects to the application                                                            |                                                                                             |
 | `* * *`  | user                | delete projects from the application                                                       | I can keep my data accurate if I make a mistake in entering data.                           |
@@ -687,9 +686,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                | add deadlines to the projects                                                              | I can prioritize accordingly.                                                               |
 | `* * *`  | user                | add the contact numbers and email addresses of each client to the projects                 | I can contact them more efficiently.                                                        |
 | `* * *`  | user                | link my projects to their repositories                                                     | I can easily navigate to them.                                                              |
-| `* * *`  | user                | find projects by fields such as their name, id and repository                              | I can easily view specific projects                                                         | 
+| `* * *`  | user                | find projects by fields such as their name, id and repository                              | I can easily view specific projects                                                         |
 | `* * *`  | user                | find clients by fields such as their name, id, mobile and email                            | I can easily view specific clients                                                          |
 | `* * *`  | user                | find issues by fields such as their title, id, urgency, and status                         | I can easily view specific issues                                                           |
+| `* * *`  | user                | edit client details                                                                        | I can change and update client details when I have more information.                        |
+| `* * *`  | user                | add issues to projects                                                                     | Keep track of what features/bugs need to be worked on.                                      |
+| `* * *`  | user                | delete issues from projects                                                                | Remove issues added by mistake/no longer needed.                                            |
+| `* * *`  | user                | find certain issues based on fields                                                        | Better keep track of, and retrieve the specific issue I want.                               |
+| `* * *`  | user                | mark issues as completed                                                                   | I can keep track of what issues are completed/not done                                      |
+| `* * *`  | user                | unmark completed issues as not completed                                                   | I can keep track of what issues are completed/not done                                      |
 | `* *`    | developer           | choose to ‘pin’ certain projects                                                           | I can quickly access them                                                                   |
 | `* *`    | developer           | see all the issues/room for improvements of the website that my clients have in one place, | I know what features/bugs to work on for them                                               |
 | `* *`    | new user            | view dummy data                                                                            | I can learn how to use the application.                                                     |
@@ -697,9 +702,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | developer           | sort the projects                                                                          | I can see which projects require more urgency when the number of projects becomes too long. |
 | `* *`    | developer           | clear all data using a single command                                                      |                                                                                             |
 | `* *`    | user                | split the project tiles into different categories                                          | I can organize my workspace better.                                                         |
-| `*`      | user                | automatically check my projects for issues                                                 | I can efficiently check for outstanding bug fixes.                                          |
-
-*{More to be added}*
+| `* *`    | user                | see a list of all clients I am currently working with                                      | I can keep an overview of my entire client base.                                            |
+| `* *`    | user                | sort a list of clients based on name or other fields                                       | see a list of my clients in an organised fashion.                                           |
+| `*`      | user                | configure the app to list projects/clients/issues on startup                               | use the app more efficiently.                                                               |
 
 ### Use cases
 
@@ -732,11 +737,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The user makes an error in writing the request.
-    * 1a1. DevEnable displays an error message with the correct usage.
-
-      Use case resumes at Step 1.
-* 1b. DevEnable detects that the project already exists in the list.
+* 1a. The project already exists within the list.
     * 1b1. DevEnable displays an error message that the project already exists.
 
       Use case ends.
@@ -753,12 +754,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The user makes an error in writing the request.
-    * 2a1. DevEnable displays an error message with the correct usage.
-
-      Use case resumes at Step 2.
-* 2b. DevEnable detects that the project does not exist in the list.
-    * 2b1. DevEnable displays an error message that the project does not exist.
+* 2a. The project does not exist.
+    * 2a1. DevEnable displays an error message that the project does not exist.
 
       Use case ends.
 
@@ -774,166 +771,98 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The user makes an error in writing the request.
-    * 2a1. DevEnable displays an error message with the correct usage.
-
-      Use case resumes at Step 2.
-* 2b. DevEnable detects that the project does not exist in the list.
-    * 2b1. DevEnable displays an error message that the project does not exist.
+* 2a. The project does not exist.
+    * 2a1. DevEnable displays an error message that the project does not exist.
 
       Use case ends.
 
-**Use case: UC5 - Tag client to project**
+**Use case: UC5 - List all clients**
 
 **MSS**
 
-1. User <ins>views the list of projects (UC1).</ins>
-2. User requests to tag a client to a specific project in the list.
-3. DevEnable tags the client to the project in the list.
+1.  User requests to list clients
+2.  DevEnable shows a list of clients.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The user makes an error in writing the request.
-    * 2a1. DevEnable displays an error message with the correct usage.
+* 1a. The list is empty.
+  * 1a1. DevEnable displays a default message.
 
-      Use case resumes at Step 2.
-* 2b. DevEnable detects that the project does not exist in the list.
-    * 2b1. DevEnable displays an error message that the project does not exist.
+    Use case ends.
 
-      Use case ends.
-
-**Use case: UC6 - Delete client from project**
+**Use case: UC6 - Add Client to DevEnable**
 
 **MSS**
 
-1. User <ins>views the list of projects (UC1).</ins>
-2. User requests to delete a client from a specific project in the list.
-3. DevEnable deletes the client from the project in the list.
+1.  User requests to add a client.
+2.  DevEnable adds the client to the list, and attaches it to a project..
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The user makes an error in writing the request.
-    * 2a1. DevEnable displays an error message with the correct usage.
-
-      Use case resumes at Step 2.
-* 2b. DevEnable detects that the project does not exist in the list.
-    * 2b1. DevEnable displays an error message that the project does not exist.
-
-      Use case ends.
-* 2c. DevEnable detects that the client is not assigned to the project.
-    * 2c1. DevEnable displays an error message that the client does not exist.
+* 2a. The project that the client will be attached to does not exist.
+    * 2a1. DevEnable displays an error message that the project does not exist.
 
       Use case ends.
 
-**Use case: UC7 - Edit client of project**
+**Use case: UC7 - Delete client**
 
 **MSS**
 
-1. User <ins>views the list of projects (UC1).</ins>
-2. User requests to edit a client of a specific project in the list.
-3. DevEnable edits the client of the project in the list.
+1. User requests to delete a client.
+2. DevEnable deletes the client from the project in the list.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The user makes an error in writing the request.
-    * 2a1. DevEnable displays an error message with the correct usage.
-
-      Use case resumes at Step 2.
-* 2b. DevEnable detects that the project does not exist in the list.
-    * 2b1. DevEnable displays an error message that the project does not exist.
-
-      Use case ends.
-* 2c. DevEnable detects that the client is not assigned to the project.
-    * 2c1. DevEnable displays an error message that the client does not exist.
+* 2a. The client does not exist.
+    * 2a1. DevEnable displays an error message that the client does not exist.
 
       Use case ends.
 
-**Use case: UC8 - Add deadline to project**
+**Use case: UC8 -  Edit client**
+
+**MSS**
+
+1. User requests to edit a client of a specific project in the list.
+2. DevEnable edits the client of the project in the list.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The client does not exist.
+    * 2a1. DevEnable displays an error message that the client does not exist.
+
+      Use case ends.
+
+**Use case: UC9 - Edit details of project**
 
 **MSS**
 
 1. User <ins>views the list of projects (UC1).</ins>
-2. User requests to add a deadline to a specific project in the list.
+2. User requests to edit some details of a specific project in the list.
 3. DevEnable adds the deadline to the project in the list.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The user makes an error in writing the request.
-    * 2a1. DevEnable displays an error message with the correct usage.
-
-      Use case resumes at Step 2.
-* 2b. DevEnable detects that the project does not exist in the list.
-    * 2b1. DevEnable displays an error message that the project does not exist.
+* 2a. The project does not exist.
+    * 2a1. DevEnable displays an error message that the project does not exist.
 
       Use case ends.
-* 2c. DevEnable detects that the deadline is not in the correct format.
-    * 2c1. DevEnable displays an error message with the required format.
+	  
+* 2b. The user input is not in the correct format.
+    * 2b1. DevEnable displays an error message with the required format.
 
       Use case ends.
 
-**Use case: UC9 - Delete deadline from project**
-
-**MSS**
-
-1. User <ins>views the list of projects (UC1).</ins>
-2. User requests to delete the deadline from a specific project in the list.
-3. DevEnable deletes the deadline from the project in the list.
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The user makes an error in writing the request.
-    * 2a1. DevEnable displays an error message with the correct usage.
-
-      Use case resumes at Step 2.
-* 2b. DevEnable detects that the project does not exist in the list.
-    * 2b1. DevEnable displays an error message that the project does not exist.
-
-      Use case ends.
-* 2c. DevEnable detects that the project does not have a deadline.
-    * 2c1. DevEnable displays an error message that there is no deadline.
-
-      Use case ends.
-
-**Use case: UC10 - Edit deadline of project**
-
-**MSS**
-
-1. User <ins>views the list of projects (UC1).</ins>
-2. User requests to edit the deadline of a specific project in the list.
-3. DevEnable edits the deadline of the project in the list.
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The user makes an error in writing the request.
-    * 2a1. DevEnable displays an error message with the correct usage.
-
-      Use case resumes at Step 2.
-* 2b. DevEnable detects that the project does not exist in the list.
-    * 2b1. DevEnable displays an error message that the project does not exist.
-
-      Use case ends.
-* 2c. DevEnable detects that the project does not have a deadline.
-    * 2c1. DevEnable displays an error message that there is no deadline.
-
-      Use case ends.
-* 2d. DevEnable detects that the deadline is not in the correct format.
-    * 2d1. DevEnable displays an error message with the required format.
-
-      Use case ends.
-
-**Use case: UC11 - Add client**
+**Use case: UC10 - Add client**
 
 **MSS**
 
@@ -944,16 +873,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The user makes an error in writing the request.
-    * 1a1. DevEnable displays an error message with the correct usage.
-
-      Use case resumes at Step 1.
-* 1b. DevEnable detects that the client already exists in the list.
-    * 1b1. DevEnable displays an error message that the client already exists.
+* 1a. The client already exists in the list.
+    * 1a1. DevEnable displays an error message that the client already exists.
 
       Use case ends.
 
-**Use case: UC12 - Delete client**
+**Use case: UC11 - Delete client**
 
 **MSS**
 
@@ -965,16 +890,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The user makes an error in writing the request.
-    * 2a1. DevEnable displays an error message with the correct usage.
-
-      Use case resumes at Step 2.
-* 2b. DevEnable detects that the client does not exist in the list.
-    * 2b1. DevEnable displays an error message that the client does not exist.
+* 2a. DevEnable detects that the client does not exist.
+    * 2a1. DevEnable displays an error message that the client does not exist.
 
       Use case ends.
 
-**Use case: UC13 - Edit client**
+**Use case: UC12 - Edit client**
 
 **MSS**
 
@@ -986,16 +907,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The user makes an error in writing the request.
-    * 2a1. DevEnable displays an error message with the correct usage.
-
-      Use case resumes at Step 2.
-* 2b. DevEnable detects that the client does not exist in the list.
-    * 2b1. DevEnable displays an error message that the client does not exist.
+* 2a. DevEnable detects that the client does not exist.
+    * 2a1. DevEnable displays an error message that the client does not exist.
 
       Use case ends.
 
-**Use case: UC14 - Find projects**
+**Use case: UC13 - Find projects**
 
 **MSS**
 
@@ -1007,16 +924,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The user makes an error in writing the request.
-    * 2a1. DevEnable displays an error message with the correct usage.
-
-      Use case resumes at Step 2.
-* 2b. DevEnable detects that such a project does not exist in the list.
-    * 2b1. DevEnable displays an error message that such a project does not exist.
+* 2a. A project that matches the search does not exist.
+    * 2a1. DevEnable displays an error message that such a project does not exist.
 
       Use case ends.
 
-**Use case: UC15 - Find clients**
+**Use case: UC14 - Find clients**
 
 **MSS**
 
@@ -1028,16 +941,112 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The user makes an error in writing the request.
-    * 2a1. DevEnable displays an error message with the correct usage.
-
-      Use case resumes at Step 2.
-* 2b. DevEnable detects that such a client does not exist in the list.
-    * 2b1. DevEnable displays an error message that such a client does not exist.
+* 2a. A client that matches the search does not exist.
+    * 2a1. DevEnable displays an error message that such a client does not exist.
 
       Use case ends.
 
-**Use case: UC16 - Find issues**
+**Use case: UC15 - Add issue to DevEnable**
+
+**MSS**
+
+1.  User requests to add a issue.
+2.  DevEnable adds the issue to the list, and attaches it to a project..
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The project specified for the issue to be attached to does not exist.
+    * 2a1. DevEnable displays an error message that the project does not exist.
+
+      Use case ends.
+
+**Use case: UC16 - Delete issue from project**
+
+**MSS**
+
+1. User requests to delete an issue.
+2. DevEnable deletes the issue.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The issue does not exist
+    * 2a1. DevEnable displays an error message.
+
+      Use case ends.
+
+**Use case: UC17 - Edit issue of project**
+
+**MSS**
+
+1. User requests to edit an issue.
+2. DevEnable edits the issue as requested.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The issue does not exist.
+    * 2a1. DevEnable displays an error message that the issue does not exist.
+
+      Use case ends.
+	  
+**Use case: UC18 - List all issues**
+
+**MSS**
+
+1.  User requests to list issues
+2.  DevEnable shows a list of issues.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+  * 1a1. DevEnable displays a default message.
+
+    Use case ends.
+
+**Use case: UC19 - Mark issue as complete**	
+
+**MSS**
+
+1. User requests to mark an issue as complete
+2. DevEnable marks said issue as complete
+
+**Extensions**
+- 1a. There are no issues/issue is not found.
+	- 1a1. DevEnable displays an error message
+
+	Use Case ends.
+
+- 1b. The issue is already complete
+	- 1b1. DevEnable displays an error message
+
+	Use Case ends.
+
+**Use case: UC20 - Mark issue as incomplete**	
+
+**MSS**
+
+1. User requests to mark an issue as incomplete
+2. DevEnable marks said issue as incomplete
+
+**Extensions**
+- 1a. There are no issues/issue is not found.
+	- 1a1. DevEnable displays an error message
+
+	Use Case ends.
+
+- 1b. The issue is incomplete
+	- 1b1. DevEnable displays an error message
+
+	Use Case ends.
+
+**Use case: UC21 - Find issues**
 
 **MSS**
 
@@ -1049,16 +1058,114 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The user makes an error in writing the request.
-    * 2a1. DevEnable displays an error message with the correct usage.
-
-      Use case resumes at Step 2.
-* 2b. DevEnable detects that such an issue does not exist in the list.
-    * 2b1. DevEnable displays an error message that such an issue does not exist.
+* 2a. DevEnable detects that such an issue does not exist.
+    * 2a1. DevEnable displays an error message that such an issue does not exist.
 
       Use case ends.
 
-**Use case: UC17 - View list of commands**
+
+**Use Case: UC22 - View a sorted list of projects**
+
+**MSS**
+
+1. User requests to view a sorted list of projects with parameters.
+2. DevEnable displays a sorted list of projects with said parameters.
+
+	Use Case ends
+
+**Use Case: UC23 - View a sorted list of clients**
+
+**MSS**
+
+1. User requests to view a sorted list of clients with parameters.
+2. DevEnable displays a sorted list of clients with said parameters.
+
+	Use Case ends
+
+**Use Case: UC24 - View a sorted list of issues**
+
+**MSS**
+
+1. User requests to view a sorted list of issues with parameters.
+2. DevEnable displays a sorted list of issues with said parameters.
+
+	Use Case ends
+
+**Use Case: UC25 - Pin/Unpin a project**
+
+**MSS**
+
+1. User requests to pin a project
+2. DevEnable pins/unpins said project in the list, depending on whether it was pinned initially.
+
+	Use Case ends
+
+**Extensions**
+- 1a. The project requested for by the user does not exist
+	- 1a1. DevEnable displays an error message that the project does not exist.
+
+	Use Case ends.
+
+
+**Use Case: UC26 - Pin/Unpin a issue**
+
+**MSS**
+
+1. User requests to pin a issue
+2. DevEnable pins/unpins said issue in the list, depending on whether it was pinned initially.
+
+	Use Case ends
+
+**Extensions**
+- 1a. The issue requested for by the user does not exist
+	- 1a1. DevEnable displays an error message that the issue does not exist.
+
+	Use Case ends.
+
+**Use Case: UC27 - Pin/Unpin a client**
+
+**MSS**
+
+1. User requests to pin a client
+2. DevEnable pins/unpins said client in the list, depending on whether it was pinned initially.
+
+	Use Case ends
+
+**Extensions**
+- 1a. The client requested for by the user does not exist
+	- 1a1. DevEnable displays an error message that the client does not exist.
+
+	Use Case resumes at Step 1.
+
+**Use Case: UC28 - Set default view of DevEnable to project list**
+
+**Guarantees:** On startup, DevEnable shows project list initially.
+
+**MSS**
+
+1. User requests for the project list to be the default view
+2. DevEnable sets the default view to be the project list.
+
+**Use Case: UC29 - Set default view of DevEnable to client list**
+
+**Guarantees:** On startup, DevEnable shows client list initially.
+
+**MSS**
+
+1. User requests for the client list to be the default view
+2. DevEnable sets the default view to be the client list.
+
+**Use Case: UC30 - Set default view of DevEnable to issue list**
+
+**Guarantees:** On startup, DevEnable shows issue list initially.
+
+**MSS**
+
+1. User requests for the issue list to be the default view
+2. DevEnable sets the default view to be the issue list.
+
+
+**Use case: UC31 - View list of commands**
 
 **MSS**
 
@@ -1067,8 +1174,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-*{More to be added}*
+**Use Case: UC32 - Clear project book**
 
+**Guarantees:** Project book is empty after clear
+
+**MSS**
+
+1. User requests to clear project book
+2. DevEnable clears project book
+
+	Use case ends
+
+**Use Case: UC33 - Exit project book**
+
+**MSS**
+
+1. User requests to exit project book
+2. DevEnable exits
+
+	Use Case ends
+	
 ### Non-Functional Requirements
 
 1.  The product should work on any _mainstream OS_ as long as it has Java `11` or above installed.
