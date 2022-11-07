@@ -730,49 +730,193 @@ Use case ends.
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing.
-
-</div>
+:information_source: Note: These instructions only provide a starting point for testers to work on; testers are expected to do more exploratory testing.
 
 ### Launch and shutdown
+Initial launch
+Download the Condonery.jar file and copy into an empty folder
+Run `java -jar Condonery.jar` in the folder.
 
-1. Initial launch
+Expected: Shows the GUI with a property and client directory. The window size may not be optimum.
 
-    1. Download the jar file and copy into an empty folder
+### Exit application
+Prerequisites: The application must be launched.
+Test case: exit
 
-    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+Expected: The application exits and the window closes itself automatically.
 
-1. Saving window preferences
 
-    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+### Adding a property
 
-    1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+Adding a property to the Property List
 
-1. _{ more test cases …​ }_
+Prerequisites: Application must be in main window
 
-### Deleting a person
+- Test cases (specifying compulsory inputs only): `add -p n/PINNACLE@DUXTON a/SG, Cantonment Rd, #1G, 085301 p/1,000,000 h/HDB`
+  - Expected: A new property is added to the end of the list of properties. Property list panel will then update to display all the properties in the property directory. The compulsory parameters will be set to what was specified in the command, whereas property status will be set to `AVAILABLE` by default when not stated in the input. Result display will output the message: `New property added: PINNACLE@DUXTON; Address: SG, Cantonment Rd, #1G, 085301; Price: 1000000; Property Type: HDB; Property Status: AVAILABLE`
+- Test case (missing a compulsory input (p/PRICE)): `add -p n/NEXT@DUXTON a/SG, Cantonment Rd, #1G, 085301 h/HDB`
+  - Expected: No property added to list of properties and input text will turn red to signal an error. Result display will output the invalid command format error message.
+- Test case (missing a compulsory input (h/PROPERTY_TYPE)): `add -p n/NEXT@DUXTON a/SG, Cantonment Rd, #1G, 085301 p/1,000,000`
+  - Expected: No property added to list of properties and input text will turn red to signal an error. Result display will output the invalid command format error message.
 
-1. Deleting a person while all persons are being shown
+### Deleting a property
+Deleting a property while all properties are being shown
 
-    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+Prerequisites: Property List must contain at least one property.
 
-    1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+- Test case (Valid index): `delete 1`
+  - Expected: First property in the list will be deleted from the list of properties. Property list will reflect the status of the deleted property
+- Test case (Invalid index): `delete 0`
+  - Expected: No property will be deleted from the list of properties and input text will turn red to indicate there is an error in the input. Result display will output a correct example command and error message.
+- Test case (missing index): `delete`
+  - Expected: No property will be deleted from the list of properties and input text will turn red to indicate there is an error in the input. Result display will output a correct example command and error message.
 
-    1. Test case: `delete 0`<br>
-       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+### Editing a property
+Editing a property while there are properties shown in the Property List
+   Prerequisites: Property List must contain at least one Property.
+   - Test case (editing one field of a Property): `edit -p 1 n/ Condo@NUS`
+     - Expected: The Property Name of the Property with index 1 in the Property List will be modified to become `Condo@NUS`. The remaining fields of this Property will remain the same. Result display will output the modified Property and its details.
+   - Test case (Invalid index given): `edit -p 0 n/Condo@NUS`
+     - Expected: No property will be edited. Invalid command format error will be displayed due to invalid index input.
+   - Test case (`-p` flag not provided): `edit 1 n/Condo@NUS`
+     - Expected: No property will be edited. Unknown error will be displayed as the flag was not provided.
+   - Test case (Index provided is larger than size of list e.g. size = 5): `edit -p 6 n/ Condo@NUS`
+     - Expected: No property will be edited. Error message stating invalid property index provided will be shown in the status message.
+   - Test case (No field is provided): `edit -p 1`
+     - Expected: No property will be edited. Error message stating at least one field must be provided is shown in the status message.
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-       Expected: Similar to previous.
+### Listing all properties
+Listing all properties
 
-1. _{ more test cases …​ }_
+   Prerequisites: Property List must contain at least one Property.
+   - Test case: `list -p`
+     - Expected: Property List will be updated to show all properties stored. 
+     Result display will output a success message: `Listed all properties`
 
-### Saving data
+### Clearing all properties
+Clearing all properties in the Property List
 
-1. Dealing with missing/corrupted data files
+   Prerequisites: Property List must contain at least one property
+   - Test case: `clear -p`
+     - Expected: Property List is cleared and the UI is updated to show an empty Property List. Result display will output a success message : `Property directory has been cleared!`
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+### Finding properties by name
+Finding properties in the Property List with name
 
-2. _{ more test cases …​ }_
+Prerequisites: Property List must contain at least one Property.
+   - Test case (finding property name of `Wall Street Prime` with partial match): `find -p Wall Street`
+     - Expected: Property List will display all properties with matching name of `Wall Street`
+   - Test case (finding property name of `Wall Street Prime` with exact match): `find -p Wall Street Prime`
+     - Expected: Property List will display all properties with matching name of `Wall Street Prime`
+
+### Filtering properties by tags
+Finding all properties in the Property List with specified tags
+   
+Prerequisites: Property List must contain at least one Property.
+   - Test case (finding properties with tag of `Luxury`): `filter -p Luxury`
+     - Expected: Property List will display all properties with matching tag of `Luxury`
+   - Test case (finding properties with tag of `Luxury` and `City`): `filter -p Luxury City`
+     - Expected: Property List will display all properties with matching tags of `Luxury` and `City`
+   
+### Filtering properties within price range
+Finding all properties in the Property List with specified price range
+
+   Prerequisites: Property List must contain at least one Property.
+
+
+   - Test case (finding properties with range from 99 to 99999): `range -p l/99 u/99999`
+     - Expected: Property List will display all properties with price range from 99 to 99999
+   - Test case (Negative number given): `range -p l/-999 u/99999`
+     - Expected: Property List will display an error message stating only positive numbers are accepted
+   - Test case (Invalid input): `range -p l/abc u/99999`
+     - Expected: Property List will display an error message stating that invalid input was give, only positive integers are accepted
+
+### Filtering properties by status
+Finding all properties in the Property List with the specified Property Status
+
+   Prerequisites: Property List must contain at least one Property.
+   - Test case (finding all properties with status of `AVAILABLE`): `status -p AVAILABLE`
+     - Expected: Property List will display all properties with the status of available
+
+### Filtering properties by type
+Finding all properties in the Property List with the specified Property Type
+
+   Prerequisites: Property List must contain at least one Property.
+   - Test case (finding all properties with type of `HDB`): `type -p HDB`
+     - Expected: Property List will display all properties with the type of `HDB`
+   - Test case (finding all properties with type of `HOUSE`): `type -p HOUSE`
+     - Expected: Condonery will display an error message stating `HOUSE` is not a valid property type
+     
+### Select a property to view its interested clients
+   Prerequisites: Property List must contain at least one Property.
+   - Test case (selecting a property with valid index): `select -p 1`
+     - Expected: Property List will display all interested clients of property with index of 1
+
+
+### Adding a client to the Client List
+   Prerequisites: Application must be in main window
+   - Test cases (specifying compulsory inputs only): `add -c n/James a/123, Clementi Rd, 1234665`
+     - Expected: A new client is added to the Client List. Client List panel will update to display all the clients in the client directory. The compulsory parameters will be set to what was specified in the command. Result display will output the message: `New property added: PINNACLE@DUXTON; Address: SG, Cantonment Rd, #1G, 085301; Price: 1000000; Property Type: HDB; Property Status: AVAILABLE`
+   - Test case (missing a compulsory input (n/NAME)): `add -c a/123, Clementi Rd, 1234665`
+     - Expected: No client will be added to the Client List and input text will turn red to signal an error. Result display will indicate that an invalid command format has been specified.
+   - Test case (Interested Property does not exist): `add -c n/James a/123, Clementi Rd, 1234665 t/friend t/colleague ip/PINNACLE@DUXTON`
+     - Expected: No client added to the Client List and input text will turn red to signal an error. Result display will indicate that a property of PINNACLE@DUXTON was not found in the property directory.
+   
+### Deleting a client
+   Deleting a client while all clients are being shown
+
+   Prerequisites: Client List must contain at least one client.
+   - Test case (Valid index): `delete 1`
+     - Expected: First client in the list will be deleted from the list of clients. Client list will reflect the status of the deleted client
+   - Test case (Invalid index): `delete 0`
+     - Expected: No client will be deleted from the list of clients and input text will turn red to indicate there is an error in the input. Result display will output a correct example command and error message.
+   - Test case (missing index): `delete`
+     - Expected: No client will be deleted from the list of clients and input text will turn red to indicate there is an error in the input. Result display will output a correct example command and error message.
+
+### Editing a client
+Editing a client while there are properties shown in the Client List
+
+Prerequisites: Client List must contain at least one Client .
+- Test case (editing one field of a Client ): `edit -c 1 n/ John Lee`
+  - Expected: The Client Name of the client with index 1 in the Client List will be modified to become `John Lee`. The remaining fields of this Client will remain the same. Result display will output the modified Client and its details.
+- Test case (Invalid index given): `edit -c 0 n/John Lee`
+  - Expected: No client will be edited. Invalid command format error will be displayed due to invalid index input.
+- Test case (`-c` flag not provided): `edit 1 n/John Lee`
+  - Expected: No client will be edited. Unknown error will be displayed as the flag was not provided.
+- Test case (Index provided is larger than size of list e.g. size = 5): `edit -c 6 n/ John Lee`
+  - Expected: No client will be edited. Error message stating invalid client index provided will be shown in the status message.
+- Test case (No field is provided): `edit -c 1`
+  - Expected: No client will be edited. Error message stating at least one field must be provided is shown in the status message.
+
+### Listing all clients
+Listing all clients
+
+   Prerequisites: Client List must contain at least one Client.
+
+   - Test case: `list -c`
+   - Expected: Client List will be updated to show all clients stored. Result display will output a success message: `Listed all clients`
+   
+### Clearing all clients
+   Clearing all properties in the Property List
+
+   Prerequisites: Client List must contain at least one client
+
+   - Test case: `clear -c`
+     - Expected: Property List is cleared and the UI is updated to show an empty Property List. Result display will output a success message : `Property directory has been cleared!`
+
+### Finding clients by name
+Finding clients in the Client List with name
+
+   Prerequisites: Client List must contain at least one client.
+   - Test case (finding client name of `John` with partial match): `find -c John`
+     - Expected: Client List will display all clients with matching name of `John`
+   - Test case (finding client name of `John Lee` with exact match): `find -c John Lee`
+     - Expected: Client List will display all clients with matching name of `John Lee`
+
+   ###Filtering clients by tags
+Finding all clients in the Client List with specified tags
+   Prerequisites: Client List must contain at least one Client.
+   - Test case (finding properties with tag of `friend`): `filter -c friend`
+     - Expected: Client List will display all clients with matching tag of `friend`
+   - Test case (finding properties with tag of `rich` and `friend`): `filter -c friend`
+     - Expected: Client List will display all clients with matching tags of `rich` and `friend`
