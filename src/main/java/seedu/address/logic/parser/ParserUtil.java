@@ -1,6 +1,9 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.StringUtil.properCase;
+import static seedu.address.model.AccessDisplayFlags.DEFAULT;
+import static seedu.address.model.AccessDisplayFlags.DEFAULT_STYLE;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -9,14 +12,16 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.attribute.AbstractAttribute;
 import seedu.address.model.attribute.Address;
+import seedu.address.model.attribute.Attribute;
+import seedu.address.model.attribute.Description;
 import seedu.address.model.attribute.Email;
 import seedu.address.model.attribute.Field;
 import seedu.address.model.attribute.Name;
 import seedu.address.model.attribute.Phone;
 import seedu.address.model.group.Group;
 import seedu.address.model.group.Path;
-import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -177,15 +182,69 @@ public class ParserUtil {
     }
 
     /**
-     * Parses person name. Person name is more strict than Name thus this works
+     * Parses an attribute based on a given type and value of the attribute.
+     * Sets the display and style format to the default format.
+     *
+     * @param modelTypeName The type of the attribute.
+     * @param modelValue The value of the attribute.
+     * @param <T> The type parameter of the attribute value.
+     * @return An Attribute instance with the provided name and value.
+     * @throws ParseException if the value does not meet the specified parsing format.
      */
-    public static Name parsePersonName(String name) throws ParseException {
-        requireNonNull(name);
-        name = name.replaceAll("\\s+", " ").trim();
-        if (!name.matches(PERSON_NAME_PATTERN)) {
-            throw new ParseException(Person.MESSAGE_INVALID_PERSON_NAME);
+    public static <T> Attribute<?> parseAttribute(String modelTypeName, T modelValue) throws ParseException {
+        return parseAttribute(modelTypeName, modelValue, DEFAULT, DEFAULT_STYLE);
+    }
+
+    /**
+     * Parses an attribute based on a given type, value, display format and style format.
+     *
+     * @param modelTypeName The type of the attribute.
+     * @param modelValue The value of the attribute.
+     * @param modelDisplayFormat The display format of the attribute.
+     * @param modelStyleFormat The style format of the attribute.
+     * @param <T> The type of the attribute value.
+     * @return An Attribute instance with the provided name, value, display and style format.
+     * @throws ParseException if the value does not meet the specified parsing format.
+     */
+    public static <T> Attribute<?> parseAttribute(String modelTypeName, T modelValue, int modelDisplayFormat,
+                                                  int modelStyleFormat) throws ParseException {
+        modelTypeName = properCase(modelTypeName);
+        //@@author autumn-sonata
+        Attribute<?> modelAttribute;
+        switch (modelTypeName) {
+        case Address.TYPE:
+            if (!Address.isValidAddress((String) modelValue)) {
+                throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+            }
+            modelAttribute = new Address((String) modelValue);
+            break;
+        case Description.TYPE:
+            modelAttribute = new Description((String) modelValue);
+            break;
+        case Email.TYPE:
+            if (!Email.isValidEmail((String) modelValue)) {
+                throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+            }
+            modelAttribute = new Email((String) modelValue);
+            break;
+        case Name.TYPE:
+            if (!Name.isValidName((String) modelValue)) {
+                throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            }
+            modelAttribute = new Name((String) modelValue);
+            break;
+        case Phone.TYPE:
+            if (!Phone.isValidPhone((String) modelValue)) {
+                throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+            }
+            modelAttribute = new Phone((String) modelValue);
+            break;
+        default:
+            modelAttribute = new AbstractAttribute<Object>(modelTypeName, modelValue,
+                    modelDisplayFormat, modelStyleFormat) {};
         }
-        return new Name(name);
+        return modelAttribute;
+        //@@author
     }
 
     /**
