@@ -81,6 +81,10 @@ If a `COMMAND_WORD` was specified, additional help for that command will be prov
 
 > Clears all items and tags in FoodRem
 
+```tip
+You may find this command useful when you start FoodRem for the first time. Initially, FoodRem starts up with some sample data, which, once you have figured out how to use FoodRem, may want to clear so that you can start using it for your own business!
+```
+
 **Example:**
 
 {% capture notes %}
