@@ -890,7 +890,7 @@ testers are expected to do more *exploratory* testing.
 
 #### Editing a tag
 
-1. Prerequisite: There is a tag named `english`.
+1. Prerequisite: There is a tag named `english` and there isn't a tag named `literature`.
 2. Test case: `tag edit t/english t/literature`.
 3. Expected: The `english` tag is now shown as `literature`.
 
