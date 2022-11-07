@@ -38,14 +38,14 @@ Given below are my largest contributions to the project.
   * User Guide:
     * Introduction: Welcome message and [Using this guide](https://ay2223s1-cs2103t-w13-3.github.io/tp/UserGuide.html#using-this-guide) [#267](https://github.com/AY2223S1-CS2103T-W13-3/tp/pull/267)
     * [Tutorial: Adding your first debt](https://ay2223s1-cs2103t-w13-3.github.io/tp/UserGuide.html#tutorial-adding-your-first-debt) [#273](https://github.com/AY2223S1-CS2103T-W13-3/tp/pull/273)
-    * [Input-specific behaviour](https://ay2223s1-cs2103t-w13-3.github.io/tp/UserGuide.html#input-specific-behavior) [#184](https://github.com/AY2223S1-CS2103T-W13-3/tp/pull/184)
+    * [Input-specific behaviour](https://ay2223s1-cs2103t-w13-3.github.io/tp/UserGuide.html#input-specific-behaviour) [#184](https://github.com/AY2223S1-CS2103T-W13-3/tp/pull/184)
     * [Adding a debt: `adddebt`](https://ay2223s1-cs2103t-w13-3.github.io/tp/UserGuide.html#adding-a-debt-adddebt) [#281](https://github.com/AY2223S1-CS2103T-W13-3/tp/pull/281)
     * Tweaks to existing feature documentation, including `help` and `add` [#201](https://github.com/AY2223S1-CS2103T-W13-3/tp/pull/201)
     * [FAQ](https://ay2223s1-cs2103t-w13-3.github.io/tp/UserGuide.html#faq) [#346](https://github.com/AY2223S1-CS2103T-W13-3/tp/pull/346)
 
   * Developer Guide:
     * [Implementation for `adddebt` feature](https://ay2223s1-cs2103t-w13-3.github.io/tp/DeveloperGuide.html#add-debt-feature-adddebt) [#198](https://github.com/AY2223S1-CS2103T-W13-3/tp/pull/198)
-    * Updating the [`Model` component](https://ay2223s1-cs2103t-w13-3.github.io/tp/DeveloperGuide.html#model-component) [#132](https://github.com/AY2223S1-CS2103T-W13-3/tp/pull/198)
+    * Updating the [`Model` component](https://ay2223s1-cs2103t-w13-3.github.io/tp/DeveloperGuide.html#model-component) [#132](https://github.com/AY2223S1-CS2103T-W13-3/tp/pull/132)
     * Adapt [NFRs](https://ay2223s1-cs2103t-w13-3.github.io/tp/DeveloperGuide.html#non-functional-requirements) from CS2103T tP Constraints [#25](https://github.com/AY2223S1-CS2103T-W13-3/tp/pull/25)
 
 * **Contributions to team-based tasks**:
