@@ -239,54 +239,51 @@ The following activity diagram summarizes what happens when a user executes an a
   - Pros: It is easy to determine/check time crashes when assigning a home-visit `DateTime` slot to a nurse.
   - Cons: Less flexible in the home visit date and time that a patient can choose.
 
-### Mark feature [Defunct]
+### Unmark feature
 
-#### Implementation for marking Appointments between Nurses and Patients
+#### Implementation for unmarking home visits between Nurses and Patients
 
-The marking mechanism is facilitated by `Appointment`, `VisitStatus`, LogicManager`, `HealthcareXpressParser`, `MarkCommandParser`, `MarkCommand`, `Model`, `AddressBook`, and `UniquePersonList`
+The unmarking mechanism is facilitated by `Patient`, `Nurse`, `UnmarkCommandParser`, `UnmarkCommand`, `Model`, `AddressBook`, and `UniquePersonList`.
 
-`Appointment` is an association class between Nurse and Patient, and also keeps track of the date and time of the appointment, and if the Patient has been visited by the Nurse.
+The `HealthcareXpressParser` will take in user input and recognise it as an `UnmarkCommand`, and pass on the user input to `UnmarkCommandParser`.
 
-![AppointmentClassDiagram](images/AppointmentClassDiagram.png)
+`UnmarkCommandParser` will then identify the Patient of interest, by parsing the uid provided by the user.
 
-The `HealthcareXpressParser` will take in user input and recognise it as a `MarkCommand`, and pass on the user input to `MarkCommandParser`
+`UnmarkCommandParser` will also identify the dateslot index given by the user.
 
-`MarkCommandParser` will then identify the appointment of interest, by parsing the index given by the user.
+`UnmarkCommandParser` returns an `UnmarkCommand`.
 
-Should the index provided by the user be valid, the `MarkCommand` returned by the `MarkCommandParser` will create a marked version of the `Appointment` specified by the user.
+Upon execution, the `UnmarkCommand` will check if the uid refers to a valid patient. If so, it will unmark the dateslot at the specified dateslot index.
 
-Upon execution, the `MarkCommand` will replace the `Appointment` with the marked version.
+Given below is an example usage scenario and how the unmark mechanism works.
 
-Given blow is an example usage scenario and how the mark mechanism works.
+Step 1. The user enters the command `unmark id/1 dsi/1` command to unmark the home visit at dateslot index 1, of the Patient with uid of 1.
 
-Step 1. The user enters the command `mark id/1` command to mark the appointment at index 1 as visited.
+Step 2. The `HealthcareXpressParser` will parse the user command and pass the input to the `UnmarkCommandParser`
 
-Step 2. The `HealthcareXpressParser` will parse the user command and pass the input to the `MarkCommandParser`
+Step 3. The `UnmarkCommandParser` will parse the uid and dateslot index, and ensure that both are present. It will then return an `UnmarkCommand` with the uid and dateslot index.
 
-Step 3. The `MarkCommandParser` will parse the index, and ensure that the index is present. It will then return a `MarkCommand` with the index.
+Step 4. The `UnmarkCommand` will execute, creating an `InternalEditor` to update the dateslot list of the patient with the dateslot at the specified dateslot index unmarked.
 
-Step 4. The `MarkCommand` will execute, and change the `VisitStatus` of the `Appointment` to reflect that the `Patient` has been visited.
+The following sequence diagram shows how unmarking a dateslot works:
 
-The following sequence diagram shows how marking an appointment works:
-
-![MarkSequenceDiagram](images/MarkSequenceDiagram.png)
+![UnmarkSequenceDiagram](images/UnmarkSequenceDiagram.png)
 
 The following activity diagram shows what happens when a user marks an appointment as visited.
 
-![MarkActivityDiagram](images/MarkActivityDiagram.png)
+![UnmarkActivityDiagram](images/UnmarkActivityDiagram.png)
 
 #### Design considerations
 
-** Aspect: Marking Appointments that are already marked: **
+** Aspect: Unmarking DateSlots that have not been marked: **
 
-- **Alternative 1:** Print and error message to inform the user that the Appointment has already been marked.
-
-  - Pros: User will be made aware that they have probably erroneously marked the wrong Appointment, and make the necessary correction.
+- **Alternative 1:** Print and error message to inform the user that the dateslot has not been marked.
+  - Pros: User will be made aware that they have probably erroneously unmarked the wrong dateslot, and make the necessary correction.
   - Cons: More difficult to implement, requires more thorough testing.
 
 - **Alternative 2:** Make no changes and raise no exceptions.
   - Pros: Easier to implement and test.
-  - Cons: User may have erroneously marked the wrong Appointment, and may not notice.
+  - Cons: User may have erroneously unmarked the wrong dateslot, and may not notice.
 
 ### List feature
 
@@ -997,21 +994,12 @@ _{More to be added}_
 
 ### Glossary
 
-<<<<<<< Updated upstream
-- **Medical Administrator**: A person who oversees, plan, direct, and coordinate home-visits for patients.
-- **Patients**: A person receiving or registered to receive home visits due to special needs.
-- **Nurses**: A person trained to care for the sick or infirm, especially trained to do home-visiting.
-- **Healthcare Xpress**: A desktop app for managing patients that require home-visits.
-- **Mainstream OS**: Windows, Linux, Unix, OS-X
-- **Private contact detail**: A contact detail that is not meant to be shared with others
-=======
 * **Medical Administrator**: A person who oversees, plans, directs, and coordinates home-visits for patients.
 * **Patients**: A person receiving or registered to receive home visits due to special needs.
 * **Nurses**: A person trained to care for the sick or infirm, especially trained to do home-visiting.
 * **Healthcare Xpress**: A desktop app for managing patients that require home-visits.
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
->>>>>>> Stashed changes
 
 ---
 
