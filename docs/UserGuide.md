@@ -18,6 +18,8 @@ worrying about organising your data.
 --------------------------------------------------------------------------------------------------------------------
 <div markdown="block" class="index">
 
+<div style="page-break-after: always;"></div>
+
 ## About the user guide
 
 ### Navigating the user guide
@@ -41,6 +43,8 @@ This section will run you through the icons used in this guide.
 | :information_source: | Extra information that you may find useful.                      |
 | :exclamation:        | Information you should be aware of to avoid running into errors. |
 | :fast_forward:       | Information about future updates to a feature.                   |
+
+<div style="page-break-after: always;"></div>
 
 #### Input parameters
 
@@ -76,6 +80,8 @@ the help window.
 
 6. Refer to the [Features](#features) below for detailed descriptions of each command.
 
+<div style="page-break-after: always;"></div>
+
 <div markdown="block" class="alert alert-info">
 
 :information_source: **Note:**<br>
@@ -99,6 +105,8 @@ Upon launching the application, some files responsible for the storage of your d
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## Screen layout
 
@@ -299,6 +307,8 @@ More meal categories will be added, e.g. `snack`.
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 #### Listing all foods for a day: `list`
 
 Shows a list of all food items and their calories for the specified day (if any).
@@ -362,9 +372,13 @@ Example:
 
 * `target 2500` sets a target calorie intake of 2500 calories for the current day and displays the list of foods for the current day.
 
+<div style="page-break-after: always;"></div>
+
 Example after entering `target 2500`:
 
 ![target](images/target.png)
+
+<div style="page-break-after: always;"></div>
 
 #### Viewing a summary of the calorie intake progress: `review`
 
@@ -438,6 +452,8 @@ More locations in NUS will be added.
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 #### Suggesting a healthy-lifestyle tip: `tip`
 
 Suggests a random tip to help the user adopt a healthier lifestyle.
@@ -447,6 +463,8 @@ Format: `tip`
 Example after entering `tip`:
 
 ![tip](images/tip.png)
+
+<div style="page-break-after: always;"></div>
 
 ### General
 
@@ -459,6 +477,8 @@ Format: `help`
 Example after entering `help`:
 
 ![help message](images/helpMessage.png)
+
+<div style="page-break-after: always;"></div>
 
 #### Clearing all stored data: `clear`
 
@@ -493,6 +513,8 @@ openjdk version "11.0.16.1" 2022-07-19 LTS
 OpenJDK Runtime Environment Zulu11.58+23-CA (build 11.0.16.1+1-LTS)
 OpenJDK 64-Bit Server VM Zulu11.58+23-CA (build 11.0.16.1+1-LTS, mixed mode)
 ```
+
+<div style="page-break-after: always;"></div>
 
 ### I do not have Java `11` installed in my computer. How do I install it?
 
@@ -580,11 +602,11 @@ More default food items will be added.
 | **Calories**                           | Unit of measurement for the amount of energy contained in a food item.                                                                                                                                       |
 | **Daily Recommended Calorie Intake**   | The amount of calories recommended by experts for an individual to consume daily. According to Health Promotion Board Singapore, adult males and females should consume 2200 and 1800 calories respectively. |
 | **Deficit**                            | The negative difference between the calories consumed in a day and the target daily intake. These calories are _not_ consumed to facilitate weight loss and fat burn.                                        |
-| **Surplus**                            | The positive difference between the calories consumed in a day and the target daily intake. These calories are consumed to facilitate weight gain and muscle growth.                                         |
 | **Food item**                          | Refers to an individual item of food that is consumed.                                                                                                                                                       |
-| **Meal**                               | Comprises of multiple food items that is consumed at a particular time (e.g. breakfast, lunch, dinner, ...).                                                                                                 |
-| **Ideal weight**                       | The self-defined weight that users want to achieve for themselves.                                                                                                                                           |
 | **Gym**                                | For this user guide, gym refers to a gymnasium used for weight training. Other sports facilities will be considered for future updates.                                                                      |
+| **Ideal weight**                       | The self-defined weight that users want to achieve for themselves.                                                                                                                                           |
+| **Meal**                               | Comprises of multiple food items that is consumed at a particular time (e.g. breakfast, lunch, dinner, ...).                                                                                                 |
+| **Surplus**                            | The positive difference between the calories consumed in a day and the target daily intake. These calories are consumed to facilitate weight gain and muscle growth.                                         |
 
 
 </div>

@@ -12,6 +12,7 @@ title: Developer Guide
 
 <div markdown="block" class="index">
 
+<div style="page-break-after: always;"></div>
 ## **Acknowledgements**
 
 This project is based on the [AddressBook-Level3](https://github.com/se-edu/addressbook-level3) project created by the [SE-EDU initiative](https://se-education.org).
@@ -40,6 +41,8 @@ For sequence diagrams, the lifeline of an object should end at the destroy marke
 PlantUML, the lifeline reaches the end of the diagram.
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### Architecture
 
@@ -96,6 +99,8 @@ The sections below give more details of each component.
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 The UI consists of a `MainWindow` that is made up of the following parts:
 * `ResultDisplay`
 * `CommandBox`
@@ -120,6 +125,8 @@ The `UI` component:
 * keeps a reference to the `Logic` component, as the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays the `Food` object residing in the `Model`.
 
+<div style="page-break-after: always;"></div>
+
 ### Logic component
 
 **API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-T17-2/tp/blob/master/src/main/java/seedu/nutrigoals/logic/Logic.java)
@@ -135,6 +142,8 @@ How the `Logic` component works:
    executed by the `LogicManager`.
 3. The command can communicate with the `Model` when it is executed (e.g. to add a food).
 4. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
+
+<div style="page-break-after: always;"></div>
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API
 call.
@@ -188,6 +197,8 @@ The `Storage` component:
 * inherits from both `NutriGoalsStorage` and `UserPrefStorage`. This means that it can be treated as either format (when the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects
   that belong to the `Model`).
+
+<div style="page-break-after: always;"></div>
 
 ### Common classes
 
@@ -268,6 +279,8 @@ The edit mechanism is facilitated by `EditCommand`, which extends `Command`. It 
 
 * `EditCommand#execute()`: Edits the food name, meal type or calories associated with the food at the specified index.
 
+<div style="page-break-after: always;"></div>
+
 #### Example usage
 
 Given below is an example usage scenario and how the edit mechanism behaves at each step.
@@ -298,6 +311,8 @@ Food name: honey milk tea
 Calorie content: 310 calories
 Meal type: lunch
 ```
+
+<div style="page-break-after: always;"></div>
 
 The following diagram illustrates how the `edit` operation works:
 
@@ -367,6 +382,8 @@ Step 4. The `FindCommand#execute()` then calls the following methods from `Model
 
 Step 5. The `FindCommand#execute()` returns a `CommandResult` that displays the calorie content of the food item specified by the user (which in this case is Banana).
 
+<div style="page-break-after: always;"></div>
+
 The following diagram illustrates how the `find` operation works:
 
 ![FindSequenceDiagram](images/FindSequenceDiagram.png)
@@ -391,6 +408,8 @@ Step 2. The user executes `target 2103`, which calls `LogicManager#execute()`.
 
 Step 3. The `TargetCommand` is created, and then executed by `TargetCommand#execute()`.
 
+<div style="page-break-after: always;"></div>
+
 Step 4. The `TargetCommand#execute()` calls the following methods from `Model`:
 * `Model#setCalorieTarget(calorieTarget)`
 * `Model#getCalorieTarget()`
@@ -412,6 +431,8 @@ The following diagram illustrates how the `target` operation works:
 The review mechanism is facilitated by `ReviewCommand`, which extends `Command`. It overrides the following operation:
 
 * `ReviewCommand#execute()`: Calculates the total calories, the calorie target and the calorie deficit/surplus for the current day.
+
+<div style="page-break-after: always;"></div>
 
 #### Example usage
 
@@ -443,6 +464,8 @@ Your calorie intake for today: 1343 calories
 Your calorie target for today: 2000 calories
 You should consume 657 more calories to reach your calorie target for today!
 ```
+
+<div style="page-break-after: always;"></div>
 
 The following sequence diagram illustrates how the `review` operation works:
 
@@ -506,6 +529,8 @@ Step 4. `LocateGymCommand#execute()` calls the following method from `Model`:
 The following activity diagram outlines what happens when a user executes the `locate` command:
 
 ![LocateCommandActivityDiagram](images/LocateCommandActivityDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 ### Tip feature
 
@@ -712,6 +737,8 @@ For all use cases below, the **System** is the `NutriGoals` application and the 
 
       Use case resumes at step 1.
 
+<div style="page-break-after: always;"></div>
+
 #### UC-7: View a summary of the daily calorie intake
 **Use case:** View a summary of the daily calorie intake
 
@@ -811,15 +838,15 @@ For all use cases below, the **System** is the `NutriGoals` application and the 
 
 * **Deficit**: The negative difference between the calories consumed in a day and the target daily intake. These calories are _not_ consumed to facilitate weight loss and fat burn.
 
-* **Surplus**: The positive difference between the calories consumed in a day and the target daily intake. These calories are consumed to facilitate weight gain and muscle growth.
-
 * **Food item**: Refers to an individual item of food that is consumed by the user.
 
-* **Meals**: Breakfast, Lunch, Dinner e.t.c., categories that consist of multiple food items and is usually consumed at a particular time.
+* **Gym**: Refers to a gymnasium used for weight training.
 
 * **Ideal weight**: The self-defined weight that users want to achieve for themselves.
 
-* **Gym**: Refers to a gymnasium used for weight training.
+* **Meals**: Breakfast, Lunch, Dinner e.t.c., categories that consist of multiple food items and is usually consumed at a particular time.
+
+* **Surplus**: The positive difference between the calories consumed in a day and the target daily intake. These calories are consumed to facilitate weight gain and muscle growth.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -831,6 +858,8 @@ Given below are instructions to test the app manually.
 testers are expected to do more *exploratory* testing.
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### Launch and shutdown
 
@@ -865,6 +894,8 @@ testers are expected to do more *exploratory* testing.
        Expected: Sush! is not added into the food list as the food name (Sush!) is invalid. Error details are shown on the result display.
 
     5. Other invalid add commands to try: `add n/Sushi c/300.5 t/lunch`, `add n/Sushi c/300 t/supper`, `...` (where any field specified does not conform to the required format).
+
+<div style="page-break-after: always;"></div>
 
 ### Deleting a food
 
