@@ -207,7 +207,7 @@ public class DateSlot implements Comparable<DateSlot> {
         return this.nurseUidNo;
     }
 
-    public LocalDateTime getDateSlotTime() {
+    public LocalDateTime getDateTime() {
         return this.dateSlotTime;
     }
 
@@ -250,7 +250,7 @@ public class DateSlot implements Comparable<DateSlot> {
 
     @Override
     public int compareTo(DateSlot o) {
-        return dateSlotTime.compareTo(o.getDateSlotTime());
+        return dateSlotTime.compareTo(o.getDateTime());
     }
 
 }
