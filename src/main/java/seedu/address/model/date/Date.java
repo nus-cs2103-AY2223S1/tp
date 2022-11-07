@@ -87,7 +87,7 @@ public class Date implements Comparable<Date> {
     }
 
     /**
-     * Returns the integer age of this Date object when the Date Object is used as date of birth of a person.
+     * Returns the integer age of this Date object when it is used as the date of birth of a person.
      */
     public int toAge() {
         LocalDate currDate = LocalDate.now();
