@@ -7,20 +7,20 @@ HR Pro Max++ is a **desktop app for team leads in SMEs to manage Projects, Staff
 It is optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
 Our simple and intuitive commands will help you quickly learn how to use HR Pro Max++ to quickly finish all your Project Management Tasks.
-If you can type fast, you will be able to make the most of HR Pro Max++, and get your Project management Tasks done faster than traditional GUI apps.
+If you can type fast, you will be able to make the most of HR Pro Max++, and get your Project Management Tasks done faster than traditional GUI apps.
 
 Here are some shortcuts to get help:
 * To set up HR Pro Max++, go to our [Quick start section](#quick-start).
 * If you are unsure of the terminology, check our [Glossary section](#glossary).
 * To see how all our commands work, head to our [Features section](#features).
-
 --------------------------------------------------------------------------------------------------------------------
 ## **Table of Contents**
 
 * Table of Contents
 {:toc}
+<div style="page-break-after: always;"></div>
 
---------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------- 
 ## **Glossary**
 In this User Guide, there might some terms unknown to you. We have provided elaboration on some
 of these terms in the hopes that it will clear your doubts.
@@ -31,6 +31,8 @@ of these terms in the hopes that it will clear your doubts.
 | **CLI**       | CLI refers to Command Line Interface and it refers to the [area](#command-box) where users can input commands in the form of text.  |
 | **Prefix**    | Prefix is the placeholder to indicate the type of information inputted. Here is a [list of all the prefixes](#prefix-summary).      |
 | **Parameter** | Parameters are the information that are needed to be passed together with the command such that it can be executed.                 |
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Quick start**
@@ -44,15 +46,19 @@ of these terms in the hopes that it will clear your doubts.
 4. Double-click the jar file to start the app. The GUI similar to the below should appear in a few seconds. Note that the app contains some sample data.<br>
    ```yaml
    Note:
-   If you are an Apple user, you may not be able to double-click the jar file to start the app.
-   In that case, you can either right click the jar file and run it from the drop-down menu, or run the following command in the terminal: java -jar HR_Pro_Max++.jar
+   If you are an Apple user, you may not be able to double-click the jar file to 
+   start the app.
+   
+   In that case, you can either right click the jar file and run it from the 
+   drop-down menu, or run the following command 
+   in the terminal:java -jar HR_Pro_Max++.jar
    ```
    ![Ui](images/Ui.png)
 6. You can proceed to the next section for a quick [overview of the user interface](#user-interface).
 7. Refer to the [Features](#features) below for details of the commands you can use.
 
 [Back to top](#table-of-contents)
-
+<div style="page-break-after: always"></div>
 --------------------------------------------------------------------------------------------------------------------
 ## **User Interface**
 Our app's user interface is divided into 5 main parts:
@@ -107,7 +113,7 @@ For information on all commands that are related to Staff, refer to the [Staff C
 ![Staff Panel](images/StaffPanel.png)
 
 [Back to top](#table-of-contents)
-
+<div style="page-break-after: always"></div>
 --------------------------------------------------------------------------------------------------------------------
 # **Features**
 
@@ -143,7 +149,7 @@ For information on all commands that are related to Staff, refer to the [Staff C
 
 
 [Back to top](#table-of-contents)
-
+<div style="page-break-after: always"></div>
 --------------------------------------------------------------------------------------------------------------------
 ## **Project Commands**
 This section contains information regarding all the commands that can be used to manage Projects.
@@ -159,7 +165,7 @@ This is a description of the different parameters for Projects.
 | **TAG**              | _Field for additional information_ <br> - Only alphanumeric characters are allowed. <br> - Tags are optional, allow multiple words and have a limit of 50 characters. <br> - Spaces are allowed but not an empty tag unless you are using the edit commands.                                                                                      |
 
 [Back to top](#table-of-contents)
-
+<div style="page-break-after: always"></div>
 --------------------------------------------------------------------------------------------------------------------
 ### Adding a Project : `addproj`
 
@@ -227,9 +233,8 @@ Sorts the Project list according to ascending order of `PROJECT_DEADLINE`.
 Format: `sortproj`
 
 ```yaml
-
 Warning !!!:
-  * This command is irreversible, you will not be able to get back the original ordering
+  - This command is irreversible, you will not be able to get back the original ordering
     after this command.
 ```
 
@@ -286,6 +291,7 @@ Examples:
 
 [Back to top](#table-of-contents)<br>
 [Back to Project Glossary](#project-glossary)
+<div style="page-break-after: always"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Staff Commands**
@@ -295,7 +301,7 @@ you should first use the [view command](#view-the-staff-list-within-a-project--v
 
 ```yaml
 Warning !!!:
-  * Failing to do so may result in the Staff commands not working as intended.
+  - Failing to do so may result in the Staff commands not working as intended.
 ```
 
 
@@ -311,8 +317,10 @@ Warning !!!:
 | **TAG**              | _Field for additional information_ <br> - Only alphanumeric characters are allowed. <br> - Tags are optional, allow multiple words and have a limit of 50 characters. Spaces are allowed but not an empty tag unless you are using the edit commands. |
 
 [Back to top](#table-of-contents)
-
+<div style="page-break-after: always"></div>
 --------------------------------------------------------------------------------------------------------------------
+ 
+
 ### Adding a Staff member to Project : `addstaff`
 
 Adds a Staff member into the Project at the specified `INDEX`.
@@ -448,7 +456,7 @@ Staff whose name contains `Adrian` or `Lam` are also listed.
 
 [Back to top](#table-of-contents)<br>
 [Back to Staff Glossary](#staff-glossary)
-
+<div style="page-break-after: always"></div>
 --------------------------------------------------------------------------------------------------------------------
 ## **Task Commands**
 This section contains information on all the commands related to Tasks.
@@ -461,7 +469,7 @@ This section contains information on all the commands related to Tasks.
 | **TASK_DEADLINE**    | _Deadline of Task_ <br> - TASK_DEADLINE should be entered in the YYYY-MM-DD format.                                                                                                                                                                                                                                                                   |                                                                                                                                                              |
 
 [Back to top](#table-of-contents)
-
+<div style="page-break-after: always"></div>
 --------------------------------------------------------------------------------------------------------------------
 ### Adding a Task : `addtask`
 
@@ -472,7 +480,7 @@ Format: `addtask tdesc/TASK_DESCRIPTION td/TASK_DEADLINE`
 ```yaml
 Note:
   - Both Task fields `TASK_DESCRIPTION` and `TASK_DEADLINE` must be present.
-  - `TASK_DEADLINE` follows the YYYY-MM-DD format.
+  - The `TASK_DEADLINE` follows the YYYY-MM-DD format.
 ```
 
 Examples:
@@ -531,8 +539,8 @@ Sorts all Tasks in displayed Task list by deadline. Earlier deadlines will be pl
 
 ```yaml
 Warning !!!:
-* This command is irreversible, you will not be able to get back the original ordering
-  after this command.
+  - This command is irreversible, you will not be able to get back the original ordering
+    after this command.
 ```
 
 Format: `sorttask`
@@ -544,8 +552,8 @@ Format: `sorttask`
 
 ```yaml
 Warning !!!:
-* This command is irreversible, you will not be able to get back the original ordering
-  after this command.
+  - This command is irreversible, you will not be able to get back the original ordering
+    after this command.
 ```
 
 Sorts all Tasks in displayed Task list by completion status. Incomplete tasks will be placed first.
@@ -586,7 +594,7 @@ Examples:
 * `unmarktask 2` Marks the second Task as not incomplete.
 
 [Back to top](#table-of-contents)
-
+<div style="page-break-after: always"></div>
 --------------------------------------------------------------------------------------------------------------------
 ## **General Commands**
 This section contains information on all the commands that are not related to any specific feature.
@@ -619,7 +627,7 @@ Format: `clear`
 
 ```yaml
 Warning !!!:
-* This command is irreversible, you will not be able to recover data after clearing it.
+  - This command is irreversible, you will not be able to recover data after clearing it.
 ```
 
 [Back to top](#table-of-contents)
@@ -630,15 +638,7 @@ HR Pro Max++ data is saved in the hard disk automatically after any command that
 There is no need to save manually.
 
 [Back to top](#table-of-contents)
-
---------------------------------------------------------------------------------------------------------------------
-# **FAQ**
-
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous HR Pro Max++ home folder.
-
-[Back to top](#table-of-contents)
-
+<div style="page-break-after: always"></div>
 --------------------------------------------------------------------------------------------------------------------
 # **Summary**
 This section contains a summary of all the commands and prefixes in HR Pro Max++.
@@ -699,7 +699,7 @@ Prefixes that start with `p` are for Project details.
 
 Prefixes that start with `s` are for Project Staff member details.
 
-Prefixes that start with `t` and are 2 letters long are for Task details.
+Prefixes that start with `t` and are 2 or more letters long are for Task details.
 
 The prefix `t/` is for tags that are used for Projects and Staff only.
 
@@ -718,5 +718,13 @@ The prefix `t/` is for tags that are used for Projects and Staff only.
 | **td/**    | Task deadline      | td/TASK_DEADLINE       |
 | **tdesc/** | Task description   | tdesc/TASK_DESCRIPTION |
 | **t/**     | Tag                | t/TAG                  |
+
+[Back to top](#table-of-contents)
+<div style="page-break-after: always"></div>
+-------------------------------------------------------------------------------------------------------------------- 
+# **FAQ**
+
+**Q**: How do I transfer my data to another Computer?<br>
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous HR Pro Max++ home folder.
 
 [Back to top](#table-of-contents)
