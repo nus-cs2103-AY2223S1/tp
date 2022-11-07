@@ -350,12 +350,24 @@ Consequently, the commands are split into **5** main sections:
 4. [Link commands](#commands-to-manage-links--urls)
 5. [General commands](#general-commands)
 
-<div markdown="block" class="alert alert-primary">**:information_source: Notes about command format**
+<div markdown="block" class="alert alert-primary">**:information_source: Command Format**
 
-- Format for each command adheres to the structure laid out in the 
-[help command section](#example-command-help-message-add-person---help)
+The format for each command adheres to the structure laid out in the 
+[help command section](#example-command-help-message-add-person---help).
+</div>
+
+<div markdown="block" class="alert alert-primary">**:information_source: Parameters and Constraints**
+
+Parameters are written in uppercase and wrapped with angle brackets (e.g. `<PARAMETER>`) in this guide.
+<br>
+
+Each parameter has their own constraints, which can be found [here](#flag-and-parameter-constraints).
+</div>
+
+
+<div markdown="block" class="alert alert-primary">**:information_source: Notes on Flags and Parameters**
+
 - Every command has a `-h` and `--help` flag available to see their help message
-- Parameters are in uppercase and wrapped with angle brackets, e.g. `<PARAMETER>`
 - Flags wrapped with brackets (`()`) indicates that at least 1 flag inside the brackets
   must be specified
   - For `([-n <NAME>] [-p <PHONE>] [-e <EMAIL>] [-t [<TAGS>]]...)`, the following examples are valid
@@ -386,10 +398,6 @@ Consequently, the commands are split into **5** main sections:
     4. `-hci`
 - If an extra parameter is specified, the command will not execute and an error message will be displayed
   - For e.g. `help with extra words` will display an error message
-</div>
-
-<div markdown="block" class="alert alert-primary">**:information_source: Parameter constraints can be found 
-[here](#flag-and-parameter-constraints)**
 </div>
 
 <div markdown="span" class="alert alert-success">
