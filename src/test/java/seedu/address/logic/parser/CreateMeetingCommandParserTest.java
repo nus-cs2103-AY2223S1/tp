@@ -3,7 +3,7 @@ package seedu.address.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+// import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -21,9 +21,11 @@ public class CreateMeetingCommandParserTest {
     @Test
     public void parse_validArgs_returnsCreateMeetingCommand() throws ParseException {
         String[] nameArgs = {"Alex", "Yu"};
-        assertParseSuccess(parser, "  Alex }} Yu ;;; Study session ;;; 26-10-2022 1830 ;;; Central Library  ",
+        // The following lines pass the test, but will experience errors in Codecov evaluation as they interfere
+        // with the tests for MeetingList
+        /*assertParseSuccess(parser, "  Alex }} Yu ;;; Study session ;;; 26-10-2022 1830 ;;; Central Library  ",
             new CreateMeetingCommand(nameArgs, "Study session",
-                "Wednesday, 26 October 2022 06:30 pm", "Central Library"));
+                "Wednesday, 26 October 2022 06:30 pm", "Central Library"));*/
         assertEquals(parser.parse("  Alex }} Yu ;;; Study session ;;; 26-10-2022 1830 ;;; Central Library  "),
             new CreateMeetingCommand(nameArgs, "Study session", "Wednesday, 26 October 2022 06:30 pm",
                 "Central Library"));
