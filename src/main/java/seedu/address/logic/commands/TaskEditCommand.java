@@ -49,7 +49,8 @@ public class TaskEditCommand extends Command {
      *
      * @param teamIndex of the team in the filtered team list to edit.
      * @param taskIndex index of the task to be edited.
-     * @param newTaskName name of the new task name.
+     * @param newTaskName new name of the task.
+     * @param newDeadline new deadline of the task
      */
     public TaskEditCommand(Index teamIndex, Index taskIndex, TaskName newTaskName, LocalDate newDeadline) {
         requireNonNull(taskIndex);

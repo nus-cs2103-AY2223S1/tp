@@ -39,6 +39,9 @@ public class AssignMemberCommand extends Command {
 
     /**
      * Creates an AssignMemberCommand to assign member to the specified {@code Team}
+     *
+     * @param personIndex The index of the member.
+     * @param teamIndex The index of the team.
      */
     public AssignMemberCommand(Index personIndex, Index teamIndex) {
         requireAllNonNull(personIndex, teamIndex);
