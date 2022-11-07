@@ -27,11 +27,12 @@ activate AddTaskCommandParser
 create AddTaskToModuleDescriptor
 AddTaskCommandParser -> AddTaskToModuleDescriptor
 activate AddTaskToModuleDescriptor
+AddTaskCommandParser <-- AddTaskToModuleDescriptor
+deactivate AddTaskToModuleDescriptor
 
 create Task
 AddTaskCommandParser -> Task
 activate Task
-deactivate AddTaskToModuleDescriptor
 
 Task --> AddTaskCommandParser
 deactivate Task
