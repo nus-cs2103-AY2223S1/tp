@@ -57,4 +57,5 @@ Given below are my largest contributions to the project.
   * Reported bugs and suggestions for other teams: [1](https://github.com/AY2223S1-CS2103-F14-3/tp/issues/170), [2](https://github.com/AY2223S1-CS2103-F14-3/tp/issues/182)
 
 * **Tools**:
+  * Made use of SourceTree, Git and GitHub for revision control
   * Made use of PlantUML for DG diagrams [(Example)](https://github.com/AY2223S1-CS2103T-W13-3/tp/pull/311)
