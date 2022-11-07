@@ -637,6 +637,7 @@ Guarantee: Selected Customer's Reward points will be incremented by bobaBot.
 
    Use case ends.
 
+<div style="page-break-after: always;"></div>
 **Extensions**
 
 * 1a. User enters the command wrongly.
@@ -686,6 +687,7 @@ Guarantee: Selected Customer's Reward points will be decremented by bobaBot.
       Use case ends.
 
 
+<div style="page-break-after: always;"></div>
 **Use case 7: Undo a wrong Command**
 
 System: bobaBot <br>
