@@ -304,7 +304,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] `MarkCommand` Feature
+### `Mark` Feature
 #### Proposed Implementation
 The proposed MarkCommand Feature marks the Project Status of an FYP project as one of 3 possible statuses
 {***YTS***, ***IP***, ***DONE***}. Currently these are the only 3 statuses supported, although more may be implemented
@@ -407,7 +407,7 @@ The following activity diagram summarizes what happens when a user executes a li
 
 <img src="images/ListCommandActivityDiagram.png" />
 
-### \[Proposed\] `FindCommand` Feature
+### `Find` Feature
 #### Proposed Implementation
 
 The proposed FindCommand Feature allows the user to find for specific keywords in certain fields. The current
@@ -438,14 +438,25 @@ Step 2: The user finds a project by keying in `find -p tree` to find all project
 ![FindCommandState1](images/FindCommandState1.png)
 
 Step 3: Suppose that the user wants to find another project with keyword `blockchain`. The user keys in
-`find -p blockchain` to find all projects which contain the keyword `blockchain`. FypManager returns an empty list,
-as there is no project whose project name contains `blockchain`.
+`find -p blockchain` to find all projects whose names contain the keyword `blockchain`. FypManager returns an empty 
+list, as there is no project whose project name contains `blockchain`.
 
 ![FindCommandState2](images/FindCommandState2.png)
+
+Step 4: The user is unsure of the correct names of the projects that he wants to find, and decides to find for 
+multiple keywords `network / design`. The user keys in `find -p network / design` to find all projects whose names
+contain either the keywords `network` or `design`. FypManager returns a list of projects whose names contain at least
+one of the two keywords.
+
+![FindCommandState3](images/FindCommandState3.png)
 
 The following sequence diagram shows how the FindCommand operation works:
 
 ![FindCommandSequenceDiagram](images/FindCommandSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a list command:
+
+![FindCommandActivityDiagram](images/FindCommandActivityDiagram.png)
 
 #### Design considerations:
 
@@ -455,7 +466,7 @@ The following sequence diagram shows how the FindCommand operation works:
   as a FypManager tool.
 
 * We have allowed the user to be able to search using different keywords (so long as they are separated by ***/*** ),
-  which lets the user be more stringent in his/her search criteria.
+  which lets the user be more flexible in his/her search criteria.
 
 * Furthermore, we have made the input more flexible by making it case-insensitive, helping users who are not particularly
   careful with their input of capital-cases or lower-cases. This also mimics real-life query engines, which usually
@@ -464,11 +475,11 @@ The following sequence diagram shows how the FindCommand operation works:
 
 **Other Alternatives:**
 
-***v1.3 update: the following has been achieved as of this update. :)***
-
 * **Alternative 1:** Extend the FindCommand by allowing the user to search by fields other than project name
     * Pros: Allows the users to search using more fields instead of ProjectName alone.
     * Cons: Harder to implement. And requires inclusion of a suffix.
+
+***[v1.3 update: the above has been achieved as of this update. :) ]***
 
 * **Alternative 2:** Allow the user to search for their keywords across all fields without specifying a field
     * Pros: More comprehensive search for projects with the required keyword.
