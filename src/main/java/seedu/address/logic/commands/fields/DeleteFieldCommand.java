@@ -9,14 +9,18 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.item.DisplayItem;
 
+// @@author jasonchristopher21
 /** Command to rename a group/task/person */
 public class DeleteFieldCommand extends FieldCommand {
 
     public static final String SUBCOMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = getFullCommand(SUBCOMMAND_WORD)
-        + " :Assigns an attribute to a given item.\n"
-        + getFullCommand(SUBCOMMAND_WORD) + "[t|u|g]/id [type] [value] [settings] [styleflags]";
+        + " :Deletes an custom attribute to a given item.\n"
+        + getFullCommand(SUBCOMMAND_WORD) + " [t|u|g]/id [type]"
+        + "e.g. field delete t/1 bug"
+        + " OR task select 1 field delete bug\n"
+        + "Delete bug attribute of task 1";
 
     public static final String NO_INPUT = "No input item is chosen!";
     public static final String MESSAGE_DUPLICATE = "An item with the same name already exist!";

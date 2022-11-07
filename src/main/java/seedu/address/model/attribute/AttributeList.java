@@ -72,9 +72,8 @@ public class AttributeList {
      * @param value the value of the field.
      */
     public <T> void addAttribute(String attributeName, T value) throws AttributeException {
-        if (this.findAttribute(attributeName) != null) {
-            String existingName = this.findAttribute(attributeName).getAttributeType();
-            throw new DuplicateAttributeException(existingName, attributeName);
+        if (findAttribute(attributeName) != null) {
+            throw new DuplicateAttributeException(attributeName, attributeName);
         }
         Attribute<T> attribute = createAttributeInstance(attributeName, value);
         this.addAttribute(attribute);
@@ -89,8 +88,7 @@ public class AttributeList {
      */
     public <T> void addAttribute(String attributeName, T value, int setting, int style) throws AttributeException {
         if (this.findAttribute(attributeName) != null) {
-            String existingName = this.findAttribute(attributeName).getAttributeType();
-            throw new DuplicateAttributeException(existingName, attributeName);
+            throw new DuplicateAttributeException(attributeName, attributeName);
         }
         Attribute<T> attribute = createAttributeInstance(attributeName, value, setting, style);
         this.addAttribute(attribute);
@@ -132,7 +130,7 @@ public class AttributeList {
     public void editAttribute(String attributeName, String attributeValue) throws AttributeException {
         Attribute<?> oldAttribute = findAttribute(attributeName);
         if (oldAttribute == null) {
-            throw new AttributeException("Attribute should not be null");
+            throw new AttributeException("No attribute found: " + attributeName);
         }
         Attribute<?> newAttribute = createAttributeInstance(attributeName, attributeValue);
         updateAttribute(oldAttribute, newAttribute);

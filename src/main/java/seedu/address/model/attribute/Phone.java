@@ -7,15 +7,18 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import seedu.address.logic.parser.Prefix;
 
 /**
- * Represents a Person's phone number in the address book. Guarantees: immutable; is valid as declared in
- * {@link #isValidPhone(String)}
+ * Represents a Person's phone number in the address book. Guarantees: immutable; is valid as
+ * declared in {@link #isValidPhone(String)}
  */
 public class Phone extends AbstractAttribute<String> implements PrefixedAttribute {
 
     public static final String TYPE = "Phone";
     public static final String MESSAGE_CONSTRAINTS =
-            "Phone numbers should only contain numbers, start with 6, 8 or 9, and be 8 digits long";
-    public static final String VALIDATION_REGEX = "[689]\\d{7}";
+        "Phone numbers can contain country code, region code and numbers.\n"
+            + "Optional Country code can begin with a optional '+' and followed by at most 4 digits\n"
+            + "Optional Area code can be at most 4 digits long\n"
+            + "Compulsary Phone number must be minimally 3 digits long\n";
+    public static final String VALIDATION_REGEX = "(?:\\+?\\d{1,4} )?(?:\\d{1,4} )?\\d{3,}";
     public final String value;
 
     /**
@@ -24,7 +27,7 @@ public class Phone extends AbstractAttribute<String> implements PrefixedAttribut
      * @param phone A valid phone number.
      */
     public Phone(String phone) {
-        super(TYPE, phone);
+        super(TYPE, phone.replaceAll("\\s+", " ").trim());
         requireNonNull(phone);
         checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
         value = phone;
@@ -34,6 +37,7 @@ public class Phone extends AbstractAttribute<String> implements PrefixedAttribut
      * Returns true if a given string is a valid phone number.
      */
     public static boolean isValidPhone(String test) {
+        test = test.replaceAll("\\s+", " ").trim();
         return test.matches(VALIDATION_REGEX);
     }
 

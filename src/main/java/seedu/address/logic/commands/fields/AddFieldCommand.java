@@ -10,6 +10,7 @@ import seedu.address.model.Model;
 import seedu.address.model.attribute.AbstractAttribute;
 import seedu.address.model.item.DisplayItem;
 
+// @@author jasonchristopher21
 /** Command to rename a group/task/person */
 public class AddFieldCommand extends FieldCommand {
 
@@ -17,7 +18,10 @@ public class AddFieldCommand extends FieldCommand {
 
     public static final String MESSAGE_USAGE = getFullCommand(SUBCOMMAND_WORD)
         + " :Assigns an attribute to a given item.\n"
-        + getFullCommand(SUBCOMMAND_WORD) + "[t|u|g]/id [type] [value] [settings] [styleflags]";
+        + getFullCommand(SUBCOMMAND_WORD) + " [t|u|g]/id [type] [value]\n"
+        + "e.g. field add t/1 bug low severity\n"
+        + " OR task select 1 field add bug low severity\n"
+        + "Adds a new custom field called bug to attribute";
 
     public static final String NO_INPUT = "No input item is chosen!";
     public static final String MESSAGE_DUPLICATE = "An item with the same name already exist!";
@@ -54,7 +58,7 @@ public class AddFieldCommand extends FieldCommand {
         if (item == null) {
             item = sItem;
         }
-        if (item.getAttribute(ftype).isPresent()) {
+        if (item.getAttribute(type).isPresent()) {
             throw new CommandException(MESSAGE_DUPLICATE);
         }
         item.addAttribute(new AbstractAttribute<String>(type, data) {

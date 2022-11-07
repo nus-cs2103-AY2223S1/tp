@@ -17,6 +17,7 @@ import java.util.stream.Stream;
 
 import seedu.address.model.attribute.Attribute;
 import seedu.address.model.attribute.Description;
+import seedu.address.model.attribute.exceptions.AttributeException;
 import seedu.address.model.item.AbstractDisplayItem;
 import seedu.address.model.item.AbstractSingleItem;
 import seedu.address.model.item.DisplayItem;
@@ -131,8 +132,8 @@ public class Task extends AbstractSingleItem {
         }
         Task task = (Task) o;
         return Objects.equals(completedTime, task.completedTime)
-                && Objects.equals(description, task.description)
-                && Objects.equals(getAttributes(), task.getAttributes());
+            && Objects.equals(description, task.description)
+            && Objects.equals(getAttributes(), task.getAttributes());
     }
 
     /**
@@ -154,6 +155,18 @@ public class Task extends AbstractSingleItem {
         ret.add(description);
         ret.addAll(super.getAttributes());
         return ret;
+    }
+
+    @Override
+    public void editAttribute(String attributeName, String attributeContent) throws AttributeException {
+        attributeName = attributeName.trim();
+        if (description.isNameMatch(attributeName)) {
+            description.edit(attributeContent);
+            return;
+        } else if (attributeName.equalsIgnoreCase("Path")) {
+            throw new AttributeException("Path cannot be edited!");
+        }
+        super.editAttribute(attributeName, attributeContent);
     }
 
     @Override
