@@ -79,16 +79,15 @@ Here are certain indicators explained so that the user may better comprehend the
 
 3. Move the jar file to an empty folder you wish to use as the **home folder** for the app.
 
-4. Double-click the jar file to open the app. If the app does not respond, open your terminal in the current folder 
-   where `TrackAScholar.jar` is located and enter `java -jar TrackAScholar.jar` to open the app.
+4. For ***Mac*** users: Open terminal and navigate to the folder where the jar file is located at. Type in the command `java -jar TrackAScholar.jar` to launch TrackAScholar. <br>
+
+   For ***Windows*** users: Double-click the jar file and launch TrackAScholar.
 
 5. The following screen ought to appear in a few seconds when the app first launches. 
   Note how the app contains some sample data for you to explore the features with.
    ![Ui](images/Ui.png)
 
-6. Type the command in the command prompt and press Enter to execute it. e.g. typing `help` and pressing Enter will open the help window.
-
-7. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 [Return to top](#table-of-contents)
 
