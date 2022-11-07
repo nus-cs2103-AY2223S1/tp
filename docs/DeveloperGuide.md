@@ -707,6 +707,7 @@ testers are expected to do more *exploratory* testing.
        Expected: `PYP` is added into the list. Details of the added task shown in the status message.
        `PYP` is inserted behind all other tasks that contain a deadline.
 
+
 2. Adding a task while only unmarked tasks are being shown
 
     1. Prerequisites: List all tasks using the `ls -u` command. Multiple tasks in the list.
@@ -773,11 +774,15 @@ testers are expected to do more *exploratory* testing.
 1. Restoring task list from previous launch 
 
    1. Launch NotionUS by double-clicking the jar file. Clear the current task list by entering `clear`. 
+   
    2. Prerequisites: List all tasks using the `ls -a` command. Task list is empty.
+   
    3. Add 2 tasks into the task list by entering the following commands: 
       1. `add -n Tutorial 1 -m CS2103T -d 2022-11-29`
       2. `add -n PYP -m CS2101`
       Expected: Task list displayed contains 2 tasks. 
+      
    4. Exit NotionUS by entering `exit` or closing the window. 
+   
    5. Relaunch NotionUS by double-clicking the jar file. 
       Expected: Task list displayed contains 2  tasks, `Tutorial 1` and `PYP`.  
