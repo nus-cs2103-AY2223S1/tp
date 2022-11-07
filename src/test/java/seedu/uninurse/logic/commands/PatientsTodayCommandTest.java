@@ -27,9 +27,8 @@ class PatientsTodayCommandTest {
 
     @Test
     public void execute_noPatientsToday_showsNoPatients() {
-        expectedModel.updateFilteredPatientList(Model.PREDICATE_SHOW_PATIENTS_FOR_TODAY);
-        assertCommandSuccess(new PatientsTodayCommand(), model, PatientsTodayCommand.MESSAGE_SUCCESS,
-                PatientsTodayCommand.COMMAND_TYPE, expectedModel);
+        assertCommandSuccess(new PatientsTodayCommand(), model, PatientsTodayCommand.MESSAGE_FAILURE,
+                CommandType.EMPTY, expectedModel);
     }
 
     @Test

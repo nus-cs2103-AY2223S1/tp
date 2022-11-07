@@ -2,6 +2,7 @@ package seedu.uninurse.logic.commands;
 
 import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.uninurse.logic.parser.CliSyntax.SPECIAL_CHARACTER_TODAY;
+import static seedu.uninurse.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.uninurse.model.Model.PREDICATE_SHOW_PATIENTS_FOR_TODAY;
 
 import java.time.LocalDateTime;
@@ -17,12 +18,19 @@ public class PatientsTodayCommand extends DisplayTasksGenericCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + SPECIAL_CHARACTER_TODAY
             + ": Shows all patients with tasks today.";
     public static final String MESSAGE_SUCCESS = "Listed all patients for today";
+    public static final String MESSAGE_FAILURE = "No patients for today";
     public static final CommandType COMMAND_TYPE = CommandType.SCHEDULE;
 
     @Override
     public CommandResult execute(Model model) {
         requireAllNonNull(model);
         model.updateFilteredPatientList(PREDICATE_SHOW_PATIENTS_FOR_TODAY);
+
+        if (model.getFilteredPersonList().isEmpty()) {
+            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+            return new CommandResult(MESSAGE_FAILURE, CommandType.EMPTY);
+        }
+
         model.setSchedule(new Schedule(model.getPatientList(), new DateTime(LocalDateTime.now())));
         return new CommandResult(MESSAGE_SUCCESS, COMMAND_TYPE);
     }
