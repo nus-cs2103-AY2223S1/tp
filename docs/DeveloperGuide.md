@@ -309,7 +309,7 @@ status.
 #### Multi-State Attributes
 
 Some attributes of a `Student` can have multiple states and can be represented by an identifier. This is encapsulated by
-the `MultiStateTag<S, T>` generic class, where `S` is the type of the identifier (e.g. `String`), while `T` is the type
+the `MultiStateAttribute<S, T>` generic class, where `S` is the type of the identifier (e.g. `String`), while `T` is the type
 of the state, typically some `enum`.
 
 1. `mark` /`unmark` : This command adds/modifies/removes a student's attendances that are represented by
