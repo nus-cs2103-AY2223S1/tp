@@ -1022,6 +1022,7 @@ testers are expected to do more *exploratory* testing.
     4. Other incorrect undo commands to try: `redo anya`, `redo 123`, `...`<br>
        Expected: Similar to previous
 
+<div style="page-break-after: always;"></div>
 ### Clearing all customers in bobaBot
 
 1. Clearing all customers within bobaBot
