@@ -12,17 +12,20 @@ Around 4.5k lines of code according to the [RepoSense Link](https://nus-cs2103-a
 ### Enhancements implemented
 - **New Feature: Added `Tutor Details Panel` to UI**
   - Purpose: Allows full tutor information to be displayed.
+  - Justification: Choosing to display the tutor information on a `Tutor Details Panel` instead of directly on the `Tutor List Card` helps with the visual organisation of information on the GUI as it conceals irrelevant information when browsing tutors.
 
 - **New Feature: Added `view` command**
   - Purpose: Allows information in the list to be condensed, and users to select specific tutors to view full information if interested.
-  - Highlights: This command can be executed in two ways - either by entering the command in the `Command Box` or clicking on the `Tutor List Card`. The latter required extracting out the `CommandExecutor` class for relevant UI Parts to execute commands.
+  - Highlights: 
+    1. This involves careful modification to `CommandResult` to act as means of communication between the UI and Logic components.
+    2. This command can be executed in two ways - either by entering the command in the `Command Box` or clicking on the `Tutor List Card`. The latter required extracting out the `CommandExecutor` class for relevant UI Parts to execute commands.
 
 - **Enhancement: Created a simpler and more pleasing GUI**
   - Purpose: Improve the user experience to make the app more professional and appealing to professors.
   - Contribution: Made use of Figma to plan the app layout as well as Canvas to create the app icons, modified `JavaFx` and `css` files to update styles.
 
 - **Enhancement: Update `Tutor` model**
-  - Change: Updated definition of the same `Tutor` to those with the same email or student ID.
+  - Change: Updated definition of the same `Tutor` to those with the same email or student ID and altered test cases accordingly.
 
 - **Enhancement: Refactor `AddressBook` to `Tuthub`**
   - Change: Replaced all instances of `AddressBook` and `Person` to `Tuthub` and `Tutor` and conducted checks to ensure that all remaining traces are replaced.
