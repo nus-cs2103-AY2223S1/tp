@@ -323,6 +323,7 @@ Also, the appointment details will be added to the calendar.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Input DATE_AND_TIME must be valid in order for the command to be executed.
 <br>
+
 * Each client can have a maximum of 3 appointments, and there cannot be appointments with the same DATE_AND_TIME in the overall list of appointments. <br>
 * We allow the adding of appointments that are in the past, this is similar to any calendar apps where you can add events to dates that are in the past. 
 </div>
