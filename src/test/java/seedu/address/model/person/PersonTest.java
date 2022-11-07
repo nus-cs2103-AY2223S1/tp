@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
@@ -19,6 +20,7 @@ import static seedu.address.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.util.SampleDataUtil;
 import seedu.address.testutil.PersonBuilder;
 
 public class PersonTest {
@@ -102,5 +104,20 @@ public class PersonTest {
         // different tags -> returns false
         editedAlice = new PersonBuilder(ALICE).withMedication(VALID_MEDICATION_XANAX).build();
         assertFalse(ALICE.equals(editedAlice));
+    }
+
+    @Test
+    void addPastAppointment_duplicateAdd_failure() {
+        String[] pastAppointment = {"02-12-2000", "panadol", "migraine"};
+        Person Alice = new PersonBuilder(ALICE).withPastAppointment(pastAppointment).build();
+        Alice.addPastAppointment(SampleDataUtil.getPastAppointment(pastAppointment));
+        assertEquals(Alice.getPastAppointmentCount(), 1);
+    }
+
+    @Test
+    void deleteMostRecentPastAppointment_noPastAppointments_failure() {
+        Person Alice = new PersonBuilder(ALICE).build();
+        Alice.deleteMostRecentPastAppointment();
+        assertEquals(Alice.getPastAppointmentCount(), 0);
     }
 }

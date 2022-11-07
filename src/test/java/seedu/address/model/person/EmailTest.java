@@ -65,4 +65,14 @@ public class EmailTest {
         assertTrue(Email.isValidEmail("if.you.dream.it_you.can.do.it@example.com")); // long local part
         assertTrue(Email.isValidEmail("e1234567@u.nus.edu")); // more than one period in domain
     }
+
+    @Test
+    void testHashCode() {
+        Email firstEmail = new Email("PeterJack_1190@example.com");
+        Email firstEmailCopy = new Email("PeterJack_1190@example.com");
+        Email secondEmail = new Email("peterjack@example.com");
+
+        assertTrue(firstEmail.hashCode() == firstEmailCopy.hashCode());
+        assertFalse(firstEmail.hashCode() == secondEmail.hashCode());
+    }
 }
