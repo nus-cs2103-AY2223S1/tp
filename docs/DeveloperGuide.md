@@ -691,6 +691,72 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `adddebt 1 d/Taxi m/20 date/2022-10-11`<br>
        Expected: PayMeLah throws an error informing that there is already an identical debt belonging to the first person
 
+### Splitting a debt
+
+1. Splitting a debt with valid inputs
+
+    1. Prerequisites: There are at least 3 persons in the list.
+    1. Test cases: `splitdebt 1 2 3 d/Test m/4`
+       Expected: The corresponding debt with the description "Test" and value "$1.34" and  is added to the persons 1, 2, and 3 in the list.
+
+1. Splitting a debt with invalid inputs
+
+    1. Test cases: `splitdebt 0 d/kfc m/$10`, `splitdebt d/kfc m/$10`, `splitdebt 1 m/$10`, `splitdebt 1 d/kfc`<br>
+       Expected: No debt is added. Error details shown in the status message (invalid format).
+    1. Test case: `splitdebt 1 d/kfc m/-10`<br>
+       Expected: No debt is added. Error details shown in the status message (invalid money format).
+
+1. Splitting a debt with persons that do not exist
+
+    1. Prerequisites: There are 3 persons in the list.
+
+    1. Test cases: `splitdebt 4 d/kfc m/$10`, `splitdebt 0 1 2 3 4 d/kfc m/$10`, `splitdebt 1 5 d/kfc m/$10`<br>
+       Expected: No debt is added. Error details shown in the status message (invalid person index).
+
+### Deleting a debt
+
+1. Deleting a debt with valid inputs
+
+   1. Prerequisites: The second person in the list has 5 debts.
+    
+   1. Test cases: `deletedebt 2 debt/2 4`
+          Expected: The second and fourth debts are removed from the second person in the list.
+
+1. Deleting a debt with invalid inputs
+
+    1. Test cases: `deletedebt 1 debt/0`, `deletedebt 0 debt/1`, `deletedebt 1`<br>
+       Expected: No debt is deleted. Error details shown in the status message (invalid format).
+
+1. Deleting a debt that does not exist
+
+    1. Prerequisites: The first person in the list has 2 debts.
+
+    1. Test cases: `deletedebt 1 debt/3`, `deletedebt 1 debt/1 2 3`, `deletedebt 1 debt/4`<br>
+       Expected: No debt is deleted. Error details shown in the status message (invalid person index).
+
+### Clearing debts
+
+1. Clearing debts with valid inputs
+
+    1. Prerequisites: There are persons in the list.
+
+    1. Test cases: `cleardebts 1`
+       Expected: The first person in the list appears without any debts.
+    1. Other valid commands include any use of `cleardebts` with a correspondingly valid person index.
+       Expected: The corresponding person in the list appears without any debts.
+
+1. Clearing debts with invalid inputs
+
+    1. Test case: `cleardebts 0`, `cleardebts 1 2`, `cleardebts`<br>
+       Expected: No debts are removed. Error details shown in the status message (invalid format).
+
+1. Clearing debts from a person that does not exist
+
+    1. Prerequisites: There are 3 persons in the list.
+
+    1. Test case: `cleardebts 4`, `cleardebts 5`, `cleardebts 6`<br>
+       Expected: No debts are removed. Error details shown in the status message (invalid person index).
+
 ### Saving data
 
 1. Dealing with missing/corrupted data files
