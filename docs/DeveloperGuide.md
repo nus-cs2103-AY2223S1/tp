@@ -666,7 +666,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | user          | unhide my appointments                           | view hidden appointments to work with                                         |
 | `*`      | lazy user     | view my previous commands                        | avoid repeating to input the same or similar commands over and over again     |
 
-*{More to be added}*
 
 ### Use cases
 
@@ -1125,8 +1124,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 13. Should not exceed 100MB in size.
 14. Should not require external software to run.
 
-
-*{More to be added}*
 
 ### Glossary
 
