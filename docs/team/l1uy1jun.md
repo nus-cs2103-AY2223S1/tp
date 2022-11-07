@@ -32,7 +32,7 @@ Given below are my contributions to the project.
       i.e. finding multiple names while specifying a single major matches only all the applicants whose name is partially mentioned and has taken the major specified.
     * Added 2 new classes `ScholarshipContainsKeywordsPredicate` and `MajorContainsKeywordsPredicate` to assist searching.
 
-  * Wrote additional test cases for existing features to improve coverage by 4%: [#190](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/190) [#196](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/196)
+  * Wrote additional test cases for existing features to improve coverage by 4%: [#190](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/190), [#196](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/196)
   
 * **Documentation**:
   * User Guide:
@@ -41,9 +41,8 @@ Given below are my contributions to the project.
     * Added overview of TrackAScholar app. [#131](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/131)
 
   * Developer Guide:
-    * Updated developer guide for TrackAScholar. [#95](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/95)
-    * Added cosmetic tweaks for entire developer guide. [#95](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/95)
-    * Added implementation details for `add` and `remove` feature: [#95](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/95) [#102](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/102)
+    * Updated developer guide for TrackAScholar: [#95](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/95), [#203](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/203)
+    * Added implementation details for `add` and `remove` feature: [#95](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/95), [#102](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/102)
 
 * **Community**:
   * Hosted multiple discussion sessions with team members on PR issues.
