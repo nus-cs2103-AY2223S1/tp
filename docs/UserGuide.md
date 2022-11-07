@@ -107,6 +107,7 @@ This guide covers all of Watson's features and how to use them.
 If you are unsure of how to use a feature or find help about a problem you might be
 facing, you can refer to this guide.
 
+<div style="page-break-after: always;"></div>
 ---
 # Table of Contents
 
@@ -140,6 +141,7 @@ facing, you can refer to this guide.
 * Frequently Asked Questions
 * [Glossary](#glossary)
 
+<div style="page-break-after: always;"></div>
 ---
 # Quick Start
 
@@ -160,6 +162,7 @@ from your `Downloads` folder into the `Watson` folder.
 
 5. Double-click on `Watson.jar` to start the application.
 
+<div style="page-break-after: always;"></div>
 ---
 # Watson: The Basics
 
@@ -182,6 +185,7 @@ then click the "Login" button below.
 To log in, simply type "admin" in both username and password boxes, then click the "Login" button below.
 </div>
 
+<div style="page-break-after: always;"></div>
 ---
 
 ## The Main Page
@@ -201,6 +205,7 @@ You can use the following table to navigate through the components in the main p
 * [The Results Display](#the-results-display)
 * [The Student Card](#the-student-card)
 
+<div style="page-break-after: always;"></div>
 ---
 ### The Menu Bar
 
@@ -232,6 +237,7 @@ browser to open the online user guide.
 :bulb: You can also open the help window by pressing the "F1" key on your keyboard!
 </div>
 
+<div style="page-break-after: always;"></div>
 ---
 ### The Command Box
 
@@ -246,6 +252,7 @@ the action.
 They are used to perform actions with Watson.
 </div>
 
+<div style="page-break-after: always;"></div>
 ---
 ### The Results Display
 
@@ -314,6 +321,7 @@ be 30% of 100%, or 30%.
 Remarks are a good way to keep track of a student's strengths and weaknesses.
 A student can have multiple remarks.
 
+<div style="page-break-after: always;"></div>
 ---
 
 ## A Brief Guide to Commands
@@ -373,6 +381,7 @@ Only the last occurrence of the repeated parameter will be taken.
 
 For example, if you specify `n/Alice n/Bob`, only `n/Bob` will be taken by Watson.
 
+<div style="page-break-after: always;"></div>
 ---
 
 # Handling Student Particulars
@@ -388,6 +397,7 @@ Watson currently supports four features regarding student particulars:
 * [Deleting a student](#deleting-a-student)
 * [Adding a remark to a student](#adding-a-remark-to-a-student)
 
+<div style="page-break-after: always;"></div>
 ---
 
 ## Adding a student
@@ -445,6 +455,7 @@ _phone number_ or _email address_ as another student in the application.
 
 </div>
 
+<div style="page-break-after: always;"></div>
 ---
 
 ## Editing a student
@@ -518,6 +529,7 @@ other remarks and/or tags that the student has!
 Ensure that you have typed in the correct number of the student that you want to edit.
 </div>
 
+<div style="page-break-after: always;"></div>
 ---
 
 ## Deleting a student
@@ -558,6 +570,7 @@ been deleted.
 Ensure that you have typed in the correct number of the student that you want to edit.
 </div>
 
+<div style="page-break-after: always;"></div>
 ---
 
 ## Adding a remark to a student
@@ -602,6 +615,7 @@ for the second student.
 Ensure that you have typed in the correct number of the student that you want to edit.
 </div>
 
+<div style="page-break-after: always;"></div>
 ---
 
 # Handling Grades
@@ -682,6 +696,7 @@ will be updated.
 Ensure that you have typed in the correct number of the student that you want to edit.
 </div>
 
+<div style="page-break-after: always;"></div>
 ---
 
 ## Predicting a Student's grade
@@ -744,6 +759,7 @@ This prediction means that Alex is likely to get about 62 percent for their next
 <strong>Solution:</strong> Make sure that you've typed in the student's name correctly. The name is case-sensitive!
 </div>
 
+<div style="page-break-after: always;"></div>
 ---
 
 # Handling Attendance
@@ -850,6 +866,7 @@ not need to be capitalized.
 <strong>Solution:</strong> Make sure that you've typed in the student's name correctly. The name is case-sensitive!
 </div>
 
+<div style="page-break-after: always;"></div>
 ---
 
 ## Finding a Student
@@ -895,6 +912,7 @@ cause Watson to show an error.
 
 </div>
 
+<div style="page-break-after: always;"></div>
 ---
 
 ## Viewing all Students
@@ -920,6 +938,7 @@ Note that this is irreversible!
 
 `clear`
 
+<div style="page-break-after: always;"></div>
 ---
 
 ## Getting Help
