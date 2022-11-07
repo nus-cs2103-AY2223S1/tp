@@ -13,6 +13,7 @@ title: Developer Guide
 initiative at [https://se-education.org/](https://se-education.org/)
 * Libraries used in our application: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), 
 [JUnit5](https://github.com/junit-team/junit5)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
@@ -109,7 +110,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
-<img src="images/ParserClasses.png" width="600"/>
+![ParserClassesDiagram](images/developer-guide/ParserClasses.png)
 
 How the parsing works:
 * When called upon to parse a user command, the `TrackOParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddOrderCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddOrderCommand`) which the `TrackOParser` returns back as a `Command` object.
@@ -936,6 +937,7 @@ testers are expected to do more *exploratory* testing.
    Expected: No order is deleted. Error details shown in the status message. 
    * Other incorrect delete commands to try: `deleteo`, `deleteo x`, `...` (where x is larger than the list size) <br>
    Expected: Similar to previous.
+   <br><br>
 2. Deleting an order while only some orders are being shown 
    * Prerequisites: Find orders using the `findo` keyword. For example, with the sample data loaded in TrackO, the 
    command `findo i/pillow` can be used. A number of orders (less than total orders) in the orders list.
@@ -971,6 +973,7 @@ testers are expected to do more *exploratory* testing.
      Expected: No order is marked. Error details shown in the status message.
    * Other incorrect mark commands to try: `marko`, `marko x`, `...` (where x is less than the size of the list) <br>
      Expected: Similar to previous.
+   <br><br>
 2. Marking an order while only some orders are being shown
    * Prerequisites: Find orders using the `findo` keyword. For example, with the sample data loaded in TrackO, the
      command `findo i/mattress` can be used. A number of orders (less than total orders) in the orders list.
