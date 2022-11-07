@@ -83,13 +83,13 @@ This user guide will help you get started and understand how FABook can **seamle
 
 <div markdown="block" class="alert alert-block alert-danger">
 
-* :heavy_exclamation_mark: **Caution:**
+:heavy_exclamation_mark: **Caution:**
 
 </div>
 
 <div markdown="block" class="alert alert-warning">
 
-* :information_source: **Information**
+:information_source: **Information**
 
 </div>
 
