@@ -17,4 +17,10 @@ public class FreeCommand extends Command {
         requireNonNull(model);
         return new CommandResult(StageManager.getInstance().getSelectedItinerary().getVacantSlots());
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof FreeCommand); // instanceof handles nulls
+    }
 }

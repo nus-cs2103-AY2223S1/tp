@@ -1,5 +1,6 @@
 package seedu.waddle.testutil;
 
+import static seedu.waddle.logic.commands.CommandTestUtil.COST_DESC_BREAKFAST;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_COST_ART;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_COST_BEACH;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_COST_LUNCH;
@@ -73,7 +74,7 @@ public class TypicalItems {
 
     public static Item getBreakfast() {
         return new ItemBuilder().withDesc(VALID_ITEM_DESC_BREAKFAST)
-                .withDuration(VALID_DURATION_BREAKFAST).withCost(VALID_COST_ART)
+                .withDuration(VALID_DURATION_BREAKFAST).withCost(COST_DESC_BREAKFAST)
                 .withPriority(VALID_PRIORITY_BREAKFAST).build();
     }
 
