@@ -96,6 +96,8 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
+<div style="page-break-after: always;"></div>
+
 ### Logic component
 
 **API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-T14-2/tp/tree/master/src/main/java/seedu/codeconnect/logic/Logic.java)
@@ -709,7 +711,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 10. Should be usable without initialising a user account.
 11. No input should terminate CodeConnect, except the `exit` command.
 
-*{More to be added}*
+--------------------------------------------------------------------------------------------------------------------
 
 ### Glossary
 
