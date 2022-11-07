@@ -11,7 +11,7 @@ case ( [task already marked] )
 case ( [else] )
   :Create a copy of the task
   at the specified index,
-  but marked as complete;
+  but indicated as completed;
   :Replace the task at the
   specified index with
   this task;
