@@ -6,7 +6,7 @@ import seedu.address.model.date.Date;
 import seedu.address.model.person.Person;
 
 /**
- * Event represents a marketing events in the application.
+ * Represents a marketing event in the application.
  */
 public class Event {
     private final EventTitle eventTitle;

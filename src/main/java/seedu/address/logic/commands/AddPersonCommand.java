@@ -19,7 +19,7 @@ public class AddPersonCommand extends Command {
 
     public static final String COMMAND_WORD = "addPerson";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to person list of the application.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
