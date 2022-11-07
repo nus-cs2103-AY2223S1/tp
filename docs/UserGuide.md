@@ -823,6 +823,12 @@ Example:
 
 ## 10. Glossary
 
+**<a id="alphanum"></a>Alphanumeric**
+
+Alphabet letters and numbers only.
+
+<br>
+
 **<a id="autocomplete"></a>Autocomplete**
 
 A feature that shows a list of completed words or strings without the user needing to type them in full.
@@ -844,6 +850,12 @@ A graphical user interface (GUI) is a form of user interface that allows users t
 **<a id="javafx"></a>JavaFX**
 
 A Java library used to develop client applications.
+
+<br>
+
+**<a id="json"></a>JSON**
+
+JSON stands for JavaScript Object Notation. JSON is a lightweight format for storing and transporting data.
 
 <br>
 
@@ -877,24 +889,14 @@ School of Computing, a computing school in NUS.
 
 <br>
 
-**<a id="todo"></a>Todo**
-
-A task that the user needs to complete.
-
-<br>
-
-**<a id="alphanum">Alphanumeric</a>**
-
-Alphabet letters and numbers only.
-
-<br>
-
-**<a id="tag">Tag</a>**
+**<a id="tag"></a>Tag**
 
 A category which you can place contacts and todos in.
 
 <br>
 
-**<a id="json">JSON</a>**
+**<a id="todo"></a>Todo**
 
-JSON stands for JavaScript Object Notation. JSON is a lightweight format for storing and transporting data.
+A task that the user needs to complete.
+
+<br>
