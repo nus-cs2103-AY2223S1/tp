@@ -1,10 +1,6 @@
 package eatwhere.foodguide.logic.parser;
 
 import static eatwhere.foodguide.logic.parser.ParserUtil.isDisplayHelp;
-import static eatwhere.foodguide.logic.parser.ParserUtil.parseTags;
-
-import java.util.ArrayList;
-import java.util.Set;
 
 import eatwhere.foodguide.commons.core.Messages;
 import eatwhere.foodguide.commons.core.index.Index;
