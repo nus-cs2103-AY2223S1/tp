@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox id="cardPane" fx:id="cardPane" minWidth="750.0" prefHeight="95.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="cardPane" fx:id="cardPane" minWidth="750.0" prefHeight="95.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane prefWidth="750.0" HBox.hgrow="ALWAYS">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
@@ -23,7 +23,7 @@
                 <Insets bottom="5" left="15" right="5" top="5" />
             </padding>
             <HBox alignment="CENTER_LEFT" prefHeight="18.0" spacing="5">
-            <StackPane prefHeight="150.0" prefWidth="25.0" styleClass="check_icon">
+            <StackPane minWidth="-Infinity" prefHeight="150.0" prefWidth="25.0" styleClass="check_icon">
                <children>
                   <Label fx:id="checkBox" prefWidth="0.0" styleClass="check_icon">
                       <graphic>
@@ -51,9 +51,9 @@
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
-                <Label fx:id="taskName" minWidth="300.0" prefHeight="24.0" prefWidth="299.0" styleClass="cell_big_label" text="\$first">
+                <Label fx:id="taskName" styleClass="cell_big_label" text="\$first" wrapText="true">
                     <padding>
-                        <Insets bottom="2.0" right="10.0" top="5.0" />
+                        <Insets bottom="2.0" right="10.0" top="2.0" />
                     </padding>
                 </Label>
                  <FlowPane fx:id="contacts" alignment="CENTER_RIGHT" columnHalignment="RIGHT" prefHeight="18.0" HBox.hgrow="ALWAYS">
@@ -75,7 +75,7 @@
                         </ImageView>
                     </graphic>
                     <padding>
-                        <Insets bottom="1.0" right="4.0" left="28.0" />
+                        <Insets bottom="1.0" left="28.0" right="4.0" />
                     </padding>
                 </Label>
                   <Label fx:id="deadline" alignment="TOP_RIGHT" contentDisplay="RIGHT" styleClass="due_date_label" textAlignment="RIGHT">
@@ -95,7 +95,7 @@
                         <Insets right="4.0" />
                     </padding>
                 </Label>
-                <Label fx:id="description" styleClass="cell_small_label" text="\$description" />
+                <Label fx:id="description" styleClass="cell_small_label" text="\$description" wrapText="true" />
             <VBox.margin>
                <Insets bottom="5.0" />
             </VBox.margin>
