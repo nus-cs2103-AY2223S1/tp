@@ -756,15 +756,11 @@ For all use cases below, the **System** is the `NutriGoals` application and the 
 
 * **Calorie(s)**: Unit of measurement for amount of food consumed.
 
-* **Daily Recommended Calorie Intake**: The amount of calories recommended by experts for an individual to consume daily
-  (According to Health Promotion Board Singapore, adult males should consume 2200 calories, adult females
-  should consume 1800 calories).
+* **Daily Recommended Calorie Intake**: The amount of calories recommended by experts for an individual to consume daily (According to Health Promotion Board Singapore, adult males should consume 2200 calories, adult females should consume 1800 calories).
 
-* **Deficit**: The amount of calories <ins>not</ins> consumed in order to facilitate fat burning and weight loss.
+* **Deficit**: The negative difference between the calories consumed in a day and the target daily intake. These calories are _not_ consumed to facilitate weight loss and fat burn.
 
-* **Surplus**: The amount of calories consumed in excess of the recommended daily intake to facilitate mass gain.
-
-* **Macros**: Proteins, Carbohydrates, Fats e.t.c., macronutrient groups that provide people with energy.
+* **Surplus**: The positive difference between the calories consumed in a day and the target daily intake. These calories are consumed to facilitate weight gain and muscle growth.
 
 * **Food item**: Refers to an individual item of food that is consumed by the user
 
