@@ -25,7 +25,7 @@ Read on to find out more about YellowBook's features!
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Introduction
+## Purpose
 
 Welcome to YellowBook's user guide.
 
@@ -153,24 +153,33 @@ Contact management has never been this simple.
 
 <div markdown="block" class="alert alert-info">
 
-:information_source:<br>
+:information_source: Notes on contacts<br>
 
 * Contacts have no labels by default.<br>
-
+* Contact names are limited to alphanumeric characters and spaces. There must be at least one alphanumeric character.<br>
+* Contact phone numbers are limited to numeric characters and must be at least three digits long.<br>
+* Contact emails should be of the format local-part@domain.<br> 
+The local-part is limited to alphanumeric characters and four special characters "+", "_", ".", and "-". However, the local-part may not start or end with any special characters.<br>
+The domain name consists of domain labels separated by periods, and should end with a domain label at least two characters long. Each domain label should consist of alphanumeric characters, separated only by hyphens, if any. Domain labels must start and end with alphanumeric characters
+* Contact addresses can take any values, but must consist of at least one non-space character.
 * Contact remarks are limited to alphanumeric characters and spaces.<br>
 
 </div>
 
 ### Adding a contact: `addC`
 
-Adds a contact to the address book.
+Adds a contact to the contact list.
 
 Format:  `addC n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [r/REMARK]`
 
-<div markdown="span" class="alert alert-warning">:warning: Adding a contact that is the same as one already in the address book. Two people are the same if they have the same email or phone number.
+<div markdown="block" class="alert alert-warning">:warning: There will be an error if you:<br>
+
+* Do not adhere to [field constraints](#section-1-contacts).<br>
+* Add a contact that is the same as one already in the address book. Two contacts are the same if they have the same email or phone number.<br>
+
 </div>
    
-Examples:
+Example:
 
 * `addC n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 
@@ -178,7 +187,7 @@ Examples:
 
 ### Listing all contacts: `listC`
 
-Shows all contacts stored in the address book.
+Shows all contacts stored in the contact list.
 
 Format: `listC`
 
@@ -208,17 +217,23 @@ Examples:
 
 ### Editing a contact: `editC`
 
-Edits the information fields (e.g. name, mobile number, email address) of an existing contact in the address book.
+Edits the information fields (e.g. name, mobile number, email address) of an existing contact in the contact list.
 
 Format: `editC INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK]`
 
-* Index of a contact is its index number on the contact list.
-
-* INDEX must be a positive integer more than 0.
-
-* At least one of the optional fields must be provided.
+* Index of a contact is its index number on the currently shown contact list.
 
 * Input values will replace existing values.
+
+<div markdown="block" class="alert alert-warning">:warning: There will be an error if you:<br>
+
+* Do not adhere to [field constraints](#section-1-contacts).<br>
+* Edit the contact such that it becomes a duplicate contact to one already in the contact list. Two contacts are the same if they have the same email or phone number.<br>
+* Enter 0 or a negative number as INDEX.<br>
+* Enter a number greater than the currently shown list size as INDEX.<br>
+* Do not provide at least one of the optional fields.<br>
+
+</div>
 
 Example:
 
@@ -268,12 +283,15 @@ Displays a string of emails of contacts with a label that matches the given keyw
 
 Format: `copyC KEYWORD`
 
-* `copyC` is case-sensitive, e.g. `CS2103T` is different from `cs2103t`.
+* `copyC` is case-sensitive, e.g. `CS2103T` will not match `cs2103t`.
 
 * Only full words will be matched, e.g. `cs2103t` will not match `cs2103`.
 
-* Only one keyword is allowed. If more than one keyword is typed, e.g. `copyC CS2103T CS2101`, this will be taken as one
-keyword "CS2103T CS2101" and the command will not work.
+<div markdown="block" class="alert alert-warning">:warning: There will be an error if you:<br>
+
+* Do not adhere to label name constraints. Label names must be alphanumeric with no spaces.<br>
+
+</div>
 
 Example:
 
@@ -434,15 +452,20 @@ Example:
 
 * `filterT cs2103t` will return a tasks with label `cs2103t`.
 
-### Marking task as completed: `markT`
+### Marking a task as complete: `markT`
 
-Marks a task in the task list as completed.
+Marks a task in the task list as complete.
 
 Format: `markT INDEX`
 
-* Index of a task is its index number on the task list.
+* Index of a task is its index number on the currently shown task list.
 
-* INDEX must be a positive integer more than 0.
+<div markdown="block" class="alert alert-warning">:warning: There will be an error if you:<br>
+
+* Enter 0 or a negative number as INDEX.<br>
+* Enter a number greater than the currently shown list size as INDEX.<br>
+
+</div>
 
 Examples:
 
@@ -455,15 +478,20 @@ Examples:
 <figcaption align = "center"><i>Fig.9 - Result of markT when applied to the first task in the list</i></figcaption>
 </figure>
 
-### Marking task as incomplete: `unmarkT`
+### Marking a task as incomplete: `unmarkT`
 
 Marks a task in the task list as incomplete.
 
 Format: `unmarkT INDEX`
 
-* Index of a task is its index number on the task list.
+* Index of a task is its index number on the currently shown task list.
 
-* INDEX must be a positive integer more than 0.
+<div markdown="block" class="alert alert-warning">:warning: There will be an error if you:<br>
+
+* Enter 0 or a negative number as INDEX.<br>
+* Enter a number greater than the currently shown list size as INDEX.<br>
+
+</div>
 
 Examples:
 
