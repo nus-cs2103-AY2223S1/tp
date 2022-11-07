@@ -930,23 +930,23 @@ testers are expected to do more *exploratory* testing.
 
 ### Morphing of AB3
 Achievements:
-1. Refactor all the packages to suit SoConnect identity.
-2. Add new logic class called `Autocomplete` that can automatically make search suggestion for user.
-3. Add new commands for Contact Management, Todo Management, Tag Management and Customisation.
-4. For Contact Management, we implement new command `sort` to allow for sorting contacts and replace the limited `find` command with more advanced `search` command that is inspired by how Google works.
+1. Refactored all the packages to suit SoConnect identity.
+2. Added new logic class called `Autocomplete` that can automatically make search suggestion for user.
+3. Added new commands for Contact Management, Todo Management, Tag Management and Customisation.
+4. For Contact Management, we implemented new command `sort` to allow for sorting contacts and replaced the limited `find` command with more advanced `search` command that was inspired by how Google works.
 5. For Todo Management, we put in almost the same effort required to implement Contact Management from scratch, as Todo Management offers almost the same range of functionalities as Contact Management.
-6. For Tag Management, we implement new classes that mirror the functionalities of Contact and Todo Management, as it is also capable of adding, editing, deleting tags.
-7. For Customisation, we implement dynamic styling that allows user to modify how the information fields are shown.
+6. For Tag Management, we implemented new classes that mirror the functionalities of Contact and Todo Management, as it is also capable of adding, editing, deleting tags.
+7. For Customisation, we implemented dynamic styling that allows user to modify how the information fields are shown.
 
 Challenges:
-1. As we are adding a lot of functionalities and made modifications to existing AB3 features, we have to spend a lot of time to make sure everything is well integrated and connected.
-2. We have to put a lot of consideration into the commands design, as our product is dealing with not just contacts, but also todos.
+1. As we were adding a lot of functionalities and made modifications to existing AB3 features, we had to spend a lot of time to make sure everything was well integrated and connected.
+2. We had to put a lot of consideration into the commands design, as our product is dealing with not just contacts, but also todos.
 
 ### Revamping of UI
 Achievement:
-We transform the AB3 initial UI to a sophisticated, modern-looking UI that is more user-friendly and pleasing to use. 
+We transformed the AB3 traditional interface to a sophisticated, modern-looking UI that is more user-friendly and pleasing to use. 
 
 Challenges:
-1. None of us is familiar with JavaFX. Therefore, we need to put a large amount of time into mastering JavaFX from scratch as well as understanding the structure of AB3.
-2. We have to restructure a lot of .fxml and .css files to allow for easier readability as well as incorporating the UI design into our features.
-3. Since we make many additions, such as Todo Management, Tag Management and Customisation, we need to put a lot of effort into producing a well-integrated and working UI that allows all these features to run smoothly.
+1. None of us was familiar with JavaFX. Therefore, we needed to put a large amount of time into mastering JavaFX from scratch as well as understanding the structure of AB3.
+2. We had to restructure a lot of .fxml and .css files to allow for easier readability as well as incorporating the UI design into our features.
+3. Since we made many additions, such as Todo Management, Tag Management and Customisation, we had to put a lot of effort into producing a well-integrated and working UI that allows all these features to run smoothly.
