@@ -24,7 +24,7 @@ Given below are my contributions to the project.
 * **New Feature**:
   * Add student command - A feature to add a student to FypManager along with the particular details.
 
-* **Code contributed**: I personally contributed around 3 KLoC to FypManager, the RepoSense link can be found [here](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=RussellDash332).
+* **Code contributed**: I personally contributed around 4 KLoC to FypManager, the RepoSense link can be found [here](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=RussellDash332).
 
 * **Project management**:
   * Created team organization, setup team repository, CodeCov, and GitHub Actions workflow.
@@ -35,7 +35,7 @@ Given below are my contributions to the project.
   * Set up milestones on GitHub (v1.2, v1.2b, v1.3, v1.3b, v1.4, v1.4b).
   * Set up preliminary meeting minutes, such as post PE-D pre-triaging report.
   * Initiated Zoom meetings for team meeting, hosted them, and conduct debug sessions.
-  * Contributed to more than 40 PR review comments as shown on [this dashboard](https://nus-cs2103-ay2223s1.github.io/dashboards/contents/tp-comments.html).
+  * Contributed to more than 50 PR review comments as shown on [this dashboard](https://nus-cs2103-ay2223s1.github.io/dashboards/contents/tp-comments.html).
 
 * **Documentation**:
     * User Guide:
