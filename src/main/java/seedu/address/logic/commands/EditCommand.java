@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_AND_SLOT;
@@ -86,19 +87,28 @@ public class EditCommand extends Command {
             + "and there are no unavailable dates (and their indexes) for patient. "
             + "Please remove the unavailable dates field and its index field.";
 
-    /*public static final String MESSAGE_INVALID_NUMBERS_OF_DATESLOT_AND_DATESLOTINDEX = "The dateSlot index "
-            + "provided is more than the dateSlot provided." + "Please remove the dateSlot index or add more dateSlot.";
-
-    public static final String MESSAGE_OUT_OF_BOUND_DATESLOTINDEX = "The dateSlot index given is out of bounds "
-            + "of the existing list." + "Please retype another index that is within the range or left it empty.";
-
-    public static final String MESSAGE_INVALID_NUMBERS_OF_UNAVAILABLEDATES_AND_UNAVAILABLEDATESINDEX =
-            "The unavailable date index " + "provided is more than the unavailable date provided."
-                + "Please remove the unavailable date index or add more unavailable date.";
-
-    public static final String MESSAGE_OUT_OF_BOUND_UNAVAILABLEDATESINDEX = "The unavailable date index "
-            + "given is out of bounds of the existing list."
-            + "Please retype another index that is within the range or left it empty.";*/
+    /*
+     * public static final String
+     * MESSAGE_INVALID_NUMBERS_OF_DATESLOT_AND_DATESLOTINDEX = "The dateSlot index "
+     * + "provided is more than the dateSlot provided." +
+     * "Please remove the dateSlot index or add more dateSlot.";
+     *
+     * public static final String MESSAGE_OUT_OF_BOUND_DATESLOTINDEX =
+     * "The dateSlot index given is out of bounds "
+     * + "of the existing list." +
+     * "Please retype another index that is within the range or left it empty.";
+     *
+     * public static final String
+     * MESSAGE_INVALID_NUMBERS_OF_UNAVAILABLEDATES_AND_UNAVAILABLEDATESINDEX =
+     * "The unavailable date index "
+     * + "provided is more than the unavailable date provided."
+     * + "Please remove the unavailable date index or add more unavailable date.";
+     *
+     * public static final String MESSAGE_OUT_OF_BOUND_UNAVAILABLEDATESINDEX =
+     * "The unavailable date index "
+     * + "given is out of bounds of the existing list."
+     * + "Please retype another index that is within the range or left it empty.";
+     */
 
     private final Uid targetUid;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -109,8 +119,7 @@ public class EditCommand extends Command {
      * @param editPersonDescriptor Details to edit the person with
      */
     public EditCommand(Uid targetUid, EditPersonDescriptor editPersonDescriptor) {
-        requireNonNull(targetUid);
-        requireNonNull(editPersonDescriptor);
+        requireAllNonNull(targetUid, editPersonDescriptor);
 
         this.targetUid = targetUid;
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
@@ -146,20 +155,17 @@ public class EditCommand extends Command {
 
     private void checkDescriptionGiven(EditPersonDescriptor editPersonDescriptor, Person personToEdit)
             throws CommandException {
-        boolean haveDatesSlots = editPersonDescriptor.getDatesSlots().isPresent();
-        boolean haveDateSlotIndexes = editPersonDescriptor.getDateSlotIndexes().isPresent();
-        boolean haveUnavailableDates = editPersonDescriptor.getUnavailableDates().isPresent();
-        boolean haveUnavailableDateIndexes = editPersonDescriptor.getDateIndexes().isPresent();
+        boolean hasDatesSlots = editPersonDescriptor.getDatesSlots().isPresent();
+        boolean hasDateSlotIndexes = editPersonDescriptor.getDateSlotIndexes().isPresent();
+        boolean hasUnavailableDates = editPersonDescriptor.getUnavailableDates().isPresent();
+        boolean hasUnavailableDateIndexes = editPersonDescriptor.getDateIndexes().isPresent();
         boolean isNurse = editPersonDescriptor.getCategory().equals("N") || personToEdit instanceof Nurse;
 
-        if (isNurse) {
-            if (haveDateSlotIndexes || haveDatesSlots) {
-                throw new CommandException(MESSAGE_NURSE_INVALID_DATESLOT_EDIT);
-            }
-        } else {
-            if (haveUnavailableDates || haveUnavailableDateIndexes) {
-                throw new CommandException(MESSAGE_PATIENT_INVALID_UNAVAILABLE_DATE_EDIT);
-            }
+        if (isNurse && (hasDateSlotIndexes || hasDatesSlots)) {
+            throw new CommandException(MESSAGE_NURSE_INVALID_DATESLOT_EDIT);
+        }
+        if (hasUnavailableDates || hasUnavailableDateIndexes) {
+            throw new CommandException(MESSAGE_PATIENT_INVALID_UNAVAILABLE_DATE_EDIT);
         }
     }
 
@@ -168,7 +174,7 @@ public class EditCommand extends Command {
      * edited with {@code editPersonDescriptor}.
      */
     public Person createEditedPerson(Model model, List<Person> personList, Person personToEdit,
-                                     EditPersonDescriptor editPersonDescriptor) throws CommandException {
+            EditPersonDescriptor editPersonDescriptor) throws CommandException {
         assert personToEdit != null;
         Category updatedCategory = editPersonDescriptor.getCategory().orElse(personToEdit.getCategory());
         Uid uid = editPersonDescriptor.getUid().orElse(personToEdit.getUid());
@@ -194,17 +200,14 @@ public class EditCommand extends Command {
         } else if (updatedCategory.isNurse()) {
             return createNewNurse(uid, updatedName, updatedGender, updatedPhone, updatedEmail, updatedAddress,
                     updatedTags, editPersonDescriptor);
-
-        } else {
-            throw new IllegalArgumentException(Category.MESSAGE_CONSTRAINTS);
         }
+        throw new IllegalArgumentException(Category.MESSAGE_CONSTRAINTS);
     }
 
-
     private Patient createUpdatedPatient(Uid uid, Name updatedName, Gender updatedGender, Phone updatedPhone,
-                                         Email updatedEmail, Address updatedAddress, Set<Tag> updatedTags,
-                                         EditPersonDescriptor editPersonDescriptor, Person personToEdit,
-                                         Model model, List<Person> personList) throws CommandException {
+            Email updatedEmail, Address updatedAddress, Set<Tag> updatedTags,
+            EditPersonDescriptor editPersonDescriptor, Person personToEdit,
+            Model model, List<Person> personList) throws CommandException {
 
         Optional<Physician> updatedPhysician = editPersonDescriptor.getPhysician()
                 .orElse(((Patient) personToEdit).getAttendingPhysician());
@@ -223,8 +226,8 @@ public class EditCommand extends Command {
     }
 
     private Patient createNewPatient(Uid uid, Name updatedName, Gender updatedGender, Phone updatedPhone,
-                                     Email updatedEmail, Address updatedAddress, Set<Tag> updatedTags,
-                                     EditPersonDescriptor editPersonDescriptor) {
+            Email updatedEmail, Address updatedAddress, Set<Tag> updatedTags,
+            EditPersonDescriptor editPersonDescriptor) {
 
         Optional<Physician> updatedPhysician = editPersonDescriptor.getPhysician()
                 .orElse(Optional.empty());
@@ -237,9 +240,9 @@ public class EditCommand extends Command {
     }
 
     private Nurse createUpdatedNurse(Uid uid, Name updatedName, Gender updatedGender, Phone updatedPhone,
-                                     Email updatedEmail, Address updatedAddress, Set<Tag> updatedTags,
-                                     EditPersonDescriptor editPersonDescriptor, Person personToEdit,
-                                     Model model, List<Person> personList) throws CommandException {
+            Email updatedEmail, Address updatedAddress, Set<Tag> updatedTags,
+            EditPersonDescriptor editPersonDescriptor, Person personToEdit,
+            Model model, List<Person> personList) throws CommandException {
 
         List<Date> originalDate = ((Nurse) personToEdit).getUnavailableDates();
         Optional<List<Date>> toBeUpdateDate = editPersonDescriptor.getUnavailableDates();
@@ -255,12 +258,11 @@ public class EditCommand extends Command {
 
         return new Nurse(uid, updatedName, updatedGender, updatedPhone, updatedEmail, updatedAddress, updatedTags,
                 updatedUnavailableDate, updatedHomeVisitList, updatedFullyScheduledDateList);
-
     }
 
     private Nurse createNewNurse(Uid uid, Name updatedName, Gender updatedGender, Phone updatedPhone,
-                                     Email updatedEmail, Address updatedAddress, Set<Tag> updatedTags,
-                                     EditPersonDescriptor editPersonDescriptor) {
+            Email updatedEmail, Address updatedAddress, Set<Tag> updatedTags,
+            EditPersonDescriptor editPersonDescriptor) {
 
         List<Date> updatedUnavailableDate = editPersonDescriptor.getUnavailableDates().orElse(null);
         List<HomeVisit> updatedHomeVisitList = editPersonDescriptor.getHomeVisits().orElse(null);
@@ -607,10 +609,9 @@ public class EditCommand extends Command {
         private final Boolean isDateSlotsGivenEmpty;
         private final Boolean isDateSlotIndexesGivenEmpty;
 
-
         EditedDateSlotCreator(Model model, List<Person> personList, List<DateSlot> originalDateSlots,
-                              Optional<List<DateSlot>> toBeUpdateDateSlots,
-                              Optional<List<Index>> toBeUpdateDateSlotsIndexes) {
+                Optional<List<DateSlot>> toBeUpdateDateSlots,
+                Optional<List<Index>> toBeUpdateDateSlotsIndexes) {
             this.model = model;
             this.personList = personList;
             this.originalDateSlotList = originalDateSlots;
@@ -653,10 +654,12 @@ public class EditCommand extends Command {
         private boolean getIsDateSlotIndexesGivenEmpty() {
             return !isDateSlotIndexesGivenNull && toBeUpdateDateSlotsIndexes.isEmpty();
         }
+
         private List<DateSlot> createEditedDateSlotList() throws CommandException {
 
             if (isDelete()) {
-                // Deletes all the dateTime in the existing list/ Deletes specific dateTime in the existing list
+                // Deletes all the dateTime in the existing list/ Deletes specific dateTime in
+                // the existing list
                 return removeActionForDateSlot();
 
             } else if (isAdd()) {
@@ -667,10 +670,9 @@ public class EditCommand extends Command {
                 // Remove specific dateSlot in the existing list and add the given dateSlot
                 return editActionForDateSlot();
 
-            } else {
-                // Remain as original dateTime list, no changes made
-                return originalDateSlotList;
             }
+            // Remain as original dateTime list, no changes made
+            return originalDateSlotList;
         }
 
         private Boolean isDelete() {
@@ -728,7 +730,8 @@ public class EditCommand extends Command {
 
     /**
      * To create the edited unavailable date list.
-     * If adding a new unavailable date occurs, then the respective home visit will be checked and removed if clash
+     * If adding a new unavailable date occurs, then the respective home visit will
+     * be checked and removed if clash
      */
     public static class EditedUnavailableDateCreator {
 
@@ -737,8 +740,8 @@ public class EditCommand extends Command {
                 + " Please retype another index that is within the range or left it empty.";
 
         public static final String MESSAGE_INVALID_NUMBERS_OF_UNAVAILABLE_DATES_AND_UNAVAILABLE_DATE_INDEXES =
-                "The unavailable date index " + "provided is more than the unavailable date provided."
-                        + " Please remove the unavailable date index or add more unavailable date.";
+                "The unavailable date index provided is more than the unavailable date provided."
+                + " Please remove the unavailable date index or add more unavailable date.";
 
         private final Model model;
         private final Person nurseToEdit;
@@ -751,11 +754,10 @@ public class EditCommand extends Command {
         private final Boolean isUnavailableDatesGivenEmpty;
         private final Boolean isUnavailableDateIndexesGivenEmpty;
 
-
         EditedUnavailableDateCreator(Model model, Person nurseToEdit, List<Person> personList,
-                                     List<Date> originalUnavailableDates,
-                                     Optional<List<Date>> toBeUpdateUnavailableDates,
-                                     Optional<List<Index>> toBeUpdateUnavailableDateIndexes) {
+                List<Date> originalUnavailableDates,
+                Optional<List<Date>> toBeUpdateUnavailableDates,
+                Optional<List<Index>> toBeUpdateUnavailableDateIndexes) {
             this.model = model;
             this.nurseToEdit = nurseToEdit;
             this.personList = personList;
@@ -800,6 +802,7 @@ public class EditCommand extends Command {
         private boolean getIsUnavailableDateIndexesGivenEmpty() {
             return !isUnavailableDateIndexesGivenNull && toBeUpdateUnavailableDateIndexes.isEmpty();
         }
+
         private List<Date> createEditedUnavailableDateList(EditPersonDescriptor editPersonDescriptor)
                 throws CommandException {
 
@@ -816,7 +819,8 @@ public class EditCommand extends Command {
                 return addActionForUnavailableDate(editPersonDescriptor);
 
             } else if (isEdit()) {
-                // Remove specific unavailable dates in the existing list and add the given unavailable dates
+                // Remove specific unavailable dates in the existing list and add the given
+                // unavailable dates
                 return editActionForUnavailableDates(editPersonDescriptor);
 
             } else {
@@ -904,6 +908,4 @@ public class EditCommand extends Command {
 
     }
 
-
 }
-

@@ -15,7 +15,6 @@ import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonType;
 import seedu.address.model.person.Uid;
@@ -36,7 +35,7 @@ public class DeleteCommandTest {
         DeleteCommand deleteCommand = new DeleteCommand(personToDelete.getUid());
 
         String expectedMessage = "";
-        if (personToDelete instanceof Patient) {
+        if (personToDelete.isPatient()) {
             expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
                     PersonType.PATIENT,
                     personToDelete) + " ";
@@ -67,7 +66,7 @@ public class DeleteCommandTest {
         DeleteCommand deleteCommand = new DeleteCommand(personToDelete.getUid());
 
         String expectedMessage = "";
-        if (personToDelete instanceof Patient) {
+        if (personToDelete.isPatient()) {
             expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, PersonType.PATIENT,
                     personToDelete) + " ";
         } else {

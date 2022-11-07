@@ -14,7 +14,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_UNAVAILABLE_DATE;
 import static seedu.address.model.category.Category.NURSE_SYMBOL;
 import static seedu.address.model.category.Category.PATIENT_SYMBOL;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
@@ -27,7 +26,6 @@ import seedu.address.model.person.Date;
 import seedu.address.model.person.DateSlot;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
-import seedu.address.model.person.HomeVisit;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nurse;
 import seedu.address.model.person.Patient;
@@ -57,25 +55,27 @@ public class AddCommandParser implements Parser<AddCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_CATEGORY, PREFIX_NAME,
-                PREFIX_GENDER, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_DATE_AND_SLOT,
-                PREFIX_UNAVAILABLE_DATE);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_CATEGORY, PREFIX_NAME, PREFIX_GENDER,
+                PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_DATE_AND_SLOT, PREFIX_UNAVAILABLE_DATE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_CATEGORY, PREFIX_NAME, PREFIX_GENDER,
                 PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
-        Boolean haveDateSlot = arePrefixesPresent(argMultimap, PREFIX_DATE_AND_SLOT);
-        Boolean haveUnavailableDate = arePrefixesPresent(argMultimap, PREFIX_UNAVAILABLE_DATE);
+        Boolean dateSlotsPresent = arePrefixesPresent(argMultimap, PREFIX_DATE_AND_SLOT);
+        Boolean unavailableDatesPresent = arePrefixesPresent(argMultimap, PREFIX_UNAVAILABLE_DATE);
 
         Category category = ParserUtil.parseCategory(argMultimap.getValue(PREFIX_CATEGORY).get());
-
         Boolean isPatient = category.categoryName.equals(PATIENT_SYMBOL);
         Boolean isNurse = category.categoryName.equals(NURSE_SYMBOL);
-        if (isPatient && haveUnavailableDate) {
+
+        if (isNurse == isPatient) {
+            throw new ParseException(MESSAGE_INVALID_CATEGORY);
+        }
+        if (isPatient && unavailableDatesPresent) {
             throw new ParseException(AddCommand.MESSAGE_INVALID_FIELD_PATIENT);
         }
-        if (isNurse && haveDateSlot) {
+        if (isNurse && dateSlotsPresent) {
             throw new ParseException(AddCommand.MESSAGE_INVALID_FIELD_NURSE);
         }
 
@@ -90,20 +90,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         List<Date> unavailableDateList = ParserUtil.parseDates(argMultimap.getAllValues(PREFIX_UNAVAILABLE_DATE));
 
         Person person;
-
         if (isNurse) {
-            List<HomeVisit> nullHomeVisitList = new ArrayList<>();
-            List<Date> nullFullyScheduledDateList = new ArrayList<>();
-            person = new Nurse(id, name, gender, phone, email, address, tagList, unavailableDateList,
-                    nullHomeVisitList, nullFullyScheduledDateList);
-
-        } else if (isPatient) {
-            person = new Patient(id, name, gender, phone, email, address, tagList, dateTimeSlotList);
-
-        } else {
-            throw new ParseException(MESSAGE_INVALID_CATEGORY);
+            person = new Nurse(id, name, gender, phone, email, address, tagList, unavailableDateList);
         }
-
+        person = new Patient(id, name, gender, phone, email, address, tagList, dateTimeSlotList);
         return new AddCommand(person);
     }
 
