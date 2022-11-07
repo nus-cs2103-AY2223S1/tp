@@ -154,18 +154,18 @@ Format: `add {Prefix}/{Parameter}…​`
 
 **The prefixes and their respective parameters are as follows:**
 
-| Status  | Prefix | Parameter                               | Restrictions                                                                |
-|---------|--------|-----------------------------------------|-----------------------------------------------------------------------------|
-| `+`     | n/     | NAME                                    | Alphanumeric characters and spaces only.                                    |
-| `+`     | p/     | PHONE                                   | Numbers only and at least 3 digits.                                         |
-| `+`     | e/     | EMAIL                                   | Must follow a valid email format. See below for more information.           |
-| `+`     | nok/   | NEXT-OF-KIN_NAME, RELATIONSHIP, CONTACT | NAME & RELATIONSHIP: Alphabets and spaces only. <br/>CONTACT: Numbers only. |
-| `+`     | pt/    | PATIENT_TYPE                            | Either `inpatient`/`i` or `outpatient`/`o`.                                 |
-| `-`     | hw/    | HOSPITAL_WING                           | Either `north`, `south`, `east` or `west`.                                  |
-| `-`     | fn/    | FLOOR_NUMBER                            | Positive integer only.                                                      |
-| `-`     | wn/    | WARD_NUMBER                             | One uppercase alphabet followed by 3 digits only.                           |
-| `-`     | ua/    | UPCOMING_APPOINTMENT                    | `dd-MM-yyyy` format only (i.e. `12-06-2022`).                               |
-| `-` `*` | m/     | LONG_TERM_MEDICATION                    | Alphanumeric characters and spaces only.                                    |
+| Status  | Prefix | Parameter                               | Restrictions                                                                       |
+|---------|---|-----------------------------------------|------------------------------------------------------------------------------------|
+| `+`     | n | NAME                                    | Alphanumeric characters and spaces only.                                           |
+| `+`     | p | PHONE                                   | Numbers only and at least 3 digits.                                                |
+| `+`     | e | EMAIL                                   | Must follow a valid email format. See below for more information.                  |
+| `+`     | nok | NEXT-OF-KIN_NAME, RELATIONSHIP, CONTACT | NAME & RELATIONSHIP: Alphabets and spaces only. <br/>CONTACT: Numbers only.        |
+| `+`     | pt | PATIENT_TYPE                            | Either `inpatient`/`i` or `outpatient`/`o`.                                        |
+| `-`     | hw | HOSPITAL_WING                           | Either `north`, `south`, `east` or `west`.  **Compulsory for inpatients**          |
+| `-`     | fn | FLOOR_NUMBER                            | Positive integer only.                    **Compulsory for inpatients**            |
+| `-`     | wn| WARD_NUMBER                             | One uppercase alphabet followed by 3 digits only.    **Compulsory for inpatients** |
+| `-`     | ua | UPCOMING_APPOINTMENT                    | `dd-MM-yyyy` format only (i.e. `12-06-2022`).                                      |
+| `-` `*` | m | LONG_TERM_MEDICATION                    | Alphanumeric characters and spaces only.                                           |
 
 **Email Format**
 
@@ -220,18 +220,18 @@ Format: `edit INDEX {Prefix}/{Parameter}...`
 
 
 | Status  | Prefix | Parameter                               | Restrictions                                                                |
-|---------|--------|-----------------------------------------|-----------------------------------------------------------------------------|
-| `+`     |        | INDEX                                   | Positive integer only.                                                      |
-| `-`     | n/     | NAME                                    | Alphanumeric characters and spaces only.                                    |
-| `-`     | p/     | PHONE                                   | Numbers only and at least 3 digits.                                         |
-| `-`     | e/     | EMAIL                                   | Must follow a valid email format. See below for more information.           |
-| `-`     | nok/   | NEXT-OF-KIN_NAME, RELATIONSHIP, CONTACT | NAME & RELATIONSHIP: Alphabets and spaces only. <br/>CONTACT: Numbers only. |
-| `-`     | pt/    | PATIENT_TYPE                            | Either `inpatient`/`i` or `outpatient`/`o`.                                 |
-| `-`     | hw/    | HOSPITAL_WING                           | Either `north`, `south`, `east` or `west`.                                  |
-| `-`     | fn/    | FLOOR_NUMBER                            | Positive integer only.                                                      |
-| `-`     | wn/    | WARD_NUMBER                             | One uppercase alphabet followed by 3 digits only.                           |
-| `-`     | ua/    | UPCOMING_APPOINTMENT                    | `dd-MM-yyyy` format only (i.e. `12-06-2022`).                               |
-| `-` `*` | m/     | LONG_TERM_MEDICATION                    | Alphanumeric characters and spaces only.                                    |
+|---------|---|-----------------------------------------|-----------------------------------------------------------------------------|
+| `+`     |   | INDEX                                   | Positive integer only.                                                      |
+| `-`     | n | NAME                                    | Alphanumeric characters and spaces only.                                    |
+| `-`     | p | PHONE                                   | Numbers only and at least 3 digits.                                         |
+| `-`     | e | EMAIL                                   | Must follow a valid email format. See below for more information.           |
+| `-`     | nok | NEXT-OF-KIN_NAME, RELATIONSHIP, CONTACT | NAME & RELATIONSHIP: Alphabets and spaces only. <br/>CONTACT: Numbers only. |
+| `-`     | pt | PATIENT_TYPE                            | Either `inpatient`/`i` or `outpatient`/`o`.                                 |
+| `-`     | hw | HOSPITAL_WING                           | Either `north`, `south`, `east` or `west`.  **Compulsory for inpatients**                            |
+| `-`     | fn | FLOOR_NUMBER                            | Positive integer only.            **Compulsory for inpatients**                                      |
+| `-`     | wn | WARD_NUMBER                             | One uppercase alphabet followed by 3 digits only.  **Compulsory for inpatients**                     |
+| `-`     | ua | UPCOMING_APPOINTMENT                    | `dd-MM-yyyy` format only (i.e. `12-06-2022`).                               |
+| `-` `*` | m | LONG_TERM_MEDICATION                    | Alphanumeric characters and spaces only.                                    |
 
 **Email Format**
 
