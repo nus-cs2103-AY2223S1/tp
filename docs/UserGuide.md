@@ -366,6 +366,7 @@ You can add a student / teaching assistant by using this command.
 
 - Please make sure you have added the module with `MODULE_CODE` before you add any students with `MODULE_CODE`. Otherwise, ProfNUS will consider the command to be invalid.
 - A student should not be a teaching assistant and a student of the same module!
+- If a student name is too long, only the first 50 characters of the name will be shown!
 
 </div>
 
