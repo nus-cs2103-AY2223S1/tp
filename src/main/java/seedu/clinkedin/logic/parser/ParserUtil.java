@@ -20,6 +20,7 @@ import seedu.clinkedin.commons.util.StringUtil;
 import seedu.clinkedin.logic.parser.exceptions.InvalidExtensionException;
 import seedu.clinkedin.logic.parser.exceptions.InvalidPersonException;
 import seedu.clinkedin.logic.parser.exceptions.ParseException;
+import seedu.clinkedin.logic.parser.exceptions.PrefixNotFoundException;
 import seedu.clinkedin.model.link.Link;
 import seedu.clinkedin.model.person.Address;
 import seedu.clinkedin.model.person.Email;
@@ -42,6 +43,7 @@ import seedu.clinkedin.model.tag.exceptions.TagTypeNotFoundException;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_PREFIX_NOT_FOUND = "Prefix not found!";
 
     /**
      * Types of file extensions supported for export and/or import.
@@ -283,8 +285,14 @@ public class ParserUtil {
         final UniqueTagTypeMap tagMap = new UniqueTagTypeMap();
         Map<TagType, UniqueTagList> tagTypeMap = new HashMap<>();
         for (Prefix tagName : tags.keySet()) {
+            TagType tagType;
+            try {
+                tagType = UniqueTagTypeMap.getTagType(tagName);
+            } catch (PrefixNotFoundException pne) {
+                throw new ParseException(MESSAGE_PREFIX_NOT_FOUND);
+            }
             if (tags.get(tagName).size() != 0) {
-                tagTypeMap.put(UniqueTagTypeMap.getTagType(tagName), parseTagList(tags.get(tagName)));
+                tagTypeMap.put(tagType, parseTagList(tags.get(tagName)));
             }
         }
         tagMap.setTagTypeMap(tagTypeMap);
