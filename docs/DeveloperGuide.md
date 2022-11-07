@@ -58,7 +58,6 @@ The rest of the App consists of four components.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
-
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
@@ -109,7 +108,6 @@ Hence, our team made use of two of `JavaFx` features, [`ObservableList`](https:/
 ##### Reason for use:
 
 The use of the `ObservableList` class follows the **observer design pattern**, where the `UI` components, the observer, listen subscribe to updates by the different `Model` components which are the observable objects. This is necessary as certain parts of the `UI` are dependent on `Model` components, and if these components are updated, the UI should be updated as well.    
-
 
 ##### Design Considerations
 
