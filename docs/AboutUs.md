@@ -5,55 +5,55 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Darren Teo
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/darrentde.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/darrentde)]
 
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[portfolio](team/darrentde.md)]
 
 * Role: Developer
-* Responsibilities: Data
 
-### Jean Doe
+### Chua Ming Quan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/mqchua.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/https://github.com/mqchua)]
+[[portfolio](team/mqchua.md)]
 
 * Role: Developer
-* Responsibilities: UI
+
+### Tin En Hao
+
+<img src="images/tinenhao.png" width="200px">
+
+[[github](https://github.com/tinenhao)]
+[[portfolio](team/tinenhao.md)]
+
+* Role: Developer
+
+### Justin Widodo
+
+<img src="images/genfusion122.png" width="200px">
+
+[[github](https://github.com/GenFusion122)]
+[[portfolio](team/genfusion122.md)]
+
+* Role: Developer
+* Responsibilities: Development
+
+### Luo Tian You
+
+<img src="images/hakkangin.png" width="200px">
+
+[github](https://github.com/HakkaNgin)
+
+[portfolio](team/hakkangin.md)
+
+* Role: Developer
+* Responsibilities: Development
+

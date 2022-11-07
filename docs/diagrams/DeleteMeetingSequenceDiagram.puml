@@ -1,0 +1,86 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":DeleteMeetingCommandParser" as DeleteMeetingCommandParser LOGIC_COLOR
+participant "dm:DeleteMeetingCommand" as DeleteMeetingCommand LOGIC_COLOR
+participant ":ParserUtil\n<<class>>" as ParserUtilStatic LOGIC_COLOR
+participant "index:Index" as index LOGIC_COLOR
+participant "lastShownMeetingList:ObservableList<Meeting>" as MeetingList LOGIC_COLOR
+participant "meetingToDelete:Meeting" as Meeting LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("deletemeeting 2")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("deletemeeting 2")
+activate AddressBookParser
+
+create DeleteMeetingCommandParser
+AddressBookParser -> DeleteMeetingCommandParser
+activate DeleteMeetingCommandParser
+
+AddressBookParser <-- DeleteMeetingCommandParser
+deactivate DeleteMeetingCommandParser
+
+AddressBookParser -> DeleteMeetingCommandParser : parse(arguments)
+activate DeleteMeetingCommandParser
+
+DeleteMeetingCommandParser -> ParserUtilStatic : parseIndex(args)
+ParserUtilStatic --> index
+activate index
+index --> ParserUtilStatic
+deactivate index
+ParserUtilStatic --> DeleteMeetingCommandParser
+
+create DeleteMeetingCommand
+DeleteMeetingCommandParser -> DeleteMeetingCommand
+activate DeleteMeetingCommand
+destroy DeleteMeetingCommandParser
+
+DeleteMeetingCommand --> LogicManager : dm
+LogicManager -> DeleteMeetingCommand : execute(model)
+
+DeleteMeetingCommand -> Model : getFilteredMeetingList()
+activate Model
+Model -> MeetingList
+activate MeetingList
+MeetingList --> Model : lastShownMeetingList
+deactivate MeetingList
+Model --> DeleteMeetingCommand : lastShownMeetingList
+deactivate Model
+
+DeleteMeetingCommand -> MeetingList : get(targetIndex.getZeroBased())
+activate MeetingList
+MeetingList --> DeleteMeetingCommand : meetingToDelete
+deactivate MeetingList
+DeleteMeetingCommand -> Model : deleteMeeting(meetingToDelete)
+activate Model
+Model --> DeleteMeetingCommand
+deactivate Model
+
+create CommandResult
+DeleteMeetingCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DeleteMeetingCommand
+deactivate CommandResult
+
+DeleteMeetingCommand --> LogicManager : result
+deactivate DeleteMeetingCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

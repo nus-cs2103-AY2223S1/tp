@@ -19,7 +19,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyMeetingList;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -145,6 +147,81 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Meeting createNewMeeting(ArrayList<Person> peopleToMeet, String meetingTitle,
+                                        String meetingDateAndTime, String meetingLocation) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasMeeting(Meeting meeting) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setMeeting(Meeting meeting, Meeting editedMeeting) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addMeeting(Meeting newMeeting) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addMeeting(Meeting newMeeting, int idx) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteMeeting(Meeting newMeeting) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setMeetingList(ReadOnlyMeetingList meetingList) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Path getMeetingListFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyMeetingList getMeetingList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setMeetingListFilePath(Path meetingListFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sortMeetingListByDate(boolean isInAscending) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * Updates the filter of the filtered meeting list to filter by implementation.
+         *
+         * @param predicate
+         * @throws NullPointerException if {@param meetingList} is null.
+         */
+        @Override
+        public void updateFilteredMeetingList(Predicate<Meeting> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * Returns an unmodifiable view of the filtered meetings list
+         */
+        @Override
+        public ObservableList<Meeting> getFilteredMeetingList() {
             throw new AssertionError("This method should not be called.");
         }
     }
