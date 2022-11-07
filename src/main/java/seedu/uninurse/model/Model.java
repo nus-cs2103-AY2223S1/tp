@@ -186,6 +186,11 @@ public interface Model {
     */
     void updatePersons();
 
+    /**
+     * Refreshes the FilteredList in Model
+     */
+    void refreshList();
+
     //=========== Undo and Redo =============================================================================
 
     /**

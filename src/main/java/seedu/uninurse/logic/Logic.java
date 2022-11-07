@@ -66,4 +66,9 @@ public interface Logic {
      * Returns the saved PersonListTracker.
      */
     public PersonListTracker getPersonListTracker();
+
+    /**
+     * Refreshes the FilteredList in Model
+     */
+    public void refreshList();
 }
