@@ -42,9 +42,9 @@ public class BuyerCard extends UiPart<Region> {
     @FXML
     private FlowPane priority;
 
-    // TODO: set the following labels as optional
     @FXML
     private Label priceRange;
+
     @FXML
     private Label desiredCharacteristics;
 

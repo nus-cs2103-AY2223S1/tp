@@ -59,7 +59,6 @@ public class AddPropertyCommandParser extends Parser<AddPropertyCommand> {
         Owner newOwner = new Owner(ownerName, ownerPhone);
         LocalDateTime entryTime = LocalDateTime.now();
 
-        // TODO: Consider allowing multiple -c instead of separated by ; in one -c
         Characteristics characteristics = null;
         if (argMultimap.getValue(PREFIX_CHARACTERISTICS).isPresent()) {
             characteristics = ParserUtil.parseCharacteristics(argMultimap.getValue(PREFIX_CHARACTERISTICS).get());
