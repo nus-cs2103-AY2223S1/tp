@@ -20,7 +20,7 @@ It is written in Java, and has about 14 kLoC.
 
 * **Project management**:
   * Refactored all instances of `AddressBook` and `Person` to `TrackAScholar` and `Applicant`,
-    along with all related methods, test cases and parameter names. [#65](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/65), [#71](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/71)
+    along with all related methods, test cases and parameter names: [#65](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/65), [#71](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/71)
 
 * **Enhancements to existing features**: 
   * Updated `Logic` and `Model` to display pinned applicants on the UI: [#114](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/114)
@@ -41,6 +41,6 @@ It is written in Java, and has about 14 kLoC.
 * **Community**: 
   * PRs reviewed (with non-trivial suggestions): [#111](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/111), [#124](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/124)
   * Hosted multiple discussion sessions with team members on PR issues and weekly tasks.
-  * Reported bugs for another team during PE dry run [here](https://github.com/ShummyOwnzYou/ped/issues).
+  * Reported bugs for [CS2103T-T17-1](https://github.com/AY2223S1-CS2103T-T17-1/tp) during PE dry run [here](https://github.com/ShummyOwnzYou/ped/issues).
 
 

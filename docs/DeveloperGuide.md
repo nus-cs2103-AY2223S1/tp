@@ -643,10 +643,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 --------------------------------------------------------------------------------------------------------------------
 
-**Use case: UC01 - Add An Applicant**
+**Use case: UC01 - Open help window**
+
+**MSS**
+
+1. User requests to open the help window.
+2. TrackAScholar pops open the help window. <br>
+   Use case ends.
+
+**Extensions**
+  
+* 1a. Input format has extra parameters.
+  * 1a1. TrackAScholar ignores the extra parameters. <br>
+    Use case resumes at step 2.
+  
+[Return to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
+**Use case: UC02 - Add an applicant**
 
 **Guarantees:**
-* A new applicant will only be added if there does not exist an applicant with the same name.
+* A new applicant will be added if and only if an applicant with the same name does not exist.
 
 **MSS**
 
@@ -663,90 +681,151 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1b. Input parameters is invalid.
 
-  * 1a1. TrackAScholar displays an error message showing parameter requirements. <br>
-    Use case resumes at step 1.
-
-* 1c. An applicant with the same name already exist.
-
-  * 1a1 TrackAScholar displays an error message that applicant already exist. <br>
-    Use case resumes at step 1.
-
-[Return to top](#table-of-contents)
-
---------------------------------------------------------------------------------------------------------------------
-
-**Use case: UC02 - Delete an applicant**
-
-**Guarantees:**
-* Once an applicant is deleted,the applicant will be removed from the database and the user will no longer
-be able to view the applicant from the list.
-
-**MSS**
-
-1. User request to delete an applicant in TrackAScholar.
-2. TrackAScholar removes applicant with matching name.
-   Use case ends.
-
-**Extensions**
-
-* 1a. Input format is wrong.
-
-  * 1a1. TrackAScholar displays an error message prompting correct input format. <br>
-      Use case resumes at step 1.
-
-* 1b. Input parameters is invalid.
-
   * 1b1. TrackAScholar displays an error message showing parameter requirements. <br>
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
-* 1c. Verify deletion.
+* 1c. An applicant with the same name already exists.
 
-  * 1c1. TrackAScholar request confirmation to delete the applicant.
-  * 1c2. User agrees by typing YES to confirm deletion. <br>
-      Use case ends.
-
-[Return to top](#table-of-contents)
-
---------------------------------------------------------------------------------------------------------------------
-
-**Use case: UC03 - Edit personal details of an applicant**
-
-**Guarantees:**
-* The details of an applicant will only be updated if there exists such an applicant with the same name in the txt file.
-
-**MSS**
-
-1. User requests to change the details of an applicant (such as email or contact number etc.).
-2. TrackAScholar updates the personal details of the applicant to the list. <br>
-   Use case ends.
-
-**Extensions**
-
-* 1a. Input format is wrong.
-
-  * 1a1. TrackAScholar displays an error message prompting correct input format. <br>
-      Use case resumes at step 1.
-
-* 1b. Input parameters is invalid.
-
-  * 1a1. TrackAScholar displays an error message showing parameter requirements. <br>
-      Use case resumes at step 1.
-
-* 1c. An applicant with such name does not exist.
-
-  * 1a1 TrackAScholar displays an error message that applicant does not exist and details cannot be updated. <br>
-      Use case resumes at step 1.
+  * 1c1. TrackAScholar displays an error message that applicant already exists. <br>
+    Use case resumes at step 1.
 
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
-**Use case: UC04 - List Applicants**
+**Use case: UC03 - List all applicants**
 
 **MSS**
 
 1. User requests to list all applicants.
 2. TrackAScholar shows the list of all applicants. <br>
+   Use case ends.
+
+**Extensions**
+  
+* 1a. Input format has extra parameters.
+    * 1a1. TrackAScholar ignores the extra parameters. <br>
+      Use case resumes at step 2.
+
+[Return to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
+**Use case: UC04 - Edit an applicant's details**
+
+**Guarantees:**
+
+* An applicant's name cannot be updated to an applicant name that already exists.
+
+**MSS**
+
+1. User requests to edit the details of an applicant.
+2. TrackAScholar edits the details of the specified applicant and updates the list. <br>
+   Use case ends.
+
+**Extensions**
+
+* 1a. Input format is wrong.
+
+  * 1a1. TrackAScholar displays an error message prompting correct input format. <br>
+    Use case resumes at step 1.
+
+* 1b. Input parameters is invalid.
+
+  * 1b1. TrackAScholar displays an error message showing parameter requirements. <br>
+    Use case resumes at step 1.
+
+* 1c. User requests to update an applicant's name to an already existing applicant name.
+  * 1c1. TrackAScholar displays an error message informing the user that an applicant with the same name already exists and details cannot be updated. <br>
+    Use case resumes at step 1.
+
+[Return to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
+**Use case: UC05 - Delete an applicant**
+
+**MSS**
+
+1. User requests to delete an applicant in TrackAScholar.
+2. TrackAScholar deletes the specified applicant from TrackAScholar. <br>
+   Use case ends.
+
+**Extensions**
+
+* 1a. Input format is wrong.
+
+  * 1a1. TrackAScholar displays an error message prompting correct input format. <br>
+    Use case resumes at step 1.
+
+* 1b. Input parameters is invalid.
+
+  * 1b1. TrackAScholar displays an error message showing parameter requirements. <br>
+    Use case resumes at step 1.
+
+[Return to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
+**Use case: UC06 - Remove all applicants with a specified application status**
+
+**MSS**
+
+1. User requests to remove all applicants with a specified applicant status in TrackAScholar.
+2. TrackAScholar requests for confirmation.
+3. User confirms.
+4. TrackAScholar removes all applicants with the specified applicant status. <br>
+  Use Case ends.
+
+**Extensions**
+
+* 1a. Input format is wrong.
+
+  * 1a1. TrackAScholar displays an error message prompting correct input format. <br>
+    Use case resumes at step 1.
+
+* 1b. Input parameters is invalid.
+
+  * 1b1. TrackAScholar displays an error message showing parameter requirements. <br>
+    Use case resumes at step 1.
+
+* 2a. User cancels request during confirmation. <br>
+  Use case ends.
+
+[Return to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
+**Use case: UC07 - Clears all applicants**
+
+**MSS**
+
+1. User requests to clear all applicants in TrackAScholar.
+2. TrackAScholar requests for confirmation.
+3. User confirms.
+4. TrackAScholar clears all applicants. <br>
+   Use Case ends.
+
+**Extensions**
+
+* 1a. Input format has extra parameters.
+
+    * 1a1. TrackAScholar ignores the extra parameters. <br>
+      Use case resumes at step 2.
+
+* 2a. User cancels request during confirmation. <br>
+  Use case ends.
+
+[Return to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
+**Use case: UC08 - Finds applicants by name, scholarship or major**
+
+**MSS**
+
+1. User requests to find all applicants that match the given name, scholarship or major.
+2. TrackAScholar shows the list of all matching applicants. <br>
    Use case ends.
 
 **Extensions**
@@ -756,41 +835,182 @@ be able to view the applicant from the list.
     * 1a1. TrackAScholar displays an error message prompting correct input format. <br>
       Use case resumes at step 1.
 
-* 1b. TrackAScholar has no applicants stored.
+[Return to top](#table-of-contents)
 
-    * 1a1. TrackAScholar shows an empty applicant list.
+--------------------------------------------------------------------------------------------------------------------
+
+**Use case: UC09 - Filter applicants by application status**
+
+**MSS**
+
+1. User requests a filtered list based on a specific application status.
+2. TrackAScholar shows the filtered list of applicants with the specified applicant status. <br>
+    Use case ends.
+
+**Extensions**
+
+* 1a. Input format is wrong.
+
+    * 1a1. TrackAScholar displays an error message prompting correct input format. <br>
+      Use case resumes at step 1.
+
+* 1b. Input parameters is invalid.
+
+    * 1b1. TrackAScholar displays an error message showing parameter requirements. <br>
+      Use case resumes at step 1.
 
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
-**Use case: UC05 - Filter applicants by status**
+**Use case: UC10 - Sorts all applicants by name, scholarship or application status**
 
 **MSS**
 
-1. User requests a filtered list based on a specific application status.
-2. TrackAScholar shows the number of applicants by status.
-3. TrackAScholar shows the percentage of applicants by status.
-4. TrackAScholar shows the filtered list of applicants with the specified applicant status.
-
-    Use case ends.
+1. User requests a sorted list sorted by name, scholarship or application status.
+2. TrackAScholar shows the sorted list of applicants with the specified input parameter. <br>
+   Use case ends.
 
 **Extensions**
 
-* 1a. User specifies more than one applicant status during request.
+* 1a. Input format is wrong.
 
-    * Step 4 repeats as many times as there are requests.
+    * 1a1. TrackAScholar displays an error message prompting correct input format. <br>
+      Use case resumes at step 1.
 
-* 1b. TrackAScholar detects an error in the entered applicant status/detects no applicant status input.
+* 1b. Input parameters is invalid.
 
-    * 1b1. TrackAScholar requests for the correct applicant status.
-    * 1b2. User enters new applicant status.
-    * Steps 1b1-1b2 are repeated until the applicant status entered matches a valid existing applicant status.
-    * Use case resumes from step 2.
+    * 1b1. TrackAScholar displays an error message showing parameter requirements. <br>
+      Use case resumes at step 1.
 
 [Return to top](#table-of-contents)
 
-*{More to be added}*
+--------------------------------------------------------------------------------------------------------------------
+
+**Use case: UC11 - Imports a json file into TrackAScholar**
+
+**Guarantees:**
+* After merging, no two applicants in TrackAScholar will have the same name.
+
+**MSS**
+
+1. User imports a json file into TrackAScholar and specifies the type of merging.
+2. TrackAScholar merges the imported json file with the current file.
+3. TrackAScholar shows the lists of all applicants after importing.
+   Use case ends.
+
+**Extensions**
+  
+* 1a. Input format is wrong.
+
+    * 1a1. TrackAScholar displays an error message prompting correct input format. <br>
+      Use case resumes at step 1.
+
+* 1b. Input parameters is invalid.
+
+    * 1b1. TrackAScholar displays an error message showing parameter requirements. <br>
+      Use case resumes at step 1.
+
+* 1c. Imported file does not exist.
+
+    * 1c1. TrackAScholar displays an error message informing the user that there is no file to be imported. <br>
+      Use case resumes at step 1.
+
+* 1d. Imported file is not a json file.
+
+    * 1d1. TrackAScholar displays an error message showing the imported file type requirements. <br>
+      Use case resumes at step 1.
+
+* 2a. An imported applicant has the same name as an applicant already in the applicant list.
+
+    * 2a1. TrackAScholar merges the applicants according to the type of merging specified by the user input. <br>
+      Use case resumes at step 2.
+
+[Return to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
+**Use case: UC12 - Pins an applicant**
+
+**MSS**
+
+1. User requests to pin an applicant.
+2. TrackAScholar pins the specified applicant on the pinned applicant list.
+   Use case ends.
+
+**Extensions**
+
+* 1a. Input format is wrong.
+
+    * 1a1. TrackAScholar displays an error message prompting correct input format. <br>
+      Use case resumes at step 1.
+
+* 1b. Input parameters is invalid.
+
+    * 1b1. TrackAScholar displays an error message showing parameter requirements. <br>
+      Use case resumes at step 1.
+
+* 1c. Applicant is already pinned.
+
+    * 1c1. TrackAScholar displays an error message informing the user that the applicant is already pinned. <br>
+      Use case resumes at step 1.
+
+[Return to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
+**Use case: UC13 - Unpins an applicant**
+
+**MSS**
+
+1. User requests to unpin an applicant.
+2. TrackAScholar unpins the specified applicant from the pinned applicant list.
+   Use case ends.
+
+**Extensions**
+
+* 1a. Input format is wrong.
+
+    * 1a1. TrackAScholar displays an error message prompting correct input format. <br>
+      Use case resumes at step 1.
+
+* 1b. Input parameters is invalid.
+
+    * 1b1. TrackAScholar displays an error message showing parameter requirements. <br>
+      Use case resumes at step 1.
+
+* 1c. Applicant is already unpinned.
+
+    * 1c1. TrackAScholar displays an error message informing the user that the applicant is already unpinned. <br>
+      Use case resumes at step 1.
+
+[Return to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
+**Use case: UC14 - Exiting TrackAScholar**
+
+**MSS**
+
+1. User requests to exit the TrackAScholar application.
+2. TrackAScholar exits and closes. <br>
+   Use case ends.
+
+**Extensions**
+
+* 1a. Input format is wrong.
+
+    * 1a1. TrackAScholar displays an error message prompting correct input format. <br>
+      Use case resumes at step 1.
+
+* 1b. Input format has extra parameters.
+    * 1b1. TrackAScholar ignores the extra parameters. <br>
+      Use case resumes at step 2.
+
+* 1c. User closes the application window. <br>
+    Use case resumes at step 2.
+
+[Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1074,6 +1294,28 @@ testers are expected to do more *exploratory* testing.
        `REJECTED` can be filtered. Error details shown in the status message.
 
     1. Other incorrect filter commands to try: `filter` and `filter Alex Yeoh` <br>
+       Expected: Similar to previous.
+
+[Return to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Sorting all applicants by name, scholarship or application status
+
+1. Sorting all existing applicants based on the specified name, scholarship or application status while all applicants are being shown
+
+    1. Prerequisites: Multiple applicants in the list.
+
+    2. Test case: `sort NAME` <br>
+       Expected: All applicants will be sorted by applicant name in ascending alphabetical order, ignoring case-sensitivity, and will be shown in TrackAScholar GUI.
+   
+    3. Test case: `sort SCHOLARSHIP -r` <br>
+       Expected: All applicants will be sorted by scholarship name in descending alphabetical order, ignoring case-sensitivity, and will be shown in TrackAScholar GUI.
+   
+    4. Test case: `sort PHONE` <br>
+       Expected: No changes displayed on TrackAScholar GUI since TrackAScholar can only sort applicants by `NAME`, `SCHOLARSHIP` and `STATUS`. Error details shown in the status message.
+
+    5. Other incorrect sort commands to try: `sort` and `sort Alex Yeoh` <br>
        Expected: Similar to previous.
 
 [Return to top](#table-of-contents)
