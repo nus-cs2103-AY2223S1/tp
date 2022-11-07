@@ -448,7 +448,13 @@ Alternative 1 was preferred over alternative 2 due to the following reasons:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+# **Appendix**
+
+## **Requirements**
 
 ### Product scope
 
@@ -534,7 +540,7 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
 **MSS**
 
-1. User requests to view a list of all currently filtered clients 
+1. User requests to view a list of all currently filtered clients
 2. LTNS displays a list of currently filtered clients
 
    Use case ends.
@@ -560,7 +566,7 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
     * 3a1. LTNS shows an error message.
 
       Use case resumes at step 2.
-    
+
 **Use case 6: Sort a list**
 
 **MSS**
@@ -606,7 +612,7 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 1. User requests to pin a client by name
 2. LTNS will display the pinned clients
 3. User will be able to see all pinned clients in all pages.
-    
+
    Use case ends
 
 **Use case 9: Find a client/policy/event**
@@ -622,13 +628,13 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
 * 2a. User requests another search.
 
-  * 2a1. LTNS displays a new list of clients with matching metrics.
+    * 2a1. LTNS displays a new list of clients with matching metrics.
 
-    Use case ends.
+      Use case ends.
 
 **Policy related Use Cases**
 
-**Use Case 10: Add Policy** 
+**Use Case 10: Add Policy**
 
 **MSS**
 
@@ -638,14 +644,14 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 4. LTNS switches to the default policy view automatically
 5. LTNS adds the latest policy to the list policy view
 
-    Use Case ends
+   Use Case ends
 
 **Extensions**
 
-* 3a. User attempts to add a Policy which already exists 
-  * 3a1. LTNS displays en error message.
-  
-    Use Case resumes at Step 2
+* 3a. User attempts to add a Policy which already exists
+    * 3a1. LTNS displays en error message.
+
+      Use Case resumes at Step 2
 
 
 **Use Case 11: Assign Policy**
@@ -654,17 +660,17 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
 1. Use loads the application
 2. User inputs the command to assign a existing policy to an existing client
-3. User tags on the details he would like to specify 
-4. LTNS switches to the default client view automatically 
+3. User tags on the details he would like to specify
+4. LTNS switches to the default client view automatically
 5. LTNS assigns the specified policy to the specified client
-    
-    Use Case ends
+
+   Use Case ends
 
 **Extensions**
-* 3a. User inputs an invalid index when specifying the policy 
+* 3a. User inputs an invalid index when specifying the policy
     * 3a.1 LTNS displays an error message.
-      
-        Use Case resumes at Step 2
+
+      Use Case resumes at Step 2
 
 
 
@@ -737,21 +743,21 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 5. LTNS switches to the default event view automatically
 
 
-   Use case ends
+Use case ends
 
 
 **Extensions**
 * 4a. The event specified overlaps with another event
-  * 4a1. LTNS displays an error message 
+    * 4a1. LTNS displays an error message
 
-    Use Case resumes at Step 3.
-  
+      Use Case resumes at Step 3.
 
 
-* 4b. The event specifies a client that doesn't exist in LTNS 
+
+* 4b. The event specifies a client that doesn't exist in LTNS
     * 4b1. LTNS displays an error message
 
-    Use Case resumes at Step 3.
+  Use Case resumes at Step 3.
 
 
 **Use case 16: Delete an event**
@@ -791,20 +797,20 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
 **MSS**
 
-1. User requests to view all currently filtered events 
+1. User requests to view all currently filtered events
 2. LTNS displays a list of all currently filtered events.
 
-    Use Case ends
+   Use Case ends
 
 
 **Use case 19: View Calendar**
 
 **MSS**
 
-1. User requests to view his calendar 
-2. LTNS displays a list of all events in his calendar 
-    
-    Use Case ends
+1. User requests to view his calendar
+2. LTNS displays a list of all events in his calendar
+
+   Use Case ends
 
 
 
@@ -816,24 +822,20 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 4.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 5.  Size of windows should be scalable to full screen for maximum screen utilization
 6. Performance requirements: Should be able to serve its features right now
-8. Extremely intuitive and minimalistic design to avoid confusion. 
+8. Extremely intuitive and minimalistic design to avoid confusion.
 9. The product is not required to handle the direct contacting of users.
 10. For added personality, user should be able to have some customisability.(e.g: Change UI’s theme based on system-defined presets)
 
 
-### Glossary
+## Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Client**: A client is a person being served by the financial advisor.
 * **Policy**: An investment or insurance policy that is being sold by an insurance company, through the financial advisor.
 * **Financial advisor**: A professional paid to offer financial advice to clients
-* **Event**: Any event or appointment that involves a client in the client list 
+* **Event**: Any event or appointment that involves a client in the client list
 * **Risk Appetite**: Level of risk a client is willing to accept or tolerate when making financial decisions
 
-
---------------------------------------------------------------------------------------------------------------------
-
-# **Appendix**
 
 ## **Instructions for manual testing**
 
