@@ -435,7 +435,7 @@ The `CommentCommandParser` verifies the appropriateness of the user input (`inde
 Step 3: Upon parsing, a new `CommentCommand` is created based on the `index` and the `comment`.
 A new `Comment` is created based on the `comment` parsed. 
 
-Step 4: In the `CommentCommand` execution, the `ModelManager#getSortedFilteredTutorList()` is called upon to retrieve the list of displayed tutors.
+Step 4: In the `CommentCommand` execution, the `model#getSortedFilteredTutorList()` is called upon to retrieve the list of displayed tutors.
 The `Tutor` whose index matches the `index` is then stored (after accounting for 0 based indexing).
 In this case, the first `Tutor` is selected.
 
@@ -477,7 +477,7 @@ Step 3: Upon parsing, a new `DeleteCommentCommand` is created based on the `tuto
 Both indexes are converted to 0 based indexing.
 In this case, the `tutorIndex` and `commentIndex` are both set to `0`.
 
-Step 4: In the `DeleteCommentCommand` execution, the `ModelManager#getSortedFilteredTutorList()` is called upon to retrieve the list of displayed tutors.
+Step 4: In the `DeleteCommentCommand` execution, the `model#getSortedFilteredTutorList()` is called upon to retrieve the list of displayed tutors.
 The `Tutor` whose index matches the `tutorIndex` is then stored. 
 In this case, the first `Tutor` is selected.
 
