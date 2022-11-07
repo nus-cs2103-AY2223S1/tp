@@ -21,7 +21,7 @@ Given below are my contributions to the project.
   * Highlights: Simplifies the implementation of Sort and Filter command
 
 
-* **Code contributed**: [RepoSense link]()
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=&sort=totalCommits%20dsc&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=ALWHgithub&tabRepo=AY2223S1-CS2103T-F12-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 * **Project management**:
   * Managed releases `v1.3` - `v1.4` (2 releases) on GitHub
@@ -42,6 +42,7 @@ Given below are my contributions to the project.
     * Updated appendix to be consistent with new features [\#192]
     * Expanded use cases to cover scenarios not covered in the original application [\#221]
     * Updated description and implementation of UI to be consistent with new UI [\#206]
+    * Added UML and Activity Diagram for AddTask command [\#97]
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#54](), [\#90](), [\#193]()
