@@ -17,7 +17,7 @@ Given below are my contributions to the project.
 * **New Feature**: Added the `archive` feature.
     * What it does: allows the user to archive the tasks when then have completed it and want it removed from the list of tasks showed in the UI.
     * Justification: This features allows users to store the done tasks in another file which may provide them a sense of accomplishment when looking at the list of archived tasks. 
-    * Highlights: This feature creates a new `ArchivedTaskList` which is stored in a separate JSON file. This was challenging as it requires extra effort to edit the constructors of `ModelManager` and make sure iut cannot m=be modified.   
+    * Highlights: This feature creates a new `ArchivedTaskList` which is stored in a separate JSON file. This was challenging as it requires extra effort to edit the constructor of `ModelManager` and make sure it cannot be modified.   
     * Credits: This was modelled after the existing AB3 storage code.
 
 * **New Feature**: Added `showarchive` feature.
