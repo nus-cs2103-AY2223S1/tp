@@ -335,8 +335,8 @@ Sorting **KEYWORDS** are shown in the table below:
 | `email`          | Clients using the same email platform are grouped together, thereafter, alphabetical order is used within each group |
 | `phone`          | By numerical order of the phone number                                                                               |
 | `birthday`       | From oldest to youngest                                                                                              |                                                                                             
-| `income`         | From highest to lowest income                                                                                        |
-| `risk appetite`  | From highest to lowest ie. "H" to "M" to "L"                                                                         |
+| `income`         | From lowest to highest income                                                                                        |
+| `risk appetite`  | From lowest to highest ie. "L" to "M" to "H"                                                                         |
 
 
 <div markdown="span" class="alert alert-primary">:warning: **Warning:**
