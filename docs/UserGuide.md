@@ -174,7 +174,10 @@ Here are some general guidelines for you to better understand the command format
 |-----------------------|------|---------------------------------------------------------------------------------------------------------------------------|
 | PATIENT_INDEX         | NIL  | Index of the patient                                                                                                      |
 | APPOINTMENT_DATE_TIME | d/   | Date and time of the appointment, given in the format dd-MM-yyyy HHmm <br/> Note: Appointments cannot be set in the past! |                                  
-<div style="page-break-after: always;"></div>
+
+<div style="page-break-after: always;"> </div>
+
+
 #### Record
 
 | Input Fields     | Flag | Description                                                                                                 |
