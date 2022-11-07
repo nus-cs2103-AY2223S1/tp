@@ -1,6 +1,18 @@
 // Placeholder to allow defining custom styles that override everything else.
 // (Use `_sass/minima/custom-variables.scss` to override variable defaults)
-h2, h3, h4, h5, h6 {
+h2 {
+  color: purple;
+}
+
+h3 {
+  color: rebeccapurple;
+}
+
+h4 {
+  color: mediumpurple;
+}
+
+h5, h6 {
   color: #e46c0a;
 }
 

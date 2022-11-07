@@ -1,4 +1,4 @@
-title: "AB-3"
+title: "SoConnect"
 theme: minima
 
 header_pages:
@@ -8,7 +8,10 @@ header_pages:
 
 markdown: kramdown
 
-repository: "se-edu/addressbook-level3"
+kramdown:
+  parse_block_html: true
+
+repository: "AY2223S1-CS2103T-W15-1/tp"
 github_icon: "images/github-icon.png"
 
 plugins:

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<HBox id="todoCardPane" fx:id="todoCardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <GridPane HBox.hgrow="ALWAYS">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+        </columnConstraints>
+        <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
+            <padding>
+                <Insets bottom="5" left="15" right="5" top="5" />
+            </padding>
+            <HBox alignment="CENTER_LEFT" spacing="5">
+                <VBox alignment="CENTER" maxWidth="40" minWidth="40" prefWidth="40" style="-fx-padding: 0 10 0 0;">
+                    <Label fx:id="id" styleClass="cell_big_label_todo">
+                        <minWidth>
+                            <!-- Ensures that the label text is never truncated -->
+                            <Region fx:constant="USE_PREF_SIZE" />
+                        </minWidth>
+                    </Label>
+                </VBox>
+                <HBox>
+                    <padding>
+                        <Insets left="1" />
+                    </padding>
+                </HBox>
+                <VBox spacing="2">
+                    <Label fx:id="description" styleClass="cell_big_label_todo" text="\$first" />
+                    <HBox alignment="CENTER_LEFT" spacing="10">
+                        <ImageView>
+                            <Image url="@/images/date_icon.png" requestedWidth="23" requestedHeight="24" />
+                        </ImageView>
+                        <Label fx:id="date" styleClass="cell_small_label_todo" text="\$second" />
+                    </HBox>
+                    <HBox alignment="CENTER_LEFT" spacing="10">
+                        <ImageView>
+                            <Image url="@/images/priority_icon.png" requestedWidth="23" requestedHeight="24" />
+                        </ImageView>
+                        <Label fx:id="priority" styleClass="cell_small_label_todo" />
+                    </HBox>
+                    <FlowPane fx:id="todoTags"/>
+                </VBox>
+            </HBox>
+        </VBox>
+        <rowConstraints>
+            <RowConstraints />
+        </rowConstraints>
+    </GridPane>
+</HBox>

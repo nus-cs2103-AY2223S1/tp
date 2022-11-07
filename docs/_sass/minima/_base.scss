@@ -103,7 +103,7 @@ li {
  * Headings
  */
 h1, h2, h3, h4, h5, h6 {
-  font-weight: $base-font-weight;
+  font-weight: $bold-font-weight;
 }
 
 
@@ -233,6 +233,10 @@ pre {
   color: #f66a0a;
 }
 
+.purple {
+  color: #6610f2;
+}
+
 .grey {
   color: #828282;
 }
@@ -288,7 +292,7 @@ table {
     text-align: center;
   }
   .site-header:before {
-    content: "AB-3";
+    content: "SoConnect";
     font-size: 32px;
   }
 }

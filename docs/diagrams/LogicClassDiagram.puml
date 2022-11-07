@@ -1,12 +1,14 @@
 @startuml
 !include style.puml
+scale 561*558
 skinparam arrowThickness 1.1
 skinparam arrowColor LOGIC_COLOR_T4
 skinparam classBackgroundColor LOGIC_COLOR
 
 package Logic {
 
-Class AddressBookParser
+Class SoConnectParser
+Class AutocompleteManager
 Class XYZCommand
 Class CommandResult
 Class "{abstract}\nCommand" as Command
@@ -27,8 +29,9 @@ Class HiddenOutside #FFFFFF
 HiddenOutside ..> Logic
 
 LogicManager .right.|> Logic
-LogicManager -right->"1" AddressBookParser
-AddressBookParser ..> XYZCommand : creates >
+LogicManager -right->"1" SoConnectParser
+LogicManager -left->"1" AutocompleteManager
+SoConnectParser ..> XYZCommand : creates >
 
 XYZCommand -up-|> Command
 LogicManager .left.> Command : executes >
