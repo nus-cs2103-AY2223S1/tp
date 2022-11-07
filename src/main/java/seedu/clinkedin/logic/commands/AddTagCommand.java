@@ -5,7 +5,6 @@ import static seedu.clinkedin.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_DEGREETAG;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_JOBTYPETAG;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_SKILLTAG;
-import static seedu.clinkedin.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 
