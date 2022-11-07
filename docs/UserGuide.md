@@ -24,7 +24,7 @@ Waddle allows you to plan your travels in **3 simple steps**.
    3. [**Commands on main page**](#commands-on-the-main-page)
       1. [`add` Creating a new itinerary](#creating-a-new-itinerary--add)
       2. [`list` Listing all itineraries](#listing-all-itineraries--list)
-      3. [`find` Locating itineraries by name](#locating-itineraries-by-name--find)
+      3. [`find` Locating itineraries by description](#locating-itineraries-by-description--find)
       4. [`edit` Editing the details of an itinerary](#editing-the-details-of-an-itinerary--edit)
       5. [`delete` Deleting an itinerary](#deleting-an-itinerary--delete)
       6. [`clear` Clearing itineraries](#clearing-itineraries--clear)
@@ -129,7 +129,7 @@ The main page, or home page, of Waddle displays the list of itineraries you have
 
 [Commands exclusive to the main page](#commands-on-the-main-page) can help you:
 * [add](#creating-a-new-itinerary--add) new itineraries
-* [view](#listing-all-itineraries--list) or [find](#locating-itineraries-by-name--find) existing itineraries
+* [view](#listing-all-itineraries--list) or [find](#locating-itineraries-by-description--find) existing itineraries
 * [edit](#editing-the-details-of-an-itinerary--edit) or [delete](#deleting-an-itinerary--delete) existing itineraries
 * [clear](#clearing-itineraries--clear) all existing itineraries
 
@@ -174,9 +174,9 @@ Shows a list of all itineraries in Waddle.
 
 Format: `list`
 
-### Locating itineraries by name : `find`
+### Locating itineraries by description : `find`
 
-Finds itineraries with names containing any of the given keywords.
+Finds itineraries with descriptions containing any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 

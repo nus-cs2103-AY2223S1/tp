@@ -81,7 +81,7 @@ public class AddCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // country field missing
-        Itinerary expectedItinerary = new ItineraryBuilder().withName(VALID_ITINERARY_DESC_WINTER)
+        Itinerary expectedItinerary = new ItineraryBuilder().withDescription(VALID_ITINERARY_DESC_WINTER)
                 .withCountry("default").withStartDate(VALID_START_DATE_WINTER)
                 .withDuration(VALID_DURATION_WINTER).withPeople(VALID_PEOPLE_WINTER)
                 .withBudget(VALID_BUDGET_WINTER).build();
@@ -91,7 +91,7 @@ public class AddCommandParserTest {
                 new AddCommand(expectedItinerary));
 
         // people field missing
-        expectedItinerary = new ItineraryBuilder().withName(VALID_ITINERARY_DESC_WINTER)
+        expectedItinerary = new ItineraryBuilder().withDescription(VALID_ITINERARY_DESC_WINTER)
                 .withCountry(VALID_COUNTRY_WINTER).withStartDate(VALID_START_DATE_WINTER)
                 .withDuration(VALID_DURATION_WINTER).withPeople("1")
                 .withBudget(VALID_BUDGET_WINTER).build();
@@ -101,7 +101,7 @@ public class AddCommandParserTest {
                 new AddCommand(expectedItinerary));
 
         // budget field missing
-        expectedItinerary = new ItineraryBuilder().withName(VALID_ITINERARY_DESC_WINTER)
+        expectedItinerary = new ItineraryBuilder().withDescription(VALID_ITINERARY_DESC_WINTER)
                 .withCountry(VALID_COUNTRY_WINTER).withStartDate(VALID_START_DATE_WINTER)
                 .withDuration(VALID_DURATION_WINTER).withPeople(VALID_PEOPLE_WINTER)
                 .withBudget("0").build();
@@ -111,7 +111,7 @@ public class AddCommandParserTest {
                 new AddCommand(expectedItinerary));
 
         // all optional fields missing
-        expectedItinerary = new ItineraryBuilder().withName(VALID_ITINERARY_DESC_WINTER)
+        expectedItinerary = new ItineraryBuilder().withDescription(VALID_ITINERARY_DESC_WINTER)
                 .withCountry("default").withStartDate(VALID_START_DATE_WINTER)
                 .withDuration(VALID_DURATION_WINTER).withPeople("1")
                 .withBudget("0").build();

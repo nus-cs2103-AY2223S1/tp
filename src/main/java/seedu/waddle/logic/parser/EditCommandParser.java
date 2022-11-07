@@ -39,7 +39,7 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         EditCommand.EditItineraryDescriptor editItineraryDescriptor = new EditCommand.EditItineraryDescriptor();
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
-            editItineraryDescriptor.setName(ParserUtil.parseDescription(
+            editItineraryDescriptor.setDescription(ParserUtil.parseDescription(
                     argMultimap.getValue(PREFIX_DESCRIPTION).get()));
         }
         if (argMultimap.getValue(PREFIX_COUNTRY).isPresent()) {

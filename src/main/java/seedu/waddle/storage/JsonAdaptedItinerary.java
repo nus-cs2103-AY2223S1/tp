@@ -132,14 +132,14 @@ class JsonAdaptedItinerary {
         if (!Budget.isValidBudget(budget)) {
             throw new IllegalValueException(Budget.MESSAGE_CONSTRAINTS);
         }
-        final Description modelName = new Description(description);
+        final Description modelDescription = new Description(description);
         final Country modelCountry = new Country(country);
         final Date modelStartDate = new Date(startDate);
         final ItineraryDuration modelDuration = new ItineraryDuration(duration);
         final People modelPeople = new People(people);
         final Budget modelBudget = new Budget(budget);
 
-        Itinerary itinerary = new Itinerary(modelName, modelCountry, modelStartDate, modelDuration,
+        Itinerary itinerary = new Itinerary(modelDescription, modelCountry, modelStartDate, modelDuration,
                 modelPeople, modelBudget);
 
         final List<Day> modelDays = new ArrayList<>();
