@@ -138,7 +138,7 @@ public class ParserUtil {
      */
     public static boolean isDisplayHelp(String args) {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_HELP);
-        return arePrefixesPresent(argMultimap, PREFIX_HELP) &&
-                argMultimap.getValue(PREFIX_HELP).isEmpty();
+        return arePrefixesPresent(argMultimap, PREFIX_HELP)
+                && argMultimap.getValue(PREFIX_HELP).isEmpty();
     }
 }
