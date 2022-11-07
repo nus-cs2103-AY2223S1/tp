@@ -526,7 +526,7 @@ Preconditions: The current working team is set to the team that the task should 
 
 **MSS**
 
-1. User requests to add task member and provides task name and task deadline
+1. User requests to add task and provides task name, task deadline and assignee(s)
 2. TruthTable adds the task to the list of tasks
 
    Use case ends.
@@ -539,13 +539,13 @@ Preconditions: The current working team is set to the team that the task should 
 
       Use case resumes at step 1.
 
-- 1b. There is no task deadline provided.
+- 1b. The task deadline is badly formatted.
 
     - 1b1. TruthTable shows an error message.
 
       Use case resumes at step 1.
 
-- 1c. The task deadline is badly formatted.
+- 1c. The assignee index is out of bounds.
 
     - 1c1. TruthTable shows an error message.
 
@@ -578,7 +578,7 @@ Preconditions: The current working team is set to the team that the task should 
 
 **Use case: UC06 - List all tasks of a team**
 
-Preconditions: The current working team is set to the team that the member should be deleted from.
+Preconditions: The current working team is set to the team whose list of task is to be displayed.
 
 **MSS**
 
@@ -669,6 +669,37 @@ Preconditions: The current working team is set to the team that has the existing
 
       Use case resumes at step 1.
 - 1c. Team provided already set as current team.
+
+    - 1c1. TruthTable shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: UC10 - Add a link to a team**
+
+Preconditions: The current working team is set to the team that the link should be added to.
+
+**MSS**
+
+1. User requests to add link and provides link name and link URL
+2. TruthTable adds the link to the list of links
+
+   Use case ends.
+
+**Extensions**
+
+- 1a. There is no link name provided.
+
+    - 1a1. TruthTable shows an error message.
+
+      Use case resumes at step 1.
+
+- 1b. The link URL is badly formatted.
+
+    - 1b1. TruthTable shows an error message.
+
+      Use case resumes at step 1.
+
+- 1c. There is no URL provided.
 
     - 1c1. TruthTable shows an error message.
 
