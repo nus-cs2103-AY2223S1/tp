@@ -317,7 +317,7 @@ Format: `remove /SPECIFIER KEY/VALUE [ADDITIONAL_KEYS/ADDITIONAL_VALUES]`
 * Valid keys are those included [here](#format-for-resident-fields), and any additional tags.
 
 Examples:
-* `remove /all h/D g/M` deletes residents who are in Draco house, **and** are Male.
+* `remove /all h/D g/M` deletes residents who are in `Draco` house, **and** are Male.
 * `remove /any h/D h/A` deletes residents belonging to either `Draco` **or** `Aquila` house.
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
@@ -546,7 +546,7 @@ Format: `filter /SPECIFIER KEY/VALUE [ADDITIONAL_KEYS/ADDITIONAL_VALUES]`
 * Valid keys are those included [here](#format-for-resident-fields), and any additional tags.
 
 Examples:
-* `filter /all h/D g/M` returns residents who are in Draco house, **and** are Male.
+* `filter /all h/D g/M` returns residents who are in `Draco` house, **and** are Male.
 * `filter /any h/D h/A` returns residents belonging to either `Draco` **or** `Aquila` house.
 * `filter g/M` returns residents who are male.
 
@@ -754,7 +754,7 @@ To view all venues, switch over to the bookings tab and refer to the list on the
 
 Examples:
 * `venue add Meeting Room 3` adds a venue called `Meeting Room 3`.
-* `venue add Multi-purpose Hall ` adds a venue called `Multi-purpose Hall`.
+* `venue add Multi purpose Hall ` adds a venue called `Multi purpose Hall`.
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
@@ -837,7 +837,7 @@ To view all venues, switch over to the bookings tab and refer to the list on the
 
 Examples:
 * `venue unbook v/Meeting Room tp/8-9 d/TUE` deletes the 8am to 9am Meeting Room booking on Tuesday.
-* `venue unbook v/Hall tp/13-18 d/WED` deletes the 1pm to 6pm Hall booking n Wednesday.
+* `venue unbook v/Hall tp/13-18 d/WED` deletes the 1pm to 6pm Hall booking on Wednesday.
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
@@ -849,7 +849,7 @@ Examples:
 
 `v/VENUE_NAME`
 * The name displayed for the venue will be the exactly identical to the one specified in `VENUE_NAME`.
-* Can contain alphanumeric characters and whitespaces i.e. `m 3 3 t i n g r o o m` is valid.
+* Can contain only alphanumeric characters and whitespaces i.e. `m 3 3 t i n g r o o m` is valid.
 * Case-insensitive i.e. venues `Meeting Room` and `meeting room` are identical.
 
 `tp/TIME_PERIOD`
@@ -884,7 +884,6 @@ To encourage keyboard usage, here are several keyboard shortcuts that you may fi
 |------------|------------------------------------------------|
 | `Esc`      | Closes the Help Window if it's open            |
 | `F1`       | Opens the Help Window if it's not open         |
-| `F2`       | Highlights the first row of the displayed list |
 | `F3`       | Quick-access to the command input box          |
 | `Ctrl+Tab` | Switch between Resident and Booking tabs       |
 
