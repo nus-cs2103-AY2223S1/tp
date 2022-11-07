@@ -412,8 +412,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
-
+   1. Download the jar file and copy into an empty folder.
    2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 2. Saving window preferences
@@ -425,11 +424,13 @@ testers are expected to do more *exploratory* testing.
 ### Adding a Task or Deadline
 
 1. Adding a Task
+
    1. Prerequisites: task "Foo" isn't already added. If added, delete it first.
    2. Test case: `add_task n/Foo d/Foo`<br>
       Expected: Task "Foo" is added to the task list. Details of the added task shown in the status message.
    3. Test case: `add_task n/Foo d/Foo`<br>
       Expected: No task is added. Error details shown in the status message.
+
 2. Adding a Deadline
    1. Prerequisites: deadline "Bar" isn't already added. If added, delete it first.
    2. Test case: `add_task n/Bar d/Bar dl/02-02-2022 2200`<br>
@@ -465,10 +466,8 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case: `list_task`<br>
       Expected: All tasks are listed in the task list and, if not already on the "Task List" view it's swapped to it. Details of the listed tasks shown in the status message.
-
    2. Test case: `list_contact`<br>
       Expected: All contacts are listed in the contact list and, if not already on the "Contact List" view it's swapped to it. Details of the listed contacts shown in the status message.
-
    3. Test case: type `ctrl + tab`<br>
       Expected: The current list is switched to the other list.
 
@@ -512,13 +511,10 @@ testers are expected to do more *exploratory* testing.
 1. Deleting a Contact, Task or Deadline while all Contact, Task or Deadline are being shown
 
    1. Prerequisites: List all Contacts, Tasks or Deadlines using the `list_contact` or `list_task` command.
-
    2. Test case: `delete_contact 1` or `delete_task 1`<br>
       Expected: First Contact or Task is deleted from the list. Details of the deleted Contact or Task shown in the status message.
-
    3. Test case: `delete_contact 0` or `delete_task 0`<br>
       Expected: No Contact, Task or Deadline is deleted. Error details shown in the status message. Status bar remains the same.
-
    4. Other incorrect delete commands to try: `delete_contact` / `delete_task`, `delete_contact x` / `delete_task x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
@@ -527,29 +523,23 @@ testers are expected to do more *exploratory* testing.
 1. Editing a Contact, Task or Deadline while all Contact, Task or Deadline are being shown
 
    1. Prerequisites: List all Contacts, Tasks or Deadlines using the `list_contact` or `list_task` command. There should be at least one contact or task.
-
    2. Test case: `edit_contact 1 n/Alex Yeoh p/98765432
       Expected: First Contact is edited to have the name "Alex Yeoh" and phone number "98765432". Details of the edited Contact shown in the status message.
-
    3. Test case: `edit_contact 0 n/Alex Yeoh p/98765432`<br>
       Expected: No Contact is edited. Error details shown in the status message. Status bar remains the same.
-
    4. Test case: `edit_task 1 n/Bar d/Foo dl/02-02-2022 2200`<br>
       Expected: First Task is edited to have the name "Bar", description "Foo" and deadline "02-02-2022 2200". Details of the edited Task shown in the status message.
-
    5. Test case: `edit_task 0 n/Bar d/Foo dl/02-02-2022 2200`<br>
       Expected: No Task is edited. Error details shown in the status message. Status bar remains the same.
-
    6. Other incorrect edit commands to try: `edit_contact` / `edit_task`, `edit_contact x ...` / `edit_task x ...`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 ### Autocomplete
 
 1. type `li` then press `tab`<br>
-   Expected: Autocomplete the command based on the current command text, autocompleting it to list\_.
-
+   Expected: Autocomplete the command based on the current command text, autocompleting it to `list\_`.
 2. type `list_t` then press `tab`<br>
-   Expected: Autocomplete the command based on the current command text, autocompleting it to list_task.
+   Expected: Autocomplete the command based on the current command text, autocompleting it to `list_task`.
 
 ### Clearing all entries
 
