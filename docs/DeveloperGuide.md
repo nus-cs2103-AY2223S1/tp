@@ -10,6 +10,7 @@ SoCompiler is a **desktop app for managing contacts and module information, opti
 This developer guide will expose the architecture behind SoCompiler and showcase the specifics of how commands are handled by the application.
 
 In order to be a successful SoCompiler Developer, you need a general understanding of:
+
 * Java language
 * JavaFx
 
@@ -292,6 +293,7 @@ Step 1. The user launches the application. The `ReadOnlyAddressBook` will be ini
 state.
 
 Step 2. The user executes `addm m/CS1101S` command to add a module with the corresponding details in the address book.
+
 * The `addm` command calls `AddressBookParser#parseCommand()`, which creates a `AddModuleCommandParser`.
 * The `AddModuleCommandParser` then tokenizes the user input string and returns an `ArgumentMultimap` object that maps
   prefixes to their respective argument values.
@@ -313,21 +315,19 @@ The following sequence diagram shows how the AddModule operation works:
 
 The DeleteModule commands extends `Command`, and takes in an `Index` to be deleted. Additionally, it implements the following operation:
 
-* `DeleteModuleCommand#execute()` — Deletes the corresponding item in the given model according to the given index.
-
+* `DeleteModuleCommand#execute()`— Deletes the corresponding item in the given model according to the given index.
 
 This operation is exposed in the `Model` interface as `Model#deleteModule()`.
 
 Given below is an example usage scenario, and an object diagram to show the objects created during this command.
 
-
 Step 1. The user launches the application. The `ReadOnlyAddressBook` will be initialized with the initial address book state.
 
 Step 2. The user executes `deletem 1` command to delete the 1st module in the address book.
+
 * The `deletem` command calls `AddressBookParser#parseCommand()`, which creates a `DeleteModuleCommandParser`.
 * The `DeleteModuleCommandParser` gets the `Index` to be deleted, which is 1 in this case, and creates a `DeleteModuleCommand`.
 * `DeleteModuleCommand` then calls `Model#deleteModule()`, and deletes the module from the model object corresponding to the number parsed.
-
 
 The following object diagram illustrates the above example:
 
@@ -347,6 +347,7 @@ The following sequence diagram shows how the DeleteModule operation works:
 ### 3.4. Find Module feature
 
 The FindModule command extends `Command`, and takes in an `ModuleDetailsContainsKeywordsPredicate` to filter the module list by. Additionally, it implements the following operation:
+
 * `FindModuleCommand#execute()`
 
 This operation is exposed in the `Model` interface as `Model#updateFilteredModuleList()`.
@@ -356,6 +357,7 @@ Given below is an example usage scenario.
 Step 1. The user launches the application. The `ReadOnlyAddressBook` will be initialized with the initial address book state.
 
 Step 2. The user executes `findm CS2100` command to filter the module list by `CS2100`.
+
 * The `findm CS2100` command calls `AddressBookParser#parseCommand()`, which creates a `FindModuleCommandParser`.
 * The `FindModuleCommandParser` instantiates a `ModuleDetailsContainsKeywordsPredicate` with the given keyword `CS2100`.
 * The `FindModuleCommandParser` then creates a `FindModuleCommand` with the keyword.
@@ -388,9 +390,10 @@ The following sequence diagram shows how the FindModule operation works:
 
 SoCompiler is built-upon [AddressBook-Level3](https://github.com/se-edu/addressbook-level3/tree/master/docs), a sample project that serves as a base for Computer Science students to work on.
 
-### Credit for code adapted from external sources
+### Credit for code adapted/materials obtained from external sources
 
-Code to read a file from resources folder is adapted from this thread on [mkyong.com](https://mkyong.com/java/java-read-a-file-from-resources-folder/)
+* Code to read a file from resources folder is adapted from this thread on [mkyong.com](https://mkyong.com/java/java-read-a-file-from-resources-folder/)
+* Font used for the GUI were obtained from [Google Fonts](https://fonts.google.com/), where all fonts are under open source licenses and can be used in commercial and non-commercial products.
 
 [Back to Top](#socompiler-developer-guide)
 
@@ -677,11 +680,11 @@ The point of human-computer interaction and communication.
 
 The way for two or more computer programs to communicate with each other.
 
-#### Mainstream OS: 
+#### Mainstream OS:
 
 Operating Systems such as Windows, Linux, Unix, OS-X
 
-#### Modules: 
+#### Modules:
 
 University modules offered in NUS
 
@@ -705,15 +708,14 @@ testers are expected to do more *exploratory* testing.
     1. Download the jar file and copy into an empty folder
 
     2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be
-        optimum.
+       optimum.
 
 2. Saving window preferences
 
     1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
     2. Re-launch the app by double-clicking the jar file.<br>
-        Expected: The most recent window size and location is retained.
-    
+       Expected: The most recent window size and location is retained.
 
 ### 7.2. Deleting a person
 
@@ -722,22 +724,21 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
     2. Test case: `delete 1`<br>
-        Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
-        Timestamp in the status bar is updated.
+       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
+       Timestamp in the status bar is updated.
 
     3. Test case: `delete 0`<br>
        Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
     4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
-    
 
 ### 7.3. Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. Open the save file `SoCompiler.json` located in the file `data` and add garbage values. For example, add `!` or `-` to a persons' contact number. 
-   2. Re-launch the app by double-clicking the jar file.<br>
+    1. Open the save file `SoCompiler.json` located in the file `data` and add garbage values. For example, add `!` or `-` to a persons' contact number.
+    2. Re-launch the app by double-clicking the jar file.<br>
        Expected: App opens with no person or module loaded. Save file is wiped clean.
-   
+
 [Back to Top](#socompiler-developer-guide)

@@ -12,8 +12,9 @@ Class MainWindow
 Class HelpWindow
 Class ResultDisplay
 Class PersonListPanel
+Class ModuleListPanel
 Class PersonCard
-Class StatusBarFooter
+Class ModuleCard
 Class CommandBox
 }
 
@@ -33,28 +34,30 @@ UiManager -down-> "1" MainWindow
 MainWindow *-down->  "1" CommandBox
 MainWindow *-down-> "1" ResultDisplay
 MainWindow *-down-> "1" PersonListPanel
-MainWindow *-down-> "1" StatusBarFooter
+MainWindow *-down-> "1" ModuleListPanel
 MainWindow --> "0..1" HelpWindow
 
 PersonListPanel -down-> "*" PersonCard
+ModuleListPanel -down-> "*" ModuleCard
 
 MainWindow -left-|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
 PersonListPanel --|> UiPart
+ModuleListPanel --|> UiPart
 PersonCard --|> UiPart
-StatusBarFooter --|> UiPart
+ModuleCard --|> UiPart
 HelpWindow --|> UiPart
 
 PersonCard ..> Model
+ModuleCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
 PersonListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
-ResultDisplay -[hidden]left- StatusBarFooter
 
 MainWindow -[hidden]-|> UiPart
 @enduml
