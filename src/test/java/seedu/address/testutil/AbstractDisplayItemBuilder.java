@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.model.attribute.AbstractAttribute;
 import seedu.address.model.attribute.Attribute;
@@ -72,6 +73,10 @@ abstract class AbstractDisplayItemBuilder {
      * Adds a custom attribute. Refer to {@link #withAttribute(Attribute)} for more information.
      */
     protected void addAttribute(Attribute<?> attribute) {
+        List<Attribute<?>> existing = this.attributes.stream()
+                .filter(a -> a.isNameMatch(attribute.getAttributeType()))
+                .collect(Collectors.toList());
+        this.attributes.removeAll(existing);
         this.attributes.add(attribute);
     }
 

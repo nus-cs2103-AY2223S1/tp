@@ -5,9 +5,10 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.attribute.AbstractAttribute;
+import seedu.address.model.attribute.Attribute;
 import seedu.address.model.item.DisplayItem;
 
 // @@author jasonchristopher21
@@ -61,9 +62,13 @@ public class AddFieldCommand extends FieldCommand {
         if (item.getAttribute(type).isPresent()) {
             throw new CommandException(MESSAGE_DUPLICATE);
         }
-        item.addAttribute(new AbstractAttribute<String>(type, data) {
-
-        });
+        Attribute<?> attribute;
+        try {
+            attribute = ParserUtil.parseAttribute(type, data);
+        } catch (ParseException e) {
+            throw new CommandException(e.getMessage());
+        }
+        item.addAttribute(attribute);
         model.refresh();
         return new CommandResult(SUCCESS_MSG);
     }
