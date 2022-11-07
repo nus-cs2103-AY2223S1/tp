@@ -332,7 +332,7 @@ Given below is an example usage scenario and how the sort mechanism behaves at e
 
 The following sequence diagram summarizes the aforementioned steps.
 
-![Find command sequence diagram](images/FindSequenceDiagram.png)
+![Find command sequence diagram](images/FindCommandSequenceDiagram.png)
 
 #### Design considerations
 
@@ -842,6 +842,31 @@ For all use cases below, the **System** is `FRIDAY` and the **Actor** is the `us
     * 2b1. FRIDAY shows an error message showing the correct format.
 
       Use case resumes at step 1
+
+<br>
+
+**Use Case 13: Find students**
+
+**MSS**
+
+1. User requests to list students
+2. FRIDAY shows a list of students
+3. User requests to find students with specific keywords
+4. FRIDAY displays the students with matching keywords
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given command format is invalid.
+
+    * 3a1. FRIDAY shows an error message listing the accepted format.
+
+      Use case resumes at step 3.
 
 <br>
 
