@@ -15,12 +15,12 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.person.Person;
 import seedu.address.model.question.Question;
 import seedu.address.model.student.Student;
 import seedu.address.model.tutorial.Tutorial;
@@ -113,11 +113,6 @@ public class AddTutorialCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        @Override
-        public void addPerson(Person person) {
-
-        }
-
 
         @Override
         public void setAddressBook(ReadOnlyAddressBook newData) {
@@ -129,30 +124,6 @@ public class AddTutorialCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        @Override
-        public boolean hasPerson(Person person) {
-            return false;
-        }
-
-        @Override
-        public void deletePerson(Person target) {
-
-        }
-
-        @Override
-        public void setPerson(Person target, Person editedPerson) {
-
-        }
-
-        @Override
-        public ObservableList<Person> getFilteredPersonList() {
-            return null;
-        }
-
-        @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
-
-        }
 
         @Override
         public boolean hasStudent(Student student) {
@@ -201,6 +172,16 @@ public class AddTutorialCommandTest {
 
         @Override
         public void setQuestion(Question target, Question editedQuestion) {
+
+        }
+
+        @Override
+        public void markQuestion(Index index) {
+
+        }
+
+        @Override
+        public void unmarkQuestion(Index index) {
 
         }
 
