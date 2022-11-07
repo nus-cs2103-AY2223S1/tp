@@ -1275,7 +1275,7 @@ testers are expected to do more *exploratory* testing.
 7. Test case: `add n/John Doe p/98765432 e/johnd@example.com... a/311, Clementi Ave 2, #02-25 i/1000 m/200 r/HIGH ip/Savings Plan c/CURRENT`<br>
    Expected: No client is added. Error details will show that there is invalid email format.(where ... represents email string that exceeds the character limit of 320)
 
-8Test case: `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 i/1000 m/200 r/HIGH ip/Savings Plan c/CURRENT t/friends...`<br>
+8. Test case: `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 i/1000 m/200 r/HIGH ip/Savings Plan c/CURRENT t/friends...`<br>
    Expected: No client is added. Error details will show that there is a invalid tag format.(where ... represents tag string that exceeds the character limit of 50)
 
 ### Editing a client
