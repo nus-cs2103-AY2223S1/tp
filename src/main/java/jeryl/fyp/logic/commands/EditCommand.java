@@ -1,6 +1,8 @@
 package jeryl.fyp.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static jeryl.fyp.commons.core.Messages.MESSAGE_DUPLICATE_STUDENT;
+import static jeryl.fyp.commons.core.Messages.MESSAGE_STUDENT_NOT_FOUND;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_STUDENT_NAME;
@@ -13,11 +15,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import jeryl.fyp.commons.core.Messages;
 import jeryl.fyp.commons.core.index.Index;
 import jeryl.fyp.commons.util.CollectionUtil;
 import jeryl.fyp.logic.commands.exceptions.CommandException;
 import jeryl.fyp.model.Model;
+import jeryl.fyp.model.student.DeadlineList;
 import jeryl.fyp.model.student.Email;
 import jeryl.fyp.model.student.ProjectName;
 import jeryl.fyp.model.student.ProjectStatus;
@@ -46,7 +48,6 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_STUDENT_SUCCESS = "Edited Student: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the FYP manager.";
 
     private final StudentId studentId;
     private final EditStudentDescriptor editStudentDescriptor;
@@ -70,11 +71,13 @@ public class EditCommand extends Command {
         Index targetIndex = model.getIndexByStudentId(studentId);
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_STUDENT_NOT_FOUND);
+            throw new CommandException(MESSAGE_STUDENT_NOT_FOUND);
         }
 
         Student studentToEdit = lastShownList.get(targetIndex.getZeroBased());
+        DeadlineList deadlineList = studentToEdit.getDeadlineList();
         Student editedStudent = createEditedStudent(studentToEdit, editStudentDescriptor);
+        editedStudent.getDeadlineList().setDeadlines(deadlineList);
 
         if (!studentToEdit.isSameStudentId(editedStudent) && model.hasStudent(editedStudent)) {
             throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
@@ -120,6 +123,15 @@ public class EditCommand extends Command {
         EditCommand e = (EditCommand) other;
         return studentId.equals(e.studentId)
                 && editStudentDescriptor.equals(e.editStudentDescriptor);
+    }
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append("Student ID: ")
+                .append(studentId)
+                .append("; EditStudentDescriptor: ")
+                .append(editStudentDescriptor);
+        return builder.toString();
     }
 
     /**
@@ -195,7 +207,6 @@ public class EditCommand extends Command {
         public Optional<ProjectStatus> getProjectStatus() {
             return Optional.ofNullable(projectStatus);
         }
-
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -230,8 +241,28 @@ public class EditCommand extends Command {
 
             return getStudentName().equals(e.getStudentName())
                     && getEmail().equals(e.getEmail())
+                    && getStudentId().equals(getStudentId())
                     && getProjectName().equals(e.getProjectName())
                     && getTags().equals(e.getTags());
+        }
+        @Override
+        public String toString() {
+            final StringBuilder builder = new StringBuilder();
+            builder.append(getStudentName())
+                    .append("; Student ID: ")
+                    .append(getStudentId())
+                    .append("; Email: ")
+                    .append(getEmail())
+                    .append("; ProjectName: ")
+                    .append(getProjectName())
+                    .append("; ProjectStatus: ")
+                    .append(getProjectStatus());
+
+            if (!tags.isEmpty()) {
+                builder.append("; Tags: ");
+                tags.forEach(builder::append);
+            }
+            return builder.toString();
         }
     }
 }

@@ -1,5 +1,6 @@
 package jeryl.fyp.logic.commands;
 
+import static jeryl.fyp.commons.core.Messages.MESSAGE_DUPLICATE_STUDENT;
 import static jeryl.fyp.logic.commands.CommandTestUtil.DESC_AMY;
 import static jeryl.fyp.logic.commands.CommandTestUtil.DESC_BOB;
 import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
@@ -47,7 +48,6 @@ public class EditCommandTest {
 
         EditCommand editCommand = new EditCommand(validStudentId, editStudentDescriptor);
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent);
-
         ModelManager expectedModel = new ModelManager(model.getFypManager(), new UserPrefs());
         expectedModel.setStudent(model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased()),
                 editedStudent);
@@ -115,7 +115,7 @@ public class EditCommandTest {
         EditStudentDescriptor editStudentDescriptor = new EditStudentDescriptorBuilder(studentToEdit).build();
         EditCommand editCommand = new EditCommand(validStudentId, editStudentDescriptor);
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_STUDENT);
+        assertCommandFailure(editCommand, model, MESSAGE_DUPLICATE_STUDENT);
     }
 
     @Test
@@ -128,7 +128,7 @@ public class EditCommandTest {
         EditStudentDescriptor editStudentDescriptor = new EditStudentDescriptorBuilder(studentToEdit).build();
         EditCommand editCommand = new EditCommand(validStudentId, editStudentDescriptor);
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_STUDENT);
+        assertCommandFailure(editCommand, model, MESSAGE_DUPLICATE_STUDENT);
     }
 
     @Test

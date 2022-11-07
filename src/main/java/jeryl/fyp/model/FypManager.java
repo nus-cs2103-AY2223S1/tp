@@ -9,6 +9,7 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import jeryl.fyp.commons.core.index.Index;
 import jeryl.fyp.model.student.Deadline;
+import jeryl.fyp.model.student.DeadlineList;
 import jeryl.fyp.model.student.Student;
 import jeryl.fyp.model.student.StudentId;
 import jeryl.fyp.model.student.UniqueStudentList;
@@ -69,7 +70,6 @@ public class FypManager implements ReadOnlyFypManager {
         requireNonNull(student);
         return students.contains(student);
     }
-
     /**
      * Adds a student to the FYP manager.
      * The student must not already exist in the FYP manager.
@@ -176,6 +176,11 @@ public class FypManager implements ReadOnlyFypManager {
     @Override
     public ObservableList<Student> getCompletedStudentList() {
         return students.filter(student -> student.getProjectStatus().projectStatus.equals("DONE"));
+    }
+
+    @Override
+    public DeadlineList getDeadlineList(Student student) {
+        return student.getDeadlineList();
     }
 
     @Override
