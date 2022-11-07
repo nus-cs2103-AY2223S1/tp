@@ -448,30 +448,30 @@ If your changes to the data file makes its format invalid, FRIDAY will ignore al
 
 ## Glossary
 
-1. CLI: CLI stands for command line interface. It is a system wherein the user enters textual one line inputs into an input box and the computer responds with a textual or graphical output.
+1. **CLI:** CLI stands for command line interface. It is a system wherein the user enters textual one line inputs into an input box and the computer responds with a textual or graphical output.
 
-2. GUI: GUI stands for graphical user interface. It is the opposite of CLI wherein the user interacts with icons and items on the screen to communicate with the computer. Outputs are also displayed in graphical form.
+2. **GUI:** GUI stands for graphical user interface. It is the opposite of CLI wherein the user interacts with icons and items on the screen to communicate with the computer. Outputs are also displayed in graphical form.
 
-3. Java : Java is a programming language introduced in the 90's. It is used to create many applications that you use today. Including this one.
+3. **Java:** Java is a programming language introduced in the 90's. It is used to create many applications that you use today. Including this one.
 
-4. .jar : Specifies the file format of the file.
+4. **.jar:** Specifies the file format of the file.
 
-5. Command: The text that you enter in the input box is a command.
+5. **Command:** The text that you enter in the input box is a command.
 
-6. Parameter: The text that follows the first word of your input in the input box.
+6. **Parameter:** The text that follows the first word of your input in the input box.
 
-7. Prefix: A word or letter used in commands to specify the field you are adding, editing or sorting by.
+7. **Prefix:** A word or letter used in commands to specify the field you are adding, editing or sorting by.
 
-8. RA1: Reading assessment 1 a minor assessment in the CS1101S module that tests the content of the first half of the module.
+8. **RA1:** Reading assessment 1 is a minor assessment in the CS1101S module that tests the content of the first half of the module.
 
-9. RA2: Reading assessment 2 a minor assessment in the CS1101S module that tests the content of the second half of the module.
+9. **RA2:** Reading assessment 2 is a minor assessment in the CS1101S module that tests the content of the second half of the module.
 
-10. Midterm: Midterm examination a major assessment that occurs halfway through the CS1101S module.
+10. **Midterm:** Midterm examination is a major assessment that occurs halfway through the CS1101S module.
 
-11. Practical: Practical examination is a major non-paper assessment that occurs at the end of the CS1101S module.
+11. **Practical:** Practical examination is a major non-paper assessment that occurs at the end of the CS1101S module.
 
-12. Final: Final examination is a major paper assessment that occurs at the end of the CS1101S module.
+12. **Final:** Final examination is a major paper assessment that occurs at the end of the CS1101S module.
 
-13. Mastery Check: A pass/fail assessment on students to assess their understanding of the concepts taught. There are 2 Mastery checks per semester.
+13. **Mastery Check:** A pass/fail assessment on students to assess their understanding of the concepts taught. There are 2 Mastery checks per semester.
 
-14. Alias: A nickname or an alternate name for a command that you can set.
+14. **Alias:** A nickname or an alternate name that you can set for a command.

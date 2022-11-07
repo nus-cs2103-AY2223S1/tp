@@ -882,11 +882,11 @@ For all use cases below, the **System** is `FRIDAY` and the **Actor** is the `us
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
-* **TA / Avenger**: Teaching assistants, namely CS1101S teaching assistants (also called "Avengers"), who are the target audience of our product FRIDAY.
-* **Reading Assessment**: Assessments in the form of online quiz with Multiple-Choice Questions (MCQ). There are a total of two reading assessments, namely RA1 and RA2, throughout the semester. Reading Assessments have weightage in the students' final grade for the module.
-* **Mastery Check**: An assessment of the students' understanding of topics conducted by the user (the teaching assistants).
+1. **Mainstream OS**: Windows, Linux, Unix, OS-X
+2. **Private contact detail**: A contact detail that is not meant to be shared with others
+3. **TA / Avenger**: Teaching assistants, namely CS1101S teaching assistants (also called "Avengers"), who are the target audience of our product FRIDAY.
+4. **Reading Assessment**: Assessments in the form of online quiz with Multiple-Choice Questions (MCQ). There are a total of two reading assessments, namely RA1 and RA2, throughout the semester. Reading Assessments have weightage in the students' final grade for the module.
+5. **Mastery Check**: An assessment of the students' understanding of topics conducted by the user (the teaching assistants).
 There are two Mastery Checks through the semester. Students will be assessed by their knowledge of the topics covered by presenting to their teaching assistant in pairs.
 Since users have to arrange dates to meet with their students to conduct the Mastery Checks, FRIDAY allows users to record the scheduled dates for each student.
 --------------------------------------------------------------------------------------------------------------------
