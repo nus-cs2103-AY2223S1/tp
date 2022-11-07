@@ -46,7 +46,7 @@ public class TypicalPersons {
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withAddress("little india").build();
 
-    public static final Person JOON = new PersonBuilder().withName("Joon Meier")
+    public static final Person JOON = new PersonBuilder().withName("Joon Smith")
             .withAddress("little india").withRole("Backend Engineer")
             .withGithubUser("sh4nH").withTags("friends").build();
 
