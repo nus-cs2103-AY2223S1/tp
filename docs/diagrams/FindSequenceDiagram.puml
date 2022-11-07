@@ -1,0 +1,91 @@
+@startuml
+!include style.puml
+'https://plantuml.com/sequence-diagram
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TaskListParser" as TaskListParser LOGIC_COLOR
+participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
+participant "f:FindCommand" as FindCommand LOGIC_COLOR
+participant "p:NameOrTagContainsKeywordsPredicate" as NameOrTagContainsKeywordsPredicate LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute(\n"find tutorial priority")
+activate LogicManager
+
+LogicManager -> TaskListParser : parseCommand(\n"find tutorial priority")
+activate TaskListParser
+
+create FindCommandParser
+TaskListParser -> FindCommandParser
+activate FindCommandParser
+
+FindCommandParser -> TaskListParser
+deactivate FindCommandParser
+
+TaskListParser -> FindCommandParser : parse(\n"tutorial priority")
+activate FindCommandParser
+
+create FindCommand
+FindCommandParser -> FindCommand
+
+activate FindCommand
+
+create NameOrTagContainsKeywordsPredicate
+FindCommand -> NameOrTagContainsKeywordsPredicate
+
+activate NameOrTagContainsKeywordsPredicate
+
+NameOrTagContainsKeywordsPredicate --> FindCommand : p
+
+deactivate NameOrTagContainsKeywordsPredicate
+
+FindCommand --> FindCommandParser : f
+
+deactivate FindCommand
+
+FindCommandParser --> TaskListParser : f
+
+deactivate FindCommandParser
+
+TaskListParser --> LogicManager : f
+
+deactivate TaskListParser
+
+LogicManager -> FindCommand : execute()
+activate FindCommand
+
+FindCommand -> Model : updateFilteredTaskList(p)
+activate Model
+
+Model --> FindCommand
+deactivate Model
+
+FindCommand -> Model : updateFilterStatus("Names or tags containing ['tutorial', 'priority']")
+activate Model
+
+Model --> FindCommand
+deactivate Model
+
+create CommandResult
+FindCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindCommand : result
+deactivate CommandResult
+
+FindCommand --> LogicManager : result
+deactivate FindCommand
+
+[<--LogicManager
+deactivate LogicManager
+
+
+
+
+@enduml

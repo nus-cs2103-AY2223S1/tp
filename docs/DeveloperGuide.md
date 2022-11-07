@@ -319,9 +319,48 @@ Below is the sequence diagram for the partial execution of `ls -u --module CS210
 
 ![Partial sequence diagram when command `ls -u --module CS2103T` is executed](images/ListSequenceDiagram2.png)
 
-### 5.4 Returning to a previous command
+Below is the sequence diagram for the complete execution of `ls -u --module CS2103T`.
 
-#### 5.4.1 Implementation
+![Sequence diagram when command `ls -u --module CS2103T` is executed](images/ListSequenceDiagram.png)
+
+### 5.4 Find feature
+
+The `find` feature is similar to the list feature as it is also a filter on the current task list. The find feature finds
+any task name that contains the keyword(s) and any tags that match the keyword(s) given.
+
+`FindCommand` extends `Command`, overriding the `execute` method.
+
+This feature uses the following methods from the `Model` interface:
+* `Model#updateFilteredTaskList`: Updates the current task list by applying a filter as indicated by the given predicate `Predicate<Task>`. The GUI will be updated accordingly to display the filtered task list.
+* `Model#updateFilterStatus`: Updates the list of filters that have been applied to the current task list displayed. This will be reflected on the GUI.
+
+#### 5.4.1 Usage Scenario
+
+Given below is an example usage scenario and how the mechanism behaves at each step to execute the `find tutorial priority` command.
+
+**Step 1.** The user enters `find tutorial priority` to find all tasks with names containing and tags matching `tutorial` and `priority`.
+
+**Step 2.** `LogicManager` calls the `TaskListParser#parseCommand(String)` method. A new `FindCommandParser` object is created and returned.
+
+**Step 3.** `TaskListParser` calls the `FindCommandParser#parse(String)` method.
+
+**Step 4.** `FindCommandParser#parse(String)` returns a new instance of `FindCommand` with a `NameOrTagContainsKeywordsPredicate` and returned to `LogicManager`.
+
+**Step 5.** `LogicManager` calls the `FindCommand#execute()` method.
+
+**Step 6.** The current `taskList` is updated by calling `Model#updateFilteredTaskList(predicate)`.
+
+**Step 7.** `Model#updateFilterStatus(String)` is called to update the filter being applied to the current displayed `taskList`.
+
+**Step 8.** A new `CommandResult` object is returned, signifying that command execution was successful.
+
+Here is a sequence diagram to represent the execution of the command:
+
+![Sequence diagram when command `find tutorial priority` is executed](images/FindSequenceDiagram.png)
+
+### 5.5 Returning to a previous command
+
+#### 5.5.1 Implementation
 
 This feature allows the user to traverse through past commands via the `up` and `down` keys on the keyboard, similar to how
 it works in a terminal.
@@ -337,7 +376,7 @@ Additionally, it implements the following operations:
 * `CommandHistory#up()` – Traverses upwards through the history and restores the previously entered command.
 * `CommandHistory#down()` – Traverses downwards through the history and restores the command.
 
-#### 5.4.2 Usage scenario
+#### 5.5.2 Usage scenario
 
 Given below is an example usage scenario and how the command history traversal mechanism behaves at each step.
 
@@ -374,7 +413,7 @@ The following activity diagram summarizes what happens when a user clicks on the
 
 ![Activity diagram of up/down key](images/UpDownKeyActivityDiagram.png)
 
-#### 5.4.3 Design considerations
+#### 5.5.3 Design considerations:
 
 **Aspect: How command history is stored:**
 
@@ -385,9 +424,9 @@ The following activity diagram summarizes what happens when a user clicks on the
     * Pros: Will be able to restore commands from previous launches.
     * Cons: Difficult to implement as storage architecture will have to be renewed.
 
-### 5.5 Command autocomplete feature
+### 5.6 Command autocomplete feature
 
-#### 5.5.1 Implementation
+#### 5.6.1 Implementation
 
 This feature allows the user to traverse through a drop-down list of possible commands that can be used, and is updated
 as they are typing. This provides convenience for the user as he can click `Enter` to complete the command after
@@ -404,23 +443,24 @@ It adds the following methods in CommandBox.java:
 
 Below is an example usage scenario for autocomplete:
 
-Step 1. The user opens the app, which initialises the `CommandBox` which then initialises the `ContextMenu` and a
+**Step 1.** The user opens the app, which initialises the `CommandBox` which then initialises the `ContextMenu` and a
 `CommandList` of all the possible commands that be used in the app.
 
-Step 2. The user would like to edit a task that has in NotionUS, and knows that the command begins with an `e`, typing
+**Step 2.** The user would like to edit a task that has in NotionUS, and knows that the command begins with an `e`, typing
 it into the command box. A list of possible commands appears as a popup `ContextMenu` below the
 command box, containing the commands of `edit` and `exit`.
 
-Step 3. When the popup appears, the user can use the `up` and `down` key to traverse the list to the command of choice.
+**Step 3.** When the popup appears, the user can use the `up` and `down` key to traverse the list to the command of choice.
 Once the user would like to use that command, the user hits `Enter` and the command is filled into the command box.
 This closes the popup.
 
-Step 4. The user adds the required additional information if required and then hits `Enter` to perform the command as per normal.
+**Step 4.** The user adds the required additional information if required and then hits `Enter` to perform the command as per normal.
 
 Below is an activity diagram to display how the feature works:
+
 ![AutocompleteActivityDiagram](images/AutocompleteActivityDiagram.png)
 
-#### 5.5.2 Design considerations
+#### 5.6.2 Design considerations:
 
 **Aspect: Filtering commandList to find matching commands:**
 
@@ -432,14 +472,14 @@ in previous list.
   * Pros: Harder to implement.
   * Cons: Efficient especially when command list is large.
 
-### 5.6 [Proposed] Acceptance of Multiple Date Formats
+### 5.7 [Proposed] Acceptance of Multiple Date Formats
 
-#### 5.6.1 Current Implementation
+#### 5.7.1 Current Implementation
 
 Currently, the `Deadline` class only accepts dates in the ISO 8601 format (e.g. 2022-11-07), which is unnatural for new
 users to type. Accepting multiple date formats will be much appreciated by the user base.
 
-#### 5.6.2 Proposed Implementation
+#### 5.7.2 Proposed Implementation
 
 A list of accepted formats generated using `DateTimeFormatter::ofPattern` needs to be stored as a static field in 
 `Deadline`. 
@@ -458,7 +498,7 @@ The following sequence diagram shows what will happen with the proposed implemen
 
 ![ProposedDeadlineSequenceDiagram](images/ProposedDeadlineSequenceDiagram.png)
 
-#### 5.6.3 Alternative Implementations
+#### 5.7.3 Alternative Implementations
 
 **Aspect: Providing a year for Month and Day only inputs**
 
@@ -474,16 +514,16 @@ The following sequence diagram shows what will happen with the proposed implemen
   * Cons: More complicated implementation
 
 
-### 5.7 [Proposed] Aliasing of Commands
+### 5.8 [Proposed] Aliasing of Commands
 
-#### 5.7.1 Rationale for Feature
+#### 5.8.1 Rationale for Feature
 
 As users become more familiar with the command line, some may prefer to have aliases for commonly used commands to
 improve their efficiency. For example, instead of typing `add -n Project ...` every time, a user may prefer to just type 
 `a Project ...` to quickly add in a task, where `a` is an alias for `add -n`. Other potential uses are aliases for 
 commonly used list filters, instead of typing the whole command out.
 
-#### 5.7.2 Proposed Implementation
+#### 5.8.2 Proposed Implementation
 
 The addition of the alias feature will require the following commands:
 
@@ -751,13 +791,18 @@ Unless specified otherwise, the **System** is the `NotionUS` application and the
     * 2a1. NotionUS shows an error, requesting the user check the task ID.
 
       Use case starts from 1.
+* 2b. There are no tasks in the task list.
+    * 2b1. No tasks to archive.
+
+      Use case ends.  
 
 **Use Case: UC10 - Show archived tasks**
 
 **MSS:**
 
-1. User requests to show the archived tasks.
-2. NotionUS displays the archived tasks.
+1. NotionUS shows all tasks. 
+2. User requests to show the archived tasks.
+3. NotionUS displays the archived tasks.
 
    Use case ends.
 
@@ -827,7 +872,6 @@ Below is a use case diagram summarising the use cases listed above:
 15. Should take less than 2GB of storage space.
 16. Data should be stored locally in the user's operating device.
 
-*{More to be added}*
 
 ### 7.5 Glossary
 
@@ -910,8 +954,29 @@ testers are expected to do more *exploratory* testing.
    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
+### 8.4  Marking a task
 
-### 8.4 Saving data
+1. Marking a task while all tasks are being shown.
+   1. Prerequisites: List all tasks using the `ls -a` command. Multiple tasks in the list.
+   2. Test case: `mark 1`<br>
+          Expected: First task is mark, the checkbox of the task will be ticked. Details of the marked task shown in the status message.
+          Task IDs of remaining tasks updated.
+
+   3. Test case: `mark 0`<br>
+      Expected: No task is marked. Error details shown in the status message.
+
+### 8.5 Archiving a task
+
+1. Archiving a task while all tasks is shown. 
+   1. Prerequisites: List all tasks using the `ls -a` command. Multiple tasks in the list.
+   2. Test case: `archive 1`<br>
+      Expected: First task is archived, deleted from the list and added to the archived list. Details of the archived task shown in the status message.
+      Task IDs of remaining tasks updated.
+
+   3. Test case: `archive 0`<br>
+      Expected: No task is archived. Error details shown in the status message.
+
+### 8.6 Saving data
 
 1. Dealing with corrupted data files
 
@@ -936,7 +1001,7 @@ testers are expected to do more *exploratory* testing.
 
     3. Follow Steps 3-5 of the above "Dealing with corrupted data files". Expected behaviour is the same.
 
-### 8.5 Loading saved data
+### 8.7 Loading saved data
 
 1. Restoring task list from previous launch
 
@@ -953,3 +1018,22 @@ testers are expected to do more *exploratory* testing.
    
    5. Relaunch NotionUS by double-clicking the jar file.
       Expected: Task list displayed contains 2  tasks, `Tutorial 1` and `PYP`.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **9. Appendix: Effort**
+For the effort, we felt that our group have placed more than the average. We dissected and analysed the problem of our target audience. 
+From there, we generated an extensive list of user stories to decide on the features to be included in our application.  
+
+Our group morphed the model from `Person` to `Task`, the challenging part is to refactor all the various classes and fields. We also had to change of the various syntax of `module`, `Deadline` etc.
+This caused a lot of test cases to fail which we have to fix. For `Deadline`, we took the extra effort to make it optional to improve the usability for our users.
+
+Another challenge that was faced was understanding the `logicManager` and `modelManager` as we add in more commands. This requires us to apply the OOP principle and read up on the various APIs that we are 
+not familiar with such as `ObservableList`.  
+
+While we were adding the archive command, we have added a separate storage file for the `ArchivedTaskList` to separate it from the current task list as we do not want it to be modified or changed at this stage. 
+A lot of time was taken to understand how the addressBook storage works such as how the JSON file was created and saved. Due to creation of the new `ArchiveTaskList` class, we have to add in new methods to `logicManager` and `modelManager` and 
+the relevant interfaces, which resulted in many existing test cases to fail.  
+
+For the UI, we took the extra effort to change the appearance so that it is easy on the eyes. Since we did not have much experience dealing with CSS files and JavaFx, and on top of that it was different from what we have learnt, hence 
+we had read up and try for ourselves. Experimenting with the various fonts and editing size of the windows and make changes to fit in our new features was foreign to us as well, which caused us extra time to tackle it. 
