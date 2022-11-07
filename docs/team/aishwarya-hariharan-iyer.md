@@ -27,25 +27,28 @@ Given below are my contributions to the project.
           attributes, sorted, pinned and much more.
         * Credits: The `Client` class is based on the AB3's `Person` class and replaces it in DevEnable. However,
           unlike the `Person` class in AB3, the `Client` has mutable fields and do not have `Address`
-          and `Set<Tag>`
+          and `Set<Tag>`. Initially, the `Client` package PR contained other `Client` attributes but we chose to
+          keep that for a future iterations in interest of UI/UX considerations.
 
     * **New Feature**: `find` command
         * What it does: Finds items on the list that match the user's search criteria on various attributes and
-          displays the corresponding filtered list.
+          displays the corresponding filtered list. It matches keywords with targets on an exact-word basis such
+          that at least one word form the target must match exactly with at least one word from the keyword
         * Justification: The developer may want to filter and find items on the list based on various parameters.
-        * Highlights: The intersection of the search criteria for different attributes are taken. For multiple
-          arguments given to each parameter, the union of all arguments provided, with each argument taken for a
-          tight-match, is taken.
+        * Highlights: The find command
         * Credits: The `find` command builds on the AB3 `find` functionality.
 
 * **Enhancements to existing features**:
-    * E.g. changes to GUI, wrote additional tests, etc.
+    * E.g. Wrote additional tests for FindParser
 
 * **Documentation**:
     * Contributions to the UG
-        * Which sections did you contribute to the UG? (to be added soon)
     * Contributions to the DG
-        * Which sections did you contribute to the DG? Which UML diagrams did you add/updated? (to be added soon)
+        * Write-up for Delete Command Feature consisting of Delete Project Command, Delete Issue Command, and Delete
+          Client Command
+        * UML Sequence Diagram for deleting a client from the app.
+        * Design considerations for Delete Command Feature
+        * Design considerations for Add Command Feature
 
 * **Contributions to team-based tasks**:
     * (to be added soon)
