@@ -507,7 +507,7 @@ The Todo, Deadline and Event task types is facilitated by `TaskList`. It extends
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts and task assignments to and from contacts faster than a typical mouse/GUI driven app
+**Value proposition**: TaskBook is the most personalized method for NUS students to manage their tasks, by connecting tasks with the people they know. Through connections, students will be better able to manage the complicated web of tasks they are involved in from a day to day basis. TaskBook will only help with task management and does not currently provide services outside of task and contact management, like reminders and workspaces. TaskBook is optimized for CLI inputs.
 
 
 ### User stories
