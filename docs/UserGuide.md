@@ -456,7 +456,7 @@ Format: `get /n NAME`
 
 #### next-of-kin data: `/nok`
 
-Finds next-of-kin data for patients matching the input `PATIENT_NAME`, and is hence similar to the `get /n` command.
+Finds next-of-kin data for patients matching the input `PATIENT_NAME`.
 
 Format: `get /nok PATIENT_NAME`
 
@@ -473,9 +473,9 @@ Format: `get /hw HOSPITAL_WING`
 
 * `HOSPITAL_WING` only allows the following values: South, North, West, East.
 * The search is case-insensitive. e.g `get /hw souTh` matches `get /hw South`.
-* Only fully inputted values will be used. e.g. `get /hw South No` matches `get /hw south` as `No` does not match
+* Only fully input values will be used. e.g. `get /hw South No` matches `get /hw south` as `No` does not match
   South, North, West or East.
-* `get /hw south /hw north` matches `get /hw south north`.
+* `get /hw south /hw north` matches `get /hw south north`, which will return all the patients in the south and north wing.
 * All the patients in that hospital wing will be displayed. e.g. `get /hw SOUTH` will display `John` `Peter` `Mary`.
 
 #### by floor number: `/fn`
@@ -486,8 +486,8 @@ Format: `get /fn FLOOR_NUMBER`
 
 * `FLOOR_NUMBER` only allows positive integers.
 * All the patients in that floor number will be displayed. e.g. `get /fn 2` will display `John` `Peter` `Mary`.
-* Multiple `FLOOR_NUMBER` can be inputted. e.g. `get /fn 1 3` will display all patients staying in the 1st and 3rd floor.
-* `get /fn 1 /fn 3` matches `get /fn 1 3`.
+* Multiple `FLOOR_NUMBER` can be input. e.g. `get /fn 1 3` will display all patients staying in the 1st and 3rd floor.
+
 
 <sub><sup>[back to top](#back-to-topt), [back to features](#features), [back to segment top](#retrieving-patient-info)</sup></sub>
 
@@ -497,10 +497,10 @@ Finds all the patients in that particular ward number.
 
 Format: `get /wn WARD_NUMBER`
 
-* All the patients in that ward number will be displayed. e.g. `get /wn D12` will display `John` `Peter` `Mary`.
-* Multiple `WARD_NUMBER` can be inputted. e.g. `get /wn D001 E301` will display all patients staying in the ward number
+* All the patients in that ward number will be displayed. e.g. `get /wn D123` will display `John` `Peter` `Mary`.
+* Multiple `WARD_NUMBER` can be input. e.g. `get /wn D001 E301` will display all patients staying in the ward number
   D001 and E301.
-* `get /wn D12 /wn E13` matches `get /wn D12 E13`.
+* `get /wn D123 /wn E133` matches `get /wn D123 E133`.
 
 #### by long term medication: `/m`
 
@@ -541,7 +541,8 @@ Format: `get /appt INDEX`
 
 Example: `get /appt 3` will display <br>
 `On: 12 Jun 2022; Diagnosis: Common viral flu; Prescribed Medication: [lozenges][panadol]`.<br>
-`On: 01 Jan 2001; Diagnosis: headache, medicine given for 3 days; Prescribed Medication: [ibuprofen]`.
+`On: 01 Jan 2001; Diagnosis: headache, medicine given for 3 days; Prescribed Medication: [ibuprofen]` <br>
+in the command result box.
 
 #### by appointment date: `/appton`
 
@@ -551,6 +552,8 @@ Format: `get /appton APPOINTMENT_DATE`
 
 * `APPPOINTMENT_DATE` must be in `dd-MM-yyyy` format.
 * The appointment date refers to date the patient has an appointment with the clinic or hospital.
+* Multiple `APPOINTMENT_DATE` can be input. e.g. `get /appton 14-12-2020 15-12-2020` will display all patients 
+having appointments on 14th December 2020 and 15th December 2020.
 * All the patients having appointments on that date will be displayed. e.g. `get /appton 12-12-2020` will display
   `John` `Peter` `Mary`.
 
@@ -584,7 +587,7 @@ and quality of life commands to improve the user experience.
 These commands are:
 * [Viewing a patient](#viewing-a-patient-view)
 * [Clearing all data](#clearing-all-data--clear)
-* [Viewing help](#open-the-help-page--help)
+* [Opening the help page](#open-the-help-page--help)
 * [Exiting the program](#exiting-the-program--exit)
 * [Mouse interactions](#mouse-interactions)
 * [Keyboard shortcuts](#keyboard-shortcuts)
@@ -606,6 +609,7 @@ It will also automatically focus onto the most recent patient added or edited.
 When the current person displayed on the patient details panel is removed, it defaults to viewing the first patient
 in the patient list panel if present, and empty otherwise.
 </div>
+<br>
 
 **Upon Execution**
 
@@ -632,7 +636,7 @@ Format: `clear`
 * This command is **nuclear**, and cannot be reversed. It should only be executed when absolutely necessary.
 * This command is provided for privacy reasons, or to start afresh.
 
-### Open the Help Page : `help`
+### Opening the Help Page : `help`
 
 Opens the Help Window.
 
@@ -664,7 +668,7 @@ any data created or deleted from the application.
 
 Although CheckUp is built as a Command Line Interface application, it also supports the following mouse interactions:
 
-#### Person List Panel:
+#### Person List Panel
 
 * Double-clicking on patients in the Patient List Panel will automatically open their info in the Patient Details Panel.
 
@@ -674,7 +678,7 @@ Example:
 
 ![Clicking on Patient List Panel Gif](images/ug-images/Person-List-Panel-Clickability.png)
 
-#### Person Details Panel:
+#### Person Details Panel
 
 * Double-clicking on the fields in the Patient Details Panel will automatically prepare them for editing in the Command Input Box.
 
