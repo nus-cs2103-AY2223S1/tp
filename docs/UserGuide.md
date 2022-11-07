@@ -221,7 +221,7 @@ Note:
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
 Before proceeding to learn more about resident commands it would be good to have a quick read about the **resident fields**, which will
-be used in the commands. The resident <a href="https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#glossary-of-terms">fields</a> can be found <a href="https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#format-for-resident-fields">here</a>.
+be used in the commands. The resident <a>[fields](#glossary-of-terms)</a> can be found <a>[here](#format-for-resident-fields)</a>.
 </div>
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
@@ -557,8 +557,8 @@ To provide a streamlined way of managing **RC4** related data, **RC4HDB** provid
 * [**Importing**](#importing-resident-data-from-csv-file--file-import) of resident data from a [CSV](#glossary-of-terms) file.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
-Before proceeding to learn more about file commands it would be good to have a quick read about the **file command format** and **CSV files**, which will be used in the commands. They can be found <a href="https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#file-command-format">here</a> and
-<a href="https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#csv-file-format">here</a> respectively.
+Before proceeding to learn more about file commands it would be good to have a quick read about the **file command format** and **CSV files**, which will be used in the commands. They can be found <a>[here](#file-command-format)</a> and
+<a>[here](#csv-file-format)</a> respectively.
 </div>
 
 ---
@@ -608,7 +608,7 @@ Deletes a [**sub**](#finding-your-data) data folders.
 Format: `file delete FOLDER_NAME`
 * Does not delete the folder if it is currently open. You must switch to a different folder before deleting the previously open folder.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The **FOLDER_NAME** must follow this <a href="https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#file-command-format">format</a>. </div>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The **FOLDER_NAME** must follow this <a>[format](#file-command-format)</a>. </div>
 
 Examples:
 * `file delete rc4_data_2022` will delete the `rc4_data_2022` folder, along with the **resident** and **venue** data files inside the folder.
@@ -624,7 +624,7 @@ Switches between different [**sub**](#finding-your-data) data folders.
 Format: `file switch FOLDER_NAME`
 * Does not create a new folder if the specified folder does not exist.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The **FOLDER_NAME** must follow this <a href="https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#file-command-format">format</a>. </div>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The **FOLDER_NAME** must follow this <a>[format](#file-command-format)</a>. </div>
 
 Examples:
 * `file switch rc4_data_2022` will switch the currently used folder to `rc4_data_2022`.
@@ -640,8 +640,8 @@ Imports data from [CSV](#glossary-of-terms) files. In order for RC4HDB to find y
 Format: `file import FILE_NAME`
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
-The **FILE_NAME** must follow this <a href="https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#file-command-format">format</a> and
-<a href="https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#csv-file-format">here</a> respectively.
+The **FILE_NAME** must follow this <a>[format](#file-command-format)</a> and
+<a>[here](#csv-file-format)</a> respectively.
 </div>
 
 Examples:
@@ -714,7 +714,7 @@ Alternatively, you can use the `venue view VENUE_NAME` command to switch manuall
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
 Before proceeding to learn more about venue commands, it would be good to have a quick read about the **venue fields**, which will
-be used in the commands. The venue format <a href="https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#glossary-of-terms">fields</a> can be found <a href="https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#format-for-venue-fields">here</a>.
+be used in the commands. The venue format <a>[fields](#glossary-of-terms)</a> can be found <a>[here](#format-for-venue-fields)</a>.
 </div>
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
@@ -727,7 +727,7 @@ Adds a venue to the database.
 
 Format: `venue add VENUE_NAME`
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The **VENUE_NAME** must follow this <a href="https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#format-for-venue-fields">format</a>. </div>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The **VENUE_NAME** must follow this <a>[format](#format-for-venue-fields)</a>. </div>
 
 Examples:
 * `venue add Meeting Room 3`
@@ -743,7 +743,7 @@ Deletes a venue from the database.
 
 Format: `venue delete VENUE_NAME`
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The **VENUE_NAME** must follow this <a href="https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#format-for-venue-fields">format</a>. </div>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The **VENUE_NAME** must follow this <a>[format](#format-for-venue-fields)</a>. </div>
 
 Examples:
 * `venue delete Meeting Room`
@@ -759,7 +759,7 @@ Displays all bookings for the specified venue.
 
 Format: `venue view VENUE_NAME`
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The **VENUE_NAME** must follow this <a href="https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#format-for-venue-fields">format</a>. </div>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The **VENUE_NAME** must follow this <a>[format](#format-for-venue-fields)</a>. </div>
 
 Examples:
 * `venue view Meeting Room`
@@ -778,7 +778,7 @@ Format: `venue book INDEX v/VENUE_NAME tp/TIME_PERIOD d/DAY`
 * The index refers to the index number shown in the displayed residents list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The **VENUE_NAME**, **TIME_PERIOD**, and **DAY** must follow this <a href="https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#format-for-venue-fields">format</a>. </div>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The **VENUE_NAME**, **TIME_PERIOD**, and **DAY** must follow this <a>[format](#format-for-venue-fields)</a>. </div>
 
 Examples:
 * `venue book 2 v/Meeting Room tp/8-9 d/TUE`
@@ -794,7 +794,7 @@ Deletes a booking from the specified venue, at the given time period and day.
 
 Format: `venue unbook v/VENUE_NAME tp/TIME_PERIOD d/DAY`
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The **VENUE_NAME**, **TIME_PERIOD**, and **DAY** must follow this <a href="https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#format-for-venue-fields">format</a>. </div>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The **VENUE_NAME**, **TIME_PERIOD**, and **DAY** must follow this <a>[format](#format-for-venue-fields)</a>. </div>
 
 Examples:
 * `venue unbook v/Meeting Room tp/8-9 d/TUE`
