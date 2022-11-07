@@ -9,51 +9,54 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
 
-<img src="images/johndoe.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+### Ezra Tio
 
-* Role: Project Advisor
+<img src="images/e1010101.png" width="200px">
 
-### Jane Doe
+[[github](https://github.com/e1010101)]]
+[[portfolio](team/e1010101.md)]
 
-<img src="images/johndoe.png" width="200px">
+* Role: Team Lead, UI/UX, Feature Developer
+* Responsibilities: X
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+### Gregg Chan
 
-* Role: Team Lead
-* Responsibilities: UI
+<img src="images/hoodineee.png" width="200px">
 
-### Johnny Doe
+[[github](http://github.com/Hoodineee)]]
+[[portfolio](team/hoodineee.md)]
 
-<img src="images/johndoe.png" width="200px">
+* Role: Scheduling and Tracking, Feature Developer
+* Responsibilities: X
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+### Jonathan Goh
 
-* Role: Developer
-* Responsibilities: Data
+<img src="images/jgyj123.png" width="200px">
 
-### Jean Doe
+[[github](http://github.com/jgyj123)]]
+[[portfolio](team/jgyj123.md)]
 
-<img src="images/johndoe.png" width="200px">
+* Role: Component XYZ, Deliverables and Deadlines, Feature Developer
+* Responsibilities: X
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+### Soo Jia Xi
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+<img src="images/joosxi.png" width="200px">
 
-### James Doe
+[[github](http://github.com/joosxi)]]
+[[portfolio](team/joosxi.md)]
 
-<img src="images/johndoe.png" width="200px">
+* Role: Documentation, Feature Developer
+* Responsibilities: X
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+### Xiao Ying
 
-* Role: Developer
-* Responsibilities: UI
+<img src="images/xiaoying1129.png" width="200px">
+
+[[github](http://github.com/xiaoying1129)]]
+[[portfolio](team/xiaoying1129.md)]
+
+* Role: Component XYZ, Feature Developer
+* Responsibilities: X

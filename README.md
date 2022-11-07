@@ -1,14 +1,14 @@
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
+[![Java CI](https://github.com/AY2223S1-CS2103T-T08-1/tp/actions/workflows/gradle.yml/badge.svg?branch=master)](https://github.com/AY2223S1-CS2103T-T08-1/tp/actions/workflows/gradle.yml)
 
 ![Ui](docs/images/Ui.png)
 
-* This is **a sample project for Software Engineering (SE) students**.<br>
+- This is **a team project for a support application for School Teachers**.<br>
   Example usages:
-  * as a starting point of a course project (as opposed to writing everything from scratch)
-  * as a case study
-* The project simulates an ongoing software project for a desktop application (called _AddressBook_) used for managing contact details.
-  * It is **written in OOP fashion**. It provides a **reasonably well-written** code base **bigger** (around 6 KLoC) than what students usually write in beginner-level SE modules, without being overwhelmingly big.
-  * It comes with a **reasonable level of user and developer documentation**.
-* It is named `AddressBook Level 3` (`AB3` for short) because it was initially created as a part of a series of `AddressBook` projects (`Level 1`, `Level 2`, `Level 3` ...).
-* For the detailed documentation of this project, see the **[Address Book Product Website](https://se-education.org/addressbook-level3)**.
-* This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
+
+  - can be used to store information of individuals
+  - "find" functionality allows students to be filtered by a multitude of terms
+
+- The project is a desktop application (called _Watson_) used for managing data of individuals.
+  - It is **written in OOP fashion**.
+  - It comes with a **reasonable level of user and developer documentation**.
+- For the detailed documentation of this project, see the **[Sherlock Website](https://ay2223s1-cs2103t-t08-1.github.io/tp/)**.
