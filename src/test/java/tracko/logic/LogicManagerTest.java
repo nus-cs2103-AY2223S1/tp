@@ -58,26 +58,26 @@ public class LogicManagerTest {
         assertParseException(invalidCommand, MESSAGE_UNKNOWN_COMMAND);
     }
 
-     @Test
-     public void execute_commandExecutionError_throwsCommandException() {
-         String deleteCommand = "deleteo 9";
-         assertCommandException(deleteCommand, MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
+    @Test
+    public void execute_commandExecutionError_throwsCommandException() {
+        String deleteCommand = "deleteo 9";
+        assertCommandException(deleteCommand, MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
 
-         deleteCommand = "deletei 9";
-         assertCommandException(deleteCommand, MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
-     }
+        deleteCommand = "deletei 9";
+        assertCommandException(deleteCommand, MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
+    }
 
-     @Test
-     public void execute_validCommand_success() throws Exception {
-         String listCommand = ListOrdersCommand.COMMAND_WORD;
-         assertCommandSuccess(listCommand, ListOrdersCommand.MESSAGE_SUCCESS, model);
-     }
+    @Test
+    public void execute_validCommand_success() throws Exception {
+        String listCommand = ListOrdersCommand.COMMAND_WORD;
+        assertCommandSuccess(listCommand, ListOrdersCommand.MESSAGE_SUCCESS, model);
+    }
 
-     @Test
-     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredItemList().remove(0));
-         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredOrderList().remove(0));
-     }
+    @Test
+    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredItemList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredOrderList().remove(0));
+    }
 
     /**
      * Executes the command and confirms that
