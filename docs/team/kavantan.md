@@ -20,6 +20,7 @@ Given below are my contributions to the project.
   * What it does: Finds the personal record of certain exercises
   * Justification: With this command, users will be able to keep track of their progression of certain exercises in the gym.
   * Highlights: This command was tricky to implement because of two reasons. Firstly, this command has to 'perform calculations' based on specific exercises from the exercise tracker, hence it was difficult tricky to understand and implement the retrieval of these specific exercises. Secondly, because of the nature of how the command is parsed, there were many considerations to be made. E.g. If the name input was not in the exercise tracker, if there were multiple similar entries etc.
+<div style="page-break-after: always;"></div>
 
 * **Enhancements to existing features**:
   * Refactor AB3-specific references in original AB3 to relatable references for Gim ([PR #49](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/49) and [PR #65](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/65))
@@ -33,9 +34,10 @@ Given below are my contributions to the project.
     * Justification:
       * Unlike in the original address book (where users cannot add duplicate names), users should be able to add the same exercise into the system to signify that they performed that exercise on multiple occasions.
   * Implement mandatory use of confirm flag for 'clear' function ([PR #138](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/138))
-    * What I did: Mandate that a user must type in 'confirm' before they can successfully clear their exercise tracker.
-  * Justification:
-    * For new users that may be unfamiliar with the 'clear' command, they might not understand what it does and may accidentally clear their exercise tracker unknowingly. The mandatory 'confirm' serves as a safety warning, aiming to prevent such accidental deletions of the exercise tracker.
+    * What I did:
+      * Mandate that a user must type in 'confirm' before they can successfully clear their exercise tracker.
+    * Justification:
+      * For new users that may be unfamiliar with the 'clear' command, they might not understand what it does and may accidentally clear their exercise tracker unknowingly. The mandatory 'confirm' serves as a safety warning, aiming to prevent such accidental deletions of the exercise tracker.
 
 * **Documentation**:
   * User Guide:
