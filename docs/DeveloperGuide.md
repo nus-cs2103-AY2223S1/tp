@@ -20,7 +20,7 @@ to the project. You can also use this as a reference, if you are interested in d
 ---
 
 * Table of Contents
-{:toc}
+  {:toc}
 
 ---
 
@@ -632,11 +632,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-*{More to be added}*
-
 ## Non-Functional Requirements
 
-1. The software should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+1. The software should work on any [**mainstream OS**](#mainstream-os) as long as it has **Java 11** or above installed.
 2. The software should be able to hold up to 1000 students without a noticeable sluggishness in performance for typical
    usage.
 3. The software should be able to start up in 30 seconds.
@@ -656,17 +654,40 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ## Glossary
 
-* **TA:** Teaching assistant for the specific module
-* **Student:** A person that is partaking in a module.
-* **Module:** The university class that the student is enrolled in, encoded by a unique module code consisting of a 2-3
-  letter prefix that generally denotes the discipline, and 4 digits at the back, the first of which indicates the level
-  of the module.
-* **JAR file:** package file format typically used to aggregate many Java class files and associated metadata and
-  resources into one file for distribution.
-* **GUI:** main interface that the user interacts with to input commands and view results.
-* **Mainstream OS:** Windows, Linux, Unix, OS-X
-* **Tag:** A label for students defined by the user, possibly shared by multiple students.
-* **Attribute:** Characteristics of students that all students have.
+### TA
+
+Teaching assistant for a module.
+
+### Student
+
+A person that is partaking in a module.
+
+### Module
+
+The university class that the student is enrolled in, encoded by a unique module code consisting of a 2-3
+letter prefix that generally denotes the discipline, and 4 digits at the back, the first of which indicates the level
+of the module.
+
+### JAR file
+
+package file format typically used to aggregate many Java class files and associated metadata and
+resources into one file for distribution.
+
+### GUI
+
+main interface that the user interacts with to input commands and view results.
+
+### Mainstream OS
+
+Windows, Linux, Unix, OS-X
+
+### Tag
+
+A label for students defined by the user, possibly shared by multiple students.
+
+### Attribute
+
+Characteristics of students that all students have.
 
 ---
 
