@@ -601,8 +601,6 @@ The following activity diagram summarizes what happens when a user executes an a
 
 --------------------------------------------------------------------------------------------------------------------
 
-<div style="page-break-after: always;"></div>
-
 ## **7. Appendix: Requirements**
 
 ### 7.1 Product scope
