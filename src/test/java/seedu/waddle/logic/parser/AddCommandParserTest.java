@@ -1,25 +1,29 @@
 package seedu.waddle.logic.parser;
 
 import static seedu.waddle.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.waddle.logic.commands.CommandTestUtil.BUDGET_DESC_SUMMER;
 import static seedu.waddle.logic.commands.CommandTestUtil.BUDGET_DESC_WINTER;
 import static seedu.waddle.logic.commands.CommandTestUtil.COUNTRY_DESC_SUMMER;
 import static seedu.waddle.logic.commands.CommandTestUtil.COUNTRY_DESC_WINTER;
 import static seedu.waddle.logic.commands.CommandTestUtil.DURATION_DESC_SUMMER;
 import static seedu.waddle.logic.commands.CommandTestUtil.DURATION_DESC_WINTER;
 import static seedu.waddle.logic.commands.CommandTestUtil.INVALID_COUNTRY_DESC;
+import static seedu.waddle.logic.commands.CommandTestUtil.INVALID_DESC_DESC;
 import static seedu.waddle.logic.commands.CommandTestUtil.INVALID_DURATION_DESC;
-import static seedu.waddle.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.waddle.logic.commands.CommandTestUtil.INVALID_PEOPLE_DESC;
 import static seedu.waddle.logic.commands.CommandTestUtil.INVALID_START_DATE_DESC;
 import static seedu.waddle.logic.commands.CommandTestUtil.ITINERARY_DESC_DESC_SUMMER;
 import static seedu.waddle.logic.commands.CommandTestUtil.ITINERARY_DESC_DESC_WINTER;
+import static seedu.waddle.logic.commands.CommandTestUtil.PEOPLE_DESC_SUMMER;
 import static seedu.waddle.logic.commands.CommandTestUtil.PEOPLE_DESC_WINTER;
 import static seedu.waddle.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.waddle.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.waddle.logic.commands.CommandTestUtil.START_DATE_DESC_WINTER;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_BUDGET_WINTER;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_COUNTRY_WINTER;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_DURATION_WINTER;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_ITINERARY_DESC_WINTER;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_PEOPLE_WINTER;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_START_DATE_WINTER;
 import static seedu.waddle.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.waddle.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -48,18 +52,18 @@ public class AddCommandParserTest {
                         + START_DATE_DESC_WINTER + DURATION_DESC_WINTER + PEOPLE_DESC_WINTER + BUDGET_DESC_WINTER,
                 new AddCommand(expectedItinerary));
 
-        // multiple names - last name accepted
+        // multiple descriptions - last description accepted
         assertParseSuccess(parser, ITINERARY_DESC_DESC_SUMMER + ITINERARY_DESC_DESC_WINTER + COUNTRY_DESC_WINTER
                         + START_DATE_DESC_WINTER + DURATION_DESC_WINTER + PEOPLE_DESC_WINTER + BUDGET_DESC_WINTER,
                 new AddCommand(expectedItinerary));
 
-        // multiple country - last country accepted
+        // multiple countries - last country accepted
         assertParseSuccess(parser, ITINERARY_DESC_DESC_WINTER + COUNTRY_DESC_SUMMER + COUNTRY_DESC_WINTER
                         + START_DATE_DESC_WINTER + DURATION_DESC_WINTER + PEOPLE_DESC_WINTER + BUDGET_DESC_WINTER,
                 new AddCommand(expectedItinerary));
 
         // multiple people - last people accepted
-        assertParseSuccess(parser, ITINERARY_DESC_DESC_WINTER + PEOPLE_DESC_WINTER + COUNTRY_DESC_WINTER
+        assertParseSuccess(parser, ITINERARY_DESC_DESC_WINTER + PEOPLE_DESC_SUMMER + COUNTRY_DESC_WINTER
                         + START_DATE_DESC_WINTER + DURATION_DESC_WINTER + PEOPLE_DESC_WINTER + BUDGET_DESC_WINTER,
                 new AddCommand(expectedItinerary));
 
@@ -68,47 +72,87 @@ public class AddCommandParserTest {
                         + DURATION_DESC_SUMMER + DURATION_DESC_WINTER + PEOPLE_DESC_WINTER + BUDGET_DESC_WINTER,
                 new AddCommand(expectedItinerary));
 
-        /* TODO: multiple budget
-        Itinerary expectedItineraryMultipleTags = new ItineraryBuilder(WINTER).build();
-        assertParseSuccess(parser, NAME_DESC_WINTER + COUNTRY_DESC_WINTER + START_DATE_DESC_WINTER
-                        + DURATION_DESC_WINTER + PEOPLE_DESC_SUMMER + PEOPLE_DESC_WINTER,
-                new AddCommand(expectedItineraryMultipleTags));
-
-         */
+        // multiple budget - last budget accepted
+        assertParseSuccess(parser, ITINERARY_DESC_DESC_WINTER + COUNTRY_DESC_WINTER + START_DATE_DESC_WINTER
+                        + DURATION_DESC_WINTER + PEOPLE_DESC_WINTER + BUDGET_DESC_SUMMER + BUDGET_DESC_WINTER,
+                new AddCommand(expectedItinerary));
     }
+
+    @Test
+    public void parse_optionalFieldsMissing_success() {
+        // country field missing
+        Itinerary expectedItinerary = new ItineraryBuilder().withName(VALID_ITINERARY_DESC_WINTER)
+                .withCountry("default").withStartDate(VALID_START_DATE_WINTER)
+                .withDuration(VALID_DURATION_WINTER).withPeople(VALID_PEOPLE_WINTER)
+                .withBudget(VALID_BUDGET_WINTER).build();
+
+        assertParseSuccess(parser, ITINERARY_DESC_DESC_WINTER + START_DATE_DESC_WINTER
+                        + DURATION_DESC_WINTER + PEOPLE_DESC_WINTER + BUDGET_DESC_WINTER,
+                new AddCommand(expectedItinerary));
+
+        // people field missing
+        expectedItinerary = new ItineraryBuilder().withName(VALID_ITINERARY_DESC_WINTER)
+                .withCountry(VALID_COUNTRY_WINTER).withStartDate(VALID_START_DATE_WINTER)
+                .withDuration(VALID_DURATION_WINTER).withPeople("1")
+                .withBudget(VALID_BUDGET_WINTER).build();
+
+        assertParseSuccess(parser, ITINERARY_DESC_DESC_WINTER + START_DATE_DESC_WINTER
+                        + DURATION_DESC_WINTER + COUNTRY_DESC_WINTER + BUDGET_DESC_WINTER,
+                new AddCommand(expectedItinerary));
+
+        // budget field missing
+        expectedItinerary = new ItineraryBuilder().withName(VALID_ITINERARY_DESC_WINTER)
+                .withCountry(VALID_COUNTRY_WINTER).withStartDate(VALID_START_DATE_WINTER)
+                .withDuration(VALID_DURATION_WINTER).withPeople(VALID_PEOPLE_WINTER)
+                .withBudget("0").build();
+
+        assertParseSuccess(parser, ITINERARY_DESC_DESC_WINTER + START_DATE_DESC_WINTER
+                        + DURATION_DESC_WINTER + COUNTRY_DESC_WINTER + PEOPLE_DESC_WINTER,
+                new AddCommand(expectedItinerary));
+
+        // all optional fields missing
+        expectedItinerary = new ItineraryBuilder().withName(VALID_ITINERARY_DESC_WINTER)
+                .withCountry("default").withStartDate(VALID_START_DATE_WINTER)
+                .withDuration(VALID_DURATION_WINTER).withPeople("1")
+                .withBudget("0").build();
+
+        assertParseSuccess(parser, ITINERARY_DESC_DESC_WINTER + START_DATE_DESC_WINTER
+                        + DURATION_DESC_WINTER, new AddCommand(expectedItinerary));
+    }
+
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
-        // missing name prefix
-        assertParseFailure(parser, VALID_ITINERARY_DESC_WINTER + COUNTRY_DESC_WINTER + START_DATE_DESC_WINTER
+        // missing description prefix
+        assertParseFailure(parser, VALID_ITINERARY_DESC_WINTER + START_DATE_DESC_WINTER
                 + DURATION_DESC_WINTER, expectedMessage);
 
         // missing start date prefix
-        assertParseFailure(parser, ITINERARY_DESC_DESC_WINTER + COUNTRY_DESC_WINTER + VALID_START_DATE_WINTER
+        assertParseFailure(parser, ITINERARY_DESC_DESC_WINTER + VALID_START_DATE_WINTER
                 + DURATION_DESC_WINTER, expectedMessage);
 
         // missing duration prefix
-        assertParseFailure(parser, ITINERARY_DESC_DESC_WINTER + COUNTRY_DESC_WINTER + START_DATE_DESC_WINTER
+        assertParseFailure(parser, ITINERARY_DESC_DESC_WINTER + START_DATE_DESC_WINTER
                 + VALID_DURATION_WINTER, expectedMessage);
 
         // all prefixes missing
-        assertParseFailure(parser, VALID_ITINERARY_DESC_WINTER + VALID_COUNTRY_WINTER + VALID_START_DATE_WINTER
+        assertParseFailure(parser, VALID_ITINERARY_DESC_WINTER + VALID_START_DATE_WINTER
                 + VALID_DURATION_WINTER, expectedMessage);
     }
 
     @Test
     public void parse_invalidValue_failure() {
-        // invalid name
-        assertParseFailure(parser, INVALID_NAME_DESC + COUNTRY_DESC_WINTER + START_DATE_DESC_WINTER
+        // invalid description
+        assertParseFailure(parser, INVALID_DESC_DESC + COUNTRY_DESC_WINTER + START_DATE_DESC_WINTER
                 + DURATION_DESC_WINTER + PEOPLE_DESC_WINTER, Description.MESSAGE_CONSTRAINTS);
 
-        // invalid phone
+        // invalid country
         assertParseFailure(parser, ITINERARY_DESC_DESC_WINTER + INVALID_COUNTRY_DESC + START_DATE_DESC_WINTER
                 + DURATION_DESC_WINTER + PEOPLE_DESC_WINTER, Country.MESSAGE_CONSTRAINTS);
 
-        // invalid email
+        // invalid start date
         assertParseFailure(parser, ITINERARY_DESC_DESC_WINTER + COUNTRY_DESC_WINTER + INVALID_START_DATE_DESC
                 + DURATION_DESC_WINTER + PEOPLE_DESC_WINTER, Date.MESSAGE_CONSTRAINTS);
 
@@ -116,12 +160,12 @@ public class AddCommandParserTest {
         assertParseFailure(parser, ITINERARY_DESC_DESC_WINTER + COUNTRY_DESC_WINTER + START_DATE_DESC_WINTER
                 + INVALID_DURATION_DESC + PEOPLE_DESC_WINTER, ItineraryDuration.MESSAGE_CONSTRAINTS);
 
-        // invalid tag
+        // invalid people
         assertParseFailure(parser, ITINERARY_DESC_DESC_WINTER + COUNTRY_DESC_WINTER + START_DATE_DESC_WINTER
                 + DURATION_DESC_WINTER + INVALID_PEOPLE_DESC, People.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
-        assertParseFailure(parser, INVALID_NAME_DESC + COUNTRY_DESC_WINTER + START_DATE_DESC_WINTER
+        assertParseFailure(parser, INVALID_DESC_DESC + COUNTRY_DESC_WINTER + START_DATE_DESC_WINTER
                 + INVALID_DURATION_DESC + PEOPLE_DESC_WINTER, Description.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
