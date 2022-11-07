@@ -711,10 +711,7 @@ Format:
 * For clarity, the table column headers have been included. **DO NOT** include them in your **CSV** file.
 * All fields are mandatory, apart from `TAGS`, where users have to input a `NIL`, which is **not** case-sensitive.
 
-| NAME         | PHONE | EMAIL                   | ROOM | GENDER | HOUSE  | MATRIC NUMBER | TAGS                |
-|--------------|--------------|-------------------------|------|--------|--------|---------------|---------------------|
-| John Doe     | 91234567     | johnDoe@example.com     | 5-8  | M      | D      | A9876543B     | NIL                 |
-| Maggie Smith | 98765432     | maggieSmith@example.com | 4-1  | F      | A      | A3456789B     | WelfareHead Captain |
+![CSV Table Format](./images/ug-photos/csv_table_format.png)
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
