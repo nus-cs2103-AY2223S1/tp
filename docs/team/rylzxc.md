@@ -60,4 +60,3 @@ This displays my code contributions for the project: [RepoSense link](https://nu
 * Aided in [answering quiz related question](https://github.com/nus-cs2103-AY2223S1/forum/issues/6)
 * Aided in [answering iP related issues](https://github.com/nus-cs2103-AY2223S1/forum/issues/82)
 * Aided in [OOP suggestion](https://github.com/nus-cs2103-AY2223S1/forum/issues/180)
-* 
