@@ -149,7 +149,7 @@ The `Storage` component,
 
 Classes used by multiple components are in the `seedu.condonery.commons` package.
 
---------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------
 
 ## **Implementation**
 
@@ -641,6 +641,7 @@ Use case resumes at step 1.
 
 **MSS**
 
+
 1. User requests to link an Interested Client to a Property
 2. Interested Client is successfully linked to the specified Property
 
@@ -648,7 +649,6 @@ Use case resumes at step 1.
 
 1a. Specified client name does not exist in the Client Directory
 1a1. Condonery shows an error message
-
 1b. Specified index does not exist in the Property Directory
 1b1. Condonery shows an error message stating that the property index is invalid
 
@@ -703,7 +703,6 @@ Use case ends.
 
 1a. Specified upper price range is lower than the lower price range
 1a1. Condonery shows an error message stating that an invalid price range was given
-
 1b. Negative numbers were given
 1b1. Condonery shows an error message stating that an invalid price range was given
 
@@ -744,7 +743,6 @@ Prerequisites: The application must be launched.
 Test case: exit
 
 Expected: The application exits and the window closes itself automatically.
-
 
 ### Adding a property
 
@@ -920,3 +918,18 @@ Finding all clients in the Client List with specified tags
      - Expected: Client List will display all clients with matching tag of `friend`
    - Test case (finding properties with tag of `rich` and `friend`): `filter -c friend`
      - Expected: Client List will display all clients with matching tags of `rich` and `friend`
+     
+## **Appendix: Effort**
+Majority of the complexity faced in building our app came from dealing with multiple entities, namely Property and Client.
+Our group faced trouble in implementing a 2-way association between Clients and Properties. 
+
+* For example, editing a `Client` with an association should update all references to the `Client`. As previously AB3 relied on an immutable implementation of editing entities, we had to do heavy testing to make sure that the information between all associations are synced.
+* Moreover, we had to ensure that storage of the 2-way association is feasible. Currently, our `Property` entities store a list of Interested Clients. Along the way, we realised that we are unable to store a list of Properties in a `Client` entity, as this resulted in our serialised storage being circular. We had to change a lot of our code to fix this, as we realised our previous implementation could not handle the storage requirement.
+
+Our group also tried to implement image storage for user's to upload their own pictures of Properties/Clients
+Here are some design considerations we had to deal with:
+* Initially, we wanted our `Logic` layer to handle the image uploading command. However, we soon realised this was unfeasible we as needed user input through the `Ui` layer, as we had to show a File Chooser, and only then handle the checking of file type. This problem was made more complicated
+as our storage location depended on the `UserPrefs`, which was stored in the `Model` layer. As much as possible, we didn't want the `Ui` layer to directly access the `Model` layer.<br>
+* The final solution our group came up with was to store the file name and file directory of each image in its respective entity (Property/Client). This allowed the `Ui` layer to directly source the image without accessing the `Model` layer, and instead accessing the individual entities in the `ObservableList`.
+The image uploading was left to the `Ui` layer, and the `Logic` layer used the `CommandResult` to signal to the `Ui` layer to accept an image upload, similar to how the Help command is implemented.
+
