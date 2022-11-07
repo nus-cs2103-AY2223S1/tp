@@ -162,7 +162,7 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Proposed Implementation
 
-The proposed insertion mechanism allows a `Task` to be added into the tasklist. A task consists of attributes such as its **name**, **description**, **priority level**, **category**, **deadline** and **email** of person assigned. The command is executed using the `AddTaskCommand`class which extends the `Command` class and the respective attributes of a task is determined from the `AddTaskCommandParser` class which parses the user input.
+The insertion mechanism allows a `Task` to be added into the tasklist. A task consists of attributes such as its **name**, **description**, **priority level**, **category**, **deadline** and **email** of person assigned. The command is executed using the `AddTaskCommand`class which extends the `Command` class and the respective attributes of a task is determined from the `AddTaskCommandParser` class which parses the user input.
 
 Given below is an example usage scenario and how the AddTask mechanism behaves at each step.
 
@@ -183,9 +183,9 @@ The following activity diagram summarizes what happens when a user executes a Ad
 
 ### Deleting a Task from the TaskList
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed deletion mechanism allows a `Task` to be deleted from the tasklist based on its index. The command is executed using the `DeleteTaskCommand`class which extends the `Command` class and the index of the task to be deleted is determined from the `DeleteTaskCommandParser` class which parses the user input
+The deletion mechanism allows a `Task` to be deleted from the tasklist based on its index. The command is executed using the `DeleteTaskCommand`class which extends the `Command` class and the index of the task to be deleted is determined from the `DeleteTaskCommandParser` class which parses the user input
 
 Given below is an example usage scenario and how the DeleteTask mechanism behaves at each step.
 
@@ -284,6 +284,26 @@ Step 3. A new task is added, assigned to John.
 Step 4. John is edited to James via the Edit command. This will be reflected in the task that John/James is assigned to
 
 Step 5. James is deleted as a Person. The task is changed to be not assigned to anyone.
+
+### Finding a Task by keywords
+
+#### Implmentation
+
+The find mechanism allows a `Task` to be identified based on its **name** and **description** attributes. The command is executed using the `FindTaskCommand`, and keyword(s) for the search criteria is determined from the `FindTaskCommandParser` class which parses the user input. A `Predicate<Task>`, an instance of `TaskContainsKeywordsPredicate`, is created and it goes through the tasklist to filter every `Task` based on their **name** and **description** attributes and whether it matches any of the input keyword(s). Keyword matching is case-insensitive. The filtered tasklist is then displayed on the application.
+
+Given below is an example usage scenario and how the find mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time, with a tasklist populated with default tasks.
+
+Step 2. The user wants to find tasks that have the keyword 'create' in their names and/or descriptions. The user executes `findTask create`. The `FindTaskCommandParser` parses the input keyword and creates an instance of `FindTaskCommand` with 'create' as its `TaskContainsKeywordsPredicate`. This `Predicate<Task>` is passed as an argument into `Model#updateFilteredTaskList(Predicate<Task>)`.
+
+Step 3. Next, `Model#getFilteredTaskList()` is called to update the tasklist to display the tasks 'Create UIUX Design' and 'Create Presentation'.
+
+The following sequence diagram shows how the `findTask` operation works:
+![AddTaskSequenceDiagram]()
+
+The following activity diagram summarizes what happens when a user executes a `findTask` command:
+![AddTaskActivityDiagram]()
 
 ### Filtering of tasks by Task Category, Task Deadline or Both
 
