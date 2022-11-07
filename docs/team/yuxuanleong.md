@@ -15,17 +15,17 @@ Given below are my contributions to the project.
 * **New Feature**: Added the ability to delete a student.
   * What it does: Allows the user to delete a student.
   * Justification: This feature improves the product significantly because a user remove students after the semester is over.
-  * Highlights: This enhancement requires me to make changes to existing classes.
+  * Highlights: This enhancement requires me to create new classes.
 
 * **New Feature**: Added the ability to add a student's attendance.
   * What it does: Allows the user to add the student's attendance.
   * Justification: This feature improves the product significantly because a user can keep track of student's attendance for grading purposes.
-  * Highlights: This enhancement requires me to make changes to existing classes.
+  * Highlights: This enhancement requires me to think about how will our target user will use it. The initial plan was to just take in a number as parameter and change the target student's attendance to that value. However, I feel that it is not intuitive to do so and change the command to increment the target student's attendance instead.
 
 * **New Feature**: Added the ability to add a help tag to a student.
   * What it does: Allows the user to indicate which student needs more help.
   * Justification: This feature improves the product significantly because a user can see at one glance which students need more attention.
-  * Highlights: This enhancement requires me to make changes to existing classes.
+  * Highlights: This enhancement requires me to analyse how the AB3 implements `Tag` and then make significant changes to it as for SETA, a student can only have a maximum of one tag unlike AB3 that allows more than one tag. I will then need to decide to use it as a simple boolean value or create a class for the help tag. (The latter is being implemented)
 
 * **New Feature**: Added the ability to remove a help tag to a student.
   * What it does: Allows the user to indicate which student, that needed help, does not need help anymore.
@@ -34,7 +34,7 @@ Given below are my contributions to the project.
   * Highlights: This enhancement requires me to make changes to existing classes.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=yuxuanleong&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=functional-code~test-code~other~docs&tabOpen=true&tabType=authorship&tabAuthor=yuxuanleong&tabRepo=AY2223S1-CS2103T-T08-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=functional-code~test-code~other~docs&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
-
+<div style="page-break-after: always;"></div>
 * **Project management**:
   * Released v1.2, v1.3.1 and v1.4 on Github
   * Created issues and tagged them for easy reference for my teammates
