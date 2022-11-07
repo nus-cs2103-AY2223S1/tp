@@ -3,7 +3,7 @@
 skinparam ClassFontColor #000000
 skinparam ClassBorderColor #000000
 
-title Initial previousCommands
+title After command "ls -u"
 
 package previousCommands {
     class PreviousCommand1 as "ls -u"

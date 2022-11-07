@@ -247,7 +247,10 @@ Below is the sequence diagram for an execution of `mark <index>`, assuming `<ind
 
 The list feature filters the displayed task list based on the filters entered by user. Its mechanism is facilitated by `ListCommand` and `ListCommandParser`, as well as their subclasses (E.g. `ListDeadlineCommand`, `ListDeadlineCommandParser`).
 
-Multiple filters can be applied in a single `ListCommand`. For example, `ls -u --module CS2103T` would list all tasks that are unmarked and under the `Module` "CS2103T".
+Multiple filters can be applied in a single `ListCommand`. For example, `ls -u --module CS2103T` would list all tasks that are unmarked and under the `Module` "CS2103T". 
+
+`ListCommand` extends `Command`, overriding the `execute` method. To allow for multiple filters, the constructor of `ListCommand` takes in `List<Predicate<Task>>`.
+The list of predicates will subsequently be reduced into a single predicate. 
 
 This table summarizes the respective flags that users can use to apply filters of their choice.
 
@@ -269,12 +272,10 @@ Words in `UPPER_CASE` are values of parameters to be supplied by the user
 <div markdown="block" class="alert alert-info">
 **:information_source: Note:**
 Flags that are labelled with a `*` are commands that expect a parameter, as seen in the Format column. <br>
-These commands have a corresponding Parser that implements `Parser<ListModuleCommand>` to parse the parameter passed in. Each Parser implements the `parse` method in `Parser` interface. In the process of that, validity checks are conducted. <br>
-Example of validity check: 
-* In `ListDeadlineCommandParser`, the argument is checked to be numbers be in `YYYY-MM-DD` format 
+These commands have a corresponding `Parser` that implements `Parser<ListModuleCommand>` to parse the parameter passed in. Each `Parser` implements the `parse` method in `Parser` interface. In which, validity checks are conducted. <br>
+Example: 
+* In `ListDeadlineCommandParser`, argument is verified to contain only numbers in `YYYY-MM-DD` format 
 </div>
-
-`ListCommand` extends `Command`, overriding the `execute` method. To allow for multiple filters, the constructor of `ListCommand` takes in `List<Predicate<Task>>`.
 
 This feature uses the following methods from the `Model` interface: 
 * `Model#updateFilteredTaskList`: Updates the current task list by applying a filter as indicated by the given predicate `Predicate<Task>`. The GUI will be updated accordingly to display the filtered task list. 
@@ -350,7 +351,7 @@ empty.
 command, `CommandBox#handleButtonPressed(KeyEvent)` is called, which in turn calls `CommandHistory#add(String)` to
 stores this command into `previousCommands`.
 
-![State diagram 1 of up/down key](images/UpDownState1.png)
+![State diagram 1 of up/down key](images/UpDownState1-0.png)
 
 **Step 3.** The user presses on the `up` key to return to the previously entered command. This action calls
 the `CommandHistory#up()` which will shift `pointer` once to the left, pointing it to the previous command in history,
@@ -363,7 +364,7 @@ which will shift `pointer` once to the right. Since the `pointer` is already poi
 there are no more commands to be returned to.
 Hence, the command box will be cleared.
 
-![State diagram 1 of up/down key](images/UpDownState1.png)
+![State diagram 3 of up/down key](images/UpDownState3.png)
 
 The following activity diagram summarizes what happens when a user clicks on the `up`/`down` keys.
 

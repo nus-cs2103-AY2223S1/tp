@@ -3,7 +3,7 @@
 skinparam ClassFontColor #000000
 skinparam ClassBorderColor #000000
 
-title After "up" key pressed
+title After "down" key pressed
 
 package previousCommands {
     class PreviousCommand1 as "ls -u"
@@ -13,5 +13,5 @@ package previousCommands {
 PreviousCommand1 -[hidden]right-> PreviousCommand2
 
 class Pointer as "pointer" #FFFFFF
-Pointer -up-> PreviousCommand1
+Pointer -up-> PreviousCommand2
 @enduml
