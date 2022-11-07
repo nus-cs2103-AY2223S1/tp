@@ -733,7 +733,7 @@ Do the test cases sequentially to ensure correct expectation.
 1. Finding a student while student tab is being shown.
 
     1. Prerequisites: Switch to student tab using the `switch f/student` command (you may skip this if the main display is already student).
-       Ensure student existing by using `clear f/student` then `add student n/Mary i/A0000000B ph/87654321 e/john@example.com tele/mary m/missing_module tut/W17` 
+       Ensure student existing by using `clear f/student` then `add student n/Mary i/A0000000B ph/87654321 e/john@example.com tele/mary m/CS2103T tut/W17` 
 
     2. Test case: `find n/John`<br>
        Expected: No student is listed. Details of the find command shown in the status message.
