@@ -13,6 +13,7 @@ Waddle allows you to plan your travels in **3 simple steps**.
 **It's that simple**.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always"></div>
 
 ## Table of Contents
 1. [**Quick start**](#quick-start)
@@ -106,6 +107,7 @@ For more commands and their details, refer to the [Features](#features) section 
   - e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
+<div style="page-break-after: always"></div>
 
 ### Universal commands
 Most commands in Waddle can only be used on the [main page](#the-main-page) or the [planning page](#the-planning-page). However, the commands in this section may be used on either page at any time.
@@ -136,6 +138,8 @@ The main page, or home page, of Waddle displays the list of itineraries you have
 * [clear](#clearing-itineraries--clear) all existing itineraries
 
 Using the [`select` command](#selecting-an-itinerary--select)  will bring you to the [planning page](#the-planning-page) of the selected itinerary.
+
+<div style="page-break-after: always"></div>
 
 ### Commands on the main page
 
@@ -265,6 +269,8 @@ The index of scheduled items are in the format `DAY.ITEM_NUMBER`. Some examples:
 Here's an example of how the item planning page looks like:
 ![item planning page](images/itemPlanningUi.png)
 
+<div style="page-break-after: always"></div>
+
 [Commands exclusive to the planning page](#commands-on-the-planning-page) can help you:
 * [add](#adding-an-item--add) new items
 * [edit](#editing-the-details-of-an-item--edit) or [delete](#deleting-an-item--delete) existing items
@@ -273,6 +279,8 @@ Here's an example of how the item planning page looks like:
 * export your itinerary via your [clipboard](#copying-to-clipboard--copy) or as a [pdf](#exporting-as-pdf-file--pdf) file
 
 Using the [`home` command](#returning-to-main-page--home)  will bring you to the [main page](#the-main-page) of the selected itinerary.
+
+<div style="page-break-after: always"></div>
 
 ### Commands on the item planning page
 
@@ -479,6 +487,8 @@ If your changes to the data file makes its format invalid, Waddle will discard a
 | [**Find Itinerary**](#locating-itineraries-by-name--find)        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find India Trip`                                                                                                        |
 | [**Select Itinerary**](#selecting-an-itinerary--select)          | `select INDEX`<br> e.g., `select 3`                                                                                                                               |
 | [**Exit**](#exiting-waddle--exit)                                | `exit`                                                                                                                                                            |
+
+<div style="page-break-after: always"></div>
 
 ### Item planning page commands
 
