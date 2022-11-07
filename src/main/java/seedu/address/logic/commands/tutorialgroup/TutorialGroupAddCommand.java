@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.tutorialgroup;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GROUP;
 //import static seedu.address.logic.parser.CliSyntax.*;
 
 import seedu.address.logic.commands.Command;
@@ -16,7 +17,7 @@ public class TutorialGroupAddCommand extends Command {
     public static final String COMMAND_WORD = "tutorial add";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tutorial group to the address book. "
-        + "Parameters: ";
+        + "Parameters: " + PREFIX_TUTORIAL_GROUP + "Txx";
 
     public static final String MESSAGE_SUCCESS = "New tutorial group added: %1$s";
     public static final String MESSAGE_DUPLICATE_TUTORIAL_GROUP = "This tutorial group"
