@@ -1,8 +1,7 @@
 package seedu.address.commons.core.index;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -42,19 +41,19 @@ public class IndexTest {
         final Index fifthPersonIndex = Index.fromOneBased(5);
 
         // same values -> returns true
-        assertTrue(fifthPersonIndex.equals(Index.fromOneBased(5)));
-        assertTrue(fifthPersonIndex.equals(Index.fromZeroBased(4)));
+        assertEquals(fifthPersonIndex, Index.fromOneBased(5));
+        assertEquals(fifthPersonIndex, Index.fromZeroBased(4));
 
         // same object -> returns true
-        assertTrue(fifthPersonIndex.equals(fifthPersonIndex));
+        assertEquals(fifthPersonIndex, fifthPersonIndex);
 
         // null -> returns false
-        assertFalse(fifthPersonIndex.equals(null));
+        assertNotEquals(null, fifthPersonIndex);
 
         // different types -> returns false
-        assertFalse(fifthPersonIndex.equals(5.0f));
+        assertNotEquals(5.0f, fifthPersonIndex, String.valueOf(0.0));
 
         // different index -> returns false
-        assertFalse(fifthPersonIndex.equals(Index.fromOneBased(1)));
+        assertNotEquals(fifthPersonIndex, Index.fromOneBased(1));
     }
 }

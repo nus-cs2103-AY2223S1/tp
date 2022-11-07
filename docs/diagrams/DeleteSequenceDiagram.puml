@@ -3,6 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":CommandManager" as CommandManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
 participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
@@ -63,6 +64,12 @@ deactivate CommandResult
 
 DeleteCommand --> LogicManager : result
 deactivate DeleteCommand
+
+LogicManager -> CommandManager : pushNewCommand(d)
+activate CommandManager
+
+CommandManager --> LogicManager
+deactivate CommandManager
 
 [<--LogicManager
 deactivate LogicManager

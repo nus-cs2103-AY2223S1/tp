@@ -1,0 +1,7 @@
+#meetingsMessage {
+    -fx-text-fill: white;
+}
+
+#meetingsMessageContainer {
+    -fx-background-color: derive(#151b3d, 20%);
+}

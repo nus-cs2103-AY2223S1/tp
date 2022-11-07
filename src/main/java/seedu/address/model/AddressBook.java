@@ -45,6 +45,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setPersons(List<Person> persons) {
         this.persons.setPersons(persons);
+        //test comment
     }
 
     /**
@@ -91,6 +92,13 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePerson(Person key) {
         persons.remove(key);
+    }
+
+    /**
+     * Deletes meetings with times that are before the local time on machine.
+     */
+    public void syncMeetingTimes() {
+        persons.syncMeetingTimes();
     }
 
     //// util methods

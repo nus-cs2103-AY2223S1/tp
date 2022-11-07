@@ -3,8 +3,12 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FILEPATH;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NETWORTH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -34,8 +38,21 @@ public class CommandTestUtil {
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_DESCRIPTION_AMY = "Like skiing.";
+    public static final String VALID_DESCRIPTION_BOB = "Favourite pastime: Eating";
+    public static final String VALID_NETWORTH_AMY = "$1350";
+    public static final String VALID_NETWORTH_BOB = "$53000";
+    public static final String VALID_MEETING_TIME_AMY = "14-11-2022-23:30";
+    public static final String VALID_MEETING_TIME_BOB = "18-12-2022-13:30";
+    public static final String VALID_FILEPATH_AMY = "src/test/data/TestPDFs/Test_PDF.pdf";
+    public static final String VALID_FILEPATH_BOB = "src/test/data/TestPDFs/Test_PDF2.pdf";
+    public static final String EMPTY_ADDRESS = "";
+    public static final String EMPTY_DESCRIPTION = "";
+    public static final String EMPTY_EMAIL = "";
+    public static final String EMPTY_FILEPATH = "";
+    public static final String EMPTY_NETWORTH = "";
+    public static final String VALID_TAG_BOB = "POTENTIAL";
+    public static final String VALID_TAG_AMY = "SECURED";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -45,28 +62,41 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String DESCRIPTION_DESC_AMY = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_AMY;
+    public static final String DESCRIPTION_DESC_BOB = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_BOB;
+    public static final String NETWORTH_DESC_AMY = " " + PREFIX_NETWORTH + VALID_NETWORTH_AMY;
+    public static final String NETWORTH_DESC_BOB = " " + PREFIX_NETWORTH + VALID_NETWORTH_BOB;
+    public static final String MEETING_TIME_DESC_AMY = " " + PREFIX_MEETING_TIME + VALID_MEETING_TIME_AMY;
+    public static final String MEETING_TIME_DESC_BOB = " " + PREFIX_MEETING_TIME + VALID_MEETING_TIME_BOB;
+    public static final String FILEPATH_DESC_AMY = " " + PREFIX_FILEPATH + VALID_FILEPATH_AMY;
+    public static final String FILEPATH_DESC_BOB = " " + PREFIX_FILEPATH + VALID_FILEPATH_BOB;
+
+    public static final String TAG_DESC_BOB = " " + PREFIX_TAG + VALID_TAG_BOB;
+    public static final String TAG_DESC_AMY = " " + PREFIX_TAG + VALID_TAG_AMY;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
-    public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
-
+    public static final String INVALID_NETWORTH_DESC = " " + PREFIX_NETWORTH + "1222"; // missing '$' symbol
+    public static final String INVALID_FILEPATH_DESC = " " + PREFIX_FILEPATH + "misc/Test_PDF2"; // missing '.pdf' label
+    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby"; // not SECURED or POTENTIAL
+    public static final String INVALID_MEETING_TIME = " " + PREFIX_MEETING_TIME
+            + "56-10-2022 19:00"; // Date does not exist
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditPersonDescriptor DESC_AMY;
-    public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final UpdateCommand.EditPersonDescriptor DESC_AMY;
+    public static final UpdateCommand.EditPersonDescriptor DESC_BOB;
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
+                .withNetWorth(VALID_NETWORTH_AMY)
+                .withTags(VALID_TAG_AMY).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withNetWorth(VALID_NETWORTH_BOB)
+                .withTags(VALID_TAG_BOB, VALID_TAG_AMY).build();
     }
 
     /**
@@ -75,7 +105,7 @@ public class CommandTestUtil {
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-            Model expectedModel) {
+                                            Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
@@ -90,7 +120,7 @@ public class CommandTestUtil {
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) {
+                                            Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
@@ -119,7 +149,7 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
 
         Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
-        final String[] splitName = person.getName().fullName.split("\\s+");
+        final String[] splitName = person.getName().getFullName().split("\\s+");
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());

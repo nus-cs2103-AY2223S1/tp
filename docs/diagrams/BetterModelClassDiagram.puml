@@ -12,8 +12,9 @@ UniqueTagList -[hidden]down- UniquePersonList
 UniqueTagList *-right-> "*" Tag
 UniquePersonList -right-> Person
 
-Person -up-> "*" Tag
-
+Person -up-> Tag
+Person *--> NetWorth
+Person *--> "*" MeetingTime
 Person *--> Name
 Person *--> Phone
 Person *--> Email

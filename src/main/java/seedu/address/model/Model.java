@@ -84,4 +84,7 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /** Deletes meetings with times that are before the local time on machine. */
+    void syncMeetingTimes();
 }

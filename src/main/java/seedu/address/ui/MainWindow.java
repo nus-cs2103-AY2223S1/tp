@@ -27,13 +27,15 @@ public class MainWindow extends UiPart<Stage> {
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
-    private Stage primaryStage;
-    private Logic logic;
+    private final Stage primaryStage;
+    private final Logic logic;
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
-    private HelpWindow helpWindow;
+    private MainDisplay mainDisplay;
+    private final HelpWindow helpWindow;
+    private final MeetingsWindow meetingsWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -42,10 +44,16 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
+    private MenuItem meetingsMenuItem;
+
+    @FXML
     private StackPane personListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
+
+    @FXML
+    private StackPane mainDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
@@ -65,6 +73,8 @@ public class MainWindow extends UiPart<Stage> {
 
         setAccelerators();
 
+        meetingsWindow = new MeetingsWindow(this.logic);
+
         helpWindow = new HelpWindow();
     }
 
@@ -74,6 +84,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private void setAccelerators() {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
+        setAccelerator(meetingsMenuItem, KeyCombination.valueOf("F2"));
     }
 
     /**
@@ -116,6 +127,10 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
+        mainDisplay = new MainDisplay();
+        mainDisplayPlaceholder.getChildren().add(mainDisplay.getRoot());
+        personListPanel.addListener(mainDisplay);
+
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
@@ -147,6 +162,19 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Opens the meetings window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleMeetings() {
+        if (!meetingsWindow.isShowing()) {
+            meetingsWindow.getMeetings();
+            meetingsWindow.show();
+        } else {
+            meetingsWindow.focus();
+        }
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -159,6 +187,7 @@ public class MainWindow extends UiPart<Stage> {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
+        meetingsWindow.hide();
         helpWindow.hide();
         primaryStage.hide();
     }
@@ -175,6 +204,13 @@ public class MainWindow extends UiPart<Stage> {
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
             CommandResult commandResult = logic.execute(commandText);
+            if (commandResult.isUndo()) {
+                commandResult = logic.undo();
+            }
+            if (commandResult.isRedo()) {
+                commandResult = logic.redo();
+            }
+
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 

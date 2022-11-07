@@ -16,6 +16,10 @@ repositories {
     maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
 }
 
+run {
+    enableAssertions = true;
+}
+
 checkstyle {
     toolVersion = '10.2'
 }
@@ -41,6 +45,7 @@ task coverage(type: JacocoReport) {
 }
 
 dependencies {
+    implementation 'org.jetbrains:annotations:20.1.0'
     String jUnitVersion = '5.4.0'
     String javaFxVersion = '11'
 
@@ -63,10 +68,16 @@ dependencies {
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: jUnitVersion
 
     testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: jUnitVersion
+
+
 }
 
 shadowJar {
-    archiveFileName = 'addressbook.jar'
+    archiveFileName = 'FABook.jar'
+}
+
+run {
+    enableAssertions = true
 }
 
 defaultTasks 'clean', 'test'

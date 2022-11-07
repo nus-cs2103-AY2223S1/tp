@@ -11,8 +11,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Description;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.FilePath;
+import seedu.address.model.person.MeetingTime;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.NetWorth;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -28,6 +32,10 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+    private final String description;
+    private final String netWorth;
+    private final List<JsonAdaptedMeetingTime> meetingTimes = new ArrayList<>();
+    private final String filePath;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -36,11 +44,21 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                             @JsonProperty("description") String description,
+                             @JsonProperty("netWorth") String netWorth,
+                             @JsonProperty("meetingTime") List<JsonAdaptedMeetingTime> meetingTimes,
+                             @JsonProperty("filePath") String filePath,
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.description = description;
+        this.netWorth = netWorth;
+        if (meetingTimes != null) {
+            this.meetingTimes.addAll(meetingTimes);
+        }
+        this.filePath = filePath;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -50,10 +68,16 @@ class JsonAdaptedPerson {
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedPerson(Person source) {
-        name = source.getName().fullName;
-        phone = source.getPhone().value;
-        email = source.getEmail().value;
-        address = source.getAddress().value;
+        name = source.getName().getFullName();
+        phone = source.getPhone().getValue();
+        email = source.getEmail().getValue();
+        address = source.getAddress().getValue();
+        description = source.getDescription().getValue();
+        netWorth = source.getNetWorth().getValue();
+        meetingTimes.addAll(source.getMeetingTimes().stream()
+                .map(JsonAdaptedMeetingTime::new)
+                .collect(Collectors.toList()));
+        filePath = source.getFilePath().getValue();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -68,6 +92,11 @@ class JsonAdaptedPerson {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
+        }
+
+        final List<MeetingTime> personMeetingTimes = new ArrayList<>();
+        for (JsonAdaptedMeetingTime meetingTime : meetingTimes) {
+            personMeetingTimes.add(meetingTime.toModelType());
         }
 
         if (name == null) {
@@ -97,13 +126,39 @@ class JsonAdaptedPerson {
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
         }
+
         if (!Address.isValidAddress(address)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
+
         final Address modelAddress = new Address(address);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
-    }
+        if (netWorth == null) {
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, NetWorth.class.getSimpleName()));
+        }
+        if (!NetWorth.isValidNetWorth(netWorth)) {
+            throw new IllegalValueException(NetWorth.MESSAGE_CONSTRAINTS);
+        }
+        final NetWorth modelNetWorth = new NetWorth(netWorth);
 
+        final Set<MeetingTime> modelMeetingTimes = new HashSet<>(personMeetingTimes);
+
+        if (filePath == null) {
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, FilePath.class.getSimpleName()));
+        }
+
+        final FilePath modelFilePath = new FilePath(filePath);
+
+        if (description == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                Description.class.getSimpleName()));
+        }
+        final Description modelDescription = new Description(description);
+
+        final Set<Tag> modelTags = new HashSet<>(personTags);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelDescription,
+                modelNetWorth, modelMeetingTimes, modelFilePath, modelTags);
+    }
 }

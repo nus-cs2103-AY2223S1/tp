@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Scene?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.stage.Stage?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.StackPane?>
+
+<fx:root resizable="true" title="Upcoming Meetings" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11"
+         xmlns:fx="http://javafx.com/fxml/1" minWidth="500" minHeight="400">
+    <icons>
+        <Image url="@/images/calendar2.png" />
+    </icons>
+    <scene>
+        <Scene>
+            <stylesheets>
+                <URL value="@MeetingsWindow.css" />
+                <URL value="@DarkTheme.css" />
+            </stylesheets>
+
+            <VBox alignment="CENTER" fx:id="meetingsMessageContainer" VBox.vgrow="ALWAYS">
+                <children>
+                    <Label fx:id="meetingsMessage" text="Label">
+                        <HBox.margin>
+                            <Insets right="5.0" />
+                        </HBox.margin>
+                    </Label>
+                </children>
+
+                <StackPane VBox.vgrow="ALWAYS" fx:id="meetingListPanelPlaceholder">
+                </StackPane>
+
+                <opaqueInsets>
+                    <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
+                </opaqueInsets>
+                <padding>
+                    <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
+                </padding>
+            </VBox>
+        </Scene>
+    </scene>
+</fx:root>

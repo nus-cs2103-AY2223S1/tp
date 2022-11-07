@@ -4,11 +4,20 @@
     "phone": "94351253",
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
-    "tagged": [ "friends" ]
+    "description" : "",
+    "netWorth" : "$54400",
+    "meetingTime" : [],
+    "filePath" : "src/test/data/TestPDFs/Test_PDF.pdf",
+    "tagged": [ "POTENTIAL" ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
-    "address": "4th street"
+    "address": "4th street",
+    "description" : "",
+    "netWorth" : "$54400",
+    "meetingTime" : [],
+    "filePath" : "src/test/data/TestPDFs/Test_PDF.pdf",
+    "tagged": [ "POTENTIAL" ]
   } ]
 }

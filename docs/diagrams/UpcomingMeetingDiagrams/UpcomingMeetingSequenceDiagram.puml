@@ -1,0 +1,86 @@
+@startuml
+!include ../style.puml
+
+box UI UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+participant ":MeetingsWindow" as MeetingsWindow UI_COLOR
+participant ":MeetingsListPanel" as MeetingsListPanel UI_COLOR
+participant ":MeetingCard" as MeetingCard UI_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Person" as Person MODEL_COLOR
+end box
+
+box Model LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+end box
+
+[-> MainWindow : f2
+activate MainWindow
+
+MainWindow -> MainWindow : handleMeetings()
+activate MainWindow
+
+MainWindow -> MeetingsWindow : getMeetings()
+activate MeetingsWindow
+
+MeetingsWindow -> LogicManager : getFilteredPersonList()
+activate LogicManager
+
+LogicManager --> MeetingsWindow : filteredList
+deactivate LogicManager
+' create ObservableList
+' MeetingsWindow -> ObservableList
+' activate ObservableList
+
+' ObservableList --> MeetingsWindow
+' deactivate ObservableList
+
+MeetingsWindow -> MeetingsWindow : isWithinOneWeek(filteredList)
+activate MeetingsWindow
+
+MeetingsWindow --> MeetingsWindow : filteredList
+deactivate MeetingsWindow
+
+create MeetingsListPanel
+MeetingsWindow -> MeetingsListPanel : filteredList
+activate MeetingsListPanel
+
+loop
+
+MeetingsListPanel -> MeetingsListPanel : updateItem()
+activate MeetingsListPanel
+
+create MeetingCard
+MeetingsListPanel -> MeetingCard
+activate MeetingCard
+
+create Person
+MeetingCard -> Person
+activate Person
+
+Person --> MeetingCard
+deactivate Person
+
+MeetingCard --> MeetingsListPanel
+deactivate MeetingCard
+
+MeetingsListPanel --> MeetingsListPanel
+deactivate MeetingsListPanel
+
+end
+
+MeetingsListPanel --> MeetingsWindow
+deactivate MeetingsListPanel
+
+MeetingsWindow --> MainWindow
+deactivate MeetingsWindow
+
+MainWindow --> MainWindow
+deactivate MainWindow
+
+[<-- MainWindow :
+
+deactivate MainWindow
+@enduml

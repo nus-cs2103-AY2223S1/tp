@@ -5,42 +5,70 @@
     "phone" : "94351253",
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
-    "tagged" : [ "friends" ]
+    "description" : "Very risk-averse.",
+    "netWorth" : "$54400",
+    "meetingTime" : [],
+    "filePath" : "src/test/data/TestPDFs/Test_PDF.pdf",
+    "tagged" : [ "SECURED" ]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
-    "tagged" : [ "owesMoney", "friends" ]
+    "description" : "He can't take beer!",
+    "netWorth" : "$1350",
+    "meetingTime" : [ "11-04-2022-11:00" ],
+    "filePath" : "src/test/data/TestPDFs/Test_PDF2.pdf",
+    "tagged" : [ "POTENTIAL" ]
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "address" : "wall street",
-    "tagged" : [ ]
+    "description" : "Has six children",
+    "netWorth" : "$444444400",
+    "meetingTime" : [ "30-12-2023-10:00" ],
+    "filePath" : "src/test/data/TestPDFs/Test_PDF3.pdf",
+    "tagged" : []
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "address" : "10th street",
-    "tagged" : [ "friends" ]
+    "description" : "Fights crime at night.",
+    "netWorth" : "$7777",
+    "meetingTime" : [ "01-01-2022-13:00" ],
+    "filePath" : "src/test/data/TestPDFs/Test_PDF4.pdf",
+    "tagged" : [ "SECURED" ]
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "email" : "werner@example.com",
     "address" : "michegan ave",
-    "tagged" : [ ]
+    "description" : "Is worried about husband's health",
+    "netWorth" : "$888888",
+    "meetingTime" : [ "06-10-2023-18:00" ],
+    "filePath" : "src/test/data/TestPDFs/Test_PDF5.pdf",
+    "tagged" : []
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "address" : "little tokyo",
-    "tagged" : [ ]
+    "description" : "Divorced three times",
+    "netWorth" : "$11222333",
+    "meetingTime" : [ "19-11-2024-02:00" ],
+    "filePath" : "src/test/data/TestPDFs/Test_PDF6.pdf",
+    "tagged" : []
   }, {
     "name" : "George Best",
     "phone" : "9482442",
     "email" : "anna@example.com",
     "address" : "4th street",
-    "tagged" : [ ]
+    "description" : "Uni project groupmate",
+    "netWorth" : "$1000",
+    "meetingTime" : [ "15-06-2022-17:00" ],
+    "filePath" : "src/test/data/TestPDFs/Test_PDF7.pdf",
+    "tagged" : []
   } ]
 }

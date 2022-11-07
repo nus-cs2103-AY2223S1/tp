@@ -1,0 +1,37 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant "sync:SyncCommand" as sync LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "modelManager:ModelManager" as modelManager MODEL_COLOR
+participant "addressBook:AddressBook" as addressBook MODEL_COLOR
+participant "persons:UniquePersonList" as persons MODEL_COLOR
+end box
+
+[-> sync : execute(model)
+activate sync
+
+sync -> modelManager:syncMeetingTimes()
+activate modelManager
+
+modelManager -> addressBook:syncMeetingTimes()
+activate addressBook
+
+addressBook -> persons:syncMeetingTimes()
+activate persons
+
+persons --> addressBook
+deactivate persons
+
+addressBook --> modelManager
+deactivate addressBook
+
+modelManager --> sync
+deactivate modelManager
+
+sync -->[:result
+deactivate sync
+@enduml

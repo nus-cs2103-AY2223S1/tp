@@ -18,7 +18,7 @@ public class Name {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public final String fullName;
+    private final String fullName;
 
     /**
      * Constructs a {@code Name}.
@@ -38,6 +38,19 @@ public class Name {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns fulle name.
+     */
+    public String getFullName() {
+        return fullName;
+    }
+
+    /**
+     * Returns true if fullName is empty.
+     */
+    public boolean isEmpty() {
+        return fullName.equals(Person.EMPTY_FIELD_VALUE);
+    }
 
     @Override
     public String toString() {

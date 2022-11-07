@@ -9,11 +9,10 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Phone {
 
-
     public static final String MESSAGE_CONSTRAINTS =
             "Phone numbers should only contain numbers, and it should be at least 3 digits long";
     public static final String VALIDATION_REGEX = "\\d{3,}";
-    public final String value;
+    private final String value;
 
     /**
      * Constructs a {@code Phone}.
@@ -33,6 +32,20 @@ public class Phone {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns value of phone number.
+     */
+    public String getValue() {
+        return value;
+    }
+
+    /**
+     * Returns true if value is empty.
+     */
+    public boolean isEmpty() {
+        return value.equals(Person.EMPTY_FIELD_VALUE);
+    }
+
     @Override
     public String toString() {
         return value;
@@ -49,5 +62,4 @@ public class Phone {
     public int hashCode() {
         return value.hashCode();
     }
-
 }
