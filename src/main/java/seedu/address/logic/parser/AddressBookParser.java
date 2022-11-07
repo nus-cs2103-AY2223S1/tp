@@ -7,14 +7,25 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AssignMemberCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CreateTeamCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteTeamCommand;
+import seedu.address.logic.commands.DisplayUserCommand;
 import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditTeamCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.TaskAddCommand;
+import seedu.address.logic.commands.TaskDeleteCommand;
+import seedu.address.logic.commands.TaskEditCommand;
+import seedu.address.logic.commands.TaskMarkCommand;
+import seedu.address.logic.commands.TaskUnmarkCommand;
+import seedu.address.logic.commands.UnAssignMemberCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -42,7 +53,17 @@ public class AddressBookParser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
+
         switch (commandWord) {
+
+        case EditTeamCommand.COMMAND_WORD:
+            return new EditTeamCommandParser().parse(arguments);
+
+        case UnAssignMemberCommand.COMMAND_WORD:
+            return new UnAssignMemberParser().parse(arguments);
+
+        case AssignMemberCommand.COMMAND_WORD:
+            return new AssignMemberParser().parse(arguments);
 
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
@@ -67,6 +88,30 @@ public class AddressBookParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case TaskAddCommand.COMMAND_WORD:
+            return new TaskAddCommandParser().parse(arguments);
+
+        case TaskMarkCommand.COMMAND_WORD:
+            return new TaskMarkCommandParser().parse(arguments);
+
+        case TaskUnmarkCommand.COMMAND_WORD:
+            return new TaskUnmarkCommandParser().parse(arguments);
+
+        case TaskDeleteCommand.COMMAND_WORD:
+            return new TaskDeleteCommandParser().parse(arguments);
+
+        case TaskEditCommand.COMMAND_WORD:
+            return new TaskEditCommandParser().parse(arguments);
+
+        case CreateTeamCommand.COMMAND_WORD:
+            return new CreateTeamParser().parse(arguments);
+
+        case DisplayUserCommand.COMMAND_WORD:
+            return new DisplayUserCommand();
+
+        case DeleteTeamCommand.COMMAND_WORD:
+            return new DeleteTeamCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

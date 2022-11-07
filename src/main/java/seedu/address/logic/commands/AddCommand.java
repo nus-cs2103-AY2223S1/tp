@@ -40,6 +40,8 @@ public class AddCommand extends Command {
 
     /**
      * Creates an AddCommand to add the specified {@code Person}
+     *
+     * @param person The {@code Person} to be added.
      */
     public AddCommand(Person person) {
         requireNonNull(person);
@@ -55,6 +57,7 @@ public class AddCommand extends Command {
         }
 
         model.addPerson(toAdd);
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

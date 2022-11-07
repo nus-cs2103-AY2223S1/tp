@@ -2,11 +2,18 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskName;
+import seedu.address.model.team.Team;
+import seedu.address.model.team.TeamName;
+import seedu.address.model.team.UniqueTeamList;
 
 /**
  * Wraps all data at the address-book level
@@ -15,6 +22,7 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final UniqueTeamList teams;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,6 +33,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        teams = new UniqueTeamList();
     }
 
     public AddressBook() {}
@@ -47,13 +56,17 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.persons.setPersons(persons);
     }
 
+    public void setTeams(List<Team> teams) {
+        this.teams.setTeams(teams);
+    }
+
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
-
         setPersons(newData.getPersonList());
+        setTeams(newData.getTeamList());
     }
 
     //// person-level operations
@@ -74,6 +87,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.add(p);
     }
 
+
     /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the address book.
@@ -81,8 +95,12 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
-
         persons.setPerson(target, editedPerson);
+        for (Team t : teams) {
+            if (t.containMember(target)) {
+                t.setMember(target, editedPerson);
+            }
+        }
     }
 
     /**
@@ -91,6 +109,80 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePerson(Person key) {
         persons.remove(key);
+    }
+
+    //// team-level operations
+
+    /**
+     * Returns true if a team with the same name as {@code team} exists in the address book.
+     */
+    public boolean hasTeam(Team team) {
+        requireNonNull(team);
+        return teams.contains(team);
+    }
+
+    /**
+     * Adds a team to the address book.
+     * The team must not already exist in the address book.
+     */
+    public void addTeam(Team t) {
+        teams.add(t);
+    }
+
+    /**
+     * Removes {@code t} from this {@code AddressBook}.
+     * {@code t} must exist in the address book.
+     */
+    public void removeTeam(Team t) {
+        teams.remove(t);
+    }
+
+    /**
+     * Adds person to the given team.
+     */
+    public void addPersonToTeam(Person person, Team team) {
+        team.addMember(person);
+    }
+
+    /**
+     * Removes person from the given team.
+     */
+    public void removePersonFromTeam(Person person, Team team) {
+        team.removeMember(person);
+    }
+
+    /**
+     * Changes team name to given name.
+     */
+    public void setTeamName(Index targetIndex, TeamName newTeamTeamName) {
+        requireNonNull(newTeamTeamName);
+        teams.setTeamName(targetIndex.getZeroBased(), newTeamTeamName);
+    }
+
+    //// task-level operations
+
+    public boolean teamHasTask(Index index, Task task) {
+        return teams.teamHasTask(index.getZeroBased(), task);
+    }
+
+    public void addTask(Index index, Task task) {
+        teams.addTask(index.getZeroBased(), task);
+    }
+
+    public void markTask(Index teamIndex, Index taskIndex) {
+        teams.markTask(teamIndex.getZeroBased(), taskIndex.getZeroBased());
+    }
+
+    public void unmarkTask(Index teamIndex, Index taskIndex) {
+        teams.unmarkTask(teamIndex.getZeroBased(), taskIndex.getZeroBased());
+    }
+
+    public void deleteTask(Index teamIndex, Index taskIndex) {
+        teams.deleteTask(teamIndex.getZeroBased(), taskIndex.getZeroBased());
+    }
+
+    public void editTask(Index teamIndex, Index taskIndex, TaskName newTaskName, LocalDate newDeadline) {
+        teams.editTask(teamIndex.getZeroBased(), taskIndex.getZeroBased(), newTaskName, newDeadline);
     }
 
     //// util methods
@@ -107,10 +199,16 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
+    public ObservableList<Team> getTeamList() {
+        return teams.asUnmodifiableObservableList();
+    }
+
+    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+                && persons.equals(((AddressBook) other).persons)
+                && teams.equals(((AddressBook) other).teams));
     }
 
     @Override

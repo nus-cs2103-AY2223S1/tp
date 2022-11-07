@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Font?>
+
+<HBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <Label fx:id="name" text="\$first" textFill="WHITE">
+        <font>
+            <Font size="18.0"/>
+        </font>
+    </Label>
+    <Region prefHeight="0.0"  HBox.hgrow="ALWAYS" />
+    <Label>Task progress:</Label>
+    <ProgressBar styleClass="my-progress-bar" fx:id="taskProgressBar" />
+</HBox>

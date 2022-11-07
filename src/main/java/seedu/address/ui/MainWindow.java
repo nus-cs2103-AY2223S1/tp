@@ -31,9 +31,10 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private TeamListPanel teamListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private DisplayUserWindow displayUserWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -43,6 +44,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private StackPane teamListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -66,6 +70,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        displayUserWindow = new DisplayUserWindow(logic);
     }
 
     public Stage getPrimaryStage() {
@@ -110,8 +115,9 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+        teamListPanel = new TeamListPanel(logic.getFilteredTeamList(), logic);
+        teamListPanelPlaceholder.getChildren().add(teamListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -147,6 +153,20 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+
+
+    /**
+     * Opens the User window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleDisplayUsers() {
+        if (!displayUserWindow.isShowing()) {
+            displayUserWindow.show();
+        } else {
+            displayUserWindow.focus();
+        }
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -160,11 +180,8 @@ public class MainWindow extends UiPart<Stage> {
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
+        displayUserWindow.hide();
         primaryStage.hide();
-    }
-
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
     }
 
     /**
@@ -180,6 +197,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            }
+
+            if (commandResult.isShowUsers()) {
+                handleDisplayUsers();
             }
 
             if (commandResult.isExit()) {

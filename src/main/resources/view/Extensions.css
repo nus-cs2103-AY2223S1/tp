@@ -18,3 +18,8 @@
 .tooltip-text {
     -fx-text-fill: white;
 }
+
+
+.my-progress-bar .bar {
+    -fx-background-color: green;
+}

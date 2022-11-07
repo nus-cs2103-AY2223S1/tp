@@ -33,6 +33,7 @@ class JsonAdaptedTag {
         return tagName;
     }
 
+
     /**
      * Converts this Jackson-friendly adapted tag object into the model's {@code Tag} object.
      *
@@ -42,6 +43,7 @@ class JsonAdaptedTag {
         if (!Tag.isValidTagName(tagName)) {
             throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
         }
+
         return new Tag(tagName);
     }
 

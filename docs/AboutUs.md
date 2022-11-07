@@ -9,51 +9,51 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Tai Jun Jie
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/tjun-jie.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/TJun-Jie)]
+[[portfolio](team/tjun-jie.md)]
 
-* Role: Project Advisor
+* Role: Team Lead, Deliverables and Deadline, Scheduling and Tracking
 
-### Jane Doe
+### Jonathan Wiguna
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jonathanwiguna.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/JonathanWiguna)]
+[[portfolio](team/jonathanwiguna.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Testing
 
-### Jean Doe
+### Motwani Richa Vijay
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/richavm14.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/richavm14)]
+[[portfolio](team/richavm14.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Code Quality + Documentation
+
+### Mahesh Anugraha
+
+<img src="images/anuanas2007.png" width="200px">
+
+[[github](http://github.com/anuanas2007)]
+[[portfolio](team/anuanas2007.md)]
+
+* Role: Developer
+* Responsibilities: Code Quality + Documentation
+
+### Zico
+
+<img src="images/zicotjia.png" width="200px">
+
+[[github](http://github.com/zicotjia)]
+[[portfolio](team/zicotjia.md)]
+
+* Role: Developer
+* Responsibilities: Dev Ops + Integration + git expert

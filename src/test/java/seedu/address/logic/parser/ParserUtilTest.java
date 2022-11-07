@@ -6,9 +6,12 @@ import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
@@ -16,9 +19,11 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
+import seedu.address.model.person.PersonName;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.TaskName;
+import seedu.address.model.team.TeamName;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
@@ -28,11 +33,20 @@ public class ParserUtilTest {
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
-    private static final String VALID_PHONE = "123456";
+    private static final String VALID_PHONE = "12345678";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+
+    private static final String INVALID_TASK_NAME = "F!N!SH @ssignment";
+    private static final String INVALID_TASK_DEADLINE_1 = "2023-12-23";
+    private static final String INVALID_TASK_DEADLINE_2 = "32-04-2023";
+    private static final String INVALID_TEAM_NAME = "Frontend@#";
+
+    private static final String VALID_TASK_NAME = "Finish Assignment";
+    private static final String VALID_TASK_DEADLINE = "20-01-2022";
+    private static final String VALID_TEAM_NAME = "Frontend";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -68,15 +82,15 @@ public class ParserUtilTest {
 
     @Test
     public void parseName_validValueWithoutWhitespace_returnsName() throws Exception {
-        Name expectedName = new Name(VALID_NAME);
-        assertEquals(expectedName, ParserUtil.parseName(VALID_NAME));
+        PersonName expectedPersonName = PersonName.of(VALID_NAME);
+        assertEquals(expectedPersonName, ParserUtil.parseName(VALID_NAME));
     }
 
     @Test
     public void parseName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
         String nameWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
-        Name expectedName = new Name(VALID_NAME);
-        assertEquals(expectedName, ParserUtil.parseName(nameWithWhitespace));
+        PersonName expectedPersonName = PersonName.of(VALID_NAME);
+        assertEquals(expectedPersonName, ParserUtil.parseName(nameWithWhitespace));
     }
 
     @Test
@@ -192,5 +206,81 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseTaskName_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTaskName(null));
+    }
+
+    @Test
+    public void parseTaskName_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTaskName(INVALID_TASK_NAME));
+    }
+
+    @Test
+    public void parseTaskName_validValueWithoutWhitespace_returnsName() throws Exception {
+        TaskName expectedTaskName = TaskName.of(VALID_TASK_NAME);
+        assertEquals(expectedTaskName, ParserUtil.parseTaskName(VALID_TASK_NAME));
+    }
+
+    @Test
+    public void parseTaskName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
+        String nameWithWhitespace = WHITESPACE + VALID_TASK_NAME + WHITESPACE;
+        TaskName expectedTaskName = TaskName.of(VALID_TASK_NAME);
+        assertEquals(expectedTaskName, ParserUtil.parseTaskName(nameWithWhitespace));
+    }
+
+    @Test
+    public void parseTeamName_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTeamName(null));
+    }
+
+    @Test
+    public void parseTeamName_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTeamName(INVALID_TEAM_NAME));
+    }
+
+    @Test
+    public void parseTeamName_validValueWithoutWhitespace_returnsName() throws Exception {
+        TeamName expectedTeamName = TeamName.of(VALID_TEAM_NAME);
+        assertEquals(expectedTeamName, ParserUtil.parseTeamName(VALID_TEAM_NAME));
+    }
+
+    @Test
+    public void parseTeamName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
+        String nameWithWhitespace = WHITESPACE + VALID_TEAM_NAME + WHITESPACE;
+        TeamName expectedTeamName = TeamName.of(VALID_TEAM_NAME);
+        assertEquals(expectedTeamName, ParserUtil.parseTeamName(nameWithWhitespace));
+    }
+
+    @Test
+    public void parseDeadline_null_throwsNullPointerException() throws Exception {
+        assertEquals(Optional.empty(), ParserUtil.parseDeadline(null));
+    }
+
+    @Test
+    public void parseDeadline_invalidDeadlineIncorrectFormat_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDeadline(INVALID_TASK_DEADLINE_1));
+    }
+
+    @Test
+    public void parseDeadline_invalidDeadlineInvalidDate_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDeadline(INVALID_TASK_DEADLINE_2));
+    }
+
+    @Test
+    public void parseDeadline_validDeadlineWithoutWhitespace_returnsDeadline() throws Exception {
+        Optional<LocalDate> expectedDeadline = Optional.ofNullable(
+                LocalDate.parse(VALID_TASK_DEADLINE, DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+        assertEquals(expectedDeadline, ParserUtil.parseDeadline(VALID_TASK_DEADLINE));
+    }
+
+    @Test
+    public void parseDeadline_validDeadlineWithWhitespace_returnsTrimmedDeadline() throws Exception {
+        Optional<LocalDate> expectedDeadline = Optional.ofNullable(
+                LocalDate.parse(VALID_TASK_DEADLINE, DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+        String deadlineWithWhitespace = WHITESPACE + VALID_TASK_DEADLINE + WHITESPACE;
+        assertEquals(expectedDeadline, ParserUtil.parseDeadline(deadlineWithWhitespace));
     }
 }
