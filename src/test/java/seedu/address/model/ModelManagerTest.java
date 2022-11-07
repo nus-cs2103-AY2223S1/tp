@@ -94,6 +94,46 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void isPasswordSet_passwordNotSet_returnsFalse() {
+        assertFalse(modelManager.isPasswordSet());
+    }
+
+    @Test
+    public void isPasswordSet_passwordSet_returnsTrue() {
+        ModelManager manager = new ModelManager();
+        manager.updatePassword("", "foobar");
+        assertTrue(manager.isPasswordSet());
+    }
+
+    @Test
+    public void isPasswordCorrect_passwordNotSet() {
+        assertTrue(modelManager.isPasswordCorrect(""));
+        assertFalse(modelManager.isPasswordCorrect("foobar"));
+    }
+
+    @Test
+    public void isPasswordCorrect_passwordSet() {
+        ModelManager manager = new ModelManager();
+        manager.updatePassword("", "foobar");
+        assertFalse(manager.isPasswordCorrect(""));
+        assertTrue(manager.isPasswordCorrect("foobar"));
+    }
+
+    @Test
+    public void updatePassword() {
+        ModelManager manager = new ModelManager();
+        manager.updatePassword("", "foobar");
+
+        //Incorrect old password -> password doesn't change
+        manager.updatePassword("password", "barfoo");
+        assertFalse(manager.isPasswordCorrect("barfoo"));
+
+        //Correct old password -> password changes
+        manager.updatePassword("foobar", "barfoo");
+        assertTrue(manager.isPasswordCorrect("barfoo"));
+    }
+
+    @Test
     public void equals() {
         AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
         AddressBook differentAddressBook = new AddressBook();

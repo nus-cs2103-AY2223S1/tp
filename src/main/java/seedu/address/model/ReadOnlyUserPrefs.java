@@ -13,4 +13,5 @@ public interface ReadOnlyUserPrefs {
 
     Path getAddressBookFilePath();
 
+    String getPasswordHash();
 }

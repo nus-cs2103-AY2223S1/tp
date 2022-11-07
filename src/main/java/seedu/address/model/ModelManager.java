@@ -7,6 +7,8 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import com.password4j.Password;
+
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
@@ -14,7 +16,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the FinBook data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -29,7 +31,7 @@ public class ModelManager implements Model {
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(addressBook, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with FinBook: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
@@ -129,6 +131,36 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean isPasswordSet() {
+        return !userPrefs.getPasswordHash().equals("");
+    }
+
+    @Override
+    public boolean isPasswordCorrect(String password) {
+        if (userPrefs.getPasswordHash().equals("")) {
+            if (password.equals("")) {
+                return true;
+            }
+            return false;
+        }
+        return Password.check(password, userPrefs.getPasswordHash()).withArgon2();
+    }
+
+    @Override
+    public void updatePassword(String oldPassword, String newPassword) {
+        if ((userPrefs.getPasswordHash().equals("") && oldPassword.equals(""))
+            || Password.check(oldPassword, userPrefs.getPasswordHash()).withArgon2()) {
+            userPrefs.setPasswordHash(Password.hash(newPassword).addRandomSalt().withArgon2().getResult());
+        }
+    }
+
+    @Override
+    public void sort(String sortParam) {
+        requireNonNull(sortParam);
+        addressBook.sort(sortParam);
+    }
+
+    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {
@@ -143,8 +175,12 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
-                && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+            && userPrefs.equals(other.userPrefs)
+            && filteredPersons.equals(other.filteredPersons);
     }
 
+    @Override
+    public String toString() {
+        return addressBook.toString();
+    }
 }

@@ -9,51 +9,54 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Jovita Anderson
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jovitaanderson.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/jovitaanderson)][[portfolio](team/jovitaanderson.md)]
 
-* Role: Project Advisor
+Roles:
 
-### Jane Doe
+* Team Lead
 
-<img src="images/johndoe.png" width="200px">
+### Lee Care Gene
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+<img src="images/leecaregene.png" width="200px">
 
-* Role: Team Lead
-* Responsibilities: UI
+[[github](https://github.com/leecaregene)][[portfolio](team/leecaregene.md)]
 
-### Johnny Doe
+Roles:
 
-<img src="images/johndoe.png" width="200px">
+* Code quality
+* Integration
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+### Shanice Ng Wen Yi
 
-* Role: Developer
-* Responsibilities: Data
+<img src="images/shaniceng.png" width="200px">
 
-### Jean Doe
+[[github](https://github.com/shaniceng)][[portfolio](team/shaniceng.md)]
 
-<img src="images/johndoe.png" width="200px">
+Roles:
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+* Deliverables and deadlines
+* Scheduling and tracking
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+### Singh Abdullah Alexander
 
-### James Doe
+<img src="images/alexandermula.png" width="200px">
 
-<img src="images/johndoe.png" width="200px">
+[[github](https://github.com/alexandermula)][[portfolio](team/alexandermula.md)]
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+Roles:
 
-* Role: Developer
-* Responsibilities: UI
+* Documentation
+
+### Tan Yuan Zheng
+
+<img src="images/yztangent.png" width="200px">
+
+[[github](https://github.com/YZTangent)][[portfolio](team/yztangent.md)]
+
+Roles:
+
+* Testing

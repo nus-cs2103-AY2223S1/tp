@@ -3,9 +3,13 @@ package seedu.address.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
+import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_PATH;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TestUtil.getFilePathInSandboxFolder;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
+import java.io.File;
+import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -44,7 +48,7 @@ public class ParserUtilTest {
     @Test
     public void parseIndex_outOfRangeInput_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
-            -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
+                -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
     }
 
     @Test
@@ -192,5 +196,44 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseImportPath_invalidInput_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseImportPath("10 a"));
+    }
+
+    @Test
+    public void parseImportPath_notReadable_throwsParseException() {
+        assertThrows(ParseException.class, MESSAGE_INVALID_PATH, ()
+                -> ParserUtil.parseImportPath("foobar.json"));
+    }
+
+    @Test
+    public void parseImportPath_validInput_success() throws Exception {
+        Path dummyPath = getFilePathInSandboxFolder("foobar.json");
+        File dummyFile = new File(dummyPath.toUri());
+        dummyFile.createNewFile();
+        // No whitespaces
+        assertEquals(dummyPath, ParserUtil.parseImportPath(dummyPath.toString()));
+
+        // Leading and trailing whitespaces
+        assertEquals(dummyPath, ParserUtil.parseImportPath("  " + dummyPath.toString() + "  "));
+        dummyFile.delete();
+    }
+
+    @Test
+    public void parseExportPath_invalidInput_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseExportPath("10 a"));
+    }
+
+    @Test
+    public void parseExportPath_validInput_success() throws Exception {
+        Path dummyPath = getFilePathInSandboxFolder("foobar.csv");
+        // No whitespaces
+        assertEquals(dummyPath, ParserUtil.parseExportPath(dummyPath.toString()));
+
+        // Leading and trailing whitespaces
+        assertEquals(dummyPath, ParserUtil.parseExportPath("  " + dummyPath.toString() + "  "));
     }
 }

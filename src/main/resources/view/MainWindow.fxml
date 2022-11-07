@@ -1,57 +1,119 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.Scene?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.stage.*?>
 
-<fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="Address App" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
+
+
+<fx:root minHeight="600" minWidth="560" onCloseRequest="#handleExit" title="FinBook" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
   <scene>
-    <Scene>
+    <Scene fx:id="parent">
       <stylesheets>
-        <URL value="@DarkTheme.css" />
-        <URL value="@Extensions.css" />
+        <URL value="@styles/MainWindowDark.css" />
+        <URL value="@styles/Extensions.css" />
       </stylesheets>
 
-      <VBox>
-        <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
-          <Menu mnemonicParsing="false" text="File">
-            <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
-          </Menu>
-        </MenuBar>
+      <VBox fx:id="vBoxMainWindow">
+            <HBox fx:id="hbox">
+               <children>
+              <MenuBar fx:id="menuBar">
+                <Menu mnemonicParsing="false" text="File">
+                  <MenuItem fx:id="fileMenuItem" mnemonicParsing="false" onAction="#handleExit" text="Exit" />
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                  <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
+                </Menu>
+              </MenuBar>
+                  <Button fx:id="btnChangeTheme" graphicTextGap="0.0" mnemonicParsing="false">
+                     <graphic>
+                        <ImageView fx:id="imageTheme" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/moon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+                   <Button fx:id="btnHide" graphicTextGap="0.0" mnemonicParsing="false">
+                       <graphic>
+                           <ImageView fx:id="imageHide" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                               <image>
+                                   <Image url="@../images/open_eye.png" />
+                               </image>
+                           </ImageView>
+                       </graphic></Button>
+               </children>
+            </HBox>
 
-        <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
+        <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
+            <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
         </StackPane>
 
-        <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
-                   minHeight="100" prefHeight="100" maxHeight="100">
+        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
+            <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
         </StackPane>
 
-        <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-          <padding>
-            <Insets top="10" right="10" bottom="10" left="10" />
-          </padding>
-          <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-        </VBox>
+
+          <SplitPane>
+            <VBox fx:id="personList" prefWidth="340" prefHeight="600" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+                <HBox alignment="CENTER_LEFT" spacing="5" styleClass="pane-with-border">
+                    <Label fx:id="clientText" styleClass="header_label" text="Clients">
+                        <minWidth>
+                            <!-- Ensures that the label text is never truncated -->
+                            <Region fx:constant="USE_PREF_SIZE" />
+                        </minWidth>
+                        <HBox.margin>
+                            <Insets left="20.0" right="5.0" />
+                        </HBox.margin>
+                    </Label>
+                    <HBox fx:id="totalClientLabel" alignment="CENTER" styleClass="header_box_background">
+                        <children>
+                            <Label fx:id="totalClientText" styleClass="header_box_label" text="Total number of clients:" textFill="WHITE">
+                                <HBox.margin>
+                                    <Insets left="5.0" right="5.0" />
+                                </HBox.margin></Label>
+                            <Label fx:id="totalClient" styleClass="header_label" text="0">
+                                <HBox.margin>
+                                    <Insets left="5.0" right="5.0" />
+                                </HBox.margin></Label>
+                        </children>
+                    </HBox>
+
+                </HBox>
+                <padding>
+                <Insets bottom="10" left="10" right="10" top="10" />
+              </padding>
+              <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+            </VBox>
+
+              <VBox fx:id="portfolioList" prefWidth="340" prefHeight="600" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+                  <HBox alignment="CENTER_LEFT" spacing="5" styleClass="pane-with-border">
+                      <Label fx:id="portfolioText" styleClass="header_label" text="Portfolio">
+                          <minWidth>
+                              <!-- Ensures that the label text is never truncated -->
+                              <Region fx:constant="USE_PREF_SIZE" />
+                          </minWidth>
+                          <HBox.margin>
+                              <Insets left="20.0" right="5.0" />
+                          </HBox.margin>
+                      </Label>
+                  </HBox>
+                  <padding>
+                      <Insets bottom="10" left="10" right="10" top="10" />
+                  </padding>
+                  <StackPane fx:id="portfolioListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+              </VBox>
+          </SplitPane>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
