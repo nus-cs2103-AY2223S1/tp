@@ -61,6 +61,7 @@ public class TypicalTasks {
     public static final Task TASK_I = new TaskBuilder().withModule("cs2103t")
             .withTaskDescription("Task I")
             .build();
+
     public static final Task TASK_J = new TaskBuilder().withTaskDescription("Task one").withModule("CS2030S").build();
     public static final Task TASK_K = new TaskBuilder().withTaskDescription("Task two").withModule("CS2030S").build();
     public static final Task TASK_L = new TaskBuilder().withTaskDescription("HW1").withModule("CS2030S").build();
@@ -69,6 +70,13 @@ public class TypicalTasks {
     public static final Task TASK_O = new TaskBuilder().withTaskDescription("homework").withModule("CS2030s").build();
     public static final Task TASK_P = new TaskBuilder()
             .withTaskDescription("PAST YEAR PAPER").withModule("CS2030s").build();
+    public static final Task TASK_Q = new TaskBuilder().withModule("cs2030")
+            .withTaskDescription("Task Q")
+            .withStatus("complete")
+            .withExam(getTypicalExams().get(1))
+            .withPriorityTag(new PriorityTag("high"))
+            .withDeadlineTag(new DeadlineTag(LocalDate.parse("29-12-2022", DateTimeFormatter.ofPattern("dd-MM-yyyy"))))
+            .build();
 
     private TypicalTasks() {
     } // prevents instantiation

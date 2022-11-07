@@ -68,6 +68,7 @@ public class LinkExamCommand extends Command {
     }
 
     @Override
+
     public boolean equals(Object otherLinkExamCommand) {
         return otherLinkExamCommand == this
                 || (otherLinkExamCommand instanceof LinkExamCommand

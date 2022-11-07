@@ -7,6 +7,8 @@ import static seedu.address.logic.commands.EditTaskCommand.MESSAGE_NO_FIELDS_PRO
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 
+import java.util.regex.Pattern;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -18,6 +20,8 @@ import seedu.address.model.module.ModuleCode;
  */
 public class EditTaskCommandParser implements Parser<EditTaskCommand> {
 
+    private final Pattern pattern = Pattern.compile("(-|\\+)?\\d+(\\.\\d+)?");
+
     /**
      * Parses the given {@code String} of arguments in the context of the EditTaskCommand
      * and returns an EditTaskCommand object for execution.
@@ -28,9 +32,7 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
         ArgumentMultimap argMultimap =
             ArgumentTokenizer.tokenize(args, PREFIX_MODULE, PREFIX_DESCRIPTION);
 
-        try {
-            Integer.parseInt(argMultimap.getPreamble());
-        } catch (NumberFormatException ne) {
+        if (!pattern.matcher(argMultimap.getPreamble().strip()).matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditTaskCommand.MESSAGE_USAGE));
         }
 

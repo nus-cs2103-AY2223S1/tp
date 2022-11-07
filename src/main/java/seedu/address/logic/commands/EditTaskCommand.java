@@ -46,6 +46,8 @@ public class EditTaskCommand extends Command {
     public static final String MESSAGE_EXAM_UNLINKED = "Warning: The task has been unlinked from its exam.\n";
     public static final String MESSAGE_DUPLICATE_TASK =
         "The edited task is the same as another task in the task list";
+    public static final String MESSAGE_NO_TASK_IN_THE_LIST =
+        "There is no task in the task list so edit operation cannot be done!";
 
     private final Index index;
     private final EditTaskDescriptor editTaskDescriptor;
@@ -65,6 +67,10 @@ public class EditTaskCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Task> lastShownList = model.getFilteredTaskList();
+
+        if (lastShownList.size() == 0) {
+            throw new CommandException(MESSAGE_NO_TASK_IN_THE_LIST);
+        }
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(
