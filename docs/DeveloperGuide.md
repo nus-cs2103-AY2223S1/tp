@@ -30,24 +30,24 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
-The ***Architecture Diagram*** given above explains the high-level design of the App.
+The ***Architecture Diagram*** given above explains the high-level design of HackAssist.
 
 Given below is a quick overview of main components and how they interact with each other.
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-F12-2/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S1-CS2103T-F12-2/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-F12-2/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S1-CS2103T-F12-2/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for:
 
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
-The rest of the App consists of four components.
+The rest of HackAssist consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App.
+* [**`UI`**](#ui-component): The UI of HackAssist.
 * [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
+* [**`Model`**](#model-component): Holds the data of HackAssist in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
 **How the architecture components interact with each other**
@@ -75,7 +75,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-F12-2/tp/blob/master/src/main/java/seedu/address/MainApp.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-F12-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -376,37 +376,11 @@ Step 4. John is edited to James via the Edit command. This will be reflected in 
 
 Step 5. James is deleted as a Person. The task is changed to be not assigned to anyone.
 
-### Email Address in Task as Reference (Foreign Key) to Member in Saved Data
-
-#### Motivation
-
-To assign a task to a team member (represented by a `Person` object), we need to save an attribute of the `Person` object in the `JsonAdaptedTask` object that uniquely identifies the person.
-
-#### Implementation
-
-We use a person's email as foreign key as it can uniquely identify a person in our person list. By implementing a foreign key this way, a change in person object is reflected in the task associated to that person. An alternative to this is to keep a person object in a task object but this will prevent the change in the person object that is supposed to be associated with the task object from being displayed in the task as they are two separate objects.
-
-#### Design Considerations
-
-**Aspect: How to Relate a Task and a Person in the Saved Data**
-
-* **Alternative 1 (current choice):** Foreign Key Method: Save Person's Email Address in Task Data File.
-  * Pros: Changes in person can be cascaded to task.
-  * Cons: -.
-
-* **Alternative 2:** Foreign Key Method: Save Person Phone Number in Task Data File.
-  * Pros: Changes in person can be cascaded to task.
-  * Cons: Compared to email address, phone number is more likely to be identical e.g. people may have the same phone number if they put their home phone number and they live in the same house.
-
-* **Alternative 3:** Save JSonAdaptedPerson in JSonAdaptedTask.
-  * Pros: -.
-  * Cons: Changes in `person` object are more prone to not be reflected in their associated `task`.
-
 ### Persistent Storage for Task
 
 #### Motivation
 
-For creation of new tasks, deletion of tasks and changes of current tasks to persist over different sessions of using HackAssist (after user close HackAssist and open it again).
+For the creation of new tasks, deletion of tasks and changes of current tasks to persist over different sessions of using HackAssist (after user close HackAssist and open it again).
 
 #### Implementation
 
@@ -444,7 +418,53 @@ Our current choice of implementation is preferred considering the main use of Ha
 
 ### Persistent Storage for Member
 
-The motivation, implementation and design considerations are similar to [Persistent Storage for Task](#persistent-storage-for-task)
+#### Motivation
+
+For the addition of new members, deletion of members and changes of current members' details to persist over different sessions of using HackAssist (after user close HackAssist and open it again).
+
+Here, member (or team member) refers to `Person` objects in the contact.
+
+#### Implementation
+
+When HackAssist is opened, it will read the data file (AddressBook.json) saved in hard disk in Json format. This data file contains a list of person details (name, phone, email, address, tag(s)). Details of each person are read to create a `Person` object which is then added to the running HackAssist's `UniquePersonList`.
+
+An overview of this process is shown below in the form of an activity diagram.
+
+![StorageReadActivityDiagramPerson](images/StorageReadActivityDiagramPerson.png)
+
+Similar to in [Persistent Storage for Task](#persistent-storage-for-task), when reading Json file we check whether the values saved are valid before converting it back to a Person object.
+
+Upon execution of each `Command`, we convert each `Person` object in  `UniquePersonList` to `JsonAdaptedPerson` object which is then saved in Json format in hard disk. Each `JsonAdaptedPerson` object contains the details of the person.
+
+An overview of this process is shown below in the form of an activity diagram.
+
+![StorageSaveActivityDiagramPerson](images/StorageSaveActivityDiagramPerson.png)
+
+### Reference of Person in Task in Data File
+
+#### Motivation
+
+To assign a task to a team member (represented by a `Person` object), we need to save an attribute of the `Person` object in the `JsonAdaptedTask` object that uniquely identifies the person.
+
+#### Implementation
+
+We use a person's email as foreign key as it can uniquely identify a person in our person list. By implementing a foreign key this way, a change in person object is reflected in the task associated to that person. An alternative to this is to keep a person object in a task object but this will prevent the change in the person object that is supposed to be associated with the task object from being displayed in the task as they are two separate objects.
+
+#### Design Considerations
+
+**Aspect: How to Relate a Task and a Person in the Saved Data**
+
+* **Alternative 1 (current choice):** Foreign Key Method: Save Person's Email Address in Task Data File.
+  * Pros: Changes in person can be cascaded to task.
+  * Cons: No significant cons over other alternatives.
+
+* **Alternative 2:** Foreign Key Method: Save Person Phone Number in Task Data File.
+  * Pros: Changes in person can be cascaded to task.
+  * Cons: Compared to email address, phone number is more likely to be identical e.g. people may have the same phone number if they put their home phone number and they live in the same house.
+
+* **Alternative 3:** Save JSonAdaptedPerson in JSonAdaptedTask.
+  * Pros: No significant pros over other alternatives.
+  * Cons: Changes in `Person` object are more prone to not be reflected in their associated `Task`.
 
 ### \[Proposed\] Filtering of tasks by Task Category, Task Deadline or Both
 
