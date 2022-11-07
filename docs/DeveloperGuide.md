@@ -459,9 +459,17 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 
 <div style="page-break-after: always;"></div>
-### \[Proposed\] Data archiving
+### \[Proposed\] Command history
 
-_{Explain here how the data archiving feature will be implemented}_
+Command history will allow cashiers to navigate through their previous commands using up and down arrow key.
+This is a common feature in CLI, which speed up the operations if cashiers want to do multiple similar commands,
+or correct a mistake (Undo first, press the up arrow key to retrieve previous command, then correct the arguments)
+
+**Proposed implementation**
+
+* **Alternative 1:** Keyboard source detection & Save previous user inputs (Similar to the logic of undo/redo)
+    * Pros: Easy to implement. As we have implemented undo/redo
+    * Cons: May lose command history after cashiers close the app. May have performance issues in terms of memory usage.
 
 
 --------------------------------------------------------------------------------------------------------------------
