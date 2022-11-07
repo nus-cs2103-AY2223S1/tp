@@ -177,25 +177,33 @@ This section describes some noteworthy details on how certain features are imple
 The add mechanism is facilitated by `AddCommand`. It extends `Command` with an enum type `Entity` representing the three different types of entities that can be added to the `Model`. Also, it stores the `Person` or `TuitionClass` instances to be added. Additionally, it implements the following operations:
 
 * `AddCommand#of()` — Creates an `AddCommand` instance encapsulating the entity to be added.
-* `AddCommand#execute()` — Executes adding of the encapsulated entity to the `Model`.
+* `AddCommand#execute()` — Executes adding of the encapsulated `Person` or `Class` instances to the `Model`.
 
 The `AddCommand#execute()` operation is exposed in the `Logic` interface as `Logic#execute()`.
 
+The parsing of the add command is facilitated by `AddCommandParser`. It extends `Parser<AddCommand>` implementing the following operations:
+
+* `AddCommandParser#parse()` — Returns an `AddCommand` instance encapsulating a `Person` or `Class` instance created from user input.
+
 Given below is an example usage scenario and how the add mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time.
+Step 1. The user launches the application for the first time. The `ModelManager` will be initialized with an empty `AddressBook`.
 
-Step 2. The user executes `add student n/David ...` to add a new student. `AddCommand#of()` is called and a new `AddCommand` instance encapsulating a new `Student` instance to be added to `Model` is instantiated. The `AddCommand#execute()` of this instance is then called, adding the `Student` instance to the `Model`.
+Step 2. The user executes `add student n/David ...` to add a new student. `AddCommandParser#parse()` is called to handle
+the user input and by calling `AddCommand#of()` internally, a new `AddCommand` instance encapsulating a new `Student` 
+instance to be added to `Model` is instantiated. The `AddCommand#execute()` operation of this instance is then called, adding the `Student` instance to the `Model`.
 
 The following sequence diagram shows how the add operation works:
 
-{diagram to be added}
+![AddSequenceDiagram](images/AddSequenceDiagram.png)
 
-Step 3. The user executes `list_s` to view the list of students he has added.
+Step 3. The user executes `list student` to view the list of students he has added.
 
 The following activity diagram summarizes what happens when a user executes the add command:
 
-{diagram to be added}
+![AddActivityDiagram](images/AddActivityDiagram.png)
+
+
 #### Design considerations:
 
 **Aspect: How to handle the adding of class and person separating:**
@@ -204,6 +212,57 @@ The following activity diagram summarizes what happens when a user executes the 
     * Pros: Less cluttered.
     * Cons: Harder to implement.
 * **Alternative 2:** Separate classes that extend `Command` for adding of class and person separately.
+    * Pros: Easier to implement.
+    * Cons: More cluttered.
+
+### \[Implemented\] Editing a student, tutor or class
+
+#### Implementation
+
+The edit mechanism is facilitated by `EditCommand`. It extends `Command` with an abstract class `EditDescriptor` 
+representing an object that will store the details to edit the `Model` with and its implementing classes. Also, it stores 
+the `Index` and `EditDescriptor` instances used in editing. Additionally, it implements the following operations:
+
+* `EditCommand#execute()` — Executes editing of the entity of the target index.
+* `EditCommand#createEditedPerson()` — Creates a `Person` instance by applying the changes on a `Person` instance as dictated by a `EditDescriptor` instance.
+* `EditCommand#createEditedClass()` — Creates a `Class` instance by applying the changes on a `Class` instance as dictated by a `EditDescriptor` instance.
+
+The `EditCommand#execute()` operation is exposed in the `Logic` interface as `Logic#execute()`.
+
+The parsing of the edit command is facilitated by `EditCommandParser`. It extends `Parser<EditCommand>` implementing the following operations:
+
+* `EditCommandParser#parse()` — Returns an `EditCommand` instance encapsulating the `Index` and `EditDescriptor` instances created from user input.
+
+Given below is an example usage scenario and how the edit mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `ModelManager` will be initialized with an empty `AddressBook`.
+
+Step 2. The user then executes `add student n/David ...` to add a new student. A `Student` instance is added to the `Model`.
+
+Step 3. The user executes `edit 1 n/Tom ...` to edit the existing student.`EditCommandParser#parse()` is called to handle
+the user input and a new `EditCommand` instance encapsulating the `Index` and `EditDescriptor` instances (instantiated based on the inputs of the user) is created.
+The `EditCommand#execute()` operation of this instance is then called. Firstly, the `Student` to edit is identified using the `Index` instance.
+Internally, `EditCommand#createEditedPerson()` is then called to return a new `Student` instance reflecting the changes 
+dictated by the `EditDescriptor` and the original values of the existing `Student` instance. This new `Student` instance will replace the existing `Student` instance in the `Model`.
+
+The following sequence diagram shows how the edit operation works:
+
+![EditSequenceDiagram](images/EditSequenceDiagram.png)
+
+Step 3. The description panel will then display the information of the edited student for the user to view the changes he has made.
+
+The following activity diagram summarizes what happens when a user executes the edit command:
+
+![EditActivityDiagram](images/EditActivityDiagram.png)
+
+#### Design considerations:
+
+**Aspect: How to handle the editing of class and person separating:**
+
+* **Alternative 1 (current choice):** An `EditCommand` instance has all implementations of the abstract class `EditDescriptor` such as `EditTuitionClassDescriptor` or `EditStudentDescriptor` for it to handle the editing of persons and classes.
+    * Pros: Less cluttered.
+    * Cons: Harder to implement.
+* **Alternative 2:** Separate classes that extend `Command` for editing of class and person separately.
     * Pros: Easier to implement.
     * Cons: More cluttered.
 
@@ -353,7 +412,7 @@ The operations are exposed to `Logic` interface as `Logic#updateCurrentListType(
 
 Step 1. The user launches the application for the first time. The `ModelManager` would be initialised and the `type` is set to the default list type which is `STUDENT_LIST`.
 
-Step 2. The user execute `list_c` command to list out tuition classes by ccalling `ListTuitionClassCommand`. The `ListTuitionClassCommand` calls `Model#updateCurrentListType()` with `TUITIONCLASS_LIST` being the parameter, causing the type in `ModelManager` to update to `TUITIONCLASS_LIST`. 
+Step 2. The user execute `list c` command to list out tuition classes by ccalling `ListTuitionClassCommand`. The `ListTuitionClassCommand` calls `Model#updateCurrentListType()` with `TUITIONCLASS_LIST` being the parameter, causing the type in `ModelManager` to update to `TUITIONCLASS_LIST`. 
 
 Step 3. The command then returns a `commandResult` with its `commandType` field being `LIST`. This will cause calling `commandResult.isList()` to return true. 
 
