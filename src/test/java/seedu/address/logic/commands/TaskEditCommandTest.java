@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TEAM;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TASK;
@@ -111,6 +112,16 @@ public class TaskEditCommandTest {
         assertCommandFailure(taskEditCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
 
+    @Test
+    public void execute_nullFieldUnfilteredList_throwsNullPointerException() {
+        Task editedTask = new TaskBuilder(COOK).build();
+
+        assertThrows(NullPointerException.class, () -> new TaskEditCommand(INDEX_FIRST_TEAM, null,
+                editedTask.getName(), editedTask.getDeadline().get()));
+
+        assertThrows(NullPointerException.class, () -> new TaskEditCommand(null, INDEX_FIRST_TASK,
+                editedTask.getName(), editedTask.getDeadline().get()));
+    }
 
     @Test
     public void equals() {

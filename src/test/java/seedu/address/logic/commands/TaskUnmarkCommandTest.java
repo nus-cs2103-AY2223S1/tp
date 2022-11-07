@@ -1,11 +1,15 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TEAM;
 import static seedu.address.testutil.TypicalIndexes.INDEX_INVALID_TASK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TASK;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TEAM;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_TASK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_TEAM;
 import static seedu.address.testutil.TypicalTasks.PACK;
@@ -72,6 +76,51 @@ public class TaskUnmarkCommandTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
         assertCommandFailure(taskUnmarkCommand, expectedModel, expectedMessage);
+    }
+
+    @Test
+    public void execute_nullInputUnfilteredList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new TaskUnmarkCommand(null, null));
+    }
+
+    @Test
+    public void execute_nullFieldUnfilteredList_throwsNullPointerException() {
+
+        assertThrows(NullPointerException.class, () -> new TaskUnmarkCommand(INDEX_FIRST_TEAM, null));
+
+        assertThrows(NullPointerException.class, () -> new TaskUnmarkCommand(null, INDEX_FIRST_TASK));
+
+    }
+
+    @Test
+    public void equals() {
+        TaskUnmarkCommand taskUnmarkFirstCommand = new TaskUnmarkCommand(INDEX_FIRST_TEAM, INDEX_FIRST_TASK);
+        TaskUnmarkCommand taskUnmarkSecondCommand = new TaskUnmarkCommand(INDEX_FIRST_TEAM, INDEX_SECOND_TASK);
+        TaskUnmarkCommand taskUnmarkThirdCommand = new TaskUnmarkCommand(INDEX_SECOND_TEAM, INDEX_FIRST_TASK);
+        TaskUnmarkCommand taskUnmarkFourthCommand = new TaskUnmarkCommand(INDEX_SECOND_TEAM, INDEX_SECOND_TASK);
+
+
+        // same object -> returns true
+        assertTrue(taskUnmarkFirstCommand.equals(taskUnmarkFirstCommand));
+
+        // same values -> returns true
+        TaskUnmarkCommand taskUnmarkFirstCommandCopy = new TaskUnmarkCommand(INDEX_FIRST_TEAM, INDEX_FIRST_TASK);
+        assertTrue(taskUnmarkFirstCommand.equals(taskUnmarkFirstCommandCopy));
+
+        // different types -> returns false
+        assertFalse(taskUnmarkFirstCommand.equals(1));
+
+        // null -> returns false
+        assertFalse(taskUnmarkFirstCommand.equals(null));
+
+        // different team -> returns false
+        assertFalse(taskUnmarkFirstCommand.equals(taskUnmarkThirdCommand));
+
+        // different task -> returns false
+        assertFalse(taskUnmarkFirstCommand.equals(taskUnmarkSecondCommand));
+
+        // different object -> returns false
+        assertFalse(taskUnmarkFirstCommand.equals(taskUnmarkFourthCommand));
     }
 
 }
