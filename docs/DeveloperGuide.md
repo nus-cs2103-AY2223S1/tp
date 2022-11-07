@@ -362,7 +362,7 @@ This feature allows the user(teacher) to sort the students from Teacher's Pet by
 The `sort` mechanism is facilitated within [TeachersPet.java](https://github.com/AY2223S1-CS2103T-T09-4/tp/tree/master/src/main/java/seedu/address/model/TeachersPet.java).
 The `SortCommand` object will be creating a comparator based on the argument received and pass it to `TeachersPet` so that it will return the
 list of students as per usual. Additionally, it implements the following operation:
-- `TeachersPet#SortStudents(ComparatorM<Student>)` -- Updates the `students` by sorting the list with the given `Comparator`.
+- `TeachersPet#SortStudents(Comparator<Student>)` -- Updates the `students` by sorting the list with the given `Comparator`.
 
 The following diagram illustrates how the operation works:
 
@@ -691,21 +691,6 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
     - 2a1. Teacher’s Pet shows a message indicating student’s attendance is already marked as present.
 
         Use case ends.
-
-#### Use case: **Allocate a slot for future class**
-
-**MSS**
-
-1. Teacher requests to find the next available slot for class.
-2. Teacher discusses with the student about whether the proposed slot is possible.
-3. Teacher [edits](#use-case-edit-a-students-class-date) the student record with the next class date.
-
-**Extensions**
-
-- 2a. The student cannot make it on the proposed slot.
-  - Step 1-2 is repeated until a mutually-agreed slot is found.
-
-    Use case resumes at step 3.
 
 ### Non-Functional Requirement
 
