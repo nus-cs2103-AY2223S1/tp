@@ -814,7 +814,7 @@ testers are expected to do more *exploratory* testing.
     3. Test case: `grade 1 ra1/17 mt/55 pa/40 fn/101` <br>
        Expected: No marks will be updated. Error details shown in status message.
 
-    4. Other incorrect delete commands to try: `grade 1 ra1/19`, `grade x`, `...` (where x is larger than the list size or where input score for the assessment is greater than the total marks)<br>
+    4. Other incorrect grade commands to try: `grade 1 ra1/19`, `grade x`, `...` (where x is larger than the list size or where input score for the assessment is greater than the total marks)<br>
        Expected: Similar to previous.
 
    
