@@ -74,7 +74,6 @@ class ExportCommandTest {
             fail("Exception not expected");
         }
     }
-    
     @Test
     public void equals_sameCommand_returnsTrue() {
 
