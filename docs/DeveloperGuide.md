@@ -5,42 +5,7 @@ title: Developer Guide
 
 # **SoCompiler Developer Guide**
 
-
-## **Table of Contents**
-
-1. [Introduction](#1-introduction)
-2. [Getting Started](#2-getting-started)
-3. [Design](#3-design)
-   1. [Architecture](#31-architecture)
-   2. [UI Component](#32-ui-component)
-   3. [Logic Component](#33-logic-component)
-   4. [Model Component](#34-model-component)
-   5. [Storage Component](#35-storage-component)
-   6. [Common Classes](#36-common-classes)
-4. [Implementation](#4-implementation)
-   1. [Module Class](#41-module-class)
-   2. [Add Module Feature](#42-add-module-feature)
-   3. [Delete Module Feature](#43-delete-module-feature)
-   4. [Find Module Feature](#44-find-module-feature)
-5. [Documentation, Logging, Testing, Configuration and Dev-Ops](#5-documentation-logging-testing-configuration-dev-ops)
-6. [Acknowledgements: Requirements](#6-acknowledgements)
-7. [Appendix A: Requirements](#7-appendix-a-requirements)
-   1. [Product Scope](#71-product-scope)
-   2. [User Stories](#72-user-stories)
-   3. [Use Cases](#73-use-cases)
-   4. [Non-Functional Requirements](#74-non-functional-requirements)
-   5. [Glossary](#75-glossary)
-8. [Appendix B: Instructions for Manual Testing](#8-appendix-b-instructions-for-manual-testing)
-   1. [Launch and Shutdown](#81-launch-and-shutdown)
-   2. [Deleting a Person](#82-deleting-a-person)
-   3. [Saving Data](#83-saving-data)
-
-
---------------------------------------------------------------------------------------------------------------------
-
-## 1. **Introduction**
-
-SoCompiler is a **desktop app for managing contacts and module information, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). It is built specifically for School of Computing(SOC) students in NUS but can also be used by other students from NUS.
+SoCompiler is a **desktop app for managing contacts and module information, optimized for use via a [Command Line Interface](#command-line-interface) (CLI)** while still having the benefits of a [Graphical User Interface](#graphical-user-interface) (GUI). It is built specifically for [School of Computing](#school-of-computing) (SOC) students in NUS but can also be used by other students from NUS.
 
 This developer guide will expose the architecture behind SoCompiler and showcase the specifics of how commands are handled by the application.
 
@@ -48,20 +13,56 @@ In order to be a successful SoCompiler Developer, you need a general understandi
 * Java language
 * JavaFx
 
-## 2. **Getting started**
+
+## **Table of Contents**
+
+1. [Getting Started](#1-getting-started)
+2. [Design](#2-design)
+   1. [Architecture](#21-architecture)
+   2. [UI Component](#22-ui-component)
+   3. [Logic Component](#23-logic-component)
+   4. [Model Component](#24-model-component)
+   5. [Storage Component](#25-storage-component)
+   6. [Common Classes](#26-common-classes)
+3. [Implementation](#3-implementation)
+   1. [Module Class](#31-module-class)
+   2. [Add Module Feature](#32-add-module-feature)
+   3. [Delete Module Feature](#33-delete-module-feature)
+   4. [Find Module Feature](#34-find-module-feature)
+4. [Documentation, Logging, Testing, Configuration and Dev-Ops](#4-documentation-logging-testing-configuration-dev-ops)
+5. [Acknowledgements: Requirements](#5-acknowledgements)
+6. [Appendix A: Requirements](#6-appendix-a-requirements)
+   1. [Product Scope](#61-product-scope)
+   2. [User Stories](#62-user-stories)
+   3. [Use Cases](#63-use-cases)
+   4. [Non-Functional Requirements](#64-non-functional-requirements)
+   5. [Glossary](#65-glossary)
+7. [Appendix B: Instructions for Manual Testing](#7-appendix-b-instructions-for-manual-testing)
+   1. [Launch and Shutdown](#71-launch-and-shutdown)
+   2. [Deleting a Person](#72-deleting-a-person)
+   3. [Saving Data](#73-saving-data)
+
+   
+
+---------------------------------------------------------------------------------------------------------------------
+## 1. **Getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
+[Back to Top](#socompiler-developer-guide)
+
 --------------------------------------------------------------------------------------------------------------------
 
-## 3. **Design**
+## 2. **Design**
 
 SoCompiler aims to provide features that are intuitive and simple to use. Keeping this in mind, we pursed an iterative approach, adding new features amidst evolving requirements. This gives rise to the following main guiding principles for SoCompiler:
 
 **Maintainability**
+
 This project is built upon an application called [AddressBook Level 3 (AB3)](https://se-education.org/addressbook-level3/), which follows the Model View Controller(MVC) design pattern. Ab3 was developed in a manner that facilitates easy modification. We capitilised on this fact and built upon existing components in AB3, such as [UI](#32-ui-component), [Logic](#33-logic-component), [Model](#34-model-component) and [Storage](#35-storage-component).
 
 **Command Line Interface (CLI) Oriented**
+
 As our target audience is SOC students who usually type fast and are familiar with command line interfaces, we designed SoCompiler to be more efficient at managing contacts and module information using commands compared to other apps in the market.
 
 <div markdown="span" class="alert alert-primary">
@@ -72,7 +73,7 @@ Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.h
 diagrams.
 </div>
 
-### 3.1. Architecture
+### 2.1. Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
@@ -90,14 +91,14 @@ is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
-[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+[**`Commons`**](#26-common-classes) represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [**`UI`**](#22-ui-component): The [User Interface](#user-interface) (UI) of the App.
+* [**`Logic`**](#23-logic-component): The command executor.
+* [**`Model`**](#24-model-component): Holds the data of the App in memory.
+* [**`Storage`**](#25-storage-component): Reads data from, and writes data to, the hard disk.
 
 **How the architecture components interact with each other**
 
@@ -108,7 +109,7 @@ the command `delete 1`.
 
 Each of the four main components (also shown in the diagram above),
 
-* defines its *API* in an `interface` with the same name as the Component.
+* defines its *[Application Programming Interface](#application-programming-interface) (API)*  in an `interface` with the same name as the Component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding
   API `interface` mentioned in the previous point.
 
@@ -121,10 +122,11 @@ implementation of a component), as illustrated in the (partial) class diagram be
 
 The sections below give more details of each component.
 
-### 3.2. UI component
+[Back to Top](#socompiler-developer-guide)
 
-The **API** of this component is specified
-in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+### 2.2. UI component
+
+**API** : [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -145,10 +147,11 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
-### 3.3. Logic component
+[Back to Top](#socompiler-developer-guide)
 
-**
-API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+### 2.3. Logic component
+
+**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -183,10 +186,11 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser`
   interface so that they can be treated similarly where possible e.g, during testing.
 
-### 3.4. Model component
+[Back to Top](#socompiler-developer-guide)
 
-**
-API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+### 2.4. Model component
+
+**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="1000" />
 
@@ -204,10 +208,11 @@ The `Model` component,
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they
   should make sense on their own without depending on other components)
 
-### 3.5. Storage component
+[Back to Top](#socompiler-developer-guide)
 
-**
-API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+### 2.5. Storage component
+
+**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -220,17 +225,21 @@ The `Storage` component,
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects
   that belong to the `Model`)
 
-### 3.6. Common classes
+[Back to Top](#socompiler-developer-guide)
+
+### 2.6. Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
+[Back to Top](#socompiler-developer-guide)
+
 --------------------------------------------------------------------------------------------------------------------
 
-## 4. **Implementation**
+## 3. **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### 4.1. Module Class
+### 3.1. Module Class
 
 The [`Module`](https://github.com/AY2223S1-CS2103T-W12-1/tp/tree/master/src/main/java/seedu/address/model/module) Class
 facilitates the storing of various information related to a student's module that he/she is currently taking.
@@ -266,7 +275,9 @@ For the five classes,
 
 <img src="images/ModuleClassDiagram.png" width="550" />
 
-### 4.2. Add Module feature
+[Back to Top](#socompiler-developer-guide)
+
+### 3.2. Add Module feature
 
 The AddModule commands extends `Command`, and takes in a `moduleCode`, `lectureDetails`, `tutorialDetails`, `zoomLink`
 and multiple optional `assignmentDetails` to be added. Additionally, it implements the following operation:
@@ -296,7 +307,9 @@ The following object diagram illustrates the above example:
 The following sequence diagram shows how the AddModule operation works:
 ![AddModuleSequenceDiagram](images/AddModuleSequenceDiagram.png)
 
-### 4.3. Delete Module feature
+[Back to Top](#socompiler-developer-guide)
+
+### 3.3. Delete Module feature
 
 The DeleteModule commands extends `Command`, and takes in an `Index` to be deleted. Additionally, it implements the following operation:
 
@@ -329,7 +342,9 @@ The following sequence diagram shows how the DeleteModule operation works:
 
 </div>
 
-### 4.4. Find Module feature
+[Back to Top](#socompiler-developer-guide)
+
+### 3.4. Find Module feature
 
 The FindModule command extends `Command`, and takes in an `ModuleDetailsContainsKeywordsPredicate` to filter the module list by. Additionally, it implements the following operation:
 * `FindModuleCommand#execute()`
@@ -354,9 +369,11 @@ The following sequence diagram shows how the FindModule operation works:
 
 </div>
 
+[Back to Top](#socompiler-developer-guide)
+
 --------------------------------------------------------------------------------------------------------------------
 
-## 5. **Documentation, logging, testing, configuration, dev-ops**
+## 4. **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -364,8 +381,10 @@ The following sequence diagram shows how the FindModule operation works:
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
 
+[Back to Top](#socompiler-developer-guide)
+
 --------------------------------------------------------------------------------------------------------------------
-## 6. **Acknowledgements**
+## 5. **Acknowledgements**
 
 SoCompiler is built-upon [AddressBook-Level3](https://github.com/se-edu/addressbook-level3/tree/master/docs), a sample project that serves as a base for Computer Science students to work on.
 
@@ -373,11 +392,13 @@ SoCompiler is built-upon [AddressBook-Level3](https://github.com/se-edu/addressb
 
 Code to read a file from resources folder is adapted from this thread on [mkyong.com](https://mkyong.com/java/java-read-a-file-from-resources-folder/)
 
+[Back to Top](#socompiler-developer-guide)
+
 --------------------------------------------------------------------------------------------------------------------
 
-## 7. **Appendix A: Requirements**
+## 6. **Appendix A: Requirements**
 
-### 7.1. Product scope
+### 6.1. Product scope
 
 **Target user profile**:
 
@@ -391,7 +412,9 @@ Code to read a file from resources folder is adapted from this thread on [mkyong
 
 **Value proposition**: Sole app that SoC students need to streamline their everyday routines
 
-### 7.2. User stories
+[Back to Top](#socompiler-developer-guide)
+
+### 6.2. User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -421,7 +444,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | Teaching Assistant | access my module website                           | grade my student's submission                                   |
 | `*`      | Teaching Assistant | easily group my students' contacts together        | easily find them at once                                        |
 
-### 7.3. Use Cases
+[Back to Top](#socompiler-developer-guide)
+
+### 6.3. Use Cases
 
 (For all use cases below, the **System** is the `SoCompiler` and the **Actor** is the `user`, unless specified
 otherwise)
@@ -615,9 +640,10 @@ otherwise)
     * 3c1. SoCompiler shows an error message
 
       Use case ends.
-    
 
-### 7.4. Non-Functional Requirements
+[Back to Top](#socompiler-developer-guide)
+
+### 6.4. Non-Functional Requirements
 
 1. Should work on any [mainstream OS](#mainstream-os) as long as it has Java `11` or above installed.
 2. Should be able to hold up to 1000 persons and modules without a noticeable sluggishness in performance for typical
@@ -627,8 +653,29 @@ otherwise)
 4. The system should be backward compatible with data stored in earlier versions of the system.
 5. The product is not required to handle interaction with other users.
 
+[Back to Top](#socompiler-developer-guide)
 
-### 7.5. Glossary
+### 6.5. Glossary
+
+#### Command Line Interface
+
+It is an interface where users input text commands to interact with the computer/program.
+
+#### Graphical User Interface
+
+It is an interface where users can interact with apps/electrical devices through graphical icons and audio indicators.
+
+#### School of Computing
+
+It refers to the School of Computing from the National University of Singapore.
+
+#### User Interface
+
+The point of human-computer interaction and communication.
+
+#### Application Programming Interface
+
+The way for two or more computer programs to communicate with each other.
 
 #### Mainstream OS: 
 
@@ -638,12 +685,11 @@ Operating Systems such as Windows, Linux, Unix, OS-X
 
 University modules offered in NUS
 
-
+[Back to Top](#socompiler-developer-guide)
 
 --------------------------------------------------------------------------------------------------------------------
---------------------------------------------------------------------------------------------------------------------
 
-## 8. **Appendix B: Instructions for manual testing**
+## 7. **Appendix B: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
@@ -652,7 +698,7 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### 8.1. Launch and shutdown
+### 7.1. Launch and shutdown
 
 1. Initial launch
 
@@ -669,7 +715,7 @@ testers are expected to do more *exploratory* testing.
         Expected: The most recent window size and location is retained.
     
 
-### 8.2. Deleting a person
+### 7.2. Deleting a person
 
 1. Deleting a person while all persons are being shown
 
@@ -686,7 +732,7 @@ testers are expected to do more *exploratory* testing.
        Expected: Similar to previous.
     
 
-### 8.3. Saving data
+### 7.3. Saving data
 
 1. Dealing with missing/corrupted data files
 
