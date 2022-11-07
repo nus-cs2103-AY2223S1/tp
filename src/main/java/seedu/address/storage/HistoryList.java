@@ -1,16 +1,16 @@
 package seedu.address.storage;
 
+import java.util.Deque;
 import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Stack;
 
 /**
  * Manages storage of previous commands in a linked list.
  */
 public class HistoryList {
-    private static Queue<String> history = new LinkedList<>();
+    private static Deque<String> history = new LinkedList<>();
 
-    public static Queue<String> getList() {
+    public static Deque<String> getList() {
         return history;
     }
 
@@ -32,9 +32,9 @@ public class HistoryList {
         history.add(command);
     }
 
-    private static Queue<String> reverseQueue() {
+    private static Deque<String> reverseQueue() {
         Stack<String> stack = new Stack<>();
-        Queue<String> tempQ = new LinkedList<>(history);
+        Deque<String> tempQ = new LinkedList<>(history);
         while (!tempQ.isEmpty()) {
             stack.add(tempQ.peek());
             tempQ.remove();
@@ -62,7 +62,7 @@ public class HistoryList {
     public static String printList() {
         int index = 1;
         String toBePrinted = "";
-        Queue<String> tempHistory = reverseQueue();
+        Deque<String> tempHistory = reverseQueue();
         for (String s : tempHistory) {
             toBePrinted = toBePrinted + index + ": " + s.toString() + "\n";
             index += 1;
