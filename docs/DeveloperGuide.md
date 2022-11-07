@@ -1066,6 +1066,13 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Delete the `bobabot.json` file to simulate missing data file. Launch the application. 
+   2. Expected: A new `bobabot.json` file is created with some sample data.
+
+2. Dealing with invalid data in data files
+
+   1. Open the `bobabot.json` file. Change `birthdayMonth` to `today` (or any other fields to an invalid format).
+   2. Launch `bobaBot`.
+   3. Expected: `bobaBot` starts up with no sample data.
 
 
