@@ -333,6 +333,7 @@ Examples:
 | **Edit Task**         | `editTask INDEX [n/TASK_NAME] [d/DESCRIPTION] [pr/PRIORITY] [c/CATEGORY] [dl/DEADLINE] [pe/EMAIL_OF_PERSON_ASSIGNED] [do/IS_DONE]` <br> e.g., `editTask 2 c/frontend pe/charlotte@example.com`                         |
 | **Delete Task**       | `deleteTask INDEX` <br> e.g., `deleteTask 1`                                                                                                                                                                           |
 | **List Tasks**        | `listTasks`                                                                                                                                                                                                            |
+| **Find Task**         | `findTask KEYWORD [MORE_KEYWORDS]...` <br> e.g., `findTask refactor`                                                                                                                                                   |
 | **Filter Tasks**      | `filter [c/CATEGORY] [dl/DEADLINE]` <br> e.g., `filter c/backend dl/2022-12-12`                                                                                                                                        |
 | **Sort Tasks**        | `sort [pr/ORDER] [dl/ORDER]` <br> e.g., `sort pr/asc`                                                                                                                                                                  |
 
