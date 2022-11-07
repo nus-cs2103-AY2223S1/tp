@@ -775,9 +775,17 @@ For all use cases below, the **System** is the `NutriGoals` application and the 
 
 **MSS**
 
-1. User requests to find the nearest gym to where they are at.
+1. User requests to find the nearest gym to the loction they specified.
 2. NutriGoals returns a list of gyms, sorted by distance from closest to furthest.
 
+    Use case ends.
+
+**Extensions**
+
+* 1a. The specified location is invalid.
+
+  * 1a1. NutriGoals shows an error message.
+        
     Use case ends.
 
 #### UC-11: Get a healthy lifestyle tip
