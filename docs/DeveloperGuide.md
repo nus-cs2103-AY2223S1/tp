@@ -170,14 +170,25 @@ How the parsing works:
 
 The `Model` component,
 
-- stores the TruthTable data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-- stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which
-  is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to
+- stores the TruthTable data i.e., all `Person` objects (which are contained in a `UniquePersonList` object) and `Team`
+  objects (which are contained in a `UniqueTeamList` object) each of which containing `Task`, `Link` and `Person`
+  objects (see the section below regarding `Team`).
+- stores the currently 'selected' `Person` or `Team` objects (e.g., results of a search query) as a separate _filtered_ list which
+  is exposed to other classes as an unmodifiable `ObservableList<T>` where `T` is either `Person` or `Team` that can be 'observed' e.g. the UI can be bound to
   this list so that the UI automatically updates when the data in the list change.
 - stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as
   a `ReadOnlyUserPref` objects.
 - does not depend on any of the other three components (as the `Model` represents data entities of the domain, they
   should make sense on their own without depending on other components)
+
+Each `Team` object,
+
+- stores a list of `Task` objects (in a `TaskList` object), list of team members (`Person` objects in a 
+  `UniquePersonList` object) and `Link` objects (in a `UniqueLinkList`).
+- exposes a list of `Person` or `Task` objects as a `DisplayList<T>`, which itself contains a `FilteredList<T>` (where 
+  `T` refers to either `Person` or `Task`). This `FilteredList` will store a 'filtered' view on the data (e.g., results 
+  of a search query) sorted in a particular manner. It can be 'observed' e.g. the UI can be bound to this list so that 
+  the UI automatically updates when the data (or its order) in the list changes.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `TruthTable`, which `Person` references. This allows `TruthTable` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
