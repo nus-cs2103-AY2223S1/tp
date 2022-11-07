@@ -1,8 +1,7 @@
 package eatwhere.foodguide.logic.parser;
 
-import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_HELP;
 import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_RANDOM;
-import static eatwhere.foodguide.logic.parser.ParserUtil.arePrefixesPresent;
+import static eatwhere.foodguide.logic.parser.ParserUtil.isDisplayHelp;
 
 import java.util.Arrays;
 import java.util.function.Predicate;
@@ -27,18 +26,16 @@ public class FindPriceCommandParser implements Parser<FindPriceCommand> {
      * @throws DisplayCommandHelpException if the user input is for displaying command help
      */
     public FindPriceCommand parse(String args) throws ParseException, DisplayCommandHelpException {
-
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
                     String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FindPriceCommand.MESSAGE_USAGE));
         }
-
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_HELP, PREFIX_RANDOM);
-
-        if (arePrefixesPresent(argMultimap, PREFIX_HELP)) {
+        if (isDisplayHelp(args)) {
             throw new DisplayCommandHelpException(FindPriceCommand.MESSAGE_USAGE);
         }
+
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_RANDOM);
 
         Predicate<Eatery> predicate;
         if (argMultimap.getPreamble().isEmpty()) {

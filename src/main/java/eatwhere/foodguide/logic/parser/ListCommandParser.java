@@ -1,7 +1,6 @@
 package eatwhere.foodguide.logic.parser;
 
-import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_HELP;
-import static eatwhere.foodguide.logic.parser.ParserUtil.arePrefixesPresent;
+import static eatwhere.foodguide.logic.parser.ParserUtil.isDisplayHelp;
 
 import eatwhere.foodguide.logic.commands.ListCommand;
 import eatwhere.foodguide.logic.parser.exceptions.DisplayCommandHelpException;
@@ -19,9 +18,7 @@ public class ListCommandParser implements Parser<ListCommand> {
      * @throws DisplayCommandHelpException if the user input is for displaying command help
      */
     public ListCommand parse(String args) throws ParseException, DisplayCommandHelpException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_HELP);
-
-        if (arePrefixesPresent(argMultimap, PREFIX_HELP)) {
+        if (isDisplayHelp(args)) {
             throw new DisplayCommandHelpException(ListCommand.MESSAGE_USAGE);
         }
 
