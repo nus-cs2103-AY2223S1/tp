@@ -11,11 +11,31 @@ Teacher’s Pet allows you to manage your schedule and keep track of your studen
 
 Given below are my contributions to the project.
 
+* **New Feature**: Added the `mark` command
+  * What it does: Allows the tutor to mark a student as present for the class.
+  * Justification: Enables the tutor to keep track of the schedule.
+  * Highlights: Automatically increases the `Money Owed` of the student by the predefined `Rates per Class`.  Display the cross symbol in the student's box of the schedule list.
+  * Pull Requests: [#160](https://github.com/AY2223S1-CS2103T-T09-4/tp/pull/160)
 
-* **New Features Implemented**:
-  * Mark a student command - A feature that allows the tutor to mark the student as present for a class.
-  * Receive payment from a student command - A feature that allows the tutor to indicate that a student has paid.
-  * Statistics window - A display window part of the application which shows basic statistics of the tutor's students.
+
+* **New Feature**: Added the `pay` command
+  * What it does: Allows the tutor to indicate that a student has paid a certain amount of money.
+  * Justification: Enables the tutor to keep track of how much money a student owes or paid.
+  * Highlights: Automatically decreases the `Money Owed` of the student by the paid amount, while increasing the `Money Paid`.
+  * Pull Requests: [#172](https://github.com/AY2223S1-CS2103T-T09-4/tp/pull/172)
+
+
+* **New Feature**: Added the Statistics Window
+  * What it does: Track the tutor's statistics.
+  * Justification: Enables the tutor to keep track of how much money he/she had earned, and the number of students he/she has.
+  * Highlights: Automatically update the statistics in the top right window.
+  * Pull Requests: [#67](https://github.com/AY2223S1-CS2103T-T09-4/tp/pull/67), [#95](https://github.com/AY2223S1-CS2103T-T09-4/tp/pull/95)
+
+
+* **New Feature**: Added a notification feature for students who owe money
+  * What it does: Highlights the student's name in red and displays the amount owed, if the student owes money.
+  * Justification: Notifies the tutor who to collect money from in the day.
+  * Pull Requests: [#146](https://github.com/AY2223S1-CS2103T-T09-4/tp/pull/146)
 
 
 * **Enhancement to existing features** -`Find` command:
