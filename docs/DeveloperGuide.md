@@ -466,7 +466,7 @@ After the ProfNUS receives the instruction to edit a target `Schedule` (indicate
 
 During the execution, the following validity checks will be conducted:
 
-- Index validity check — The model will check if the index is valid. More specifically, the index should be within the range of $$1$$ to $$n$$ where $$n$$ is the total number of schedules. If the index is invalid, then a `CommandException` will be thrown.
+- Index validity check — The model will check if the index is valid. More specifically, the index should be within the range of 1 to n where n is the total number of schedules. If the index is invalid, then a `CommandException` will be thrown.
 - Schedule conflict check — The model will check if the edited schedule conflicts with any existing schedules that the user has. If conflict happens, then a `CommandException` will be thrown.
 - Optional parameters check — The parser will check if at least one of fields of the `Schedule` is edited. If no modification exists, then a `ParserException` will be thrown.
 
@@ -487,6 +487,7 @@ To locate a schedule uniquely with schedule, a user needs to know the module cod
 
 ### 5.10. ViewSchedule feature
 
+
 #### Implementation
 
 The proposed view schedule functionality is accomplished by `ViewScheduleCommand` which extends the `Command` class. The `ViewScheduleCommand` overrides the following method:
@@ -495,10 +496,22 @@ The proposed view schedule functionality is accomplished by `ViewScheduleCommand
 
 The following sequence diagram shows how view schedule operation works :
 
-![EditScheduleSequence](/Users/mr.yueng/Library/CloudStorage/OneDrive-NationalUniversityofSingapore/2022_fall_sem_NUS/CS2103T Software Engineering/tp/docs/images/ViewScheduleSequenceDiagram.png)
-
+![EditScheduleSequence](images/ViewScheduleSequenceDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+### 5.10. ViewTimetable feature
+
+
+
+
+
+
+
 
 ## **6. Documentation, logging, testing, configuration, dev-ops**
 
@@ -516,34 +529,39 @@ The following sequence diagram shows how view schedule operation works :
 
 **Target user profile**:
 
-* NUS SOC Professors
+* NUS SoC Professors
 * has a need to view and manage a significant number of students
 * has modules to manage
-* prefer desktop apps over other types
+* prefers desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: The application helps NUS SOC Professors manage their students and TA in the various modules, by providing a quick and easy way to find and contact them.
+**Value proposition**: The application helps NUS SoC Professors manage their students and TA in the various modules, by providing a quick and easy way to find and contact them.
 
 
 ### 7.2. User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​        | I want to …​                                 | So that I can…​                              |
-| -------- | ------------- | ------------------------------------------- | ------------------------------------------- |
-| `* * *`  | SoC Professor | View the contact information of my students | I can contact them                          |
-| `* * *`  | SoC Professor | View the list of modules                    | Better plan my module's timeslots           |
-| `* * *`  | SoC Professor | Edit the information of my students         | Rectify inaccuracies in student information |
-| `* * *`  | SoC Professor | Find a student                              |                                             |
-| `* * *`  | SoC Professor | Add new student to a module                 |                                             |
-| `* * *`  | SoC Professor | Add a module                                |                                             |
-| `* * *`  | SoC Professor | Delete a module                             |                                             |
-| `* * *`  | SoC Professor | Add a schedule                              |                                             |
-| `* * *`  | SoC Professor | Edit a schedule                             |                                             |
-| `* * * ` | SoC Professor | Delete a schedule                           |                                             |
-| `* *`    | SoC Professor | View my teaching schedules                  | Plan my activities in advance               |
+| Priority | As a …​       | I want to …​                                        | So that I can…​                             |
+|----------|---------------|-----------------------------------------------------|---------------------------------------------|
+| `* * *`  | SoC Professor | View the contact information of my students         | I can contact them                          |
+| `* * *`  | SoC Professor | View the list of modules                            | Better plan my module's timeslots           |
+| `* * *`  | SoC Professor | Edit the information of my students                 | Rectify inaccuracies in student information |
+| `* * *`  | SoC Professor | Find a student                                      |                                             |
+| `* * *`  | SoC Professor | Add new student to a module                         |                                             |
+| `* * *`  | SoC Professor | Add a module                                        |                                             |
+| `* * *`  | SoC Professor | Delete a module                                     |                                             |
+| `* * *`  | SoC Professor | Add a schedule                                      |                                             |
+| `* * *`  | SoC Professor | Edit a schedule                                     |                                             |
+| `* * * ` | SoC Professor | Delete a schedule                                   |                                             |
+| `* *`    | SoC Professor | Clear all the schedules of some modules at one time |                                             |
+| `* *`    | SoC Professor | View all the teaching schedules                     | Plan my activities in advance               |
+| `* *`    | SoC Professor | View all the teaching schedules of some modules     | Plan my activities in advance               |
+| `* *`    | SoC Professor | View all the teaching schedules of some weekdays    | Plan my activities in advance               |
+| `* *`    | SoC Professor | View the teaching Timetable directly                | Plan my activities in advance               |
+| `*`      | Professor     | Choose the favourite theme of software              |                                             |
 
 *{More to be added}*
 
@@ -756,7 +774,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. **Private contact detail**: A contact detail that is not meant to be shared with others
 3. **SoC**: School of Computing, National University of Singapore
 4. **Module**: Courses provided by professors from SoC
-5. **CLI**: Command-Line Interface(CLI), which receives commands from a user in the form of lines of text
+5. **Schedule**: Time slot of a module class, containing class name, time, venue class type and class group.
+6. **CLI**: Command-Line Interface(CLI), which receives commands from a user in the form of lines of text
 
 
 --------------------------------------------------------------------------------------------------------------------
