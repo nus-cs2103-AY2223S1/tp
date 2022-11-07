@@ -1,0 +1,36 @@
+@startuml
+!include style.puml
+
+mainframe **sd** update Model
+
+
+box Logic LOGIC_COLOR_T1
+participant "c:AssignTaskCommand" as AssignTaskCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "updatedTask:Task" as Task MODEL_COLOR
+participant ":assignedContact" as Contact MODEL_COLOR
+end box
+
+create Contact
+AssignTaskCommand -> Contact
+activate Contact
+Contact --> AssignTaskCommand
+deactivate Contact
+
+create Task
+AssignTaskCommand -> Task
+activate Task
+Task --> AssignTaskCommand
+deactivate Task
+
+AssignTaskCommand -> Model : setTask(oldTask, updatedTask)
+activate Model
+
+Model --> AssignTaskCommand
+deactivate Model
+
+@enduml
+

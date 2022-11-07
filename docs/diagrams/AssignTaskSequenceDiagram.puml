@@ -48,11 +48,7 @@ deactivate TaskPanelParser
 LogicManager -> AssignTaskCommand : execute()
 activate AssignTaskCommand
 
-AssignTaskCommand -> Model : setTask(oldTask, updatedTask)
-activate Model
-
-Model --> AssignTaskCommand
-deactivate Model
+ref over AssignTaskCommand, Model: update Model
 
 create CommandResult
 AssignTaskCommand -> CommandResult
