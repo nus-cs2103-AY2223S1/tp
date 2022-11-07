@@ -268,15 +268,16 @@ The following activity diagram illustrates what happens when the `delete student
 The implementation of the `find` command to find students, allows the user to see a filtered list of students.
 The filtering is based on an AND search, for example, `find n/John m/CS2103T` will show only students that have "John" in their name and are also from the CS2103T module.
 
-#### Current Implementation
+#### Implementation
+The filtering logic is done with predicate classes that implement Java's Predicate interface.
+![FindPredicateClassDiagram](images/FindPredicateClassDiagram.png)
 
-The following sequence diagram shows how the `find` command works. The exact command has been omitted in the diagram, instead
-replaced with "..." for readability.
-
+The following sequence diagrams shows how the `find` command works.
 ![FindSequenceDiagram](images/FindSequenceDiagram.png)
+![FindSequenceDiagramRef](images/FindSequenceDiagramRef.png)
 
 When a user enters `find n/John m/CS2103T`, the FindCommandParser created will parse the tags in the command.
-For each valid tag, it creates the respective XYZPrediate. In the example command, there are two search criteria
+For each valid tag, it creates the respective XYZPredicate. In the example command, there are two search criteria
 corresponding to name and module, hence a `NamePredicate` and a `ModulePredicate` is created.
 
 These predicates are stored in a `List`, which is passed to the `createChainedPredicates` internal method that combines the predicates in the AND sense.
@@ -1009,6 +1010,7 @@ Do the test cases sequentially to ensure correct expectation.
    Expected: An empty instance of EdRecord will be started, with more detailed error message logged.
 
 ## 9. Effort
+
 Implementing ModQuik was not easy. We have summarised the difficulties and challenges our team have encountered when developing ModQuik and listed it below.
 
 ### 9.1 Code Design
@@ -1027,3 +1029,5 @@ Moreover, if we were to link the module to the students, editing the tutorial mo
 For instance, though rare, a student may end up having the same TA for 2 mods.
 
 ### 9.2 User Interface
+
+AB3 did not have any different tabs. There was only one page showing the Person’s contacts. By adding tabs, we could implement different UIs into each tab to give the user a better experience. In order to do so, it requires us to put in more thought on how to render the tabs. By default, JavaFx create tabs in horizontal order on the top of TabPane and changing the tabs at left will cause the headers be vertical. We had to tackle aspects regarding setting tabs placed at left and ensuring keeping the tab headers horizontal. Furthermore, having multiple tabs required us to manipulate the tab toggling for certain commands as our target user is fast-typists who prefer typing over other means of input. In addition, we encountered difficulties in creating a pie chart and customizing the chart legends to show the number of students in each category, which required much time. Finally, implementing and styling the UI was not easy. Changing layout and adding icons is important to provide a standardised and modern look to the application. In order to do so, it required us to overhaul the existing CSS file in AddressBook Level-3.
