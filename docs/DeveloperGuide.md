@@ -487,7 +487,6 @@ testers are expected to do more *exploratory* testing.
 
 Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …}_
 
 ### Deleting an Eatery
 
@@ -507,12 +506,14 @@ Expected: No eatery is deleted. Error details shown in the status message. Statu
 
 Expected: Similar to previous.
 
-1. _{ more test cases …}_
 
 ### Saving data
+Dealing with missing/corrupted data files
 
-1. Dealing with missing/corrupted data files
+1. Delete the `foodguide.json` file found in `data`
 
-1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+Expected: If the data is missing, a default food guide list starts up.
 
-1. _{ more test cases …}_
+1. Edit the keys (e.g. `name` to `nnnn`) in the `foodguide.json` file found in `data`
+
+Expected: If the data is formatted wrongly, a blank food guide list starts up.
