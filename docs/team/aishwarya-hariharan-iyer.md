@@ -35,31 +35,34 @@ Given below are my contributions to the project.
           displays the corresponding filtered list. It matches keywords with targets on an exact-word basis such
           that at least one word form the target must match exactly with at least one word from the keyword. 
         * Justification: The developer may want to filter and find items on the list based on various parameters.
-        * Highlights: The find command
+        * Highlights: The find command takes the intersection of all keywords from different prefixes to increase 
+          the specificity of the search. It takes the union of all such keywords of the same (repeated) prefix so as 
+          increase the flexibility of use in being able to search for multiple keywords at once under the same field.
+          It also validates the inputs entered for each prefix to prevent users from getting confused between no 
+          items being listed because of an incorrect input (i.e. such an item can never exist) and because of no 
+          such item existing on the list at the time of search.
         * Credits: The `find` command builds on the AB3 `find` functionality.
 
 * **Enhancements to existing features**:
-    * E.g. Wrote additional tests for FindParser
+    * Wrote parser tests all the edit and find commands and for the add client command
 
 * **Documentation**:
     * Contributions to the UG
-        + Help set up the initial UG with content for commands as planned in first iteration
+        + Help set up the initial UG with all content planned in first iteration
+        + Added documentation and images for client command features: `add`, `delete`, `edit`
+        + Added documentation and images for find command features under `Client`, `Project` and `Issue`
     * Contributions to the DG
         * Write-up for Delete Command Feature consisting of Delete Project Command, Delete Issue Command, and Delete
           Client Command
+        * Write-up for Find Command Feature consisting of Find Project Command, Find Issue Command, and Find Client 
+          Command
         * UML Sequence Diagram for deleting a client from the app
         * UML Sequence Diagram for finding a client in the app
         * Design considerations for Delete Command Feature
         * Design considerations for Find Command Feature
 
 * **Contributions to team-based tasks**:
-    * (to be added soon)
-
-* **Community**:
-    * Review/mentoring contributions
-        * Links to PRs reviewed, instances of helping team members in other ways
-          (to be added soon)
-    * Contributions beyond the project team
-        * Evidence of helping others (e.g. responses on forums, bugs reported in other team's products)
-        * Evidence of technical leadership (e.g. sharing useful info on forum)
-          (to be added soon)
+    * Reviewed some team pull requests and offered suggestions on potential modifications
+    * Created some issues for the weekly deliverables
+    * Completed the assigned issues each week, including bug-fixing from the dry-run 
+    * Helped manage weekly meetings by setting Zoom links and taking notes
