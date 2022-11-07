@@ -43,6 +43,13 @@ for the code that I contributed.
   * Changed names in UI to NotionUS
 * **Review/mentoring contributions**: 
   * PRs reviewed:
+    [**#222**](https://github.com/AY2223S1-CS2103T-F12-3/tp/pull/222),
+    [**#221**](https://github.com/AY2223S1-CS2103T-F12-3/tp/pull/221),
+    [**#215**](https://github.com/AY2223S1-CS2103T-F12-3/tp/pull/215),
+    [**#214**](https://github.com/AY2223S1-CS2103T-F12-3/tp/pull/214),
+    [**#213**](https://github.com/AY2223S1-CS2103T-F12-3/tp/pull/213),
+    [**#201**](https://github.com/AY2223S1-CS2103T-F12-3/tp/pull/201),
+    [**#199**](https://github.com/AY2223S1-CS2103T-F12-3/tp/pull/199),
     [**#186**](https://github.com/AY2223S1-CS2103T-F12-3/tp/pull/186),
     [**#179**](https://github.com/AY2223S1-CS2103T-F12-3/tp/pull/179),
     [**#91**](https://github.com/AY2223S1-CS2103T-F12-3/tp/pull/91),
