@@ -27,7 +27,7 @@ public class Field {
      */
     public Field(String name) {
         requireNonNull(name);
-        checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidField(name), MESSAGE_CONSTRAINTS);
         this.name = name;
         this.value = null;
     }
@@ -40,7 +40,7 @@ public class Field {
      */
     public Field(String name, String value) {
         requireNonNull(name);
-        checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidField(name), MESSAGE_CONSTRAINTS);
         this.name = name;
         requireNonNull(value);
         checkArgument(isValidField(value), MESSAGE_CONSTRAINTS);
@@ -70,13 +70,6 @@ public class Field {
     /**
      * Returns true if a given string is a valid name argument.
      */
-    public static boolean isValidName(String test) {
-        return test.matches(VALIDATION_REGEX);
-    }
-
-    /**
-     * Returns true if a given string is a valid field argument.
-     */
     public static boolean isValidField(String test) {
         return test.matches(VALIDATION_REGEX);
     }
@@ -92,18 +85,6 @@ public class Field {
     @Override
     public String toString() {
         return "[" + name + "," + value + "]";
-    }
-
-    /**
-     * Returns a string representation to be displayed in the {@code PersonCard}
-     *
-     * @return the string representation for display
-     */
-    public String toStringDisplay() {
-        if (value == null) {
-            return name + ": ";
-        }
-        return name + ": " + value.toString();
     }
 
     @Override
@@ -124,6 +105,6 @@ public class Field {
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return value == null ? name.hashCode() : value.hashCode();
     }
 }
