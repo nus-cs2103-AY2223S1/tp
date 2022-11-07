@@ -5,8 +5,6 @@ skinparam arrowColor BLACK
 skinparam classBackgroundColor LOGIC_COLOR
 
 package Logic {
-
-Class Rc4hdbParser
 Class XYZCommand
 Class CommandResult
 Class "<<interface>>\nCommand" as Command
@@ -19,12 +17,16 @@ package Model{
 Class HiddenModel #FFFFFF
 }
 
+package Storage {
+Class HiddenStorage #FFFFFF
+}
+
 Class "<<interface>>\nCommand" as Command
 Class XYZCommand
 
 
 package "Parser classes"{
-Class "<<interface>>\nParser" as Parser
+Class "<<interface>>\nCommandParser" as CommandParser
 Class Rc4hdbParser
 Class XYZCommandParser
 Class CliSyntax
@@ -37,31 +39,18 @@ Class Prefix
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Logic
 
-LogicManager .right.|> Logic
-LogicManager -right->"1" Rc4hdbParser
-Rc4hdbParser ..> XYZCommand : creates >
-
-XYZCommand .up.|> Command
-LogicManager .left.> Command : executes >
-
-LogicManager --> Model
-LogicManager --> Storage
-Storage --[hidden] Model
-Command .[hidden]up.> Storage
-Command .right.> Model
-note right of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
-
-Logic ..> CommandResult
+LogicManager .up.|> Logic
+LogicManager .> Command
 LogicManager .down.> CommandResult
-Command .up.> CommandResult : produces >
-
-HiddenOutside ..> Rc4hdbParser
+LogicManager -> Model
+LogicManager --> Storage
+LogicManager --> Rc4hdbParser
 
 Rc4hdbParser .down.> XYZCommandParser: creates >
 
 XYZCommandParser ..> XYZCommand : creates >
 Rc4hdbParser ..> Command : returns >
-XYZCommandParser .up.|> Parser
+XYZCommandParser .up.|> CommandParser
 XYZCommandParser ..> ArgumentMultimap
 XYZCommandParser ..> ArgumentTokenizer
 ArgumentTokenizer .left.> ArgumentMultimap
