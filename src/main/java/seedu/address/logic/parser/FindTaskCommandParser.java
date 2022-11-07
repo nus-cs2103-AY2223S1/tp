@@ -42,7 +42,7 @@ public class FindTaskCommandParser implements Parser<FindTaskCommand> {
                     keywordsSpaceSeparated.add(ParserUtil.parseName(keyword).toString());
                 }
             }
-            // ["name", "name name"] -> ["name", "name", "name"]
+            assert(!keywordsSpaceSeparated.isEmpty());
             return new FindTaskCommand(new TaskContainsKeywordsPredicate(keywordsSpaceSeparated));
 
         } else if (searchPrefix.equals(PREFIX_MODULE)) {
@@ -56,7 +56,7 @@ public class FindTaskCommandParser implements Parser<FindTaskCommand> {
                     keywordsSpaceSeparated.add(ParserUtil.parseModule(keyword).toString());
                 }
             }
-            // ["name", "name name"] -> ["name", "name", "name"]
+            assert(!keywordsSpaceSeparated.isEmpty());
             return new FindTaskCommand(new TaskContainsModulesPredicate(keywordsSpaceSeparated));
 
         } else {
