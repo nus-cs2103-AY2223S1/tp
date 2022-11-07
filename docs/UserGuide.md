@@ -21,7 +21,7 @@ If you can type fast, Condonery can get your contact management tasks done faste
 1. Copy the file to the folder you want to use as the _home folder_ for your Condonery.
 
 1. Double-click the file to start the app. The interface will look like this.
-   ![Ui](images/Ui.png)
+   ![Ui](images/ug_condonery.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.
    Some example commands you can try:
@@ -215,7 +215,7 @@ Optional arguments:
   * If no clients matches the search, an error message will be shown.
 * The `-i` flag allows the user to upload images of the property. A file chooser dialog will appear after running the command.<br>
 
-![file_chooser](images/fileChooser.png)
+![file_chooser](images/ug_add_property.png)
 
 </div>
 
@@ -406,11 +406,13 @@ Format: `select -p INDEX`
 * The `INDEX` refers to the index number shown in the currently displayed property directory. 
 * The `INDEX` **must be a positive integer** 1, 2, 3, … 
 * The GUI changes to display only the selected property in the property directory, while clients interested in that property are shown in the client directory. 
-    
+
+![select_property](images/ug_select_property.png)
+
 </div>
 
 Examples:
-* `select -p 5` returns the fifth property in the property directory, alongside the list of interested clients in the client directory.
+* `select -p 3` returns the third property in the property directory, alongside the list of interested clients in the client directory.
 
 ### Clearing all entries : `clear -p`
 
@@ -451,7 +453,7 @@ Optional arguments:
   * If no properties matches the search, an error message will be shown.
 * The `-i` flag allows the user to upload images of the client. A file chooser dialog will appear after running the command.<br>
 
-![file_chooser](images/fileChooser.png)
+![file_chooser](images/ug_add_client.png)
 
 </div>
 
@@ -518,14 +520,13 @@ Format: `find -c NAME [MORE_NAMES]`
 * Only complete strings will be matched e.g., `Sam` will not match `Samuel`.
 * Client profiles matching at least one keyword will be returned (i.e., `OR` search). e.g., `Sean Lee` will return `Sean Tan`, `Bob Lee`.
 
+![find_client](images/ug_find_client.png)
+
 </div>
 
 Examples:
 * `find -c Janice` returns `Janice Tan` and `Janice Ong`
 * `find -c Dustin Chan` returns `Dustin Ong`, `Jane Chan`<br>
-
-[//]: # (Image to be added later)
-[//]: # (  ![result for 'find alex david']&#40;images/findAlexDavidResult.png&#41;)
 
 ### Deleting a client profile: `delete -c`
 

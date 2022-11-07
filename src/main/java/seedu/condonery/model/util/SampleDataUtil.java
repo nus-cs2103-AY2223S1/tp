@@ -27,33 +27,30 @@ public class SampleDataUtil {
                     new Price("1000000"), getTagSet("High-End", "Available"),
                     getClientSet(
                         new Client(new Name("Bobby"),
-                                new Address("BobbyAddress"),
+                                new Address("2 Pasir Ris Link, #09-01, 518184"),
                                 getTagSet("Friend")),
                         new Client(new Name("Samuel"),
-                                new Address("SamuelAddress"),
+                                new Address("127-149 Pasir Ris Grove, #04-01, 518133"),
                                 getTagSet("Friend"))),
                     PropertyTypeEnum.valueOf("CONDO"), PropertyStatusEnum.AVAILABLE),
-            new Property(new Name("INTERLACE"), new Address("180 Depot Road, S109684"),
+            new Property(new Name("INTERLACE"), new Address("180 Depot Road, #08-01, S109684"),
                     new Price("1000000"),
                     getTagSet("High-End", "Sold"),
                     getClientSet(
                             new Client(new Name("Casey"),
-                                    new Address("CaseyAddress"),
+                                    new Address("23 Pasir Ris Link, Watercolours, #03-02, 518169"),
                                     getTagSet("Rich"))),
                     PropertyTypeEnum.valueOf("CONDO"), PropertyStatusEnum.AVAILABLE),
-            new Property(new Name("D'LEEDON"), new Address("7 Leedon Heights, D'leedon, S267953"),
+            new Property(new Name("D'LEEDON"), new Address("7 Leedon Heights, D'leedon, #05-01, S267953"),
                     new Price("1000000"),
                     getTagSet("High-End", "Reserved"),
                     getClientSet(
-                            new Client(new Name("Jac"),
-                                    new Address("JacAddress"),
+                            new Client(new Name("Jacob"),
+                                    new Address("80-106 Elias Rd, #09-01, 519948"),
                                     getTagSet("Urgent")),
                             new Client(new Name("Jack"),
-                                    new Address("JackAddress"),
-                                    getTagSet("Test")),
-                            new Client(new Name("Hamster"),
-                                    new Address("Hamster"),
-                                    getTagSet("Friend", "Rich"))),
+                                    new Address("127-149 Pasir Ris Grove, #02-01, 518133"),
+                                    getTagSet("Friend"))),
                 PropertyTypeEnum.valueOf("CONDO"), PropertyStatusEnum.AVAILABLE)
         };
     }
@@ -61,16 +58,16 @@ public class SampleDataUtil {
     public static Client[] getSampleClients() {
         return new Client[] {
             new Client(new Name("Dennis Tan"), new Address("Wall St, #1G, S085301"),
-                    getTagSet("High-End", "Available")),
+                    getTagSet("Urgent", "Colleague")),
             new Client(new Name("Jeremy Tan"), new Address("11 Pulau Tekong Besar, Pulau, Tekong Camp, 508450"),
-                    getTagSet("High-End", "Sold")),
+                    getTagSet("Urgent", "Friend")),
             new Client(new Name("Walter Wong"), new Address("7 Leedon Heights, D'leedon, S267953"),
-                    getTagSet("High-End", "Reserved")),
-            new Client(new Name("Jacob"), new Address("JacobAddress"), getTagSet("Urgent")),
-            new Client(new Name("Jack"), new Address("JackAddress"), getTagSet("Friend")),
-            new Client(new Name("Casey"), new Address("CaseyAddress"), getTagSet("Rich")),
-            new Client(new Name("Bobby"), new Address("BobbyAddress"), getTagSet("Rich")),
-            new Client(new Name("Samuel"), new Address("SamuelAddress"), getTagSet("Friend"))
+                    getTagSet("Friend", "Colleague")),
+            new Client(new Name("Jacob"), new Address("80-106 Elias Rd, #09-01, 519948"), getTagSet("Urgent")),
+            new Client(new Name("Jack"), new Address("127-149 Pasir Ris Grove, #02-01, 518133"), getTagSet("Friend")),
+            new Client(new Name("Casey"), new Address("23 Pasir Ris Link, Watercolours, #03-02, 518169"), getTagSet("Rich")),
+            new Client(new Name("Bobby"), new Address("2 Pasir Ris Link, #09-01, 518184"), getTagSet("Rich")),
+            new Client(new Name("Samuel"), new Address("127-149 Pasir Ris Grove, #04-01, 518133"), getTagSet("Friend"))
         };
     }
 
