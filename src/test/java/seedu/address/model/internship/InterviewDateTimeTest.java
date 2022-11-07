@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.time.format.DateTimeParseException;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.TypicalDateTimes;
@@ -18,7 +20,7 @@ public class InterviewDateTimeTest {
     @Test
     public void constructor_invalidInterviewDateTime_throwsIllegalArgumentException() {
         // empty date and time
-        assertThrows(IllegalArgumentException.class, () -> new InterviewDateTime(""));
+        assertThrows(DateTimeParseException.class, () -> new InterviewDateTime(""));
 
         // blank date and time
         assertThrows(IllegalArgumentException.class, () -> new InterviewDateTime(" "));
@@ -34,9 +36,6 @@ public class InterviewDateTimeTest {
 
     @Test
     public void isValidInterviewDateTime() {
-        // null interview date time
-        assertThrows(NullPointerException.class, () -> InterviewDateTime.isValidInterviewDateTime(null));
-
         // invalid date
         assertFalse(InterviewDateTime.isValidInterviewDateTime(TypicalDateTimes.FIRST_INVALID_DATE
                 + " " + TypicalDateTimes.FIRST_VALID_TIME)); // only MMM or M allowed for month
