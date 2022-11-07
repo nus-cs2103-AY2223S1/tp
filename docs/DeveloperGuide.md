@@ -211,6 +211,7 @@ The following activity diagram shows what happens when a user executes a `add` c
 #### Design considerations
 
 **Aspect: Command to add status of an internship application**
+
 Most internship applications added by users would still be in progress, so a default "Progress" status is provided for
 each new `Internship` instead of requiring the user to provide one initially, saving time. As such, there is no need for
 a prefix for the `Status` field.
@@ -236,9 +237,9 @@ with the updated one.
 
 1. The user inputs the `status` command.
 2. The `InTrackParser` processes the input and creates a new `StatusCommandParser`.
-3. The `StatusCommandParser` then calls `ParserUtil#parseIndex(String oneBasedIndex)` to check for the validity of INDEX.
+3. The `StatusCommandParser` then calls `ParserUtil#parseIndex(String oneBasedIndex)` to check for the validity of `INDEX`.
 If `INDEX` is absent or invalid, a `ParseException` would be thrown.
-4. The `StatusCommandParser` then checks for the validity of STATUS. If `STATUS` is absent or invalid, a `ParseException`
+4. The `StatusCommandParser` then checks for the validity of `STATUS`. If `STATUS` is absent or invalid, a `ParseException`
 would be thrown.
 5. The `StatusCommandParser` then creates the `StatusCommand` based on the processed input.
 
@@ -280,8 +281,8 @@ applications.
 #### About this feature
 
 The add internship application task feature allows users to add a task associated to an internship application
-in the tracker via the command `addtask TASKNAME /at TASKTIME`, where `TASKNAME` must not be an empty string, and 
-`TASKTIME` must be in the format `dd-MM-yyyy HH:mm`.
+in the tracker via the command `addtask TASK_NAME /at TASK_TIME`, where `TASK_NAME` must not be an empty string, and 
+`TASK_TIME` must be in the format `dd-MM-yyyy HH:mm`.
 
 #### How it is implemented
 
@@ -296,8 +297,8 @@ target `Internship` object with the updated one.
 
 1. The user inputs the `addtask` command.
 2. The `InTrackParser` processes the input and creates a new `AddTaskCommandParser`.
-3. The `AddTaskCommandParser` then checks for the validity of `TASKNAME` and `TASKTIME`. If either `TASKNAME` or
-`TASKTIME` is absent or invalid, a `ParseException` would be thrown.
+3. The `AddTaskCommandParser` then checks for the validity of `TASK_NAME` and `TASK_TIME`. If either `TASK_NAME` or
+`TASK_TIME` is absent or invalid, a `ParseException` would be thrown.
 4. The `AddTaskCommandParser` then creates the `AddTaskCommand` based on the processed input.
 5. The `AddTaskCommand` throws a `CommandException` if no internship was selected.
 
@@ -326,7 +327,7 @@ The following activity diagram shows what happens when a user executes a `addtas
 
 #### About this feature
 The add internship remark feature allows users to add a remark to his/her internship interview information via the command
-`remark` `r/`.
+`remark r/`.
 
 #### How it is implemented
 The implemented `remark` command is facilitated by `RemarkCommand` and `RemarkCommandParser`. It enables users to add a Remark to their internship information.
@@ -338,39 +339,36 @@ get an Internship Object. A new Internship object is then created with the new r
 Given below is how the remark mechanism behaves at each step.
 
 #### Parsing User input
-Step 1. The user inputs the `remark` command  and the `r/` prefix and finally the `REMARK_CONTENT`
+1. The user inputs the `remark` command  and the `r/` prefix and finally the `REMARK_CONTENT`
 that he/she wants to add.
 
-Step 2. The 'InTrackParser' then parses the user input and checks if the command word and arguments are correct before creating a new
+2. The 'InTrackParser' then parses the user input and checks if the command word and arguments are correct before creating a new
 `RemarkCommandParser`.
 
-Step 3. The `RemarkCommandParser` then parses the user input and checks if the input variables are correct by checking for the presence of
-the prefixes. It also checks whether the command is in the correct format. The correct format of the input is `r/REMARK_CONTENT`.
-
+3. The `RemarkCommandParser` then parses the user input and checks if the input variables are correct by checking for the presence of
+the prefixes. It also checks whether the command is in the correct format. The correct format of the input is `r/REMARK_CONTENT`. 
 A `ParseException` will be thrown if the format is incorrect.
 
-Step 4. If the format is correct, `RemarkCommandParser` will create a `RemarkCommand` based on the given inputs.
+4. If the format is correct, `RemarkCommandParser` will create a `RemarkCommand` based on the given inputs.
 
 #### Command execution
 
-Step 5. The `LogicManager` executes the `RemarkCommand`.
+5. The `LogicManager` executes the `RemarkCommand`.
 
-Step 6. The `RemarkCommand` obtains a list of `Internship`s via the `getSelectedInternshipList()` method
+6. The `RemarkCommand` obtains a list of `Internship`s via the `getSelectedInternshipList()` method
 which is exposed to the `Model` interface as `Model#getSelectedInternshipList()`.
 
-Step 7. The `RemarkCommand` obtains the `Internship` object that the user wants to add the remark to via the
-`get(0)` method from list of `Internship`s.
+7. The `RemarkCommand` obtains the `Internship` object that the user wants to add the remark to via the
+`get(0)` method from list of `Internship`s. A `CommandException` will be thrown if an internship is not selected.
 
-A `CommandException` will be thrown if an internship is not selected.
-
-Step 8. The `RemarkCommand` then creates a new `Internship` object with the same variables as the old `Internship` except for the
+8. The `RemarkCommand` then creates a new `Internship` object with the same variables as the old `Internship` except for the
 `REMARK_CONTENT` that the user has input.
 
-Step 9. `RemarkCommand` then call the `Model#setInternship(internshipToEdit, editedInternship)` to replace the old `Internship` with the new `Internship` with the new `Remark`
+9. `RemarkCommand` then call the `Model#setInternship(internshipToEdit, editedInternship)` to replace the old `Internship` with the new `Internship` with the new `Remark`
 
 #### Displaying of result
 
-Step 10. Finally, the `RemarkCommand` creates a `CommandResult` with a success message and returns it to the `LogicManager` to complete the command execution. The
+10. Finally, the `RemarkCommand` creates a `CommandResult` with a success message and returns it to the `LogicManager` to complete the command execution. The
 GUI would also be updated on this change in the internship list and update the display of the `Internship` respectively.
 
 The following sequence diagram shows how the `remark` command works:
@@ -434,7 +432,7 @@ The following activity diagram shows what happens when a user executes a `findc`
 #### About this feature
 
 The sort internship feature allows users to sort the list of internship application via the given parameter in the given
-order via the command `sort SORT_TYPE SORT_ORDER`, where `SORT_TYPE` can either be time or salary, and `SORT_ORDER`
+order via the command `sort SORT_TYPE SORT_ORDER`, where `SORT_TYPE` can either be `time` or `salary`, and `SORT_ORDER`
 can either be `a` or `d`.
 
 #### How it is implemented
@@ -458,15 +456,15 @@ Given below is how the sort mechanism behaves at each step.
 Sort by salary:
 
 1. The `LogicManager` executes the `SortSalaryCommand`.
-2. The `SortSalaryCommand` checks if the `ORDER_TYPE` is `a` or `d`.
-3. If the `ORDER_TYPE` is `a`, then `Model#ascendSortSalary()` is called. If the `ORDER_TYPE` is `d`, then
+2. The `SortSalaryCommand` checks if the `SORT_ORDER` is `a` or `d`.
+3. If the `SORT_ORDER` is `a`, then `Model#ascendSortSalary()` is called. If the `SORT_ORDER` is `d`, then
 `Model#descendSortSalary()` is called.
 
 Sort by time:
 
 1. The `LogicManager` executes the `SortTimeCommand`.
-2. The `SortTimeCommand` checks if the `ORDER_TYPE` is `a` or `d`.
-3. If the `ORDER_TYPE` is `a`, then `Model#ascendSortTime()` is called. If the `ORDER_TYPE` is `d`, then
+2. The `SortTimeCommand` checks if the `SORT_ORDER` is `a` or `d`.
+3. If the `SORT_ORDER` is `a`, then `Model#ascendSortTime()` is called. If the `SORT_ORDER` is `d`, then
    `Model#descendSortTime()` is called.
 
 The following sequence diagram shows how the `sort` command works:
@@ -1000,7 +998,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User <u>selects an internship application (UC08)</u>.
+
 2. User requests to email the email address associated with the selected internship application.
+
 3. Default mail app is launched with the target recipient being the email address fo the selected internship application.
 
     Use case ends.
@@ -1018,8 +1018,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 7. The application is not required to support any other language other than English.
 8. The application is not required to support multiple users on a single device.
 9. The response to any commands carried out by the user should become visible within 5 seconds.
-10. The user is not required to install Gradle/JavaFx for the application to function. 
-11. The user is not required to have internet connection in order for the application to function.
+10. The user is not required to install Gradle/JavaFX for the application to function. 
+11. The user is not required to have an internet connection in order for the application to function.
 
 ### Glossary
 
@@ -1101,7 +1101,7 @@ More information on usage: [add command](UserGuide.html#adding-an-internship-app
     1. Prerequisites: List all internship applications using the `list` command. 
    
     2. Test case: `add c/Google p/SWE e/hr@google.com w/https://careers.google.com/ s/5000 t/Urgent`<br>
-    Expected: An internship application with the company `Google` with the following attributes are added to the 
+    Expected: An internship application with the company `Google` and the following attributes are added to the 
     internship applications list. The new internship is added to the last index of the internship list. The new 
     internship application card appeared at the bottom of the list. The details of the newly added internship is shown
     in the success message.
@@ -1220,10 +1220,10 @@ More information on usage: [deltag command](UserGuide.html#deleting-a-tag-from-a
        Expected: The `Urgent` tag is deleted from the first internship in the list.
 
     3. Test case: `deltag 1 Urgent Remote`<br>
-       Expected: No tags are deleted from the any internship. Error details shown in error message.
+       Expected: No tags are deleted from any internship. Error details shown in error message.
 
     4. Test case: `deltag 0 Urgent`<br>
-       Expected: No tags are added to any internship. Error details shown in the error message.
+       Expected: No tags are deleted from any internship. Error details shown in error message.
 
     5. Other incorrect status commands to try: `deltag 1`, `deltag x Urgent` (where x is larger than the list size)<br>
        Expected: Similar to previous.
