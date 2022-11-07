@@ -597,12 +597,13 @@ the data of your previous PennyWise home folder.
 **A**: Make sure that your `INDEX_OF_ENTRY` is the first parameter after the command word.
 
 **Q**: I want to have a `Medical` category to log my expenses. Is there anyway I can do it? <br>
-**A**: The categories for income and expenses entries are fixed. However, we are exploring the possibilities of user
-added categories so do look out for our software updates! For now, kindly categorise them under `Others`.
+**A**: The categories for income and expenses entries are fixed. However, we are exploring the possibilities of [user
+added categories](#categorising-your-expenses-and-income) so do look out for our software updates! 
+For now, kindly categorise them under `Others`.
 
 **Q**: Why are there missing dates on my Line Graph? <br>
 **A**: PennyWise automatically removes certain elements to ensure you can still get an overview of your finances!
-If you want to view all the dates enlarge your application!
+If you want to view all the dates, enlarge your application!
 
 **Q**: I prefer a date format like 4 Apr 2022. Why can't I pick the date format I want to use ? <br>
 **A**: Unfortunately PennyWise current only accepts one type of format which is `04-04-2022`. However, we are exploring
