@@ -13,14 +13,14 @@ import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
 
 /**
- * Deletes a person identified using its displayed index from the persons list of the application.
+ * Deletes a person identified using its displayed index from the person list of the application.
  */
 public class DeletePersonCommand extends Command {
 
     public static final String COMMAND_WORD = "deletePerson";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the person based on the index number in the persons list displayed.\n"
+            + ": Deletes the person based on the index number in the person list displayed.\n"
             + "Parameters: PERSON_INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 

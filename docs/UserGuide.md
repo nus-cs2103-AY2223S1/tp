@@ -31,7 +31,7 @@ Interface (GUI). If you can type fast, Duke The Market can help you organise you
 
    * **`addPerson`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/m d/22/03/1993` : Adds a person named `John Doe` to the application.
 
-   * **`deletePerson`**`3` : Deletes the 3rd person shown in the current persons list.
+   * **`deletePerson`**`3` : Deletes the 3rd person shown in the current person list.
 
    * **`clear`** : Deletes all persons and events.
 

@@ -13,7 +13,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
- * Adds a person to the persons list of the application.
+ * Adds a person to the person list of the application.
  */
 public class AddPersonCommand extends Command {
 
@@ -36,7 +36,7 @@ public class AddPersonCommand extends Command {
             + PREFIX_DOB + "03/04/2002";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the persons list of the"
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the person list of the"
             + " application";
 
 
