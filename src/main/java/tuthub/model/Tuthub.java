@@ -67,7 +67,8 @@ public class Tuthub implements ReadOnlyTuthub {
     }
 
     /**
-     * Returns true if a Tutor other than {@code excludedTutor} with the same identity as {@code Tutor} exists in tuthub.
+     * Returns true if a Tutor other than {@code excludedTutor} with the same identity as {@code Tutor}
+     * exists in tuthub.
      */
     public boolean hasTutorExcept(Tutor excludedTutor, Tutor tutor) {
         requireNonNull(tutor);
