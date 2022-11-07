@@ -36,8 +36,8 @@ Given below are my contributions to the project.
 
   6. **_Find Note command_** [(Link to own PR)](https://github.com/AY2223S1-CS2103T-W12-2/tp/pull/81)
      * **What it does**: Allow the user to find a note in the list of notes kept in SectresBook that matches the keyword specified.
-     * **Justification**: A find command for notes is important to allow users to filter through the current list of notes to magnify and search for the note that might be of interest to the user. This is important especially in the case that they are many notes currently being kept track of. This allows for convenience for the users.
-     * **Highlights**: Searching by keywords that matches words in the `Title` of a `Note` was tricky and gruelling as `Title` contain special characters (ASCII). Thus, many design considerations were needed in deciding what should and should not be allowed to be keyed in as the keywords for the command. Keywords are also made to ignore the special characters, thus, special and tricky`String` manipulation was needed to allow for a correct search. 
+     * **Justification**: Find command for notes is important to allow users to filter through the current list of notes to magnify and search for the note that are of interest to them. This is important especially in the case where many notes are currently being kept track of. 
+     * **Highlights**: Searching by keywords that matches words in `Title` of `Note` was tricky as `Title` contain special characters (ASCII). Thus, many design considerations were needed in deciding what should and should not be allowed to be keyed in as the keywords for the command. Keywords also made to ignore special characters, thus, special`String` manipulation was needed to allow for a correct search. 
    
 * **Project management:**
   * Initiated meetings 
@@ -56,7 +56,6 @@ Given below are my contributions to the project.
     * Structure of Notes, its integration and all of its related commands.
   * Updated parts of UG/DG not specific to a feature.
   * Fixed bugs(including UG bugs) related to implementation of notes.
-  * Changed version of JavaFx (11 to 11.0.2)
 
 * **Review/mentoring contributions:**
   * Reviewed contributions/pull requests by other group members
