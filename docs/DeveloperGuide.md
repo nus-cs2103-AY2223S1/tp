@@ -362,7 +362,7 @@ Usage Scenario of `delMeeting`:
 
 2) User then inputs `delMeeting i/1` to delete the first meeting shown in `listMeeting`. This will evoke `Command#execute` in `LogicManager`.
 
-_The sequence diagram and activity diagram of `delMeeting` is similar to the diagrams shown in [`delClient`](#413-delete-client) feature by replacing all occurrence of `client` with `meeting`._
+_The sequence diagram and activity diagram of `delMeeting` is similar to the diagrams shown in [`delClient`](#414-delete-client) feature by replacing all occurrence of `client` with `meeting`._
 
 ##### Design Considerations
 
@@ -420,7 +420,7 @@ Below is a sequence diagram that illustrates the execution of `listMeeting d/tom
     - Pros: It might be more intuitive for a new user.
     - Cons: There is limited number of short, representative prefixes that can be used and we feel that we are using quite a number of prefixes already. For example, we want to use `pd/` as a shorthand for `PERIOD`, but that is taken up by `PRODUCT` already. We want to use `p/`, but that is also taken up by `PHONE`. So we feel that it is best to use a keyword in a similar domain.
 
-#### 3.2.5 Edit Meeting feature
+#### 4.2.6 Edit Meeting feature
 
 Syntax: `editMeeting i/INDEX [d/DATE] [st/START TIME] [et/END TIME] [dn/DESCRIPTION]`
 
