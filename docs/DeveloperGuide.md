@@ -211,7 +211,7 @@ The `Model` component,
 * stores BookFace data i.e., all `Person` objects and all `Book` objects (which are contained in a `UniquePersonList` object and a `BookList` object respectively).
 * stores the currently 'selected' `Person` and `Book` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` or `ObservableList<Book>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* has a bidirectional association between a `Book` and a `Person`, where a `Book` can only have 0 or 1 loanee `Person`, but a Person can loan 0 or more multiple `Books`
+* has a bidirectional association between a `Book` and a `Person`, where a `Book` can only have 0 or 1 loanee `Person`, but a Person can loan 0 or more `Books`
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `BookFace`, which `Person` references. This allows `BookFace` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
@@ -245,7 +245,7 @@ This section describes some noteworthy details on how certain features are imple
 ### Command Parsing
 The [**Logic**](#logic-component) section briefly explains how the user's input is broken down, but the process is explained more thoroughly here.
 
-This process works by creating handling the parsing of commands and arguments separately. The first word in the user input is taken to be the command, and the rest of the input to be arguments. A `Command` object is then generated.
+This process works by handling the parsing of commands and arguments separately. The first word in the user input is taken to be the command, and the rest of the input to be arguments. A `Command` object is then generated.
 
 One feature is that a command can recursively contain another command as a subcommand. We chose this approach as the `add`, `edit`, `find`, `list`, and `delete` commands can apply to either users or books. These commands need additional subcommands and additional parsers to handle the different execution logic and command-line flags for users and books. Thus, a recursive structure allows for easy extensibility and to share code via parent classes.
 
