@@ -39,7 +39,7 @@ Given below are my contributions to the project.
 * **Enhancements to existing features**:
   * Add a `Priority` field to `Item` class. [#61](https://github.com/AY2223S1-CS2103T-W11-4/tp/pull/61)
   * Fix bugs and close issues. [#100](https://github.com/AY2223S1-CS2103T-W11-4/tp/pull/100), [#200](https://github.com/AY2223S1-CS2103T-W11-4/tp/pull/200), [#201](https://github.com/AY2223S1-CS2103T-W11-4/tp/pull/201), [#202](https://github.com/AY2223S1-CS2103T-W11-4/tp/pull/202)
-  * Write test cases. [#53](https://github.com/AY2223S1-CS2103T-W11-4/tp/pull/53), [#228](https://github.com/AY2223S1-CS2103T-W11-4/tp/pull/228), [#230](https://github.com/AY2223S1-CS2103T-W11-4/tp/pull/230), [#241](https://github.com/AY2223S1-CS2103T-W11-4/tp/pull/241)
+  * Write test cases, focussing mainly on `Command` and `Parser` classes. [#53](https://github.com/AY2223S1-CS2103T-W11-4/tp/pull/53), [#228](https://github.com/AY2223S1-CS2103T-W11-4/tp/pull/228), [#230](https://github.com/AY2223S1-CS2103T-W11-4/tp/pull/230), [#241](https://github.com/AY2223S1-CS2103T-W11-4/tp/pull/241)
 
 * **Documentation**:
   * User Guide:
@@ -52,3 +52,6 @@ Given below are my contributions to the project.
 * **Team-based tasks**:
   * Conducted testing of app and opened issues. [#101](https://github.com/AY2223S1-CS2103T-W11-4/tp/issues/101), [#102](https://github.com/AY2223S1-CS2103T-W11-4/tp/issues/102)
   * Made necessary changes and renaming of classes to be more suitable with our application. [#53](https://github.com/AY2223S1-CS2103T-W11-4/tp/pull/53), [#85](https://github.com/AY2223S1-CS2103T-W11-4/tp/pull/85), [#248](https://github.com/AY2223S1-CS2103T-W11-4/tp/pull/248)
+
+* **Community**:
+  * Assisted other teams in detection and reporting of bugs during the PE dry run.
