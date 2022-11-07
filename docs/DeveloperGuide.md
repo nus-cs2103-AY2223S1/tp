@@ -10,6 +10,8 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div markdown="block" class="index">
+
 ## **Acknowledgements**
 
 * This project is built upon the [AddressBook Level-3](https://github.com/se-edu/addressbook-level3) project created as part of the [SE-EDU Initiative](https://se-education.org).
@@ -898,3 +900,5 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+</div>
