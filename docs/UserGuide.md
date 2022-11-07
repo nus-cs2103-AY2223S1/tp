@@ -123,6 +123,8 @@ in the table below:
 | `Highlighted text block`                        | [Commands](#command) or [parameters](#parameter) that you can enter into our application, or text that is directly displayed in our application |
 | [Hyperlinked text in blue](#symbols-and-syntax) | When it is pressed, it should lead you to another section in the document or to an external link.                                               |
 
+[Back to top &#8593;](#welcome-to-trackos-user-guide)
+
 ---------
 
 ## Quick start
