@@ -16,7 +16,7 @@ It is written in Java, and has about 14 kLoC.
 * **New Feature**: Added the ability to sort applicants by name, scholarship or application status: [#85](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/85), [#87](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/87), [#88](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/88), [#92](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/92)
   * Justification: Allows administrative staff to manage scholarship applicants more easily by sorting them based on their name or scholarship.
 
-* **Code contributed**: Refer to my [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=w10-3&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&tabAuthor=ShummyOwnzYou&tabRepo=AY2223S1-CS2103T-W10-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false).
+* **Code contributed**: Refer to my [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=w10-3&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=ShummyOwnzYou&tabRepo=AY2223S1-CS2103T-W10-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false).
 
 * **Project management**:
   * Refactored all instances of `AddressBook` and `Person` to `TrackAScholar` and `Applicant`,
