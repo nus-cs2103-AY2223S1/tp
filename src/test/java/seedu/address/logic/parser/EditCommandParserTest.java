@@ -3,6 +3,8 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.FLOOR_NUMBER_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.HOSPITAL_WING_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_FLOOR_NUMBER_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_HOSPITAL_WING_DESC;
@@ -17,6 +19,7 @@ import static seedu.address.logic.commands.CommandTestUtil.MEDICATION_DESC_PARAC
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NEXT_OF_KIN_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NEXT_OF_KIN_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.PATIENT_TYPE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PATIENT_TYPE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
@@ -30,6 +33,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NEXT_OF_KIN_BOB
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PATIENT_TYPE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.WARD_NUMBER_DESC_AMY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICATION;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -53,6 +57,9 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.WardNumber;
 import seedu.address.model.tag.Medication;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class EditCommandParserTest {
 
@@ -186,6 +193,13 @@ public class EditCommandParserTest {
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
+        // upcoming appointment
+        String date = LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM-uuuu"));
+        userInput = targetIndex.getOneBased() + " ua/" + date;
+        descriptor = new EditPersonDescriptorBuilder().withUpcomingAppointment(date).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
         // tags
         userInput = targetIndex.getOneBased() + MEDICATION_DESC_IBUPROFEN;
         descriptor = new EditPersonDescriptorBuilder().withMedication(VALID_MEDICATION_IBUPROFEN).build();
@@ -236,5 +250,56 @@ public class EditCommandParserTest {
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_outPatientHasHospitalWing_failure() {
+        String userInput = INDEX_FIRST_PERSON.getOneBased() + PATIENT_TYPE_DESC_BOB + HOSPITAL_WING_DESC_AMY;
+
+        assertParseFailure(parser, userInput, String.format(PatientType.DEPENDENCY_CONSTRAINTS,
+                EditCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_outPatientHasFloorNumber_failure() {
+        String userInput = INDEX_FIRST_PERSON.getOneBased() + PATIENT_TYPE_DESC_BOB + FLOOR_NUMBER_DESC_AMY;
+
+        assertParseFailure(parser, userInput, String.format(PatientType.DEPENDENCY_CONSTRAINTS,
+                EditCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_outPatientHasWardNumber_failure() {
+        String userInput = INDEX_FIRST_PERSON.getOneBased() + PATIENT_TYPE_DESC_BOB + WARD_NUMBER_DESC_AMY;
+
+        assertParseFailure(parser, userInput, String.format(PatientType.DEPENDENCY_CONSTRAINTS,
+                EditCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_inPatientNoHospitalWing_failure() {
+        String userInput = INDEX_FIRST_PERSON.getOneBased() + PATIENT_TYPE_DESC_AMY + FLOOR_NUMBER_DESC_AMY
+                + WARD_NUMBER_DESC_AMY;
+
+        assertParseFailure(parser, userInput, String.format(PatientType.DEPENDENCY_CONSTRAINTS,
+                EditCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_inPatientNoFloorNumber_failure() {
+        String userInput = INDEX_FIRST_PERSON.getOneBased() + PATIENT_TYPE_DESC_AMY + HOSPITAL_WING_DESC_AMY
+                + WARD_NUMBER_DESC_AMY;
+
+        assertParseFailure(parser, userInput, String.format(PatientType.DEPENDENCY_CONSTRAINTS,
+                EditCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_inPatientNoWardNumber_failure() {
+        String userInput = INDEX_FIRST_PERSON.getOneBased() + PATIENT_TYPE_DESC_AMY + HOSPITAL_WING_DESC_AMY
+                + FLOOR_NUMBER_DESC_AMY;
+
+        assertParseFailure(parser, userInput, String.format(PatientType.DEPENDENCY_CONSTRAINTS,
+                EditCommand.MESSAGE_USAGE));
     }
 }
