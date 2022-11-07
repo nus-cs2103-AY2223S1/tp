@@ -4,7 +4,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.getTypicalTruthTable;
-import static seedu.address.testutil.TypicalTeams.FIRST;
+import static seedu.address.testutil.TypicalTeams.FIRST_TEAM;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,8 +28,8 @@ class SetTeamCommandTest {
             .registerConverter(TeamName.class, new TeamNameConverter());
     @BeforeEach
     public void setUp() {
-        model.addTeam(FIRST);
-        expectedModel.addTeam(FIRST);
+        model.addTeam(FIRST_TEAM);
+        expectedModel.addTeam(FIRST_TEAM);
     }
 
     @Test
@@ -43,9 +43,9 @@ class SetTeamCommandTest {
     @Test
     public void execute_setTeamToNewTeam_success() {
         commandLine.parseArgs("first");
-        expectedModel.setTeam(FIRST);
+        expectedModel.setTeam(FIRST_TEAM);
         CommandResult expectedResult = new CommandResult(
-                String.format(SetTeamCommand.MESSAGE_SET_TEAM_SUCCESS, FIRST));
+                String.format(SetTeamCommand.MESSAGE_SET_TEAM_SUCCESS, FIRST_TEAM));
         assertCommandSuccess(commandToBeTested, model, expectedResult, expectedModel);
     }
 

@@ -9,10 +9,10 @@ import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.CARL;
 import static seedu.address.testutil.TypicalTasks.TASK_1;
 import static seedu.address.testutil.TypicalTasks.TASK_3;
-import static seedu.address.testutil.TypicalTeams.FIRST;
-import static seedu.address.testutil.TypicalTeams.FIRST_DUPLICATE;
+import static seedu.address.testutil.TypicalTeams.FIRST_TEAM;
+import static seedu.address.testutil.TypicalTeams.FIRST_TEAM_DUPLICATE;
 import static seedu.address.testutil.TypicalTeams.FIRST_TEAM_DETAILS;
-import static seedu.address.testutil.TypicalTeams.SECOND;
+import static seedu.address.testutil.TypicalTeams.SECOND_TEAM;
 import static seedu.address.testutil.TypicalTeams.TYPICAL_LINKS;
 import static seedu.address.testutil.TypicalTeams.TYPICAL_MEMBERS;
 import static seedu.address.testutil.TypicalTeams.TYPICAL_TASKS;
@@ -102,23 +102,23 @@ class TeamTest {
     @Test
     void isSameTeam() {
         //Teams are equal to itself
-        assertTrue(FIRST.isSameTeam(FIRST));
+        assertTrue(FIRST_TEAM.isSameTeam(FIRST_TEAM));
 
         //Teams are equal to other teams with identical names
-        assertTrue(FIRST.isSameTeam(FIRST_DUPLICATE));
+        assertTrue(FIRST_TEAM.isSameTeam(FIRST_TEAM_DUPLICATE));
 
         //Teams are equal to other teams with different team details
-        assertTrue(FIRST.isSameTeam(FIRST_TEAM_DETAILS));
+        assertTrue(FIRST_TEAM.isSameTeam(FIRST_TEAM_DETAILS));
 
         //Teams are not equal to other teams with different names
-        assertFalse(FIRST.isSameTeam(SECOND));
+        assertFalse(FIRST_TEAM.isSameTeam(SECOND_TEAM));
 
         //Teams are equal to other teams with different descriptions
-        Team editedFirst = new Team(FIRST.getTeamName(), new Description("other description"));
-        assertTrue(FIRST.isSameTeam(editedFirst));
+        Team editedFirst = new Team(FIRST_TEAM.getTeamName(), new Description("other description"));
+        assertTrue(FIRST_TEAM.isSameTeam(editedFirst));
 
         //Teams are not equal to null
-        assertFalse(FIRST.isSameTeam(null));
+        assertFalse(FIRST_TEAM.isSameTeam(null));
     }
 
     @Test
@@ -137,7 +137,7 @@ class TeamTest {
         assertFalse(FIRST_TEAM_DETAILS.equals(5));
 
         // different team -> returns false
-        assertFalse(FIRST_TEAM_DETAILS.equals(SECOND));
+        assertFalse(FIRST_TEAM_DETAILS.equals(SECOND_TEAM));
 
         // different name -> returns false
         Team firstDifferent = new TeamBuilder(FIRST_TEAM_DETAILS).withName("otherName").build();

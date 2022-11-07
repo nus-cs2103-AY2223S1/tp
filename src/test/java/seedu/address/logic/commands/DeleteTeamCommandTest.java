@@ -4,7 +4,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.getTypicalTruthTable;
-import static seedu.address.testutil.TypicalTeams.FIRST;
+import static seedu.address.testutil.TypicalTeams.FIRST_TEAM;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -30,8 +30,8 @@ class DeleteTeamCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model.addTeam(FIRST);
-        expectedModel.addTeam(FIRST);
+        model.addTeam(FIRST_TEAM);
+        expectedModel.addTeam(FIRST_TEAM);
     }
 
     @Test
@@ -45,9 +45,9 @@ class DeleteTeamCommandTest {
     @Test
     public void execute_deleteTeamInList_success() {
         commandLine.parseArgs("first");
-        expectedModel.deleteTeam(FIRST);
+        expectedModel.deleteTeam(FIRST_TEAM);
         CommandResult expectedResult = new CommandResult(
-                String.format(DeleteTeamCommand.MESSAGE_DELETE_TEAM_SUCCESS, FIRST));
+                String.format(DeleteTeamCommand.MESSAGE_DELETE_TEAM_SUCCESS, FIRST_TEAM));
         assertCommandSuccess(commandToBeTested, model, expectedResult, expectedModel);
     }
 
@@ -60,7 +60,7 @@ class DeleteTeamCommandTest {
 
     @Test
     public void execute_deleteOnlyTeam_throwsCommandException() {
-        model.deleteTeam(FIRST);
+        model.deleteTeam(FIRST_TEAM);
         commandLine.parseArgs("default");
         assertThrows(CommandException.class, DeleteTeamCommand.MESSAGE_AT_LEAST_ONE_TEAM, ()
                 -> commandToBeTested.execute(model));

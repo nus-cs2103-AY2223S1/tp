@@ -38,7 +38,7 @@ class EditTeamCommandTest {
     }
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Team validTeam = TypicalTeams.FIRST;
+        Team validTeam = TypicalTeams.FIRST_TEAM;
         expectedModel.setTeams(Collections.singletonList(validTeam));
         expectedModel.setTeam(validTeam);
         commandLine.parseArgs(TeamUtil.convertEditTeamToArgs(validTeam));
@@ -49,7 +49,7 @@ class EditTeamCommandTest {
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        Team validTeam = TypicalTeams.DEFAULT_EDITED;
+        Team validTeam = TypicalTeams.DEFAULT_TEAM_EDITED;
         expectedModel.setTeams(Collections.singletonList(validTeam));
         expectedModel.setTeam(validTeam);
         commandLine.parseArgs(TeamUtil.convertEditPartialTeamToArgs(validTeam));
@@ -60,8 +60,8 @@ class EditTeamCommandTest {
 
     @Test
     public void execute_duplicateTeamUnfilteredList_throwsCommandException() {
-        model.addTeam(TypicalTeams.FIRST);
-        Team validTeam = TypicalTeams.FIRST;
+        model.addTeam(TypicalTeams.FIRST_TEAM);
+        Team validTeam = TypicalTeams.FIRST_TEAM;
         commandLine.parseArgs(TeamUtil.convertEditTeamToArgs(validTeam));
         assertThrows(CommandException.class, EditTeamCommand.MESSAGE_DUPLICATE_TEAM, ()
                 -> commandToBeTested.execute(model));

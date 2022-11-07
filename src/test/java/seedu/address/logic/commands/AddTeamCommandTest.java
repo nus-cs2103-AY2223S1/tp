@@ -39,7 +39,7 @@ class AddTeamCommandTest {
 
     @Test
     public void execute_teamAcceptedByModel_addSuccessful() throws Exception {
-        Team validTeam = TypicalTeams.FIRST;
+        Team validTeam = TypicalTeams.FIRST_TEAM;
         expectedModel.addTeam(validTeam);
         commandLine.parseArgs(TeamUtil.convertTeamToArgs(validTeam));
         CommandResult expectedResult = new CommandResult(String.format(MESSAGE_ADD_TEAM_SUCCESS, validTeam));
@@ -48,7 +48,7 @@ class AddTeamCommandTest {
 
     @Test
     void execute_teamAlreadyExist_throwsCommandException() {
-        Team defaultTeam = TypicalTeams.DEFAULT;
+        Team defaultTeam = TypicalTeams.DEFAULT_TEAM;
         commandLine.parseArgs(TeamUtil.convertTeamToArgs(defaultTeam));
         assertThrows(CommandException.class, AddTeamCommand.MESSAGE_TEAM_EXISTS, ()
                 -> commandToBeTested.execute(model));

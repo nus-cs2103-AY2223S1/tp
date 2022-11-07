@@ -8,8 +8,8 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalLinks.LINK_GOOGLE;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
-import static seedu.address.testutil.TypicalTeams.FIRST;
-import static seedu.address.testutil.TypicalTeams.SECOND;
+import static seedu.address.testutil.TypicalTeams.FIRST_TEAM;
+import static seedu.address.testutil.TypicalTeams.SECOND_TEAM;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -95,34 +95,34 @@ public class ModelManagerTest {
 
     @Test
     public void teamList_addTeam_returnTrue() {
-        modelManager.addTeam(FIRST);
+        modelManager.addTeam(FIRST_TEAM);
         UniqueTeamList expectedTeamList = new UniqueTeamList();
         expectedTeamList.add(Team.createDefaultTeam());
-        expectedTeamList.add(FIRST);
+        expectedTeamList.add(FIRST_TEAM);
         assertEquals(expectedTeamList.asUnmodifiableObservableList(), modelManager.getTeamList());
     }
 
     @Test
     public void teamList_addTeamDeleteDefaultTeam_returnTrue() {
-        modelManager.addTeam(FIRST);
+        modelManager.addTeam(FIRST_TEAM);
         modelManager.deleteTeam(Team.createDefaultTeam());
         UniqueTeamList expectedTeamList = new UniqueTeamList();
-        expectedTeamList.add(FIRST);
+        expectedTeamList.add(FIRST_TEAM);
         assertEquals(expectedTeamList.asUnmodifiableObservableList(), modelManager.getTeamList());
     }
 
     @Test
     public void setTeam_teamSetToDefault_returnTrue() {
-        modelManager.addTeam(FIRST);
-        modelManager.setTeam(FIRST);
-        assertEquals(FIRST, modelManager.getTeam());
+        modelManager.addTeam(FIRST_TEAM);
+        modelManager.setTeam(FIRST_TEAM);
+        assertEquals(FIRST_TEAM, modelManager.getTeam());
     }
 
     @Test
     public void setTeams_defaultTruthTable_returnTrue() {
         UniqueTeamList expectedTeamList = new UniqueTeamList();
-        expectedTeamList.add(FIRST);
-        expectedTeamList.add(SECOND);
+        expectedTeamList.add(FIRST_TEAM);
+        expectedTeamList.add(SECOND_TEAM);
         modelManager.setTeams(expectedTeamList.asUnmodifiableObservableList());
         assertEquals(expectedTeamList.asUnmodifiableObservableList(), modelManager.getTeamList());
     }

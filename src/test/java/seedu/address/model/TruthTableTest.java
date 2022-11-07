@@ -8,8 +8,8 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalLinks.LINK_GOOGLE;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.getTypicalTruthTable;
-import static seedu.address.testutil.TypicalTeams.FIRST;
-import static seedu.address.testutil.TypicalTeams.SECOND;
+import static seedu.address.testutil.TypicalTeams.FIRST_TEAM;
+import static seedu.address.testutil.TypicalTeams.SECOND_TEAM;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -83,34 +83,34 @@ public class TruthTableTest {
     }
     @Test
     public void teamList_addTeam_returnTrue() {
-        truthTable.addTeam(FIRST);
+        truthTable.addTeam(FIRST_TEAM);
         UniqueTeamList expectedTeamList = new UniqueTeamList();
         expectedTeamList.add(Team.createDefaultTeam());
-        expectedTeamList.add(FIRST);
+        expectedTeamList.add(FIRST_TEAM);
         assertEquals(expectedTeamList.asUnmodifiableObservableList(), truthTable.getTeamList());
     }
 
     @Test
     public void teamList_addTeamDeleteDefaultTeam_returnTrue() {
-        truthTable.addTeam(FIRST);
+        truthTable.addTeam(FIRST_TEAM);
         truthTable.deleteTeam(Team.createDefaultTeam());
         UniqueTeamList expectedTeamList = new UniqueTeamList();
-        expectedTeamList.add(FIRST);
+        expectedTeamList.add(FIRST_TEAM);
         assertEquals(expectedTeamList.asUnmodifiableObservableList(), truthTable.getTeamList());
     }
 
     @Test
     public void setTeam_teamSetToDefault_returnTrue() {
-        truthTable.addTeam(FIRST);
-        truthTable.setTeam(FIRST);
-        assertEquals(FIRST, truthTable.getTeam());
+        truthTable.addTeam(FIRST_TEAM);
+        truthTable.setTeam(FIRST_TEAM);
+        assertEquals(FIRST_TEAM, truthTable.getTeam());
     }
 
     @Test
     public void setTeams_defaultTruthTable_returnTrue() {
         UniqueTeamList expectedTeamList = new UniqueTeamList();
-        expectedTeamList.add(FIRST);
-        expectedTeamList.add(SECOND);
+        expectedTeamList.add(FIRST_TEAM);
+        expectedTeamList.add(SECOND_TEAM);
         truthTable.setTeams(expectedTeamList.asUnmodifiableObservableList());
         assertEquals(expectedTeamList.asUnmodifiableObservableList(), truthTable.getTeamList());
     }
