@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonType;
 import seedu.address.testutil.PersonBuilder;
@@ -43,7 +42,7 @@ public class AddCommandIntegrationTest {
     public void execute_duplicatePerson_throwsCommandException() {
         Person personInList = model.getAddressBook().getPersonList().get(0);
         String personIdentifier = "";
-        if (personInList instanceof Patient) {
+        if (personInList.isPatient()) {
             personIdentifier = PersonType.PATIENT.toString();
         } else {
             personIdentifier = "person";

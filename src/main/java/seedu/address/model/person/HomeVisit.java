@@ -1,6 +1,7 @@
 package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Represents a Nurse's home-visit.
@@ -32,8 +33,7 @@ public class HomeVisit implements Comparable<HomeVisit> {
      * @param dateSlot A valid dateSlot, uid A valid uidNo.
      */
     public HomeVisit(DateSlot dateSlot, Long uid) {
-        requireNonNull(dateSlot);
-        requireNonNull(uid);
+        requireAllNonNull(uid, dateSlot);
         this.homeVisitDateSlot = dateSlot;
         this.homeVisitPatientUidNo = uid;
     }
@@ -56,7 +56,7 @@ public class HomeVisit implements Comparable<HomeVisit> {
     }
 
     public String getString() {
-        return this.homeVisitDateSlot.getDateSlotInString() + ":" + this.homeVisitPatientUidNo;
+        return homeVisitDateSlot.getDateSlotInString() + ":" + this.homeVisitPatientUidNo;
     }
 
     @Override
@@ -65,11 +65,11 @@ public class HomeVisit implements Comparable<HomeVisit> {
     }
 
     public DateSlot getDateSlot() {
-        return this.homeVisitDateSlot;
+        return homeVisitDateSlot;
     }
 
     public Long getHomeVisitPatientUidNo() {
-        return this.homeVisitPatientUidNo;
+        return homeVisitPatientUidNo;
     }
 
     @Override
@@ -82,6 +82,7 @@ public class HomeVisit implements Comparable<HomeVisit> {
 
     /**
      * Clone a homeVisit.
+     *
      * @return a new homeVisit
      */
     public HomeVisit clone() {

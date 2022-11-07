@@ -30,12 +30,9 @@ public class ListCommandParser implements Parser<ListCommand> {
         if (args.length() == 0) {
             return new ListCommand(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
         }
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
-                PREFIX_ADDRESS,
-                PREFIX_CATEGORY,
-                PREFIX_GENDER,
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_ADDRESS, PREFIX_CATEGORY, PREFIX_GENDER,
                 PREFIX_TAG);
-
+        
         boolean[] parametersAreValid = new boolean[]{true};
 
         List<Optional<Address>> address = new ArrayList<>();

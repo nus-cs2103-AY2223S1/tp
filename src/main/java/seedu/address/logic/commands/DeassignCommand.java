@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_AND_SLOT_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_UID;
 
@@ -48,8 +49,7 @@ public class DeassignCommand extends Command {
      * specific nurse's home visit.
      */
     public DeassignCommand(Uid uid, List<Index> dateslotOrHomevisitIndex) {
-        requireNonNull(uid);
-        requireNonNull(dateslotOrHomevisitIndex);
+        requireAllNonNull(uid, dateslotOrHomevisitIndex);
         this.uid = uid;
         this.dateslotOrHomevisitIndex = new ArrayList<>();
         this.dateslotOrHomevisitIndex.addAll(dateslotOrHomevisitIndex);
@@ -60,22 +60,23 @@ public class DeassignCommand extends Command {
         requireNonNull(model);
 
         List<Person> lastShownList = model.getFilteredPersonList();
-        Optional<Person> person1 = lastShownList.stream().filter(p -> p.getUid().equals(uid)).findFirst();
+        Optional<Person> person = lastShownList.stream().filter(p -> p.getUid().equals(uid)).findFirst();
 
-        if (person1.isEmpty()) {
+        if (person.isEmpty()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_UID);
         }
 
-        Person personToBeEdit1 = person1.get();
-        if (personToBeEdit1 instanceof Patient) {
-            unmarkAssignedPatient(model, personToBeEdit1, lastShownList);
-        } else if (personToBeEdit1 instanceof Nurse) {
-            unmarkAssignedNurse(model, personToBeEdit1, lastShownList);
-        } else {
+        Person personToBeDeassigned = person.get();
+        if (!(personToBeDeassigned.isNurse() || personToBeDeassigned.isPatient())) {
             throw new IllegalArgumentException(Category.MESSAGE_CONSTRAINTS);
         }
+        if (personToBeDeassigned.isPatient()) {
+            unmarkAssignedPatient(model, personToBeDeassigned, lastShownList);
+        } else {
+            unmarkAssignedNurse(model, personToBeDeassigned, lastShownList);
+        }
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, personToBeEdit1.getUid().getUid()));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, personToBeDeassigned.getUid().getUid()));
     }
 
     private void unmarkAssignedPatient(Model model, Person person, List<Person> personList) throws CommandException {
@@ -115,5 +116,3 @@ public class DeassignCommand extends Command {
     }
 
 }
-
-

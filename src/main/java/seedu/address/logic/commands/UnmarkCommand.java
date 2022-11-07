@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_AND_SLOT_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_UID;
 
@@ -12,7 +13,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.DateSlot;
-import seedu.address.model.person.Nurse;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Uid;
@@ -43,8 +43,7 @@ public class UnmarkCommand extends Command {
      * target patient.
      */
     public UnmarkCommand(Uid uid, Index dateSlotIndex) {
-        requireNonNull(uid);
-        requireNonNull(dateSlotIndex);
+        requireAllNonNull(uid, dateSlotIndex);
         this.uid = uid;
         this.dateSlotIndex = dateSlotIndex;
     }
@@ -61,7 +60,7 @@ public class UnmarkCommand extends Command {
 
         Person personToUnmark = targetPerson.get();
 
-        if (personToUnmark instanceof Nurse) {
+        if (personToUnmark.isNurse()) {
             throw new CommandException(MESSAGE_INVALID_NURSE_UID);
         }
 
@@ -89,4 +88,3 @@ public class UnmarkCommand extends Command {
                         && this.dateSlotIndex.equals(((UnmarkCommand) other).dateSlotIndex));
     }
 }
-
