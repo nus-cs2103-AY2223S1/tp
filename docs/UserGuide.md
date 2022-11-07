@@ -310,15 +310,15 @@ Example:`r/Allergic to peanuts`
 
 | Parameter    | Type                    | Flag | Prefix |
 |--------------|-------------------------|------|--------|
-| `NAME`       | Single-Valued Attribute | -    | `n/`   |
-| `PHONE`      | Single-Valued Attribute | -    | `p/`   |
-| `EMAIL`      | Single-Valued Attribute | -    | `e/`   |
-| `ADDRESS`    | Single-Valued Attribute | -    | `a/`   |
-| `TAG`        | Multi-Valued Attribute  | `-t` | `t/`   |
-| `TASK`       | Multi-Valued Attribute  | `-d` | `d/`   |
-| `CONDITION`  | Multi-Valued Attribute  | `-c` | `c/`   |
-| `MEDICATION` | Multi-Valued Attribute  | `-m` | `m/`   |
-| `REMARK`     | Multi-Valued Attribute  | `-r` | `r/`   |
+| `NAME`       | Single-valued attribute | -    | `n/`   |
+| `PHONE`      | Single-valued attribute | -    | `p/`   |
+| `EMAIL`      | Single-valued attribute | -    | `e/`   |
+| `ADDRESS`    | Single-valued attribute | -    | `a/`   |
+| `TAG`        | Multi-valued attribute  | `-t` | `t/`   |
+| `TASK`       | Multi-valued attribute  | `-d` | `d/`   |
+| `CONDITION`  | Multi-valued attribute  | `-c` | `c/`   |
+| `MEDICATION` | Multi-valued attribute  | `-m` | `m/`   |
+| `REMARK`     | Multi-valued attribute  | `-r` | `r/`   |
 | `PATIENT`    | -                       | `-p` | -      |
 
 <div markdown="block" class="alert alert-info">
