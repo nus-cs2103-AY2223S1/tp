@@ -12,8 +12,8 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=parnikkapore&breakdown=true)
 
 * **Team tasks**:
-  * Created and managed of team repository and CI
-  * Occasionally checks the consistency of the product and calls for changes if necessary
+  * Created and managed the team's repository and CI
+  * Occasionally checked the consistency of the product and calls for changes if necessary
   * Investigated and fixed a flaky test in completely deterministic code ([#55](https://github.com/AY2223S1-CS2103T-T14-2/tp/pull/55))
   * Investigated and fixed failing tests due to a violated deep assumption ([1f8a0be](https://github.com/AY2223S1-CS2103T-T14-2/tp/pull/90/commits/1f8a0be9027044f2b5763e736f313a6708731745)...[1312776](https://github.com/AY2223S1-CS2103T-T14-2/tp/pull/90/commits/1312776ed1fd660586f9bcffd2529c352f07a6f7))
 
@@ -40,7 +40,7 @@ Given below are my contributions to the project.
     * Added guide introduction / purpose statement
 
 * **Community**:
-  * Reviewed Kuang Long's PRs for code quality issues and smell (Notable: [#47](https://github.com/AY2223S1-CS2103T-T14-2/tp/pull/47). [#159](https://github.com/AY2223S1-CS2103T-T14-2/tp/pull/159)) as the primary reviewer
+  * Reviewed Kuang Long's PRs for code quality issues and potential unintended behavior (Notable: [#47](https://github.com/AY2223S1-CS2103T-T14-2/tp/pull/47). [#159](https://github.com/AY2223S1-CS2103T-T14-2/tp/pull/159)) as the primary reviewer
   * Contributed to the course-wide forum (Notable: [#246](https://github.com/nus-cs2103-AY2223S1/forum/issues/246#issuecomment-1250198702), [#334](https://github.com/nus-cs2103-AY2223S1/forum/issues/334))
 
 * **Tools**:
