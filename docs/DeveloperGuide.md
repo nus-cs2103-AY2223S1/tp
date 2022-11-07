@@ -174,7 +174,7 @@ The `Model` component:
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as
   a `ReadOnlyUserPref` object.
 * does not depend on any of the other three components (since the `Model` represents data entities in the domain, they
-   make sense on their own without depending on other components)
+   make sense on their own without depending on other components).
 
 ### Storage component
 
@@ -187,7 +187,7 @@ The `Storage` component:
 * can save both NutriGoals data and user preference data in the json format, and read them into corresponding objects.
 * inherits from both `NutriGoalsStorage` and `UserPrefStorage`. This means that it can be treated as either format (when the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects
-  that belong to the `Model`)
+  that belong to the `Model`).
 
 ### Common classes
 
@@ -315,10 +315,10 @@ The list mechanism is facilitated by `ListCommand`, which extends `Command`. It 
 
 Given below is an example usage scenario and how the list mechanism behaves at each step.
 
-Step 1. The user launches the application on 19 October 2022. `NutriGoals` initially displays all foods added on the
+Step 1. The user launches the application on 19 October 2022. NutriGoals initially displays all foods added on the
 current day, 19 October 2022.
 
-Step 2. The user executes `list 2022-07-29` command, which calls `LogicManager#execute()`.
+Step 2. The user executes `list 2022-07-29`, which calls `LogicManager#execute()`.
 `NutriGoals#parseCommand()` is subsequently called, creating a `ListCommandParser` object.
 `ListCommandParser#parse()` is then called to make sense of the date argument supplied by the user.
 
@@ -344,7 +344,7 @@ The following activity diagram summarizes what happens when a user executes the 
 
 #### Implementation
 
-The find mechanism is facilitated by `FindCommand`, which extends `Command`. It overrides the following operations:
+The find mechanism is facilitated by `FindCommand`, which extends `Command`. It overrides the following operation:
 
 * `FindCommand#execute()`: Looks through all previously consumed food items and searches for those whose name matches the predicate. Returns the average calorie content for that particular food item if it is inside the list. If it is not in the list, checks if the food item is in the default list provided, and returns the suggested calorie content from the default list.
 
@@ -354,7 +354,7 @@ Given below is an example usage scenario and how the find mechanism behaves at e
 
 Step 1. The user launches the application.
 
-Step 2. The user executes `find Banana` command, which calls `LogicManager#execute()`.
+Step 2. The user executes `find Banana`, which calls `LogicManager#execute()`.
 `NutriGoals#parseCommand()` is subsequently called, creating a `FindCommandParser` object.
 `FindCommandParser#parse()` is then called to make sense of the food name supplied by the user.
 
@@ -375,13 +375,13 @@ The following diagram illustrates how the `find` operation works:
 
 #### Implementation
 
-The set target mechanism is facilitated by `TargetCommand`, which extends `Command`. It overrides the following operation:
+The target mechanism is facilitated by `TargetCommand`, which extends `Command`. It overrides the following operation:
 
 * `TargetCommand#excecute()`: Sets the calorie target for the day.
 
 #### Example usage
 
-Given below is an example usage scenario and how set calorie target mechanism behaves at each step.
+Given below is an example usage scenario and how the target mechanism behaves at each step.
 
 Step 1. The user launches the application today.
 
@@ -411,8 +411,7 @@ The following diagram illustrates how the `target` operation works:
 
 The review mechanism is facilitated by `ReviewCommand`, which extends `Command`. It overrides the following operation:
 
-* `ReviewCommand#execute()`: Calculates the total calories, the calorie target and the deficient or excess amount of
-  calories for the day.
+* `ReviewCommand#execute()`: Calculates the total calories, the calorie target and the calorie deficit/surplus for the current day.
 
 #### Example usage
 
@@ -488,11 +487,11 @@ The following activity diagram outlines what happens when a user executes the `s
 
 The locate gym mechanism is facilitated by `LocateGymCommand`, which extends `Command`. It overrides the following operation:
 
-* `LocateGymCommand#execute()`: Sorts and returns a list of gyms in NUS that are closest to the user.
+* `LocateGymCommand#execute()`: Sorts and returns a list of gyms in NUS that are closest to the given location.
 
 #### Example usage
 
-Given below is an example usage scenario and how the locate-gym mechanism behaves at each step.
+Given below is an example usage scenario and how the locate gym mechanism behaves at each step.
 
 Step 1. The user launches the application.
 
@@ -518,7 +517,7 @@ The tip mechanism is facilitated by `TipCommand`, which extends `Command`. It ov
 
 #### Example Usage
 
-Given below is an example usage scenario and how the locate-gym mechanism behaves at each step.
+Given below is an example usage scenario and how the tip mechanism behaves at each step.
 
 Step 1. The user launches the application.
 
@@ -771,7 +770,7 @@ For all use cases below, the **System** is the `NutriGoals` application and the 
 
 **MSS**
 
-1. User requests to find the nearest gym to the loction they specified.
+1. User requests to find the nearest gym to a specified location.
 2. NutriGoals returns a list of gyms, sorted by distance from closest to furthest.
 
     Use case ends.
