@@ -215,6 +215,32 @@ The implementation of Command Suggestions and Command Auto-Completion is facilit
 - `CommandSuggestor#suggestCommand` - Suggests a command with the corresponding syntax based on the user's current input
 - `CommandSuggestor#autocompleteCommand` - Completes the current user input according to the shown command suggestion
 
+#### Design considerations:
+
+**Aspect: How to provide command suggestions to users:**
+
+- **Alternative 1 (current choice):** Provide command suggestion over the command box.
+
+  - Pros: Uses less screen real estate
+  - Cons: Only able to view one possible command
+
+- **Alternative 2:** Provide command suggestions in a separate display box
+  itself.
+  - Pros: Able to display all possible commands.
+  - Cons: Uses more screen real estate
+
+**Aspect: How to autocomplete commands for users**
+
+- **Alternative 1:** Autocomplete up to next prefix according displayed command suggestion.
+
+  - Pros: Users can easily autocomplete the command shown with just one tab
+  - Cons: Users might have to backspace and complete the command again for commands with common prefixes. Eg. `add_contact`, `add_task`
+
+- **Alternative 2 (current choice):** Autocomplete up to the longest matching prefix of all possible commands.
+  itself.
+  - Pros: Easy to autocomplete commands with common prefixes
+  - Cons: Users might have to type a few characters more
+
 ---
 
 ## **Documentation, Logging, Dev-ops, Testing, and Configuration**
