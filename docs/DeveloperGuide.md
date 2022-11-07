@@ -772,7 +772,6 @@ testers are expected to do more *exploratory* testing.
    4. Other incorrect delete student commands to try: `deletestudent`, `deletestudent x`, `...` (where x is larger than the list size) <br>
       Expected: Similar to previous.
 
-
 ### Editing a student
 
 1. Edit a student to change name and/or matric number
@@ -805,7 +804,21 @@ testers are expected to do more *exploratory* testing.
 
     5. Other incorrect find student commands to try: `findstudent`
        Expected: No student is found. Error details shown in the status message.
+    
+### Adding a grade to a student
 
+1. Adding a grade to a student while the expanded student list is being shown
+
+    1. Prerequisites: List all students using the `liststudent` command. There must be at least one student in the list.
+
+    2. Test case: `grade 1 ra1/17 mt/55` <br>
+       Expected: The RA1 score will be set to 17.0 and the Midterm score will be set to 55.0 for the first student in the student list.
+
+    3. Test case: `grade 1 ra1/17 mt/55 pa/40 fn/101` <br>
+       Expected: No marks will be updated. Error details shown in status message.
+
+    4. Other incorrect grade commands to try: `grade 1 ra1/19`, `grade x`, `...` (where x is larger than the list size or where input score for the assessment is greater than the total marks)<br>
+       Expected: Similar to previous.
 
 ### Setting mastery check result for a student
 
