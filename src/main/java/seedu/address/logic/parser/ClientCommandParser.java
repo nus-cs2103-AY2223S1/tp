@@ -154,6 +154,11 @@ public class ClientCommandParser implements Parser<ClientCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     EditClientCommand.MESSAGE_USAGE));
         }
+
+        if (anyPrefixesPresent(argMultimap, PREFIX_CLIENT_ID)) {
+            parseIndexValidity(argMultimap.getValue(PREFIX_CLIENT_ID).get());
+        }
+
         Name newName = null;
         ClientEmail newEmail = null;
         ClientMobile newMobile = null;
@@ -165,14 +170,17 @@ public class ClientCommandParser implements Parser<ClientCommand> {
         }
 
         if (anyPrefixesPresent(argMultimap, PREFIX_NAME)) {
+            parseNameValidity(argMultimap.getValue(PREFIX_NAME).get());
             newName = parseName(argMultimap.getValue(PREFIX_NAME).get());
         }
 
         if (anyPrefixesPresent(argMultimap, PREFIX_MOBILE)) {
+            parseMobileValidity(argMultimap.getValue(PREFIX_MOBILE).get());
             newMobile = parseMobile(argMultimap.getValue(PREFIX_MOBILE).get());
         }
 
         if (anyPrefixesPresent(argMultimap, PREFIX_EMAIL)) {
+            parseEmailValidity(argMultimap.getValue(PREFIX_EMAIL).get());
             newEmail = parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         }
 
