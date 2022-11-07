@@ -1244,3 +1244,62 @@ testers are expected to do more *exploratory* testing.
     4. Other incorrect delete commands to try: `delete link`, `delete link X`, `...`
        (where X is a positive integer larger than the link list size)<br>
        Expected: Similar to previous.
+
+## Effort
+
+TruthTable was a project of high complexity and required extensive effort by all team
+members to create the product
+
+### Going beyound our limits
+Here are some features and aspects of our project that really makes our project distinct,
+unique and high quality.
+
+#### Using Picocli as our parsing library
+As our product is catered for Software Engineering team leads, we want our product to feel
+exactly like how CLI should be like. Software Engineering team leads are generally proficient
+with using the terminal to get things done, such as using git and most have good familiarity with
+Linux OS systems. Hence, we decided that the original AB3 parser was not going to make it as the
+parsing is unintuitive and hard to write, and increases the learning difficulty of our target users.
+We opted to scrape the parsers and used Picocli as our parsing library, which enabled things like
+subcommands (using commands like `add person` instead of `add_person`) and flags to specify options,
+which generally reduces the number of keystrokes and makes it **extremely intuitive** for users to use
+our proudct
+
+#### Multiple Classes
+As our product primary function is to assign tasks to team members, we have to introduce new classes like
+Teams, Tasks and Links. This added a high degree of complexity to our project as entities can be tied to each
+other in multiple ways, such as enabling tasks to have multiple assignees. This made our product very useful
+and unique, and offered a good variety of functions that make our product useful for Software Engineering
+team leads.
+
+This resulted in the number of commands increasing from **9** (in AB3) to **42** (in TruthTable), which meant
+that more classes has to be written to accommodate the wide variety of commands, and more testing has to be done
+to enable our product works as intended.
+
+#### Improved UI
+The original AB3 only displays the list of persons which is limiting and not very useful. To make our product
+effective, we created displays for teams, members, tasks and links which really made it easy for the user to
+track the outcomes of their commands. We thought that the dark theme of AB3 was uninspiring and made use of
+own light theme to give this product a nice, warm and welcoming feel.
+
+#### Extensive Testing
+The use of picocli means that all parser classes has to be removed, and the way the commands are generated is
+different. Hence, all commands and parser tests in AB3 has to be removed, so they have to be reimplemented.
+Furthermore, the increased number of classes, along with all the commands means that more testing has to be done
+and code coverage is likely to decrease.
+
+Hence, we took it as an opportunity to do extensive testing for our application through writing effective unit tests  
+for our commands, parsers and model objects. We redesigned how testing is done for commands and manage to cover
+all commands successfully. We maintained a **~73%** code coverage from the original **~72%** in AB3, increased the
+number of tests cases from **248** (in AB3) to **527** (in TruthTable). There is a high quality assurance that comes
+with our product which makes our product high quality.
+
+### Remarks
+Overall, this project has been extremely fulfilling and our team has managed to create something novel and unique.
+We pushed our limits and picked up skills that was extremely valuable in writing software and good quality code.
+This section only scratches the surface of the level of effort that we put into this project, and there was many
+other things like discussion and documentation. The additional challenges that we overcome as a team is not included
+to keep things concise.
+
+Hopefully, we hope that this developer guide will help you to understand more about this novel product and we welcome
+anyone to try, maintain or even extend our product for better use.
