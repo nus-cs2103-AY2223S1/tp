@@ -23,7 +23,6 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 
-
 public class FindBillCommandParserTest {
     private FindBillCommandParser parser = new FindBillCommandParser();
     private Model model = new ModelManager(getTypicalBillsHealthContact(), new UserPrefs());
@@ -39,13 +38,15 @@ public class FindBillCommandParserTest {
     public void parse_validArgs_returnsFindBillCommand() throws ParseException {
         // no leading and trailing whitespaces
         String expectedMessage = String.format(MESSAGE_BILL_LISTED_OVERVIEW, 1);
-        FindBillCommand firstCommand = parser.parse(" n/pauline");
+        FindBillCommand firstCommand = parser.parse(" n/Pauline");
+
         expectedModel.updateFilteredBillList(firstCommand.getPredicate());
         assertCommandSuccess(firstCommand, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(BILL_1), model.getFilteredBillList());
 
         // multiple whitespaces between keywords
-        FindBillCommand secondCommand = parser.parse(" d/    2019  ");
+        FindBillCommand secondCommand = parser.parse(" n/    pauline  ");
+
         expectedModel.updateFilteredBillList(secondCommand.getPredicate());
         assertCommandSuccess(secondCommand, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(BILL_1), model.getFilteredBillList());
@@ -60,9 +61,9 @@ public class FindBillCommandParserTest {
     @Test
     public void checkNumberOfPrefixes() {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(" a/west a/ave", PREFIX_NAME, PREFIX_BILL_DATE,
-                        PREFIX_AMOUNT, PREFIX_PAYMENT_STATUS);
-        assertParseFailureForPrefix(parser, PREFIX_AMOUNT, argMultimap, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                ArgumentTokenizer.tokenize(" n/ Alice n/Bob", PREFIX_NAME, PREFIX_PAYMENT_STATUS,
+                        PREFIX_AMOUNT, PREFIX_BILL_DATE);
+        assertParseFailureForPrefix(parser, PREFIX_NAME, argMultimap, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 FindBillCommand.MESSAGE_USAGE));
     }
 

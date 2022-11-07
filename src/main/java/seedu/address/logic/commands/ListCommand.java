@@ -1,9 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_BILLS;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
+import static seedu.address.model.Model.PREDICATE_LIST_SHOW_ALL_APPOINTMENTS;
+import static seedu.address.model.Model.PREDICATE_LIST_SHOW_ALL_BILLS;
+import static seedu.address.model.Model.PREDICATE_LIST_SHOW_ALL_PATIENTS;
 
 import seedu.address.model.Model;
 
@@ -20,9 +20,9 @@ public class ListCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
-        model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
-        model.updateFilteredBillList(PREDICATE_SHOW_ALL_BILLS);
+        model.updateFilteredPatientList(PREDICATE_LIST_SHOW_ALL_PATIENTS);
+        model.updateFilteredAppointmentList(PREDICATE_LIST_SHOW_ALL_APPOINTMENTS);
+        model.updateFilteredBillList(PREDICATE_LIST_SHOW_ALL_BILLS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
