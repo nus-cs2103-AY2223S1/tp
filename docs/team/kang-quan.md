@@ -10,7 +10,8 @@ It is optimised for CLI users so that tasks can be done faster by typing in comm
 
 Given below are my contributions to the project.
 
-* **New Feature**: 
+* **New Feature**:
+
 1. `addTaskCommand` (Pull Request [#92](https://github.com/AY2223S1-CS2103T-W08-4/tp/pull/92))
    * This command add a `Task` to Salesy. Each task contains the `TASKNAME`, `DEADLINE` and an optional `TAG`.
    * Helper methods and classes are also created such as `addTaskCommandParser` class to help us parse the user input
@@ -22,7 +23,7 @@ Given below are my contributions to the project.
    * This command removes a `SupplyItem` from the inventory in Salesy.
    * Helper methods and classes are also created such as `DeleteItemCommandParser` class to help us parse the user input
      before creating an `DeleteItemCommand`.
-   * Added testcase for DeleteItemCommand class and DeleteItemCommandParser
+   * Added testcase for DeleteItemCommand class and DeleteItemCommandParser (Pull Request [#146](https://github.com/AY2223S1-CS2103T-W08-4/tp/pull/146))
 
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=kang-quan&breakdown=true)
@@ -42,6 +43,7 @@ Given below are my contributions to the project.
     (Pull Request [#248](https://github.com/AY2223S1-CS2103T-W08-4/tp/pull/248))
   * Contribute to think and create user stories for Salesy.
   * Discuss and sort which bugs found in PE-dry run are not feature flaws, so we can fix the bug.
+
 
 * **Enhancements to existing features**:
 
