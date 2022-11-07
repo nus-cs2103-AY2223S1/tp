@@ -6,8 +6,8 @@ import static jarvis.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static jarvis.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static jarvis.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static jarvis.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static jarvis.testutil.TypicalIndexes.INDEX_SECOND;
-import static jarvis.testutil.TypicalIndexes.INDEX_THIRD;
+import static jarvis.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
+import static jarvis.testutil.TypicalIndexes.INDEX_THIRD_STUDENT;
 
 import org.junit.jupiter.api.Test;
 
@@ -57,7 +57,7 @@ public class EditStudentCommandParserTest {
 
     @Test
     public void parse_allFieldsSpecified_success() {
-        Index targetIndex = INDEX_SECOND;
+        Index targetIndex = INDEX_SECOND_STUDENT;
         String userInput = targetIndex.getOneBased() + NAME_DESC_AMY;
 
         EditStudentCommand.EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder()
@@ -71,7 +71,7 @@ public class EditStudentCommandParserTest {
     @Test
     public void parse_oneFieldSpecified_success() {
         // name
-        Index targetIndex = INDEX_THIRD;
+        Index targetIndex = INDEX_THIRD_STUDENT;
         String userInput = targetIndex.getOneBased() + NAME_DESC_AMY;
         EditStudentCommand.EditStudentDescriptor descriptor =
                 new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY).build();

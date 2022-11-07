@@ -25,7 +25,7 @@ import jarvis.testutil.TypicalIndexes;
  */
 public class MarkTaskCommandTest {
 
-    private static final Index taskIndex = TypicalIndexes.INDEX_FIRST;
+    private static final Index taskIndex = TypicalIndexes.INDEX_FIRST_TASK;
     private static final int taskInt = taskIndex.getZeroBased();
 
     private Model model = new ModelManager(getTypicalTaskBook(), new UserPrefs());

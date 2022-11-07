@@ -48,6 +48,9 @@ public class StudentBuilder {
         return this;
     }
 
+    /**
+     * Returns the {@code Student} that we have built.
+     */
     public Student build() {
         return new Student(studentName, matricNum, new GradeProfile());
     }

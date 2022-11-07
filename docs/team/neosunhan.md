@@ -31,7 +31,7 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * [to be added soon]
+    * Added annotated image to explain the different components of the GUI
   * Developer Guide:
     * Updated UML diagrams for `Logic` and `Model` components
     * Added implementation details for `marktask` and `unmarktask` feature

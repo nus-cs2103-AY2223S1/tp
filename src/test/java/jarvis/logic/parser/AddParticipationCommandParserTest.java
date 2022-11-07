@@ -18,8 +18,8 @@ import jarvis.logic.commands.AddParticipationCommand;
 import jarvis.testutil.TypicalIndexes;
 
 public class AddParticipationCommandParserTest {
-    private static final Index lessonIndex = TypicalIndexes.INDEX_FIRST;
-    private static final Index studentIndex = TypicalIndexes.INDEX_FIRST;
+    private static final Index lessonIndex = TypicalIndexes.INDEX_FIRST_LESSON;
+    private static final Index studentIndex = TypicalIndexes.INDEX_FIRST_STUDENT;
     private static final int participation = 100;
 
     private AddParticipationCommandParser parser = new AddParticipationCommandParser();

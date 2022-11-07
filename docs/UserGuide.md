@@ -2,43 +2,44 @@
 layout: page
 title: User Guide
 ---
+This guide provides everything a CS1101S Teaching Assistant (TA) needs to know to get the most out of JARVIS!
 
-JARVIS is a **desktop app for a CS1101S Teaching Assistant to manage students, tasks and lessons, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, JARVIS can help you manage teaching your class efficiently and effectively.
+To use this guide, simply click on the items you would like to learn more about in the table of contents, or scroll down to the relevant sections.
 
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+## What is JARVIS?
 
-## Quick start
+JARVIS is a **desktop app for a CS1101S Teaching Assistant to manage students, tasks and lessons, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
-1. Ensure you have Java `11` or above installed in your Computer.
+Using JARVIS, the TA can
+* keep track of their students' grades for each graded assignment
+* see the tasks that they have do and their respective deadlines
+* plan for upcoming tutorial classes and consultations
 
-1. Download the latest `JARVIS.jar` from [here](https://github.com/AY2223S1-CS2103T-T11-3/tp/releases).
-
-1. Copy the file to the folder you want to use as the _home folder_ for JARVIS.
-
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
-
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
-
-   * **`liststudent`** : Shows an expanded list of all students.
-
-   * **`addstudent s/John Doe m/A0123459G`** : Adds a student named `John Doe` with matriculation (matric) number `A0123459G` to JARVIS.
-
-   * **`deletestudent 3`** : Deletes the 3rd student shown in the student list.
-
-   * **`clear`** : Deletes all students, tasks and lessons.
-
-   * **`exit`** : Exits the app.
-
-1. Refer to the [Basic features](#basic features) below to get started with the basic commands.
+If you are a CS1101S TA who is familiar with Command Line Interface and can type fast, JARVIS will allow you to efficiently manage your students, tasks and lessons.
 
 --------------------------------------------------------------------------------------------------------------------
+## The Basics
 
-## Command format
+There are 3 main entities in JARVIS - Students, Tasks and Lessons. 
+
+- Student entity: Represents a student of the TA
+- Task entity: Represents a task (to be) completed by the TA
+- Lesson entity: Represents a lesson (to be) conducted by the TA
+
+JARVIS takes in user input via Command Line Interface (CLI) commands. These CLI commands can be categorised into 4 main types - Basic, Student, Task and Lesson commands. 
+
+- Basic commands: General-purpose commands that are not tied to a single entity (e.g. a command used to exit the app)
+- Student commands: Used for managing Student entities (e.g. adding/deleting students)
+- Task commands: Used for managing Task entities (e.g. marking tasks as completed)
+- Lesson commands: Used for managing Lesson entities (e.g. recording attendance for a lesson)
+
+To execute a command, type it into the command box and press Enter. Refer to [Quick start](#quick-start) for an illustration of this.
+
+Commands have to be written in the correct format to be used. The format for each command is specified using the convention below.
 
 <div markdown="block" class="alert alert-info">
 
@@ -64,10 +65,47 @@ JARVIS is a **desktop app for a CS1101S Teaching Assistant to manage students, t
 
 </div>
 
+## Quick start
+
+1. Ensure you have Java `11` or above installed in your computer. 
+
+   <div markdown="span" class="alert alert-info">:information_source: **Note:** JARVIS is supported on Windows, Linux, and OS-X platforms.
+   </div>
+
+2. Download the latest `jarvis.jar` from [here](https://github.com/AY2223S1-CS2103T-T11-3/tp/releases).
+
+3. Copy the file to the folder you want to use as the _home folder_ for JARVIS.
+
+4. Double-click the file to start the app. The GUI should appear in a few seconds. Notice how the app contains some sample data.
+
+   ![Ui](images/Ui.png)
+
+5. Type the command in the Command Box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.
+
+   <div markdown="span" class="alert alert-primary">
+   :bulb: **Tip:** The following diagram shows the different components of the GUI. <br>
+       <img src="images/Ui_annotated.png" alt="Annotated UI" border="1">
+   </div>
+   Some example commands you can try:
+
+   * **`liststudent`** : Shows an expanded list of all students.
+
+   * **`addstudent s/John Doe m/A0123459G`** : Adds a student named `John Doe` with matriculation (matric) number `A0123459G` to JARVIS.
+
+   * **`deletestudent 3`** : Deletes the 3rd student shown in the student list.
+
+   * **`clear`** : Deletes all students, tasks and lessons. Use this command to delete the sample data in JARVIS before adding your own data.
+
+   * **`exit`** : Exits the app.
+
+6. Refer to the [Basic commands](#basic-commands) below to get started with the basic commands.
+
+--------------------------------------------------------------------------------------------------------------------
+
 <div style="page-break-after: always;"></div>
 
-## Basic features
-This section contains basic features of JARVIS.
+## Basic commands
+This section contains the basic commands of JARVIS.
 
 ### Viewing help : `help`
 
@@ -132,8 +170,8 @@ Format: `exit`
 
 <div style="page-break-after: always;"></div>
 
-## Student features
-This section contains features for managing students.
+## Student commands
+This section contains commands for managing students.
 
 ### Adding a student: `addstudent`
 
@@ -208,7 +246,7 @@ Format: `grade INDEX [ra1/MARKS] [ra2/MARKS] [mt/MARKS] [pa/MARKS] [fn/MARKS]`
 * At least one of the optional fields must be provided.
 
 Examples:
-* `grade 1 ra1/17 mt/55` add to the grades for the 1st student: 17 marks for RA1, 55 marks for midterms. 
+* `grade 1 ra1/17 mt/55` add to the grades for the 1st student: 17 marks for RA1, 55 marks for midterms.
 
 ### Setting mastery check result for a student : `mc`
 
@@ -227,8 +265,8 @@ Examples:
 
 <div style="page-break-after: always;"></div>
 
-## Task features
-This section contains features for managing tasks.
+## Task commands
+This section contains commands for managing tasks.
 
 ### Adding a task: `addtask`
 
@@ -269,6 +307,10 @@ Format: `marktask INDEX`
 Example:
 * `marktask 2` marks the 2nd task as done.
 
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:** Tasks that have been marked as done will get shifted to the bottom of the task list.
+</div>
+
 ### Marking a task as not done : `unmarktask`
 
 Marks a task as not done.
@@ -283,8 +325,8 @@ Example:
 
 <div style="page-break-after: always;"></div>
 
-## Lesson features
-This section contains features for managing lessons.
+## Lesson commands
+This section contains commands for managing lessons.
 
 ### Adding a studio lesson: `addstudio`
 
@@ -305,7 +347,7 @@ Examples:
 Adds a consult lesson to JARVIS.
 
 Format: `addconsult [l/LESSON_DESC] sd/START_DATE st/START_TIME [ed/END_DATE] et/END_TIME si/STUDENT_INDEX...`
-  
+
 * `l/LESSON_DESC` is optional
 * `sd/START_DATE` and `ed/END_DATE` should be in the format `yyyy-MM-dd`.
 * `st/START_TIME` and `et/END_TIME` should be in the format `hh:mm`.
@@ -353,6 +395,10 @@ Format: `marklesson INDEX`
 
 Example:
 * `marklesson 2` marks the 2nd lesson as completed.
+
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:** Lessons that have been marked as completed will get shifted to the bottom of the lesson list.
+</div>
 
 ### Marking a lesson as not completed : `unmarklesson`
 

@@ -25,7 +25,7 @@ import jarvis.testutil.TypicalIndexes;
  */
 public class UnmarkLessonCommandTest {
 
-    private static final Index lessonIndex = TypicalIndexes.INDEX_FIRST;
+    private static final Index lessonIndex = TypicalIndexes.INDEX_FIRST_LESSON;
     private static final int lessonInt = lessonIndex.getZeroBased();
 
     private Model model = new ModelManager(getTypicalLessonBook(), new UserPrefs());

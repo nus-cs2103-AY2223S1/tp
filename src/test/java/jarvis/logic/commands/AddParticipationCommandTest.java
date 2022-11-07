@@ -29,7 +29,7 @@ import jarvis.testutil.TypicalIndexes;
  */
 public class AddParticipationCommandTest {
 
-    private static final Index studentIndex = TypicalIndexes.INDEX_FIRST;
+    private static final Index studentIndex = TypicalIndexes.INDEX_FIRST_STUDENT;
     private static final int studentInt = studentIndex.getZeroBased();
     private static final int participation = 100;
 

@@ -15,8 +15,8 @@ import jarvis.logic.commands.UnmarkStudentCommand;
 import jarvis.testutil.TypicalIndexes;
 
 public class UnmarkStudentCommandParserTest {
-    private static final Index lessonIndex = TypicalIndexes.INDEX_FIRST;
-    private static final Index studentIndex = TypicalIndexes.INDEX_FIRST;
+    private static final Index lessonIndex = TypicalIndexes.INDEX_FIRST_LESSON;
+    private static final Index studentIndex = TypicalIndexes.INDEX_FIRST_STUDENT;
 
     private UnmarkStudentCommandParser parser = new UnmarkStudentCommandParser();
 

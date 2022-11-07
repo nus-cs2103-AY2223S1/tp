@@ -25,9 +25,9 @@ import jarvis.testutil.TypicalIndexes;
  */
 public class DeleteNoteCommandTest {
 
-    private static final Index lessonIndex = TypicalIndexes.INDEX_FIRST;
-    private static final Index studentIndex = TypicalIndexes.INDEX_FIRST;
-    private static final Index noteIndex = TypicalIndexes.INDEX_FIRST;
+    private static final Index lessonIndex = TypicalIndexes.INDEX_FIRST_LESSON;
+    private static final Index studentIndex = TypicalIndexes.INDEX_FIRST_STUDENT;
+    private static final Index noteIndex = TypicalIndexes.INDEX_FIRST_NOTE;
     private static final int lessonInt = lessonIndex.getZeroBased();
     private static final int studentInt = studentIndex.getZeroBased();
     private static final int noteInt = noteIndex.getZeroBased();

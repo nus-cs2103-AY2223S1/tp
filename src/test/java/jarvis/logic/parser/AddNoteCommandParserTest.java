@@ -19,8 +19,8 @@ import jarvis.logic.commands.AddNoteCommand;
 import jarvis.testutil.TypicalIndexes;
 
 public class AddNoteCommandParserTest {
-    private static final Index lessonIndex = TypicalIndexes.INDEX_FIRST;
-    private static final Index studentIndex = TypicalIndexes.INDEX_FIRST;
+    private static final Index lessonIndex = TypicalIndexes.INDEX_FIRST_LESSON;
+    private static final Index studentIndex = TypicalIndexes.INDEX_FIRST_STUDENT;
 
     private AddNoteCommandParser parser = new AddNoteCommandParser();
 
