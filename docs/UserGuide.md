@@ -53,7 +53,7 @@ via a Command Line Interface (CLI) while still having the benefits of a Graphica
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `univusal.jar` (in progress).
+2. Download the latest [`uNivUSal.jar`](https://github.com/AY2223S1-CS2103T-T08-3/tp/releases/tag/v1.4.0)
 
 3. Copy the file to the folder you want to use as the _home folder_ for your uNivUSal.
 
@@ -65,6 +65,7 @@ Note how the app contains some sample data.<br>
 open the help window.
 
 6. Refer to the [Features](#features) below for details of each command.
+
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
