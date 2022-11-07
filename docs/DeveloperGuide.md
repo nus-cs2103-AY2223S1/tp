@@ -479,7 +479,7 @@ Software System: Travelr
 
       Use Case Ends
 * 3c. The requested event doesn't exist
-    * 3b1. Travelr shows an error message.
+    * 3c1. Travelr shows an error message.
 
       Use Case Ends
 
@@ -510,7 +510,7 @@ Software System: Travelr
 
       Use Case Ends
 * 3c. The requested event doesn't exist
-    * 3b1. Travelr shows an error message.
+    * 3c1. Travelr shows an error message.
 
       Use Case Ends
 
