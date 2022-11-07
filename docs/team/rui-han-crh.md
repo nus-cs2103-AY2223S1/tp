@@ -78,6 +78,8 @@ SectresBook helps secretaries to maintain all the information of the members of 
 
 ![](../images/InspectSequenceDiagram.png)
 
+<p style="page-break-after: always;">&nbsp;</p>
+
 **UI _Class Diagram_**
 
 ![](../images/UiClassDiagram.png)
