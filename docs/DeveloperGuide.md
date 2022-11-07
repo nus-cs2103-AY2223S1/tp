@@ -151,10 +151,10 @@ as a `Command` object.
 
 ### Model component
 [Back to top](#table-of-contents)
+<<<<<<< HEAD
+**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
-
-<img src="images/ModelClassDiagram.png" width="1000" />
+[!ModelClassDiagram](images/ModelClassDiagram.png)
 
 The `Model` component,
 
@@ -173,7 +173,7 @@ should make sense on their own without depending on other components)
 model is given below. A generic Cobb class is created as the parent for BuyerBook and PropertyBook since the two 
 children classes have a lot of methods with identical purposes.<br>
 
-<img src="images/BetterModelClassDiagram.png" width="1000" />
+[!BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 </div>
 
 
@@ -483,6 +483,7 @@ The new buyer or property is then added into the model, replacing the old one. T
 
 The following sequence diagram shows how the `EditBuyerCommand` is executed.
 ![EditBuyerSequenceDiagram](images/EditSequenceDiagram.png)
+<img src="images/EditSequenceDiagram.png" height="400" />
 
 #### Design Considerations
 **Aspect: How the edit commands should relate to each other:**
@@ -584,7 +585,7 @@ Based on command parameters passed in by the user, these predicates are construc
 can be found in the [filter-specific design considerations](#filter-specific-design-considerations) section located below.
 
 The class diagram below represents the overall structure of the predicates for `Buyers` and `Properties`. <br>
-<img src="images/FilterPredicatesClassDiagram.png" width="1000" />
+[!FilterPredicatesClassDiagram](images/FilterPredicatesClassDiagram.png)
 
 #### Filter-specific design considerations
 1. Filtering `Properties` by their prices takes in a `priceRange` instead of just a `Price` as it makes more sense for
@@ -630,8 +631,8 @@ As we allow sorting only by one criterion at a time, a `BuyerComparator` will on
 
 The UML diagrams below represent the overall structure of the `Comparator`s used.
 
-<img src="images/SortPropComparatorsClassDiagram.png" width="1000" height="300"/>
-<img src="images/SortPropComparatorsClassDiagram.png" width="1000" height="300"/>
+<img src="images/SortPropComparatorsClassDiagram.png" width="1000" height="200"/>
+<img src="images/SortPropComparatorsClassDiagram.png" width="1000" height="200"/>
 
 Below is a Sequence Diagram showing how a `sortbuyer -n ASC` command is executed through the model to modify the original `ObservableList`.
 
@@ -682,7 +683,7 @@ and manually input more specific conditions.
 Here is a Sequence Diagram of how `matchbuyer 1` is handled, assuming 1 is a valid index and the `Buyer` at index 1 
 contains both a `PriceRange` and `Characteristics`.
 
-![MatchBuyerSequenceDiagram](images/MatchBuyerCommandSequenceDiagram.png)
+<img src="images/MatchBuyerCommandSequenceDiagram.png" height="400 />
 
 We see how `MatchBuyerCommand` only works to create a combined predicate of `PriceRange` and `Characteristic`, which is 
 then passed to the constructor of `FilterPropertiesCommand` and executed.
@@ -756,7 +757,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is `Cobb` and the **Actor** is the `user`, unless specified otherwise)
 
-### Use case: Add a buyer
+#### Use case: Add a buyer
 
 **MSS:**
 
@@ -776,7 +777,7 @@ Use case ends.
   3b1. Cobb shows an error message.<br>
   Use case ends.
 
-### Use case: Add a property
+#### Use case: Add a property
 
 **MSS:**
 
@@ -796,7 +797,7 @@ Use case ends.
   4b1. Cobb shows an error message. <br>
   Use case ends.
 
-### Use case: Edit a buyer
+#### Use case: Edit a buyer
 
 **MSS:**
 
@@ -821,7 +822,7 @@ Use case ends.
     * 3c1. Cobb shows an error message.
     * Use case ends
   
-### Use case: Edit a property
+#### Use case: Edit a property
 
 **MSS:**
 
@@ -846,17 +847,7 @@ Use case ends.
     * 3c1. Cobb shows an error message.
     * Use case ends
 
-### Use case: List properties
-
-**MSS:**
-
-1. User chooses to list properties.
-2. User executes list properties command.
-3. Cobb displays a list of all properties saved.
-
-Use case ends.
-
-### Use case: List buyers
+#### Use case: List buyers
 
 **MSS:**
 
@@ -866,18 +857,17 @@ Use case ends.
 
 Use case ends.
 
-### Use case: Delete irrelevant properties
+#### Use case: List properties
 
 **MSS:**
 
-1. User <u>lists properties</u> [(Use case: List properties)](#use-case-list-properties).
-2. User finds properties that are no longer relevant (e.g. already sold).
-3. User executes delete command on these properties.
-4. Cobb deletes the property and displays updated list of properties.
+1. User chooses to list properties.
+2. User executes list properties command.
+3. Cobb displays a list of all properties saved.
 
 Use case ends.
 
-### Use case: Delete irrelevant buyers
+#### Use case: Delete irrelevant buyers
 
 **MSS:**
 
@@ -888,17 +878,18 @@ Use case ends.
 
 Use case ends.
 
-### Use case: Sort properties
+#### Use case: Delete irrelevant properties
 
 **MSS:**
 
-1. User chooses to sort properties by a specified field in a specified order.
-2. User executes sort properties command on the currently displayed properties list.
-3. Cobb displays the last-shown property list in a sorted order according to the specified criteria.
+1. User <u>lists properties</u> [(Use case: List properties)](#use-case-list-properties).
+2. User finds properties that are no longer relevant (e.g. already sold).
+3. User executes delete command on these properties.
+4. Cobb deletes the property and displays updated list of properties.
 
 Use case ends.
 
-### Use case: Sort buyers
+#### Use case: Sort buyers
 
 **MSS:**
 
@@ -908,7 +899,17 @@ Use case ends.
 
 Use case ends.
 
-### Use case: Match buyer to properties
+#### Use case: Sort properties
+
+**MSS:**
+
+1. User chooses to sort properties by a specified field in a specified order.
+2. User executes sort properties command on the currently displayed properties list.
+3. Cobb displays the last-shown property list in a sorted order according to the specified criteria.
+
+Use case ends.
+
+#### Use case: Match buyer to properties
 
 **Preconditions**: Prospective buyer has been added.
 
@@ -919,7 +920,7 @@ Use case ends.
 
 Use case ends.
 
-### Use case: Find suitable property for new buyer
+#### Use case: Find suitable property for new buyer
 
 **MSS:**
 1. User gets a new buyer.
@@ -934,7 +935,7 @@ Use case ends.
   2b. User edits the existing buyer with new requirements, if necessary.<br>
   Use case continues at 3.
 
-### Use case: Match property to buyers
+#### Use case: Match property to buyers
 
 **Preconditions**: Property exists in database.
 
