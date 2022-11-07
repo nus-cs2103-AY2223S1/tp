@@ -5,7 +5,8 @@ title: Yih Jie's Project Portfolio Page
 
 ### Project: JARVIS
 
-JARVIS is a student, task and lesson management desktop application for a CS1101S Teaching Assistant. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+JARVIS is a desktop application that allows a CS1101S TA to manage his/her students, tasks and lessons in an organised manner.
+The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
 

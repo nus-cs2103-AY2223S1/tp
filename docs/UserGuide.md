@@ -170,6 +170,8 @@ Exits the program.
 
 Format: `exit`
 
+--------------------------------------------------------------------------------------------------------------------
+
 <div style="page-break-after: always;"></div>
 
 ## Student commands
@@ -276,6 +278,8 @@ Format: `mc INDEX num/MC_NUM r/MC_RESULT`
 Examples:
 * `mc 1 num/1 r/pass` sets the mastery check result for the 1st student in your student list to `PASS`.
 
+--------------------------------------------------------------------------------------------------------------------
+
 <div style="page-break-after: always;"></div>
 
 ## Task commands
@@ -321,7 +325,7 @@ Example:
 * `marktask 2` marks the 2nd task in your task list as done.
 
 <div markdown="span" class="alert alert-primary">
-:bulb: **Tip:** Tasks that have been marked as done will get shifted to the bottom of the task list.
+:bulb: **Tip:** Tasks that have been marked as done will get shifted below tasks that are not done.
 </div>
 
 ### Marking a task as not done : `unmarktask`
@@ -335,6 +339,8 @@ Format: `unmarktask INDEX`
 
 Example:
 * `unmarktask 2` marks the 2nd task in your task list as not done.
+
+--------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
 
@@ -414,7 +420,7 @@ Example:
 * `marklesson 2` marks the 2nd lesson in your lesson list as completed.
 
 <div markdown="span" class="alert alert-primary">
-:bulb: **Tip:** Lessons that have been marked as completed will get shifted to the bottom of the lesson list.
+:bulb: **Tip:** Lessons that have been marked as completed will get shifted below lessons that are not completed.
 </div>
 
 ### Marking a lesson as not completed : `unmarklesson`
@@ -508,11 +514,16 @@ Format: `addpart p/PARTICIPATION li/LESSON_INDEX si/STUDENT_INDEX`
 Example:
 * `addpart p/100 li/1 si/2` sets participation for the 2nd student in the 1st lesson in your lesson list to be 100.
 
+--------------------------------------------------------------------------------------------------------------------
+
 <div style="page-break-after: always;"></div>
+
 
 ## Saving the data
 
 JARVIS data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## Editing the data file
 

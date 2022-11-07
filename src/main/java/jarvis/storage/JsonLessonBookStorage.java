@@ -10,7 +10,6 @@ import java.util.logging.Logger;
 
 import jarvis.commons.core.LogsCenter;
 import jarvis.commons.exceptions.DataConversionException;
-import jarvis.commons.exceptions.IllegalValueException;
 import jarvis.commons.util.FileUtil;
 import jarvis.commons.util.JsonUtil;
 import jarvis.model.ReadOnlyLessonBook;
@@ -54,9 +53,9 @@ public class JsonLessonBookStorage implements LessonBookStorage {
 
         try {
             return Optional.of(jsonLessonBook.get().toModelType());
-        } catch (IllegalValueException ive) {
-            logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
-            throw new DataConversionException(ive);
+        } catch (IllegalArgumentException iae) {
+            logger.info("Illegal values found in " + filePath + ": " + iae.getMessage());
+            throw new DataConversionException(iae);
         } catch (IOException e) {
             logger.info("Error reading data from storage in " + filePath + ": " + e.getMessage());
             throw new DataConversionException(e);

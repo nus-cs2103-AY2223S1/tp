@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
-import jarvis.commons.exceptions.IllegalValueException;
 import jarvis.model.Lesson;
 import jarvis.model.LessonBook;
 import jarvis.model.ReadOnlyLessonBook;
@@ -55,14 +54,14 @@ public class JsonSerializableLessonBook {
     /**
      * Converts this Lesson book into the model's {@code LessonBook} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated.
+     * @throws IllegalArgumentException if there were any data constraints violated.
      */
-    public LessonBook toModelType() throws IllegalValueException, IOException {
+    public LessonBook toModelType() throws IllegalArgumentException, IOException {
         LessonBook lessonBook = new LessonBook();
         for (JsonAdaptedLesson jsonAdaptedLesson : lessons) {
             Lesson lesson = jsonAdaptedLesson.toModelType();
             if (lessonBook.hasLesson(lesson)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_LESSONS);
+                throw new IllegalArgumentException(MESSAGE_DUPLICATE_LESSONS);
             }
             lessonBook.addLesson(lesson);
         }

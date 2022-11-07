@@ -1,7 +1,7 @@
 package jarvis.model;
 
 import static jarvis.testutil.Assert.assertThrows;
-import static jarvis.testutil.TypicalLessons.CONSULT_1;
+import static jarvis.testutil.TypicalLessons.MC_1;
 import static jarvis.testutil.TypicalLessons.STUDIO_1;
 import static jarvis.testutil.TypicalLessons.TP2;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -53,7 +53,7 @@ public class UniqueLessonListTest {
 
         uniqueLessonList.add(STUDIO_1);
         Lesson lessonWithPeriodClash =
-                new LessonBuilder(CONSULT_1).withTimePeriod(TP2).buildConsult();
+                new LessonBuilder(MC_1).withTimePeriod(TP2).buildConsult();
         assertTrue(uniqueLessonList.hasPeriodClash(lessonWithPeriodClash));
     }
 
@@ -111,25 +111,25 @@ public class UniqueLessonListTest {
     @Test
     public void setLesson_editedLessonHasDifferentIdentity_success() {
         uniqueLessonList.add(STUDIO_1);
-        uniqueLessonList.setLesson(STUDIO_1, CONSULT_1);
+        uniqueLessonList.setLesson(STUDIO_1, MC_1);
         UniqueLessonList expectedUniqueLessonList = new UniqueLessonList();
-        expectedUniqueLessonList.add(CONSULT_1);
+        expectedUniqueLessonList.add(MC_1);
         assertEquals(expectedUniqueLessonList, uniqueLessonList);
     }
 
     @Test
     public void setLesson_editedLessonHasNonUniqueIdentity_throwsDuplicateLessonException() {
         uniqueLessonList.add(STUDIO_1);
-        uniqueLessonList.add(CONSULT_1);
-        assertThrows(DuplicateLessonException.class, () -> uniqueLessonList.setLesson(STUDIO_1, CONSULT_1));
+        uniqueLessonList.add(MC_1);
+        assertThrows(DuplicateLessonException.class, () -> uniqueLessonList.setLesson(STUDIO_1, MC_1));
     }
 
     @Test
     public void setLesson_editedLessonHasClashTiming_throwsLessonClashException() {
         uniqueLessonList.add(STUDIO_1);
-        uniqueLessonList.add(CONSULT_1);
-        Lesson editedLesson = new LessonBuilder(CONSULT_1).withTimePeriod(TP2).buildConsult();
-        assertThrows(LessonClashException.class, () -> uniqueLessonList.setLesson(CONSULT_1, editedLesson));
+        uniqueLessonList.add(MC_1);
+        Lesson editedLesson = new LessonBuilder(MC_1).withTimePeriod(TP2).buildConsult();
+        assertThrows(LessonClashException.class, () -> uniqueLessonList.setLesson(MC_1, editedLesson));
     }
 
     @Test
@@ -159,7 +159,7 @@ public class UniqueLessonListTest {
     public void setLessons_uniqueLessonList_replacesOwnListWithProvidedUniqueLessonList() {
         uniqueLessonList.add(STUDIO_1);
         UniqueLessonList expectedUniqueLessonList = new UniqueLessonList();
-        expectedUniqueLessonList.add(CONSULT_1);
+        expectedUniqueLessonList.add(MC_1);
         uniqueLessonList.setLessons(expectedUniqueLessonList);
         assertEquals(expectedUniqueLessonList, uniqueLessonList);
     }
@@ -172,10 +172,10 @@ public class UniqueLessonListTest {
     @Test
     public void setLessons_list_replacesOwnListWithProvidedList() {
         uniqueLessonList.add(STUDIO_1);
-        List<Lesson> lessonList = Collections.singletonList(CONSULT_1);
+        List<Lesson> lessonList = Collections.singletonList(MC_1);
         uniqueLessonList.setLessons(lessonList);
         UniqueLessonList expectedUniqueLessonList = new UniqueLessonList();
-        expectedUniqueLessonList.add(CONSULT_1);
+        expectedUniqueLessonList.add(MC_1);
         assertEquals(expectedUniqueLessonList, uniqueLessonList);
     }
 

@@ -107,7 +107,6 @@ public class LessonBook implements ReadOnlyLessonBook {
     @Override
     public String toString() {
         return lessons.asUnmodifiableObservableList().size() + " lessons";
-        // TODO: refine later
     }
 
     @Override
