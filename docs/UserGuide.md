@@ -14,6 +14,15 @@ Here are some shortcuts to get help:
 * If you are unsure of the terminology, check our [Glossary section](#glossary).
 * To see how all our commands work, head to our [Features section](#features).
 
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
 --------------------------------------------------------------------------------------------------------------------
 ## **Table of Contents**
 
