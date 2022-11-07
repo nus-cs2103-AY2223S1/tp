@@ -5,7 +5,7 @@ title: Yee Thern's Project Portfolio Page
 
 ### Project: HR Pro Max++
 
-HR Pro Max++ is a desktop team management application for SME company to manage their team members and project details.
+HR Pro Max++ is a desktop team management application for SME company to manage their team members, project details and their tasks.
 The user interacts with it using a CLI, and it has a GUI created with JavaFX.
 It is written in Java, and has about 10 kLoC.
 
@@ -36,6 +36,7 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=augustdespair&breakdown=true)
 
 * **Project management**:
+  * Reviewed the teams' PR: Pull Request [#128](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/128), [#199](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/199)
 
 * **Enhancements to existing features**:
   * `containsNameIgnoreCase` in `StringUtil` to handle the checking of the instance of a substring being present inside a String.
@@ -46,9 +47,11 @@ Given below are my contributions to the project.
   commands to directly call methods from classes in the `Model` package. 
 
 * **Documentation**:
-
+  * Developer Guide:
+    * Added Developer Guide for `AddStaffCommand`:  [#113](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/113), [#221](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/221/) 
+    * Added Developer Guide for `EditStaffCommand` and `FindStaffCommand`: [#221](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/221/)
+  * User Guide:
+    * Added User Guide for `EditStaffCommand` and `FindStaffCommand`: [#136](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/136/), [#194](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/194/)
+    * Added User Guide for `AddTaskCommand`, `DeleteTaskCommand` and `FindTaskCommand`: [#138](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/138/)
 * **Community**:
-
-* **Tools**:
-
-* _{you can add/remove categories in the list above}_
+  * PE Dry Run: Found a total of 4 bugs and suggestions [within this Repo](https://github.com/AugustDespair/ped).
