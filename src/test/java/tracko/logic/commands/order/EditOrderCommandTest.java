@@ -123,13 +123,13 @@ public class EditOrderCommandTest {
 
     /**
      * Edit filtered list where index is larger than size of filtered list,
-     * but smaller than size of address book
+     * but smaller than size of displayed order list
      */
     @Test
     public void execute_invalidOrderIndexFilteredList_failure() {
         CommandTestUtil.showOrderAtIndex(model, INDEX_FIRST);
         Index outOfBoundIndex = INDEX_SECOND;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of order list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getTrackO().getOrderList().size());
 
         EditOrderCommand editOrderCommand = new EditOrderCommand(outOfBoundIndex,

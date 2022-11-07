@@ -9,9 +9,9 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* This application is built on code from the [AddressBook-Level3](https://github.com/nus-cs2103-AY2223S1/tp) project created by SE-EDU 
+* This application is built on code from the [AddressBook-Level3](https://github.com/nus-cs2103-AY2223S1/tp) project created by SE-EDU
 initiative at [https://se-education.org/](https://se-education.org/)
-* Libraries used in our application: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), 
+* Libraries used in our application: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson),
 [JUnit5](https://github.com/junit-team/junit5)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -156,7 +156,7 @@ Classes used by multiple components are in the `tracko.commons` package.
 
 ## **Implementation**
 
-This section describes some noteworthy details on how certain features are implemented. 
+This section describes some noteworthy details on how certain features are implemented.
 
 ### Inventory Management
 
@@ -166,13 +166,13 @@ to form the backbone of the application, allowing for efficient and reliable tra
 #### Overview
 
 As per the Model diagram given [above](#model-component), the application keeps track of one `InventoryList`
-at any point in time. This `InventoryList` instance represents the container that keeps track of all inventory item 
+at any point in time. This `InventoryList` instance represents the container that keeps track of all inventory item
 data in the system.
 
-Currently, the application features 5 main operations that interact directly with the `InventoryList`. They are 
+Currently, the application features 5 main operations that interact directly with the `InventoryList`. They are
 represented by the following commands:
 * [`AddItemCommand`](#add-item-feature) - creates a new item to be added to the `InventoryList`
-* [`FindItemCommand`](#find-item-feature) - filters and display matching items from the `InventoryList` based on 
+* [`FindItemCommand`](#find-item-feature) - filters and display matching items from the `InventoryList` based on
 provided keywords
 * [`ListItemCommand`](#list-items-feature) - display all inventory data from the `InventoryList`
 * [`EditItemCommand`](#edit-item-feature) - edit the data of an item from the `InventoryList`
@@ -188,7 +188,7 @@ The `InventoryItem` class encapsulates item-related data packaged in the followi
 
 ### Add Item Feature
 
-The add item feature allows users to add an `InventoryItem` to be tracked by the system. 
+The add item feature allows users to add an `InventoryItem` to be tracked by the system.
 
 #### Implementation
 
@@ -202,22 +202,22 @@ The initial state of TrackO Model before running add item command will be as suc
 ![AddItemState0](images/developer-guide/AddItemState0.png)
 
 Step 2. The user executes `addi i/Key q/200 d/Cabinet keys sp/9.90 cp/4.90 t/new` command to add 200 keys to the inventory list in TrackO.
-The `addi` command creates an `AddItemCommandParser` which checks that the following input arguments are present 
-before parsing the arguments into an `AddItemCommand` object: 
+The `addi` command creates an `AddItemCommandParser` which checks that the following input arguments are present
+before parsing the arguments into an `AddItemCommand` object:
 * item name (prefixed by `i/`)
-* quantity (prefixed by `q/`) 
+* quantity (prefixed by `q/`)
 * description (prefixed by `d/`)
 * sell price (prefixed by `sp/`)
 * cost price (prefied by `cp`)
 
-Tags (which are prefixed by `t/`) are optional inputs and will be parsed into the `AddItemCommand` 
+Tags (which are prefixed by `t/`) are optional inputs and will be parsed into the `AddItemCommand`
 as well if they are present.
 
 The `AddItemCommand` calls `Model#addItem()` to add the item and its corresponding quantity into the inventory list.
 
 ![AddItemState1](images/developer-guide/AddItemState1.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution,
 it will not call `Model#addItem()`, so the incomplete item will not be saved to `InventoryList`.
 
 </div>
@@ -226,7 +226,7 @@ The following sequence diagram shows how the add item operation works:
 
 ![AddItemSequenceDiagram](images/developer-guide/AddItemSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddItemCommand` should 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddItemCommand` should
 end at the <i>destroy marker</i> (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
@@ -265,8 +265,8 @@ The sequence diagram below illustrates this process.
 
 ![EditItemSequenceDiagram](images/developer-guide/DeleteItemSequenceDiagram.png)
 <div markdown="span" class="alert alert-info">
-:information_source: **Note:** The lifeline for `DeleteItemCommandParser` and `DeleteItemCommand` should end at 
-the <i>destroy marker</i> (X) but due to a limitation of PlantUML, the lifeline reaches the 
+:information_source: **Note:** The lifeline for `DeleteItemCommandParser` and `DeleteItemCommand` should end at
+the <i>destroy marker</i> (X) but due to a limitation of PlantUML, the lifeline reaches the
 end of diagram.
 </div>
 
@@ -274,7 +274,7 @@ end of diagram.
 
 **Aspect: How deletei is implemented**
 - **Alternative 1 (current choice)**: The command deletes the target `InventoryItem` based on the target `Index`.
-  - Pros: Easier to implement, 
+  - Pros: Easier to implement,
   - Cons: The user must check for the `InventoryItem` for its `Index`.
 - **Alternative 2**: The command can delete `InventoryItem` objects based on their `ItemName`.
   - Pros: User do not need to check for the `InventoryItem` object's `Index`.
@@ -339,7 +339,7 @@ The sequence diagram below illustrates this process.
 ![FindItemSequenceDiagram](images/FindItemSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindItemCommandParser`
-and `FindItemCommand` should end at the <i>destroy marker</i> (X) but due to a limitation of PlantUML, the lifeline 
+and `FindItemCommand` should end at the <i>destroy marker</i> (X) but due to a limitation of PlantUML, the lifeline
 reaches the end of diagram.
 </div>
 
@@ -384,14 +384,14 @@ because having 2 `InventoryItem` with the same `ItemName` can be confusing to th
 situation.
 
 Step 3. The `InventoryItem` at the target index is then replaced by the newly created `InventoryItem` using `Model#setItem()`,
-successfully executing the edit item command in the `Model`. 
+successfully executing the edit item command in the `Model`.
 
 The sequence diagram below illustrates this process.
 
 ![EditItemSequenceDiagram](images/developer-guide/EditItemSequenceDiagram.png)
 <div markdown="span" class="alert alert-info">
-:information_source: **Note:** The lifeline for `EditItemCommandParser` should end at 
-the <i>destroy marker</i> (X) but due to a limitation of PlantUML, the lifeline reaches the 
+:information_source: **Note:** The lifeline for `EditItemCommandParser` should end at
+the <i>destroy marker</i> (X) but due to a limitation of PlantUML, the lifeline reaches the
 end of diagram.
 </div>
 
@@ -536,13 +536,13 @@ Given below is an example usage scenario and how the find order mechanism behave
 Step 1. The user launches the application for the first time. `TrackO` will be initialised with the initial TrackO
 state, and the `OrderList` will contain sample data.
 
-Step 2. The user executes `findo -D -p n/Alex a/Serangoon` command to find the orders which are paid but not 
-delivered made by customer with the `Name` `Alex` and `Address` containing the word `Serangoon`. The `findo` 
-command calls `FindOrderCommandParser` which checks for the correct command syntax and separates the keywords, 
-utilising each space as a delimiter. The keywords are then passed as a `List` into a constructor for 
+Step 2. The user executes `findo -D -p n/Alex a/Serangoon` command to find the orders which are paid but not
+delivered made by customer with the `Name` `Alex` and `Address` containing the word `Serangoon`. The `findo`
+command calls `FindOrderCommandParser` which checks for the correct command syntax and separates the keywords,
+utilising each space as a delimiter. The keywords are then passed as a `List` into a constructor for
 `OrderMatchesFlagsAndPrefixPredicate`, which extends `Predicate<Order>`, to construct a predicate
 that will filter the items according to the keywords. The predicate is passed into a new instance of
-`FindOrderCommand`. `FindOrderCommand` then calls `Model#updateFilteredOrderList()` to filter 
+`FindOrderCommand`. `FindOrderCommand` then calls `Model#updateFilteredOrderList()` to filter
 `Model#filteredOrders` according to the predicate.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the command syntax is incorrect,
@@ -554,7 +554,7 @@ The following sequence diagram shows how the find order command works:
 ![FindOrderSequenceDiagram](images/FindOrderSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindItemCommandParser`
-and `FindItemCommand` should end at the <i>destroy marker</i> (X) but due to a limitation of PlantUML, the lifeline 
+and `FindItemCommand` should end at the <i>destroy marker</i> (X) but due to a limitation of PlantUML, the lifeline
 reaches the end of diagram.
 </div>
 
@@ -568,8 +568,8 @@ The following activity diagram summarizes what happens when a user executes a va
   - Pros: Easier to implement, and users do not have to use prefixes to find items.
   - Cons: Cannot search based on other fields, such as the customer's details (eg. name, address) and order's delivery or payment status.
 - **Alternative 2 (current choice):** The command finds orders based on `ItemName`, `Name`, `Address`, delivery status and payment status.
-  - Pros: More robust searching functionality, allowing users to search by more fields at once. This benefits users with a large customer base. 
-  The ability to search by delivery and payment status also allows users to keep track of the orders which have yet to be paid/delivered. 
+  - Pros: More robust searching functionality, allowing users to search by more fields at once. This benefits users with a large customer base.
+  The ability to search by delivery and payment status also allows users to keep track of the orders which have yet to be paid/delivered.
   - Cons: Harder to implement.
 
 ### Edit Order Feature
@@ -584,13 +584,13 @@ Given below is an example usage scenario and how the `EditOrderCommand` mechanis
 
 Step 1. The user inputs `edito 3 n/John Doe i/Banana q/5`. The following methods are called, in the given order:
 1. `LogicManager#execute`, which then calls
-2. `TrackOParser#parseCommand`. It will parse the input as an `EditOrderCommand` and call the constructor of 
+2. `TrackOParser#parseCommand`. It will parse the input as an `EditOrderCommand` and call the constructor of
 `EditOrderCommandParser`.
 3. `EditOrderCommandParser#parse` will parse the user command based on the prefixes given by the user, and returns an
-`EditOrderCommand` with the target index and `EditOrderDescriptor` as input. 
+`EditOrderCommand` with the target index and `EditOrderDescriptor` as input.
 
-The `EditOrderDescriptor` contains information that a newly edited order should have; in this case, 
-it contains a `Name`, `InventoryItem`, and `Quantity`. The rest of the fields that are not provided are copied from the existing 
+The `EditOrderDescriptor` contains information that a newly edited order should have; in this case,
+it contains a `Name`, `InventoryItem`, and `Quantity`. The rest of the fields that are not provided are copied from the existing
 order at target index `3` (This index is **one-based**).
 
 Step 2. `EditOrderCommand#execute` is called, and it will check whether the `orderToEdit` is completed; if it is, it
@@ -604,24 +604,24 @@ Step 3. The `EditOrderCommand#createEditedOrder` creates an edited order using t
   *This is because customers cannot order things that are not in stock*.
   - If it exists, the method will keep running.
 - **the `InventoryItem` exists in the `Order`'s list of ordered items, which is stored as a `List<ItemQuantityPair>`.** This is
-done by `InventoryItem#isSameItem`, which returns true if both the newly inputted `InventoryItem` and the `InventoryItem` referenced in 
+done by `InventoryItem#isSameItem`, which returns true if both the newly inputted `InventoryItem` and the `InventoryItem` referenced in
 `ItemQuantityPair` share the same `ItemName` (case-insensitive).
   - If it does not exist, then the `InventoryItem` and `Quantity` will form a
     new instance of `ItemQuantityPair` which will be added to the `List<ItemQuantityPair>`.
   - If it exists, it will check whether:
     - The `Quantity` is `0`. If it is, then:
-      - If the order's list of ordered items has more than one `ItemQuantityPair` will be removed from the 
+      - If the order's list of ordered items has more than one `ItemQuantityPair` will be removed from the
       `List<ItemQuantityPair>`.
       - If the order's list of ordered items has only one `ItemQuantityPair`, then a `CommandException` with
       `MESSAGE_ONE_ORDERED_ITEM` will be thrown. This is because **an order cannot have zero ordered items**.
-    - The newly inputted`Quantity` is different from the existing `Quantity`. If it is, then it will update 
+    - The newly inputted`Quantity` is different from the existing `Quantity`. If it is, then it will update
 to the newly inputted `Quantity`.
       - Otherwise, a `CommandException` with `MESSAGE_NO_CHANGE_IN_QUANTITY` will be thrown. This is to warn users that
       the newly inputted `Quantity` is the same as the existing `Quantity` and does not update the `Quantity` field at
-      all. 
+      all.
 
-Step 4. The `Order` at the target index is then replaced by the newly created `Order` using `Model#setOrder()`, 
-successfully executing the edit order command in the `Model`. `Model#refreshData` is called to refresh the GUI, and 
+Step 4. The `Order` at the target index is then replaced by the newly created `Order` using `Model#setOrder()`,
+successfully executing the edit order command in the `Model`. `Model#refreshData` is called to refresh the GUI, and
 `Model#updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS)` is called to update the list to show all orders.
 `EditOrderCommand#execute()` returns a `CommandResult` to the `LogicManager`.
 
@@ -629,14 +629,14 @@ The sequence diagram below illustrates this process.
 
 ![EditOrderSequenceDiagram](images/EditOrderSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `EditOrderCommandParser` 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `EditOrderCommandParser`
 and `EditOrderCommand` should end at the <i>destroy marker</i> (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 #### Design Considerations
 
 **Aspect: Whether to implement the edit order feature**
-- **Alternative 1 (current choice)**: The command is implemented and edits the order based on the prefixes 
+- **Alternative 1 (current choice)**: The command is implemented and edits the order based on the prefixes
 inputted by the user.
   - Pros: The user can edit only the fields that they want to edit.
   - Cons: The user may have to input long commands.
@@ -671,8 +671,8 @@ The sequence diagram below illustrates this process.
 
 ![SortOrdersSequenceDiagram](images/developer-guide/SortOrdersSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SortOrdersCommandParser` and `SortOrdersCommand` 
-should end at the <i>destroy marker</i> (X) but due to a limitation of PlantUML, the lifeline 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SortOrdersCommandParser` and `SortOrdersCommand`
+should end at the <i>destroy marker</i> (X) but due to a limitation of PlantUML, the lifeline
 reaches the end of diagram.
 </div>
 
@@ -950,12 +950,11 @@ testers are expected to do more *exploratory* testing.
 
 ### Launch and shutdown
 
-1. Initial launch
-
-   i. Download the jar file and copy into an empty folder
-
-   ii. Double-click the jar file Expected: Shows the GUI with a set of sample orders and items. 
-   The window automatically expands to occupy the entire screen.
+1. Initial launch 
+   * Download the jar file and copy into an empty folder
+   * Double-click the jar file <br>
+     Expected: Shows the GUI with a set of sample orders and items. 
+     The window automatically expands to occupy the entire screen.
 
 ### Starting up with missing/corrupted data files
 
@@ -967,82 +966,177 @@ testers are expected to do more *exploratory* testing.
 ### Adding an inventory item
 
 1. Adding an inventory item
-   1. Prerequisites: None
-   2. Test case: `addi i/Chair q/100 d/Wooden Chair sp/50 cp/10 t/Fragile` <br>
-  Expected: Inventory item is added to the inventory list. Details of the added inventory item shown in the status message.
-   3. Test case: `addi i/Chair d/Wooden Chair sp/50 cp/10 t/Fragile` <br>
-  Expected: No inventory item is added. Error details shown in the status message.
-   4. Other incorrect addi commands to try: `addi`, `addi x`, `...`(where x is a string containing the inventory item details but is missing a required parameter) <br>
-  Expected: similar to previous.
+   * Prerequisites: None
+   * Test case: `addi i/Chair q/100 d/Wooden Chair sp/50 cp/10 t/Fragile` <br>
+   Expected: Inventory item is added to the inventory list. Details of the added inventory item shown in the status message.
+   * Test case: `addi i/Chair d/Wooden Chair sp/50 cp/10 t/Fragile` <br>
+   Expected: No inventory item is added. Error details shown in the status message.
+   * Other incorrect addi commands to try: `addi`, `addi x`, `...`(where x is a string containing the inventory item details but is missing a required parameter) <br>
+   Expected: similar to previous.
 
 ### Listing all inventory items
 
 1. Display all inventory items of a populated inventory list
-   1. Prerequisites: Have an inventory list containing 1 or more inventory items
-   2. Test case: `listi` <br>
-  Expected: All inventory items are displayed.
+   * Prerequisites: Have an inventory list containing 1 or more inventory items
+   * Test case: `listi` <br>
+   Expected: All inventory items are displayed.
 
 2. Display all inventory items of an empty inventory list
-   1. Prerequisites: Have an inventory list containing 0 inventory items
-   2. Test case: `listi` <br>
-  Expected: No inventory items are displayed.
+   * Prerequisites: Have an inventory list containing 0 inventory items
+   * Test case: `listi` <br>
+   Expected: No inventory items are displayed.
 
 ### Finding an inventory item
 
 1. Finding an inventory item that exists in the inventory list
-   1. Prerequisites: Have an inventory list containing only inventory items with the item names `Chair`, `Table`, `Bed`.
-   2. Test case: `findi Chair` <br>
-  Expected: Only the inventory item with the item name `Chair` is displayed. Number of inventory items
-  found shown in the status message.
-   4. Test case: `findi` <br>
-  Expected: No inventory item is found, no change to current displayed inventory item list.
-  Error details shown in the status message.
+   * Prerequisites: Have an inventory list containing only inventory items with the item names `Chair`, `Table`, `Bed`.
+   * Test case: `findi Chair` <br>
+   Expected: Only the inventory item with the item name `Chair` is displayed. Number of inventory items found shown in the status message.
+   * Test case: `findi` <br>
+   Expected: No inventory item is found, no change to current displayed inventory item list. Error details shown in the status message.
 
 2. Finding an inventory item that does not exist in the inventory list
-   1. Prerequisites: Have an inventory list containing only inventory items with the item names `Chair`, `Table`, `Bed`.
-   2. Test case: `findi pen` <br>
-  Expected: No inventory item is displayed in the inventory list. 0 inventory items
-  found shown in the status message.
+   * Prerequisites: Have an inventory list containing only inventory items with the item names `Chair`, `Table`, `Bed`.
+   * Test case: `findi pen` <br>
+   Expected: No inventory item is displayed in the inventory list. 0 inventory items found shown in the status message.
+
+### Deleting an inventory item
+
+1. Deleting an inventory item while all inventory item(s) are being shown
+   * Prerequisites: List all inventory items using the `listi` command. Multiple inventory items in the inventory list.
+     First inventory item in the displayed inventory list is not involved in any uncompleted orders.
+     Third inventory item in the displayed inventory list is involved in uncompleted order(s).
+     For example, with the sample data loaded in TrackO, the command `listi` will list all inventory items,
+     where the first inventory item `Chair` is not involved in any uncompleted orders,
+     whereas the third item `Bolster` is.
+   * Test case: `deletei 1` <br>
+     Expected: First inventory item is deleted from the inventory list. Details of the deleted inventory item shown in the status message.
+   * Test case: `deletei 3` <br>
+     Expected: No inventory item is deleted from the inventory list. Error details shown in the status message (involved in uncompleted orders).
+   * Test case: `deletei 0` <br>
+     Expected: No inventory item is deleted. Error details shown in the status message.
+   * Other incorrect delete commands to try `deletei`, `deletei x`, ... (where x is larger than the size of the displayed inventory list)
+     Expected: Similar to previous,
+
+2. Deleting an inventory item while only some inventory item(s) are being shown
+   * Prerequisites: Find inventory item(s) using the `findi` command.
+     First inventory item in the displayed inventory list is not involved in any uncompleted orders.
+     Second inventory item in the displayed inventory list is involved in uncompleted order(s).
+     For example, with the sample data loaded in TrackO, the command `findi Chair Mattress` will find and display only the items with the name `Chair` and `Mattress` in the inventory list,
+     where first item `Chair` is not involved in any uncompleted orders,
+     whereas second item `Mattress` is involved.
+   * Test case: `deletei 1` <br>
+     Expected: First inventory item is deleted from the displayed inventory list. Details of the deleted inventory item shown in the status message.
+   * Test case: `deletei 2`, where n is the index of an inventory item which is involved in uncompleted order(s). For example, `deletei 2` after `findi Chair Pillow` with the sample data. <br>
+     Expected: No inventory item is deleted. Error details shown in the status message.
+   * Test case: `deletei 0` <br>
+     Expected: No inventory item is deleted. Error details shown in the status message.
+   * Other incorrect delete commands to try: `deletei`, `deletei x`, ... (where x is larger than the size of the displayed inventory list)
+     Expected: Similar to previous
+
+### Editing an inventory item
+
+1. Editing an inventory item while all inventory item(s) are being shown
+   * Prerequisites: List all inventory items using the `listi` command. Multiple inventory items in the inventory list.
+     First inventory item in the displayed inventory list is not involved in any uncompleted orders.
+     Third inventory item in the displayed inventory list is involved in uncompleted order(s).
+     For example, with the sample data loaded in TrackO, the command `listi` will list all inventory items,
+     where the first inventory item `Chair` is not involved in any uncompleted orders,
+     whereas the third item `Bolster` is.
+   * Test case: `editi 1 i/Red Chair q/20 sp/10 cp/2` <br>
+     Expected: First inventory item is edited. Name, quantity, sell price and cost price is updated to `Red Chair`, `20`, `$10.00`, `$2.00` respectively.
+   * Test case: `editi 3 i/Test Item Name` <br>
+     Expected: No inventory item is edited. Error details shown in the status message (involved in uncompleted orders).
+   * Test case: `editi 0` <br>
+     Expected: No inventory item is edited. Error details shown in the status message.
+   * Other incorrect edit commands to try: `editi`, `editi x`, ... (where x is larger than the size of the displayed inventory list) <br>
+     Expected: Similar to previous
+
+2. Editing an inventory item while only some inventory item(s) are being shown
+   * Prerequisites: Find inventory item(s) using the `findi` command.
+     First inventory item in the displayed inventory list is not involved in any uncompleted orders.
+     Second inventory item in the displayed inventory list is involved in uncompleted order(s).
+     For example, with the sample data loaded in TrackO, the command `findi Chair Mattress` will find and display only the items with the name `Chair` and `Mattress` in the inventory list,
+     where first item `Chair` is not involved in any uncompleted orders,
+     whereas second item `Mattress` is involved.
+   * Test case: `editi 1 i/Red Chair q/20 sp/10 cp/2` <br>
+     Expected:  First inventory item is edited. Name, quantity, sell price and cost price is updated to `Red Chair`, `20`, `$10.00`, `$2.00` respectively.
+   * Test case: `editi 2 i/Test Item Name` <br>
+     Expected: No inventory item is edited. Error details shown in the status message (involved in uncompleted orders).
+   * Test case: `editi 0` <br>
+     Expected: No inventory item is edited. Error details shown in the status message.
+   * Other incorrect edit commands to try: `editi`, `editi x`, ... (where x is larger than the sie of the displayed inventory list) <br>
+     Expected: Similar to previous
+
+### Adding an order
+
+1. Adding an order, attempt to add existing and non-existent inventory items in order's item list.
+   * Prerequisites: Multiple inventory items exist in the inventory list. One of them with the item name `Chair`, and **none** of them with the name `Apple`
+   * Test Case: Execute the following commands below in sequence and check the response by the system.
+   * Step 1: `addo n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25` <br>
+       Expected: Add order command initiated. System prompts for further item and quantity input
+   * Step 2: `i/Chair q/10` <br>
+       Expected: System accepts the item and quantity input, prompts for further input.
+   * Step 3: `i/Apple q/20` <br>
+     Expected: System notifies that inventory item with name `Apple` does not exist, prompts for further input.
+   * Step 4: `done` <br>
+     Expected: Order is added to the order list. Order details shown in the status message.
+
+2. Initiating the command, attempt to add an order with an empty item list
+   * Prerequisites: None
+   * Test case: Execute the following commands below in sequence and check the response by the system.
+     * Step 1: `addo n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25` <br>
+       Expected: Add order command initiated. System prompts for further item and quantity input
+     * Step 2: `done` <br>
+       Expected: System notifies that order's item list cannot be empty and exits the command sequence.
+
+3. Initiating the command, aborting the command.
+   * Prerequisites: None
+   * Test case: Execute the following commands below in sequence and check the response by the system.
+     * Step 1: `addo n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25` <br>
+       Expected: Add order command initiated. System prompts for further item and quantity input.
+     * Step 2: `cancel` <br>
+       Expected: System notifies that the command has been aborted and exits the command sequence.
 
 ### Listing all orders
 
 1. Listing all orders after calling `findo`
-* Prerequisites: List all orders using the `listo` command. There are already multiple existing orders.
-  Of these orders, there exist 2 orders made by customers with `Chan` in their names. Before testing, enter `findo n/Chan`<br/>
-  Expected: Order list displays 2 orders by customers with `Chan` in their name.
-* Test case: Enter `listo` into the command box.<br/>
-  Expected: ALl orders listed in the order list.
-* Other incorrect `listo` commands to try: Enter `listO` into the command box.<br/>
-  Expected: Result display shows `Unknown command`.
+   * Prerequisites: List all orders using the `listo` command. There are already multiple existing orders.
+     Of these orders, there exist 2 orders made by customers with `Chan` in their names. Before testing, enter `findo n/Chan`<br/>
+     Expected: Order list displays 2 orders by customers with `Chan` in their name.
+   * Test case: Enter `listo` into the command box.<br/>
+     Expected: ALl orders listed in the order list.
+   * Other incorrect `listo` commands to try: Enter `listO` into the command box.<br/>
+     Expected: Result display shows `Unknown command`.
 
 ### Finding order(s)
 
 1. Finding an order while all orders are being shown
-* Prerequisites: List all orders using the `listo` command. Multiple orders in the list.
-* Test case: Enter `findo -d` into the command box.</br>
-  Expected: Orders which have been delivered are displayed. The number of orders which
-  correspond to the search parameters is displayed in the result display.
-* Test case: Enter `findo n/Alex a/Geylang` into the command box.<br/>
-  Expected: Orders which have a customer name `Alex` and address containing the word
-  `Geylang` will be displayed. The number of orders which correspond to the search
-  parameters is displayed in the result display.
-* Test case: Enter `findo Alex` into the command box.<br/>
-  Expected: Result display displays an invalid command format message with the
-  specifications of the correct `findo` command format.
-* Other incorrect `findo` commands to try: `findo`, `findo -e`.
-  Expected: Similar to previous.
+   * Prerequisites: List all orders using the `listo` command. Multiple orders in the list.
+   * Test case: Enter `findo -d` into the command box.</br>
+     Expected: Orders which have been delivered are displayed. The number of orders which
+     correspond to the search parameters is displayed in the result display.
+   * Test case: Enter `findo n/Alex a/Geylang` into the command box.<br/>
+     Expected: Orders which have a customer name `Alex` and address containing the word
+     `Geylang` will be displayed. The number of orders which correspond to the search
+     parameters is displayed in the result display.
+   * Test case: Enter `findo Alex` into the command box.<br/>
+     Expected: Result display displays an invalid command format message with the
+     specifications of the correct `findo` command format.
+   * Other incorrect `findo` commands to try: `findo`, `findo -e`.
+     Expected: Similar to previous.
 
 ### Sorting orders by time created
 
 1. Sorting orders by time created while all orders are being shown
-* Prerequisites: List all orders using the `listo` command. Multiple orders in the order list.
-* Test case: Enter `sorto old` into the command box.<br/>
-  Expected: Orders in the order card will be displayed from oldest to newest.
-* Test case: Enter `sorto new` into the command box.<br/>
-  Expected: Orders in the order card will be displayed from newest to oldest.
-* Test case: Enter `sorto hello` into the command box.<br/>
-  Expected: Result display displays an invalid command format message with the
-  specifications of the correct `sorto` command format.
+   * Prerequisites: List all orders using the `listo` command. Multiple orders in the order list.
+   * Test case: Enter `sorto old` into the command box.<br/>
+     Expected: Orders in the order card will be displayed from oldest to newest.
+   * Test case: Enter `sorto new` into the command box.<br/>
+     Expected: Orders in the order card will be displayed from newest to oldest.
+   * Test case: Enter `sorto hello` into the command box.<br/>
+     Expected: Result display displays an invalid command format message with the
+     specifications of the correct `sorto` command format.
 
 ### Deleting an order
 

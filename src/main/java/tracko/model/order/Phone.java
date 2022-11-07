@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static tracko.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Order's customer phone number in the order list.
+ * Represents an Order's customer phone number.
  * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}
  */
 public class Phone {

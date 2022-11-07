@@ -115,12 +115,12 @@ p.s. Not too sure about some technical terms in this guide? Check out our [gloss
 As you read through this document, you might come across some symbols and highlighted words, as described 
 in the table below:
 
-| Symbol/Syntax                                   | Meaning                                                                                                                                         |
-|-------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
-| :information_source: **Notes**                  | Information that you need to pay attention to.                                                                                                  |
-| :bulb: **Tip**                                  | Information that you may find helpful.                                                                                                          |
-| :exclamation: **Caution:**                      | Information that you need to know before executing a [command](#command)                                                                        |
-| `Highlighted text block`                        | [Commands](#command) or [parameters](#parameter) that you can enter into our application, or text that is directly displayed in our application |
+| Symbol/Syntax                                  | Meaning                                                                                                                                         |
+|------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
+| :information_source: **Notes**                 | Information that you need to pay attention to.                                                                                                  |
+| :bulb: **Tip**                                 | Information that you may find helpful.                                                                                                          |
+| :exclamation: **Caution**                      | Information that you need to know before executing a [command](#command)                                                                        |
+| `Highlighted text block`                       | [Commands](#command) or [parameters](#parameter) that you can enter into our application, or text that is directly displayed in our application |
 | [Hyperlinked text in blue](#symbols-and-syntax) | When it is pressed, it should lead you to another section in the document or to an external link.                                               |
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)

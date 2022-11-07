@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 import tracko.commons.util.StringUtil;
 
 /**
- * Tests that a {@code Order}'s {@code Name} matches any of the keywords given.
+ * Tests that an {@code Order}'s {@code Name} matches any of the keywords given.
  */
 public class OrderMatchesFlagsAndPrefixPredicate implements Predicate<Order> {
     private final List<String> nameKeywords;

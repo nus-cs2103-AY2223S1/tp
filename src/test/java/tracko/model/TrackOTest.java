@@ -24,22 +24,22 @@ import org.junit.jupiter.api.Test;
 
 public class TrackOTest {
 
-    private final TrackO addressBook = new TrackO();
+    private final TrackO trackO = new TrackO();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getOrderList());
+        assertEquals(Collections.emptyList(), trackO.getOrderList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> trackO.resetData(null));
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
+    public void resetData_withValidReadOnlyTrackO_replacesData() {
         TrackO newData = getTrackOWithTypicalOrders();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+        trackO.resetData(newData);
+        assertEquals(newData, trackO);
     }
 }

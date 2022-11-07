@@ -24,7 +24,7 @@ import tracko.model.order.Phone;
 import tracko.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code TrackO} with sample data.
  */
 public class SampleDataUtil {
     private static final InventoryItem INVENTORY_ITEM_1 = new InventoryItem(new ItemName("Chair"),

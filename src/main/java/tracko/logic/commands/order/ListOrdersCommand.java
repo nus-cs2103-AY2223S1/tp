@@ -8,7 +8,7 @@ import tracko.logic.commands.CommandResult;
 import tracko.model.Model;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all {@code Order}s in TrackO to the user.
  */
 public class ListOrdersCommand extends Command {
 

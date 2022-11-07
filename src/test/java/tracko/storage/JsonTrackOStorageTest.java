@@ -27,7 +27,7 @@ public class JsonTrackOStorageTest {
     public Path testFolder;
 
     @Test
-    public void readAddressBook_nullFilePath_throwsNullPointerException() {
+    public void readTrackO_nullFilePath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> readTrackO(null));
     }
 
@@ -48,21 +48,22 @@ public class JsonTrackOStorageTest {
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> readTrackO("notJsonFormatOrders.json"));
+        assertThrows(DataConversionException.class, () -> readTrackO("notJsonFormatTrackO.json"));
     }
 
     @Test
-    public void readAddressBook_invalidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readTrackO("invalidOrderOrders.json"));
+    public void readTrackO_invalidInventoryItem_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readTrackO("invalidInventoryItemTrackO.json"));
     }
 
     @Test
-    public void readAddressBook_invalidAndValidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readTrackO("invalidAndValidOrderOrders.json"));
+    public void readTrackO_invalidOrders_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readTrackO("invalidOrderTrackO.json"));
+        assertThrows(DataConversionException.class, () -> readTrackO("invalidOrderItemTrackO.json"));
     }
 
     @Test
-    public void readAndSaveAddressBook_allInOrder_success() throws Exception {
+    public void readAndSaveTrackO_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempTrackO.json");
         TrackO original = getTrackOWithTypicalOrders();
         JsonTrackOStorage jsonTrackOStorage = new JsonTrackOStorage(filePath);
@@ -93,12 +94,12 @@ public class JsonTrackOStorageTest {
     }
 
     @Test
-    public void saveAddressBook_nullAddressBook_throwsNullPointerException() {
+    public void saveTrackO_nullTrackO_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> saveTrackO(null, "SomeFile.json"));
     }
 
     /**
-     * Saves {@code addressBook} at the specified {@code filePath}.
+     * Saves {@code trackO} at the specified {@code filePath}.
      */
     private void saveTrackO(ReadOnlyTrackO trackO, String filePath) {
         try {

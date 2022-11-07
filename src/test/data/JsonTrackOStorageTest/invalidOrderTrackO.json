@@ -1,0 +1,102 @@
+{
+  "items" : [ {
+    "itemName" : "Chair",
+    "quantity" : 300,
+    "description" : "Carved mahogany wooden chair",
+    "sellPrice" : 149.99,
+    "costPrice" : 80.5,
+    "tagged" : [ "Furniture" ]
+  }, {
+    "itemName" : "Pillow",
+    "quantity" : 300,
+    "description" : "Ergonomic with recycled polystyrene filling",
+    "sellPrice" : 29.99,
+    "costPrice" : 14.99,
+    "tagged" : [ "Bedroom" ]
+  }, {
+    "itemName" : "Bolster",
+    "quantity" : 300,
+    "description" : "Premium cotton filling",
+    "sellPrice" : 20.0,
+    "costPrice" : 10.0,
+    "tagged" : [ "Bedroom", "Premium" ]
+  }, {
+    "itemName" : "Mattress",
+    "quantity" : 300,
+    "description" : "King-sized with memory foam",
+    "sellPrice" : 500.0,
+    "costPrice" : 200.0,
+    "tagged" : [ "Bedroom", "Limited" ]
+  } ],
+  "orders" : [ {
+    "name" : "Alex Yeoh",
+    "phone" : "87438807",
+    "email" : "alexyeoh@example.com",
+    "address" : "Blk 30 Geylang Street 29, #06-40",
+    "timeCreated" : "2022-10-11T11:42:00",
+    "itemList" : [ {
+      "quantity" : 2,
+      "costPrice" : 80.5,
+      "sellPrice" : 149.99,
+      "itemName" : "Chair"
+    } ],
+    "isPaid" : true,
+    "isDelivered" : true
+  }, {
+    "name" : "Bernice Yu",
+    "phone" : "99272758",
+    "email" : "berniceyu@example.com",
+    "address" : "Blk 30 Lorong 3 Serangoon Gardens, #07-18",
+    "timeCreated" : "2022-10-12T12:15:00",
+    "itemList" : [ {
+      "quantity" : 4,
+      "costPrice" : 14.99,
+      "sellPrice" : 29.99,
+      "itemName" : "Pillow"
+    } ],
+    "isPaid" : true,
+    "isDelivered" : false
+  }, {
+    "name" : "Charlotte Oliveiro",
+    "phone" : "93210283",
+    "email" : "charlotte@example.com",
+    "address" : "Blk 11 Ang Mo Kio Street 74, #11-04",
+    "timeCreated" : "2022-10-13T13:12:00",
+    "itemList" : [ {
+      "quantity" : 3,
+      "costPrice" : 10.0,
+      "sellPrice" : 20.0,
+      "itemName" : "Bolster"
+    } ],
+    "isPaid" : false,
+    "isDelivered" : true
+  }, {
+    "name" : "David Li",
+    "phone" : "91031282",
+    "email" : "lidavid@example.com",
+    "address" : "Blk 436 Serangoon Gardens Street 26, #16-43",
+    "timeCreated" : "2022-10-14T20:12:00",
+    "itemList" : [ {
+      "quantity" : 1,
+      "costPrice" : 200.0,
+      "sellPrice" : 500.0,
+      "itemName" : "Mattress"
+    } ],
+    "isPaid" : false,
+    "isDelivered" : false
+  }, {
+    "name" : "John Doe",
+    "phone" : "98765432",
+    "email" : "johnd",
+    "address" : "311, Clementi Ave 2, #02-25",
+    "timeCreated" : "2022-11-07T15:39:02.365274",
+    "itemList" : [ {
+      "quantity" : 10,
+      "costPrice" : 80.5,
+      "sellPrice" : 149.99,
+      "itemName" : "Chair"
+    } ],
+    "isPaid" : false,
+    "isDelivered" : false
+  } ]
+}

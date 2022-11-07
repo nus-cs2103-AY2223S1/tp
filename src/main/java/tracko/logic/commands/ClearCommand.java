@@ -7,7 +7,7 @@ import tracko.model.Model;
 import tracko.model.TrackO;
 
 /**
- * Clears the address book.
+ * Clears all data in TrackO.
  */
 public class ClearCommand extends MultiLevelCommand {
 
