@@ -708,7 +708,7 @@ ___
 ## Managing Meetings
 
 In this section, we provide you the basic steps needed to [add](#adding-a-meeting-addm), [delete](#deleting-a-meeting--delm)
-and [edit](#editing-a-meeting--editm)meetings.
+and [edit](#editing-a-meeting--editm) meetings.
 
 **If this is not the section you are looking for**, click [here](#table-of-contents) to go back to the **Table of Contents**.
 
@@ -717,7 +717,7 @@ and [edit](#editing-a-meeting--editm)meetings.
 
 > Adds a meeting to the REal-Time.
 
-**Format:** `addM id/LISTING_ID n/CLIENT_NAME d/DATE_TIME`
+**Format:** `addM l/LISTING_ID n/CLIENT_NAME d/DATE_TIME`
 
 `LISTING_ID` refers to the Listing the meeting is about.
 `CLIENT_NAME` refers to the name of the Client you are meeting.
@@ -726,15 +726,15 @@ and [edit](#editing-a-meeting--editm)meetings.
 **Example Input:**<br>
 _Success_
 ```text
-addM id/007 n/Joke Peralta d/2022-10-20 12:00
+addM l/007 n/Joke Peralta d/2022-10-20 12:00
 ```
-[screenshots to be added]<br>
+![addM](images/addM_example.png)<br>
 _Failure_
 ```text
 Wrong date format:
-addM id/007 n/Joke Peralta d/tomorrow 12pm
+addM l/007 n/Joke Peralta d/tomorrow 12pm
 ```
-[screenshots to be added]<br>
+![addM](images/addM_invalid.png)<br>
 **Note:**
 1. DATE_TIME must be in this format, yyyy-MM-dd HH:mm
 
@@ -758,13 +758,13 @@ _Success_
 ```text
 delM 1
 ```
-[screenshots to be added]<br>
+![addM](images/deleteM_example.png)<br>
 _Failure_
 ```text
 Invalid index:
 delM -1
 ```
-[screenshots to be added]<br>
+![addM](images/delM_invalid.png)<br>
 
 **Expected Success Output:**<br>
 The meeting at `INDEX` 1 is deleted from REal-Time.<br>
@@ -792,18 +792,18 @@ _Success_
 ```text
 `editM 1 n/Joke Peralta d/2022-10-20 23:59`
 ```
-[screenshots to be added]<br>
+![editM](images/editM_example.png)<br>
 _Failure_
 ```text
 Invalid index:
 editM -1 n/Joke Peralta
 ```
-[screenshots to be added]<br>
+![editM Invalid](images/editM_invalid.png)<br>
 ```text
 Missing fields:
 editM 1
 ```
-[screenshots to be added]<br>
+![editM no fields](images/editM_nofields.png)<br>
 
 **Expected Success Output:**<br>
 The meeting at the specified `INDEX` is edited according to the fields provided.<br>
