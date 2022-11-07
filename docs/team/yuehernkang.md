@@ -1,9 +1,13 @@
-# Condonery
+---
+layout: page
+title: Yue Hern's Project Portfolio Page
+---
 
-##Overview:
-Condonery is a desktop app made for property agents primarily used for managing client contacts and property listings.
+# Project: Condonery
+
+Condonery is a desktop app made for property agents primarily used for managing client contacts and condo listings.
 It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
-
+If you can type fast, Condonery can get your contact management tasks done faster than traditional GUI apps.
 
 ## Summary of Contributions:
 
@@ -29,13 +33,10 @@ validation to ensure that the input provided is valid.
 - Delete Property (Pull Request [#62](https://github.com/AY2223S1-CS2103-W14-1/tp/pull/62))
 - Delete Client (Pull Request [#86](https://github.com/AY2223S1-CS2103-W14-1/tp/pull/86))
 
-
 Enhancements:
 - Consistently increased test coverage (Pull Requests [#238](https://github.com/AY2223S1-CS2103-W14-1/tp/pull/238),
   [#200](https://github.com/AY2223S1-CS2103-W14-1/tp/pull/200), [#70](https://github.com/AY2223S1-CS2103-W14-1/tp/pull/70),
   [#50](https://github.com/AY2223S1-CS2103-W14-1/tp/pull/50))
-
-Contributions to the UG: `to be added soon`
 
 Contributions to the DG:
 - Added documentation for Filter by `PropertyStatusEnum` feature
