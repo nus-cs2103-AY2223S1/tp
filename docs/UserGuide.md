@@ -1,9 +1,8 @@
 ---
-layout: page
-title: SETA
+layout: page 
+title: User Guide
+---
 
-User Guide
-=======
 SETA is a **desktop application for CS2103T Teaching Assistants** to track their students’ and tutorials’ details, and
 questions asked by students. SETA is optimized for use via a Command Line Interface (CLI) while still having the
 benefits of a Graphical User Interface (GUI). If you can type fast, SETA enables you to track your students. manage your
@@ -155,6 +154,8 @@ Format: `attendance INDEX`
 Example:
 
 * `attendance 1`
+
+<img src="images/ug-screenshots/attendance.png" alt="attendance 1" width="1100">
 
 <img src="images/ug-screenshots/attendance.png" alt="attendance 1" width="1100">
 

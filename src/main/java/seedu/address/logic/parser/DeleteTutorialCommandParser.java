@@ -9,7 +9,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new DeleteTutorialCommand object
  */
-public class DeleteTutorialCommandParser {
+public class DeleteTutorialCommandParser implements Parser<DeleteTutorialCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteTutorialCommand
      * and returns a DeleteTutorialCommand object for execution.

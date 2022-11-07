@@ -17,7 +17,7 @@ import seedu.address.model.tutorial.Tutorial;
 /**
  * Parses input arguments and creates a new AddTutorialCommand object
  */
-public class AddTutorialCommandParser {
+public class AddTutorialCommandParser implements Parser<AddTutorialCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddTutorialCommand
      * and returns an AddTutorialCommand object for execution.
