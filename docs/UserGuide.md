@@ -333,6 +333,7 @@ numbers (i.e. Home number) for your student is considered Out of Scope.
 
 * **MODULE:** StudMap is designed as a tool for NUS TAs, and thus StudMap currently only supports the code format 
 for NUS modules. Future plans for StudMap include expanding this format to more universities. 
+</div>
 
 ## 5.3 Student List Management
 
