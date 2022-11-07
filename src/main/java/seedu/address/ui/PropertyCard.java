@@ -40,8 +40,6 @@ public class PropertyCard extends UiPart<Region> {
     private Label ownerName;
     @FXML
     private Label ownerPhone;
-
-    // TODO: set the following label as optional
     @FXML
     private Label characteristics;
 

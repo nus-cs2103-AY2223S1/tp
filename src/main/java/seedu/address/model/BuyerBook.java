@@ -99,7 +99,6 @@ public class BuyerBook implements ReadOnlyBuyerBook {
     @Override
     public String toString() {
         return buyers.asUnmodifiableObservableList().size() + " buyers";
-        // TODO: refine later
     }
 
     @Override
