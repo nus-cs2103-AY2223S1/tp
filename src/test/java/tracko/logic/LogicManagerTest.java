@@ -2,11 +2,11 @@ package tracko.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 // import static tracko.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
-import static tracko.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 // import static tracko.tracko.commands.logic.CommandTestUtil.ADDRESS_DESC_AMY;
 // import static tracko.tracko.commands.logic.CommandTestUtil.EMAIL_DESC_AMY;
 // import static tracko.tracko.commands.logic.CommandTestUtil.NAME_DESC_AMY;
 // import static tracko.tracko.commands.logic.CommandTestUtil.PHONE_DESC_AMY;
+import static tracko.commons.core.Messages.*;
 import static tracko.testutil.Assert.assertThrows;
 // import static tracko.testutil.TypicalOrders.ORDER_10;
 
@@ -21,6 +21,7 @@ import org.junit.jupiter.api.io.TempDir;
 import tracko.logic.commands.CommandResult;
 // import tracko.logic.commands.order.ListOrdersCommand;
 import tracko.logic.commands.exceptions.CommandException;
+import tracko.logic.commands.order.ListOrdersCommand;
 import tracko.logic.parser.exceptions.ParseException;
 import tracko.model.Model;
 import tracko.model.ModelManager;
@@ -57,42 +58,26 @@ public class LogicManagerTest {
         assertParseException(invalidCommand, MESSAGE_UNKNOWN_COMMAND);
     }
 
-    // @Test
-    // public void execute_commandExecutionError_throwsCommandException() {
-    //     String deleteCommand = "delete 9";
-    //     assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-    // }
+     @Test
+     public void execute_commandExecutionError_throwsCommandException() {
+         String deleteCommand = "deleteo 9";
+         assertCommandException(deleteCommand, MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
 
-    // @Test
-    // public void execute_validCommand_success() throws Exception {
-    //     String listCommand = ListOrdersCommand.COMMAND_WORD;
-    //     assertCommandSuccess(listCommand, ListOrdersCommand.MESSAGE_SUCCESS, model);
-    // }
+         deleteCommand = "deletei 9";
+         assertCommandException(deleteCommand, MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
+     }
 
-    // @Test
-    // public void execute_storageThrowsIoException_throwsCommandException() {
-    //     // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-    //     JsonTrackOStorage trackOStorage =
-    //             new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
-    //     JsonUserPrefsStorage userPrefsStorage =
-    //             new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-    //     StorageManager storage = new StorageManager(trackOStorage, userPrefsStorage);
-    //     logic = new LogicManager(model, storage);
-    //
-    //     // Execute add command
-    //     String addCommand = AddOrderCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-    //             + ADDRESS_DESC_AMY;
-    //     Order expectedOrder = new OrderBuilder(ORDER_10).build();
-    //     ModelManager expectedModel = new ModelManager();
-    //     expectedModel.addItem(expectedOrder);
-    //     String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
-    //     assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
-    // }
+     @Test
+     public void execute_validCommand_success() throws Exception {
+         String listCommand = ListOrdersCommand.COMMAND_WORD;
+         assertCommandSuccess(listCommand, ListOrdersCommand.MESSAGE_SUCCESS, model);
+     }
 
-    // @Test
-    // public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-    //     assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
-    // }
+     @Test
+     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
+         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredItemList().remove(0));
+         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredOrderList().remove(0));
+     }
 
     /**
      * Executes the command and confirms that
