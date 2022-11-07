@@ -34,7 +34,7 @@ For a full list of commands and detailed instructions, head to the [Features](#f
       * [Find by Next of Kin's Contact Number](#find-by-next-of-kins-contact-number)
       * [Find by Class Date](#find-by-class-date)
       * [Find by Tag](#find-by-tag)
-    * [Next available class: `avail`](#next-available-class)
+    * [Next available class](#next-available-class)
     * [Sort displayed students: `sort`](#sort-the-displayed-students-sort)
       * [Sort by Name](#sort-by-name)
       * [Sort by Class](#sort-by-class-date)
@@ -519,7 +519,7 @@ other tags on top of the two tags.
 [↑ Back to top](#table-of-contents)
 
 ---
-### Next available class:
+### Next available class
 
 While there is no available command at the moment, you can find the next available class through a series of steps.
 
