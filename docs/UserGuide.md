@@ -431,7 +431,7 @@ Examples:
 <div markdown="block" class="alert alert-warning">
 
 **:bulb: Note:**<br>
-* [As mentioned above](#adding), you cannot edit a contact/task into a duplicate of an existing contact/task in the TaskBook.
+* [As mentioned under Adding](#adding), you cannot edit a contact/task into a duplicate of an existing contact/task in the TaskBook.
 
 </div>
 
@@ -604,7 +604,12 @@ Displays all contacts matching the arguments provided by you.
 
 </div>
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about contact find:**
 * QUERY is not case-sensitive.
+
+</div>
 
 Example:
 1. `contact find q/ea` displays a contact list where all contacts will have "ea" in their name.
@@ -619,9 +624,14 @@ Displays all tasks matching the arguments provided by you.
 
 </div>
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about task find:**
 * QUERY is not case-sensitive.
 * ASSIGNMENT is either FROM or TO, representing "m/" and "o/", or 'Assigned by' and 'Assigned to', respectively.
 * DONE is either X or O, representing 'Done' and 'Not done' respectively.
+
+</div>
 
 <div markdown="block" class="alert alert-warning">
 
@@ -664,7 +674,7 @@ Sorts your contact list based on the input parameter.
 
 **:information_source: Notes about alphabetical sorting:**<br>
 
-Alphabetical sorting will prioritize valid letters by their ASCII values, meaning capital letters come before their non-capital counterparts with `contact sort s/a`. This order is reversed for `contact sort s/ca`.
+* Alphabetical sorting will prioritize valid letters by their ASCII values, meaning capital letters come before their non-capital counterparts with `contact sort s/a`. This order is reversed for `contact sort s/ca`.
 
 </div>
 
@@ -698,7 +708,7 @@ Sorts your task list based on the input parameter.
 
 **:information_source: Notes about alphabetical sorting:**<br>
 
-Alphabetical sorting for tasks are not case sensitive. Between any lower-case letter and their capital counterpart, there is no guarantee on the order of the sort.
+* Alphabetical sorting for tasks are not case sensitive. Between any lower-case letter and their capital counterpart, there is no guarantee on the order of the sort.
 
 </div>
 
@@ -749,6 +759,12 @@ Example:
 
 Undoes the previous command and reverts your TaskBook to the previous state.
 
+<div markdown="block" class="alert alert-light">
+
+**:computer: Format:** `undo`
+
+</div>
+
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about Undo:**<br>
@@ -756,12 +772,6 @@ Undoes the previous command and reverts your TaskBook to the previous state.
 * Up to 15 commands can be undone.
 * Commands can only be undone if there is a change in contact or task state.
 * Undo does not reset the view changes caused by filter or sort. See [contact list](#listing-all-contacts--contact-list) and [task list](#listing-all-tasks--task-list) instead.
-
-</div>
-
-<div markdown="block" class="alert alert-light">
-
-**:computer: Format:** `undo`
 
 </div>
 
@@ -829,9 +839,14 @@ TaskBook data is saved in the hard disk automatically after any command that cha
 
 TaskBook data is saved as a JSON file `[JAR file location]/data/taskbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, TaskBook will discard all data and start with an empty data file on the next run.
+<div markdown="span" class="alert alert-warning">
+
+**:exclamation: Caution:**
+* If your changes to the data file makes its format invalid, TaskBook will discard all data and start with an empty data file on the next run.
+
 </div>
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## Miscellaneous Notes
 
