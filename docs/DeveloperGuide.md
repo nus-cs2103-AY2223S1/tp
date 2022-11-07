@@ -299,10 +299,8 @@ Step 2. The user wants to find tasks that have the keyword 'create' in their nam
 
 Step 3. Next, `Model#getFilteredTaskList()` is called to update the tasklist to display the tasks 'Create UIUX Design' and 'Create Presentation'.
 
-The following sequence diagram shows how the `findTask` operation works:
-![AddTaskSequenceDiagram]()
-
 The following activity diagram summarizes what happens when a user executes a `findTask` command:
+
 ![AddTaskActivityDiagram](images/FindTaskCommandActivityDiagram.png)
 
 ### Filtering of tasks by Task Category, Task Deadline or Both
