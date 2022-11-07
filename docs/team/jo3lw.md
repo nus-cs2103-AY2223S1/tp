@@ -39,7 +39,7 @@ Given below are my contributions to the project.
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): [#287](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/287), [#217](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/217), [#208](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/208), [#185](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/185), [#146](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/146)
-    * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/AY2223S1-CS2103T-T13-4/tp/issues/193), [2](https://github.com/AY2223S1-CS2103T-T13-4/tp/issues/221), [3](https://github.com/AY2223S1-CS2103T-T13-4/tp/issues/215), [4](https://github.com/AY2223S1-CS2103T-T13-4/tp/issues/210), [5](https://github.com/AY2223S1-CS2103T-T13-4/tp/issues/204))
-    * Contributed to forum discussions ([1](https://github.com/nus-cs2103-AY2223S1/forum/issues/20))
+    * Reported bugs and suggestions for other teams in the class: [#193](https://github.com/AY2223S1-CS2103T-T13-4/tp/issues/193), [#221](https://github.com/AY2223S1-CS2103T-T13-4/tp/issues/221), [#215](https://github.com/AY2223S1-CS2103T-T13-4/tp/issues/215), [#210](https://github.com/AY2223S1-CS2103T-T13-4/tp/issues/210), [#204](https://github.com/AY2223S1-CS2103T-T13-4/tp/issues/204)
+    * Contributed to forum discussions [#20](https://github.com/nus-cs2103-AY2223S1/forum/issues/20)
 
 
