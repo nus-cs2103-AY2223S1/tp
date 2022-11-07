@@ -729,6 +729,8 @@ module using the [`goto`](#251-navigate-between-modules) command.
 Suppose one of your contacts in Plannit graduated from NUS and you do not want to track his contact details anymore.
 You may delete his contact from Plannit using the `delete-person` command.
 
+<div style="page-break-after: always;"></div>
+
 This command will require one prefix:
 
 | Field    | Prefix | Constraints                                                                                                                       |
