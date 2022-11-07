@@ -55,7 +55,7 @@ public class ConsultCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        CommandResult createPastApptResult = new CreatePastAppointmentCommand(index, appt).execute(model);
+        new CreatePastAppointmentCommand(index, appt).execute(model);
 
         List<Person> lastShownList = model.getFilteredPersonList();
         if (index.getZeroBased() >= lastShownList.size()) {
@@ -65,7 +65,7 @@ public class ConsultCommand extends Command {
 
         if (isPresentUpcomingAppointment(person) && person.getUpcomingAppointment().get().value.equals(LocalDate.now()
                         .format(DateTimeFormatter.ofPattern("dd-MM-uuuu")))) {
-            CommandResult editResult = new EditCommand(index, editPersonDescriptor).execute(model);
+            new EditCommand(index, editPersonDescriptor).execute(model);
         }
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, person.getName()));
