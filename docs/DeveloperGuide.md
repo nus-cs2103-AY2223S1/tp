@@ -140,8 +140,7 @@ The `UI` component,
 
 ### 3.3. Logic component
 
-**
-API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-F11-3/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-F11-3/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -178,8 +177,7 @@ How the parsing works:
 
 ### 3.4. Model component
 
-**
-API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-F11-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-F11-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/UpdatedModelClassDiagramWithPortfolio.png" width="450" />
 
@@ -203,8 +201,7 @@ The `Model` component,
 
 ### 3.5. Storage component
 
-**
-API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-F11-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-F11-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png"/>
 
@@ -243,6 +240,8 @@ The import command mainly relies on the following classes:
 * `ParserUtil`
 * `CsvAdaptedPerson`
 * `StringToTag`
+* `StringToPlan`
+* `StringToNote`
 
 `CsvToBeanBuilder` is provided by the OpenCSV library.
 
@@ -257,13 +256,14 @@ The import command mainly relies on the following classes:
     * If the path is to a `JSON` file, `ImportCommand` creates a new `JsonAddressBookStorage` using the path, then uses
       it to read and add `Person`s to the `Model`.
     * If the path is to a `CSV` file, `ImportCommand` creates a new `CsvToBeanBuilder` using the path, then uses it to
-      obtain a list of `CsvAdaptedPerson`s. `StringToTag#convertToRead()` is called by `CsvToBeanBuilder` to convert
-      strings from the `CSV` file to `Tag`s. `CsvAdaptedPerson#toModelType()` is called to convert
+      obtain a list of `CsvAdaptedPerson`s. `StringToTag`, `StringToPlan` and `StringToNote` are used by `CsvToBeanBuilder` to convert
+      strings from the `CSV` file to the corresponding `CsvAdaptedPerson` fields. `CsvAdaptedPerson#toModelType()` is called to convert
       each `CsvAdaptedPerson` to a `Person` before adding them to the `Model`.
 
-The following sequence diagram shows how the import command works:
+The following sequence diagrams show how the import command works:
 
 ![ImportSequenceDiagram](images/ImportSequenceDiagram.png)
+![ImportSequenceDiagramRef](images/ImportSequenceDiagramRef.png)
 
 #### Design considerations:
 
@@ -274,6 +274,7 @@ Chose to use OpenCSV to read `CSV` files to avoid reinventing the wheel.
 #### Current Implementation
 
 The view command mainly relies on the following classes:
+
 * `Person`
 * `Model`
 * `Index`
@@ -282,27 +283,30 @@ The view command mainly relies on the following classes:
 * `CommandResult`
 
 1. The user executes the `view` command while providing an index of the client as an argument.
-2. `AddressBookParser#parseCommand` is called, which creates and returns a new `ViewCommandParser` that parses the 
+2. `AddressBookParser#parseCommand` is called, which creates and returns a new `ViewCommandParser` that parses the
    provided index.
 3. `ViewCommandParser#parse()` is called, which calls `ViewCommand#parse()` to parse the index of client.
 4. `ViewCommandParser` creates and returns a new `ViewCommand` with the index of client.
 5. `ViewCommand#execute()` is called.
-   1. `ViewCommand#execute()` will get the updated client list using `model#getFilteredPersonList()`.
-   2. `ViewCommand#execute()` will get the specific client using the index given as the parameter.
-   3. `ViewCommand#execute()` then calls `CommandResult` which calls the `Message` to return the success message after each successful execution.
+    1. `ViewCommand#execute()` will get the updated client list using `model#getFilteredPersonList()`.
+    2. `ViewCommand#execute()` will get the specific client using the index given as the parameter.
+    3. `ViewCommand#execute()` then calls `CommandResult` which calls the `Message` to return the success message after each successful execution.
 
 Design considerations:
+
 1. View person and get portfolio of each client
-2. View portfolio of each client   
-- Option 1 is implemented because it was unnecessary to add a new list of clients containing on the portfolio. Since 
-is an existing method that already gets the updated Person list, hence, we have decided to get the portfolio
-of each client through this Person list as each client will have their own portfolio.
+2. View portfolio of each client
+
+- Option 1 is implemented because it was unnecessary to add a new list of clients containing on the portfolio. Since
+  is an existing method that already gets the updated Person list, hence, we have decided to get the portfolio
+  of each client through this Person list as each client will have their own portfolio.
 
 ### 4.3. Sort Command
 
 #### Current Implementation
 
 The sort command mainly relies on the following classes:
+
 * `AddressBookParser`
 * `SortCommand`
 * `SortCommandParser`
@@ -316,11 +320,12 @@ The sort command mainly relies on the following classes:
 3. `SortCommandParser#parse()` is called, which creates and returns a new `SortCommand` with the given `sortParam`.
 4. `SortCommand#execute()` is called.
     1. `SortCommand#execute()` will pass `sortParam` to `model#sort`.
-    2. `model#sort` will call `AddressBook#sort` 
+    2. `model#sort` will call `AddressBook#sort`
     3. `AddressBook#sort` then calls `UniquePersonList#sort` to sort client list.
     4. `UniquePersonList` then updates `internalList` with sorted client list according to `sortParam`.
 
 #### Design considerations:
+
 `sortParam` should be passed to `UniquePersonList#sort` to modify `internalList`.
 
 *{More to be added}*
