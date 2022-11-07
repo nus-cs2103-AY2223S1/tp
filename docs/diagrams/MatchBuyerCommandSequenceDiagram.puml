@@ -10,49 +10,49 @@ Participant ":FilterPropertiesCommand" as filterProps LOGIC_COLOR
 
 
 [-[LOGIC_COLOR]> matchCommand: execute(model)
-activate matchCommand
+activate matchCommand LOGIC_COLOR
 
 create arrayList
 matchCommand -[LOGIC_COLOR]> arrayList
-activate arrayList
+activate arrayList USER_COLOR
 arrayList --[USER_COLOR]> matchCommand
 deactivate arrayList
 
 create pricePred
 matchCommand -[LOGIC_COLOR]> pricePred: Buyer's PriceRange
-activate pricePred
+activate pricePred MODEL_COLOR_T1
 pricePred --[MODEL_COLOR_T1]> matchCommand
 deactivate pricePred
 
 matchCommand -[LOGIC_COLOR]> arrayList: add(filterPropsByPricePredicate)
-activate arrayList
+activate arrayList USER_COLOR
 arrayList --[USER_COLOR]> matchCommand
 deactivate arrayList
 
 create charPred
 matchCommand -[LOGIC_COLOR]> charPred: Buyer's Characteristics
-activate charPred
+activate charPred MODEL_COLOR_T1
 charPred --[MODEL_COLOR_T1]> matchCommand
 deactivate charPred
 
 matchCommand -[LOGIC_COLOR]> arrayList: add(filterPropsContainingAnyCharacteristicPredicate)
-activate arrayList
+activate arrayList USER_COLOR
 arrayList --[USER_COLOR]> matchCommand
 deactivate arrayList
 
 matchCommand -[LOGIC_COLOR]> arrayList: stream().reduce(Predicate::and)
-activate arrayList
+activate arrayList USER_COLOR
 arrayList --[USER_COLOR]> matchCommand: combinedPredicate
 deactivate arrayList
 
 create filterProps
 matchCommand -[LOGIC_COLOR]> filterProps: combinedPredicate
-activate filterProps
+activate filterProps LOGIC_COLOR
 filterProps --[LOGIC_COLOR]> matchCommand
 deactivate filterProps
 
 matchCommand -[LOGIC_COLOR]> filterProps: execute(model)
-activate filterProps
+activate filterProps LOGIC_COLOR
 filterProps --[LOGIC_COLOR]> matchCommand
 deactivate filterProps
 
