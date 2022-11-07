@@ -8,13 +8,13 @@ title: User Guide
 > The sole app that university students will need to streamline their everyday routines.
 
 SoCompiler is a **desktop app for managing contacts and module information, optimized for use via a [Command Line
-Interface](#command-line-interface)** (CLI) while still having the benefits of a [Graphical User Interface](#graphical-user-interface) (GUI).
+Interface](#command-line-interface-cli)** (CLI) while still having the benefits of a [Graphical User Interface](#graphical-user-interface-gui) (GUI).
 
 You can add modules to the app, allowing you to store important information like the location, time and zoom links of your lectures and tutorials.
 
 You can also add people to the app, such as your professors, teaching assistants or just friends, allowing you store their email addresses, phone numbers, telegram handles and which modules they are from.
 
-If you are an [SOC](#SOC) student, this app is perfect for you! SoCompiler can get your contact and module management tasks done faster than traditional [GUI](#graphical-user-interface) apps.
+If you are an [SOC](#SOC) student, this app is perfect for you! SoCompiler can get your contact and module management tasks done faster than traditional [GUI](#graphical-user-interface-gui) apps.
 
 Even if you are not, fret not! Just have a quick look at the [command summary](#command-summary) (they are rather intuitive) and start typing to give it a try!
 
@@ -62,7 +62,7 @@ For first-time users, we also recommend you to first read through the various [p
 3. Move the downloaded file to the folder you want to use as the _home folder_ for your SoCompiler. For example, you can just move it to your Desktop for ease of access.
 
 
-4. Double-click the file to start the app. A [GUI](#graphical-user-interface) similar to the one below should appear in a few seconds. Note how the app
+4. Double-click the file to start the app. A [GUI](#graphical-user-interface-gui) similar to the one below should appear in a few seconds. Note how the app
    contains some sample data.<br>
 
    ![Ui](images/Ui.png)
@@ -73,7 +73,7 @@ For first-time users, we also recommend you to first read through the various [p
 
 --------------------------------------------------------------------------------------------------------------------
 
-## The [GUI](#graphical-user-interface) Layout
+## The [GUI](#graphical-user-interface-gui) Layout
 
 ![Ui_annotated](images/Ui_annotated.png)
 
@@ -343,7 +343,7 @@ Examples:
 | Phone Number    | A person's phone number                   | p/         | ✓        | Should only contain numbers and be at least 3 digits long                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |           
 | Module Code     | The module code a person is associated to | m/         | ✓        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |           
 | Email Address   | A person's email address                  | e/         | ✓        | Should follow the format `local-part@domain`, where:<br/> 1. `local-part` should:<br/>only contain [alphanumeric](#alphanumeric) characters and the following characters: `+` `_` `.` `-` .<br>2. `domain` consists of two `domain labels` seperated by a `.`<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- The second `domain label` should be at least 2 characters long.<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- `domain label` should start and end with alphanumeric characters.<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Each `domain label` should only consist of alphanumeric characters, separated by hyphens if necessary. |
-| Telegram Handle | A person's telegram                       | tg/        | ✓        | 1. Should begin with `@` and contain only alphanumeric characters <br/>2. Should be at least 5 characters long, excluding the `@`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |           
+| Telegram Handle | A person's telegram                       | tg/        | ✓        | 1. Should begin with `@` and contain only [alphanumeric](#alphanumeric) characters and underscores<br/>2. Should be at least 5 characters long, excluding the `@`                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |           
 | Tags            | A person's tag                            | t/         | ✓        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 
 ## Module Fields
