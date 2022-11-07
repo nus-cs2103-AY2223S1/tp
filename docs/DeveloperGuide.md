@@ -647,7 +647,7 @@ Priority legend
 4.  Not suitable for platforms with on-screen keyboards as the keyboard popup may block the screen view.
 5.  Should be able to launch multiple instance of the app on the same device.
 6.  Should be able to be used by a person who has never used a CLI program before.
-7.  Not required to handle the messaging send between the friends.
+7.  Not required to handle the sending of messages between friends.
 8.  Not required to handle the app on mobile platform.
 9.  Not required to handle the display of the User Interface properly if the window is smaller than 1280 x 720 pixels in resolution.
 
