@@ -88,7 +88,7 @@ public class AddToCommandTest {
         updatePersonDescriptor.setTagTypeMap(new UniqueTagTypeMap().copy());
         updatePersonDescriptor.setNote(new Note("Test Note"));
         AddToCommand addToCommand = new AddToCommand(index, updatePersonDescriptor);
-        assertThrows(CommandException.class, () -> addToCommand.execute(model));
+        assertDoesNotThrow(() -> addToCommand.execute(model));
     }
 
     @Test
