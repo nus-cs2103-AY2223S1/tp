@@ -50,7 +50,7 @@ patient bills for the family clinic.
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.
 
-<img src="images/Ui.png" width="800px" height ="500px">
+<img src="images/Ui.png">
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing help and pressing Enter will open the help window.
 
@@ -103,7 +103,7 @@ Notes on symbols in first column:
 
 * `ap n/Bernice Yu a/#11-330, blk 775, Bishan e/b.yu@nus.edu.sg p/80880011 t/NUS t/staff` adds such patient.
 
-<img src="images/ug/addcommand/ap1.png" width="800px" height ="500px">
+<img src="images/ug/addcommand/ap1.png">
 
 ### 1.1.2 Add an appointment of a patient `addappointment`, `aa`
 
@@ -154,11 +154,11 @@ Notes on symbols in first column:
 
 * `aa n/Bernice Yu s/2021-10-11 12:00 d/Dioni Yong t/X-Ray` adds such appointment.
 
-<img src="images/ug/addcommand/aa1.png" width="800px" height ="500px">
+<img src="images/ug/addcommand/aa1.png">
 
 * `aa n/Bernice Yu s/2022-01-23 09:00 d/Dioni Yong t/CT` adds another appointment for Bernice Yu.
 
-<img src="images/ug/addcommand/aa3.png" width="800px" height ="500px">
+<img src="images/ug/addcommand/aa3.png">
 
 ### 1.1.3 Add a bill of an appointment `addbill`, `ab`
 
@@ -198,7 +198,7 @@ Notes on symbols in first column:
 
 * `ab 1 a/1200.00 d/2021-11-11` adds a bill to the first appointment in the displayed list.
 
-<img src="images/ug/addcommand/ab1.png" width="800px" height ="500px">
+<img src="images/ug/addcommand/ab1.png">
 
 ## 1.2 Edit
 
@@ -225,11 +225,11 @@ Edits a patient's information, such as name, phone number, address, email, remar
 * `editpatient 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be
    `91234567` and `johndoe@example.com` respectively.
 
-<img src = "images/ug/editcommand/editpatient.png" width="800px" height ="400px">
+<img src = "images/ug/editcommand/editpatient.png">
 
 * `editpatient 2 n/Betsy Crower t/` edits the name of the 2nd patient to be `Betsy Crower` and clears all existing tags.
 
-<img src = "images/ug/editcommand/editpatient2.png" width="800px" height ="400px">
+<img src = "images/ug/editcommand/editpatient2.png">
 
 ### 1.2.2 Edit an appointment of a patient `editappointment`, `ea`
 
@@ -252,7 +252,7 @@ Edits an appointment of a patient, such as name, medical test, slot, and doctor.
 * `editappointment 1 n/zanw t/CT Scan s/2021-03-01 10:00 d/Tan` Edits the name, medical test, slot,
    and doctor of the 1st appointment to be `zanw`, `CT Scan`, `2021-03-01 10:00`, and `Tan` respectively.
 
-<img src = "images/ug/editcommand/editappointment.png" width="800px" height ="400px">
+<img src = "images/ug/editcommand/editappointment.png">
 
 ### 1.2.3 Edit a bill of an appointment `editbill`, `eb`
 
@@ -273,11 +273,11 @@ Edits a bill of an appointment.
 #### Examples:
 * `editbill 1 a/100` Edits the amount of the 1st bill to be `100`.
 
-<img src="images/ug/editcommand/editbill.png" width="800px" height ="400px">
+<img src="images/ug/editcommand/editbill.png">
 
 
 * `editbill 1 d/2020-10-10` edits the bill date of the 1st bill to be `2020-10-10`.
-<img src="images/ug/editcommand/editbill2.png" width="800px" height ="400px">
+<img src="images/ug/editcommand/editbill2.png">
 
 ## 1.3 Find
 
@@ -302,11 +302,11 @@ special characters).
 #### Examples:
 * ```findpatient n/ale``` returns ``Alex Yeoh`` and ``alex tan``.
 
-<img src="images/ug/findcommand/findpatientAlex.png" width="800px" height ="500px">
+<img src="images/ug/findcommand/findpatientAlex.png">
 
 * ```fp t/friends t/colleagues n/bernice``` returns only ``Bernice Yu`` with the tags ``friends`` and ``colleagues``.
 
-<img src="images/ug/findcommand/findpatientBernice.png" width="800px" height ="500px">
+<img src="images/ug/findcommand/findpatientBernice.png">
 
 ### 1.3.2 Find appointment(s) `findappointment`, `fa`
 
@@ -332,11 +332,11 @@ special characters).
 #### Examples:
 * ```findappointment t/x-ray``` returns ``Bernice Yu`` with "X-ray" appointment.
 
-<img src="images/ug/findcommand/findappointmentXray.png" width="800px" height ="500px">
+<img src="images/ug/findcommand/findappointmentXray.png">
 
 * ```fa d/Dr Tan n/Alex``` returns only ``Alex Yeoh``'s appointment with "Dr Tan".
 
-<img src="images/ug/findcommand/findappointmentAlex.png" width="800px" height ="500px">
+<img src="images/ug/findcommand/findappointmentAlex.png">
 
 
 ### 1.3.3 Find bill(s) `findbill`, `fb`
@@ -362,7 +362,7 @@ special characters).
 #### Examples:
 `findbill n/Ber p/unpaid` returns Bernice's unpaid bill
 
-<img src="images/ug/findcommand/fb.png" width="800px" height ="400px">
+<img src="images/ug/findcommand/fb.png">
 
 ## 1.4 Sort
 
@@ -755,7 +755,7 @@ Opens the Help Window.
 
 * `help` opens the help window.
 
-<img src="images/ug/othercommands/help.png">
+<img src="images/ug/othercommands/help.png" width="639px" height="239px">
 
 ## 1.14 Save the data
 
