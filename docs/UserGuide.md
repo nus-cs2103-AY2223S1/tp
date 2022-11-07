@@ -28,7 +28,7 @@ If you can type fast, Condonery can get your contact management tasks done faste
 
    * **`list -p`** : Lists all properties.
 
-   * **`add -p`**`n/Pinnacle@Duxton a/Cantonment Rd, #1G, 085301 p/100,000 h/CONDO t/luxury` : Adds a listing named `Pinnacle@Duxton`, with the inputted details, to the property directory.
+   * **`add -p `** `n/Pinnacle@Duxton a/Cantonment Rd, #1G, 085301 p/100,000 h/CONDO t/luxury` : Adds a listing named `Pinnacle@Duxton`, with the inputted details, to the property directory.
 
    * **`list -p`** followed by **`delete 3`** : Deletes the 3rd property shown in the current list.
 
@@ -64,17 +64,17 @@ If you can type fast, Condonery can get your contact management tasks done faste
 
 ### Prefix list
 
-| Prefix | Associated Parameter    | Definition                                                                                                                            | Examples                          | Remarks                                                                                                                                                             |
-|--------|-------------------------|---------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `n/`   | `NAME`                  | Refers to the name of a property or client.<br>                                                                                       | `n/PINNACLE@DUXTON`<br>`n/Walter` | Each property or client can only have one name.                                                                                                                     |
-| `a/`   | `ADDRESS`               | Refers to the address of a property or client.                                                                                        | `a/Cantonment Rd, #1G, 085301`    | Each property or client can only have one address.                                                                                                                  |
-| `t/`   | `TAG`                   | Refers to a tag of a property or client.<br> Can be used for labelling important details.                                             | `t/High-end`, `t/Friend`          | Tags must be alphanumerical<br> Each property or client can have multiple tags.                                                                                     |
-| `-i`   | `IMAGE`                 | Refers to the image for a property or client.<br> User will be prompted to select an image in a separate window upon invoking prefix. | NIL                               | Each property or client can only have one image.                                                                                                                    |
-| `p/`   | `PRICE`                 | Refers to property price.<br>                                                                                                         | `p/1,000,000`                     | Each property can only have one price.<br> Accepts positive integers only.<br> Max input price is `2,147,483,647`.                                                  |
-| `h/`   | `PROPERTY_TYPE`         | Refers to type of housing<br>Must be one of CONDO, HDB, or LANDED                                                                     | `h/HDB`, `h/Condo`, `h/landed`    | Each property can only have one property type.<br> Valid property types: `HDB`, `CONDO`, `LANDED`<br> Arguments for this parameter are case-insensitive.            |
-| `s/`   | `PROPERTY_STATUS`       | Refers to availability of property<br>Must be one of AVAILABLE, SOLD, or PENDING                                                      | `s/AVAILABLE`, `s/PENDING`        | Each property can only have one property status.<br> Valid property statuses: `AVAILABLE`, `SOLD`, `PENDING`<br> Arguments for this parameter are case-insensitive. |
-| `ic/`  | `INTERESTED_CLIENTS`    | Refers to list of clients who are considering to purchase a particular property.                                                      | `ic/Samuel`                       | Each property can have multiple clients interested in it.<br>                                                                                                       |
-| `ip/`  | `INTERESTED_PROPERTIES` | Refers to list of properties that a client is interested in.                                                                          | `ip/duxton`                       | Each client can be interested in multiple properties.<br>                                                                                                           |
+| Prefix | Associated Parameter    | Definition                                                                                                                            | Examples                          | Remarks                                                                                                                                                                                                                                                                                            |
+|--------|-------------------------|---------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `n/`   | `NAME`                  | Refers to the name of a property or client.<br>                                                                                       | `n/PINNACLE@DUXTON`<br>`n/Walter` | Each property or client can only have one name.                                                                                                                                                                                                                                                    |
+| `a/`   | `ADDRESS`               | Refers to the address of a property or client.                                                                                        | `a/Cantonment Rd, #1G, 085301`    | Each property or client can only have one address.                                                                                                                                                                                                                                                 |
+| `t/`   | `TAG`                   | Refers to a tag of a property or client.<br> Can be used for labelling important details.                                             | `t/High-end`, `t/Friend`          | Tags must be alphanumerical<br> Each property or client can have multiple tags.                                                                                                                                                                                                                    |
+| `-i`   | `IMAGE`                 | Refers to the image for a property or client.<br> User will be prompted to select an image in a separate window upon invoking prefix. | NIL                               | Each property or client can only have one image.                                                                                                                                                                                                                                                   |
+| `p/`   | `PRICE`                 | Refers to property price.<br>                                                                                                         | `p/1,000,000`                     | Each property can only have one price.<br> Accepts positive integers only.<br> Max input price is `2,147,483,647`.<br> Use of commas to separate digits allowed, except when commas is in front of leading digit (`,100`), comma not between digits (`100,`) or using consecutive commas (`10,,0`) |
+| `h/`   | `PROPERTY_TYPE`         | Refers to type of housing<br>Must be one of CONDO, HDB, or LANDED                                                                     | `h/HDB`, `h/Condo`, `h/landed`    | Each property can only have one property type.<br> Valid property types: `HDB`, `CONDO`, `LANDED`<br> Arguments for this parameter are case-insensitive.                                                                                                                                           |
+| `s/`   | `PROPERTY_STATUS`       | Refers to availability of property<br>Must be one of AVAILABLE, SOLD, or PENDING                                                      | `s/AVAILABLE`, `s/PENDING`        | Each property can only have one property status.<br> Valid property statuses: `AVAILABLE`, `SOLD`, `PENDING`<br> Arguments for this parameter are case-insensitive.                                                                                                                                |
+| `ic/`  | `INTERESTED_CLIENTS`    | Refers to list of clients who are considering to purchase a particular property.                                                      | `ic/Samuel`                       | Each property can have multiple clients interested in it.<br>                                                                                                                                                                                                                                      |
+| `ip/`  | `INTERESTED_PROPERTIES` | Refers to list of properties that a client is interested in.                                                                          | `ip/duxton`                       | Each client can be interested in multiple properties.<br>                                                                                                                                                                                                                                          |
 
 ### Property directory
 
@@ -137,7 +137,7 @@ Shows the help guide.<br><br>
 Users can either read the User Guide from the Help Window, or choose to navigate to the URL in their browser to view
 the full User Guide.
 
-![help message](images/helpMessage.png)
+![help message](images/ug_help.png)
 
 Format: `help`
 
@@ -215,7 +215,7 @@ Optional arguments:
   * If no clients matches the search, an error message will be shown.
 * The `-i` flag allows the user to upload images of the property. A file chooser dialog will appear after running the command.<br>
 
-![file_chooser](images/fileChooser.png)
+![file_chooser](images/ug_add_property_image.png)
 
 </div>
 
@@ -346,7 +346,7 @@ Format: `range -p l/100,000 u/1,000,000`
 
 :bulb: **Tips:**
     
-* Lower and upper price boundaries only accept positive integer values (commas in between digits are acceptable).
+* Lower and upper price boundaries only accept positive integer values (commas in between digits are acceptable; see Prefix List for acceptable comma usage).
 * Lower price boundary (`l/LOWER_BOUND`) cannot be higher than upper price boundary (`u/UPPER_BOUND`).
     
 </div>
@@ -406,7 +406,9 @@ Format: `select -p INDEX`
 * The `INDEX` refers to the index number shown in the currently displayed property directory. 
 * The `INDEX` **must be a positive integer** 1, 2, 3, … 
 * The GUI changes to display only the selected property in the property directory, while clients interested in that property are shown in the client directory. 
-    
+
+![select_property](images/ug_select_property.png)
+
 </div>
 
 Examples:
@@ -451,7 +453,7 @@ Optional arguments:
   * If no properties matches the search, an error message will be shown.
 * The `-i` flag allows the user to upload images of the client. A file chooser dialog will appear after running the command.<br>
 
-![file_chooser](images/fileChooser.png)
+![file_chooser](images/ug_add_client_image.png)
 
 </div>
 
@@ -517,6 +519,8 @@ Format: `find -c NAME [MORE_NAMES]`
 * The order of the keywords does not matter. e.g., `Tan Sean` will match `Sean Tan`.
 * Only complete strings will be matched e.g., `Sam` will not match `Samuel`.
 * Client profiles matching at least one keyword will be returned (i.e., `OR` search). e.g., `Sean Lee` will return `Sean Tan`, `Bob Lee`.
+
+![find_client](images/ug_find_client.png)
 
 </div>
 
