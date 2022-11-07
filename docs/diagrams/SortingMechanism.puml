@@ -1,0 +1,69 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TravelrParser" as TravelrParser LOGIC_COLOR
+participant ":SortTripsCommandParser" as SortTripsCommandParser LOGIC_COLOR
+participant "a:SortTripsCommand" as SortTripsCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("sort by/location r/")
+activate LogicManager
+
+LogicManager -> TravelrParser : parseCommand("sort by/location r/")
+activate TravelrParser
+
+create SortTripsCommandParser
+TravelrParser -> SortTripsCommandParser
+activate SortTripsCommandParser
+
+SortTripsCommandParser --> TravelrParser
+deactivate SortTripsCommandParser
+
+TravelrParser -> SortTripsCommandParser : parse("by/location r/")
+activate SortTripsCommandParser
+
+create SortTripsCommand
+SortTripsCommandParser -> SortTripsCommand
+activate SortTripsCommand
+
+SortTripsCommand --> SortTripsCommandParser : a
+deactivate SortTripsCommand
+
+SortTripsCommandParser --> TravelrParser : a
+deactivate SortTripsCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+SortTripsCommandParser -[hidden]-> TravelrParser
+
+TravelrParser --> LogicManager : a
+deactivate TravelrParser
+
+LogicManager -> SortTripsCommand : execute()
+activate SortTripsCommand
+
+SortTripsCommand -> Model : sort(comparator)
+activate Model
+
+Model --> SortTripsCommand
+deactivate Model
+
+create SortTripsCommand
+create CommandResult
+SortTripsCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> SortTripsCommand : result
+deactivate CommandResult
+
+SortTripsCommand --> LogicManager : result
+deactivate SortTripsCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
