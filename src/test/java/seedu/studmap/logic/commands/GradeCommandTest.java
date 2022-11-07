@@ -40,8 +40,7 @@ class GradeCommandTest {
         String expectedMessage = String.format(GradeCommand.MESSAGE_GRADE_SINGLE_SUCCESS_ASSIGNMENT,
                 assignment.getAttributeName(),
                 markedStudent.getName(),
-                assignment.state,
-                markedStudent);
+                assignment.state);
 
         ModelManager expectedModel = new ModelManager(model.getStudMap(), new UserPrefs());
         expectedModel.setStudent(model.getFilteredStudentList().get(0), markedStudent);
@@ -63,8 +62,7 @@ class GradeCommandTest {
         String expectedMessage = String.format(GradeCommand.MESSAGE_GRADE_SINGLE_SUCCESS_ASSIGNMENT,
                 assignment.getAttributeName(),
                 markedStudent.getName(),
-                assignment.state,
-                markedStudent);
+                assignment.state);
 
         ModelManager expectedModel = new ModelManager(model.getStudMap(), new UserPrefs());
         showStudentAtIndex(expectedModel, INDEX_FIRST_STUDENT);
@@ -97,9 +95,8 @@ class GradeCommandTest {
                 new GradeCommand.GradeCommandStudentEditor(assignment));
         String expectedMessage = String.format(GradeCommand.MESSAGE_GRADE_SINGLE_UNEDITED_ASSIGNMENT,
                 assignment.getAttributeName(),
-                studentToMark.getName(),
                 assignment.state,
-                studentToMark);
+                studentToMark.getName());
 
         ModelManager expectedModel = new ModelManager(model.getStudMap(), new UserPrefs());
         showStudentAtIndex(expectedModel, INDEX_FIRST_STUDENT);
@@ -123,9 +120,8 @@ class GradeCommandTest {
                 new GradeCommand.GradeCommandStudentEditor(assignment));
         String expectedMessage = String.format(GradeCommand.MESSAGE_GRADE_SINGLE_UNEDITED_ASSIGNMENT,
                 assignment.getAttributeName(),
-                studentToMark.getName(),
                 assignment.state,
-                studentToMark);
+                studentToMark.getName());
 
         ModelManager expectedModel = new ModelManager(model.getStudMap(), new UserPrefs());
         showStudentAtIndex(expectedModel, INDEX_FIRST_STUDENT);
@@ -149,9 +145,8 @@ class GradeCommandTest {
                 new GradeCommand.GradeCommandStudentEditor(assignment));
         String expectedMessage = String.format(GradeCommand.MESSAGE_GRADE_SINGLE_UNEDITED_ASSIGNMENT,
                 assignment.getAttributeName(),
-                studentToMark.getName(),
                 assignment.state,
-                studentToMark);
+                studentToMark.getName());
 
         ModelManager expectedModel = new ModelManager(model.getStudMap(), new UserPrefs());
         showStudentAtIndex(expectedModel, INDEX_FIRST_STUDENT);

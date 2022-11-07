@@ -28,10 +28,10 @@ public class MarkCommand extends EditStudentCommand<MarkCommand.MarkCommandStude
             + "Example: " + COMMAND_WORD + " 1 present " + PREFIX_CLASS + "T01\n"
             + "Example: " + COMMAND_WORD + " all present " + PREFIX_CLASS + "T07";
 
-    public static final String MESSAGE_MARK_SINGLE_SUCCESS_ATTENDANCE = "Marked Student as %1$s: %2$s";
+    public static final String MESSAGE_MARK_SINGLE_SUCCESS_ATTENDANCE = "Marked Student as %1$s";
     public static final String MESSAGE_MARK_MULTI_SUCCESS_ATTENDANCE = "Marked %1$s students as %2$s";
 
-    public static final String MESSAGE_MARK_SINGLE_UNEDITED_ATTENDANCE = "Student already marked as %1$s: %2$s";
+    public static final String MESSAGE_MARK_SINGLE_UNEDITED_ATTENDANCE = "Student already marked as %1$s";
     public static final String MESSAGE_MARK_MULTI_UNEDITED_ATTENDANCE = "%1$s students are already marked as %2$s";
 
     public static final String MESSAGE_NO_EDIT = "Attendance must be provided.";
@@ -43,27 +43,25 @@ public class MarkCommand extends EditStudentCommand<MarkCommand.MarkCommandStude
     @Override
     public String getSingleEditSuccessMessage(Student editedStudent) {
         return String.format(MESSAGE_MARK_SINGLE_SUCCESS_ATTENDANCE,
-                studentEditor.getAttendance().getString(),
-                editedStudent);
+                studentEditor.getAttendance().getString());
     }
 
     @Override
     public String getMultiEditSuccessMessage(List<Student> editedStudents) {
         return String.format(MESSAGE_MARK_MULTI_SUCCESS_ATTENDANCE,
-                editedStudents.size(), studentEditor.getAttendance());
+                editedStudents.size(), studentEditor.getAttendance().getString());
     }
 
     @Override
     public String getSingleUneditedMessage(Student uneditedStudent) {
         return String.format(MESSAGE_MARK_SINGLE_UNEDITED_ATTENDANCE,
-                studentEditor.getAttendance().getString(),
-                uneditedStudent);
+                studentEditor.getAttendance().getString());
     }
 
     @Override
     public String getMultiUneditedMessage(List<Student> uneditedStudents) {
         return String.format(MESSAGE_MARK_MULTI_UNEDITED_ATTENDANCE,
-                uneditedStudents.size(), studentEditor.getAttendance());
+                uneditedStudents.size(), studentEditor.getAttendance().getString());
     }
 
     @Override

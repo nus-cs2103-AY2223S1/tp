@@ -31,14 +31,14 @@ public class GradeCommand extends EditStudentCommand<GradeCommand.GradeCommandSt
             + "Example: " + COMMAND_WORD + " all marked " + PREFIX_ASSIGNMENT + "A07";
 
     public static final String MESSAGE_GRADE_SINGLE_SUCCESS_ASSIGNMENT =
-            "Set assignment %1$s for student %2$s as %3$s:" + " \n%4$s";
+            "Set assignment %1$s for student %2$s as %3$s";
     public static final String MESSAGE_GRADE_MULTI_SUCCESS_ASSIGNMENT =
-            "Set assignment %1$s as %2$s for %3$s students: ";
+            "Set assignment %1$s as %2$s for %3$s students";
 
     public static final String MESSAGE_GRADE_SINGLE_UNEDITED_ASSIGNMENT =
-            "Assignment %1$s for student %2$s is already %3$s:" + " \n%4$s";
+            "Assignment %1$s already set as %2$s for %3$s";
     public static final String MESSAGE_GRADE_MULTI_UNEDITED_ASSIGNMENT =
-            "Assignment %1$s are already set as %2$s for %3$s students";
+            "Assignment %1$s already set as %2$s for %3$s students";
 
     public static final String MESSAGE_NO_EDIT = "Assignment must be provided.";
 
@@ -52,8 +52,7 @@ public class GradeCommand extends EditStudentCommand<GradeCommand.GradeCommandSt
         return String.format(MESSAGE_GRADE_SINGLE_SUCCESS_ASSIGNMENT,
                 assignment.getAttributeName(),
                 editedStudent.getName(),
-                assignment.state,
-                editedStudent);
+                assignment.state);
     }
 
     @Override
@@ -70,9 +69,8 @@ public class GradeCommand extends EditStudentCommand<GradeCommand.GradeCommandSt
         Assignment assignment = studentEditor.getAssignment();
         return String.format(MESSAGE_GRADE_SINGLE_UNEDITED_ASSIGNMENT,
                 assignment.getAttributeName(),
-                uneditedStudent.getName(),
                 assignment.state,
-                uneditedStudent);
+                uneditedStudent.getName());
     }
 
     @Override
