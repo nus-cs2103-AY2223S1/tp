@@ -866,7 +866,20 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Adding a student
+
+1. Adding a student to the list
+
+   1. Prerequisites: App must be in either list or view mode.
+
+   2. Test case: `add n/Alice Goh p/87654321 lp/Science`<br>
+      Expected: Student with the specified details is added. Details of added student in status message.
+
+   3. Test case: `add n/Alice Ho`<br>
+      Expected: No student is added. Error details shown in the status message.
+
+   4. Other incorrect add commands to try: `add`, `add p/12345678`, `add 1` <br>
+      Expected: Similar to previous.
 
 ### Adding of grade progress to student
 
@@ -890,7 +903,7 @@ testers are expected to do more *exploratory* testing.
    3. Test case: `hw 1`<br>
       Expected: No homework is added. Error details shown in the status message.
 
-   4. Other incorrect delete commands to try: `hw`, `hw 0`, `hw 1 h/` <br>
+   4. Other incorrect homework commands to try: `hw`, `hw 0`, `hw 1 h/` <br>
       Expected: Similar to previous.
 
 2. Adding homework to a student while in view mode
@@ -903,7 +916,7 @@ testers are expected to do more *exploratory* testing.
    3. Test case: `hw 2 h/Math worksheet`<br>
       Expected: No homework is added. Error details shown in the status message.
 
-   4. Other incorrect delete commands to try: Similar to adding homework while all students are shown in list mode.<br>
+   4. Other incorrect homework commands to try: Similar to adding homework while all students are shown in list mode.<br>
       Expected: Similar to previous.
 
 ### Updating lesson plan of a student
@@ -921,7 +934,7 @@ testers are expected to do more *exploratory* testing.
    4. Test case: `lesson 1 lp/`<br>
       Expected: No lesson plan is updated. Error details shown in the status message.
 
-   5. Other incorrect delete commands to try: `lesson`, `lesson 1`, `lesson x`, `...` (where x is larger than the list size)<br>
+   5. Other incorrect lesson commands to try: `lesson`, `lesson 1`, `lesson x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 ### Editing a student
@@ -936,7 +949,7 @@ testers are expected to do more *exploratory* testing.
    3. Test case: `edit 1 n/Alice Tan`<br>
       Expected: No student is edited. Error details shown in the status message.
 
-   4. Other incorrect delete commands to try: `edit`, `edit 1`, `edit lp/` <br>
+   4. Other incorrect edit commands to try: `edit`, `edit 1`, `edit lp/` <br>
       Expected: Similar to previous.
 
 ### Viewing a student
@@ -951,7 +964,7 @@ testers are expected to do more *exploratory* testing.
    3. Test case: `view 0`<br>
       Expected: No student is deleted. App returns to list mode. Error details shown in the status message.
 
-   4. Other incorrect delete commands to try: `view` <br>
+   4. Other incorrect view commands to try: `view` <br>
       Expected: Similar to previous.
 
 ### Showing a schedule of a day
@@ -966,7 +979,7 @@ testers are expected to do more *exploratory* testing.
    3. Test case: `show abc`<br>
       Expected: No schedule is shown. Error details shown in the status message.
 
-   4. Other incorrect delete commands to try: `show`, `show tues`<br>
+   4. Other incorrect show commands to try: `show`, `show tues`<br>
       Expected: Similar to previous.
 
 ### Marking a student
