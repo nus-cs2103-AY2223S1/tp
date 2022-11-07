@@ -230,7 +230,7 @@ Flow of adding user:
    3. The wrappers will parse the information and pass it back to the `User` object.
 4. The `User` class initialises all needed information as well as a list of `Repo`s owned by the user.
 
-The UML diagram below shows how the dependicies between the different related classes work:
+The UML diagram below shows how the dependicies between the related different classes work:
 
 ![PlantUML diagram](images/GithubApiUML.png)
 
