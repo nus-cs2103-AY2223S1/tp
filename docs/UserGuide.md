@@ -57,9 +57,6 @@ For teachers who are teaching more than one module, please use one TAB for each 
 * Items in square brackets are optional.<br>
   e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/CS2103T-T12`, `t/CS2103T-T12 t/CS2103T-15` etc.
-
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
@@ -164,14 +161,13 @@ This can also be done by clicking on the person.
 
 Edits an existing person in TAB.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TAGS]`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL]`
+
 
 Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-  specifying any tags after it.
+* Editing of Tags and Position are not allowed.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
@@ -253,11 +249,12 @@ Edits the roles of an existing professor in TAB.
 Format: `roles INDEX roles/ROLE1, ROLE2,...`
 
 Edits the roles of the person (whose position must be professor) at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-Roles are case-insensitive 
-* Multiple roles may be added and must be separated by a comma.
+Roles are case-insensitive
+*  Each professor may only have 1 role
+
 
 Examples:
-*  `roles 1 roles/Coordinator, Lecturer, Advisor` edits the roles of the 1st person to be `Coordinator, Lecturer, Advisor`.
+*  `roles 1 roles/Coordinator` edits the roles of the 1st person(must be a professor) to be `Coordinator`.
 
 
 ### Locating persons by name: `find`
@@ -372,6 +369,15 @@ This can also be done by clicking File - Exit.
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TAB home folder.
 
+**Q**: Why is editing of Position restricted?<br>
+**A**: TAB depicts the addressbook of a certain module at a certain period of time. Positions within TAB should be consistent in that time frame. For example, it would not make sense for a Student to become a Professor.
+
+**Q**: Why is editing of Tags restricted?<br>
+**A**: AB depicts the addressbook of a certain module at a certain period of time. Tags represent the module and tutorial group of a students. If a student were to drop the module halfway, he should be removed from TAB instead using the delete feature.
+
+**Q**: Why should there be only Persons from one module in each addressbook? This is a big limitation!<br>
+**A**: Not really. By only allowing Persons from one module in each addressbook, it ensures that your TAB is neat and streamlined. If you want to keep contacts across modules, please create a new TAB by using our `new` and `swap` features.
+
 **Q**: I just created a new book and nothing changed?<br>
 **A**: The new TAB's name appears at the bottom left corner.
 
@@ -445,7 +451,7 @@ Action | Format, Examples
 **Assignments** | `assignments assignments/ ASSIGNMENT_1 w/ASSIGNMENT_1_WEIGHTAGE, ASSIGNMENT_2 w/ASSIGNMENT_2_WEIGHTAGE…​`<br> e.g., `assignments assignments/ Assignment 1 w/15, Assignment 2 w/15, Midterms w/30, Finals w/40`
 **Grade** | `grade INDEX assignment/INDEX grade/GRADE` <br> e.g., `grade 2 assignment/1 grade/68/80`
 **Availability** | `avail INDEX avail/AVAILABILITY` <br> e.g., `avail 1 avail/Available`
-**Roles** | `roles INDEX roles/ROLE1, ROLE2,...` <br> e.g., `roles 1 roles/Coordinator, Lecturer, Advisor`
+**Roles** | `roles INDEX roles/ROLE1, ROLE2,...` <br> e.g., `roles 1 roles/Coordinator`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **Filter** | `filter TAG`<br> e.g., `filter CS2103T-T17`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`

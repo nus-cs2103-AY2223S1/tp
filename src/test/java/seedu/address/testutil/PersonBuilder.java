@@ -55,6 +55,20 @@ public class PersonBuilder {
     }
 
     /**
+     * Creates a {@code PersonBuilder} with the default details but no tags.
+     */
+    public PersonBuilder(boolean isEditedPerson) {
+        name = new Name(DEFAULT_NAME);
+        phone = new Phone(DEFAULT_PHONE);
+        email = new Email(DEFAULT_EMAIL);
+        position = Position.buildPosition(DEFAULT_POSITION, DEFAULT_FILE_PATH);
+        details = "Available";
+        address = new Address(DEFAULT_ADDRESS);
+        remark = new Remark(DEFAULT_REMARK);
+        tags = new HashSet<>();
+    }
+
+    /**
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
     public PersonBuilder(Person personToCopy) {
