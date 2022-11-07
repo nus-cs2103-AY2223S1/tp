@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minWidth="1200.0" onCloseRequest="#handleExit" title="Swift+" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minWidth="1200.0" onCloseRequest="#handleExit" title="Swift+" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/swift.png" />
   </icons>
@@ -25,10 +25,10 @@
 
       <VBox prefHeight="66.0" prefWidth="1200.0">
         <HBox styleClass="menu-bar">
-          <Button fx:id="contactsButton" mnemonicParsing="false" onAction="#showContactTab" text="CONTACTS"/>
-          <Button fx:id="tasksButton" mnemonicParsing="false" onAction="#showTaskTab" text="TASKS"/>
-          <Button fx:id="helpButton" mnemonicParsing="false" onAction="#handleHelp" text="HELP"/>
-          <Button fx:id="exitButton" mnemonicParsing="false" onAction="#handleExit" text="EXIT"/>
+          <Button fx:id="contactsButton" mnemonicParsing="false" onAction="#showContactTab" text="CONTACTS" />
+          <Button fx:id="tasksButton" mnemonicParsing="false" onAction="#showTaskTab" text="TASKS" />
+          <Button fx:id="helpButton" mnemonicParsing="false" onAction="#handleHelp" text="HELP" />
+          <Button fx:id="exitButton" mnemonicParsing="false" onAction="#handleExit" text="EXIT" />
         </HBox>
 
         <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
@@ -53,9 +53,9 @@
 
                   <HBox minWidth="300.0" prefHeight="22.0" prefWidth="282.0" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
               <VBox style="-fx-background-color: #FAFAFA;" styleClass="right-panel-vbox" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
-                        <Pane prefHeight="25.0" prefWidth="400.0" styleClass="result-display-pane">
+                        <Pane minHeight="25.0" prefHeight="25.0" prefWidth="400.0" styleClass="result-display-pane">
                            <children>
-                              <Label prefHeight="25.0" styleClass="result_heading" text="SEARCH RESULTS">
+                              <Label prefHeight="25.0" styleClass="result_heading" text="COMMAND RESULTS">
                                  <padding>
                                     <Insets left="12.0" top="10.0" />
                                  </padding>
