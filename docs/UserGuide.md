@@ -1011,7 +1011,7 @@ No. | Word                             | Definition
 ---|----------------------------------|------------------
 1 | **Alphanumeric Characters**      | A combination of alphabetical and numerical characters
 2 | **ASCII Characters**             | Characters from the American Standard Code for Information Interchange character encoding standard
-3| **Command Line Interface (CLI)** | A text-based interface that recieves typed commands as input and returns textual feedback as output.
+3| **Command Line Interface (CLI)** | A text-based interface that receives typed commands as input and returns textual feedback as output.
 4| **Graphical User Interface (GUI)** | An image-based interface that is more visually appealing than a command-line interface and encapsulates information through the use of icons and images.
 5| **Home Folder**                  | The folder that SectresBook is located in. It is also where SectresBook will store its data
 6|**Initialisation** | The moment when a Person or Note is created and added into SectresBook.
