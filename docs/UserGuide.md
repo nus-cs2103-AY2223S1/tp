@@ -201,7 +201,7 @@ Format: `deleteC INDEX`
 
 <div markdown="block" class="alert alert-warning">
 
-**:warning: There will be an error if you:**<br>
+:warning: There will be an error if you:<br>
 
 * Enter 0 or a negative number as INDEX.<br>
 
@@ -699,7 +699,7 @@ With our label feature, managing your numerous projects on the go has just gotte
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes on labels:**<br>
+:information_source: Notes on labels:<br>
 
 * Labels must be alphanumeric and one word long.<br>
 
@@ -720,7 +720,7 @@ Format: `addL c/INDEX t/INDEX l/label_NAME`
 
 <div markdown="block" class="alert alert-warning">
 
-**:warning: There will be an error if you:**<br>
+:warning: There will be an error if you:<br>
 
 * Do not adhere to the [field constraints](#section-3-labels)
 * Specify more than one contact or more than one task
@@ -754,7 +754,7 @@ Format: `deleteL c/INDEX t/INDEX l/label_NAME`
 
 <div markdown="block" class="alert alert-warning">
 
-**:warning: There will be an error if you:**<br>
+:warning: There will be an error if you:<br>
 
 * Do not adhere to the [field constraints](#section-3-labels)
 * Specify more than one contact or more than one task
