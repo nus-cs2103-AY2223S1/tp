@@ -37,7 +37,7 @@ Given below are my contributions to the project.
   * **Testing**: Added unit tests for gender field, added gender related unit tests for add and edit person feature.
   * **Code Quality**
       * Refactored the original `delete` command to `deletePerson` to distinguish it from the `deleteEvent` command.
-      * Did overall code quality check for most java files to modify Javadocs and align code format.
+      * Did overall code quality check for most java files to modify Javadocs and align code format (Pull request [#240](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/240)).
 * **Documentation**:
     * Contributions to the User Guide:
         * Added documentation for the `tagEvent` ([Link](https://ay2223s1-cs2103-f09-2.github.io/tp/UserGuide.html#tag-persons-to-an-event--tagevent)),
