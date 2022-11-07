@@ -161,7 +161,7 @@ This section describes some noteworthy details on how certain features are imple
 ### Adding a Task into the TaskList
 
 #### Motivation
-Allows insertion of new task into the tasklist 
+Allows insertion of new task into the tasklist. 
 
 #### Implementation
 
@@ -173,7 +173,7 @@ Step 1. The user launches the application for the first time, with a tasklist po
 
 Step 2. The user executes `addTask n/Fix toggle d/Fix dark mode button pr/high c/frontend dl/2022-12-12 pe/charlotte@example.com` to add a task to the tasklist. The `AddTaskCommand` calls the `Model#hasTask()`, checking if the tasklist already contains the task. If the task already exist, an exception will be thrown and a **task already exist** error message will be returned to the user.
 
-Step 3. If the task does not exist in the tasklist, the `AddTaskCommand` calls the `Model#addTask` to add the task into the tasklist.
+Step 3. If the task does not exist in the tasklist and email of person assigned is valid, the `AddTaskCommand` calls the `Model#addTask` to add the task into the tasklist.
 
 Step 4. After making an insert into the tasklist, the `AddTaskCommand` calls the `Model#update`, which calls
 `AddressBook#setTasks` to update the tasklist in the model to the latest version.
