@@ -36,7 +36,7 @@ FoodRem Tags are unique by name and case-sensitive. This means you cannot add tw
 
 #### Flags
 
-Flags are [[ delimiter:delimiters ]] that enable FoodRem to distinguish different parameters without ambiguity.
+Flags are [[ delimiter:delimiters ]] that enable FoodRem to distinguish different [[ parameter:parameters ]] without ambiguity.
 
 You would put in the corresponding [Placeholder](#placeholders) immediately after each flag.
 
@@ -54,7 +54,7 @@ Please refer to the [Command Format](#command-format) to see how Flags and Place
 
 #### Placeholders
 
-Placeholders show you what type of parameters you can supply to a command. These follow immediately after a [Flag](#flags).
+Placeholders in this FoodRem User Guide refers to the UPPER_CASE words that can be replaced by valid user input supplied. These placeholders follow immediately after a [Flag](#flags).
 
 Please refer to the [Command Format](#command-format) to see how Flags and Placeholders are used together.
 
