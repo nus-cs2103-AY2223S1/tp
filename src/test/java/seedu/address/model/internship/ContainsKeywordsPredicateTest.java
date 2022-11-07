@@ -2,6 +2,7 @@ package seedu.address.model.internship;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -12,6 +13,11 @@ import org.junit.jupiter.api.Test;
 import seedu.address.testutil.InternshipBuilder;
 
 public class ContainsKeywordsPredicateTest {
+
+    @Test
+    public void constructor_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new ContainsKeywordsPredicate(null));
+    }
 
     @Test
     public void equals() {

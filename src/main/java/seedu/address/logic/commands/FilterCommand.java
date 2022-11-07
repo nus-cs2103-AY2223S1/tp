@@ -22,7 +22,7 @@ public class FilterCommand extends Command {
     private final InternshipHasApplicationStatusPredicate predicate;
 
     /**
-     * @param predicate Predicate containing status of the internship
+     * @param predicate Predicate containing application status of the internship
      */
     public FilterCommand(InternshipHasApplicationStatusPredicate predicate) {
         requireNonNull(predicate);

@@ -57,7 +57,8 @@ public class InterviewDateTimeTest {
         assertFalse(InterviewDateTime.isValidInterviewDateTime(TypicalDateTimes.FIRST_VALID_DATE
                 + " " + TypicalDateTimes.THIRD_INVALID_TIME)); // space missing
 
-        // empty interview date time
+        // empty and blank interview date time
+        assertFalse(InterviewDateTime.isValidInterviewDateTime(""));
         assertFalse(InterviewDateTime.isValidInterviewDateTime(" "));
 
         // valid interview date time
