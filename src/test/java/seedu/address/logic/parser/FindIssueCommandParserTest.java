@@ -24,13 +24,15 @@ public class FindIssueCommandParserTest {
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "-f", "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+        assertParseFailure(parser, FindIssueCommand.COMMAND_FLAG, "     ",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 FindIssueCommand.MESSAGE_FIND_ISSUE_USAGE));
     }
 
     @Test
     public void parse_argsWithNoPrefix_throwsParseException() {
-        assertParseFailure(parser, "-f", "abcd", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+        assertParseFailure(parser, FindIssueCommand.COMMAND_FLAG, "abcd",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 FindIssueCommand.MESSAGE_FIND_ISSUE_USAGE));
     }
 
@@ -49,7 +51,7 @@ public class FindIssueCommandParserTest {
         FindIssueCommand expectedFindCommand =
                 new FindIssueCommand(new IssueContainsKeywordsPredicate(issueTitle, status, urgency, projectName,
                         projectId, issueId));
-        assertParseSuccess(parser, "-f",
+        assertParseSuccess(parser, FindIssueCommand.COMMAND_FLAG,
                 " t/This is an issue title p/1 i/7 s/completed u/LOW n/DevEnable",
                 expectedFindCommand);
     }
@@ -68,35 +70,36 @@ public class FindIssueCommandParserTest {
         //title
         FindIssueCommand expectedFindCommandTitle =
                 new FindIssueCommand(new IssueContainsKeywordsPredicate(issueTitle, empty, empty, empty, empty, empty));
-        assertParseSuccess(parser, "-f", " t/This is an issue title", expectedFindCommandTitle);
+        assertParseSuccess(parser, FindIssueCommand.COMMAND_FLAG,
+                " t/This is an issue title", expectedFindCommandTitle);
 
         //name
         FindIssueCommand expectedFindCommandName =
                 new FindIssueCommand(new IssueContainsKeywordsPredicate(empty, empty, empty, projectName,
                         empty, empty));
-        assertParseSuccess(parser, "-f", " n/DevEnable", expectedFindCommandName);
+        assertParseSuccess(parser, FindIssueCommand.COMMAND_FLAG, " n/DevEnable", expectedFindCommandName);
 
         //urgency
         FindIssueCommand expectedFindCommandUrgency =
                 new FindIssueCommand(new IssueContainsKeywordsPredicate(empty, empty, urgency, empty,
                         empty, empty));
-        assertParseSuccess(parser, "-f", " u/LOW", expectedFindCommandUrgency);
+        assertParseSuccess(parser, FindIssueCommand.COMMAND_FLAG, " u/LOW", expectedFindCommandUrgency);
 
         //status
         FindIssueCommand expectedFindCommandStatus =
                 new FindIssueCommand(new IssueContainsKeywordsPredicate(empty, status, empty, empty, empty, empty));
-        assertParseSuccess(parser, "-f",
+        assertParseSuccess(parser, FindIssueCommand.COMMAND_FLAG,
                 " s/completed", expectedFindCommandStatus);
 
         //issue id
         FindIssueCommand expectedFindCommandIssueId =
                 new FindIssueCommand(new IssueContainsKeywordsPredicate(empty, empty, empty, empty, empty, issueId));
-        assertParseSuccess(parser, "-f", " i/7", expectedFindCommandIssueId);
+        assertParseSuccess(parser, FindIssueCommand.COMMAND_FLAG, " i/7", expectedFindCommandIssueId);
 
         //project id
         FindIssueCommand expectedFindCommandProjectId =
                 new FindIssueCommand(new IssueContainsKeywordsPredicate(empty, empty, empty, empty, projectId, empty));
-        assertParseSuccess(parser, "-f", " p/1", expectedFindCommandProjectId);
+        assertParseSuccess(parser, FindIssueCommand.COMMAND_FLAG, " p/1", expectedFindCommandProjectId);
 
     }
 
@@ -115,7 +118,7 @@ public class FindIssueCommandParserTest {
         FindIssueCommand expectedFindCommand =
                 new FindIssueCommand(new IssueContainsKeywordsPredicate(issueTitle, status, urgency, projectName,
                         projectId, issueId));
-        assertParseSuccess(parser, "-f",
+        assertParseSuccess(parser, FindIssueCommand.COMMAND_FLAG,
                 " t/This is an issue title t/another title p/1 p/3 i/7 i/8 s/completed s/Incomplete"
                 + " u/NONE u/HIGH u/MEDIUM n/DevEnable n/AB3",
                 expectedFindCommand);
@@ -136,7 +139,7 @@ public class FindIssueCommandParserTest {
         FindIssueCommand expectedFindCommand =
                 new FindIssueCommand(new IssueContainsKeywordsPredicate(issueTitle, status, urgency, projectName,
                         projectId, issueId));
-        assertParseSuccess(parser, "-f",
+        assertParseSuccess(parser, FindIssueCommand.COMMAND_FLAG,
                 " t/This is an issue title n/DevEnable p/1 s/completed u/NONE p/3 i/7 s/Incomplete"
                         + " u/HIGH i/8 u/MEDIUM n/AB3 t/another title",
                 expectedFindCommand);
@@ -144,21 +147,28 @@ public class FindIssueCommandParserTest {
 
     @Test
     public void parse_invalidMultiPrefix_throwsException() {
-        assertParseFailure(parser, "-f", " n/invalid@projectname", Name.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "-f", " p/0", ParserUtil.MESSAGE_INVALID_INDEX);
-        assertParseFailure(parser, "-f", " p/-1", ParserUtil.MESSAGE_INVALID_INDEX);
-        assertParseFailure(parser, "-f", " s/notCompletedOrIncomplete", Status.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "-f", " u/INVALID", Urgency.MESSAGE_STRING_CONSTRAINTS);
-        assertParseFailure(parser, "-f", " i/0", ParserUtil.MESSAGE_INVALID_INDEX);
-        assertParseFailure(parser, "-f", " i/-1", ParserUtil.MESSAGE_INVALID_INDEX);
+        assertParseFailure(parser, FindIssueCommand.COMMAND_FLAG,
+                " n/invalid@projectname", Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, FindIssueCommand.COMMAND_FLAG,
+                " p/0", ParserUtil.MESSAGE_INVALID_INDEX);
+        assertParseFailure(parser, FindIssueCommand.COMMAND_FLAG,
+                " p/-1", ParserUtil.MESSAGE_INVALID_INDEX);
+        assertParseFailure(parser, FindIssueCommand.COMMAND_FLAG,
+                " s/notCompletedOrIncomplete", Status.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, FindIssueCommand.COMMAND_FLAG,
+                " u/INVALID", Urgency.MESSAGE_STRING_CONSTRAINTS);
+        assertParseFailure(parser, FindIssueCommand.COMMAND_FLAG,
+                " i/0", ParserUtil.MESSAGE_INVALID_INDEX);
+        assertParseFailure(parser, FindIssueCommand.COMMAND_FLAG,
+                " i/-1", ParserUtil.MESSAGE_INVALID_INDEX);
     }
 
     @Test
     public void parse_emptyMultiPrefix_throwsException() {
-        assertParseFailure(parser, "-f", " n/", Name.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "-f", " p/", ParserUtil.MESSAGE_INVALID_INDEX);
-        assertParseFailure(parser, "-f", " s/", Status.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "-f", " u/", Urgency.MESSAGE_STRING_CONSTRAINTS);
-        assertParseFailure(parser, "-f", " i/", ParserUtil.MESSAGE_INVALID_INDEX);
+        assertParseFailure(parser, FindIssueCommand.COMMAND_FLAG, " n/", Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, FindIssueCommand.COMMAND_FLAG, " p/", ParserUtil.MESSAGE_INVALID_INDEX);
+        assertParseFailure(parser, FindIssueCommand.COMMAND_FLAG, " s/", Status.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, FindIssueCommand.COMMAND_FLAG, " u/", Urgency.MESSAGE_STRING_CONSTRAINTS);
+        assertParseFailure(parser, FindIssueCommand.COMMAND_FLAG, " i/", ParserUtil.MESSAGE_INVALID_INDEX);
     }
 }
