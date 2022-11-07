@@ -656,7 +656,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. Input format has extra parameters.
   * 1a1. TrackAScholar ignores the extra parameters. <br>
     Use case resumes at step 2.
-
+  
+[Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -688,6 +689,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1c1. TrackAScholar displays an error message that applicant already exists. <br>
     Use case resumes at step 1.
 
+[Return to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 **Use case: UC03 - List all applicants**
@@ -703,6 +706,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. Input format has extra parameters.
     * 1a1. TrackAScholar ignores the extra parameters. <br>
       Use case resumes at step 2.
+
+[Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -734,6 +739,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1c1. TrackAScholar displays an error message informing the user that an applicant with the same name already exists and details cannot be updated. <br>
     Use case resumes at step 1.
 
+[Return to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 **Use case: UC05 - Delete an applicant**
@@ -755,6 +762,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   * 1b1. TrackAScholar displays an error message showing parameter requirements. <br>
     Use case resumes at step 1.
+
+[Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -783,6 +792,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. User cancels request during confirmation. <br>
   Use case ends.
 
+[Return to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 **Use case: UC07 - Clears all applicants**
@@ -805,6 +816,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. User cancels request during confirmation. <br>
   Use case ends.
 
+[Return to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 **Use case: UC08 - Finds applicants by name, scholarship or major**
@@ -821,6 +834,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1a1. TrackAScholar displays an error message prompting correct input format. <br>
       Use case resumes at step 1.
+
+[Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -844,6 +859,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. TrackAScholar displays an error message showing parameter requirements. <br>
       Use case resumes at step 1.
 
+[Return to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 **Use case: UC10 - Sorts all applicants by name, scholarship or application status**
@@ -865,7 +882,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1b1. TrackAScholar displays an error message showing parameter requirements. <br>
       Use case resumes at step 1.
-    
+
+[Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -908,6 +926,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2a1. TrackAScholar merges the applicants according to the type of merging specified by the user input. <br>
       Use case resumes at step 2.
 
+[Return to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 **Use case: UC12 - Pins an applicant**
@@ -935,6 +955,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1c1. TrackAScholar displays an error message informing the user that the applicant is already pinned. <br>
       Use case resumes at step 1.
 
+[Return to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 **Use case: UC13 - Unpins an applicant**
@@ -961,6 +983,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1c1. TrackAScholar displays an error message informing the user that the applicant is already unpinned. <br>
       Use case resumes at step 1.
+
+[Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
