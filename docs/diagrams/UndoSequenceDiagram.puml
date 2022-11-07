@@ -3,42 +3,55 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":UninurseBookParser" as UninurseBookParser LOGIC_COLOR
 participant "u:UndoCommand" as UndoCommand LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
-participant ":VersionedAddressBook" as VersionedAddressBook MODEL_COLOR
+participant ":PersistentUninurseBook" as PersistentUninurseBook MODEL_COLOR
+participant "workingCopy:UninurseBook" as UninurseBook MODEL_COLOR
 end box
+
 [-> LogicManager : execute(undo)
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand(undo)
-activate AddressBookParser
+LogicManager -> UninurseBookParser : parseCommand(undo)
+activate UninurseBookParser
 
 create UndoCommand
-AddressBookParser -> UndoCommand
+UninurseBookParser -> UndoCommand
 activate UndoCommand
 
-UndoCommand --> AddressBookParser
+UndoCommand --> UninurseBookParser
 deactivate UndoCommand
 
-AddressBookParser --> LogicManager : u
-deactivate AddressBookParser
+UninurseBookParser --> LogicManager : u
+deactivate UninurseBookParser
 
 LogicManager -> UndoCommand : execute()
 activate UndoCommand
 
-UndoCommand -> Model : undoAddressBook()
+UndoCommand -> Model : undo()
 activate Model
 
-Model -> VersionedAddressBook : undo()
-activate VersionedAddressBook
+Model -> PersistentUninurseBook : undo()
+activate PersistentUninurseBook
 
-VersionedAddressBook -> VersionedAddressBook :resetData(ReadOnlyAddressBook)
-VersionedAddressBook --> Model :
-deactivate VersionedAddressBook
+PersistentUninurseBook -> PersistentUninurseBook : handleChange()
+activate PersistentUninurseBook
+
+PersistentUninurseBook -> UninurseBook :setPersons(List<Patient>)
+activate UninurseBook
+
+UninurseBook --> PersistentUninurseBook :
+deactivate UninurseBook
+
+PersistentUninurseBook --> PersistentUninurseBook
+deactivate PersistentUninurseBook
+
+PersistentUninurseBook --> Model :
+deactivate PersistentUninurseBook
 
 Model --> UndoCommand
 deactivate Model

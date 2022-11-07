@@ -1,0 +1,25 @@
+@startuml
+start
+:User executes edit
+attribute command;
+
+:Model returns a filtered
+list of last shown patients;
+
+:Search for patient in the list who
+matches the given patient index;
+'Since the beta syntax does not support placing the attribute outside the
+'diamond we place it as the true branch instead.
+
+if () then ([patient index and attribute index are valid])
+    :Create a new patient using details
+    from the specified patient and the
+    given attribute;
+    :Replace the specified patient\nwith the newly created patient;
+else ([else])
+    :Throw CommandException;
+    :UI catches CommandException;
+endif
+:UI displays results of command to user;
+stop
+@enduml

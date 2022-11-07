@@ -1,0 +1,116 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":UninurseBookParser" as UninurseBookParser LOGIC_COLOR
+participant ":AddGenericCommandParser" as AddGenericCommandParser LOGIC_COLOR
+participant "parser:AddPatientCommandParser" as AddPatientCommandParser LOGIC_COLOR
+participant "command:AddPatientCommand" as AddPatientCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("add n/John Doe...")
+activate LogicManager
+
+LogicManager -> UninurseBookParser : parseCommand("add n/John Doe...")
+activate UninurseBookParser
+
+create AddGenericCommandParser
+UninurseBookParser -> AddGenericCommandParser
+activate AddGenericCommandParser
+AddGenericCommandParser --> UninurseBookParser
+deactivate AddGenericCommandParser
+
+
+
+UninurseBookParser -> AddGenericCommandParser: parse("n/John Doe...")
+activate AddGenericCommandParser
+
+create AddPatientCommandParser
+AddGenericCommandParser -> AddPatientCommandParser
+activate AddPatientCommandParser
+AddPatientCommandParser --> AddGenericCommandParser
+deactivate AddPatientCommandParser
+
+AddGenericCommandParser -> AddPatientCommandParser : parse("n/John Doe...")
+activate AddPatientCommandParser
+create AddPatientCommand
+AddPatientCommandParser -> AddPatientCommand
+activate AddPatientCommand
+AddPatientCommand --> AddPatientCommandParser :command
+
+deactivate AddPatientCommand
+AddPatientCommandParser --> AddGenericCommandParser: command
+deactivate AddPatientCommandParser
+AddGenericCommandParser --> UninurseBookParser: command
+deactivate AddGenericCommandParser
+UninurseBookParser --> LogicManager : command
+deactivate UninurseBookParser
+
+
+LogicManager -> AddPatientCommand : execute()
+activate AddPatientCommand
+
+AddPatientCommand -> Model : addPerson(patient)
+activate Model
+
+Model --> AddPatientCommand
+deactivate Model
+
+AddPatientCommand -> Model : setPatientOfInterest()
+activate Model
+
+Model --> AddPatientCommand
+deactivate Model
+
+create CommandResult
+AddPatientCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddPatientCommand : result
+deactivate CommandResult
+
+AddPatientCommand --> LogicManager : result
+deactivate AddPatientCommand
+AddPatientCommand -[hidden]-> LogicManager : result
+
+[<--LogicManager : result
+deactivate LogicManager
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@enduml
+
+

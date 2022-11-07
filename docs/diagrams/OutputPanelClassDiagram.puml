@@ -1,0 +1,61 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR_T4
+skinparam classBackgroundColor UI_COLOR
+
+package UI {
+Class "{abstract}\nUiPart" as UiPart
+Class OutputPanel
+Class TaskListPanel
+Class TaskListCard
+Class UpdatedPatientCard
+Class UndoCard
+Class RedoCard
+Class ModifiedPatientCard
+Class ScheduleListPanel
+Class ScheduleListCard
+Class TruncatedTaskListPanel
+Class TruncatedTaskListCard
+Class UpdatedPersonListPanel
+}
+
+
+
+OutputPanel --> "0..1" TaskListPanel
+OutputPanel --> "0..1" UndoCard
+OutputPanel --> "0..1" RedoCard
+OutputPanel --> "0..1" ModifiedPatientCard
+OutputPanel --> "0..1" ScheduleListPanel
+OutputPanel --> "0..1" UpdatedPersonListPanel
+OutputPanel --> "0..1" UpdatedPatientCard
+OutputPanel --> "0..1" TruncatedTaskListPanel
+
+UndoCard -left->   "1..2" UpdatedPersonListPanel
+RedoCard -->  "1..2" UpdatedPersonListPanel
+UpdatedPersonListPanel --> "*" UpdatedPatientCard
+
+ScheduleListPanel --> "*" ScheduleListCard
+
+TruncatedTaskListPanel --> "*" TruncatedTaskListCard
+
+
+TaskListPanel --> "*" TaskListCard
+
+
+OutputPanel --|> UiPart
+TaskListPanel --|> UiPart
+TaskListCard --|> UiPart
+UpdatedPatientCard --|> UiPart
+ScheduleListCard --|> UiPart
+TruncatedTaskListCard --|> UiPart
+UndoCard --|> UiPart
+RedoCard --|> UiPart
+TruncatedTaskListPanel --|> UiPart
+ScheduleListPanel --|> UiPart
+ModifiedPatientCard --|> UiPart
+UpdatedPersonListPanel --|> UiPart
+
+
+
+@enduml

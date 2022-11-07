@@ -5,12 +5,16 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+Class "<<interface>>\nReadOnlyUninurseBook" as ReadOnlyUninurseBook
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
-Class AddressBook
+Class UninurseBook
 Class ModelManager
 Class UserPrefs
+
+Class PersistentUninurseBook
+Class UninurseBookSnapshot
+
 
 Class UniquePersonList
 Class Person
@@ -20,27 +24,44 @@ Class Name
 Class Phone
 Class Tag
 
+Class Patient
+Class ConditionList
+Class MedicationList
+Class TaskList
+Class RemarkList
+
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+UninurseBook .up.|> ReadOnlyUninurseBook
 
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
+Model .left.> ReadOnlyUninurseBook
+ModelManager -left-> "1" PersistentUninurseBook
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
+PersistentUninurseBook *-down-> "1..*" UninurseBookSnapshot
+UninurseBookSnapshot -up-> "1" ReadOnlyUninurseBook
+
+
+UninurseBook *--> "1" UniquePersonList
 UniquePersonList --> "~* all" Person
 Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
+
+Patient -left-|> Person
+
+Patient --> "1" TaskList
+Patient --> "1" ConditionList
+Patient --> "1" MedicationList
+Patient --> "1" RemarkList
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address

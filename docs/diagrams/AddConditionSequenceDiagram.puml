@@ -1,0 +1,98 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":UninurseBookParser" as UninurseBookParser LOGIC_COLOR
+participant ":AddGenericCommandParser" as AddGenericCommandParser LOGIC_COLOR
+participant ":AddConditionCommandParser" as AddConditionCommandParser LOGIC_COLOR
+participant ":AddConditionCommand" as AddConditionCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("add -p 1 c/Diabetes")
+activate LogicManager
+
+LogicManager -> UninurseBookParser : parseCommand("add -p 1 c/Diabetes")
+activate UninurseBookParser
+
+create AddGenericCommandParser
+UninurseBookParser -> AddGenericCommandParser
+activate AddGenericCommandParser
+
+AddGenericCommandParser --> UninurseBookParser
+deactivate AddGenericCommandParser
+
+UninurseBookParser -> AddGenericCommandParser : parse("-p 1 c/Diabetes")
+activate AddGenericCommandParser
+
+create AddConditionCommandParser
+AddGenericCommandParser -> AddConditionCommandParser
+activate AddConditionCommandParser
+
+AddConditionCommandParser --> AddGenericCommandParser
+deactivate AddConditionCommandParser
+
+AddGenericCommandParser -> AddConditionCommandParser : parse("1 c/Diabetes")
+activate AddConditionCommandParser
+
+create AddConditionCommand
+AddConditionCommandParser -> AddConditionCommand : AddConditionCommand(index, condition)
+activate AddConditionCommand
+
+AddConditionCommand --> AddConditionCommandParser : command
+deactivate AddConditionCommand
+
+AddConditionCommandParser --> AddGenericCommandParser : command
+deactivate AddConditionCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddConditionCommandParser -[hidden]-> AddGenericCommandParser
+destroy AddConditionCommandParser
+
+AddGenericCommandParser --> UninurseBookParser : command
+deactivate AddGenericCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddGenericCommandParser -[hidden]-> UninurseBookParser
+destroy AddGenericCommandParser
+
+UninurseBookParser --> LogicManager : command
+deactivate UninurseBookParser
+
+LogicManager -> AddConditionCommand : execute(model)
+activate AddConditionCommand
+
+AddConditionCommand -> Model : getFilteredPersonList()
+activate Model
+
+Model --> AddConditionCommand : lastShownList
+deactivate Model
+
+AddConditionCommand -> Model : add(condition)
+activate Model
+
+Model --> AddConditionCommand : updatedConditionList
+deactivate Model
+
+AddConditionCommand -> Model : updateFilteredPersonList
+activate Model
+
+Model --> AddConditionCommand
+deactivate Model
+
+create CommandResult
+AddConditionCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddConditionCommand : commandResult
+destroy CommandResult
+
+AddConditionCommand --> LogicManager : commandResult
+destroy AddConditionCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

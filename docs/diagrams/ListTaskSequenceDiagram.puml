@@ -1,0 +1,45 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":UninurseBookParser" as UninurseBookParser LOGIC_COLOR
+participant "command:ListTaskCommand" as ListTaskCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+[-> LogicManager : execute("listTask")
+activate LogicManager
+
+LogicManager -> UninurseBookParser : parseCommand("listTask")
+activate UninurseBookParser
+
+create ListTaskCommand
+UninurseBookParser -> ListTaskCommand
+activate ListTaskCommand
+
+ListTaskCommand --> UninurseBookParser
+deactivate ListTaskCommand
+
+UninurseBookParser --> LogicManager : command
+deactivate UninurseBookParser
+
+LogicManager -> ListTaskCommand : execute()
+activate ListTaskCommand
+
+ListTaskCommand -> Model : updateFilteredPersonList()
+activate Model
+
+Model --> ListTaskCommand
+deactivate Model
+
+ListTaskCommand --> LogicManager : result
+deactivate ListTaskCommand
+ListTaskCommand -[hidden]-> LogicManager : result
+destroy ListTaskCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

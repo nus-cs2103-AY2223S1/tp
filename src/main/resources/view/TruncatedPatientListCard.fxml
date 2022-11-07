@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="cardPane" alignment="CENTER_LEFT" stylesheets="@Theme.css" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <GridPane hgap="5.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="30.0" minWidth="30.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <VBox alignment="CENTER_LEFT">
+               <children>
+                  <Label fx:id="id" />
+               </children></VBox>
+            <VBox minWidth="100.0" GridPane.columnIndex="1">
+               <children>
+                  <Label fx:id="name" styleClass="label_big" text="\$first" wrapText="true" />
+                  <FlowPane fx:id="tags" />
+               </children>
+            </VBox>
+            <VBox fx:id="taskNumberPane" alignment="CENTER" GridPane.columnIndex="2" />
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+         </padding>
+      </GridPane>
+   </children>
+</VBox>
