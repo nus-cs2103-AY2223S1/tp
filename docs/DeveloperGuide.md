@@ -851,8 +851,8 @@ For all use cases below, the **System** is `FRIDAY` and the **Actor** is the `us
 
 1. User requests to list students
 2. FRIDAY shows a list of students
-3. User requests to find students with specific criteria
-4. FRIDAY displays the students with keywords
+3. User requests to find students with specific keywords
+4. FRIDAY displays the students with matching keywords
 
    Use case ends.
 
