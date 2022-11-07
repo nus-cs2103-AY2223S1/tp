@@ -31,19 +31,47 @@ COMMAND_WORD is strictly any of the following:
 * untag
 ```
 
-**Example Input:**
+**Example:**
+
+<!-- Hardcoding due to unique command format -->
+<!-- markdownlint-disable no-inline-html -->
+<!-- markdownlint-disable blanks-around-fences -->
+<div class="command-container" markdown="1">
+<div class="input-container" markdown="1">
+
+**Command Input Box:**
+
+Possible inputs:
 
 ```text
 help
+```
+{: style="margin-bottom: 0.5rem" }
+
+```text
 help del
+```
+{: style="margin-bottom: 0.5rem" }
+
+```text
 help help
 ```
+{: style="margin-bottom: 0.5rem" }
 
-**Expected Output:**<br>A new window will open showing the instructions.
+</div>
+<div class="input-container" markdown="1">
+
+**Help Window:**
+
+The [[ help-window:Help Window ]] will open showing the instructions.
 
 If no `COMMAND_WORD` was specified, only a general help message will be provided. The general help message shows a list of commands available to the user and a URL to this User Guide.
 
 If a `COMMAND_WORD` was specified, additional help for that command will be provided.
+
+</div>
+</div>
+<!-- markdownlint-restore -->
 
 ---
 
