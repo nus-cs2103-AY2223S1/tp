@@ -2,70 +2,89 @@
 layout: page
 title: Developer Guide
 ---
+{:logo: height="200px" width="200px" style="display:block; margin-left:auto; margin-right:auto;"}
+{:diagram: style="display:block; margin-left:auto; margin-right:auto;"}
+![StudMapLogo](images/studmap/studmap_hd.png){: logo}
+
+# Overview
+
+StudMap is a lightweight desktop app for managing your students and organizing your teaching assistant (TA)
+responsibilities. It’s optimized for use via a Command Line Interface (CLI), meaning that you give instructions to
+StudMap through a text box, and StudMap just does it for you — it’s like magic. Yet, it has all the benefits of a
+traditional application with a graphical interface: you can still see, at a glance, a neat overview of what you need to
+see. If you type fast, StudMap can get your student management tasks done faster than anything else.
+
+This Developer Guide aims to acquaint you with the architecture of StudMap, in case you are interested in contributing
+to the project. You can also use this as a reference, if you are interested in developing something similar.
+
+---
 
 * Table of Contents
 {:toc}
 
+---
+
+# Acknowledgements
+
+* [JavaFX](https://openjfx.io/) for providing the API for rendering GUI.
+* [Jackson](https://github.com/FasterXML/jackson) for providing the API for parsing JSON files.
+* [JUnit](https://junit.org/junit5/) for providing a unit testing framework.
+* StudMap's Developer Guide is adapted
+  from [AB3's Developer Guide](https://se-education.org/addressbook-level3/DeveloperGuide.html);
+
 --------------------------------------------------------------------------------------------------------------------
 
-## **Acknowledgements**
-
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the
-  original source as well}
-
---------------------------------------------------------------------------------------------------------------------
-
-## **Setting up, getting started**
+# Setting up, getting started
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-# **Design**
+# Design
 
+<br>
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in
 the [diagrams](https://github.com/AY2223S1-CS2103T-W13-1/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML
-Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit
-diagrams.
+TAial_ at se-edu/guides](https://se-education.org/guides/teaching assistantials/plantUml.html) to learn how to create
+and edit diagrams.
 </div>
 
-### Architecture
+## Architecture
 
-<img src="images/ArchitectureDiagram.png" width="280" />
+Given below is an **Architecture Diagram**. It explains the high-level design of StudMap. Below the diagram is a quick
+overview of main components and how they interact with each other.
 
-The ***Architecture Diagram*** given above explains the high-level design of the App.
+![Architecture](images/ArchitectureDiagram.png){: diagram}
 
-Given below is a quick overview of main components and how they interact with each other.
-
-**Main components of the architecture**
+### Main components of the architecture
 
 **`Main`** has two classes
 called [`Main`](https://github.com/AY2223S1-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/studmap/Main.java)
 and [`MainApp`](https://github.com/AY2223S1-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/studmap/MainApp.java). It
-is responsible for,
+performs the following tasks:
 
-* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
-* At shut down: Shuts down the components and invokes cleanup methods where necessary.
+* At app launch: `Main` initializes the components in the correct sequence, and connects them up with each other.
+* At shut down: `Main` shuts down the components and invokes cleanup methods where necessary.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
-The rest of the App consists of four components.
+The rest of StudMap consists of four components.
 
 * [**`UI`**](#ui-component): The UI of the App.
 * [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [**`Model`**](#model-component): Holds the data of StudMap in memory.
+* [**`Storage`**](#storage-component): Reads data from and writes data to the hard disk.
 
-**How the architecture components interact with each other**
+### How the architecture components interact with each other
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues
 the command `delete 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+![Sequence Diagram](images/ArchitectureSequenceDiagram.png){: diagram}
 
-Each of the four main components (also shown in the diagram above),
+Each of the four main components (also shown in the diagram above)
 
 * defines its *API* in an `interface` with the same name as the Component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding
@@ -76,16 +95,16 @@ the `LogicManager.java` class which follows the `Logic` interface. Other compone
 through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the
 implementation of a component), as illustrated in the (partial) class diagram below.
 
-<img src="images/ComponentManagers.png" width="300" />
+![Component Managers](images/ComponentManagers.png)){: diagram}
 
 The sections below give more details of each component.
 
-### UI component
+## UI component
 
 The **API** of this component is specified
-in [`Ui.java`](https://github.com/AY2223S1-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/studmap/ui/Ui.java)
+in [`Ui.java`](https://github.com/AY2223S1-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/studmap/ui/Ui.java).
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+![Structure of the UI Component](images/UiClassDiagram.png){: diagram}
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StudentListPanel`
 , `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures
@@ -97,33 +116,34 @@ the [`MainWindow`](https://github.com/AY2223S1-CS2103T-W13-1/tp/tree/master/src/
 is specified
 in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-W13-1/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
-The `UI` component,
+The `UI` component
 
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Student` object residing in the `Model`.
 
-### Logic component
+## Logic component
 
-**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/studmap/logic/Logic.java)
+**API:**
+[`Logic.java`](https://github.com/AY2223S1-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/studmap/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
-<img src="images/LogicClassDiagram.png" width="550"/>
+![Logic Class Diagram](images/LogicClassDiagram.png){: diagram}
 
 How the `Logic` component works:
 
 1. When `Logic` is called upon to execute a command, it uses the `StudMapParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g. `AddCommand`) which is
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g. `AddCommand`) which is
    executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a student).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+3. The command can communicate with the `Model` when it is executed (e.g. to add a student).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API
 call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png){: diagram}
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -141,19 +161,19 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g. `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser`
   interface so that they can be treated similarly where possible e.g, during testing.
 
-### Model component
+## Model component
 
-**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/studmap/model/Model.java)
+**API:**
+[`Model.java`](https://github.com/AY2223S1-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/studmap/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="600" />
+![Model Class Diagram](images/ModelClassDiagram.png){: diagram}
 
-
-The `Model` component,
+The `Model` component
 
 * stores the student map data i.e., all `Student` objects (which are contained in a `UniqueStudentList` object).
 * stores the currently 'selected' `Student` objects (e.g. results of a search query) as a separate _filtered_ list which
-  is exposed to outsiders as an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to
-  this list so that the UI automatically updates when the data in the list change.
+  is exposed to outsiders as an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound
+  to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as
   a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they
@@ -161,17 +181,18 @@ The `Model` component,
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `StudMap`, which `Student` references. This allows `StudMap` to only require one `Tag` object per unique tag, instead of each `Student` needing their own `Tag` objects.<br>
 
-<img src="images/BetterModelClassDiagram.png" width="600" />
+![More OOP Model](images/BetterModelClassDiagram.png)
 
 </div>
 
-### Storage component
+## Storage component
 
-**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/studmap/storage/Storage.java)
+**API:**
+[`Storage.java`](https://github.com/AY2223S1-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/studmap/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+![Storage Class Diagram](images/StorageClassDiagram.png){: diagram}
 
-The `Storage` component,
+The `Storage` component
 
 * can save both student map data and user preference data in json format, and read them back into corresponding
   objects.
@@ -180,99 +201,127 @@ The `Storage` component,
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects
   that belong to the `Model`)
 
-### Common classes
+## Common classes
 
 Classes used by multiple components are in the `seedu.studmap.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-# **Implementation**
+# Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
 
-## **Filter feature**
+## Filter
 
-#### Current Implementation
+### Current Implementation
 
-The 'filter' feature is implemented by the 'FilterCommand' class which extends its parent 'Command' class. The structure
-of the 'filter' feature can be summarized via the sequence diagram shown below.
+The `filter` feature is implemented by the `FilterCommand` class which extends its parent `Command` class. The structure
+of the `filter` feature can be summarized via the sequence diagram shown below.
 
-![Filter Sequence Diagram](images/FilterCommandSequenceDiagram.png)
+![Filter Sequence Diagram](images/FilterCommandSequenceDiagram.png){: diagram}
 
 This method is implemented to support the feature of filtering students by the tags that is assigned to them.
 
-The 'FilterCommand' supports one operation:
+The `FilterCommand` supports one operation:
 
-- 'FilterCommand#execute()' - Overrides the 'execute()' method of its parents 'Command' class and is the default
+- `FilterCommand#execute()` - Overrides the `execute()` method of its parent's `Command` class and is the default
   operation to be executed. This will update the filtered list in the dashboard shown to the user based on the tag set
   by the user
 
-#### General flow for FilterCommand
+### General flow for `FilterCommand`
 
-The flow for 'FilterCommand#execute' is as such:
+The flow for `FilterCommand#execute` is as such:
 
-Step 1: The tag to be used for filtering is retrieved from the user input
+1. The tag to be used for filtering is retrieved from the user input
 
-Step 2: The tag input will then be parsed into the filter parser which will then return a new Filter Command
+2. The tag input will then be parsed into the filter parser which will then return a new Filter Command
 
-Step 3: The filter command will then be immediately executed to filter the current list of students via their assigned
-tags
+3. The filter command will then be immediately executed to filter the current list of students via their assigned
+   tags
 
-Step 4: The result list of students will then be shown back to the user via the dashboard
+4. The result list of students will then be shown back to the user via the dashboard
 
-## **EditStudent features**
-This is a set of features with similar implementations that allows user to modify the `Student` object. Currently, the features supported are:
+## Student Editing
+
+This is a set of features with similar implementations that allows user to modify the `Student` object. Currently, the
+features supported are:
+
 1. `edit` :  `EditCommand`
-<br>Edit basic attributes of a student (E.g. Name, Phone, etc)
-2. `tag`:`TagCommand` and `untag` : `UntagCommand`
-<br>Add and removing tags for a student
+   <br>Edit basic attributes of a student (E.g. Name, Phone, etc)
+2. `tag` : `TagCommand` and `untag` : `UntagCommand`
+   <br>Add and removing tags for a student
 3. `mark` : `MarkCommand` and `unmark` : `UnmarkCommand` :
-<br> Add, modify and remove attendance status of a student
+   <br> Add, modify and remove attendance status of a student
 4. `grade` : `GradeCommand` and `ungrade` : `UngradeCommand`
-<br> Add, modify and remove assignment grading status of a student.
+   <br> Add, modify and remove assignment grading status of a student.
 5. `participate` : `ParticipateCommand` and `unparticipate` : `UnparticipateCommand`
    <br> Add, modify and remove participation records of a student.
 
-Each of these features are implemented through the corresponding commands which extends the generic `EditStudentCommand` abstract class.
+Each of these features are implemented through the corresponding commands which extends the generic `EditStudentCommand`
+abstract class.
 
-The implementation of the `execute` method is contained in the parent class `EditStudentCommand#execute()`. The `execute` method which the respective concrete implementations of `EditStudentCommand` will in turn call the `editStudent` method of the corresponding `StudentEditor` (e.g. `MarkCommand.MarkStudentEditor#editStudent()`). A brief summary of the class structure is illustrated in the class diagram below, using `MarkCommand` as the example. Since all concrete implementations of the `EditStudentCommand` share the same class structure, the example of `MarkCommand` will also be used to explain the implementation details.
+The implementation of the `execute` method is contained in the parent class `EditStudentCommand#execute()`.
+The `execute` method which the respective concrete implementations of `EditStudentCommand` will in turn call
+the `editStudent` method of the corresponding `StudentEditor` (e.g. `MarkCommand.MarkStudentEditor#editStudent()`). A
+brief summary of the class structure is illustrated in the class diagram below, using `MarkCommand` as the example.
+Since all concrete implementations of the `EditStudentCommand` share the same class structure, the example
+of `MarkCommand` will also be used to explain the implementation details.
 
-![MarkCommandClassDiagram](images/MarkCommandClassDiagram.png)
+![MarkCommandClassDiagram](images/MarkCommandClassDiagram.png){: diagram}
 
 `IndexListGenerator` is an abstract class representing the list of indexes to modify.
 The instance of `IndexListGenerator` can be either
+
 * `AllIndexGenerator`, which corresponds to all indexes of the filtered list (meaning all listed students are modified)
 * `SingleIndexGenerator`, which corresponds to a single index (meaning one selected student is modified)
 
-`StudentEditor` is an abstract class which contains all the logic for modifying the student. Concrete implementations of `EditStudentCommand` such as the `MarkCommand` also contains an implementation of its corresponding `StudentEditor` (E.g. `MarkCommandStudentEditor` in the case of `MarkCommand`).
+`StudentEditor` is an abstract class which contains all the logic for modifying the student. Concrete implementations
+of `EditStudentCommand` such as the `MarkCommand` also contains an implementation of its corresponding `StudentEditor` (
+E.g. `MarkCommandStudentEditor` in the case of `MarkCommand`).
 
-The corresponding `EditCommandParser` instantiates both its `IndexListGenerator` and the `StudentEditor` based on inputs and passed them to the constructor of the respective command (`MarkCommand` in this case). The example class structure using `MarkCommandParser` is illustrated in the class diagram
+The corresponding `EditCommandParser` instantiates both its `IndexListGenerator` and the `StudentEditor` based on inputs
+and passed them to the constructor of the respective command (`MarkCommand` in this case). The example class structure
+using `MarkCommandParser` is illustrated in the class diagram
 below.
 
-![MarkCommandParserClassDiagram](images/MarkCommandParserClassDiagram.png)
+![MarkCommandParserClassDiagram](images/MarkCommandParserClassDiagram.png){: diagram}
 
-
-#### General flow for update using EditStudentCommand
+### General flow for `EditStudentCommand`
 
 Given below is the typical flow for `EditStudentCommand` such as the  `MarkCommand#execute()`.
 
-Step 1. The command loops through the list of indexes to be modified, as indicated in the `IndexListGenerator`.
+1. The command loops through the list of indexes to be modified, as indicated in the `IndexListGenerator`.
 
-Step 2. Here we have `editedStudent` replacing the old student in the `Model` of through `Model#setStudent()`.
+2. Here we have `editedStudent` replacing the old student in the `Model` of through `Model#setStudent()`.
 
 Below is a more detailed sequence diagram for the execution of the command using the same example of `MarkCommand`.
-![MarkCommandSequenceDiagram](images/MarkCommandSequenceDiagram.png)
 
-#### Other notes or implementation
-`tag`/`untag` : This command adds/modifies/removes tags that are represented by the `Tag` class and does not include any status.
+![MarkCommandSequenceDiagram](images/MarkCommandSequenceDiagram.png){: diagram}
 
-`mark` /`unmark` : This command adds/modifies/removes a student's attendances that are represented by the `Attendance` class and include 2 status (absent/present).
+### Additional Notes
 
-`grade` /`ungrade` : This command adds/modifies/removes a student's assignment grading record that are represented by the `Assigment` class and include 3 status (new/received, marked).
+#### Stateless Attributes
 
-`participate` /`unparticipate` : This command adds/modifies/removes a student's participation record that are represented by the `Participation` class and include 2 status (yes/no) for participated and not participated respectively.
+`tag`/`untag` : This command adds/modifies/removes tags that are represented by the `Tag` class and does not include any
+status.
 
-### Design considerations:
+#### Multi-State Attributes
+
+Some attributes of a `Student` can have multiple states and can be represented by an identifier. This is encapsulated by
+the `MultiStateTag<S, T>` generic class, where `S` is the type of the identifier (e.g. `String`), while `T` is the type
+of the state, typically some `enum`.
+
+`mark` /`unmark` : This command adds/modifies/removes a student's attendances that are represented by the `Attendance`
+class and include a `Status` enumeration containing `ATTENDED` and `NOT_ATTENDED`.
+
+`grade` /`ungrade` : This command adds/modifies/removes a student's assignment grading record that are represented by
+the `Assigment` class and include a `Status` enumeration containing `NEW`, `RECEIVED`, and `MARKED`.
+
+`participate` /`unparticipate` : This command adds/modifies/removes a student's participation record that are
+represented by the `Participation` class and include a `Status` enumeration containing `PARTICIPATED`
+and `NOT_PARTICIPATED`.
+
+### Design Considerations:
 
 **Aspect: How mark command executes:**
 
@@ -284,12 +333,14 @@ Below is a more detailed sequence diagram for the execution of the command using
     * Pros: More intuitive and easy to understand
     * Cons: Makes code harder to maintain, more code duplication.
 
+## Sort
 
-## **Sort feature**
+### Implementation
 
-#### Implementation
+The sort feature is implemented by `SortCommand` which extends the abstract `Command` class. Since sorting is done
+according to the specified attribute, the abstract `Attribute` class is used to handle the input attribute and provide
+the corresponding `Comparator` to sort the student list.
 
-The sort feature is implemented by `SortCommand` which extends the abstract `Command` class. Since sorting is done according to the specified attribute, the abstract `Attribute` class is used to handle the input attribute and provide the corresponding `Comparator` to sort the student list.
 `SortCommand` supports the following operation:
 
 * `SortCommand#execute()` — Sorts the current working list by the specified comparator and order in the `SortCommand`.
@@ -298,45 +349,59 @@ This operation is exposed in the `Model` interface as `sortFilteredStudentList()
 
 The following sequence diagram shows how the sort operation works:
 
-![SortSequenceDiagram](images/SortCommandSequenceDiagram.png)
+![SortSequenceDiagram](images/SortCommandSequenceDiagram.png){: diagram}
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SortCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
 
-#### General flow for FilterCommand
+### General flow for `SortCommand`
 
 Given below is an example usage scenario and how the sort mechanism behaves at each step.
 
-Step 1. The user executes `sort asc a/name` to sort the students in the student map by their names in ascending order.
+1. The user executes `sort asc a/name` to sort the students in the student map by their names in ascending order.
 
-Step 2. `SortCommandParser` handles the parsing of user input to ensure a valid `attributeType` and `sortingOrder` is supplied. The checks are done by `Attribute#isValidAttributeType()` and `Order#isValidOrderName()` respectively. For valid attributes and order, the `Comparator` and `Order` will be supplied by `Attribute#getAttributeComparator()` and `ParserUtil#parseOrder()` to create a `SortCommand`.
+2. `SortCommandParser` handles the parsing of user input to ensure a valid `attributeType` and `sortingOrder` is
+   supplied. The checks are done by `Attribute#isValidAttributeType()` and `Order#isValidOrderName()` respectively. For
+   valid attributes and order, the `Comparator` and `Order` will be supplied by `Attribute#getAttributeComparator()`
+   and `ParserUtil#parseOrder()` to create a `SortCommand`.
 
-Step 3. `SortCommand` calls `Model#sortFilteredStudentList()` with the `Comparator` for sorting names and the ascending `Order` required.
+3. `SortCommand` calls `Model#sortFilteredStudentList()` with the `Comparator` for sorting names and the
+   ascending `Order` required.
 
-Step 4. The ModelManager containing the `studMap` passes on the `Comparator` and `Order` to `StudMap#sort()`.
+4. The ModelManager containing the `studMap` passes on the `Comparator` and `Order` to `StudMap#sort()`.
 
-Step 5. Note that StudMap stores the student list in a `UniqueStudentList`. `UniqueStudentList#sort()` is called with the `Comparator` and the boolean value of `false` for `isDescending` according to the ascending `Order` specified.
+5. Note that StudMap stores the student list in a `UniqueStudentList`. `UniqueStudentList#sort()` is called with
+   the `Comparator` and the boolean value of `false` for `isDescending` according to the ascending `Order` specified.
 
-Step 6. The `internalList` stored in the `UniqueStudentList` is an `FXCollections.observableArrayList` which will then be sorted using the `Comparator`. The ordering of the list is reversed using `FXCollections#reverse()` if `isDescending` is true.
+6. The `internalList` stored in the `UniqueStudentList` is an `FXCollections.observableArrayList` which will then
+   be sorted using the `Comparator`. The ordering of the list is reversed using `FXCollections#reverse()`
+   if `isDescending`
+   is true.
 
-Step 7. The sorted list is displayed to the user.
+7. The sorted list is displayed to the user.
 
-#### Design considerations:
+### Design considerations:
 
 **Aspect: How sort executes:**
 
-* **Alternative 1 (current choice):** Valid attributes to sort are specified in the enum class `AttributeType` and the corresponding `Comparator` is contained within the abstract `Attribute` class.
-    * Pros: Easy to implement. Any new attributes to be enabled for sorting could be specified in the `AttributeType` enum class and the `Comparator` within the `Attribute` class.
-    * Cons: May not be appropriate to specify the `Comparator` for different attributes within the `Attribute` class instead of their own respective class.
+* **Alternative 1 (current choice):** Valid attributes to sort are specified in the enum class `AttributeType` and the
+  corresponding `Comparator` is contained within the abstract `Attribute` class.
+    * Pros: Easy to implement. Any new attributes to be enabled for sorting could be specified in the `AttributeType`
+      enum class and the `Comparator` within the `Attribute` class.
+    * Cons: May not be appropriate to specify the `Comparator` for different attributes within the `Attribute` class
+      instead of their own respective class.
 
-* **Alternative 2:** `Attribute` as a superclass inherited by each respective attribute. Each attribute specifies its own `Comparator` to be used for sorting and can be retrieved using `getAttributeComparator()`
-    * Pros: Aligns more to OOP where the corresponding `Comparator` is contained within each attribute. Make use of polymorphism to call the correct `getAttributeComparator()` for different attributes.
-    * Cons: Attribute subclasses must be instantiated possibly through a factory method just to get the `Comparator` used in sorting.
+* **Alternative 2:** `Attribute` as a superclass inherited by each respective attribute. Each attribute specifies its
+  own `Comparator` to be used for sorting and can be retrieved using `getAttributeComparator()`
+    * Pros: Aligns more to OOP where the corresponding `Comparator` is contained within each attribute. Make use of
+      polymorphism to call the correct `getAttributeComparator()` for different attributes.
+    * Cons: Attribute subclasses must be instantiated possibly through a factory method just to get the `Comparator`
+      used in sorting.
 
-### \[Proposed\] Undo/redo feature
+## \[Proposed\] Undo/Redo
 
-#### Proposed Implementation
+### Proposed Implementation
 
 The proposed undo/redo mechanism is facilitated by `VersionedStudMap`. It extends `StudMap` with an undo/redo
 history, stored internally as an `studMapStateList` and `currentStatePointer`. Additionally, it implements the
@@ -415,7 +480,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
-#### Design considerations:
+### Design considerations:
 
 **Aspect: How undo & redo executes:**
 
@@ -427,16 +492,9 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Pros: Will use less memory (e.g. for `delete`, just save the student being deleted).
     * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
-
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+# **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -446,13 +504,13 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+# Appendix: Requirements
 
-### Product scope
+## Product scope
 
-**Target user profile**:
+**Target user profile:**
 
-* is a tutor
+* is a teaching assistant
 * has a need to manage a significant number of students
 * wants to organise their class in multiple ways
 * prefer desktop apps over other types
@@ -460,34 +518,34 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: help tutors better keep track of their students’ progress in their assigned module.
+**Value proposition:** help teaching assistants better keep track of their students’ progress in their assigned module.
 
-### User stories
+## User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                     | I want to …​                                         | So that I can…​                                                        |
-|----------|---------------------------------------------|------------------------------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                    | see usage instructions                               | refer to instructions when I forget how to use the App                 |
-| `* * *`  | tutor                                       | add a new student                                    |                                                                        |
-| `* * *`  | tutor                                       | delete a student                                     | remove entries that I no longer need                                   |
-| `* * *`  | tutor                                       | mark students who are present and absent from class  | keep track of attendance using this application                        |
-| `* * *`  | tutor                                       | find a student by name                               | locate details of students without having to go through the entire list |
-| `* *`    | tutor with many students in the student map | sort students by name                                | locate a student easily                                                |
-| `* *`    | tutor                                       | filter the students by attribute                     | locate a student easily                                                |
-| `* *`    | tutor                                       | create new labels to tag my students with            | better differentiate the students                                      |
+| Priority | As a …​                                          | I want to …​                                         | So that I can…​                                                        |
+|----------|--------------------------------------------------|------------------------------------------------------|------------------------------------------------------------------------|
+| `* * *`  | new user                                         | see usage instructions                               | refer to instructions when I forget how to use the App                 |
+| `* * *`  | teaching assistant                               | add a new student                                    |                                                                        |
+| `* * *`  | teaching assistant                               | delete a student                                     | remove entries that I no longer need                                   |
+| `* * *`  | teaching assistant                               | mark students who are present and absent from class  | keep track of attendance using this application                        |
+| `* * *`  | teaching assistant                               | find a student by name                               | locate details of students without having to go through the entire list |
+| `* *`    | teaching assistant with many students in StudMap | sort students by name                                | locate a student easily                                                |
+| `* *`    | teaching assistant                               | filter the students by attribute                     | locate a student easily                                                |
+| `* *`    | teaching assistant                               | create new labels to tag my students with            | better differentiate the students                                      |
 
-### Use cases
+## Use cases
 
-(For all use cases below, the **System** is the `StudMap` and the **Actor** is the `Tutor`, unless specified otherwise)
+(For all use cases below, the **System** is the `StudMap` and the **Actor** is the `TA`, unless specified otherwise)
 
 **Use case: Delete a Student**
 
 **MSS**
 
-1. Tutor requests to list students
+1. TA requests to list students
 2. StudMap shows a list of students
-3. Tutor requests to delete a specific student in the list
+3. TA requests to delete a specific student in the list
 4. StudMap deletes the student
 
    Use case ends.
@@ -508,7 +566,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. Tutor requests to add a student
+1. TA requests to add a student
 2. StudMap adds the student
 
    Use case ends.
@@ -523,7 +581,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-### Non-Functional Requirements
+## Non-Functional Requirements
 
 1. The software should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. The software should be able to hold up to 1000 students without a noticeable sluggishness in performance for typical
@@ -543,23 +601,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 12. The documentation should not exceed 15MB per file.
 13. The software and documentation should be accessible for users who have a basic command of the English language.
 
-### Glossary
+## Glossary
 
-* **Tutor**: Teaching assistant for the specific module
-* **Student**: A person that is partaking in a module.
-* **Module**: The university class that the student is enrolled in, encoded by a unique module code consisting of a 2-3
+* **TA:** Teaching assistant for the specific module
+* **Student:** A person that is partaking in a module.
+* **Module:** The university class that the student is enrolled in, encoded by a unique module code consisting of a 2-3
   letter prefix that generally denotes the discipline, and 4 digits at the back, the first of which indicates the level
   of the module.
-* **JAR file**: package file format typically used to aggregate many Java class files and associated metadata and
+* **JAR file:** package file format typically used to aggregate many Java class files and associated metadata and
   resources into one file for distribution.
-* **GUI**: main interface that the user interacts with to input commands and view results.
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Tag**: A label for students defined by the user, possibly shared by multiple students.
-* **Attribute**: Characteristics of students that all students have.
+* **GUI:** main interface that the user interacts with to input commands and view results.
+* **Mainstream OS:** Windows, Linux, Unix, OS-X
+* **Tag:** A label for students defined by the user, possibly shared by multiple students.
+* **Attribute:** Characteristics of students that all students have.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+# Appendix: Instructions for manual testing
 
 Given below are instructions to test the app manually.
 
@@ -568,46 +626,34 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
+## Launch and shutdown
 
 1. Initial launch
 
-    1. Download the jar file and copy into an empty folder
+   a. Download the jar file and copy into an empty folder
 
-    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be
-       optimum.
+   b. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be
+   optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
-    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+   a. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-    1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+   b. Re-launch the app by double-clicking the jar file.<br>
+   Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
-
-### Deleting a student
+## Deleting a student
 
 1. Deleting a student while all students are being shown
 
-    1. Prerequisites: List all students using the `list` command. Multiple students in the list.
+   a. Prerequisites: List all students using the `list` command. Multiple students in the list.
 
-    1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
-       Timestamp in the status bar is updated.
+   b. Test case: `delete 1`<br>
+   Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
+   Timestamp in the status bar is updated.
 
-    1. Test case: `delete 0`<br>
-       Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
+   c. Test case: `delete 0`<br>
+   Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-       Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+   d. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   Expected: Similar to previous.
