@@ -222,9 +222,11 @@ The `DeleteProfileCommand` extends the `ProfileCommand` abstract class. `Profile
 1. When the user inputs a command to delete a profile, the input is passed to `LogicManager` to be executed.
 2. `LogicManager` will call `NuSchedulerParser#parseCommand()`, which will create a new `ProfileCommandParser`.
 3. The method `ProfileCommandParser#parse()` is then called, and returns a new `DeleteProfileCommandParser`.
-4. The method `DeleteProfileCommandParser#parse()` will then return a new `DeleteProfileCommand`, if the user has entered the correct inputs.
-5. The `LogicManager` will call `Command#execute()` method of the `DeleteProfileCommand`, which will then delete the `Profile` at the specified index, using the `Model#deleteProfile()` method.
-6. When the command completes successfully, a `CommandResult` object is returned to the `LogicManager`, which will then display a success message to the user.
+4. The method `DeleteProfileCommandParser#parse()` will then call the method `ParserUtil#parseIndex()` which will return a `Index` object.
+5. The `Index` object is then used to create a `DeleteProfileCommand`, if the user has entered the correct inputs.
+6. `DeleteProfileCommand` then gets returned to the `LogicManager`.
+7. The `LogicManager` will call `Command#execute()` method of the `DeleteProfileCommand`, which will then delete the `Profile` at the specified index, using the `Model#deleteProfile()` method.
+8. When the command completes successfully, a `CommandResult` object is returned to the `LogicManager`, which will then display a success message to the user.
 
 The following sequence diagram shows how the `DeleteProfileCommand` works.
 
