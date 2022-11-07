@@ -3,10 +3,9 @@ package seedu.workbook.ui;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import seedu.workbook.commons.core.LogsCenter;
 import seedu.workbook.ui.util.HelpUtil;
@@ -22,37 +21,7 @@ public class HelpWindow extends UiPart<Stage> {
     private static final String FXML = "HelpWindow.fxml";
 
     @FXML
-    private Label addCommand;
-
-    @FXML
-    private Label clearCommand;
-
-    @FXML
-    private Label deleteCommand;
-
-    @FXML
-    private Label editCommand;
-
-    @FXML
-    private Label listCommand;
-
-    @FXML
-    private Label redoCommand;
-
-    @FXML
-    private Label undoCommand;
-
-    @FXML
-    private Label findCommand;
-
-    @FXML
-    private Label exitCommand;
-
-    @FXML
-    private Button copyButton;
-
-    @FXML
-    private Label urlMessage;
+    private GridPane gridPane;
 
     /**
      * Creates a new HelpWindow.
@@ -62,16 +31,15 @@ public class HelpWindow extends UiPart<Stage> {
     public HelpWindow(Stage root) {
         super(FXML, root);
 
-        addCommand.setText(HelpUtil.getCommandExample(Command.ADD));
-        editCommand.setText(HelpUtil.getCommandExample(Command.EDIT));
-        deleteCommand.setText(HelpUtil.getCommandExample(Command.DELETE));
-        clearCommand.setText(HelpUtil.getCommandExample(Command.CLEAR));
-        listCommand.setText(HelpUtil.getCommandExample(Command.LIST));
-        redoCommand.setText(HelpUtil.getCommandExample(Command.REDO));
-        undoCommand.setText(HelpUtil.getCommandExample(Command.UNDO));
-        findCommand.setText(HelpUtil.getCommandExample(Command.FIND));
-        exitCommand.setText(HelpUtil.getCommandExample(Command.EXIT));
-        urlMessage.setText(HelpUtil.getUrlMessage());
+        for (int i = 0; i < Command.values().length; i++) {
+            Command command = Command.values()[i];
+            HelpCard helpCard = new HelpCard(command);
+            gridPane.add(helpCard.getRoot(), 0, i + 1);
+        }
+
+        UrlCard urlCard = new UrlCard();
+        gridPane.add(urlCard.getRoot(), 0, Command.values().length + 1);
+
     }
 
     /**
