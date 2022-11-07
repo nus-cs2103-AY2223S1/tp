@@ -11,8 +11,7 @@ to be more mindful about their calorie intake and adopt a healthier lifestyle.
 Given below are my contributions to the project.
 
 * **New feature**: Added the ability to show a summary of the calorie intake progress (Pull request [#56](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/56)).
-  * What it does: Allows the user to view the total calories consumed, the calorie target and the deficient or excess 
-  amount of calories for the current day. 
+  * What it does: Allows the user to view the total calories consumed, the calorie target and the calorie deficit/surplus for the current day. 
   * Justification: This feature provides a convenient way for users to view all the details about their calorie intake 
   progress for the day. Users do not have to manually calculate their total calorie intake and can track their progress more easily.
   * Highlights: The implementation of this feature involved summing up the calorie content of each food item recorded on 
@@ -38,7 +37,7 @@ Given below are my contributions to the project.
   * [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=ruiqi7&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Project management**:
-  * Managed [releases](https://github.com/AY2223S1-CS2103T-T17-2/tp/releases) `v1.2` and `v1.2.1` on GitHub.
+  * Managed [releases](https://github.com/AY2223S1-CS2103T-T17-2/tp/releases) `v1.2`, `v1.2.1` and `v1.4.1` on GitHub.
   * Created and assigned issues, created and closed milestones.
 
 * **Enhancements to existing feature**: Modified the `list` feature to filter the food list by date and sort it by meal type (Pull request [#41](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/41)). 
