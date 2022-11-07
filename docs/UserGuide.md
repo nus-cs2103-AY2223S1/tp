@@ -711,7 +711,7 @@ Format:
 * For clarity, the table column headers have been included. **DO NOT** include them in your **CSV** file.
 * All fields are mandatory, apart from `TAGS`, where users have to input a `NIL`, which is **not** case-sensitive.
 
-![CSV Table Format](./images/ug-photos/csv_table_format.png)
+<img src="images/ug-photos/csv_table_format.png" width="420" />
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
