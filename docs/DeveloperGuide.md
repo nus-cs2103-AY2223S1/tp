@@ -102,6 +102,8 @@ In addition to the third point above, the `CommmandExecutor` functional interfac
 
 <img src="images/CommandExecutorClassDiagram.png" width="280" />
 
+<div style="page-break-after: always;"></div>
+
 ### Logic component
 
 **API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-T15-3/tp/blob/master/src/main/java/tuthub/logic/Logic.java)

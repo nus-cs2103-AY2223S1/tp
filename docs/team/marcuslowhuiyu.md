@@ -2,7 +2,7 @@
 layout: page
 title: Marcus Low Hui Yu's Project Portfolio Page
 ---
-## Overview of TutHub
+## Overview of Tuthub
 [Tuthub](https://github.com/AY2223S1-CS2103T-T15-3/tp) is a desktop app for NUS professors who wish to track and choose their next batch of teaching assistants/tutors based on their past performance and records but have little time to spare for tedious administrative work. Tuthub helps profs who can type fast find the best TAs faster than traditional Graphical User Interface (GUI) apps.
 
 ## Summary of Contributions

@@ -2,7 +2,7 @@
 layout: page
 title: Timothy Koei's Project Portfolio Page
 ---
-## Overview of TutHub
+## Overview of Tuthub
 Tuthub is a desktop app for NUS professors who wish to track and choose their next batch of teaching assistants/tutors based on their past performance and records but have little time to spare for tedious administrative work. Tuthub helps profs who can type fast find the best TAs faster than traditional Graphical User Interface (GUI) apps.
 
 ## Summary of Contributions
