@@ -18,6 +18,8 @@ public interface ReadOnlyModuleList {
 
     Optional<Module> getListModule(String moduleCode);
 
+    boolean isEmpty();
+
     boolean hasModule(String moduleCode);
 
     /**

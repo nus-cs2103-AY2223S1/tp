@@ -10,11 +10,14 @@ import nus.climods.model.ModelManager;
 import nus.climods.model.UserPrefs;
 import nus.climods.model.module.ModuleList;
 import nus.climods.model.module.UniqueUserModuleList;
+import nus.climods.testutil.ModuleListTestUtil;
 
 public class HelpCommandTest {
 
     private static final String testAcademicYear = "2022-2023";
-    private final Model model = new ModelManager(new ModuleList(testAcademicYear), new UniqueUserModuleList(),
+    private final Model model =
+        new ModelManager(new ModuleList(ModuleListTestUtil.loadModuleList(testAcademicYear)),
+            new UniqueUserModuleList(),
             new UserPrefs());
 
     @Test

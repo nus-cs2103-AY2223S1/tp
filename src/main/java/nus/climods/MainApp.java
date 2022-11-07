@@ -2,8 +2,14 @@ package nus.climods;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
+
+import org.openapitools.client.ApiException;
+import org.openapitools.client.api.ModulesApi;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -19,6 +25,7 @@ import nus.climods.model.Model;
 import nus.climods.model.ModelManager;
 import nus.climods.model.ReadOnlyUserPrefs;
 import nus.climods.model.UserPrefs;
+import nus.climods.model.module.Module;
 import nus.climods.model.module.ModuleList;
 import nus.climods.model.module.UniqueUserModuleList;
 import nus.climods.storage.JsonUserPrefsStorage;
@@ -56,7 +63,7 @@ public class MainApp extends Application {
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
 
         JsonUserModuleListStorage userModuleListStorage = new JsonUserModuleListStorage(userPrefs
-                .getUserModuleListFilePath());
+            .getUserModuleListFilePath());
 
         storage = new StorageManager(userModuleListStorage, userPrefsStorage);
 
@@ -75,19 +82,30 @@ public class MainApp extends Application {
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         String academicYear = userPrefs.getAcademicYear();
 
-        UniqueUserModuleList initialUserModuleList;
+        List<Module> modules = Collections.emptyList();
+        try {
+            modules = loadModules(academicYear);
+        } catch (ApiException apiException) {
+            logger.severe("Failed to load module list from nusmods API!");
+        }
+
+        UniqueUserModuleList userModuleList;
         Optional<UniqueUserModuleList> userModuleListOptional = Optional.empty();
         try {
             userModuleListOptional = storage.getUserModuleListStorage().readUserModuleList();
-        } catch (DataConversionException e) {
+        } catch (DataConversionException dataConversionException) {
             logger.warning("Data file not in the correct format!");
-        } catch (NullPointerException e) {
-            logger.warning("Data file is empty!");
         } finally {
-            initialUserModuleList = loadStoredList(userModuleListOptional, new UniqueUserModuleList());
+            userModuleList = loadStoredList(userModuleListOptional, new UniqueUserModuleList());
         }
 
-        return new ModelManager(new ModuleList(academicYear), initialUserModuleList, userPrefs);
+        return new ModelManager(new ModuleList(modules), userModuleList, userPrefs);
+    }
+
+    private List<Module> loadModules(String academicYear) throws ApiException {
+        return ModulesApi.getInstance().acadYearModuleInfoJsonGet(academicYear).stream()
+            .map(moduleInfo -> new Module(moduleInfo, academicYear))
+            .collect(Collectors.toList());
     }
 
     private <T> T loadStoredList(Optional<T> optionalList, T alternative) {
@@ -104,8 +122,8 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code Config} using the file at {@code configFilePath}. <br> The default file path {@code
-     * Config#DEFAULT_CONFIG_FILE} will be used instead if {@code configFilePath} is null.
+     * Returns a {@code Config} using the file at {@code configFilePath}. <br> The default file path
+     * {@code Config#DEFAULT_CONFIG_FILE} will be used instead if {@code configFilePath} is null.
      */
     protected Config initConfig(Path configFilePath) {
         Config initializedConfig;
@@ -125,7 +143,7 @@ public class MainApp extends Application {
             initializedConfig = configOptional.orElse(new Config());
         } catch (DataConversionException e) {
             logger.warning("Config file at " + configFilePathUsed + " is not in the correct format. "
-                    + "Using default config properties");
+                + "Using default config properties");
             initializedConfig = new Config();
         }
 
@@ -152,7 +170,7 @@ public class MainApp extends Application {
             initializedPrefs = prefsOptional.orElse(new UserPrefs());
         } catch (DataConversionException e) {
             logger.warning("UserPrefs file at " + prefsFilePath + " is not in the correct format. "
-                    + "Using default user prefs");
+                + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty user module list");

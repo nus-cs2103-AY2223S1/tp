@@ -4,10 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-
-import org.openapitools.client.ApiException;
-import org.openapitools.client.api.ModulesApi;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,22 +16,6 @@ public class ModuleList implements ReadOnlyModuleList {
     private final ObservableList<Module> internalList = FXCollections.observableArrayList();
     private final ObservableList<Module> internalUnmodifiableList =
         FXCollections.unmodifiableObservableList(internalList);
-
-    /**
-     * Constructor for ModuleList class.
-     *
-     * @param academicYear academic year of modules
-     */
-    public ModuleList(String academicYear) {
-        try {
-            internalList.setAll(
-                ModulesApi.getInstance().acadYearModuleInfoJsonGet(academicYear).stream()
-                    .map(moduleInfo -> new Module(moduleInfo, academicYear))
-                    .collect(Collectors.toList()));
-        } catch (ApiException e) {
-            e.printStackTrace();
-        }
-    }
 
     /**
      * Constructor for ModuleList class.
@@ -60,7 +40,12 @@ public class ModuleList implements ReadOnlyModuleList {
     public Optional<Module> getListModule(String moduleCode) {
         return internalUnmodifiableList.stream()
             .filter(mod -> mod.getCode().equalsIgnoreCase(moduleCode))
-                .findFirst();
+            .findFirst();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return internalUnmodifiableList.isEmpty();
     }
 
     @Override

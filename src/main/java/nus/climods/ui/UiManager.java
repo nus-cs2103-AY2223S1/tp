@@ -48,27 +48,8 @@ public class UiManager implements Ui {
         alert.showAndWait();
     }
 
-    void showAlertDialogAndWait(Alert.AlertType type, String title, String headerText, String contentText) {
+    private void showAlertDialogAndWait(Alert.AlertType type, String title, String headerText, String contentText) {
         showAlertDialogAndWait(mainWindow.getPrimaryStage(), type, title, headerText, contentText);
-    }
-
-    @Override
-    public void start(Stage primaryStage) {
-        logger.info("Starting UI...");
-
-        //Set the application icon.
-        primaryStage.getIcons().add(getImage(ICON_APPLICATION));
-
-        try {
-            mainWindow = new MainWindow(primaryStage, logic);
-            mainWindow.show(); //This should be called before creating other UI parts
-            mainWindow.getPrimaryStage().setMaximized(true);
-            mainWindow.fillInnerParts();
-
-        } catch (Throwable e) {
-            logger.severe(StringUtil.getDetails(e));
-            showFatalErrorDialogAndShutdown("Fatal error during initializing", e);
-        }
     }
 
     private Image getImage(String imagePath) {
@@ -86,4 +67,34 @@ public class UiManager implements Ui {
         System.exit(1);
     }
 
+    /**
+     * Checks if all logic components are loaded as expected, if not raise an alert dialog for users
+     */
+    private void checkLogicState() {
+        if (logic.getModuleList().isEmpty()) {
+            showAlertDialogAndWait(AlertType.ERROR, "Failed to load modules!",
+                "Check your network connection or the academic year specified in preferences.json",
+                "Academic year should be specified in the following format: YYYY-YYYY"
+                + "\nMore details can be found at FAQ section of the User Guide :D");
+        }
+    }
+
+    @Override
+    public void start(Stage primaryStage) {
+        logger.info("Starting UI...");
+
+        //Set the application icon.
+        primaryStage.getIcons().add(getImage(ICON_APPLICATION));
+
+        try {
+            mainWindow = new MainWindow(primaryStage, logic);
+            mainWindow.show(); //This should be called before creating other UI parts
+            mainWindow.getPrimaryStage().setMaximized(true);
+            mainWindow.fillInnerParts();
+            checkLogicState();
+        } catch (Throwable e) {
+            logger.severe(StringUtil.getDetails(e));
+            showFatalErrorDialogAndShutdown("Fatal error during initializing", e);
+        }
+    }
 }
