@@ -25,22 +25,22 @@ class JsonAdaptedEatery {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Eatery's %s field is missing!";
 
     private final String name;
-    private final String phone;
+    private final String price;
     private final String cuisine;
-    private final String address;
+    private final String location;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedEatery} with the given eatery details.
      */
     @JsonCreator
-    public JsonAdaptedEatery(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                             @JsonProperty("email") String cuisine, @JsonProperty("address") String address,
+    public JsonAdaptedEatery(@JsonProperty("name") String name, @JsonProperty("price") String price,
+                             @JsonProperty("cuisine") String cuisine, @JsonProperty("location") String location,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
-        this.phone = phone;
+        this.price = price;
         this.cuisine = cuisine;
-        this.address = address;
+        this.location = location;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -51,9 +51,9 @@ class JsonAdaptedEatery {
      */
     public JsonAdaptedEatery(Eatery source) {
         name = source.getName().fullName;
-        phone = source.getPrice().value;
+        price = source.getPrice().value;
         cuisine = source.getCuisine().value;
-        address = source.getLocation().value;
+        location = source.getLocation().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -78,13 +78,13 @@ class JsonAdaptedEatery {
         }
         final Name modelName = new Name(name);
 
-        if (phone == null) {
+        if (price == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Price.class.getSimpleName()));
         }
-        if (!Price.isValidPrice(phone)) {
+        if (!Price.isValidPrice(price)) {
             throw new IllegalValueException(Price.MESSAGE_CONSTRAINTS);
         }
-        final Price modelPrice = new Price(phone);
+        final Price modelPrice = new Price(price);
 
         if (cuisine == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Cuisine.class.getSimpleName()));
@@ -94,14 +94,14 @@ class JsonAdaptedEatery {
         }
         final Cuisine modelCuisine = new Cuisine(cuisine);
 
-        if (address == null) {
+        if (location == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Location.class.getSimpleName()));
         }
-        if (!Location.isValidLocation(address)) {
+        if (!Location.isValidLocation(location)) {
             throw new IllegalValueException(Location.MESSAGE_CONSTRAINTS);
         }
-        final Location modelLocation = new Location(address);
+        final Location modelLocation = new Location(location);
 
         final Set<Tag> modelTags = new HashSet<>(eateryTags);
         return new Eatery(modelName, modelPrice, modelCuisine, modelLocation, modelTags);

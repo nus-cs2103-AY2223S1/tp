@@ -1,8 +1,8 @@
 {
   "eateries": [ {
     "name": "",
-    "phone": "9482424",
-    "email": "hansexamplecom",
-    "address": "4th street"
+    "price": "abc",
+    "cuisine": " ",
+    "location": " "
   } ]
 }

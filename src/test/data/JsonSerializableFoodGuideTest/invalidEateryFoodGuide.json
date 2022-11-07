@@ -1,8 +1,8 @@
 {
   "eateries": [ {
     "name": "",
-    "phone": "9482424",
-    "email": "emailemail",
-    "address": "4th street"
+    "price": "9482424",
+    "cuisine": " ",
+    "address": " "
   } ]
 }

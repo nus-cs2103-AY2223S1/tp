@@ -1,46 +1,46 @@
 {
   "_comment": "FoodGuide save file which contains the same Eatery values as in TypicalEateries#getTypicalFoodGuide()",
   "eateries" : [ {
-    "name" : "Alice Pauline",
-    "phone" : "$",
-    "email" : "aliceexamplecom",
-    "address" : "123, Jurong West Ave 6, #08-111",
-    "tagged" : [ "friends" ]
+    "name" : "Alice Abalone",
+    "price" : "$",
+    "cuisine" : "Chinese",
+    "location" : "University Town",
+    "tagged" : [ "seafood" ]
   }, {
-    "name" : "Benson Meier",
-    "phone" : "$$",
-    "email" : "johndexamplecom",
-    "address" : "311, Clementi Ave 2, #02-25",
-    "tagged" : [ "owesMoney", "friends" ]
+    "name" : "Benson Bar",
+    "price" : "$$",
+    "cuisine" : "Beverages",
+    "location" : "University Town",
+    "tagged" : [ "alcohol" ]
   }, {
-    "name" : "Carl Kurz",
-    "phone" : "$$$",
-    "email" : "heinzexamplecom",
-    "address" : "wall street",
+    "name" : "Carl Cafeteria",
+    "price" : "$$$",
+    "cuisine" : "Western",
+    "location" : "Block S3, Faculty of Science",
+    "tagged" : [ "steak" ]
+  }, {
+    "name" : "Daniel Diner",
+    "price" : "$",
+    "cuisine" : "Mixed",
+    "location" : "Block S4,Faculty of Science",
+    "tagged" : [ "steak" ]
+  }, {
+    "name" : "Elle Eatery",
+    "price" : "$$",
+    "cuisine" : "Mixed",
+    "location" : "Block E5, Faculty of Engineering",
     "tagged" : [ ]
   }, {
-    "name" : "Daniel Meier",
-    "phone" : "$",
-    "email" : "corneliaexamplecom",
-    "address" : "10th street",
-    "tagged" : [ "friends" ]
-  }, {
-    "name" : "Elle Meyer",
-    "phone" : "$$",
-    "email" : "wernerexamplecom",
-    "address" : "michegan ave",
+    "name" : "Fiona Fastfood",
+    "price" : "$$$",
+    "cuisine" : "Western",
+    "location" : "Block E6, Faculty of Engineering",
     "tagged" : [ ]
   }, {
-    "name" : "Fiona Kunz",
-    "phone" : "$$$",
-    "email" : "lydiaexamplecom",
-    "address" : "little tokyo",
-    "tagged" : [ ]
-  }, {
-    "name" : "George Best",
-    "phone" : "$",
-    "email" : "annaexamplecom",
-    "address" : "4th street",
+    "name" : "George Grill",
+    "price" : "$",
+    "cuisine" : "Western",
+    "location" : "Block A7, Faculty of Arts",
     "tagged" : [ ]
   } ]
 }
