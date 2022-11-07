@@ -35,6 +35,11 @@ Given below are my contributions to the project.
     - Added UI image for the quick start section of the UG.
     - 
 - ### Contributions to the DG:
+  - Added implementation details and design consideration for `sort` command feature.
+    - Added sequence and activity diagram for `sort` command.
+  - Added use cases for sorting clients
+  - Added implementation details for `find` command feature.
+  - Added numerous user stories.
 - ### Contributions to team-based tasks
   - Ensured timely submission of team project deliverables.
   - Reported bugs as issues for better tracking.

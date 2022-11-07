@@ -6,6 +6,11 @@ title: Developer Guide
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+## **Introduction**
+
+Financial Advisor Planner (FAP) is a **desktop app for Financial Advisors (FA) to manage their clients, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, FAP can get your client management tasks done faster than traditional GUI apps. With FAP, you can now schedule your appointments, manage and find clients easily.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
 
@@ -194,21 +199,22 @@ It will then remove the old appointment and add the newly edited appointment. Th
 * `DeleteAppointmentCommandParser`- This is a class that parses user input from a `String` to an `DeleteAppointmentCommand` object. Validation for the user's input is performed in this class.
 * `DeleteAppointmentCommand`- This is a class where the logic for the Delete Appointment command is specified and the `execute` method is called. It will access the `Model` layer to ensure that there exists an `Appointment` at the specified appointment index. The appointment will be removed from the `Model`.
  
+Currently, the appointment feature supports 3 different type of command:
 1. `add appointment`
 2. `edit appointment`
 3. `delete appointment`
 
 #### Add Appointment Command
 
-Step 1. When the user inputs an appropriate command `String` into the `CommandBox`, `LogicManager##execute(commandText)` is called. The command `String` is logged and then passed to `AddressBookParser##parseCommand(userInput)` which parses the command.
+Step 1. When the user inputs an appropriate command `String` into the `CommandBox`, `LogicManager::execute(commandText)` is called. The command `String` is logged and then passed to `AddressBookParser::parseCommand(userInput)` which parses the command.
 
-Step 2. If the user input matches the format for the command word for the `AddAppointmentCommand`, `AddressBookParser` will create an `AddAppointmentCommandParser` and will call the `AddAppointmentCommandParser##parse(args)` to parse the command.
+Step 2. If the user input matches the format for the command word for the `AddAppointmentCommand`, `AddressBookParser` will create an `AddAppointmentCommandParser` and will call the `AddAppointmentCommandParser::parse(args)` to parse the command.
 
 Step 3. Validation for the user input is performed, such as validating the client's `Index`, the format of the `DateTime` and `Location`.
 
 Step 4. If the user input is valid, a new `AddAppointmentCommand` object is created and returned to the `LogicManager`.
 
-Step 5. `LogicManager` will call `AddAppointmentCommand##execute(model)` method. Further validation is performed, such as checking whether a duplicate `Appointment` exists and whether the user has already scheduled the maximum number, 3, of `Appointments` for the specified client.
+Step 5. `LogicManager` will call `AddAppointmentCommand::execute(model)` method. Further validation is performed, such as checking whether a duplicate `Appointment` exists and whether the user has already scheduled the maximum number, 3, of `Appointments` for the specified client.
 
 Step 6. If the command is valid, the `add` method of the `MaximumSortedList` containing the client's `Appointments` is called, which will update the `Person` and `Model`.
 
@@ -235,9 +241,9 @@ This is shown in the diagram below:
 
 #### Edit Appointment Command
 
-Step 1. When the user inputs an appropriate command `String` into the `CommandBox`, `LogicManager##execute(commandText)` is called. The command `String` is logged and then passed to `AddressBookParser##parseCommand(userInput)` which parses the command.
+Step 1. When the user inputs an appropriate command `String` into the `CommandBox`, `LogicManager::execute(commandText)` is called. The command `String` is logged and then passed to `AddressBookParser::parseCommand(userInput)` which parses the command.
 
-Step 2. If the user input matches the format for the command word for the `EditAppointmentCommand`, `AddressBookParser` will create an `EditAppointmentCommandParser` and will call the `AddAppointmentCommandParser##parse(args)` to parse the command.
+Step 2. If the user input matches the format for the command word for the `EditAppointmentCommand`, `AddressBookParser` will create an `EditAppointmentCommandParser` and will call the `AddAppointmentCommandParser::parse(args)` to parse the command.
 
 Step 3. Validation for the user input is performed, such as validating the client's `Index` and the appointment's `Index`
 
@@ -245,7 +251,7 @@ Step 4. Validation for the user's input for the format of the `DateTime` and `Lo
 
 Step 5. If the user input is valid, a new `EditAppointmentCommand` object is created and returned to the `LogicManager`.
 
-Step 6. `LogicManager` will call `EditAppointmentCommand##execute(model)` method. `EditAppointmentDescriptor` will create the edited `Appointment`
+Step 6. `LogicManager` will call `EditAppointmentCommand::execute(model)` method. `EditAppointmentDescriptor` will create the edited `Appointment`
 
 Step 7. Further validation is performed, such as checking whether an `Appointment` with the same Datetime exists and whether the user's edited Location field is changed.
 
@@ -270,15 +276,15 @@ This is shown in the diagram below:
     * Cons: Complex input validation as multiple index must be enforced within the command and alongside the existing `Appointments`. The maximum number of `Appointments` to edit must also be enforced. 
 #### Delete Appointment Command
 
-Step 1. When the user inputs an appropriate command `String` into the `CommandBox`, `LogicManager##execute(commandText)` is called. The command `String` is logged and then passed to `AddressBookParser##parseCommand(userInput)` which parses the command.
+Step 1. When the user inputs an appropriate command `String` into the `CommandBox`, `LogicManager::execute(commandText)` is called. The command `String` is logged and then passed to `AddressBookParser::parseCommand(userInput)` which parses the command.
 
-Step 2. If the user input matches the format for the command word for the `DeleteAppointmentCommand`, `AddressBookParser` will create an `DeleteAppointmentCommandParser` and will call the `DeleteAppointmentCommandParser##parse(args)` to parse the command.
+Step 2. If the user input matches the format for the command word for the `DeleteAppointmentCommand`, `AddressBookParser` will create an `DeleteAppointmentCommandParser` and will call the `DeleteAppointmentCommandParser::parse(args)` to parse the command.
 
 Step 3. Validation for the user input is performed, such as validating the client's `Index` and the appointment's `Index`.
 
 Step 4. If the user input is valid, a new `DeleteAppointmentCommand` object is created and returned to the `LogicManager`.
 
-Step 5. `LogicManager` will call `DeleteAppointmentCommand##execute(model)` method. Further validation is performed, such as checking whether an `Appointment` exists to be deleted.
+Step 5. `LogicManager` will call `DeleteAppointmentCommand::execute(model)` method. Further validation is performed, such as checking whether an `Appointment` exists to be deleted.
 
 Step 6. If the command is valid, the `remove` method of the `MaximumSortedList` containing the client's `Appointments` is called, which will update the `Person` and `Model`.
 
@@ -299,6 +305,73 @@ This is shown in the diagram below:
     * Pros: Lower number of commands needed to be executed to delete all the desired `Appointments`
     * Cons: Complex input validation as multiple index must be enforced within the command and alongside the existing `Appointments`. The maximum number of `Appointments` to delete must also be enforced. 
 
+### Sort feature
+
+The `sort` command allows the user to sort the clients by a keyword input by the user.
+
+Overview of implementation for `sort` command:
+
+Current implementation
+
+The sort function is facilitated by the java inbuilt Collections::sort method. This is implemented by creating a custom comparator that implements the Comparator Interface, and passing it into the sort method. There are currently six custom comparators implemented:
+* `SortByName` - Sorts the contacts by alphabetical order
+* `SortByAppointment` - Sorts the contacts by date and time
+* `SortByIncome` - Sorts the contacts by specified order (<, > or =)
+* `SortByMonthly` - Sorts the contacts by specified order (<, > or =)
+* `SortByRisktag` - Sorts the contacts from low to high risk or high to low risk
+* `SortByClientTag` - Sorts the clients based on current or potential
+
+`SortByName`: Implemented by using Java inbuilt String::compareTo.
+`SortByAppointment`: Implemented by first converting appointment to DateTime and using our overriden Appointment::compareTo.
+`SortByIncome`: Implemented by first converting income to long and using normal > and < symbols to sort.
+`SortByMonthly`: Implemented by first converting monthly to long and substracting the two values.
+`SortByClientTag`: Implemented by assigning each type of client tag a number, and subtracting them to sort.
+`SortByRiskTag`: Implemented by assigning each type of risk tag a number, and subtracting them to sort.
+
+#### Sort Command
+
+Step 1. When the user inputs an appropriate command `String` into the `CommandBox`, `LogicManager::execute(commandText)` is called. The command `String` is logged and then passed to `AddressBookParser::parseCommand(userInput)` which parses the command.
+
+Step 2. If the user input matches the format for the command word for the `SortCommand`, `AddressBookParse` will create a `SortCommandParser` and will call the `SortCommandParser::parse(args)` to parse the command.
+
+Step 3. Validation for the user input is performed, such as validating that the keyword the user input is in the correct format.
+
+Step 4. In the example shown below, the keyword the user input is `income`. If the user input is valid, a new `SortByIncome` comparator object is created and  return a `SortCommand` object with that comparator.
+
+Step 5. After the execution of this, `LogicManager` calls `SortCommand::execute(model)` where model contains methods that modify the state of our contacts.
+
+Step 6. After a series of method executions, it calls `UniquePersonList::sortPersons(SortByIncome)`, which executes the sort method to sort the list of contacts by their income.
+
+This is shown in the diagram below:
+
+![Sort Command Sequence Diagram](images/SortCommandSequenceDiagram.png)
+
+*Figure 13: Sequence Diagram showing the execution of an `sort` command*
+
+The following activity diagram summarizes what happens when a user executes the Sort Command:
+
+![Sort Command Activity Diagram](images/SortCommandActivityDiagram.png)
+
+*Figure 14: Activity Diagram showing the execution of an `sort` command*
+
+#### Design Considerations
+
+**Aspect: How `sort` executs**
+* **Alternative 1 (current choice):** Use Java inbuilt `Collections::sort`.
+    * Pros: Easy to implement as not much modification needed.
+    * Cons: May require the addition of attributes to implement the `compareTo` method.
+* **Alternative 2**: Implement a custom Sort method.
+    * Pros: May not need additional attributes to implement the `compareTo` method.
+    * Cons: Longer sort time, likely not to be as efficient as the inbuilt `Collections::sort`.
+
+**Aspect: How `SortByAppointment` is executed**
+* **Alternative 1 (current choice):** Convert the appointment to DateTime and using our overriden `Appointment::compareTo`.
+    * Pros: Easy to implement as not much modification needed.
+    * Cons: Need to account for a few cases of empty appointments in `SortByAppointment::compareTo`.
+* **Alternative 2**: Compare the appointment dates in String.
+    * Pros: No need to convert the values to another type.
+    * Cons: Hard to implement as there are many different comparisons that can be made, like year, date, time and month.
+
 ### Find feature
 
 The `find` command allows the user to search for multiple fields at once. An OR search is performed and clients matching at least one keyword will be returned.
@@ -306,6 +379,16 @@ The `find` command allows the user to search for multiple fields at once. An OR 
 Overview of implementation for `find` command:
 
 Currently, the `FindCommandParser` class parses the different prefixes and their values and creates the corresponding `FindPredicate` (e.g the Name prefix will create a `NameContainsKeywordsPredicate` and the Income prefix will create an `IncomeContainsKeywordsPredicate`). These predicates are stored in a list, and are then passed as an argument to the `FindCommand`. The `FindCommand` updates the list of filtered `Persons`.
+
+There are currently 8 custom predicates that inherits `FindPredicate` implemented:
+* `NameContainsKeywordsPredicate` - checks if the person's name matches the keyword input by the user.
+* `NormalTagContainsKeywordsPredicate` - checks if the person's tags matches the keyword input by the user.
+* `PhoneContainsKeywordsPredicate` - checks if the person's phone number matches the keyword input by the user.
+* `PlanTagContainsKeywordsPredicate` - checks if the person's investment plan matches the keyword input by the user.
+* `RiskTagContainsKeywordsPredicate` - checks if the person's risk tag matches the keyword input by the user.
+* `IncomeContainsKeywordsPredicate` - checks if the person's income matches the criteria input by the user.
+* `ClientTagContainsKeywordsPredicate` - checks if the person's client tag matches the keyword input by the user.
+* `MonthlyContainsKeywordsPredicate` - checks if the person's monthly contribution matches the keyword input by the user.
 
 Given below is an example success scenario and how the find mechanism behaves at each step.
 
@@ -321,7 +404,7 @@ The following activity diagram summarizes what happens when a user executes the 
 
 ![Find Command Activity Diagram](images/FindCommandActivityDiagram.png)
 
-*Figure 13: Activity Diagram showing the execution of an `find` command*
+*Figure 15: Activity Diagram showing the execution of an `find` command*
 
 #### Design Considerations
 
@@ -513,28 +596,30 @@ The following activity diagram summarizes what happens when a user selects an ap
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority  | As a …​           | I want to …​                                                     | So that I can…​                                                                            |
-|-----------|-------------------|------------------------------------------------------------------|--------------------------------------------------------------------------------------------|
-| `* * *`   | financial advisor | add new client                                                   | keep track of the client's profile                                                         |
-| `* * *`   | financial advisor | delete a client                                                  | remove entries that are no longer needed                                                   |
-| `* * *`   | new user          | learn how to use the app                                         | can effectively use the app                                                                |
-| `* * *`   | financial advisor | edit a client's profile                                          | update relevant and up-to-date information of the client                                   |
-| `* * *`   | financial advisor | search clients by name                                           | retrieve information of clients without having to go through the entire list               |
-| `* * *`   | financial advisor | search clients by their investment plan                          | can easily find a group of clients                                                         |
-| `* * *`   | financial advisor | search clients based on whether they are potential or current    | can easily find a group of clients                                                         |
-| `* * *`   | financial advisor | search clients based on their risk appetite                      | can easily find a group of clients                                                         |
-| `* * *`   | financial advisor | sort clients by alphabetical order                               | have an organised list of contacts                                                         |
-| `* * *`   | financial advisor | sort clients by their income                                     | have an organised list of contacts                                                         |
-| `* * *`   | financial advisor | store important information of clients                           | make pivotal decisions on how to better suit the clients' needs based on their information |
-| `* * *`   | financial advisor | store upcoming appointments for each client                      | keep track of all my upcoming appointments                                                 |
-| `* * *`   | financial advisor | edit my current appointments for each client                     | update my appointment details, if any changes has been made                                |
-| `* * *`   | financial advisor | delete an appointment                                            | remove any completed or cancelled appointments in my list of appointments                  |
-| `* * *`   | busy person       | quickly view the format of any command                           | can focus on my daily tasks instead of having to remember the command syntax               |
+| Priority  | As a …​           | I want to …​                                                           | So that I can…​                                                                            |
+|-----------|-------------------|------------------------------------------------------------------------|--------------------------------------------------------------------------------------------|
+| `* * *`   | financial advisor | add new client                                                         | keep track of the client's profile                                                         |
+| `* * *`   | financial advisor | delete a client                                                        | remove entries that are no longer needed                                                   |
+| `* * *`   | new user          | learn how to use the app                                               | can effectively use the app                                                                |
+| `* * *`   | financial advisor | edit a client's profile                                                | update relevant and up-to-date information of the client                                   |
+| `* * *`   | financial advisor | search clients by name                                                 | retrieve information of clients without having to go through the entire list               |
+| `* * *`   | financial advisor | search clients by their investment plan                                | can easily find a group of clients                                                         |
+| `* * *`   | financial advisor | search clients based on whether they are potential or current          | can easily find a group of clients                                                         |
+| `* * *`   | financial advisor | search clients based on their risk appetite                            | can easily find a group of clients                                                         |
+| `* * *`   | financial advisor | sort clients by alphabetical order                                     | have an organised list of contacts                                                         |
+| `* * *`   | financial advisor | sort clients by their income                                           | have an organised list of contacts                                                         |
+| `* * *`   | financial advisor | store important information of clients                                 | make pivotal decisions on how to better suit the clients' needs based on their information |
+| `* * *`   | financial advisor | store upcoming appointments for each client                            | keep track of all my upcoming appointments                                                 |
+| `* * *`   | financial advisor | edit my current appointments for each client                           | update my appointment details, if any changes has been made                                |
+| `* * *`   | financial advisor | delete an appointment                                                  | remove any completed or cancelled appointments in my list of appointments                  |
+| `* * *`   | busy person       | quickly view the format of any command                                 | can focus on my daily tasks instead of having to remember the command syntax               |
 | `* * `    | financial advisor | view the list of clients that are scheduled for meeting on a given day | be reminded and keep track of the scheduled meetings                                       |
-| `* *`     | financial advisor | have an image of my client                                       | remember and recognise the clients during the meetings                                     |
-| `* *`     | fast-typist       | navigate through the calendar with my keyboard                   | view all my appointments in the calendar quickly                                           |
-| `* *`     | forgetful person  | view which are the upcoming appointments I have                  | know what to prepare for whom                                                              |           
-| `* *`     | potential user    | see how the app operates with some sample data                   | understand what the app will look like when I actually use it                              |
+| `* *`     | financial advisor | have an image of my client                                             | remember and recognise the clients during the meetings                                     |
+| `* *`     | fast-typist       | navigate through the calendar with my keyboard                         | view all my appointments in the calendar quickly                                           |
+| `* *`     | forgetful person  | view which are the upcoming appointments I have                        | know what to prepare for whom                                                              |           
+| `* *`     | potential user    | see how the app operates with some sample data                         | understand what the app will look like when I actually use it                              |
+| `*`       | financial advisor | view frequently searched clients                                       | do not need to keep searching for the same person constantly                               |
+| `*`       | financial advisor | transferring of data between devices                                   | can switch between devices easily and integrate the data easily                            |
 
 ### Use cases
 
@@ -627,6 +712,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. Financial Advisor Planner shows a list of clients with the matching keyword(s)
 
     Use case ends.
+
+   **Extensions**
+
+* 1a. User did not input any arguments.
+
+    * 1a1. Financial Advisor Planner shows an error message.
+
+      Use case ends.
+
+* 1b. The given prefix is invalid.
+
+    * 1b1. Financial Advisor Planner shows an error message.
+
+      Use case ends.
+
+* 1c. The given keyword is invalid
+
+    * 1c1. Financial Advisor Planner shows an error message.
+
+      Use case ends.
+
+* 1d. User did not input any keywords
+
+    * 1d1. Financial Advisor Planner shows an error message.
+
+      Use case ends.
 
 **Use case: UC6 - Add an appointment**
 

@@ -258,12 +258,13 @@ Examples:
 * Sort format:
   * `name` sorts by alphabetical order
   * `appt` sorts by date and time
-  * `risk` sorts from low to high
+  * `risk` sorts from low to high or high to low
   * `income` & `monthly` sorts by specified order (<, > or =)
+  * `client` sorts by current or potential clients
 
 Format: sort `KEYWORD` / sort `KEYWORD desc`
 
-Types of `KEYWORD`: `name`, `appt`, `risk`, `income`, `monthly`
+Types of `KEYWORD`: `name`, `appt`, `risk`, `income`, `monthly`, `client`
 
 * Returns all the contacts sorted by the given `KEYWORD`
 
