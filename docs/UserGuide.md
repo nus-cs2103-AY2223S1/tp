@@ -614,8 +614,22 @@ As a workaround for now, you may delete the old debt using [`deletedebt`](#delet
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**Q**: How do I transfer my data to PayMeLah on another Computer?<br>
+**A**: You can install PayMeLah in the other computer and replace the data file in the other computer with the data file in your current computer's PayMeLah home folder.
+
+**Q**: I can't find something that I **know** I have added to PayMeLah. Where did it go?<br>
+**A**: If you are trying to locate a person, try using the [`find` command](#locating-persons-by-inputs-find)! The `find` command is case-insensitive and returns partial matches when searching for names, so it will find `Bobby` even if you search for `bob`.<br>
+If you are trying to locate a debt by its description, consider using the [`finddebt` command](#locating-persons-by-debt-description-finddebt) instead to make use of case-insensitive search for debt descriptions.<br>
+Other tips:
+
+1. You can try [combining inputs](#combining-inputs-to-find) to narrow your search scope, but sometimes, you cannot find something because you may have misremembered a detail like the date, or keyed it into PayMeLah wrongly by accident. In this situation, you may want to consider not making your search scope too specific.
+1. As a last resort, the [`list` command](#listing-all-persons-list) will list every person in PayMeLah. If you still cannot find the person you are looking for in the full person list displayed by `list`, then unfortunately it means the person you are looking for is not in PayMeLah :(
+
+**Q**: PayMeLah is not letting me use the command I want! What can I do?<br>
+**A**: Oh no! Calm down - let's troubleshoot together. First, head to the [Command Summary](#command-summary) section to make sure you are using the command in the correct format. You can also click on the links there to read more about the specifics of each command. If PayMeLah continues to misbehave, do drop us an email at paymelah.app@gmail.com, and we will do our best to help you as soon as possible!
+
+**Q**: Why can't PayMeLah do _<this thing>_?
+**A**: We are so sorry that PayMeLah does not support this feature at the moment :( However, PayMeLah is a constant work in progress and we hope to deliver the features that you are looking for in the near future! In the meantime, feel free to drop us feedback at paymelah.app@gmail.com so that we can better understand and serve your needs :)
 
 [Return to Table of Contents](#table-of-contents)
 
