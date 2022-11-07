@@ -9,7 +9,9 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* The feature `remark` (including the code) was reused with some changes from AB-3's 
+  [Tutorial: Adding a Command](https://nus-cs2103-ay2223s1.github.io/tp/tutorials/AddRemark.html).
+* The format of the Developer Guide was inspired by the Developer Guide of the past project [ArchDuke](https://ay2122s2-cs2103-w16-3.github.io/tp/DeveloperGuide.html).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -812,6 +814,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+---
 
 **Use case: UC09 - Edit an internship application**
 
@@ -896,8 +899,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. InTrack adds the remark to the selected internship application.
 
    Use case ends.
-
----
 
 **Extensions**
 
