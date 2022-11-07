@@ -1286,10 +1286,18 @@ testers are expected to do more *exploratory* testing.
 
 ## Appendix: Effort
 
-* Edit feature
-  * EditCommand is AB3 versus EditPatientCommand, EditAppointmentCommand and EditBillCommand in HealthContact
+* Add feature
+  * Add Command in AB3 versus AddPatientCommand, AddAppointmentCommand, AddBillCommand
 
-| AB3 (EditCommand)                      | HealthContact                                                                                                    |
+| AB3 (Add Command)     | HealthContact                                    |
+|-----------------------|--------------------------------------------------|
+| Adds persons only     | Adds patients, appointments and bills separately |
+| Deals with one entity | Deals with three entities                        |
+
+* Edit feature
+  * Edit Command in AB3 versus EditPatientCommand, EditAppointmentCommand and EditBillCommand in HealthContact
+
+| AB3 (Edit Command)                     | HealthContact                                                                                                    |
 |----------------------------------------|------------------------------------------------------------------------------------------------------------------|
 | Edits persons only                     | Edits patients, appointments and bills separately                                                                |
 | Edits name, phone, email, address, tag | Edits by respective fields of patients, appointments and bills                                                   |
@@ -1298,9 +1306,9 @@ testers are expected to do more *exploratory* testing.
 
 
 * Find feature
-  * FindCommand in AB3 versus FindPatientCommand, FindAppointmentCommand and FindBillCommand in HealthContact
+  * Find Command in AB3 versus FindPatientCommand, FindAppointmentCommand and FindBillCommand in HealthContact
 
-| AB3 (FindCommand)                                                          | HealthContact                                                                                                   |
+| AB3 (Find Command)                                                         | HealthContact                                                                                                   |
 |----------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------|
 | Finds persons only                                                         | Finds patients, appointments and bills separately                                                               |
 | Finds by name only                                                         | Finds by respective fields of patients, appointments and bills                                                  |
