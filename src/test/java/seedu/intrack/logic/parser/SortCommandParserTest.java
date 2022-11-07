@@ -49,4 +49,11 @@ class SortCommandParserTest {
         SortSalaryCommand expectedCommandD = new SortSalaryCommand("d");
         assertParseSuccess(parser, userInputD, expectedCommandD);
     }
+
+    @Test
+    public void parse_invalidCommandFormat_failure() {
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE);
+        String invalidUserInput = " test a";
+        assertParseFailure(parser, invalidUserInput, expectedMessage);
+    }
 }

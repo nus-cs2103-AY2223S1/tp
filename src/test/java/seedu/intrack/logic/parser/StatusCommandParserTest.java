@@ -46,4 +46,15 @@ public class StatusCommandParserTest {
         assertParseFailure(parser, StatusCommand.COMMAND_WORD + " " + "p", expectedMessage);
         assertParseFailure(parser, StatusCommand.COMMAND_WORD + " " + "r", expectedMessage);
     }
+
+    @Test
+    public void parse_invalidStatusType_throwsParseException() {
+
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                StatusCommand.MESSAGE_USAGE);
+
+        String userInput = StatusCommand.COMMAND_WORD + " " + INDEX_FIRST_INTERNSHIP + "e";
+
+        assertParseFailure(parser, userInput, expectedMessage);
+    }
 }
