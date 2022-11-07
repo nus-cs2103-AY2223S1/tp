@@ -368,11 +368,11 @@ Once done with the filtered tasklist, the user should be able to revert the list
 
 When the `sort` command is entered, a `Comparator<Task>` is created which will be an instance of either `model.task.SortByDeadline` or `model.task.SortByPriority`. This `Comparator<Task>` will be reversed if the task list needs to be sorted in descending order. The `SortedList<Task>` in the `Model` will then be updated to use the new `Comparator<Task>`.
 
-### Email Address in task as reference (foreign key) to member in saved data
+### Email Address in task as reference (foreign key) to person in saved data
 
 #### Motivation
 
-To assign a task to a team member (represented by a `Person` object), we need to save an attribute of the `Person` object in the `JsonAdaptedTask` object that uniquely identifies the person.
+To assign a task to a team person (represented by a `Person` object), we need to save an attribute of the `Person` object in the `JsonAdaptedTask` object that uniquely identifies the person.
 
 #### Implementation
 
@@ -434,7 +434,7 @@ An overview of this process is shown below in the form of an activity diagram.
 
 Our current choice of implementation is preferred considering the main use of HackAssist. HackAssist is created mainly for Hackathons where the environment is hectic and stressful and thus, users may tend to forget to save. Moreover, although the computation cost of automatic savings are higher, the difference is not obvious during usage. Thus, we consider the cost of losing saved changes to be worse.
 
-### Persistent storage for member
+### Persistent storage for people
 
 The motivation, implementation and design considerations are similar to [Persistent Storage for Task](#persistent-storage-for-task)
 
@@ -536,7 +536,7 @@ Hackathon team leaders, in charge of distributing tasks to the people in his gro
 
 **Target user profile**:
 
-* has a need to allocate and track tasks to team members
+* has a need to allocate and track tasks to people
 * has a need to manage a significant number of people and tasks
 * has a need to manage tasks that can change significantly over the course of the project
 * prefer using a desktop application for management
@@ -554,7 +554,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | hackathon team leader | add a task to the task list          | include task that needs to be done                                                   |
 | `* * *`  | hackathon team leader | delete a task                        | remove tasks that are accidentally added                                             |
 | `* * *`  | hackathon team leader | edit a task                          | rectify mistakes in task details                                                     |
-| `* * *`  | hackathon team leader | assign a task                        | allocate task to a team member                                                       |
+| `* * *`  | hackathon team leader | assign a task                        | allocate task to a person                                                       |
 | `* * *`  | hackathon team leader | mark task as done                    | I can keep a moving record of what we have done                                      |
 | `* * *`  | hackathon team leader | mark task as not done                | in case we have tasks that end up being incomplete or the task requirements modified |
 | `* *`    | hackathon team leader | see which tasks are done/ not done   | plan the way forward                                                                 |
@@ -568,14 +568,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-**Use case: Add a new team member**
+**Use case: Add a new person**
 
 **MSS**
 
-1. User requests to add a new member
+1. User requests to add a person
 2. HackAssist shows a list of fields to input (Name,Phone Number, Email, Address, Tags)
 3. User inputs fields
-4. HackAssist shows list of all members, including new member
+4. HackAssist shows list of people, including new person
 
 Use case ends.
 
@@ -583,7 +583,7 @@ Use case ends.
 
 Extensions:
 
-* 3a. HackAssist detects that the member already exists
+* 3a. HackAssist detects that the person already exists
   * 3a1. HackAssist shows an error message
   * Use case ends.
 
@@ -591,16 +591,16 @@ Extensions:
   * 3b1. HackAssist shows an error message, showing the incorrectly formated field and the specifications of that field
   * Use case ends.
 
-**Use case: Delete a team member**
+**Use case: Delete a team person**
 
 **MSS**
 
-1. User requests to delete a new member
+1. User requests to delete a new person
 2. HackAssist shows a list of fields to input (index)
 3. User inputs fields
 4. HackAssist displays confirmation message
 5. HackAssist removes the user's name and email from all the tasks assigned to that user
-6. HackAssist shows list of all members, excluding deleted member, and the updated task list
+6. HackAssist shows list of all people, excluding deleted person, and the updated task list
 
 Use case ends.
 
@@ -616,15 +616,15 @@ Extensions:
     * 3b1. HackAssist shows an error message warning that the index is invalid
     * Use case resumes from step 2.
 
-**Use case: Edit a team member**
+**Use case: Edit a team person**
 
 **MSS**
 
-1. User requests to edit a new member
+1. User requests to edit a new person
 2. HackAssist shows a list of fields to input (index and one or more of Name, Phone Number, Email Address, Tags)
 3. User inputs fields
 4. HackAssist displays confirmation message
-5. HackAssist shows list of all members, with that particular member's fields updated
+5. HackAssist shows list of all peoples, with that particular person's fields updated
 
 Use case ends.
 
@@ -652,10 +652,10 @@ Extensions:
 
 **MSS**
 
-1. User requests to add a new member
+1. User requests to add a new person
 2. HackAssist shows a list of fields to input (Name, Description, Priority, Category, Status)
 3. User inputs fields
-4. HackAssist shows list of all members, including new member
+4. HackAssist shows list of all people, including new person
 
 Use case ends.
 
@@ -687,7 +687,7 @@ Extensions:
 2. HackAssist shows a list of fields to input (index)
 3. User inputs fields
 4. HackAssist displays confirmation message
-5. HackAssist removes the task from task list and all members assigned to that task
+5. HackAssist removes the task from task list and all people assigned to that task
 6. HackAssist shows list of all tasks, excluding deleted task, and the updated person list
 
 Use case ends.
@@ -704,13 +704,13 @@ Extensions:
     * 3b1. HackAssist shows an error message warning that the index is invalid
     * Use case resumes from step 2.
 
-**Use case: Assign a task to an existing team member**
+**Use case: Assign a task to an existing team person**
 
 **MSS**
 
 1. User requests to see all tasks
 2. HackAssist shows current list of tasks
-3. User edits the task to have the email of a current member
+3. User edits the task to have the email of a current person
 4. User is updated to be assigned to existing task
 5. Task is updated to show the user assigned to it, and that user's email
 
@@ -727,19 +727,19 @@ Extensions:
     * 3a1 HackAssist shows an error message that shows what is the expected input
     * Use case resumes from step 2.
 
-* 3b. There are no members with the specified email
-    * 3b1 HackAssist shows an error message that there are no members
+* 3b. There are no people with the specified email
+    * 3b1 HackAssist shows an error message that there are no people
     * Use case resumes from step 2.
 
 **Use case: Edit a task**
 
 **MSS**
 
-1. User requests to edit a new member
+1. User requests to edit a new person
 2. HackAssist shows a list of fields to input (index and one or more of Name, Description, Priority, Category, Status )
 3. User inputs fields
 4. HackAssist displays confirmation message
-5. HackAssist shows list of all members, with that particular member's fields updated
+5. HackAssist shows list of all people, with that particular person's fields updated
 
 Use case ends.
 
@@ -856,7 +856,6 @@ Extensions:
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 * **CLI**: Command Line Interface which receives commands from a user in the form of lines of text
 
 --------------------------------------------------------------------------------------------------------------------
@@ -876,7 +875,7 @@ testers are expected to do more *exploratory* testing.
 
     1. Download the jar file and copy into an empty folder
 
-    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    1. Double-click the jar file Expected: Shows the GUI with a set of sample people. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -894,7 +893,7 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
     1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+       Expected: First person is deleted from the list. Details of the deleted person shown in the status message. Timestamp in the status bar is updated.
 
     1. Test case: `delete 0`<br>
        Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
