@@ -301,14 +301,14 @@ The following sequence diagram shows how the `view` command works:
 
 **Aspect: How the UI window is split to show a panel of list of all applicants and another panel to view details of an applicant:**
 
-![guiDesignConsideration1](images/guiDesignConsideration1.png)
 - **Alternative 1 (current implementation):** Window is split into half below the result display box.
     - Pros: Symmetrical and looks more regular.
     - Cons: Pane to view details of an applicant is smaller.
-![guiDesignConsideration2](images/guiDesignConsideration2.png)
+![guiDesignConsideration1](images/guiDesignConsideration1.png)
 - **Alternative 2:** Window is split from the top, so both command box and result display box are halved.
     - Pros: Can have a larger pane to view details of an applicant.
     - Cons: Need to scroll more to see typed command and result displayed.
+![guiDesignConsideration2](images/guiDesignConsideration2.png)
 
 
 ### 4.3 Import Feature
