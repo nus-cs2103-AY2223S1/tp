@@ -32,32 +32,40 @@ public class ListTaskCommandTest {
 
     @Test
     public void execute_listIsNotFilteredDefaultComparator_showsSameList() {
-        assertCommandSuccess(new ListTaskCommand(new DefaultComparator()),
-                model, ListTaskCommand.MESSAGE_LIST_DEFAULT_SUCCESS, expectedModel);
+        DefaultComparator comparator = new DefaultComparator();
+        expectedModel.updateSortedTaskList(comparator);
+        String expectedMessage = String.format(ListTaskCommand.MESSAGE_SUCCESS, comparator);
+        assertCommandSuccess(new ListTaskCommand(new DefaultComparator()), model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_listIsFilteredDefaultComparator_showsEverything() {
         showTaskAtIndex(model, INDEX_FIRST);
         Assertions.assertTrue(model.getTaskList().equals(expectedModel.getTaskList()));
-        assertCommandSuccess(new ListTaskCommand(new DefaultComparator()),
-                model, ListTaskCommand.MESSAGE_LIST_DEFAULT_SUCCESS, expectedModel);
+
+        DefaultComparator comparator = new DefaultComparator();
+        expectedModel.updateSortedTaskList(comparator);
+        String expectedMessage = String.format(ListTaskCommand.MESSAGE_SUCCESS, comparator);
+        assertCommandSuccess(new ListTaskCommand(new DefaultComparator()), model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_listIsNotFilteredDeadlineComparator_showsSameList() {
-        expectedModel.updateSortedTaskList(new DeadlineComparator());
-        assertCommandSuccess(new ListTaskCommand(new DeadlineComparator()),
-                model, ListTaskCommand.MESSAGE_LIST_DEADLINE_SUCCESS, expectedModel);
+        DeadlineComparator comparator = new DeadlineComparator();
+        expectedModel.updateSortedTaskList(comparator);
+        String expectedMessage = String.format(ListTaskCommand.MESSAGE_SUCCESS, comparator);
+        assertCommandSuccess(new ListTaskCommand(new DeadlineComparator()), model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_listIsFilteredDeadlineComparator_showsEverything() {
         showTaskAtIndex(model, INDEX_FIRST);
         Assertions.assertTrue(model.getTaskList().equals(expectedModel.getTaskList()));
-        expectedModel.updateSortedTaskList(new DeadlineComparator());
-        assertCommandSuccess(new ListTaskCommand(new DeadlineComparator()),
-                model, ListTaskCommand.MESSAGE_LIST_DEADLINE_SUCCESS, expectedModel);
+
+        DeadlineComparator comparator = new DeadlineComparator();
+        expectedModel.updateSortedTaskList(comparator);
+        String expectedMessage = String.format(ListTaskCommand.MESSAGE_SUCCESS, comparator);
+        assertCommandSuccess(new ListTaskCommand(new DeadlineComparator()), model, expectedMessage, expectedModel);
     }
 
 }

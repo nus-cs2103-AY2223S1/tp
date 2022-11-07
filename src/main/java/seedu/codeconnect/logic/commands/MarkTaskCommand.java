@@ -40,6 +40,7 @@ public class MarkTaskCommand extends Command {
         requireNonNull(model);
         List<Task> lastShownList = model.getSortedTaskList();
 
+        assert(targetIndex.getZeroBased() >= 0);
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }

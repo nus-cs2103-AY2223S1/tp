@@ -15,7 +15,7 @@ import seedu.codeconnect.model.task.Task;
 import seedu.codeconnect.model.task.TaskName;
 
 /**
- * Marks a task as done.
+ * Unmarks a task as not done.
  */
 public class UnmarkTaskCommand extends Command {
 
@@ -40,6 +40,7 @@ public class UnmarkTaskCommand extends Command {
         requireNonNull(model);
         List<Task> lastShownList = model.getSortedTaskList();
 
+        assert(targetIndex.getZeroBased() >= 0);
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }

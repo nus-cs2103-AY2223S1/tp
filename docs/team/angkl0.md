@@ -15,19 +15,24 @@ Given below are my contributions to the project.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=angkl0&breakdown=true)
 
-* **Project management**: to be added soon
-
 * **Enhancements to existing features**:
   * Extended storage to store tasks
-  * Enhanced find command to return entries whose name contain query keyword as its substring
+  * Updated UI to include a task's status in a taskcard
+  * Enhanced `find` and `findc` command to return entries which match keyword partially
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `addc` and `delc`
+    * Added guide for the usage of the following features:
+      * `addc` 
+      * `delc`
+    * Added note on extraneous parameters for `list`
   * Developer Guide:
-    * Added documentation for the implementation of mark and unmark task features
-    * Added use case for editing a contact
+    * Added documentation for the implementation of the following features:
+      * `mark` `unmark` 
+        * Added sequence and activity diagrams for `mark` 
+      * `list` `list time` 
+        * Added sequence diagram for `list` 
+    * Added details on testing the saving of data under Appendix: Instructions for manual testing
 
-* **Community**: to be added soon
-
-* **Tools**: to be added soon
+* **Community**: 
+  * Primary reviewer of songivan00's PRs

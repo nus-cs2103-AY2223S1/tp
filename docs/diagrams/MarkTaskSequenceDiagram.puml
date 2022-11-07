@@ -1,0 +1,87 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":CodeConnectParser" as CodeConnectParser LOGIC_COLOR
+participant "m:MarkTaskCommandParser" as MarkTaskCommandParser LOGIC_COLOR
+participant ":MarkTaskCommand" as MarkTaskCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+participant MarkTaskCommand as MarkTaskCommand1 <<class>> LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "marked:Task" as Task MODEL_COLOR
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("mark 1")
+activate LogicManager
+
+LogicManager -> CodeConnectParser : parseCommand("mark 1")
+activate CodeConnectParser
+
+create MarkTaskCommandParser
+CodeConnectParser -> MarkTaskCommandParser
+activate MarkTaskCommandParser
+
+MarkTaskCommandParser --> CodeConnectParser
+deactivate MarkTaskCommandParser
+
+CodeConnectParser -> MarkTaskCommandParser : parse("1")
+activate MarkTaskCommandParser
+
+create MarkTaskCommand
+MarkTaskCommandParser -> MarkTaskCommand
+activate MarkTaskCommand
+
+MarkTaskCommand --> MarkTaskCommandParser : m
+deactivate MarkTaskCommand
+
+MarkTaskCommandParser --> CodeConnectParser : m
+deactivate MarkTaskCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+MarkTaskCommandParser -[hidden]-> CodeConnectParser
+destroy MarkTaskCommandParser
+
+CodeConnectParser --> LogicManager : m
+deactivate CodeConnectParser
+
+LogicManager -> MarkTaskCommand : execute()
+activate MarkTaskCommand
+
+MarkTaskCommand -> MarkTaskCommand1 : createMarkedTask(taskToMark)
+activate MarkTaskCommand1
+
+create Task
+MarkTaskCommand1 -> Task
+activate Task
+
+Task --> MarkTaskCommand1
+deactivate Task
+
+MarkTaskCommand1 --> MarkTaskCommand
+deactivate MarkTaskCommand1
+
+MarkTaskCommand -> Model : setTask(taskToMark, marked)
+activate Model
+
+Model --> MarkTaskCommand
+deactivate Model
+
+create CommandResult
+MarkTaskCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> MarkTaskCommand : result
+deactivate CommandResult
+
+MarkTaskCommand --> LogicManager : result
+deactivate MarkTaskCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+MarkTaskCommand -[hidden]-> LogicManager
+destroy MarkTaskCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

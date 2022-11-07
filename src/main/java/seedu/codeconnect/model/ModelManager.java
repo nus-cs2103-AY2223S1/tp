@@ -12,12 +12,22 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+<<<<<<< HEAD:src/main/java/seedu/codeconnect/model/ModelManager.java
 import seedu.codeconnect.commons.core.GuiSettings;
 import seedu.codeconnect.commons.core.LogsCenter;
 import seedu.codeconnect.model.person.CanHelpWithTaskPredicate;
 import seedu.codeconnect.model.person.Person;
 import seedu.codeconnect.model.task.DefaultComparator;
 import seedu.codeconnect.model.task.Task;
+=======
+import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.person.CanHelpWithTaskPredicate;
+import seedu.address.model.person.Person;
+import seedu.address.model.task.DeadlineComparator;
+import seedu.address.model.task.DefaultComparator;
+import seedu.address.model.task.Task;
+>>>>>>> a4ffe300a1bd81860c5236d0259b094c368a6d42:src/main/java/seedu/address/model/ModelManager.java
 
 /**
  * Represents the in-memory model of the address book data.
@@ -232,10 +242,11 @@ public class ModelManager implements Model {
     @Override
     public void updateSortedTaskList(Comparator<Task> comparator) {
         requireNonNull(comparator);
+        assert comparator instanceof DefaultComparator || comparator instanceof DeadlineComparator;
         if (comparator instanceof DefaultComparator) {
             sortedTasks.setComparator(new DefaultComparator(taskList));
         } else {
-            sortedTasks.setComparator(comparator);
+            sortedTasks.setComparator(new DeadlineComparator(taskList));
         }
     }
 

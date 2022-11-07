@@ -47,10 +47,10 @@
         </StackPane>
 
         <TabPane fx:id="tabPanePlaceholder" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS" tabMinWidth="150" tabMaxWidth="150">
-          <Tab text="Contacts">
+          <Tab text="Contacts" onSelectionChanged="#setContactsPath">
             <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
           </Tab>
-          <Tab text="Tasks">
+          <Tab text="Tasks" onSelectionChanged="#setTasksPath">
             <StackPane fx:id="taskListPanelPlaceholder" VBox.vgrow="ALWAYS" />
           </Tab>
         </TabPane>

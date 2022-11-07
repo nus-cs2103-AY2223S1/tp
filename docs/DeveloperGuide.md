@@ -311,20 +311,78 @@ Examples of command use:
 * `unmark 1` - Unmarks the task at index 1 as incomplete
 
 #### Implementation flow
-Both the `mark` and `unmark` commands follow [general command implementation flow](#logic-component).
+
+To represent the completion status of `Task`, a new `Task` attribute `status` of type `Status` is added. The boolean field 
+`isComplete` in `Status` is `true` when a task is marked as complete and `false` when a task is incomplete.
+
+Only the execution of `mark` command will be shown below as both commands are implemented in a similar way.
+
+Outline of how components work together when the user enters a mark command:
+1. User enters `mark 1` into the command prompt box
+2. User input `mark 1` is passed to `LogicManager` which then calls `LogicManager#execute()` which then calls 
+`CodeConnectParser#parseCommand()`.
+3. It is determined the type of command is `mark` and a new `MarkTaskCommandParser` is created and `MarkTaskCommandParser#parse`
+is called, parsing and validating the index.
+4. If index is valid, a new `MarkTaskCommand` is created and returned to `LogicManager`.
+5. `LogicManager` calls `MarkTaskCommand#execute()`. If there exists an unmarked task at index 1, 
+`MarkTaskCommand#createMarkedTask()` is called, creating a copy of the task to be marked with its `status` set to `true`.
+6. `Model#setTask()` is then called to replace the task to be marked with the marked copy.
+
+![Interactions Inside the Logic Component for the `mark 1` Command](images/MarkTaskSequenceDiagram.png)
+<div style="text-align: center">Sequence diagram of mark command execution</div>
+
+The activity diagram below summarizes the implementation of a `mark` command. 
 
 ![Activity diagram for execution of a mark command](images/MarkTaskActivityDiagram.png)
  <div style="text-align: center">Activity diagram of mark command execution</div>
 
-![Interactions Inside the Logic Component for the `unmark 1` Command](images/UnmarkTaskSequenceDiagram.png)
-<div style="text-align: center">Sequence diagram of unmark command execution</div>
 
 #### Design considerations
 
-* One design consideration involoved marking/unmarking multiple tasks by adding a space before inputting the index of another task.
+* One design consideration involved marking/unmarking multiple tasks by adding a space before inputting the index of another task.
 However, users could forget to input spaces when inputting indexes of multiple tasks, leading to unintended tasks being
-marked/unmarked. This was considered to be an acceptable trade-off as users would be completing tasks one at a time
-most of the time, so a mass mark/unmark feature is a nice-to-have one.
+marked/unmarked without the users even realising it. Limiting the number of tasks that can be marked/unmarked to 1 is thus 
+considered to be an acceptable trade-off.
+
+### Listing of tasks
+
+#### About
+
+CodeConnect allows users to list all of their tasks with `list` and `list time` commands.
+* `list` command lists all the tasks in the order of most recently added task on top.
+* `list time` command lists all the tasks in the order of the task with the earliest deadline on top.
+
+#### Implementation flow
+
+Listing of tasks is facilitated by `ModelManager`. It contains `filteredTaskList` of type `FilteredList`. 
+It also contains `sortedTaskList` of type `SortedList` that wraps `filteredTaskList` in it. As any changes to `filteredTaskList`
+will be reflected in the `sortedTaskList`, the `Ui` displays `sortedTaskList` in the tasklist panel. `SortedList` contains the
+method SortedList#setComparator(Comparator<? super E> comparator). The above method is called in 
+`ModelManager#updateSortedTaskList(Comparator<Task> comparator)` that allows for the sorting of `sortedTaskList` with a comparator.
+
+As `list` and `list time` are implemented in a similar way, only the execution of `list time` will be shown below.
+
+Outline of how components work together when the user enters a list command:
+1. User enters `list time` into the command prompt box
+2. User input `list time` is passed to `LogicManager` which then calls `LogicManager#execute()` which then calls
+   `CodeConnectParser#parseCommand()`.
+3. It is determined the type of command is `list` and a new `ListTaskCommandParser` is created and `ListTaskCommandParser#parse`
+   is called. It is determined that the input is a command for listing tasks by deadline.
+4. A new `ListTaskCommand` is created with `DeadlineComparator` passed as parameter. `ListTaskCommand` is returned to `LogicManager`.
+5. `LogicManager` calls `ListTaskCommand#execute()`. `Model#updateSortedTaskList()` is then called, setting the comparator 
+   in `sortedTaskList` to `DeadlineComparator`. `Ui` then displays the tasks ordered by task with the earliest deadline on top.
+
+![Interactions Inside the Logic Component for the `list time` Command](images/ListTaskSequenceDiagram.png)
+<div style="text-align: center">Sequence diagram of list command execution</div>
+
+#### Design considerations
+
+* One design consideration involved deciding how tasks are ordered under default list command `list`.
+One choice was for tasks to be ordered with most recently added task on top and the other was for 
+tasks to be ordered with least recently added task on top. 
+* The former was chosen in the end as under a daily use basis, a tasklist is likely to evolve rather
+quickly. It was considered to be more convenient for a user to be able to see more recent and relevant 
+tasks at the top without having to scroll towards the bottom of the tasklist.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -363,42 +421,51 @@ Search for contacts for help with a particular task faster than having to think 
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                                    | I want to …​                                                                   | So that I can…​                                                        |
-|----------|------------------------------------------------------------|--------------------------------------------------------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                                   | see usage instructions                                                         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                                       | add a new person                                                               |                                                                        |
-| `* * *`  | user                                                       | delete a person                                                                | remove entries that I no longer need                                   |
-| `* * *`  | user                                                       | find a person by name                                                          | locate details of persons without having to go through the entire list |
-| `* * *`  | SOC student who has many (computing) modules in a semester | have a platform to keep track of all my submissions/tasks                      |                                                                        |
-| `* * *`  | busy SOC student                                           | keep track of what I have to complete                                          | not miss out on any deadlines                                          |
-| `* * *`  | typical SOC student who has too many assignments           | keep track of the status of my assignments                                     |                                                                        |
-| `* * *`  | SOC student with many assignments and tasks                | use the search feature to find the task I am looking for                       |                                                                        |
-| `* *`    | SOC student working on a group project                     | see all the contacts of those people in my group project                       | easily contact them                                                    |
-| `* *`    | (human) user                                               | enter the deadline of my tasks in multiple formats                             | I don't need to think about the date format when manipulating tasks    |
-| `* *`    | user                                                       | hide private contact details                                                   | minimize chance of someone else seeing them by accident                |
-| `*`      | future thinking SOC CS Student                             | list tasks and events for the next 7 days                                      | plan what I want to do better                                          |
-| `*`      | SOC student with many digital files to organize            | link a task to relevant local files (pdf, pptx, etc.)                          | open them quickly                                                      |
-| `*`      | overwhelmed SOC student                                    | filter tasks by whether or not they are graded                                 | decide on what to do first                                             |
-| `*`      | SOC student                                                | assign an estimated time to complete for each task                             | realistically estimate how much I can accomplish in a day              |
-| `*`      | future thinking SOC student                                | prioritize my tasks                                                            | plan what I should be working on first                                 |
-| `*`      | forgetful SOC student                                      | be greeted (or warned) with a list of urgent/overdue tasks when I open the app | remind myself about them                                               |
-| `*`      | SOC student who has many venues to keep track of           | store the venues associated with my tasks                                      |                                                                        |
-| `*`      | user with many persons in the address book                 | sort persons by name                                                           | locate a person easily                                                 |
-
-*{More to be added}*
+| Priority | As a …​                                          | I want to …​                                                                   | So that I can …​                                                       | Implemented in Current Version? |
+|----------|--------------------------------------------------|--------------------------------------------------------------------------------|------------------------------------------------------------------------|---------------------------------|
+| `* * *`  | new or forgetful user                            | see usage instructions                                                         | learn how to get started and use the app, if I forget                  | yes                             |
+| `* * *`  | user                                             | add a new contact                                                              | track details of people I know                                         | yes                             |
+| `* * *`  | user                                             | delete a contact                                                               | remove contacts that I no longer need                                  | yes                             |
+| `* *`    | impatient user                                   | delete all contacts                                                            |                                                                        | yes                             |
+| `* *`    | user                                             | edit a contact                                                                 |                                                                        | yes                             |
+| `* * *`  | user                                             | find persons by name                                                           | locate details of persons without having to go through the entire list | yes                             |
+| `* * *`  | user                                             | find persons by module taken                                                   | get a list of people that can help me with a particular module         | yes                             |
+| `* * *`  | user stuck on work                               | find persons by task that I need help with                                     | get help for a particular task quickly                                 | yes                             |
+| `* * *`  | user                                             | add a new task                                                                 | record important to-do's                                               | yes                             |
+| `* *`    | user                                             | be able to enter the deadline of my tasks in multiple formats                  | not need to think about the date format when manipulating tasks        | yes                             |
+| `* * *`  | user                                             | delete a task                                                                  | remove contacts that are irrelavant                                    | yes                             |
+| `* * *`  | user                                             | mark a task as complete                                                        |                                                                        | yes                             |
+| `* * *`  | user                                             | mark a task as not complete                                                    |                                                                        | yes                             |
+| `* * *`  | user with multiple deadlines                     | list tasks by deadline                                                         | prioritise what to do first                                            | yes                             |
+| `* *`    | future thinking SOC student                      | prioritize my tasks                                                            | plan what I should be working on first                                 | yes                             |
+| `* *`    | user                                             | edit a task                                                                    | change deadline if it is updated                                       | yes                             |
+| `* * *`  | user with many tasks                             | find a task by name                                                            | locate details of tasks without having to go through the entire list   | yes                             |
+| `* * *`  | user with many tasks                             | find a task by module it belongs to                                            | know what tasks I must do for a particular module                      | yes                             |
+| `* *`    | impatient user                                   | delete all completed tasks at once                                             | conveniently clean my task list                                        | yes                             |
+| `* *`    | SOC student working on a group project           | see all the contacts of those people in my group project                       | easily contact them                                                    | no                              |
+| `* *`    | user                                             | hide private contact details                                                   | minimize chance of someone else seeing them by accident                | no                              |
+| `*`      | future thinking SOC CS Student                   | list tasks and events for the next 7 days                                      | plan what I want to do better                                          | no                              |
+| `*`      | SOC student with many digital files to organize  | link a task to relevant local files (pdf, pptx, etc.)                          | open them quickly                                                      | no                              |
+| `*`      | overwhelmed SOC student                          | filter tasks by whether or not they are graded                                 | decide on what to do first                                             | no                              |
+| `*`      | SOC student                                      | assign an estimated time to complete for each task                             | realistically estimate how much I can accomplish in a day              | no                              |
+| `*`      | forgetful SOC student                            | be greeted (or warned) with a list of urgent/overdue tasks when I open the app | remind myself about them                                               | no                              |
+| `*`      | SOC student who has many venues to keep track of | store the venues associated with my tasks                                      |                                                                        | no                              |
+| `*`      | user with many persons in the address book       | sort persons by name                                                           | locate a person easily                                                 | no                              |
 
 ### Use cases
 
 (For all use cases below, the **System** is the `CodeConnect` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Finding contacts by module**
+**Use case 1: Finding contacts by module**
 
 **MSS**
 
-1.  User requests to find persons taking a specific module.
-2.  CodeConnect requests for module code.
-3.  User types in module code.
-4.  CodeConnect shows a list of persons taking that module.
+1. User requests to find persons taking a specific module.
+2. CodeConnect requests for module code.
+3. User types in module code.
+4. CodeConnect shows a list of persons taking that module.
+
+   Use case ends. 
 
 **Extensions**
 
@@ -412,7 +479,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 3.
 
-**Use case: Mark a task as complete**
+****
+
+**Use case 2: Mark a task as complete**
 
 **MSS**
 
@@ -435,7 +504,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Edit a contact**
+****
+
+**Use case 3: Edit a contact**
 
 **MSS**
 
@@ -458,7 +529,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Delete a person**
+****
+
+**Use case 4: Delete a contact**
 
 **MSS**
 
@@ -481,6 +554,132 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 3.
 
+****
+
+**Use case 5: Add a task**
+
+**MSS**
+
+1. User starts CodeConnect.
+2. User requests to add a task through appropriate command.
+3. CodeConnect adds the task and shows the updated task list.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. User uses wrong syntax/format in command.
+
+    * 2a1. CodeConnect shows an error message with the correct format style.
+      
+      Use case resumes at step 2.
+
+****
+
+**Use case 6: List tasks**
+
+**MSS**
+
+1. User starts CodeConnect.
+2. User requests to see current tasks.
+3. CodeConnect displays the task list.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. User uses wrong syntax in command.
+
+    * 2a1. CodeConnect shows an error message.
+
+      Use case resumes at step 2.
+
+****
+
+**Use case 7: List tasks in the order of the earliest deadline**
+
+**MSS**
+
+1. User starts CodeConnect.
+2. User requests to see current tasks, where tasks with the earlier datelines appear at the top.
+3. CodeConnect displays the updated sorted task list.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. User uses wrong syntax in command.
+
+    * 2a1. CodeConnect shows an error message.
+
+      Use case resumes at step 2.
+
+****
+
+**Use case 8: Delete tasks that are completed**
+
+**Preconditions**
+- User is currently using CodeConnect.
+- User has tasks that are done in the task list.
+
+**MSS**
+
+1. User starts CodeConnect.
+2. User requests to delete completed tasks.
+3. CodeConnect displays the updated task list with only uncompleted tasks left.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. User uses wrong syntax in command.
+
+    * 2a1. CodeConnect shows an error message.
+
+      Use case resumes at step 2.
+
+****
+
+**Use case 9: Find contacts that take the module of the first task in the current task list**
+
+**MSS**
+
+1. User starts CodeConnect.
+2. User requests to find contacts who can help with the current task at the top of the task list.
+3. CodeConnect displays the contacts taking the module of the task at the top of the task list.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. User uses wrong syntax in command.
+
+    * 2a1. CodeConnect shows an error message.
+
+      Use case resumes at step 2.
+
+* 2b. No contacts taking that particular module.
+
+    * 2b1. CodeConnect shows an empty contact list.
+
+      Use case ends.
+
+****
+
+**Use case 10: Clearing contacts**
+
+**Preconditions**
+- User is currently using CodeConnect.
+
+**MSS**
+
+1. User enters a command to clear all contacts from CodeConnect.
+2. CodeConnect sends a message that all contacts are deleted and saves all changes to disk.
+
+   Use case ends.
+
+****
+
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -488,6 +687,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. Command should execute in less than a second.
 5. Product features must work without internet.
+6. Should be able to package into a single JAR file.
+7. JAR file should be at most 100mb and documentation should be at most 15mb per file.
+8. Documentation should include appropriate UML diagrams.
+9. Should be for a single user.
+10. Should be usable without initialising a user account.
+11. No input should terminate CodeConnect, except the `exit` command.
 
 *{More to be added}*
 
@@ -547,6 +752,25 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   * Missing data file:
+    1. Prerequisite: Missing `data/contacts.json` and/or `data/tasks.json`
+    2. Test case: Delete `data/contacts.json` and relaunch CodeConnect.
+       Expected: CodeConnect will launch with some sample contacts.
+    3. Test case: Delete `data/tasks.json` and relaunch CodeConnect.
+       Expected: CodeConnect will launch with some sample tasks.
+    4. Test case: Delete both `data/contatcs.json` and `data/tasks.json`. Relaunch CodeConnect.
+       Expected: CodeConnect will launch with some sample contacts and tasks.
 
-1. _{ more test cases …​ }_
+    * Corrupted data file:
+    1. Prerequisite: Corrupted `data/contacts.json` and/or `data/tasks.json`
+    2. Test case 1: Modify any contact's email to an invalid email in `data/contacts.json` and relaunch CodeConnect.
+       Expected: CodeConnect will launch with no contacts.
+    3. Test case 2: Modify any task's deadline to an invalid format (not in YYYY-MM-DD HH:MM format) in `data/tasks.json` 
+       and relaunch CodeConnect.
+       Expected: CodeConnect will launch with some sample tasks.
+    4. Test case: Perform both the modifications in the above test cases and relaunch CodeConnect.
+       Expected: CodeConnect will launch with some sample contacts and tasks.
+
+
+
+2. _{ more test cases …​ }_

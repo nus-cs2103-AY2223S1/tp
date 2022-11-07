@@ -44,7 +44,7 @@ public class FindContactCommandParser implements Parser<FindContactCommand> {
                     keywordsSpaceSeparated.add(ParserUtil.parseName(keyword).toString());
                 }
             }
-            // ["name", "name name"] -> ["name", "name", "name"]
+            assert(!keywordsSpaceSeparated.isEmpty());
             return new FindContactCommand(new NameContainsKeywordsPredicate(keywordsSpaceSeparated));
 
         } else if (searchPrefix.equals(PREFIX_MODULE)) {
@@ -58,11 +58,12 @@ public class FindContactCommandParser implements Parser<FindContactCommand> {
                     keywordsSpaceSeparated.add(keyword);
                 }
             }
-            // ["mod1", "mod2 mod3"] -> ["mod1", "mod2", "mod3"]
+            assert(!keywordsSpaceSeparated.isEmpty());
             return new FindContactCommand(new ModuleTakenPredicate(keywordsSpaceSeparated));
 
         } else if (searchPrefix.equals(PREFIX_TASK)) {
             Index taskIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_TASK).get());
+            assert(taskIndex.getZeroBased() >= 0);
             return new FindContactCommand(new CanHelpWithTaskPredicate(taskIndex));
         } else {
 
@@ -71,6 +72,12 @@ public class FindContactCommandParser implements Parser<FindContactCommand> {
         }
     }
 
+    /**
+     * Helper method used in parse method.
+     * @param argumentMultimap the input to get the prefix from
+     * @return the prefix from the user input
+     * @throws ParseException if the format is wrong
+     */
     private static Prefix getSearchPrefix(ArgumentMultimap argumentMultimap) throws ParseException {
         List<Prefix> searchablePrefixes = new ArrayList<>();
         searchablePrefixes.add(PREFIX_NAME);

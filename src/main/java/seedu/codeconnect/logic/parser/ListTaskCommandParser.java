@@ -16,7 +16,8 @@ public class ListTaskCommandParser implements Parser<ListTaskCommand> {
      * and returns a ListTaskCommand object for execution.
      */
     public ListTaskCommand parse(String args) {
-        if (args.trim().equals(LIST_BY_DEADLINE_KEYWORD)) {
+        String trimmedArgs = args.trim();
+        if (trimmedArgs.equals(LIST_BY_DEADLINE_KEYWORD)) {
             return new ListTaskCommand(new DeadlineComparator());
         } else {
             return new ListTaskCommand(new DefaultComparator());

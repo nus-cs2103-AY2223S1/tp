@@ -42,7 +42,7 @@ public class FindTaskCommandParser implements Parser<FindTaskCommand> {
                     keywordsSpaceSeparated.add(ParserUtil.parseName(keyword).toString());
                 }
             }
-            // ["name", "name name"] -> ["name", "name", "name"]
+            assert(!keywordsSpaceSeparated.isEmpty());
             return new FindTaskCommand(new TaskContainsKeywordsPredicate(keywordsSpaceSeparated));
 
         } else if (searchPrefix.equals(PREFIX_MODULE)) {
@@ -56,7 +56,7 @@ public class FindTaskCommandParser implements Parser<FindTaskCommand> {
                     keywordsSpaceSeparated.add(ParserUtil.parseModule(keyword).toString());
                 }
             }
-            // ["name", "name name"] -> ["name", "name", "name"]
+            assert(!keywordsSpaceSeparated.isEmpty());
             return new FindTaskCommand(new TaskContainsModulesPredicate(keywordsSpaceSeparated));
 
         } else {
@@ -66,6 +66,12 @@ public class FindTaskCommandParser implements Parser<FindTaskCommand> {
         }
     }
 
+    /**
+     * Helper method used in parse method.
+     * @param argumentMultimap the input to get the prefix from
+     * @return the prefix from the user input
+     * @throws ParseException if the format is wrong
+     */
     private static Prefix getSearchPrefix(ArgumentMultimap argumentMultimap) throws ParseException {
         List<Prefix> searchablePrefixes = new ArrayList<>();
         searchablePrefixes.add(PREFIX_NAME);
