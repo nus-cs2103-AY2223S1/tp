@@ -1300,7 +1300,7 @@ testers are expected to do more *exploratory* testing.
 * [**Launch and shutdown**](#launch-and-shutdown)
   * [Initial launch](#initial-launch)
   * [Saving window preferences](#saving-window-preferences)
-  * [Starting up with missing/corrupted data files](#starting-up-with-missingcorrupted-data-files)
+  * [Exiting RC4HDB](#exiting-rc4hdb)
 * [**Modifying residents**](#modifying-residents)
   * [Adding a resident](#adding-a-resident)
   * [Editing an existing resident](#editing-a-resident)
@@ -1343,8 +1343,6 @@ testers are expected to do more *exploratory* testing.
 
 2. Re-launch the app by double-clicking the jar file.<br>
     Expected: The most recent window size and location is retained.
-
-#### Starting up with missing/corrupted data files
 
 #### Exiting RC4HDB
 
