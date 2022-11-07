@@ -94,9 +94,7 @@ For more commands and their details, refer to the [Features](#features) section 
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   - e.g. in `add d/DESCRIPTION ...`, `DESCRIPTION` is a parameter which can be used as `add d/My Japan Trip`.
-
-* Unlesss stated otherwise, all parameters should contain alphanumerical characters only.
-
+   
 * Items in square brackets are optional.<br>
   - e.g. `d/DESCRIPTION [c/COUNTRY] sd/START_DATE du/DURATION` can be used as `d/My Japan Trip c/Japan sd/2023-04-01 du/14` or as `d/My Japan Trip sd/2023-04-01 du/14`.
 
@@ -167,8 +165,7 @@ alphanumeric characters, spaces and these following special characters: `()&!':.
 
 **:information_source: Notes:**<br>
 
-* You cannot add an itinerary with the same description as an existing itinerary.<br>
-
+* You cannot add an itinerary with the same description as an existing itinerary.
 * Waddle only accepts english letters and spaces for `COUNTRY`, special characters like `'`, `&`, `!` are not allowed.<br>
   - Example of invalid input: `c/Côte d'Ivoire`, `c/中国`
 * The budget input should only contain numbers and one decimal point.<br>
@@ -277,10 +274,10 @@ Here's an example of how the item planning page looks like:
 
 <div style="page-break-after: always"></div>
 
-[Commands exclusive to the planning page](#commands-on-the-planning-page) can help you:
+[Commands exclusive to the planning page](#commands-on-the-item-planning-page) can help you:
 * [add](#adding-an-item--add) new items
 * [edit](#editing-the-details-of-an-item--edit) or [delete](#deleting-an-item--delete) existing items
-* [view](viewing-vacant-time-slots--free) the vacant time slots on your itinerary
+* [view](#viewing-vacant-time-slots--free) the vacant time slots on your itinerary
 * [schedule](#scheduling-an-item--plan) or [unschedule](#unscheduling-an-item--unplan) items
 * export your itinerary via your [clipboard](#copying-to-clipboard--copy) or as a [pdf](#exporting-as-pdf-file--pdf) file
 
@@ -424,8 +421,7 @@ Here's an example of how the copied text would look like: <br>
 
 **:information_source: Note:** <br>
 
-* The generated text includes all days within the itinerary, even if there are no items planned for the day.<br>
-
+* The generated text includes all days within the itinerary, even if there are no items planned for the day.
 * The generated text does not include the items in the Wishlist. For items to be reflected in the generated text, they must be planned.<br>
 
 </div>
@@ -499,7 +495,7 @@ If your changes to the data file makes its format invalid, Waddle will discard a
 | [**Edit Itinerary**](#editing-the-details-of-an-itinerary--edit) | `edit INDEX [n/NAME] [c/COUNTRY] [du/DURATION] [s/START DATE] [p/NUMBER OF WADDLERS] [b/BUDGET]`<br> e.g.,`edit 1 du/15 sd/2025-04-10`                            |
 | [**Delete Itinerary**](#deleting-an-itinerary--delete)           | `delete INDEX`<br> e.g., `delete 3`                                                                                                                               |
 | [**Clear Itineraries**](#clearing-itineraries--clear)            | `clear`                                                                                                                                                           |
-| [**Find Itinerary**](#locating-itineraries-by-name--find)        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find India Trip`                                                                                                        |
+| [**Find Itinerary**](#locating-itineraries-by-description--find)        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find India Trip`                                                                                                        |
 | [**Select Itinerary**](#selecting-an-itinerary--select)          | `select INDEX`<br> e.g., `select 3`                                                                                                                               |
 | [**Exit**](#exiting-waddle--exit)                                | `exit`                                                                                                                                                            |
 
@@ -517,5 +513,5 @@ If your changes to the data file makes its format invalid, Waddle will discard a
 | [**View Vacant Timeslots**](#viewing-vacant-timeslots--free) | `free`                                                                                                   |
 | [**Return to Main Page**](#returning-to-main-page--home)     | `home`                                                                                                   |
 | [**Copy to clipboard**](#copying-to-clipboard--copy)         | `copy`                                                                                                   |
-| [**Export to PDF**](#exporting-to-pdf-file--pdf)             | `pdf`                                                                                                    |
+| [**Export to PDF**](#exporting-as-pdf-file--pdf)             | `pdf`                                                                                                    |
 | [**Exit**](#exiting-waddle--exit)                            | `exit`                                                                                                   |
