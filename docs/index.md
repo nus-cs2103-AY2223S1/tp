@@ -6,7 +6,7 @@ title: FinBook
 [![CI Status](https://github.com/AY2223S1-CS2103T-F11-3/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S1-CS2103T-F11-3/tp/actions)
 [![codecov](https://codecov.io/gh/AY2223S1-CS2103T-F11-3/tp/branch/master/graph/badge.svg?token=NP1449TKJ1)](https://codecov.io/gh/AY2223S1-CS2103T-F11-3/tp)
 
-![Ui](images/Ui_dark.png)
+![Ui](images/updatedUi_2.png)
 
 **FinBook is a desktop app for Financial Assistant (FA) to manage their client details and ensure that your data is
 secured**. With FinBook, you can set a unique password, manage and view client's details, meetings and portfolio as well as many
