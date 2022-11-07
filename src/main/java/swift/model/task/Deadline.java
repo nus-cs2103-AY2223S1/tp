@@ -50,7 +50,6 @@ public class Deadline implements Comparable<Deadline> {
 
     @Override
     public String toString() {
-        System.out.println(DATE_TIME_FORMATTER.format(deadline));
         return DATE_TIME_FORMATTER.format(deadline);
     }
 

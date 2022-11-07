@@ -67,7 +67,6 @@ public class AddTaskCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
         if (toAdd.getDeadline().map(x -> !Deadline.isValidDeadline(x.toString())).orElse(false)) {
-            System.out.println("Error Here");
             throw new CommandException(MESSAGE_INVALID_DATE);
         }
         for (Index index : contactIndices) {
