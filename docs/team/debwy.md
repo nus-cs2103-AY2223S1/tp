@@ -45,5 +45,5 @@ Given below are my contributions to the project.
 
 * **Review/Mentoring**:
     * Authored 11 user-story related issues
-    * Reviewed 14 pull requests 
+    * Reviewed 15 pull requests 
 
