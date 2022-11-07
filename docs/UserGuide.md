@@ -673,6 +673,13 @@ Exits the program
 
 Format: `exit`
 
+--------------------------------------------------------------
+## Future Features to be added (Coming Soon!)
+
+* Add the ability to edit the case sensitivity of module code in task, modules and exams
+* Add the ability to add exam time and exam venue
+* Add more error messages when duplicate prefixes are being used
+
 --------------------------------------------------------------------------
 ## General 
 
