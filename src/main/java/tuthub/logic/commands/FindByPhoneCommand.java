@@ -28,7 +28,7 @@ public class FindByPhoneCommand extends FindByPrefixCommand {
         requireNonNull(model);
         model.updateFilteredTutorList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_TUTORS_LISTED_OVERVIEW, model.getTutorList().size()));
+                String.format(Messages.MESSAGE_TUTORS_LISTED_OVERVIEW, model.getSortedFilteredTutorList().size()));
     }
 
     @Override

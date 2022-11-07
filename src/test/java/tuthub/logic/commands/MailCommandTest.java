@@ -54,12 +54,12 @@ public class MailCommandTest {
         MailCommand mailCommand1 = new MailCommand(invalidIndex);
         assertThrows(CommandException.class,
                 Messages.MESSAGE_INVALID_TUTOR_DISPLAYED_INDEX, () -> mailCommand1.checkValidIndex(
-                        model.getTutorList()));
+                        model.getSortedFilteredTutorList()));
 
         // Valid index
         Index validIndex = Index.fromZeroBased(1);
         MailCommand mailCommand2 = new MailCommand(validIndex);
-        assertAll(() -> mailCommand2.checkValidIndex(model.getTutorList()));
+        assertAll(() -> mailCommand2.checkValidIndex(model.getSortedFilteredTutorList()));
     }
 
     @Test
