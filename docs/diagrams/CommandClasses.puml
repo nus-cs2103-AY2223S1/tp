@@ -46,7 +46,7 @@ package Parsers <<Rectangle>> {
     Class CalculateCommandParser
 }
 
-package BobaBotModel/Person <<Rectangle>> {
+package BobaBotModel/Customer <<Rectangle>> {
     Class MultiSearchPredicate
     Class AllInfoContainsKeywordsPredicate
     Class NameSoundsSimilarPredicate
@@ -62,8 +62,8 @@ class DeleteCommand {
 }
 
 class FindCommand {
-    -predicate: Predicate<Person>
-    -findPersonDescriptor
+    -predicate: Predicate<Customer>
+    -findCustomerDescriptor
 }
 
 class IncreaseCommand {
@@ -84,7 +84,7 @@ class CalculateCommand {
 
 class AllInfoContainsKeywordsPredicate {
     -keyWords: List<String>
-    +test(person: Person): boolean
+    +test(customer: Customer): boolean
 }
 
 class NameSoundsSimilarPredicate {
@@ -95,14 +95,14 @@ class NameSoundsSimilarPredicate {
     {static} -combineAdjacentDigits(code: String): String
     {static} -trimSoundexCode(code: String): String
     -hasMatch(name: String): boolean
-    +test(person: Person): boolean
+    +test(customer: Customer): boolean
 }
 
 class CommandResult {
     -feedbackToUser: String
 }
 
-AddCommand --> "1 toAdd" Person
+AddCommand --> "1 toAdd" Customer
 
 
 BobaBotParser ..|> EditCommandParser: creates >
@@ -119,6 +119,7 @@ BobaBotParser ..|> ListCommand: creates >
 BobaBotParser ..|> ClearCommand: creates >
 BobaBotParser ..|> HelpCommand: creates >
 BobaBotParser ..|> ExitCommand: creates >
+BobaBotParser ..|> CalculatorGuiCommand: creates >
 
 
 FindCommandParser .....|> FindCommand : creates >
