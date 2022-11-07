@@ -1,0 +1,77 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddNoteCommandParser" as AddNoteCommandParser LOGIC_COLOR
+participant "ParserUtil" as ParserUtil << class >> LOGIC_COLOR
+participant "a:AddNoteCommand" as AddNoteCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Person" as Person MODEL_COLOR
+end box
+
+[-> LogicManager : execute("addNote 1 note/Good at Java")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("addNote 1 note/Good at Java")
+activate AddressBookParser
+
+create AddNoteCommandParser
+AddressBookParser -> AddNoteCommandParser
+activate AddNoteCommandParser
+
+AddNoteCommandParser --> AddressBookParser
+deactivate AddNoteCommandParser
+
+AddressBookParser -> AddNoteCommandParser : parse("1 note/Good at Java")
+activate AddNoteCommandParser
+
+AddNoteCommandParser -> ParserUtil : parseNote("Good at Java")
+activate ParserUtil
+
+ParserUtil --> AddNoteCommandParser : note
+deactivate ParserUtil
+
+create AddNoteCommand
+AddNoteCommandParser -> AddNoteCommand
+activate AddNoteCommand
+
+AddNoteCommand --> AddNoteCommandParser : a
+deactivate AddNoteCommand
+
+AddNoteCommandParser --> AddressBookParser : a
+deactivate AddNoteCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddNoteCommandParser -[hidden]-> AddressBookParser
+destroy AddNoteCommandParser
+
+AddressBookParser --> LogicManager : a
+deactivate AddressBookParser
+
+LogicManager -> AddNoteCommand : execute()
+activate AddNoteCommand
+
+AddNoteCommand -> Person : mergeNote(note)
+activate Person
+
+Person --> AddNoteCommand
+deactivate Person
+
+create CommandResult
+AddNoteCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddNoteCommand
+deactivate CommandResult
+
+AddNoteCommand --> LogicManager : result
+deactivate AddNoteCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
+
