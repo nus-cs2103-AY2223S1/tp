@@ -17,12 +17,16 @@ Given below are my contributions to the project.
       * What it does: Allows the user to add, edit and delete any students from the student list.
       * Highlights: This enhancement affects existing command as it was similar to the `add`, `edit` and `delete` commands that AddressBook already has.
         Thus, there was a need to abstract out similar components and adhere to the DRY principle.
+  * Added additional fields and modified existing fields of Student.
+      * `StudentId`
+      * `Phone`
+      * `TelegramHandle`
+      * `Grade`
+      * `Attendance`
+      * `Participation`
   * Added the ability to mark and unmark reminders.
       * What it does: Allows the user to mark their reminder as done, or unmark their reminder as undone.
       * Justification: This feature makes our product more attractive as users can visualise which tasks they have done or are yet to be done.
-
-* **Project management**:
-    * to be added soon
 
 * **Documentation**:
     * User Guide:
@@ -30,6 +34,7 @@ Given below are my contributions to the project.
         * Added documentation for the following sections:
           * `Navigating the User Guide`
           * `Navigating the GUI`
+          * `Add Student Feature`
         * Added documentation for the following features:
           * to be added soon
         * Added visuals
@@ -38,7 +43,3 @@ Given below are my contributions to the project.
 
 * **Contributions to team-based tasks**:
     * to be added soon
-
-* **Review/mentoring contributions**: to be added soon
-
-* **Contributions beyond the project team**: to be added soon
