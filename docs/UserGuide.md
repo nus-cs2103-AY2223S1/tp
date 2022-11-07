@@ -1,8 +1,8 @@
 ---
-layout: page
-title: SETA User Guide
+layout: page title: SETA
 ---
 
+=======
 User Guide
 ======
 SETA is a **desktop application for CS2103T Teaching Assistants** to track their students’ and tutorials’ details, and
@@ -31,6 +31,7 @@ tutorials and note down questions more effectively than traditional GUI apps.
             * Adding a tutorial: [`addtut`](#adding-a-tutorial--addtut)
             * Deleting a tutorial: [`deletetut`](#deleting-a-tutorial--deletetut)
             * Marking a tutorial: [`marktut`](#marking-a-tutorial-marktut)
+            * Unmarking a tutorial: [`unmarktut`](#unmarking-a-tutorial-unmarktut)
         * **Clear**: [`clear`](#clearing-all-entries-clear)
         * **Exiting the program**: [`exit`](#exiting-the-program--exit)
     * **[FAQ](#faq)**
