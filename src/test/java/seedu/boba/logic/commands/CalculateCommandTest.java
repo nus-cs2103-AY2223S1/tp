@@ -44,7 +44,7 @@ public class CalculateCommandTest {
 
     @Test
     public void execute_validExpression_success() {
-        String expectedMessage = CalculateCommand.FEEDBACK_HEADER + "1+1 = 2.00";
+        String expectedMessage = CalculateCommand.FEEDBACK_HEADER + "1+1 = 2";
         String exp = "1+1";
         CalculateCommand calculateCommand = new CalculateCommand(exp);
 
@@ -62,6 +62,14 @@ public class CalculateCommandTest {
     @Test
     public void execute_emptyExpression_throwsException() {
         String exp = "  ";
+        CalculateCommand calculateCommand = new CalculateCommand(exp);
+
+        assertCommandFailure(calculateCommand, bobaBotModel, Messages.MESSAGE_INVALID_ARITHMETIC_EXPRESSION);
+    }
+
+    @Test
+    public void execute_unsupportedOperator_fail() {
+        String exp = "2^^30";
         CalculateCommand calculateCommand = new CalculateCommand(exp);
 
         assertCommandFailure(calculateCommand, bobaBotModel, Messages.MESSAGE_INVALID_ARITHMETIC_EXPRESSION);

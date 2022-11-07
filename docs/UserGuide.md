@@ -577,7 +577,7 @@ After executing the CalculateCommand:
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the CalculateCommand:**<br>
-* Please do not enter spaces, e.g.`calc 5 + 2 * (4 - 2)` does not work.
+* It supports spaces between numbers, operators and parentheses, e.g.`calc 5 + 2 * (4 - 2)` works too.
 </div>
 <div style="page-break-after: always;"></div>
 
@@ -672,7 +672,7 @@ _Details coming soon ..._
 | **Find**       | `find KEYWORD [MORE_KEYWORDS]` <br> e.g., `find alex david`                                                                                                                                                                                                                          |
 | **Undo**       | `undo`                                                                                                                                                                                                                                                                               |
 | **Redo**       | `redo`                                                                                                                                                                                                                                                                               |
-| **Calculate**  | `calc {arithmetic expression}` <br> e.g. `calc 2*(1+1)`                                                                                                                                                                                                                              |
+| **Calculate**  | `calc {arithmetic expression}` <br> e.g. `calc 5 + 2 * (4 - 2)`                                                                                                                                                                                                                      |
 | **Calculator** | `calc-gui`                                                                                                                                                                                                                                                                           |
 | **Clear**      | `clear`                                                                                                                                                                                                                                                                              |
 | **List**       | `list`                                                                                                                                                                                                                                                                               |
