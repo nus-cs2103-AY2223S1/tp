@@ -1264,3 +1264,32 @@ testers are expected to do more *exploratory* testing.
 | Persons themselves | Links patients with their appointments and bills |
 
  HealthContact allows more entities and allows the users to link among these entities.
+
+
+* Delete feature
+  * DeleteCommand in AB3 versus DeletePatientCommand, DeleteAppointmentCommand and DeleteBillCommand in HealthContact
+  
+| AB3 (DeleteCommand)            | HealthContact                                                                                                                            |
+|--------------------------------|------------------------------------------------------------------------------------------------------------------------------------------|
+| Deletes persons only           | Deletes patients, appointments and bills separately                                                                                      |
+| Deletes persons only           | Deleting patients will also delete patient's appointments and bills; Deleting appointments will also delete the bill of the appointment. |
+
+* Undo and Redo feature
+  * UndoCommand in HealthContact is a new command which AB3 does not have.
+  * RedoCommand in HealthContact is a new command which AB3 does not have.
+  * They have to be implemented in the way such that the undo and redo commands are able to undo and redo the commands that are related to the respective entities, i.e. Patient, Appointment and Bill
+  * They have to cater to the edge cases in Sorting, Selecting and Listing commands.
+
+* Sort feature
+  * SortPatientCommand, SortAppointmentCommand and SortBillCommand in HealthContact are new commands which AB3 does not have.
+  * They have to be implemented in the way such that the sort commands are able to sort the respective entities, i.e. Patient, Appointment and Bill
+  * They are implemented in a way such that they are able to sort fields case-insensitively.
+
+* Select feature
+  * SelectPatientCommand, SelectAppointmentCommand and SelectBillCommand in HealthContact are new commands which AB3 does not have.
+  * They have to be implemented in the way such that the select commands are able to select the respective entities, i.e. Patient, Appointment and Bill
+  * They are implemented in a way such that select commands can be done by selecting the index of the entity in the list of the respective entity.
+
+* Set bill payment status feature
+  * SetPaidCommand and SetUnpaidCommand in HealthContact are new commands which AB3 does not have.
+  * They have to be implemented in the way such that the setpaid and setunpaid commands are able to set the Bill as paid or unpaid.
