@@ -188,11 +188,15 @@ Format for each variant of `sort`:
 
 1. `ProjectName`: `sort [-p]`
 
-![sort -p](images/sort-p.png)
+   From the uncompleted list, we can see that the project names are sorted (ignoring cases).
+
+   ![sort -p](images/sort-p.png)
 
 2. `ProjectStatus`: `sort -s`
 
-![sort -s](images/sort-s.png)
+   We can see that those who are yet to start are gathered on top of the uncompleted list.
+
+   ![sort -s](images/sort-s.png)
 
 <div markdown="block" class="alert alert-info">
 
@@ -230,11 +234,12 @@ Format: `add [-s] i/STUDENT_ID n/STUDENT_NAME p/FYP_NAME e/EMAIL [t/TAG]…​`
 A student can have any number of tags! (including 0)
 </div>
 
-![Adding a student](images/add-student.png)
-
 Examples:
 
 * `add -s i/A0123456G n/Jane Doe p/Neural Network e/e0123456@u.nus.edu t/NN t/Difficult`
+
+  ![Adding a student](images/add-student.png)
+
 * `add -s i/A0987654X n/Alex Yeoh p/Data Caching e/e09876567@u.nus.edu`
 * `add i/A0987654X n/Alex Yeoh p/Data Caching e/e09876567@u.nus.edu`
 
@@ -251,13 +256,18 @@ Removes a FYP from the FYP manager. The specified student ID must exist in the F
 
 Format: `delete [-s] i/STUDENT_ID`
 
-![Before deleting student](images/delete-student-1.png)
-![After deleting student](images/delete-student-2.png)
-
 Examples:
 
 * `delete -s i/A0987654X`
 * `delete i/A0987654X`
+
+After running `add -s i/A0987654X n/Alex Yeoh p/Data Caching e/e09876567@u.nus.edu` from the previous part, we have Alex Yeoh as a new student in the list.
+
+![Before deleting student](images/delete-student-1.png)
+
+Running either of the example delete student command above will result in this state.
+
+![After deleting student](images/delete-student-2.png)
 
 #### 3.2.3. Marking project status: `mark`
 
@@ -273,12 +283,15 @@ Format: `mark i/STUDENT_ID s/STATUS`
 * Parsing of status is  *case-sensitive*: <br>
     * **DONE** instead of *Done*, *done*, etc.
 
-![Marking a student](images/mark-command.png)
-
 Examples:
 
 * `mark i/A0123456G s/DONE`
 * `mark i/A0234567H s/YTS`
+* `mark i/A0210283B s/IP`
+
+  From the previous example, we have Charlotte Oliveiro as one of the students who have completed the project. Suppose there are new things for Charlotte to do, which requires us to change the project status to IP (In Progress). The mark command will result in the state below.
+
+  ![Marking a student](images/mark-command.png)
 
 #### 3.2.4. Searching keyword: `find`
 
@@ -294,19 +307,27 @@ Format for each variant of `find`:
 
 1. `ProjectName`: `find [-p] KEYWORD/[KEYWORD2/KEYWORD3/…]`
 
-![find -p](images/find-p.png)
+   Example: `find -p neu/gen` finds all project names that contain at least one of the keywords, `neu` or `gen`.
+
+   ![find -p](images/find-p.png)
 
 2. `StudentId`: `find -i KEYWORD/[KEYWORD2/KEYWORD3/…]`
 
-![find -i](images/find-i.png)
+   Example: `find -i A01` finds all students with student ID containing `A01`.
+
+   ![find -i](images/find-i.png)
 
 3. `StudentName`: `find -n KEYWORD/[KEYWORD2/KEYWORD3/…]`
 
-![find -n](images/find-n.png)
+   Example: `find -n Alex/Vivi/roy` finds all students with name that contains either `Alex`, `Vivi`, or `roy`. Note that the command is case-insensitive, therefore the capitalization does not matter.
+
+   ![find -n](images/find-n.png)
 
 4. `Tags`: `find -t KEYWORD/[KEYWORD2/KEYWORD3/…]`
 
-![find -t](images/find-t.png)
+   Example: `find -t colleague/fri/fam` finds all students with tag that contains either `colleague`, `fri`, or `fam`.
+
+   ![find -t](images/find-t.png)
 
 <div markdown="block" class="alert alert-info">
 
@@ -324,11 +345,6 @@ Format for each variant of `find`:
 * Projects matching at least one keyword will be returned (i.e. `OR` search),
   e.g. `find -t neural network/tree` will match project tags containing `neural network` or `decision tree`.
 
-Examples:
-
-* `find -t Neural Network` searches for all projects with at least one tag containing `Neural Network`.
-* `find -p Neural/Network / Data` searches for all projects with `Neural` or `Network` or `Data` in their titles.
-
 Remark:
 
 * A neat alternative to `list`: `find -i a` or `find -i /a` will function the same way as `list` and returns a list
@@ -342,10 +358,18 @@ Format: `edit STUDENT_ID [n/STUDENT_NAME] [p/FYP_NAME] [e/EMAIL] [t/TAG]…​`
 
 * At least one of the optional fields must be present.
 
-![Before editing student](images/edit-student-1.png)
-![After editing student](images/edit-student-2.png)
-
 Examples:
+
+* `edit A0210283B n/Not Charlotte` sets the name of the student with student ID `A0210283B` into
+  `Not Charlotte`.
+
+  Before:
+
+  ![Before editing student](images/edit-student-1.png)
+
+  After:
+
+  ![After editing student](images/edit-student-2.png)
 
 * `edit A0123456G p/Food Genetics` sets the project name of the student with student ID `A0123456G` into
   `Food Genetics`.
@@ -363,10 +387,15 @@ Format: `add -d i/STUDENT_ID n/DEADLINE_NAME d/DEADLINE_DATETIME`
 
 Example:
 
-* `add -d i/A0123456G n/Random Task d/23-10-2022 23:59`
+* `add -d i/A0272758C n/Buy Prof some coffee d/06-11-2022 13:30`
 
-![Before adding deadline](images/add-deadline-1.png)
-![After adding deadline](images/add-deadline-2.png)
+  Before:
+  
+  ![Before adding deadline](images/add-deadline-1.png)
+  
+  After:
+
+  ![After adding deadline](images/add-deadline-2.png)
 
 #### 3.3.2 Removing a student's deadline: `delete -d`
 
