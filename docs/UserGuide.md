@@ -580,6 +580,7 @@ Example:
 
 </div>
 
+Using the original set of sample data without any modification.
 The following picture shows the display list before the match command is executed.
 
 ![before match command](images/BeforeMatch.png)
@@ -587,6 +588,24 @@ The following picture shows the display list before the match command is execute
 The following picture shows the display list after `match 1` is executed.
 
 ![after match command](images/AfterMatch.png)
+
+To have a deeper understanding of what it does, take a look at the two illustrations below. Take the four pets Shiro,
+Ashy, Page and Snowy as examples. Plum and Buddy are ignored fore simplicity.
+
+**We assign a score to each pet according to how many attributes they have are the same as requested, and how much
+deviation, if they don’t fit, the attributes have from expected values.** The higher the score, the more suitable the pet.
+In this table, Shiro has all requested attributes except its price. However, its price is too far away from the
+acceptable range fifty to ninety, so a very low score. Ashy does not satisfy any requirement, so another low score. In
+the next row, some of Page’s attributes fit and the others do not, so an intermediate score. Finally, although Snowy is
+a little bit old, it satisfies all other requirements. Because the difference between its age and the expected age is
+not too big, it has a high overall score.
+
+![img.png](images/MatchCommandIllustration1.png)
+
+The next thing our app will do is sort the pets by their scores. This sorted list will be displayed on the screen. Now,
+as a smart pet sale coordinator who wants to maximise utility and profit, you may want to sell Snowy to this customer.
+
+![img.png](images/MatchCommandIllustration2.png)
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
