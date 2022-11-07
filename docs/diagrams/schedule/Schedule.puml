@@ -4,11 +4,6 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-
-package Module {
-    Class Module
-}
-
 package Schedule {
     show member
     Class Schedule {
@@ -40,9 +35,6 @@ package Schedule {
 Schedule *--> "1" Venue
 Schedule *--> "1" ClassType
 Schedule *--> "1" Weekdays
-
-Module -> "*" Schedule
-
 
 @enduml
 
