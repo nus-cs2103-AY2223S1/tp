@@ -250,7 +250,7 @@ Examples:
 
 `find m/CS2103T` returns this:
 
-![findTasks](images/findTaskModule.png)
+![findTasks](images/findTask.png)
 
 <div markdown="block" class="alert alert-info">
 
