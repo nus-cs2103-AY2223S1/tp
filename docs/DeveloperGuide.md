@@ -151,7 +151,7 @@ diagram}
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
-<img src="images/ParserClasses.png" width="600"/>
+![Parser Class](images/diagrams/ParserClasses.png)
 
 How the parsing works:
 
@@ -640,6 +640,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+**Use case: Sort StudMap**
+
+**MSS**
+
+1. TA requests to sort list by specified Attribute and Order
+2. StudMap sorts list
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given Attribute is invalid
+
+    * 1a1. StudMap shows an error message.
+
+      Use case ends.
+
+* 1b. The given Order is invalid
+
+    * 1b1. StudMap shows an error message.
+
+      Use case ends.
+
 ## Non-Functional Requirements
 
 1. The software should work on any [**mainstream OS**](#mainstream-os) as long as it has **Java 11** or above installed.
@@ -694,14 +717,67 @@ testers are expected to do more *exploratory* testing.
    a. Prerequisites: List all students using the `list` command. Multiple students in the list.<br><br>
 
    b. Test case: `delete 1`<br>
-   Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
-   Timestamp in the status bar is updated.<br><br>
+   Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.<br><br>
 
    c. Test case: `delete 0`<br>
    Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.<br><br>
 
    d. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
    Expected: Similar to previous.<br><br>
+
+## Sorting student list
+
+1. Sorting the student list.
+
+   a. Prerequisites: List all students using the `list` command. Multiple students in the list.<br><br>
+
+   b. Test case: `sort asc a/name`<br>
+   Expected: Student list sorted by name in ascending alphabetical order. Details of the sort done shown in the status message.<br><br>
+
+   c. Test case: `sort asc a/participation`<br>
+   Expected: Student list sorted by participation rate in ascending order. Details of the sort done shown in the status message.<br><br>
+
+   d. Test case: `sort asc`<br>
+   Expected: An error message for "No attribute specified" shown in the status message.<br><br>
+
+   e. Test case: `sort asc a/gender`<br>
+   Expected: An error message for "Invalid attribute" shown in the status message.<br><br>
+
+## Recording participation for a student
+
+1. Recording the participation of a student.
+
+   a. Prerequisites: At least one student in the list.<br><br>
+
+   b. Test case: `participate 1 yes p/P01`<br>
+   Expected: Record student at index 1 as having participated for participation component `P01`. Details of the participation recorded shown in the status message.<br><br>
+
+   c. Test case: `participate 3 yes p/P01`<br>
+    Suppose that there is no student in index 3
+
+   Expected: An error message for "Invalid student index" shown in the status message.<br><br>
+
+   d. Test case: `participate 1 yes p/$01`<br>
+   Expected: An error message for detailing the constraint for naming of participation component shown in the status message.<br><br>
+
+## Removing participation for a student
+
+1. Removing the participation of a student.
+
+   a. Prerequisites: At least one student in the list.<br><br>
+
+   b. Test case: `unparticipate 1 p/P01`<br>
+   Expected: Remove participation component `P01` for student at index 1. Details of the participation removed shown in the status message.<br><br>
+
+   c. Test case: `unparticipate 3 p/P01`<br>
+   Suppose that there is no student in index 3
+
+   Expected: An error message for "Invalid student index" shown in the status message.<br><br>
+
+   d. Test case: `unparticipate 1 p/P10`<br>
+   Suppose that there is no participation component `P10` for student in index 1
+
+   Expected: An error message for "Participation component P10 not found" shown in the status message.<br><br>
 
 ---
 
