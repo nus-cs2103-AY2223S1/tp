@@ -16,8 +16,8 @@ Given below are my contributions to the project.
 *  Refer to my [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=AY2223S1-CS2103T-W10-3&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&tabAuthor=DarrenCsAcc&tabRepo=AY2223S1-CS2103T-W10-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 * **Project management**:
-* Renamed and refactored tags to major
-* Renamed and refactored usage of address name to scholarship name.
+* Renamed and refactored tags to major[Here](https://github.com/AY2223S1-CS2103T-W10-3/tp/commit/fc9a571e1991a2c78b982fffe1a0129eb36d0050)
+* Renamed and refactored usage of address name to scholarship name.[Here](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/55/commits/ff397f429093cd5568b4afb5e8d548d7ab1e9391)
 * Designed TrackAScholar logo
 
 * **Enhancements to existing features**: 
