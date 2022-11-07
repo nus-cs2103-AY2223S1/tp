@@ -267,8 +267,7 @@ Step 1. The user types `find n/bob t/friend` and presses enter.
 
 Step 2. The `find n/bob` will be parsed by `AddressBook#parseCommand()` which will return a `FindCommandParser` which also creates a `PersonMatchesPredicate`.
 
-Step 3. The `FindCommandParser` will parse `n/bob t/friend` using `parse()` and then set the `namesList` of the `PersonMatchesPredicate` to a list of strings containing `bob` and sets the `tagSet` of `PersonMatchesPredicate` to set of strings containing `friend`.
-
+Step 3. The `FindCommandParser` will parse `n/bob t/friend` using `parse()`. `parse()` creates a `List` of strings from the arguments of `n/` and a `Set` of strings from the arguments of `t/`. It then set the `namesList` of the `PersonMatchesPredicate` to the list of strings sets the `tagSet` of `PersonMatchesPredicate` to the set of strings.
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** `FindCommand` supports an "all fields matched" mode and "any fields matched" for module codes and tags. This means the setting of the modulesSet and tagsSet works differently than the other fields.
 </div>
