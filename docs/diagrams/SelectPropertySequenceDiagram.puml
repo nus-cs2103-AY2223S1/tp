@@ -1,0 +1,89 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":CondoneryParser" as CondoneryParser LOGIC_COLOR
+participant ":SelectPropertyCommandParser" as SelectPropertyCommandParser LOGIC_COLOR
+participant "s:SelectPropertyCommand" as SelectPropertyCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+box Ui UI_COLOR_T1
+participant "filteredProperties:ObservableList<Property>" as filteredProperties UI_COLOR
+participant "filteredClients:ObservableList<Client>" as filteredClients UI_COLOR
+end box
+
+[-> LogicManager : execute("select -p 1")
+activate LogicManager
+
+LogicManager -> CondoneryParser : parseCommand("select -p 1")
+activate CondoneryParser
+
+create SelectPropertyCommandParser
+CondoneryParser -> SelectPropertyCommandParser
+activate SelectPropertyCommandParser
+
+SelectPropertyCommandParser --> CondoneryParser
+deactivate SelectPropertyCommandParser
+
+CondoneryParser -> SelectPropertyCommandParser : parse("1")
+activate SelectPropertyCommandParser
+
+create SelectPropertyCommand
+SelectPropertyCommandParser -> SelectPropertyCommand
+activate SelectPropertyCommand
+
+SelectPropertyCommand --> SelectPropertyCommandParser : s
+deactivate SelectPropertyCommand
+
+SelectPropertyCommandParser --> CondoneryParser : s
+deactivate SelectPropertyCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+SelectPropertyCommandParser -[hidden]-> CondoneryParser
+destroy SelectPropertyCommandParser
+
+CondoneryParser --> LogicManager : s
+deactivate CondoneryParser
+
+LogicManager -> SelectPropertyCommand : execute()
+activate SelectPropertyCommand
+
+SelectPropertyCommand -> Model : getFilteredPropertyList()
+activate Model
+Model --> SelectPropertyCommand : filteredProperties
+deactivate Model
+
+SelectPropertyCommand -> filteredProperties : get(0)
+activate filteredProperties
+filteredProperties --> SelectPropertyCommand : propertyToSelect
+deactivate filteredProperties
+
+SelectPropertyCommand -> Model : updateFilteredPropertyList(predicate)
+activate Model
+Model -> filteredProperties : setPredicate(predicate)
+deactivate Model
+
+SelectPropertyCommand -> Model : updateFilteredClientList(predicate)
+activate Model
+Model -> filteredClients : setPredicate(predicate)
+deactivate Model
+
+create CommandResult
+SelectPropertyCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> SelectPropertyCommand
+deactivate CommandResult
+
+SelectPropertyCommand --> LogicManager : result
+deactivate SelectPropertyCommand
+
+[<--LogicManager
+deactivate LogicManager
+
+@enduml

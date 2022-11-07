@@ -1,12 +1,10 @@
 package seedu.condonery.ui;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -81,16 +79,16 @@ public class HelpWindow extends UiPart<Stage> {
     }
 
     private void renderHtml() {
-        try {
-            Stream<String> lines = Files.lines(
-                Paths.get(this.getClass().getResource("/html/UserGuide.html").toURI())
-            );
-            WebEngine webEngine = webView.getEngine();
-            webEngine.loadContent(lines.collect(Collectors.joining("\n")));
-            webEngine.setUserStyleSheetLocation(this.getClass().getResource("/html/style.css").toString());
-        } catch (URISyntaxException | IOException e) {
+        InputStream lines = this.getClass().getResourceAsStream("/html/UserGuide.html");
+        if (lines == null) {
             logger.warning("User Guide not found!");
+            return;
         }
+        WebEngine webEngine = webView.getEngine();
+        webEngine.loadContent(new BufferedReader(new InputStreamReader(lines))
+            .lines()
+            .collect(Collectors.joining("\n")));
+        webEngine.setUserStyleSheetLocation(this.getClass().getResource("/html/style.css").toString());
     }
 
     /**
