@@ -244,7 +244,7 @@ step-by-step!
 
 - PennyWise will always take the **LAST OCCURRENCE** of a command identifier should there be more than 1 of the same command
   identifier in a given command. <br/>
-  e.g. PennyWise will add the following `Income` with the description: "October Allowance" upon running the following command.
+  e.g. PennyWise will add the following **Income** with the description: "October Allowance" upon running the following command.
   <pre>
     <code>
         add t/i d/Monthly Allowance a/200.00 da/01-10-2022 c/Allowance d/Oct Allowance d/October Allowance
