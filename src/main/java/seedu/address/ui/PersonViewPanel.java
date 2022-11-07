@@ -116,8 +116,8 @@ public class PersonViewPanel extends UiPart<Region> {
         nok.setOnMouseClicked(event -> checkClickType(event, PREFIX_NEXT_OF_KIN));
         if (person.getMedications().size() > 0) {
             medications.getChildren().add(new Label(person.getMedicationString()));
-            medications.setOnMouseClicked(event -> checkClickType(event, PREFIX_MEDICATION));
         }
+        medications.setOnMouseClicked(event -> checkClickType(event, PREFIX_MEDICATION));
         identificationIcon.setImage(identificationImage);
         helplineIcon.setImage(helplineImage);
         pillIcon.setImage(pillImage);

@@ -231,10 +231,13 @@ This section describes some noteworthy details on how certain features are imple
 ### Add Command
 The `add` command is used to create a new patient in the app and set the necessary fields for that patient,
 namely they are the: `Name`, `Phone`, `Email`, `NextOfKin`, `PatientType`,`HospitalWing`, `FloorNumber`, `WardNumber`,
-`Medications` and `UpcomingAppointment` fields. Note that the `PastAppointment` field cannot be updated in this command,
-that is done in the [`Appt`](#pastappointment) and [`DelAppt`](#delappt-delete-appointment-command) commands.
+`Medication`(Long Term Medication) and `UpcomingAppointment` fields. Note that the `PastAppointment` field cannot be 
+updated in this command, that is done in the [`Appt`](#pastappointment) and 
+[`DelAppt`](#delappt-delete-appointment-command) commands.
 
-When `add <<args>>` is inputted, the UI calls the `LogicManager` which then calls the `AddressBookParser` to parse the
+The format for the `add` command can be seen [here](https://ay2223s1-cs2103t-w16-3.github.io/tp/UserGuide.html#adding-a-patient-add).
+
+When `add ...` is inputted, the UI calls the `LogicManager` which then calls the `AddressBookParser` to parse the
 input. This then creates an instance of the `AddCommandParser` to parse the `args` via the respective static
 `ParserUtil` functions. If duplicate parameters are inputted (e.g. `add n/Joe n/Mel`), only the last instance is taken,
 similar to how [`edit`](#edit-command), [`appt`](#pastappointment) and [`consult`](#consult-command) are executed.
@@ -252,11 +255,15 @@ The following sequence diagram shows how the argument parsing for the `add` comm
 
 ### Edit Command
 
-The `edit` command is used to change the information of an existing patient in the app. The fields supported are: `Name`, `Phone`, `Email`, `NextOfKin`, `PatientType`,`HospitalWing`, `FloorNumber`, `WardNumber`,
-`Medications` and `UpcomingAppointment`. Note that the `PastAppointment` field cannot be updated in this command,
-that is done in the [`Appt`](#pastappointment) and [`DelAppt`](#delappt-delete-appointment-command) commands.
+The `edit` command is used to change the information of an existing patient in the app. The fields supported are: 
+`Name`, `Phone`, `Email`, `NextOfKin`, `PatientType`,`HospitalWing`, `FloorNumber`, `WardNumber`,
+`Medication`(Long Term Medications) and `UpcomingAppointment`. Note that the `PastAppointment` field cannot be updated 
+in this command, that is done in the [`Appt`](#pastappointment) and 
+[`DelAppt`](#delappt-delete-appointment-command) commands.
 
-When `edit INDEX <<args>>` is inputted, the UI calls the `LogicManager` which then calls the `AddressBookParser` to parse the
+The format for the `edit` command can be seen [here](https://ay2223s1-cs2103t-w16-3.github.io/tp/UserGuide.html#editing-a-patient-edit).
+
+When `edit INDEX ...` is inputted, the UI calls the `LogicManager` which then calls the `AddressBookParser` to parse the
 input. This then creates an instance of the `EditCommandParser` to parse the `INDEX` and `args` via the respective static
 `ParserUtil` functions. If duplicate parameters are inputted (e.g. `add n/Joe n/Mel`), only the last instance is taken,
 similar to how [`add`](#add-command), [`appt`](#pastappointment) and [`consult`](#consult-command)  are executed.
@@ -302,7 +309,7 @@ constitute of sensitive patient data. Apart from `date`, `PastAppointment`s also
     input separately with a `m/` prefix.
   * Exposed using the `PastApointment#getMedication()` method for use in `JsonAdaptedPastAppointment`.
 
-The following Sequence Diagram represents the creation of a `PastAppointment` using a `PastAppointmentCommand`:
+The following Sequence Diagram represents the creation of a `PastAppointment` using a `CreatePastAppointmentCommand`:
 
 ![PastAppointmentCommandSequenceDiagram](images/PastAppointmentSequenceDiagram.png)
 
@@ -328,7 +335,7 @@ m/paracetamol`. The `PastAppointment` count is now at `1`.
 
 ![AppointmentObjectDiagramWithPastAppt](images/AppointmentObjectDiagramWithPastAppt.png)
 
-Step 3. The medical assistant creates an `UpcomingAppointment` for John by executing `edit upcoming/16-06-2022`. John
+Step 3. The medical assistant creates an `UpcomingAppointment` for John by executing `edit ua/16-06-2022`. John
 now has an `UpcomingAppointment` associated with him.
 
 ![AppointmentObjectDiagramWithBothAppt](images/AppointmentObjectDiagramWithBothAppt.png)
