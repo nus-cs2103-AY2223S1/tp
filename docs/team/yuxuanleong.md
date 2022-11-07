@@ -34,29 +34,25 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=yuxuanleong&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=functional-code~test-code~other~docs&tabOpen=true&tabType=authorship&tabAuthor=yuxuanleong&tabRepo=AY2223S1-CS2103T-T08-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=functional-code~test-code~other~docs&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 * **Project management**:
-  * Released v1.2, v1.3.1 on Github
+  * Released v1.2, v1.3.1 and v1.4 on Github
   * Created issues and tagged them for easy reference for my teammates
 
 * **Enhancements to existing features**:
   * Made the headers "Students", "Questions", "Tutorials" in the Main Window of the UI uneditable to improve user
     experience.
-  *
 
 * **Documentation**:
   * User Guide:
-    * Added Table of Contents for easy navigation [#25]().
-    * Added documentation for the features `deletestu`, `attendance`, `helpstu` and `unhelpstu` [#25]()
-    * Added screenshots each features [#25]().
+    * Added Table of Contents for easy navigation [#25](https://github.com/AY2223S1-CS2103T-T08-4/tp/pull/25)
+    * Added documentation for the features `deletestu`, `attendance`, `helpstu` and `unhelpstu` [#25](https://github.com/AY2223S1-CS2103T-T08-4/tp/pull/25)
+    * Added screenshots each features [#230](https://github.com/AY2223S1-CS2103T-T08-4/tp/pull/230)
   * Developer Guide:
-    * Added implementation details of the `deletestu` feature [#125]().
-    * Added use cases for the above-mentioned 4 features [#25]().
-
+    * Added implementation details of the `attendance` feature and its sequence diagram [#125](https://github.com/AY2223S1-CS2103T-T08-4/tp/pull/125)
+    * Update Logic component [#125](https://github.com/AY2223S1-CS2103T-T08-4/tp/pull/125)
+    * Added use cases for the above-mentioned 4 features [#25](https://github.com/AY2223S1-CS2103T-T08-4/tp/pull/25)
+    
 * **Community**:
   * Helped to review PRs and suggested changes.
     * [#118](https://github.com/AY2223S1-CS2103T-T08-4/tp/pull/118)
     * [#115](https://github.com/AY2223S1-CS2103T-T08-4/tp/pull/115)
     * [#50](https://github.com/AY2223S1-CS2103T-T08-4/tp/pull/50)
-
-
-* **Tools**:
-  * to be added.
