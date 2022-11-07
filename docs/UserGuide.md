@@ -300,9 +300,6 @@ Examples:
 
 Exports the displayed list from InternConnect.
 
-<div style="page-break-after: always;"></div>
-
-
 Format: `export`
 
 * Exported JSON file will be stored in `data/export/` folder
