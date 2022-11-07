@@ -55,16 +55,17 @@ Given below are my contributions to the project.
   * Updated Ui.png.
   * Improved code coverage.
   * Maintained issue trackers.
+  * Fixed bugs after practical examination dry run pull request #162, #168, #182, #186.
 
 * **Project management**:
-  * Added Github tags, milestones, assignee.
-  * Used Github issue tracker.
-  * Followed the branching workflow.
+  * Added GitHub tags, milestones, assignee.
+  * Used GitHub issue tracker.
+  * Followed the forking workflow.
   * Contributed to meetings by sharing screen and facilitating discussions.
 
 * **Review/mentoring contributions**:
-  * Team members' PR reviews (with non-trivial review comments): pull request #135, #133, #130, #129, #122, #112
-    ,#111, #110, #104, #102, #95, #79, #74, #70, #68, #58, #57, #55.
+  * Team members' PR reviews (with non-trivial review comments): pull request #225, #214, #211, #207, #199, #135, #133, 
+  #130, #129, #122, #112, #111, #110, #104, #102, #95, #79, #74, #70, #68, #58, #57, #55.
   * Reported bugs for other teams ([ped](https://github.com/jehousoh/ped/issues)).
 
 * **Contributions to Project Management and Organisation**:

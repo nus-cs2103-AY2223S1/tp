@@ -20,22 +20,22 @@ public class SampleDataUtil {
     public static Guest[] getSampleGuests() {
         return new Guest[]{
             new Guest(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                    new Room("05-73"), new DateRange("13/09/22 - 15/09/22"), new NumberOfGuests("1"),
+                    new Room("05-73"), new DateRange("11/11/22 - 15/11/22"), new NumberOfGuests("1"),
                     new IsRoomClean("yes"), new Bill(), new Request()),
             new Guest(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                    new Room("06-84"), new DateRange("01/01/23 - 07/01/23"), new NumberOfGuests("4"),
+                    new Room("06-84"), new DateRange("09/11/22 - 13/11/22"), new NumberOfGuests("4"),
                     new IsRoomClean("no"), new Bill("10"), new Request("Change bed")),
             new Guest(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                    new Room("03-68"), new DateRange("21/10/22 - 22/10/22"), new NumberOfGuests("2"),
+                    new Room("03-68"), new DateRange("05/10/22 - 27/11/22"), new NumberOfGuests("2"),
                     new IsRoomClean("no"), new Bill("19.99"), new Request("Room service")),
             new Guest(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-                    new Room("02-50"), new DateRange("08/04/23 - 22/04/23"), new NumberOfGuests("3"),
+                    new Room("02-50"), new DateRange("09/11/22 - 12/11/22"), new NumberOfGuests("3"),
                     new IsRoomClean("yes"), new Bill("50.50"), new Request("Extra pillow")),
             new Guest(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                    new Room("09-72"), new DateRange("29/05/23 - 03/06/23"), new NumberOfGuests("1"),
+                    new Room("09-72"), new DateRange("29/05/22 - 01/04/23"), new NumberOfGuests("1"),
                     new IsRoomClean("no"), new Bill("100"), new Request("Late checkout")),
             new Guest(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                    new Room("04-23"), new DateRange("30/12/22 - 02/01/23"), new NumberOfGuests("4"),
+                    new Room("04-23"), new DateRange("30/05/22 - 22/11/22"), new NumberOfGuests("4"),
                     new IsRoomClean("yes"), new Bill("1000.01"), new Request("Unclog toilet"))
         };
     }

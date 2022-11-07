@@ -35,8 +35,8 @@ public class Email {
             + "2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels "
             + "separated by periods.\n"
             + "The domain name must:\n"
-            + "    - end with a domain label at least " + MIN_END_DOMAIN_LABEL_LENGTH + " characters long\n"
-            + "    - have each domain label start and end with alphanumeric characters\n"
+            + "    - end with a domain label at least " + MIN_END_DOMAIN_LABEL_LENGTH + " characters long.\n"
+            + "    - have each domain label start and end with alphanumeric characters.\n"
             + "    - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.\n"
             + "    - be at most " + MAX_DOMAIN_LENGTH + " characters long.";
 
