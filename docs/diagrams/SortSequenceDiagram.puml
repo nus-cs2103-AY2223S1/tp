@@ -47,7 +47,7 @@ deactivate SortCommand
 SortCommandParser --> TuthubParser : s
 deactivate SortCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-SortByRatingComparator -[hidden]-> TuthubParser
+SortCommandParser -[hidden]-> TuthubParser
 destroy SortCommandParser
 
 TuthubParser --> LogicManager : s
