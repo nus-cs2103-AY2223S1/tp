@@ -258,8 +258,8 @@ step-by-step!
 
 - PennyWise will **IGNORE** any extra words or characters present after the following commands:
 
- [`summary`](#summary-of-entries) (except [`summary [mo/MONTH]`](#summary-of-all-entries-in-the-specified-month)),
- [`help`](#command-summary-table), [`clear`](#clearing-all-entries) and [`exit`](#exiting-the-program).
+  [`summary`](#summary-of-entries) (except [`summary [mo/MONTH]`](#summary-of-all-entries-in-the-specified-month)),
+  [`help`](#command-summary-table), [`clear`](#clearing-all-entries) and [`exit`](#exiting-the-program).
   e.g. `summary abcdefg` will be interpreted as `summary` and `help 123456` will also be interpreted as `help`.
 
 - Words in `UPPER_CASE` are the parameters that you must supply<br>
