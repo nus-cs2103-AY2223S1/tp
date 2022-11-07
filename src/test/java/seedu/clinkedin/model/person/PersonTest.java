@@ -1,5 +1,6 @@
 package seedu.clinkedin.model.person;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.clinkedin.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
@@ -13,9 +14,13 @@ import static seedu.clinkedin.testutil.Assert.assertThrows;
 import static seedu.clinkedin.testutil.TypicalPersons.ALICE;
 import static seedu.clinkedin.testutil.TypicalPersons.BOB;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.clinkedin.testutil.PersonBuilder;
+
+
 
 public class PersonTest {
 
@@ -99,4 +104,47 @@ public class PersonTest {
         editedAlice = new PersonBuilder(ALICE).withNote(VALID_NOTE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
     }
+
+    @Test
+    public void equalityTest() {
+        Person person1 = new PersonBuilder(ALICE).build();
+        Person person2 = new PersonBuilder(ALICE).build();
+        Person person3 = new PersonBuilder(BOB).build();
+        String person1Str = person1.getDetailsAsString();
+        String person2Str = person2.getDetailsAsString();
+        String person3Str = person3.getDetailsAsString();
+
+        assertTrue(person1.equals(person2));
+        assertFalse(person1.equals(person3));
+        assertFalse(person1.equals(null));
+        assertFalse(person1.equals(5));
+        assertEquals(person1Str, person2Str);
+        assertFalse(person1Str.equals(person3Str));
+        assertEquals(person1.toString(), person2.toString());
+
+    }
+
+    @Test
+    public void getDetailsAsArrayTest() {
+        Person person1 = new PersonBuilder(ALICE).build();
+        Person person2 = new PersonBuilder(ALICE).build();
+        Person person3 = new PersonBuilder(BOB).build();
+
+        List<String[]> list1 = person1.getDetailsAsArray();
+        List<String[]> list2 = person2.getDetailsAsArray();
+        List<String[]> list3 = person3.getDetailsAsArray();
+
+        assertTrue(list1.size() == list2.size());
+        assertFalse(list1.size() == list3.size());
+
+        for (int i = 0; i < list1.size(); i++) {
+            int length1 = list1.get(i).length;
+            int length2 = list2.get(i).length;
+            if (length1 == 2 && length2 == 2) {
+                assertEquals(list1.get(i)[1], list2.get(i)[1]);
+            }
+        }
+
+    }
+
 }

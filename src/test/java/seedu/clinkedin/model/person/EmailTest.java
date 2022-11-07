@@ -97,7 +97,7 @@ public class EmailTest {
         int hashcode2 = email2.hashCode();
         int hashcode3 = email3.hashCode();
         assertTrue(hashcode1 == hashcode1);
-        assertTrue(hashcode2== hashcode2);
+        assertTrue(hashcode2 == hashcode2);
         assertTrue(hashcode1 != hashcode3);
     }
 }
