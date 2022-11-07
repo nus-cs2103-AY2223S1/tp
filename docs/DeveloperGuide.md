@@ -469,19 +469,7 @@ The following sequence diagram shows how the add tutorial operation works:
 
 The following activity diagram summarizes what happens when a user executes a new `addtut` command.
 
-![AddStuActivityDiagram](images/AddTutorialActivityDiagram.png)
-
-#### Design Considerations
-
-**Aspect: How AddStu executes::**
-
-- **Alternative 1: Require user to key in response and attendance number in when adding tutorial**
-    - Pros: More details of a tutorial can be viewed right after adding a tutorial
-    - Cons: Troublesome for CS2103T TAs to add a tutorial quickly as many details have to be keyed in if what they want
-      is to just keep track of the tutorials name and contact name.
-- **Alternative 2: Only name, telegram handle and email needs to be keyed in when adding tutorial**
-    - Pros: Faster to add a tutorial
-    - Cons: CS2103T TA has to use another command to change the response and attendance number of the tutorial.
+![AddTutActivityDiagram](images/AddTutorialActivityDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
