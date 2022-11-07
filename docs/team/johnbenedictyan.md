@@ -63,5 +63,47 @@ Given below are my contributions to the project.
     - User stories
     - Delete command implementation
     - Unique ID implementation
+    - Assign Command
+    - Deassign Command
     - Other miscellaneous parts and proofreading
       <br></br>
+
+- **Contributions to the Developer Guide**
+    ### Assign Feature
+
+    #### Motivation:
+
+    - The assign feature is necessary so that the medical administrator can visually see which nurse is attending which patient's home visit.
+
+    #### Implementation:
+
+    ![AssignSequenceDiagram](../images/AssignSequenceDiagram.png)
+
+    Step 1. The user executes `assign id/3 id/2`
+
+    Step 2. `HealthcareXpressParser` creates an `AssignCommandParser` to parse the arguments.
+
+    Step 3. `AssignCommandParser` checks validity of the given arguments and creates an `AssignCommand`.
+
+    Step 4. The `AssignCommand` is executed, and a new `InternalEditor` is created.
+
+    Step 5. `AssignCommand` calls the `InternalEditor`'s methods of `editPatient` and `editNurse`.
+
+    Step 6. `Model` updates the database, and displays all the persons.
+
+    The activity diagram below summarises exception handling of AssignCommand:
+
+    ![AssignActivityDiagram](../images/AssignActivityDiagram.png)
+    <br></br>
+
+    #### Design considerations:
+
+    - **Aspect: How the parse interprets the order of uids**
+    - **Alternative 1:** Fix the order of the uid, so patient then nurse
+        - Pros: There will be less checking needed to deduce the class of the persons involved.
+        - Cons: The user experience will suffer as the medical administrator might not be able to accurately remember which uid corresponding to which person, the nurse or the patient.
+        <br></br>
+    - **Alternative 2:** Have no fix order, as long as one nurse uid and one patient uid is inputted
+        - Pros: The user experience will be better as there will be more leeway.
+        - Cons: Harder to implement and more testing is required.
+        <br></br>

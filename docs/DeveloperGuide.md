@@ -379,7 +379,7 @@ The activity diagram below summarises exception handling of UpdateContactCommand
 
 - The assign feature is necessary so that the medical administrator can visually see which nurse is attending which patient's home visit.
 
-### Implementation:
+#### Implementation:
 
 ![AssignSequenceDiagram](images/AssignSequenceDiagram.png)
 
@@ -418,7 +418,7 @@ The activity diagram below summarises exception handling of AssignCommand:
 
 - The deassign feature is necessary so that the medical administrator deassign a nurse to a patient's home visit if a mistake has been made or changes are necessary.
 
-### Implementation:
+#### Implementation:
 Step 1. The user executes `deassign id/3`
 
 Step 2. `HealthcareXpressParser` creates an `DeassignCommandParser` to parse the arguments.
