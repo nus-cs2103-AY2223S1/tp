@@ -36,22 +36,23 @@ title: Developer Guide
    7. [Importing applicants from an external text file](#77-importing-applicants-from-an-external-json-file)
    8. [Exporting displayed list](#78-exporting-displayed-list-to-a-json-file)
    9. [Checkout a new or existing list](#79-checkout-a-new-or-existing-list)
-   10. [Saving data](#710-saving-data)
 
---------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
+
 
 ## 1. Acknowledgements
 
 * Code base: [addressbook-level3](https://github.com/se-edu/addressbook-level3)
 
---------------------------------------------------------------------------------------------------------------------
 
 ## 2. Setting up, getting started
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
---------------------------------------------------------------------------------------------------------------------
+
 <div style="page-break-after: always;"></div>
+
 
 ## 3. Design
 
@@ -1076,11 +1077,3 @@ point for testers to work on; testers are expected to do more exploratory testin
    2. Test case: `checkout FILE_NAME`
       Expected: The data in the file `FILE_NAME.json` located at `data/` folder is wiped. The application will not 
       contain any applicants. Success message shown in the status message.
-
-
-### 7.10 Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. If the data is missing/corrupted, InternConnect will start with an empty data file, replacing the corrupted data
-      with an empty one.
