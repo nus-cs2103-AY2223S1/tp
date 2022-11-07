@@ -903,11 +903,10 @@ otherwise, for all **Entries**, they can only be of type `expenditure` or `incom
 
 In the Glossary, we provide our definitions for some commonly-used terms that you can find throughout the application.
 
-* **Mainstream OS**: Windows, Linux, Unix, macOS
-* **Entry**: An entry refers to either an expenditure or income
-
 | Term                               | Definition                                                                                                                                                          |
 |------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Mainstream OS**                  | Windows, Linux, Unix, macOS                                                                                                                                         |
+| **Entry**                          | An entry refers to either an expenditure or income                                                                                                                  |
 | **Field**                          | Represents the Description, Amount, Date, Category and Type of an entry in the application.                                                                         |
 | **Identifier**                     | The field code that are entered during user input, so that PennyWise knows what your inputs are e.g. `t/`, `d/`, `a/`, `da/` `c/`.                                  |
 | **JSON File**                      | JavaScript Object Notation File. Data interchange format file that uses human-readable text to store and transmit data objects consisting of attribute–value pairs. |
