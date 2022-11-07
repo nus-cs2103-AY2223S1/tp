@@ -614,7 +614,7 @@ Users are able to perform several tasks within the application that is broken do
 **MSS**
 
 1. User requests to sort the client at index 1 by latest transactions
-2. JeeqTracker displays the list of transactions of client at index 1 sorted with the latest dates first.
+2. JeeqTracker displays the list of transactions of client at index 1 sorted by the latest dates first.
 
     Use case ends.
 
@@ -716,10 +716,11 @@ testers are expected to do more *exploratory* testing.
 
 1. Sorting transactions.
 
-   1. Test case: `sort 1 latest`<br/>Expected: All transactions in index 1 client will be displayed in the transaction list panel, sorted with the latest transactions first.
+   1. Prerequisites: At least one client in the list. 
+   2. Test case: `sort 1 latest`<br/>Expected: All transactions in index 1 client will be displayed in the transaction list panel, sorted with the latest transactions first.
    If there are no transactions, the transaction list panel will be empty.
-   2. Test case: `sort 2 newest`<br/>Expected: No transactions for index 2 client is sorted. Error details shown in the `Application's Reply` panel.
-   3. Other incorrect sort commands to try: `sort all latest`, `sort oldest`, `sort newest`<br/>Expected: Similar to previous.
+   3. Test case: `sort 2 newest`<br/>Expected: No transactions for index 2 client is sorted. Error details shown in the `Application's Reply` panel.
+   4. Other incorrect sort commands to try: `sort all latest`, `sort oldest`, `sort newest`<br/>Expected: Similar to previous.
     
 ### Saving data
 
