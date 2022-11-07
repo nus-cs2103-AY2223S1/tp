@@ -397,15 +397,21 @@ TutHub helps professors find TAs efficiently by consolidating information in an 
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                | I can …​                             | So that I can…​                                                                            |
-|----------|----------------------------------------|--------------------------------------|--------------------------------------------------------------------------------------------|
-| `* * *`  | NUS Computing Professor                | list all tutor profiles              | get a quick view of all available tutors                                                   |
-| `* * *`  | NUS Computing Professor                | add a new tutor                      | track their profiles                                                                       |
-| `* * *`  | NUS Computing Professor                | view a tutor's full profile          | find out more about their performance and contact details to reach out for future TA roles |
-| `* * *`  | NUS Computing Professor                | find a specific tutor by name easily | filter tutor names                                                                         |
-| `* * *`  | NUS Computing Professor                | delete a tutor profile               | remove tutors that are no longer available for work                                        |
-| `* * *`  | NUS Computing Professor                | save data                            | there is a local backup on the computer                                                    |
-| `* * *`  | NUS Computing Professor                | exit the program                     |                                                                                            |
+| Priority | As a …​                                | I can …​                                                        | So that I can…​                                                                             |
+|----------|----------------------------------------|-----------------------------------------------------------------|---------------------------------------------------------------------------------------------|
+| `* * *`  | NUS Professor                          | list all tutor profiles                                         | get a quick view of all available tutors.                                                   |
+| `* * *`  | NUS Professor                          | add a new tutor                                                 | track their profiles.                                                                       |
+| `* *`    | NUS Professor                          | edit a tutor profile                                            | update tutor information if there are any changes.                                          |
+| `* * *`  | NUS Professor                          | view a tutor's full profile                                     | find out more about their performance and contact details to reach out for future TA roles. |
+| `* *`    | NUS Professor                          | comment on a tutor                                              | keep notes about the tutor's performance for future reference.                              |
+| `* * *`  | NUS Professor with many tutor profiles | find a specific tutor by various fields easily                  | find the most relevant and competent tutors more easily.                                    |
+| `* * *`  | NUS Professor                          | sort a list of tutors according to ratings/teaching nominations | identify and pick the best tutors more easily.                                              |
+| `* *`    | NUS Professor                          | mail a specific tutor or group of tutors                        | reach out to them for a TA role.                                                            |
+| `* *`    | NUS Professor                          | delete a tutor profile                                          | remove tutors that have graduated/are no longer available to teach.                         |
+| `* * *`  | NUS Professor                          | save data                                                       | there is a local backup on the computer.                                                    |
+| `* * *`  | NUS Professor                          | exit the program                                                |                                                                                             |
+| `*`      | NUS Professor                          | clear all data                                                  | remove all irrelevant sample data on first use.                                             |
+| `*`      | NUS Professor new to Tuthub            | view help                                                       | familiarise myself with Tuthub commands.                                                    |
 
 
 ### Use cases
