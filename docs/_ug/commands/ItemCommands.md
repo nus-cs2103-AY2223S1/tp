@@ -2,6 +2,9 @@
 Example of an [Item](#item):
 
 ![Item](images/ItemImage.png)
+{: style="margin-left: auto; margin-right: auto; padding: 20px; max-width: 50%; border: 1px solid black; border-radius: 4px" }
+
+{% include page-break.html %}
 
 #### Create a new item: `new`
 
@@ -48,13 +51,12 @@ FoodRem does not already contain an item with the name "Potato".
 
 **Format:** `find KEYWORD [KEYWORDS]...`
 
-> Finds all items in FoodRem whose names contain [[ substring:substrings]] of the KEYWORDS
+> Finds all items in FoodRem whose names contain [[ substring:substrings ]] of the KEYWORDS
 
-<!-- TODO: Remove duplicate autoglossary (just pick one) -->
 ```info
 * The notation `[KEYWORDS]...` means that we can take in multiple keywords. In this case, at least one `KEYWORD` is required.
 * The `KEYWORDS` are case-insensitive. (e.g. "apples" will match "Apples").
-* The result will be items where each of the `KEYWORDS` are present in the `ITEM_NAME` as a [[ substring ]]. (e.g. "c e" will match "Carrot Cake", "cereal", "Cold Escargo" and "eclairs")
+* The result will be items where each of the `KEYWORDS` are present in the `ITEM_NAME` as a substring. (e.g. "c e" will match "Carrot Cake", "cereal", "Cold Escargo" and "eclairs")
 ```
 
 ```tip
@@ -120,13 +122,17 @@ FoodRem contains the following items, each with their own attributes:
 > Sorts the list of currently displayed items by the provided criteria
 
 ```note
-* `\n` : Sort by item name
-* `\qty` : Sort by item quantity
-* `\u` : Sort by item unit
-* `\bgt` : Sort by item bought date
-* `\exp` : Sort by item expiry date
-* `\p` : Sort by item price
-* `\r` : Sort by item remarks
+* `sort n/` : Sort by item name
+* `sort qty/` : Sort by item quantity
+* `sort u/` : Sort by item unit
+* `sort bgt/` : Sort by item bought date
+* `sort exp/` : Sort by item expiry date
+* `sort p/` : Sort by item price
+* `sort r/` : Sort by item remarks
+```
+
+```tip
+You may find this command useful when you need to quickly dispose of expiring items or to check item stocks, but the sky is the limit! You can use FoodRem in creative ways to take advantage of this! For example, if you use the `PRICE` field to store each item's profit per unit sold, you can use this command to see which items are giving you the most profits!
 ```
 
 ```warning
@@ -289,7 +295,9 @@ The command will produce a detailed view of this item.
 
 ```info
 * If no remark is provided, the current remark will be cleared.
-* If two or more `REMARKS` values are provided, only the last `REMARKS` will be taken.
+* If two or more `REMARKS` values are provided, only the last `REMARKS` value will be taken.
+* If an item already has a remark, this command will overwrite the old remark with the new remark.
+* The new remark can overwrite the old remark even if they are the same. This is to give the user flexibility in editing remarks.
 ```
 
 **Example:**
