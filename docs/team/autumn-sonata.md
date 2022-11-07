@@ -74,6 +74,6 @@ I structured the user guide and rewrote the following sections [#172](https://gi
 Here are some of the pull requests that I have reviewed with non-trivial comments
 in the code review.
 
-- [Hard coding of regex](https://github.com/AY2223S1-CS2103T-T11-1/tp/pull/151)
-- [Importing errors](https://github.com/AY2223S1-CS2103T-T11-1/tp/pull/167)
-- [Developer guide diagram missing](https://github.com/AY2223S1-CS2103T-T11-1/tp/pull/50)
+- Hard coding of regex. [#151](https://github.com/AY2223S1-CS2103T-T11-1/tp/pull/151)
+- Importing errors. [#167](https://github.com/AY2223S1-CS2103T-T11-1/tp/pull/167)
+- Developer guide diagram missing. [#50](https://github.com/AY2223S1-CS2103T-T11-1/tp/pull/50)
