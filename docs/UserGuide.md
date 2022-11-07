@@ -826,7 +826,6 @@ edit-person 2 n/Charmander e/charmander@gmail.com
 In the above example, we are editing the contact with a displayed-index number of '2' on the screen to now have the name
 `Charmander` and email `charmander@gmail.com`in Plannit. 
 
-<div style="page-break-after: always;"></div>
 
 Here's a screenshot of Plannit before and after executing the 
 command for the last example:
