@@ -26,6 +26,7 @@ public class TaskUnmarkCommand extends Command {
             + "Example: " + COMMAND_WORD + " " + PREFIX_TEAM_INDEX + "1 "
             + PREFIX_TASK_INDEX + "3";
     public static final String MESSAGE_SUCCESS = "Task marked as not done: %1$s";
+    public static final String MESSAGE_ALREADY_UNMARKED = "Task already marked as not done: %1$s";
 
     private final Index taskIndex;
     private final Index teamIndex;
@@ -58,6 +59,11 @@ public class TaskUnmarkCommand extends Command {
         }
 
         Task taskToUnmark = lastShownTeamList.get(teamIndex.getZeroBased()).getTask(taskIndex.getZeroBased());
+
+        if (!taskToUnmark.getIsDone()) {
+            throw new CommandException(String.format(MESSAGE_ALREADY_UNMARKED, taskToUnmark));
+        }
+
         model.unmarkTask(teamIndex, taskIndex);
         return new CommandResult(String.format(MESSAGE_SUCCESS, taskToUnmark));
     }

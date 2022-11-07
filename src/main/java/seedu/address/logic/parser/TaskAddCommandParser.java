@@ -12,8 +12,8 @@ import java.time.LocalDate;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.TaskAddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.task.Name;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskName;
 
 /**
  * Parses input arguments and creates a new TaskAddCommand object
@@ -43,7 +43,7 @@ public class TaskAddCommandParser implements Parser<TaskAddCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TaskAddCommand.MESSAGE_USAGE), pe);
         }
 
-        Name taskName = ParserUtil.parseTaskName(argMultimap.getValue(PREFIX_TASK_NAME).get());
+        TaskName taskName = ParserUtil.parseTaskName(argMultimap.getValue(PREFIX_TASK_NAME).get());
 
         LocalDate taskDeadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_TASK_DEADLINE).orElse(null))
                                            .orElse(null);

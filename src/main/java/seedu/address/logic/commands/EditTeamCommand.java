@@ -10,9 +10,8 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.team.Name;
 import seedu.address.model.team.Team;
-
+import seedu.address.model.team.TeamName;
 
 /**
  * Edits team name identified using it's displayed index from the address book.
@@ -31,16 +30,18 @@ public class EditTeamCommand extends Command {
             + PREFIX_TEAM_NAME + "TeamNew ";
 
     public static final String MESSAGE_EDIT_TEAM_SUCCESS = "Edited Team: %1$s";
+    public static final String MESSAGE_DUPLICATE_TEAM_NAME = "This team name already exists";
+
 
     private final Index targetIndex;
-    private final Name newTeamName;
+    private final TeamName newTeamName;
 
     /**
      * Edit team command constructor
      * @param targetIndex of the team in the filtered person list to edit
      * @param newTeamName details to edit the team with
      */
-    public EditTeamCommand(Index targetIndex, Name newTeamName) {
+    public EditTeamCommand(Index targetIndex, TeamName newTeamName) {
         requireNonNull(targetIndex);
         requireNonNull(newTeamName);
 
@@ -55,6 +56,10 @@ public class EditTeamCommand extends Command {
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TEAM_DISPLAYED_INDEX);
+        }
+
+        if (model.teamNameExists(newTeamName)) {
+            throw new CommandException(MESSAGE_DUPLICATE_TEAM_NAME);
         }
 
         model.setTeamName(targetIndex, newTeamName);

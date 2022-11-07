@@ -16,10 +16,12 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonName;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.task.Task;
-import seedu.address.model.team.Name;
+import seedu.address.model.task.TaskName;
 import seedu.address.model.team.Team;
+import seedu.address.model.team.TeamName;
 import seedu.address.model.team.exceptions.TeamNotFoundException;
 
 /**
@@ -132,9 +134,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setTeamName(Index targetIndex, Name newTeamName) {
-        requireAllNonNull(targetIndex, newTeamName);
-        addressBook.setTeamName(targetIndex, newTeamName);
+    public void setTeamName(Index targetIndex, TeamName newTeamTeamName) {
+        requireAllNonNull(targetIndex, newTeamTeamName);
+        addressBook.setTeamName(targetIndex, newTeamTeamName);
         updateFilteredTeamList(unused -> false);
         updateFilteredTeamList(PREDICATE_SHOW_ALL_TEAMS);
     }
@@ -161,6 +163,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean teamHasTask(Index index, Task task) {
+        requireAllNonNull(index, task);
+        return addressBook.teamHasTask(index, task);
+    }
+
+    @Override
     public void addTask(Index index, Task task) {
         requireAllNonNull(index, task);
         addressBook.addTask(index, task);
@@ -170,9 +178,9 @@ public class ModelManager implements Model {
 
     @Override
     public void editTask(Index teamIndex, Index taskIndex,
-                         seedu.address.model.task.Name newName, LocalDate newDeadline) {
+                         TaskName newTaskName, LocalDate newDeadline) {
         requireAllNonNull(teamIndex, taskIndex);
-        addressBook.editTask(teamIndex, taskIndex, newName, newDeadline);
+        addressBook.editTask(teamIndex, taskIndex, newTaskName, newDeadline);
         updateFilteredTeamList(unused -> false);
         updateFilteredTeamList(PREDICATE_SHOW_ALL_TEAMS);
     }
@@ -236,7 +244,7 @@ public class ModelManager implements Model {
      * @return Person object.
      */
     @Override
-    public Person getPerson(seedu.address.model.person.Name name) {
+    public Person getPerson(PersonName name) {
         List<Person> persons = getFilteredPersonList();
         requireNonNull(name);
         for (int i = 0; i < persons.size(); i++) {
@@ -254,7 +262,7 @@ public class ModelManager implements Model {
      * @return Name of person.
      */
     @Override
-    public seedu.address.model.person.Name getPersonName(Index personIndex) {
+    public PersonName getPersonName(Index personIndex) {
         requireNonNull(personIndex);
         Person person = getPersonUsingIndex(personIndex);
         return person.getName();
@@ -290,20 +298,33 @@ public class ModelManager implements Model {
 
     /**
      * Returns the team object which has the given team name.
-     * @param name Name of team.
+     * @param teamName Name of team.
      * @return Team object.
      */
     @Override
-    public Team getTeam(seedu.address.model.team.Name name) {
+    public Team getTeam(TeamName teamName) {
         List<Team> teams = getFilteredTeamList();
-        requireNonNull(name);
+        requireNonNull(teamName);
         for (int i = 0; i < teams.size(); i++) {
             Team team = teams.get(i);
-            if (team.getName().equals(name)) {
+            if (team.getName().equals(teamName)) {
                 return team;
             }
         }
         throw new TeamNotFoundException();
+    }
+
+    @Override
+    public boolean teamNameExists(TeamName teamName) {
+        List<Team> teams = getFilteredTeamList();
+        for (int i = 0; i < teams.size(); i++) {
+            Team team = teams.get(i);
+            TeamName teamname = team.getName();
+            if (teamname.equals(teamName)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -312,7 +333,7 @@ public class ModelManager implements Model {
      * @return Name of team.
      */
     @Override
-    public Name getTeamName(Index teamIndex) {
+    public TeamName getTeamName(Index teamIndex) {
         requireNonNull(teamIndex);
         Team team = getTeamUsingIndex(teamIndex);
         return team.getName();
@@ -375,8 +396,6 @@ public class ModelManager implements Model {
         }
         return false;
     }
-
-    // todo implementation of updateFilteredTeamList
 
     @Override
     public boolean equals(Object obj) {

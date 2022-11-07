@@ -18,7 +18,7 @@ public class TeamCard extends UiPart<Region> {
     private TaskListPanel taskListPanel;
 
     @FXML
-    private Label name;
+    private Label teamName;
 
     @FXML
     private StackPane personListPanelPlaceholder;
@@ -45,7 +45,8 @@ public class TeamCard extends UiPart<Region> {
     public TeamCard(Team team, int index, Logic logic) {
         super(FXML);
 
-        name.setText(team.getName().fullName);
+        teamName.setText(team.getName().fullName);
+        teamName.setWrapText(true);
         id.setText(index + ". ");
 
         personListPanel = new PersonListPanel(team.getMemberList());

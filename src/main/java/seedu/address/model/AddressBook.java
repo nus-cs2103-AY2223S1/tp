@@ -9,10 +9,11 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
-import seedu.address.model.task.Name;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskName;
 import seedu.address.model.task.UniqueTaskList;
 import seedu.address.model.team.Team;
+import seedu.address.model.team.TeamName;
 import seedu.address.model.team.UniqueTeamList;
 
 /**
@@ -156,37 +157,35 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Changes team name to given name.
      */
-    public void setTeamName(Index targetIndex, seedu.address.model.team.Name newTeamName) {
-        requireNonNull(newTeamName);
-        teams.setTeamName(targetIndex.getZeroBased(), newTeamName);
+    public void setTeamName(Index targetIndex, TeamName newTeamTeamName) {
+        requireNonNull(newTeamTeamName);
+        teams.setTeamName(targetIndex.getZeroBased(), newTeamTeamName);
     }
 
     //// task-level operations
+
+    public boolean teamHasTask(Index index, Task task) {
+        return teams.teamHasTask(index.getZeroBased(), task);
+    }
 
     public void addTask(Index index, Task task) {
         teams.addTask(index.getZeroBased(), task);
     }
 
-    //// task-level operations
-
     public void markTask(Index teamIndex, Index taskIndex) {
         teams.markTask(teamIndex.getZeroBased(), taskIndex.getZeroBased());
     }
-
-    //// task-level operations
 
     public void unmarkTask(Index teamIndex, Index taskIndex) {
         teams.unmarkTask(teamIndex.getZeroBased(), taskIndex.getZeroBased());
     }
 
-    //// task-level operations
-
     public void deleteTask(Index teamIndex, Index taskIndex) {
         teams.deleteTask(teamIndex.getZeroBased(), taskIndex.getZeroBased());
     }
 
-    public void editTask(Index teamIndex, Index taskIndex, Name newName, LocalDate newDeadline) {
-        teams.editTask(teamIndex.getZeroBased(), taskIndex.getZeroBased(), newName, newDeadline);
+    public void editTask(Index teamIndex, Index taskIndex, TaskName newTaskName, LocalDate newDeadline) {
+        teams.editTask(teamIndex.getZeroBased(), taskIndex.getZeroBased(), newTaskName, newDeadline);
     }
 
     //// util methods

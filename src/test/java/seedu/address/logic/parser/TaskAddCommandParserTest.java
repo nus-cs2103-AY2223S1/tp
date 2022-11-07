@@ -25,8 +25,8 @@ import static seedu.address.testutil.TypicalTasks.STUDY;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.TaskAddCommand;
-import seedu.address.model.task.Name;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskName;
 import seedu.address.testutil.TaskBuilder;
 
 public class TaskAddCommandParserTest {
@@ -81,7 +81,7 @@ public class TaskAddCommandParserTest {
 
         // invalid name
         assertParseFailure(parser, TEAM_INDEX_1 + INVALID_TASK_NAME_DESC + TASK_DEADLINE_DESC_STUDY,
-                Name.MESSAGE_CONSTRAINTS);
+                TaskName.MESSAGE_CONSTRAINTS);
 
         // invalid deadline (wrong format)
         assertParseFailure(parser, TEAM_INDEX_1 + TASK_NAME_DESC_STUDY + INVALID_TASK_DEADLINE_DESC_1,

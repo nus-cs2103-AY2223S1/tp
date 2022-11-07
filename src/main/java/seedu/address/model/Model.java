@@ -9,9 +9,11 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonName;
 import seedu.address.model.task.Task;
-import seedu.address.model.team.Name;
+import seedu.address.model.task.TaskName;
 import seedu.address.model.team.Team;
+import seedu.address.model.team.TeamName;
 
 /**
  * The API of the Model component.
@@ -91,7 +93,7 @@ public interface Model {
 
     public void addTeam(Team team);
 
-    public void setTeamName(Index targetIndex, Name newTeamName);
+    public void setTeamName(Index targetIndex, TeamName newTeamTeamName);
 
     public void addPersonToTeam(Person person, Team team);
 
@@ -100,9 +102,9 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
-    public Person getPerson(seedu.address.model.person.Name name);
+    public Person getPerson(PersonName name);
 
-    public seedu.address.model.person.Name getPersonName(Index personIndex);
+    public PersonName getPersonName(Index personIndex);
 
     public Person getPersonUsingIndex(Index personIndex);
 
@@ -118,17 +120,21 @@ public interface Model {
 
     ObservableList<Team> getFilteredTeamList();
 
-    public Team getTeam(Name name);
+    public Team getTeam(TeamName teamName);
+
+    public boolean teamNameExists(TeamName teamName);
 
     ObservableList<Task> getFilteredTaskList();
 
-    public Name getTeamName(Index teamIndex);
+    public TeamName getTeamName(Index teamIndex);
 
     public Team getTeamUsingIndex(Index teamIndex);
 
     public List<Team> teamsWithMember(Person p);
 
     public boolean teamHasMember(Index p, Index t);
+
+    boolean teamHasTask(Index index, Task task);
 
     void addTask(Index index, Task task);
 
@@ -138,6 +144,6 @@ public interface Model {
 
     void deleteTask(Index teamIndex, Index taskIndex);
 
-    void editTask(Index teamIndex, Index taskIndex, seedu.address.model.task.Name newName, LocalDate newDeadline);
+    void editTask(Index teamIndex, Index taskIndex, TaskName newTaskName, LocalDate newDeadline);
 
 }

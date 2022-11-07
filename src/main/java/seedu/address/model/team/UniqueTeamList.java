@@ -10,6 +10,7 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskName;
 import seedu.address.model.team.exceptions.DuplicateTeamException;
 import seedu.address.model.team.exceptions.TeamNotFoundException;
 
@@ -59,12 +60,12 @@ public class UniqueTeamList implements Iterable<Team> {
         return internalList.get(index);
     }
 
-    public void setTeamName(int targetIndex, Name newTeamName) {
-        requireAllNonNull(newTeamName);
-        internalList.get(targetIndex).setName(newTeamName);
+    public void setTeamName(int targetIndex, TeamName newTeamTeamName) {
+        requireAllNonNull(newTeamTeamName);
+        internalList.get(targetIndex).setName(newTeamTeamName);
     }
 
-    public Team getTeam(Name teamName) {
+    public Team getTeam(TeamName teamName) {
         requireNonNull(teamName);
         for (int i = 0; i < internalList.size(); i++) {
             Team team = internalList.get(i);
@@ -105,6 +106,15 @@ public class UniqueTeamList implements Iterable<Team> {
     }
 
     /**
+     * Returns true if the {@code team} in the specified index has the specified {@code task}.
+     *
+     */
+    public boolean teamHasTask(int index, Task task) {
+        requireAllNonNull(index, task);
+        return internalList.get(index).containTask(task);
+    }
+
+    /**
      * Adds the {@code Task} into the {@code Team} at the specified index.
      *
      */
@@ -117,8 +127,8 @@ public class UniqueTeamList implements Iterable<Team> {
      * Edits the {@code Task} into the {@code Team} at the specified index.
      *
      */
-    public void editTask(int teamIndex, int taskIndex, seedu.address.model.task.Name newName, LocalDate newDeadline) {
-        internalList.get(teamIndex).editTask(taskIndex, newName, newDeadline);
+    public void editTask(int teamIndex, int taskIndex, TaskName newTaskName, LocalDate newDeadline) {
+        internalList.get(teamIndex).editTask(taskIndex, newTaskName, newDeadline);
     }
 
     /**

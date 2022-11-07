@@ -12,7 +12,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonName;
 import seedu.address.model.team.Team;
+import seedu.address.model.team.TeamName;
 
 /**
  * Removes a person from a team.
@@ -68,11 +70,11 @@ public class UnAssignMemberCommand extends Command {
             throw new CommandException(MESSAGE_PERSON_DOES_NOT_EXIST);
         }
 
-        seedu.address.model.team.Name teamName = model.getTeamName(teamIndex);
-        seedu.address.model.person.Name personName = model.getPersonName(personIndex);
+        TeamName teamName = model.getTeamName(teamIndex);
+        PersonName name = model.getPersonName(personIndex);
         model.removePersonFromTeam(person, team);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, personName, teamName));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, name, teamName));
     }
 
 }

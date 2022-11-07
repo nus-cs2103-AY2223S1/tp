@@ -28,18 +28,16 @@ public class TaskUnmarkCommandTest {
     private final Model model = new ModelManager(getTypicalAddressBookWithTeams(), new UserPrefs());
 
     @Test
-    public void execute_unmarkUnmarkedTask_success() {
+    public void execute_unmarkUnmarkedTask_failure() {
         Task defaultTask = new TaskBuilder(REVIEW).build();
         Team defaultTeam = new TeamBuilder().withTasks(defaultTask).build();
         Task task = defaultTeam.getTask(0);
         task.markAsNotDone();
+
         TaskUnmarkCommand taskUnmarkCommand = new TaskUnmarkCommand(INDEX_FIRST_TEAM, INDEX_SECOND_TASK);
+        String expectedMessage = String.format(TaskUnmarkCommand.MESSAGE_ALREADY_UNMARKED, task);
 
-        String expectedMessage = String.format(TaskUnmarkCommand.MESSAGE_SUCCESS, task);
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-
-        expectedModel.markTask(INDEX_FIRST_TEAM, INDEX_SECOND_TASK);
-        assertCommandSuccess(taskUnmarkCommand, model, expectedMessage, expectedModel);
+        assertCommandFailure(taskUnmarkCommand, model, expectedMessage);
     }
 
     @Test
@@ -51,7 +49,6 @@ public class TaskUnmarkCommandTest {
         String expectedMessage = String.format(TaskUnmarkCommand.MESSAGE_SUCCESS, defaultTask);
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
-        expectedModel.unmarkTask(INDEX_FIRST_TEAM, INDEX_THIRD_TASK);
         assertCommandSuccess(taskUnmarkCommand, model, expectedMessage, expectedModel);
     }
 

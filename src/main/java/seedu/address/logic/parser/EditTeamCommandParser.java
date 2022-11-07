@@ -9,7 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAM_NAME;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditTeamCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.team.Name;
+import seedu.address.model.team.TeamName;
 
 /**
  * Edit team command parser class
@@ -24,7 +24,7 @@ public class EditTeamCommandParser {
 
         requireNonNull(args);
         Index teamIndex;
-        Name newTeamName;
+        TeamName newTeamTeamName;
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TEAM_INDEX, PREFIX_TEAM_NAME);
 
@@ -35,11 +35,11 @@ public class EditTeamCommandParser {
 
         try {
             teamIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_TEAM_INDEX).get());
-            newTeamName = ParserUtil.parseTeamName(argMultimap.getValue(PREFIX_TEAM_NAME).get());
+            newTeamTeamName = ParserUtil.parseTeamName(argMultimap.getValue(PREFIX_TEAM_NAME).get());
         } catch (ParseException p) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditTeamCommand.MESSAGE_USAGE), p);
         }
 
-        return new EditTeamCommand(teamIndex, newTeamName);
+        return new EditTeamCommand(teamIndex, newTeamTeamName);
     }
 }
