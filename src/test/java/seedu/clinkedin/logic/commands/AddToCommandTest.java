@@ -31,7 +31,7 @@ import seedu.clinkedin.model.person.exceptions.RatingAlreadyExistsException;
 public class AddToCommandTest {
     private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private final Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    
+
     @Test
     public void constructor_nullIndex_throwsNullPointerException() {
         UpdatePersonDescriptor updatePersonDescriptor = new UpdatePersonDescriptor();
@@ -72,7 +72,7 @@ public class AddToCommandTest {
     }
 
     @Test
-    public void execute_unchangedRating_ThrowsCommandException() {
+    public void execute_unchangedRating_throwsCommandException() {
         Index index = Index.fromZeroBased(0);
         UpdatePersonDescriptor updatePersonDescriptor = new UpdatePersonDescriptor();
         Person personToEdit = model.getFilteredPersonList().get(index.getZeroBased());
@@ -82,7 +82,7 @@ public class AddToCommandTest {
     }
 
     @Test
-    public void execute_invalidTagType_ThrowsCommandException() {
+    public void execute_invalidTagType_throwsCommandException() {
         Index index = Index.fromZeroBased(0);
         UpdatePersonDescriptor updatePersonDescriptor = new UpdatePersonDescriptor();
         updatePersonDescriptor.setTagTypeMap(new UniqueTagTypeMap().copy());
@@ -92,7 +92,7 @@ public class AddToCommandTest {
     }
 
     @Test
-    public void execute_duplicateTags_ThrowsCommandException() {
+    public void execute_duplicateTags_throwsCommandException() {
         Index index = Index.fromZeroBased(0);
         Person personToEdit = model.getFilteredPersonList().get(index.getZeroBased());
         UpdatePersonDescriptor updatePersonDescriptor = new UpdatePersonDescriptor();
@@ -104,7 +104,7 @@ public class AddToCommandTest {
         AddToCommand addToCommand = new AddToCommand(index, updatePersonDescriptor);
         assertThrows(CommandException.class, () -> addToCommand.execute(model));
     }
-    
+
     @Test
     public void execute_validParams_success() {
         Index index = Index.fromZeroBased(1);
@@ -174,19 +174,19 @@ public class AddToCommandTest {
     }
 
     @Test
-    public void createUpdatedPerson_nullPerson_ThrowsAssertionException() {
+    public void createUpdatedPerson_nullPerson_throwsAssertionException() {
         UpdatePersonDescriptor updatePersonDescriptor = new UpdatePersonDescriptor();
         assertThrows(AssertionError.class, () -> AddToCommand.createUpdatedPerson(null, updatePersonDescriptor));
     }
 
     @Test
-    public void createUpdatedPerson_nullUpdatePersonDescriptor_ThrowsNullPointerException() {
+    public void createUpdatedPerson_nullUpdatePersonDescriptor_throwsNullPointerException() {
         Person person = model.getFilteredPersonList().get(0);
         assertThrows(NullPointerException.class, () -> AddToCommand.createUpdatedPerson(person, null));
     }
 
     @Test
-    public void createUpdatedPerson_ratingExists_ThrowsRatingAlreadyExistsException() {
+    public void createUpdatedPerson_ratingExists_throwsRatingAlreadyExistsException() {
         Index index = Index.fromZeroBased(0);
         UpdatePersonDescriptor updatePersonDescriptor = new UpdatePersonDescriptor();
         updatePersonDescriptor.setRating(new Rating("5"));

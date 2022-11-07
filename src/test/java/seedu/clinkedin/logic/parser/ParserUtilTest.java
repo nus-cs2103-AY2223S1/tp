@@ -28,7 +28,6 @@ import seedu.clinkedin.model.person.Phone;
 import seedu.clinkedin.model.person.Rating;
 import seedu.clinkedin.model.person.Status;
 import seedu.clinkedin.model.tag.Tag;
-import seedu.clinkedin.testutil.Assert;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
