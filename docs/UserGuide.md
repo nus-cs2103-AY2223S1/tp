@@ -82,7 +82,7 @@ for easy reference. So, let's [get started](#installation)!
 ## How to Use OmniHealth
 <div markdown="block" class="alert alert-warning">
 
-:warning: We **highly recommend** that you read through this section before moving on to our Features and FAQ<br>
+:warning: We **highly recommend** that you read through this section before moving on to our Features and FAQ sections!<br>
 
 </div>
 
@@ -95,7 +95,7 @@ Don't be overwhelmed, here's a rundown of the different sections of OmniHealth:
 
 **OmniHealth's GUI:**
 
-<img src="images/UiAnnotated.png" alt="ui-annotated" width="550" align="middle"/>
+<img src="images/UiAnnotated.png" alt="ui-annotated" width="550"/>
 
 ### Navigation
 Managing your patient database is made easy with OmniHealth and navigating it is easier!
@@ -126,7 +126,7 @@ After using a find command [`find`](#finding-patients-by-name-find) or [`rfind`]
 To display all the patients/records (**Unfiltered List View**), you can use the command [`showall`](#displaying-the-full-list-showall).
 <div markdown="block" class="alert alert-info">
 
-**:information_source: [`showall`](#displaying-the-full-list-showall) command is applicable to both Patient List View and Record List View**<br>
+:information_source: **Note:**[`showall`](#displaying-the-full-list-showall) command is applicable to both Patient List View and Record List View<br>
 
 </div>
 
