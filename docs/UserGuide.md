@@ -98,6 +98,7 @@ This document is to assist you in using MODPRO smoothly and effectively to track
     - [Clearing all the lists](#clearing-all-the-lists)
     - [Opening the help window](#help)
     - [Exiting the program](#exiting-the-program)
+- [Future Features to be added](#future-features-to-be-added)
 - [General](#general)
   - [Saving data to the data file](#saving-data-to-the-data-file)
   - [Editing the data file](#editing-the-data-file)
