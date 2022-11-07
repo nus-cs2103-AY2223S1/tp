@@ -565,7 +565,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-**Use case: UC7 - Exit the program**
+
+**Use case: UC7 - Contacting tutors by email**
+
+**MSS**
+
+1. User requests to mail a single tutor or all tutors.
+2. Tuthub opens the user's default mail client with the "to" specified.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given input is invalid.
+    * 1a1. Tuthub displays an error message.
+    * Step 1a1 is repeated until the proper input (a valid index or "all") is entered.
+      
+      Use case resumes from step 1.
+
+* 2a. The user's default mail client is not found or fails to be launched.
+    * 2a1. Tuthub displays an error message.
+    * Step 2a1 is repeated until the user's default mail client can be accessed.
+      
+      Use case ends.
+
+**Use case: UC8 - Exit the program**
 
 **MSS**
 
