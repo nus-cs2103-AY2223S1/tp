@@ -310,6 +310,7 @@ Adds a tutorial to ModQuik.
 Format: `add tutorial n/NAME m/MODULE v/VENUE T/TIMESLOT D/DAY`
 * `DAY` takes in a number from 1 (Monday) to 7 (Sunday).
 * `TIMESLOT` takes in a start time to end time in the format HH:mm-HH:mm, e.g., 18:00-20:00.
+* The system does not allow adding duplicate tutorials - as defined as the tutorial having the same name and same module, ignoring case.
 
 Examples:
 * `add tutorial n/T23 m/CS2103T v/COM1-0205 T/18:00-20:00 D/1`
@@ -367,7 +368,7 @@ Format: `delete tutorial INDEX`
 * The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
-* `delete tutorial 3`
+* `delete tutorial 2`
 
 ### 5.3 Consultation Features
 

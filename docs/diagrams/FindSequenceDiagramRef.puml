@@ -1,0 +1,37 @@
+@startuml
+!include style.puml
+
+
+participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
+
+participant ":NamePredicate" as NamePredicate MODEL_COLOR
+participant ":ModulePredicate" as ModulePredicate MODEL_COLOR
+
+create FindCommandParser
+group sd [create chained predicate]
+    ModulePredicate -[hidden]-> FindCommandParser
+
+    group opt [input contains name prefix]
+        create NamePredicate
+        activate FindCommandParser
+        FindCommandParser -> NamePredicate
+        activate NamePredicate
+        NamePredicate -> FindCommandParser
+        deactivate NamePredicate
+    end
+
+    group opt [input contains module prefix]
+        create ModulePredicate
+        FindCommandParser -> ModulePredicate
+        activate ModulePredicate
+        ModulePredicate -> FindCommandParser
+        deactivate ModulePredicate
+    end
+
+    FindCommandParser -> FindCommandParser : createChainedPredicates(predicates)
+    activate FindCommandParser
+    FindCommandParser --> FindCommandParser : predC
+    deactivate FindCommandParser
+    FindCommandParser -[hidden]-> FindCommandParser
+end
+@enduml
