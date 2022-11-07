@@ -234,7 +234,7 @@ We decided to set these 2 constraints on birthday:
 1) Birthday should not be in the future.
 
 2) Birthday should not be more than 100 years ago as we feel that client would not be able to buy product due to age limit.
-<!-- @@author -->
+<!-- @@author thomashoooo -->
 #### 4.1.3 View client
 
 Syntax: `viewClient i/INDEX`, where `INDEX` is an index shown in the client list.
@@ -380,7 +380,7 @@ _The sequence diagram and activity diagram of `delMeeting` is similar to the dia
     - Cons: Complex to implement
 - Considering that the approach taken to develop _MyInsuRec_ is a breath first approach, where we should only build to the point where every iteration is a working product, **Solution 1** is thus chosen as it is easier to implement. However, Solution 2 could be a possible implementation for future iteration.
 
-<!-- @@author -->
+<!-- @@author thomashoooo-->
 #### 4.2.4 View meeting
 
 Syntax: `viewMeeting i/INDEX`, where `INDEX` is an index shown in the meeting list.
@@ -397,7 +397,7 @@ Usage Scenario of `viewMeeting`:
 </div>
 
 _The sequence diagram and activity diagram of `viewMeeting` is similar to the diagrams shown in [`viewClient`](#413-view-client) feature by replacing all occurrence of `client` with `meeting`._
-
+<!-- @@author -->
 #### 4.2.5 List meeting
 
 Syntax: `listMeeting [d/PERIOD]`
@@ -462,7 +462,7 @@ Below is a sequence diagram that illustrates the execution of `editMeeting i/1 d
 <img src="images/AlternativeEditActivityDiagram.png" width="250" />
 
 ### 4.3 `Product`-related features
-
+<!-- @@author thomashoooo -->
 #### 4.3.1 Add product
 
 Syntax: `addProduct pd/PRODUCT_NAME`
@@ -475,14 +475,14 @@ Usage Scenario of `addProduct`:
 
 1) User inputs `addProduct pd/PrudenSure` to add PrudenSure in the product list.
 
-Below is a sequence diagram that illustrates the execution of `listMeeting` command.
+Below is a sequence diagram that illustrates the execution of `addProduct` command.
 
 ![AddProductSequenceDiagram](images/AddProductSequenceDiagram.png)
 
 Below is an activity diagram that summarises the execution of `addProduct`.
 
 ![AddProductActivityDiagram](images/AddProductActivityDiagram.png)
-
+<!-- @@author -->
 ### 4.4 UI
 
 #### 4.4.1 Different view panels
@@ -973,7 +973,7 @@ testers are expected to do more *exploratory* testing.
 10. Add client with invalid phone number
     * Test case: `addClient n/Tom p/12345`
         * Expected: No client will be added. Error regarding the wrong phone input will be shown.
-
+<!-- @@author thomashoooo -->
 ### 7.3 Viewing a client
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in, but it only makes sense to use while you are in the list of clients using `listClient` where the index number of the client can be found.
@@ -1074,7 +1074,7 @@ Deleting a meeting while all meetings are being shown
     * Test case: `delMeeting`
         * Expected: No meeting is deleted. Error regarding invalid command format will be shown.
 
-<!-- @@author -->
+<!-- @@author thomashoooo -->
 ### 7.7 Viewing a meeting
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in, but it only makes sense to use while you are in the list of meetings using `listMeeting` where the index number of the meeting can be found.</div>
@@ -1104,7 +1104,7 @@ Deleting a meeting while all meetings are being shown
 7. View meeting without using prefix
    * Test case: `viewMeeting 1`
      * Expected: Prefix for index is not provided, so there will be an invalid command format error.
-
+<!-- @@author -->
 ### 7.8 Adding a product
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in.</div>

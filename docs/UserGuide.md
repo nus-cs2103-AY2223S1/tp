@@ -359,7 +359,7 @@ Examples:
   * `addClient n/John Tan p/12345678 e/johntan@insurec.com a/123 ABC ROAD, #11-01 pd/Product1`
 * Same as above, but with multiple products
   * `addClient n/John Tan p/12345678 e/johntan@insurec.com a/123 ABC ROAD, #11-01 pd/Product1 pd/Product2 pd/Product3`
-<!-- @@author -->
+<!-- @@author thomashoooo -->
 #### 7.1.2 List clients: `listClient`
 
 Shows the list of clients in MyInsuRec.
@@ -397,6 +397,7 @@ Examples:
 
 * Extraneous parameters will not be taken into account. For example, `listClient n/Alex` will be considered as `listClient` without any error messages.
 </div>
+<!-- @@author thomashoooo-->
 
 #### 7.1.3 View client: `viewClient`
 
@@ -539,6 +540,7 @@ Examples:
 <div markdown="span" class="alert alert-warning">**:exclamation: Caution:**
 Extraneous parameters will not be taken into account. For example, `listMeeting n/Alex` will be considered as `listMeeting` without any error messages.
 </div>
+<!-- @@author thomashoooo -->
 
 #### 7.2.3 View meeting: `viewMeeting`
 
@@ -603,7 +605,7 @@ Examples:
 ### 7.3 Product commands
 
 This subsection covers all product-related commands.
-
+<!-- @@author thomashoooo -->
 #### 7.3.1 Add product: `addProduct`
 
 Add a new product to MyInsuRec.
@@ -621,7 +623,7 @@ Use Case:
 Examples:
 * Add product with product name of 'Product1'
   * `addProduct pd/Product1`
-
+<!-- @@author -->
 #### 7.3.2 List products: `listProduct`
 
 Show the list of products in MyInsuRec.
@@ -752,7 +754,7 @@ Add the product to the client using the [`editClient`](#715-edit-client-editclie
 [Return to the top](#)
 
 --------------------------------------------------------------------------------------------------------------------
-
+<!-- @@author thomashoooo -->
 ## 9. Command summary
 
 | Action                                               | Format                                                                                            | Examples                                                                                                                                         |
@@ -773,7 +775,7 @@ Add the product to the client using the [`editClient`](#715-edit-client-editclie
 | [**Help**](#741-view-help-help)                      | `help`                                                                                            | `help`                                                                                                                                           |
 | [**Exit**](#742-exit-myinsurec-exit)                 | `exit`                                                                                            | `exit`                                                                                                                                           |
 | [**Clear**](#743-clear-myinsurec-clear)              | `clear`                                                                                           | `clear`                                                                                                                                          |
-
+<!-- @@author -->
 [Return to the top](#)
 
 --------------------------------------------------------------------------------------------------------------------
