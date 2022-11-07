@@ -1,5 +1,6 @@
 ---
-layout: page title: Sharmaine Teo's Project Portfolio Page
+layout: page
+title: Sharmaine Teo Hai Zhen's Project Portfolio Page
 ---
 
 ### Project: PennyWise
