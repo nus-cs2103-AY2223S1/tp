@@ -1,0 +1,18 @@
+@startuml
+start
+:User enters a TaskEditCommand;
+:TaskEditCommandParser parses for valid format;
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([task edit command is valid])
+    :Create new task edit command which is executed by LogicManager;
+    :Create a list of string of student names to parse into the command;
+    :Search the model for the student names and return a final list of changes to be made;
+    :UI displays edited task in the Command Output box;
+    :UI updates the edited task in the Task List Card;
+else ([else])
+    :Show error message;
+endif
+stop
+@enduml

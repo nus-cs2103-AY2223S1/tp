@@ -8,6 +8,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
@@ -31,24 +32,22 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
-    private ResultDisplay resultDisplay;
+    private StudentListPanel studentListPanel;
+    private TaskListPanel taskListPanel;
+    private CommandOutput commandOutput;
     private HelpWindow helpWindow;
 
     @FXML
-    private StackPane commandBoxPlaceholder;
+    private HBox commandInputPlaceholder;
 
     @FXML
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane resultListPanelPlaceholder;
 
     @FXML
-    private StackPane resultDisplayPlaceholder;
-
-    @FXML
-    private StackPane statusbarPlaceholder;
+    private StackPane commandOutputPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -59,6 +58,9 @@ public class MainWindow extends UiPart<Stage> {
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
+
+        // Set title
+        primaryStage.setTitle("Teaching Assistant Assistant");
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
@@ -110,17 +112,15 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        // Show a list of students upon startup.
+        studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
+        resultListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
 
-        resultDisplay = new ResultDisplay();
-        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
-
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+        commandOutput = new CommandOutput();
+        commandOutputPlaceholder.getChildren().add(commandOutput.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
-        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+        commandInputPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
     /**
@@ -163,9 +163,37 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    /**
+     *  When the 'Students' button in the sidebar is clicked,
+     *  display a list of students in MainWindow.
+     */
+    @FXML
+    public void handleClickStudentsButton() {
+        studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
+        resultListPanelPlaceholder.getChildren().clear();
+        resultListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
     }
+
+    /**
+     *  When the 'Tasks' button in the sidebar is clicked,
+     *  display a list of tasks in MainWindow.
+     */
+    @FXML
+    public void handleClickTasksButton() {
+        // A helpful comment goes here.
+        taskListPanel = new TaskListPanel(logic.getFilteredTaskList(), logic.getGradeMap());
+        resultListPanelPlaceholder.getChildren().clear();
+        resultListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
+    }
+
+    public StudentListPanel getStudentListPanel() {
+        return studentListPanel;
+    }
+
+    public TaskListPanel getTaskListPanel() {
+        return taskListPanel;
+    }
+
 
     /**
      * Executes the command and returns the result.
@@ -176,7 +204,7 @@ public class MainWindow extends UiPart<Stage> {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            commandOutput.setFeedbackToUser(commandResult.getFeedbackToUser());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
@@ -189,7 +217,7 @@ public class MainWindow extends UiPart<Stage> {
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
-            resultDisplay.setFeedbackToUser(e.getMessage());
+            commandOutput.setFeedbackToUser(e.getMessage());
             throw e;
         }
     }

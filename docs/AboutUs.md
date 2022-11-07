@@ -9,51 +9,51 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Lim Wei Jun
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/limweijun.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/limweijun)]
+[[portfolio](team/limweijun.md)]
 
-* Role: Project Advisor
+- Role: Developer
+- Responsibilities: CI/CD, Testing
 
-### Jane Doe
+### Lam Chun Yu
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/gunbux.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/gunbux)] [[portfolio](team/gunbux.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+- Role: Developer
+- Responsibilities: Big Architectural Planning, UML Diagrams
 
-### Johnny Doe
+### Lu Yiting
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/luyiting0913.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/LuYiting0913)]
+[[portfolio](team/luyiting0913.md)]
 
-* Role: Developer
-* Responsibilities: Data
+- Role: Developer
+- Responsibilities: User Stories Planning
 
-### Jean Doe
+### Yeo Jun Jie
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yeojunjie.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/yeojunjie)]
+[[portfolio](team/yeojunjie.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+- Role: Developer
+- Responsibilities: UI Specialist
 
-### James Doe
+### Bag Devesh Kumar
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/tensaida.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/tensaida)]
+[[portfolio](team/tensaida.md)]
 
-* Role: Developer
-* Responsibilities: UI
+- Role: Developer
+- Responsibilities: Command Line Specialist

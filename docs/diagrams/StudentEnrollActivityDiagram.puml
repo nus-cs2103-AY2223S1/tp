@@ -1,0 +1,28 @@
+@startuml
+start
+:User enters a StudentEnrollCommand;
+:StudentEnrollCommandParser parses for valid format;
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([student enroll command is valid])
+    :Get the target student from the model;
+    if () then ([student already enrolled in a tutorial])
+    :Show error message;
+    else ()
+    :Search the model for the tutorial group names;
+    if () then  ([tutorial group name exists])
+        :Enroll the student to the tutorial group;
+        :Update the changed to the model;
+        :UI displays enroll message in the Command Output box;
+        else ([else])
+        :Show error message;
+        endif
+    endif
+
+
+else ([else])
+    :Show error message;
+endif
+stop
+@enduml

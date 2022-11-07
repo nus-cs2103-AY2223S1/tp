@@ -7,11 +7,17 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.model.grade.Grade;
+import seedu.address.model.grade.GradeKey;
+import seedu.address.model.student.Student;
+import seedu.address.model.student.TutorialGroup;
+import seedu.address.model.task.Task;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -21,7 +27,10 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Student> filteredStudents;
+    private final FilteredList<Task> filteredTasks;
+    private final FilteredList<TutorialGroup> filteredTutorialGroups;
+    private final ObservableMap<GradeKey, Grade> grades;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -33,7 +42,11 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredStudents = new FilteredList<>(this.addressBook.getStudentList());
+        filteredTasks = new FilteredList<>(this.addressBook.getTaskList());
+        filteredTutorialGroups = new FilteredList<>(this.addressBook.getTutorialGroupList());
+        grades = FXCollections.observableMap(this.addressBook.getGradeMap());
+        Task.setGradesMap(grades);
     }
 
     public ModelManager() {
@@ -88,44 +101,162 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public boolean hasStudent(Student student) {
+        requireNonNull(student);
+        return addressBook.hasStudent(student);
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public void deleteStudent(Student target) {
+        addressBook.removeStudent(target);
+        addressBook.deleteStudentInTask(this, target);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addStudent(Student student) {
+        addressBook.addStudent(student);
+        updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-
-        addressBook.setPerson(target, editedPerson);
+    public Student findStudent(String studentName) {
+        return addressBook.findStudent(studentName);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    @Override
+    public void setStudent(Student target, Student editedStudent) {
+        requireAllNonNull(target, editedStudent);
+
+        addressBook.setStudent(target, editedStudent);
+        addressBook.editStudentInTask(this, target, editedStudent);
+    }
+
+    @Override
+    public boolean hasTutorialGroup(TutorialGroup tutorialGroup) {
+        requireNonNull(tutorialGroup);
+        return addressBook.hasTutorialGroup(tutorialGroup);
+    }
+
+    @Override
+    public void deleteTutorialGroup(TutorialGroup target) {
+        addressBook.removeTutorialGroup(target);
+    }
+
+    @Override
+    public void addTutorialGroup(TutorialGroup tutorialGroup) {
+        addressBook.addTutorialGroup(tutorialGroup);
+        updateFilteredTutorialGroupList(PREDICATE_SHOW_ALL_TUTORIAL_GROUPS);
+    }
+
+
+    //=========== Filtered Student List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Student> getFilteredStudentList() {
+        return filteredStudents;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public ObservableList<TutorialGroup> getFilteredTutorialGroupList() {
+        return filteredTutorialGroups;
+    }
+
+    @Override
+    public void updateFilteredStudentList(Predicate<Student> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredStudents.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredStudentListByTg(TutorialGroup tutorialGroup) {
+        Predicate<Student> inSameTutorialGrp = s -> {
+            if (s.getTutorialGroup() != null) {
+                return s.getTutorialGroup().equals(tutorialGroup);
+            } else {
+                return false;
+            }
+        };
+        requireNonNull(inSameTutorialGrp);
+        filteredStudents.setPredicate(inSameTutorialGrp);
+    }
+
+    @Override
+    public void updateFilteredTutorialGroupList(Predicate<TutorialGroup> predicate) {
+        requireNonNull(predicate);
+        filteredTutorialGroups.setPredicate(predicate);
+    }
+
+
+
+    //=========== Task ================================================================================
+
+    @Override
+    public boolean hasTask(Task task) {
+        requireNonNull(task);
+        return addressBook.hasTask(task);
+    }
+
+    @Override
+    public void deleteTask(Task target) {
+        addressBook.removeTask(target);
+    }
+
+    @Override
+    public void addTask(Task task) {
+        addressBook.addTask(task);
+        updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+    }
+
+    @Override
+    public void setTask(Task target, Task editedTask) {
+        requireAllNonNull(target, editedTask);
+
+        addressBook.setTask(target, editedTask);
+    }
+
+    //=========== Filtered Task List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Task} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Task> getFilteredTaskList() {
+        return filteredTasks;
+    }
+
+    @Override
+    public void updateFilteredTaskList(Predicate<Task> predicate) {
+        requireNonNull(predicate);
+        filteredTasks.setPredicate(predicate);
+    }
+
+    //=========== Grade Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the map of {@code (GradeKey, Grade)} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableMap<GradeKey, Grade> getGradeMap() {
+        return grades;
+    }
+
+    //=========== Grade ================================================================================
+
+    @Override
+    public void addGrade(GradeKey gradeKey, Grade grade) {
+        addressBook.addGrade(gradeKey, grade);
+        //TODO: Show grade somehow
+    }
+
+    @Override
+    public void updateGrades(Task taskToEdit, Task editedTask) {
+        addressBook.updateGrades(taskToEdit, editedTask);
     }
 
     @Override
@@ -144,7 +275,7 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredStudents.equals(other.filteredStudents);
     }
 
 }

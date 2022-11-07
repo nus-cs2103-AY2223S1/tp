@@ -9,11 +9,16 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.grade.Grade;
+import seedu.address.model.student.Address;
+import seedu.address.model.student.Email;
+import seedu.address.model.student.Name;
+import seedu.address.model.student.Phone;
+import seedu.address.model.student.TutorialGroup;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.TaskDeadline;
+import seedu.address.model.task.TaskDescription;
+import seedu.address.model.task.TaskName;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -34,6 +39,22 @@ public class ParserUtil {
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
+
+    /**
+     * Parses {@code Collection<String> indexes} into a {@code Index[]}. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if any of the specified indexes are invalid (not non-zero unsigned integer).
+     */
+    public static Index[] parseIndexes(String arguments) throws ParseException {
+        String[] indexes = arguments.trim().split("\\s+");
+        Index[] indexArray = new Index[indexes.length];
+        for (int i = 0; i < indexes.length; i++) {
+            indexArray[i] = parseIndex(indexes[i]);
+        }
+        return indexArray;
+    }
+
+    //Student Parser Util
 
     /**
      * Parses a {@code String name} into a {@code Name}.
@@ -96,6 +117,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String tutorialGroup} into an {@code TutorialGroup}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code tutorialGroup} is invalid.
+     */
+    public static TutorialGroup parseTutorialGroup(String tutorialGroup) throws ParseException {
+        requireNonNull(tutorialGroup);
+        String trimmedGroup = tutorialGroup.trim();
+        if (!TutorialGroup.isValidTutorialGroup(trimmedGroup)) {
+            throw new ParseException(TutorialGroup.MESSAGE_CONSTRAINTS);
+        }
+        return new TutorialGroup(trimmedGroup);
+    }
+
+    /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -120,5 +156,69 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    //Task Parser Util
+
+    /**
+     * Parses a {@code String taskName} into a {@code TaskName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code taskName} is invalid.
+     */
+    public static TaskName parseTaskName(String taskName) throws ParseException {
+        requireNonNull(taskName);
+        String trimmedTaskName = taskName.trim();
+        if (!TaskName.isValidName(trimmedTaskName)) {
+            throw new ParseException(TaskName.MESSAGE_CONSTRAINTS);
+        }
+        return new TaskName(trimmedTaskName);
+    }
+
+    /**
+     * Parses a {@code String taskDescription} into a {@code TaskDescription}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code taskDescription} is invalid.
+     */
+    public static TaskDescription parseTaskDescription(String taskDescription) throws ParseException {
+        requireNonNull(taskDescription);
+        String trimmedTaskDescription = taskDescription.trim();
+        if (!TaskDescription.isValidDescription(trimmedTaskDescription)) {
+            throw new ParseException(TaskDescription.MESSAGE_CONSTRAINTS);
+        }
+        return new TaskDescription(trimmedTaskDescription);
+    }
+
+    /**
+     * Parses a {@code String taskDeadline} into a {@code taskDeadline}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code taskDeadline} is invalid.
+     */
+    public static TaskDeadline parseTaskDeadline(String taskDeadline) throws ParseException {
+        requireNonNull(taskDeadline);
+        String trimmedTaskDeadline = taskDeadline.trim();
+        if (!TaskDeadline.isInDeadlineFormat(trimmedTaskDeadline)) {
+            throw new ParseException(TaskDeadline.MESSAGE_CONSTRAINTS);
+        } else if (!TaskDeadline.isValidDate(trimmedTaskDeadline)) {
+            throw new ParseException(TaskDeadline.MESSAGE_INVALID_DATE);
+        }
+        return new TaskDeadline(trimmedTaskDeadline);
+    }
+
+    /**
+     * Parses a {@code String grade} into a {@code Grade}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code Grade} is invalid.
+     */
+    public static Grade parseGrade(String grade) throws ParseException {
+        requireNonNull(grade);
+        String trimmedGrade = grade.trim();
+        if (!Grade.isValidDescription(trimmedGrade)) {
+            throw new ParseException(Grade.MESSAGE_CONSTRAINTS);
+        }
+        return (trimmedGrade.equals("T")) ? Grade.GRADED : Grade.UNGRADED;
     }
 }

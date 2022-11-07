@@ -1,0 +1,18 @@
+{
+  "students": [ {
+    "name": "Alice Pauline",
+    "phone": "94351253",
+    "email": "alice@example.com",
+    "tutorial": "T01",
+    "tagged": [ "friends" ]
+  }, {
+    "name": "Alice Pauline",
+    "phone": "94351253",
+    "email": "pauline@example.com"
+  } ],
+  "tasks": [],
+  "groups": [{
+    "tutorialName": "T01"
+  }],
+  "grades": []
+}

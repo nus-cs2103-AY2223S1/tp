@@ -1,0 +1,69 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TAAParser" as TAAParser LOGIC_COLOR
+participant ":GradeEditCommandParser" as GradeEditCommandParser LOGIC_COLOR
+participant "g:GradeEditCommand" as GradeEditCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("grade edit 1 2 gr/T")
+activate LogicManager
+
+LogicManager -> TAAParser : parse("grade edit 1 2 gr/T")
+activate TAAParser
+
+create GradeEditCommandParser
+TAAParser -> GradeEditCommandParser
+activate GradeEditCommandParser
+
+GradeEditCommandParser --> TAAParser
+deactivate GradeEditCommandParser
+
+TAAParser -> GradeEditCommandParser : parse("1 2 gr/T")
+activate GradeEditCommandParser
+
+create GradeEditCommand
+GradeEditCommandParser -> GradeEditCommand
+activate GradeEditCommand
+
+GradeEditCommand --> GradeEditCommandParser : g
+deactivate GradeEditCommand
+
+GradeEditCommandParser --> TAAParser : g
+deactivate GradeEditCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+GradeEditCommandParser -[hidden]-> TAAParser
+destroy GradeEditCommandParser
+
+TAAParser --> LogicManager : g
+deactivate TAAParser
+
+LogicManager -> GradeEditCommand : execute()
+activate GradeEditCommand
+
+GradeEditCommand -> Model : addGrade(1, 2, GRADED)
+activate Model
+
+Model --> GradeEditCommand
+deactivate Model
+
+create CommandResult
+GradeEditCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> GradeEditCommand
+deactivate CommandResult
+
+GradeEditCommand --> LogicManager : result
+deactivate GradeEditCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

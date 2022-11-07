@@ -1,0 +1,68 @@
+@startuml
+!include style.puml
+
+box Parser LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as TaaParser LOGIC_COLOR
+participant ":TutorialGroupAddCommandParser" as TutorialGroupAddCommandParser LOGIC_COLOR
+participant ":TutorialGroupAddCommand" as TutorialGroupAddCommand LOGIC_COLOR
+
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+
+
+LogicManager -> TaaParser : parseCommand("group add g/T02")
+activate TaaParser
+
+create TutorialGroupAddCommandParser
+TaaParser -> TutorialGroupAddCommandParser
+activate TutorialGroupAddCommandParser
+
+TutorialGroupAddCommandParser --> TaaParser
+deactivate TutorialGroupAddCommandParser
+
+TaaParser -> TutorialGroupAddCommandParser : parse("T01")
+activate TutorialGroupAddCommandParser
+
+create TutorialGroupAddCommand
+TutorialGroupAddCommandParser -> TutorialGroupAddCommand
+activate TutorialGroupAddCommand
+
+TutorialGroupAddCommand --> TutorialGroupAddCommandParser
+deactivate TutorialGroupAddCommand
+
+TutorialGroupAddCommandParser --> TaaParser : tutorialGroupAddCommand
+deactivate TutorialGroupAddCommandParser
+
+TutorialGroupAddCommandParser -[hidden]-> TaaParser
+destroy TutorialGroupAddCommandParser
+
+TaaParser --> LogicManager : tutorialGroupAddCommand
+deactivate TaaParser
+
+LogicManager -> TutorialGroupAddCommand : execute()
+activate TutorialGroupAddCommand
+
+TutorialGroupAddCommand -> Model : AddTutorial("T01")
+activate Model
+
+Model --> TutorialGroupAddCommand
+deactivate Model
+
+create CommandResult
+TutorialGroupAddCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> TutorialGroupAddCommand
+deactivate CommandResult
+
+TutorialGroupAddCommand --> LogicManager : commandResult
+deactivate TutorialGroupAddCommand
+
+
+@enduml

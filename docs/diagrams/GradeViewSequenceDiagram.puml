@@ -1,0 +1,69 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TAAParser" as TAAParser LOGIC_COLOR
+participant ":GradeViewCommandParser" as GradeViewCommandParser LOGIC_COLOR
+participant "g:GradeViewCommand" as GradeViewCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("grade view 1 2")
+activate LogicManager
+
+LogicManager -> TAAParser : parse("grade view 1 2")
+activate TAAParser
+
+create GradeViewCommandParser
+TAAParser -> GradeViewCommandParser
+activate GradeViewCommandParser
+
+GradeViewCommandParser --> TAAParser
+deactivate GradeViewCommandParser
+
+TAAParser -> GradeViewCommandParser : parse("1 2")
+activate GradeViewCommandParser
+
+create GradeViewCommand
+GradeViewCommandParser -> GradeViewCommand
+activate GradeViewCommand
+
+GradeViewCommand --> GradeViewCommandParser : g
+deactivate GradeViewCommand
+
+GradeViewCommandParser --> TAAParser : g
+deactivate GradeViewCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+GradeViewCommandParser -[hidden]-> TAAParser
+destroy GradeViewCommandParser
+
+TAAParser --> LogicManager : g
+deactivate TAAParser
+
+LogicManager -> GradeViewCommand : execute()
+activate GradeViewCommand
+
+GradeViewCommand -> Model : getGrade(1, 2)
+activate Model
+
+Model --> GradeViewCommand
+deactivate Model
+
+create CommandResult
+GradeViewCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> GradeViewCommand
+deactivate CommandResult
+
+GradeViewCommand --> LogicManager : result
+deactivate GradeViewCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

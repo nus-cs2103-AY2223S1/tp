@@ -1,0 +1,48 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Task {
++ TaskName getTaskName()
++ TaskDescription getTaskDescription()
++ TaskDeadline getTaskDeadline()
+}
+
+class TaskName {
++ {static} String MESSAGE_CONSTRAINTS
++ {static} String VALIDATION_REGEX
++ String taskName
+
++ {static} boolean isValidName(String test)
+}
+
+class TaskDescription {
++ {static} String MESSAGE_CONSTRAINTS
++ {static} String VALIDATION_REGEX
++ String description
+
++ {static} boolean isValidDescription(String test)
+}
+
+class TaskDeadline {
++ {static} String MESSAGE_CONSTRAINTS
++ {static} String MESSAGE_INVALID_DATE
++ {static} String VALIDATION_REGEX
+- {static} String DATE_FORMAT
++ Date deadline
+
++ {static} boolean isInDeadlineFormat(String test)
++ {static} boolean isValidDate(String test)
+}
+
+class Student {
+
+}
+
+
+Task *--> "1" TaskName
+Task *--> "1" TaskDescription
+Task *--> "1" TaskDeadline
+Task --> "*" Student
+
+@enduml
+

@@ -1,0 +1,18 @@
+@startuml
+!include style.puml
+
+box Model MODEL_COLOR_T1
+participant "tasks:UniqueTaskList" as UniqueTaskList MODEL_COLOR_T2
+participant "internalList:ObservableList<Task>" as ObservableList MODEL_COLOR_T2
+end box
+
+[-> UniqueTaskList : add(task)
+activate UniqueTaskList
+
+UniqueTaskList -> UniqueTaskList : sortByDeadline()
+
+
+UniqueTaskList -> ObservableList : task.sort(comparator)
+activate ObservableList
+
+@enduml

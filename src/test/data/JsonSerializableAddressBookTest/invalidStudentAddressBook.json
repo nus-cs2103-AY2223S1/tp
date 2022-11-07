@@ -1,0 +1,11 @@
+{
+  "students": [ {
+    "name": "Hans Muster",
+    "phone": "9482424",
+    "email": "invalid@email!3e",
+    "tutorial": "T01"
+  } ],
+  "tasks": [],
+  "groups": [],
+  "grades": []
+}

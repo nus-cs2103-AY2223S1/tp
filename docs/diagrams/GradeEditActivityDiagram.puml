@@ -1,0 +1,17 @@
+@startuml
+start
+:User enters a GradeEditCommand;
+:GradeEditCommandParser parses for valid format;
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([grade edit command is valid])
+    :Create new grade edit command which is executed by LogicManager;
+    :Model changes grade of the specified student-task pair;
+    :UI displays new grade in the Command Output box;
+    :UI updates the grade in the Task List Card;
+else ([else])
+    :Show error message;
+endif
+stop
+@enduml
