@@ -1,6 +1,7 @@
 ---
 layout: page
 title: DevOps guide
+show-toc: true
 ---
 
 * Table of Contents

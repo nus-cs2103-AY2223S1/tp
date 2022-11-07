@@ -3,8 +3,6 @@ layout: page
 title: Kee Seow Han's Project Portfolio Page
 ---
 
-<div markdown="block" class="no-num">
-
 ### Project: NUScheduler
 
 NUScheduler is a desktop app for managing contacts, optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, NUScheduler can get your contact management tasks done faster than traditional GUI apps.
@@ -54,5 +52,3 @@ Given below are my contributions to the project.
   * Pull Requests reviewed: 11 ([GitHub](https://github.com/AY2223S1-CS2103T-T17-3/tp/pulls?q=is%3Apr+commenter%3AKSHan29+is%3Aclosed+-author%3AKSHan29))
   * Pull Request reviewed with non-trivial comments: [#83](https://github.com/AY2223S1-CS2103T-T17-3/tp/pull/83)
   * Found 8 bugs in team [CS2103T-W15-4](https://github.com/KSHan29/ped/issues)'s product during PE-D.
-  
-</div>
