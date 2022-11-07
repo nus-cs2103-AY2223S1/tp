@@ -35,7 +35,7 @@ public class AddPropertyCommand extends Command {
             + PREFIX_PRICE + "PRICE "
             + "[" + PREFIX_IMAGE_UPLOAD + "] "
             + "[" + PREFIX_PROPERTY_STATUS + "PROPERTY_STATUS] "
-            + "[" + PREFIX_INTERESTEDCLIENTS + "INTERESTED_CLIENT ]"
+            + "[" + PREFIX_INTERESTEDCLIENTS + "INTERESTED_CLIENT]... "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "PINNACLE@DUXTON "

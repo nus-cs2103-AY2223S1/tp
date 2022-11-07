@@ -5,6 +5,7 @@ import static seedu.condonery.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_INTERESTEDPROPERTIES;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.condonery.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
 import static seedu.condonery.model.Model.PREDICATE_SHOW_ALL_PROPERTIES;
 
 import java.io.File;
@@ -41,7 +42,7 @@ public class EditClientCommand extends Command {
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_ADDRESS + "ADDRESS "
-            + "[" + PREFIX_TAG + "TAG] "
+            + "[" + PREFIX_TAG + "TAG]... "
             + "[" + PREFIX_INTERESTEDPROPERTIES + "INTERESTED_PROPERTIES]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Alice Tan"
@@ -130,6 +131,7 @@ public class EditClientCommand extends Command {
 
         model.setClient(clientToEdit, editedClient);
         model.updateFilteredPropertyList(PREDICATE_SHOW_ALL_PROPERTIES);
+        model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
 
         if (this.hasImage) {
             return new CommandResult(

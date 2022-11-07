@@ -28,7 +28,7 @@ public class AddClientCommand extends Command {
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_ADDRESS + "ADDRESS "
-            + "[" + PREFIX_TAG + "TAG] "
+            + "[" + PREFIX_TAG + "TAG]... "
             + "[" + PREFIX_INTERESTEDPROPERTIES + "INTERESTED_PROPERTIES]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Alice Tan "
