@@ -131,6 +131,9 @@ This document is to assist you in using MODPRO smoothly and effectively to track
 6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
+
 
 ## Features
 
@@ -161,6 +164,9 @@ This document is to assist you in using MODPRO smoothly and effectively to track
 * Extraneous parameters for commands that do not take in parameters (such as help, exit and clearall) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 </div>
+
+------------
+<div style="page-break-after: always;"></div>
 
 ## Modules-related Features
 
