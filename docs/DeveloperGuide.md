@@ -314,9 +314,6 @@ The proposed sorting mechanism is facilitated by `TripComparators`. It contains 
 the trips by various factors. This mechanism is used in `SortTripsCommand`, `AddCommand`, `MarkTripDoneCommand` and 
 `UnmarkDoneTripCommand`.
 
-To use the comparators for sorting, they are passed down to `ModelManager` initially, then to the `Travelr` class,
-then to the `UniqueTripList` and lastly to the `ObservableList<Trip>`.
-
 Given below is an example usage scenario and how the sorting mechanism behaves at each step.
 
 Step 1. The user launches the application. The `Travelr` will be initialized with the past app data.
@@ -337,6 +334,10 @@ Step 5. The user now decides that he wants to sort his list of trips, and he doe
         The `SortTripsCommandParser` firstly parses the command for optional parameters, which may contain the factor 
         to sort by and whether to sort in reverse order. Subsequently, the trips are sorted based on the parameters the 
         user supplied while keeping uncompleted trips ordered before completed trips.
+        
+The following sequence diagram shows how the `sort` command works:
+
+![SortingMechanismDiagram](images/SortingMechanism.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
