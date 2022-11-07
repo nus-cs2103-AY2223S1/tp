@@ -95,7 +95,7 @@ public class PriceRange implements Comparable<PriceRange> {
 
     @Override
     public String toString() {
-        return "Price range: " + lowerBound.getPrice() + " - " + upperBound.getPrice();
+        return "Price range: " + lowerBound.getPrice() + " , " + upperBound.getPrice();
     }
 
     @Override

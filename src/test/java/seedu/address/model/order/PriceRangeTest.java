@@ -75,7 +75,7 @@ public class PriceRangeTest {
         Price lowerBound = new Price(19.5);
         PriceRange priceRange = new PriceRange(lowerBound, upperBound);
 
-        String expectedString = "Price range: " + lowerBound.getPrice() + " - " + upperBound.getPrice();
+        String expectedString = "Price range: " + lowerBound.getPrice() + " , " + upperBound.getPrice();
         assertEquals(priceRange.toString(), expectedString);
     }
 
