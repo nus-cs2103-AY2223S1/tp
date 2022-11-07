@@ -9,8 +9,10 @@ When you launch FoodRem, FoodRem appears on your screen as a [Graphical User Int
 
 This table breaks down the different components of FoodRem's GUI.
 
-| Name               | Image                                            |
-|--------------------|--------------------------------------------------|
-| Command Input Box  | ![CommandInputBox](images/CommandInputBox.png)   |
-| Command Output Box | ![CommandOutputBox](images/CommandOutputBox.png) |
-| Item List Box      | ![FullUiImage](images/ItemListBox.png)           |
+| Name               |                       Image                        |
+|--------------------|:--------------------------------------------------:|
+| Command Input Box  |  ![Command Input Box](images/CommandInputBox.png)  |
+| Command Output Box | ![Command Output Box](images/CommandOutputBox.png) |
+| Item List Box      |      ![Item List Box](images/ItemListBox.png)      |
+| Help Window        |       ![Help Window](images/HelpWindow.png)        |
+{: .layout-table }

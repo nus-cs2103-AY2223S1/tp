@@ -444,3 +444,19 @@ article.post {
     }
   }
 }
+
+.layout-table {
+  img {
+    border-radius: 7px;
+    width: 80%;
+  }
+
+  tr:not(:last-child) {
+    // All rows except help window
+    // TODO: Use less-hacky method
+    img {
+      border: 1px solid black;
+      border-radius: 6px;
+    }
+  }
+}
