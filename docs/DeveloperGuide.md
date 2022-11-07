@@ -425,7 +425,7 @@ Sorting by default and alphabetical order is done using the `.sort(Comparator<? 
 </table>
 
 **Remarks:**  
-In the method for default sorting, `uniqueId` has 2 parts, the time when the entry was added, and the sequence number it was added in. This was done because myStudent loads  data from the .json files instantly during startup i.e. the method to capture the time, `Instant.now()`, is not precise enough. Thus, their sequence number is used instead to sort.
+In the method for default sorting, `uniqueId` has 2 values, the time when the entry was added, and the sequence number it was added in. Their keys are the `Integer` `0` and `1` respectively. This was done because myStudent loads  data from the .json files instantly during startup i.e. the method to capture the time, `Instant.now()`, is not precise enough. Thus, their sequence number is used instead to sort.
 
 
 #### Design considerations:
