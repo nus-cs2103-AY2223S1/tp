@@ -1,0 +1,61 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+Participant ":LogicManager" as logicManager LOGIC_COLOR
+Participant "mmccp: MarkMasteryCheckCommandParser" as MarkMasteryCheckCommandParser LOGIC_COLOR
+Participant "mmcc:MarkMasteryCheckCommand" as MarkMasteryCheckCommand LOGIC_COLOR
+Participant "r:CommandResult" as commandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+Participant ":Model" as model MODEL_COLOR
+end box
+
+[-> logicManager : execute("mark 1")
+activate logicManager LOGIC_COLOR
+
+logicManager -[LOGIC_COLOR]> MarkMasteryCheckCommandParser : parse("mark 1")
+activate MarkMasteryCheckCommandParser LOGIC_COLOR
+
+create MarkMasteryCheckCommand
+MarkMasteryCheckCommandParser -[LOGIC_COLOR]> MarkMasteryCheckCommand : MarkMasteryCheckCommand(c)
+activate MarkMasteryCheckCommand LOGIC_COLOR
+
+MarkMasteryCheckCommand --[LOGIC_COLOR]> MarkMasteryCheckCommandParser : mmcc
+deactivate MarkMasteryCheckCommand
+
+MarkMasteryCheckCommandParser --[LOGIC_COLOR]> logicManager : mmcc
+deactivate MarkMasteryCheckCommandParser
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+MarkMasteryCheckCommandParser -[hidden]-> logicManager
+destroy MarkMasteryCheckCommandParser
+
+logicManager -[LOGIC_COLOR]> MarkMasteryCheckCommand : execute(m)
+activate MarkMasteryCheckCommand LOGIC_COLOR
+
+MarkMasteryCheckCommand -[MODEL_COLOR]> model : studentToMark.getMasteryCheck().markAsPassed()
+activate model MODEL_COLOR
+
+model --[MODEL_COLOR]> MarkMasteryCheckCommand
+deactivate model
+
+create commandResult
+MarkMasteryCheckCommand -[LOGIC_COLOR]> commandResult
+activate commandResult LOGIC_COLOR
+
+commandResult --[LOGIC_COLOR]> MarkMasteryCheckCommand : r
+deactivate commandResult
+
+MarkMasteryCheckCommand --[LOGIC_COLOR]> logicManager : r
+deactivate MarkMasteryCheckCommand
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+MarkMasteryCheckCommand -[hidden]-> logicManager
+destroy MarkMasteryCheckCommand
+
+[<[LOGIC_COLOR]-- logicManager : r
+
+deactivate logicManager
+@enduml

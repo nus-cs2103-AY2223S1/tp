@@ -1,0 +1,41 @@
+@startuml
+
+!include style.puml
+title Unmarking a student's Mastery Check
+
+start
+
+:Receives an ""unmark"" command;
+
+if () then ([valid command])
+    :Parses the ""unmark""
+    command and index;
+
+    if () then ([Mastery Check can be unmarked])
+
+    :Unarks the student's
+    Mastery Check;
+
+    :Removes the "(passed)"
+    String from the student's Mastery
+    Check in the GUI;
+
+    :Shows a success message;
+
+    else ([else])
+
+    :Shows the specific
+    error message;
+
+    endif
+
+else ([else])
+
+    :Shows an invalid
+    command message;
+
+endif
+
+stop
+
+@enduml
