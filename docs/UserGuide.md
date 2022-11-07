@@ -301,7 +301,7 @@ Format: `remove /SPECIFIER KEY/VALUE [ADDITIONAL_KEYS/ADDITIONAL_VALUES]`
   * `/all` returns a resident if it fulfills **all** of the specified keywords.
   * `/any` returns a resident if it fulfills **any** of the specified keywords.
 * Repeated keys are not permitted for both specifiers, e.g. `remove /all h/D h/A` will not work.
-* However, tags can be repeated in the command e.g. `remove /all t/exchange t/fresher`
+* However, tags can be repeated in the command e.g. `remove /all t/exchange t/fresher`.
 * Valid keys are those included [here](#format-for-resident-fields), and any additional tags.
 
 Examples:
@@ -329,40 +329,40 @@ Deleted data can not be retrieved. Do use this command cautiously!
 ### Format for resident fields
 
 `n/NAME`
-* Whitespaces are allowed *i.e. `Michael B. Jordan` is allowed*
+* Whitespaces are allowed *i.e. `Michael B. Jordan` is allowed*.
 
 `p/PHONE_NUMBER`
-* Must be an **8**-digit non-negative integer
+* Must be an **8**-digit non-negative integer.
 
 `e/EMAIL`
-* Must follow the formatting for all standard emails *i.e. `Example@email.com` is accepted*
-* Can be both valid or invalid emails
+* Must follow the formatting for all standard emails *i.e. `Example@email.com` is accepted*.
+* Can be both valid or invalid emails.
 
 `r/FLOOR-UNIT`
-* The floor number and unit number must be separated by a hyphen
-* Both floor and unit number must be a positive integer less than 30 *i.e. `5-8` is valid, `0-8` is invalid, `31-1` is invalid*
+* The floor number and unit number must be separated by a hyphen.
+* Both floor and unit number must be a positive integer less than 30 *i.e. `5-8` is valid, `0-8` is invalid, `31-1` is invalid*.
 
 `g/GENDER`
-* `M` or `F`
-* Not case-sensitive *i.e. `m` and `f` are also valid*
+* `M` or `F`.
+* Not case-sensitive *i.e. `m` and `f` are also valid*.
 
 `h/HOUSE`
-* Represents the RC4 house that the resident is allocated to
-* Must be either `A`, `D`, `L`, `N`, `U`
-* `A` stands for **Aquila**, `D` stands for **Draco**, `L` for **Leo**, `N` for **Noctua**, `U` for **Ursa**
-* Not case-sensitive *i.e. `a`, `d`, `l`, `n` and `u` are also valid*
+* Represents the RC4 house that the resident is allocated to.
+* Must be either `A`, `D`, `L`, `N`, `U`.
+* `A` stands for **Aquila**, `D` stands for **Draco**, `L` for **Leo**, `N` for **Noctua**, `U` for **Ursa**.
+* Not case-sensitive *i.e. `a`, `d`, `l`, `n` and `u` are also valid*.
 
 `m/MATRIC_NUMBER`
-* Must be an `A`, followed by a **7**-digit non-negative integer and an alphabet. *i.e. `A0123456A`*
-* Not case-sensitive *i.e. `a0123456b`, `A0123456b` and `a0123456B` are also valid*
+* Must be an `A`, followed by a **7**-digit non-negative integer and an alphabet. *i.e. `A0123456A`*.
+* Not case-sensitive *i.e. `a0123456b`, `A0123456b` and `a0123456B` are also valid*.
 
 `t/TAG`
-* Can be used to add any other miscellaneous information that the resident can be identified by
-* Can only contain alphanumeric characters, whitespaces are not allowed
-* Optional. A resident can have any number of tags, including 0
-* When editing tags, the existing tags of the resident will be removed i.e adding of tags is not cumulative
-* You can remove all the resident’s tags by typing `t/` without specifying any tags after it
-* Multiple tags can be added to the command using multiple keywords e.g `t/president t/exchange`
+* Can be used to add any other miscellaneous information that the resident can be identified by.
+* Can only contain alphanumeric characters, whitespaces are not allowed.
+* Optional. A resident can have any number of tags, including 0.
+* When editing tags, the existing tags of the resident will be removed i.e adding of tags is not cumulative.
+* You can remove all the resident’s tags by typing `t/` without specifying any tags after it.
+* Multiple tags can be added to the command using multiple keywords e.g `t/president t/exchange`.
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
@@ -380,7 +380,7 @@ Lists *all* the residents in the **RC4HDB** database. If the table view is showi
 calling `list` will restore and display the full list of residents.
 
 Format: `list`
-* Any input entered after the `list` command will be ignored.
+* Any input entered directly after `list` will be ignored. i.e. *`list asd`*, `asd` will be ignored.
 * Resets the columns in the table to the default view with *all* columns visible.
 
 Calling `list` on our sample data will produce the following result:
@@ -425,7 +425,6 @@ The following examples are to be performed one after the other:
    
 
 Note:
-
 * Valid inputs include `i n p e r g h m t` (case-insensitive), which correspond to the first letter of each field in the table.
   * This *should not* be confused with the `n/` or `p/` prefixes used in `add` or `filter`.
 * Letters *must* be separated by a single whitespace.
@@ -487,7 +486,7 @@ Resets the columns in the table to the default view with *all* columns visible.
 Use this when you have called `showonly` or `hideonly` on the table!
 
 Format: `reset`
-* Any input entered after the `reset` command will be ignored.
+* Any input entered directly after `reset` will be ignored. i.e. *`reset asd`*, `asd` will be ignored.
 * This command is different from the `list` command in that it does not affect the list of residents being displayed.
   * However, both commands cause the full set of resident fields to be displayed in the table.
 
@@ -500,12 +499,12 @@ Format: `reset`
 Finds residents whose names contain any of the given keywords.
 
 Format: `find NAME [ADDITIONAL_NAMES]`
-* The search is case-insensitive. e.g `peter pang` will match `Peter Pang`
+* The search is case-insensitive. e.g `peter pang` will match `Peter Pang`.
 * Only the name is searched.
 * The order of the keywords does not matter.
-* Full and partial words will be matched e.g. `Nav` will match `Navarun`
+* Full and partial words will be matched e.g. `Nav` will match `Navarun`.
 * Residents matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Quek Wei` will return `Quek Xiang`, `Jun Wei`
+  e.g. `Quek Wei` will return `Quek Xiang`, `Jun Wei`.
 
 Calling `find el an` on our sample data will produce the following result:
 
@@ -514,9 +513,9 @@ Calling `find el an` on our sample data will produce the following result:
 As you can see, the residents with names containing either "el" or "an", and are listed as the result of the `find` command.
 
 Examples:
-* `find shawn` returns `shawn` and `Shawn Tan`
-* `find elizabeth david` returns `Elizabeth Ong`, `David Lee`
-* `find char li` returns `Charmaine Yee`, `William Li`<br>
+* `find shawn` returns `shawn` and `Shawn Tan`.
+* `find elizabeth david` returns `Elizabeth Ong`, `David Lee`.
+* `find char li` returns `Charmaine Yee`, `William Li`.<br>
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
@@ -526,13 +525,13 @@ Examples:
 Shows a list of residents whose fields match the input keywords.
 
 Format: `filter /SPECIFIER KEY/VALUE [ADDITIONAL_KEYS/ADDITIONAL_VALUES]`
-* A specifier is required in order for the command to work. If not, it is an invalid command format
+* A specifier is required in order for the command to work. If not, it is an invalid command format.
 * Only one specifier can be entered in a command.
 * Currently, only two specifiers are supported:
   * `/all` returns a resident if it fulfills **all** of the specified keywords.
   * `/any` returns a resident if it fulfills **any** of the specified keywords.
 * Repeated keys are not permitted for both specifiers, e.g. `filter /all h/D h/A` will not work.
-* Tags can be repeated in the command e.g. `filter /all t/exhange t/fresher`
+* Tags can be repeated in the command e.g. `filter /all t/exhange t/fresher`.
 * Valid keys are those included [here](#format-for-resident-fields), and any additional tags.
 
 Examples:
@@ -549,9 +548,9 @@ Examples:
 To provide a streamlined way of managing **RC4** related data, **RC4HDB** provides users with the ability to organise their files using our file management commands.
 
 **RC4HDB** currently supports the following file management functionalities:
-* [**Creation**](#creating-a-new-data-folder--file-create) of new data folders
-* [**Deletion**](#deleting-an-existing-data-folder--file-delete) of old data folders
-* [**Switching**](#switching-to-a-different-data-folder--file-switch) between different data folders
+* [**Creation**](#creating-a-new-data-folder--file-create) of new data folders.
+* [**Deletion**](#deleting-an-existing-data-folder--file-delete) of old data folders.
+* [**Switching**](#switching-to-a-different-data-folder--file-switch) between different data folders.
 * [**Importing**](#importing-resident-data-from-csv-file--file-import) of resident data from a [CSV](#glossary-of-terms) file.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
@@ -712,7 +711,7 @@ Alternatively, you can use the `venue view VENUE_NAME` command to switch manuall
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
 Before proceeding to learn more about venue commands, it would be good to have a quick read about the **venue fields**, which will
-be used in the commands. The venue format <a>[fields](#glossary-of-terms)</a> can be found <a>[here](#format-for-venue-fields)</a>.
+be used in the commands. The venue <a>[fields](#glossary-of-terms)</a> can be found <a>[here](#format-for-venue-fields)</a>.
 </div>
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
@@ -727,9 +726,12 @@ Format: `venue add VENUE_NAME`
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The **VENUE_NAME** must follow this <a>[format](#format-for-venue-fields)</a>. </div>
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** To view all venues, switch over to the bookings tab and refer to the list at the side!</a>. </div>
+
+
 Examples:
-* `venue add Meeting Room 3`
-* `venue add Multi-purpose Hall `
+* `venue add Meeting Room 3` adds a venue called `Meeting Room 3`.
+* `venue add Multi-purpose Hall ` adds a venue called `Multi-purpose Hall`.
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
@@ -743,9 +745,12 @@ Format: `venue delete VENUE_NAME`
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The **VENUE_NAME** must follow this <a>[format](#format-for-venue-fields)</a>. </div>
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** To view all venues, switch over to the bookings tab and refer to the list at the side!</a>. </div>
+
+
 Examples:
-* `venue delete Meeting Room`
-* `venue delete Hall`
+* `venue delete Meeting Room` deletes a venue called `Meeting Room`.
+* `venue delete Hall` deletes a venue called `Hall`.
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
@@ -760,8 +765,8 @@ Format: `venue view VENUE_NAME`
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The **VENUE_NAME** must follow this <a>[format](#format-for-venue-fields)</a>. </div>
 
 Examples:
-* `venue view Meeting Room`
-* `venue view Hall`
+* `venue view Meeting Room` switches the current list of bookings displayed to the ones in `Meeting Room`.
+* `venue view Hall` switches the current list of bookings displayed to the ones in `Hall`.
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
@@ -778,9 +783,12 @@ Format: `venue book INDEX v/VENUE_NAME tp/TIME_PERIOD d/DAY`
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The **VENUE_NAME**, **TIME_PERIOD**, and **DAY** must follow this <a>[format](#format-for-venue-fields)</a>. </div>
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** To view the bookings, switch over to the bookings tab!</a>. </div>
+
+
 Examples:
-* `venue book 2 v/Meeting Room tp/8-9 d/TUE`
-* `venue book 1 v/Hall tp/13-14 d/WED`
+* `venue book 2 v/Meeting Room tp/8-9 d/TUE` books the Meeting Room from 8am to 9am on Tuesday.
+* `venue book 1 v/Hall tp/13-14 d/WED` books the Hall from 1pm to 2pm on Wednesday.
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
@@ -794,9 +802,11 @@ Format: `venue unbook v/VENUE_NAME tp/TIME_PERIOD d/DAY`
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The **VENUE_NAME**, **TIME_PERIOD**, and **DAY** must follow this <a>[format](#format-for-venue-fields)</a>. </div>
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** To view the bookings, switch over to the bookings tab!</a>. </div>
+
 Examples:
-* `venue unbook v/Meeting Room tp/8-9 d/TUE`
-* `venue unbook v/Hall tp/13-18 d/WED`
+* `venue unbook v/Meeting Room tp/8-9 d/TUE` deletes the 8am to 9am Meeting Room booking on Tuseday.
+* `venue unbook v/Hall tp/13-18 d/WED` deletes the 1pm to 6pm Hall booking n Wednesday.
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
@@ -805,21 +815,21 @@ Examples:
 ### Format for Venue fields
 
 `v/VENUE_NAME`
-* The name displayed for the venue will be the exactly identical to the one specified in `VENUE_NAME`
-* Can contain alphanumeric characters and whitespaces i.e. `m 3 3 t i n g r o o m` is valid
-* Case-insensitive i.e. venues `Meeting Room` and `meeting room` are identical
+* The name displayed for the venue will be the exactly identical to the one specified in `VENUE_NAME`.
+* Can contain alphanumeric characters and whitespaces i.e. `m 3 3 t i n g r o o m` is valid.
+* Case-insensitive i.e. venues `Meeting Room` and `meeting room` are identical.
 
 `tp/TIME_PERIOD`
-* The start time and end time must be separated by a hyphen *i.e. 8 to 9 must be indicated as `8-9`*
-* Must begin and end on the hour *i.e. `1230-13` will not be accepted*
-* Operates on a 24-hour format *i.e. `4p.m.` must be indicated as `16`*
-* Valid booking hours are from `8` to `23`
-* Blocks of time are allowed *i.e. `18-21` is accepted*
-* The start time must be earlier than end time
+* The start time and end time must be separated by a hyphen *i.e. 8 to 9 must be indicated as `8-9`*.
+* Must begin and end on the hour *i.e. `1230-13` will not be accepted*.
+* Operates on a 24-hour format *i.e. `4p.m.` must be indicated as `16`*.
+* Valid booking hours are from `8` to `23`.
+* Blocks of time are allowed *i.e. `18-21` is accepted*.
+* The start time must be earlier than end time.
 
 `d/DAY`
-* Must be the first three characters of a day *i.e. Monday must be indicated as mon*
-* Case-insensitive *i.e. tUe, TUE, tue are all valid*
+* Must be the first three characters of a day *i.e. Monday must be indicated as mon*.
+* Case-insensitive *i.e. tUe, TUE, tue are all valid*.
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
