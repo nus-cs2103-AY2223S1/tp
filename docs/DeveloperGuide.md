@@ -241,6 +241,10 @@ The following sequence diagram shows how the checkout operation works:
 
 ![CheckoutSequenceDiagram](images/CheckoutSequenceDiagram.png)
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `CheckoutCommand`
+should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
 The following activity diagram summarizes what happens when a user executes a checkout command:
 
 ![CheckoutActivityDiagram](images/CheckoutActivityDiagram.png)
@@ -297,6 +301,10 @@ The following sequence diagram shows how the `view` command works:
 
 ![ViewSequenceDiagram](images/ViewSequenceDiagram.png)
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ViewCommandParser`
+should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
 #### Design considerations
 
 **Aspect: How the UI window is split to show a panel of list of all applicants and another panel to view details of an applicant:**
@@ -333,6 +341,10 @@ Given below is an example success scenario and how the `import` mechanism behave
 The following sequence diagram shows how the `import` command works:
 
 ![ImportSequenceDiagram](images/ImportSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ImportCommandParser`
+should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 #### Design Considerations
 
@@ -375,6 +387,10 @@ Given below is an example success scenario and how the `export` mechanism behave
 The following sequence diagram shows how the `export` command works:
 
 ![ExportSequenceDiagram](images/ExportSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ExportCommandParser`
+should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 #### Design Considerations
 
@@ -432,6 +448,10 @@ Given below is an example success scenario and how the `find` mechanism behaves 
 The following sequence diagram shows how the `find` command works:
 
 ![FindSequenceDiagram](images/FindSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindCommandParser`
+should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 #### Design Considerations
 
