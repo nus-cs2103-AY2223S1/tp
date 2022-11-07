@@ -663,6 +663,58 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+**Use case: Record participation of a student**
+
+**MSS**
+
+1. TA requests to record participation component for Student X
+2. StudMap adds participation component for Student X
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given participation component is invalid
+
+    * 1a1. StudMap shows an error message.
+
+      Use case ends.
+
+* 1b. The given index is invalid
+
+    * 1b1. StudMap shows an error message.
+
+      Use case ends.
+
+**Use case: Remove participation of a student**
+
+**MSS**
+
+1. TA requests to remove a participation component for Student X
+2. StudMap removes specified participation component for Student X
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given participation component is invalid
+
+    * 1a1. StudMap shows an error message.
+
+      Use case ends.
+
+* 1b. The given index is invalid
+
+    * 1b1. StudMap shows an error message.
+
+      Use case ends.
+  
+* 1c. The student at given index does not have records of the given participation component
+
+    * 1c1. StudMap shows an error message.
+
+      Use case ends.
+
 ## Non-Functional Requirements
 
 1. The software should work on any [**mainstream OS**](#mainstream-os) as long as it has **Java 11** or above installed.
