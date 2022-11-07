@@ -16,18 +16,18 @@ Given below are my contributions to the project.
 
 * Helped refactor the `Command` classes during transition from `AB3` to `foodguide`
 * Implement additional `find` commands (`findTag`, `findLocation`, `findCuisine`) and
-some relevant test cases
+some relevant test cases for `containsKeywordsPredicate` classes
 * Helped generate data for eateries in NUS
 * Improved on warning messages for invalid commands in `find -r` feature
 
 **Project management**:
 
-Tested and reviewed 26 PRs in total. Some notable PRs are linked below.
+Tested and reviewed 23 PRs in total. Some notable PRs are linked below.
 
 * v1.1
     * 4 PRs on updating documentation (#7, #9, #11, #19)
 * v1.2
-    * 3 PRs on refactoring (#33, #36, #37)
+    * 2 PRs on refactoring (#33, #36)
     * 1 PR on `help` feature [(#41)](https://github.com/AY2223S1-CS2103T-W11-1/tp/pull/41)
     * 3 PRs on `add` [(#42)](https://github.com/AY2223S1-CS2103T-W11-1/tp/pull/42),
       `tag` [(#43)](https://github.com/AY2223S1-CS2103T-W11-1/tp/pull/43),
