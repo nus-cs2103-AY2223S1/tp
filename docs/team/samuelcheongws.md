@@ -24,7 +24,7 @@ Given below are my contributions to the project.
   * Ensure good version control, based on the repo
 
 * **Enhancements to existing features**: 
-* Added `ApplicationStatusTest`, `SortCommandTest`, `ImportCommandTest` and `ImportCommandParserTest` to increase code coverage by 5% and ensure that programs work as expected. [#66](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/66), [#70](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/70), [#208](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/208)
+* Added `ApplicationStatusTest`, `SortCommandTest`, `ImportCommandTest`, and `ImportCommandParserTest` to increase code coverage by 5% and ensure that programs work as expected. [#66](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/66), [#70](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/70), and [#208](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/208)
 
 * **Documentation**: 
   * User Guide: 
