@@ -136,7 +136,9 @@ How the parsing works:
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-F11-4/tp/blob/2da571e65f2e2ae194a9176540e47967a6402ac8/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagramPerson.png" width="450" />
+<div style="page-break-after: always;"></div>
 <img src="images/ModelClassDiagramTaskTag.png" width="450" />
+<div style="page-break-after: always;"></div>
 
 The `Model` component,
 
@@ -702,7 +704,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | student who is bad with names                                | see the person’s first name emphasized                                                | know how to address the person                   |
 | `*`      | student with poor eyesight                                   | ensure that my software have big fonts and large buttons                              | distinguish all elements                         |
 | `*`      | animal loving person                                         | have some cute animals in the background                                              | feel entertained while managing my tasks         |
-<div style="page-break-after: always;"></div>
 
 ### Use cases
 
