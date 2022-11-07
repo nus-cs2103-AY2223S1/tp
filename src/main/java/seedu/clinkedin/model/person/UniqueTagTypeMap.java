@@ -329,6 +329,9 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
         return internalMap.isEmpty();
     }
 
+    /**
+     * Returns true if the tagType exists in the prefixMap.
+     */
     public static boolean isExist(String otherTagType) {
         requireNonNull(otherTagType);
         return prefixMap.values().stream().anyMatch(tagType -> tagType.getTagTypeName().equals(otherTagType));
