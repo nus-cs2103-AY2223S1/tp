@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Kenneth's Project Portfolio Page [Kennethsim2000](https://github.com/Kennethsim2000)
+title: Kenneth's Project Portfolio Page (@Kennethsim2000)
 ---
 
 ### Project: HackAssist
