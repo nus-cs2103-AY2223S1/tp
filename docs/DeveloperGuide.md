@@ -508,21 +508,21 @@ testers are expected to do more *exploratory* testing.
 
 ### Deleting a Task or Contact
 
-1. Deleting a Contact or Task while all Contact, Task or Deadline are being shown
+1. Deleting a Contact or Task while all Contact or Task are being shown
 
    1. Prerequisites: List all Contacts or Tasks using the `list_contact` or `list_task` command.
    2. Test case: `delete_contact 1` or `delete_task 1`<br>
       Expected: First Contact or Task is deleted from the list. Details of the deleted Contact or Task shown in the status message.
    3. Test case: `delete_contact 0` or `delete_task 0`<br>
-      Expected: No Contact, Task or Deadline is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No Contact, Task is deleted. Error details shown in the status message. Status bar remains the same.
    4. Other incorrect delete commands to try: `delete_contact` / `delete_task`, `delete_contact x` / `delete_task x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 ### Editing a Task or Contact
 
-1. Editing a Contact or Task while all Contact, Task or Deadline are being shown
+1. Editing a Contact or Task while all Contact or Task are being shown
 
-   1. Prerequisites: List all Contacts, Tasks or Deadlines using the `list_contact` or `list_task` command. There should be at least one contact or task.
+   1. Prerequisites: List all Contacts or Tasks using the `list_contact` or `list_task` command. There should be at least one contact or task.
    2. Test case: `edit_contact 1 n/Alex Yeoh p/98765432`
       Expected: First Contact is edited to have the name "Alex Yeoh" and phone number "98765432". Details of the edited Contact shown in the status message.
    3. Test case: `edit_contact 0 n/Alex Yeoh p/98765432`<br>
@@ -545,7 +545,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Clear all exisiting data in the application
    1. Test case: `clear`<br>
-      Expected: All data is cleared from the application. Status message shows the number of contacts, tasks and deadlines cleared.
+      Expected: All data is cleared from the application. Status message shows the number of contacts and tasks cleared.
 
 ### Saving data
 
