@@ -32,6 +32,7 @@ title: Developer Guide
 - [Appendix: Instructions for Manual Testing](#appendix-instructions-for-manual-testing)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **ConnectNUS Developer Guide**
 
@@ -113,6 +114,7 @@ As recommended in the introduction, we would like to direct you to read the [Glo
 [Scroll back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Glossary**
 
@@ -231,6 +233,7 @@ Developer Guide.
 [Scroll back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Setting up, getting started**
 
@@ -285,6 +288,8 @@ The sections below give more details of each component.
 
 [Scroll back to top](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ### UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-T14-4/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
@@ -303,6 +308,8 @@ The `UI` component,
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
 [Scroll back to top](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ### Logic component
 
@@ -335,6 +342,8 @@ How the parsing works:
 
 [Scroll back to top](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
@@ -356,6 +365,8 @@ The `Model` component,
 
 [Scroll back to top](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
@@ -376,6 +387,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 [Scroll back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Implementation**
 
@@ -388,6 +400,8 @@ Each `Person` in the AddressBook is implemented in the following way:
 
 All `Person` have a `Name`, `Email`, `Address` and `Phone` and a set of `Tag`, `CurrentModule`, `PreviousModule`, `PlannedModule` and `Lesson`.
 `Person`s can have a `Github` URL to their profile added, and as many `Tags`, `Modules` and `Lessons` as desired.
+
+<div style="page-break-after: always;"></div>
 
 ### User Class
 
@@ -412,6 +426,8 @@ in design.
 
 [Scroll back to top](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ### Module Class
 `CurrentModule`, `PlannedModule`, and `PreviousModule` implement the `Module` interface.
 
@@ -430,6 +446,8 @@ because NUS has over 6000 registered modules and iterating through this list to 
 make the program slow.
 
 [Scroll back to top](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ### Edit Modules
 
@@ -457,6 +475,8 @@ Removal of modules does not check the module lists to see if the module is prese
 
 [Scroll back to top](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ### Checking Modules Left
 
 This feature compares the user's current and previous modules list with a fixed list of CS Core Requirements or focus area
@@ -477,6 +497,8 @@ batch and major for now.
 
 [Scroll back to top](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ### Refreshing to Next Semester
 ConnectNUS has a feature that helps you to update the previous module lists and clear the current module list of your profile
 as well as any persons stored in the contact list at the start of each semester so that it is easy for you to update
@@ -494,6 +516,8 @@ to their respective `PreviousModule` sets. After which, the `CurrentModule` sets
 contact list will be cleared.
 
 [Scroll back to top](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ### Adding Lessons
 ConnectNUS has a feature that allows you to add lessons to your profile as well as any persons stored in the contact list,
@@ -524,6 +548,8 @@ The following class diagram illustrates the class diagram of the `Lesson` class 
 
 Each `Lesson` has a `moduleName:String`, `day:int` (between 1-7 inclusive, where 1 is Monday and 7 is Sunday),
 `type:String` (where type is tut / rec / lab / lec), `start:LocalTime` and `end:LocalTime` to in HH:mm format.
+
+<div style="page-break-after: always;"></div>
 
 #### Implementation Flow
 
@@ -596,6 +622,8 @@ as significant of an issue.
 
 [Scroll back to top](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ### Viewing Timetable
 ConnectNUS gives you the ability to view not only your own timetable, but that of your contacts as well, after `Lesson`s
 have been added to your profile and their contact. This makes deconflicting schedules significantly faster and meetings can
@@ -660,6 +688,8 @@ sorted and converted to `String` which is displayed in the `TimetableWindow` whi
 2. Improving the GUI of the `Timetable` pop-up window for more visually pleasing user experience.
 
 [Scroll back to top](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ### Undo / Redo
 
@@ -782,6 +812,8 @@ Given below are the new Methods implemented:
 
 [Scroll back to top](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ### Filter Feature
 ConnectNUS has a filter function that allows you to filter all persons in your contact list according to `Tag`, `CurrentModule`,
 `PreviousModule` or `PlannedModule`. This allows you to find people who are taking specific mods such that you
@@ -818,6 +850,7 @@ The `PersonListPanel` in the `MainWindow` UI is then updated accordingly.
 [Scroll back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -830,6 +863,7 @@ The `PersonListPanel` in the `MainWindow` UI is then updated accordingly.
 [Scroll back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Requirements**
 
@@ -877,6 +911,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | user with projects involving Git | copy my contact's GitHub url                     | add them into organisation repos during projects                                        |
 
 [Scroll back to top](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ### Use Cases
 
@@ -1482,6 +1518,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 [Scroll back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Instructions for Manual Testing**
 
@@ -1515,6 +1552,8 @@ testers are expected to do more *exploratory* testing.
 
 [Scroll back to top](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ### Adding a user
 
 1. Adding a user when there is no existing user profile
@@ -1531,6 +1570,8 @@ testers are expected to do more *exploratory* testing.
       Expected: Similar to previous.
 
 [Scroll back to top](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ### Editing a user or person
 
@@ -1562,6 +1603,8 @@ testers are expected to do more *exploratory* testing.
 
 [Scroll back to top](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ### Deleting a user or person
 
 1. Deleting an existing user profile
@@ -1591,6 +1634,8 @@ testers are expected to do more *exploratory* testing.
       Expected: Similar to previous.
 
 [Scroll back to top](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ### Editing a user's or person's modules
 
@@ -1622,6 +1667,8 @@ testers are expected to do more *exploratory* testing.
 
 [Scroll back to top](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ### Checking modules left
 
 1. Checking modules left when there is an existing user profile
@@ -1638,6 +1685,8 @@ testers are expected to do more *exploratory* testing.
       Expected: Similar to previous.
 
 [Scroll back to top](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ### Adding a lesson, Showing the timetable
 
@@ -1674,6 +1723,8 @@ testers are expected to do more *exploratory* testing.
 
 [Scroll back to top](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ### Removing a lesson, Showing the timetable
 
 1. Remove a lesson from user
@@ -1702,6 +1753,8 @@ testers are expected to do more *exploratory* testing.
 
 [Scroll back to top](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ### Refreshing to a new semester
 
 1. Updating user and contacts previous modules list and clearing their current modules list when a new semester begins
@@ -1715,6 +1768,8 @@ testers are expected to do more *exploratory* testing.
      Expected: Status message shows that the user is deleted. Status message shows "No user created!"
 
 [Scroll back to top](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ### Filtering contacts tags
 
@@ -1733,6 +1788,8 @@ testers are expected to do more *exploratory* testing.
 
 [Scroll back to top](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ### Filtering contacts modules
 
 1. Listing out all persons in contact list with the current/previous/planned module(s)
@@ -1748,6 +1805,8 @@ testers are expected to do more *exploratory* testing.
      [Scroll back to top](#table-of-contents)
 
 [Scroll back to top](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ### Saving data
 
