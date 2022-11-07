@@ -652,7 +652,7 @@ A contact can have any number of tags. Add as many as you want.
 <div markdown="block" class="alert alert-info">
 **:information_source: Note:** The tag has to be created first before you can add it into a contact.
 
-Refer to [`Creating a Tag`](#creating-a-tag-tag-create) on how to create a tag.
+Refer to [`Creating a Tag`](#741-creating-a-tag-tag-create) on how to create a tag.
 </div>
 
 **Example Input in Command Box**
@@ -718,10 +718,14 @@ Format: `customise order [t/] [p/] [e/] [a/]`
 * You can change the order of the following information: Tags, Phone Number, Email, Address.
 * Unspecified information will be ordered last according to the default order (Tags > Phone Number > Email > Address).
 
-Example:
+**Expected Input in Command Box**
+```
+customise order a/ e/ p/
+```
 
-* `customise order a/ e/ p/` SoConnect will show address first, followed by email, phone number and tags.
-* `customise order a/` SoConnect will show address first. The rest of the information will follow the default order. Therefore, address will be followed by tags, phone number and email.
+**Example Result**
+
+(insert image)
 
 <br>
 
@@ -735,9 +739,14 @@ Format: `customise hide [t/] [p/] [e/] [a/]`
 * After you use this command, the information specified is hidden.
 * If the information that you specify is already hidden, it will stay hidden.
 
-Example:
-* `customise hide e/` SoConnect no longer shows emails in the list of contacts.
-* `customise hide p/ t/` SoConnect no longer shows phone numbers and tags in the list of contacts.
+**Expected Input in Command Box**
+```
+customise hide p/ t/
+```
+
+**Output in Command Result Box**
+
+(insert image)
 
 <br>
 
@@ -752,9 +761,14 @@ Format: `customise show [t/] [p/] [e/] [a/]`
 * If the information that you specify is already shown, it will stay shown.
 * `Coming soon in v1.5`, we will include `customise show all`, a shortcut to show all information.
 
-Example:
-* `customise show a/` SoConnect now shows addresses in the list of contacts.
-* `customise show p/ t/` SoConnect now shows phone numbers and tags in the list of contacts.
+**Expected Input in Command Box**
+```
+customise show p/ t/
+```
+
+**Output in Command Result Box**
+
+(insert image)
 
 <br>
 
