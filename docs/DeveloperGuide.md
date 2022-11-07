@@ -284,7 +284,7 @@ Step 7. In the `FindCommand`, a `TutorContainsKeywordsPredicate<Tutor>` is creat
 
 Step 8. Afterwards, the `filteredList` of tutors is updated with that `TutorContainsKeywordsPredicate<Tutor>` in the `ModelManager`. A new `CommandResult` is then returned and a list of tutors with that predicate is then shown.
 
-Step 9. The user now decides he wants to be more specific with his search, and decides to execute `find n/John Doe q/bachelor of computing i/nus` to find all tutors who are named John Doe, and have graduated from NUS with a bachelor's degree in computing. A more specific list of students is then shown.
+Step 9. The user now decides he wants to be more specific with his search, and decides to execute `find n/John Doe q/bachelor of computing i/nus` to find all tutors who are named John Doe, and have graduated from NUS with a bachelor's degree in computing. A more specific list of students is will be shown.
 
 The following sequence diagram shows how the `find` operation works:
 ![FindSequenceDiagram](images/FindSequenceDiagram.png)
