@@ -71,10 +71,20 @@ Given below are my contributions to the project.
 
 
 * **Contributions to Team-based tasks**:
+  * Crafted user stories
   * Created milestones
+  * Ideation of additional features
+  * Created additional test cases for `Model` and `Logic` to increase test coverage
+  * Guided creation of other test cases
+  * Guided bug fixes
 
 
 * **Review / mentoring contributions**:
   * PRs approved: [#53](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/53), [#61](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/61), [#68](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/68),
   [#89](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/89), [#90](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/90), [#168](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/168),
-  [#175](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/175), [#188](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/188), [#207](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/207)
+  [#175](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/175), [#188](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/188), [#207](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/207),
+  [#214](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/214), [#226](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/226)
+  * Reported bugs and suggestions for other team's in the class [SoConnect](https://github.com/shamooose/ped/issues)
+  * Guided how to create test cases for `command` and `parser` classes
+  * Identified missing field in `CommandResult` for `LessonCommand`
+  * Guided creation of User Profile UI

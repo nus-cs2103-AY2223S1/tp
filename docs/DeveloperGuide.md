@@ -729,7 +729,7 @@ Implementing Undo/Redo commands in this manner requires the developers to strict
    - Every instance in each AddressBook should be completely new with new data
    - E.g. Changing the User's name field should create a new User Object with the desired new name, instead of changing the exisitng User objects name.
    - This is because each state of the AddressBook must be unique from one another
-   
+
 
 #### Implementation
 
@@ -909,7 +909,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 3a1. ConnectNUS requests for the correct data.
     * 3a2. CS Student enters new data.
-    * Steps 3a-3b are repeated until the data entered are correct.
+    * Steps 3a1-3a2 are repeated until the data entered are correct.
       Use case resumes at step 4.
 
 **System: ConnectNUS**
@@ -937,7 +937,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 3a1. ConnectNUS requests for the correct data.
     * 3a2. CS Student enters new data.
-    * Steps 3a-3b are repeated until the data entered are correct.
+    * Steps 3a1-3a2 are repeated until the data entered are correct.
       Use case resumes at step 4.
 
 **System: ConnectNUS**
@@ -985,7 +985,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 3a1. ConnectNUS requests for the correct data.
     * 3a2. CS Student enters new data.
-    * Steps 3a-3b are repeated until the data entered are correct.
+    * Steps 3a2-3a2 are repeated until the data entered are correct.
     Use case resumes at step 4.
 
 **System: ConnectNUS**
@@ -1014,7 +1014,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 3a1. ConnectNUS requests for the correct data.
     * 3a2. CS Student enters new data.
-    * Steps 3a-3b are repeated until the data entered are correct.
+    * Steps 3a1-3a2 are repeated until the data entered are correct.
       Use case resumes at step 4.
 
 **System: ConnectNUS**
@@ -1124,7 +1124,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   * 3a1. ConnectNUS requests for the correct data.
   * 3a2. CS Student enters new data.
-  * Steps 3a-3b are repeated until the data entered are correct.
+  * Steps 3a1-3a2 are repeated until the data entered are correct.
     Use case resumes at step 4.
 
 **System: ConnectNUS**
@@ -1154,7 +1154,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   * 3a1. ConnectNUS requests for the correct data.
   * 3a2. CS Student enters new data.
-  * Steps 3a-3b are repeated until the data entered are correct.
+  * Steps 3a1-3a2 are repeated until the data entered are correct.
     Use case resumes at step 4.
 
 **System: ConnectNUS**
