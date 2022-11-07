@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import taskbook.commons.exceptions.IllegalValueException;
 import taskbook.model.ReadOnlyTaskBook;
 import taskbook.model.TaskBook;
+import taskbook.model.person.Name;
 import taskbook.model.person.Person;
 import taskbook.model.task.Deadline;
 import taskbook.model.task.Event;
@@ -80,7 +81,7 @@ class JsonSerializableTaskBook {
             if (taskBook.hasTask(task)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_TASK);
             }
-            if (taskBook.findPerson(task.getName()) == null) {
+            if (!task.getName().equals(Name.SELF) && taskBook.findPerson(task.getName()) == null) {
                 continue;
             }
             taskBook.addTask(task);
