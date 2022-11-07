@@ -50,6 +50,8 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in TAB.";
+    public static final String MESSAGE_DUPLICATE_PHONE = "This person's Phone already exists in TAB.";
+    public static final String MESSAGE_DUPLICATE_EMAIL = "This person's Email already exists in TAB.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -80,6 +82,14 @@ public class EditCommand extends Command {
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        }
+
+        if (!personToEdit.hasSameEmail(editedPerson) && model.hasEmail(editedPerson)) {
+            throw new CommandException(MESSAGE_DUPLICATE_EMAIL);
+        }
+
+        if (!personToEdit.hasSamePhone(editedPerson) && model.hasPhone(editedPerson)) {
+            throw new CommandException(MESSAGE_DUPLICATE_PHONE);
         }
 
         model.setPerson(personToEdit, editedPerson);
