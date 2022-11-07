@@ -655,7 +655,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
 **MSS**
 
-1. User requests for a [list of all clients](#632-use-case-uc2---list-all-clients).
+1. User requests for a [list of all clients (UC2)](#632-use-case-uc2---list-all-clients).
 2. System shows a list of clients.
 3. User selects client to view.
 4. System displays the client information.
@@ -673,7 +673,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
 **MSS**
 
-1. User requests for a [list of all clients](#632-use-case-uc2---list-all-clients).
+1. User requests for a [list of all clients (UC2)](#632-use-case-uc2---list-all-clients).
 2. System shows a list of clients.
 3. User requests to delete a client by specifying the index of the client.
 4. System removes the client.
@@ -692,7 +692,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
 **MSS**
 
-1. User requests for a [list of all clients](#632-use-case-uc2---list-all-clients).
+1. User requests for a [list of all clients (UC2)](#632-use-case-uc2---list-all-clients).
 2. System shows a list of clients.
 3. User requests to edit a client by specifying the index of the client.
 4. System replaces current client information with the new information.
@@ -711,7 +711,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
 **MSS**
 
-1. User requests for a [list of all clients](#632-use-case-uc2---list-all-clients).
+1. User requests for a [list of all clients (UC2)](#632-use-case-uc2---list-all-clients).
 2. System shows a list of clients. 
 3. User requests to add a meeting to a specific client by specifying the index of the client. 
 4. System adds the meeting. 
@@ -726,7 +726,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
       Use case ends.
 
-#### 6.3.7 Use case: UC7- List all meetings
+#### 6.3.7 Use case: UC7 - List all meetings
 
 **MSS**
 
@@ -746,7 +746,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
 **MSS**
 
-1. User requests for a [list of all meetings (UC4)](#637-use-case-uc7--list-all-meetings).
+1. User requests for a [list of all meetings (UC7)](#637-use-case-uc7---list-all-meetings).
 2. System shows a list of all meetings.
 3. User requests to view a meeting in detail by specifying the index of the meeting.
 4. System shows the meeting details.
@@ -764,7 +764,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
 **MSS**
 
-1. User requests for a [list of all meetings (UC4)](#637-use-case-uc7--list-all-meetings).
+1. User requests for a [list of all meetings (UC7)](#637-use-case-uc7---list-all-meetings).
 2. System shows a list of all meetings.
 3. User requests to delete one meeting from the list.
 4. System deletes the meeting specified by the user.
@@ -783,7 +783,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
 **MSS**
 
-1. User requests for a [list of all meetings (UC4)](#637-use-case-uc7--list-all-meetings).
+1. User requests for a [list of all meetings (UC7)](#637-use-case-uc7---list-all-meetings).
 2. System shows a list of all meetings. 
 3. User requests to edit a meeting by specifying the index of the meeting. 
 4. System replaces current meeting information with the new information.
@@ -828,7 +828,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
 **MSS**
 
-1. User requests for a [list of all products (UC4)](#6312-use-case-uc12---list-all-products).
+1. User requests for a [list of all products (UC12)](#6312-use-case-uc12---list-all-products).
 2. System shows a list of all products.
 3. User requests to delete one product from the list.
 4. System deletes the product specified by the user.
