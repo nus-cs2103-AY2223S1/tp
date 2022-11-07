@@ -5,8 +5,6 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
-participant "pd:PersonDescriptor" as PersonDescriptor LOGIC_COLOR
-participant "dd:DebtsDescriptor" as DebtsDescriptor LOGIC_COLOR
 participant "cmd:FindCommand" as FindCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
@@ -32,22 +30,8 @@ deactivate FindCommandParser
 AddressBookParser -> FindCommandParser : parse("n/gary d/burger")
 activate FindCommandParser
 
-create PersonDescriptor
-FindCommandParser -> PersonDescriptor
-activate PersonDescriptor
-
-PersonDescriptor --> FindCommandParser
-deactivate PersonDescriptor
-
-create DebtsDescriptor
-FindCommandParser -> DebtsDescriptor
-activate DebtsDescriptor
-
-DebtsDescriptor --> FindCommandParser
-deactivate DebtsDescriptor
-
 create PersonMatchesDescriptorPredicate
-FindCommandParser -> PersonMatchesDescriptorPredicate : new PersonMatchesDescriptorPredicate(pd, dd)
+FindCommandParser -> PersonMatchesDescriptorPredicate : new PersonMatchesDescriptorPredicate(personDescriptor, debtDescriptor)
 activate PersonMatchesDescriptorPredicate
 
 PersonMatchesDescriptorPredicate --> FindCommandParser : pred
