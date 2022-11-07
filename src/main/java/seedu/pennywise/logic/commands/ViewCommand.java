@@ -31,7 +31,7 @@ public class ViewCommand extends Command {
     private final ViewEntriesDescriptor viewEntriesDescriptor;
 
     /**
-     * Creates a ViewCommand to view the specified {@code entryType}.
+     * Creates a ViewCommand to based on the specified {@code viewEntriesDescriptor}.
      */
     public ViewCommand(ViewEntriesDescriptor viewEntriesDescriptor) {
         requireNonNull(viewEntriesDescriptor);

@@ -465,7 +465,7 @@ Below is a sequence diagram and explanation of how the `add` command is executed
 
 * **Alternative 2:** Allow users to specify their own categories.
     * Pros: Users can be more flexible in grouping their expenditures/incomes.
-    * Cons: Possible dilution of categories, which would make the pie chart diagram not as useful.
+    * Cons: Possible dilution of categories, which would make the Pie Chart diagram not as useful.
 
 ### Edit Entry
 
@@ -519,8 +519,8 @@ Below is a sequence diagram and explanation of how the `EditCommand` is executed
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The command syntax for view command is as follows:
 `view t/ENTRY_TYPE [mo/MONTH]`
-E.g. `view t/e` produces a pie chart view of the expenses entries grouped by categories.
-`view t/i mo/2022-01` produces a line graph of the income entries in Jan 2022 grouped by days.
+E.g. `view t/e` produces a Pie Chart view of the expenses entries grouped by categories.
+`view t/i mo/2022-01` produces a Line Graph of the income entries in Jan 2022 grouped by days.
 </div>
 
 `view` command is used to filter the entry list as well as generate graphs.
@@ -535,15 +535,15 @@ The class diagram below shows the structure of `ViewCommand`.
 
 ![ViewCommandClassDiagram](images/ViewCommandClassDiagram.png)
 
-The `view` command will produce a category view with a pie chart or a daily view with a line graph. This is achieved
-with an optional input `mo/MONTH`. If it is present, the entry list will be filtered by the specified month and a line
-graph will be displayed. Otherwise, the full list will be shown and a pie chart will be displayed.
+The `view` command will produce a category view with a Pie Chart or a daily view with a Line Graph. This is achieved
+with an optional input `mo/MONTH`. If it is present, the entry list will be filtered by the specified month and a Line
+Graph will be displayed. Otherwise, the full list will be shown and a Pie Chart will be displayed.
 
 The activity diagram below illustrates the workflow described above when a user executes the `view` command.
 
 ![ViewActivityDiagram](images/ViewActivityDiagramBusiness.png)
 
-Given below is an example usage scenario and how the pie chart view mechanism behaves at each step. The two sequence
+Given below is an example usage scenario and how the Pie Chart view mechanism behaves at each step. The two sequence
 diagrams below omit the parsing workflow as it is identical to the rest of the command. They only highlight the steps
 in **command execution** as well as **UI updates**.
 
@@ -575,14 +575,15 @@ in **command execution** as well as **UI updates**.
 
 * **Alternative 1:** The charts update only after `view` command.
     * Pros: Easy to extend since we are adding more graph representation of data later such as bar graphs.
-    * Cons: Not responsive to changes in data, for instance if the user adds an entry, the pie chart will not be
+    * Cons: Not responsive to changes in data, for instance if the user adds an entry, the Pie Chart will not be
       automatically updated.
+
 * **Alternative 2:** The charts update immediately after changing tabs between expenses and income.
     * Pros: Intuitive, simple and quick for user.
     * Cons: Difficult to extend to other graph types as user might prefer other graph representations.
 
 The current design follows a modified version of Alternative 2. Whenever the tab is toggled manually by users, all
-filters will be reset and a pie chart will be displayed. We followed this design for the following reasons:
+filters will be reset and a Pie Chart will be displayed. We followed this design for the following reasons:
 
 * The UI is still responsive to users' tab switching action.
 * Setting a filter for one list with `view t/ENTRY_TYPE mo/MONTH` would not affect the other list, because to show the
@@ -1002,25 +1003,38 @@ testers are expected to do more *exploratory* testing.
        `edit 1 y` (where y is a string that does not follow the command format)<br>
        Expected: Similar to previous.
 
-### View PieChart
+### View
 
-1. Viewing the PieChart for a list of entry
+1. Viewing the Pie Chart for a list of entry
 
     1. Prerequisites: At least 1 entry in the specified list.
 
-    1. Test case: `view t/e g/c`<br>
-       Expected: Updated PieChart of expenditures is displayed. Success details shown in the status message.
+    2. Test case: `view t/e`<br>
+       Expected: Expense tab displays all expenditure entries. Updated Pie Chart of expenditures is displayed. Success
+       details shown in the status message.
 
-    1. Test case: `view t/e`<br>
+    3. Test case: `view t/x`<br>
        Expected: Old Diagram remains shown. Error details shown in the status message.
 
-    1. Other incorrect view commands to try: `view`, `view x`, `...` (where x is a string that does not follow the
+    4. Other incorrect view commands to try: `view`, `view x`, `...` (where x is a string that does not follow the
+       command format)<br>
+
+2. Viewing the Line Graph for a list of entry for a certain month
+    1. Prerequisites: At least 1 entry in the specified list for the specified month.
+    2. Test case: `view t/e mo/2022-03`<br>
+       Expected: Expense tab displays expenditure entries filtered by the specified month. Updated Line Graph of
+       expenditures is displayed. Success details shown in the status message.
+
+    3. Test case: `view t/e mo/2022`<br>
+       Expected: Old Diagram remains shown. Error details shown in the status message, indicating invalid month format.
+
+    4. Other incorrect view commands to try: `view`, `view x`, `...` (where x is a string that does not follow the
        command format)<br>
        Expected: Similar to previous.
 
 ### Summary statistics
 
-1. Viewing the PieChart for a list of entry
+1. Viewing the Pie Chart for a list of entry
 
     1. Prerequisites: Multiple entries in expenditure and income lists.
 
@@ -1076,7 +1090,7 @@ that is consistent for data on the list panel or graph panel.
 #### UI
 
 In comparison to [AddressBook Level-3](https://github.com/se-edu/addressbook-level3), PennyWise integrates the JavaFX
-Charts package to create line graphs and pie charts in the application from scratch. In order to do so, we have faced
+Charts package to create Line Graph and Pie Chart in the application from scratch. In order to do so, we have faced
 multiple challenges in ensuring that the charts were responsive and colour-themed with the application. Furthermore, we
 also had to tackle aspects regarding customising the axis labels and chart legends, which required much time.
 

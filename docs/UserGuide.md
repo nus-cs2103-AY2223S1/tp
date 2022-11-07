@@ -52,11 +52,11 @@ Already done with the set-up? Jump straight to the [features](#features) section
     * [Summary of entries:](#summary-of-entries)
         * [Summary of all entries in the currently shown list](#summary-of-all-entries-in-the-currently-shown-list)
         * [Summary of all entries in the specified month](#summary-of-all-entries-in-the-specified-month)
-    * [View entries by category:](#view-entries-by-category)
-    * [View entries by month:](#view-entries-by-month)
+    * [View entries by category](#view-entries-by-category)
+    * [View entries by month](#view-entries-by-month)
     * [Command summary table](#command-summary-table)
-    * [Clearing all entries:](#clearing-all-entries)
-    * [Exiting the program:`](#exiting-the-program)
+    * [Clearing all entries](#clearing-all-entries)
+    * [Exiting the program](#exiting-the-program)
     * [Saving the data](#saving-the-data)
     * [Editing the data file](#editing-the-data-file)
 * [FAQ](#faq)
@@ -97,6 +97,15 @@ Danger zone! Do pay attention to the information here carefully.
 
 - `Highlights` are used to denote commands or output from the application.
 
+### Definitions
+| Term                               | Definition                                                                                                                                                          |
+|------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Entry**                          | An entry refers to either an expenditure or income                                                                                                                  |
+| **Field**                          | Represents the Description, Amount, Date, Category and Type of an entry in the application.                                                                         |
+| **Identifier**                     | The field code that are entered during user input, so that PennyWise knows what your inputs are e.g. `t/`, `d/`, `a/`, `da/` `c/`.                                  |
+| **JSON File**                      | JavaScript Object Notation File. Data interchange format file that uses human-readable text to store and transmit data objects consisting of attribute–value pairs. |
+| **Graphical User Interface (GUI)** | The graphical user interface is a form of user interface that allows users to interact with electronic devices through graphical icons.                             |
+
 <p align="right">
     <a href="#top">Back to Top </a>
 </p>
@@ -114,8 +123,7 @@ this [link](https://www.freecodecamp.org/news/command-line-for-beginners/) to le
     2. Run the following command: `java -version`
     3. If Java 11 is not installed, please download Java 11
        from [Oracle](https://www.oracle.com/java/technologies/downloads/#java11). For Mac users, you may use
-       the [Azul build of OpenJDK 11 (JDK FX) version](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx)
-       .
+       the [Azul build of OpenJDK 11 (JDK FX) version](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx).
 2. Download the latest [pennywise.jar](https://github.com/AY2223S1-CS2103T-W17-2/tp/releases) application file.
 3. Copy the file to the folder you want to use as the home folder for PennyWise.
 4. Double-click the file to start the app. You should see a user interface similar to what is shown below in a few
@@ -183,7 +191,7 @@ incomes, you need to tell PennyWise the following:
 * Category: how this entry is classified
 
 <div markdown="span" class="alert alert-info">:information_source: **Info:**
-In PennyWise, there is an upper limit $1 000 000 for amounts.
+In PennyWise, there is an upper limit of $1 000 000 for amounts.
 </div>
 
 ### Familiarising yourself with the interface
@@ -259,8 +267,8 @@ step-by-step!
 
 - PennyWise will **IGNORE** any extra words or characters present after the following commands:
 
- [`summary`](#summary-of-entries) (except [`summary [mo/MONTH]`](#summary-of-all-entries-in-the-specified-month)),
- [`help`](#command-summary-table), [`clear`](#clearing-all-entries) and [`exit`](#exiting-the-program).
+  [`summary`](#summary-of-entries) (except [`summary [mo/MONTH]`](#summary-of-all-entries-in-the-specified-month)),
+  [`help`](#command-summary-table), [`clear`](#clearing-all-entries) and [`exit`](#exiting-the-program).
   e.g. `summary abcdefg` will be interpreted as `summary` and `help 123456` will also be interpreted as `help`.
 
 - Words in `UPPER_CASE` are the parameters that you must supply<br>
@@ -279,7 +287,7 @@ Adding identifiers that are not used in the command will result in an error.
 ### Categorising your expenses and income
 
 For **ALL** entries, categories are <ins>COMPULSORY</ins> and every entry can only contain <ins>one</ins> category. The
-following table lists the `Expenditure` and `Income` entries categories. The category names are <ins>
+following table lists the **Expenditure** and **Income** entries categories. The category names are <ins>
 case-insensitive</ins>. E.g. `Food` is same as `food`.
 
 |    Expenditure    |     Income      |
@@ -306,8 +314,7 @@ Having them differentiated will make it easier for you to recall what you spent 
 If you want to log similar entries, you can simply use the [edit](#editing-entries)
 command to alter the original entry's specifications.
 
-For example, when executing the following [add commands](#adding-entries) one after another, PennyWise will recognise (
-2), which is the second `Teh Beng` added as a duplicate entry.
+For example, when executing the following [add commands](#adding-entries) one after another, PennyWise will recognise (2), which is the second `Teh Beng` added as a duplicate entry.
 
 <pre>
     <code>
@@ -357,7 +364,7 @@ Adds an entry to the specified list.
 |---------------------|----------------------------------------------------------------------------------------------|
 | **`t/ENTRY_TYPE`**  | An entry type refers to either `e` for "Expenditure" or `i` for "Income"                     |
 | **`d/DESCRIPTION`** | Description for the entry that you are adding                                                |
-| **`a/AMOUNT`**      | Amount of the entry, formatted to 2 decimal places                                           |
+| **`a/AMOUNT`**      | Amount of the entry, formatted up to 2 decimal places                                        |
 | **`da/DATE`**       | Date where the entry is added in `dd-mm-YYYY` format, e.g. `01-01-2022` for 1st January 2022 |
 | **`c/CATEGORY`**    | [Category](#categorising-your-expenses-and-income) that the entry belongs to                 |
 
@@ -396,7 +403,7 @@ Edits an entry, where at least **1** of the optional fields description/amount/d
 |------------------------------|------------------------------------------------------------------------------------------------------|
 | **`t/ENTRY_TYPE`**           | An entry type refers to either `e` for "Expenditure" or `i` for "Income"                             |
 | **`[d/EDITED_DESCRIPTION]`** | Updated description for the entry that you are editing                                               |
-| **`[a/EDITED_AMOUNT]`**      | Updated amount of the entry, formatted to 2 decimal places                                           |
+| **`[a/EDITED_AMOUNT]`**      | Updated amount of the entry, formatted up to 2 decimal places                                        |
 | **`[da/EDITED_DATE]`**       | Updated date where the entry is added in `dd-mm-YYYY` format, e.g. `01-01-2022` for 1st January 2022 |
 | **`[c/EDITED_CATEGORY]`**    | Updated [category](#categorising-your-expenses-and-income) that the entry belongs to                 |
 
@@ -411,14 +418,14 @@ Edits an entry, where at least **1** of the optional fields description/amount/d
 #### Edits income with specified fields
 
 - Example: `edit 2 t/i a/150.00 da/22-10-2022`
-    - The income at the 2nd position will have its amount and date edited
+    - The income at the 2nd position will have its amount and date edited.
 - Expected: `Edited Entry: Monthly Allowance; Date: 02-01-2022; Amount: 150.00; Tag: Allowance`
 
 ![EditCommandIncome](images/ug/EditCommandIncome.png)
 
 ### Deleting entries
 
-You were going to watch the latest Kungfu Panda movie, but your friend bailed on you :(. Or you were going to sell your
+You were going to watch the latest Kungfu Panda movie, but your friend bailed on you 😔. Or you were going to sell your
 old textbooks only to find the buyer cancelled his order. You already logged the entry, so now you need to delete it.
 
 Format:  `delete INDEX_OF_ENTRY t/ENTRY_TYPE` <br/>
