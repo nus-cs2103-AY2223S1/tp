@@ -342,7 +342,7 @@ The following activity diagram illustrates what happens when a user executes `Ma
 
 ![MarkCommandActivityDiagram](images/MarkCommandActivityDiagram.jpg)
 
-#### Design considerations:
+#### Design considerations
 
 **Implementation Choice: Why MarkCommand is implemented this way**
 * We have only chosen to consider 3 general statuses {`YTS`, `IP`, `DONE`} since these are very general
@@ -389,16 +389,17 @@ Also, due to PlantUML limitations, we are not able to clearly show self-invocati
 
 </div>
 
-The following activity diagram summarizes what happens when a user executes am edit command.
+### Editing particulars of a student
+The following activity diagram summarizes what happens when a user executes an edit command.
 
 <img src="images/EditActivityDiagram.png" width="550" />
 
 #### Design considerations
 
-The edit deadline command is designed to be used in conjunction with find student command. For instance, the user would first use find student using project name to find the student taking FYP using `find machine`
-to find students taking machine learning projects before doing `edit A0123456X p/AI` to edit student from FYP Manager.
+The edit command is designed to be used in conjunction with find student command. For instance, the user would first use find student using project name to find the student taking FYP using `find machine`
+to find students taking machine learning projects before doing `edit A0123456X p/AI` to edit the student in FypManager.
 
-This integration between edit command with find student command is important because FypManager can store large number of students with FYP, making it not fesiable for users to scroll through the list.
+This integration between edit command with find student command is important because FypManager can store large number of students with FYP, making it not feasible for users to scroll through the list.
 By utilizing find student, users can find the student with only partial information and retrieve the student ID Using this student ID, users can edit the student attributes from the FypManager.
 
 <div style="page-break-after: always;"></div>
