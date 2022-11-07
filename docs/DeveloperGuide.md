@@ -678,7 +678,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1c. An applicant with the same name already exists.
 
-  * 1c1 TrackAScholar displays an error message that applicant already exists. <br>
+  * 1c1. TrackAScholar displays an error message that applicant already exists. <br>
     Use case resumes at step 1.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -697,10 +697,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. TrackAScholar ignores the extra parameters. <br>
       Use case resumes at step 2.
 
-* 1b. TrackAScholar has no applicants stored.
-    * 1b1. TrackAScholar shows an empty applicant list. <br>
-      Use case ends.
-
 --------------------------------------------------------------------------------------------------------------------
 
 **Use case: UC04 - Edit personal details of an applicant**
@@ -712,7 +708,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to edit the details of an applicant.
-2. TrackAScholar edits the details of the specified applicant to the list. <br>
+2. TrackAScholar edits the details of the specified applicant and updates the list. <br>
    Use case ends.
 
 **Extensions**
@@ -728,7 +724,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case resumes at step 1.
 
 * 1c. User requests to update an applicant's name to an already existing applicant name.
-  * 1c1. TrackAScholar displays an error message that an applicant with the same name already exists and details cannot be updated. <br>
+  * 1c1. TrackAScholar displays an error message informing the user that an applicant with the same name already exists and details cannot be updated. <br>
     Use case resumes at step 1.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -738,7 +734,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to delete an applicant in TrackAScholar.
-2. TrackAScholar deletes the specified applicant. <br>
+2. TrackAScholar deletes the specified applicant from TrackAScholar. <br>
    Use case ends.
 
 **Extensions**
@@ -819,11 +815,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. TrackAScholar displays an error message prompting correct input format. <br>
       Use case resumes at step 1.
 
-* 1b. Input parameters is invalid.
-
-    * 1b1. TrackAScholar displays an error message showing parameter requirements. <br>
-      Use case resumes at step 1.
-
 --------------------------------------------------------------------------------------------------------------------
 
 **Use case: UC09 - Filter applicants by application status**
@@ -831,8 +822,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests a filtered list based on a specific application status.
-2. TrackAScholar shows the filtered list of applicants with the specified applicant status.
-
+2. TrackAScholar shows the filtered list of applicants with the specified applicant status. <br>
     Use case ends.
 
 **Extensions**
