@@ -902,6 +902,50 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+**Use case: UC11 - Find Clients by Risk Tag**
+
+**MSS**
+
+1. User searches for clients by their risk tag.
+2. Financial Advisor Planner shows a list of clients that matches the given risk tag.
+
+   Use case ends.
+
+   **Extensions**
+
+* 1a. User inputs an invalid risk tag
+
+    * 1a1. Financial Advisor Planner shows an error message
+
+      Use case ends.
+* 1b. Financial Advisor Planner can't find any matching clients given the risk tag
+
+    * 1b1. Financial Advisor Planner shows an empty list
+
+    Use case ends.
+
+**Use case: UC12 - Find Clients by income**
+
+**MSS**
+
+1. User searches for clients by their income.
+2. Financial Advisor Planner shows a list of clients that matches the given range of income.
+
+   Use case ends.
+
+   **Extensions**
+
+* 1a. User inputs an invalid income
+
+    * 1a1. Financial Advisor Planner shows an error message
+
+      Use case ends.
+* 1b. Financial Advisor Planner can't find any matching clients given the income range
+
+    * 1b1. Financial Advisor Planner shows an empty list
+
+  Use case ends.
+
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -976,9 +1020,85 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `aa 1 d/24-01-2023 12:30 l/Jurong Point, Starbucks`<br>
        Expected: No appointment is added. Error details will show that the user has reached the maximum number of appointments(3) scheduled for this client
 
-### Deleting a person
+### Finding Clients
 
-1. Deleting a person while all persons are being shown
+## Find by name
+1. Finding a client by their name:
+
+    1. Prerequisites: User input is valid, prefixes are present and Financial Advisor Planner contains clients.
+
+    1. Test Case: `find n/john`
+       Expected: All clients with name john, regardless of the case as this command is case-insensitive are displayed. Success message shown.
+
+    1. Test Case: `find john`
+       Expected: Nothing happens. Financial Advisor Planner shows error message.
+
+    1. Test Case: `find n/`
+       Expected: Nothing happens. Financial Advisor Planner shows error message.
+
+    1. Test Case: `find`
+       Expected: Nothing happens. Financial Advisor Planner shows error message.
+
+## Find by risk tag
+1. Finding a client by their risk tag:
+
+    1. Prerequisites: User input is valid, prefixes are present and Financial Advisor Planner contains clients.
+
+    1. Test Case: `find r/medium`
+       Expected: All clients with risk tag "medium" are displayed. Success message shown.
+   
+    1. Test Case: `find r/meDIuM`
+       Expected: All clients with risk tag "medium" are displayed, this command is case-insensitive. Success message shown.
+
+    1. Test Case: `find medium`
+       Expected: Nothing happens. Financial Advisor Planner shows error message.
+
+    1. Test Case: `find r/`
+       Expected: Nothing happens. Financial Advisor Planner shows error message.
+
+    1. Test Case: `find`
+       Expected: Nothing happens. Financial Advisor Planner shows error message.
+
+## Find by income
+1. Finding a client by their income:
+
+    1. Prerequisites: User input is valid, prefixes are present and Financial Advisor Planner contains clients.
+
+    1. Test Case: `find i/>10000`
+       Expected: All clients with income more than 10000 are displayed. Success message shown.
+
+    1. Test Case: `find i/=10000`
+       Expected: All clients with income equal to 10000 are displayed. Success message shown.
+
+    1. Test Case: `find >10000`
+       Expected: Nothing happens. Financial Advisor Planner shows error message.
+
+    1. Test Case: `find i/`
+       Expected: Nothing happens. Financial Advisor Planner shows error message.
+
+    1. Test Case: `find`
+       Expected: Nothing happens. Financial Advisor Planner shows error message.
+
+### Sorting Clients
+1. Sorts the list of clients by a given keyword
+
+    1. Prerequisites: User input is valid and Financial Advisor Planner contains clients.
+
+    1. Test Case: `sort name desc`
+       Expected: The list of clients on display are sorted alphabetically by name in descending order. Success message shown.
+
+   1. Test Case: `sort name`
+      Expected: The list of clients on display are sorted alphabetically by name in ascending order. Success message shown.
+
+   1. Test Case: `sort income desc`
+      Expected: The list of clients on display are sorted by their income in descending order. Success message shown.
+
+   1. Test Case: `sort ris`
+      Expected: Nothing happens. Financial Advisor Planner shows error message.
+
+### Deleting a client
+
+1. Deleting a client while all client are being shown
 
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
