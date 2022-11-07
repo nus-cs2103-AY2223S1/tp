@@ -11,6 +11,7 @@ import java.util.Optional;
 import seedu.uninurse.commons.core.Messages;
 import seedu.uninurse.commons.core.index.Index;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
+import seedu.uninurse.logic.commands.exceptions.DuplicateEntryException;
 import seedu.uninurse.model.Model;
 import seedu.uninurse.model.PersonListTracker;
 import seedu.uninurse.model.exceptions.PatientNotFoundException;
@@ -102,7 +103,9 @@ public class EditMedicationCommand extends EditGenericCommand {
                     medicationIndex.getOneBased(), editedPatient.getName(), initialMedication, updatedMedication),
                     COMMAND_TYPE, personListTracker);
         } catch (DuplicateMedicationException dme) {
-            throw new CommandException(String.format(Messages.MESSAGE_DUPLICATE_MEDICATION, patientToEdit.getName()));
+            model.setPatientOfInterest(patientToEdit);
+            throw new DuplicateEntryException(
+                    String.format(Messages.MESSAGE_DUPLICATE_MEDICATION, patientToEdit.getName()));
         }
     }
 

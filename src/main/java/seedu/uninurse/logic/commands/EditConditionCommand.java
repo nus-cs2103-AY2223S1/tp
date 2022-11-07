@@ -10,6 +10,7 @@ import java.util.List;
 import seedu.uninurse.commons.core.Messages;
 import seedu.uninurse.commons.core.index.Index;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
+import seedu.uninurse.logic.commands.exceptions.DuplicateEntryException;
 import seedu.uninurse.model.Model;
 import seedu.uninurse.model.PersonListTracker;
 import seedu.uninurse.model.condition.Condition;
@@ -91,7 +92,9 @@ public class EditConditionCommand extends EditGenericCommand {
                     conditionIndex.getOneBased(), editedPatient.getName(), initialCondition, editedCondition),
                     COMMAND_TYPE, personListTracker);
         } catch (DuplicateConditionException dce) {
-            throw new CommandException(String.format(Messages.MESSAGE_DUPLICATE_CONDITION, patientToEdit.getName()));
+            model.setPatientOfInterest(patientToEdit);
+            throw new DuplicateEntryException(
+                    String.format(Messages.MESSAGE_DUPLICATE_CONDITION, patientToEdit.getName()));
         }
     }
 

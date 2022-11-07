@@ -14,6 +14,7 @@ import static seedu.uninurse.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import seedu.uninurse.commons.core.Messages;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
+import seedu.uninurse.logic.commands.exceptions.DuplicateEntryException;
 import seedu.uninurse.model.Model;
 import seedu.uninurse.model.PersonListTracker;
 import seedu.uninurse.model.person.Patient;
@@ -61,7 +62,8 @@ public class AddPatientCommand extends AddGenericCommand {
         requireAllNonNull(model);
 
         if (model.hasPerson(toAdd)) {
-            throw new CommandException(Messages.MESSAGE_DUPLICATE_PATIENT);
+            model.setPatientOfInterest(toAdd);
+            throw new DuplicateEntryException(Messages.MESSAGE_DUPLICATE_PATIENT);
         }
 
         PersonListTracker personListTracker = model.addPatient(toAdd);

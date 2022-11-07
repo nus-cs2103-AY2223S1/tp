@@ -11,6 +11,7 @@ import java.util.Optional;
 import seedu.uninurse.commons.core.Messages;
 import seedu.uninurse.commons.core.index.Index;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
+import seedu.uninurse.logic.commands.exceptions.DuplicateEntryException;
 import seedu.uninurse.model.Model;
 import seedu.uninurse.model.PersonListTracker;
 import seedu.uninurse.model.exceptions.PatientNotFoundException;
@@ -124,7 +125,8 @@ public class EditTaskCommand extends EditGenericCommand {
                     taskIndex.getOneBased(), editedPatient.getName(), initialTask, updatedTask),
                     EDIT_TASK_COMMAND_TYPE, personListTracker);
         } catch (DuplicateTaskException dte) {
-            throw new CommandException(Messages.MESSAGE_DUPLICATE_TASK);
+            model.setPatientOfInterest(patientToEdit);
+            throw new DuplicateEntryException(String.format(Messages.MESSAGE_DUPLICATE_TASK, patientToEdit.getName()));
         }
     }
 

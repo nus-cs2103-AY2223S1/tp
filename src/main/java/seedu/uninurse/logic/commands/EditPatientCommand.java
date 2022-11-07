@@ -13,6 +13,7 @@ import seedu.uninurse.commons.core.Messages;
 import seedu.uninurse.commons.core.index.Index;
 import seedu.uninurse.commons.util.CollectionUtil;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
+import seedu.uninurse.logic.commands.exceptions.DuplicateEntryException;
 import seedu.uninurse.model.Model;
 import seedu.uninurse.model.PersonListTracker;
 import seedu.uninurse.model.condition.ConditionList;
@@ -78,7 +79,8 @@ public class EditPatientCommand extends EditGenericCommand {
         Patient editedPatient = createEditedPatient(patientToEdit, editPatientDescriptor);
 
         if (!patientToEdit.isSamePerson(editedPatient) && model.hasPerson(editedPatient)) {
-            throw new CommandException(Messages.MESSAGE_DUPLICATE_PATIENT);
+            model.setPatientOfInterest(patientToEdit);
+            throw new DuplicateEntryException(Messages.MESSAGE_DUPLICATE_PATIENT);
         }
 
         PersonListTracker personListTracker = model.setPatient(patientToEdit, editedPatient);

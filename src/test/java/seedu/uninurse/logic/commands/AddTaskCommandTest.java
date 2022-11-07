@@ -135,7 +135,8 @@ public class AddTaskCommandTest {
         model.setPatient(patient, patientWithTask);
 
         AddTaskCommand addTaskCommand = new AddTaskCommand(INDEX_FIRST_PERSON, duplicateTask);
-        assertCommandFailure(addTaskCommand, model, Messages.MESSAGE_DUPLICATE_TASK);
+        String expectedMessage = String.format(Messages.MESSAGE_DUPLICATE_TASK, patient.getName());
+        assertCommandFailure(addTaskCommand, model, expectedMessage);
     }
 
     @Test

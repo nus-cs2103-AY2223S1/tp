@@ -16,6 +16,7 @@ import seedu.uninurse.commons.core.LogsCenter;
 import seedu.uninurse.logic.Logic;
 import seedu.uninurse.logic.commands.CommandResult;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
+import seedu.uninurse.logic.commands.exceptions.DuplicateEntryException;
 import seedu.uninurse.logic.parser.exceptions.ParseException;
 import seedu.uninurse.model.exceptions.PatientOfInterestNotFoundException;
 
@@ -251,6 +252,11 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             return commandResult;
+        } catch (DuplicateEntryException e) {
+            logger.info("Invalid command: " + commandText);
+            resultDisplay.setFeedbackToUser(e.getMessage());
+            outputPanel.handleViewPatient(logic.getPatientOfInterest());
+            throw e;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());

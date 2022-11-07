@@ -9,6 +9,7 @@ import java.util.List;
 import seedu.uninurse.commons.core.Messages;
 import seedu.uninurse.commons.core.index.Index;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
+import seedu.uninurse.logic.commands.exceptions.DuplicateEntryException;
 import seedu.uninurse.model.Model;
 import seedu.uninurse.model.PersonListTracker;
 import seedu.uninurse.model.exceptions.PatientNotFoundException;
@@ -74,7 +75,8 @@ public class AddTagCommand extends AddGenericCommand {
             return new CommandResult(String.format(MESSAGE_SUCCESS, editedPatient.getName(), tag),
                     COMMAND_TYPE, personListTracker);
         } catch (DuplicateTagException dte) {
-            throw new CommandException(String.format(Messages.MESSAGE_DUPLICATE_TAG, patientToEdit.getName()));
+            model.setPatientOfInterest(patientToEdit);
+            throw new DuplicateEntryException(String.format(Messages.MESSAGE_DUPLICATE_TAG, patientToEdit.getName()));
         }
     }
 

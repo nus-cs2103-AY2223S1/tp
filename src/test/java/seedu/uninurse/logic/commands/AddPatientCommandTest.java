@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.uninurse.commons.core.GuiSettings;
 import seedu.uninurse.commons.core.Messages;
-import seedu.uninurse.logic.commands.exceptions.CommandException;
+import seedu.uninurse.logic.commands.exceptions.DuplicateEntryException;
 import seedu.uninurse.model.Model;
 import seedu.uninurse.model.PersonListTracker;
 import seedu.uninurse.model.ReadOnlyUninurseBook;
@@ -51,7 +51,8 @@ public class AddPatientCommandTest {
         AddPatientCommand addCommand = new AddPatientCommand(validPatient);
         ModelStub modelStub = new ModelStubWithPatient(validPatient);
 
-        assertThrows(CommandException.class, Messages.MESSAGE_DUPLICATE_PATIENT, () -> addCommand.execute(modelStub));
+        assertThrows(DuplicateEntryException.class,
+                Messages.MESSAGE_DUPLICATE_PATIENT, () -> addCommand.execute(modelStub));
     }
 
     @Test
@@ -248,6 +249,7 @@ public class AddPatientCommandTest {
      */
     private class ModelStubWithPatient extends ModelStub {
         private final Patient patient;
+        private Patient patientOfInterest;
 
         ModelStubWithPatient(Patient patient) {
             requireNonNull(patient);
@@ -258,6 +260,12 @@ public class AddPatientCommandTest {
         public boolean hasPerson(Person person) {
             requireNonNull(person);
             return this.patient.isSamePerson(person);
+        }
+
+        @Override
+        public void setPatientOfInterest(Patient patient) {
+            requireNonNull(patient);
+            patientOfInterest = patient;
         }
     }
 
