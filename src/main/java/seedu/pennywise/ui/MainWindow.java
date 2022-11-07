@@ -249,7 +249,6 @@ public class MainWindow extends UiPart<Stage> {
         assert entryType != null;
 
         EntryType finalEntryType = entryType;
-        System.out.println("**********: " + entryType);
         Supplier<ObservableList<PieChart.Data>> pieChartDataSupplier = () -> {
             switch (finalEntryType.getEntryType()) {
             case EXPENDITURE:

@@ -509,7 +509,7 @@ and view entries by category command as clearing any filters on the entry list.
 </div>
 
 <div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
-Note that if you manually toggle between the income list display and expenditure list display, all filters (if any)
+Note that if you manually switch between the income list display and expenditure list display, all filters (if any)
 will be cleared and a pie chart will be drawn. Manual toggling is equivalent to typing the command `view t/e` or `view t/i`.
 </div>
 

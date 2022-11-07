@@ -351,29 +351,29 @@ Below is a sequence diagram and explanation of how the `summary` command is exec
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SummaryCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.</div>
 
-Step 1.The user enters `summary mo/2022-08` command in the main window
+1. The user enters `summary mo/2022-08` command in the main window
 
-Step 2. The command is handled by `LogicManager#execute` method,
+2. The command is handled by `LogicManager#execute` method,
 which then calls the `PennyWiseParser#parseCommand` method
 
-Step 3. The `PennyWiseParser` matches the word summary in the string and extracts the argument string `mo/2022-08`
+3. The `PennyWiseParser` matches the word summary in the string and extracts the argument string `mo/2022-08`
 
-Step 4. The `PennyWiseParser` then calls `SummaryCommandParser#parse` method
+4. The `PennyWiseParser` then calls `SummaryCommandParser#parse` method
 and the argument string is converted to a List
 
-Step 5. The `SummaryCommandParser` creates a new EntryInYearMonthPredicate instance to handle the filter
+5. The `SummaryCommandParser` creates a new EntryInYearMonthPredicate instance to handle the filter
 
-Step 6. The `SummaryCommandParser` creates a new `SummaryCommand` instance with the `EntryInYearMonthPredicate` instance and
+6. The `SummaryCommandParser` creates a new `SummaryCommand` instance with the `EntryInYearMonthPredicate` instance and
 returns it to `PennyWiseParser`, which in turn returns to `LogicManger`.
 
-Step 7. The `LogicManager` calls the `SummaryCommand#execute` method.
+7. The `LogicManager` calls the `SummaryCommand#execute` method.
 
-Step 8. The `SummaryCommand` calls the `Model#updateFilteredEntry` method and
+8. The `SummaryCommand` calls the `Model#updateFilteredEntry` method and
 filters the income and expenditure entries by the month
 
-Step 9. The application calculates the summary statistics for the filtered income and expenditure entries.
+9. The application calculates the summary statistics for the filtered income and expenditure entries.
 
-Step 10. The `SummaryCommand` then creates a CommandResult and returns it to `LogicManager`.
+10. The `SummaryCommand` then creates a CommandResult and returns it to `LogicManager`.
 
 #### Design considerations:
 * **Alternative 1 (current choice):** Only allow users to generate summary statistic either by month or all entries
@@ -403,25 +403,25 @@ Below is a sequence diagram and explanation of how the `add` command is executed
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.</div>
 
-Step 1. The user enters `add t/e d/Lunch a/7.20 da/04-10-2022 c/Food` command in the main window.
+1. The user enters `add t/e d/Lunch a/7.20 da/04-10-2022 c/Food` command in the main window.
 
-Step 2. The command is handled by `LogicManager#execute` method, which then calls the `PennyWiseParser#parseCommand`method.
+2. The command is handled by `LogicManager#execute` method, which then calls the `PennyWiseParser#parseCommand`method.
 
-Step 3. The `PennyWiseParser` matches the entry details in the string and extracts the argument string `t/e d/Lunch a/7.20 da/04-10-2022 c/Food`.
+3. The `PennyWiseParser` matches the entry details in the string and extracts the argument string `t/e d/Lunch a/7.20 da/04-10-2022 c/Food`.
 
-Step 4. The `PennyWiseParser` then calls `AddCommandParser#parse` method and the argument string is converted to a List.
+4. The `PennyWiseParser` then calls `AddCommandParser#parse` method and the argument string is converted to a List.
 
-Step 5. The `AddCommandParser` then creates a new instances of arguments needed for an Entry: `EntryType`, `Description`, `Amount`, `Date`, `Category`.
+5. The `AddCommandParser` then creates a new instances of arguments needed for an Entry: `EntryType`, `Description`, `Amount`, `Date`, `Category`.
 
-Step 6. The `AddCommandParser` uses the new instances to create a new instance of `Entry`, depending on the `EntryType` specified.
+6. The `AddCommandParser` uses the new instances to create a new instance of `Entry`, depending on the `EntryType` specified.
 
-Step 7. The `AddCommandParser` creates a new `AddCommand` instance with the new `Entry` instance and returns it to `PennyWiseParser`, which in turns returns to `LogicManager`.
+7. The `AddCommandParser` creates a new `AddCommand` instance with the new `Entry` instance and returns it to `PennyWiseParser`, which in turns returns to `LogicManager`.
 
-Step 8. The `LogicManager` calls the `AddCommand#execute` method.
+8. The `LogicManager` calls the `AddCommand#execute` method.
 
-Step 9. The `AddCommand` calls the `Model#addExpenditure` or `Model#addIncome` method and adds the new entry to the specified list.
+9. The `AddCommand` calls the `Model#addExpenditure` or `Model#addIncome` method and adds the new entry to the specified list.
 
-Step 10. The `AddCommand` then creates a `CommandResult` instance and returns it to `LogicManager`.
+10. The `AddCommand` then creates a `CommandResult` instance and returns it to `LogicManager`.
 
 #### Design Considerations
 * **Alternative 1 (current choice):** Only allow users to create an Entry with 1 type of category
@@ -451,27 +451,92 @@ Below is a sequence diagram and explanation of how the EditCommand is executed.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `EditCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.</div>
 
-Step 1. The user enters `edit 1 t/e d/LunchDeck` command in the main window.
+1. The user enters `edit 1 t/e d/LunchDeck` command in the main window.
 
-Step 2. The command is handled by `LogicManager#execute` method, which then calls the `PennyWiseParser#parseCommand`method.
+2. The command is handled by `LogicManager#execute` method, which then calls the `PennyWiseParser#parseCommand`method.
 
-Step 3. The `PennyWiseParser` matches the entry details in the string and extracts the argument string `1 t/e d/LunchDeck`.
+3. The `PennyWiseParser` matches the entry details in the string and extracts the argument string `1 t/e d/LunchDeck`.
 
-Step 4. The `PennyWiseParser` then calls `EditCommandParser#parse` method and the argument string is converted to a List.
+4. The `PennyWiseParser` then calls `EditCommandParser#parse` method and the argument string is converted to a List.
 
-Step 5. The `EditCommandParser` then creates a new instance of the `EditEntryDescriptor` to describe the fields to be updated: `EntryType`, `Description`, `Amount`, `Date`, `Category`.
+5. The `EditCommandParser` then creates a new instance of the `EditEntryDescriptor` to describe the fields to be updated: `EntryType`, `Description`, `Amount`, `Date`, `Category`.
 
-Step 6. The `EditCommandParser` creates a new `EditCommand` instance with the `EditEntryDescriptor` instance and returns it to `PennyWiseParser`, which in turns returns to `LogicManager`.
+6. The `EditCommandParser` creates a new `EditCommand` instance with the `EditEntryDescriptor` instance and returns it to `PennyWiseParser`, which in turns returns to `LogicManager`.
 
-Step 7. The `LogicManager` calls the `EditCommand#execute` method.
+7. The `LogicManager` calls the `EditCommand#execute` method.
 
-Step 8. The `EditCommand` calls the `Model#getFilteredExpenditureList` method to retrieve the list of expenditure entries.
+8. The `EditCommand` calls the `Model#getFilteredExpenditureList` method to retrieve the list of expenditure entries.
 
-Step 9. The `EditCommand` invokes the `EditCommand#getEntryToEdit` method to get the entry to be edited, then creates a new instance of the edited entry using `EditCommand#createdEditedEntry`.
+9. The `EditCommand` invokes the `EditCommand#getEntryToEdit` method to get the entry to be edited, then creates a new instance of the edited entry using `EditCommand#createdEditedEntry`.
 
-Step 10. The `EditCommand` then calls the `Model#setExpenditure` method to update the expenditure and the `Model#updateFilteredExpenditureList` method to update the list of expenditure with the updated entry.
+10. The `EditCommand` then calls the `Model#setExpenditure` method to update the expenditure.
 
-Step 11. The `EditCommand` eventually creates a `CommandResult` instance and returns it to `LogicManager`.
+11. The `EditCommand` eventually creates a `CommandResult` instance and returns it to `LogicManager`.
+
+### View pie charts and line graphs
+
+#### How the `view` command works
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The command syntax for view command is as follows:
+`view t/ENTRY_TYPE [mo/MONTH]`
+E.g. `view t/e` produces a pie chart view of the expenses entries grouped by categories.
+`view t/i mo/2022-01` produces a line graph of the income entries in Jan 2022 grouped by days.
+</div>
+
+`view` command is used to filter the entry list as well as generate graphs. 
+
+The `ViewCommandParser` class is responsible for parsing the parameter received from the user, and passing the `EntryType`
+as well as `GraphType` to the `ViewCommand` class.
+
+The `ViewCommand` class is responsible for filtering the entry list and generating the correct `GraphConfiguration`.
+The class diagram below shows the structure of `ViewCommand`.
+![ViewCommandClassDiagram](images/ViewCommandClassDiagram.png)
+
+The `view` command will produce a category view with a pie chart or a daily view with a line graph. This is achieved with an optional 
+input `mo/MONTH`. If it is present, the entry list will be filtered by the specified month and 
+a line graph will be displayed. Otherwise, the full list will be shown and a pie chart will be displayed.
+
+The activity diagram below illustrates the workflow described above when a user executes the `view` command.
+![ViewActivityDiagram](images/ViewActivityDiagramBusiness.png)
+
+Given below is an example usage scenario and how the pie chart view mechanism behaves at each step.
+The two sequence diagrams below omit the parsing workflow as it is identical to the rest of the command. They only highlight
+the steps in **command execution** as well as **UI updates**.
+
+![ViewSequenceDiagramCommand](images/ViewSequenceDiagramCommand.png)
+![ViewSequenceDiagramUI](images/ViewSequenceDiagramUI.png)
+
+1. The user types `view t/e` command in the main window.
+
+2. This command is handled by `MainWindow#executeCommand` method, which then calls the `LogicManager#execute` method.
+
+3. `LogicManager` then calls the `pennyWiseParser#parseCommand` method which matches the command word `view` in the string and extracts the arguments string `t/e`.
+
+4. `pennyWiseParser` then calls the `ViewCommandParser#parse` method. 
+   In this method, it is ensured that the input is of the correct format, and the entryType (and year month, if supplied) is extracted.
+   It creates a `viewEntriesDescriptor` with `entryType` set to expenditure and `yearMonth` set to `null`. 
+5. `LogicManager`then calls the `ViewCommand#execute` method which creates a `graphConfiguration` based on the `viewEntriesDescriptor`. It also filters the
+expenditure list based on `predicate` generated from the `viewEntriesDescriptor`.
+The `CommandResult`, containing the `graphConfiguration`, is returned to `LogicManager` and passed to `MainWindow`.
+
+6.`MainWindow` checks the `commandResult` which indicates a need to update graph. It then calls the `updateGraph` method which renders the graph according to the `graphConfiguration`.
+
+7. In `updateGraph`, `LogicManager#getExpensePieChartData` calls `ModelManager#getPieChartData` which returns the `pieChartData`.
+   It then creates a new `GraphPanel` with the `pieChartData` and add it to the UI.
+
+Design considerations:
+* **Alternative 1:** The charts update only after `view` command.
+    * Pros: Easy to extend since we are adding more graph representation of data later such as bar graphs.
+    * Cons: Not responsive to changes in data, for instance if the user adds an entry, the pie chart will not be automatically updated.
+* **Alternative 2:** The charts update immediately after changing tabs between expenses and income.
+    * Pros: Intuitive, simple and quick for user.
+    * Cons: Difficult to extend to other graph types as user might prefer other graph representations.
+
+The current design follows a modified version of Alternative 2. Whenever the tab is toggled manually by users, all filters
+will be reset and a pie chart will be displayed. We followed this design for the following reasons:
+* The UI is still responsive to users' tab switching action.
+* Setting a filter for one list with `view t/ENTRY_TYPE mo/MONTH` would not affect the other list, because to show the other list,
+the user needs to either use a `view` command, which sets a filter for the other list, or switch tab manually, which is equivalent 
+to a `view t/ENTRY_TYPE` command.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -490,19 +555,19 @@ and `Model#redoPennyWise()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedPennyWise` will be initialized with the
+1. The user launches the application for the first time. The `VersionedPennyWise` will be initialized with the
 initial PennyWise state, and the `currentStatePointer` pointing to that single PennyWise state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th entry in the application. The `delete` command
+2. The user executes `delete 5` command to delete the 5th entry in the application. The `delete` command
 calls `Model#commitPennyWise()`, causing the modified state of the application after the `delete 5` command executes
 to be saved in the `pennyWiseStateList`, and the `currentStatePointer` is shifted to the newly inserted PennyWise
 state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add t/e …​` to add a new entry. The `add` command also calls `Model#commitPennyWise()`
+3. The user executes `add t/e …​` to add a new entry. The `add` command also calls `Model#commitPennyWise()`
 , causing another modified PennyWise state to be saved into the `pennyWiseStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
@@ -511,7 +576,7 @@ Step 3. The user executes `add t/e …​` to add a new entry. The `add` command
 
 </div>
 
-Step 4. The user now decides that adding the entry was a mistake, and decides to undo that action by executing
+4. The user now decides that adding the entry was a mistake, and decides to undo that action by executing
 the `undo` command. The `undo` command will call `Model#undoPennyWise()`, which will shift the `currentStatePointer`
 once to the left, pointing it to the previous application state, and restores the application to that state.
 
@@ -537,7 +602,7 @@ to the right, pointing to the previously undone state, and restores the applicat
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 5. The user executes `clear`, which calls `Model#commitPennyWise()`. Since the `currentStatePointer` is not
+5. The user executes `clear`, which calls `Model#commitPennyWise()`. Since the `currentStatePointer` is not
 pointing at the end of the `pennyWiseStateList`, all application states after the `currentStatePointer` will be
 purged. Reason: It no longer makes sense to redo the `add t/e …​` command. This is the behavior that most modern
 desktop applications follow.
@@ -565,49 +630,6 @@ _{more aspects and alternatives to be added}_
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
-
-### [Proposed\] Pie Chart View feature
-
-#### Implementation
-The pie chart view feature displays a pie chart view by categories of spending/income entries, and can be accessed via the `view` command. Additionally, it implements the following operation
-* `getExpensePieChartData()`
-* `getIncomePieChartData()`
-
-These operations are exposed in the `Model` interface as `Model#getExpensePieChartData()`, `Model#getIncomePieChartData()` respectively.
-
-The activity diagram below shows the workflow when a user executes the `view` command.
-
-![ViewActivityDiagram](images/ViewActivityDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The command syntax for view command is as follows:
-view entryType graphType
-E.g. `view t/e g/c` indicates type expenses and graph category. This shows a pie chart view of the expenses entries grouped by categories.
-</div>
-
-Given below is an example usage scenario and how the pie chart view mechanism behaves at each step.
-![PieChartViewSequenceDiagram](images/PieChartViewSequenceDiagram.png)
-
-Step 1. The user types in `view t/e g/c` command in the main window.
-
-Step 2. This command is handled by `MainWindow#executeCommand` method, which then calls the `LogicManager#execute` method
-
-Step 3. `LogicManager` then calls the `pennyWiseParser#parseCommand` method which matches the command word `view` in the string and extracts the arguments string `t/e g/c`.
-
-Step 4. `pennyWiseParser` then calls the `ViewCommandParser#parse` method. In this method, it is ensured that the input is of the correct format, and the entryType and graphType is extracted.
-
-Step 5. `LogicManager`then calls the `ViewCommand#execute` method which returns a `CommandResult` that is returned to `LogicManager` and passed to `MainWindow`.
-
-Step 6. `MainWindow` then calls the `handleGraph` method which determines what data to update before calling `updateGraph`.
-
-Step 7. In `updateGraph`, `LogicManager#getExpensePieChartData` calls `ModelManager#getPieChartData` which returns the pieChartData for the pieChart to be created and rendered on the UI.
-
-Design considerations:
-* **Alternative 1(current choice):** The pie chart updates only after `view` command.
-    * Pros: Easy to extend since we are adding more graph representation of data later such as bar graphs.
-    * Cons: Not responsive to changes in data, for instance if the user adds an entry, the pie chart will not be automatically updated.
-* **Alternative 2:** Pie chart updates immediately after changing tabs from expenses and income.
-    * Pros: Intuitive, simple and quick for user.
-    * Cons: Difficult to extend to other graph types as user might prefer other graph representations.
 
 <p align="right">
     <a href="#top">Back to Top </a>
