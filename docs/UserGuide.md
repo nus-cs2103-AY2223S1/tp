@@ -475,7 +475,7 @@ Examples:
     <td>After (example 2)</td>
   </tr>
   <tr>
-    <td><img src="images/Reminder.png" width=380></td>
+    <td><img src="images/Reminder.png" width=350></td>
     <td><img src="images/AddReminder.png" width=350></td>
   </tr>
 </table>
