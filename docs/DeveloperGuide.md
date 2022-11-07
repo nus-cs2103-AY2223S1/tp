@@ -9,7 +9,9 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5), [OpenCSV](https://opencsv.sourceforge.net/)
+
+* Adapted from: [AddressBook Level 3](https://github.com/nus-cs2103-AY2223S1/tp)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -52,7 +54,7 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `deletePerson 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -82,7 +84,8 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` objects and `Event` objects residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Person` objects and `Event` objects residing in the `Model`,
+and can display statistics of `Persons` objects tagged to `Event` objects as well.
 
 ### Logic component
 
@@ -94,24 +97,24 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddPersonCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("deletePerson 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `deletePerson 1` Command](images/DeletePersonSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeletePersonCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram. This error will appear later as well so take note of this PlantUML limitation.
 </div>
-
+<br/>
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddPersonCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddPersonCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g., `AddPersonCommandParser`, `DeletePersonCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
@@ -126,10 +129,6 @@ The `Model` component,
 * stores the currently 'selected' `Event` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Event>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
 
 </div>
 
@@ -227,6 +226,36 @@ event command text entered by user. event represents the event class created and
 Additionally, saving of the updated events list has been excluded from this diagram for simplicity.
 </div>
 
+### Editing Events
+
+The Edit Event feature that is accessed through the `editEvent` command allows users to edit existing marketing campaigns of
+the `Event` class in the application.
+
+The `event`edited by the user allows the user to edit one or more of the 4 existing fields:
+- Title of the `event`
+- Date of the `event`
+- Time of the `event`
+- Purpose of the `event`
+
+The `editEvent` operation is facilitated by `EditEventCommand` which extends from `Command`. If the users' input matches
+the `COMMAND_WORD` of `EditEventCommand` in `AddressBookParser#parseCommand()`, `EditEventCommandParser#parse()` will
+process the additional user inputs which include one or more of the 4 fields and return a `EditEventCommand`.
+
+Executing this Command object through the `EditEventCommand#execute()` triggers the `Model` interface's
+`Model#setEvent()`. This operation subsequently calls upon the `AddressBook#setEvent()` operation which in turn calls
+upon the `UniqueEventList#setEvent()` operation and the existing `event` will be replaced with the new edited `event` in memory.
+
+The editEvent operation will also trigger the `StorageManager#saveAddressBook()` operation which will save the current list of events, which will save the edited event together with all other `Person`(s) and `Event`(s) to a .JSON format in memory.
+
+The following sequence diagram will illustrate how the `editEvent` operation works:
+
+![EditEventSequenceDiagram](images/EditEventSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** `cmd` in the diagram represents the edit
+event command text entered by user; the `setEvent(E1, E2)` method replaces event E1 with event E2 in the event list
+in the model. Additionally, saving of the updated events list has been excluded from this diagram for simplicity.
+</div>
+
 
 ### Deleting Events
 
@@ -235,7 +264,7 @@ the `event` class in the application.
 
 The `deleteEvent` operation is facilitated by `DeleteEventCommand` which extends from `Command`. If the users' input matches
 the `COMMAND_WORD` of `DeleteEventCommand` in `AddressBookParser#parseCommand()`, `DeleteEventCommandParser#parse()` will
-process the additional user input which is the current index of the marketing event on the User Interface.
+process the additional user input which is the current index of the marketing event on the User Interface and return a `DeleteEventCommand`.
 
 Executing this Command object through the `DeleteEventCommand#execute()` triggers the `Model` interface's
 `Model#deleteEvent()`. This operation subsequently calls upon the `AddressBook#deleteEvent()` operation which in turn calls
@@ -252,243 +281,6 @@ The following sequence diagram will illustrate how the `deleteEvent` operation w
 event command text entered by user. event represents the instance of event class created and stored within DeleteEventCommand.
 Additionally, saving of the updated events list from has been excluded from this diagram for simplicity.
 </div>
-
-### Add Gender
-
-The Add Gender feature allows users to add a gender field (Male / Female) to a person in the contact list. It is performed as a part
- of `addPersonCommand#execute()`.
-
-These operations are exposed in the `Model` interface as the method `Model#addPerson()`, which calls
-`AddressBook#addPerson()` which calls `UniquePersonList#add()` to add a new person in the person list
-stored in AddressBook.
-
-The following sequence diagram shows the methods calls related to add person operation:
-
-![AddPersonSequenceDiagram](images/AddPersonSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** `cmd` in the diagram represents the add
-person command text entered by user. The specific `UniquePersonList` operations are not shown in the diagram
-for simplicity.
-</div>
-
-The following activity diagram shows what happens when a user executes a new add command:
-
-![AddPersonActivityDiagram](images/AddPersonActivityDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** Only the
-activities related to gender field are considered and shown in this activity diagram.
-</div>
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:**Parser exceptions are thrown and caught if
-gender field is not provided in the command, or the gender is not of valid format; Duplicated person exception is
-thrown if the person to add already exists in the contact list. Error message is displayed on the GUI subsequently.
-</div>
-
-#### Design considerations:
-
-**Aspect: Whether gender field should be optional for a person:**
-
-* **Alternative 1 (current choice):** Compulsory gender field:
-    * Pros: It is a more logical implementation because gender is a common attribute for all persons,
-  similar to name, address, etc, which are also compulsory field for persons in contact list.
-    * Cons: It is less flexible, since only female and male genders are accepted.
-
-* **Alternative 2:** Optional gender field:
-    * Pros: It is a more flexible implementation, since user has the choice to set gender to male or female,
-  as well as hide gender.
-    * Cons: It is less logical since gender is usually a required binary field in most applications.
-
-### Edit Gender
-
-The Edit Gender feature allows users to edit a gender field (Male / Female) of a person in the contact list.
-It is performed as a part of `editPersonCommand#execute()`.
-
-These operations are exposed in the `Model` interface as the method `Model#setPerson()`, which calls
-`AddressBook#setPerson()` which calls `UniquePersonList#setPerson()` to replace an existing person with a new person
-object with edited fields in the person list stored in AddressBook.
-
-The following sequence diagram shows the methods calls related to edit person operation:
-
-![EditPersonSequenceDiagram](images/EditPersonSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** `cmd` in the diagram represents the edit
-person command text entered by user; the `setPerson(P1, P2)` method replaces person P1 with person P2 in the person list
-in the model. The specific `UniquePersonList` operations are not shown in the diagram for simplicity.
-</div>
-
-The following activity diagram shows what happens when a user executes a new edit command:
-
-![EditPersonActivityDiagram](images/EditPersonActivityDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** Only the
-activities related to gender field are considered and shown in this activity diagram. All fields are considered optional
-in edit person command, therefore, it is not compulsory that gender field must be provided.
-</div>
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:**Parser exceptions are thrown and caught if
-the gender is not of valid format; Invalid person exception is thrown if the person to edit doesn't exist in the
-contact list. Error message is displayed on the GUI subsequently.
-</div>
-
-### Add Date Of Birth
-
-The Add Date Of Birth feature allows users to add a date of birth field (format: dd/mm/yyyy) to a person in the addressbook. It is performed as a part of `addPersonCommand#execute()`.
-
-These operations are exposed in the `Model` interface as the method `Model#addPerson()`, which calls
-`AddressBook#addPerson()` which calls `UniquePersonList#add()` to add a new person in the person list
-stored in AddressBook.
-
-The following sequence diagram shows the methods calls related to add person operation:
-
-![AddPersonSequenceDiagram](images/AddPersonSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** `cmd` in the diagram represents the add
-person command text entered by user. The specific `UniquePersonList` operations are not shown in the diagram
-for simplicity.
-</div>
-
-The following activity diagram shows what happens when a user executes a new add person command:
-
-![AddPersonActivityDiagram](images/AddPersonActivityDiagram_DOB.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** Only the
-activities related to date of birth field are considered and shown in this activity diagram.
-</div>
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:**Parser exceptions are thrown and caught if
-date of birth field is not provided in the command, or the date of birth is not of valid format; Duplicate person exception is
-thrown if the person to add already exists in the addressbook. Error message is displayed on the GUI subsequently.
-</div>
-
-#### Design considerations:
-
-**Aspect: Whether date of birth field should be optional for a person:**
-
-* **Alternative 1 (current choice):** Compulsory date of birth field:
-    * Pros: It is a more logical implementation because date of birth is a common attribute for all persons,
-  similar to name, address, etc, which are also compulsory fields for persons in the addressbook.
-    * Cons: It is less flexible in cases where the user is missing the date of birth field for a contact,
-    but wants to add the contact anyways, as the user is not able to leave the date of birth field blank.
-
-* **Alternative 2:** Optional date of birth field:
-    * Pros: It is a more flexible implementation, since the user has the choice to set a date of birth,
-    or leave it empty.
-    * Cons: It is less logical since date of birth is a common attribute for all persons in the addressbook.
-
-### Edit Date of Birth
-
-The Edit Date of Birth feature allows users to edit a date of birth field (format: dd/mm/yyyy) of a person in the addressbook.
-It is performed as a part of `editPersonCommand#execute()`.
-
-These operations are exposed in the `Model` interface as the method `Model#setPerson()`, which calls
-`AddressBook#setPerson()` which calls `UniquePersonList#setPerson()` to replace an existing person with a new person
-object with edited fields in the person list stored in AddressBook.
-
-The following sequence diagram shows the methods calls related to edit person operation:
-
-![EditPersonSequenceDiagram](images/EditPersonSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** `cmd` in the diagram represents the edit
-person command text entered by user; the `setPerson(P1, P2)` method replaces person P1 with person P2 in the person list
-in the model. The specific `UniquePersonList` operations are not shown in the diagram for simplicity.
-</div>
-
-The following activity diagram shows what happens when a user executes a new edit command:
-
-![EditPersonActivityDiagram](images/EditPersonActivityDiagram_DOB.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** Only the
-activities related to date of birth field are considered and shown in this activity diagram. The edit person command only requires at least one of the optional fields to be given, all of the fields are optional, therefore, it is not compulsory that a date of birth field must be provided.
-</div>
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:**Parser exceptions are thrown and caught if
-the date of birth is not of valid format; Invalid person exception is thrown if the person to edit doesn't exist in the
-addressbook. Error message is displayed on the GUI subsequently.
-</div>
-
-### \[Proposed\] Undo/redo feature
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 
 ### Listing Events
 
@@ -528,7 +320,261 @@ end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline 
   * Cons: Hard to implement as a new form of storage or memory has to be created to maintain the relative ordering of
     events.
 
+### Tagging Event
 
+The Tag Event feature that is accessed through the `tagEvent` command allows users to tag persons in the persons list to existing marketing campaigns of the `event` class in the application.
+
+In order to tag persons from a `event`, users need to specify:
+- Index of the `event`
+- Index(s) of the `person`s to tag from the `event`
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Tagging of persons in an event is basically the same as editing an event, except we are now editing the `UidList` that is in the event, which is the list of the Uids of persons tagged to the event.
+</div>
+
+The `tagEvent` operation is facilitated by `TagEventCommand`, which extends from `Command`. If the users' input matches the `COMMAND_WORD` of `TagEventCommand` in `AddressBookParser#parseCommand()`, `TagEventCommandParser#parse()` will process the additional user inputs which constitute 2 compulsory fields above and return a `TagEventCommand`.
+
+Executing this Command object through the `TagEventCommand#execute()` triggers the `Model` interface's
+`Model#setEvent()`. This operation subsequently calls upon the `AddressBook#setEvent()` operation which in turn calls
+upon the `UniqueEventList#setEvent()` operation and the existing `event` will be replaced with the new edited `event` with the new tagged `person`s in memory.
+
+The tagEvent operation will also trigger the `StorageManager#saveAddressBook()` operation which will save the edited event to a .JSON format together with all other `Person`(s) and `Event`(s) in memory.
+
+The following sequence diagram will illustrate how the `tagEvent` operation works:
+
+![TagEventSequenceDiagram](images/TagEventSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** `cmd` in the diagram represents the tag
+event command text entered by user; the `setEvent(E1, E2)` method replaces event E1 with event E2 in the event list
+in the model. Additionally, saving of the updated events list has been excluded from this diagram for simplicity.
+</div>
+
+### Untagging Event
+
+The Untag Event feature that is accessed through the `untagEvent` command allows users to untag persons from existing marketing campaigns of the `event` class in the application.
+
+In order to untag persons from a `event`, users need to specify:
+- Index of the `event`
+- Index(s) of the `person`s to untag from the `event`
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Untagging of persons from an event is basically the same as editing an event, except we are now editing the `UidList` in the event, which is the list of the Uids of persons tagged to the event.
+</div>
+
+The `untagEvent` operation is facilitated by `UntagEventCommand`, which extends from `Command`. If the users' input matches the `COMMAND_WORD` of `UntagEventCommand` in `AddressBookParser#parseCommand()`, `UntagEventCommandParser#parse()` will process the additional user inputs which constitute 2 compulsory fields above and return a `UntagEventCommand`.
+
+Executing this Command object through the `UntagEventCommand#execute()` triggers the `Model` interface's
+`Model#setEvent()`. This operation subsequently calls upon the `AddressBook#setEvent()` operation which in turn calls
+upon the `UniqueEventList#setEvent()` operation and the existing `event` will be replaced with the new edited `event` with the new untagged `person`s in memory.
+
+The untagEvent operation will also trigger the `StorageManager#saveAddressBook()` operation which will save the current list of events, which will save the edited event to a .JSON format together with all other `Person`(s) and `Event`(s) in memory.
+
+The following sequence diagram will illustrate how the `untagEvent` operation works:
+
+![UntagEventSequenceDiagram](images/UntagEventSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** `cmd` in the diagram represents the untag
+event command text entered by user; the `setEvent(E1, E2)` method replaces event E1 with event E2 in the event list
+in the model. Additionally, saving of the updated events list has been excluded from this diagram for simplicity.
+</div>
+
+### Add Person
+
+The Add Person feature that is accessed through the `addPerson` command allows users to add persons of the `Person` class to the person list in the application.
+
+ The `person` added by the user will have 6 compulsory user-specified fields:
+- Name of the `person`
+- Phone number of the `person`
+- Email of the `person`
+- Address of the `person`
+- Gender of the `person`
+- Date of birth of the `person`
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** There is also a Uid field that is a unique identification
+value of type String that is automatically generated for every new person when they are instantiated.
+</div>
+
+The `addPerson` operation is facilitated by `AddPersonCommand` which extends from `Command`. If the users' input matches
+the `COMMAND_WORD` of `AddPersonCommand` in `AddressBookParser#parseCommand()`, `AddPersonCommandParser#parse()` will
+process the additional user input which constitutes the 6 compulsory fields and return an `AddPersonCommand`.
+
+Executing this Command object through the `AddPersonCommand#execute()` triggers the `Model` interface's
+`Model#addPerson()`. This operation subsequently calls upon the `AddressBook#addPerson()` operation which in turn calls
+upon the `UniquePersonList#add()` operation and the `person` will be stored in memory.
+
+The addPerson operation will also trigger the `StorageManager#saveAddressBook()` operation which will save the new person to a .JSON format together with all other `Event`(s) and `Person`(s) in memory.
+
+The following sequence diagram shows the methods calls related to the add person operation:
+
+![AddPersonSequenceDiagram](images/AddPersonSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** `cmd` in the diagram represents the add
+person command text entered by user. The specific `UniquePersonList` operations are not shown in the diagram
+for simplicity. Additionally, saving of the updated persons list from has also been excluded from this diagram for simplicity.
+</div>
+
+#### Add Gender field (Closer look)
+Let's take a closer look at how the `AddPersonCommand` adds the `Gender` field.
+
+The following activity diagram shows what happens when a user executes a new add person command:
+
+![AddPersonGenderActivityDiagram](images/AddPersonGenderActivityDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Only the
+activities related to gender field are considered and shown in this activity diagram.
+</div>
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**Parser exceptions are thrown and caught if
+gender field is not provided in the command, or the gender is not of valid format; Duplicated person exception is
+thrown if the person to add already exists in the person list. Error message is displayed on the GUI subsequently.
+</div>
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**Due to limitations of PlantUML, there are a few extra branch nodes that are created. Do ignore these.
+</div>
+
+#### Design considerations:
+
+**Aspect: Whether gender field should be optional for a person:**
+
+* **Alternative 1 (current choice):** Compulsory gender field:
+    * Pros: It is a more logical implementation as gender is a common attribute for all persons,
+  similar to name, address, etc, which are also compulsory fields for persons.
+    * Cons: It is less flexible, as the gender cannot be left blank.
+
+* **Alternative 2:** Optional gender field:
+    * Pros: It is a more flexible implementation, since the user has the choice to set gender to male, female or leave it blank.
+    * Cons: It is less logical since gender is usually a required and given field when discussing the properties of a person.
+
+#### Add Date of Birth field (Closer look)
+Let's take a closer look at how the `AddPersonCommand` adds the `date of birth` field.
+
+The following activity diagram shows what happens when a user executes a new add person command:
+
+![AddPersonDobActivityDiagram](images/AddPersonDobActivityDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Only the
+activities related to date of birth field are considered and shown in this activity diagram.
+</div>
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**Parser exceptions are thrown and caught if
+date of birth field is not provided in the command, or the date of birth is not of valid format; Duplicate person exception is
+thrown if the person to add already exists in the addressbook. Error message is displayed on the GUI subsequently.
+</div>
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**Due to limitations of PlantUML, there are a few extra branch nodes that are created. Do ignore these.
+</div>
+
+#### Design considerations:
+
+**Aspect: Whether date of birth field should be optional for a person:**
+
+* **Alternative 1 (current choice):** Compulsory date of birth field:
+    * Pros: It is a more logical implementation as date of birth is a common attribute for all persons,
+  similar to name, address, etc, which are also compulsory fields for persons.
+    * Cons: It is less flexible, as the date of birth cannot be left blank.
+
+* **Alternative 2:** Optional gender field:
+    * Pros: It is a more flexible implementation, since the user has the choice to set a date of birth or leave it empty.
+    * Cons: It is less logical since date of birth is usually a required and given field when discussing the properties of a person.
+
+### Edit Person
+
+The Edit Person feature that is accessed through the `editPerson` command allows users to edit persons of the `Person` class in the person list of the application.
+
+ The `person` edited by the user allows the user to edit one or more of the 6 existing fields:
+- Name of the `person`
+- Phone number of the `person`
+- Email of the `person`
+- Address of the `person`
+- Gender of the `person`
+- Date of birth of the `person`
+
+The `editPerson` operation is facilitated by `EditPersonCommand` which extends from `Command`. If the users' input matches
+the `COMMAND_WORD` of `EditPersonCommand` in `AddressBookParser#parseCommand()`, `EditPersonCommandParser#parse()` will
+process the additional user input which constitutes the index of the person to be edited and any combination of the 6 fields and return a `EditPersonCommand`.
+
+Executing this Command object through the `EditPersonCommand#execute()` triggers the `Model` interface's
+`Model#setPerson()`. This operation subsequently calls upon the `AddressBook#setPerson()` operation which in turn calls
+upon the `UniquePersonList#setPerson()` operation and the existing `person` will be replaced with the new edited `person` in memory.
+
+The editPerson operation will also trigger the `StorageManager#saveAddressBook()` operation which will save the edited person to a .JSON format together with all other `Event`(s) and `Person`(s) in memory.
+
+The following sequence diagram shows the methods calls related to the edit person operation:
+
+![EditPersonSequenceDiagram](images/EditPersonSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** `cmd` in the diagram represents the edit
+person command text entered by user; the `setPerson(P1, P2)` method replaces person P1 with person P2 in the person list
+in the model. The specific `UniquePersonList` operations are not shown in the diagram for simplicity.
+</div>
+
+#### Edit Gender field (Closer look)
+Let's take a closer look at how the `EditPersonCommand` edits the `Gender` field.
+
+The following activity diagram shows what happens when a user executes a new edit person command:
+
+![EditPersonGenderActivityDiagram](images/EditPersonGenderActivityDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Only the
+activities related to gender field are considered and shown in this activity diagram. All fields are considered optional
+in edit person command, therefore, it is not compulsory to provide the gender field.
+</div>
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**Parser exceptions are thrown and caught if
+the gender is not of valid format; Invalid person exception is thrown if the person to edit doesn't exist in the
+person list. Error message is displayed on the GUI subsequently.
+</div>
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**Due to limitations of PlantUML, there are a few extra branch nodes that are created. Do ignore these.
+</div>
+
+#### Edit Date of Birth field (Closer look)
+Let's take a closer look at how the `EditPersonCommand` edits the `date of birth` field.
+
+The following activity diagram shows what happens when a user executes a new edit person command:
+
+![EditPersonDobActivityDiagram](images/EditPersonDobActivityDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Only the
+activities related to date of birth field are considered and shown in this activity diagram.
+</div>
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**Parser exceptions are thrown and caught if
+the date of birth is not of valid format; Invalid person exception is thrown if the person to edit doesn't exist in the
+addressbook. Error message is displayed on the GUI subsequently.
+</div>
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**Due to limitations of PlantUML, there are a few extra branch nodes that are created. Do ignore these.
+</div>
+
+### Make Statistics
+
+The Make Statistics feature that is accessed through the `makeStats` command allows users to generate statistics of the persons of the `Person` class that are tagged to an event of the `Event` class, and shows a piechart of the statistics in a new window.
+
+There are 2 types of statistics that can be generated:
+* Age: Shows the proportion of age groups of the `persons` tagged to the `event`. Each age group has a 5-year age range.
+* Gender: Shows the proportion of genders of the `persons` tagged to the `event`, seperating them into either `Male` or `Female` categories.
+
+Users will specify the following fields for the makeStats command below:
+- Index of the `event`
+- Type of statistic to generate from the `event`
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Age is generated using the date of birth of the persons tagged to the event and is calculated with respect to the real-time date when the application is run.
+</div>
+
+The `makeStats` operation is facilitated by `MakeStatsCommand` which extends from `Command`. If the users' input matches
+the `COMMAND_WORD` of `MakeStatsCommand` in `AddressBookParser#parseCommand()`, `MakeStatsCommandParser#parse()` will
+process the additional user input which constitutes the 2 compulsory fields above and return a `MakeStatsCommand`.
+
+Executing this Command object through the `MakeStatsCommand#execute()` first triggers the `Model` interface's
+`Model#setData()`. This operation updates the list of piechart data in the `Model`.
+
+ Then, the `Logic` interface's `Logic#setPieChartData()` is triggered. This operation subsequently calls upon the `MainWindow#setPieChart()` operation which in turn calls upon the `MainWindow#handleStats()` operation, which finally culminates with a call upon the `StatsWindow#show()` which displays the piechart in a new window.
+
+The following sequence diagram shows the methods calls related to the make stats operation:
+
+![makeStatsSequenceDiagram](images/MakeStatsSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** `cmd` in the diagram represents the make stats command text entered by user.
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -548,7 +594,7 @@ end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline 
 
 **Target user profile**: Duke The Market aims to help marketers of department stores better manage customer profiles and keep track of target customers during market plan rollouts.
 
-* needs to manage a significant number of customer contacts
+* needs to manage a significant number of customer persons
 * prefers desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
@@ -557,7 +603,7 @@ end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline 
 * needs to track customer activity in own department store
 * needs to generate statistics based of customer data
 
-**Value proposition**: A one-stop marketing tool that allows department stores to manage and organize their customer contacts for usage in the company’s various marketing plans
+**Value proposition**: A one-stop marketing tool that allows department stores to manage and organize their customer persons for usage in the company’s various marketing plans
 
 
 ### User stories
@@ -631,7 +677,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1a2. User enters new data
 
-    Steps 1a1-1a2 are repeated until the data entered is correct 
+    Steps 1a1-1a2 are repeated until the data entered is correct
 
     Use case resumes at step 2.
 
@@ -639,9 +685,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1b1. Duke The Market shows an error message that the user is a duplicate customer
 
-    * 1b2. User enters new data 
+    * 1b2. User enters new data
 
-    Steps 1b1-1b2 are repeated until the data entered is correct and not a repeat of an individual already in the database. 
+    Steps 1b1-1b2 are repeated until the data entered is correct and not a repeat of an individual already in the database.
 
     Use case resumes at step 2.
 
@@ -672,8 +718,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 1. User requests to list events
-2. Duke The Market shows a list of events 
-3. User requests to export to a specified file the email address of customers who attended a specific event on the list. 
+2. Duke The Market shows a list of events
+3. User requests to export to a specified file the email address of customers who attended a specific event on the list.
 4. Duke The Market exports the customers’ email addresses to the specified file
 
     Use case ends.
@@ -774,7 +820,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file Expected: Shows the GUI with a set of sample persons. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -783,24 +829,48 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
-
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all persons using the `listPersons` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   1. Test case: `deletePerson 1`<br>
+      Expected: First person is deleted from the list. Details of the deleted person shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
+   1. Test case: `deletePerson 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect deletePerson commands to try: `deletePerson`, `deletePerson x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+1. Deleting a person while some persons are being shown
+
+    1. 1. Prerequisites: List only some persons using the `find` command and specify certain keywords.
+
+     1. Test case: `deletePerson 1`<br>
+      Expected: First person is deleted from the list. Details of the deleted person shown in the status message. Timestamp in the status bar is updated.
+
+   1. Test case: `deletePerson x` (where x is the index of a person that is not shown currently but is in the list)<br>
+      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+
+   1. Other incorrect deletePerson commands to try: `deletePerson`, `deletePerson y`, `...` (where y is larger than the list size)<br>
+      Expected: Similar to previous.
+
+### Adding a person
+
+1. Adding a person
+
+    1. Prerequisites: Application is running.
+
+   1. Test case: `addPerson n/person a/street e/person@gmail.com p/12345678 d/01/01/2000 g/m`<br>
+      Expected: A person is added to the end of the list. Details of the added person shown in the status message. Timestamp in the status bar is updated.
+
+   1. Test case: `addPerson n/person`<br>
+      Expected: No person is added. Error details shown in the status message. Status bar remains the same.
+
+   1. Other incorrect addPerson commands to try: `addPerson 1`, `addPerson n/person a/street e/person@gmail.com p/12345678 d/01.01.2000 g/m`, `...` (where the date of birth is in the wrong format)<br>
+      Expected: Similar to previous.
 
 ### Saving data
 

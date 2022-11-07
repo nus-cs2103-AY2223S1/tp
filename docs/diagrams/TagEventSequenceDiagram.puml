@@ -1,0 +1,61 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":TagEventCommandParser" as TagEventCommandParser LOGIC_COLOR
+participant "t:TagEventCommand" as TagEventCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "b:ModelManager" as ModelManager MODEL_COLOR
+participant ":AddressBook" as AddressBook MODEL_COLOR
+end box
+
+-> LogicManager : execute(cmd)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(cmd)
+activate AddressBookParser
+
+create TagEventCommandParser
+AddressBookParser -> TagEventCommandParser : parse(cmd)
+activate TagEventCommandParser
+
+create TagEventCommand
+TagEventCommandParser -> TagEventCommand
+activate TagEventCommand
+
+TagEventCommand --> TagEventCommandParser : t
+deactivate TagEventCommand
+
+TagEventCommandParser --> AddressBookParser : t
+deactivate TagEventCommandParser
+
+AddressBookParser --> LogicManager : t
+deactivate AddressBookParser
+destroy TagEventCommandParser
+
+LogicManager -> TagEventCommand : execute(b)
+activate TagEventCommand
+
+TagEventCommand -> ModelManager : setEvent(E1, E2)
+activate ModelManager
+
+ModelManager -> AddressBook : setEvent(E1, E2)
+activate AddressBook
+
+AddressBook --> ModelManager
+deactivate AddressBook
+
+ModelManager --> TagEventCommand
+deactivate ModelManager
+
+TagEventCommand --> LogicManager : CommandResult
+deactivate TagEventCommand
+
+<--LogicManager
+deactivate LogicManager
+destroy TagEventCommand
+@enduml
