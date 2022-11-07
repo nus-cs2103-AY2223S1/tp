@@ -88,6 +88,12 @@ Format: `help`
 
 ![help message](images/Help.png)
 
+:bulb:**Tips:**<br>
+
+- You may look at the bottom of the miniature Healthcare Xpress to see summary of code use.
+
+![help message](images/HelpQuickCommandHelp.png)
+
 ### Adding a nurse or patient: `add`
 
 1. Adds a patient to the Healthcare Xpress Record System.

@@ -38,9 +38,9 @@ public class HelpWindow extends UiPart<Stage> {
     private static final String PATIENT_SEARCH_TEXT = "Add Patient";
     private static final String ADD_DEMO_INPUT_PATIENT = "add c/P n/John Doe g/M p/98765432 e/johnd@example.com "
             + "a/311, Clementi Ave 2, #02-25 t/asthma ds/2022-11-11,2";
-    private static final String ADD_DEMO_OUTPUT_PATIENT = "New Patient added: Category: P Uid: 10; Name: John Doe;"
-            + " Gender: M; Phone: 98765432; Email: johnd@example.com; Address: 311, Clementi Ave 2, #02-25;"
-            + " Tags: [asthma]; Home Visits DateSlot: 11/11/2022 12:00";
+    private static final String ADD_DEMO_OUTPUT_PATIENT = "New Patient added: Category: P; Uid: 9; Name: John Doe;"
+            + " Phone: 98765432; Email: johnd@example.com; Gender: M; Address: 311, Clementi Ave 2, #02-25;;"
+            + " Tags: [asthma] Home Visits Date and Time: [ ] [ ] 11/11/2022 12:00;";
     private static final String NURSE_SEARCH_TEXT = "Add Nurse";
     private static final String ADD_DEMO_INPUT_NURSE = "add c/N n/Cola t/pediatric e/cola@example.com g/F p/98345432"
             + " a/Blk 431 Ang Mo Kio Ave 10, Singapore 560431 #01-03 t/heartDiseaseSpecialist ud/2022-12-12";
@@ -143,7 +143,7 @@ public class HelpWindow extends UiPart<Stage> {
     private static final String EDIT_MIX_SEARCH_TEXT = "Edit Mix";
     private static final String EDIT_MIX_DEMO_INPUT = "edit id/12 g/F p/98345432 "
             + "a/Blk 431 Ang Mo Kio Ave 10, Singapore 560431 #01-03";
-    private static final String EDIT_MIX_DEMO_OUTPUT = "dited person: Category: N Uid: 12; Name: Kola; Gender: F;"
+    private static final String EDIT_MIX_DEMO_OUTPUT = "Edited person: Category: N Uid: 12; Name: Kola; Gender: F;"
             + " Phone: 98345432; Email: Kola@example.com; Address: Blk 431 Ang Mo Kio Ave 10, Singapore 560431 #01-03;"
             + " Tags: [pediatric]; Unavailable Date: 12/12/2022";
     private static final String EXIT_SEARCH_TEXT = "Exit Program";
