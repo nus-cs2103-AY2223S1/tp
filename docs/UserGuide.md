@@ -10,9 +10,7 @@ PetCode is a desktop app that helps <b>store and manage contact information for 
 </div>
 
 {:refdef: style="text-align: center;"}
-
 ![PetCode Logo](images/PetCode Logo.png)
-
 {: refdef}
 
 #### Using this guide
