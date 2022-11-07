@@ -300,38 +300,40 @@ The `UI` component then displays all the `Reminder` for all `Person` objects in 
 
 #### Example Usage
 
-Step 1: The user inputs `remind 1 r/zoom call d/2023-10-10` to create a reminder for the 2nd person in the displayed contact list.
+Step 1: The user inputs `remind 1 r/zoom call d/10-10-2023` to create a reminder for the 1st contact in the displayed contact list.
 
 Step 2: `LogicManager` calls `AddressBookParser` with the user input.
 
-Step 3: `AddressBookParser` will parse the command word and create a new `ReminderCommandParser` and call its function `parse` with the rest of the user input as the arguments.
+Step 3: `AddressBookParser` will parse the `remind` command word and create a new `ReminderCommandParser` and call `ReminderCommandParser#parse` with the rest of the user input as the arguments.
 
 Step 4: The `ReminderCommandParser#parse` will then parse the index, task and date to create a new `ReminderCommand` object.
 
 Step 5: The `LogicManager` then calls `ReminderCommand#execute`.
 
+![Sequence diagram for the Parsing Remind Command](images/ParseReminderSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ReminderCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
 Step 6: The `ReminderCommand` calls `Model#getFilteredPersonList` to get the filtered `List` of `Person` objects.
 
-Step 7: The `ReminderCommand` gets the `Person` to be edited from the `List`
+Step 7: The `ReminderCommand` gets the `Person` to be edited from the `List`, using `List#get`.
 
-Step 8: The `ReminderCommand` creates a new edited `Person`, with the given `Reminder`
+Step 8: The `ReminderCommand` calls `Model#addReminder`, with the edited `Person` and the given `Reminder` as parameters. The `Person` will be updated to include the given `Reminder`.
 
 Step 9: `ReminderCommand` then returns a new `CommandResult` with the result of the execution.
 
-![Sequence diagram for the Remind Command](images/ReminderSequenceDiagram.png)
+![Sequence diagram for the Executing Remind Command](images/ExecuteReminderSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ReminderCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
 
 #### Design considerations:
 
 **Aspect: How to store a reminder:**
 
-* **Alternative 1 (current choice):** Store Reminder as a field under a Person.
+* **Alternative 1 (current choice):** Store `Reminder` as a field under a `Person`.
     * Pros: Allows for more features to be built on reminders (e.g: automated birthday reminders)
     * Cons: Results in higher coupling which may make maintenance and testing harder.
 
-* **Alternative 2:** Store Reminder as a separate class
+* **Alternative 2:** Store `Reminder` as a separate class
     * Pros: Easy to implement.
     * Cons: May be harder to implement automatically generated reminders.
 

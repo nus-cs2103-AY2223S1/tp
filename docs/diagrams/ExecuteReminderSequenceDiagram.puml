@@ -1,0 +1,50 @@
+@startuml
+!include style.puml
+mainframe **s****d** execute reminder command
+
+box Logic LOGIC_COLOR_T1
+participant "r:ReminderCommand" as ReminderCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant "lastShownList:List" as List LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> ReminderCommand : execute()
+activate ReminderCommand
+
+
+ReminderCommand -> Model : getFilteredPersonList()
+activate Model
+
+create List
+Model --> List
+deactivate Model
+
+activate List
+
+ReminderCommand -> List : get(1)
+
+List --> ReminderCommand: personToEdit
+deactivate List
+
+
+ReminderCommand -> Model : addReminder(personToEdit, reminder)
+activate Model
+
+Model --> ReminderCommand
+deactivate Model
+
+create CommandResult
+ReminderCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ReminderCommand
+deactivate CommandResult
+
+
+[<--ReminderCommand: result
+deactivate ReminderCommand
+@enduml
