@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TEAM;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
@@ -70,6 +71,21 @@ public class AssignMemberCommandTest {
         AssignMemberCommand assignMemberCommand = new AssignMemberCommand(personIndex, teamIndex);
 
         assertCommandFailure(assignMemberCommand, model, AssignMemberCommand.MESSAGE_DUPLICATE_PERSON);
+    }
+
+    @Test
+    public void execute_nullInputUnfilteredList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AssignMemberCommand(null, null));
+    }
+
+    @Test
+    public void execute_nullTeamIndexUnfilteredList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AssignMemberCommand(null, INDEX_FIRST_PERSON));
+    }
+
+    @Test
+    public void execute_nullPersonIndexUnfilteredList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AssignMemberCommand(INDEX_FIRST_TEAM, null));
     }
 
     @Test
