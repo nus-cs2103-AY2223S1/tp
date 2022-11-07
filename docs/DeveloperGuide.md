@@ -718,4 +718,11 @@ testers are expected to do more *exploratory* testing.
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
+
+## **Appendix: Effort**
+
+Given below are the effort:
+Our team faces the difficulty of a two-word command as AB3 originally does not have as the AB3 only uses a one-word command. Hence, our team faces the difficulty of trying to change from one-word to two-word command.
+
+Besides that, our team also faces the difficulty of trying to get a list of students assigned to a task class. Because AB3 originally does not have this feature, our team spent a lot of time fixing on bugs associated to it such as student not updated in task's student list when a student is edited or deleted.
