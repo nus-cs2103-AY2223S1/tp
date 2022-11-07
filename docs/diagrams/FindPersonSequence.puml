@@ -13,7 +13,6 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-participant "predicate:PersonContainsKeywordsPredicate" as PersonContainsKeywordsPredicate #222222
 participant ":FilteredList" as FilteredList #222222
 
 [-> LogicManager : execute("find -p n/John")
@@ -31,13 +30,6 @@ deactivate FindPersonCommandParser
 
 AddressBookParser -> FindPersonCommandParser : parse("n/John")
 activate FindPersonCommandParser
-
-create PersonContainsKeywordsPredicate
-FindPersonCommandParser -> PersonContainsKeywordsPredicate
-activate PersonContainsKeywordsPredicate
-
-PersonContainsKeywordsPredicate --> FindPersonCommandParser : predicate
-deactivate PersonContainsKeywordsPredicate
 
 create FindPersonCommand
 FindPersonCommandParser -> FindPersonCommand : FindPersonCommand(predicate)

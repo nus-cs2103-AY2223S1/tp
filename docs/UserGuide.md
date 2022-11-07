@@ -47,7 +47,8 @@ title: InterNUS User Guide
    &emsp; 4.10.1. [Saving the data](#4101-saving-the-data)<br>
    &emsp; 4.10.2. [Editing the data file](#4102-editing-the-data-file)<br>
 5. [FAQ](#5-faq)
-6. [Command summary](#6-command-summary) 
+6. [Planned updates](#6-planned-updates)
+7. [Command summary](#7-command-summary) 
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -337,12 +338,18 @@ Examples:
 Finds persons whose fields contain any of the given keywords.
 
 Format: `find -p [n/ NAME_KEYWORDS...] [p/ PHONE_KEYWORDS...] [e/ EMAIL_KEYWORDS...] [t/ TAG_KEYWORDS...] [c/ COMPANY_KEYWORDS...]`
+- At least one of the above prefixes (`n/`, `p/`, `e/`, `t/`, `c/`) should be present to perform the command.
 - The search is case-insensitive. e.g **hans** will match **Hans**.
 - The order of the keywords does not matter. e.g. **Hans Bo** will match **Bo Hans**.
 - Only the fields corresponding to the specified prefixes will be searched,
   and all the specified fields must contain at least one of the specified keywords to be added to the search result.
 - Absent fields will not be searched. e.g. **No company** will not find persons with blank company field.
 - Partial words will be matched. e.g. **Han** will match **Hans**.
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:** The command input is flexible in that if a prefix is present but no keywords are supplied, it will simply not search that particular field. 
+This means you can do things like `find -p n/`, i.e. find persons with any name, to find all persons. 
+</div>
 
 Examples:
 - `find -p n/john jon` finds persons with `NAME` that contains **john** or **jon**.
@@ -358,12 +365,18 @@ Examples:
 Finds internships whose fields contain any of the given keywords.
 
 Format: `find -i [c/ COMPANY_NAME_KEYWORDS...] [r/ ROLE_KEYWORDS...] [s/ STATUS_KEYWORDS...] [d/ INTERVIEW_DATE_KEYWORDS...]`
+- At least one of the above prefixes (`c/`, `r/`, `s/`, `d/`) should be present to perform the command.
 - The search is case-insensitive. e.g **abc pte ltd** will match **ABC Pte Ltd**.
 - The order of the keywords does not matter. e.g. **Ltd ABC Pte Constructions** will match **ABC Constructions Pte Ltd**.
 - Only the fields corresponding to the specified prefixes will be searched,
   and all the specified fields must contain at least one of the specified keywords to be added to the search result.
 - Absent fields will not be searched. e.g. **No interviews scheduled** will not find internships with blank interview date.
 - Partial words will be matched e.g. **app** will match **Apple** and **applications**. 
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:** The command input is flexible in that if a prefix is present but no keywords are supplied, it will simply not search that particular field. 
+This means you can do things like `find -i c/`, i.e. find internships with any company name, to find all internships. 
+</div>
 
 Examples:
 - `find -i c/pte ltd` finds internships with `COMPANY_NAME` that contains **pte** or **ltd**. 
@@ -535,9 +548,24 @@ If your changes to the data file makes its format invalid, InterNUS will discard
 
 --------------------------------------------------------------------------------------------------------------------
 
+## 6. Planned updates
+
+1. Improve the GUI to display the link between an internship and contact person more clearly.
+2. Improve the search functionalities across both lists. In particular, the finding of an internship's contact person or a contact person's internship could be made simpler.
+3. Modify the checks for duplicate persons and internships to be smarter, as the current implementation does not consider the same name in a different case to be a duplicate name.
+4. Modify certain fields to have a more flexible range of accepted input. In particular:
+   1. Names currently do not allow special characters to be included, so inputs that contain strings like "s/o" will be rejected. 
+      This applies to not just person names, but also company names and internship role names, where it is reasonable to allow other special characters as well.
+   2. Phone numbers, similarly, do not allow special characters to be included, so extensions like "+65" or dashes in between digits will not be accepted as valid input.
+   3. Tags are currently restricted to one word, but it is reasonable to allow tags consisting of more words.
+   4. Interview dates are currently restricted to the format "yyyy-MM-dd HH:mm", so this could be improved to allow a greater variety of datetime formats. 
+      Additionally, the time component of the input could be made optional.
+
+--------------------------------------------------------------------------------------------------------------------
+
 <div style="page-break-after: always;"></div>
 
-## 6. Command summary
+## 7. Command summary
 
 | Action                | Format, Examples                                                                                                                                        |
 |-----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|

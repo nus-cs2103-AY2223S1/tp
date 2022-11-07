@@ -29,7 +29,7 @@ public class FindPersonCommand extends Command {
             + "[" + PREFIX_PHONE + " PHONE_KEYWORDS...] "
             + "[" + PREFIX_EMAIL + " EMAIL_KEYWORDS...] "
             + "[" + PREFIX_TAG + " TAG_KEYWORDS...] "
-            + "[" + PREFIX_COMPANY + "COMPANY_KEYWORDS...]\n"
+            + "[" + PREFIX_COMPANY + "COMPANY_KEYWORDS...] (at least one prefix should be specified)\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "alice bob charlie";
 
     private final PersonContainsKeywordsPredicate predicate;
