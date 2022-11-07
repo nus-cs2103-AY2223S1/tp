@@ -24,7 +24,7 @@ Given below are my contributions to the project.
       ease.
 
 * **Enhancements to existing features**:
-    * Styled UI of app to match the theme and increase appeal
+    * Styled UI of app to match the theme and increase appeal.
       (PR [#95](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/95))
         * What it does:
             1. Change the colors of the food card in the list of food.
@@ -39,5 +39,5 @@ Given below are my contributions to the project.
     * Developer Guide:
         * Add implementation details for `target` and `locate` features, together with activity and sequence diagrams.
 * **Community**:
-  * Fix bugs
+  * Fix bugs.
   * Tested and merged multiple PRs.
