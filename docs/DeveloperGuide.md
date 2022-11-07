@@ -29,17 +29,15 @@ This Developer Guide explains in detail how OmniHealth is developed and implemen
   - [Storage component](#storage-component)
   - [Common classes](#common-classes)
 - [**Implementation**](#implementation)
-  - [Implemented features:](#implemented-features)
-    - [Add record feature](#add-record-feature)
-    - [List records feature](#list-records-feature)
-    - [Delete record feature](#delete-record-feature)
-    - [Edit record feature](#edit-record-feature)
-    - [Find records feature](#find-records-feature)
-    - [Clear all records feature](#clear-all-records-feature)
-    - [Add appointment feature](#add-appointment-feature)
-    - [Clear appointment feature](#clear-appointment-feature)
-  - [Proposed features:](#proposed-features)
-    - [Upcoming appointment tracker feature](#upcoming-appointment-tracker-feature)
+  - [Add record feature](#add-record-feature)
+  - [List records feature](#list-records-feature)
+  - [Delete record feature](#delete-record-feature)
+  - [Edit record feature](#edit-record-feature)
+  - [Find records feature](#find-records-feature)
+  - [Clear all records feature](#clear-all-records-feature)
+  - [Add appointment feature](#add-appointment-feature)
+  - [Clear appointment feature](#clear-appointment-feature)
+  - [[Proposed] Upcoming appointment tracker feature](#proposed-upcoming-appointment-tracker-feature)
 - [**Documentation, logging, testing, configuration, dev-ops**](#documentation-logging-testing-configuration-dev-ops)
 - [**Appendix: Requirements**](#appendix-requirements)
   - [Product scope](#product-scope)
@@ -59,6 +57,7 @@ This Developer Guide explains in detail how OmniHealth is developed and implemen
   - [Adding an appointment to a patient](#adding-an-appointment-to-a-patient)
   - [Removing an appointment from a patient](#removing-an-appointment-from-a-patient)
   - [Saving data](#saving-data)
+- [**Appendix: Effort**](#appendix-effort)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -577,7 +576,8 @@ Given below is an example usage scenario for the command.
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
-## **Appendix: Requirements**
+
+## Appendix: Requirements
 
 ### Product scope
 
@@ -624,6 +624,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 [<*Back to ToC*>](#table-of-contents)
 
 <div style="page-break-after: always;"></div>
+
 ### Use cases
 
 (For all use cases below, the **System** is the `OmniHealth` and the **Actor** is the `user`, unless specified otherwise)
@@ -900,6 +901,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 [<*Back to ToC*>](#table-of-contents)
 
 <div style="page-break-after: always;"></div>
+
 ### Non-Functional Requirements
 
 1. Should work as long as Java `11` or above is installed.
@@ -938,7 +940,8 @@ when using a mouse. (Designed with CLI in mind)
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
-## **Appendix: Instructions for manual testing**
+
+## Appendix: Instructions for manual testing
 
 Given below are instructions to test the app manually.
 
@@ -1121,5 +1124,31 @@ testers are expected to do more exploratory testing.
 
    1. Test case: Delete the adressbook.json file if it exists. <br>
        Expected: Omnihealth starts up as usual but displays a blank list since there is no data found.
+
+[<*Back to ToC*>](#table-of-contents)
+
+## Appendix: Effort
+
+- Difficulty Level:
+  - Overall, we thought the project's difficulty level was Moderate.
+  - We implemented a wide range of features with differing degrees of difficulty and complexity. 
+  - We needed a thorough understanding of the system architecture, as this was necessary in order to extend AB-3 in a way that integrates well with the existing design and features of AB-3.
+
+- Challenges Faced:
+  - Because each member worked on many issues and features, the list below is not exhaustive.
+    - Having to integrate the list of medical records of a specific patient into the UI, so that the application's main window can switch between a patient list and a medical record list.
+    - The records subsystem was constructed on top of the existing AB-3 architecture, which required extensive modification and extensions to obtain the desired final result.
+    - Due to the large number of possible test cases, the Record and Appointment commands were difficult to test, necessitating further testing and rectification.
+    - The inconsistency of JavaFX UI elements between platforms necessitates additional manual testing.
+
+- Effort Required:
+  - The current code base has to be heavily modified for our application. 
+  - A large number of test cases were written in order to cover as many possibilities as practical. 
+  - We held comprehensive weekly meetings early in the week to ensure that every developer is well-informed about what is planned for the rest of the week.
+
+- Achievements of the Project:
+  - Our team created a software product that we believe meets our intended goals. 
+  - All of the Must-have User Stories were met by our software application. 
+  - Our team has met all set milestones and deadlines.
 
 [<*Back to ToC*>](#table-of-contents)
