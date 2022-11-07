@@ -146,7 +146,7 @@ User Guide.
     </td>
   </tr>
   <tr>
-    <td><strong>💡Tip</strong></td>
+    <td><strong>:bulb: Tip</strong></td>
     <td>
       To provide you with suggestions on how to use the commands as well as address potential confusions when using
       these commands, so you will be able to better understand how the commands work.
@@ -793,6 +793,11 @@ The copy GitHub Profile URL button copies the user or contact's GitHub profile U
 
 <img src="images/GithubButton.png" width="200" />
 
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** Ensure that you have a stable Internet connection to connect to Github.
+</div>
+
 [Scroll back to top](#table-of-contents)
 
 ### Exiting the program
@@ -852,13 +857,13 @@ Format: `exit`
   </tr>
 
   <tr>
-    <td><strong>Listing contacts</strong>
+    <td><strong>Listing Contacts</strong>
     </td>
     <td><code>list</code></td>
   </tr>
 
   <tr>
-    <td><strong>Finding contacts</strong>
+    <td><strong>Finding Contacts</strong>
     </td>
     <td>
       <code>find KEYWORD [MORE_KEYWORDS]…</code>
@@ -882,7 +887,7 @@ Format: `exit`
   </tr>
 
   <tr>
-    <td><strong>Delete Contact</strong>
+    <td><strong>Deleting Contact</strong>
     </td>
     <td>
       <code>delete INDEX</code>
@@ -893,7 +898,7 @@ Format: `exit`
   </tr>
 
   <tr>
-    <td><strong>Clear all contacts</strong>
+    <td><strong>Clearing All Contacts</strong>
     </td>
     <td><code>clear</code></td>
   </tr>
@@ -958,7 +963,7 @@ Format: `exit`
 
 
   <tr>
-    <td><strong>Viewing Lessons / Timetable</strong>
+    <td><strong>Listing Lessons / Viewing Timetable</strong>
     </td>
     <td>
       <code>timetable user</code>
@@ -972,7 +977,7 @@ Format: `exit`
   </tr>
 
   <tr>
-    <td><strong>Deleting lesson</strong>
+    <td><strong>Deleting Lesson</strong>
     </td>
     <td>
       <code>remove user l/TYPE m/MODULE_CODE day/DAY_NUMBER start/START_TIME end/END_TIME</code>
@@ -989,7 +994,7 @@ Format: `exit`
   </tr>
 
   <tr>
-    <td><strong>Filter Tags</strong>
+    <td><strong>Filtering Tags</strong>
     </td>
     <td>
       <code>filtertag TAG_NAME [TAG_NAME]…</code>
@@ -1000,7 +1005,7 @@ Format: `exit`
   </tr>
 
   <tr>
-    <td><strong>Filter Current Modules</strong>
+    <td><strong>Filtering Current Modules</strong>
     </td>
     <td>
       <code>filtercurrmod CURRENT_MODULE [CURRENT_MODULE]…</code>
@@ -1014,7 +1019,7 @@ Format: `exit`
   </tr>
 
   <tr>
-    <td><strong>Filter Previous Modules</strong>
+    <td><strong>Filtering Previous Modules</strong>
     </td>
     <td>
       <code>filterprevmod PREVIOUS_MODULE [PREVIOUS_MODULE]…</code>
@@ -1028,7 +1033,7 @@ Format: `exit`
   </tr>
 
   <tr>
-    <td><strong>Filter Planned Modules</strong>
+    <td><strong>Filtering Planned Modules</strong>
     </td>
     <td>
       <code>filterplanmod PLANNED_MODULE [PLANNED_MODULE]…</code>
@@ -1051,7 +1056,7 @@ Format: `exit`
   </tr>
 
   <tr>
-    <td><strong>Viewing help</strong>
+    <td><strong>Viewing Help</strong>
     </td>
     <td>
       <code>help</code>
@@ -1059,7 +1064,7 @@ Format: `exit`
   </tr>
 
   <tr>
-    <td><strong>Exiting the program</strong>
+    <td><strong>Exiting The Program</strong>
     </td>
     <td>
       <code>exit</code>
