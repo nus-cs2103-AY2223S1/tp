@@ -24,6 +24,9 @@ import seedu.address.model.ReadOnlyFindMyIntern;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.internship.Internship;
 import seedu.address.testutil.InternshipBuilder;
+import static seedu.address.testutil.TypicalDateTimes.EARLIER_VALID_DATE;
+import static seedu.address.testutil.TypicalDateTimes.FIRST_VALID_TIME;
+import static seedu.address.testutil.TypicalDateTimes.LATER_VALID_DATE;
 
 public class AddCommandTest {
 
@@ -41,6 +44,17 @@ public class AddCommandTest {
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validInternship), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validInternship), modelStub.internshipsAdded);
+    }
+
+    @Test
+    public void execute_interviewDateTimeBeforeAppliedDate_throwsCommandException() {
+        Internship invalidInternship = new InternshipBuilder().withAppliedDate(LATER_VALID_DATE)
+                .withInterviewDateTime(EARLIER_VALID_DATE + " " + FIRST_VALID_TIME).build();
+        AddCommand addCommand = new AddCommand(invalidInternship);
+        ModelStub modelStub = new ModelStubWithInternship(invalidInternship);
+
+        assertThrows(CommandException.class, Messages.MESSAGE_INVALID_INTERVIEW_DATE, ()
+                -> addCommand.execute(modelStub));
     }
 
     @Test
