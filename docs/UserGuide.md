@@ -10,7 +10,9 @@ PetCode is a desktop app that helps <b>store and manage contact information for 
 </div>
 
 {:refdef: style="text-align: center;"}
+
 ![PetCode Logo](images/PetCode Logo.png)
+
 {: refdef}
 
 #### Using this guide
@@ -350,7 +352,7 @@ Check out [Add Command using the popup window](#adding-a-contact-with-a-popup-wi
 
 To help you better understand the hierarchy of the second sample command, we illustrate its structure as follows:
 
-![img.png](!img="images/AddBuyerCommandIllustration.png" weight=200px height=200px)
+![img.png](images/AddBuyerCommandIllustration.png)
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
@@ -583,32 +585,15 @@ Example:
 
 </div>
 
-Using the original set of sample data without any modification.
-The following picture shows the display list before the match command is executed.
+Using the original set of sample data without any modification, the following picture shows the display list before the
+match command is executed. The original order is `Shiro`, `Ashy`, `Plum`, `Page`, `Snowy`, and `Buddy`.
 
 ![before match command](images/BeforeMatch.png)
 
-The following picture shows the display list after `match 1` is executed.
+The following picture shows the display list after `match 1` is executed. Now the order is `Snowy`, `Page`, `Plum`
+, `Ashy`, `Shiro`, and `Buddy`.
 
 ![after match command](images/AfterMatch.png)
-
-To have a deeper understanding of what it does, take a look at the two illustrations below. Take the four pets Shiro,
-Ashy, Page and Snowy as examples. Plum and Buddy are ignored fore simplicity.
-
-**We assign a score to each pet according to how many attributes they have are the same as requested, and how much
-deviation, if they don’t fit, the attributes have from expected values.** The higher the score, the more suitable the pet.
-In this table, Shiro has all requested attributes except its price. However, its price is too far away from the
-acceptable range fifty to ninety, so a very low score. Ashy does not satisfy any requirement, so another low score. In
-the next row, some of Page’s attributes fit and the others do not, so an intermediate score. Finally, although Snowy is
-a little bit old, it satisfies all other requirements. Because the difference between its age and the expected age is
-not too big, it has a high overall score.
-
-![img.png](images/MatchCommandIllustration1.png)
-
-The next thing our app will do is sort the pets by their scores. This sorted list will be displayed on the screen. Now,
-as a smart pet sale coordinator who wants to maximise utility and profit, you may want to sell Snowy to this customer.
-
-![img.png](images/MatchCommandIllustration2.png)
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
@@ -959,7 +944,7 @@ Advanced users are welcome to update the data directly by editing that data file
 <div markdown="span" class="alert alert-warning">
 
 :exclamation: **Caution:** If your changes to the data file makes its format invalid, PetCode will discard all data and
-start with an empty data file at the next run. For certain data changes, PetCode will discard the change and initiate the respective data value to its default value.
+start with an empty data file at the next run. For certain data changes, PetCode will discard the change and initialise the respective data value to its default value.
 
 </div>
 
