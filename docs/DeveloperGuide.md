@@ -239,7 +239,7 @@ The following sequence diagram shows how the show grade command works.
 
 ![ShowGradeSequenceDiagram](images/ShowGradeSequenceDiagram.png)
 
-The `SwitchCommand#execute()` returns the `CommandResult(MESSAGE_SUCCESS_GRADE, GRADE_CHART)` that is returned to `LogicManager` and passed to `MainWindow`. The `MainWindow` then calls `handleShowChart()` which calls `ModelManager#getStudentChartData()` to get the data and then update the main display to grade chart.
+The `SwitchCommand#execute()` returns the `CommandResult(MESSAGE_SUCCESS_GRADE, GRADE_CHART)` that is returned to `LogicManager` and passed to `MainWindow`. The `MainWindow` then calls `handleShowChart()` which calls `ModelManager#getStudentGradeChartData()` to get the data and then update the main display to grade chart.
 
 `GRADE_CHART` is an element in enumeration `ModelType` which determines what content is displayed in main screen.
 
