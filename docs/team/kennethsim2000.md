@@ -31,7 +31,7 @@ Given below are my contributions to the project.
 
 **Tests:**
 
-* **Commands Test**: Writes test for FilterTaskCommand, FindTaskCommand, ListTaskCommand (Pull requests [\#159](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/159))
+* **Commands Test**: Writes test for FilterTaskCommand, FindTaskCommand, ListTaskCommand (Pull requests [\#159](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/159)).
   * What it does: Performs automated testing to check if the commands work as expected.
   * Justification: This helps to eliminate bugs for task commands.
   * Highlights: Increased code coverage by 6%.
