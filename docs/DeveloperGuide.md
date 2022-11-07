@@ -752,7 +752,7 @@ testers are expected to do more *exploratory* testing.
     5. Test case: `mail a`<br>
        Expected: User's default mail client not displayed. Error details shown in the status message. 
    
-    6. Other incorrect sort commands to try: `mail`, `mail x`, `mail c` (where x is larger than the current list size, and c is any word excluding `all`)<br>
+    6. Other incorrect mail commands to try: `mail`, `mail x`, `mail c` (where x is larger than the current list size, and c is any word excluding `all`)<br>
        Expected: Similar to 4 and 5.
 
 ### Saving data
