@@ -33,7 +33,7 @@ our app.
 2. If you already have a specific feature in mind, you can check out the 
    [command summary](#11-command-summary) section.
 3. Throughout this guide, you will encounter the icons :bulb:,
-  :information_source: or :eye: icon. Their meanings are as follows:
+  :information_source:, :eye:, :exclamation:. Their meanings are as follows:
 
 | Icon                 | Meaning                                                                     |
 |----------------------|-----------------------------------------------------------------------------|
@@ -92,10 +92,11 @@ our app.
 | [Edit person](#245-edit-person)                             | `edit-person     INDEX ([n/NAME] [e/EMAIL]  [p/PHONE_NUMBER])`          | Edit contact belonging to the specified index currently displayed on the screen |
 | *[Find person](#246-find-person)                            | `find-person     KEYWORD`                                               | Find contacts that starts with specified keyword                                |
 | *[List person](#247-list-person)                            | `list-person`                                                           | List all contacts                                                               |
-| [Home](#251-navigate-to-home)                               | `home`                                                                  | Navigate to the home page                                                       |
-| [Goto](#252-navigate-between-modules)                       | `goto MODULE_CODE`                                                      | Navigate to specified module page                                               |
-| [Help](#26-help)                                            | `help`                                                                  | View help                                                                       |
-| [Exit](#27-exiting-the-program)                             | `exit`                                                                  | Exit the program                                                                |
+| [Goto](#251-navigate-between-modules)                       | `goto MODULE_CODE`                                                      | Navigate to specified module page                                               |
+| [Home](#252-navigate-to-home)                               | `home`                                                                  | Navigate to the home page                                                       |
+| [Clear](#26-clear-data)                                     | `clear`                                                                 | Purges all data                                                                 |
+| [Help](#27-view-help)                                       | `help`                                                                  | View help                                                                       |
+| [Exit](#28-exiting-the-program)                             | `exit`                                                                  | Exit the program                                                                |
 
 
 <div markdown="span" class="alert alert-info"> :eye: **See also:**  
@@ -139,7 +140,7 @@ the parameter will be taken.<br>
 
 * Any parameter in commands that do not take in parameters (such as
   [`home`](#252-navigate-to-home), [`list-module`](#215-list-module), [`list-person`](#247-list-person),
-  [`help`](#26-help) and [`exit`](#27-exiting-the-program)) will be ignored.<br>
+  [`clear`](#26-clear-data), [`help`](#27-view-help), and [`exit`](#28-exiting-the-program)) will be ignored.<br>
   e.g. if the command specifies `home 123`, it will be interpreted as [`home`](#252-navigate-to-home).
 </div>
 
@@ -393,7 +394,7 @@ command:
 
 <div markdown="span" class="alert alert-info">:bulb: **Tip:**<br/>
 You may view the tasks added to a module by navigating to a module's page
-using the [`goto`](##251-navigate-between-modules) command. Alternatively,
+using the [`goto`](#251-navigate-between-modules) command. Alternatively,
 you may double-click on a module to ["peek"](#224-peeking-at-tasks) at a
 module's tasks while on the home page.
 </div>
@@ -942,7 +943,22 @@ re-enable the following commands: <br>
 
 <br>
 
-### 2.6. View help
+### 2.6. Clear data
+If you want to purge all data and have a fresh start, you may do so using the `clear` command.
+
+Format: `clear`
+
+Here's a screenshot of Plannit before and after executing the command:
+
+| Before executing the command                                                                                                                          | After executing the command                                                                                      |
+|-------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/clear-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/clear-after.png"/></p><p>All data has been cleared!</p><br>{:/} |
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**<br>
+Clearing the data is an irreversible process!
+</div>
+
+### 2.7. View help
 If you're feeling lost regarding our features, use the `help` command to
 open a window with a link that directs you to our user guide!
 
@@ -954,26 +970,26 @@ within the help window!
 
 <br>
 
-### 2.7. Exiting The Program
+### 2.8. Exiting The Program
 Exits the program.
 
 Format: `exit`
 
 <br>
 
-### 2.8. Saving The Data
+### 2.9. Saving The Data
 Your data is saved in the hard disk automatically after any command that changes the data. 
 There is no need to save manually.
 
 <br>
 
-### 2.9. Loading The Data
+### 2.10. Loading The Data
 If saved data exists, data is automatically loaded when the program starts.
 There is no need to load manually.
 
 <br>
 
-### 2.10. Editing The Data File
+### 2.11. Editing The Data File
 Your data is saved as a `JSON` file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update
 data directly by editing that data file.
 
