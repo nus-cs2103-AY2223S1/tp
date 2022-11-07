@@ -1332,7 +1332,8 @@ testers are expected to do more *exploratory* testing.
   * UndoCommand in HealthContact is a new command which AB3 does not have.
   * RedoCommand in HealthContact is a new command which AB3 does not have.
   * They have to be implemented in the way such that the undo and redo commands are able to undo and redo the commands that are related to the respective entities, i.e. Patient, Appointment and Bill
-  * They have to cater to the edge cases in Sorting, Selecting and Listing commands.
+  * They have to cater to the edge cases in Sort, Select and Listcommands. 
+  * They have to be implemented in such a way where commands which do not change the state of HealthContact e.g. (List, Select, Find) will not be able to be undone or redone.
 
 * Sort feature
   * SortPatientCommand, SortAppointmentCommand and SortBillCommand in HealthContact are new commands which AB3 does not have.
