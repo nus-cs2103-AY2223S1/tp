@@ -805,7 +805,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: UC05 - Add an inventory item**
+**Use case: UC05 - Sort orders based on the time they are created**
+
+1. User requests to sort orders based on the time they are created.
+2. System sorts the orders.
+
+   Use case ends.
+
+**Use case: UC06 - Edit an order**
+
+1. User requests to edit an item.
+2. System edits the order.
+
+   Use case ends.
+
+**Extensions**
+
+- 1a. User inputs incomplete order data.
+  - 1a1. System informs user of the incomplete order data.
+
+    Use case resumes at 1.
+
+**Use case: UC07 - Add an inventory item**
 
 **MSS**
 
@@ -821,7 +842,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at 1.
 
-**Use case: UC06 - Delete an inventory item**
+**Use case: UC08 - Delete an inventory item**
 
 **MSS**
 
@@ -842,7 +863,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC07 - List all inventory items**
+**Use case: UC09 - List all inventory items**
 
 **MSS**
 
@@ -858,7 +879,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: UC08 - Find an inventory item**
+**Use case: UC10 - Find an inventory item**
 
 **MSS**
 
@@ -874,7 +895,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: UC09 - Edit an inventory item**
+**Use case: UC11 - Edit an inventory item**
 
 1. User requests to edit an inventory item.
 2. System edits the inventory item.
@@ -888,26 +909,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at 1.
     
-**Use case: UC10 - Sort orders based on the time they are created**
-
-1. User requests to sort orders based on the time they are created.
-2. System sorts the orders.
-
-   Use case ends.
-
-**Use case: UC11 - Edit an order**
-
-1. User requests to edit an item.
-2. System edits the order.
-   
-   Use case ends.
-
-**Extensions**
-
-- 1a. User inputs incomplete order data.
-  - 1a1. System informs user of the incomplete order data.
-
-    Use case resumes at 1.
 
 ## **Appendix D: Non-Functional Requirements**
 
@@ -947,6 +948,13 @@ testers are expected to do more *exploratory* testing.
    2. Double-click the jar file Expected: Shows the GUI with a set of sample orders and items. 
    The window automatically expands to occupy the entire screen.
 
+### Starting up with missing/corrupted data files
+
+1. Data file is corrupted <br>
+   Expected: The system will start with an empty application.
+2. Data file is missing from the application <br>
+   Expected: The system will start with sample data.
+
 ### Deleting an order
 
 1. Deleting an order while all orders are being shown 
@@ -959,10 +967,41 @@ testers are expected to do more *exploratory* testing.
    Expected: Similar to previous.
 2. Deleting an order while 
 
-### Saving data
+### Getting help: help
 
-1. Dealing with missing/corrupted data files
+1. Opening the help window
+   * Prerequisites: Help window is not opened, or not in focus.
+   * Test case: `help` <br>
+   Expected: Help window is opened.
+   * Test case: `help 123`, `help x`, `help #$%`, `...` (where there can be any input after the word `help`, as long as it is followed by a whitespace)
+   Expected: Help window is opened.
+   * Test case: `help###`, `Help`, `helpxx`, `...` (where there are characters not separated by a whitespace after `help`)
+   Expected: The help window is not opened and an error message is shown by the system.
+   * Test case: `Help`, `HELP`, `...` (where `help` is not in all lower cases)
+   Expected: The help window is not opened and an error message is shown by the system.
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+### Clearing data in TrackO
 
-1. _{ more test cases …​ }_
+1. Clearing data in TrackO.
+   * Test case: `clear`, followed by `confirm` <br>
+   Expected: All data in the `OrderList` and `InventoryList` is cleared.
+   * Test case: `clear`, followed by `cancel` <br>
+   Expected: All data in the `OrderList` and `InventoryList` should remain intact.
+   * Test case: `Clear`, `CLEAR`, `...` (where `clear` is not in all lower cases) <br>
+   Expected: The command does not proceed to the next stage and an error message is shown by the system.
+   * Test case: `clear`, followed by `x`, `123`, `abc`, `...` (any input that is not `confirm` or `cancel`) <br>
+   Expected: An error message showing the proper ways to proceed or abort the command is shown by the system.
+   
+
+### Exiting TrackO
+
+1. Exiting via CLI
+   * Test case: `exit` <br>
+   Expected: Window closes.
+
+### Editing the data file
+
+1. Data is edited according to the right format <br>
+   Expected: The system will detect the change, and the edited data will load into the application successfully.
+2. Data is edited following an incorrect format <br>
+   Expected: The system will start with an empty application.
