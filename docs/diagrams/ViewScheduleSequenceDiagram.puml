@@ -3,30 +3,30 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":ProfNusParser" as ProfNusParser LOGIC_COLOR
 participant ":ViewScheduleCommandParser" as ViewScheduleCommandParser LOGIC_COLOR
 participant "v:ViewScheduleCommand" as ViewScheduleCommand LOGIC_COLOR
-participant "CommandResult" as CommandResult LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("sview m/CS2103T w/Friday")
+[-> LogicManager : execute("sview")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("sview m/CS2103T w/Friday")
-activate AddressBookParser
+LogicManager -> ProfNusParser : parseCommand("sview")
+activate ProfNusParser
 
 create ViewScheduleCommandParser
-AddressBookParser -> ViewScheduleCommandParser
+ProfNusParser -> ViewScheduleCommandParser
 activate ViewScheduleCommandParser
 
-ViewScheduleCommandParser --> AddressBookParser
+ViewScheduleCommandParser --> ProfNusParser
 deactivate ViewScheduleCommandParser
 
-AddressBookParser -> ViewScheduleCommandParser : parse("m/CS2103T w/Friday")
+ProfNusParser -> ViewScheduleCommandParser : parse("")
 activate ViewScheduleCommandParser
 
 create ViewScheduleCommand
@@ -36,17 +36,17 @@ activate ViewScheduleCommand
 ViewScheduleCommand --> ViewScheduleCommandParser : v
 deactivate ViewScheduleCommand
 
-ViewScheduleCommandParser --> AddressBookParser
+ViewScheduleCommandParser --> ProfNusParser: v
 deactivate ViewScheduleCommandParser
 
-AddressBookParser --> LogicManager : v
+ProfNusParser --> LogicManager : v
 destroy ViewScheduleCommandParser
-deactivate AddressBookParser
+deactivate ProfNusParser
 
 LogicManager -> ViewScheduleCommand : execute()
 activate ViewScheduleCommand
 
-ViewScheduleCommand -> Model : updateFilteredScheduleList(predicate)
+ViewScheduleCommand -> Model : updateFilteredScheduleList(PREDICATE_SHOW_ALL_SCHEDULES)
 activate Model
 
 Model --> ViewScheduleCommand
@@ -56,7 +56,7 @@ create CommandResult
 ViewScheduleCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> ViewScheduleCommand
+CommandResult --> ViewScheduleCommand : result
 deactivate CommandResult
 
 ViewScheduleCommand --> LogicManager : result
