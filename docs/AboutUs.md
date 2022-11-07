@@ -47,7 +47,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/parnikkapore.md)]
 
 * Role: Integration, CI expert
-* Responsibilities: adding/deleting/marking/unmarking tasks
+* Responsibilities: Task model, Add/delete task commands
 
 ### Ang Kuang Long
 

@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.ArgumentMultimap.DOES_NOT_EXIST;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 
@@ -35,7 +36,10 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
 
         TaskName name = ParserUtil.parseTaskName(argMultimap.getPreamble());
         Deadline deadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
-        Module module = ParserUtil.parseModule(argMultimap.getValueOptional(PREFIX_MODULE).get());
+        String moduleString = argMultimap.getValue(PREFIX_MODULE).orElse(null);
+        Module module = moduleString != null
+                ? ParserUtil.parseModule(moduleString)
+                : new Module(DOES_NOT_EXIST);
         Status status = new Status(false);
 
         Task task = new Task(name, module, deadline, status);

@@ -45,7 +45,7 @@ public class FindTaskCommandParser implements Parser<FindTaskCommand> {
             List<String> keywordsSpaceSeparated = new ArrayList<>();
             for (String string : strings) {
                 for (String keyword : string.split("\\s+")) {
-                    keywordsSpaceSeparated.add(keyword);
+                    keywordsSpaceSeparated.add(ParserUtil.parseModule(keyword).toString());
                 }
             }
             // ["name", "name name"] -> ["name", "name", "name"]
