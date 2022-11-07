@@ -1401,11 +1401,11 @@ testers are expected to do more *exploratory* testing.
 * Edit feature
   * EditCommand is AB3 versus EditPatientCommand, EditAppointmentCommand and EditBillCommand in HealthContact
 
-| AB3 (FindCommand)                                                          | HealthContact                                                                                                    |
-|----------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
-| Edits persons only                                                         | Edits patients, appointments and bills separately                                                                |
-| Edits name, phone, email, address, tag                                     | Edits by respective fields of patients, appointments and bills                                                   |
-| Can only edit using full words                                             | Can edit using partial and full words, and special characters depending on respective field constraints          |
+| AB3 (EditCommand)                      | HealthContact                                                                                                    |
+|----------------------------------------|------------------------------------------------------------------------------------------------------------------|
+| Edits persons only                     | Edits patients, appointments and bills separately                                                                |
+| Edits name, phone, email, address, tag | Edits by respective fields of patients, appointments and bills                                                   |
+| Can only edit using full words         | Can edit using partial and full words, and special characters depending on respective field constraints          |
 
 
 
