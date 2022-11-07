@@ -665,9 +665,9 @@ In the above example, we are adding a contact with name `Bobbie`, email `bobbie@
 `91234567` into Plannit. Here's a screenshot of Plannit before and after executing the command:
 
 
-| Before executing the command                                                                                                                               | After executing the command                                                                                   |
-|------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
-| {::nomarkdown}<p align="center"><img src="images/add-person-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/add-person-after.png"/></p><p>Bobbie has been added!</p>{:/} |
+| Before executing the command                                                                                                                               | After executing the command                                                                                       |
+|------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/add-person-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/add-person-after.png"/></p><p>Bobbie has been added!</p><br?{:/} |
 
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**<br>
@@ -745,9 +745,9 @@ In the above example, we are deleting the contact with name `Bobbie` from Planni
 and after executing the command:
 
 
-| Before executing the command                                                                                                                                  | After executing the command                                                                                        |
-|---------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------|
-| {::nomarkdown}<p align="center"><img src="images/delete-person-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/delete-person-after.png"/></p><p>Bobbie has been deleted!</p>{:/} |
+| Before executing the command                                                                                                                                  | After executing the command                                                                                            |
+|---------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/delete-person-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/delete-person-after.png"/></p><p>Bobbie has been deleted!</p><br>{:/} |
 
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**<br>
@@ -820,9 +820,9 @@ In the above example, we are editing the contact with a displayed-index number o
 command for the last example:
 
 
-| Before executing the command                                                                                                                                | After executing the command                                                                                                       |
-|-------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
-| {::nomarkdown}<p align="center"><img src="images/edit-person-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/edit-person-after.png"/></p><p>Bernice Yu has been edited to Charmander!</p>{:/} |
+| Before executing the command                                                                                                                                | After executing the command                                                                                                           |
+|-------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/edit-person-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/edit-person-after.png"/></p><p>Bernice Yu has been edited to Charmander!</p><br>{:/} |
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**<br>
 Editing a person will bring you back to the home page.
