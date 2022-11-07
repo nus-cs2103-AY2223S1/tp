@@ -1,0 +1,17 @@
+@startuml
+start
+:User executes deleteStudentCommand;
+
+if () then ([positive index provided])
+    :Parse index;
+    if () then ([index is within size])
+        :Delete student from ModQuik;
+    else ([else])
+        :Display error message that index provided is invalid;
+    endif
+else ([else])
+    :Display error message
+    and show command format;
+endif
+stop
+@enduml
