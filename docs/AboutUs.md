@@ -37,7 +37,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/l1uy1jun.md)]
 
 * Role: Team Leader
-* Responsibilities: Code Quality + Documentation + Deliverables & Deadlines
+* Responsibilities: Code Quality + Documentation + Deliverables + Scheduling
 
 ### Darren Tng
 
