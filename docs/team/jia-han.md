@@ -19,6 +19,9 @@ Around 900 lines of code according to the [RepoSense Link](https://nus-cs2103-ay
   - Changed regex for `Name`, `Email`, `Module` and `Year` and added/updated test code accordingly. ([#149](https://github.com/AY2223S1-CS2103T-T15-3/tp/pull/149), [#170](https://github.com/AY2223S1-CS2103T-T15-3/tp/pull/170), [#254](https://github.com/AY2223S1-CS2103T-T15-3/tp/pull/254), [#262](https://github.com/AY2223S1-CS2103T-T15-3/tp/pull/262), [#281](https://github.com/AY2223S1-CS2103T-T15-3/tp/pull/281))
   - Updated `Parser`, `AddCommand` and `EditCommand` classes to fit updated `Tutor` model.
   - Updated storage utils and test data to fit updated `Tutor` model.
+  
+  <div style="page-break-after: always;"></div>
+  
   - Purpose:
     - Allows for relevant and valid tutor information to be stored.
   - Highlights:
