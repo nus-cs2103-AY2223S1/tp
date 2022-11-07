@@ -15,6 +15,7 @@ Waddle allows you to plan your travels in **3 simple steps**.
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always"></div>
 ## Table of Contents
+
 1. [**Quick start**](#quick-start)
 2. [**Features**](#features)
    1. [**Universal commands**](#universal-commands)
@@ -51,6 +52,7 @@ Waddle allows you to plan your travels in **3 simple steps**.
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always"></div>
 ## Quick start
+
 To begin planning your travels with Waddle, simply set it up as follows:
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -106,6 +108,7 @@ For more commands and their details, refer to the [Features](#features) section 
 </div>
 <div style="page-break-after: always"></div>
 ### Universal commands
+
 Most commands in Waddle can only be used on the [main page](#the-main-page) or the [planning page](#the-planning-page). However, the commands in this section may be used on either page at any time.
 
 ### Viewing help : `help`
@@ -124,6 +127,7 @@ Format: `exit`
 
 <div style="page-break-after: always"></div>
 ### The main page
+
 The main page, or home page, of Waddle displays the list of itineraries you have created and stored in the app.
 
 [Commands exclusive to the main page](#commands-on-the-main-page) can help you:
@@ -136,6 +140,7 @@ Using the [`select` command](#selecting-an-itinerary--select)  will bring you to
 
 <div style="page-break-after: always"></div>
 ### Commands on the main page
+
 ### Creating a new itinerary : `add`
 
 Adds an itinerary to Waddle.
@@ -248,6 +253,7 @@ Examples:
 
 <div style="page-break-after: always"></div>
 ### The planning page
+
 The planning page of an itinerary displays the list of items you have added to the itinerary. Items on the Wishlist that have not been added to you schedule yet will appear on top in order of priority, while scheduled items will appear in order of date and time.
 
 The index of scheduled items are in the format `DAY.ITEM_NUMBER`. Some examples:
@@ -270,6 +276,7 @@ Using the [`home` command](#returning-to-main-page--home)  will bring you to the
 
 <div style="page-break-after: always"></div>
 ### Commands on the item planning page
+
 ### Adding an item : `add`
 
 Adds an item to the wishlist without a scheduled day and time.
@@ -433,6 +440,7 @@ Format: `home`
 
 <div style="page-break-after: always"></div>
 ### Advanced
+
 ### Saving the data
 
 Waddle data is saved in the hard disk automatically upon any change in the data. There is no need to save manually.
@@ -457,6 +465,7 @@ If your changes to the data file makes its format invalid, Waddle will discard a
 
 <div style="page-break-after: always"></div>
 ## Command summary
+
 ### Home page commands
 
 | Action                                                           | Format, Examples                                                                                                                                                  |
