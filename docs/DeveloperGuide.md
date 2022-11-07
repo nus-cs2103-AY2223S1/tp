@@ -396,7 +396,7 @@ The following class diagram shows the relationship between the classes in the UI
 
 <img src="images/PersonTagClassDiagram.png" width="250" />
 
-#### Design Considerations:
+#### Design Consideration
 
 #### Which user information should be shown as tags?
 
