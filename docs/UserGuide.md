@@ -56,8 +56,6 @@ This one-stop, convenient, and efficient platform empowers Internship Campus Rec
 
 6. Refer to [Features](#3-features) for details of each command.
 
---------------------------------------------------------------------------------------------------------------------
-
 ## 2. Fields
 
 <div markdown="block" class="alert alert-info">
@@ -161,6 +159,7 @@ which contains `workday-nus`, `edu`, and `sg` as `DOMAIN_LABEL` separated by `.`
 
 </div>
 
+<div style="page-break-after: always;"></div>
 
 ### 3.1 Viewing help: `help`
 
