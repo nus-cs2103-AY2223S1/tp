@@ -25,7 +25,7 @@ public class DeleteItemCommand extends Command {
             + "Parameters: INDEX (must exist in the Wishlist or day list)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_ITINERARY_SUCCESS = "Deleted item: %1$s";
+    public static final String MESSAGE_DELETE_ITEM_SUCCESS = "Deleted item: %1$s";
 
     private final MultiIndex targetIndex;
 
@@ -66,7 +66,7 @@ public class DeleteItemCommand extends Command {
             }
         }
         Item itemToDelete = itinerary.removeItem(targetIndex);
-        return new CommandResult(String.format(MESSAGE_DELETE_ITINERARY_SUCCESS, itemToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_ITEM_SUCCESS, itemToDelete));
     }
 
     @Override

@@ -181,12 +181,12 @@ public class CommandTestUtil {
     public static final EditCommand.EditItineraryDescriptor DESC_WINTER;
 
     static {
-        DESC_SUMMER = new EditItineraryDescriptorBuilder().withName(VALID_ITINERARY_DESC_SUMMER)
+        DESC_SUMMER = new EditItineraryDescriptorBuilder().withDescription(VALID_ITINERARY_DESC_SUMMER)
                 .withCountry(VALID_COUNTRY_SUMMER).withStartDate(VALID_START_DATE_SUMMER)
                 .withDuration(VALID_DURATION_SUMMER)
                 .withPeople(VALID_PEOPLE_SUMMER)
                 .withBudget(VALID_BUDGET_SUMMER).build();
-        DESC_WINTER = new EditItineraryDescriptorBuilder().withName(VALID_ITINERARY_DESC_WINTER)
+        DESC_WINTER = new EditItineraryDescriptorBuilder().withDescription(VALID_ITINERARY_DESC_WINTER)
                 .withCountry(VALID_COUNTRY_WINTER).withStartDate(VALID_START_DATE_WINTER)
                 .withDuration(VALID_DURATION_WINTER)
                 .withPeople(VALID_PEOPLE_WINTER)

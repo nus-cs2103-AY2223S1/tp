@@ -33,21 +33,21 @@ import seedu.waddle.model.itinerary.Itinerary;
  */
 public class TypicalItineraries {
 
-    public static final Itinerary SPRING = new ItineraryBuilder().withName("Spring Trip")
+    public static final Itinerary SPRING = new ItineraryBuilder().withDescription("Spring Trip")
             .withCountry("Australia").withStartDate("2023-01-01")
             .withDuration("14").withPeople("1").withBudget("300").build();
-    public static final Itinerary AUTUMN = new ItineraryBuilder().withName("Autumn Hiking")
+    public static final Itinerary AUTUMN = new ItineraryBuilder().withDescription("Autumn Hiking")
             .withCountry("Canada").withStartDate("2023-02-02")
             .withDuration("22").withPeople("2").withBudget("700").build();
-    public static final Itinerary GRADUATION = new ItineraryBuilder().withName("Graduation Trip")
+    public static final Itinerary GRADUATION = new ItineraryBuilder().withDescription("Graduation Trip")
             .withCountry("France").withStartDate("2023-03-03")
             .withDuration("4").withPeople("4").withBudget("2200").build();
     // Manually added - Itinerary's details found in {@code CommandTestUtil}
-    public static final Itinerary SUMMER = new ItineraryBuilder().withName(VALID_ITINERARY_DESC_SUMMER)
+    public static final Itinerary SUMMER = new ItineraryBuilder().withDescription(VALID_ITINERARY_DESC_SUMMER)
             .withCountry(VALID_COUNTRY_SUMMER).withStartDate(VALID_START_DATE_SUMMER)
             .withDuration(VALID_DURATION_SUMMER).withPeople(VALID_PEOPLE_SUMMER)
             .withBudget(VALID_BUDGET_SUMMER).build();
-    public static final Itinerary WINTER = new ItineraryBuilder().withName(VALID_ITINERARY_DESC_WINTER)
+    public static final Itinerary WINTER = new ItineraryBuilder().withDescription(VALID_ITINERARY_DESC_WINTER)
             .withCountry(VALID_COUNTRY_WINTER).withStartDate(VALID_START_DATE_WINTER)
             .withDuration(VALID_DURATION_WINTER).withPeople(VALID_PEOPLE_WINTER)
             .withBudget(VALID_BUDGET_WINTER).build();
@@ -58,19 +58,19 @@ public class TypicalItineraries {
     } // prevents instantiation
 
     public static Itinerary getSpring() {
-        return new ItineraryBuilder().withName("Spring Trip")
+        return new ItineraryBuilder().withDescription("Spring Trip")
                 .withCountry("Australia").withStartDate("2023-01-01")
                 .withDuration("14").withPeople("1").withBudget("300").build();
     }
 
     public static Itinerary getAutumn() {
-        return new ItineraryBuilder().withName("Autumn Hiking")
+        return new ItineraryBuilder().withDescription("Autumn Hiking")
                 .withCountry("Canada").withStartDate("2023-02-02")
                 .withDuration("22").withPeople("2").withBudget("700").build();
     }
 
     public static Itinerary getGraduation() {
-        return new ItineraryBuilder().withName("Graduation Trip")
+        return new ItineraryBuilder().withDescription("Graduation Trip")
                 .withCountry("France").withStartDate("2023-03-03")
                 .withDuration("4").withPeople("4").withBudget("2200").build();
     }

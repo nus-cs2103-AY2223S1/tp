@@ -29,7 +29,7 @@ public class EditItineraryDescriptorBuilder {
      */
     public EditItineraryDescriptorBuilder(Itinerary itinerary) {
         descriptor = new EditItineraryDescriptor();
-        descriptor.setName(itinerary.getDescription());
+        descriptor.setDescription(itinerary.getDescription());
         descriptor.setCountry(itinerary.getCountry());
         descriptor.setStartDate(itinerary.getStartDate());
         descriptor.setDuration(itinerary.getDuration());
@@ -38,10 +38,10 @@ public class EditItineraryDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code EditItineraryDescriptor} that we are building.
+     * Sets the {@code Description} of the {@code EditItineraryDescriptor} that we are building.
      */
-    public EditItineraryDescriptorBuilder withName(String name) {
-        descriptor.setName(new Description(name));
+    public EditItineraryDescriptorBuilder withDescription(String description) {
+        descriptor.setDescription(new Description(description));
         return this;
     }
 

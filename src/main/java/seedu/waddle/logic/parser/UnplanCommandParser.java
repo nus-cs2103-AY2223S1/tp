@@ -11,7 +11,7 @@ import seedu.waddle.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new UnplanCommand object
  */
-public class UnplanCommandParser {
+public class UnplanCommandParser implements Parser<UnplanCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the UnplanCommand
