@@ -31,10 +31,10 @@ Given below are my contributions to the project.
   * Added test cases for multiple components, such as `GradeCommandParser`, `Grade`, and `AttendanceCommandParser`
 
 * **Contributions to UG**
-    * to be added soon
+    * Documentation of how to use the grade command
 
 * **Contributions to DG**
-    * to be added soon
+    * Documentation of the implementation of features section, including entering of grades, prediction of grades and marking attendance
 
 * **Contributions to team tasks**:
     * Helped to review code of a total of 33 pull requests
