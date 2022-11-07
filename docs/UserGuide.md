@@ -19,11 +19,15 @@ you will benefit greatly from the use of this application if you are a fast type
 
 Read on to find out more about YellowBook's features!
 
+<div style="page-break-after: always;"></div>
+
 ## Table of Contents
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## Purpose
 
@@ -37,6 +41,8 @@ This user guide also provides comprehensive explanations so that you know how to
 [[Back to Table of Contents](#table-of-contents)]
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## Quick start
 
@@ -61,6 +67,8 @@ This user guide also provides comprehensive explanations so that you know how to
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## Sample Usage
 
 To better understand the usage of YellowBook, we have provided a usage scenario of YellowBook below. We encourage all first-time users to follow along to gain a general understanding of the commands available.
@@ -69,44 +77,47 @@ To better understand the usage of YellowBook, we have provided a usage scenario 
 
 2. Let's start by listing all the contacts in YellowBook. Type `listC` in the command box and press Enter to execute it. You should see a list of contacts. Try using `listT` to list all the tasks.
 
-<figure>
-<img src="images/listC.png" alt="listC" style="width:100%">
-<figcaption align = "center"><i>Fig.2 - Result of listC</i></figcaption>
-</figure>
+  <figure>
+  <img src="images/listC.png" alt="listC" style="width:100%">
+  <figcaption align = "center"><i>Fig.2 - Result of listC</i></figcaption>
+  </figure>
 
-<figure>
-<img src="images/listT.png" alt="listT" style="width:100%">
-<figcaption align = "center"><i>Fig.3 - Result of listT</i></figcaption>
-</figure>
+  <figure>
+  <img src="images/listT.png" alt="listT" style="width:100%">
+  <figcaption align = "center"><i>Fig.3 - Result of listT</i></figcaption>
+  </figure>
 
 3. Now that you can navigate between the contact and task lists, let's add a new contact. Type `addC n/Elmo p/91238888 e/elmo@sesamestreet.com a/sesame street` in the command box and press Enter to execute it. You should see a message indicating that the contact has been added successfully and Elmo will appear in your contact list.
 
-<figure>
-<img src="images/step3.png" alt="step3" style="width:100%">
-<figcaption align = "center"><i>Fig.4 - Result of addC</i></figcaption>
-</figure>
+  <figure>
+  <img src="images/step3.png" alt="step3" style="width:100%">
+  <figcaption align = "center"><i>Fig.4 - Result of addC</i></figcaption>
+  </figure>
 
 4. YellowBook also allows you to add tasks, to add homework task with deadline of 25 December 2022. Type `addT d/complete homework D/25-12-2022` in the command box and press Enter to execute it. You should see a message indicating that the task has been added successfully and the task will appear in your task list.
 
-<figure>
-<img src="images/step4.png" alt="step4" style="width:100%">
-<figcaption align = "center"><i>Fig.5 - Result of addT</i></figcaption>
-</figure>
+  <figure>
+  <img src="images/step4.png" alt="step4" style="width:100%">
+  <figcaption align = "center"><i>Fig.5 - Result of addT</i></figcaption>
+  </figure>
 
 5. Now that you know the basic commands, try following the guide for the label command to tag the newly added `Elmo` contact as `friend`.
 
 6. When you feel ready to use YellowBook for your own contacts and tasks, type `clear` to remove all the sample data from YellowBook.
 
-<figure>
-<img src="images/clear.png" alt="clear" style="width:100%">
-<figcaption align = "center"><i>Fig.6 - Result of clear command</i></figcaption>
-</figure>
+  <figure>
+  <img src="images/clear.png" alt="clear" style="width:100%">
+  <figcaption align = "center"><i>Fig.6 - Result of clear command</i></figcaption>
+  </figure>
 
 YellowBook's commands are mnemonically named. A [Command Summary](#command-summary) with these helpful tips can be found below.
 
 [[Back to Table of Contents](#table-of-contents)]
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
+
 ## Icons
 
 <div markdown="block" class="alert alert-info">
@@ -148,6 +159,8 @@ YellowBook's commands are mnemonically named. A [Command Summary](#command-summa
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
+
+<div style="page-break-after: always;"></div>
   
 ## Section 1: Contacts
 
@@ -174,6 +187,8 @@ The domain name consists of domain labels separated by periods, and should end w
 * Contact remarks are limited to alphanumeric characters and spaces.<br>
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### Adding a contact: `addC`
 
@@ -310,6 +325,8 @@ Examples:
 
 * `filterC cs2103t cs2101` will return contacts with labels `cs2103t` or `cs2101`.
 
+<div style="page-break-after: always;"></div>
+
 ### Copying contact emails by label: `copyC`
 
 Displays a string of emails of contacts with a label that matches the given keyword for easier copy-pasting.
@@ -336,6 +353,8 @@ Example:
 </figure>
 
 [[Back to Table of Contents](#table-of-contents)]
+
+<div style="page-break-after: always;"></div>
 
 ## Section 2: Tasks
 
@@ -397,6 +416,8 @@ Format: `listT`
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### Listing all archived tasks: `listAT`
 
 Shows all archived tasks stored in the task list.
@@ -417,6 +438,8 @@ Format: `listAT`
 <img src="images/listAT.png" alt="listAT" style="width:100%">
 <figcaption align = "center"><i>Fig.8 - Result of listAT</i></figcaption>
 </figure>
+
+<div style="page-break-after: always;"></div>
 
 ### Deleting a task: `deleteT`
 
@@ -441,6 +464,8 @@ Examples:
 * `listT` followed by `deleteT 1` deletes the first task in the task list.
 
 * `findT d/book` followed by `deleteT 1` deletes the first result of the `findT` command.
+
+<div style="page-break-after: always;"></div>
 
 ### Editing a task: `editT`
 
@@ -471,6 +496,8 @@ Format: `editT INDEX [d/DESCRIPTION] [D/DEADLINE]`
 Example:
 
 * `editT 1 d/sleep D/22-10-2022` edits the first task’s description to be "sleep" and deadline to be 22-10-2022.
+
+<div style="page-break-after: always;"></div>
 
 ### Finding a task: `findT`
 
@@ -506,6 +533,8 @@ Examples:
 
 * `findT d/cs2103t D/25-12-2022 s/complete` will return tasks with descriptions containing `cs2103t`, deadline `25th December 2022`, and completion status `complete`.
 
+<div style="page-break-after: always;"></div>
+
 ### Filtering tasks by label: `filterT`
 
 Filters tasks whose label(s) contain any of the given keywords.
@@ -520,11 +549,21 @@ Format: `filterT KEYWORD [MORE_KEYWORDS]...`
 
 * Successive `filterT` commands are not cumulative, e.g. `filterT cs2103t` followed by `filterT math` will return the same result as `filterT math`.
 
+<div markdown="block" class="alert alert-warning">
+
+:warning: There will be an error if you:<br>
+
+* Do not adhere to label name constraints. Label names must be alphanumeric with no spaces.
+
+</div>
+
 Examples:
 
 * `filterT cs2103t` will return tasks with label `cs2103t`.
 
 * `filterT cs2103t cs2101` will return tasks with labels `cs2103t` or `cs2101`.
+
+<div style="page-break-after: always;"></div>
 
 ### Marking a task as complete: `markT`
 
@@ -552,6 +591,8 @@ Examples:
 <img src="images/markT.png" alt="markT" style="width:100%">
 <figcaption align = "center"><i>Fig.9 - Result of markT when applied to the first task in the list</i></figcaption>
 </figure>
+
+<div style="page-break-after: always;"></div>
 
 ### Marking a task as incomplete: `unmarkT`
 
@@ -599,6 +640,8 @@ Examples:
 
 * `findT d/book` followed by `archiveT 1` archives the first result of the `findT` command.
 
+<div style="page-break-after: always;"></div>
+
 ### Unarchiving a task: `unarchiveT`
 
 Unarchives a task in the displayed task list, adding it to the main (unarchived) task list.
@@ -622,6 +665,8 @@ Examples:
 * `listAT` followed by `unarchiveT 1` unarchives the first task in the displayed task list.
 
 * `findT d/book` followed by `unarchiveT 1` unarchives the first result of the `findT` command.
+
+<div style="page-break-after: always;"></div>
 
 ### Listing tasks with deadlines up to and including the specified date: `remindT`
 
@@ -650,6 +695,8 @@ Example:
 <img src="images/remindT.png" alt="remindT" style="width:100%">
 <figcaption align = "center"><i>Fig.10 - Result of remindT when only one task is on 12-09-2022 or earlier</i></figcaption>
 </figure>
+
+<div style="page-break-after: always;"></div>
 
 ### Showing the percentage of tasks with the specified tags that are completed: `progressT`
 
@@ -684,6 +731,8 @@ Example:
 <figcaption align = "center"><i>Fig.11 - Result of progressT where only one of two GEA1000 tasks has been completed</i></figcaption>
 </figure>
 
+<div style="page-break-after: always;"></div>
+
 ### Sorting all tasks by deadline: `sortD`
 
 Sorts all tasks in the task list by deadline.
@@ -698,6 +747,8 @@ Format: `sortD`
 <img src="images/sortD.png" alt="sortD" style="width:100%">
 <figcaption align = "center"><i>Fig.12 - Result of sortD</i></figcaption>
 </figure>
+
+<div style="page-break-after: always;"></div>
 
 ### Sorting all tasks by id: `sortI`
 
@@ -717,6 +768,8 @@ Format: `sortI`
 </figure>
 
 [[Back to Table of Contents](#table-of-contents)]
+
+<div style="page-break-after: always;"></div>
 
 ## Section 3: Labels
 
@@ -767,6 +820,8 @@ Example:
 
 * `addL c/3 t/12 l/CS2103T` will add the label "CS2103T" to the 3rd contact on the contact list and 12th task on the task list.
 
+<div style="page-break-after: always;"></div>
+
 ### Listing all labels: `listL`
 
 Shows all labels stored in the label list.
@@ -806,6 +861,8 @@ Example:
 
 * `deleteL c/12 t/14 l/CS2101` will remove the label "CS2101" from the 12th contact on the contact list and 14th task on the task list.
 
+<div style="page-break-after: always;"></div>
+
 ### Deleting all contacts and tasks by label: `deleteA`
 
 Deletes all contacts and tasks that contain the label(s) specified. The label is also deleted.
@@ -832,6 +889,8 @@ Format: `deleteA LABEL_NAME [MORE_LABEL_NAMES]...`
 
 
 [[Back to Table of Contents](#table-of-contents)]
+
+<div style="page-break-after: always;"></div>
 
 ## Section 4: Other Useful Features
 
@@ -876,6 +935,9 @@ Format: `exit`
 [[Back to Table of Contents](#table-of-contents)]
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
+
 ## Automatic tab switching
 
 Depending on the command you enter, you will see the open tab in the GUI switch automatically.
@@ -887,6 +949,9 @@ For example, after adding a new contact, the list shown on the GUI is the update
 [[Back to Table of Contents](#table-of-contents)]
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
+
 ## YellowBook data
 ### Saving the data
 
@@ -910,6 +975,8 @@ If your changes to the data file makes its format invalid, YellowBook will disca
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## FAQ
 
 **Q**: How do I transfer my data to another computer?<br>
@@ -921,6 +988,8 @@ If your changes to the data file makes its format invalid, YellowBook will disca
 [[Back to Table of Contents](#table-of-contents)]
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## Command summary
 
