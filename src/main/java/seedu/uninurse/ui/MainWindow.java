@@ -17,6 +17,7 @@ import seedu.uninurse.logic.Logic;
 import seedu.uninurse.logic.commands.CommandResult;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.logic.commands.exceptions.DuplicateEntryException;
+import seedu.uninurse.logic.commands.exceptions.InvalidAttributeIndexException;
 import seedu.uninurse.logic.parser.exceptions.ParseException;
 import seedu.uninurse.model.exceptions.PatientOfInterestNotFoundException;
 
@@ -252,7 +253,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             return commandResult;
-        } catch (DuplicateEntryException e) {
+        } catch (DuplicateEntryException | InvalidAttributeIndexException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             outputPanel.handleViewPatient(logic.getPatientOfInterest());

@@ -11,6 +11,7 @@ import seedu.uninurse.commons.core.Messages;
 import seedu.uninurse.commons.core.index.Index;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.logic.commands.exceptions.DuplicateEntryException;
+import seedu.uninurse.logic.commands.exceptions.InvalidAttributeIndexException;
 import seedu.uninurse.model.Model;
 import seedu.uninurse.model.PersonListTracker;
 import seedu.uninurse.model.condition.Condition;
@@ -75,7 +76,8 @@ public class EditConditionCommand extends EditGenericCommand {
         ConditionList initialConditionList = patientToEdit.getConditions();
 
         if (conditionIndex.getZeroBased() >= initialConditionList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_CONDITION_INDEX);
+            model.setPatientOfInterest(patientToEdit);
+            throw new InvalidAttributeIndexException(Messages.MESSAGE_INVALID_CONDITION_INDEX);
         }
 
         try {

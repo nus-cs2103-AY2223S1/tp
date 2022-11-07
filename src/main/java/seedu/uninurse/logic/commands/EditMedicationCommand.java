@@ -12,6 +12,7 @@ import seedu.uninurse.commons.core.Messages;
 import seedu.uninurse.commons.core.index.Index;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.logic.commands.exceptions.DuplicateEntryException;
+import seedu.uninurse.logic.commands.exceptions.InvalidAttributeIndexException;
 import seedu.uninurse.model.Model;
 import seedu.uninurse.model.PersonListTracker;
 import seedu.uninurse.model.exceptions.PatientNotFoundException;
@@ -83,7 +84,8 @@ public class EditMedicationCommand extends EditGenericCommand {
         MedicationList initialMedicationList = patientToEdit.getMedications();
 
         if (medicationIndex.getZeroBased() >= initialMedicationList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_MEDICATION_INDEX);
+            model.setPatientOfInterest(patientToEdit);
+            throw new InvalidAttributeIndexException(Messages.MESSAGE_INVALID_MEDICATION_INDEX);
         }
 
         try {

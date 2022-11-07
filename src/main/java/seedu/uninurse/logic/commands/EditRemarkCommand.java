@@ -11,6 +11,7 @@ import seedu.uninurse.commons.core.Messages;
 import seedu.uninurse.commons.core.index.Index;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.logic.commands.exceptions.DuplicateEntryException;
+import seedu.uninurse.logic.commands.exceptions.InvalidAttributeIndexException;
 import seedu.uninurse.model.Model;
 import seedu.uninurse.model.PersonListTracker;
 import seedu.uninurse.model.exceptions.PatientNotFoundException;
@@ -75,7 +76,8 @@ public class EditRemarkCommand extends EditGenericCommand {
         RemarkList initialRemarkList = patientToEdit.getRemarks();
 
         if (remarkIndex.getZeroBased() >= initialRemarkList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_REMARK_INDEX);
+            model.setPatientOfInterest(patientToEdit);
+            throw new InvalidAttributeIndexException(Messages.MESSAGE_INVALID_REMARK_INDEX);
         }
 
         try {

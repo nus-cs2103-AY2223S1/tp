@@ -12,6 +12,7 @@ import seedu.uninurse.commons.core.Messages;
 import seedu.uninurse.commons.core.index.Index;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.logic.commands.exceptions.DuplicateEntryException;
+import seedu.uninurse.logic.commands.exceptions.InvalidAttributeIndexException;
 import seedu.uninurse.model.Model;
 import seedu.uninurse.model.PersonListTracker;
 import seedu.uninurse.model.exceptions.PatientNotFoundException;
@@ -88,7 +89,8 @@ public class EditTaskCommand extends EditGenericCommand {
         TaskList initialTaskList = patientToEdit.getTasks();
 
         if (taskIndex.getZeroBased() >= initialTaskList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_TASK_INDEX);
+            model.setPatientOfInterest(patientToEdit);
+            throw new InvalidAttributeIndexException(Messages.MESSAGE_INVALID_TASK_INDEX);
         }
 
         Task initialTask = initialTaskList.get(taskIndex.getZeroBased());
