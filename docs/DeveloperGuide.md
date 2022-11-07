@@ -2,8 +2,26 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-  {:toc}
+## **Table of Contents**
+* Acknowledgements
+* Setting up
+* Design
+  * Architecture
+  * UI component
+  * Logic component
+  * Model component
+  * Storage component
+  * Common classes
+* Implementation
+* Documentation, logging, testing, configuration, dev-ops
+* Appendix: Requirements
+  * Product scope
+  * User stories
+  * Use cases
+  * Non-Functional Requirements
+  * Glossary
+* Appendix: Instructions for manual testing
+  * 
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -216,6 +234,7 @@ Shown below is a sequence diagram of what occurs when the `execute` method of
 |             Sequence Diagram of Sort Task Command             |
 
 <div markdown="span" class="alert alert-info">
+
 :information_source: **Note:** The lifeline for `SortTaskCommandParser` and `SortTaskCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
@@ -272,7 +291,7 @@ The following sequence diagram shows how the filter operation works:
 
 ![FilterSequenceDiagram](images/FilterSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FilterCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info"> :information_source: **Note:** The lifeline for `FilterCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
 
@@ -292,39 +311,118 @@ The following activity diagram summarizes what happens when a user executes the 
     * Pros: Easier to implement.
     * Cons: Users have to type unnecessary details in command.
 
-### Mark Task feature
+### Mark Task Command
 
-#### Implementation
+####Command Format
 
-The proposed mark/unmark mechanism is facilitated by `MarkCommand`. It extends `Command` with a target index, stored internally as an `Index`. Additionally, it implements the following operations:
+`t mark INDEX` where `INDEX` is the index (shown in the displayed task list) of the task to be marked.
 
-* `MarkCommand#execute()` — Executes the mark command 
+####What is the feature about
 
-This operation is exposed in the `Command` abstract class as `Command#execute()`.
+The `t mark` command allows users to indicate a specific task is completed.
+The task specified will be ticked.
 
-Given below is an example of how the mark mechanism works.
+####How does the feature work
 
-1. The user executes the `mark 1` command. 
-2. The `MarkCommand` calls `Model#getFilteredTaskList()` which returns the filtered list of the tasks.
-3. The `MarkCommand` command calls `List<Task>#get()` which returns the task at index 1 in the filtered list. 
-4. Then, `MarkCommand` command calls `Task#mark()` to create a marked copy of the task.
-5. This marked task has all fields similar to the original task, except its `TaskStatus` is `COMPLETE`. 
-6. Then, `MarkCommand` command calls `Model#replaceTask()` which sets the first task in `Model#tasks` to the marked task.
- 
-The following sequence diagram shows how the mark operation works:
+The mark task feature is currently implemented through the `MarkTaskCommand` which extends the abstract class `Command`.
+A copy of the task to be marked will be created, with its `TaskStatus` set to `COMPLETE`. This marked task will then replace the
+original task in the `DistinctTaskList`.
 
-![MarkTaskSequenceDiagram](images/MarkTaskSequenceDiagram.png)
+####UML diagrams
+Shown below is a sequence diagram of what occurs when the execute method of LogicManager is invoked.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `MarkCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+|  ![MarkTaskSequenceDiagram](images/MarkTaskSequenceDiagram.png)  |
+|:----------------------------------------------------------------:|
+| ![MarkTaskReferenceDiagram](images/MarkTaskReferenceDiagram.png) |
+|               Sequence diagram of MarkTaskCommand                |
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** The lifeline for `MarkCommandParser` and `MarkCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifelines reach the end of the diagram.
+</div>
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** If the command fails, `Model#replaceTask()` will not be called, so the task list will not change. If so, `MarkCommand` will return an error to the user rather than attempting to perform the command.
+</div>
+
+**Sequence of actions made when `execute` method of `LogicManager` is invoked**
+
+1. The user types the `t mark 1` command.
+2. The `execute()` method of the `LogicManager` is called.
+3. The `LogicManager` then calls `AddressBookParser#parseCommand()` which parses `t mark 1`, creating a `MarkCommandParser` object.
+4. The `AddressBookParser` calls `MarkCommandParser#parse()` which parses `1` and creates a `MarkCommand` object with an `Index` object storing the target index `1`.
+5. Then, the `LogicManager`calls `MarkCommand#execute()`.
+6. The `MarkCommand` retrieves the task at the `Index`, which is the first task in the filtered task list, from the `Model`. 
+7. The `MarkCommand` command calls `Task#mark()` to create a marked copy of the `taskToMark`.
+8. This `markedTask` has all fields similar to the original task, except its `TaskStatus` is `COMPLETE`.
+9. Then, `MarkCommand` calls `Model#replaceTask()` which replaces the `taskToMark` in the filtered task list in `Model` with the `markedTask`.
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** The `UnmarkCommand` works the same — the only difference is that it calls `Task#unmark()`, which returns a copy of the task with `TaskStatus` set to `INCOMPLETE`.
+</div>
   
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the command has an invalid format or the index is greater than the number of tasks shown, `Model#replaceTask()` will not be called, so the task list will not change. If so, `MarkCommand` will return an error to the user rather than attempting to perform the command.
+The following activity diagram summarizes what happens when MarkCommand is executed
   
-The `UnmarkCommand` works the same — the only difference is that it calls `Task#unmark()`, which returns a copy of the task with `TaskStatus` set to `INCOMPLETE`.
-  
-The following activity diagram summarizes what happens when a user executes a new mark command:
-  
-![MarkTaskActivityDiagram](images/MarkTaskActivityDiagram.png)
+| ![MarkTaskActivityDiagram](images/MarkTaskActivityDiagram.png) |
+|:--------------------------------------------------------------:|
+|              Activity diagram of MarkTaskCommand               |
 
+### Edit Task Command
+
+####Command Format
+
+`t edit INDEX [m/MODULE]* [d/DESCRIPTION]*` where `INDEX` is the index of the task to edit, and `MODULE` and `DESCRIPTION` are the module and description to replace the current values of the specified task.
+
+####What is the feature about
+
+The `t edit` command allows users to update the specified task with the fields provided. The provided fields will replace the existing fields.
+
+####How does the feature work
+
+The edit task feature is currently implemented through the `EditTaskCommand` which extends the abstract class `Command`.
+A copy of the task to be edited will be created, with its existing `MODULE` and `DESCRIPTION` replaced with the new
+values provided. This edited task will then replace the
+original task in the `DistinctTaskList`.
+
+####UML diagrams
+Shown below is a sequence diagram of what occurs when the `execute` method of
+`LogicManager` is invoked.
+
+|  ![EditTaskSequenceDiagram](images/EditTaskSequenceDiagram.png)  |
+|:----------------------------------------------------------------:|
+| ![EditTaskReferenceDiagram](images/EditTaskReferenceDiagram.png) |
+|               Sequence diagram of EditTaskCommand                |
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** The lifelines for `EditTaskCommandParser` and `EditTaskCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifelines reach the end of the diagram.
+</div>
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** If the command is invalid, `Model#replaceTask()` will not be called, so the task list will not change. If so, `EditTaskCommand` will return an error to the user rather than attempting to perform the command.
+</div>
+
+**Sequence of actions made when `execute` method of `LogicManager` is invoked**
+
+1. The user types the `t edit 1 d/task 1` command.
+2. The `execute()` method of the `LogicManager` is called.
+3. The `LogicManager` then calls `AddressBookParser#parseCommand()` which parses `t edit 1 d/task 1`, creating an `EditTaskCommandParser` object.
+4. The `AddressBookParser` calls `EditTaskCommandParser#parse()` which parses `1 d/task 1` and creates an `EditTaskCommand` object with an `Index` object storing the target index `1` and an `EditTaskDescriptor` object storing the description `task 1` in a `TaskDescription` object.
+5. Then, the `LogicManager`calls `EditTaskCommand#execute()`.
+6. The `EditTaskCommand` retrieves the task at the `Index`, which is the first task in the filtered task list, from the `Model`.
+7. The `EditTaskCommand` command calls `Task#edit()` with the `EditTaskDescriptor` passed as the argument.
+8. The `Task#edit()` method checks that the module of the `taskToEdit` is not changed, so it creates a copy of the `taskToEdit`, with only the description changed. If `taskToEdit` has a linked exam, `linkedEditedTask` is also linked to the same exam.
+9. This `linkedEditedTask` has all fields similar to the original task, except its `TaskDescription` is changed to `Task 1`.
+10. Then, the `EditTaskCommand` calls `Model#replaceTask()` which replaces the `taskToEdit` in the filtered task list in `Model` with the `linkedEditedTask`.
+
+The following activity diagram summarizes what happens when EditTaskCommand is executed
+
+|  ![EditTaskActivityDiagram](images/EditTaskActivityDiagram.png)  |
+|:----------------------------------------------------------------:|
+|        Activity diagram of EditTaskCommand                       |
 
 ### Link Exam feature
 
@@ -335,7 +433,7 @@ and `TASK_INDEX` refers to the index number of the displayed task list.
 
 #### What is the feature about
 
-The link exam feature allows users to link an exam in the exam list to a task in the task list. 
+The link exam feature allows users to link an exam in the exam list to a task in the task list.
 
 #### How does the feature work
 
@@ -343,11 +441,11 @@ The link exam feature is currently implemented through the `LinkExamCommand` cla
 . The `LinkExamCommand` takes in two `Index` objects, one being the exam index and the other being
 the task index.
 
-When the user invokes the`execute` method of `LinkExamCommand`, 
+When the user invokes the`execute` method of `LinkExamCommand`,
 the `Task` and `Exam` stored at the specified index of the `FilteredList<Task>` and the
-`FilteredList<Exam>` respectively are retrieved. 
+`FilteredList<Exam>` respectively are retrieved.
 
-There will be checks to see if the `Task` is already linked to the exam and if 
+There will be checks to see if the `Task` is already linked to the exam and if
 the module code of the `Exam` is same as that of `Task`. Once these checks are passed,
 the `Task` will be linked to the `Exam`
 
@@ -361,8 +459,8 @@ Shown below is a sequence diagram of what occurs when the `execute` method of
 |              Sequence diagram of LinkExamCommand               |
 
 <div markdown="span" class="alert alert-info">
-:information_source: **Note:** The lifeline for `LinkExamCommandParser` and `LinkExamCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
+:information_source: **Note:** The lifeline for `LinkExamCommandParser` and `LinkExamCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 **Sequence of actions made when `execute` method of `LogicManager` is invoked**
@@ -375,29 +473,28 @@ Shown below is a sequence diagram of what occurs when the `execute` method of
 6. `execute` method of `LinkExamCommand` object le is invoked and model is passed in as
    an argument.
 7. `LinkExamCommand` calls the `getFilteredTaskList` method of `Model` and the `FilteredList<Task>` stored in model is
-returned.
+   returned.
 8.  `LinkExamCommand` calls the `getFilteredExamList` method of `Model` and the `FilteredList<Exam>` stored in model is
     returned.
 9. `Task` object called task is returned when `get` method of `List<Task>` is executed.
 10. task calls its own method `isLinked` and returns whether the task is linked. If the task is linked,
-an error message will be displayed.
+    an error message will be displayed.
 11. `Exam` object called exam is returned when `get` method of `List<Exam>` is executed.
 12. task calls its own method `getModule` and the `Module` stored in task will be returned.
 13. exam calls its own method `getModule` and the `Module` stored in Exam will be returned.
 14. The static method `isSameModule` of `Module` class is executed, and it checks whether task and exam
-have the same module code. If they do not have the same module code, an error message will be displayed.
+    have the same module code. If they do not have the same module code, an error message will be displayed.
 15. The `linkTask` method of `model` will be executed, and it will create a new `Task` object called linkedTask
-16. The `replaceTask` method of `model` will be executed and replaces task in `DistinctTaskList` in model with 
-linkedTask
+16. The `replaceTask` method of `model` will be executed and replaces task in `DistinctTaskList` in model with
+    linkedTask
 17. The `execute` method of `LinkExamCommand` returns a `CommandResult` object with
-   the exam linked successfully message as its argument to the `LogicManager` object.
+    the exam linked successfully message as its argument to the `LogicManager` object.
 
 The following activity diagram summarises what happens when LinkExamCommand is executed
 
 | ![ActivityDiagram](images/LinkExamCommandActivityDiagram.png)  |
 |:--------------------------------------------------------------:|
 |              Activity diagram of LinkExamCommand               |
-
 
 
 ### Add Exam Feature
@@ -461,6 +558,7 @@ object to display that the exam was successfully added.
 is not valid. Exam description is not valid if it is an empty string, exam date is not valid 
 if it is not in DD-MM-YYYY or if it is earlier than the current date. Module is not valid if it is not at least 6 characters long
 with the first 2 being alphabetical characters. Hence, in such cases, `Exam` object is not created, and the exam will not be added.
+</div>
 
 The following activity diagram summarises what happens when AddExamCommand is executed
 
@@ -514,6 +612,7 @@ display the tasks which match the keyword. Then, a `CommandResult` object is ret
 :information_source: **Note:**
 
 * For Step 4, `FindTasksCommandParser#parse` will not return a new `FindTasksCommand` object if the keyword is empty. 
+</div>
 
 The following activity diagram summarises what happens when FindTasksCommand is executed
 
@@ -553,30 +652,31 @@ The following activity diagram summarises what happens when FindTasksCommand is 
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-
-| Priority | As a …​     | I want to …​                                                 | So that I can…​                                                   |
-|--------|-------------|--------------------------------------------------------------|-------------------------------------------------------------------|
-| `* * *` | NUS student | view a help guide on how to use the list of commands         | refer to this guide when I forget some of the commands            |
-| `* * *` | NUS student | view the list of tasks I need to complete                    | start implementing those tasks.                                   |
-| `* * *` | NUS student | create the tasks in the tasklist                             | add the list of tasks that need to be completed                   |
-| `* * *` | NUS student | mark a task as complete                                      | have a better idea of what I have completed.                      |
-| `* * * ` | NUS student | add modules to my module list                                | add the modules that I am currently taking to the module list     |
-| `* * *` | NUS student | delete the tasks in my tasklist                              | remove them if added wrongly.                                     |
-| `* * *` | NUS student | delete the modules in my modulelist                          | remove them if added wrongly.                                     |
-| `* * *` | NUS student | edit the modules in my modulelist                            | remove them if added wrongly.                                     |
-| `* * *` | NUS student | link the task in the task list to the exam in the exam list  | track the number of exam-related tasks                            |
-| `* * *` | NUS student  | add my exams to the exam list                     | add my upcoming exams to the exam list to track my revision progress.                                |
-| `* * *` | NUS student  | view the list of modules I have                   | see the modules I am taking and my study progress for the modules.                                   |
-| `* * ` | NUS student | tag the priority status of a task in the task list           | prioritise the task that I would like to complete first           |
-| `* * ` | NUS student | tag the deadline of a task in the task list                  | track the date that the task should be completed                  |
-| `* * ` | NUS student | edit the priority status tagged to a task in the task list   | change the priority of the task I would like to complete first    |
-| `* * ` | NUS student | edit the deadline tagged to a task in the task list          | change the deadline that I would like to complete the task        |
-| `* * ` | NUS student | delete the priority status tagged to a task in the task list | remove the priority status of tasks which have been added wrongly |
-| `* * ` | NUS student | tag the priority status tagged to a task in the task list    | remove deadlines which I no longer want to track.                 |
-| `* * ` | NUS student | sort the tasks in the task list                              | organise the tasks in the task list                               |
-| `* *` | NUS student  | find a task by task description through a command | quickly locate the task instead of having to go through the whole list of tasks just to find it.     |
-| `* *` | NUS student  | find a module by module code through a command    | quickly locate the module instead of having to go through the whole list of modules just to find it. |                                                   |                                                                                                 |
-| `* *` | NUS student  | edit the exams in the exam list                   | change and correct the exam details easily if I input the wrong details.                             |
+| Priority | As a …​        | I want to …​                                                 | So that I can…​                                                                                      |
+|---------|----------------|--------------------------------------------------------------|------------------------------------------------------------------------------------------------------|
+| `* * *` | NUS student    | view a help guide on how to use the list of commands         | refer to this guide when I forget some of the commands                                               |
+| `* * *` | NUS student    | view the list of tasks I need to complete                    | start implementing those tasks.                                                                      |
+| `* * *` | NUS student    | create the tasks in the tasklist                             | add the list of tasks that need to be completed                                                      |
+| `* * *` | NUS student    | indicate a task is completed                                 | spend more time on other tasks.                                                                      |
+| `* * *` | NUS student    | add modules to my module list                                | add the modules that I am currently taking to the module list                                        |
+| `* * *` | NUS student    | delete the tasks in my tasklist                              | remove them if added wrongly.                                                                        |
+| `* * *` | NUS student    | delete the modules in my modulelist                          | remove them if added wrongly.                                                                        |
+| `* * *` | NUS student    | edit the modules in my modulelist                            | remove them if added wrongly.                                                                        |
+| `* * *` | NUS student    | link the task in the task list to the exam in the exam list  | track the number of exam-related tasks                                                               |
+| `* * *` | NUS student    | add my exams to the exam list                                | add my upcoming exams to the exam list to track my revision progress.                                |
+| `* * *` | NUS student    | view the list of modules I have                              | see the modules I am taking and my study progress for the modules.                                   |
+| `* * `  | NUS student    | tag the priority status of a task in the task list           | prioritise the task that I would like to complete first                                              |
+| `* * `  | NUS student    | tag the deadline of a task in the task list                  | track the date that the task should be completed                                                     |
+| `* * `  | NUS student    | edit the priority status tagged to a task in the task list   | change the priority of the task I would like to complete first                                       |
+| `* * `  | NUS student    | edit the deadline tagged to a task in the task list          | change the deadline that I would like to complete the task                                           |
+| `* * `  | NUS student    | delete the priority status tagged to a task in the task list | remove the priority status of tasks which have been added wrongly                                    |
+| `* * `  | NUS student    | tag the priority status tagged to a task in the task list    | remove deadlines which I no longer want to track.                                                    |
+| `* * `  | NUS student    | sort the tasks in the task list                              | organise the tasks in the task list.                                                                 |
+| `* *`   | NUS student    | find a task by task description through a command            | quickly locate the task instead of having to go through the whole list of tasks just to find it.     |
+| `* *`   | NUS student    | find a module by module code through a command               | quickly locate the module instead of having to go through the whole list of modules just to find it. |                                                   |                                                                                                 |
+| `* *`   | NUS student    | edit the exams in the exam list                              | change and correct the exam details easily if I input the wrong details.                             |
+| `* *`   | NUS student    | indicate a task is not completed                             | continue working on the task.                                                                        |
+| `* *`   | NUS student    | edit the tasks in my task list                               | easily change and correct the details of my tasks.                                                   |
 
 
 ### Use cases
@@ -615,20 +715,86 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. MODPRO shows an error message. </br>
       Use case ends.
 
-**Use case: Mark a task as complete**
+
+**Use case: Indicate a task is completed**
 
 **MSS**
-1. User requests to mark a specific task as complete
-2. MODPRO marks the task
+1. NUS student requests to mark a specific task
+2. MODPRO ticks the specified task
+3. MODPRO updates the progress bar for the module and exam (if it exists) of the task
 
    Use case ends.
 
 **Extensions**
+* 1a. The provided command is in an invalid command format
+    * 1a1. MODPRO shows an error message </br>
+      Use case ends.
+* 1b. The given index for the task is invalid
+    * 1b1. MODPRO shows an error message </br>
+      Use case ends.
+* 1c. The task specified is already marked 
+    * 1c1. MODPRO shows an error message </br>
+      Use case ends.
 
-* 1a. The given index is invalid.
+**Use case: Indicate a task is not completed**
 
-    * 1a1. MODPRO shows an error message..
+**MSS**
+1. NUS student requests to unmark a specific task
+2. MODPRO unticks the specified task
+3. MODPRO updates the progress bar for the module and exam (if it exists) of the task
 
+   Use case ends.
+
+**Extensions**
+* 1a. The provided command is in an invalid command format
+    * 1a1. MODPRO shows an error message </br>
+      Use case ends.
+* 1b. The given index for the task is invalid
+    * 1b1. MODPRO shows an error message </br>
+      Use case ends.
+* 1c. The task specified is already unmarked
+    * 1c1. MODPRO shows an error message </br>
+      Use case ends.
+
+**Use case: Edit a task**
+
+**MSS**
+1. NUS student requests to edit the module or description of a specific task
+2. MODPRO updates the specified task with the new values provided
+
+   Use case ends.
+
+**Extensions**
+* 1a. The provided command is in an invalid command format
+    * 1a1. MODPRO shows an error message </br>
+      Use case ends.
+* 1b. The given index for the task is invalid
+    * 1b1. MODPRO shows an error message </br>
+      Use case ends.
+* 1c. Neither the module nor the description is provided.
+    * 1c1. MODPRO shows an error message </br>
+      Use case ends.
+* 1d. The given module code is invalid
+    * 1d1. MODPRO shows an error message </br>
+      Use case ends.
+* 1e. The given description is invalid
+    * 1e1. MODPRO shows an error message </br>
+      Use case ends.
+* 1f. The given module does not exist in the module list
+    * 1f1. MODPRO shows an error message </br>
+      Use case ends.
+* 1g. The module and description of the specified task are not changed.
+    * 1g1. MODPRO shows an error message </br>
+      Use case ends.
+* 1h. The edited task is the same as another existing task in the task list
+    * 1h1. MODPRO shows an error message </br>
+      Use case ends. 
+* 2a. The module of the specified task is changed and the specified task is linked to an exam
+    * 2a1. MODPRO unlinks the task from its exam and updates the progress bar for the exam
+    * 2a2. MODPRO updates the progress bar for both the current and previous module of the task</br>
+      Use case ends.
+* 2b. The module of the specified task is changed and the specified task is not linked to any exam
+    * 2b1. MODPRO updates the progress bar for both the current and previous module of the task</br>
       Use case ends.
 
 **Use Case: Add tags to a task**
@@ -718,8 +884,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1e1. MODPRO shows an error message </br>
       Use case ends
 
-
-
+    
 **Use case: Delete a task from the task list**
 
 **MSS**
@@ -919,7 +1084,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1g1. MODPRO shows an error message. </br>
       Use case ends. 
 
-**Use case: Edit an exam into the exam list**
+**Use case: Edit an exam in the exam list**
 
 **MSS**
 1. NUS student requests to edit a specific exam in the exam list by specifying the index number of the exam to be edited.  
@@ -1206,6 +1371,114 @@ module code `cs2100` is added to the module list.
     2. Test case: `t list` <br>
        Expected: The task list should now display the all 4 tasks with task descriptions of "WORK", "homework 1", "homewoRK 2", "past year paper",with a message saying "Listed all tasks"
 
+2. _{ more test cases …​ }_
+
+### Marking a task
+
+1. Marking a task while all tasks are being shown 
+   * Prerequisites: 
+     * List all tasks using the `t list` command. 
+     * The task list displays multiple tasks. 
+   * Test case: `t mark 1`<br>
+     Expected: 
+     * First task in the list is ticked.
+     * Details of the marked task shown in the feedback message.
+     * Progress bar for the module of the task is updated. 
+   * Test case: `t mark 0`<br>
+     Expected:
+     * No changes made to any tasks, exams or modules.
+     * Error details shown in the feedback message. 
+   * Test case: `t mark INDEX` (where `INDEX` is the index of a task that is already marked)<br>
+     Expected: Similar to the previous test case.
+   * Other invalid mark commands to try: `t mark `, `t mark asd`, `t mark INDEX` (where `INDEX` is larger than the list size)<br>
+     Expected: Similar to the previous test case.
+
+2. Marking a task with only some tasks shown 
+   * Prerequisites:
+     * Filter the tasks using the `t filter` command.
+     * The task list displays multiple tasks. 
+   * Test case: `t mark 1`<br>
+     Expected:
+     * First task in the list is ticked.
+     * Details of the marked task shown in the feedback message.
+     * Progress bar for the module of the task is updated. 
+   * Test case: `t mark INDEX` (where `INDEX` is larger than the size of the displayed list but less than the size of the stored task list)<br>
+     Expected:
+     * No changes made to any tasks, exams or modules.
+     * Error details shown in the feedback message.
+
+3. Marking a task linked to an exam
+    * Prerequisites:
+      * The list contains a task linked to an exam.
+      * The task shows the name of the exam.
+    * Test case: `t mark INDEX` (where `INDEX` is the index of the linked task)<br>
+      Expected:
+      * The task specified is ticked.
+      * Details of the marked task shown in the feedback message.
+      * Progress bars for both the module of the task and the exam it is linked to, are updated.
+
+
+### Editing a task
+
+1. Editing a task while all tasks are being shown
+    * Prerequisites: 
+      * List all tasks using the `t list` command.
+      * The task list displays multiple tasks.
+      * There are no tasks with the description 'task 1'.
+    * Test case: `t edit 1 d/task 1`
+      Expected:
+      * The description of the first task in the list is changed to 'task 1'.
+      * Details of the edited task is shown in the feedback message.
+    * Test case: `t edit 0 d/task 1`<br>
+      Expected:
+      * No changes made to any tasks, exams or modules.
+      * Error details shown in the feedback message.
+    * Other incorrect edit commands to try: `t edit d/task 1`, `t edit 1`, `t edit asd d/task 1`, `t edit INDEX d/task 1` (where `INDEX` is larger than the list size), `t edit 1 d/DESCRIPTION` (where `DESCRIPTION` is the current description of the first task in the list)<br>
+      Expected: Similar to the previous test case.
+
+2. Editing a task with only some tasks shown
+    * Prerequisites:
+      * Filter the tasks using the `t filter` command.
+      * The task list displays multiple tasks but not all the tasks in the stored task list.
+      * There are no tasks in the stored task list with the description 'task 1'.
+    * Test case: `t edit 1 d/task 1`<br>
+      Expected:
+      * The description of the first task in the list is changed to 'task 1'.
+      * Details of the marked task shown in the feedback message.
+    * Test case: `t edit INDEX d/task 1` (where `INDEX` is larger than the size of the displayed list but less than the size of the stored task list)<br>
+      Expected:
+      * No changes made to any tasks, exams or modules.
+      * Error details shown in the feedback message.
+
+3. Editing a task with invalid parameters
+    * Prerequisites:
+        * There are no modules in the stored module list with the module code 'cs2030'.
+        * The task list displays multiple tasks. 
+    * Test cases: `t edit 1 m/cs2030`, `t edit 1 m/c`, `t edit 1 d/ `<br>
+      Expected:
+        * No changes made to any tasks, exams or modules.
+        * Error details shown in the feedback message.
+
+4. Editing a task to be the same as another task
+    * Prerequisites:
+        * There are 2 modules in the stored module list.
+        * The first 2 tasks in the list have the same module.
+    * Test cases: `t edit 1 d/DESCRIPTION` (where DESCRIPTION is the description of the second task)<br>
+      Expected:
+        * No changes made to any tasks, exams or modules.
+        * Error details shown in the feedback message.
+
+5. Editing the module of a task linked to an exam
+    * Prerequisites:
+        * List all tasks using the `t list` command.
+        * There are 2 modules in the stored module list, 1 exam in the exam list and 1 task in the task list.
+        * The module of both the exam and the task is the first module in the module list.
+        * The task is linked to the exam.
+    * Test cases: `t edit 1 m/MODULE` (where `MODULE` is the module code of the second module in the list)<br>
+      Expected:
+        * The module of the task in the list is changed to `MODULE`.
+        * A warning and the details of the edited task are shown in the feedback message.
+        * Progress bars for the 2 modules are updated.
 
 ### Saving data
 
