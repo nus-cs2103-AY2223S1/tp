@@ -167,7 +167,7 @@ Each field is implemented by a class with the same name, except for `Id` which i
 Id is unique and automatically generated when person is added.
 
 Persons with the same fields for email, phone or ID are not allowed.
-In real life, these fields would always be unique for each individual, so there should not be a situation where two contacts have the same data in any of these fields.
+In real life, these fields are very likely unique for each individual, so there should not be a situation where two contacts have the same data in any of these fields. Duplicate names are allowed as there may be multiple people with the same name.
 
 | Field Name | Description                                    | Constraints                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 |------------|------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -949,18 +949,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. Should be able to hold up to 1,000 tasks without a _noticeable sluggishness_ in performance for typical usage.
 4. A user with _above average typing speed_ for _regular text_ should be able to accomplish
 most of the tasks faster using commands than using the mouse.
-5. Contact/task/tag names should contain alphanumeric characters and/or spaces and/or certain allowed symbols.
-6. Contact and task fields should be case-insensitive.
-7. Tag names should be case-sensitive.
-8. Contact phone numbers should contain numbers only.
-9. Should be usable by first-time user without referencing external guides.
-10. GUI should be usable by colour blind users.
-11. Should work on both 32-bit and 64-bit environments.
-12. GUI should appear as-designed on screens with resolutions from 1024x576 to 3840x2160.
-13. Should display a visual prompt when YellowBook is processing an user input.
-14. The project is expected to deliver a _new iteration_ every 2 weeks.
-15. Should work without an active internet connection.
-16. Data files from YellowBook v1.4 onwards should be compatible with the future versions.
+5. Should be able to store contacts with the same names.
+6. Should be usable by first-time user without referencing external guides.
+7. GUI should be usable by colour blind users.
+8. Should work on both 32-bit and 64-bit environments.
+9. GUI should appear as-designed on screens with resolutions from 1024x576 to 3840x2160.
+10. Should display a visual prompt when YellowBook has processed an user input.
+11. The project is expected to deliver a _new iteration_ every 2 weeks.
+12. Should work without an active internet connection.
+13. Data files from YellowBook v1.4 onwards should be compatible with the future versions.
 
 ### Glossary
 
