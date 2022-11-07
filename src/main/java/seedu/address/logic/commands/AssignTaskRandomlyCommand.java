@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_TASK_INDEX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.LABEL_TASK_INDEX;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,18 +27,15 @@ public class AssignTaskRandomlyCommand extends Command {
     public static final String COMMAND_WORD = "random";
     public static final String ALIAS = "r";
     public static final String FULL_COMMAND = AssignCommand.COMMAND_WORD + " " + COMMAND_WORD;
-
-    public static final String MESSAGE_USAGE = FULL_COMMAND
-            + ": Assigns a task to the random member in the team.\n"
-            + "Parameters: TASK_INDEX (must be a valid positive integer) \n"
-            + "Example: " + FULL_COMMAND + " 1";
+    public static final String HELP_MESSAGE =
+            "The '" + FULL_COMMAND + "' command is used to randomly assign a task to a member in the team.\n";
 
     public static final String MESSAGE_ASSIGN_TASK_SUCCESS = "Randomly Assigned Task: %1$s randomly assigned to %2$s";
     public static final String MESSAGE_ALL_MEMBERS_ASSIGNED = "There are no team members left to assign this task to";
     public static final String MESSAGE_TASK_INDEX_OUT_OF_BOUNDS = "This task does not exist."
             + "There are less than %1$s tasks in your list.";
 
-    @CommandLine.Parameters(arity = "1", description = FLAG_TASK_INDEX_DESCRIPTION)
+    @CommandLine.Parameters(arity = "1", paramLabel = LABEL_TASK_INDEX, description = FLAG_TASK_INDEX_DESCRIPTION)
     private Index taskIndex;
 
     @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,
@@ -53,7 +51,7 @@ public class AssignTaskRandomlyCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         if (commandSpec.commandLine().isUsageHelpRequested()) {
-            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+            return new CommandResult(HELP_MESSAGE + commandSpec.commandLine().getUsageMessage());
         }
         requireNonNull(model);
         List<Task> tasks = model.getFilteredTaskList();

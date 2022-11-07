@@ -153,7 +153,20 @@
   @include relative-font-size(1.5);
 }
 
-
+// style taken from https://developer.mozilla.org/en-US/docs/Web/HTML/Element/kbd
+kbd {
+  background-color: #eee;
+  border-radius: 3px;
+  border: 1px solid #b4b4b4;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 2px 0 0 rgba(255, 255, 255, 0.7) inset;
+  color: #333;
+  display: inline-block;
+  font-size: .85em;
+  font-weight: 700;
+  line-height: 1;
+  padding: 2px 4px;
+  white-space: nowrap;
+}
 
 /**
  * Posts
@@ -176,8 +189,8 @@
 .post-content {
   margin-bottom: $spacing-unit;
 
-  h1, h2, h3 { margin-top: $spacing-unit * 2 }
-  h4, h5, h6 { margin-top: $spacing-unit }
+  h1, h2 { margin-top: $spacing-unit }
+  h3, h4, h5, h6 { margin-top: $spacing-unit * 0.5 }
 
   h2 {
     @include relative-font-size(1.75);
@@ -224,6 +237,13 @@
   }
 }
 
+.alert .emoji {
+  margin-bottom: 3px;
+}
+
+.alert p {
+  margin-bottom: 0;
+}
 
 
 /**
