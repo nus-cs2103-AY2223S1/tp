@@ -113,7 +113,8 @@ public class AddBillCommand extends Command {
                     && amount.equals(((AddBillCommand) other).amount)
                     && defaultPaymentStatus.equals(((AddBillCommand) other).defaultPaymentStatus));
         } else {
-            return other == this || (other instanceof AddBillCommand && bill.equals(((AddBillCommand) other).bill));
+            return other == this
+                    || (other instanceof AddBillCommand && bill.equals(((AddBillCommand) other).bill));
         }
     }
 }

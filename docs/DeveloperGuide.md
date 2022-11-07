@@ -138,6 +138,7 @@ The `Model` component,
 * Take note that,
     * the application differentiates patients by `Name`
     * same letters of `Name` in different cases are considered as the same `Name`
+
 #### Appointment
 
 <img src="images/dg/UniqueAppointmentListClassDiagram.png" width="450">
@@ -157,7 +158,6 @@ The `Model` component,
     * the `Appointment` must be the same as an existing `Appointment`
     * one `Appointment` can attach at most one bill
     * the application differentiates bills by all four attributes.
-
 
 ### Storage component
 
@@ -253,7 +253,7 @@ Step 5. The user then decides to execute the command `list`. Commands that do no
 
 The add feature allows users to add a patient, appointment or bill.
 
-The addition is done through `AddPatientCommand`, `AddAppointmentCommand`, `AddBillCommand`. 
+The addition is done through `AddPatientCommand`, `AddAppointmentCommand`, `AddBillCommand`.
 
 Given below is an example usage scenario for __AddPatientCommand__ and how the mechanism behaves at each step.
 
@@ -269,6 +269,18 @@ Step 4. The `AddPatient` command calls `Model#addPatient()`, which adds the
 patient to the `UniquePatientList` in `ModelManager`.
 
 Step 5. The application will then save the patient into the `UniquePatientList` and display the patient added.
+
+The sequence diagram below shows how the `AddXXXXCommand` is parsed:
+![AddParserSequenceDiagram](images/dg/AddParserSequenceDiagram.png)
+
+The sequence diagram below shows how the add patient operation works:
+![AddPatientSequenceDiagram](images/dg/AddPatientCommandSequenceDiagram.png)
+
+The sequence diagram below shows how the add appointment operation works:
+![AddAppointmentSequenceDiagram](images/dg/AddAppointmentCommandSequenceDiagram.png)
+
+The sequence diagram below shows how the add bill operation works:
+![AddBillSequenceDiagram](images/dg/AddBillCommandSequenceDiagram.png)
 
 The add feature is now separated for the patients, appointments and bills sections.
 
@@ -305,7 +317,7 @@ Step 1. The user launches the application for the first time. All patients, appo
 of the application as indexed lists.
 
 Step 2. The user executes `editpatient 1 n/John` to edit the first patient in the list to have the name John.
-The parser creates an `EditPatientDescriptor` for the `EditPatientCommand`. 
+The parser creates an `EditPatientDescriptor` for the `EditPatientCommand`.
 
 Step 3. The `EditPatientCommand` retrieves the old patient from the `Model` and
 creates the edited `Patient` using the `EditPatientDescriptor`.
@@ -316,8 +328,13 @@ edited `Patient` will cause duplicate `Patient`s.
 Step 5. The `EditPatientCommand` calls `Model#setPatient`, which replaces
 the patient in the `UniquePatientList` in `ModelManager`.
 
-The edit feature is now separated for the patients, appointments and bills sections. The steps for editing appointments and bills are similar.
+The sequence diagram below shows how the `EditXXXXCommand` is parsed:
+![EditParserSequenceDiagram](images/dg/EditParserSequenceDiagram.png)
 
+The sequence diagram below shows how the edit operation works:
+![EditPatientSequenceDiagram](images/dg/EditCommandSequenceDiagram.png)
+
+The edit feature is now separated for the patients, appointments and bills sections. The steps for editing appointments and bills are similar.
 Design considerations:
 1. Length of command word
 2. Whether to use a prefix for the name of the patient
@@ -348,8 +365,8 @@ Given below is an example usage scenario for __FindPatientCommand__ and how the 
 
 Step 1. The user launches the application. The `filteredPatients` list is initialized with an "always true" predicate for all the patient fields and all patients are shown to the user as an indexed list on the patient list panel.
 
-Step 2. The user executes the `findpatient n/John` or `fp n/John` command to find all patients with the name field containing "John". 
-The `FindPatientCommand` calls `Model#updateFilteredPatientList(predicate)` to set the predicate of the `filteredPatients` list to the new predicate created by the command. 
+Step 2. The user executes the `findpatient n/John` or `fp n/John` command to find all patients with the name field containing "John".
+The `FindPatientCommand` calls `Model#updateFilteredPatientList(predicate)` to set the predicate of the `filteredPatients` list to the new predicate created by the command.
 The application displays the list of patients with names containing "John" on the patient list panel.
 
 The following sequence diagram shows how the `FindPatientCommand` works:
@@ -386,7 +403,7 @@ Alternatives:
     - Pros: Easy to remember and type the command word
     - Cons: Too many prefixes to type in one command if we want to search by multiple fields, which can make the command very long
 2. Create a new predicate class for each field instead of using Optional predicates
-    - Pros: Predicates are more clearly separated and defined 
+    - Pros: Predicates are more clearly separated and defined
     - Cons: More classes to maintain
 
 ###Delete Feature
@@ -404,9 +421,9 @@ of the application as indexed lists.
 Step 2. The user executes `deletePatient 2` command to delete the patient at index 2 in the list.
 The `delete` command calls `Model#deletePatient` to delete the patient from the list of patients.
 
-The delete feature is now separated for the patients, appointments and bills sections. Deleting a patient also deletes
-related appointments.
 
+The delete feature is now seperated for the patients, appointments and bills sections. Deleting a patient also deletes
+related appointments and bills. Deleting an appointment deletes its related bills.
 
 ### Select Feature
 
@@ -529,7 +546,7 @@ Step 3. The application displays the list of patients sorted according to the pa
 * **Alternative 2:** Individual command knows how to sort by itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the patient being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
-  
+
 
 ### Command Shortcut Feature
 
@@ -609,321 +626,346 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: UC-01 - Adding a patient**
 
 **MSS**
-1. User enters the add command with the patient's details to be added.
-2. HealthContact adds the patient and displays the new patient added with his/her details.
+1. Patient calls the clinic and provides his/her personal information.
+2. User enters the add command with the patient's details to be added.
+3. HealthContact adds the patient and displays the new patient added with his/her details.
 Use case ends.
 
 **Extensions**
 
-* 1a. HealthContact detects an error in the format of the command entered.
-    * 1a1. User reenters the command again with the correct format.
-    * Step 1a1 is repeated until the command entered is valid. 
-    * Use case resumes from Step 2.
-* 1b. HealthContact detects that the patient already exists in the application.
-    * 1b1. User reenters the command again with a different patient.
-    * Step 1b1 is repeated until the patient entered is valid. 
-    * Use case resumes from Step 2.
 
+
+* 2a. HealthContact detects an error in the format of the command entered.
+    * 2a1. HealthContact shows an error message.
+    * 2a2. User enters the command again.
+    * Steps 2a1-2a2 are repeated until the data entered are correct.
+    * Use case resumes from step 3.
+* 2b. HealthContact detects that the patient already exists in the database.
+    * 2b1. HealthContact shows an error message.
+    * 2b2. User enters the command again.
+    * Steps 2b1-2b2 are repeated until the patient does not exist in the database.
+    * Use case resumes from step 3.
 
 **Use case: Adding an appointment**
 
 **MSS**
 
-1. User enters add command with the detailed information of appointment to be added.
-2. HealthContact adds the appointment
+1. Patient calls the clinic to make an appointment.
+2. User enters add command with the detailed information of appointment to be added.
+3. HealthContact adds the appointment
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The format for add command is not followed.
 
-    * 1a1. HealthContact shows an error message.
-
-      Use case ends.
-
-* 1b. The patient does not exist.
-
-    * 1b1. HealthContact shows an error message.
-
-      Use case ends.
+* 2a. HealthContact detects an error in the format of the command entered.
+    * 2a1. HealthContact shows an error message.
+    * 2a2. User enters the command again.
+    * Steps 2a1-2a2 are repeated until the data entered are correct.
+    * Use case resumes from step 3.
+* 2b. HealthContact detects that the appointment already exists in the database.
+    * 2b1. HealthContact shows an error message.
+    * 2b2. User enters the command again.
+    * Steps 2b1-2b2 are repeated until the appointment does not exist in the database.
+    * Use case resumes from step 3.
     
 **Use case: Adding a bill to an appointment**
 
 **MSS**
 
-1. User enters add command with the detailed information of bill to be added.
-2. HealthContact adds the bill
+1. Doctor finishes the consultation and calls the clinic to enter the bill details.
+2. User enters add command with the detailed information of bill to be added.
+3. HealthContact adds the bill
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The format for AddBillCommand is not followed.
+* 2a. HealthContact detects an error in the format of the command entered.
+    * 2a1. HealthContact shows an error message.
+    * 2a2. User enters the command again.
+    * Steps 2a1-2a2 are repeated until the data entered are correct.
+    * Use case resumes from step 3.
+* 2b. HealthContact detects that the bill already exists in the database.
+    * 2b1. HealthContact shows an error message.
+    * 2b2. User enters the command again.
+    * Steps 2b1-2b2 are repeated until the bill does not exist in the database.
+    * Use case resumes from step 3.
 
-    * 1a.1 HealthContact shows an error message.
-
-      Use case ends.
-
-* 1b. The bill for an appointment already exists.
-
-    * 1b.1 HealthContact shows an error message.
-
-      Use case ends.
-    
 **Use case: Editing a patient**
 
 **MSS**
 
-1. User enters edit command with the detailed information of patient to be edited.
-2. HealthContact edits the patient
+1. Patient calls the clinic and provides his/her updated personal information.
+2. User enters edit command with the detailed information of patient to be edited.
+3. HealthContact edits the patient
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The input format is invalid.
-
-    * 3a1. HealthContact shows an error message.
-
-      Use case ends.
+* 2a. HealthContact detects an error in the format of the command entered.
+    * 2a1. HealthContact shows an error message.
+    * 2a2. User enters the command again.
+    * Steps 2a1-2a2 are repeated until the data entered are correct.
+    * Use case resumes from step 3.
+* 2b. HealthContact detects that the patient already exists in the database.
+    * 2b1. HealthContact shows an error message.
+    * 2b2. User enters the command again.
+    * Steps 2b1-2b2 are repeated until the patient exists in the database.
+    * Use case resumes from step 3.
 
 **Use case: Editing an appointment**
 
 **MSS**
 
-1. User enters edit command with the detailed information of appointment to be edited.
-2. HealthContact edits the appointment
+1. Patient calls the clinic to change the appointment details.
+2. User enters edit command with the detailed information of appointment to be edited.
+3. HealthContact edits the appointment
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The input format is invalid.
-
-    * 1a1. HealthContact shows an error message.
-
-      Use case ends.
+* 2a. HealthContact detects an error in the format of the command entered.
+    * 2a1. HealthContact shows an error message.
+    * 2a2. User enters the command again.
+    * Steps 2a1-2a2 are repeated until the data entered are correct.
+    * Use case resumes from step 3.
+* 2b. HealthContact detects that the appointment index is invalid.
+    * 2b1. HealthContact shows an error message.
+    * 2b2. User enters the command again.
+    * Steps 2b1-2b2 are repeated until the appointment index is valid.
+    * Use case resumes from step 3.
     
 **Use case: Editing a bill of an appointment**
 
 **MSS**
 
-1. User enters edit command with the detailed information of bill to be edited.
-2. HealthContact edits the bill
+1. Doctor calls the clinic to change the bill details.
+2. User enters edit command with the detailed information of bill to be edited.
+3. HealthContact edits the bill
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The format for EditBillCommand is not followed.
-
-    * 1a.1 HealthContact shows an error message.
-
-      Use case ends.
-
-* 1b. Index of the edited bill is not allowed.
-
-    * 1b.1 HealthContact shows an error message.
-
-      Use case ends.
+* 2a. HealthContact detects an error in the format of the command entered.
+    * 2a1. HealthContact shows an error message.
+    * 2a2. User enters the command again.
+    * Steps 2a1-2a2 are repeated until the data entered are correct.
+    * Use case resumes from step 3.
+* 2b. HealthContact detects that the bill index is invalid.
+    * 2b1. HealthContact shows an error message.
+    * 2b2. User enters the command again.
+    * Steps 2b1-2b2 are repeated until the bill index is valid.
+    * Use case resumes from step 3.
 
 
 **Use case: Deleting a patient**
 
 **MSS**
 
-1. User enters delete command with the index of the patient to be deleted.
-2. HealthContact deletes the patient
+1. Patient calls the clinic to delete his/her personal information.
+2. User enters delete command with the index of the patient to be deleted.
+3. HealthContact deletes the patient
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The given index is invalid.
-
-    * 1a1. HealthContact shows an error message.
-
-      Use case ends.
+* 2a. HealthContact detects that the patient index is invalid.
+    * 2a1. HealthContact shows an error message.
+    * 2a2. User enters the command again.
+    * Steps 2a1-2a2 are repeated until the patient index entered is valid.
+    * Use case resumes from step 3.
 
 
 **Use case: Deleting an appointment**
 
 **MSS**
 
-1. User enters delete command with the index of the appointment to be deleted.
-2. HealthContact deletes the appointment
+1. Patient calls the clinic to delete his/her appointment.
+2. User enters delete command with the index of the appointment to be deleted.
+3. HealthContact deletes the appointment
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The given index is invalid.
-
-    * 1a1. HealthContact shows an error message.
-
-      Use case ends.
+* 2a. HealthContact detects that the appointment index is invalid.
+    * 2a1. HealthContact shows an error message.
+    * 2a2. User enters the command again.
+    * Steps 2a1-2a2 are repeated until the appointment index entered is valid.
+    * Use case resumes from step 3.
 
 **Use case: Deleting a bill of an appointment**
 
 **MSS**
 
-1. User enters delete command with the index of the bill to be deleted.
-2. HealthContact deletes the bill
+1. Doctor calls the clinic to delete the bill of an appointment.
+2. User enters delete command with the index of the bill to be deleted.
+3. HealthContact deletes the bill
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The given index is invalid.
-
-    * 1a.1 HealthContact shows an error message.
-
-      Use case ends.
+* 2a. HealthContact detects that the bill index is invalid.
+    * 2a1. HealthContact shows an error message.
+    * 2a2. User enters the command again.
+    * Steps 2a1-2a2 are repeated until the bill index entered is valid.
+    * Use case resumes from step 3.
 
 **Use case: Sorting patients**
 
 **MSS**
 
-1. User enters sort patient command with the field to be sorted by.
-2. HealthContact sorts the patients
+1. Doctor calls the clinic to sort the patients.
+2. User enters sort patient command with the field to be sorted by.
+3. HealthContact sorts the patients
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The given type of sorting is invalid.
-
-    * 1a1. HealthContact shows an error message.
-
-      Use case ends.
+* 2a. HealthContact detects that the field is invalid.
+    * 2a1. HealthContact shows an error message.
+    * 2a2. User enters the command again.
+    * Steps 2a1-2a2 are repeated until the field entered is valid.
+    * Use case resumes from step 3.
 
 **Use case: Sorting appointments**
 
 **MSS**
 
-1. User enters sort appointment command with the field to be sorted by.
-2. HealthContact sorts the appointments
+1. Doctor calls the clinic to sort the appointments.
+2. User enters sort appointment command with the field to be sorted by.
+3. HealthContact sorts the appointments
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The given type of sorting is invalid.
-
-    * 1a1. HealthContact shows an error message.
-
-      Use case ends.
+* 2a. HealthContact detects that the field is invalid.
+    * 2a1. HealthContact shows an error message.
+    * 2a2. User enters the command again.
+    * Steps 2a1-2a2 are repeated until the field entered is valid.
+    * Use case resumes from step 3.
 
 **Use case: Sorting bills**
 
 **MSS**
 
-1. User enters sort bill command with the field to be sorted by.
-2. HealthContact sorts the bills
+1. Doctor calls the clinic to sort the bills.
+2. User enters sort bill command with the field to be sorted by.
+3. HealthContact sorts the bills
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The given type of sorting is invalid.
-
-    * 1a1. HealthContact shows an error message.
-
-      Use case ends.
+* 2a. HealthContact detects that the field is invalid.
+    * 2a1. HealthContact shows an error message.
+    * 2a2. User enters the command again.
+    * Steps 2a1-2a2 are repeated until the field entered is valid.
+    * Use case resumes from step 3.
 
 **Use case: Finding a patient**
 
 **MSS**
 
-1. User enters find patient command with the keyword to be searched.
-2. HealthContact shows a list of patients with the keyword
+1. Doctor calls the clinic to find a patient.
+2. User enters find patient command with the keyword to be searched.
+3. HealthContact shows a list of patients with the keyword
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The format of the find patient command is invalid.
-
-    * 1a1. HealthContact shows an error message.
-
-      Use case ends.
+* 2a. HealthContact detects that the keyword is invalid.
+    * 2a1. HealthContact shows an error message.
+    * 2a2. User enters the command again.
+    * Steps 2a1-2a2 are repeated until the keyword entered is valid.
+    * Use case resumes from step 3.
 
 
 **Use case: Finding an appointment**
 
 **MSS**
 
-1. User enters find appointment command with the keyword to be searched.
-2. HealthContact shows a list of appointments with the keyword
+1. Doctor calls the clinic to find an appointment.
+2. User enters find appointment command with the keyword to be searched.
+3. HealthContact shows a list of appointments with the keyword
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The format of the find appointment command is invalid.
-
-    * 1a1. HealthContact shows an error message.
-
-      Use case ends.
+* 2a. HealthContact detects that the keyword is invalid.
+    * 2a1. HealthContact shows an error message.
+    * 2a2. User enters the command again.
+    * Steps 2a1-2a2 are repeated until the keyword entered is valid.
+    * Use case resumes from step 3.
 
 **Use case: Finding a bill**
 
 **MSS**
 
-1. User enters find bill command with the keyword to be searched.
-2. HealthContact shows a list of bills with the keyword
+1. Doctor calls the clinic to find a bill.
+2. User enters find bill command with the keyword to be searched.
+3. HealthContact shows a list of bills with the keyword
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The format of the find bill command is invalid.
-
-    * 1a1. HealthContact shows an error message.
-
-      Use case ends.
+* 2a. HealthContact detects that the keyword is invalid.
+    * 2a1. HealthContact shows an error message.
+    * 2a2. User enters the command again.
+    * Steps 2a1-2a2 are repeated until the keyword entered is valid.
+    * Use case resumes from step 3.
 
 **Use case: Undoing a command**
 
 **MSS**
 
-1. User enters undo command to undo a command
-2. HealthContact undoes the command
+1. User makes a mistake in entering a command and wants to undo it.
+2. User enters undo command to undo a command
+3. HealthContact undoes the command
 
     Use case ends.
 
 **Extensions**
 
-* 1a. There is no command to undo.
-
-    * 1a1. HealthContact shows an error message.
-
-      Use case ends.
+* 2a. HealthContact detects that there is no command to undo.
+    * 2a1. HealthContact shows an error message.
+    * Use case ends.
 
 **Use case: Redoing a command**
 
 **MSS**
 
-1. User enters redo command to redo a command
-2. HealthContact redoes the command
+1. User wants to redo a command that was undone.
+2. User enters redo command to redo a command
+3. HealthContact redoes the command
 
     Use case ends.
 
 **Extensions**
 
-* 1a. There is no command to redo.
-
-    * 1a1. HealthContact shows an error message.
-
-      Use case ends.
+* 2a. HealthContact detects that there is no command to redo.
+    * 2a1. HealthContact shows an error message.
+    * Use case ends.
 
 **Use case: Listing**
 
 **MSS**
 
-1. User requests to list all patients, appointments and bills
-2. HealthContact lists all patients, appointments and bills
+1. User wants to list all patients, appointments or bills.
+2. User enters list command to list all patients, appointments and bills
+3. HealthContact lists all patients, appointments and bills
 
     Use case ends.
 
@@ -1029,7 +1071,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect delete commands to try: `deletepatient`, `deletepatient x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-   
+
 ### Deleting an appointment
 
 1. Deleting an appointment while a list of appointments is being shown
@@ -1037,7 +1079,7 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: A list of appointments are being shown with at least 1 appointment in the list.
 
     1. Test case: `deleteappointment 1`<br>
-       Expected: First appointment is deleted from the list. Details of the deleted appointment are shown in the status message. 
+       Expected: First appointment is deleted from the list. Details of the deleted appointment are shown in the status message.
 
     1. Test case: `deleteappointment 0`<br>
        Expected: No appointment is deleted. Error details shown in the status message.
@@ -1053,7 +1095,7 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: A list of bills is being shown with at least 1 bill in the list.
 
     2. Test case: `deletebill 1`<br>
-       Expected: First bill is deleted from the list. Details of the deleted bill are shown in the status message. 
+       Expected: First bill is deleted from the list. Details of the deleted bill are shown in the status message.
 
     3. Test case: `deletebill 0`<br>
        Expected: No bill is deleted. Error details shown in the status message.
@@ -1072,7 +1114,7 @@ testers are expected to do more *exploratory* testing.
 
     3. Test case: `findpatient n/Al a/25`<br>
        Expected: A list of all patients with names containing 'al'(case-insensitive) and 25 in their address is displayed. The number of patients found is displayed in the status message.
-    
+
     4. Test case: `findpatient`<br>
        Expected: Displayed list is not updated. Error details shown in the status message.
 
@@ -1111,9 +1153,9 @@ testers are expected to do more *exploratory* testing.
 1. Editing a certain patient's details
 
     1. Prerequisites: A list of patients is being shown with at least 1 patient in the list.
- 
-    2. Test case: `editpatient 1 n/Edward`<br> 
-       Expected: The name of the first patient displayed in the list is changed to Edward and the complete list of patients 
+
+    2. Test case: `editpatient 1 n/Edward`<br>
+       Expected: The name of the first patient displayed in the list is changed to Edward and the complete list of patients
        is displayed. The details of the edited patient is shown in the status message.
 
     3. Test case: `editpatient 1 n/Edward a/34 Baker's Street`<br>
@@ -1143,7 +1185,7 @@ testers are expected to do more *exploratory* testing.
     4. Test case: `editappointment 0 n/Ed`<br>
        Expected: No appointment is edited. Error details shown in the status message.
 
-    5. Other incorrect edit commands to try: `editappointment`, `editappointment 1`(missing field(s)), `editappointment x n/Ed`, `...` (where x is larger than the list size)<br>
+    5. Other incorrect edit commands to try: `editappointment`, `editappointment 1`(missing field(s)), `editappointment x n/Ed`(where x is larger than the list size)<br>
        Expected: Similar to previous.
 
 ### Editing bill details
@@ -1156,14 +1198,14 @@ testers are expected to do more *exploratory* testing.
        Expected: The patient for the first bill displayed in the list is changed to Edward and the complete list of bills
        is displayed. The details of the edited bill is shown in the status message.
 
-    3. Test case: `editbill 1 n/Edward p/unpaid`<br>
-       Expected: The patient for the first bill displayed in the list is changed to Edward and the payment status of the bill is changed to not paid and the complete list of bills
+    3. Test case: `editbill 1 n/Edward a/250`<br>
+       Expected: The patient for the first bill displayed in the list is changed to Edward and the amount is changed to 250 and the complete list of bills
        is displayed. The details of the edited bill is shown in the status message.
 
     4. Test case: `editbill 0 n/Ed`<br>
        Expected: No bill is edited. Error details shown in the status message.
 
-    5. Other incorrect edit commands to try: `editbill`, `editbill 1`(missing field(s)), `editbill x n/Ed`, `...` (where x is larger than the list size)<br>
+    5. Other incorrect edit commands to try: `editbill`, `editbill 1`(missing field(s)), `editbill x n/Ed`(where x is larger than the list size)<br>
        Expected: Similar to previous.
 
 ### Set payment status
@@ -1178,9 +1220,9 @@ testers are expected to do more *exploratory* testing.
     3. Test case: `setpaid 0`<br>
        Expected: Payment status of no bill is changed. Error details shown in the status message.
 
-    4. Other incorrect set payment status commands to try: `setpaid`, `setpaid x`, `...` (where x is larger than the list size)<br>
+    4. Other incorrect set payment status commands to try: `setpaid`, `setpaid x`(where x is larger than the list size)<br>
            Expected: Similar to previous.
-   
+
 2. Set a bill's payment status to unpaid
 
     1. Prerequisites: A list of bills is being shown with at least 1 bill in the list.
@@ -1191,7 +1233,7 @@ testers are expected to do more *exploratory* testing.
     3. Test case: `setunpaid 0`<br>
        Expected: Payment status of no bill is changed. Error details shown in the status message.
 
-    4. Other incorrect set payment status commands to try: `setunpaid`, `setunpaid x`, `...` (where x is larger than the list size)<br>
+    4. Other incorrect set payment status commands to try: `setunpaid`, `setunpaid x`(where x is larger than the list size)<br>
        Expected: Similar to previous.
 
 ### Sorting patients
@@ -1223,7 +1265,7 @@ testers are expected to do more *exploratory* testing.
 
     4. Other incorrect sort commands to try: `sortappointment`, `sortappointment o/asc`<br>
        Expected: Similar to previous.
-    
+
 ### Sorting bills
 
 1. Sorting bills by a criteria in either ascending or descending order.
@@ -1239,6 +1281,36 @@ testers are expected to do more *exploratory* testing.
     4. Other incorrect sort commands to try: `sortbill`, `sortbill o/asc`<br>
        Expected: Similar to previous.
 
+### Select patient
+
+1. Selecting a patient to display the patient's appointments and bills
+
+    1. Prerequisites: A list of patients is being shown with at least 1 patient in the list.
+
+    2. Test case: `selectpatient 1`<br>
+       Expected: The appointments and bills of the first patient are displayed. The details of the selected patient are shown in the status message.
+
+    3. Test case: `selectpatient 0`<br>
+       Expected: No patient is selected. Error details shown in the status message.
+
+    4. Other incorrect select commands to try: `selectpatient`, `selectpatient x`(where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Select appointment
+
+1. Selecting an appointment to display the related bills
+
+    1. Prerequisites: A list of appointments is being shown with at least 1 patient in the list.
+
+    2. Test case: `selectappointment 1`<br>
+       Expected: The bills of the first appointment are displayed. The details of the selected appointment are shown in the status message.
+
+    3. Test case: `selectappointment 0`<br>
+       Expected: No appointment is selected. Error details shown in the status message.
+
+    4. Other incorrect select commands to try: `selectappointment`, `selectappointment x`(where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
 
 ### Saving data
 
@@ -1252,9 +1324,22 @@ testers are expected to do more *exploratory* testing.
 
 ## Appendix: Effort
 
-* Find feature 
 
-| AB3 (FindCommand)                                                          | HealthContact (FindPatientCommand, FindAppointmentCommand, FindBillCommand                                      |
+* Edit feature
+  * EditCommand is AB3 versus EditPatientCommand, EditAppointmentCommand and EditBillCommand in HealthContact
+
+| AB3 (FindCommand)                                                          | HealthContact                                                                                                    |
+|----------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
+| Edits persons only                                                         | Edits patients, appointments and bills separately                                                                |
+| Edits name, phone, email, address, tag                                     | Edits by respective fields of patients, appointments and bills                                                   |
+| Can only edit using full words                                             | Can edit using partial and full words, and special characters depending on respective field constraints          |
+
+
+
+* Find feature
+  * FindCommand in AB3 versus FindPatientCommand, FindAppointmentCommand and FindBillCommand in HealthContact
+
+| AB3 (FindCommand)                                                          | HealthContact                                                                                                   |
 |----------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------|
 | Finds persons only                                                         | Finds patients, appointments and bills separately                                                               |
 | Finds by name only                                                         | Finds by respective fields of patients, appointments and bills                                                  |
@@ -1262,3 +1347,12 @@ testers are expected to do more *exploratory* testing.
 | A new predicate class needs to be created for each field to be filtered by | Optional predicates are used instead                                                                            |
 | Find by one entity, i.e. Person                                            | Find by multiple entities separately, i.e. Patient, Appointment and Bill                                        |
 | Can only find using full words                                             | Can find using partial and full words, numbers and special characters depending on respective field constraints |
+
+* Object Entity
+
+| AB3                | HealthContact                                    |
+|--------------------|--------------------------------------------------|
+| Person             | Patient, Appointment and Bill                    |
+| Persons themselves | Links patients with their appointments and bills |
+
+ HealthContact allows more entities and allows the users to link among these entities.

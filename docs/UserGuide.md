@@ -48,9 +48,9 @@ patient bills for the family clinic.
 
 3. Copy the file to the folder you want to use as the home folder for your HealthContact application.
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.
+4. Double-click the file to start the app. The Graphical User Interface(GUI) similar to the below should appear in a few seconds. Note how the app contains some sample data.
 
-<img src="images/Ui.png" width="800px" height ="500px">
+<img src="images/Ui.png">
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing help and pressing Enter will open the help window.
 
@@ -68,7 +68,7 @@ email address, home address, remarks and tags.
 
 * Name must be different from existing patient and name is case-insensitive.
 
-* Remark and tags are optional. 
+* Remark and tags are optional.
 
 * A patient can be added with multiple tags.
 
@@ -103,7 +103,7 @@ Notes on symbols in first column:
 
 * `ap n/Bernice Yu a/#11-330, blk 775, Bishan e/b.yu@nus.edu.sg p/80880011 t/NUS t/staff` adds such patient.
 
-<img src="images/ug/addcommand/ap1.png" width="800px" height ="500px">
+<img src="images/ug/addcommand/ap1.png">
 
 ### 1.1.2 Add an appointment of a patient `addappointment`, `aa`
 
@@ -154,11 +154,11 @@ Notes on symbols in first column:
 
 * `aa n/Bernice Yu s/2021-10-11 12:00 d/Dioni Yong t/X-Ray` adds such appointment.
 
-<img src="images/ug/addcommand/aa1.png" width="800px" height ="500px">
+<img src="images/ug/addcommand/aa1.png">
 
 * `aa n/Bernice Yu s/2022-01-23 09:00 d/Dioni Yong t/CT` adds another appointment for Bernice Yu.
 
-<img src="images/ug/addcommand/aa3.png" width="800px" height ="500px">
+<img src="images/ug/addcommand/aa3.png">
 
 ### 1.1.3 Add a bill of an appointment `addbill`, `ab`
 
@@ -198,7 +198,7 @@ Notes on symbols in first column:
 
 * `ab 1 a/1200.00 d/2021-11-11` adds a bill to the first appointment in the displayed list.
 
-<img src="images/ug/addcommand/ab1.png" width="800px" height ="500px">
+<img src="images/ug/addcommand/ab1.png">
 
 ## 1.2 Edit
 
@@ -206,8 +206,11 @@ Notes on symbols in first column:
 
 Edits a patient's information, such as name, phone number, address, email, remarks, and tags.
 
-####Format: `editpatient INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK] [t/TAG]…​`
-         `ep INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK] [t/TAG]…​`
+#### Format: 
+
+`editpatient INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK] [t/TAG]…​`
+
+`ep INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK] [t/TAG]…​`
 
 * Edits the patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient list.
   The index **must be a positive integer** 1, 2, 3, …​
@@ -218,27 +221,25 @@ Edits a patient's information, such as name, phone number, address, email, remar
 * You can remove all the patient’s tags by typing `t/` without
   specifying any tags after it.
 
-<<<<<<< HEAD
-####Examples:
+#### Examples:
 * `editpatient 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be
-=======
-Examples:
-* `editpatient 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st patient to be
->>>>>>> 2dd5945255eae4e2a718613bf83a67c02155c646
    `91234567` and `johndoe@example.com` respectively.
 
-<img src = "images/ug/editcommand/editpatient.png" width="800px" height ="400px">
+<img src = "images/ug/editcommand/editpatient.png">
 
 * `editpatient 2 n/Betsy Crower t/` edits the name of the 2nd patient to be `Betsy Crower` and clears all existing tags.
 
-<img src = "images/ug/editcommand/editpatient2.png" width="800px" height ="400px">
+<img src = "images/ug/editcommand/editpatient2.png">
 
 ### 1.2.2 Edit an appointment of a patient `editappointment`, `ea`
 
 Edits an appointment of a patient, such as name, medical test, slot, and doctor.
 
-####Format: `editappointment INDEX [n/NAME] [t/MEDICAL_TEST] [s/SLOT<yyyy-MM-dd HH:mm>] [d/DOCTOR]`
-         `ea INDEX [n/NAME] [t/MEDICAL_TEST] [s/SLOT<yyyy-MM-dd HH:mm>] [d/DOCTOR]`
+#### Format: 
+
+`editappointment INDEX [n/NAME] [t/MEDICAL_TEST] [s/SLOT<yyyy-MM-dd HH:mm>] [d/DOCTOR]`
+
+`ea INDEX [n/NAME] [t/MEDICAL_TEST] [s/SLOT<yyyy-MM-dd HH:mm>] [d/DOCTOR]`
 
 * Edits the appointment at the specified `INDEX`.
   The index refers to the index number shown in the displayed appointment list.
@@ -247,22 +248,21 @@ Edits an appointment of a patient, such as name, medical test, slot, and doctor.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
-<<<<<<< HEAD
-####Examples:
+#### Examples:
 * `editappointment 1 n/zanw t/CT Scan s/2021-03-01 10:00 d/Tan` Edits the name, medical test, slot,
-=======
-Example:
-* `editappointment 1 n/zanw t/CT Scan s/2021-03-01 10:00 d/Tan` edits the name, medical test, slot,
->>>>>>> 2dd5945255eae4e2a718613bf83a67c02155c646
    and doctor of the 1st appointment to be `zanw`, `CT Scan`, `2021-03-01 10:00`, and `Tan` respectively.
 
-<img src = "images/ug/editcommand/editappointment.png" width="800px" height ="400px">
+<img src = "images/ug/editcommand/editappointment.png">
 
 ### 1.2.3 Edit a bill of an appointment `editbill`, `eb`
 
 Edits a bill of an appointment.
 
-####Format: `editbill INDEX [a/amount] [d/bill date]` `eb INDEX [a/amount] [d/bill date]`
+#### Format: 
+
+`editbill INDEX [a/amount] [d/bill date]`
+
+`eb INDEX [a/amount] [d/bill date]`
 
 * Edits the bill at the specified `INDEX`. The index refers to the index number shown in the displayed bill list.
   The index **must be a positive integer** 1, 2, 3, …​
@@ -270,19 +270,14 @@ Edits a bill of an appointment.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
-<<<<<<< HEAD
-####Examples:
+#### Examples:
 * `editbill 1 a/100` Edits the amount of the 1st bill to be `100`.
-=======
-Examples:
-* `editbill 1 a/100` edits the amount of the 1st bill to be `100`.
 
->>>>>>> 2dd5945255eae4e2a718613bf83a67c02155c646
-<img src="images/ug/editcommand/editbill.png" width="800px" height ="400px">
+<img src="images/ug/editcommand/editbill.png">
 
 
 * `editbill 1 d/2020-10-10` edits the bill date of the 1st bill to be `2020-10-10`.
-<img src="images/ug/editcommand/editbill2.png" width="800px" height ="400px">
+<img src="images/ug/editcommand/editbill2.png">
 
 ## 1.3 Find
 
@@ -291,7 +286,7 @@ Examples:
 Filters patients by one or more fields using their prefixes, and their corresponding inputs (numbers, letters,
 special characters).
 
-####Format:
+#### Format:
 ```findpatient <prefix><input> ...``` or ```fp <prefix><input>...```
 
 * The command words are ``findpatient`` or ``fp``.
@@ -304,22 +299,25 @@ special characters).
 * If there are no prefixes keyed in, an error message will be shown with the correct command format.
 * If the input after a prefix is empty/invalid, an error message with the constraint of the field will be shown.
 
-####Examples:
+#### Examples:
 * ```findpatient n/ale``` returns ``Alex Yeoh`` and ``alex tan``.
 
-<img src="images/ug/findcommand/findpatientAlex.png" width="800px" height ="500px">
+<img src="images/ug/findcommand/findpatientAlex.png">
 
 * ```fp t/friends t/colleagues n/bernice``` returns only ``Bernice Yu`` with the tags ``friends`` and ``colleagues``.
 
-<img src="images/ug/findcommand/findpatientBernice.png" width="800px" height ="500px">
+<img src="images/ug/findcommand/findpatientBernice.png">
 
 ### 1.3.2 Find appointment(s) `findappointment`, `fa`
 
 Filters appointments by one or more fields using their prefixes, and their corresponding inputs (numbers, letters,
 special characters).
 
-####Format:
-```findappointment <prefix><input> ...``` or ```fa <prefix><input>...```
+#### Format:
+
+```findappointment <prefix><input> ...```
+
+```fa <prefix><input>...```
 
 * The command words are `findappointment` or `fa`.
 * The prefixes are n/ for Name, t/ for Medical Test, s/ for Slot and d/ for Doctor.
@@ -331,14 +329,14 @@ special characters).
 * If there are no prefixes keyed in, an error message will be shown with the correct command format.
 * If the input after a prefix is empty/invalid, an error message with the constraint of the field will be shown.
 
-####Examples:
+#### Examples:
 * ```findappointment t/x-ray``` returns ``Bernice Yu`` with "X-ray" appointment.
 
-<img src="images/ug/findcommand/findappointmentXray.png" width="800px" height ="500px">
+<img src="images/ug/findcommand/findappointmentXray.png">
 
 * ```fa d/Dr Tan n/Alex``` returns only ``Alex Yeoh``'s appointment with "Dr Tan".
 
-<img src="images/ug/findcommand/findappointmentAlex.png" width="800px" height ="500px">
+<img src="images/ug/findcommand/findappointmentAlex.png">
 
 
 ### 1.3.3 Find bill(s) `findbill`, `fb`
@@ -346,8 +344,10 @@ special characters).
 Filters bills by one or more fields using their prefixes, and their corresponding inputs (numbers, letters,
 special characters).
 
-####Format:
-```findbill <prefix><input> ...``` or ```fb <prefix><input>...```
+#### Format:
+```findbill <prefix><input> ...```
+
+```fb <prefix><input>...```
 
 * The command words are `findbill` or `fb`.
 * The prefixes are n/ for Name, p/ for Payment Status, d/ for Date and a/ for Amount.
@@ -359,15 +359,10 @@ special characters).
 * If there are no prefixes keyed in, an error message will be shown with the correct command format.
 * If the input after a prefix is empty/invalid, an error message with the constraint of the field will be shown.
 
-<<<<<<< HEAD
-####Examples:
+#### Examples:
 `findbill n/Ber p/unpaid` returns Bernice's unpaid bill
-=======
-Example:
-`findbill n/Ber p/unpaid` returns `Bernice Yu`'s unpaid bill.
->>>>>>> 2dd5945255eae4e2a718613bf83a67c02155c646
 
-<img src="images/ug/findcommand/fb.png" width="800px" height ="400px">
+<img src="images/ug/findcommand/fb.png">
 
 ## 1.4 Sort
 
@@ -375,17 +370,20 @@ Example:
 
 Sorts patients by a single field
 
-####Format:
+#### Format:
+
 ```sortpatient <prefix><input> ...```
 
+```sop <prefix><input> ...```
+
 * The command word is `sortpatient`.
-* The prefixes are c/ for Criteria and o/ for Order.
-* The criteria can be Name of patient (name), Phone number of patient (phone), Email address of patient (email), Address of patient (address).
-* The order can be Ascending (asc) or Descending (desc).
+* The prefixes are `c/` for Criteria and `o/` for Order.
+* The criteria can be Name of patient (`name`), Phone number of patient (`phone`), Email address of patient (`email`), Address of patient (`address`).
+* The order can be Ascending (`asc`) or Descending (`desc`).
 * If there are no prefixes keyed in, an error message will be shown with the correct command format.
 * If the input after a prefix is empty/invalid, an error message with the constraint of the field will be shown.
 
-####Examples:
+#### Examples:
 
 * ```sortpatient c/name o/asc``` returns patients sorted by name in ascending order.
 
@@ -399,17 +397,20 @@ Sorts patients by a single field
 
 Sorts appointments by a single field
 
-####Format:
+#### Format:
+
 ```sortappointment <prefix><input> ...```
 
+```soa <prefix><input> ...```
+
 * The command word is `sortappointment`.
-* The prefixes are c/ for Criteria and o/ for Order.
-* The criteria can be Name of patient (name), Medical Test of appointment (test), Slot of appointment (slot) and Doctor of appointment (doctor).
-* The order can be Ascending (asc) or Descending (desc).
+* The prefixes are `c/` for Criteria and `o/` for Order.
+* The criteria can be Name of patient (`name`), Medical Test of appointment (`test`), Slot of appointment (`slot`) and Doctor of appointment (`doctor`).
+* The order can be Ascending (`asc`) or Descending (`desc`).
 * If there are no prefixes keyed in, an error message will be shown with the correct command format.
 * If the input after a prefix is empty/invalid, an error message with the constraint of the field will be shown.
 
-####Examples:
+#### Examples:
 
 * ```sortappointment c/test o/asc``` returns appointments sorted by medical test in ascending order.
 
@@ -423,19 +424,22 @@ Sorts appointments by a single field
 
 Sorts bills by a single field
 
-####Format:
+#### Format:
+
 ```sortbill <prefix><input> ...```
 
+```sob <prefix><input> ...```
+
 * The command word is `sortbill`.
-* The prefixes are c/ for Criteria and o/ for Order.
-* The criteria can be Name of patient (name), Amount (amount), Bill date (date), Payment status (status).
-* The order can be Ascending (asc) or Descending (desc).
+* The prefixes are `c/` for Criteria and `o/` for Order.
+* The criteria can be Name of patient (`name`), Amount (`amount`), Bill date (`date`), Payment status (`status`).
+* The order can be Ascending (`asc`) or Descending (`desc`).
 * If there are no prefixes keyed in, an error message will be shown with the correct command format.
 * If the input after a prefix is empty/invalid, an error message with the constraint of the field will be shown.
 * If the criteria is Payment status, Ascending will show bills which are paid first and Descending will show bills which are unpaid first.
 
 
-####Examples:
+#### Examples:
 
 * ```sortbill c/amount o/asc``` returns bills sorted by amount in ascending order.
 
@@ -513,31 +517,23 @@ Notes on symbols in first column:
 
 Sets the payment status of a bill to "paid".
 
-Format:
+#### Format:
 ```setpaid <index>``` or ```sp <index>```
 
 * The command words are `setpaid` or `sp`.
 * The index refers to the index number of the bill shown in the displayed bill list.
 * The index must be a valid positive integer 1, 2, 3, …​
 
-Example:
+#### Example:
 * ```setpaid 1``` sets the first bill in the displayed bill list as paid, in this case, `Bernice Yu`'s bill.
 
 Before:
 
-<<<<<<< HEAD
 <img src="images/ug/setpaidunpaidcommand/spbefore.png">
 
 After:
 
 <img src="images/ug/setpaidunpaidcommand/spafter.png">
-=======
-<img src="images/ug/setpaidunpaidcommand/setpaidcommand.png" width="800px" height ="500px">
-
-After:
-
-<img src="images/ug/setpaidunpaidcommand/setpaidcommandafter.png" width="800px" height ="500px">
->>>>>>> 2dd5945255eae4e2a718613bf83a67c02155c646
 
 ### 1.6.2 Set Bill As Unpaid `setunpaid`, `sup`
 
@@ -556,19 +552,11 @@ Sets the payment status of a bill to "unpaid".
 
 Before:
 
-<<<<<<< HEAD
 <img src="images/ug/setpaidunpaidcommand/supbefore.png">
 
 After:
 
 <img src="images/ug/setpaidunpaidcommand/supafter.png">
-=======
-<img src="images/ug/setpaidunpaidcommand/setunpaidcommand.png" width="800px" height ="500px">
-
-After:
-
-<img src="images/ug/setpaidunpaidcommand/setunpaidcommandafter.png" width="800px" height ="500px">
->>>>>>> 2dd5945255eae4e2a718613bf83a67c02155c646
 
 ## 1.7 List `list`, `ls`
 
@@ -578,11 +566,7 @@ Removes all conditions previously applied to the list and shows all patients, ap
 
 `list` or `ls`
 
-<<<<<<< HEAD
-#### Example
-=======
-### Example:
->>>>>>> 2dd5945255eae4e2a718613bf83a67c02155c646
+#### Example:
 
 * `list` shows all patients, appointments and bills.
 
@@ -632,25 +616,17 @@ Deletes an appointment by the index number of the appointment in the list.
 * If the index provided is negative or greater than the number of patients in the list, an error message will be shown
   saying the index is invalid.
 
-<<<<<<< HEAD
 #### Examples:
 
 * `deleteappointment 3` deletes Charlotte Oliveiro's appointment and its bill.
 
-Before: 
+Before:
 
 <img src="images/ug/deletecommand/da1.png">
 
 After:
 
 <img src="images/ug/deletecommand/da2.png">
-=======
-Example:
-* `deleteappointment 2` deletes `Charlotte Oliveiro`'s appointment with Dr. Prabhu on 2022-10-21 08:30 for
-  knee exam.
-
-  <img src="images/ug/deletecommand/da.png">
->>>>>>> 2dd5945255eae4e2a718613bf83a67c02155c646
 
 ### 1.8.3 Delete a bill of an appointment `deletebill`, `db`
 
@@ -665,8 +641,8 @@ Deletes a bill by the index number of the bill in the list.
   shown with the correct command format.
 * If the index provided is negative or greater than the number of patients in the list, an error message will be shown
   saying the index is invalid.
+* The appointment should be deleted only once the bill for the appointment is paid.
 
-<<<<<<< HEAD
 #### Examples:
 
 * `deletebill 3` deletes Bernice's bill for her X-Ray appointment
@@ -678,12 +654,6 @@ Before:
 After:
 
 <img src="images/ug/deletecommand/db2.png">
-=======
-Example:
-`deletebill 1` deletes `Bernice Yu`'s bill for her X-Ray appointment.
-
-<img src="images/ug/deletecommand/db.png" width="800px" height ="400px">
->>>>>>> 2dd5945255eae4e2a718613bf83a67c02155c646
 
 ## 1.9 Undo `undo`
 
@@ -699,20 +669,17 @@ Reverses the most recent command.
 
 #### Examples:
 
-=======
-Example:
-
 * ```undo``` undoes the most recent command.
 
-1. Original Data
+Original Data
 
-<img src="images/ug/undoredocommand/undo1.png">
+<img src="images/ug/undoredocommand/undo1.PNG">
 
-2. Execute `deletepatient 1` to delete all information of Bernice Yu.
+Execute `deletepatient 1` to delete all information of Bernice Yu.
 
 <img src="images/ug/undoredocommand/undo2.png">
 
-3. Execute `undo`, infomation of Bernice Yu comes back.
+Execute `undo`, information of Bernice Yu comes back.
 
 <img src="images/ug/undoredocommand/undo3.png">
 
@@ -721,6 +688,7 @@ Example:
 Reverses the most recent undo command.
 
 #### Format:
+
 ```redo```
 
 * The command word is `redo`.
@@ -729,27 +697,24 @@ Reverses the most recent undo command.
 * Executing any command other than undo/redo will clear the redo stack. (i.e. Redo will not work after executing any command other than undo/redo)
 
 
-<<<<<<< HEAD
-#### Examples:
 
-=======
-Example:
+#### Examples:
 
 * ```redo``` redoes the most recent undo command.
 
-1. Original Data
+Original Data
 
-<img src="images/ug/undoredocommand/redo1.png">
+<img src="images/ug/undoredocommand/redo1.PNG">
 
-2. Execute `deletepatient 1` to delete all information of Bernice Yu.
+Execute `deletepatient 1` to delete all information of Bernice Yu.
 
 <img src="images/ug/undoredocommand/redo2.png">
 
-3. Execute `undo`, infomation of Bernice Yu comes back.
+Execute `undo`, information of Bernice Yu comes back.
 
 <img src="images/ug/undoredocommand/redo3.png">
 
-4. Execute `redo`, infomation of Bernice Yu is deleted again.
+Execute `redo`, information of Bernice Yu is deleted again.
 
 <img src="images/ug/undoredocommand/redo4.png">
 
@@ -760,7 +725,6 @@ Deletes all patients, appointments and bills from HealthContact.
 * If the user accidentally clears all data, the user can restore the data by using the `undo` command. If the user closes the application before undoing `clear`, the data will be gone permanently.
 
 #### Format
-
 
 `clear`
 
@@ -794,7 +758,7 @@ Opens the Help Window.
 
 * `help` opens the help window.
 
-<img src="images/ug/othercommands/help.png">
+<img src="images/ug/othercommands/help.png" width="639px" height="239px">
 
 ## 1.14 Save the data
 
@@ -805,7 +769,7 @@ HealthContact data are saved in the hard disk automatically after any command th
 HealthContact data are saved as a JSON file `[JAR file location]/data/healthcontact.json`. Advanced users are welcome to update data directly by editing that data file.
 * If the changes to the data file makes its format invalid, HealthContact will discard all data and start with an empty data file at the next run.
 
-# 2. FAQ
+# 2. Frequently Asked Questions
 1. Q: How do I find out which appointment a bill is for?
 - Use the FindAppointmentCommand to find all appointments for a patient using the patient name on the bill. Then, use the SelectAppointmentCommand to see which appointment is the bill for.
 
