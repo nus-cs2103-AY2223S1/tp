@@ -11,7 +11,7 @@ and get reminders on upcoming deadlines or deliverables.
 ## Contributions
 Given below are my contributions to the project.
 
-* **New Feature**: `DeleteGroupCommand` [#93](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/93)
+* **New Feature**: `DeleteGroupCommand` [#91](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/91)
   * Details:
     * This command class allows the deletion of a group, removing its corresponding members as well as their allocated tasks.
     * This helps the user to delete a group instantly.
