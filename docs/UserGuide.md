@@ -921,9 +921,9 @@ Format:  `home`
 
 Here's a screenshot of Plannit before and after executing the command:
 
-| Before executing the command                                                                                                                         | After executing the command                                                                                                                    |
-|------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
-| {::nomarkdown}<p align="center"><img src="images/home-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/home-after.png"/></p> <p align="left"><p>You are now back on the home screen!</p><br><p/>{:/} |
+| Before executing the command                                                                                                                         | After executing the command                                                                                               |
+|------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/home-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/home-after.png"/></p><p>You are now back on the home screen!</p><br>{:/} |
 
 <div markdown="block" class="alert alert-primary"> :bulb: **Tips:** <br>
 You may click on a module to ["peek"](#224-peeking-at-tasks) at a module's task while on the home page. <br> <br>
@@ -989,7 +989,6 @@ all data and start with an empty data file at the next run.
 the file that contains the data of your previous Plannit home folder.
 <br>
 <br>
-[More questions coming soon]
 
 --------------------------------------------------------------------------------------------------------------------
 # 4. Glossary
