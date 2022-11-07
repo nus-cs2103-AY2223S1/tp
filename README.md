@@ -21,4 +21,4 @@ The background of the program is a large-scale city, attributed to [GiulioDesign
 
 The icon of this program is an edited image from DepositPhotos, found [here](https://depositphotos.com/471137460/stock-illustration-book-yellow-glowing-neon-icon.html).
 
-This team recognises the rights to the images go to their respective owners.
+This team recognises that the rights to the images go to their respective owners.
