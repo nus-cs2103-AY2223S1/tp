@@ -75,6 +75,19 @@ class DeleteTagCommandTest {
     }
 
     @Test
+    public void execute_deletedTagNotPresent_failure() {
+        Internship selectedInternship = model.getFilteredInternshipList().get(INDEX_FIRST_INTERNSHIP.getZeroBased());
+
+        DeleteTagCommand deleteTagCommand = new DeleteTagCommand(INDEX_FIRST_INTERNSHIP, taglistStub);
+
+        Internship expectedInternship = new InternshipBuilder(selectedInternship).withTags("Urgent").build();
+
+        model.setInternship(selectedInternship, expectedInternship);
+
+        assertCommandFailure(deleteTagCommand, model, DeleteTagCommand.DELETED_TAG_NOT_PRESENT);
+    }
+
+    @Test
     public void equals() {
         final AddTagCommand standardCommand = new AddTagCommand(INDEX_FIRST_INTERNSHIP,
                 taglistStub);
