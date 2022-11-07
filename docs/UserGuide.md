@@ -98,8 +98,8 @@ Format: `exit`
 
 | PREFIX/ARGUMENT                           | Note                                                                                                                                                       |
 |-------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| n/PROJECT_NAME or n/CLIENT_NAME           | must only contain alphanumeric chatracters (cannot be empty or start with a space                                                                          |
-| i/PROJECT_ID or i/CLIENT_ID or i/ISSUE_ID | must exist and be a positive integer (1, 2, 3 ...​)                                                                                                        |
+| n/PROJECT_NAME or l/CLIENT_NAME           | must only contain alphanumeric chatracters (cannot be empty or start with a space                                                                          |
+| p/PROJECT_ID or c/CLIENT_ID or i/ISSUE_ID | must exist and be a positive integer (1, 2, 3 ...​)                                                                                                        |
 | t/TITLE                                   | cannot be empty or start with a space                                                                                                                      |
 | d/DEADLINE                                | must be in the format yyyy-mm-dd                                                                                                                           |
 | r/REPOSITORY                              | must be in the form USERNAME/REPO_NAME<br/> NOTE: Clicking the Repository Link of a project will copy it to the clipboard                                  |
