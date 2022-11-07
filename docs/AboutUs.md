@@ -27,7 +27,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/lizekai-richard.md)]
 
 * Role: Developer
-* Responsibilities: Backend
 
 ### Leong Jia Hao Daniel
 
@@ -36,7 +35,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/leongdl135)] [[portfolio](team/leongdl135.md)]
 
 * Role: Developer
-* Responsibilities: Data
 
 ### Khoo Jing Hong, Derrick
 
@@ -46,7 +44,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/drkkjh.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
 
 ### YANG Mingyang
 
@@ -56,4 +53,3 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/myangat0343.md)]
 
 * Role: Developer
-* Responsibilities: UI

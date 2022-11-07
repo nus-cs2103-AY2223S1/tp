@@ -29,6 +29,8 @@ Given below are my contributions to the project.
 * **Enhancements to existing features**:
     * `to be added soon`
 
+<div style="page-break-after: always;"></div>
+
 * **Documentation**:
   * Added implementation details and sequence diagrams for the `mview` command to the DG.
 
