@@ -2,7 +2,6 @@
 layout: page
 title: Anjali Agarwal's Project Portfolio Page
 ---
-
 ### Project: CLInkedIn
 
 CLInkedIn is a desktop address book application made for Recruiting and Hiring Managers.
@@ -40,7 +39,6 @@ Given below are my contributions to the project.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=agarwal-anjali&breakdown=true)
 
-
 * **Project management**: 
   * Pull requests reviewed and merged: [\#1](https://github.com/AY2223S1-CS2103T-T13-3/tp/pull/236), [\#2](https://github.com/AY2223S1-CS2103T-T13-3/tp/pull/224), [\#3](https://github.com/AY2223S1-CS2103T-T13-3/tp/pull/153), [\#4](https://github.com/AY2223S1-CS2103T-T13-3/tp/pull/150), [\#5](https://github.com/AY2223S1-CS2103T-T13-3/tp/pull/145), [\#6](https://github.com/AY2223S1-CS2103T-T13-3/tp/pull/139), [\#7](https://github.com/AY2223S1-CS2103T-T13-3/tp/pull/137), [\#8](https://github.com/AY2223S1-CS2103T-T13-3/tp/pull/129), [\#9](https://github.com/AY2223S1-CS2103T-T13-3/tp/pull/121), [\#10](https://github.com/AY2223S1-CS2103T-T13-3/tp/pull/119), [\#11](https://github.com/AY2223S1-CS2103T-T13-3/tp/pull/118), [\#12](https://github.com/AY2223S1-CS2103T-T13-3/tp/pull/112), [\#13](https://github.com/AY2223S1-CS2103T-T13-3/tp/pull/109), [\#14](https://github.com/AY2223S1-CS2103T-T13-3/tp/pull/90), [\#15](https://github.com/AY2223S1-CS2103T-T13-3/tp/pull/78), [\#16](https://github.com/AY2223S1-CS2103T-T13-3/tp/pull/74), [\#17](https://github.com/AY2223S1-CS2103T-T13-3/tp/pull/49), [\#18](https://github.com/AY2223S1-CS2103T-T13-3/tp/pull/48), [\#19](https://github.com/AY2223S1-CS2103T-T13-3/tp/pull/47), [\#20](https://github.com/AY2223S1-CS2103T-T13-3/tp/pull/43), [\#21](https://github.com/AY2223S1-CS2103T-T13-3/tp/pull/38), [\#22](https://github.com/AY2223S1-CS2103T-T13-3/tp/pull/32), [\#23](https://github.com/AY2223S1-CS2103T-T13-3/tp/pull/23)
 
@@ -52,9 +50,9 @@ Given below are my contributions to the project.
 * **Documentation**:
     * User Guide:
       - Added documentation for the different kinds of `tag type` and `link` commands.
-      - Updated documentation for different kind of `note` and `rate` commands.
-      - Updated images and command summary.
+      - Updated documentation for `note` and `rate` commands, GUI snippets, and command summary.
     * Developer Guide:
-      - Added details for the Target User Profile, Value Proposition, and User Stories.
-      - Added details for the Use Cases.
-      - Added implementation details for the `Tag Types` feature. 
+      - Added details for the Target User Profile, Value Proposition, User Stories, and Use Cases.
+      - Added implementation details for the `Tag Type` & `Link` feature.
+      - Added `CreateTagTypeSequenceDiagram` & `AddLinkSequenceDiagram` UML diagrams.
+      - Updated `StorageClassDiagram` & `ModelClassDiagram` UML Diagrams.
