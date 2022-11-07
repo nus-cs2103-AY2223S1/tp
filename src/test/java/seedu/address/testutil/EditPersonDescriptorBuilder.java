@@ -4,12 +4,16 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
+import seedu.address.model.person.Attendance;
+import seedu.address.model.person.GradeProgress;
+import seedu.address.model.person.Homework;
+import seedu.address.model.person.LessonPlan;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Session;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -34,8 +38,7 @@ public class EditPersonDescriptorBuilder {
         descriptor = new EditPersonDescriptor();
         descriptor.setName(person.getName());
         descriptor.setPhone(person.getPhone());
-        descriptor.setEmail(person.getEmail());
-        descriptor.setAddress(person.getAddress());
+        descriptor.setLessonPlan(person.getLessonPlan());
         descriptor.setTags(person.getTags());
     }
 
@@ -56,18 +59,74 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code LessonPlan} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withEmail(String email) {
-        descriptor.setEmail(new Email(email));
+    public EditPersonDescriptorBuilder withLessonPlan(String lessonPlan) {
+        descriptor.setLessonPlan(new LessonPlan(lessonPlan));
         return this;
     }
 
     /**
-     * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Homework} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withAddress(String address) {
-        descriptor.setAddress(new Address(address));
+    public EditPersonDescriptorBuilder withHomework(String homework) {
+        descriptor.setHomework(new Homework(homework));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Index} of the homework of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withHomeworkIndex(Index homeworkIndex) {
+        descriptor.setHomeworkIndex(homeworkIndex);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Attendance} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withAttendance(String attendance) {
+        descriptor.setAttendance(new Attendance(attendance));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Index} of the attendance of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withAttendanceIndex(Index attendanceIndex) {
+        descriptor.setAttendanceIndex(attendanceIndex);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Session} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withSession(String session) {
+        descriptor.setSession(new Session(session));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Index} of the session of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withSessionIndex(Index sessionIndex) {
+        descriptor.setSessionIndex(sessionIndex);
+        return this;
+    }
+
+    /**
+     * Sets the {@code GradeProgress} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withGradeProgress(String gradeProgress) {
+        descriptor.setGradeProgress(new GradeProgress(gradeProgress));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Index} of the grade of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withGradeProgressIndex(Index gradeProgressIndex) {
+        descriptor.setGradeProgressIndex(gradeProgressIndex);
         return this;
     }
 

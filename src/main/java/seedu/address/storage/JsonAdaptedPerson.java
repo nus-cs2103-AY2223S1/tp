@@ -10,11 +10,14 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
+import seedu.address.model.person.AttendanceList;
+import seedu.address.model.person.GradeProgressList;
+import seedu.address.model.person.HomeworkList;
+import seedu.address.model.person.LessonPlan;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.SessionList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -26,8 +29,11 @@ class JsonAdaptedPerson {
 
     private final String name;
     private final String phone;
-    private final String email;
-    private final String address;
+    private final String lessonPlan;
+    private final List<JsonAdaptedHomework> homeworkList = new ArrayList<>();
+    private final List<JsonAdaptedAttendance> attendanceList = new ArrayList<>();
+    private final List<JsonAdaptedSession> sessionList = new ArrayList<>();
+    private final List<JsonAdaptedGradeProgress> gradeProgressList = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -35,12 +41,27 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
+            @JsonProperty("lessonPlan") String lessonPlan,
+            @JsonProperty("homework") List<JsonAdaptedHomework> homeworkList,
+            @JsonProperty("attendance") List<JsonAdaptedAttendance> attendanceList,
+            @JsonProperty("session") List<JsonAdaptedSession> sessionList,
+            @JsonProperty("gradeProgress") List<JsonAdaptedGradeProgress> gradeProgressList,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
-        this.email = email;
-        this.address = address;
+        this.lessonPlan = lessonPlan;
+        if (gradeProgressList != null) {
+            this.gradeProgressList.addAll(gradeProgressList);
+        }
+        if (homeworkList != null) {
+            this.homeworkList.addAll(homeworkList);
+        }
+        if (attendanceList != null) {
+            this.attendanceList.addAll(attendanceList);
+        }
+        if (sessionList != null) {
+            this.sessionList.addAll(sessionList);
+        }
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -52,8 +73,19 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
         phone = source.getPhone().value;
-        email = source.getEmail().value;
-        address = source.getAddress().value;
+        lessonPlan = source.getLessonPlan().value;
+        homeworkList.addAll(source.getHomeworkList().homeworkList.stream()
+                .map(JsonAdaptedHomework::new)
+                .collect(Collectors.toList()));
+        attendanceList.addAll(source.getAttendanceList().attendanceList.stream()
+                .map(JsonAdaptedAttendance::new)
+                .collect(Collectors.toList()));
+        sessionList.addAll(source.getSessionList().sessionList.stream()
+                .map(JsonAdaptedSession::new)
+                .collect(Collectors.toList()));
+        gradeProgressList.addAll(source.getGradeProgressList().gradeProgressList.stream()
+                .map(JsonAdaptedGradeProgress::new)
+                .collect(Collectors.toList()));
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -86,24 +118,35 @@ class JsonAdaptedPerson {
         }
         final Phone modelPhone = new Phone(phone);
 
-        if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+        if (lessonPlan == null) {
+            throw new IllegalValueException(String.format(
+                    MISSING_FIELD_MESSAGE_FORMAT, LessonPlan.class.getSimpleName()));
         }
-        if (!Email.isValidEmail(email)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
-        }
-        final Email modelEmail = new Email(email);
+        final LessonPlan modelLessonPlan = new LessonPlan(lessonPlan);
 
-        if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+        final HomeworkList modelHomeworkList = new HomeworkList();
+        for (JsonAdaptedHomework homework : homeworkList) {
+            modelHomeworkList.addHomework(homework.toModelType());
         }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+
+        final AttendanceList modelAttendanceList = new AttendanceList();
+        for (JsonAdaptedAttendance attendance: attendanceList) {
+            modelAttendanceList.addAttendance(attendance.toModelType());
         }
-        final Address modelAddress = new Address(address);
+
+        final SessionList modelSessionList = new SessionList();
+        for (JsonAdaptedSession session: sessionList) {
+            modelSessionList.addSession(session.toModelType());
+        }
+
+        final GradeProgressList modelGradeProgressList = new GradeProgressList();
+        for (JsonAdaptedGradeProgress gradeProgress : gradeProgressList) {
+            modelGradeProgressList.addGradeProgress(gradeProgress.toModelType());
+        }
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        return new Person(modelName, modelPhone, modelLessonPlan, modelHomeworkList,
+                modelAttendanceList, modelSessionList, modelGradeProgressList, modelTags);
     }
 
 }

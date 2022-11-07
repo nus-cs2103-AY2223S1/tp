@@ -23,6 +23,11 @@ public class ResultDisplay extends UiPart<Region> {
     public void setFeedbackToUser(String feedbackToUser) {
         requireNonNull(feedbackToUser);
         resultDisplay.setText(feedbackToUser);
+        resultDisplay.setStyle(
+                "-fx-font-family: \"Figtree\"; "
+                        + "-fx-font-size: 12pt; "
+                        + "-fx-text-fill: #D4D4D4;"
+        );
     }
 
 }

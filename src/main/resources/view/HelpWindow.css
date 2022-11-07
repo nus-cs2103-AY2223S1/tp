@@ -1,13 +1,21 @@
-#copyButton, #helpMessage {
+@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;700&display=swap');
+
+#copyButton, #helpMessage, #basicCommands {
     -fx-text-fill: white;
+    -fx-font-family: "Figtree";
+    -fx-font-weight: 400;
 }
 
 #copyButton {
-    -fx-background-color: dimgray;
+    -fx-background-color: #91816e;
+    -fx-background-radius: 15;
+    -fx-border-color: #847564;
+    -fx-border-width: 3;
+    -fx-border-radius: 15;
 }
 
 #copyButton:hover {
-    -fx-background-color: gray;
+    -fx-background-color: #bbbbbb;
 }
 
 #copyButton:armed {
@@ -15,5 +23,6 @@
 }
 
 #helpMessageContainer {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: #535d6d;
 }
+

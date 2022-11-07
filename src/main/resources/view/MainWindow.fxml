@@ -12,9 +12,9 @@
 <?import javafx.scene.layout.VBox?>
 
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="Address App" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
+         title="Pupilist" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
   <icons>
-    <Image url="@/images/address_book_32.png" />
+    <Image url="@/images/pupilist.png" />
   </icons>
   <scene>
     <Scene>
@@ -22,9 +22,8 @@
         <URL value="@DarkTheme.css" />
         <URL value="@Extensions.css" />
       </stylesheets>
-
       <VBox>
-        <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
+        <MenuBar fx:id="menuBar" style="-fx-background-color: derive(#010101, 20%);" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
           </Menu>
@@ -51,6 +50,13 @@
             <Insets top="10" right="10" bottom="10" left="10" />
           </padding>
           <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+        </VBox>
+
+        <VBox fx:id="timeSlotList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
+          <padding>
+            <Insets top="10" right="10" bottom="10" left="10" />
+          </padding>
+          <StackPane fx:id="timeSlotListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
         </VBox>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />

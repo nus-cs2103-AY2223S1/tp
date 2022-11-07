@@ -1,13 +1,17 @@
 package seedu.address.testutil;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
+import seedu.address.model.person.AttendanceList;
+import seedu.address.model.person.GradeProgressList;
+import seedu.address.model.person.HomeworkList;
+import seedu.address.model.person.LessonPlan;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.SessionList;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -18,13 +22,15 @@ public class PersonBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_LESSON_PLAN = "Data structures";
 
     private Name name;
     private Phone phone;
-    private Email email;
-    private Address address;
+    private LessonPlan lessonPlan;
+    private HomeworkList homeworkList;
+    private AttendanceList attendanceList;
+    private SessionList sessionList;
+    private GradeProgressList gradeProgressList;
     private Set<Tag> tags;
 
     /**
@@ -33,8 +39,11 @@ public class PersonBuilder {
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
-        email = new Email(DEFAULT_EMAIL);
-        address = new Address(DEFAULT_ADDRESS);
+        lessonPlan = new LessonPlan(DEFAULT_LESSON_PLAN);
+        homeworkList = new HomeworkList();
+        attendanceList = new AttendanceList();
+        sessionList = new SessionList();
+        gradeProgressList = new GradeProgressList();
         tags = new HashSet<>();
     }
 
@@ -44,8 +53,12 @@ public class PersonBuilder {
     public PersonBuilder(Person personToCopy) {
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
-        email = personToCopy.getEmail();
-        address = personToCopy.getAddress();
+        lessonPlan = personToCopy.getLessonPlan();
+        homeworkList = new HomeworkList(new ArrayList<>(personToCopy.getHomeworkList().homeworkList));
+        attendanceList = new AttendanceList(new ArrayList<>(personToCopy.getAttendanceList().attendanceList));
+        sessionList = new SessionList(new ArrayList<>(personToCopy.getSessionList().sessionList));
+        gradeProgressList = new GradeProgressList(new ArrayList<>(personToCopy.getGradeProgressList()
+                .gradeProgressList));
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -60,16 +73,44 @@ public class PersonBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
+    public PersonBuilder withTags(String... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
 
     /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
+     * Parses the {@code homeworkList} into a {@code List<Homework>} and set it to the {@code Person}
+     * that we are building.
      */
-    public PersonBuilder withAddress(String address) {
-        this.address = new Address(address);
+    public PersonBuilder withHomework(String... homeworkList) {
+        this.homeworkList = new HomeworkList(SampleDataUtil.getHomeworkList(homeworkList));
+        return this;
+    }
+
+    /**
+     * Parses the {@code AttendanceList} into a {@code List<Attendance} and set it to the {@code Person}
+     * that we are building.
+     */
+    public PersonBuilder withAttendance(String... attendanceList) {
+        this.attendanceList = new AttendanceList(SampleDataUtil.getAttendanceList(attendanceList));
+        return this;
+    }
+
+    /**
+     * Parses the {@code SessionList} into a {@code List<Session>} and set it to the {@code Person}
+     * that we are building.
+     */
+    public PersonBuilder withSession(String... sessionList) {
+        this.sessionList = new SessionList(SampleDataUtil.getSessionList(sessionList));
+        return this;
+    }
+
+    /**
+     * Parses the {@code homeworkList} into a {@code List<Homework>} and set it to the {@code Person}
+     * that we are building.
+     */
+    public PersonBuilder withGradeProgress(String... gradeProgress) {
+        this.gradeProgressList = new GradeProgressList(SampleDataUtil.getGradeProgressList(gradeProgress));
         return this;
     }
 
@@ -82,15 +123,15 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code Person} that we are building.
+     * Sets the {@code LessonPlan} of the {@code Person} that we are building.
      */
-    public PersonBuilder withEmail(String email) {
-        this.email = new Email(email);
+    public PersonBuilder withLessonPlan(String lessonPlan) {
+        this.lessonPlan = new LessonPlan(lessonPlan);
         return this;
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, tags);
+        return new Person(name, phone, lessonPlan, homeworkList, attendanceList, sessionList, gradeProgressList, tags);
     }
 
 }

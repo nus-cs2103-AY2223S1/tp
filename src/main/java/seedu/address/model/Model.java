@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.TimeSlot;
 
 /**
  * The API of the Model component.
@@ -76,6 +77,45 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    /**
+     * Toggles the full view to view mode where details of a single person are listed in full.
+     */
+    void setFullView();
+
+    /**
+     * Toggles the full view to list mode where details are truncated.
+     */
+    void setListView();
+
+    /**
+     * Returns true if the address book is currently in full view mode.
+     */
+    boolean isFullView();
+
+    /**
+     * Updates the time slots to a particular day.
+     *
+     * @param day to retrieve time slots for.
+     */
+    void updateTimeSlots(String day);
+
+    /**
+     * Returns an unmodifiable view of the time slots for a particular day.
+     */
+    ObservableList<TimeSlot> getTimeSlotList();
+
+    /**
+     * Sets a flag to signify day view.
+     */
+    void setDayView();
+
+    void unsetDayView();
+
+    /**
+     * Returns true if the address book is currently in day view mode.
+     */
+    boolean isDayView();
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
@@ -84,4 +124,12 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Takes all the Persons SessionList and finds the next Session closest to the system time now to be feedbacked
+     * to user.
+     * @return the String representation of the closest Session to the time now and name of
+     *      Person associated to the Session.
+     */
+    String getNextSession();
 }

@@ -98,6 +98,13 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
+     * Sets all {@code persons} in this list to be in list view mode.
+     */
+    public void setAllToListView() {
+        internalList.forEach(Person::setListView);
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Person> asUnmodifiableObservableList() {

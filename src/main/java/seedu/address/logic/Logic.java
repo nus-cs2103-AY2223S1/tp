@@ -9,6 +9,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.TimeSlot;
 
 /**
  * API of the Logic component
@@ -34,6 +35,15 @@ public interface Logic {
     ObservableList<Person> getFilteredPersonList();
 
     /**
+     * Returns an unmodifiable view of the time slots for a particular day.
+     */
+    ObservableList<TimeSlot> getTimeSlotList();
+
+    /**
+     * Returns true if the address book is currently in day view mode.
+     */
+    boolean isDayView();
+    /**
      * Returns the user prefs' address book file path.
      */
     Path getAddressBookFilePath();
@@ -47,4 +57,12 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Gets the closest next Session relative to the time now and the name of the Person associated to the Session.
+     * @return the String representation of the name of the associated Person and the Session closest to time now in
+     *      the Pupilist program.
+     */
+    String getNextSession();
+
 }

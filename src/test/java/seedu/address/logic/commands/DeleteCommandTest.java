@@ -77,6 +77,14 @@ public class DeleteCommandTest {
     }
 
     @Test
+    public void execute_inDayView_failure() {
+        model.setDayView();
+        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
+
+        assertCommandFailure(deleteCommand, model, DeleteCommand.MESSAGE_IN_DAY_MODE);
+    }
+
+    @Test
     public void equals() {
         DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_PERSON);
         DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_PERSON);

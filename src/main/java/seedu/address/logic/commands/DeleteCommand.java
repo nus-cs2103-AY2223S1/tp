@@ -24,6 +24,8 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
 
+    public static final String MESSAGE_IN_DAY_MODE = "You need to be in list or view mode to delete a person.";
+
     private final Index targetIndex;
 
     public DeleteCommand(Index targetIndex) {
@@ -33,6 +35,9 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        if (model.isDayView()) {
+            throw new CommandException(MESSAGE_IN_DAY_MODE);
+        }
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {

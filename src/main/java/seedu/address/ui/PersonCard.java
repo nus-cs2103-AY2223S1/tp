@@ -10,7 +10,7 @@ import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * A UI component that displays information of a {@code Person}.
  */
 public class PersonCard extends UiPart<Region> {
 
@@ -35,14 +35,20 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label phone;
     @FXML
-    private Label address;
+    private Label lessonPlan;
     @FXML
-    private Label email;
+    private Label homework;
+    @FXML
+    private Label attendance;
+    @FXML
+    private Label session;
+    @FXML
+    private Label gradeProgress;
     @FXML
     private FlowPane tags;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code PersonCard} with the given {@code Person} and index to display.
      */
     public PersonCard(Person person, int displayedIndex) {
         super(FXML);
@@ -50,8 +56,17 @@ public class PersonCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
+        lessonPlan.setText(person.getLessonPlan().toString());
+        if (person.isFullView()) {
+            homework.setText(person.getHomeworkList().toString());
+            attendance.setText(person.getAttendanceList().toString());
+            session.setText(person.getSessionList().toString());
+        } else {
+            homework.setText(person.getHomeworkList().shortDescription());
+            attendance.setText(person.getAttendanceList().shortDescription());
+            session.setText(person.getSessionList().shortDescription());
+        }
+        gradeProgress.setText(person.getGradeProgressList().toString());
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

@@ -13,9 +13,13 @@ Class ModelManager
 Class UserPrefs
 
 Class UniquePersonList
+Class TimeSlot
 Class Person
-Class Address
-Class Email
+Class LessonPlan
+Class Attendance
+Class GradeProgress
+Class Homework
+Class Session
 Class Name
 Class Phone
 Class Tag
@@ -32,19 +36,25 @@ Model .right.> ReadOnlyUserPrefs
 Model .left.> ReadOnlyAddressBook
 ModelManager -left-> "1" AddressBook
 ModelManager -right-> "1" UserPrefs
+ModelManager --> "*" TimeSlot
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
+UniquePersonList ---> "~* all" Person
 Person *--> Name
 Person *--> Phone
-Person *--> Email
-Person *--> Address
+Person *--> Attendance
+Person *--> LessonPlan
+Person *--> Homework
+Person *--> Session
+Person *--> GradeProgress
 Person *--> "*" Tag
+TimeSlot *-left--> "1" Person
+TimeSlot *--> "1" Session
 
 Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Phone -[hidden]right-> LessonPlan
+LessonPlan -[hidden]right-> Attendance
 
 ModelManager -->"~* filtered" Person
 @enduml

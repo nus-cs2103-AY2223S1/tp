@@ -7,14 +7,24 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AttendanceCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.GradeProgressCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.HomeworkCommand;
+import seedu.address.logic.commands.LessonPlanCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.MarkCommand;
+import seedu.address.logic.commands.RemoveCommand;
+import seedu.address.logic.commands.SessionCommand;
+import seedu.address.logic.commands.ShowCommand;
+import seedu.address.logic.commands.UnmarkCommand;
+import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -42,13 +52,19 @@ public class AddressBookParser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
-        switch (commandWord) {
+        switch (commandWord.toLowerCase()) {
 
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
+
+        case RemoveCommand.COMMAND_WORD:
+            return new RemoveCommandParser().parse(arguments);
+
+        case ViewCommand.COMMAND_WORD:
+            return new ViewCommandParser().parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
@@ -58,6 +74,30 @@ public class AddressBookParser {
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
+
+        case GradeProgressCommand.COMMAND_WORD:
+            return new GradeProgressCommandParser().parse(arguments);
+
+        case HomeworkCommand.COMMAND_WORD:
+            return new HomeworkCommandParser().parse(arguments);
+
+        case AttendanceCommand.COMMAND_WORD:
+            return new AttendanceCommandParser().parse(arguments);
+
+        case SessionCommand.COMMAND_WORD:
+            return new SessionCommandParser().parse(arguments);
+
+        case ShowCommand.COMMAND_WORD:
+            return new ShowCommandParser().parse(arguments);
+
+        case MarkCommand.COMMAND_WORD:
+            return new MarkCommandParser().parse(arguments);
+
+        case LessonPlanCommand.COMMAND_WORD:
+            return new LessonPlanCommandParser().parse(arguments);
+
+        case UnmarkCommand.COMMAND_WORD:
+            return new UnmarkCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();

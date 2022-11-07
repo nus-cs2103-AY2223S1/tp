@@ -9,6 +9,7 @@ import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -32,14 +33,24 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private TimeSlotListPanel timeSlotListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+
+    @FXML
+    private VBox personList;
+
+    @FXML
+    private VBox timeSlotList;
 
     @FXML
     private StackPane commandBoxPlaceholder;
 
     @FXML
     private MenuItem helpMenuItem;
+
+    @FXML
+    private StackPane timeSlotListPanelPlaceholder;
 
     @FXML
     private StackPane personListPanelPlaceholder;
@@ -66,6 +77,9 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
+        personList.managedProperty().bind(personList.visibleProperty());
+        timeSlotList.managedProperty().bind(timeSlotList.visibleProperty());
     }
 
     public Stage getPrimaryStage() {
@@ -110,10 +124,15 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        handleDayView(false);
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
+        timeSlotListPanel = new TimeSlotListPanel(logic.getTimeSlotList());
+        timeSlotListPanelPlaceholder.getChildren().add(timeSlotListPanel.getRoot());
+
         resultDisplay = new ResultDisplay();
+        resultDisplay.setFeedbackToUser(logic.getNextSession());
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
@@ -163,6 +182,12 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    @FXML
+    private void handleDayView(boolean isDay) {
+        personList.setVisible(!isDay);
+        timeSlotList.setVisible(isDay);
+    }
+
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
     }
@@ -185,6 +210,8 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
+
+            handleDayView(logic.isDayView());
 
             return commandResult;
         } catch (CommandException | ParseException e) {

@@ -1,0 +1,75 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":ShowCommandParser" as ShowCommandParser LOGIC_COLOR
+participant "s:ShowCommand" as ShowCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("show Mon")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("show Mon")
+activate AddressBookParser
+
+create ShowCommandParser
+AddressBookParser -> ShowCommandParser
+activate ShowCommandParser
+
+ShowCommandParser --> AddressBookParser
+deactivate ShowCommandParser
+
+AddressBookParser -> ShowCommandParser : parse("Mon")
+activate ShowCommandParser
+
+create ShowCommand
+ShowCommandParser -> ShowCommand
+activate ShowCommand
+
+ShowCommand --> ShowCommandParser : s
+deactivate ShowCommand
+
+ShowCommandParser --> AddressBookParser : s
+deactivate ShowCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ShowCommandParser -[hidden]-> AddressBookParser
+destroy ShowCommandParser
+
+AddressBookParser --> LogicManager : s
+deactivate AddressBookParser
+
+LogicManager -> ShowCommand : execute()
+activate ShowCommand
+
+ShowCommand -> Model : setDayView()
+activate Model
+
+Model --> ShowCommand
+deactivate Model
+
+ShowCommand -> Model : updateTimeSlots("Mon")
+activate Model
+
+Model --> ShowCommand
+deactivate Model
+
+create CommandResult
+ShowCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ShowCommand
+deactivate CommandResult
+
+ShowCommand --> LogicManager : result
+deactivate ShowCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

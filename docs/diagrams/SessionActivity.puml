@@ -1,0 +1,27 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+(*top) --> "AttendanceParser calls
+Attendance constructor"
+--> if "requireNonNull(attendance)" then
+        -left-> [attendance is null] "Throw NullPointerException"
+        --> (*)
+    else
+        ->[attendance is not null] "attendance is not null"
+        --> "Check if Attendance is valid format"
+        --> if "isValid(attendance)" then
+                -down-> [is not valid attendance] "Throw IllegalArgumentException"
+                 ->(*)
+            else
+                -down-> [is valid attendance] "Try Parsing into Local Date"
+                    if "Parse attendance into LocalDate" then
+                        -down-> [No DateTimeParseException] "Attendance is created"
+                        -----> (*)
+                    else
+                        -down-> [DateTimeParseException thrown]"Throw IllegalArgumentException"
+                        -----> (*)
+
+
+
+
+@enduml

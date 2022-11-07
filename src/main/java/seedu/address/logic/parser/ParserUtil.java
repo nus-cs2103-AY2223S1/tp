@@ -1,6 +1,13 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE_PROGRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_HOMEWORK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON_PLAN;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -9,10 +16,13 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
+import seedu.address.model.person.Attendance;
+import seedu.address.model.person.GradeProgress;
+import seedu.address.model.person.Homework;
+import seedu.address.model.person.LessonPlan;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Session;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -21,6 +31,13 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_EDIT_COMMAND_FORMAT = "The correct format for an edit is:\n"
+            + "edit [" + PREFIX_NAME + PREFIX_PHONE + PREFIX_LESSON_PLAN + "]NEW_FIELD, or\n"
+            + "edit [" + PREFIX_HOMEWORK + PREFIX_GRADE_PROGRESS + PREFIX_ATTENDANCE + "]INDEX NEW_FIELD\n"
+            + "Example: edit " + PREFIX_HOMEWORK + "2 Maths worksheet";
+    public static final String MESSAGE_REMOVE_COMMAND_FORMAT = "The correct format for a remove is:\n"
+            + "remove PERSON_INDEX [" + PREFIX_HOMEWORK
+            + PREFIX_GRADE_PROGRESS + PREFIX_ATTENDANCE + "] INDEX_TO_REMOVE\n";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -66,33 +83,95 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
+     * Parses a {@code String lessonPlan} into an {@code LessonPlan}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code address} is invalid.
+     * @throws ParseException if the given {@code lessonPlan} is invalid.
      */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+    public static LessonPlan parseLessonPlan(String lessonPlan) throws ParseException {
+        requireNonNull(lessonPlan);
+        String trimmedLessonPlan = lessonPlan.trim();
+        if (!LessonPlan.isValidLessonPlan(trimmedLessonPlan)) {
+            throw new ParseException(LessonPlan.MESSAGE_CONSTRAINTS);
         }
-        return new Address(trimmedAddress);
+        return new LessonPlan(trimmedLessonPlan);
     }
 
     /**
-     * Parses a {@code String email} into an {@code Email}.
+     * Parses a {@code String homework} into an {@code Homework}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code email} is invalid.
+     * @throws ParseException if the given {@code homework} is invalid.
      */
-    public static Email parseEmail(String email) throws ParseException {
-        requireNonNull(email);
-        String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+    public static Homework parseHomework(String homework) throws ParseException {
+        requireNonNull(homework);
+        String trimmedHomework = homework.trim();
+        if (!Homework.isValidHomework(trimmedHomework)) {
+            throw new ParseException(Homework.MESSAGE_CONSTRAINTS);
         }
-        return new Email(trimmedEmail);
+        return new Homework(trimmedHomework);
+    }
+
+    /**
+     * Parses a {@code String gradeProgress} into an {@code GradeProgress}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code gradeProgress} is invalid.
+     */
+    public static GradeProgress parseGradeProgress(String gradeProgress) throws ParseException {
+        requireNonNull(gradeProgress);
+        String trimmedGradeProgress = gradeProgress.trim();
+        if (!GradeProgress.isValidGradeProgress(trimmedGradeProgress)) {
+            throw new ParseException(GradeProgress.MESSAGE_CONSTRAINTS);
+        }
+        return new GradeProgress(trimmedGradeProgress);
+    }
+
+    /**
+     * Parses a {@code String attendance} into an {@code Attendance}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code attendance} is invalid.
+     */
+    public static Attendance parseAttendance(String attendance) throws ParseException {
+        requireNonNull(attendance);
+        String trimmedAttendance = attendance.trim();
+        if (!Attendance.isValidAttendance(trimmedAttendance)) {
+            throw new ParseException(Attendance.MESSAGE_CONSTRAINTS);
+        }
+        try {
+            return new Attendance(trimmedAttendance);
+        } catch (IllegalArgumentException iae) {
+            throw new ParseException(Attendance.MESSAGE_INVALID_DATE);
+        }
+    }
+
+    /**
+     * Parses a {@code String Session} into a {@code Session}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code session} is invalid.
+     */
+    public static Session parseSession(String session) throws ParseException {
+        requireNonNull(session);
+        String trimmedSession = session.trim();
+        if (!Session.isValidSession(trimmedSession)) {
+            throw new ParseException(Session.MESSAGE_CONSTRAINTS);
+        }
+        return new Session(trimmedSession);
+    }
+
+    /**
+     * Parses a {@code String text} and disassembles it into index and description.
+     *
+     * @throws ParseException if the input is less than 2, or does not start with an integer.
+     */
+    public static String[] parseIndexedEdit(String text) throws ParseException {
+        String[] args = text.split(" ", 2);
+        if (args.length < 2 || !StringUtil.isNonZeroUnsignedInteger(args[0])) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_EDIT_COMMAND_FORMAT));
+        }
+        return args;
     }
 
     /**

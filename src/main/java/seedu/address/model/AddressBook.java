@@ -93,6 +93,13 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    /**
+     * Sets all {@code persons} to be in list view mode.
+     */
+    public void setAllToListView() {
+        persons.setAllToListView();
+    }
+
     //// util methods
 
     @Override
