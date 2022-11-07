@@ -50,7 +50,7 @@ public class ModelManager implements Model {
         filteredTasks = new FilteredList<>(sortedTasks);
         for (Person person : this.addressBook.getPersonList()) {
             for (Task task : this.addressBook.getTaskList()) {
-                if (person.getEmail().equals(person.getEmail())) {
+                if (person.getEmail().equals(task.getEmail())) {
                     person.addTask(task);
                 }
             }
