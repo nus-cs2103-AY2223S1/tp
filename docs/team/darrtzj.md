@@ -33,7 +33,9 @@ Given below are my contributions to the project.
     * Wrote documentation for the feature `alias`, `unalias` and `aliaslist` (Pull request [\#180](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/180))
     * Updated documentation for the feature `help` (Pull request [\#180](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/180))
   * Developer Guide:
-    * to be added soon
+    * Updated Non-functional requirements
+    * Updated UML diagrams in Model and Storage component (Pull request [\#192](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/192))
+    * Wrote documentation for the implementation of `alias`
 
 * **Contributions to team-based tasks**:
   * Added user stories
@@ -41,6 +43,7 @@ Given below are my contributions to the project.
   * Update project read me page (Pull request [\#66](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/66))
   * Update project notes with v1.2 demo
   * Update project notes with v1.3 demo
+  * Assigned issues for bug reports
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#87](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/87), [\#92](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/92), [\#109](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/109)

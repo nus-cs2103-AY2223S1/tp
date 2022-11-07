@@ -20,6 +20,7 @@ Student *--> "0..1" TelegramHandle
 Student *--> "0..1" MasteryCheck
 Student *--> "0..1" Consultation
 Student *--> "0..1" Remark
+Student *--> "1" GradesList
 
 AliasMap *--> "0..50" Alias
 AliasMap *--> "0..50" ReservedKeyword

@@ -11,9 +11,9 @@ If you can type fast, FRIDAY can get your student management tasks done faster t
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
-## Quickstart
+## Quick start
 
-1. Ensure you have Java `11` or above installed in your computer.
+1. Ensure you have Java 11 or above installed in your computer.
 
 2. Download the latest `friday.jar` from [here](https://github.com/AY2223S1-CS2103T-W15-4/tp/releases).
 
