@@ -34,10 +34,6 @@ public class JsonAdaptedItineraryTest {
     private static final List<JsonAdaptedItem> VALID_EMPTY_ITEM_LIST = new ArrayList<>();
     private static final List<JsonAdaptedDay> VALID_EMPTY_DAY_LIST = new ArrayList<>();
 
-    /*
-    TODO: Make non-empty item list
-    private final List<JsonAdaptedItem> VALID_ITEM_LIST = new ArrayList<>();
-     */
 
     @Test
     public void toModelType_validItineraryDetails_returnsItinerary() throws Exception {

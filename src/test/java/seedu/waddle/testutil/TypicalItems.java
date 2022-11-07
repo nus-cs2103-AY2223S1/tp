@@ -35,7 +35,7 @@ import java.util.List;
 import seedu.waddle.model.item.Item;
 
 /**
- * A utility class containing a list of {@code Itinerary} objects to be used in tests.
+ * A utility class containing a list of {@code Item} objects to be used in tests.
  */
 public class TypicalItems {
     private TypicalItems() {
