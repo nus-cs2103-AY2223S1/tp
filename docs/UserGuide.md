@@ -27,7 +27,7 @@ UniNurse offers the following features:
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Using this guide
+## **Using this guide**
 
 This guide walks you through all the features of UniNurse, as well as tips, so you can reap all the benefits of
 UniNurse!
@@ -47,16 +47,18 @@ Here are some symbols used throughout this user guide:
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Table of Contents
+## **Table of Contents**
 
-1. [**Quick start**](#quick-start)
-2. [**Glossary**](#glossary)
-3. [**Command format**](#command-format)
-4. [**Patient parameter constraints**](#patient-parameter-constraints)
+1. [**Using this guide**](#using-this-guide)
+2. [**Table of Contents**](#table-of-contents)
+3. [**Quick start**](#quick-start)
+4. [**Glossary**](#glossary)
+5. [**Command format**](#command-format)
+6. [**Patient parameter constraints**](#patient-parameter-constraints)
    1. [Single-valued attributes](#single-valued-attributes)
    2. [Multi-valued attributes](#multi-valued-attributes)
    3. [Patient parameter summary](#patient-parameter-summary)
-5. [**Features**](#features)
+7. [**Features**](#features)
    1. [Getting help: `help`](#getting-help-help)
    2. [Modifying patient contact details](#adding-a-patient-add)
       1. [Adding a patient: `add`](#adding-a-patient-add)
@@ -97,12 +99,12 @@ Here are some symbols used throughout this user guide:
    13. [Exiting UniNurse: `exit`](#exiting-uninurse-exit)
    14. [Saving the data](#saving-the-data)
    15. [Editing the data file](#editing-the-data-file)
-6. [**FAQ**](#faq)
-7. [**Command summary**](#command-summary)
+8. [**FAQ**](#faq)
+9. [**Command summary**](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## **Quick start**
 
 1. Ensure you have [Java 11](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html) or above
    installed on your computer. To check your Java version, open a Command Prompt or Terminal window and type:
@@ -146,7 +148,7 @@ The app comes with some sample patients by default. Type `clear` in the command 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Glossary
+## **Glossary**
 
 **Here are some of the technical terminologies used:**
 
@@ -165,7 +167,7 @@ The app comes with some sample patients by default. Type `clear` in the command 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command format
+## **Command format**
 
 <div markdown="block" class="alert alert-info">
 
@@ -213,7 +215,7 @@ The app comes with some sample patients by default. Type `clear` in the command 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Patient parameter constraints
+## **Patient parameter constraints**
 
 A patient's attributes can be categorized into two: *single-valued attributes* and *multi-valued attributes*. A patient's single-valued attributes consist of their name, phone, email, and address, and their multi-valued attributes consist of their tags, tasks, conditions, medications, and remarks.
 
@@ -336,7 +338,7 @@ Example:`r/Allergic to peanuts`
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## **Features**
 
 <div markdown="block" class="alert alert-success">
 
@@ -1299,7 +1301,7 @@ data file at the next run.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+## **FAQ**
 
 **Q**: How do I transfer my data to another computer?<br>
 **A**: Install the app on the other computer and overwrite the empty data file it creates with the file that contains
@@ -1311,7 +1313,7 @@ the data of your previous UniNurse home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## **Command summary**
 
 | Action                                  | Format                                                                                                      |
 |-----------------------------------------|-------------------------------------------------------------------------------------------------------------|
