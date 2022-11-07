@@ -710,6 +710,30 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
+### Sorting the tutor list
+
+1. Sorting the tutor list while all tutors are being shown
+
+    1. Prerequisites: List all tutors using the `list` command. Multiple tutors in the list.
+
+    2. Test case: `sort a r/`<br>
+       Expected: The tutor list should be sorted by rating in ascending order (low to high). This can be seen by viewing tutor profiles.
+
+    3. Test case: `sort d tn/`<br>
+       Expected: The tutor list should be sorted by teaching nominations in descending order (high to low). This can be seen by viewing tutor profiles.
+
+    4. Test case: `sort m r/`<br>
+       Expected: No sorting occurs. Error details shown in the status message (`order` is invalid).
+
+    5. Test case: `sort a n/`<br>
+       Expected: No sorting occurs. Error details shown in the status message (`prefix` is invalid).
+
+    6. Test case: `sort a`<br>
+       Expected: No sorting occurs. Error details shown in the status message (Wrong command format).
+
+    7. Other incorrect sort commands to try: `sort`, `sort x p`, `...` (where x is any character other than `a` and `d`, and p is any prefix other than `r/` and `tn/`)<br>
+       Expected: Similar to 4 and 5.
+
 ### Saving data
 
 1. Dealing with missing/corrupted data files
