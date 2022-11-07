@@ -9,6 +9,7 @@ Welcome to the NotionUS developer guide!
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **1. Introduction**
 
@@ -38,6 +39,8 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **4. Design**
 
 ### 4.1 Architecture
@@ -47,6 +50,8 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
 Given below is a quick overview of main components and how they interact with each other.
+
+<div style="page-break-after: always;"></div>
 
 **Main components of the architecture**
 
@@ -80,6 +85,8 @@ Each of the four main components (also shown in the diagram above),
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding
   API `interface` mentioned in the previous point).
 
+<div style="page-break-after: always;"></div>
+
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using
 the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component
 through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the
@@ -88,6 +95,8 @@ implementation of a component), as illustrated in the (partial) class diagram be
 <img src="images/ComponentManagers.png" width="300" />
 
 The sections below give more details of each component.
+
+<div style="page-break-after: always;"></div>
 
 ### 4.2 UI component
 
@@ -120,6 +129,8 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Task` object residing in the `Model`.
 
+<div style="page-break-after: always;"></div>
+
 ### 4.3 Logic component
 
 **API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-F12-3/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
@@ -136,6 +147,8 @@ How the `Logic` component works:
 3. The command can communicate with the `Model` when it is executed (e.g. to add a task).
 4. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
+<div style="page-break-after: always;"></div>
+
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API
 call.
 
@@ -143,6 +156,8 @@ call.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
@@ -156,6 +171,8 @@ How the parsing works:
   a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser`
   interface so that they can be treated similarly where possible e.g, during testing.
+
+<div style="page-break-after: always;"></div>
 
 ### 4.4 Model component
 
@@ -176,6 +193,8 @@ The `Model` component,
   a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they
   should make sense on their own without depending on other components)
+
+<div style="page-break-after: always;"></div>
 
 For the `Task` class,
 * to support a default sorting of `Task` objects, `Task` implements the `Comparable<Task>` interface
@@ -202,6 +221,8 @@ Classes used by multiple components are in the `seedu.TaskList.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **5. Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
@@ -220,6 +241,8 @@ Command result will if the task is archived successfully. Should there be a dupl
 Should the `TASK_NUMBER` entered is out of bound, a generic CommandResult and an error message
 will be given. Model will not be updated.
 
+<div style="page-break-after: always;"></div>
+
 Below is the sequence diagram for an execution of `archive TASK_NUMBER`, assuming `TASK_NUMBER` is not out of bound.
 
 ![Sequence diagram when command `archive 1` is executed](images/ArchiveSequenceDiagram-0.png)
@@ -231,6 +254,8 @@ Archive command is facilitated by the `ArchivedTaskList`. `ArchivedTaskList` doe
 
 The addition of `ArchivedTaskList` requires a separate storage system for the archived tasks, which forms under `ArchivedTaskListStorage`.
 The .json file for archived task is named as `archivedTaskList.json`
+
+<div style="page-break-after: always;"></div>
 
 ### 5.2 Mark/unmark feature
 
@@ -244,6 +269,8 @@ identical task with a modified `isDone` field in the task list.
 Below is the sequence diagram for an execution of `mark <index>`, assuming `<index>` is not out of bounds.
 
 ![Sequence diagram when command `mark 1` is executed](images/MarkSequenceDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 ### 5.3 List feature
 
@@ -273,6 +300,8 @@ Words in `UPPER_CASE` are values of parameters to be supplied by the user
 | `-d`*       | List all tasks with deadline on or after a date | `ls -d DATE`                  |
 | `-n`*       | List all task names with the matching keywords  | `ls -n KEYWORD`               |
 
+<div style="page-break-after: always;"></div>
+
 <div markdown="block" class="alert alert-info">
 **:information_source: Note:**
 Flags that are labelled with a `*` are commands that expect a parameter, as seen in the Format column. <br>
@@ -284,6 +313,8 @@ Example:
 This feature uses the following methods from the `Model` interface:
 * `Model#updateFilteredTaskList`: Updates the current task list by applying a filter as indicated by the given predicate `Predicate<Task>`. The GUI will be updated accordingly to display the filtered task list.
 * `Model#updateFilterStatus`: Updates the list of filters that have been applied to the current task list displayed. This will be reflected on the GUI.
+
+<div style="page-break-after: always;"></div>
 
 #### 5.3.2 Usage scenario
 
@@ -303,9 +334,13 @@ Given below is an example usage scenario and how the mechanism behaves at each s
 
 **Step 7.** A new `ListCommand` instance is instantiated. Both predicates, `TaskIsDonePredicate` from **Step 4** and `ListModuleCommandPredicate` from **Step 6** are passed into the `ListCommand` constructor. `ListCommand` instance is returned to `LogicManager`.
 
+<div style="page-break-after: always;"></div>
+
 Below is the sequence diagram for the partial execution of `ls -u --module CS2103T` up till **Step 7**.
 
 ![Partial sequence diagram when command `ls -u --module CS2103T` is executed](images/ListSequenceDiagram1-0.png)
+
+<div style="page-break-after: always;"></div>
 
 **Step 8.** `LogicManager` calls the `ListCommand#execute()` method.
 
@@ -319,9 +354,7 @@ Below is the sequence diagram for the partial execution of `ls -u --module CS210
 
 ![Partial sequence diagram when command `ls -u --module CS2103T` is executed](images/ListSequenceDiagram2.png)
 
-Below is the sequence diagram for the complete execution of `ls -u --module CS2103T`.
-
-![Sequence diagram when command `ls -u --module CS2103T` is executed](images/ListSequenceDiagram.png)
+<div style="page-break-after: always;"></div>
 
 ### 5.4 Find feature
 
@@ -333,6 +366,8 @@ any task name that contains the keyword(s) and any tags that match the keyword(s
 This feature uses the following methods from the `Model` interface:
 * `Model#updateFilteredTaskList`: Updates the current task list by applying a filter as indicated by the given predicate `Predicate<Task>`. The GUI will be updated accordingly to display the filtered task list.
 * `Model#updateFilterStatus`: Updates the list of filters that have been applied to the current task list displayed. This will be reflected on the GUI.
+
+<div style="page-break-after: always;"></div>
 
 #### 5.4.1 Usage Scenario
 
@@ -358,6 +393,8 @@ Here is a sequence diagram to represent the execution of the command:
 
 ![Sequence diagram when command `find tutorial priority` is executed](images/FindSequenceDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 ### 5.5 Returning to a previous command
 
 #### 5.5.1 Implementation
@@ -375,6 +412,8 @@ Additionally, it implements the following operations:
 * `CommandHistory#add(String)` – Saves the entered command into the history.
 * `CommandHistory#up()` – Traverses upwards through the history and restores the previously entered command.
 * `CommandHistory#down()` – Traverses downwards through the history and restores the command.
+
+<div style="page-break-after: always;"></div>
 
 #### 5.5.2 Usage scenario
 
@@ -398,6 +437,8 @@ and feeds this String `ls -u` back to the command box.
 
 ![State diagram 2 of up/down key](images/UpDownState2.png)
 
+<div style="page-break-after: always;"></div>
+
 **Step 4.** The user enters another command `mark 1`. Through the same mechanism as in Step 1, this command will be stored into `previousCommands`.
 `pointer` will be reset to the last position. 
 
@@ -413,6 +454,8 @@ The following activity diagram summarizes what happens when a user clicks on the
 
 ![Activity diagram of up/down key](images/UpDownKeyActivityDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 #### 5.5.3 Design considerations:
 
 **Aspect: How command history is stored:**
@@ -423,6 +466,8 @@ The following activity diagram summarizes what happens when a user clicks on the
 * **Alternative 2:** Stores entered commands into a local `json` file.
     * Pros: Will be able to restore commands from previous launches.
     * Cons: Difficult to implement as storage architecture will have to be renewed.
+
+<div style="page-break-after: always;"></div>
 
 ### 5.6 Command autocomplete feature
 
@@ -456,6 +501,8 @@ This closes the popup.
 
 **Step 4.** The user adds the required additional information if required and then hits `Enter` to perform the command as per normal.
 
+<div style="page-break-after: always;"></div>
+
 Below is an activity diagram to display how the feature works:
 
 ![AutocompleteActivityDiagram](images/AutocompleteActivityDiagram.png)
@@ -471,6 +518,8 @@ Below is an activity diagram to display how the feature works:
 in previous list.
   * Pros: Harder to implement.
   * Cons: Efficient especially when command list is large.
+
+<div style="page-break-after: always;"></div>
 
 ### 5.7 [Proposed] Acceptance of Multiple Date Formats
 
@@ -494,6 +543,8 @@ we are using a `LocalDate` internally, which requires a year. A solution to this
 `MonthDay` refers to a day in the current year. For example, say the current year is 2022, if the user 
 provides 20/11, the date should be parsed as 20 November 2022.
 
+<div style="page-break-after: always;"></div>
+
 The following sequence diagram shows what will happen with the proposed implementation of multiple date formats:
 
 ![ProposedDeadlineSequenceDiagram](images/ProposedDeadlineSequenceDiagram.png)
@@ -513,6 +564,8 @@ The following sequence diagram shows what will happen with the proposed implemen
   * Pros: More user-friendly and is most likely what the user expects when typing the command
   * Cons: More complicated implementation
 
+
+<div style="page-break-after: always;"></div>
 
 ### 5.8 [Proposed] Aliasing of Commands
 
@@ -549,6 +602,8 @@ These operations will be exposed in the `Model` interface as `Model::addAlias`, 
 Since aliases can only be one word (by our restriction in the add alias command), we only need the first word of a 
 command to check whether it is an alias. If it is, the alias will be replaced with the actual command to be run. 
 
+<div style="page-break-after: always;"></div>
+
 Below is the sequence diagram for an execution of `a Project -m CS2103T`, with `a` being an alias for `add -n`.
 
 ![ProposedAliasSequenceDiagram](images/ProposedAliasSequenceDiagram.png)
@@ -561,6 +616,8 @@ The following activity diagram summarizes what happens when a user executes an a
 ![ProposedAliasActivityDiagram](images/ProposedAliasActivityDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **6. Documentation, logging, testing, configuration, dev-ops**
 
@@ -586,6 +643,8 @@ The following activity diagram summarizes what happens when a user executes an a
 * is reasonably comfortable using CLI apps
 
 **7.1.2 Value proposition**: manage module tasks faster than a typical mouse/GUI driven app and organise them by certain parameters
+
+<div style="page-break-after: always;"></div>
 
 ### 7.2 User stories
 
@@ -632,6 +691,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | bored user                                     | change the appearance of NotionUS                                         | make the app more interesting to use                                                                    |
 | `*`      | student that uses calendar apps                | sync the tasks to my calendar                                             | keep track of my tasks even when not using NotionUS                                                     |
 
+<div style="page-break-after: always;"></div>
+
 ### 7.3 Use cases
 
 Unless specified otherwise, the **System** is the `NotionUS` application and the **Actor** is the `user`.
@@ -674,6 +735,9 @@ Unless specified otherwise, the **System** is the `NotionUS` application and the
     * 2b1. NotionUS provides a note that nothing was changed.
 
       Use case ends.
+
+
+<div style="page-break-after: always;"></div>
 
 **Use Case: UC3 - Delete a task**
 
@@ -726,6 +790,8 @@ Unless specified otherwise, the **System** is the `NotionUS` application and the
 
       Use case starts from 1.
 
+<div style="page-break-after: always;"></div>
+
 **Use Case: UC6 - Mark a task as not done**
 
 **MSS:**
@@ -775,6 +841,8 @@ Unless specified otherwise, the **System** is the `NotionUS` application and the
 
       Use case ends.
 
+<div style="page-break-after: always;"></div>
+
 **Use Case: UC9 - Archive a task**
 
 **MSS:**
@@ -813,6 +881,8 @@ Unless specified otherwise, the **System** is the `NotionUS` application and the
 
       Use case ends.
 
+<div style="page-break-after: always;"></div>
+
 **Use Case: UC11 - Clear all tasks**
 
 **MSS:**
@@ -849,6 +919,8 @@ Unless specified otherwise, the **System** is the `NotionUS` application and the
 Below is a use case diagram summarising the use cases listed above:
 ![Use Cases](images/UseCaseDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 ### 7.4 Non-Functional Requirements
 
 1. Should work on any mainstream OS as long as it has Java 11 or above installed. (compatibility)
@@ -880,6 +952,8 @@ Below is a use case diagram summarising the use cases listed above:
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **8. Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
@@ -904,7 +978,9 @@ testers are expected to do more *exploratory* testing.
 
     2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-    
+
+<div style="page-break-after: always;"></div>
+
 ### 8.2 Adding a task
 
 1. Adding a task while all tasks are being shown
@@ -926,6 +1002,8 @@ testers are expected to do more *exploratory* testing.
     2. Test case: `add -n Tutorial 1 -m CS2100 -t mediumPriority -d 2022-10-20`<br>
        Expected: `Tutorial 1` is added into the list. Details of the added task shown in the status message.
        "Current View" of task list is reset to show all tasks. `Tutorial 1` is inserted into an index of the task list according to its deadline.
+
+<div style="page-break-after: always;"></div>
 
 ### 8.3 Deleting a task
 
@@ -954,6 +1032,8 @@ testers are expected to do more *exploratory* testing.
    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
+<div style="page-break-after: always;"></div>
+
 ### 8.4  Marking a task
 
 1. Marking a task while all tasks are being shown.
@@ -975,6 +1055,8 @@ testers are expected to do more *exploratory* testing.
 
    3. Test case: `archive 0`<br>
       Expected: No task is archived. Error details shown in the status message.
+
+<div style="page-break-after: always;"></div>
 
 ### 8.6 Saving data
 
@@ -1001,6 +1083,8 @@ testers are expected to do more *exploratory* testing.
 
     3. Follow Steps 3-5 of the above "Dealing with corrupted data files". Expected behaviour is the same.
 
+<div style="page-break-after: always;"></div>
+
 ### 8.7 Loading saved data
 
 1. Restoring task list from previous launch
@@ -1021,6 +1105,8 @@ testers are expected to do more *exploratory* testing.
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **9. Appendix: Effort**
 For the effort, we felt that our group have placed more than the average. We dissected and analysed the problem of our target audience. 
 From there, we generated an extensive list of user stories to decide on the features to be included in our application.  
@@ -1028,11 +1114,11 @@ From there, we generated an extensive list of user stories to decide on the feat
 Our group morphed the model from `Person` to `Task`, the challenging part is to refactor all the various classes and fields. We also had to change of the various syntax of `module`, `Deadline` etc.
 This caused a lot of test cases to fail which we have to fix. For `Deadline`, we took the extra effort to make it optional to improve the usability for our users.
 
-Another challenge that was faced was understanding the `logicManager` and `modelManager` as we add in more commands. This requires us to apply the OOP principle and read up on the various APIs that we are 
+Another challenge that was faced was understanding the `LogicManager` and `ModelManager` as we add in more commands. This requires us to apply the OOP principle and read up on the various APIs that we are 
 not familiar with such as `ObservableList`.  
 
 While we were adding the archive command, we have added a separate storage file for the `ArchivedTaskList` to separate it from the current task list as we do not want it to be modified or changed at this stage. 
-A lot of time was taken to understand how the addressBook storage works such as how the JSON file was created and saved. Due to creation of the new `ArchiveTaskList` class, we have to add in new methods to `logicManager` and `modelManager` and 
+A lot of time was taken to understand how the addressBook storage works such as how the JSON file was created and saved. Due to creation of the new `ArchiveTaskList` class, we have to add in new methods to `LogicManager` and `ModelManager` and 
 the relevant interfaces, which resulted in many existing test cases to fail.  
 
 For the UI, we took the extra effort to change the appearance so that it is easy on the eyes. Since we did not have much experience dealing with CSS files and JavaFx, and on top of that it was different from what we have learnt, hence 
