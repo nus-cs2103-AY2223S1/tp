@@ -9,9 +9,10 @@ import static tuthub.commons.util.AppUtil.checkArgument;
  */
 public class Rating {
 
-    public static final String MESSAGE_CONSTRAINTS = "Rating should only contain decimal values between 0 to 5"
+    public static final String MESSAGE_CONSTRAINTS = "Rating should only contain decimal values between 0 to 5 "
             + "with no spaces in between, and it should not be blank.\n"
-            + "Decimals are optional, but there are a maximum of 2 decimal places.";
+            + "Decimals are optional, but there are a maximum of 2 decimal places.\n"
+            + "Decimals can only be separated by \".\".";
 
     public static final Double MAX_RATING = 5.0;
     public static final Double MIN_RATING = 0.0;

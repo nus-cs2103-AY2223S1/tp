@@ -9,8 +9,8 @@ import static tuthub.commons.util.AppUtil.checkArgument;
  */
 public class Module {
 
-    public static final String MESSAGE_CONSTRAINTS = "Module should only contain alphanumeric"
-        + " characters with no spaces, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Modules should consist of the following in order: 2 compulsory "
+            + "letters, 2 optional letters, 4 compulsory digits, 2 optional letters.";
 
     /*
      * Covers all module code variants in NUS.

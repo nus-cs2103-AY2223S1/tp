@@ -31,7 +31,7 @@ public abstract class FindByPrefixCommand extends Command {
             + "[" + PREFIX_STUDENTID + "STUDENT ID] "
             + "[" + PREFIX_TEACHINGNOMINATION + "TEACHING NOMINATIONS] "
             + "[" + PREFIX_RATING + "RATING] \n"
-            + "Example: " + COMMAND_WORD + PREFIX_NAME + " John ";
+            + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + " John ";
 
     /**
      * Executes the command and returns the result message.
