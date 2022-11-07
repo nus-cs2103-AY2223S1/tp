@@ -17,5 +17,15 @@ Person -up-> "*" Tag
 Person *--> Name
 Person *--> Phone
 Person *--> Email
-Person *--> Address
+
+
+TruthTable *-down-> "1" UniqueTeamList
+UniqueTeamList --> "*" Team
+Team --> "1" UniquePersonList
+Team *-down-> "1" UniqueLinkList
+Team *-down-> "1" TaskList
+TaskList *-down-> "*" Task
+UniqueLinkList *-down-> "*" Link
+Task *-down-> "1" TaskName
+Link *-down-> "1" LinkName
 @enduml

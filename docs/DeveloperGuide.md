@@ -5,7 +5,7 @@ title: Developer Guide
 ---
 
 - Table of Contents 
-  {:toc}
+{:toc}
 
 ---
 
@@ -15,9 +15,9 @@ TruthTable is a **desktop app for managing software engineering teams, optimized
 ## **Acknowledgements**
 
 - Our application is based on the [AddressBook-Level3](https://se-education.org/addressbook-level3/) project created by the [SE-EDU initiative](https://se-education.org/).
-- Our application makes use of the [Picocli](https://picocli.info/) library for parsing and executing commands.
-- Our application makes use [JavaFX](https://openjfx.io/) of as the UI framework.
-- Our application makes use [Jackson](https://github.com/FasterXML/jackson) of as the JSON parser.
+- Our application makes use of the [Picocli](https://picocli.info/) library for parsing  commands.
+- Our application makes use of [JavaFX](https://openjfx.io/) as the UI framework.
+- Our application makes use of [Jackson](https://github.com/FasterXML/jackson) as the JSON parser.
 - Our application makes use of [JUnit5](https://junit.org/junit5/) as the testing framework.
 
 ---
@@ -33,7 +33,7 @@ If this is your first time contributing to our application, please take a look a
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in
-the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML
+the [diagrams](https://github.com/AY2223S1-CS2103T-W13-4/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML
 Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit
 diagrams.
 
@@ -50,8 +50,8 @@ Given below is a quick overview of main components and how they interact with ea
 **Main components of the architecture**
 
 **`Main`** has two classes
-called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java)
-and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It
+called [`Main`](https://github.com/AY2223S1-CS2103T-W13-4/tp/tree/master/src/main/java/seedu/address/Main.java)
+and [`MainApp`](https://github.com/AY2223S1-CS2103T-W13-4/tp/tree/master/src/main/java/seedu/address/MainApp.java). It
 is responsible for,
 
 - At app launch: Initializes the components in the correct sequence, and connects them up with each other.
@@ -91,30 +91,30 @@ The sections below give more details of each component.
 ### UI component
 
 The **API** of this component is specified
-in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+in [`Ui.java`](https://github.com/AY2223S1-CS2103T-W13-4/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`
-, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures
+, `StatusBarFooter`, `TeamListPanel`, `TeamDetailsPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures
 the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that
 are in the `src/main/resources/view` folder. For example, the layout of
-the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java)
+the [`MainWindow`](https://github.com/AY2223S1-CS2103T-W13-4/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java)
 is specified
-in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-W13-4/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
 - executes user commands using the `Logic` component.
 - listens for changes to `Model` data so that the UI can be updated with the modified data.
 - keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-- depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+- depends on some classes in the `Model` component. For example, the `PersonListPanel` displays the `Person` object residing in the `Model`.
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-W13-4/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -123,12 +123,12 @@ Here's a (partial) class diagram of the `Logic` component:
 How the `Logic` component works:
 
 1. When `Logic` is called upon to execute a command, it uses the `TruthTableParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is
+1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddPersonCommand`) which is
    executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete person 1")` API
 call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
@@ -143,15 +143,16 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 How the parsing works:
 
 - When called upon to parse a user command, the `TruthTableParser` class creates an `XYZCommandParser` (`XYZ` is a
-  placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse
-  the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `TruthTableParser` returns back as
+  placeholder for the specific command name e.g., `AddPersonCommandParser`) which uses the other classes shown above to parse
+  the user command and create a `XYZCommand` object (e.g., `AddPersonCommand`) which the `TruthTableParser` returns back as
   a `Command` object.
-- All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser`
+- All `XYZCommandParser` classes (e.g., `AddPersonCommandParser`, `DeletePersonCommandParser`, ...) inherit from the `Parser`
+- All `XYZCommandParser` classes (e.g., `AddPersonCommandParser`, `DeletePersonCommandParser`, ...) inherit from the `Parser`
   interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W13-4/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -174,7 +175,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-W13-4/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 

@@ -14,12 +14,19 @@ Class UserPrefs
 
 Class UniquePersonList
 Class Person
-Class Address
 Class Email
 Class Name
 Class Phone
 Class Tag
 
+Class UniqueTeamList
+Class Team
+Class TaskList
+Class Task
+Class TaskName
+Class UniqueLinkList
+Class Link
+Class LinkName
 }
 
 Class HiddenOutside #FFFFFF
@@ -35,16 +42,23 @@ ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 TruthTable *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
+UniquePersonList --> "*" Person
 Person *--> Name
 Person *--> Phone
 Person *--> Email
-Person *--> Address
 Person *--> "*" Tag
 
 Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
 
-ModelManager -->"~* filtered" Person
+ModelManager --> Person
+
+TruthTable *-down-> "1" UniqueTeamList
+UniqueTeamList --> "*" Team
+Team --> "1" UniquePersonList
+Team *-down-> "1" UniqueLinkList
+Team *-down-> "1" TaskList
+TaskList *-down-> "*" Task
+UniqueLinkList *-down-> "*" Link
+Task *-down-> "1" TaskName
+Link *-down-> "1" LinkName
 @enduml
