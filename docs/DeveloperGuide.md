@@ -239,12 +239,11 @@ Step 5. The user then decides to execute the command `list`. Commands that do no
 **Aspect:**
 
 __How undo & redo executes:__
-* **Alternative 1 (current choice):** Saves the entire HealthContact.
+* **Alternative 1 (current choice):** Saves the entire HealthContact
     * Pros: Easy to implement.
     * Cons: May have performance issues in terms of memory usage.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
+* **Alternative 2:** Individual command knows how to undo/redo by itself
     * Pros: Will use less memory (e.g. for `delete`, just save the patient being deleted).
     * Cons: We must ensure that the implementation of each individual command are correct.
 
@@ -486,7 +485,7 @@ Command format:
 1. __Alternative 1 (Current choice)__: Create separate commands for selecting patients and appointments
     - Pros: Easier to implement
     - Cons: Might be troublesome for user to remember the different commands
-2. __Alternative 2__: Create one command for adding patients, appointments and bills using the command word `add`
+2. __Alternative 2__: Create one command for selecting patients and appointments using the command word `select`
     - Pros: Easy to remember and type the command word
     - Cons: Too many prefixes to type in one command, which can make the command very long
 
