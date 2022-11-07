@@ -320,7 +320,7 @@ Step 5. James is deleted as a Person. The task is changed to be not assigned to 
 
 ### Finding a Task by keywords
 
-#### Implmentation
+#### Implementation
 
 The find mechanism allows a `Task` to be identified based on its **name** and **description** attributes. The command is executed using the `FindTaskCommand`, and keyword(s) for the search criteria is determined from the `FindTaskCommandParser` class which parses the user input. A `Predicate<Task>`, an instance of `TaskContainsKeywordsPredicate`, is created and it goes through the tasklist to filter every `Task` based on their **name** and **description** attributes and whether it matches any of the input keyword(s). Keyword matching is case-insensitive. The filtered tasklist is then displayed on the application.
 
@@ -357,7 +357,6 @@ The following sequence diagram shows how the filter operation works:
 Step 5. After looking through all the tasks that are related to backend, the user wants to revert back to the original set of tasks. The user calls `listTasks`, which will list the unfiltered tasklist.
 
 The following activity diagram summarizes what happens when a user executes a filter command:
-
 
 **Design considerations**
 
