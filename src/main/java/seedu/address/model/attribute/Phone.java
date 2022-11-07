@@ -13,8 +13,11 @@ import seedu.address.logic.parser.Prefix;
 public class Phone extends AbstractAttribute<String> implements PrefixedAttribute {
 
     public static final String TYPE = "Phone";
-    public static final String MESSAGE_CONSTRAINTS = "Phone numbers should only contain numbers,"
-        + " and it should be at least 3 digits long";
+    public static final String MESSAGE_CONSTRAINTS =
+        "Phone numbers can contain country code, region code and numbers.\n"
+            + "Optional Country code can begin with a optional '+' and followed by at most 4 digits\n"
+            + "Optional Area code can be at most 4 digits long\n"
+            + "Compulsary Phone number must be minimally 3 digits long\n";
     public static final String VALIDATION_REGEX = "(?:\\+?\\d{1,4} )?(?:\\d{1,4} )?\\d{3,}";
     public final String value;
 
