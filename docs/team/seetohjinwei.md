@@ -39,7 +39,7 @@ Given below are my contributions to the project.
     * Pull Requests reviewed (with non-trivial comments): [#138](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/138), [#161](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/161), [#169](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/169), [#175](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/175).
 
 * **Project management**:
-    * Managed releases [v1.2](https://github.com/AY2223S1-CS2103T-T13-4/tp/releases/tag/v1.2), [v1.2.1](https://github.com/AY2223S1-CS2103T-T13-4/tp/releases/tag/v1.2.1) (2 releases) on GitHub.
+    * Managed releases [v1.2](https://github.com/AY2223S1-CS2103T-T13-4/tp/releases/tag/v1.2), [v1.2.1](https://github.com/AY2223S1-CS2103T-T13-4/tp/releases/tag/v1.2.1), [v1.4](https://github.com/AY2223S1-CS2103T-T13-4/tp/releases/tag/v1.4) (3 releases) on GitHub.
 
 * **Documentation**:
     * User Guide:
@@ -49,5 +49,6 @@ Given below are my contributions to the project.
         * Added implementation details and design considerations for the command history navigation feature.
         * Updated implementation details and design considerations for the `undo` and `redo` features.
         * Added Command History Activity Diagram and Next Command History Sequence Diagram.
+        * Update glossary.
         * Added manual testing instructions for testing command history navigation.
         * Did minor updates to 10 diagrams initially from AB-3.
