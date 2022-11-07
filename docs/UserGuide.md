@@ -563,10 +563,7 @@ Format: `tag create t/TAG`
 tag create t/friends
 ```
 
-**Output in Command Result Box**
-```
-New Tag created: [friends]
-```
+**Example Result**
 
    (insert image of a successful creation of the `friends` tag)
 
@@ -589,10 +586,7 @@ Format: `tag delete t/TAG`
 tag delete t/friends
 ```
 
-**Output in Command Result Box**
-```
-Tag deleted: [friends]
-```
+**Example Result**
 
    (insert successful deletion of `Test2` tag)
 
@@ -620,10 +614,7 @@ Format: `tag edit t/TAG1 t/TAG2`
 tag edit t/friends t/bestFriends
 ```
 
-**Output in Command Result Box**
-```
-Tag has changed from [friends] to [bestFriends]
-```
+**Example Result**
 
 * You can refer to the Before and After comparison below.
 
@@ -660,10 +651,7 @@ Refer to [`Creating a Tag`](#creating-a-tag-tag-create) on how to create a tag.
 tag add 1 t/friends
 ```
 
-**Output in Command Result Box**
-```
-Tag added: [friends]
-```
+**Example Result**
 
    (insert image of a successful addition of the `friends` tag to contact `1`)
 
@@ -684,10 +672,7 @@ Format: `tag remove INDEX t/TAG`
 tag remove 1 t/friends
 ```
 
-**Output in Command Result Box**
-```
-Tag removed: [friends]
-```
+**Example Result**
 
    (insert image of contact `1` without the `friend` tag with the resu )
 
