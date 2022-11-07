@@ -113,8 +113,6 @@ For first-time users, we also recommend you to first read through the various [p
 
 [Back to top](#socompiler-user-guide)
 
-<div style="page-break-after: always;"></div>
-
 --------------------------------------------------------------------------------------------------------------------
 
 # Commands
@@ -144,6 +142,9 @@ Examples:
 
 * `find CS2040S` returns both the module `cs2040s` as well as contacts with `cs2040s` under their `module` field.
   <img src="images/find.png"/>
+
+<div style="page-break-after: always;"></div>
+
 * `find Friday` returns `CS2100` and `CS2103T`, assuming both modules have lectures or tutorials on Friday.
   <img src="images/find2.png"/>
 
