@@ -16,7 +16,7 @@ import seedu.address.logic.commands.util.CommandUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new ListCommand object.
+ * Parses input arguments and creates a subclass of the {@code CheckCommand}.
  */
 public class CheckCommandParser implements Parser<CheckCommand> {
 

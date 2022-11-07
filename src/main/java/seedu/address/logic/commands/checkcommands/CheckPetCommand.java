@@ -11,7 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.pet.Pet;
 
 /**
- * Checks the Supplier of a pet.
+ * Checks who the Supplier is of the Pet at the specified index.
  */
 public class CheckPetCommand extends CheckCommand {
     public static final String MESSAGE_SUCCESS = "Checking pet %1$s";

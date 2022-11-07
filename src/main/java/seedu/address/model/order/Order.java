@@ -10,7 +10,7 @@ import seedu.address.commons.core.index.UniqueIdGenerator;
 import seedu.address.model.person.Buyer;
 
 /**
- * Abstracts an order.
+ * Represents an order placed by a Buyer.
  */
 public class Order {
 
@@ -26,7 +26,7 @@ public class Order {
     private final OrderStatus status;
 
     /**
-     * Constructs an order object.
+     * Constructs an Order object.
      *
      * @param buyer The buyer who initiates the request.
      * @param requestedPriceRange The acceptable price range during negotiation.
@@ -59,7 +59,7 @@ public class Order {
     }
 
     /**
-     * Constructs an order object.
+     * Constructs an Order object.
      * The status is by default Pending.
      *
      * @param buyer The buyer who initiates the request.
@@ -85,7 +85,7 @@ public class Order {
     }
 
     /**
-     * Constructs an order object.
+     * Constructs an Order object.
      *
      * @param buyer The buyer who initiates the request.
      * @param requestedPriceRange The acceptable price range during negotiation.
@@ -117,7 +117,7 @@ public class Order {
     }
 
     /**
-     * Gets the buyer
+     * Gets the buyer.
      *
      * @return The buyer of this order.
      */
@@ -179,6 +179,11 @@ public class Order {
         return status;
     }
 
+    /**
+     * Gets the unique ID of the order.
+     *
+     * @return The ID.
+     */
     public UniqueId getId() {
         return id;
     }

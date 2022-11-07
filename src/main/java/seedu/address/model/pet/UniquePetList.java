@@ -17,10 +17,10 @@ import seedu.address.model.pet.exceptions.PetNotFoundException;
 /**
  * A list of pets that enforces uniqueness between its elements and does not allow nulls.
  * A pet is considered unique by comparing using {@code Pet#isSamePet(Pet)}. As such, adding and updating of
- * pets uses Pet#isSamePet(Pet) for equality so as to ensure that the pet being added or updated is
- * unique in terms of identity in the UniquePetList. However, the removal of a pet uses Pet#equals(Object) so
- * as to ensure that the pet with exactly the same fields will be removed.
- * <p>
+ * pets uses Pet#isSamePet(Pet) for equality to ensure that the pet being added or updated is
+ * unique in terms of identity in the UniquePetList. However, the removal of a pet uses Pet#equals(Object) to ensure
+ * that the pet with exactly the same fields will be removed.
+ *
  * Supports a minimal set of list operations.
  *
  * @see Pet#isSamePet(Pet)

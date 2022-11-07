@@ -13,7 +13,7 @@ import seedu.address.logic.commands.util.CommandUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new ListCommand object.
+ * Parses input arguments and creates a subclass of the {@code ListCommand}..
  */
 public class ListCommandParser implements Parser<ListCommand> {
     @Override

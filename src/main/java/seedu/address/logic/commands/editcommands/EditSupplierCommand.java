@@ -18,7 +18,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.Supplier;
 
 /**
- * Edits the details of an existing supplier.
+ * Edits the details of an existing Supplier.
  */
 public class EditSupplierCommand extends EditCommand {
 

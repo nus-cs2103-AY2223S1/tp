@@ -6,7 +6,7 @@ import seedu.address.commons.core.index.UniqueId;
 import seedu.address.model.order.Order;
 
 /**
- * Tests that a {@code Order}'s {@code UniqueId} matches the Unique Id given.
+ * Tests that a {@code Order}'s {@code UniqueId} matches the Unique ID given.
  */
 public class UniqueOrderIdPredicate<T extends Order> implements Predicate<T> {
     private final UniqueId uniqueId;

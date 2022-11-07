@@ -16,7 +16,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.order.Order;
 
 /**
- * Parses input arguments and creates a new FilterOrderCommand object.
+ * Parses input arguments and creates a {@code FilterOrderCommand}.
  */
 public class FilterOrderCommandParser implements Parser<FilterOrderCommand> {
 
@@ -31,8 +31,8 @@ public class FilterOrderCommandParser implements Parser<FilterOrderCommand> {
     };
 
     /**
-     * Parses the given {@code String} of arguments in the context of the FilterPetCommand
-     * and returns a FilterPetCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the FilterOrderCommand
+     * and returns a FilterOrderCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format.
      */
     public FilterOrderCommand parse(String trimmedArgs) throws ParseException {

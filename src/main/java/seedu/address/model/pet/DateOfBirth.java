@@ -8,7 +8,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.ModelManager;
 
 /**
- * Abstracts the date of birth of a pet.
+ * Represents the date of birth of a pet.
  */
 public class DateOfBirth implements Comparable<DateOfBirth> {
 

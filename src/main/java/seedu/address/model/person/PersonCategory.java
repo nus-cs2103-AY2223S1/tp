@@ -48,6 +48,9 @@ public enum PersonCategory {
 
     /**
      * Returns true if a given string is a valid person type.
+     *
+     * @param test the string to test if valid.
+     * @return true if test is a valid person type, false if test is an invalid person type.
      */
     public static boolean isValidPersonCategory(String test) {
         boolean isValidPersonCategory =

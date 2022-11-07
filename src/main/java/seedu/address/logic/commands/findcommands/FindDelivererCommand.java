@@ -11,7 +11,7 @@ import seedu.address.model.person.Deliverer;
 import seedu.address.model.person.PersonCategory;
 
 /**
- * Finds and lists all persons in address book whose name contains any of the argument keywords.
+ * Finds and lists all Deliverers in address book whose name contains any of the argument keywords.
  * Keyword matching is case-insensitive.
  */
 public class FindDelivererCommand extends FindCommand {
@@ -21,7 +21,6 @@ public class FindDelivererCommand extends FindCommand {
      * Keyword matching is case insensitive.
      *
      * @param dPredicate A Predicate for Deliverers.
-     * @return FindDelivererCommand.
      */
     public FindDelivererCommand(Predicate<Deliverer> dPredicate) {
         super(null, dPredicate, null, PersonCategory.DELIVERER);
