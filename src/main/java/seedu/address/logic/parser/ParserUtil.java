@@ -22,7 +22,6 @@ import seedu.address.model.attribute.Name;
 import seedu.address.model.attribute.Phone;
 import seedu.address.model.group.Group;
 import seedu.address.model.group.Path;
-import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
 /**
