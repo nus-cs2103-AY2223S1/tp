@@ -59,6 +59,21 @@ However, you may also choose to head over to the relevant sections as described 
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Navigating CodeConnect
+
+This section explains the various graphical components of CodeConnect's interface.
+
+![UiAnnotated](images/UiAnnotated.png)
+
+| No. | Component         | Description                                                                       |
+|-----|-------------------|-----------------------------------------------------------------------------------|
+| 1   | Menu Bar          | Quick access to utility commands.                                                 |
+| 2   | Command Box       | Where you'll enter commands to tell CodeConnect what to do.                       |
+| 3   | Result Box        | Result (success, error, etc.) of the command executed.                            |
+| 4   | Tabs              | Toggle between contact list or task list.                                         |
+| 5   | Contact/Task List | Display current contacts/tasks, depending on command executed.                    |
+| 6   | Data File Path    | Location of the file in your computer where your contact and task data is stored. |
+
 ## Features
 
 <div markdown="block" class="alert alert-info">
