@@ -11,7 +11,7 @@ import bookface.model.Model;
 import bookface.model.book.Book;
 
 /**
- * Loans to the user in the user list a book from the book list.
+ * Returns the loaned book.
  */
 public class ReturnCommand extends Command {
     public static final String COMMAND_WORD = "return";

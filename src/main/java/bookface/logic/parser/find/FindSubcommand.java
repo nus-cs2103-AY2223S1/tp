@@ -6,7 +6,7 @@ import bookface.logic.parser.ParserFunction;
 import bookface.logic.parser.exceptions.ParseException;
 
 /**
- * An enum class that contains all the valid user commands.
+ * An enum class that contains all the valid Find commands.
  */
 public enum FindSubcommand implements CommandReturnable {
     USER((args) -> new FindUserArgumentsParser().parse(args)),
