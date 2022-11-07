@@ -7,6 +7,7 @@ import static seedu.watson.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 import javafx.collections.ObservableList;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.watson.commons.core.GuiSettings;
@@ -22,8 +23,8 @@ public class PredictionCommandTest {
 
     @Test
     public void constructor_nullInput_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-            () -> new PredictionCommand(null, null, 0.0));
+        assertThrows(NullPointerException.class, () ->
+            new PredictionCommand(null, null, 0.0));
     }
 
     @Test
