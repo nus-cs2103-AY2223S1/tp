@@ -259,7 +259,7 @@ The following sequence diagram shows how the edit operation works:
 
 ![EditSequenceDiagram](images/EditSequenceDiagram.png)
 
-Step 3. The description panel will then display the information of the edited student for the user to view the changes he has made.
+Step 4. The description panel will then display the information of the edited student for the user to view the changes he has made.
 
 The following activity diagram summarizes what happens when a user executes the edit command:
 
@@ -275,6 +275,46 @@ The following activity diagram summarizes what happens when a user executes the 
 * **Alternative 2:** Separate classes that extend `Command` for editing of class and person separately.
     * Pros: Easier to implement.
     * Cons: More cluttered.
+
+### \[Implemented\] Adding a next of kin to a student
+
+#### Implementation
+
+The next of kin adding mechanism is facilitated by `NextOfKinCommand`. 
+It extends `Command` and stores the `Index` and `NextOfKin` instances for adding the next of kin. 
+Additionally, it implements the following operations:
+
+* `NextOfKinCommand#execute()` — Executes adding of the `NextOfKin` instance to a `Student` instance in the `Model`.
+
+The `NextOfKinCommand#execute()` operation is exposed in the `Logic` interface as `Logic#execute()`.
+
+The parsing of the next of kin command is facilitated by `NextOfKinCommandParser`. It extends `Parser<NextOfKinCommand>` implementing the following operations:
+
+* `NextOfKinCommandParser#parse()` — Returns an `NextOfKinCommand` instance encapsulating the `Index` and `NextOfKin` instances created from user input.
+
+Given below is an example usage scenario and how the next of kin adding mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `ModelManager` will be initialized with an empty `AddressBook`.
+
+Step 2. The user then executes `add student n/David ...` to add a new student. A `Student` instance is added to the `Model`.
+
+Step 3. The user executes `nok 1 n/Tom ...` to add next of kin details to the existing student.`NextOfKinCommandParser#parse()` is called to handle
+the user input and a new `NextOfKinCommand` instance encapsulating the `Index` and `NextOfKin` instances (instantiated based on the inputs of the user) is created.
+The `NextOfKinCommand#execute()` operation of this instance is then called. Firstly, the `Student` in question is identified using the `Index` instance.
+Next, the `NextOfKin` is added to the `Student` instance in question in the `Model`.
+
+Step 4. The description panel will then display the information of the student for the user to view the changes he has made.
+
+#### Design considerations:
+
+**Aspect: When to add next of kin:**
+
+* **Alternative 1 (current choice):** Separate command to add next of kin details.
+    * Pros: Short command syntax.
+    * Cons: More lines of code.
+* **Alternative 2:** Add next of kin details through the Add command.
+    * Pros: Less lines of code.
+    * Cons: Long command syntax.
 
 ### \[Implemented\] Assign/unassign feature
 
