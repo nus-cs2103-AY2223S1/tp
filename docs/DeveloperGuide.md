@@ -256,7 +256,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-T14-4/tp/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S1-CS2103T-T14-4/tp/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -279,7 +279,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point).
 
 <div style="page-break-after: always;"></div>
 
@@ -316,7 +316,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-T14-4/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -326,7 +326,7 @@ How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+1. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 <div style="page-break-after: always;"></div>
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
@@ -349,7 +349,7 @@ How the parsing works:
 <div style="page-break-after: always;"></div>
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-T14-4/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
 ![Model Class Diagram](images/ModelClassDiagram.png)
 
@@ -375,7 +375,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-T14-4/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 ![Storage Class Diagram](images/StorageClassDiagram.png)
 
@@ -630,7 +630,7 @@ that has to be multiplied by the number of contacts in ConnectNUS.
   * Cons: No removal of duplicates
 
 
-* **Decision:** We chose Alternative 1 to reduce the chances of bugs occuring due to duplicates that may fall through our checks. As sorting is only done
+* **Decision:** We chose Alternative 1 to reduce the chances of bugs occurring due to duplicates that may fall through our checks. As sorting is only done
 during `timetable` commands which will be called significantly fewer times than `lesson` commands, speed of sorting is not
 as significant of an issue.
 
@@ -640,7 +640,7 @@ as significant of an issue.
 
 ### **Viewing Timetable**
 ConnectNUS gives you the ability to view not only your own timetable, but that of your contacts as well, after `Lesson`s
-have been added to your profile and their contact. This makes deconflicting schedules significantly faster and meetings can
+have been added to your profile and their contact. This makes de-conflicting schedules significantly faster and meetings can
 be arranged easily.
 
 The command has the prefix `timetable` and has the parameters
@@ -794,7 +794,7 @@ Implementing Undo/Redo commands in this manner requires the developers to strict
 
 Here's what a typical Object Diagram may look like for an Address Book State:
 ![UndoRedoObjectDiagram](images/UndoRedoObjectDiagram.png)
-- In this diagram, `ab0` is the initial AddressBookstate that contains two contact, `bob0` and `alice0`.
+- In this diagram, `ab0` is the initial AddressBook state that contains two contact, `bob0` and `alice0`.
 - After the user makes a change to the contact `bob0`, we have to save a new `AddressBook` into our `VersionedAddressBook`, with a new `bob1` Object that embodies the changed `bob0` Object, instead of just making the change to the `bob0` Object directly.
 
 <div style="page-break-after: always;"></div>
@@ -868,7 +868,7 @@ The `PersonListPanel` in the `MainWindow` UI is then updated accordingly.
 
 #### Design Considerations
 
-**Aspect: The implementation of the various filter features ie. filtering by Tag, filtering by Current Module, filtering by Previous Module and filtering by Planned Module:**
+**Aspect: The implementation of the various filter features i.e. filtering by Tag, filtering by Current Module, filtering by Previous Module and filtering by Planned Module:**
 
 * **Alternative 1:** Creating a common filter parent class with each specific filter function extending from the parent filter class.
   * Pros: Since all filter functions require the same methods, it would be easier to implement filter functions with the different specifications in ConnectNUS. Furthermore, it allows developers to create new filter functions for future features that may be added to the application in future iterations.
