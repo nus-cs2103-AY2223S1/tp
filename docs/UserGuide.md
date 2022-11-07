@@ -130,6 +130,8 @@ To display all the patients/records (**Unfiltered List View**), you can use the 
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### Command Format
 Before we introduce more of OmniHealth's commands throughout this User Guide, let's first
 go through the general command format.

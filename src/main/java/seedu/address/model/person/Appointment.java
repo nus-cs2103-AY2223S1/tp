@@ -51,6 +51,7 @@ public class Appointment {
         try {
             LocalDateTime.parse(testDate, DATE_FORMAT);
         } catch (DateTimeParseException e) {
+
             return false;
         }
         return true;
@@ -59,8 +60,8 @@ public class Appointment {
     /**
      * Returns true if the date is in the past.
      *
-     * @param testDate Date to be tested
-     * @return
+     * @param testDate Date to be tested.
+     * @return True if date is passed.
      */
     public static boolean isFutureDate(String testDate) {
         LocalDateTime currDate = LocalDateTime.now();
