@@ -51,8 +51,6 @@ Here are some of the symbols and text formatting to look out for as you make use
    <img src="images/howToDownload_1.png" width="500" /> <br>
    <img src="images/howToDownload_2.png" width="500" /> <br>
 
-<div style="page-break-after: always;"></div>
-
 4. Finally, you are ready to use PayMeLah. Simply double-click the *paymelah.jar* in the folder you created to start the app. After a few seconds, you should see PayMeLah appear. Notice how we have some sample persons and debts present for you to experiment with our [features](#features).  <br>
    <img src="images/Ui.png" width="800" /> <br>
 
@@ -78,6 +76,7 @@ Here are some of the symbols and text formatting to look out for as you make use
 |   3.   | Person Card    | The card containing personal details.                                                                                                                 |
 |   4.   | Debt List      | The box containing the list of debts owed by a person.                                                                                                |
 |   5.   | Person List    | The box containing the full list of person cards. Only one person card can be viewed at a time.                                                       |
+
 <img src="images/UiDetails.png" width="800" /> <br>
 
 <div style="page-break-after: always;"></div>
@@ -147,18 +146,19 @@ As this section is meant for new users, it will not cover how to navigate the ap
    will be filled with the information you actually want instead.
 
 1. You should see that the person list is now empty.
+
    ![Empty person list](images/EmptyPersonList.png)
 
 1. You can now add your first person to PayMeLah with the [`add` command](#adding-a-person-add). The example we will use in this section is `add n/Ryan Tan tele/ryantan123`. Entering this command will add a person named `Ryan Tan` with `ryantan123` as his Telegram handle into PayMeLah.
 
 1. You should see that the person card for `Ryan Tan` is now visible in the person list. You can click on his name to expand his person card, as per the picture below. However, he does not have any debts associated with him just yet!
+
    ![Ryan Tan list](images/RyanTanList.png)
 
 1. You are now ready to add a debt to `Ryan Tan` using the [`adddebt` command](#adding-a-debt-adddebt)! This time, the example we will use is `adddebt 1 d/mcdonalds m/9.80`. Entering this command will add a debt of `$9.80` with the description `mcdonalds` to the 1st person in the person list, who happens to be `Ryan Tan`.
 
-<div style="page-break-after: always;"></div>
+1. The person card for `Ryan Tan` should now be updated. Congratulations! You have just added your first debt to PayMeLah!
 
-6. The person card for `Ryan Tan` should now be updated. Congratulations! You have just added your first debt to PayMeLah!
    ![YourFirstDebt](images/YourFirstDebt.png)
 
 Of course, this is not yet the end of your journey with PayMeLah - there are still several other commands you may require while using PayMeLah, including commands such as `deletedebt` and `find`. You can find out more about these commands in the [features](#features) section below.
@@ -194,7 +194,11 @@ Of course, this is not yet the end of your journey with PayMeLah - there are sti
 Be very careful with how a command is formatted! If the `…` is found within the diamond brackets `<>` that correspond to an input as in `<person index…>`, then only the input itself is to be repeated. However, if the `…` is found outside the `<>` as in `[t/<tag>]…`, then both the prefix and input must be repeated.
 </div>
 
+</div>
+
 <div style="page-break-after: always;"></div>
+
+<div markdown="block" class="alert alert-info">
 
 * Inputs can be in any order.<br>
   e.g. if the command specifies `d/<description> m/<money>`, `m/<money> d/<description>` is also acceptable.
@@ -285,6 +289,10 @@ Format: `exit`
 You can also just press the 'X' button in the upper right corner. There is no difference, and both methods help safely exit PayMeLah :)
 </div>
 
+
+[Return to Table of Contents](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
 ### Features for Managing Persons
@@ -328,6 +336,7 @@ Examples:
 *  `edit 1 p/91234567 tele/johndoe` will edit the phone number and Telegram handle of the 1st person to be `91234567` and `@johndoe` respectively.
 *  `edit 2 n/Betsy Crower t/` will edit the name of the 2nd person to be `Betsy Crower` and clear all their existing tags.
 
+<div style="page-break-after: always;"></div>
 
 #### Deleting a person: `delete`
 
@@ -374,7 +383,6 @@ You might find it difficult to find the index of a specific person when your lis
 Be very careful! The default behaviour is slightly different across the different combinations of whether you provided date and time inputs.
 </div>
 
-(Continued on next page)
 <div style="page-break-after: always;"></div>
 
 * One person **cannot** have 2 debts with the same description, money, date and time. However, they **can** have 2 debts with 3 out of 4 of description, money, date and time being the same.
@@ -409,7 +417,6 @@ You might find it difficult to find the index of a specific person when your lis
 Splitting a debt is just like [adding a debt](#adding-a-debt-adddebt) to multiple people; however, here we divide the money of the debt over the people who shared it (and round up to the closest cent). Thus, you can similarly tell PayMeLah to add Service Charge and GST to the amount of money specified by including `++` at the back of the amount. A single `+` will add only GST instead.
 </div>
 
-(Continued on next page)
 <div style="page-break-after: always;"></div>
 
 * If you specify **neither date nor time**, the date and time will conveniently default to the current date and time.
@@ -474,6 +481,8 @@ Format: `unmark <person index> debt/<debt index…>`
 Example:
 * `unmark 2 debt/2 3`
 
+<div style="page-break-after: always;"></div>
+
 #### Getting the statement: `statement`
 
 Gets a statement of the total sum of debts you are owed from everyone in the displayed person list. <br>
@@ -503,9 +512,9 @@ Example: `statement` returns `You are owed $583.90 in total.`
 Finds persons who match all the given conditions.<br>
 This is one of the most powerful tools available to look through your person list, as you can search by almost anything.
 
-Format: `find [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>…]
-[d/<description>…] [m/<money>…] [above/<money>] [below/<money>]
-[date/<date>…] [before/<date>] [after/<date>] [time/<time>…]`
+Format: `find [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]…
+[d/<description>]… [m/<money>]… [above/<money>] [below/<money>]
+[date/<date>]… [before/<date>] [after/<date>] [time/<time>]…`
 
 The following table is a summary of all the inputs this command can accept:
 
@@ -557,7 +566,7 @@ Examples:
 Finds persons who are associated with any debts that match any of the given keywords.<br>
 This is useful if you do not remember the exact description of a debt you want to look for (e.g. was it `KFC` or `kfc`?).
 
-Format: `finddebt <keyword>…`
+Format: `finddebt <keyword…>`
 
 * The search is case-insensitive. e.g. `burger` will match `Burger`
 * The order of the keywords does not matter. e.g. `Sharing Meal` will match `Meal Sharing`
@@ -661,7 +670,7 @@ If you are trying to locate a debt by its description, consider using the [`find
 **Q3**: PayMeLah is not letting me use the command I want! What can I do?<br>
 **A**: Oh no! Calm down - let's troubleshoot together. First, head to the [Command Summary](#command-summary) section to make sure you are using the command in the correct format. You can also click on the links there to read more about the specifics of each command. If PayMeLah continues to misbehave, do drop us an email at paymelah.app@gmail.com, and we will do our best to help you as soon as possible!
 
-**Q4**: Why can't PayMeLah do _this_?
+**Q4**: Why can't PayMeLah do _this_?<br>
 **A**: We are so sorry that PayMeLah does not support this feature at the moment :( However, PayMeLah is a constant work in progress and we hope to deliver the features that you are looking for in the near future! In the meantime, feel free to drop us feedback at paymelah.app@gmail.com so that we can better understand and serve your needs :)
 
 [Return to Table of Contents](#table-of-contents)
@@ -734,4 +743,6 @@ If you are trying to locate a debt by its description, consider using the [`find
 | [**Sort**](#sorting-list-of-persons-sort)                        | `sort <criterion prefix><order>`<br> e.g., `sort n/+`, `sort m/-`, `sort date/+`                                                                                                                                                                        |
 
 [Return to Table of Contents](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
 
