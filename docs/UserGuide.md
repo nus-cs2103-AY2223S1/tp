@@ -7,21 +7,18 @@ title: User Guide
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div class="page-new"></div>
+
 ## Introduction
 
-CodeConnect is a **desktop app** specially designed for **Computer Science students from NUS**. On top of being able to
-manage your **tasks and contacts** effectively, students can conveniently search for peers that are taking the same module
-as them to seek help or collaboration.
+CodeConnect is a **desktop app** specially designed for **Computer Science students from NUS**. With this app, not only can you manage your **tasks and contacts** effectively in one unified place, you can also conveniently search for peers to seek help or collaboration on a particular task.
 
-This app is optimized for use via a **Command Line Interface** (CLI)
-while still having the benefits of a Graphical User Interface (GUI).
-
-
+This app is optimized for use via a **Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
 ## How to use this guide?
 
-For new users, it is strongly recommended that you look through this User Guide to gain a comprehensive
-understanding of CodeConnect.
+For new users, it is strongly recommended that you look through this User Guide to gain a comprehensive understanding of CodeConnect.
 
 However, you may also choose to head over to the relevant sections as described below:
 
@@ -29,18 +26,46 @@ However, you may also choose to head over to the relevant sections as described 
 - [Features](#features) - To learn the different features and commands used in CodeConnect
 - [Command Summary](#Command summary) - To have a complete overview of all the features and their respective command.
 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+
+Boxes like this indicate gotchas that you might wish to watch out for.
+
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+:question: **Extra information**
+
+Boxes like this indicate extra information you might be curious about.
+
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+:bulb: **Additional tips**
+
+Boxes like this indicate more tips to help you make the most out of CodeConnect.
+
+</div>
+
+<div class="page-new"></div>
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+CodeConnect works on all major OSes (Windows, Mac, Linux) and only requires Java 11 or above installed on your computer.
+
+1. Ensure you have Java `11` or above installed in your computer.
+   * [Instructions for doing this](https://superuser.com/questions/1221096/) are available on the internet.
+   * If not, [install it](https://docs.oracle.com/en/java/javase/11/install/).
 
 2. Download the latest `CodeConnect.jar` from [here](https://github.com/AY2223S1-CS2103T-T14-2/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_.
+3. Copy the file to the folder you want to store CodeConnect's data in.
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
 
     ![UiOnStartup](images/UiOnStartup.png)
+    <div class="page-new"></div>
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -49,9 +74,9 @@ However, you may also choose to head over to the relevant sections as described 
 
    * **`add`** `Finish homework by/tomorrow 5pm m/CS2040S` : Adds a task named `Finish homework` to the Task Manager.
 
-   * **`del`** `1` : Deletes the 1st task shown in the current list.
+   * **`del`** `1` : Deletes the 1<sup>st</sup> task shown in the current list.
 
-   * **`clear`** : Deletes all contacts.
+   * **`clear`** : Deletes all contacts. Good for removing the sample data before adding your own. 
 
    * **`exit`** : Exits the app.
 
@@ -63,7 +88,7 @@ However, you may also choose to head over to the relevant sections as described 
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+**:question: Notes about the command format:**<br>
 
 * Words in `{curly_braces}` are the parameters to be supplied by the user (you).<br>
   e.g. In `addc n/{name}`, `{name}` is a parameter which can be used as `addc n/John Doe`.
@@ -96,7 +121,6 @@ Several commands below require an `index` to be specified, as they operate on a 
 
 </div>
 
-
 ### Getting help
 
 #### Viewing help : `help`
@@ -116,6 +140,8 @@ Examples:
 * `add finish problem set 5 by/tomorrow 5pm m/CS2040S`
 * `add finish SEP application by/2022-12-25 23:59`
 
+<div class="page-new"></div>
+
 <div markdown="block" class="alert alert-info">
 
 :bulb: Deadline Formats
@@ -129,7 +155,12 @@ Here are some examples of what deadline formats are accepted:
 * "this tuesday 05:00" or "this tuesday 0500" will format it to the coming tuesday, 5.00am
 * "may 27th" will format it to the 27th of may of the current year, 11.59pm
 
-Due to the library's limitations, "6/4/2022" will format it to 4 June.
+The following dates and times are known **not to work**:
+* "6/4/2022" will be read as 4 June.
+* "11.30pm" will not be understood. ("11:30pm" is understood)
+* "2022-02-31" will be read as 3 March.
+
+We will attempt to resolve these issues in a future version.
 
 </div>
 
@@ -150,6 +181,8 @@ However, only alphanumeric characters are allowed! (i.e. no spaces, special char
 CodeConnect will happily accept deadlines that are in the past, in case you want to use it to track start dates or track an assignment due a few hours ago you just found out about!
 
 </div>
+
+<div class="page-new"></div>
 
 #### Editing a task: `edit`
 
@@ -193,6 +226,8 @@ This command has similar spelling to the [clear command](#clearing-all-contacts-
 
 </div>
 
+<div class="page-new"></div>
+
 #### Marking a task: `mark`
 
 Marks the specified task as complete.
@@ -215,7 +250,9 @@ Format:
 Example:
 `unmark 3`
 
-#### Finding tasks: `find`
+<div class="page-new"></div>
+
+#### Searching for tasks: `find`
 
 Find tasks by their name or module. The finding is done by **matching keywords** in a **case-insensitive** manner. <br>
 Finding tasks by module makes it convenient for you to see what tasks you have for a particular module at one look, while finding them by name helps you to look for a specific task quickly rather than scrolling through the entire task list.  
@@ -233,6 +270,8 @@ Examples:
 `find m/CS2103T` returns this:
 
 ![findTasks](images/findTaskModule.png)
+
+<div class="page-new"></div>
 
 #### Listing all tasks : `list`
 
@@ -276,6 +315,8 @@ Every tag must begin with a tag prefix `t/`. If you would like to add multiple t
 Modules, however, may be entered as **space separated**. For example, `m/MOD1 MOD2 MOD3` will correctly assign 3 modules to the contact.
 
 </div>
+
+<div class="page-new"></div>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 
@@ -335,6 +376,8 @@ Examples:
 * `findc m/1231` returns `Alex Yeoh`, `David Li`
 * `findc ts/2` returns contacts that are taking the module that the task at index 2 belongs to
 
+<div class="page-new"></div>
+
 #### Quick-search for contacts: `saveme`
 
 Finds contacts that can help with the task at the first index of the task list.
@@ -367,6 +410,8 @@ Deleted contacts are **unrecoverable**!
 <br>
 Click [here](#) to return to the top of the page.
 
+<div class="page-new"></div>
+
 ### Finishing up
 
 #### Exiting the program : `exit`
@@ -398,6 +443,8 @@ If your changes to the data file makes its format invalid, CodeConnect will disc
 **A**: For a smoother user experience, CodeConnect automatically switches to the list that is associated with the previous command type (task or contact command). You can also switch list views manually by clicking the tabs above the lists.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div class="page-new"></div>
 
 ## Command summary
 
