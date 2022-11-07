@@ -40,6 +40,8 @@
       page-break-before: always;
     }
 
+    // TODO: Remove unnecessary spacing from H3 at the top of pages
+
     h2,
     h3:not(.glossary-heading) {
       string-set: section_title content();
