@@ -19,18 +19,22 @@ Given below are my contributions to the project.
     * Added command to filter meetings by time period with associated tests.
     * Added command to add a new meeting with associated tests.
     * Improved handling of invalid inputs by displaying more specific messages.
+    * Developing the addMeeting command involved deliberate consideration of several implementation methods, because meetings and clients has a two-way object reference. At the same time, the model and storage had to be revamped to handle checks for conflicting meeting times. The command can be considered to be complete as it performs as intended, has checks for invalid and conflicting inputs, and has associated automated tests.
   * GUI enhancements [#113](https://github.com/AY2223S1-CS2103T-W16-4/tp/pull/113), [#195](https://github.com/AY2223S1-CS2103T-W16-4/tp/pull/195)
     * Added ability to switch between various GUI panels for different commands.
     * Added panels for a detailed view of meeting and client information.
     * Modified list view to better suit the needs of financial advisors.
     * Added ability to switch between light and dark themes.
+    * The GUI was made to present condensed information in list format, and detailed information in the view of singular clients and meetings. New fxml files and associated controller classes had to be implemented in order to display the information to suit the needs of financial advisors. The enhancements to the UI can be considered complete as it matches follows the GUI mockup our team created at the start of the project.
   * Storage enhancements [#107](https://github.com/AY2223S1-CS2103T-W16-4/tp/pull/107), [#311](https://github.com/AY2223S1-CS2103T-W16-4/tp/pull/311), [#324](https://github.com/AY2223S1-CS2103T-W16-4/tp/pull/324)
     * Enhanced existing storage code to store meetings and products in addition to clients.
     * Added more tests to check error handling in case of invalid data.
+    * Storage classes were updated to store the additional lists of meetings and clients. At the same time, recovering the objects from the json file involved deliberation over the implementation of the two-way object reference between clients and meetings. The enhancements to the storage can be considered complete as the program data can be stored and recovered from a json file.
   * Model enhancements [#298](https://github.com/AY2223S1-CS2103T-W16-4/tp/pull/298), [#149](https://github.com/AY2223S1-CS2103T-W16-4/tp/pull/149)
     * Added new methods for meetings and clients to support command operations.
     * Added field validation regexes for validating input strings.
     * Fixed bugs for conflicting meeting times
+    * Checks against conflicting meeting times were implemented in the model. The editMeeting command also had to be guarded against bugs so as to prevent the meeting being edited from "conflicting" with the existing meeting. 
     
 * **Documentation**:
   * User Guide [#286](https://github.com/AY2223S1-CS2103T-W16-4/tp/pull/286)
