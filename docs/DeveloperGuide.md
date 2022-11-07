@@ -462,7 +462,7 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the student being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
+
 
 ### \[Enhanced\] ***Add*** Feature
 
@@ -547,7 +547,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | teaching assistant with many students | have a quick way to find students by what I remember them for | search for their contacts faster.                     |
 | `* *`    | teaching assistant with limited time  | quickly type out repeated commands                            | perform my duties faster                              |
 
-*{More to be added}*
 
 ### Use cases
 
@@ -812,7 +811,7 @@ Use case ends.
 **MSS**
 1. User goes to previous command by pressing a key.
 2. User goes to next command by pressing a different key.
-*{More to be added}*
+
 
 ### Non-Functional Requirements
 
@@ -822,7 +821,6 @@ Use case ends.
 4.  User has to have a basic grasp of English as other languages are not supported.
 5.  Should be able to work without internet access.
 
-*{More to be added}*
 
 ### Glossary
 * **CLI**: Command Line Interface
@@ -858,7 +856,6 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
 
 ### Deleting a student
 
