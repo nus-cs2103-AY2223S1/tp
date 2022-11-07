@@ -29,14 +29,14 @@ Given below are my contributions to the project.
 
 Bug Fixes:
 
-* **Display Email in person assigned taskcard**: The person's email is displayed after the person name, reflected in the taskcard component. (Pull requests [\#69](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/69)).
+* **Display Email in person assigned taskcard**: The person's email is displayed after the person name, reflected in the taskcard component. (Pull requests [\#170](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/170)).
   * Justification: The contact list allows for a two contacts to have the same name but no duplicate emails. Thus, to be able to tell two contacts with the same name apart, we provide additional information such as the email.
 
 Tests:
 
 * **Commands Test**: Writes test for FilterTaskCommand, FindTaskCommand, ListTaskCommand (Pull requests [\#159](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/159))
   * What it does: Performs automated testing to check if the commands work as expected.
-  * Justification: This helps to eliminate bugs for task storage.
+  * Justification: This helps to eliminate bugs for task commands.
   * Highlights: Increased code coverage by 6%.
 
 * **Sort Test**: Writes test for SortByCategory, SortByDeadline, SortByPriority, SortByStatus (Pull requests [\#159](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/159))
@@ -50,12 +50,12 @@ Tests:
   * Highlights: Increased code coverage by 6%.
  
 
-* **Documentation**:
+**Documentation**:
   * User Guide:
-    * Added documentation for the features `Add Task`, `Delete Task`, `View Tasks`, `Glossary`, `FAQ`, `filter`, `Edit Task` (Pull requests [\#13](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/13), [\#106](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/106)), [\#178](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/178))
+    * Added documentation for the features `Add Task`, `Delete Task`, `View Tasks`, `Glossary`, `FAQ`, `filter`, `Edit Task` (Pull requests [\#13](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/13), [\#106](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/106), [\#178](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/178))
     * Fix the following bugs: (Pull requests [\#165](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/165)).
-    * Issue 136: Inaccurate documentation for listTasks command
-    * Issue 130: Clear command clears the address book, not the task list.
+    Issue 136: Inaccurate documentation for listTasks command
+    Issue 130: Clear command clears the address book, not the task list.
  
   * Developer Guide:
     * Added implementation details of the `filter`, `addTask`, `deleteTask` feature (Pull requests [\#110](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/110), [\#196](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/196))
