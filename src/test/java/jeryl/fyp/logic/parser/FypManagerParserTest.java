@@ -131,6 +131,14 @@ public class FypManagerParserTest {
         assertTrue(parser.parseCommand(SortProjectStatusCommand.COMMAND_WORD) instanceof SortProjectStatusCommand);
         assertTrue(parser.parseCommand(SortProjectStatusCommand.COMMAND_WORD + " 3")
                 instanceof SortProjectStatusCommand);
+<<<<<<< Updated upstream
+=======
+
+        //invalid input
+        final String invalidInput = "sort -sp";
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () ->
+                parser.parseCommand(invalidInput));
+>>>>>>> Stashed changes
     }
 
     @Test
@@ -138,6 +146,15 @@ public class FypManagerParserTest {
         assertTrue(parser.parseCommand(SortProjectNameCommand.COMMAND_WORD) instanceof SortProjectNameCommand);
         assertTrue(parser.parseCommand(SortProjectNameCommand.COMMAND_WORD + " 3")
                 instanceof SortProjectNameCommand);
+<<<<<<< Updated upstream
+=======
+
+        //sort as alternative keyword
+        assertTrue(parser.parseCommand(SortProjectNameCommand.ALTERNATIVE_COMMAND_WORD)
+                instanceof SortProjectNameCommand);
+        assertTrue(parser.parseCommand(SortProjectNameCommand.ALTERNATIVE_COMMAND_WORD + " 3")
+                instanceof SortProjectNameCommand);
+>>>>>>> Stashed changes
     }
 
     @Test
