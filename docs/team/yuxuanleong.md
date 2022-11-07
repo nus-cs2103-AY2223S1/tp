@@ -5,9 +5,10 @@ title: Leong Yu Xuan's Project Portfolio Page
 
 ### Project: SETA
 
-SETA is a desktop tutorial management application used to help CS2103T TA's to track their students’ and tutorials’
-details, and questions asked by students. The user interacts with it using a CLI, and it has a GUI created with JavaFX.
-It is written in Java, and has about 10 kLoC.
+SETA is a desktop application for CS2103T Teaching Assistants to track their students’ and tutorials’ details, and
+questions asked by students, optimized for use via a Command Line Interface (CLI) while still having the benefits of a
+Graphical User Interface (GUI). If you can type fast, SETA enables you to manage your tutorials and track your students
+more effectively than traditional GUI apps.
 
 Given below are my contributions to the project.
 
