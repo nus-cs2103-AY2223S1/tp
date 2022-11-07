@@ -9,6 +9,7 @@ Welcome to the NotionUS developer guide!
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **1. Introduction**
 
@@ -37,6 +38,8 @@ implementation of our features in the "Implementation" section.
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **4. Design**
 
@@ -89,6 +92,8 @@ implementation of a component), as illustrated in the (partial) class diagram be
 
 The sections below give more details of each component.
 
+<div style="page-break-after: always;"></div>
+
 ### 4.2 UI component
 
 The **API** of this component is specified
@@ -119,6 +124,8 @@ The `UI` component,
   filters applied on the tasklist.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Task` object residing in the `Model`.
+
+<div style="page-break-after: always;"></div>
 
 ### 4.3 Logic component
 
@@ -157,6 +164,8 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser`
   interface so that they can be treated similarly where possible e.g, during testing.
 
+<div style="page-break-after: always;"></div>
+
 ### 4.4 Model component
 
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
@@ -181,6 +190,8 @@ For the `Task` class,
 * to support a default sorting of `Task` objects, `Task` implements the `Comparable<Task>` interface
 * As `Deadline` is an optional field, their values are stored in an `Optional` object.
 
+<div style="page-break-after: always;"></div>
+
 ### 4.5 Storage component
 
 **API** : [`Storage.java`](https://github.com/se-edu/TaskList-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
@@ -201,6 +212,8 @@ The `Storage` component,
 Classes used by multiple components are in the `seedu.TaskList.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **5. Implementation**
 
@@ -232,6 +245,8 @@ Archive command is facilitated by the `ArchivedTaskList`. `ArchivedTaskList` doe
 The addition of `ArchivedTaskList` requires a separate storage system for the archived tasks, which forms under `ArchivedTaskListStorage`.
 The .json file for archived task is named as `archivedTaskList.json`
 
+<div style="page-break-after: always;"></div>
+
 ### 5.2 Mark/unmark feature
 
 #### Implementation
@@ -244,6 +259,8 @@ identical task with a modified `isDone` field in the task list.
 Below is the sequence diagram for an execution of `mark <index>`, assuming `<index>` is not out of bounds.
 
 ![Sequence diagram when command `mark 1` is executed](images/MarkSequenceDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 ### 5.3 List feature
 
@@ -323,6 +340,8 @@ Below is the sequence diagram for the complete execution of `ls -u --module CS21
 
 ![Sequence diagram when command `ls -u --module CS2103T` is executed](images/ListSequenceDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 ### 5.4 Find feature
 
 The `find` feature is similar to the list feature as it is also a filter on the current task list. The find feature finds
@@ -357,6 +376,8 @@ Given below is an example usage scenario and how the mechanism behaves at each s
 Here is a sequence diagram to represent the execution of the command:
 
 ![Sequence diagram when command `find tutorial priority` is executed](images/FindSequenceDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 ### 5.5 Returning to a previous command
 
@@ -424,6 +445,8 @@ The following activity diagram summarizes what happens when a user clicks on the
     * Pros: Will be able to restore commands from previous launches.
     * Cons: Difficult to implement as storage architecture will have to be renewed.
 
+<div style="page-break-after: always;"></div>
+
 ### 5.6 Command autocomplete feature
 
 #### 5.6.1 Implementation
@@ -472,6 +495,8 @@ in previous list.
   * Pros: Harder to implement.
   * Cons: Efficient especially when command list is large.
 
+<div style="page-break-after: always;"></div>
+
 ### 5.7 [Proposed] Acceptance of Multiple Date Formats
 
 #### 5.7.1 Current Implementation
@@ -513,6 +538,8 @@ The following sequence diagram shows what will happen with the proposed implemen
   * Pros: More user-friendly and is most likely what the user expects when typing the command
   * Cons: More complicated implementation
 
+
+<div style="page-break-after: always;"></div>
 
 ### 5.8 [Proposed] Aliasing of Commands
 
@@ -562,6 +589,8 @@ The following activity diagram summarizes what happens when a user executes an a
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **6. Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
@@ -571,6 +600,8 @@ The following activity diagram summarizes what happens when a user executes an a
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **7. Appendix: Requirements**
 
@@ -586,6 +617,8 @@ The following activity diagram summarizes what happens when a user executes an a
 * is reasonably comfortable using CLI apps
 
 **7.1.2 Value proposition**: manage module tasks faster than a typical mouse/GUI driven app and organise them by certain parameters
+
+<div style="page-break-after: always;"></div>
 
 ### 7.2 User stories
 
@@ -631,6 +664,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | student with commitments other than school     | have two separate task lists                                              | separate my other commitments from school work                                                          |
 | `*`      | bored user                                     | change the appearance of NotionUS                                         | make the app more interesting to use                                                                    |
 | `*`      | student that uses calendar apps                | sync the tasks to my calendar                                             | keep track of my tasks even when not using NotionUS                                                     |
+
+<div style="page-break-after: always;"></div>
 
 ### 7.3 Use cases
 
@@ -849,6 +884,8 @@ Unless specified otherwise, the **System** is the `NotionUS` application and the
 Below is a use case diagram summarising the use cases listed above:
 ![Use Cases](images/UseCaseDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 ### 7.4 Non-Functional Requirements
 
 1. Should work on any mainstream OS as long as it has Java 11 or above installed. (compatibility)
@@ -879,6 +916,8 @@ Below is a use case diagram summarising the use cases listed above:
 * **Tag**: A user created tag that is linked to a task
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **8. Appendix: Instructions for manual testing**
 
@@ -1020,6 +1059,8 @@ testers are expected to do more *exploratory* testing.
       Expected: Task list displayed contains 2  tasks, `Tutorial 1` and `PYP`.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **9. Appendix: Effort**
 For the effort, we felt that our group have placed more than the average. We dissected and analysed the problem of our target audience. 
