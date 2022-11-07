@@ -23,8 +23,8 @@ title: Developer Guide
    * [Persistent Storage for Member](#persistent-storage-for-member)
    * [Reference of Person in Task in Data File](#reference-of-person-in-task-in-data-file)
    * [Filtering of tasks by Task Category, Task Deadline or Both](#proposed-filtering-of-tasks-by-task-category-task-deadline-or-both)
-- **[Documentation, logging, testing, configuration, dev-ops]**(#documentation-logging-testing-configuration-dev-ops)
-- **[Appendix: Requirements]**(#appendix-requirements)
+- **[Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)**
+- **[Appendix: Requirements](#appendix-requirements)**
 
 --------------------------------------------------------------------------------------------------------------------
 
