@@ -21,10 +21,16 @@ abstract "{abstract}\nCommand" as Command {
 
 package Commands <<Rectangle>>{
     Class EditCommand
+    Class IncreaseCommand
+    Class DecreaseCommand
     Class AddCommand
     Class DeleteCommand
     Class FindCommand
     Class ListCommand
+    Class UndoCommand
+    Class RedoCommand
+    Class CalculateCommand
+    Class CalculatorGuiCommand
     Class ExitCommand
     Class HelpCommand
     Class ClearCommand
@@ -33,8 +39,11 @@ package Commands <<Rectangle>>{
 package Parsers <<Rectangle>> {
     Class AddCommandParser
     Class EditCommandParser
+    Class IncreaseCommandParser
+    Class DecreaseCommandParser
     Class DeleteCommandParser
     Class FindCommandParser
+    Class CalculateCommandParser
 }
 
 package BobaBotModel/Person <<Rectangle>> {
@@ -43,18 +52,34 @@ package BobaBotModel/Person <<Rectangle>> {
     Class NameSoundsSimilarPredicate
 }
 class EditCommand {
+    -phoneIdentifier
+    -emailIdentifier
     -editCommandDescriptor
-    -index
 }
 
 class DeleteCommand {
     -deleteCommandDescriptor
-    -targetIndex
 }
 
 class FindCommand {
     -predicate: Predicate<Person>
     -findPersonDescriptor
+}
+
+class IncreaseCommand {
+    -phoneIdentifier
+    -emailIdentifier
+    -rewardPoints
+}
+
+class DecreaseCommand {
+    -phoneIdentifier
+    -emailIdentifier
+    -rewardPoints
+}
+
+class CalculateCommand {
+    -exp
 }
 
 class AllInfoContainsKeywordsPredicate {
@@ -84,6 +109,11 @@ BobaBotParser ..|> EditCommandParser: creates >
 BobaBotParser ..|> AddCommandParser: creates >
 BobaBotParser ..|> DeleteCommandParser: creates >
 BobaBotParser ..|> FindCommandParser: creates >
+BobaBotParser ..|> IncreaseCommandParser: creates >
+BobaBotParser ..|> DecreaseCommandParser: creates >
+BobaBotParser ..|> UndoCommandParser: creates >
+BobaBotParser ..|> RedoCommandParser: creates >
+BobaBotParser ..|> CalculateCommandParser: creates >
 
 BobaBotParser ..|> ListCommand: creates >
 BobaBotParser ..|> ClearCommand: creates >
@@ -95,6 +125,11 @@ FindCommandParser .....|> FindCommand : creates >
 EditCommandParser ....|> EditCommand: creates >
 DeleteCommandParser ....|> DeleteCommand: creates >
 AddCommandParser ....|> AddCommand: creates >
+IncreaseCommandParser ....|> IncreaseCommand: creates >
+DecreaseCommandParser ....|> DecreaseCommand: creates >
+UndoCommandParser ....|> UndoCommand: creates >
+RedoCommandParser ....|> RedoCommand: creates >
+CalculateCommandParser ....|> CalculateCommand: creates >
 
 FindCommandParser ..|> MultiSearchPredicate : uses >
 MultiSearchPredicate --> "0..1 matchPredicate" AllInfoContainsKeywordsPredicate
@@ -102,9 +137,15 @@ MultiSearchPredicate --> "0..1 fuzzyPredicate" NameSoundsSimilarPredicate
 
 AddCommand --|> Command
 EditCommand --|> Command
+IncreaseCommand --|> Command
+DecreaseCommand --|> Command
 DeleteCommand --|> Command
 FindCommand --|> Command
 ListCommand --|> Command
+UndoCommand --|> Command
+RedoCommand --|> Command
+CalculateCommand --|> Command
+CalculatorGuiCommand --|> Command
 ClearCommand --|> Command
 HelpCommand --|> Command
 ExitCommand --|> Command

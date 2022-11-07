@@ -485,7 +485,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | cashier | add new members to my list                                                     | apply for membership for customers                                               |
 | `* * *`  | cashier | remove members from the list                                                   | make sure membership details are correct for customers who are no longer members |
 
-*{More to be added}*
 
 <div style="page-break-after: always;"></div>
 ### Use cases
@@ -565,10 +564,15 @@ Guarantee: Selected Customer's details will be displayed by bobaBot.
 
       Use case ends.
 
+* 1c. User enters a keyword with no matching results.
+    * 1c1. bobaBot displays an empty list.
+
+      Use case ends.
+
 **Use case 4: Edit a Customer's details**
 
 System: bobaBot <br>
-Use case: UC02 - Edit a Customer's details <br>
+Use case: UC04 - Edit a Customer's details <br>
 Actor: User <br>
 Guarantee: Selected Customer's details will be edited by bobaBot.
 
@@ -597,10 +601,128 @@ Guarantee: Selected Customer's details will be edited by bobaBot.
 
       Use case resumes from step 2.
 
-**Use case 5: Exit bobaBot**
+**Use case 5: Increase a Customer's Reward points**
 
 System: bobaBot <br>
-Use case: UC05 - Exit bobaBot <br>
+Use case: UC05 - Increase a Customer's Reward points<br>
+Actor: User <br>
+Guarantee: Selected Customer's Reward points will be incremented by bobaBot.
+
+**MSS**
+
+1. User requests to increase a Customer's reward points.
+2. bobaBot increments the Customer's reward points in the database.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User enters the command wrongly.
+    * 1a1. bobaBot displays the error message.
+
+      Use case ends.
+
+* 1b. User enters a Customer that does not exist in bobaBot's database.
+    * 1b1. bobaBot displays that the Customer does not exist.
+
+      Use case ends.
+
+* 1c. Final incremented value of Reward points exceeds maximum integer value (2147483647).
+    * 1c1. bobaBot displays the error message.
+
+      Use case ends.
+
+**Use case 6: Decrease a Customer's Reward points**
+
+System: bobaBot <br>
+Use case: UC06 - Decrease a Customer's Reward points<br>
+Actor: User <br>
+Guarantee: Selected Customer's Reward points will be decremented by bobaBot.
+
+**MSS**
+
+1. User requests to decrease a Customer's reward points.
+2. bobaBot decrements the Customer's reward points in the database.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User enters the command wrongly.
+    * 1a1. bobaBot displays the error message.
+
+      Use case ends.
+
+* 1b. User enters a Customer that does not exist in bobaBot's database.
+    * 1b1. bobaBot displays that the Customer does not exist.
+
+      Use case ends.
+
+* 1c. Final decremented value of Reward points becomes negative in value.
+    * 1c1. bobaBot displays the error message.
+
+      Use case ends.
+
+
+**Use case 7: Undo a wrong Command**
+
+System: bobaBot <br>
+Use case: UC07 - Undo a wrong Command<br>
+Actor: User <br>
+Guarantee: bobaBot will be reverted to the previous state before the wrong Command was executed.
+
+**MSS**
+
+1. User requests to undo a command.
+2. bobaBot will undo the latest Command that was executed.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. There is no previous Command to undo.
+    * 1a1. bobaBot displays the error message.
+
+      Use case ends.
+
+**Use case 8: Redo an unintended Undo Command**
+
+System: bobaBot <br>
+Use case: UC08 - Redo an unintended Undo Command<br>
+Actor: User <br>
+Guarantee: bobaBot will revert back to the state after the Command was executed.
+
+**MSS**
+
+1. User requests to redo a command.
+2. bobaBot will re-execute the Command that was undone previously.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. There is no previous Undo Command to redo.
+    * 1a1. bobaBot displays the error message.
+
+      Use case ends.
+
+**Use case 9: Calculate change to be given to Customer**
+
+System: bobaBot <br>
+Use case: UC09 -  Calculate change to be given to Customer<br>
+Actor: User <br>
+
+**MSS**
+
+1. User requests to calculate the amount of change to give back to the Customer.
+2. bobaBot will compute the amount and return the value.
+
+   Use case ends.
+
+**Use case 10: Exit bobaBot**
+
+System: bobaBot <br>
+Use case: UC10 - Exit bobaBot <br>
 Actor: User <br>
 Guarantee: bobaBot will be exited.
 
@@ -610,8 +732,6 @@ Guarantee: bobaBot will be exited.
 2. bobaBot exits.
 
    Use case ends.
-
-*{More to be added}*
 
 ### Non-Functional Requirements
 
