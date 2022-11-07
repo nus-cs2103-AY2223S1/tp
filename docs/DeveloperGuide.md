@@ -29,6 +29,7 @@ We use the following libraries in CodeConnect:
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Design
 
@@ -142,7 +143,7 @@ The `Model` component,
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
 </div>
-
+<div style="page-break-after: always;"></div>
 
 ### Storage component
 
@@ -160,6 +161,7 @@ The `Storage` component,
 Classes used by multiple components are in the `seedu.codeconnect.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Implementation
 
@@ -404,6 +406,8 @@ tasks at the top without having to scroll towards the bottom of the tasklist.
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## Appendix: Requirements
 
 ### Product scope
@@ -459,6 +463,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | forgetful SOC student                            | be greeted (or warned) with a list of urgent/overdue tasks when I open the app | remind myself about them                                               | no                              |
 | `*`      | SOC student who has many venues to keep track of | store the venues associated with my tasks                                      |                                                                        | no                              |
 | `*`      | user with many persons in the address book       | sort persons by name                                                           | locate a person easily                                                 | no                              |
+
+<div style="page-break-after: always;"></div>
 
 ### Use cases
 
@@ -687,6 +693,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    Use case ends.
 
 ****
+<div style="page-break-after: always;"></div>
 
 ### Non-Functional Requirements
 
@@ -713,6 +720,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Appendix: Instructions for manual testing
 
