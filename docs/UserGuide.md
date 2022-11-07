@@ -353,7 +353,7 @@ The favourite tag is standardized to be "<3" when using this command._
 
 **Format:** `fav INDEX [-h]`
 
-**Arguments:** <br>
+**Inputs:** <br>
 
 `INDEX`: index of the eatery to favourite <br>
 `-h`: displays help message (specific to fav) <br><br>
@@ -368,7 +368,7 @@ The tag to be removed is standardized to be "<3" when using this command._
 
 **Format:** `unfav INDEX [-h]`
 
-**Arguments:** <br>
+**Inputs:** <br>
 
 `INDEX`: index of the eatery to unfavourite <br>
 `-h`: displays help message (specific to unfav) <br><br>
@@ -419,7 +419,7 @@ _Edits the details of an eatery in the `Food Guide`._
 
 **Format:** `edit INDEX [-n NAME] [-l LOCATION] [-c CUISINE] [-p PRICE] [-t TAG]…​ [-h]`
 
-**Arguments:** <br>
+**Inputs:** <br>
 `INDEX`: index of the eatery to edit <br>
 `NAME`: new name of the eatery <br>
 `LOCATION`: new location of the eatery <br>
@@ -441,7 +441,6 @@ When editing the tags of an eatery, all existing tags will be overwritten.
 _Clears all eateries from the `Food Guide`._
 
 **Format:** `clear`
-
 
 <div markdown="block" class="alert alert-info">
 This command removes ALL eateries.
