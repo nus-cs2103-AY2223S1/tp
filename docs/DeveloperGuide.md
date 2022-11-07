@@ -672,7 +672,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS** 
 1. NUS student requests to find tasks whose description matches the keyword inputted partially or fully.  
-2. MODPRO show the list of tasks whose description matches the keyword partially or fully, and display a message to state the number of tasks(which match the keyword) that are listed. 
+2. MODPRO show the list of tasks whose description matches the keyword partially or fully. 
 
    Use case ends. 
 
@@ -688,7 +688,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 1. NUS student requests to find modules whose module code matches the keyword inputted partially or fully.
-2. MODPRO show the list of modules whose module code matches the keyword partially or fully, display a message to state the number of modules(that match the keyword) that are listed.
+2. MODPRO show the list of modules whose module code matches the keyword partially or fully.
 
    Use case ends.
 
@@ -768,7 +768,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1i1. MODPRO shows an error message. </br>
       Use case ends. 
 * 2a. The module of the specified exam is changed and the exam is linked to some tasks previously. 
-    * 2a1. MODPRO unlinks these tasks from the exam, and the updates the progress bar of the exam. 
+    * 2a1. MODPRO unlinks these tasks from the exam, and the updates the progress bar of the exam. </br>
       Use case ends.
 
 ### Non-Functional Requirements

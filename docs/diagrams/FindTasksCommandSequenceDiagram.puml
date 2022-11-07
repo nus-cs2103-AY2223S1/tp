@@ -7,7 +7,7 @@ participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":FindTasksCommandParser" as FindTasksCommandParser LOGIC_COLOR
 participant "ex:FindTasksCommand" as FindTasksCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
-participant ":pred DescriptionContainsKeywordsPredicate" as DescriptionContainsKeywordsPredicate LOGIC_COLOR
+participant "pred: DescriptionContainsKeywordsPredicate" as DescriptionContainsKeywordsPredicate LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
