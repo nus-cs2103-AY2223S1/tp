@@ -115,6 +115,10 @@ public class AddPetCommand extends Command {
         }
         Supplier associatedSupplier = (Supplier) o;
 
+        if (model.hasPet(toAdd)) {
+            throw new CommandException(AddPetCommand.MESSAGE_DUPLICATE_PET);
+        }
+
         associatedSupplier.addPets(Collections.singletonList(toAdd.getId()));
         toAdd.setSupplier(associatedSupplier);
         model.addPet(toAdd);

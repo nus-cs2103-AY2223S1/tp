@@ -85,7 +85,6 @@ public class AddBuyerCommand extends AddPersonCommand {
         model.addBuyer(toAdd);
         model.switchToBuyerList();
 
-        //TODO To keep a single MESSAGE_SUCCESS
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd)
                 + "\n" + numOrdersAdded + (numOrdersAdded == 1 ? " order" : " orders") + " added\n");
     }
