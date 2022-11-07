@@ -278,19 +278,6 @@ public class Class {
     }
 
     /**
-     * Returns a Class that has a predefined number of days ahead of the current class date, with the same starting and
-     * ending timing.
-     *
-     * @param numberOfDays to be added to the current class date.
-     * @return a class with numberOfDays ahead.
-     */
-    public Class addDays(int numberOfDays) {
-        assert(numberOfDays >= 0);
-        LocalDate updatedDate = this.date.plusDays(numberOfDays);
-        return new Class(updatedDate, this.startTime, this.endTime);
-    }
-
-    /**
      * Checks if both dates are the same.
      *
      * @param date to be checked against.
@@ -323,7 +310,8 @@ public class Class {
     }
 
     /**
-     * Returns -1 if this {@code Class} starts before the given {@code aClass} and 1 otherwise.
+     * Returns compared result between {@code this} and the given {@code aClass} by Start Time in ascending order.
+     * Returns positive integer if {@code this} should be placed after, 0 if same, and negative if before.
      * {@code Class} and {@code aClass} must be non-null and on the same day;
      */
     public int compareToByStartTime(Class aClass) {
@@ -333,7 +321,8 @@ public class Class {
     }
 
     /**
-     * Returns -1 if the {@code Class} starts before the given {@code aClass}, 0 if same and 1 otherwise.
+     * Returns compared result between {@code this} and the given {@code aClass} by Class Time in ascending order.
+     * Returns positive integer if {@code this} should be placed after, 0 if same, and negative if before.
      */
     public int compareToByClassTime(Class aClass) {
         requireAllNonNull(this.date, this.startTime, aClass.date, aClass.startTime);

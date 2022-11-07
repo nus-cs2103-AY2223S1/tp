@@ -12,7 +12,7 @@ title: Developer Guide
   * [Schedule List Feature](#schedule-list-feature)
   * [Sort-by](#sort-by-feature)
   * [Undo Command Feature](#undo-command-feature)
-  * [Proposed Find by Feature](#proposed-find-by-feature)
+  * [Find by Feature](#find-by-feature)
 * [Appendix](#appendix-requirements)
   * [Target User Profile](#target-user-profile)
   * [Value Proposition](#value-proposition)
@@ -680,6 +680,7 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 5. The application can store the changed user data after the application has been closed and load from memory when it is
    opened.
 6. The UI page should load when first launched within 2 seconds.
+7. The application can work without Internet connection.
 
 ### Glossary
 

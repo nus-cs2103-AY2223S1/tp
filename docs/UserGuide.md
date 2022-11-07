@@ -514,7 +514,7 @@ other tags on top of the two tags.
 ### Next available class: `avail`
 
 Finds the next available class given a time range and duration and returns the next available class within the time 
-range and with the specified class duration.
+range, with the specified class duration and after the current time.
 
 Format: `avail TIME_RANGE DURATION`
 
@@ -526,12 +526,17 @@ and the duration is 70, this would be invalid.
 </div>
 
 Examples:
-- Given that there is 1 student on the current day of 2022-10-27 from 0900-1000, `avail 1100-1200 60` would return
-  `2022-10-27 1100-1200` since there is no student at that slot.
-- Given that there are 2 students on the current day of 2022-10-27 from 0900-1000 and at 1030-1130, 
-`avail 0830-1300 60` would return `2022-10-27 1130-1230` as the next slot since there is no sufficient duration
-between 1000-1030 for a 60 minutes class.
-
+- Given that there is 1 student on the current day of 2022-10-27 from 0900-1000 and the current time is 0800 HRS, `
+avail 1100-1200 60` would return `2022-10-27 1100-1200` since there is no student at that slot.
+- Given that there is 1 student on the current day of 2022-10-27 from 0900-1000 and the current time is 1105 HRS, 
+`avail 1100-1200 60` would return `2022-10-28 1100-1200` since the 1100-1200 60 window today has passed. 
+- Given that there are 2 students on the current day of 2022-10-27 from 0900-1000 and at 1030-1130 and the current
+time is 0800 HRS, `avail 0830-1300 60` would return `2022-10-27 1130-1230` as the next slot since there is no 
+sufficient duration between 1000-1030 for a 60 minutes class.
+- Given that there are 2 students on the current day of 2022-10-27 from 0900-1000 and at 1030-1130 and the current
+time is 1200 HRS, `avail 0830-1300 60` would return `2022-10-27 1200-1300` as the next slot since there is no sufficient
+duration between 1000-1030 for a 60 minutes class, and it is the next suitable time window based on the current time.
+ 
 [↑ Back to top](#table-of-contents)
 
 ---
@@ -549,8 +554,7 @@ Format: `sort TYPE [ORDER]`
 - `ORDER`, if present, must be followed by either one of the below options:
   - `ASC`
   - `DESC`
-  - If it is left as blank, it will follow the default order based on the specified `TYPE`.
-- The default order for `NAME` and `CLASS` is `ASC` while for `OWED`, the default order is `DESC`.
+  - If it is left as blank, it will follow the default order based on the specified `TYPE`. The default order for `NAME` and `CLASS` is `ASC` while for `OWED`, the default order is `DESC`.
 - The parameters `TYPE` and `ORDER` are case-insensitive.
 - When two students are **in a tie** for the compared `TYPE`, they will be sorted according to their **names** in **ascending** order by default.
 

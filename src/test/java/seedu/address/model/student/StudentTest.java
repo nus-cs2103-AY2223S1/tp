@@ -3,13 +3,6 @@ package seedu.address.model.student;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NOK_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_INTERMEDIATE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalStudents.ALICE;
 import static seedu.address.testutil.TypicalStudents.AVA;
@@ -20,6 +13,7 @@ import java.time.LocalTime;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.CommandTestUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.testutil.StudentBuilder;
 
@@ -46,20 +40,22 @@ public class StudentTest {
         assertFalse(ALICE.isSameStudent(null));
 
         // same name, all other attributes different -> returns false
-        Student editedAlice = new StudentBuilder(ALICE).withPhone(VALID_PHONE_BOB).withNokPhone(VALID_NOK_PHONE_BOB)
-                .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_INTERMEDIATE).build();
+        Student editedAlice = new StudentBuilder(ALICE).withPhone(CommandTestUtil.VALID_PHONE_BOB)
+                .withNokPhone(CommandTestUtil.VALID_NOK_PHONE_BOB)
+                .withEmail(CommandTestUtil.VALID_EMAIL_BOB).withAddress(CommandTestUtil.VALID_ADDRESS_BOB)
+                .withTags(CommandTestUtil.VALID_TAG_INTERMEDIATE).build();
         assertFalse(ALICE.isSameStudent(editedAlice));
 
         // different name, all other attributes same -> returns true (same student by same phone number)
-        editedAlice = new StudentBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        editedAlice = new StudentBuilder(ALICE).withName(CommandTestUtil.VALID_NAME_BOB).build();
         assertTrue(ALICE.isSameStudent(editedAlice));
 
         // name differs in case, all other attributes same -> returns true
-        Student editedBob = new StudentBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
+        Student editedBob = new StudentBuilder(BOB).withName(CommandTestUtil.VALID_NAME_BOB.toLowerCase()).build();
         assertTrue(BOB.isSameStudent(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns true
-        String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
+        String nameWithTrailingSpaces = CommandTestUtil.VALID_NAME_BOB + " ";
         editedBob = new StudentBuilder(BOB).withName(nameWithTrailingSpaces).build();
         assertTrue(BOB.isSameStudent(editedBob));
 
@@ -91,27 +87,27 @@ public class StudentTest {
         assertFalse(ALICE.equals(BOB));
 
         // different name -> returns false
-        Student editedAlice = new StudentBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        Student editedAlice = new StudentBuilder(ALICE).withName(CommandTestUtil.VALID_NAME_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different phone -> returns false
-        editedAlice = new StudentBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
+        editedAlice = new StudentBuilder(ALICE).withPhone(CommandTestUtil.VALID_PHONE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different next of kin phone -> returns false
-        editedAlice = new StudentBuilder(ALICE).withNokPhone(VALID_NOK_PHONE_BOB).build();
+        editedAlice = new StudentBuilder(ALICE).withNokPhone(CommandTestUtil.VALID_NOK_PHONE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different email -> returns false
-        editedAlice = new StudentBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
+        editedAlice = new StudentBuilder(ALICE).withEmail(CommandTestUtil.VALID_EMAIL_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different address -> returns false
-        editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
+        editedAlice = new StudentBuilder(ALICE).withAddress(CommandTestUtil.VALID_ADDRESS_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false
-        editedAlice = new StudentBuilder(ALICE).withTags(VALID_TAG_INTERMEDIATE).build();
+        editedAlice = new StudentBuilder(ALICE).withTags(CommandTestUtil.VALID_TAG_INTERMEDIATE).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 
@@ -131,72 +127,27 @@ public class StudentTest {
     }
 
     @Test
-    public void execute_setDisplayClassSuccess() throws ParseException {
-        Class validClass = new Class(LocalDate.of(2022, 10, 21),
-                LocalTime.of(13, 0), LocalTime.of(14, 0));
-
-        Student unattendedStudent = new StudentBuilder(ALICE).withMark(Boolean.FALSE)
-                .withDisplayDate("2022-10-21 1300-1400").build();
-        unattendedStudent.setClass(new Class());
-        unattendedStudent.setDisplayClass(validClass);
-        assertEquals("", unattendedStudent.getDisplayedClass().classDateTime);
-
-        Student attendedStudent = new StudentBuilder(ALICE).withMark(Boolean.TRUE).build();
-        attendedStudent.setDisplayClass(validClass);
-        assertEquals("2022-10-21 1300-1400", attendedStudent.getDisplayedClass().classDateTime);
-    }
-
-    @Test
-    public void studentDisplayDateComparisonTest() {
-        Student alice = new StudentBuilder(ALICE).withMark(Boolean.TRUE).build();
-        Student bob = new StudentBuilder(BOB).withMark(Boolean.TRUE).build();
-
-        Class aliceClass = VALID_MORNING_CLASS;
-        Class bobClass = VALID_AFTERNOON_CLASS;
-
-        alice.setDisplayClass(aliceClass);
-        bob.setDisplayClass(bobClass);
-
-        // Should return -1 since Alice's class is before Bob's
-        assertEquals(-1, alice.compareToByDisplayClass(bob));
-
-        //Should return 1 since Bob's class is after Alice's
-        assertEquals(1, bob.compareToByDisplayClass(alice));
-    }
-
-    @Test
-    public void execute_updateDisplayClassSuccess() {
-        Student alice = new StudentBuilder(ALICE).withMark(Boolean.TRUE).build();
-
-        // Simulate that this particular date is the schedule list date
-        LocalDate particularDate = LocalDate.of(2022, 10, 21);
-        Class aliceClass = new Class(particularDate, LocalTime.of(11, 0),
-                LocalTime.of(12, 0));
-        alice.setClass(aliceClass);
-
-        alice.updateDisplayClass(particularDate);
-
-        // Alice's display class should be the current class
-        assertEquals(aliceClass, alice.getDisplayedClass());
-
-        // Alice's attendance should reset
-        assertTrue(!alice.getMarkStatus().isMarked());
-    }
-
-    @Test
     public void execute_multipleClassesPerDayCheck() {
         Student alice = new StudentBuilder(ALICE).withMark(Boolean.FALSE).build();
         alice.setClass(VALID_MORNING_CLASS);
 
+        Student aliceDuplicate = new StudentBuilder(ALICE).withMark(Boolean.FALSE).build();
+        aliceDuplicate.setClass(VALID_AFTERNOON_CLASS);
+
         // Alice does not have multiple classes on the same day since she is not marked
-        assertFalse(alice.hasMultipleClasses());
+        assertFalse(alice.hasSameDateAs(aliceDuplicate));
 
-        Student bob = new StudentBuilder(BOB).withMark(Boolean.TRUE).build();
-        bob.setClass(VALID_AFTERNOON_CLASS);
-        bob.setDisplayClass(VALID_MORNING_CLASS);
+        alice = new StudentBuilder(ALICE).withMark(Boolean.TRUE).build();
+        alice.setClass(VALID_MORNING_CLASS);
 
-        // Bob has a displayed class and next class on the same day
-        assertTrue(bob.hasMultipleClasses());
+        aliceDuplicate = new StudentBuilder(ALICE).withMark(Boolean.TRUE).build();
+        aliceDuplicate.setClass(VALID_AFTERNOON_CLASS);
+
+        assertTrue(alice.hasSameDateAs(aliceDuplicate));
+
+        alice = new StudentBuilder(ALICE).withMark(Boolean.TRUE).build();
+        alice.setClass(VALID_MORNING_CLASS);
+
     }
 
     @Test
@@ -335,10 +286,21 @@ public class StudentTest {
 
     @Test
     public void shareSameNumberAsNokTest() {
-        Student alice = new StudentBuilder(ALICE).withPhone(VALID_PHONE_AMY).withNokPhone(VALID_NOK_PHONE_BOB).build();
+        Student alice = new StudentBuilder(ALICE).withPhone(CommandTestUtil.VALID_PHONE_AMY)
+                .withNokPhone(CommandTestUtil.VALID_NOK_PHONE_BOB).build();
         assertFalse(alice.hasSharedPhone());
 
-        Student bob = new StudentBuilder(BOB).withPhone(VALID_PHONE_BOB).withNokPhone(VALID_PHONE_BOB).build();
+        Student bob = new StudentBuilder(BOB).withPhone(CommandTestUtil.VALID_PHONE_BOB)
+                .withNokPhone(CommandTestUtil.VALID_PHONE_BOB).build();
         assertTrue(bob.hasSharedPhone());
+    }
+
+    @Test
+    public void resetMarkStatusTest() {
+        Student alice = new StudentBuilder(ALICE).withMark(Boolean.TRUE).build();
+        assertTrue(alice.getMarkStatus().isMarked());
+
+        alice.resetMarkStatus();
+        assertFalse(alice.getMarkStatus().isMarked());
     }
 }

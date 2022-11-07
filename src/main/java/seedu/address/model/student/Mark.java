@@ -44,13 +44,6 @@ public class Mark {
     }
 
     /**
-     * Resets the current attendance to false.
-     */
-    public void reset() {
-        this.isPresent = Boolean.FALSE;
-    }
-
-    /**
      * Getter function to access the attendance status.
      *
      * @return true if attendance is marked.

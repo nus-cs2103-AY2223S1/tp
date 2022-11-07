@@ -34,16 +34,4 @@ public class MarkTest {
         Mark defaultAttendance = new Mark();
         assertFalse(defaultAttendance.isMarked());
     }
-
-    @Test
-    public void resetTests() {
-        Mark hadAttended = new Mark(Boolean.TRUE);
-        hadAttended.reset();
-        assertFalse(hadAttended.isMarked());
-
-        // no change of state test
-        Mark hasNotAttended = new Mark();
-        hasNotAttended.reset();
-        assertFalse(hasNotAttended.isMarked());
-    }
 }

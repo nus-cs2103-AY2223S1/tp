@@ -95,7 +95,6 @@ public class PayCommand extends Command {
         AdditionalNotes currentNotes = studentPaying.getAdditionalNotes();
         Set<Tag> currentTags = studentPaying.getTags();
         Mark currentMarkStatus = studentPaying.getMarkStatus();
-        Class displayedClassDate = studentPaying.getDisplayedClass();
 
         Money updatedMoneyPaid;
         Money updatedMoneyOwed;
@@ -114,7 +113,7 @@ public class PayCommand extends Command {
 
         return new Student(currentName, currentPhone, currentNokPhone, currentEmail, currentAddress,
                 currentClassDateTime, updatedMoneyOwed, updatedMoneyPaid, currentRatesPerClass, currentNotes,
-                currentTags, currentMarkStatus, displayedClassDate);
+                currentTags, currentMarkStatus);
     }
 
     @Override
