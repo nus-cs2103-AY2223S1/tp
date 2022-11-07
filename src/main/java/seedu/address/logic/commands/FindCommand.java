@@ -8,8 +8,8 @@ import seedu.address.model.person.PersonMatchesKeywordsPredicate;
 import seedu.address.ui.MainPanelName;
 
 /**
- * Finds and lists all persons in address book whose name contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Finds and lists all persons in address book whose attributes contain any of the argument keywords.
+ * Keyword matching is case-insensitive and immune to minor spelling errors.
  */
 public class FindCommand extends Command {
 
