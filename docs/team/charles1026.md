@@ -3,15 +3,15 @@ layout: page
 title: Zhehao's Project Portfolio Page
 ---
 
-#### Project: CS2103 tP
+##### Project: CS2103 tP
 __Overview__: checkUp is a desktop patient medical record management system. The user interacts with it using a CLI, and it has a GUI
 created with JavaFX. It is written in Java, and has about 15 kLoC.
 
-#### Summary of contributions
+###### Summary of contributions
 __Code Contributed__: All my code contribution can be viewed here:
 [RepoSense Report](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=charles1026&breakdown=true)
 
-##### Enhancements implemented
+###### Enhancements implemented
 - Updating `Person` class to support patient specific fields
   - Description: `Person` now configured to support `NextOfKin`, `PatientType`, `HospitalWing`, 
     `FloorNumber`, `WardNumber` and `Medication` fields
@@ -52,33 +52,43 @@ __Code Contributed__: All my code contribution can be viewed here:
   - Justification: Allows doctors to quickly document their consultation with a patient without having to enter 
     multiple commands.
   
-##### Other code contributions
+###### Other code contributions
 - Fixed Patient Details Panel display bugs; Fixed `UpcomingAppointment` and `PastAppointment` date parsing bugs; 
   `Person` duplicate check not case-sensitive bug; And, fixed duplicate `PastAppointment` not caught bug.
 - Added unit tests for all the enhancements in the section above.
 
-##### Contributions to the UG
-- Updated documentation for `add` and `edit` commands to reflect changes made to them.
-- Documented `view`, `delappt` and `consult` commands and Patient Details Panel, clickability and keyboard 
-  shortcuts enhancements.
+###### Contributions to the UG
+- Updated documentation for [`add`](https://checkup.netlify.app/userguide#adding-a-patient-add) 
+  and [`edit`](https://checkup.netlify.app/userguide#editing-a-patient-edit) commands to reflect changes made to them.
+- Documented [`view`](https://checkup.netlify.app/userguide#viewing-a-patient-view),
+  [`delappt`](https://checkup.netlify.app/userguide#deleting-past-appointment-for-patient-delappt) 
+  and [`consult`](https://checkup.netlify.app/userguide#consulting-a-patient-consult) 
+  commands and [Patient Details Panel Clickability](https://checkup.netlify.app/userguide#person-details-panel) and 
+  [keyboard shortcuts](https://checkup.netlify.app/userguide#keyboard-shortcuts) enhancements.
 - Created example and feedback images for all the commands to improve user readability.
-- Reorganised the whole Features section to a 3 segment structure to group related commands together and improve user readability
+- Reorganised the whole [Features](https://checkup.netlify.app/userguide#features) section to a 3 segment structure to 
+  group related commands together and improve user readability
 - Added all hyperlinks across the whole user guide to improve navigability.
 
-##### Contributions to the DG
-- Updated the `Ui` component to reflect our changes and created a new UML Class Diagram for it.
-- Wrote the documentation for the `add`, `edit`, `delappt`, `consult` and `view` commands, 
-  as well as for the Patient Details Panel Clickability and Keyboard Shortcuts. Included for each command:
-  - Description of the purpose of the feature.
-  - Text description of how the feature work.
+####### Contributions to the DG
+- Updated the [`Ui`](https://checkup.netlify.app/developerguide#ui-component)
+  component to reflect our changes and created a new UML Class Diagram for it.
+- Wrote the documentation for the [`add`](https://checkup.netlify.app/developerguide#add-command),
+  [`edit`](https://checkup.netlify.app/developerguide#edit-command),
+  [`delappt`](https://checkup.netlify.app/developerguide#delappt-delete-appointment-command),
+  [`consult`](https://checkup.netlify.app/developerguide#consult-command) 
+  and [`view`](https://checkup.netlify.app/developerguide#view-command) commands, 
+  as well as for the [Patient Details Panel Clickability]()
+  and [Keyboard Shortcuts](https://checkup.netlify.app/developerguide#keyboard-shortcuts). Included for each command:
+  - Description of the purpose of the feature and how it works.
   - UML Sequence Diagram to illustrate the flow of the feature.
 - Added user stories, use cases and manual testing for all the above-mentioned features.
 
-##### Contributions to team-based tasks
+####### Contributions to team-based tasks
 - Ensured team was on schedule to meet deadlines and milestone submissions.
 - Split and planned tasks for team members.
 - Checked for code quality and adherence to coding standards.
 
-##### Review/mentoring contributions
+####### Review/mentoring contributions
 - Reviewed PRs for team members through the SDLC versions.
 - Aided teammates with debugging and highlighted errors / potential coding standards breaches to teammates.
