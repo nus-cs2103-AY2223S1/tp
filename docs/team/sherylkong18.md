@@ -1,4 +1,7 @@
-# Project Portfolio Page for Sheryl Kong
+---
+layout: page
+title: Project Portfolio Page for Sheryl Kong
+---
 
 ## Overview
 
