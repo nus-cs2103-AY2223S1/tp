@@ -9,6 +9,7 @@ title: Developer Guide
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Introduction**
 
@@ -82,6 +83,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### Architecture
 
@@ -98,6 +100,8 @@ Given below is a quick overview of main components and how they interact with ea
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+
+<div style="page-break-after: always;"></div>
 
 The rest of the App consists of four components.
 
@@ -127,6 +131,7 @@ The sections below give more details of each component.
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### UI component
 
@@ -146,6 +151,8 @@ The `UI` component,
 * depends on some classes in the `Model` component, as it displays `Applicant` object residing in the `Model`.
 
 [Return to top](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -173,6 +180,8 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
 <img src="images/ParserClasses.png" width="600"/>
@@ -184,6 +193,7 @@ How the parsing works:
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### Model component
 **_API_** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/trackascholar/model/Model.java)
@@ -207,6 +217,7 @@ The `Model` component,
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### Storage component
 
@@ -226,6 +237,7 @@ Classes used by multiple components are in the `seedu.trackascholar.commons` pac
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Implementation**
 
@@ -274,6 +286,7 @@ The following activity diagram summarizes what happens when a user executes an a
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### Edit applicant feature
 
@@ -320,6 +333,7 @@ The following activity diagram summarizes what happens when a user executes a ed
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### Remove applicants feature
 
@@ -353,7 +367,7 @@ The following sequence diagram shows how the remove operation works:
 ![Interactions Inside the Logic Component for the `remove` Command example](images/RemoveSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The _GUI_ interactions when `RemoveCommand#execute()` calls `RemoveCommand#promptUserConfirmation()`
-is abstracted out as this sequence diagram aims only to demonstrate the interactions inside Logic Component for the `remove` command.
+is abstracted out as this sequence diagram aims to only demonstrate the interactions inside Logic Component for the `remove` command.
 
 </div>
 
@@ -364,6 +378,7 @@ The following activity diagram summarizes what happens when a user executes a re
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### Find applicant feature
 
@@ -416,6 +431,7 @@ The following activity diagram summarizes what happens when a user executes a fi
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### Filter applicants feature
 
@@ -455,6 +471,7 @@ The following activity diagram summarizes what happens when a user executes a fi
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### Sort applicants feature.
 
@@ -498,17 +515,20 @@ in the Activity Diagram but due to limitation of PlantUML, the arrowhead converg
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### Import feature
 
 **Implementation**
 
-The import operation is facilitated by `ImportCommandParser`. `ImportComamndParser` will create an
-`ImportCommand` if the input prefix is `r` or `k`.
+The import operation is facilitated by `ImportCommand`. `ImportCommand` extends `Command` and implements the `Command#execute` operation.
+Data file must be stored in proper _Json_ format and named `trackAScholarImport.json` under the `./data` folder for the file to be properly read
+when executing the `ImportCommand`.
 
-`ImportCommand` extends `Command` and implements the `Command#execute` operation.
-
-[//]: # (Do I need to write how how importCommand executes the program?)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The interactions with the `Storage` component when reading
+the import data file `trackAScholarImport.json` is abstracted out as this implementation aims to only demonstrate the interactions inside
+Logic Component for the `import` command.
+</div>
 
 Given below is an example usage scenario and how the import operation is handled by TrackAScholar:
 
@@ -518,17 +538,16 @@ Given below is an example usage scenario and how the import operation is handled
 
 2. `TrackAScholarParser` identifies the `import` command and `ImportCommandParser` will be instantiated which calls `ImportCommandParser#parse()`
 
-3. `ImportCommandParser#parse()` checks if the argument correspond to `r` or `k` and initializes and returns an `ImportCommand` with the argument `str`.
+3. `ImportCommandParser#parse()` now initializes and returns an `ImportCommand` with the argument `r`.
 
-4. `LogicManager#execute()` now calls `ImportCommand#execute()`, which creates a new `JsonTrackAScholarStorage` object with the file path at ./data/trackAScholarImport.json.
-   `JsonTrackAScholarStorage#readTrackAScholar()` is then called to check if `trackAScholarImport.json` is present and calls `JsonUtil#readJsonFile()`.
-   This returns `Optional<ReadOnlyTrackAScholar>` and `Optional#get()` is called to get the `ReadOnlyTrackAScholar` object.
-   `ReadOnlyTrackAScholar#getApplicantList()` is called to obtain the `ObservableList<Applicant>` object.
+4. `LogicManager#execute()` now calls `ImportCommand#execute()`, which reads the data file `trackAScholarImport.json` to obtain the
+   imported applicant list.
 
-5. `ImportCommand#execute()` then checks if `str` in `ImportCommand` is `r`, `Model#importWithReplace()` to add the applicants within the 
-   `ObservableList<Applicant>` object into the current model, replacing applicants with the same name. 
+5. The argument `r` is then read and understood, which `LogicManager#execute()` now invokes `Model#importWithReplace()` to add
+   the applicants within the imported applicant list into the current `Model`. Duplicate applicants who have the
+   same name are now updated with imported applicants and new imported applicants are added into the current applicant list. 
 
-6. `ImportCommand#execute()` finishes with returning a `CommandResult` with a successful import message.
+6. `ImportCommand#execute()` finishes with returning a `CommandResult` containing information of a successful import.
 
 The following sequence diagram shows how the import operation works:
 
@@ -541,6 +560,7 @@ The following activity diagram summarizes what happens when a user executes a im
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### Pin applicant feature
 
@@ -577,6 +597,7 @@ The following activity diagram summarizes what happens when a user executes a pi
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### UnPin applicant feature
 
@@ -614,6 +635,7 @@ The following activity diagram summarizes what happens when a user executes a un
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 * [Documentation guide](Documentation.md)
@@ -639,6 +661,7 @@ Streamline the scholarship application process by organizing the scholarship app
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### User stories
 
@@ -671,6 +694,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### Use cases
 
@@ -695,6 +719,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 **Use case: UC02 - Add an applicant**
 
@@ -727,6 +752,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 **Use case: UC03 - List all applicants**
 
@@ -745,6 +771,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 **Use case: UC04 - Edit an applicant's details**
 
@@ -777,6 +804,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 **Use case: UC05 - Delete an applicant**
 
@@ -801,6 +829,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 **Use case: UC06 - Remove all applicants with a specified application status**
 
@@ -830,6 +859,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 **Use case: UC07 - Clears all applicants**
 
@@ -854,6 +884,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 **Use case: UC08 - Finds applicants by name, scholarship or major**
 
@@ -873,6 +904,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 **Use case: UC09 - Filter applicants by application status**
 
@@ -897,6 +929,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 **Use case: UC10 - Sorts all applicants by name, scholarship or application status**
 
@@ -921,6 +954,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 **Use case: UC11 - Imports a json file into TrackAScholar**
 
@@ -964,6 +998,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 **Use case: UC12 - Pins an applicant**
 
@@ -993,6 +1028,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 **Use case: UC13 - Unpins an applicant**
 
@@ -1022,6 +1058,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 **Use case: UC14 - Exiting TrackAScholar**
 
@@ -1048,6 +1085,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### Non-Functional Requirements
 
@@ -1075,6 +1113,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Instructions for manual testing**
 
@@ -1110,6 +1149,7 @@ testers are expected to do more *exploratory* testing.
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### Adding an applicant
 1. Adding an applicant to TrackAScholar while all applicants are displayed in GUI.
@@ -1153,6 +1193,7 @@ testers are expected to do more *exploratory* testing.
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### Editing an applicant
 1. Editing an applicant in TrackAScholar while all applicants are displayed in GUI.
@@ -1207,6 +1248,7 @@ testers are expected to do more *exploratory* testing.
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### Deleting an applicant
 
@@ -1226,6 +1268,7 @@ testers are expected to do more *exploratory* testing.
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### Removing applicants by application status
 
@@ -1253,6 +1296,7 @@ testers are expected to do more *exploratory* testing.
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### Finding applicants by name, scholarship or major
 
@@ -1312,8 +1356,8 @@ testers are expected to do more *exploratory* testing.
 
 [Return to top](#table-of-contents)
 
-
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### Filtering applicants by application status
 
@@ -1334,6 +1378,7 @@ testers are expected to do more *exploratory* testing.
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### Sorting all applicants by name, scholarship or application status
 
@@ -1356,6 +1401,7 @@ testers are expected to do more *exploratory* testing.
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### Import trackAScholarImport File
 
@@ -1378,6 +1424,7 @@ testers are expected to do more *exploratory* testing.
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### Pinning an applicant
 
@@ -1402,6 +1449,7 @@ testers are expected to do more *exploratory* testing.
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### Unpinning an applicant
 
@@ -1428,6 +1476,7 @@ testers are expected to do more *exploratory* testing.
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### Saving data
 
@@ -1444,8 +1493,10 @@ testers are expected to do more *exploratory* testing.
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Effort**
+
 Given that the effort for creating AddressBook3(AB3) is rated as a 10, our team believes that the effort required to 
 build TrackAScholar is estimated around 12.
 
@@ -1457,6 +1508,7 @@ our commitment to improving the features and testability of TrackAScholar and im
 
 
 ### Outstanding features
+
 * Add
 * Edit
 * Remove
@@ -1469,6 +1521,7 @@ our commitment to improving the features and testability of TrackAScholar and im
 
 
 ### Notable Achievements accomplished
+
 * Utilised Test Driven Development
   * Every time our team puts in either a new feature or a new field to TrackAScholar, 
   we strive to write JUnit test cases alongside the new functional code added,

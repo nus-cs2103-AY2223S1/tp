@@ -7,20 +7,22 @@ if () then ([Is invalid parameter])
 
 else ([Is valid parameters])
 
-    if () then ([trackAScholarImport file exist])
+    if () then ([trackAScholarImport.json\ndata file exist])
 
-        if () then ([trackAScholarImport has valid format])
-            :Retrieve all applicants \nas a model;
+        if () then ([trackAScholarImport.json\nis in valid format])
+            :Read data file to obtain\nimported applicant list;
 
-            if () then ([import r])
-                :Add all imported applicants \ninto new model and applicants \nwith the same name are replaced\nwith the imported applicants;
+            if () then ([import with replacement])
+                :Add all imported applicants \ninto current applicant list and\napplicants with the same\nname are replaced by the\nimported applicants;
 
-            else ([import k])
-                :Add all imported applicants \ninto new model and \napplicants with the same \nname are not changed;
+            else ([import without replacement])
+                :Add all imported applicants \ninto current applicant list and\napplicants with the same\nname are not replaced;
             endif
 
+            :TrackAScholar updates\nto display new list;
+
         else ([else])
-            :TrackAScholar displays \nerror message indicating \nFile format is wrong;
+            :TrackAScholar displays \nerror message indicating \nfile format is wrong;
         endif
 
     else ([else])

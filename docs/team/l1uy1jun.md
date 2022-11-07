@@ -1,6 +1,6 @@
 ---
 layout: page
-title: L1uY1jun's Project Portfolio Page
+title: Liu Yijun's Project Portfolio Page
 ---
 
 ### Project: TrackAScholar
@@ -17,7 +17,7 @@ Given below are my contributions to the project.
   * What it does: Allows the user to remove all the completed (accepted / rejected) scholarship applications by specifying which status to remove.
   * Justification: This feature improves the product significantly because a user can remove all the finished scholarship application together with one command without having to tediously delete them one by one.
 
-* **Code contributed**: Refer to my [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=w10-3&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&tabAuthor=L1uY1jun&tabRepo=AY2223S1-CS2103T-W10-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
+* **Code contributed**: Refer to my [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=l1uy1jun&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Project management**:
   * Managed releases `v1.2.1` and `v1.3` on GitHub
