@@ -35,7 +35,7 @@ via a Command Line Interface (CLI) while still having the benefits of a Graphica
     6. [Email all persons in a group](#f-email-all-persons-in-a-group--emailall) : `emailall`
     7. [Add a person's social](#g-add-a-persons-socials--include) : `include`
     8. [Delete a person's social](#h-delete-a-persons-socials--exclude) : `exclude`
-    9. [Set a person's preferred social media](#i-set-a-persons-preferred-social-media--prefer)
+    9. [Set a person's preferred social media](#i-set-a-persons-preferred-social-media--prefer) : `prefer`
     10. [Open a person's social media](#j-open-a-persons-social-media--open) : `open`
     11. [Find persons with a preferred social media](#k-find-persons-with-a-preferred-social-media--social) : `social`
   * [General App Features](#general-app-features):
@@ -100,7 +100,10 @@ open the help window.
 Sets the occupation of a person in uNivUSal.
 
 Format: `o/OCCUPATION`
-* `OCCUPATION` includes `STUDENT`, `TA`, `PROFESSOR`
+* `OCCUPATION` includes `STUDENT`, `TA`, `PROFESSOR`.
+* `OCCUPATION` is not case sensitive.
+
+Example : `o/student`
 
 ### b. name : `n/`
 
@@ -108,6 +111,8 @@ Sets the name of a person in uNivUSal.
 
 Format: `n/NAME`
 * `NAME` can be more than one word long but cannot be empty.
+
+Example : `n/Shelby Peanuts`
 
 ### c. phone : `p/`
 
@@ -140,7 +145,7 @@ Example : `e/betty@u.nus.edu`
 Sets the tutorial group of a person in uNivUSal.
 
 Format : `tut/TUTORIAL`
-* `TUTORIAL` must contain a letter from `[W/T/F]` followed by two digits.
+* `TUTORIAL` must contain a letter from `[F/T/W]` followed by two digits.
 
 Example : `tut/T08`
 
@@ -459,7 +464,7 @@ Undoes the last command that modifies the address book.
 Format: `undo`
 * Undoes the last modifying command.
 * Ignores modifying commands if they don't modify the address book.
-* Will cancel out when trying to undo an undo command.
+* Will cancel out when trying to undo an undo command. This means that you cannot undo the last two actions.
 
 ### d. Exiting the program : `exit`
 
