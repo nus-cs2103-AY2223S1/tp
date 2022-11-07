@@ -963,16 +963,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-### Use case: UC11 - Display list of notes
+### Use case: UC11 - Find a Note
 
 **MSS**
-1. User has completed [UC12](#use-case-uc12---show-note-section)
-2. User requests to list notes.
-3. SectresBook displays the list of notes stored.
+1. User request to find using keyword.
+2. SectresBook shows a list of notes matching keyword.
 
    Use case ends.
 
-### Use case: UC12 - Hide Note section
+### Use case: UC12 - Display list of notes
+
+**MSS**
+1. User has completed [UC11](#use-case-uc11---display-list-of-notes)
+2. User requests to list notes.
+3. SectresBook displays the list of all notes stored.
+
+   Use case ends.
+
+### Use case: UC13 - Hide Note section
 
 **MSS**
 1. User requests to hide the notes section of the Sectresbook.
@@ -980,7 +988,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-### Use case: UC13 - Show note section
+**Extensions**
+* 1a. Already hiding the notes section.
+
+    Use case ends.
+
+### Use case: UC14 - Show note section
 
 **MSS**
 1. User requests to show the notes section.
@@ -994,7 +1007,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-### Use case: UC14 - Exit program
+### Use case: UC15 - Exit program
 
 **MSS**
 1. User requests to exit program. 
