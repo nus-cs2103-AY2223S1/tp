@@ -7,9 +7,7 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 
-import bookface.commons.core.index.Index;
 import bookface.commons.util.StringUtil;
-import bookface.model.Model;
 import bookface.model.ObjectContainsKeywordsPredicate;
 import bookface.model.person.Person;
 
@@ -34,27 +32,6 @@ public class TestUtil {
             throw new RuntimeException(e);
         }
         return SANDBOX_FOLDER.resolve(fileName);
-    }
-
-    /**
-     * Returns the middle index of the person in the {@code model}'s person list.
-     */
-    public static Index getMidIndex(Model model) {
-        return Index.fromOneBased(model.getFilteredPersonList().size() / 2);
-    }
-
-    /**
-     * Returns the last index of the person in the {@code model}'s person list.
-     */
-    public static Index getLastIndex(Model model) {
-        return Index.fromOneBased(model.getFilteredPersonList().size());
-    }
-
-    /**
-     * Returns the person in the {@code model}'s person list at {@code index}.
-     */
-    public static Person getPerson(Model model, Index index) {
-        return model.getFilteredPersonList().get(index.getZeroBased());
     }
 
     /**

@@ -18,58 +18,6 @@ import bookface.testutil.TypicalIndexes;
 public class ReturnCommandTest {
     private final Model model = new ModelManager(getAllTypicalBookFaceData(), new UserPrefs());
 
-    //This test is very weird, if i test it on its own, it works, but if i test all the tests at once, it fails.
-    //i suspect it depends on some other tests' results?
-
-
-    /*
-    @Test
-    public void execute_returnUnloanedBook_throwsCommandException() {
-        ReturnCommand returnCommand = new ReturnCommand(TypicalIndexes.INDEX_FIRST_BOOK);
-
-        assertCommandFailure(returnCommand, model, NOT_ON_LOAN);
-    }
-     */
-
-
-
-
-    //Same as loancommandtest, it shows "Book is not on loan." instead of MESSAGE_RETURN_SUCCESS,
-    //but I'm not sure why this is happening?
-
-
-
-    /*
-    @Test
-    public void execute_returnLoanedBook_success() throws ParseException {
-        Book bookToReturn = model.getFilteredBookList().get(TypicalIndexes.INDEX_FIRST_BOOK.getZeroBased());
-
-        ReturnCommand returnCommand = new ReturnCommand(TypicalIndexes.INDEX_FIRST_BOOK);
-        String expectedMessage = String.format(ReturnCommand.MESSAGE_RETURN_SUCCESS, bookToReturn);
-
-        Index userIndex = Index.fromOneBased(1);
-        Model expectedModel = new ModelManager(model.getBookFace(), new UserPrefs());
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        formatter = formatter.withResolverStyle(ResolverStyle.SMART);
-        Date date;
-        try {
-            LocalDate ld = LocalDate.parse("31/10/2022", formatter);
-            date = java.sql.Date.valueOf(ld);
-        } catch (DateTimeParseException e) {
-            throw new ParseException(Messages.MESSAGE_INVALID_DATE_FORMAT);
-        }
-
-        expectedModel.loan(model.getFilteredPersonList().get(userIndex.getZeroBased()),
-                model.getFilteredBookList().get(userIndex.getZeroBased()), date);
-
-        expectedModel.returnLoanedBook(bookToReturn);
-        assertCommandSuccess(returnCommand, model, expectedMessage, expectedModel);
-    }
-     */
-
-
-
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredBookList().size() + 1);
@@ -77,10 +25,6 @@ public class ReturnCommandTest {
 
         assertCommandFailure(returnCommand, model, Messages.MESSAGE_INVALID_BOOK_DISPLAYED_INDEX);
     }
-
-    //Same case as above, expected true but was false. I think its due to the same "book not loaned out" issue
-    // and trying to return book
-
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
