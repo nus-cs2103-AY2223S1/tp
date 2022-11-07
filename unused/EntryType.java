@@ -1,5 +1,7 @@
 package seedu.address.model.item;
 
+//@@author Eclipse-Dominator
+
 /**
  * Enum to represent the which kind of fxml card to use to represent the item.
  */
