@@ -124,7 +124,7 @@ the money collected/owed.
 ![Partition](images/UG-screenshots/UiPartition.png)
 
 Basic Instructions:
-1. Type the following command in the [Input Command](#ui-overview) section, and press Enter on your keyboard to execute it. For 
+1. Type the following command in the [Command Input](#ui-overview) section, and press Enter on your keyboard to execute it. For 
    example, typing `help` and pressing Enter will open the help window. Below are some example commands you can start with:
     - `list`: Lists all students.
     - `add n/John Doe p/98765432 np/81239090 e/johnd@example.com a/John street, block 123, #01-01`: Adds a student named
@@ -147,15 +147,15 @@ application from top to bottom as the illustrations added follow a sequential or
 
 ### Notes about the command format:
 
-| Format                                                                                                                                                                                                         | Example                                                                                                                                                                                                                                                          |
-|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Words in `UPPER_CASE` are parameters supplied by you                                                                                                                                                           | Given the following format, `add n/NAME`. In this case, `NAME` is a parameter which can be replaced by `John Doe` as `add n/John Doe`                                                                                                                            |
-| Items in square brackets are optional                                                                                                                                                                          | Given `n/NAME [t/TAG]`, since `t/TAG` is in square brackets, you can type either `n/John Doe t/python` or `n/John Doe` if no tag is required                                                                                                                     |
-| Items with `…` after them can be used 0 or more times                                                                                                                                                          | Given `[t/TAG]…`, you can choose to not type anything, `t/python` for one tag, `t/javascript t/react` for two tags and etc.                                                                                                                                      |
-| Parameters with a [prefix](#prefix-summary) can be in any order                                                                                                                                                | `n/NAME p/CONTACT_NUMBER` or `p/CONTACT_NUMBER n/NAME` are acceptable                                                                                                                                                                                            |
-| A parameter expected once will have only it's last occurrence taken despite being specified multiple times                                                                                                     | If you specify `p/12341234 p/56785678`, only `p/56785678` will be accepted by **Teacher's Pet**.                                                                                                                                                                     |
-| Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored                                                                                 | If the you type `help 123`, the command will be interpreted as `help`.                                                                                                                                                                                           |
-| An index will be [`INDEX-S`](#glossary) if the command requries information from the [Day's Schedule List](#ui-overview) and will be `INDEX` if it requires information from [Student's Details](#ui-overview) | Under [mark command](#marking-a-student-mark), `mark 1` will mark the 1st student in the [Day's Schedule List](#ui-overview). Under [delete command](#deleting-students-delete), `delete 1` will remove the first student from [Student's Details](#ui-overview) |
+| Format                                                                                                                                                                                              | Example                                                                                                                                                                                                                                               |
+|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Words in `UPPER_CASE` are parameters supplied by you                                                                                                                                                | Given the following format, `add n/NAME`. In this case, `NAME` is a parameter which can be replaced by `John Doe` as `add n/John Doe`                                                                                                                 |
+| Items in square brackets are optional                                                                                                                                                               | Given `n/NAME [t/TAG]`, since `t/TAG` is in square brackets, you can type either `n/John Doe t/python` or `n/John Doe` if no tag is required                                                                                                          |
+| Items with `…` after them can be used 0 or more times                                                                                                                                               | Given `[t/TAG]…`, you can choose to not type anything, `t/python` for one tag, `t/javascript t/react` for two tags and etc.                                                                                                                           |
+| Parameters with a [prefix](#prefix-summary) can be in any order                                                                                                                                     | `n/NAME p/CONTACT_NUMBER` or `p/CONTACT_NUMBER n/NAME` are acceptable                                                                                                                                                                                 |
+| A parameter expected once will have only it's last occurrence taken despite being specified multiple times                                                                                          | If you specify `p/12341234 p/56785678`, only `p/56785678` will be accepted by **Teacher's Pet**.                                                                                                                                                      |
+| Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored                                                                      | If the you type `help 123`, the command will be interpreted as `help`.                                                                                                                                                                                |
+| An index will be [`INDEX-S`](#glossary) if the command requries information from the [Schedule List](#ui-overview) and will be `INDEX` if it requires information from [Student List](#ui-overview) | Under [mark command](#marking-a-student-mark), `mark 1` will mark the 1st student in the [Schedule List](#ui-overview). Under [delete command](#deleting-students-delete), `delete 1` will remove the first student from [Student List](#ui-overview) |
 
 ### Callouts:
 
@@ -266,10 +266,11 @@ Format:
 - `add n/NAME p/CONTACT_NUMBER np/NEXT_OF_KIN_CONTACT_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`
 
 Example:
-Type `add n/Ben Tan p/87201223 np/90125012 e/BenTan@gmail.com a/Avenue 712` in the [Input Command](#ui-overview),
-a student named Ben Tan will be added to the bottom of the [Student's Details](#ui-overview). 
+Type `add n/Ben Tan p/87201223 np/90125012 e/BenTan@gmail.com a/Avenue 712` in the [Command Input](#ui-overview),
+a student named Ben Tan will be added to the bottom of the [Student List](#ui-overview). 
 
-![Add](images/UG-screenshots/UiAdd.png)
+![Add](images/UG-screenshots/UiAddBefore.png)
+![Add](images/UG-screenshots/UiAddAfter.png)
 
 <div markdown="span" class="alert alert-info">ℹ **Note:** Amount paid, Amount owed, Rates per Class, and Additional notes fields are to be updated via `edit` command.
 </div>
@@ -280,7 +281,7 @@ a student named Ben Tan will be added to the bottom of the [Student's Details](#
 
 ### Editing student details: `edit`
 
-The `edit` command edits an existing student under [Student's Details](#ui-overview). You can edit the following fields 
+The `edit` command edits an existing student under [Student List](#ui-overview). You can edit the following fields 
 under a student.
 
 - Student’s Name
@@ -351,15 +352,15 @@ Format: `edit INDEX [n/NAME] [p/CONTACT_NUMBER] [np/NEXT_OF_KIN_CONTACT_NUMBER] 
 
 Examples:
 
-- Type `edit 7 e/Ben2022@gmail.com` in the [Input Command](#ui-overview). The index 7 student of the
-  [Student's Details](#ui-overview) will have his or her email updated to `Ben2022@gmail.com`.
+- Type `edit 7 e/Ben2022@gmail.com` in the [Command Input](#ui-overview). The index 7 student of the
+  [Student List](#ui-overview) will have his or her email updated to `Ben2022@gmail.com`.
 
 ![UiEdit](images/UG-screenshots/UiEditBefore.png)
 ![UiEdit](images/UG-screenshots/UiEditAfter.png)
 
-- Type `edit 7 dt/2022-11-07 1200-1300` in the [Input Command](#ui-overview). The index 1 student of the
-  [Student's Details](#ui-overview) will have his or her class date updated to `2022-10-30 1100-1200` 
-  in this case. Notice that the [Day's Schedule List](#ui-overview) has now been updated.
+- Type `edit 7 dt/2022-11-07 1200-1300` in the [Command Input](#ui-overview). The index 1 student of the
+  [Student List](#ui-overview) will have his or her class date updated to `2022-10-30 1100-1200` 
+  in this case. Notice that the [Schedule List](#ui-overview) has now been updated.
 
 ![UiEdit2](images/UG-screenshots/UiEditBefore2.png)
 ![UiEdit2](images/UG-screenshots/UiEditAfter2.png)
@@ -370,9 +371,9 @@ Examples:
 
 ### Marking a student: `mark`
 
-The `mark` command marks an existing student under [Day's Schedule List](#ui-overview) as present for a class and track 
+The `mark` command marks an existing student under [Schedule List](#ui-overview) as present for a class and track 
 the money owed. You can do so by indicating [`INDEX-S`](#glossary), which refers to the index of the student under the 
-[Day's Schedule List](#ui-overview) (the right panel of the screen). 
+[Schedule List](#ui-overview) (the right panel of the screen). 
 
 When a student has been `mark`ed, a couple of things will happen.
 1. **Teacher's Pet** will increase the student's owed amount by the rates per class.
@@ -381,12 +382,12 @@ When a student has been `mark`ed, a couple of things will happen.
 Format: `mark INDEX-s`
 
 - Marks the student as present based on [`INDEX-s`](#glossary) which is the index on the right panel.
-- The index refers to the index number shown in [Day's Schedule List](#ui-overview).
+- The index refers to the index number shown in [Schedule List](#ui-overview).
 - The index must be a positive integer. e.g., `1, 2, 3, ...`.
 
 Example:
-- Type `mark 1` in the [Input Command](#ui-overview). The index 1 student of the 
-  [Day's Schedule List](#ui-overview) will have his or her attendance marked. Notice that an X is now present between 
+- Type `mark 1` in the [Command Input](#ui-overview). The index 1 student of the 
+  [Schedule List](#ui-overview) will have his or her attendance marked. Notice that an X is now present between 
   the [ ] and his name is highlighted red since he has yet to pay $40.
 
 ![UiMark](images/UG-screenshots/UiMarkBefore.png)
@@ -405,13 +406,13 @@ The `pay` command indicates that a student has paid a certain amount of money.
 Format: `pay INDEX-s AMOUNT_PAID`
 
 - Indicates that the student at a specified `INDEX-s` has paid.
-- The index refers to the index number shown in the Schedule panel (bottom right).
+- The index refers to the index number shown in the [Schedule List](#ui-overview) (bottom right).
 - The index must be a positive integer. e.g., `1, 2, 3, ...`.
 - The amount paid must be an integer and cannot be negative. e.g., `0, 1, 2, ...`.
 
 Example:
-- Type `pay 1 40` in the [Input Command](#ui-overview). The index 1 student of the
-  [Day's Schedule List](#ui-overview) now has paid his money and therefore his name is no longer highlighted in red as he no longer owes $40.
+- Type `pay 1 40` in the [Command Input](#ui-overview). The index 1 student of the
+  [Schedule List](#ui-overview) now has paid his money and therefore his name is no longer highlighted in red as he no longer owes $40.
 
 
 ![UiPay](images/UG-screenshots/UiPayBefore.png)
@@ -427,7 +428,7 @@ Example:
 
 ### Viewing all students: `list`
 
-The `list` command allows you to view your students and their information under [Student's Details](#ui-overview) which
+The `list` command allows you to view your students and their information under [Student List](#ui-overview) which
 includes the following:
 
 - Contact Number
@@ -590,10 +591,10 @@ python tag.
 
 While there is no available command at the moment, you can find the next available class through a series of steps. 
 
-1. Use find command, to find a specific day: `find dt/2022-11-07` will find the students who have classes on 
-`2022-11-07`
-2. Use sort command, to sort by class: `sort class asc`.
-3. View each class until you find the slot you want.
+1. Use [find command](#finding-a-student-find), to find a specific day: `find dt/2022-11-07` will find the students 
+who have classes on `2022-11-07`
+2. Use [sort command](#sort-the-displayed-students-sort), to sort by class: `sort class asc`.
+3. View each class for the student under the [Student List](#ui-overview) until you find the slot you want.
 
 [↑ Back to top](#table-of-contents)
 
@@ -601,7 +602,7 @@ While there is no available command at the moment, you can find the next availab
 
 ### Sort the displayed students: `sort`
 
-The `sort` command sorts the list of students in the Student's Details panel by the specified `TYPE` and `ORDER`.
+The `sort` command sorts the list of students in the [Student List](#ui-overview) by the specified `TYPE` and `ORDER`.
 
 Format: `sort TYPE [ORDER]`
 
@@ -621,7 +622,7 @@ Format: `sort TYPE [ORDER]`
 
 #### Sort by Name
 
-Sorts the list of students in the Students' Details panel by `name` and given `ORDER`.
+Sorts the list of students in the [Student List](#ui-overview) by `name` and given `ORDER`.
 
 If `ORDER` is left blank, it will be `asc` by default.
 
@@ -635,7 +636,7 @@ Examples:
 
 #### Sort by Class Date
 
-Sorts the list of students in the Students' Details panel by `CLASS` and given `ORDER`.
+Sorts the list of students in the [Student List](#ui-overview) by `CLASS` and given `ORDER`.
 
 If `ORDER` is left blank, it will be `ASC` by default.
 
@@ -649,7 +650,7 @@ Examples:
 
 #### Sort by Money Owed
 
-Sorts the list of students in the Students' Details panel by `OWED`(Amount of Money Owed) and given `ORDER`.
+Sorts the list of students in the [Student List](#ui-overview) by `OWED`(Amount of Money Owed) and given `ORDER`.
 
 If `ORDER` is left blank, it will be `DESC` by default.
 
@@ -674,12 +675,12 @@ But you can always undo the deletion with the undo command.
 Format: `delete INDEX [MORE_INDEXES]`
 
 - Deletes the student(s) at the specified `INDEX(ES)`.
-- The index(es) refers to the index numbers shown in the Student's Details panel (bottom left section of the display).
+- The index(es) refers to the index numbers shown in the [Student List](#ui-overview) (bottom left section of the display).
 - The index(es) must be found on the displayed student list. e.g., `1, 2, 3, ...`.
 
 Examples:
-- `list` followed by `delete 1 2` deletes the 1st and 2nd student in the Student's Details panel.
-- `find Betsy` followed by `delete 1` deletes the 1st student in the Student's Details panel.
+- `list` followed by `delete 1 2` deletes the 1st and 2nd student in the [Student List](#ui-overview).
+- `find Betsy` followed by `delete 1` deletes the 1st student in the [Student List](#ui-overview).
 
 <div markdown="span" class="alert alert-success">💡 **Tip:** Deleting a student by mistake can be reversed by 
 <a href="#undo-the-last-command-undo">undo</a> command!
@@ -691,7 +692,7 @@ Examples:
 
 ### Clearing all student: `clear`
 
-The `clear` command clears all students and their details from [Student's Details](#ui-overview).
+The `clear` command clears all students and their details from [Student List](#ui-overview).
 
 Format: `clear`
 
@@ -758,14 +759,14 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 ---
 ## Glossary
 
-| Terms       | Definition                                                 |
-|-------------|------------------------------------------------------------|
-| Class Date  | The 1-1 tutoring time slot of a student                    |
-| Day-of-Week | 3-letter Abbreviation; case-insensitive e.g., Mon, MON     |
-| INDEX       | The index number shown in the Student's Details panel list |
-| INDEX-s     | The index number shown in the Schedule panel list          |
-| Prefix      | e.g., `n/`, `p/`, `np/`                                    |
-| Parameter   | e.g., `NAME`, `EMAIL`, `ADDRESS`                           |
+| Terms       | Definition                                                  |
+|-------------|-------------------------------------------------------------|
+| Class Date  | The 1-1 tutoring time slot of a student                     |
+| Day-of-Week | 3-letter Abbreviation; case-insensitive e.g., Mon, MON      |
+| INDEX       | The index number shown in the [Student List](#ui-overview)  |
+| INDEX-s     | The index number shown in the [Schedule List](#ui-overview) |
+| Prefix      | e.g., `n/`, `p/`, `np/`                                     |
+| Parameter   | e.g., `NAME`, `EMAIL`, `ADDRESS`                            |
 
 [↑ Back to top](#table-of-contents)
 
@@ -793,19 +794,19 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 
 ## Prefix Summary
 
-| Representation of                                   | Prefix | Examples                                             |
-|-----------------------------------------------------|:-------|------------------------------------------------------|
-| Name of student                                     | n/     | `n/Alice`                                            |
-| Phone number of student                             | p/     | `p/81234567`                                         |
-| Next of Kin Phone number                            | np/    | `np/65432109`                                        |
-| Email of student                                    | e/     | `e/alice@email.com`                                  |
-| Date and time of student's class                    | dt/    | `dt/2022-10-27 1300-1400`                            |
-| Address of student                                  | a/     | `a/15 Bukit Timah Road, Singapore 155203`            |
-| Amount paid by student                              | paid/  | `paid/300`                                           |
-| Amount owed by student                              | owed/  | `owed/200`                                           |
-| Rates per Class                                     | rate/  | `rate/100`                                           |
-| Additional notes of student (create new notes)      | nt/    | `nt/I have created new notes for Alice`              |
-| Additional notes of student (append existing notes) | nt-a/  | `nt-a/I have added more notes to the existing notes` |
-| Tags of student                                     | t/     | `t/python`                                           |
+| Prefix | Meaning                                             | Examples                                             |
+|:-------|-----------------------------------------------------|------------------------------------------------------|
+| n/     | Name of student                                     | `n/Alice`                                            |
+| p/     | Phone number of student                             | `p/81234567`                                         |
+| np/    | Next of Kin Phone number                            | `np/65432109`                                        |
+| e/     | Email of student                                    | `e/alice@email.com`                                  |
+| dt/    | Date and time of student's class                    | `dt/2022-10-27 1300-1400`                            |
+| a/     | Address of student                                  | `a/15 Bukit Timah Road, Singapore 155203`            |
+| paid/  | Amount paid by student                              | `paid/300`                                           |
+| owed/  | Amount owed by student                              | `owed/200`                                           |
+| rate/  | Rates per Class                                     | `rate/100`                                           |
+| nt/    | Additional notes of student (create new notes)      | `nt/I have created new notes for Alice`              |
+| nt-a/  | Additional notes of student (append existing notes) | `nt-a/I have added more notes to the existing notes` |
+| t/     | Tags of student                                     | `t/python`                                           |
 
 [↑ Back to top](#table-of-contents)
