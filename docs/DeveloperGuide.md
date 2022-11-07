@@ -370,7 +370,8 @@ This command deletes a comment from a tutor in `Tuthub`'s displayed list.
 <ins>Implementation</ins>
 
 The `deletecomment` command involves the logic and model part of Tuthub.
-Most updates are made within the `ModelManager`, which are:
+This involves the updating of the `CommentList` of the tutor via:
+- `CommentList#deleteComment(int index)` - Deletes the `Comment` at the `index` of the `CommentList`
 
 Given below is an example usage scenario when the user enters a `deletecomment` command in the command box and how the comment is removed from the tutor.
 
