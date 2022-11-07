@@ -25,7 +25,6 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    
     private static final String PATH_VALIDATION_REGEX = "([a-zA-Z0-9_-]+\\/?)+([a-zA-Z0-9_-]+)";
     private static final String PERSON_NAME_PATTERN = "[A-Za-z][a-zA-Z \\-]*";
 
@@ -177,6 +176,9 @@ public class ParserUtil {
         return new Field(fieldName);
     }
 
+    /**
+     * Parses person name. Person name is more strict than Name thus this works
+     */
     public static Name parsePersonName(String name) throws ParseException {
         requireNonNull(name);
         name = name.replaceAll("\\s+", " ").trim();
