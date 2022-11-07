@@ -311,15 +311,15 @@ This process of deleting the first client in the list is depicted by the followi
 
 </div>
 
-The process for deleting `transaction` and `remark` is almost the same as the process stated above, with just the following changes:
-- For delete transaction:
-    - `userInput` is changed to `delete 1 m/transaction`
-    - `parse("1 m/transaction")` returns `d`, which is a `DeleteTransactionCommand`
-    - `deleteClient(1)` is changed to `deleteTransaction(1)`
-- For delete remark:
+The process of deleting a `transaction` is almost the same as the process stated above, with a main difference in how the `DeleteTransactionCommand` and `Model` interact as shown in the sequence diagram below.
+
+![DeleteTransactionDiagram](images/DeleteTransactionDiagram.png)
+
+
+The process for deleting a `remark` is the same as the process of deleting a `transaction`, except for the following differences:
     - `userInput` is changed to `delete 1 m/remark`
     - `parse("1 m/remark")` returns `d`, which is a `DeleteRemarkCommand`
-    - `deleteClient(1)` is changed to `deleteRemark(1)`
+    - `deleteTransaction(1)` is changed to `deleteRemark(1)`
 
 #### Design Considerations:
 
