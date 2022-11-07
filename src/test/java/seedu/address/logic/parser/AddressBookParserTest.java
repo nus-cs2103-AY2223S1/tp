@@ -21,11 +21,13 @@ import seedu.address.logic.commands.EditCustomerCommand;
 import seedu.address.logic.commands.EditCustomerCommand.EditCustomerDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindCommissionCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.OpenCustomerCommand;
 import seedu.address.logic.commands.SortCustomerCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.commission.CompositeCommissionPredicate;
 import seedu.address.model.commission.CompositeCustomerPredicate;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.tag.Tag;
@@ -81,7 +83,6 @@ public class AddressBookParserTest {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
     }
 
-    // TODO: Update test case for FindCommand
     @Test
     public void parseCommand_find() throws Exception {
         Set<String> keywords = new HashSet<>(Arrays.asList("foo", "bar", "baz"));
@@ -93,6 +94,19 @@ public class AddressBookParserTest {
                 FindCommand.COMMAND_WORD + " k/" + String.join(" k/", keywords) + " -all t/tag1 "
                 + "t/tag2 t/tag3 -any t/tag4 t/tag5 t/tag6");
         assertEquals(new FindCommand(new CompositeCustomerPredicate(keywords, mustTags, anyTags)), command);
+    }
+
+    @Test
+    public void parseCommand_findCommission() throws Exception {
+        Set<String> keywords = new HashSet<>(Arrays.asList("foo", "bar", "baz"));
+        Set<Tag> mustTags = new HashSet<>(Arrays.asList(new Tag("tag1"),
+                new Tag("tag2"), new Tag("tag3")));
+        Set<Tag> anyTags = new HashSet<>(Arrays.asList(new Tag("tag4"),
+                new Tag("tag5"), new Tag("tag6")));
+        FindCommissionCommand command = (FindCommissionCommand) parser.parseCommand(
+                FindCommissionCommand.COMMAND_WORD + " k/" + String.join(" k/", keywords)
+                        + " -all t/tag1 t/tag2 t/tag3 -any t/tag4 t/tag5 t/tag6");
+        assertEquals(new FindCommissionCommand(new CompositeCommissionPredicate(keywords, mustTags, anyTags)), command);
     }
 
     @Test

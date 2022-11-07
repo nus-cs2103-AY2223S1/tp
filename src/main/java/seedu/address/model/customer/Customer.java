@@ -155,7 +155,8 @@ public class Customer {
         }
 
         return otherCustomer != null
-            && otherCustomer.getName().equals(getName());
+            && otherCustomer.getName().equals(getName())
+            && otherCustomer.getEmail().equals(getEmail());
     }
 
     /**
