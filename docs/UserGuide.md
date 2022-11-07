@@ -224,6 +224,8 @@ Format: `findC [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK]`
 * Contacts matching at least one keyword will be returned. e.g. `n/Perry Dr`
   will match contacts with name `Perry the Platypus` and `Dr Doofenshmirtz`.
 
+* Successive `findC` commands are not cumulative. e.g. `findC n/John` followed by `findC n/Doe` will return the same result as `findC n/Doe`.
+
 <div markdown="block" class="alert alert-warning">
 
 :warning: There will be an error if you:<br>
@@ -249,6 +251,8 @@ Format: `filterC KEYWORD [MORE_KEYWORDS]...`
 * The filter is case-sensitive. e.g. `cs2103t` will not match `CS2103T`.
 
 * Only full words will be matched. e.g. `math` will not match `mathematics`.
+
+* Successive `filterC` commands are not cumulative. e.g. `filterC cs2101` followed by `filterC cs2103t` will return the same result as `filterC cs2103t`.
 
 <div markdown="block" class="alert alert-warning">
 
@@ -404,12 +408,16 @@ Format: `findT [d/DESCRIPTION] [D/DEADLINE] [s/STATUS]`
 
 * Task status must be either `complete` or `incomplete`.
 
+* Both archived and unarchived tasks containing the search terms will be displayed.
+
 * The search is case-insensitive, e.g. `homework` will match `HOMEWORK`.
 
 * Only full words will be matched. e.g. `math` will not match `mathematics`.
 
 * Task descriptions matching at least one keyword will be returned. e.g. `d/cs2103t cs2101` will match
   `cs2103t tutorial` and `cs2101 reflection`.
+
+* Successive `findT` commands are not cumulative. e.g. `findT d/math` followed by `findT d/homework` will return the same result as `findT n/homework`.
 
 <div markdown="block" class="alert alert-warning">
 
@@ -433,15 +441,19 @@ Filters tasks whose label(s) contain any of the given keywords.
 
 Format: `filterT KEYWORD [MORE_KEYWORDS]...`
 
+* Both archived and unarchived tasks containing specified labels will be displayed.
+
 * The filter is case-sensitive. e.g. `cs2103t` will not match `CS2103T`.
 
 * Only full words will be matched. e.g. `math` will not match `mathematics`.
 
+* Successive `filterT` commands are not cumulative. e.g. `filterT cs2103t` followed by `filterT math` will return the same result as `filterT math`.
+
 Examples:
 
-* `filterC cs2103t` will return tasks with label `cs2103t`.
+* `filterT cs2103t` will return tasks with label `cs2103t`.
 
-* `filterC cs2103t cs2101` will return tasks with labels `cs2103t` or `cs2101`.
+* `filterT cs2103t cs2101` will return tasks with labels `cs2103t` or `cs2101`.
 
 ### Marking task as completed: `markT`
 
