@@ -220,6 +220,161 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Client Information feature
+This feature allows users to record key information about clients as phone number, yearly income and risk appetite.
+
+Overview of implementation of Client Information:
+
+* `Address`- This is a class that stores information regarding the address of a specific client.
+* `Email`- This is a class that stores information regarding the email of a specific client.
+* `Income`- This is a class that stores information regarding the income of a specific client.
+* `Monthly`- This is a class that stores information regarding the monthly contributions of a specific client.
+* `Name`- This is a class that stores information regarding the name of a specific client.
+* `Phone`- This is a class that stores information regarding the phone number of a specific client.
+* `RiskTag`- This is a class that stores information regarding the risk appetite of a specific client as a tag.
+* `ClientTag`- This is a class that stores information regarding the status of a specific client as a tag. 
+* `PlanTag`- This is a class that stores information regarding the financial plan of a specific client as a tag.
+* `NormalTag`- This is a class that stores additional information regarding a specific client as a tag.
+* `Person`- This is a class that represents a specific client and stores all the above information .
+* `JsonAdaptedPerson`- This is a class that acts as a bridge between the Person class and Storage layer. It specifies how a Person object is converted to a JSON and vice versa.
+* `JsonAdaptedTag` - This is a class that acts as a bridge between the Tag class and Storage layer. It specifies how a Tag object is converted to a JSON and vice versa.
+* `AddCommand` - This is a class where the logic for the Add command is specified and the execute method is called. It will access the Model layer to ensure that there will not be a duplicate Person with the same name and that none of the above fields have any violations, followed by adding the Person to the Model.
+* `AddCommandParser` - This is a class that parses user input from a String to an AddCommand object. Validation for the user’s input is performed in this class.
+* `EditCommand` - This is a class where the logic for the Edit command is specified and the execute method is called. It will access the Model layer to ensure that the input is valid. It will then remove the old field data and add the newly edited field data. The Model will be updated accordingly.
+* `EditPersonDescriptor` - This is a class that takes in the user input’s edited fields to create the newly edited Person.
+* `EditCommandParser` - This is a class that parses user input from a String to an EditCommand object. Validation for the user’s input is performed in this class.
+* `DeleteCommand` - This is a class where the logic for the Delete command is specified and the execute method is called. It will access the Model layer to ensure that there exists a Person at the specified index. The Person will be removed from the Model.
+* `DeleteCommandParser` - This is a class that parses user input from a String to an DeleteCommand object. Validation for the user’s input is performed in this class.
+* `UniquePersonList` - This is an abstraction that represents the list of clients. It ensures that the Persons are in sorted order according to alphabetical order, and ensures that there are no duplicate clients.
+
+
+Currently, the appointment feature supports 3 different type of command:
+1. `add`
+2. `edit`
+3. `delete`
+
+
+#### Add Command
+
+Step 1. When the user inputs an appropriate command `String` into the `CommandBox`, `LogicManager::execute(commandText)` is called. The command `String` is logged and then passed to `AddressBookParser::parseCommand(userInput)` which parses the command.
+
+Step 2. If the user input matches the format for the command word for the `AddCommand`, `AddressBookParser` will create an `AddCommandParser` and will call the `AddCommandParser::parse(args)` to parse the command.
+
+Step 3. Validation for the user input is performed, such as validating the format of the various fields such as `Name` and `Risk`.
+
+Step 4. If the user input is valid, a new `AddCommand` object is created and returned to the `LogicManager`.
+
+Step 5. `LogicManager` will call `AddCommand::execute(model)` method. Further validation is performed, such as checking whether a duplicate `Person` exists.
+
+Step 6. If the command is valid, the `setPerson` method of the `UniquePersonList` is called, which will update `Model`.
+
+Step 7. `AddCommand` will create a `CommandResult` object and will return this created object back to `LogicManager`.
+
+This is shown in the diagram below:
+<br>
+![Add Sequence Diagram](images/AddCommandSequenceDiagram.png)
+<br>
+*Figure 10: Sequence Diagram showing the execution of an `add` (Add) command*
+
+#### Edit Command
+
+Step 1. When the user inputs an appropriate command `String` into the `CommandBox`, `LogicManager::execute(commandText)` is called. The command `String` is logged and then passed to `AddressBookParser::parseCommand(userInput)` which parses the command.
+
+Step 2. If the user input matches the format for the command word for the `EditCommand`, `AddressBookParser` will create an `EditCommandParser` and will call the `EditCommandParser::parse(args)` to parse the command.
+
+Step 3. Validation for the user input is performed, such as validating the client's `Index`.
+
+Step 4. Validation for the user's input for the format of input such as `Phone` and `Monthly` is also performed to create a `EditPersonDescriptor`
+
+Step 5. If the user input is valid, a new `EditCommand` object is created and returned to the `LogicManager`.
+
+Step 6. `LogicManager` will call `EditCommand::execute(model)` method. `EditPersonDescriptor` will create the edited `Person`
+
+Step 7. Further validation is performed, such as checking whether the user's edited field is changed.
+
+Step 6. If the command is valid, the `remove` and `add` method of the `UniquePersonList` is called,
+removing the old Person and adding the newly edited Person. `Model` will be updated accordingly.
+
+Step 7. `EditCommand` will create a `CommandResult` object and will return this created object back to `LogicManager`.
+
+This is shown in the diagram below:
+<br>
+![Edit Sequence Diagram](images/EditCommandSequenceDiagram.png)
+<br>
+*Figure 11: Sequence Diagram showing the execution of an `edit` (Edit) command for name*
+
+#### Delete Command
+
+Step 1. When the user inputs an appropriate command `String` into the `CommandBox`, `LogicManager::execute(commandText)` is called. The command `String` is logged and then passed to `AddressBookParser::parseCommand(userInput)` which parses the command.
+
+Step 2. If the user input matches the format for the command word for the `DeleteCommand`, `AddressBookParser` will create an `DeleteCommandParser` and will call the `DeleteCommandParser::parse(args)` to parse the command.
+
+Step 3. Validation for the user input is performed, such as validating the client's `Index` .
+
+Step 4. If the user input is valid, a new `DeleteCommand` object is created and returned to the `LogicManager`.
+
+Step 5. `LogicManager` will call `DeleteCommand::execute(model)` method. Further validation is performed, such as checking whether an `Appointment` exists to be deleted.
+
+Step 6. If the command is valid, the `remove` method of the `UniquePersonList` is called, which will update the `Model`.
+
+Step 7. `DeleteCommand` will create a `CommandResult` object and will return this created object back to `LogicManager`.
+
+This is shown in the diagram below:
+<br>
+![Delete Sequence Diagram](images/DeleteSequenceDiagram.png)
+<br>
+*Figure 6: Sequence Diagram showing the execution of an `d 1` (Delete Appointment) command*
+
+### Special Tag feature
+This feature allows users to record key information about clients as special tag, which are colour coded to make it easier to interpret at a glance. 
+
+Overview of implementation of Special Tags:
+* `Tag` - Tag has now been reformatted to an abstract class to support extensions and operations by the new `Tag` classes.
+* `NormalTag` - NormalTag now represents the former `Tag` class, which is used to create regular tags which users can create with a single word up to 50 characters. It is also now restricted to maximum of 5 tags per use. The design decision will be elaborated on in later sections.
+* `SpecialTag` This is an abstract class that extends `Tag`, which supports `RiskTag`, `ClientTag`, and `PlanTag`.
+* `RiskTag` - This is a class for users to indicate client's risk appetite. It accepts only 3 inputs - Low, Medium, and High which are colour coded as GREEN, YELLOW and RED respectively.
+* `ClientTag` - This is a class for users to indicate client's status. It accepts only 2 inputs - Potential or Current, which are colour coded as BLUE and GREY.
+* `PlanTag` - This is a class for users to indicate client's current financial plan. It accepts any input ending with Plan. It is colour coded in MAGENTA.
+
+Currently, to add any tags including `NormalTag`, users have to use the add or edit commands, which have been enhanced to incorporate the new tags. `SpecialTags` are mandatory while `Tags` are optional
+
+Here are the Prefix to be used with add and edit commands:
+1. `NormalTag` - /t
+2. `RiskTag` - /r
+3. `ClientTag` - /c
+4. `PlanTag` - /ip
+
+#### Design Considerations
+**Aspect: How many `Tags` can be added for each command**
+* **Alternative 1:** Add only one `Tag` in each command.
+    * Pros: Simpler input validation and length of user input is shorter, as the presence of other fields has the potential to be very lengthy.
+    * Cons: User has to execute the `edit` command multiple times to add all their desired `Tags`.
+* **Alternative 2 (current choice)**: Multiple `Tags` can be added in each command
+    * Pros: Lower number of commands needed to be executed to add all the desired `Tags`
+    * Cons: Lengthier user input, tags have to be re-entered everytime when editing even if it is already present.
+    * Rationale: We decided on allowing multiple tags as the users are unlikely to edit tags frequently, hence it would be more user friendly for users to enter fewer commands.
+
+
+**Aspect: Should special tags be made Mandatory?**
+* **Alternative 1 (current choice):** Make all `SpecialTags` mandatory.
+    * Pros: Consistent display across all clients, easy for users to find information at a glance.
+    * Cons: Users may not have all information ready for all `SpecialTags` when adding new Client.
+    * Rationale: Most of the `SpecialTags` pertain to information that users can obtain from their client within the first meeting or contact. Hence we chose to prioritise a consistent display.
+* **Alternative 2 (current choice):** Make all `SpecialTags` optional.
+  * Pros: Users do not need to enter fields that they do not have the information for.
+  * Cons: Inconsistent display across all clients, making it harder for users to find information at a glance.
+
+**Aspect: How many `Tags` can be added for each client**
+* **Alternative 1 (current choice):** Limit number of `Tags` per client and character length of each `Tag`.
+    * Pros: Ensure consistent display across all clients and prevent excessive `Tag` spam, which may obscure other information.
+    * Cons: Users will be restricted to a limited number of `Tags` and they may not be able to add `Tags` of the length they desire.
+    * Rationale: The main purpose of the app is to store the key information of clients, which are stored in the main fields and appointment list. Hence, to protect the view of these information, we have decided to limit the `Tag` feature. Additionally, the second longest word in the English Language is 47 characters. Hence, a limit of 50 characters is sufficient for each tag.
+* **Alternative 2 :** Do not limit number of `Tags` per client and character length of each `Tag`.
+    * Pros: Users will be able to add any `Tags` they desire. 
+    * Cons: Display across various clients may be inconsistent, and certain information may be obscured when too many tags are added.
+  
+
+
 ### Appointment feature
 
 This feature represents an appointment between a user and a client. An appointment consists of a DateTime and a Location.
@@ -248,6 +403,13 @@ Currently, the appointment feature supports 3 different type of command:
 #### Add Appointment Command
 
 Step 1. When the user inputs an appropriate command `String` into the `CommandBox`, `LogicManager::execute(commandText)` is called. The command `String` is logged and then passed to `AddressBookParser::parseCommand(userInput)` which parses the command.
+<br>
+For example, the user inputs this command: `"aa 1 d/15-02-2022 12:00 l/NUS"`.
+<br>
+The initial state of the `MaximumSortedList<Appointment>` object present in the specified client `Person` object before executing the command is shown below (assuming the client currently has 0 appointments scheduled):
+<br><br>
+![Before Add Appointment Object Diagram](images/BeforeAddAppointmentObjectDiagram.png)
+<br><br>
 
 Step 2. If the user input matches the format for the command word for the `AddAppointmentCommand`, `AddressBookParser` will create an `AddAppointmentCommandParser` and will call the `AddAppointmentCommandParser::parse(args)` to parse the command.
 
@@ -258,6 +420,10 @@ Step 4. If the user input is valid, a new `AddAppointmentCommand` object is crea
 Step 5. `LogicManager` will call `AddAppointmentCommand::execute(model)` method. Further validation is performed, such as checking whether a duplicate `Appointment` exists and whether the user has already scheduled the maximum number, 3, of `Appointments` for the specified client.
 
 Step 6. If the command is valid, the `add` method of the `MaximumSortedList` containing the client's `Appointments` is called, which will update the `Person` and `Model`.
+The `MaximumSortedList<Appointment>` object present in the specified client `Person` will be updated as shown below:
+<br><br>
+![After Add Appointment Object Diagram](images/AfterAddAppointmentObjectDiagram.png)
+<br><br>
 
 Step 7. `AddAppointmentCommand` will create a `CommandResult` object and will return this created object back to `LogicManager`.
 
@@ -265,11 +431,11 @@ This is shown in the diagram below:
 
 <img src="images/AddAppointmentCommandSequenceDiagram.png" width="2000"/>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** command_details and command_values refer to the command `aa 1 d/21-01-2023 `12:30 l/Starbucks` and the command values `1 d/21-01-2023 `12:30 l/Starbucks`. We have substituted these values for readability.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** command_details and command_values refer to the command `aa 1 d/15-02-2022 12:00 l/NUS` and the command values `1 d/15-02-2022 12:00 l/NUS`. We have substituted these values for readability.
 
 </div>
 
-*Figure 10: Sequence Diagram showing the execution of an `aa` (Add Appointment) command*
+*Figure 12: Sequence Diagram showing the execution of an `aa` (Add Appointment) command*
 
 #### Design Considerations
 **Aspect: How many `Appointments` can be added for each command**
@@ -283,8 +449,14 @@ This is shown in the diagram below:
 #### Edit Appointment Command
 
 Step 1. When the user inputs an appropriate command `String` into the `CommandBox`, `LogicManager::execute(commandText)` is called. The command `String` is logged and then passed to `AddressBookParser::parseCommand(userInput)` which parses the command.
-
-Step 2. If the user input matches the format for the command word for the `EditAppointmentCommand`, `AddressBookParser` will create an `EditAppointmentCommandParser` and will call the `AddAppointmentCommandParser::parse(args)` to parse the command.
+<br>
+For example, the user inputs this command: `"ea 1.1 l/NUS"`.
+<br>
+The initial state of the `MaximumSortedList<Appointment>` object present in the specified client `Person` object before executing the command is shown below (assuming the client currently has 1 appointment scheduled):
+<br><br>
+![Before Edit Appointment Object Diagram](images/BeforeEditAppointmentObjectDiagram.png)
+<br><br>
+Step 2. If the user input matches the format for the command word for the `EditAppointmentCommand`, `AddressBookParser` will create an `EditAppointmentCommandParser` and will call the `EditAppointmentCommandParser::parse(args)` to parse the command.
 
 Step 3. Validation for the user input is performed, such as validating the client's `Index` and the appointment's `Index`
 
@@ -298,14 +470,17 @@ Step 7. Further validation is performed, such as checking whether an `Appointmen
 
 Step 6. If the command is valid, the `remove` and `add` method of the `MaximumSortedList` containing the client's `Appointments` is called,
 removing the old appointment and adding the newly edited appointment. `Person` and `Model` will be updated accordingly.
-
+The `MaximumSortedList<Appointment>` object present in the specified client `Person` will be updated as shown below:
+<br><br>
+![After Edit Appointment Object Diagram](images/AfterEditAppointmentObjectDiagram.png)
+<br><br>
 Step 7. `EditAppointmentCommand` will create a `CommandResult` object and will return this created object back to `LogicManager`.
 
 This is shown in the diagram below:
 <br>
 ![Edit Appointment Sequence Diagram](images/EditAppointmentCommandSequenceDiagram.png)
-
-*Figure 11: Sequence Diagram showing the execution of an `ea` (Edit Appointment) command*
+<br>
+*Figure 13: Sequence Diagram showing the execution of an `ea` (Edit Appointment) command*
 
 #### Design Considerations
 **Aspect: How many `Appointments` can be edited for each command?**
@@ -315,10 +490,16 @@ This is shown in the diagram below:
 * **Alternative 2**: Multiple `Appointments` can be edited in each command
     * Pros: Lower number of commands needed to be executed to edit all the desired `Appointments`
     * Cons: Complex input validation as multiple index must be enforced within the command and alongside the existing `Appointments`. The maximum number of `Appointments` to edit must also be enforced.
+
 #### Delete Appointment Command
 
 Step 1. When the user inputs an appropriate command `String` into the `CommandBox`, `LogicManager::execute(commandText)` is called. The command `String` is logged and then passed to `AddressBookParser::parseCommand(userInput)` which parses the command.
-
+For example, the user inputs this command: `da 1.1`.
+<br>
+The initial state of the `MaximumSortedList<Appointment>` object present in the specified client Person object before executing the command is shown below (assuming the client currently has 1 appointment scheduled):
+<br><br>
+![Before Delete Appointment Object Diagram](images/BeforeDeleteAppointmentObjectDiagram.png)
+<br><br>
 Step 2. If the user input matches the format for the command word for the `DeleteAppointmentCommand`, `AddressBookParser` will create an `DeleteAppointmentCommandParser` and will call the `DeleteAppointmentCommandParser::parse(args)` to parse the command.
 
 Step 3. Validation for the user input is performed, such as validating the client's `Index` and the appointment's `Index`.
@@ -328,14 +509,17 @@ Step 4. If the user input is valid, a new `DeleteAppointmentCommand` object is c
 Step 5. `LogicManager` will call `DeleteAppointmentCommand::execute(model)` method. Further validation is performed, such as checking whether an `Appointment` exists to be deleted.
 
 Step 6. If the command is valid, the `remove` method of the `MaximumSortedList` containing the client's `Appointments` is called, which will update the `Person` and `Model`.
-
+The `MaximumSortedList<Appointment>` object present in the specified client `Person` will be updated as shown below:
+<br><br>
+![After Delete Appointment Object Diagram](images/AfterDeleteAppointmentObjectDiagram.png)
+<br><br>
 Step 7. `DeleteAppointmentCommand` will create a `CommandResult` object and will return this created object back to `LogicManager`.
 
 This is shown in the diagram below:
-
+<br>
 ![Delete Appointment Sequence Diagram](images/DeleteAppointmentCommandSequenceDiagram.png)
-
-*Figure 12: Sequence Diagram showing the execution of an `da` (Delete Appointment) command*
+<br>
+*Figure 14: Sequence Diagram showing the execution of an `da` (Delete Appointment) command*
 
 #### Design Considerations
 **Aspect: How many `Appointments` can be deleted for each command**
@@ -387,13 +571,13 @@ This is shown in the diagram below:
 
 ![Sort Command Sequence Diagram](images/SortCommandSequenceDiagram.png)
 
-*Figure 13: Sequence Diagram showing the execution of an `sort` command*
+*Figure 15: Sequence Diagram showing the execution of an `sort` command*
 
 The following activity diagram summarizes what happens when a user executes the Sort Command:
 
 ![Sort Command Activity Diagram](images/SortCommandActivityDiagram.png)
 
-*Figure 14: Activity Diagram showing the execution of an `sort` command*
+*Figure 16: Activity Diagram showing the execution of an `sort` command*
 
 #### Design Considerations
 
@@ -445,7 +629,7 @@ The following activity diagram summarizes what happens when a user executes the 
 
 ![Find Command Activity Diagram](images/FindCommandActivityDiagram.png)
 
-*Figure 15: Activity Diagram showing the execution of an `find` command*
+*Figure 17: Activity Diagram showing the execution of an `find` command*
 
 #### Design Considerations
 
@@ -457,9 +641,94 @@ The following activity diagram summarizes what happens when a user executes the 
     * Pros: Shorter command input, as only the required keywords are inputted.
     * Cons: Longer search time for each individual command and more complex validation is required, as keywords may be different types like `String` or `Integer`.
 
+### Parameter hint (enhancement)
+This enhancement allows a user to view the correct prefixes and arguments of a command before entering the command.
+
+The parameter hints for the command will be shown in the ResultDisplay once the command word is typed out.
+
+Implementation:
+1. `CommandBox` takes in the `ResultDisplay` as one of the arguments for its constructor method
+2. In the `CommandBox` constructor method, `setupCommandHistoryNavigation()` is called which sets up `commandTextField`
+   to listen for the event when a valid command word is typed
+3. When the event occurs, `ResultDisplay#setFeedbackToUser()` is called to display the command's message usage in the `ResultDisplay`
+
+### Command History feature
+This feature allows the user to navigate to their previously entered commands using up/down arrow keys
+- Only valid commands will be saved in the command history
+- Command history will only save up to 20 previously typed valid commands
+- Consecutive duplicate commands will not be saved (e.g entering “list” 3 times in a row will only add “list” to command history once)
+
+`CommandHistory` has an index pointer which tracks where the user is currently at in the command history list
+and also manages the writing and reading of commands to and from the command history list.
+
+The following sequence diagram summarizes how a valid command is saved in TextCommandHistoryStorage:
+![Add to command history storage](images/AddToCommandHistorySequenceDiagram.png)
+<br><br>
+The following sequence diagram summarizes how an up arrow key navigates to the previous command:
+![Navigate command history](images/NavigateCommandHistorySequenceDiagram.png)
+
+### Calendar features
+The calendar feature allows a calendar to display with the corresponding appointments of the month in a calendar format. The feature consists of the following features:
+
+* `Calendar Display` — Can display appointments of a month in a calendar format.
+* `Calendar Navigation` — Can navigate between months with/without a mouse.
+* `Calendar Pop-Up` — Can view the details of each appointment.
+
+#### Overall implementation of Calendar
+
+The main calendar display is implemented using the `CalendarDisplay` class, which acts as the main container for the entire Calendar feature. This main container consists of a `TopCalendar`, which is a `FlowPane` that contains the current month to be displayed, and the different navigation buttons as well as the `JumpBox`. Also, `CalendarDisplay` contains `CalendarGrid`, which is a GridPane that contains all the dates and `Appointment` buttons within the calendar.
+
+Upon initialisation of the `CalendarDisplay`, it will display the current month and year, using the `CalendarLogic#drawCalendar()` method. The current month and year is obtained using the default `Java` package's `GregorianCalendar` class.
+
+![Calendar Class Diagram](images/CalendarUiClassDiagram.png)
+
+*Figure x. Class diagram showing the classes for the Calendar in the `Ui`.*
+
+**Calendar Display**
+
+Implementation:
+
+The following is a more detailed explanation on how `Calendar Display` is implemented:
+1. When the app first launches, `MainWindow#fillInnerParts()` is called, which then initialises the `Calendar Display`.
+2. The `CalendarLogic` class is initialised, where the current month to be displayed in the Calendar is set using `Java`'s `GregorianCalendar` class. 
+3. Next, `CalendarLogic#drawCalendar()` is called which initialises the header of the Calendar, by calling `CalendarLogic#drawHeader()`, where the `FlowPane`, `TopCalendar`, displays the current month.
+4. Also, `CalendarLogic#drawCalendar()` will then call `CalendarLogic#drawBody()` which initialise the body of the Calendar and each individual day of the month is created in the Calendar.
+5. A `CalendarEventListPanel` object is created for each day of the month, and `EventButtons` are added to each `CalendarEventListPanel` if there is an appointment falling on that particular day.
+6. Following which, when appointments are added,`Model#updateCalendarEventList()` is called which then updates the `Calendar Display` as well.
+
+The following activity diagram summarizes what happens when a user selects the Calendar tab:
+![Calendar Display Activity](images/CalendarDisplayActivityDiagram.png)
+
+**Calendar Navigation**
+
+The Calendar navigation allows a user to navigate between different months in the calendar and also navigate between the different appointments within the current month.
+This feature uses JavaFX's [`FocusModel`](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/FocusModel.html) features to obtain different behaviours when a UI component is focused.
+Also, JavaFX's [`KeyEvent`](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/input/KeyEvent.html) feature is used to listen to the different keystrokes that will update our UI.
+
+These are the ways that a user can use the `Calendar Navigation` feature.
+1. Clicking on the Next/Prev buttons to view the next/previous month in the calendar
+2. Pressing N or B key to view the next/previous month in the calendar
+3. Typing the date in the Jump Box and pressing the ENTER key to view the input month and year of the date.
+
+The following activity diagram summarizes what happens when a user selects a navigation feature:
+![Calendar Navigation Activity](images/CalendarNavigationActivityDiagram.png)
+
+#### Calendar Pop-up
+The calendar Pop-up allows user to view the details of the appointment in the calendar
+
+Implementation:
+
+These are the ways that a user can use the `Calendar Pop-up` feature.
+1. Clicking on the Up/Down/Left/Right keys to view adjacent appointments oriented in space in the calendar
+2. Pressing SHIFT or SHIFT + TAB key to view the next/previous appointment in the calendar
+3. Clicking on a desired appointment to view the appointment in the calendar
+
+The following activity diagram summarizes what happens when a user selects an appointment in the calendar tab:
+![Calendar Pop-Up Activity](images/CalendarPopUpActivityDiagram.png)
+
 ### \[Proposed\] Undo/redo feature
 
-#### Proposed Implementation
+#### Proposed future Implementation
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
@@ -536,88 +805,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
-
-### Parameter hint (enhancement)
-This enhancement allows a user to view the correct prefixes and arguments of a command before entering the command.
-
-The parameter hints for the command will be shown in the ResultDisplay once the command word is typed out.
-
-Implementation:
-1. `CommandBox` takes in the `ResultDisplay` as one of the arguments for its constructor method
-2. In the `CommandBox` constructor method, `setupCommandHistoryNavigation()` is called which sets up `commandTextField`
-to listen for the event when a valid command word is typed
-3. When the event occurs, `ResultDisplay#setFeedbackToUser()` is called to display the command's message usage in the `ResultDisplay`
-
-### Command History feature
-This feature allows the user to navigate to their previously entered commands.
-- Only valid commands will be saved in the command history
-- Command history will only save up to 20 previously typed valid commands
-- Consecutive duplicate commands will not be saved (e.g entering “list” 3 times in a row will only add “list” to command history once)
-
-The following sequence diagram summarizes how a valid command is saved in CommandHistoryStorage:
-![Add to command history storage](images/AddToCommandHistorySequenceDiagram.png)
-<br>
-The following sequence diagram summarizes how an up arrow key navigates to the previous command:
-![Navigate command history](images/NavigateCommandHistorySequenceDiagram.png)
-
-### Calendar features
-The calendar feature allows a calendar to display with the corresponding appointments of the month in a calendar format. The feature consists of the following features:
-
-* `Calendar Display` — Can display appointments of a month in a calendar format.
-* `Calendar Navigation` — Can navigate between months with/without a mouse.
-* `Calendar Pop-Up` — Can view the details of each appointment.
-
-#### Overall implementation of Calendar
-
-The main calendar display is implemented using the `CalendarDisplay` class, which acts as the main container for the entire Calendar feature. This main container consists of a `TopCalendar`, which is a `FlowPane` that contains the current month to be displayed, and the different navigation buttons as well as the `JumpBox`. Also, `CalendarDisplay` contains `CalendarGrid`, which is a GridPane that contains all the dates and `Appointment` buttons within the calendar.
-
-Upon initialisation of the `CalendarDisplay`, it will display the current month and year, using the `CalendarLogic#drawCalendar()` method. The current month and year is obtained using the default `Java` package's `GregorianCalendar` class.
-
-![Calendar Class Diagram](images/CalendarUiClassDiagram.png)
-
-*Figure x. Class diagram showing the classes for the Calendar in the `Ui`.*
-
-**Calendar Display**
-
-Implementation:
-
-The following is a more detailed explanation on how `Calendar Display` is implemented:
-1. When the app first launches, `MainWindow#fillInnerParts()` is called, which then initialises the `Calendar Display`.
-2. The `CalendarLogic` class is initialised, where the current month to be displayed in the Calendar is set using `Java`'s `GregorianCalendar` class. 
-3. Next, `CalendarLogic#drawCalendar()` is called which initialises the header of the Calendar, by calling `CalendarLogic#drawHeader()`, where the `TopCalendar`, displays the current month.
-4. Also, `CalendarLogic#drawCalendar()` will then call `CalendarLogic#drawBody()` which initialise the body of the Calendar and each individual day of the month is created in the Calendar.
-5. A `CalendarEventListPanel` object is created for each day of the month, and `EventButtons` are added to each `CalendarEventListPanel` if there is an appointment falling on that particular day.
-6. Following which, when appointments are added,`Model#updateCalendarEventList()` is called which then updates the `Calendar Display` as well.
-
-The following activity diagram summarizes what happens when a user selects the Calendar tab:
-![Calendar Display Activity](images/CalendarDisplayActivityDiagram.png)
-
-**Calendar Navigation**
-
-The Calendar navigation allows a user to navigate between different months in the calendar and also navigate between the different appointments within the current month.
-This feature uses JavaFX's [`FocusModel`](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/FocusModel.html) features to obtain different behaviours when a UI component is focused.
-Also, JavaFX's [`KeyEvent`](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/input/KeyEvent.html) feature is used to listen to the different keystrokes that will update our UI.
-
-These are the ways that a user can use the `Calendar Navigation` feature.
-1. Clicking on the Next/Prev buttons to view the next/previous month in the calendar
-2. Pressing N or B key to view the next/previous month in the calendar
-3. Typing the date in the Jump Box and pressing the ENTER key to view the input month and year of the date.
-
-The following activity diagram summarizes what happens when a user selects a navigation feature:
-![Calendar Navigation Activity](images/CalendarNavigationActivityDiagram.png)
-
-#### Calendar Pop-up
-The calendar Pop-up allows user to view the details of the appointment in the calendar
-
-Implementation:
-
-These are the ways that a user can use the `Calendar Pop-up` feature.
-1. Clicking on the Up/Down/Left/Right keys to view adjacent appointments oriented in space in the calendar
-2. Pressing SHIFT or SHIFT + TAB key to view the next/previous appointment in the calendar
-3. Clicking on a desired appointment to view the appointment in the calendar
-
-The following activity diagram summarizes what happens when a user selects an appointment in the calendar tab:
-![Calendar Pop-Up Activity](images/CalendarPopUpActivityDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1057,6 +1244,7 @@ testers are expected to do more *exploratory* testing.
 1. _{ more test cases …​ }_
 
 ### Adding an appointment
+
 1. Adding valid appointments until maximum appointment limit for a client is reached while all persons are being shown
 
     1. Prerequisites: List all persons using the `list` command. Multiple persons in the list. No person has existing appointments scheduled.
@@ -1075,9 +1263,50 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `aa 1 d/24-01-2023 12:30 l/Jurong Point, Starbucks`<br>
        Expected: No appointment is added. Error details will show that the user has reached the maximum number of appointments(3) scheduled for this client
 
+### Editing an appointment
+
+1. Editing existing appointments with new Location and Datetime fields
+
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list. 
+<br>First person has only one appointment with Location as
+`Jurong Point, Starbucks` and Datetime as `21-01-2023 13:30`
+
+    1. Test case: `ea 1.1 d/22-01-2023 13:30`<br>
+     Expected: Person at index 1 has its appointment at index 1 edited with a new Datetime of `22-01-2023 13:30`. 
+<br>Details of the newly edited appointment and the old appointment is shown in the status message.
+    1. Test case: `ea 1.1 l/WestMall`<br>
+     Expected: Person at index 1 has an appointment edited with a new Location of `WestMall`.
+     <br>Details of the newly edited appointment and the old appointment is shown in the status message.
+    
+    1. Test case: `ea 1.1 d/23-01-2023 13:30 l/Jcube`<br>
+     Expected: Person at index 1 has its appointment at index 1 edited with a new Location of `Jcube` and new Datetime `23-01-2023 13:30`.
+     <br>Details of the newly edited appointment and the old appointment is shown in the status message.
+
+    1. Test case: `ea 1.1 d/24-01-2023 13:30 l/Jcube`<br>
+     Expected: No appointment is edited. 
+     <br>Error details will show that the user's newly edited Location field is unchanged. 
+
+    1. Test case: `ea 1.1 d/23-01-2023 13:30 l/Vivocity`<br>
+     Expected: No appointment is edited. 
+     <br>Error details will show that the user already has an appointment scheduled at this time.
+
+### Deleting an appointment
+
+1. Deleting existing appointments with new Location and Datetime fields
+
+  1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+     <br>First person has only one appointment.
+
+  1. Test case: `da 1.1`<br>
+     Expected: Person at index 1 has its appointment at index 1 deleted 
+     <br>Details of the deleted appointment is shown in the status message.
+  1. Test case: `da 1.1 l/WestMall`<br>
+     Expected: No appointment is deleted.
+     <br>Error details in will show that the appointment index is invalid.
+
 ### Finding Clients
 
-## Find by name
+#### Find by name
 1. Finding a client by their name:
 
     1. Prerequisites: User input is valid, prefixes are present and Financial Advisor Planner contains clients.

@@ -36,8 +36,8 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.model.person.ClientTagContainsKeywordsPredicate;
 import seedu.address.model.person.FindPredicate;
+import seedu.address.model.person.Income;
 import seedu.address.model.person.IncomeContainsKeywordsPredicate;
-import seedu.address.model.person.IncomeLevel;
 import seedu.address.model.person.Monthly;
 import seedu.address.model.person.MonthlyContainsKeywordsPredicate;
 import seedu.address.model.person.Name;
@@ -198,7 +198,7 @@ public class FindCommandParserTest {
         assertParseFailure(parser, INVALID_RISKTAG_DESC, RiskTag.MESSAGE_CONSTRAINTS); // invalid riskTag
         assertParseFailure(parser, INVALID_PLANTAG_DESC, PlanTag.MESSAGE_CONSTRAINTS); // invalid PlanTag
         assertParseFailure(parser, INVALID_CLIENTTAG_DESC, ClientTag.MESSAGE_CONSTRAINTS); // invalid ClientTag
-        assertParseFailure(parser, INVALID_INCOME_DESC, IncomeLevel.MESSAGE_CONSTRAINTS); // invalid income
+        assertParseFailure(parser, INVALID_INCOME_DESC, Income.MESSAGE_CONSTRAINTS); // invalid income
         assertParseFailure(parser, INVALID_MONTHLY_DESC, Monthly.MESSAGE_CONSTRAINTS); // invalid monthly
         assertParseFailure(parser, INVALID_TAG_DESC, NormalTag.MESSAGE_CONSTRAINTS); // invalid tag
 

@@ -28,7 +28,7 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
-    private final IncomeLevel incomeLevel;
+    private final Income incomeLevel;
     private final Monthly monthly;
 
     // Data fields
@@ -43,7 +43,7 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, IncomeLevel incomeLevel,
+    public Person(Name name, Phone phone, Email email, Address address, Income incomeLevel,
                   Monthly monthly, RiskTag riskTag, PlanTag planTag, ClientTag clientTag, Set<NormalTag> tags) {
         requireAllNonNull(name, phone, email, address, incomeLevel, monthly, riskTag, planTag, tags);
 
@@ -65,7 +65,7 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, IncomeLevel incomeLevel, Monthly monthly,
+    public Person(Name name, Phone phone, Email email, Address address, Income incomeLevel, Monthly monthly,
                   RiskTag riskTag, PlanTag planTag, ClientTag clientTag,
                   Set<NormalTag> tags, MaximumSortedList<Appointment> appointments) {
         requireAllNonNull(name, phone, email, address, tags);
@@ -114,7 +114,7 @@ public class Person {
     }
 
 
-    public IncomeLevel getIncome() {
+    public Income getIncome() {
         return incomeLevel;
     }
     public RiskTag getRiskTag() {

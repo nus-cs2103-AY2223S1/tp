@@ -6,7 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a PlanTag in the address book.
  * Guarantees: immutable; name is valid as declared in {@link #isValidPlanTagName(String)}
  */
-public class PlanTag extends Tag {
+public class PlanTag extends SpecialTag {
 
     public static final String MESSAGE_CONSTRAINTS = "Plan tag name should only contain alphanumeric characters "
             + "and spaces, ending with \" Plan\" (case insensitive)";

@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Person's Income Level in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidIncome(String)}
  */
-public class IncomeLevel {
+public class Income {
 
     public static final String MESSAGE_CONSTRAINTS = "Income can only take in a non-negative whole number";
 
@@ -24,7 +24,7 @@ public class IncomeLevel {
      *
      * @param income A valid income level.
      */
-    public IncomeLevel(String income) {
+    public Income(String income) {
         requireNonNull(income);
         checkArgument(isValidIncome(income), MESSAGE_CONSTRAINTS);
         value = "$" + income;
@@ -53,8 +53,8 @@ public class IncomeLevel {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof IncomeLevel // instanceof handles nulls
-                && value.equals(((IncomeLevel) other).value)); // state check
+                || (other instanceof Income // instanceof handles nulls
+                && value.equals(((Income) other).value)); // state check
     }
 
     @Override

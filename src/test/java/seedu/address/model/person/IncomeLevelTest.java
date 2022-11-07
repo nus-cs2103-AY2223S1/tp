@@ -10,32 +10,32 @@ public class IncomeLevelTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new IncomeLevel(null));
+        assertThrows(NullPointerException.class, () -> new Income(null));
     }
 
     @Test
     public void constructor_invalidIncomeLevel_throwsIllegalArgumentException() {
         String invalidIncomeLevel = "aslkdh";
-        assertThrows(IllegalArgumentException.class, () -> new IncomeLevel(invalidIncomeLevel));
+        assertThrows(IllegalArgumentException.class, () -> new Income(invalidIncomeLevel));
     }
 
     @Test
     public void isValidIncomeLevel() {
         // null name
-        assertThrows(NullPointerException.class, () -> IncomeLevel.isValidIncome(null));
+        assertThrows(NullPointerException.class, () -> Income.isValidIncome(null));
 
         // invalid name
-        assertFalse(IncomeLevel.isValidIncome("")); // empty string
-        assertFalse(IncomeLevel.isValidIncome(" ")); // spaces only
-        assertFalse(IncomeLevel.isValidIncome("^")); // only non-alphanumeric characters
-        assertFalse(IncomeLevel.isValidIncome("peter*")); // contains non-alphanumeric characters
-        assertFalse(IncomeLevel.isValidIncome("fdasfd")); // numbers only
-        assertFalse(IncomeLevel.isValidIncome("$-1")); // negative number
-        assertFalse(IncomeLevel.isValidIncome("$00001")); // trailing zeroes
+        assertFalse(Income.isValidIncome("")); // empty string
+        assertFalse(Income.isValidIncome(" ")); // spaces only
+        assertFalse(Income.isValidIncome("^")); // only non-alphanumeric characters
+        assertFalse(Income.isValidIncome("peter*")); // contains non-alphanumeric characters
+        assertFalse(Income.isValidIncome("fdasfd")); // numbers only
+        assertFalse(Income.isValidIncome("$-1")); // negative number
+        assertFalse(Income.isValidIncome("$00001")); // trailing zeroes
 
         // valid name
-        assertTrue(IncomeLevel.isValidIncome("231231")); // $ + numbers
-        assertTrue(IncomeLevel.isValidIncome("0")); // $ + numbers
-        assertTrue(IncomeLevel.isValidIncome("999")); // $ + numbers
+        assertTrue(Income.isValidIncome("231231")); // $ + numbers
+        assertTrue(Income.isValidIncome("0")); // $ + numbers
+        assertTrue(Income.isValidIncome("999")); // $ + numbers
     }
 }

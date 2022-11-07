@@ -53,7 +53,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.IncomeLevel;
+import seedu.address.model.person.Income;
 import seedu.address.model.person.Monthly;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -108,7 +108,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_RISKTAG_DESC, RiskTag.MESSAGE_CONSTRAINTS); // invalid riskTag
         assertParseFailure(parser, "1" + INVALID_PLANTAG_DESC, PlanTag.MESSAGE_CONSTRAINTS); // invalid PlanTag
         assertParseFailure(parser, "1" + INVALID_CLIENTTAG_DESC, ClientTag.MESSAGE_CONSTRAINTS); // invalid ClientTag
-        assertParseFailure(parser, "1" + INVALID_INCOME_DESC, IncomeLevel.MESSAGE_CONSTRAINTS); // invalid income
+        assertParseFailure(parser, "1" + INVALID_INCOME_DESC, Income.MESSAGE_CONSTRAINTS); // invalid income
         assertParseFailure(parser, "1" + INVALID_MONTHLY_DESC, Monthly.MESSAGE_CONSTRAINTS); // invalid monthly
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, NormalTag.MESSAGE_CONSTRAINTS); // invalid tag
 
