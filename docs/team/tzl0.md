@@ -9,7 +9,6 @@ HealthContact is a desktop application built for the receptionist of a family cl
 Given below are my contributions to the project.
 
 * **Code contributed**:
-
   * [RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=tzl0&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=guokweijie&tabRepo=AY2223S1-CS2103T-W08-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 * **Enhancements to existing features**:
@@ -18,15 +17,11 @@ Given below are my contributions to the project.
   * Modified the Model and Storage to support `Appointment` and `Bill`.
 
 * **New features**:
-
   * **Object Entity**
-
     * Added class `Appointment` to encapsulate the reservation information including the name of the patient,
       doctor name, time slot and the medical test to take.
-
     * Added class `Bill` to encapsulate the bill of the appointment with the bill information including
       bill amount, bill date and the payment status of the bill.
-
   * **Commands**
     * Implemented class `CommandWord` to enable shortcuts for the long command words.
     * Added `AddAppointmentCommand` to add `Appointment` to the application.
@@ -34,7 +29,6 @@ Given below are my contributions to the project.
     * Added `EditAppointmentCommand` to modify the existing `Appointment` in the application.
     * Added `SelectPatientCommand` to show the appointments and bills of a patient.
     * Added `SelectAppointmentCommand` to show the bills of a patient.
-
   * *Added extensive tests to new features*.
 
 * **Graphic User Interface of the product**:
