@@ -31,8 +31,15 @@ public class MultiIndex {
         indices.add(Index.fromOneBased(index));
     }
 
-    public void addIndex(Index index) {
+    /**
+     * Adds {@code Index} to {@code MultiIndex} and returns the {@code MultiIndex}.
+     *
+     * @param index The {@code Index} to be added
+     * @return This {@code MultiIndex} object
+     */
+    public MultiIndex addIndex(Index index) {
         indices.add(index);
+        return this;
     }
 
     /**

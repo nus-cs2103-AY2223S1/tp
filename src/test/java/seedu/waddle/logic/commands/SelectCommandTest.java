@@ -2,6 +2,7 @@ package seedu.waddle.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.waddle.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.waddle.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -23,6 +24,11 @@ import seedu.waddle.model.itinerary.Itinerary;
 
 public class SelectCommandTest {
     private Model model = new ModelManager(getTypicalWaddle(), new UserPrefs());
+
+    @Test
+    public void constructor_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new SelectCommand(null));
+    }
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
