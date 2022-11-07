@@ -49,13 +49,13 @@ For teachers who are teaching more than one module, please use one TAB for each 
 
 **:information_source: Notes about the command format:**<br>
 
-* All commands are **case sentitive**
-* All tokenizers are **case sentitive**
+* All commands are **case sensitive**
+* All tokenizers are **case sensitive**
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL]` can be used as `edit 1 n/John Doe a/Jurong` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/CS2103T-T12`, `t/CS2103T-T12 t/CS2103T-15` etc.
@@ -91,6 +91,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL pos/POSITION a/ADDRESS t/MODULE-GROUP
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A teaching assistant or professor can have more than one tag. A student can only have one tag.
+
 
 Format of parameters:
 * `NAME`: Alphanumerical
@@ -134,7 +135,7 @@ General displayed information are:
 There are also additional information unique to each role
 
 Professors:
-* Roles: `Coordinator`, `Tutor`, `Lecturer`and/or `Advisor`
+* Roles: `Coordinator`, `Tutor`, `Lecturer`, `Advisor` or `Unassigned`
 
 TA:
 * Availability: `Available` or `Unavailable` 
@@ -142,7 +143,7 @@ TA:
 Student
 * Attendance: represented as a fraction _e.g. 9/10_
 * Grade: represented as a fraction. This grade is the overall grade calculated from the list of already graded Assignments.
-* Graph containing each Assignment and their scores(only if their grae has been updated)
+* Graph containing each Assignment and their scores(only if their grade has been updated)
 Format: `show INDEX`
 
 * Shows the detailed information of the person at the specified `INDEX`.
@@ -175,7 +176,7 @@ Edits the person at the specified `INDEX`. The index refers to the index number 
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 2 n/Betsy Crower` edits the name of the 2nd person to be `Betsy Crower`
 
 ### Adding a remark : `remark`
 
@@ -212,6 +213,7 @@ Adds assignments to all students in the TAB.
 Format: `assignments assignments/ ASSIGNMENT_1 w/ASSIGNMENT_1_WEIGHTAGE, ASSIGNMENT_2 w/ASSIGNMENT_2_WEIGHTAGE…​`
 
 * The assignments are added to all students in the TAB. Students that are added to the TAB afterwards will automatically be instantiated with the assignments.
+* There must at least be one student inside TAB when running this command. The command will fail otherwise.
 * The weightage of the assignments must be integers that add up to 100%. The command will fail otherwise.
 * At most 10 assignments can be added.
 
@@ -439,7 +441,7 @@ Action | Format, Examples
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS pos/ POSITION [t/TAG]…​` <br> e.g., `add n/Alex Yeoh p/87438807 e/alexyeoh@example.com pos/Student a/Blk 30 Geylang Street 29, #06-40 t/CS2103T-T17`
 **List** | `list`
 **Show** | `show INDEX`<br> e.g., `show 2`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Remark** | `remark INDEX r/REMARK`<br> e.g., `remark 1 r/Interested to be a TA`
 **Attendance** | `attendance INDEX attendance/ATTENDANCE` <br> e.g., `attendance 1 attendance/10/13`
 **Assignments** | `assignments assignments/ ASSIGNMENT_1 w/ASSIGNMENT_1_WEIGHTAGE, ASSIGNMENT_2 w/ASSIGNMENT_2_WEIGHTAGE…​`<br> e.g., `assignments assignments/ Assignment 1 w/15, Assignment 2 w/15, Midterms w/30, Finals w/40`
