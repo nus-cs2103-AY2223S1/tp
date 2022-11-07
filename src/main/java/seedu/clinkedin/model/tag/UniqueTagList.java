@@ -221,4 +221,15 @@ public class UniqueTagList implements Iterable<Tag> {
     public List<String> getAsList() {
         return internalList.stream().map(tag -> tag.getTagName()).collect(Collectors.toList());
     }
+
+    /**
+     * Returns a copy of the UniqueTagList.
+     */
+    public UniqueTagList copy() {
+        UniqueTagList clone = new UniqueTagList();
+        for (Tag t : this) {
+            clone.add(t.copy());
+        }
+        return clone;
+    }
 }

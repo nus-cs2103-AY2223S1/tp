@@ -60,4 +60,11 @@ public class Tag {
     public String getTagName() {
         return tagName;
     }
+
+    /**
+     * Returns a copy of the tag.
+     */
+    public Tag copy() {
+        return new Tag(this.tagName);
+    }
 }

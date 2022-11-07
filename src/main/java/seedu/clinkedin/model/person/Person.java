@@ -31,7 +31,7 @@ public class Person {
 
     // Data fields
     private final Address address;
-    private UniqueTagTypeMap tagTypeMap;
+    private final UniqueTagTypeMap tagTypeMap;
     private final Status status;
     private final Note note;
     private final Rating rating;
@@ -103,14 +103,6 @@ public class Person {
      */
     public ObservableMap<TagType, UniqueTagList> getTags() {
         return tagTypeMap.asUnmodifiableObservableMap();
-    }
-
-    /**
-     * Returns an immutable unique tag type map
-     * @return an immutable unique tag type map
-     */
-    public UniqueTagTypeMap getTagTypeMap() {
-        return tagTypeMap;
     }
 
     public Status getStatus() {
@@ -286,7 +278,7 @@ public class Person {
      * @param linksToAdd Links to be added to the person.
      * @return Set of links after adding new links to existing links.
      */
-    public Set<Link> mergeLinks(Set<Link> linksToAdd) {
+    public Set<Link> mergeLinks(Set<Link> linksToAdd) throws DuplicateLinkException {
         Set<Link> mergedLinks = new HashSet<>(links);
         for (Link l: linksToAdd) {
             if (links.contains(l)) {
@@ -310,4 +302,5 @@ public class Person {
         }
         return new Note(this.note.value + "\n" + note.value);
     }
+
 }

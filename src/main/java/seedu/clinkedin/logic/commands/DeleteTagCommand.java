@@ -28,9 +28,10 @@ public class DeleteTagCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the tag of the person identified by the index number used in the displayed person list.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_SKILLTAG + "TAG] "
-            + "[" + PREFIX_DEGREETAG + "TAG] "
-            + "[" + PREFIX_JOBTYPETAG + "TAG]\n"
+            + "[" + PREFIX_SKILLTAG + "SKILL_TAG] (if tag type not deleted) "
+            + "[" + PREFIX_DEGREETAG + "DEGREE_TAG] (if tag type not deleted) "
+            + "[" + PREFIX_JOBTYPETAG + "JOB_TYPE_TAG] (if tag type not deleted) "
+            + "[<custom_tag_prefix>/OLD_TAG-NEW_TAG]...\n "
             + "Example: " + COMMAND_WORD + " "
             + "1 "
             + PREFIX_SKILLTAG + "Java ";

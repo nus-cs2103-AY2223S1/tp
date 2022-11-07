@@ -15,7 +15,7 @@ import seedu.clinkedin.model.ModelManager;
 import seedu.clinkedin.model.UserPrefs;
 import seedu.clinkedin.model.person.Note;
 import seedu.clinkedin.model.person.Person;
-import seedu.clinkedin.model.person.exceptions.DuplicateNoteException;
+import seedu.clinkedin.model.person.UniqueTagTypeMap;
 
 public class AddNoteCommandTest {
     private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
@@ -34,15 +34,15 @@ public class AddNoteCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_throwsDuplicateNoteException() {
         Note note = new Note("She is strong at Java.");
-        AddNoteCommand addNoteCommand = new AddNoteCommand(Index.fromOneBased(1), note);
-        assertThrows(DuplicateNoteException.class, () -> addNoteCommand.execute(model));
+        AddNoteCommand addNoteCommand = new AddNoteCommand(Index.fromZeroBased(0), note);
+        assertThrows(CommandException.class, () -> addNoteCommand.execute(model));
     }
 
     @Test
-    public void execute_noChangeInValue_throwsDuplicateNoteException() {
+    public void execute_noChangeInValue_throwsDuplicateNoteException() throws CommandException {
         Person personToEdit = model.getFilteredPersonList().get(0);
-        AddNoteCommand addNoteCommand = new AddNoteCommand(Index.fromOneBased(1), personToEdit.getNote());
-        assertThrows(DuplicateNoteException.class, () -> addNoteCommand.execute(model));
+        AddNoteCommand addNoteCommand = new AddNoteCommand(Index.fromZeroBased(0), personToEdit.getNote());
+        assertThrows(CommandException.class, () -> addNoteCommand.execute(model));
     }
 
     @Test
@@ -58,8 +58,10 @@ public class AddNoteCommandTest {
         AddNoteCommand addNoteCommand = new AddNoteCommand(Index.fromOneBased(1), note);
         Person personToEdit = model.getFilteredPersonList().get(0);
         Note newNote = personToEdit.mergeNote(note);
+        UniqueTagTypeMap tagMap = new UniqueTagTypeMap();
+        tagMap.setTagTypeMap(personToEdit.getTags());
         Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), personToEdit.getTagTypeMap(), personToEdit.getStatus(), newNote,
+                personToEdit.getAddress(), tagMap, personToEdit.getStatus(), newNote,
                 personToEdit.getRating(), personToEdit.getLinks());
         String expectedMessage = String.format(AddNoteCommand.MESSAGE_ADD_NOTE_SUCCESS, editedPerson);
         expectedModel.setPerson(personToEdit, editedPerson);

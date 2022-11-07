@@ -8,7 +8,7 @@ import static seedu.clinkedin.commons.util.AppUtil.checkArgument;
  */
 public class Prefix {
     public static final String MESSAGE_CONSTRAINTS =
-            "Prefix names should be alphanumeric and should contain atleast 1 character";
+            "Prefix names should be alphanumeric and should contain at least 1 character";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+\\/";
 
     private final String prefix;
@@ -54,5 +54,12 @@ public class Prefix {
      */
     public static boolean isValidPrefixName(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns a copy of the prefix.
+     */
+    public Prefix copy() {
+        return new Prefix(prefix);
     }
 }

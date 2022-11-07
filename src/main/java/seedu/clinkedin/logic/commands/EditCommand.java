@@ -57,7 +57,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_STATUS + "NEW_STATUS] "
             + "[" + PREFIX_SKILLTAG + "OLD_SKILL_TAG-NEW_SKILL_TAG] (if tag type not deleted) \n "
             + "[" + PREFIX_DEGREETAG + "OLD_DEGREE_TAG-NEW_DEGREE_TAG] (if tag type not deleted) "
-            + "[" + PREFIX_JOBTYPETAG + "OLD_JOB_TYPE_TAG-NEW_JOB_TYPE_TAG] (if tag type not deleted)\n "
+            + "[" + PREFIX_JOBTYPETAG + "OLD_JOB_TYPE_TAG-NEW_JOB_TYPE_TAG] (if tag type not deleted) \n "
             + "[<custom_tag_prefix>/OLD_TAG-NEW_TAG] "
             + "[" + PREFIX_NOTE + "NEW_NOTE] "
             + "[" + PREFIX_RATING + "NEW_RATING] "
@@ -106,7 +106,6 @@ public class EditCommand extends Command {
         try {
             Person personToEdit = lastShownList.get(index.getZeroBased());
             Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
-
             if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
                 throw new CommandException(MESSAGE_DUPLICATE_PERSON);
             }
@@ -137,9 +136,9 @@ public class EditCommand extends Command {
         original.setTagTypeMap(personToEditTags);
         UniqueTagTypeMap toEdit = editPersonDescriptor.getOldTagTypeMap().get();
         UniqueTagTypeMap editTo = editPersonDescriptor.getNewTagTypeMap().get();
-
         original.removeTags(toEdit);
         original.mergeTagTypeMap(editTo);
+
         UniqueTagTypeMap updatedTags = original;
         Note updatedNote = editPersonDescriptor.getNote().orElse(personToEdit.getNote());
         Status updatedStatus = editPersonDescriptor.getStatus().orElse(personToEdit.getStatus());
