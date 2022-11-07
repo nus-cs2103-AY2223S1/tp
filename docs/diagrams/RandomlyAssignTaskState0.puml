@@ -8,7 +8,7 @@ title Initial State
 skinparam object {
     BackgroundColor<<Team>> Business
     BackgroundColor<<Person>> APPLICATION
-    BackgroundColor<<TaskTYpe>> PHYSICAL
+    BackgroundColor<<TaskType>> PHYSICAL
 }
 
 hide stereotype
@@ -17,11 +17,14 @@ object "__:Team__" as Team <<Team>>
 object "__person1:Person__" as Person1 <<Person>>
 object "__person2:Person__" as Person2 <<Person>>
 object "__person3:Person__" as Person3 <<Person>>
-object "__:Task__" as Task <<TaskType>>
+object "__task1:Task__" as Task <<TaskType>>
 
 Team --> Person1
 Team --> Person2
 Team --> Person3
-Team --> Task
+Team -right-> Task
+Task -[hidden]down-> Person1
+Task -[hidden]-> Person2
+Task -[hidden]-> Person3
 
 @end

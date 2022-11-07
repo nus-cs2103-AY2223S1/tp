@@ -388,15 +388,15 @@ The `Team` will contain multiple `Person` objects (representing team members).
 
 ![RandomlyAssignTaskState0](images/RandomlyAssignTaskState0.png)
 
-Step 2. The user executes the command `assign_task_rand 1` to assign the first (and only) `Task` randomly to any team
+Step 2. The user executes the command `assign random 1` to assign the first (and only) `Task` randomly to any team
 member. As none of the team members have been added, all of them are candidates for random assignment. One of them will
-be randomly assigned the task.
+be randomly assigned the task (see <span style="color:red">red arrow</span>).
 
 ![RandomlyAssignTaskState1](images/RandomlyAssignTaskState1.png)
 
-Step 3. The user may want to assign a second team member to the task, hence executing `assign_task_rand 1` again. The
+Step 3. The user may want to assign a second team member to the task, hence executing `assign random 1` again. The
 team member who has previously been allocated will not be considered. Similar to above, one more team member will be
-randomly allocated the task.
+randomly allocated the task (see <span style="color:red">red arrow</span>).
 
 ![RandomlyAssignTaskState2](images/RandomlyAssignTaskState2.png)
 
