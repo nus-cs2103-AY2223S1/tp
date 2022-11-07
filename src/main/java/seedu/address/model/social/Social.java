@@ -262,7 +262,6 @@ public class Social {
                 throw new SocialException("No Telegram Link");
             }
             URI uri = new URI(SCHEME + TELEGRAM_DOMAIN + getTelegram());
-            System.out.println(uri.toString());
             Desktop desktop = java.awt.Desktop.getDesktop();
             desktop.browse(uri);
         } catch (URISyntaxException e) {
