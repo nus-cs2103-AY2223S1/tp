@@ -57,7 +57,7 @@ it was necessary to look through the heavy documentation to implement this featu
     * Added Model class UML diagram ([#59](https://github.com/AY2223S1-CS2103T-W11-4/tp/pull/59))
     * Added implementation details for export to PDF command ([#245](https://github.com/AY2223S1-CS2103T-W11-4/tp/pull/245))
 
-* **Team-based Tasks**:
+* **Team-based tasks**:
   * Enabled assertion in gradle ([#89](https://github.com/AY2223S1-CS2103T-W11-4/tp/pull/89))
   * Created milestone v1.4
   * Made use of issue tracker
