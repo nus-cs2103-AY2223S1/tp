@@ -23,8 +23,8 @@ public class JsonAdaptedMasteryCheckTest {
     private static final String VALID_DESC = TypicalLessons.MC_1.getDesc().toString();
     private static final LocalDateTime VALID_DT1 = TypicalLessons.MC_1.startDateTime();
     private static final LocalDateTime VALID_DT2 = TypicalLessons.MC_1.endDateTime();
-    private static final ArrayList<JsonAdaptedStudent> VALID_STUDENT_LIST = TypicalLessons.MC_1.getStudentList().stream()
-            .map(s -> new JsonAdaptedStudent(s)).collect(Collectors.toCollection(ArrayList::new));
+    private static final ArrayList<JsonAdaptedStudent> VALID_STUDENT_LIST = TypicalLessons.MC_1.getStudentList()
+            .stream().map(s -> new JsonAdaptedStudent(s)).collect(Collectors.toCollection(ArrayList::new));
     private static final Map<Integer, Boolean> VALID_ATTENDANCE = TypicalLessons.MC_1.getAttendance();
     private static final ArrayList<String> VALID_GENERAL_NOTES = TypicalLessons.MC_1.getGeneralNotes();
     private static final Map<Integer, ArrayList<String>> VALID_STUDENT_NOTES = TypicalLessons.MC_1.getStudentNotes();

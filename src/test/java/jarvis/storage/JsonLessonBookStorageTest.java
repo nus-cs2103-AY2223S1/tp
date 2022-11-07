@@ -3,7 +3,6 @@ package jarvis.storage;
 import static jarvis.testutil.Assert.assertThrows;
 import static jarvis.testutil.TypicalLessons.CONSULT_1;
 import static jarvis.testutil.TypicalLessons.MC_1;
-import static jarvis.testutil.TypicalLessons.MC_2;
 import static jarvis.testutil.TypicalLessons.STUDIO_1;
 import static jarvis.testutil.TypicalLessons.getTypicalLessonBook;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -73,15 +72,14 @@ public class JsonLessonBookStorageTest {
         assertEquals(original, new LessonBook(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.removeLesson(CONSULT_1);
+        original.removeLesson(MC_1);
         original.removeLesson(STUDIO_1);
-        original.addLesson(MC_2);
         jsonLessonBookStorage.saveLessonBook(original, filePath);
         readBack = jsonLessonBookStorage.readLessonBook(filePath).get();
         assertEquals(original, new LessonBook(readBack));
 
         // Save and read without specifying file path
-        original.removeLesson(MC_1);
+        original.removeLesson(CONSULT_1);
         jsonLessonBookStorage.saveLessonBook(original); // file path not specified
         readBack = jsonLessonBookStorage.readLessonBook().get(); // file path not specified
         assertEquals(original, new LessonBook(readBack));

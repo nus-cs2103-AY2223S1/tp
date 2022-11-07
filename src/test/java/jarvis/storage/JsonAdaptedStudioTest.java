@@ -23,11 +23,12 @@ public class JsonAdaptedStudioTest {
     private static final String VALID_DESC = TypicalLessons.STUDIO_1.getDesc().toString();
     private static final LocalDateTime VALID_DT1 = TypicalLessons.STUDIO_1.startDateTime();
     private static final LocalDateTime VALID_DT2 = TypicalLessons.STUDIO_1.endDateTime();
-    private static final ArrayList<JsonAdaptedStudent> VALID_STUDENT_LIST = TypicalLessons.STUDIO_1.getStudentList().stream()
-            .map(s -> new JsonAdaptedStudent(s)).collect(Collectors.toCollection(ArrayList::new));
+    private static final ArrayList<JsonAdaptedStudent> VALID_STUDENT_LIST = TypicalLessons.STUDIO_1.getStudentList()
+            .stream().map(s -> new JsonAdaptedStudent(s)).collect(Collectors.toCollection(ArrayList::new));
     private static final Map<Integer, Boolean> VALID_ATTENDANCE = TypicalLessons.STUDIO_1.getAttendance();
     private static final ArrayList<String> VALID_GENERAL_NOTES = TypicalLessons.STUDIO_1.getGeneralNotes();
-    private static final Map<Integer, ArrayList<String>> VALID_STUDENT_NOTES = TypicalLessons.STUDIO_1.getStudentNotes();
+    private static final Map<Integer, ArrayList<String>> VALID_STUDENT_NOTES = TypicalLessons.STUDIO_1
+            .getStudentNotes();
     private static final Map<Integer, Integer> VALID_PARTICIPATION = STUDIO_1.getParticipation();
 
     @Test
@@ -49,7 +50,8 @@ public class JsonAdaptedStudioTest {
     public void toModelType_nullDate_throwsIllegalArgumentException() {
         JsonAdaptedStudio studio =
                 new JsonAdaptedStudio((String) null, (LocalDateTime) null, VALID_DT1, VALID_STUDENT_LIST,
-                        VALID_ATTENDANCE, VALID_GENERAL_NOTES, VALID_STUDENT_NOTES, false, VALID_PARTICIPATION);
+                        VALID_ATTENDANCE, VALID_GENERAL_NOTES, VALID_STUDENT_NOTES, false,
+                        VALID_PARTICIPATION);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, TimePeriod.class.getSimpleName());
         assertThrows(IllegalArgumentException.class, expectedMessage, studio::toModelType);
     }

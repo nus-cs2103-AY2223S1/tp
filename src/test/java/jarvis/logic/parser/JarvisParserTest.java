@@ -7,10 +7,10 @@ import static jarvis.testutil.TypicalIndexes.INDEX_FIRST_LESSON;
 import static jarvis.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static jarvis.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static jarvis.testutil.TypicalLessons.CONSULT_1;
-import static jarvis.testutil.TypicalLessons.MC_1;
 import static jarvis.testutil.TypicalLessons.CONSULT_DESCRIPTION_1;
 import static jarvis.testutil.TypicalLessons.CONSULT_STUDENTS;
 import static jarvis.testutil.TypicalLessons.MASTERY_CHECK_DESCRIPTION_1;
+import static jarvis.testutil.TypicalLessons.MC_1;
 import static jarvis.testutil.TypicalLessons.STUDIO_1;
 import static jarvis.testutil.TypicalLessons.STUDIO_DESCRIPTION_1;
 import static jarvis.testutil.TypicalLessons.TP1;
@@ -62,7 +62,6 @@ import jarvis.testutil.StudentBuilder;
 import jarvis.testutil.StudentUtil;
 import jarvis.testutil.TaskBuilder;
 import jarvis.testutil.TaskUtil;
-import jarvis.testutil.TypicalLessons;
 
 public class JarvisParserTest {
 

@@ -46,8 +46,8 @@ public class JsonAdaptedConsultTest {
     @Test
     public void toModelType_nullDate_throwsIllegalArgumentException() {
         JsonAdaptedConsult consult =
-                new JsonAdaptedConsult((String) null, (LocalDateTime) null, VALID_DT1, VALID_STUDENT_LIST, VALID_ATTENDANCE,
-                        VALID_GENERAL_NOTES, VALID_STUDENT_NOTES, false);
+                new JsonAdaptedConsult((String) null, (LocalDateTime) null, VALID_DT1, VALID_STUDENT_LIST,
+                        VALID_ATTENDANCE, VALID_GENERAL_NOTES, VALID_STUDENT_NOTES, false);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, TimePeriod.class.getSimpleName());
         assertThrows(IllegalArgumentException.class, expectedMessage, consult::toModelType);
     }
