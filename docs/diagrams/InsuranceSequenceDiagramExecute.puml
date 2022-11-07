@@ -1,0 +1,66 @@
+@startuml
+!include style.puml
+mainframe **s****d** execute insurance command
+
+box Logic LOGIC_COLOR_T1
+
+participant "r:InsuranceCommand" as InsuranceCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant "lastShownList:List" as List LOGIC_COLOR
+participant "editedPerson:Person" as Person LOGIC_COLOR
+end box
+
+[-> InsuranceCommand : execute()
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+
+activate InsuranceCommand
+
+InsuranceCommand -> Model : getFilteredPersonList()
+activate Model
+
+create List
+Model --> List
+deactivate Model
+
+activate List
+
+InsuranceCommand -> List : get(1)
+
+List --> InsuranceCommand: personToEdit
+deactivate List
+
+InsuranceCommand --> InsuranceCommand : createEditedPerson(personToEdit, editInsuranceDescriptor)
+activate InsuranceCommand
+
+create Person
+InsuranceCommand -> Person
+activate Person
+
+Person --> InsuranceCommand : editedPerson
+deactivate Person
+InsuranceCommand --> InsuranceCommand: editedPerson
+deactivate InsuranceCommand
+
+InsuranceCommand -> Model : setPerson(personToEdit, editedPerson)
+activate Model
+
+Model --> InsuranceCommand
+
+deactivate Model
+
+create CommandResult
+InsuranceCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> InsuranceCommand
+deactivate CommandResult
+
+[<--InsuranceCommand: result
+
+deactivate InsuranceCommand
+
+@enduml
