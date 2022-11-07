@@ -312,7 +312,7 @@ Alternatively, the filter feature can be implemented as a separate feature altog
 
 #### 2. Add more fields for find feature ####
 
-The find feature currently doesn't allow users to search by the following critera:
+The find feature currently doesn't allow users to search by the following criteria:
 
 Student:
 1. Details of `NextOfKins`
@@ -353,7 +353,7 @@ The operations are exposed to `Logic` interface as `Logic#updateCurrentListType(
 
 Step 1. The user launches the application for the first time. The `ModelManager` would be initialised and the `type` is set to the default list type which is `STUDENT_LIST`.
 
-Step 2. The user execute `list_c` command to list out tuition classes by ccalling `ListTuitionClassCommand`. The `ListTuitionClassCommand` calls `Model#updateCurrentListType()` with `TUITIONCLASS_LIST` being the parameter, causing the type in `ModelManager` to update to `TUITIONCLASS_LIST`. 
+Step 2. The user execute `list_c` command to list out tuition classes by calling `ListTuitionClassCommand`. The `ListTuitionClassCommand` calls `Model#updateCurrentListType()` with `TUITIONCLASS_LIST` being the parameter, causing the type in `ModelManager` to update to `TUITIONCLASS_LIST`. 
 
 Step 3. The command then returns a `commandResult` with its `commandType` field being `LIST`. This will cause calling `commandResult.isList()` to return true. 
 
