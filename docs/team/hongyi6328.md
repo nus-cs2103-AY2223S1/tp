@@ -84,22 +84,11 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * User Guide:
-        * Adding a buyer
-        * Adding a deliverer
-        * Adding a supplier
-        * Adding a pet to a supplier
-        * Adding an order to a buyer
-        * Prefix Summary
-        * FAQs
-        * Other miscellaneous parts and proofreading
-    * Developer Guide:
-        * Target user profile
-        * Value proposition
-        * User stories
-        * Use cases
-        * Match command implementation
-        * Unique ID implementation
-        * Other miscellaneous parts and proofreading
+        * Adding a buyer, Adding a deliverer, Adding a supplier, Adding a pet to a supplier, Adding an order to a buyer,
+          Prefix Summary, FAQs, Other miscellaneous parts and proofreading
+      * Developer Guide: 
+          * Target user profile, Value proposition, User stories, Use cases, Match command implementation, Unique ID
+            implementation, Other miscellaneous parts and proofreading
 
 * **Community**:
     * Created the team's organization and team repo
