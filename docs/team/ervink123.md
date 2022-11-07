@@ -20,7 +20,7 @@ Given below are my contributions to the project.
     * Added Exercise Keys Class which handles logic behind ExerciseHashMap keys. 
     * Used Observer Pattern design in facilitating real time interaction between ExerciseHashMap and UI.
     * Update ExerciseHashMap with relevant methods and fields to support Observer pattern.  
-    * Conducted testing while designing the feature such that code coverage remained consistent (no change in coverage after push)
+    * Conducted testing (specifically for ExerciseKeys class and added onto ExerciseHashMap Tests) while designing the feature such that code coverage remained consistent (no change in coverage after push) 
 * **Code contributed**: [RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=ervink123&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Project management**:
@@ -56,7 +56,7 @@ Given below are my contributions to the project.
     * Added User stories 
 
 * **Community**:
-  * Reviewed Team Member's PRs.
+  * Reviewed Team Member's PRs and provided feedback where appropriate. 
 
 
 * **Tools**:
