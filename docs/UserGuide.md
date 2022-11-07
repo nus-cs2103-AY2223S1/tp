@@ -97,6 +97,11 @@ To better understand the usage of YellowBook, we have provided a usage scenario 
 
 6. When you feel ready to use YellowBook for your own contacts and tasks, type `clear` to remove all the sample data from YellowBook.
 
+<figure>
+<img src="images/clear.png" alt="clear" style="width:100%">
+<figcaption align = "center"><i>Fig.6 - Result of clear command</i></figcaption>
+</figure>
+
 YellowBook's commands are mnemonically named. A [Command Summary](#command-summary) with these helpful tips can be found below.
 
 [[Back to Table of Contents](#table-of-contents)]
@@ -179,13 +184,21 @@ Format: `listC`
 
 ### Deleting a contact: `deleteC`
 
-Deletes the specified contact and all its associated information from the address book.
+Deletes a contact from the contact list.
 
 Format: `deleteC INDEX`
 
-* Index of a contact is its index number on the contact list.
+* Index of a contact is its index number on the currently shown contact list.
 
-* INDEX must be a positive integer more than 0.
+<div markdown="block" class="alert alert-warning">
+
+**:warning: There will be an error if you:**<br>
+
+* Enter 0 or a negative number as INDEX.<br>
+
+* Enter a number greater than the currently shown list size as INDEX.<br>
+
+</div>
 
 Examples:
 
@@ -268,7 +281,7 @@ Example:
 
 <figure>
 <img src="images/copyC.png" alt="copyC" style="width:100%">
-<figcaption align = "center"><i>Fig.6 - Result of copyC when applied to contacts with the label "CS2103T"</i></figcaption>
+<figcaption align = "center"><i>Fig.7 - Result of copyC when applied to contacts with the label "CS2103T"</i></figcaption>
 </figure>
 
 [[Back to Table of Contents](#table-of-contents)]
@@ -332,7 +345,7 @@ Format: `listAT`
 
 <figure>
 <img src="images/listAT.png" alt="listAT" style="width:100%">
-<figcaption align = "center"><i>Fig.7 - Result of listAT</i></figcaption>
+<figcaption align = "center"><i>Fig.8 - Result of listAT</i></figcaption>
 </figure>
 
 ### Deleting a task: `deleteT`
@@ -424,7 +437,7 @@ Examples:
 
 <figure>
 <img src="images/markT.png" alt="markT" style="width:100%">
-<figcaption align = "center"><i>Fig.8 - Result of markT when applied to the first task in the list</i></figcaption>
+<figcaption align = "center"><i>Fig.9 - Result of markT when applied to the first task in the list</i></figcaption>
 </figure>
 
 ### Marking task as incomplete: `unmarkT`
@@ -478,7 +491,7 @@ Example:
 
 <figure>
 <img src="images/remindT.png" alt="remindT" style="width:100%">
-<figcaption align = "center"><i>Fig.9 - Result of remindT when only one task is on 12-09-2022 or earlier</i></figcaption>
+<figcaption align = "center"><i>Fig.10 - Result of remindT when only one task is on 12-09-2022 or earlier</i></figcaption>
 </figure>
 
 ### Showing the percentage of tasks with the specified tags that are completed: `progressT`
@@ -505,7 +518,7 @@ Example:
 
 <figure>
 <img src="images/progressT.png" alt="progressT" style="width:100%">
-<figcaption align = "center"><i>Fig.10 - Result of progressT where only one of two GEA1000 tasks has been completed</i></figcaption>
+<figcaption align = "center"><i>Fig.11 - Result of progressT where only one of two GEA1000 tasks has been completed</i></figcaption>
 </figure>
 
 ### Sorting all tasks by deadline: `sortD`
@@ -520,7 +533,7 @@ Format: `sortD`
 
 <figure>
 <img src="images/sortD.png" alt="sortD" style="width:100%">
-<figcaption align = "center"><i>Fig.11 - Result of sortD</i></figcaption>
+<figcaption align = "center"><i>Fig.12 - Result of sortD</i></figcaption>
 </figure>
 
 ### Sorting all tasks by id: `sortI`
@@ -537,7 +550,7 @@ Format: `sortI`
 
 <figure>
 <img src="images/sortI.png" alt="sortI" style="width:100%">
-<figcaption align = "center"><i>Fig.12 - Result of sortI</i></figcaption>
+<figcaption align = "center"><i>Fig.13 - Result of sortI</i></figcaption>
 </figure>
 
 [[Back to Table of Contents](#table-of-contents)]
@@ -551,13 +564,11 @@ With our label feature, managing your numerous projects on the go has just gotte
 
 <div markdown="block" class="alert alert-info">
 
-:information_source:<br>
+**:information_source: Notes on labels:**<br>
 
 * Labels must be alphanumeric and one word long.<br>
 
 * Labels used in commands are case-sensitive. e.g. `CS2103T` is different from `cs2103t`.<br>
-
-:bulb: Multiple labels can be specified.<br>
 
 </div>
 
@@ -567,21 +578,22 @@ Adds a label to an existing contact/task in YellowBook.
 At the same time, the label is added to the label list, shown under the "tags" tab of the app.
 This list is unique, meaning each label with a distinct name is only shown once, even if more than one contact/task has the same label.
 
-Only a maximum of one contact and one task can be labelled within the same command.
+Format: `addL c/INDEX t/INDEX l/label_NAME`
+
+* Index of a contact is its index number on the currently shown contact list.
+* Index of a task is its index number on the currently shown task list.
 
 <div markdown="block" class="alert alert-warning">
 
-:warning:<br>
+**:warning: There will be an error if you:**<br>
 
-* Contact/task does not exist.<br>
- 
-* Contact/task already has the required label.<br>
- 
-* More than one contact or more than one task is specified.<br>
+* Do not adhere to the [field constraints](#section-3-labels)
+* Specify more than one contact or more than one task
+* Try to delete a label from a contact or task that does not have it
+* Enter 0 or a negative number as INDEX
+* Enter a number greater than the currently shown list size as INDEX”
 
 </div>
-
-Format: `addL c/INDEX t/INDEX l/label_NAME`
 
 Example:
 
@@ -589,7 +601,9 @@ Example:
 
 ### Listing all labels: `listL`
 
-Shows a list of all existing labels in the address book.
+Shows all labels stored in the label list.
+
+Format: `listL`
 
 ### Deleting a label from a contact/task: `deleteL`
 
@@ -598,21 +612,22 @@ Deletes a label from an existing contact/task in YellowBook.
 If contact/task is last remaining contact/task with said label, label is deleted from the label list.
 Otherwise, it is only deleted from the specified contact/task label list.
 
-Only a maximum of one contact and one task can be edited within the same command.
+Format: `deleteL c/INDEX t/INDEX l/label_NAME`
+
+* Index of a contact is its index number on the currently shown contact list.
+* Index of a task is its index number on the currently shown task list.
 
 <div markdown="block" class="alert alert-warning">
 
-:warning:<br>
+**:warning: There will be an error if you:**<br>
 
-* Contact/task does not exist.<br>
- 
-* Label does not exist on specified contact/task.<br>
- 
-* More than one contact or more than one task is specified.<br>
+* Do not adhere to the [field constraints](#section-3-labels)
+* Specify more than one contact or more than one task
+* Try to add a label to a contact or task that already has it
+* Enter 0 or a negative number as INDEX
+* Enter a number greater than the currently shown list size as INDEX”
 
 </div>
-
-Format: `deleteL c/INDEX t/INDEX l/label_NAME`
 
 Example:
 
@@ -634,7 +649,7 @@ Format: `deleteA LABEL_NAME [MORE_LABEL_NAMES]`
 
 <figure>
 <img src="images/deleteA.png" alt="deleteA" style="width:100%">
-<figcaption align = "center"><i>Fig.13 - Result of deleteA when applied to all contacts/tasks from GEA1000</i></figcaption>
+<figcaption align = "center"><i>Fig.14 - Result of deleteA when applied to all contacts/tasks from GEA1000</i></figcaption>
 </figure>
 
 
