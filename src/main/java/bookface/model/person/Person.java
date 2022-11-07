@@ -57,10 +57,6 @@ public class Person {
         return loanedBooks;
     }
 
-    public String getLoanedBooksDisplayString() {
-        return loanedBooks.toString();
-    }
-
     /**
      * Sets return date of book, and add it to list of books loaned by person.
      * @param book book to be loaned

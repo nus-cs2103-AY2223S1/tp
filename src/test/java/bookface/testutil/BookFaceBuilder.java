@@ -16,10 +16,6 @@ public class BookFaceBuilder {
         bookFace = new BookFace();
     }
 
-    public BookFaceBuilder(BookFace bookFace) {
-        this.bookFace = bookFace;
-    }
-
     /**
      * Adds a new {@code Person} to the {@code BookFace} that we are building.
      */

@@ -61,8 +61,7 @@ title: Developer Guide
 </thead>
 <tbody>
 <tr>
-<td markdown="span"><a href="https://stackoverflow.com/a/14018549/13742805">https://stackoverflow.
-com/a/14018549/13742805</a>
+<td markdown="span"><a href="https://stackoverflow.com/a/14018549/13742805">https://stackoverflow.com/a/14018549/13742805</a>
 </td>
 <td markdown="span"><a href="https://github.com/AY2223S1-CS2103-F14-4/tp/tree/master/src/main/java/bookface/commons/util/StringUtil.java">StringUtil.java</a></td>
 <td markdown="span">Help with parsing lower-case strings</td>
@@ -83,7 +82,7 @@ com/a/14018549/13742805</a>
 <tr>
 <td markdown="span"><a href="https://stackoverflow.com/questions/12087419/adding-days-to-a-date-in-java">https://stackoverflow.com/questions/12087419/adding-days-to-a-date-in-java</a>
 </td>
-<td markdown="span"><a href=https://github.com/AY2223S1-CS2103-F14-4/tp/blob/master/src/main/java/bookface/logic/commands/LoanCommand.java>LoanCommand.java</a></td>
+<td markdown="span"><a href="https://github.com/AY2223S1-CS2103-F14-4/tp/blob/master/src/main/java/bookface/logic/commands/LoanCommand.java">LoanCommand.java</a></td>
 <td markdown="span">Add certain number of days to the current day</td>
 </tr>
 <tr>
@@ -349,15 +348,18 @@ The following sequence diagram shows how the list operation works
 and `ListUsersCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches
 the end of diagram.</div>
 
-The following activity diagram summarizes what happens when a user executes a list command:
+The following activity diagrams summarizes what happens when a user executes a list command:
 
 ![ListActivityDiagram](images/ListActivityDiagram.png)
+
+Activity: Parse Subcommand
+![ParseSubcommandActivityDiagram](images/ParseSubcommandActivityDiagram.png)
 
 ### Find feature
 
 #### Implementation
 
-The find feature is faciliated by `FindUserCommand` and `FindUserArgumentsParser` for finding users, and `FindBookCommand` and `FindBookArgumentsParser` for finding books.
+The find feature is facilitated by `FindUserCommand` and `FindUserArgumentsParser` for finding users, and `FindBookCommand` and `FindBookArgumentsParser` for finding books.
 It implements the following operations:
 * `updateFilteredPersonList(predicate)` — Display users with names matching predicate.
 * `updatedFilteredBookList(predicate)` — Display books with title/authors matching predicate.

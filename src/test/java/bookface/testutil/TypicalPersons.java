@@ -50,7 +50,6 @@ public class TypicalPersons {
                     CommandTestUtil.VALID_TAG_FRIEND)
             .build();
 
-    public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalPersons() {} // prevents instantiation
 
@@ -72,17 +71,6 @@ public class TypicalPersons {
      * Returns an {@code BookFace} with all the typical persons and all typical books.
      */
     public static BookFace getAllTypicalBookFaceData() {
-        BookFace ab = new BookFace();
-        for (Person person : getTypicalPersons()) {
-            ab.addPerson(person);
-        }
-        for (Book book : getTypicalBooks()) {
-            ab.addBook(book);
-        }
-        return ab;
-    }
-
-    public static BookFace getLoanedTypicalBookFaceData() {
         BookFace ab = new BookFace();
         for (Person person : getTypicalPersons()) {
             ab.addPerson(person);
