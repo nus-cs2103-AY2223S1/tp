@@ -241,11 +241,12 @@ Below shows the command format used in FindMyIntern.
 * Items with `…` after them can be used multiple times<br>
   * e.g. `[t/TAG]…` can be used as `t/backend`, `t/backend t/summer`, etc.
 
-* Parameters can be in any order<br>
+* Parameters can be in any order except for `INDEX`<br>
   * e.g. if the command specifies `d/DESCRIPTION l/LINK`, `l/LINK d/DESCRIPTION` is also acceptable
 
 * If a parameter is expected only once in the command but is specified multiple times, only the last occurrence of the parameter will be taken<br>
   * e.g. if `c/Google c/TikTok` is entered, only `c/TikTok` will be taken
+  * However, this will not work for `INDEX`. e.g. `delete 1 2` will show an error instead.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`) will be ignored<br>
   * e.g. if `help 123` is entered, it will be interpreted as `help`

@@ -14,9 +14,9 @@ public class ContainsKeywordsPredicate implements Predicate<Internship> {
     private final List<String> keywords;
 
     /**
-     * Constructs a {@code ContainsKeywordsPredicate}.
+     * Constructs a new {@code ContainsKeywordsPredicate}.
      *
-     * @param keywords The list of words to search for.
+     * @param keywords The list of keywords to search for.
      */
     public ContainsKeywordsPredicate(List<String> keywords) {
         requireNonNull(keywords);

@@ -39,6 +39,9 @@ Given below are my contributions to the project.
     * Include updating of all UML diagrams
   * Added implementation for `find` feature
     * Include sequence diagram and design considerations
+  * Added "About FindMyIntern" section
+  * Added use cases for `clear` and `delete`
+  * Update "Glossary" and "Non-Functional Requirements" section
 
 * **Contributions to team-based tasks**:
   * Added GitHub issues and milestones
