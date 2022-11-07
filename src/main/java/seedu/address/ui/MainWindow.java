@@ -464,6 +464,7 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isShowDark()) {
                 applyDarkTheme();
             }
+            
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
