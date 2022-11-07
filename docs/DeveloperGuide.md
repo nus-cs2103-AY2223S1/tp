@@ -191,6 +191,10 @@ The following activity diagram summarizes what happens when a user executes a li
 
 ![ListActivityDiagram](images/ListActivityDiagram.png)
 
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** The diagrams above are generalized to `Client` but work similarly for other entity types (`Project, `Issue`).
+</div>
+
 #### Design considerations
 
 **Aspect: How list executes:**
@@ -230,6 +234,10 @@ should end at the destroy marker (X) but due to a limitation of PlantUML, the li
 The following activity diagram summarizes what happens when a user executes a default view command:
 
 ![DefaultViewActivityDiagram](images/DefaultViewActivityDiagram.png)
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** The diagrams above are generalized to `Client` but work similarly for other entity types (`Project, `Issue`).
+</div>
   
 ### Add Command Feature
 
@@ -451,6 +459,10 @@ should end at the destroy marker (X) but due to a limitation of PlantUML, the li
 The following activity diagram summarizes what happens when a user executes a pin command:
 
 ![PinActivityDiagram](images/PinActivityDiagram.png)
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** The diagrams above are generalized to `Client` but work similarly for other entity types (`Project, `Issue`).
+</div>
 
 #### Design considerations
 
@@ -687,34 +699,34 @@ with the shortest and easiest to type command possible. It also allowed for comm
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​             | I want to …​                                                                               | So that I can…​                                                                             |
-| -------- | ------------------- | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------- |
+| -------- | ------------------- | ------------------------------------------------------------------------------------------ |---------------------------------------------------------------------------------------------|
 | `* * *`  | student developer   | track multiple projects spread across different websites in one place.                     |                                                                                             |
-| `* * *`  | developer           | see the projects automatically sorted in accordance with the deadline                      | I can manage and clear those with a higher urgency first                                    |
+| `* * *`  | developer           | see the projects automatically sorted in accordance with the deadline                      | manage and clear those with a higher urgency first                                          |
 | `* * *`  | user                | add projects to the application                                                            |                                                                                             |
-| `* * *`  | user                | delete projects from the application                                                       | I can keep my data accurate if I make a mistake in entering data.                           |
-| `* * *`  | user                | edit projects from the application                                                         | I can handle changes in my projects.                                                        |
-| `* * *`  | user                | tag clients to each project                                                                | I can know which clients each project is under.                                             |
-| `* * *`  | new user            | view a guide                                                                               | I can learn about the functionalities of the application.                                   |
-| `* * *`  | user                | add deadlines to the projects                                                              | I can prioritize accordingly.                                                               |
-| `* * *`  | user                | add the contact numbers and email addresses of each client to the projects                 | I can contact them more efficiently.                                                        |
-| `* * *`  | user                | link my projects to their repositories                                                     | I can easily navigate to them.                                                              |
-| `* * *`  | user                | find projects by fields such as their name, id and repository                              | I can easily view specific projects                                                         |
-| `* * *`  | user                | find clients by fields such as their name, id, mobile and email                            | I can easily view specific clients                                                          |
-| `* * *`  | user                | find issues by fields such as their title, id, urgency, and status                         | I can easily view specific issues                                                           |
-| `* * *`  | user                | edit client details                                                                        | I can change and update client details when I have more information.                        |
-| `* * *`  | user                | add issues to projects                                                                     | Keep track of what features/bugs need to be worked on.                                      |
-| `* * *`  | user                | delete issues from projects                                                                | Remove issues added by mistake/no longer needed.                                            |
-| `* * *`  | user                | find certain issues based on fields                                                        | Better keep track of, and retrieve the specific issue I want.                               |
-| `* * *`  | user                | mark issues as completed                                                                   | I can keep track of what issues are completed/not done                                      |
-| `* * *`  | user                | unmark completed issues as not completed                                                   | I can keep track of what issues are completed/not done                                      |
-| `* *`    | developer           | choose to ‘pin’ certain projects                                                           | I can quickly access them                                                                   |
-| `* *`    | developer           | see all the issues/room for improvements of the website that my clients have in one place, | I know what features/bugs to work on for them                                               |
-| `* *`    | new user            | view dummy data                                                                            | I can learn how to use the application.                                                     |
-| `* *`    | new user            | tag ongoing bugs to a project                                                              | I can allocate my time to bug fixes in an efficient manner.                                 |
-| `* *`    | developer           | sort the projects                                                                          | I can see which projects require more urgency when the number of projects becomes too long. |
+| `* * *`  | user                | delete projects from the application                                                       | keep my data accurate if I make a mistake in entering data.                                 |
+| `* * *`  | user                | edit projects from the application                                                         | handle changes in my projects.                                                              |
+| `* * *`  | user                | tag clients to each project                                                                | know which clients each project is under.                                                   |
+| `* * *`  | new user            | view a guide                                                                               | learn about the functionalities of the application.                                         |
+| `* * *`  | user                | add deadlines to the projects                                                              | prioritize accordingly.                                                                     |
+| `* * *`  | user                | add the contact numbers and email addresses of each client to the projects                 | contact them more efficiently.                                                              |
+| `* * *`  | user                | link my projects to their repositories                                                     | easily navigate to them.                                                                    |
+| `* * *`  | user                | find projects by fields such as their name, id and repository                              | easily view specific projects                                                               |
+| `* * *`  | user                | find clients by fields such as their name, id, mobile and email                            | easily view specific clients                                                                |
+| `* * *`  | user                | find issues by fields such as their title, id, urgency, and status                         | easily view specific issues                                                                 |
+| `* * *`  | user                | edit client details                                                                        | change and update client details when I have more information.                              |
+| `* * *`  | user                | add issues to projects                                                                     | keep track of what features/bugs need to be worked on.                                      |
+| `* * *`  | user                | delete issues from projects                                                                | remove issues added by mistake/no longer needed.                                            |
+| `* * *`  | user                | find certain issues based on fields                                                        | better keep track of, and retrieve the specific issue I want.                               |
+| `* * *`  | user                | mark issues as completed                                                                   | keep track of what issues are completed                                      |
+| `* * *`  | user                | unmark completed issues as not completed                                                   | keep track of what issues are not done                                      |
+| `* *`    | developer           | choose to ‘pin’ certain projects                                                           | quickly access them                                                                   |
+| `* *`    | developer           | see all the issues/room for improvements of the website that my clients have in one place, | know what features/bugs to work on for them                                               |
+| `* *`    | new user            | view dummy data                                                                            | learn how to use the application.                                                     |
+| `* *`    | new user            | tag ongoing bugs to a project                                                              | allocate my time to bug fixes in an efficient manner.                                 |
+| `* *`    | developer           | sort the projects                                                                          | see which projects require more urgency when the number of projects becomes too long. |
 | `* *`    | developer           | clear all data using a single command                                                      |                                                                                             |
-| `* *`    | user                | split the project tiles into different categories                                          | I can organize my workspace better.                                                         |
-| `* *`    | user                | see a list of all clients I am currently working with                                      | I can keep an overview of my entire client base.                                            |
+| `* *`    | user                | split the project tiles into different categories                                          | organize my workspace better.                                                         |
+| `* *`    | user                | see a list of all clients I am currently working with                                      | keep an overview of my entire client base.                                            |
 | `* *`    | user                | sort a list of clients based on name or other fields                                       | see a list of my clients in an organised fashion.                                           |
 | `*`      | user                | configure the app to list projects/clients/issues on startup                               | use the app more efficiently.                                                               |
 
@@ -750,7 +762,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. The project already exists within the list.
-    * 1b1. DevEnable displays an error message that the project already exists.
+    * 1a1. DevEnable displays an error message that the project already exists.
 
       Use case ends.
 
