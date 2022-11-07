@@ -19,6 +19,7 @@ import seedu.address.model.meeting.MeetingDate;
 /**
  * Parses input arguments and creates a new EditMeetingCommand object
  */
+//@@author Thing1Thing2
 public class EditMeetingCommandParser implements Parser<EditMeetingCommand> {
 
     /**

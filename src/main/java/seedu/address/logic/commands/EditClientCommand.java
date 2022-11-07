@@ -34,6 +34,7 @@ import seedu.address.model.product.Product;
 /**
  * Edits the details of an existing client in MyInsuRec.
  */
+//@@author Thing1Thing2
 public class EditClientCommand extends Command {
 
     public static final String COMMAND_WORD = "editClient";

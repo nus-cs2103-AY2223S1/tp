@@ -27,6 +27,7 @@ import seedu.address.model.meeting.exceptions.ConflictingMeetingException;
 /**
  * Edits the details of an existing meeting in MyInsuRec.
  */
+//@@author Thing1Thing2
 public class EditMeetingCommand extends Command {
 
     public static final String COMMAND_WORD = "editMeeting";
