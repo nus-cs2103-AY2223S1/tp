@@ -7,7 +7,7 @@ import seedu.travelr.logic.commands.DisplayTripCommand;
 import seedu.travelr.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new DisplayTripCommand object
+ * Parses input arguments and creates a new DisplayTripCommand object.
  */
 public class DisplayTripCommandParser implements Parser<DisplayTripCommand> {
     /**

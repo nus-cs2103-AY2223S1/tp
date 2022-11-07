@@ -12,11 +12,11 @@ import seedu.travelr.logic.commands.exceptions.CommandException;
 import seedu.travelr.model.Model;
 import seedu.travelr.model.event.Event;
 import seedu.travelr.model.event.EventInItineraryPredicate;
-import seedu.travelr.model.list.Itineraries;
+import seedu.travelr.model.list.Itinerary;
 import seedu.travelr.model.trip.Trip;
 
 /**
- * Selects a trip in Travelr and display it to the user.
+ * Selects a Trip in Travelr and display it to the user.
  */
 public class SelectCommand extends Command {
 
@@ -30,6 +30,10 @@ public class SelectCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     private EventInItineraryPredicate predicate;
+
+    /**
+     * Creates a SelectCommand to change the trip and events displayed according to the specified {@code Predicate}.
+     */
     public SelectCommand(EventInItineraryPredicate predicate) {
         this.predicate = predicate;
     }
@@ -43,14 +47,14 @@ public class SelectCommand extends Command {
         }
 
         Trip tripToDisplay = lastShownList.get(targetIndex.getZeroBased());
-        Itineraries tripItinerary = tripToDisplay.getItinerary();
+        Itinerary tripItinerary = tripToDisplay.getItinerary();
         predicate.setItinerary(tripItinerary);
         model.updateFilteredEventList(predicate);
         model.updateSelectedTrip(tripToDisplay);
         return new CommandResult(String.format(MESSAGE_SUCCESS, tripToDisplay.getTitle().toString()));
     }
 
-    private FilteredList<Event> retrieveItinerariesAsList(Itineraries itinerary) {
+    private FilteredList<Event> retrieveItinerariesAsList(Itinerary itinerary) {
         return itinerary.asUnmodifiableObservableList().filtered(PREDICATE_SHOW_ALL_EVENTS);
     }
 

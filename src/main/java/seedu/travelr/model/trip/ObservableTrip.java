@@ -33,7 +33,7 @@ public class ObservableTrip {
     }
 
     /**
-     * Resets the observable trip.
+     * Resets the observable Trip.
      */
     public void resetTrip() {
         tripTitle.set(null);

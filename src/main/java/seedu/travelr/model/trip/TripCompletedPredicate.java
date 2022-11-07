@@ -9,7 +9,7 @@ public class TripCompletedPredicate implements Predicate<Trip> {
 
 
     /**
-     * Creates a new EventInItineraryPredicate.
+     * Creates a new TripCompletedPredicate.
      */
     public TripCompletedPredicate() {
     }

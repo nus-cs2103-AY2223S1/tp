@@ -20,7 +20,7 @@ import seedu.travelr.model.trip.Trip;
 import seedu.travelr.model.trip.TripCompletedPredicate;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of Travelr data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -33,13 +33,13 @@ public class ModelManager implements Model {
     private final FilteredList<Event> bucketList;
 
     /**
-     * For use by Summary Command only.
+     * For use by SummaryCommand only.
      */
     private final SummaryVariables summaryVariables;
 
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given travelr and userPrefs.
      */
     public ModelManager(ReadOnlyTravelr travelr, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(travelr, userPrefs);

@@ -18,7 +18,7 @@ import seedu.travelr.model.event.exceptions.EventNotFoundException;
 /**
  * Represents the Itineraries class.
  */
-public class Itineraries extends EventList {
+public class Itinerary extends EventList {
 
     private final Set<Event> events = new HashSet<>();
     private final ObservableList<Event> internalList = FXCollections.observableArrayList();
@@ -26,7 +26,7 @@ public class Itineraries extends EventList {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent person as the given argument.
+     * Returns true if the list contains an equivalent Event as the given argument.
      */
     public boolean contains(Event toCheck) {
         requireNonNull(toCheck);
@@ -34,10 +34,10 @@ public class Itineraries extends EventList {
     }
 
     /**
-     * Returns whether an Event with the specified title exist in the events
+     * Returns whether an Event with the specified title exists in the events.
      *
-     * @param title the title to be searched
-     * @return true if the events contains an event with the specified title
+     * @param title the title to be searched.
+     * @return true if the events contains an event with the specified title.
      */
     public boolean contains(String title) {
         Event temp = new Event(new Title(title));
@@ -45,9 +45,9 @@ public class Itineraries extends EventList {
     }
 
     /**
-     * Returns the internalList
+     * Returns the internalList.
      *
-     * @return the internalList
+     * @return the internalList.
      */
     @Override
     protected ObservableList<Event> getInternalList() {
@@ -55,8 +55,8 @@ public class Itineraries extends EventList {
     }
 
     /**
-     * Adds a person to the list.
-     * The person must not already exist in the list.
+     * Adds an Event to this Itinerary.
+     * The Event must not already exist in this Itinerary.
      */
     public void add(Event toAdd) {
         requireNonNull(toAdd);
@@ -69,7 +69,7 @@ public class Itineraries extends EventList {
 
 
     /**
-     * Sets the internalList
+     * Sets the internalList.
      */
     public void setInternalList(Set<Event> collections) {
         addEvents(collections);
@@ -77,8 +77,8 @@ public class Itineraries extends EventList {
     }
 
     /**
-     * Removes the equivalent person from the list.
-     * The person must exist in the list.
+     * Removes the equivalent Event from this Itinerary.
+     * The Event must exist in this Itinerary.
      */
     public void remove(Event toRemove) {
         requireNonNull(toRemove);

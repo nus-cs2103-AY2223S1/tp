@@ -11,7 +11,7 @@ import seedu.travelr.model.Model;
 import seedu.travelr.model.event.Event;
 
 /**
- * Deletes an event identified using it's displayed index from the address book.
+ * Deletes an event identified using it's displayed index from Travelr.
  */
 public class DeleteEventCommand extends Command {
     public static final String COMMAND_WORD = "delete-e";
@@ -27,7 +27,7 @@ public class DeleteEventCommand extends Command {
     private final Index targetIndex;
 
     /**
-     * @param targetIndex
+     * Creates a DeleteEventCommand to delete the specified {@code Event}.
      */
     public DeleteEventCommand(Index targetIndex) {
         requireNonNull(targetIndex);

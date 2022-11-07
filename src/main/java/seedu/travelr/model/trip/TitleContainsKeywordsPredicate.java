@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 import seedu.travelr.commons.util.StringUtil;
 
 /**
- * Tests that a {@code Person}'s {@code Title} matches any of the keywords given.
+ * Tests that a {@code Trip}'s {@code Title} matches any of the keywords given.
  */
 public class TitleContainsKeywordsPredicate implements Predicate<Trip> {
     private final List<String> keywords;

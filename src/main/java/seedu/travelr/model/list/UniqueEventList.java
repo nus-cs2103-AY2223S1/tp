@@ -18,7 +18,7 @@ import seedu.travelr.model.event.exceptions.EventNotFoundException;
 
 
 /**
- * Represents the BucketList class.
+ * Represents the UniqueEventList class.
  */
 public class UniqueEventList extends EventList {
 
@@ -30,7 +30,7 @@ public class UniqueEventList extends EventList {
     /**
      * Returns true if the list contains an Event with the given title.
      *
-     * @param title the title to be searched
+     * @param title the title to be searched.
      */
     public boolean contains(String title) {
         Event temp = new Event(new Title(title));
@@ -38,9 +38,9 @@ public class UniqueEventList extends EventList {
     }
 
     /**
-     * Returns true if the list contains an equivalent Event as the given argument.
+     * Returns true if the UniqueEventList contains an equivalent Event as the given argument.
      *
-     * @param toCheck the event desired
+     * @param toCheck the event desired.
      */
     public boolean contains(Event toCheck) {
         requireNonNull(toCheck);
@@ -48,9 +48,7 @@ public class UniqueEventList extends EventList {
     }
 
     /**
-     * Returns the internalList
-     *
-     * @return
+     * Returns the internalList.
      */
     @Override
     protected ObservableList<Event> getInternalList() {
@@ -58,8 +56,8 @@ public class UniqueEventList extends EventList {
     }
 
     /**
-     * Adds a person to the list.
-     * The person must not already exist in the list.
+     * Adds an Event to the UniqueEventList.
+     * The Event must not already exist in the UniqueEventList.
      */
     public void add(Event toAdd) {
         requireNonNull(toAdd);
@@ -79,8 +77,8 @@ public class UniqueEventList extends EventList {
     }
 
     /**
-     * Removes the equivalent person from the list.
-     * The person must exist in the list.
+     * Removes the equivalent Event from the UniqueEventList.
+     * The Event must exist in the UniqueEventList.
      */
     public void remove(Event toRemove) {
         requireNonNull(toRemove);
@@ -96,8 +94,8 @@ public class UniqueEventList extends EventList {
     }
 
     /**
-     * Replaces the contents of this list with {@code trips}.
-     * {@code trips} must not contain duplicate trips.
+     * Replaces the contents of this list with {@code events}.
+     * {@code events} must not contain duplicate Events.
      */
     public void setEvents(List<Event> events) {
         requireAllNonNull(events);
@@ -139,7 +137,7 @@ public class UniqueEventList extends EventList {
     }
 
     /**
-     * Returns true if {@code trips} contains only unique trips.
+     * Returns true if {@code trips} contains only unique Events.
      */
     private boolean eventsAreUnique(List<Event> events) {
         for (int i = 0; i < events.size() - 1; i++) {

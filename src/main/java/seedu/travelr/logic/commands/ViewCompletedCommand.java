@@ -9,7 +9,7 @@ import seedu.travelr.logic.commands.exceptions.CommandException;
 import seedu.travelr.model.Model;
 import seedu.travelr.model.event.Event;
 import seedu.travelr.model.event.EventCompletedPredicate;
-import seedu.travelr.model.list.Itineraries;
+import seedu.travelr.model.list.Itinerary;
 import seedu.travelr.model.trip.Trip;
 import seedu.travelr.model.trip.TripCompletedPredicate;
 
@@ -25,6 +25,9 @@ public class ViewCompletedCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Displays completed trips and events.\n";
 
+    /**
+     * Creates a ViewCompletedCommand to view all completed trips and events.
+     */
     public ViewCompletedCommand() {
     }
     @Override
@@ -39,7 +42,7 @@ public class ViewCompletedCommand extends Command {
         return new CommandResult(MESSAGE_SUCCESS);
     }
 
-    private FilteredList<Event> retrieveItinerariesAsList(Itineraries itinerary) {
+    private FilteredList<Event> retrieveItinerariesAsList(Itinerary itinerary) {
         return itinerary.asUnmodifiableObservableList().filtered(PREDICATE_SHOW_ALL_EVENTS);
     }
 

@@ -9,7 +9,7 @@ import seedu.travelr.model.event.Event;
 
 
 /**
- * Sorts the Events within Bucket List.
+ * Sorts the Events within the Bucket List.
  */
 public class SortEventsCommand extends Command {
     public static final String COMMAND_WORD = "sort-e";
@@ -25,6 +25,9 @@ public class SortEventsCommand extends Command {
 
     private final Comparator<Event> comparator;
 
+    /**
+     * Creates a SortEventsCommand to sort Events according to the specified {@code Comparator}.
+     */
     public SortEventsCommand(Comparator<Event> comparator) {
         this.comparator = comparator;
     }

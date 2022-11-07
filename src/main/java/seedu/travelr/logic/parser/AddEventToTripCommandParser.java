@@ -11,15 +11,15 @@ import seedu.travelr.logic.parser.exceptions.ParseException;
 import seedu.travelr.model.component.Title;
 
 /**
- * Represents the AddEventToTripCommandParser.
+ * Parses input arguments and creates a new AddEventToTripCommand object.
  */
 public class AddEventToTripCommandParser implements Parser<AddEventToTripCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
-     * and returns an AddCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddEventToTripCommand
+     * and returns an AddEventToTripCommand object for execution.
      *
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform to the expected format.
      */
     public AddEventToTripCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =

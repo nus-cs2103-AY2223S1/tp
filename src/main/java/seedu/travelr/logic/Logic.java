@@ -30,20 +30,20 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns Travelr.
      *
      * @see Model#getTravelr()
      */
     ReadOnlyTravelr getTravelr();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
+    /** Returns an unmodifiable view of the filtered list of trips. */
     ObservableList<Trip> getFilteredTripList();
 
-    /** Returns an unmodifiable view of the filtered list of events */
+    /** Returns an unmodifiable view of the filtered list of events. */
     ObservableList<Event> getFilteredEventList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' Travelr file path.
      */
     Path getTravelrFilePath();
 

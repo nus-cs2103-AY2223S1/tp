@@ -32,7 +32,7 @@ public class UniqueTripList implements Iterable<Trip> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent person as the given argument.
+     * Returns true if the UniqueTripList contains an equivalent Trip as the given argument.
      */
     public boolean contains(Trip toCheck) {
         requireNonNull(toCheck);
@@ -40,8 +40,8 @@ public class UniqueTripList implements Iterable<Trip> {
     }
 
     /**
-     * Adds a person to the list.
-     * The person must not already exist in the list.
+     * Adds a Trip to the UniqueTripList.
+     * The Trip must not already exist in the UniqueTripList.
      */
     public void add(Trip toAdd) {
         requireNonNull(toAdd);
@@ -77,9 +77,9 @@ public class UniqueTripList implements Iterable<Trip> {
     }
 
     /**
-     * Replaces the person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the list.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
+     * Replaces the Trip {@code target} in the list with {@code editedTrip}.
+     * {@code target} must exist in the UniqueTripList.
+     * The Trip title of {@code editedTrip} must not be the same as another existing Trip in the UniqueTripList.
      */
     public void setTrip(Trip target, Trip editedTrip) {
         requireAllNonNull(target, editedTrip);
@@ -97,8 +97,8 @@ public class UniqueTripList implements Iterable<Trip> {
     }
 
     /**
-     * Removes the equivalent person from the list.
-     * The person must exist in the list.
+     * Removes the equivalent Trip from the UniqueTripList.
+     * The Trip must exist in the UniqueTripList.
      */
     public void remove(Trip toRemove) {
         requireNonNull(toRemove);
@@ -113,8 +113,8 @@ public class UniqueTripList implements Iterable<Trip> {
     }
 
     /**
-     * Replaces the contents of this list with {@code trips}.
-     * {@code trips} must not contain duplicate trips.
+     * Replaces the contents of this UniqueTripList with {@code trips}.
+     * {@code trips} must not contain duplicate Trips.
      */
     public void setTrips(List<Trip> trips) {
         requireAllNonNull(trips);
@@ -150,7 +150,7 @@ public class UniqueTripList implements Iterable<Trip> {
     }
 
     /**
-     * Returns true if {@code trips} contains only unique trips.
+     * Returns true if {@code trips} contains only unique Trips.
      */
     private boolean tripsAreUnique(List<Trip> trips) {
         for (int i = 0; i < trips.size() - 1; i++) {

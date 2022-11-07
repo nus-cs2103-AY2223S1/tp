@@ -6,7 +6,7 @@ import javafx.collections.ObservableList;
 import seedu.travelr.model.event.Event;
 
 /**
- * Represents the EventList interface.
+ * Represents the EventList abstract class.
  */
 abstract class EventList implements Iterable<Event> {
     abstract ObservableList<Event> getInternalList();

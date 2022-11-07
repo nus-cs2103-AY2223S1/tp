@@ -8,7 +8,7 @@ import seedu.travelr.model.component.Description;
 import seedu.travelr.model.component.Title;
 
 /**
- * Represents a Tag in the address book.
+ * Represents an Event in Travelr.
  * Guarantees: immutable; name is valid as declared in {@link #isValidEventTitle(String)}
  */
 public class Event {
@@ -22,8 +22,8 @@ public class Event {
     /**
      * Constructs an {@code Event}.
      *
-     * @param title A valid title.
-     * @param description A valid description.
+     * @param title A valid Title.
+     * @param description A valid Description.
      */
     public Event(Title title, Description description) {
         requireAllNonNull(title, description);
@@ -34,7 +34,7 @@ public class Event {
     /**
      * Constructs an {@code Event}.
      *
-     * @param eventName A valid title.
+     * @param eventName A valid Title.
      */
     public Event(Title eventName) {
         requireNonNull(eventName);
@@ -43,7 +43,7 @@ public class Event {
     }
 
     /**
-     * Returns true if a given string is a valid tag name.
+     * Returns true if a given string is a valid Event.
      */
     public static boolean isValidEventTitle(String test) {
         return test.matches(VALIDATION_REGEX);
@@ -73,7 +73,7 @@ public class Event {
 
     /**
      * Returns true if both events have the same title.
-     * This defines a weaker notion of equality between two persons.
+     * This defines a weaker notion of equality between two events.
      */
     public boolean isSameEvent(Event otherEvent) {
         if (otherEvent == this) {

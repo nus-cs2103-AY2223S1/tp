@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.transformation.FilteredList;
-import seedu.travelr.model.list.Itineraries;
+import seedu.travelr.model.list.Itinerary;
 import seedu.travelr.model.trip.Trip;
 
 /**
@@ -23,13 +23,12 @@ public class EventCompletedPredicate implements Predicate<Event> {
         this.completedTrips = completedTrips;
         completedEvents = new ArrayList<>();
         for (Trip t : completedTrips) {
-            Itineraries currItinerary = t.getItinerary();
+            Itinerary currItinerary = t.getItinerary();
             for (Event e : currItinerary) {
                 completedEvents.add(e);
             }
         }
     }
-
 
     @Override
     public boolean test(Event event) {

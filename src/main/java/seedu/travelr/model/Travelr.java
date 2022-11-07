@@ -13,8 +13,8 @@ import seedu.travelr.model.trip.Trip;
 import seedu.travelr.model.trip.UniqueTripList;
 
 /**
- * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Wraps all data at the Travelr level
+ * Duplicates are not allowed (by .isSameTrip and isSameEvent comparison)
  */
 public class Travelr implements ReadOnlyTravelr {
 
@@ -38,7 +38,7 @@ public class Travelr implements ReadOnlyTravelr {
     public Travelr() {}
 
     /**
-     * Creates an Travelr using the Persons in the {@code toBeCopied}
+     * Creates an Travelr using the Trips and Events in the {@code toBeCopied}
      */
     public Travelr(ReadOnlyTravelr toBeCopied) {
         this();
@@ -48,8 +48,8 @@ public class Travelr implements ReadOnlyTravelr {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the Trips list with {@code trips}.
+     * {@code trips} must not contain duplicate Trips.
      */
 
     public void setTrips(List<Trip> trips) {
@@ -57,8 +57,8 @@ public class Travelr implements ReadOnlyTravelr {
     }
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the Events list with {@code events}.
+     * {@code events} must not contain duplicate Events.
      */
     public void setEvents(List<Event> events) {
         this.bucketList.setEvents(events);
@@ -69,7 +69,7 @@ public class Travelr implements ReadOnlyTravelr {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code Travelr} with {@code newData}.
      */
     public void resetData(ReadOnlyTravelr newData) {
         requireNonNull(newData);
@@ -81,7 +81,7 @@ public class Travelr implements ReadOnlyTravelr {
     //// person-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if the specified Trip with the same identity as a {@code Trip} that currently exists in Travelr.
      */
     public boolean hasTrip(Trip trip) {
         requireNonNull(trip);
@@ -89,7 +89,7 @@ public class Travelr implements ReadOnlyTravelr {
     }
 
     /**
-     * Returns true if this event already exists in Travelr.
+     * Returns true if this Event already exists in Travelr.
      */
     public boolean hasEvent(Event event) {
         requireNonNull(event);
@@ -97,7 +97,7 @@ public class Travelr implements ReadOnlyTravelr {
     }
 
     /**
-     * Returns true if this event exists in the bucket list.
+     * Returns true if this Event exists in the BucketList.
      */
     public boolean bucketlistHasEvent(Event event) {
         requireNonNull(event);
@@ -106,15 +106,15 @@ public class Travelr implements ReadOnlyTravelr {
 
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a Trip to Travelr
+     * The Trip must not already exist in Travelr.
      */
     public void addTrip(Trip p) {
         trips.add(p);
     }
 
     /**
-     * Adds an event to Travelr.
+     * Adds an Event to Travelr.
      */
     public void addEventToBucketListAndAllEventsList(Event e) {
         bucketList.add(e);
@@ -126,22 +126,22 @@ public class Travelr implements ReadOnlyTravelr {
     }
 
     /**
-     * Adds an event back into the bucket list after deleting it from a trip.
+     * Adds an Event back into the BucketList after deleting it from a Trip.
      */
     public void returnToBucketList(Event e) {
         bucketList.add(e);
     }
 
     /**
-     * Removes an event from bucket list before adding it to trip.
+     * Removes an Event from BucketList before adding it to Trip.
      */
     public void removeFromBucketList(Event e) {
         bucketList.remove(e);
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from {@code Travelr}.
+     * {@code key} must exist in Travelr.
      */
     public void removeTrip(Trip key) {
         for (Event event : key.getEvents()) {
@@ -152,7 +152,7 @@ public class Travelr implements ReadOnlyTravelr {
 
     /**
      * Gets the desired Event
-     * {@code key} must exist in the bucketList.
+     * {@code key} must exist in the BucketList.
      */
     public Event getEvent(Event key) {
 
@@ -161,14 +161,14 @@ public class Travelr implements ReadOnlyTravelr {
 
     /**
      * Gets the desired Trip
-     * {@code key} must exist in the trips.
+     * {@code key} must exist in the Trips.
      */
     public Trip getTrip(Trip key) {
         return trips.getTrip(key);
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
+     * Removes {@code key} from {@code Travelr}.
      * {@code key} must exist in Travelr.
      */
     public void removeEvent(Event key) {

@@ -11,7 +11,7 @@ import seedu.travelr.model.Model;
 import seedu.travelr.model.trip.Trip;
 
 /**
- * Deletes a trip identified using it's displayed index from the address book.
+ * Deletes a trip identified using it's displayed index from Travelr.
  */
 public class DeleteCommand extends Command {
 

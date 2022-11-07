@@ -61,12 +61,12 @@ public interface Model {
     void setTravelr(ReadOnlyTravelr travelr);
 
     /**
-     * Returns the AddressBook
+     * Returns Travelr
      */
     ReadOnlyTravelr getTravelr();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the Travelr.
+     * Returns true if a Trip with the same identity as {@code trip} exists in Travelr.
      */
     boolean hasTrip(Trip trip);
 
@@ -74,25 +74,25 @@ public interface Model {
     boolean tripHasEvent(Trip trip, Event event);
 
     /**
-     * Returns true if the event already exists in Travelr.
+     * Returns true if the Event already exists in Travelr.
      */
     boolean hasEvent(Event event);
 
 
     /**
-     * Returns true if the bucketlist has event in Travelr.
+     * Returns true if the BucketList in Travelr has the specified Event.
      */
     boolean bucketlistHasEvent(Event event);
 
     /**
-     * Deletes the given trip.
-     * The trip must exist in the Travelr.
+     * Deletes the given Trip.
+     * The Trip must exist in Travelr.
      */
     void deleteTrip(Trip target);
 
     /**
-     * Deletes the given event.
-     * The event must exist in Travelr.
+     * Deletes the given Event.
+     * The Event must exist in Travelr.
      */
     void deleteEvent(Event target);
 
@@ -101,48 +101,48 @@ public interface Model {
     Trip getTrip(Trip trip);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in Travelr.
+     * Adds the given Trip.
+     * {@code trip} must not already exist in Travelr.
      */
     void addTrip(Trip trip);
 
     /**
-     * Adds the given event.
-     * The event must not already exist in Travelr.
+     * Adds the given Event.
+     * The Event must not already exist in Travelr.
      */
     void addEvent(Event event);
 
     /**
-     * Returns the given event to the bucket list.
+     * Returns the given Event to the BucketList.
      */
     void returnToBucketList(Event event);
 
     /**
-     * Removes the given event from the bucket list.
+     * Removes the given Event from the BucketList.
      */
     void removeFromBucketList(Event event);
 
     void updateSelectedTrip(Trip trip);
 
     /**
-     * Returns an unmodifiable view of the filtered person list
+     * Returns an unmodifiable view of the filtered trip list.
      */
     ObservableList<Trip> getFilteredTripList();
 
     AllInBucketListPredicate getBucketPredicate();
 
     /**
-     * Returns an unmodifiable view of the filtered events list
+     * Returns an unmodifiable view of the filtered events list.
      */
     ObservableList<Event> getFilteredEventList();
 
     /**
-     * Returns an unmodifiable view of the bucket list
+     * Returns an unmodifiable view of the BucketList.
      */
     ObservableList<Event> getBucketList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered trip list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
@@ -156,7 +156,7 @@ public interface Model {
     void updateFilteredEventList(Predicate<Event> predicate);
 
     /**
-     * Resets the filtered event list to buckets and filtered trips to show all events {@code predicate}.
+     * Resets the filtered event list to buckets and filtered trips list to show all trips {@code predicate}.
      */
     void resetView();
 
