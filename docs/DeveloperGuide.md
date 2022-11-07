@@ -71,18 +71,25 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+![Structure of the UI Component](images/UiClassDiagram1.png)
+![Structure of the UI Component](images/UiClassDiagram2.png)
+![Structure of the UI Component](images/UiClassDiagram3.png)
+![Structure of the UI Component](images/UiClassDiagram4.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The class diagram of Ui is split into the above four diagrams to make it look more organised.
+</div>
+
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StudentListPanel`, `StudentDescription` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
 * executes user commands using the `Logic` component.
+* depends on the `CommandResult` returned by the executed commands to handle the Ui change for different commands.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Student`, `Tutor` and `TuitionClass` object residing in the `Model`.
 
 ### Logic component
 
@@ -98,11 +105,14 @@ How the `Logic` component works:
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call. 
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The delete command deletes the specified entity in the current list, which is `Student`, `Tutor` or `TuitionClass` list. Here we assume that the current list is the `Student` list.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -117,11 +127,11 @@ How the parsing works:
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
 The class diagram below shows a broad overview of the model component. 
-The certain details and dependencies between the `Student`, `Tutor` and `Tuition Classes` has been omitted for simplicity.
-The class diagram for `Student`, `Tutor` and `Tuition Classes` can be found right after model class diagram.
+The certain details and dependencies between the `Student`, `Tutor` and `TuitionClass` has been omitted for simplicity.
+The class diagram for `Student`, `Tutor` and `TuitionClass` can be found right after model class diagram.
 <img src="images/ModelClassDiagram.png" width="650" />
 
-This is the full class diagram for `Student`, `Tutor` and `Tuition Classes`.
+This is the full class diagram for `Student`, `Tutor` and `TuitionClass`.
 
 <img src="images/ClassDiagram.png" width="650" />
 
@@ -138,11 +148,11 @@ can be 'observed' e.g. the UI can be bound to this list so that the UI automatic
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model 
-is given below. It has a `Tag` list in the `AddressBook`, which `Student`, `Tutor` and `Tuition Classes` references. 
+is given below. It has a `Tag` list in the `AddressBook`, which `Student`, `Tutor` and `TuitionClass` references. 
 This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each , `Tutor` and 
-`Tuition Classes` needing their own `Tag` objects respectively. Again certain details and dependencies between the 
-`Student`, `Tutor` and `Tuition Classes` has been omitted for simplicity. The class diagram between `Student`, `Tutor` 
-and `Tuition Classes` can be found above. <br>
+`TuitionClass` needing their own `Tag` objects respectively. Again certain details and dependencies between the 
+`Student`, `Tutor` and `TuitionClass` has been omitted for simplicity. The class diagram between `Student`, `Tutor` 
+and `TuitionClass` can be found above. <br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -200,7 +210,7 @@ The following activity diagram summarizes what happens when a user executes the 
 
 **Aspect: How to handle the adding of class and person separating:**
 
-* **Alternative 1 (current choice):** An `AddCommand` instance has both `Person` and `Class` fields but only atmost one can be non-null at a time.
+* **Alternative 1 (current choice):** An `AddCommand` instance has both `Person` and `TuitionClass` fields but only atmost one can be non-null at a time.
     * Pros: Less cluttered.
     * Cons: Harder to implement.
 * **Alternative 2:** Separate classes that extend `Command` for adding of class and person separately.
@@ -316,14 +326,14 @@ The find feature currently doesn't allow users to search by the following criter
 
 Student:
 1. Details of `NextOfKins`
-2. Details of `TuitionClasses` that they are attending
+2. Details of `TuitionClass` that they are attending
 
 Tutor:
-1. Details of `TuitionClasses` that they are teaching
+1. Details of `TuitionClass` that they are teaching
 
 TuitionClass:
-1. Details of `Students` that are attending
-2. Details of `Tutors` that are teaching
+1. Details of `Student` that are attending
+2. Details of `Tutor` that are teaching
 
 These could be added in future iterations to give users more flexibility in their search.
 
@@ -339,37 +349,37 @@ Therefore, there is a lot of potential for UI to be integrated with the find fea
 
 #### Implementation
 
-The list type feature is motivated by the existence of the three different entities that are manipulated by myStudent, namely `Student`, `Tutor` and `TuitionClass`. It is implemented as an enum class `ListType` in `Model` which includes three types - `STUDENT_LIST`, `TUTOR_LIST` and `TUITIONCLASS_LIST` (PERSON_LIST is to be removed in future version). 
+The list type feature is motivated by the existence of the three different entities that are monitored by myStudent, namely `Student`, `Tutor` and `TuitionClass`. 
+It is implemented as an enum class `ListType` in the `Model` which includes three values: `STUDENT_LIST`, `TUTOR_LIST` and `TUITIONCLASS_LIST`. 
 
-The current list type is kept as a `ListType` field `type` in `ModelManager` which implements `Model`. As `Student`, `Tutor` and `TuitionClass` instances are stored in `FilteredList` `filteredStudent`, `filterdTutors` and `filterdTuitionClass` in `ModelManager`, `ListType` `type` would indicate which of the three would be operated on by the `Logic` component. Additionally, to allow access by the `Logic` component, `Model` implements setter and getter methods for the `type`:
+The current list type is kept as a `ListType` field `type` in the `ModelManager` which implements the `Model`. 
+The `Student`, `Tutor` and `TuitionClass` instances are stored in the `filteredStudent`, `filterdTutors` and `filterdTuitionClass` respectively in the `ModelManager`, and the `type` field in the `ModelManager` indicates which of the three would be operated on by the `Logic` component when a certain command is executed. 
+Additionally, to allow access by the `Logic` component, the `Model` implements setter and getter methods for the `type`:
 
 * `Model#updateCurrentListType()` - Updates the `type` to the specified list type.
-* `Model#getCurrentListType()` - Returns the `ListType` `type` that the `ModelManager` currently stores.
-* Model#getCurrentList()` - Returns the current filtered list from `filteredStudents`, `filteredTutors` and `filteredTuitionClass` directly according to the current list type.
+* `Model#getCurrentListType()` - Returns the `type` that the `ModelManager` currently stores.
+* `Model#getCurrentList()` - Returns the current filtered list from the `filteredStudents`, `filteredTutors` and `filteredTuitionClass` directly according to the current list type.
 
-The operations are exposed to `Logic` interface as `Logic#updateCurrentListType()`, `Logic#getCurrentListType()` and `Logic#getCurrentList()` respectively. Since `Ui` keeps a reference to `Logic`, these operations can be accessed by `Ui` as well.
+The operations are exposed to the `Logic` interface as `Logic#updateCurrentListType()`, `Logic#getCurrentListType()` and `Logic#getCurrentList()` respectively. Since the `Ui` keeps a reference to the `Logic`, these operations can be accessed by the `Ui` as well.
 
-`ListType` `type` is referred to by any method that need to access to the current list. Given below is an example usage scenario including `ListTuitionClassCommand` and how the list type mechanism behaves in each step.
+The `ListType` field `type` in the `ModelManager` is referred to by any method that needs to access to the type of the current list. Given below is an example usage scenario including the `ListTutorCommand` and how the list type mechanism behaves in each step.
 
-Step 1. The user launches the application for the first time. The `ModelManager` would be initialised and the `type` is set to the default list type which is `STUDENT_LIST`.
+Step 1. The user launches the application for the first time. The `ModelManager` would be initialised and the `type` is set to the default list type which is the `STUDENT_LIST`.
 
-Step 2. The user execute `list_c` command to list out tuition classes by ccalling `ListTuitionClassCommand`. The `ListTuitionClassCommand` calls `Model#updateCurrentListType()` with `TUITIONCLASS_LIST` being the parameter, causing the type in `ModelManager` to update to `TUITIONCLASS_LIST`. 
+Step 2. The user executes `list tutor` command to list out tuition classes by calling `ListTutorCommand`. The `ListTutorCommand` calls `Model#updateCurrentListType()` with the `TUTOR_LIST` being the parameter, causing the `type` field in the `ModelManager` to update to the `TUTOR_LIST`. 
 
 Step 3. The command then returns a `commandResult` with its `commandType` field being `LIST`. This will cause calling `commandResult.isList()` to return true. 
 
-Step 4. The `commandResult` is then returned to the `commandResult` in the `executeCommand()` method in `MainWindow`. The `executeCommand()` method then checks that `commandResult.isList()` returns true and calls `MainWindow#handleList()`.
+Step 4. The `commandResult` is then returned to the `commandResult` in the `executeCommand()` method in the `MainWindow`. The `executeCommand()` method then checks that `commandResult.isList()` returns true and calls `MainWindow#handleList()`.
 
-Step 5. The `handleList()` method checks the `type` in `ModelManager` with `Logic#getCurrentListType()`. Since the `type` is set to `TUITIONCLASS_LIST`, it will change the children of `entityListPanelPlaceholder` to `tuitionClassListPanel`, which holds the list of tuition classes.
+Step 5. The `handleList()` method checks the `type` in the `ModelManager` with `Logic#getCurrentListType()`. Since the `type` is set to the `TUTOR_LIST`, `MainWindow#handleList()` will clear the children of the `entityListPanelPlaceholder`, and add the `tutorListPanel` to it, which holds the `Tutor` list. 
+This will update the Ui to display the `Tutor` list.
 
-Step 6. The `handleList()` method then calls `setLabelStyle()`. Similar to `handleList()`, `setLabelStyle()` calls `Logic#getCurrentListType()` to get the `type` in `ModelManager` and set the style class of the `tuitionClassLabelPanel` to `SELECTED_CLASS_LABEL_STYLE_CLASS`, and the `studentLabelPanel` along with the `tutorLabelPanel` to `UNSELECETED_LABEL_STYLE_CLASS`. 
+Step 6. The `handleList()` method then calls `setLabelStyle()`. Similar to `handleList()`, `setLabelStyle()` calls `Logic#getCurrentListType()` to get the `type` in the `ModelManager` and set the style class of the `tutorLabelPanel` to `SELECTED_CLASS_LABEL_STYLE_CLASS`, and the `studentLabelPanel` along with the `tuitionClassLabelPanel` to `UNSELECETED_LABEL_STYLE_CLASS`. 
+This will update the Ui such that the `List Tabs` on top of the `List Display Panel` in Ui will highlight the current displayed list, the `Tutor` list.
 
-Another example that makes use of the list type is the `DeleteCommand`. Since the `delete` command deletes the entity with the specified index in the current list, it needs to access to the current list type. Below are the steps of how list type mechanism behaves.
-
-Step 1. The user launches the application for the first time. The `ModelManager` would be initialised and the `type` is set to the default list type which is `STUDENT_LIST`.
-
-Step 2. The user executes `delete 1` command to delete the 1th student in the list. The `delete` command calls `Model#getCurrentListType` and gets `STUDENT_LIST` as the current list type. 
-
-Step 3. The `delete` command then deletes the student by calling `Model#deletePerson` with the student to be deleted being the parameter.
+The following sequence diagram shows how the `list` operation works:
+![ListSequenceDiagram](images/ListSequenceDiagram.png)
 
 ### \[Implemented\] Sort Command
 The sort command allows users to sort the respective list from Oldest to the Newest entry, Alphabetically or in Reverse order.  
@@ -377,8 +387,9 @@ Sorting by default means sorting by oldest to newest updated entry. Editing an e
 __Proposed implementation__: sort by class timings and levels.
 
 #### Implementation
+
 <img src="images/SortSequenceDiagram.png">
-The above is the sequence diagram for the case where the user inputs `sort alpha` in the command box.  
+The above is the sequence diagram for the case where the user inputs `sort alpha` in the command box.
 
 Since the list displayed is linked to each `Student`, `Tutor` and `TuitionClass` internal list through an observer, we can just sort it and the displayed list will be updated accordingly. The list to be sorted will be the one that is currently displayed in the UI. `SortCommand` will know this using `ModelManager::getCurrentListType`.  
 Sorting by default and alphabetical order is done using the `.sort(Comparator<? super E>)` method of a list, where default uses a custom-defined comparator, and sorting in reverse is done using `java.util.Collections`.
