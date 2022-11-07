@@ -53,4 +53,4 @@ The user interacts with it using a CLI, and it has a GUI created with JavaFX. It
     - **Contributions beyond the project team:**
     - Facilitation of group meetings.
     - (Future) Assist in making project video.
-    
+  
