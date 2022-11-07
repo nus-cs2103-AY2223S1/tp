@@ -733,7 +733,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is `Cobb` and the **Actor** is the `user`, unless specified otherwise)
 
-### Use case: Add a buyer
+#### Use case: Add a buyer
 
 **MSS:**
 
@@ -753,7 +753,7 @@ Use case ends.
   3b1. Cobb shows an error message.<br>
   Use case ends.
 
-### Use case: Add a property
+#### Use case: Add a property
 
 **MSS:**
 
@@ -773,7 +773,7 @@ Use case ends.
   4b1. Cobb shows an error message. <br>
   Use case ends.
 
-### Use case: Edit a buyer
+#### Use case: Edit a buyer
 
 **MSS:**
 
@@ -798,7 +798,7 @@ Use case ends.
     * 3c1. Cobb shows an error message.
     * Use case ends
   
-### Use case: Edit a property
+#### Use case: Edit a property
 
 **MSS:**
 
@@ -823,17 +823,7 @@ Use case ends.
     * 3c1. Cobb shows an error message.
     * Use case ends
 
-### Use case: List properties
-
-**MSS:**
-
-1. User chooses to list properties.
-2. User executes list properties command.
-3. Cobb displays a list of all properties saved.
-
-Use case ends.
-
-### Use case: List buyers
+#### Use case: List buyers
 
 **MSS:**
 
@@ -843,18 +833,17 @@ Use case ends.
 
 Use case ends.
 
-### Use case: Delete irrelevant properties
+#### Use case: List properties
 
 **MSS:**
 
-1. User <u>lists properties</u> [(Use case: List properties)](#use-case-list-properties).
-2. User finds properties that are no longer relevant (e.g. already sold).
-3. User executes delete command on these properties.
-4. Cobb deletes the property and displays updated list of properties.
+1. User chooses to list properties.
+2. User executes list properties command.
+3. Cobb displays a list of all properties saved.
 
 Use case ends.
 
-### Use case: Delete irrelevant buyers
+#### Use case: Delete irrelevant buyers
 
 **MSS:**
 
@@ -865,17 +854,18 @@ Use case ends.
 
 Use case ends.
 
-### Use case: Sort properties
+#### Use case: Delete irrelevant properties
 
 **MSS:**
 
-1. User chooses to sort properties by a specified field in a specified order.
-2. User executes sort properties command on the currently displayed properties list.
-3. Cobb displays the last-shown property list in a sorted order according to the specified criteria.
+1. User <u>lists properties</u> [(Use case: List properties)](#use-case-list-properties).
+2. User finds properties that are no longer relevant (e.g. already sold).
+3. User executes delete command on these properties.
+4. Cobb deletes the property and displays updated list of properties.
 
 Use case ends.
 
-### Use case: Sort buyers
+#### Use case: Sort buyers
 
 **MSS:**
 
@@ -885,7 +875,17 @@ Use case ends.
 
 Use case ends.
 
-### Use case: Match buyer to properties
+#### Use case: Sort properties
+
+**MSS:**
+
+1. User chooses to sort properties by a specified field in a specified order.
+2. User executes sort properties command on the currently displayed properties list.
+3. Cobb displays the last-shown property list in a sorted order according to the specified criteria.
+
+Use case ends.
+
+#### Use case: Match buyer to properties
 
 **Preconditions**: Prospective buyer has been added.
 
@@ -896,7 +896,7 @@ Use case ends.
 
 Use case ends.
 
-### Use case: Find suitable property for new buyer
+#### Use case: Find suitable property for new buyer
 
 **MSS:**
 1. User gets a new buyer.
@@ -911,7 +911,7 @@ Use case ends.
   2b. User edits the existing buyer with new requirements, if necessary.<br>
   Use case continues at 3.
 
-### Use case: Match property to buyers
+#### Use case: Match property to buyers
 
 **Preconditions**: Property exists in database.
 
