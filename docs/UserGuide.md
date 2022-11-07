@@ -409,6 +409,8 @@ Examples:
 :bulb: **Tip:** You can sort and filter tasks based on their completion status. The percentage of completed tasks are also shown for each exam and module.
 </div>
 
+------------------
+<div style="page-break-after: always;"></div>
 
 | ![MarkTaskCommand](images/MarkTask.png) |
 |:---------------------------------------:|
