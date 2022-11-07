@@ -42,6 +42,7 @@ title: Developer Guide
     * [Glossary](#glossary)
 * [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
   * [Launch and shutdown](#launch-and-shutdown)
+  * [Viewing a client](#viewing-a-client)
   * [Delete a client](#deleting-a-client)
   * [Delete a transaction](#deleting-a-transaction)
   * [Delete a remark](#deleting-a-remark)
@@ -860,7 +861,16 @@ testers are expected to do more *exploratory* testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-   
+
+### Viewing a client
+
+1. Viewing a client while all clients are shown.
+
+    1. Prerequisites: List all clients using the `list` command. Multiple clients in the list.
+
+    2. Test case: `view 1`<br/>Expected: The list of clients panel is filtered to left only the first client in the original list. All transactions and remarks with first client is shown in the transaction list panel and remark list panel respectively.
+    3. Test case: `view 0`<br/>Expected: List of clients panel is not filtered. Transactions panel and Remarks panel is not updated. Error details is shown in the `Application's Reply` panel.
+    4. Other incorrect view commands to try: `view abc`, `view x` (where x is larger than the client list size displayed)
 
 ### Deleting a client
 
