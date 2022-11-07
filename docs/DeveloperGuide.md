@@ -851,17 +851,42 @@ Refer to Adding a Mastery Check, with the only difference being `addconsult` ins
     4. Other incorrect delete commands to try: `deletelesson`, `deletelesson x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
    
-       
+### Mark Task
+
+1. Mark a task as done while task list is being shown
+
+    1. Prerequisites: List all tasks using the `listtask` or `listall` command. There are existing tasks in the task list.
+
+    2. Test case: `marktask 1` <br>
+       Expected: The task that was originally at the top of the list will now have a green tick at the side and shifted below tasks that are not done yet. Details of the marked task are shown in the status message.
+    
+    3. Test case: `marktask 0` <br>
+       Expected: No task is marked. Error details shown in status message.
+
+### Mark Lesson
+
+1. Mark a lesson as completed while lesson list is being shown
+
+   1. Prerequisites: List all tasks using the `listlesson` or `listall` command. There are existing lessons in the lesson list.
+
+   2. Test case: `marklesson 1` <br>
+      Expected: The lesson that was originally at the top of the list will now have a green tick at the side and shifted below lessons that are not yet completed. Details of the marked lesson are shown in the status message.
+
+   3. Test case: `marklesson 0` <br>
+      Expected: No lesson is marked. Error details shown in status message.
+   
 ### Saving data
 
 1. Dealing with missing data file(s).
 
    1. Prerequisites: If there exists studentbook.json, taskbook.json and/or lessonbook.json file(s) in the data folder at the root of the application directory, delete the file(s).
-   2. Test case: Double-click on the jar file to run the application.
+   
+   2. Test case: Double-click on the jar file to run the application. <br>
       Expected: Application runs and loads the sample data from `SampleStudentUtil#getSampleStudentBook`, `SampleTaskUtil#getSampleTaskBook` and/or `SampleLessonUtil#getSampleLessonBook`.
 
 2. Dealing with corrupted data file(s).
 
    1. Prerequisites: Modify the studentbook.json, taskbook.json and/or lessonbook.json file(s) to be an illegal format, such as deleting the “name” field of a student, the "taskDesc" field of a task, and/or the "attendance" field of a lesson.
-   2. Test case: Double-click on the jar file to run the application.
+   
+   2. Test case: Double-click on the jar file to run the application. <br>
       Expected: Application runs and has no data on initial load. Running the next command overwrites the current corrupted json file(s).
