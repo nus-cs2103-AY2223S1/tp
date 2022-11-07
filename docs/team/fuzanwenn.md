@@ -2,7 +2,6 @@
 layout: page
 title: Fu Zanwen's Project Portfolio Page
 ---
-
 ## Project: HealthContact
 **Overview**: <br>
 HealthContact is a desktop application built for the receptionist of a family clinic who arranges telemedicine services between doctors and patients.
@@ -11,12 +10,12 @@ It helps to keep track and manage patient data, appointments and bills, especial
 Given below are my contributions to the project.
 
 ### Code contributed:
+
 [Link to tP Code Dashboard](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=fuzanwenn&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=guokweijie&tabRepo=AY2223S1-CS2103T-W08-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 ### Enhancements to existing features:
 
 #### Remark Feature
-
 * Added class Remark to represent the remark of the patient.
 * Added class RemarkCommand to represent the remark command.
 * Added class RemarkCommandParser to parse the remark command.
@@ -32,7 +31,6 @@ Given below are my contributions to the project.
 * Modified the class JsonAdaptedPatient to support remark operations.
 
 #### EditPatient Feature
-
 * Refracted EditPersonCommand to EditPatientCommand.
 * Refracted EditPersonDescriptor to EditPatientDescriptor.
 * Refracted EditPersonDescriptorTest to EditPatientDescriptorTest.
@@ -44,59 +42,68 @@ Given below are my contributions to the project.
 * Refracted Person class to Patient class.
 
 #### Bill Feature
-
 * Added class Bill to represent the bill of the appointment with the bill information including
   bill amount, bill date and the payment status of the bill.
 * Added supportive classes Amount, BillDate and PaymentStatus.
 * EditBillCommand:
-    * It allows the user to edit the bill amount, bill date of an existing bill.
-    * It warns the user if the input of information in the parameter is invalid.
-    * It gives the user an example when user input is not valid.
+  * It allows the user to edit the bill amount, bill date of an existing bill.
+  * It warns the user if the input of information in the parameter is invalid.
+  * It gives the user an example when user input is not valid.
 
 ### Documentation:
-
 * Added JavaDoc to the written code to ensure understandability.
 
 ### Contributions to the User Guide:
-
 * Added documentation and screenshots for:
   * EditPatientCommand
   * AddBillCommand
   * EditBillCommand
 
 ### Contributions to the Developer Guide:
-
 * Added Use Case for:
+  * AddPatientCommand
+  * AddBillCommand
+  * AddAppointmentCommand
   * EditPatientCommand
   * EditAppointmentCommand
   * EditBillCommand
-
-### Contributions to the team-based tasks:
-
-* Added class Bill to represent the bill of the appointment with the bill information including
-  bill amount, bill date and the payment status of the bill.
-* Added test cases for EditAppointmentCommandParser class.
-* Added test cases for EditAppointmentDescriptorBuilder class.
-* Added test cases for Bill class, Amount class, BillDate class and PaymentStatus class.
-* Added test cases for JsonAdaptedBill class.
-* Added test cases for NameContainsKeywordsPredicateAppointment class.
+  * FindPatientCommand
+  * FindAppointmentCommand
+  * FindBillCommand
+  * UndoCommand
+  * RedoCommand
+  * SortPatientCommand
+  * SortAppointmentCommand
+  * SortBillCommand
+  * DeletePatientCommand
+  * DeleteAppointmentCommand
+  * DeleteBillCommand
+  * ListCommand
+  * SetPaidCommand
+  * SetUnpaidCommand
+  * SelectPatientCommand
+  * SelectAppointmentCommand
+* Added Add feature implementation with sequence diagram.
+* Added Edit feature implementation with sequence diagram.
+* Added Effort for Edit feature implementation.
 * Added test cases for DeleteAppointmentCommand class.
 * Added test cases for AddBillCommandParser class.
+* Added test cases for FindBillCommandParser class.
+* Maintained the issue tracker.
+* Released JAR file.
 
 ### Review/mentoring contributions:
-
 * Reviewed PRs from other team members:
-    * [Branch update delete patient command](https://github.com/AY2223S1-CS2103T-W08-1/tp/pull/81)
-    * [Undo/Redo command](https://github.com/AY2223S1-CS2103T-W08-1/tp/pull/136)
-    * [Update developer guide for SelectCommand](https://github.com/AY2223S1-CS2103T-W08-1/tp/pull/136)
-
-### Contributions beyond the project team:
-to be added soon
+  * [Branch update delete patient command](https://github.com/AY2223S1-CS2103T-W08-1/tp/pull/81)
+  * [Undo/Redo command](https://github.com/AY2223S1-CS2103T-W08-1/tp/pull/136)
+  * [Update developer guide for SelectCommand](https://github.com/AY2223S1-CS2103T-W08-1/tp/pull/136)
+  * [Add HealthContactParserTest](https://github.com/AY2223S1-CS2103T-W08-1/tp/pull/340)
 
 ### Tools:
 * IntelliJ
 * Gradle
+* CheckStyle
+* SourceTree
 
 ### Project management:
 to be added soon
-
