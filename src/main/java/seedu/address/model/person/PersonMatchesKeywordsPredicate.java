@@ -9,14 +9,21 @@ import seedu.address.model.tag.Tag;
  * Tests that a {@code Person} matches any of the keywords given.
  */
 public class PersonMatchesKeywordsPredicate implements Predicate<Person> {
-    private final String keywords;
+    private String keywords;
 
-    public PersonMatchesKeywordsPredicate(String keywords) {
+    public PersonMatchesKeywordsPredicate() {
+    }
+
+    public void setKeywords(String keywords){
         this.keywords = keywords;
     }
 
     private boolean containsIgnoreCase(String str1, String str2) {
         return str1.toLowerCase().contains(str2.toLowerCase());
+    }
+
+    public String getKeywords() {
+        return this.keywords;
     }
 
     /**
