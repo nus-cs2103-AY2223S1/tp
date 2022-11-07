@@ -63,11 +63,15 @@ public class SampleDataUtil {
                     getTagSet("Urgent", "Friend")),
             new Client(new Name("Walter Wong"), new Address("7 Leedon Heights, D'leedon, S267953"),
                     getTagSet("Friend", "Colleague")),
-            new Client(new Name("Jacob"), new Address("80-106 Elias Rd, #09-01, 519948"), getTagSet("Urgent")),
-            new Client(new Name("Jack"), new Address("127-149 Pasir Ris Grove, #02-01, 518133"), getTagSet("Friend")),
-            new Client(new Name("Casey"), new Address("23 Pasir Ris Link, Watercolours, #03-02, 518169"), getTagSet("Rich")),
+            new Client(new Name("Jacob"), new Address("80-106 Elias Rd, #09-01, 519948"),
+                    getTagSet("Urgent")),
+            new Client(new Name("Jack"), new Address("127-149 Pasir Ris Grove, #02-01, 518133"),
+                    getTagSet("Friend")),
+            new Client(new Name("Casey"), new Address("23 Pasir Ris Link, Watercolours, #03-02, 518169"),
+                    getTagSet("Rich")),
             new Client(new Name("Bobby"), new Address("2 Pasir Ris Link, #09-01, 518184"), getTagSet("Rich")),
-            new Client(new Name("Samuel"), new Address("127-149 Pasir Ris Grove, #04-01, 518133"), getTagSet("Friend"))
+            new Client(new Name("Samuel"), new Address("127-149 Pasir Ris Grove, #04-01, 518133"),
+                    getTagSet("Friend"))
         };
     }
 
