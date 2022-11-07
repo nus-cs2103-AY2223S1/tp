@@ -17,15 +17,13 @@ for the code that I contributed.
     * Editing CSS
     * Editing JXML files and UI classes
     * Re-learnt JavaFX to understand AddressBook's style of having separate JXML files from UI class files
-    * Designed new icon
   * Adding list name `ls -n` command and related tests
   * Changing the implementation of the `find` function and related tests
     * Keywords used when finding names now do not have to match entire task name (a new contains method)
   * Added the `Filter Status` feature and related tests
   * Added `Autocomplete` function
 * **Contributions to the UG**:
-  * Adding `GUI` walk-around including guided images
-  * Merged Quick start section to include the GUI walkaround
+  * Adding GUI walk-around in **Quick Start** including guided images
   * Added how `Autocomplete` works including a guiding image
   * Added descriptions to the `ls -n` (list name) and `find` commands, including images to show successful usage
 * **Contributions to the DG**: 
@@ -33,12 +31,11 @@ for the code that I contributed.
   * Added the explanation of the implementation of the `Autocomplete` feature including its activity UML diagram
   * Gave more in-depth explanation of how the `UI` works
     * Including the addition of the `FilterStatusDisplay`
-    * Updated UML diagram to add `FilterStatusDisplay`
+    * Updated UI and Model UML diagrams to add `FilterStatusDisplay` and `FilterStatus` respectively
   * Updated all user stories for v1.4
 * **Contributions to team-based-tasks**: 
   * Designed new product icon
-    * Small icon
-    * Larger brand name icon
+    * Small icon and larger brand name icon
   * Drafted initial wireframe for the app
   * Changed names in UI to NotionUS
 * **Review/mentoring contributions**: 
