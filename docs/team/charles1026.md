@@ -77,7 +77,7 @@ __Code Contributed:__ All my code contribution can be viewed here:
   [`delappt`](https://checkup.netlify.app/developerguide#delappt-delete-appointment-command),
   [`consult`](https://checkup.netlify.app/developerguide#consult-command) 
   and [`view`](https://checkup.netlify.app/developerguide#view-command) commands, 
-  as well as for the [Patient Details Panel Clickability](ttps://checkup.netlify.app/developerguide#patient-details-panel)
+  as well as for the [Patient Details Panel Clickability](https://deploy-preview-219--checkup.netlify.app/developerguide#patient-details-panel)
   and [Keyboard Shortcuts](https://checkup.netlify.app/developerguide#keyboard-shortcuts). Included for each command:
   - Description of the purpose of the feature and how it works.
   - UML Sequence Diagram to illustrate the flow of the feature.
