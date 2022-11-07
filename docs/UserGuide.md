@@ -327,7 +327,7 @@ Marks specified existing issue as completed or incomplete
 <img src="images/MarkIssueCommand1.png" width="500" />
 
 <img src="images/MarkIssueCommand2.png" width="500" />
-
+<div style="page-break-after: always;"></div>
 
 Format: 
 * Mark: `issue -m ISSUE_ID`
