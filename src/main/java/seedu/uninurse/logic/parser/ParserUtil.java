@@ -227,6 +227,10 @@ public class ParserUtil {
             trimmedMedicationDosage = medicationTypeAndDosage[1].trim();
         }
 
+        if (medication.endsWith("\\|")) {
+            throw new ParseException(EditMedicationDescriptor.MESSAGE_CONSTRAINTS);
+        }
+
         Optional<String> optionalMedicationType = Optional.empty();
         Optional<String> optionalMedicationDosage = Optional.empty();
 
@@ -359,6 +363,10 @@ public class ParserUtil {
 
         if (taskArguments.length == 3) {
             trimmedTaskRecurrenceAndFrequency = taskArguments[2].trim();
+        }
+
+        if (task.endsWith("\\|")) {
+            throw new ParseException(EditTaskDescriptor.MESSAGE_CONSTRAINTS);
         }
 
         Optional<String> optionalTaskDescription = Optional.empty();

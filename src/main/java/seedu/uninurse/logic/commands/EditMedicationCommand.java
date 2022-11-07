@@ -135,6 +135,8 @@ public class EditMedicationCommand extends EditGenericCommand {
      * will replace the corresponding field value of the medication.
      */
     public static class EditMedicationDescriptor {
+        public static final String MESSAGE_CONSTRAINTS = "Medication should not end with \"|\" "; 
+
         private final Optional<String> medicationType;
         private final Optional<String> medicationDosage;
 

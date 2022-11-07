@@ -155,6 +155,8 @@ public class EditTaskCommand extends EditGenericCommand {
      * will replace the corresponding field value of the task.
      */
     public static class EditTaskDescriptor {
+        public static final String MESSAGE_CONSTRAINTS = "Task description should not end with \"|\" "; 
+
         private final Optional<String> description;
         private final Optional<DateTime> dateAndTime;
         private final Optional<String> recurAndFreq;
