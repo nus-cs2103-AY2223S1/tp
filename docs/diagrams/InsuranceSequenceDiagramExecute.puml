@@ -1,6 +1,6 @@
 @startuml
 !include style.puml
-mainframe **s****d** execute command
+mainframe **s****d** execute insurance command
 
 box Logic LOGIC_COLOR_T1
 
@@ -24,6 +24,8 @@ activate Model
 
 create List
 Model --> List
+deactivate Model
+
 activate List
 
 InsuranceCommand -> List : get(1)
@@ -44,6 +46,7 @@ InsuranceCommand --> InsuranceCommand: editedPerson
 deactivate InsuranceCommand
 
 InsuranceCommand -> Model : setPerson(personToEdit, editedPerson)
+activate Model
 
 Model --> InsuranceCommand
 

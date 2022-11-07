@@ -50,7 +50,7 @@ deactivate AddressBookParser
 
 LogicManager -> InsuranceCommand : execute()
 
-ref over InsuranceCommand: execute command
+ref over InsuranceCommand: execute insurance command
 
 InsuranceCommand --> LogicManager : result
 deactivate InsuranceCommand
