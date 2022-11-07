@@ -37,13 +37,13 @@ Given below are my contributions to the project.
       * Add documentations
         * `locate`: (PR [#99](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/99/files))
         * `target`: (PR [#146](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/146))
-      * Update Non-Functional Requirements (PR [#19](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/19/files))
     * Developer Guide:
       * Add implementation details for the following features
         * `target`:
           * Sequence diagram (PR [#86](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/86))
         * `locate`
           * Activity diagram (PR [#146](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/146/files))
+      * Update Non-Functional Requirements (PR [#19](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/19/files))
 * **Community**:
   * Opened issue(s) for the team: [#37](https://github.com/AY2223S1-CS2103T-T17-2/tp/issues/37)
   * Tested and merged multiple PR's (non-exhaustive): [#78](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/78), 
