@@ -32,6 +32,7 @@ BookFace replaces a paper-based system or manual tracking of books, providing gr
     - [Command Summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Quick Start
 
@@ -63,6 +64,7 @@ BookFace replaces a paper-based system or manual tracking of books, providing gr
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Features
 
@@ -94,6 +96,8 @@ delete the user that is currently displayed.
 
 * Any whitespace between the start of a parameter prefix such as `n/` and the end of the preceding parameter will be ignored.<br>e.g. the parameter `p/` in `p/999999&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n/John` will be interpreted as `999999` and not `999999&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### Adding a book : `add book`
 
