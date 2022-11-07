@@ -12,8 +12,6 @@ import seedu.address.model.exam.exceptions.DuplicateExamException;
 import seedu.address.model.module.DistinctModuleList;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.exceptions.DuplicateModuleException;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.task.DistinctTaskList;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.exceptions.DuplicateTaskException;
@@ -24,7 +22,6 @@ import seedu.address.model.task.exceptions.DuplicateTaskException;
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
-    private final UniquePersonList persons;
     private final DistinctModuleList modules;
     private final DistinctTaskList tasks;
     private final DistinctExamList exams;
@@ -38,7 +35,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      *   among constructors.
      */
     {
-        persons = new UniquePersonList();
         modules = new DistinctModuleList();
         tasks = new DistinctTaskList();
         exams = new DistinctExamList();
@@ -56,13 +52,6 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     //// list overwrite operations
 
-    /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
-     */
-    public void setPersons(List<Person> persons) {
-        this.persons.setPersons(persons);
-    }
 
     public void setModules(List<Module> modules) {
         this.modules.setModules(modules);
@@ -84,44 +73,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         setTasks(newData.getTaskList());
         setModules(newData.getModuleList());
         setExams(newData.getExamList());
-    }
-
-
-    //// person-level operations
-
-    /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
-     */
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return persons.contains(person);
-    }
-
-    /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
-     */
-    public void addPerson(Person p) {
-        persons.add(p);
-    }
-
-    /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
-     */
-    public void setPerson(Person target, Person editedPerson) {
-        requireNonNull(editedPerson);
-
-        persons.setPerson(target, editedPerson);
-    }
-
-    /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
-     */
-    public void removePerson(Person key) {
-        persons.remove(key);
     }
 
     //// module-level operations
@@ -293,11 +244,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
-    public ObservableList<Person> getPersonList() {
-        return persons.asUnmodifiableObservableList();
-    }
-
-    @Override
     public ObservableList<Module> getModuleList() {
         return modules.getUnmodifiableModuleList();
     }
@@ -396,8 +342,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons"
-            + "\n" + modules.getUnmodifiableModuleList().size() + " modules"
+        return modules.getUnmodifiableModuleList().size() + " modules"
             + "\n" + tasks.getUnmodifiableTaskList().size() + "tasks"
             + "\n" + exams.getUnmodifiableExamList().size() + "exams";
         // TODO: refine later
@@ -407,15 +352,16 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons)
                 && tasks.equals(((AddressBook) other).tasks)
                 && exams.equals(((AddressBook) other).exams)
                 && modules.equals(((AddressBook) other).modules));
     }
 
+    //@@author
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return modules.hashCode();
     }
+    //@@author
 
 }
