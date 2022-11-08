@@ -65,6 +65,8 @@ This document is the official user guide of the Long Time No See (LTNS) app. Thi
 
 5. Not sure where to start? The following section is a detailed Tutorial on how to use the Application. Feel free to [skip](#features) this section if you are confident in using the application.
 
+
+
 ## Tutorial 
 
 Welcome to the LongTimeNoSee Tutorial! Here we will guide you through your journey of learning how to use your App!
@@ -168,6 +170,8 @@ As such, the features available to you are split into **4** main features:
 * Click [here](#command-format-table) for a list of all possible parameters and their constraints
 
 </div>
+
+#### __________________________________________________________________________
 
 ## Common Features
 
@@ -800,7 +804,7 @@ Note: `allClients` shows all existing clients inside LTNS, while `clients` show 
 | **Delete Policy**          | `deletePolicy (INDEX of POLICY)` <br> <br> e.g: `deletePolicy 1`                                                                                              |                                                                                                                                                                                             
 | **View All Policies**      | `allPolicies`                                                                                                                                                 |
 | **View Filtered Policies** | `policies`                                                                                                                                                    |
-| **View Assigned Policies** | `assign (INDEX of CLIENT) (INDEX of POLICY) pr/PREMIUM_PAID sd/START_DATE ed/END_DATE` <br> <br> e.g: `assign 1 1 pr/10000 sd/2000-01-02 ed/2000-02-01`       |
+| **Assign Policies**        | `assign (INDEX of CLIENT) (INDEX of POLICY) pr/PREMIUM_PAID sd/START_DATE ed/END_DATE` <br> <br> e.g: `assign 1 1 pr/10000 sd/2000-01-02 ed/2000-02-01`       |
 | **Delete Assigned**        | `deleteAssigned (INDEX of CLIENT) (INDEX of POLICY)` <br><br> e.g: `deleteAssigned 1 1`                                                                       |                                                                                                                                                                                                               
 | **List Assigned**          | `listAssigned (INDEX of CLIENT) ` <br> <br> e.g: `listAssigned 1`                                                                                             |
 | **View Income**            | `viewIncome YEAR` <br><br> e.g: `viewIncome 2000`                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                           
