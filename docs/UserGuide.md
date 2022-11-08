@@ -84,22 +84,52 @@ A description of the different parts of the Application is given below:
 
 Now that you are familiar with your Application's layout, it's time to learn how to give it commands.
 
+#### Learning to Use Commands 
+As shown in the diagram above, the command box, also known as the [Command Line Interface (CLI)](#command-line-interface-cli) is where you will type your commands.
 
+But what commands can you type? We will now learn how to understand the [Features](#features) section below.
 
-7. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+Each Feature section begins with an **introduction**, followed by the **command format**. 
 
-   * **`allClients`** : Lists all clients in the LTNS.
+Each Command begins with a **Command Word**, followed by accompanying **tags**, if applicable.
 
-   * **`addClient`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-301 b/2000-01-01 i/90000.0 ra/M` : Adds a client named `John Doe` to the LTNS.
+For example, when [Adding A Client](#adding-a-client--addclient), this is what you will see:
+Format: `addClient n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ b/BIRTHDAY i/INCOME ra/RISK_APPETITE`
 
-   * **`deleteClient`**`3` : Deletes the 3rd client shown in the current list.
+Let us understand how to read this. Firstly, `addClient` is the **Command Word**. This is followed by some tags, such as the `n/` tag which represents a **Name**.
 
-   * **`clear`** : Deletes all clients.
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+A tag wrapped in square brackets, such as `[t/TAG]` are optional tags! Tags with ellipses behind such as `[t/TAG]...` indicate that there can be multiple tags
+</div>
 
-   * **`exit`** : Exits the app.
+An example of how we can use the `addClient` command is shown below: 
+* **`addClient`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-301 b/2000-01-01 i/90000.0 ra/M` 
 
-8. Refer to the [Features](#features) below for details of each command.
+<div markdown="span" class="alert alert-primary">:white_check_mark: **Give it a try!:**
+Try typing the command above into the command box and hit `enter`. Now observe the changes! John Doe with his corresponding information should now be in your Application.
+</div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Notice that `[t/TAG]` are not required as they are optional. Also notice how we type the tag first before the client information eg. `b/2000-01-01` indicates a birthday on 1st January 2000
+</div>
+
+#### Last Word of Advice 
+Congratulations! You are now ready to begin your journey of using LongTimeNoSee! 
+
+When you are ready, go to the [Feature](#features) section to find out about the commands you can use. 
+
+For ease of reading, each feature follows the following format:
+1. Description
+2. Command Format
+3. Additional Pointers and Tips
+4. Example Usages
+
+You may also refer to the [Command Format Table](#command-format-table) to find detailed descriptions of each **command tags**. 
+
+Additionally, refer to the [Command Summary Page](#command-summary) for a brief overview of every command.
+
+Like all things, learning can take some time, but you'll soon realise that each Command is very intuitive! If you still find yourself confused, fret not! Feel free to [contact us](#contact-us). We will be more than happy to assist you.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -691,19 +721,19 @@ A: When adding an event, it's date and time cannot overlap with another event! B
 so you can view other events were causing the clash :) 
 
 Q: Why am I seeing a `Sorting metric does not exist` when trying to sort my client list? <br/>
-A : You may be typing a wrong <b>keyword</b> or calling a sorting metric which is not supported. You may refer to [this list](#sorting-all-clients--sort) for a list of supported **keywords**. If you would like to suggest more sorting **keywords**, do feel free to contact us! 
+A : You may be typing a wrong <b>keyword</b> or calling a sorting metric which is not supported. You may refer to [this list](#sorting-all-clients--sort) for a list of supported **keywords**. If you would like to suggest more sorting **keywords**, do feel free to [contact us](#contact-us)! 
 
 Q: Why is a blank screen shown when I use the `calendar` feature? <br/>
 A: You may not have added any upcoming events in the next 7 days! You may want to [Add an Event](#adding-an-event-addevent) first. Alternatively, you can choose to [view all Events](#viewing-all-events--allevents) instead.
 
 Q: What if a company whose policy I want to add is not available in the given list of company codes? <br/>
-A: Let us know which company you require at e0725346@u.nus.edu and if we get enough requests, we might add yours in the next version!
+A: Let us know which company you require by [contacting us](#contact-us). If we get enough requests, we might add yours in the next version!
 
 Q: What if a coverage I want to add is not available in the list of coverages? <br/>
-A: Similarly, let us know which coverage you require at e0725346@u.nus.edu and if we get enough requests, we might add yours in the next version!
+A: Similarly, let us know which coverage you require by [contacting us](#contact-us). If we get enough requests, we might add yours in the next version!
 
 Q: What do I do if the user guide does not address my concern? <br/>
-A: Fret not! Simply drop us an email at e0725346@u.nus.edu, and we will reply within three working days!
+A: Fret not! Simply [reach out to us](#contact-us), and we will reply within three working days!
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -821,6 +851,9 @@ A standard of measurement. In the case of LTNS, a metric in sorting or searching
 #### Income Bracket
 Various income level ranges categorised by levels. LTNS uses the Inland Revenue Authority of Singapore's (IRAS) measurement of an income bracket.
 
+
+## Contact Us 
+You may contact us at the following email: `e0725346@u.nus.edu`
 
 <br>    
 <br>
