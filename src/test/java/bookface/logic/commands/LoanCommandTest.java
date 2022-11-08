@@ -30,6 +30,7 @@ public class LoanCommandTest {
         ModelManager expectedModel = new ModelManager(model.getBookFace(), new UserPrefs());
         expectedModel.loan(personToLoan, bookToLoan, TYPICAL_DATE);
         CommandTestUtil.assertCommandFailure(loanCommand, model, expectedMessage);
+        expectedModel.returnLoanedBook(bookToLoan);
     }
 
     @Test
