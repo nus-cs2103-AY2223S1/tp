@@ -104,6 +104,9 @@ class JsonAdaptedBook {
         if (isLoaned) {
             try {
                 final Date modelDate = DATE_FORMAT.parse(returnDate);
+                if (returnDate.length() != 10) {
+                    throw new ParseException("A loaned Book's returnDate field does not have exactly 10 characters!");
+                }
                 return new Book(modelTitle, modelAuthor, modelDate);
             } catch (java.text.ParseException pe) {
                 throw new ParseException(pe.getMessage());
