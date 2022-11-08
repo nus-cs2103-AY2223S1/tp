@@ -3,12 +3,12 @@ layout: page
 title: Reuben's Project Portfolio Page
 ---
 
-# Overview
+## Overview
 Long Time No See (LTNS) is a desktop task tracking app made for financial advisors to manage their contact base, policies and events, and stay connected with their clients. Made simpler with an intuitive and minimalistic graphical user interface (GUI) and customised functionalities to pinpoint your needs, LTNS will enable you to stay close to your dearest clients!
 
-## Summary of Contributions 
+### Summary of Contributions 
 
-### Code contributions and Enhancements Implemented 
+#### Code contributions and Enhancements Implemented 
 Code Contributions can be found at [this link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=reubenchay&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **New Feature**: Added Sort Feature which allows users to Sort their clients based on certain metrics
@@ -23,11 +23,11 @@ Code Contributions can be found at [this link](https://nus-cs2103-ay2223s1.githu
 
 * **Test Enhancement**: Wrote model stubs and main testing for Event class 
 
-## Project Management 
+#### Project Management 
 - Organized issue tracker and helped resolve merge conflicts 
 - Ensure deadlines are all in check 
 
-## Contributions to UG
+#### Contributions to UG
 - Table of Contents 
 - Overall formatting of UG Feature Section 
 - Glossary 
@@ -37,24 +37,24 @@ Code Contributions can be found at [this link](https://nus-cs2103-ay2223s1.githu
 - FAQ
 - Consistency and grammatical rectifications 
 
-## Contributions to DG
+#### Contributions to DG
 - Edited UI Component along with the UI Component's UML Diagram 
 - Implementation of Sort Feature, including sequence diagram and activity diagram 
 - MSS and Test cases of Sort Feature 
 - Glossary Update
 
-## Contributions to team-based tasks
+#### Contributions to team-based tasks
 - Helped to resolve merge conflicts of others' Pull Requests 
 - Main reviewer for Hong Sheng 
 - PRs reviewed (with non-trivial review comments): 6
 
-## Community 
+#### Community 
 - Reported above average number of bugs during PE-D 
 - Reported bugs for User Guide and Developer Guide of other teams in the class 
 - Helped classmate in debugging his Mac Java version error 
 - Active in IP forum 
 
-## Tools 
+#### Tools 
 - Git / Github
 - SourceTree
 - Intelli-J 

@@ -222,11 +222,11 @@ public class Person {
                 .append("Income: ")
                 .append(getIncome() + "\n")
                 .append("RiskLevel: ")
-                .append(getRiskAppetite());
+                .append(getRiskAppetite() + "\n");
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
+            builder.append("Tags: ");
             tags.forEach(builder::append);
         }
         return builder.toString();

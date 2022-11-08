@@ -7,19 +7,21 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Acknowledgements**
+## Acknowledgements
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* Based on the AddressBook-Level 3 project created by the [SE-EDU initiative](https://se-education.org/)
+* Libraries Used: [JavaFX](https://openjfx.io/),  [JUnit5](https://github.com/junit-team/junit5), [Jackson](https://github.com/FasterXML/jackson)
+* Implementation for `Event` class is heavily influenced from the [Independent Project (Week 4)](https://nus-cs2103-ay2223s1.github.io/website/se-book-adapted/projectDuke/index.html#level-4-todos-events-deadlines)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## Setting up, getting started
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-# **Design**
+# Design
 
 <div markdown="span" class="alert alert-primary">
 
@@ -160,7 +162,7 @@ Classes used by multiple components are in the `longtimenosee.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-# **Feature Implementation**
+# Feature Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
 
@@ -293,8 +295,7 @@ Policy and Person indices that are not found in the `UniquePersonList` and `Uniq
 would be regarded as invalid indices. 
 </div>
 
-Step 3: The `PolicyAssignCommand` is executed. The corresponding policy and person objects are retrieved and  
-if not already assigned, the policy is assigned to the person.
+Step 3: The `PolicyAssignCommand` is executed. The corresponding policy and person objects are retrieved and if not already assigned, the policy is assigned to the person.
 
 #### Design considerations
 
@@ -344,10 +345,10 @@ View income activity diagram: <br><br>
 
 ## Event Features
 
-### AddEvent Feature
+### AddEventCommand Feature
 
-#### Proposed Implementation
-The proposed `AddEvent` feature is facilitated by the `AddressBook` Model. The `AddressBook` contains information on the list of people and the current events available (i.e: `UniqueEventList` and `UniquePersonList`). The `AddEventParser`  serves as an additional <i>abstraction of logic</i> to determine the validity of an Event on the following conditions, and throws an appropriate exception based on the following conditions.
+#### Implementation
+The proposed `AddEventCommand` feature is facilitated by the `AddressBook` Model. The `AddressBook` contains information on the list of people and the current events available (i.e: `UniqueEventList` and `UniquePersonList`). The `AddEventParser`  serves as an additional <i>abstraction of logic</i> to determine the validity of an Event on the following conditions, and throws an appropriate exception based on the following conditions.
 
 * Valid Client Name : An event is tagged to a single Client. The Client’s name must already exist in the `UniqueEventList`. If said person specified does not exist, the `AddEventParser` throws an: `InvalidPersonException`
 
@@ -358,10 +359,12 @@ Given below is an example usage scenario and how the `AddEventCommand` behaves a
 <B>Step 1</B>. The user launches the application for the first time. The` AddressBook` model is initialized with both the appropriate `UniquePersonList` and `UniqueEventList`. The lists are empty, with a person named `John Williams`.
 
 
-<B>Step 2</B>. The user adds an event `newEvent desc Star Wars Soundtrack  pName John Williams, date/2020-01-01, start/12:00 end/13:00`. The event is added successfully.
+<B>Step 2</B>. The user adds an event `addEvent desc/ Star Wars Soundtrack n/ John Williams date/2020-01-01 st/12:00 et/13:00`. The event is added successfully.
 
 
-<B>Step 3</B>. The user then adds a new event `newEvent desc JurassicWorld Soundtrack  pName John Williams, date/2020-01-01, start/12:30 end/13:00`. This time window of this event overlaps with the previously event, and the Event List is no longer updated. An `OverlapEventException` is thrown by the parser.
+<B>Step 3</B>. The user then adds a new event `addEvent desc/ JurassicWorld Soundtrack  n/ John Williams date/2020-01-01 st/12:30 et/13:00`. 
+
+* This time window of this event overlaps with the previous event, and the Event List is no longer updated. An `OverlapEventException` is thrown by the parser.
 
 
 The following activity diagram summarizes how an `AddEventCommand` is parsed at each step.
@@ -378,6 +381,10 @@ The following activity diagram summarizes how an `AddEventCommand` is parsed at 
 * **Alternative 2:** An event becomes an attribute of Client 
     * Pros: Also an intuitive Object-Oriented Programming approach
     * Cons: Difficult and less efficient to implement Event features such as searching
+
+* Alternative 1 was preferred over Alternative 2 due to the following reasons:
+    * Easier for testing if it is a separate model 
+    * We could make use of a similar implementation for `UniqueEventList` to display events (chronologically) more efficiently
 
 ## General Features
 ### Find feature
@@ -438,7 +445,7 @@ Alternative 1 was preferred over alternative 2 due to the following reasons:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+# Documentation, logging, testing, configuration, dev-ops
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -448,7 +455,13 @@ Alternative 1 was preferred over alternative 2 due to the following reasons:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+# Appendix
+
+## Requirements
 
 ### Product scope
 
@@ -469,29 +482,35 @@ Alternative 1 was preferred over alternative 2 due to the following reasons:
 
 Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                   | I want to …​                      | So that I can…​                                                       |
-|----------|-------------------------------------------|-----------------------------------|-----------------------------------------------------------------------|
-| `***`    | new user                                  | see usage instructions            | refer to instructions when I forget how to use the App                |
-| `***`    | user                                      | add a new person                  |                                                                       |
-| `***`    | user                                      | delete a person                   | remove entries that I no longer need                                  |
-| `***`    | user                                      | find a person by name             | locate details of persons without having to go through the entire list |
-| `**`     | user                                      | hide private contact details      | minimize chance of someone else seeing them by accident               |
-| `*`      | user with many persons in my contact list | sort persons by name              | locate a person easily                                                |
-| `**`     | new user                                  | see sample data                   | Have a better understanding of the app's default layout               |
-| `**`     | user                                      | filter my clients by keywords     | Locate my clients easily, based on a particular critera               |
-| `**`     | user                                      | update my client list             | Edit their contact details                                            |
-| `*`      | user                                      | have a reliable method            | store contact information without losing data                         |
-| `*`      | user                                      | view individual client's profiles | keep track of multiple, unique clients                                |
-| `*`      | user                                      | pin important clients             | be reminded of users which are of higher priority                     |
-| `*`      | user                                      | add an event                      |                                                                       |
-| `*`      | user                                      | delete an event                   | remove events that I no longer need to keep track of                  |
-| `**`     | user                                      | view my upcoming events           | be reminded of my upcoming events for the week                        |
+| Priority | As a …​                                                | I want to …​                      | So that I can…​                                                        |
+|----------|--------------------------------------------------------|-----------------------------------|------------------------------------------------------------------------|
+| `***`    | new user                                               | see usage instructions            | refer to instructions when I forget how to use the App                 |
+| `***`    | financial advisor                                      | add a new person                  |                                                                        |
+| `***`    | financial advisor                                      | delete a person                   | remove entries that I no longer need                                   |
+| `***`    | financial advisor                                      | find a person by name             | locate details of persons without having to go through the entire list |
+| `***`    | financial advisor                                      | add a new policy                  | keep track of policies that I want to propose to my clients            |
+| `***`    | financial advisor                                      | delete a policy                   | remove policies that I do not want to propose to my clients            |
+| `**`     | financial advisor                                      | assign policies to my clients     | keep track of sales made                                               |
+| `**`     | financial advisor                                      | hide private contact details      | minimize chance of someone else seeing them by accident                |
+| `*`      | financial advisor with many persons in my contact list | sort persons by name              | locate a person easily                                                 |
+| `**`     | new user                                               | see sample data                   | Have a better understanding of the app's default layout                |
+| `**`     | financial advisor                                      | filter my clients by keywords     | Locate my clients easily, based on a particular critera                |
+| `**`     | financial advisor                                      | update my client list             | Edit their contact details                                             |
+| `*`      | financial advisor                                      | have a reliable method to         | store contact information without losing data                          |
+| `*`      | financial advisor                                      | view individual client's profiles | keep track of multiple, unique clients                                 |
+| `*`      | financial advisor                                      | pin important clients             | be reminded of users which are of higher priority                      |
+| `*`      | financial advisor                                      | add an event                      |                                                                        |
+| `*`      | financial advisor                                      | delete an event                   | remove events that I no longer need to keep track of                   |
+| `**`     | financial advisor                                      | view my upcoming events           | be reminded of my upcoming events for the week                         |
 
 
 
 ### Use cases
 
+
 (For all use cases below, the **System** is `LongTimeNoSee (LTNS)` and the **Actor** is the `user`, unless specified otherwise)
+
+**General Use Cases**
 
 **Use case 1: Help**
 
@@ -502,6 +521,9 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 3. LTNS displays a help message
 
    Use case ends
+
+
+**Client related Use Cases**
 
 **Use Case 2: Add client**
 
@@ -515,32 +537,29 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
    Use case ends
 
-**Use case 3: List clients**
+**Use case 3: Viewing all clients**
 
 **MSS**
 
-1. User requests to list all clients
+1. User requests to view all clients.
 2. LTNS displays a list of all clients
 
    Use case ends
 
-**Use case 4: View clients**
+**Use case 4: View currently filtered clients**
 
 **MSS**
 
-1. User loads the application
-2. User clicks on a specific client from the list view
-3. User can update information specific to his client (i.e: Birthday / Events/ Notes etc.)
-4. User switches to his default view
-5. LTNS shows a list of clients stored in the database
+1. User requests to view a list of all currently filtered clients
+2. LTNS displays a list of currently filtered clients
 
    Use case ends.
 
-**Use case 6: Delete a person**
+**Use case 5: Delete a person**
 
 **MSS**
 
-1. User requests to <u>list clients(UC3)</u>
+1. User requests to <u>view all clients(UC3)</u>
 2. User requests to delete a specific person in the list
 3. LTNS deletes the person
 
@@ -557,12 +576,12 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
     * 3a1. LTNS shows an error message.
 
       Use case resumes at step 2.
-    
-**Use case 7: Sort a list**
+
+**Use case 6: Sort a list**
 
 **MSS**
 
-1. User requests to <u>list clients(UC3)</u>, which will be shown based on date added (default sort)
+1. User requests to <u>view all clients(UC3)</u>, which will be shown based on date added (default sort)
 2. User requests to sort the list based on name (or any other metric)
 3. LTNS shows the list of clients, sorted in alphabetical order based on client's name. (or based on how the metric is compared)
 
@@ -574,11 +593,11 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
   Use case ends.
 
-**Use case 8: Delete a person**
+**Use case 7: Delete a person**
 
 **MSS**
 
-1. User requests to <u>list clients(UC3)</u>
+1. User requests to <u>list all clients(UC3)</u>
 2. User requests to delete a specific person in the list
 3. LTNS deletes the person
 
@@ -603,7 +622,7 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 1. User requests to pin a client by name
 2. LTNS will display the pinned clients
 3. User will be able to see all pinned clients in all pages.
-    
+
    Use case ends
 
 **Use case 9: Find a client/policy/event**
@@ -619,13 +638,111 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
 * 2a. User requests another search.
 
-  * 2a1. LTNS displays a new list of clients with matching metrics.
+    * 2a1. LTNS displays a new list of clients with matching metrics.
 
-    Use case ends.
+      Use case ends.
+
+**Policy related Use Cases**
+
+**Use Case 10: Add Policy**
+
+**MSS**
+
+1. User loads the application
+2. User inputs the command to add a policy
+3. User tags on the details he would like to specify
+4. LTNS switches to the default policy view automatically
+5. LTNS adds the latest policy to the list policy view
+
+   Use Case ends
+
+**Extensions**
+
+* 3a. User attempts to add a Policy which already exists
+    * 3a1. LTNS displays en error message.
+
+      Use Case resumes at Step 2
+
+
+**Use Case 11: Assign Policy**
+
+**MSS**
+
+1. Use loads the application
+2. User inputs the command to assign a existing policy to an existing client
+3. User tags on the details he would like to specify
+4. LTNS switches to the default client view automatically
+5. LTNS assigns the specified policy to the specified client
+
+   Use Case ends
+
+**Extensions**
+* 3a. User inputs an invalid index when specifying the policy
+    * 3a.1 LTNS displays an error message.
+
+      Use Case resumes at Step 2
 
 
 
-**Use Case (X): Add Event**
+* 3b. User inputs an invalid index when specifying the client
+    * 3b.1 LTNS displays an error message.
+
+      Use Case resumes at Step 2
+
+
+**Use Case 12: Viewing all policies**
+
+**MSS**
+
+1. User requests to view all policies.
+2. LTNS displays a list of all policies
+
+   Use case ends
+
+
+**Use case 13: View currently filtered policies**
+
+**MSS**
+
+1. User requests to view a list of all currently filtered policies
+2. LTNS displays a list of currently filtered policies
+
+   Use case ends.
+
+**Use Case 14: Deleting a policy**
+
+
+**MSS**
+
+1. User requests to <u>list all policies(UC12)</u>
+2. User requests to delete a specific policy in the list
+3. LTNS deletes the policy
+
+   Use case ends
+
+
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+
+
+* 3a. The given index is invalid.
+
+    * 3a1. LTNS shows an error message.
+
+      Use case resumes at step 2.
+
+
+**Event related Use Cases**
+
+
+
+
+**Use Case 15: Add Event**
 
 **MSS**
 
@@ -636,30 +753,33 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 5. LTNS switches to the default event view automatically
 
 
-   Use case ends
+Use case ends
 
 
 **Extensions**
 * 4a. The event specified overlaps with another event
-  * 4a1. LTNS displays an error message 
+    * 4a1. LTNS displays an error message
 
-    Use Case resumes at Step 3.
+      Use Case resumes at Step 3.
 
-* 4b. The event specifies a client that doesn't exist in LTNS 
+
+
+* 4b. The event specifies a client that doesn't exist in LTNS
     * 4b1. LTNS displays an error message
 
-    Use Case resumes at Step 3.
+  Use Case resumes at Step 3.
 
 
-**Use case (X): Delete an event**
+**Use case 16: Delete an event**
 
 **MSS**
 
-1. User requests to <u>list events(UC (X))</u>
+1. User requests to <u>view all events(UC 17)</u>
 2. User requests to delete a specific event in the list
 3. LTNS deletes the event
 
    Use case ends
+
 
 **Extensions**
 
@@ -667,33 +787,40 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
   Use Case ends.
 
+
 * 3a. The given index is invalid.
 
     * 3a1. LTNS shows an error message.
 
       Use Case resumes at step 2.
 
-**Use case (X): List clients**
+**Use case 17: View all events**
 
 **MSS**
 
-1. User requests to list all events
+1. User requests to view all events
 2. LTNS displays a list of all events
 
    Use Case ends
 
-**Use case (X): View clients**
+**Use case 18: View currently filtered events**
 
 **MSS**
 
-**Use case (X): View Calendar**
+1. User requests to view all currently filtered events
+2. LTNS displays a list of all currently filtered events.
+
+   Use Case ends
+
+
+**Use case 19: View Calendar**
 
 **MSS**
 
-1. User requests to view his calendar 
-2. LTNS displays a list of all events in his calendar 
-    
-    Use Case ends
+1. User requests to view his calendar
+2. LTNS displays a list of all events in his calendar
+
+   Use Case ends
 
 
 
@@ -705,26 +832,22 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 4.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 5.  Size of windows should be scalable to full screen for maximum screen utilization
 6. Performance requirements: Should be able to serve its features right now
-8. Extremely intuitive and minimalistic design to avoid confusion. 
+8. Extremely intuitive and minimalistic design to avoid confusion.
 9. The product is not required to handle the direct contacting of users.
 10. For added personality, user should be able to have some customisability.(e.g: Change UI’s theme based on system-defined presets)
 
 
-### Glossary
+## Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Client**: A client is a person being served by the financial advisor.
 * **Policy**: An investment or insurance policy that is being sold by an insurance company, through the financial advisor.
 * **Financial advisor**: A professional paid to offer financial advice to clients
-* **Event**: Any event or appointment that involves a client in the client list 
+* **Event**: Any event or appointment that involves a client in the client list
 * **Risk Appetite**: Level of risk a client is willing to accept or tolerate when making financial decisions
 
 
---------------------------------------------------------------------------------------------------------------------
-
-# **Appendix**
-
-## **Instructions for manual testing**
+## Instructions for manual testing
 
 Given below are instructions to test the app manually.
 
@@ -748,7 +871,7 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+1. Find more test cases for [Client](#testing-client-functions),[Policy](#testing-policy-functions), [Event](#testing-event-functions).
 
 ### Testing client functions
 

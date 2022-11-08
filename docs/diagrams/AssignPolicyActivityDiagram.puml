@@ -32,5 +32,6 @@ else ([Person index exists in person list])
     endif
     endif
 endif
+endif
 stop
 @enduml

@@ -87,6 +87,9 @@ public class JsonAdaptedEvent {
         if (!Duration.isValidStartAndEnd(duration)) {
             throw new IllegalValueException(Duration.MESSAGE_CONSTRAINTS);
         }
+        if (!Duration.isValidFormat(duration)) {
+            throw new IllegalValueException(Duration.FORMAT_CONSTRAINTS);
+        }
         final Duration modelDuration = new Duration(duration);
         return new Event(modelDescription, modelName, modelDate, modelDuration);
     }
