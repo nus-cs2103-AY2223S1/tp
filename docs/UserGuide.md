@@ -71,7 +71,7 @@ P.S. This document is the official user guide of the Long Time No See (LTNS) app
 
 5. Not sure where to start? The following section is a detailed Tutorial on how to use the Application. Feel free to [skip](#features) this section if you are confident in using the application.
 
-
+--------------------------------------------------------------------------------------------------------------------
 
 ## Tutorial 
 
@@ -547,6 +547,8 @@ Format: `allPolicies` <br />
 Example Usage: `allPolicies` <br />
 Example Result: Shows all policies stored in LTNS, on the screen.
 
+#### __________________________
+
 ### Deleting a policy : `deletePolicy`
 Deletes the policy at the specified `INDEX`.
 The index refers to the index number shown in the displayed list of policies.
@@ -664,6 +666,8 @@ Example Usage:
 #### _______________________________________________________________________________________________________________________________________________________________________________
 
 ## Event Features
+
+#### __________________________
 
 ### Adding an Event: `addEvent`
 
