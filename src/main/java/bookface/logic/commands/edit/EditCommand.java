@@ -16,7 +16,7 @@ public abstract class EditCommand extends Command {
             + "Existing values will be overwritten by the input values";
 
     public static final String MESSAGE_USAGE = Command.generateMessage(COMMAND_WORD, String.format(EDIT_DESCRIPTION,
-            "user or book"), COMMAND_WORD + " user n/John Doe");
+            "user or book"), COMMAND_WORD + " user 1 n/John Doe");
 
     /**
      * Generates an usage message.

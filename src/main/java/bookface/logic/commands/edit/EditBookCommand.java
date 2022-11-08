@@ -24,8 +24,8 @@ public class EditBookCommand extends EditCommand {
     public static final String COMMAND_WORD = "book";
     public static final String MESSAGE_USAGE =
             EditCommand.generateMessage(COMMAND_WORD, "INDEX (must be a positive integer) "
-                    + "[" + PREFIX_AUTHOR + "AUTHOR] [" + PREFIX_TITLE + "TITLE]...", COMMAND_WORD
-                    + " t/The Broken House");
+                    + "[" + PREFIX_TITLE + "TITLE] [" + PREFIX_AUTHOR + "AUTHOR]", COMMAND_WORD
+                    + " 1 t/The Broken House");
 
     public static final String MESSAGE_EDIT_BOOK_SUCCESS = "Edited Book: %1$s";
 

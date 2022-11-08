@@ -25,7 +25,7 @@ public abstract class FindCommand extends Command {
      */
     public static String generateMessage(String commandName, String commandExample) {
         return Command.generateMessage(COMMAND_WORD + " " + commandName,
-                String.format(FIND_DESCRIPTION, commandName), "[KEYWORD]...",
+                String.format(FIND_DESCRIPTION, commandName), "KEYWORD [KEYWORD]...",
                 COMMAND_WORD + " " + commandExample);
     }
 }
