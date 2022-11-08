@@ -21,4 +21,6 @@ The background of the program is a large-scale city, attributed to [GiulioDesign
 
 The icon of this program is an edited image from DepositPhotos, found [here](https://depositphotos.com/471137460/stock-illustration-book-yellow-glowing-neon-icon.html).
 
+The fonts used in this application are [Minion](https://fonts.adobe.com/fonts/minion) by Robert Slimbach and [Bender](https://www.1001fonts.com/bender-font.html) by  Ivan Gladkikh, Oleg Zhuravlev and published by Jovanny Lemonad.
+
 This team recognises that the rights to the images go to their respective owners.
