@@ -13,7 +13,8 @@ This document is the official user guide of the Long Time No See (LTNS) app. Thi
 
 # Table of Contents
 1. [Quickstart](#quick-start)
-2. [Features](#features)<br>
+2. [Tutorial](#tutorial)
+3. [Features](#features)<br>
     * [Common Features](#common-features)<br>
         * [Viewing Help](#viewing-help--help)
         * [Clearing Entries](#clearing-all-entries--clear)
@@ -45,9 +46,9 @@ This document is the official user guide of the Long Time No See (LTNS) app. Thi
         * [Listing all Events](#viewing-all-events--allevents)
         * [Searching for an Event](#searching-for-an-event--findevent)
         * [Viewing all Events in the next 7 days](#viewing-all-events-in-the-next-7-days--calendar)
-3. [Frequently Asked Questions](#faq)
-4. [Command Summary](#command-summary)
-5. [Glossary](#glossary)
+4. [Frequently Asked Questions](#faq)
+5. [Command Summary](#command-summary)
+6. [Glossary](#glossary)
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -57,12 +58,35 @@ This document is the official user guide of the Long Time No See (LTNS) app. Thi
 
 2. Download the latest `longtimenosee.jar` from [here](https://github.com/AY2223S1-CS2103T-W13-2/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your Long Time No See application.
+3. Move the file to a folder of your choice, in particular where you want the application to be stored on your computer.
 
 4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
 ![Ui.png](./images/Ui.png)
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Not sure where to start? The following section is a detailed Tutorial on how to use the Application. Feel free to [skip](#features) this section if you are confident in using the application.
+
+## Tutorial 
+
+Welcome to the LongTimeNoSee Tutorial! Here we will guide you through your journey of learning how to use your App!
+
+LongTimeNoSee works by giving your App commands through the keyboard. Let us first start by learning what's what. 
+
+Before we begin, be sure to follow the [Quick Start](#quick-start) section above to install and run the Application.
+
+The diagram below shows an example of how the Application will look like: 
+![UiTutorial](./images/UiTutorial.png)
+A description of the different parts of the Application is given below: 
+1. **Client Index Number**: This represents the index number of a client, in commands that require `INDEX_NUMBER`, this will be the number to use 
+2. **Client Name**: This is your client's name
+3. **Application Status Box**: After entering commands, the Application will reply with status messages in this box eg. whether the command was successful or not
+4. **Client Information**: Information related to your client will be displayed here, under the Client's _Index Number_ and _Name_
+5. **Command Box**: Type your commands here
+
+Now that you are familiar with your Application's layout, it's time to learn how to give it commands.
+
+
+
+7. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * **`allClients`** : Lists all clients in the LTNS.
@@ -75,7 +99,7 @@ This document is the official user guide of the Long Time No See (LTNS) app. Thi
 
    * **`exit`** : Exits the app.
 
-6. Refer to the [Features](#features) below for details of each command.
+8. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
