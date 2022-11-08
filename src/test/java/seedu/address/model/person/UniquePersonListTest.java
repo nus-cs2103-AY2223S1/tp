@@ -9,8 +9,10 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -166,5 +168,20 @@ public class UniquePersonListTest {
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
             -> uniquePersonList.asUnmodifiableObservableList().remove(0));
+
+        UniquePersonList anotherUniqueList = new UniquePersonList();
+        anotherUniqueList.add(
+                new Person(new Name("A"),
+                        new Phone("99998888"),
+                        new Email("abc@fmail.com"),
+                        new Address("123 street"),
+                        new Birthday("01/01/2000"),
+                        new HashSet<>(),
+                        new Loan("0"),
+                        new ArrayList<LoanHistory>()
+                )
+        );
+        assertThrows(UnsupportedOperationException.class, ()
+                -> anotherUniqueList.asUnmodifiableObservableList().remove(0));
     }
 }

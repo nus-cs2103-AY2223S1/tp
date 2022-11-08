@@ -1,26 +1,39 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.AddCommandParser;
+import seedu.address.logic.parser.AddNoteCommandParser;
+import seedu.address.logic.parser.CliSyntax;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.note.Note;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
+import seedu.address.testutil.NoteBuilder;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -48,6 +61,85 @@ public class AddCommandTest {
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+    }
+
+    @Test
+    public void execute_addPersonWithTag_addsTagIntoTagMapping() {
+        Model model = new ModelManager();
+        String tagName = "TagRemovedOnLastPerson";
+        String nameA = "personA";
+
+        assertFalse(model.getTagMapping().containsKey(tagName));
+
+        assertAll(() -> new AddCommandParser(model).parse(" "
+                        + CliSyntax.PREFIX_NAME + nameA + " "
+                        + CliSyntax.PREFIX_PHONE + PersonBuilder.DEFAULT_PHONE + " "
+                        + CliSyntax.PREFIX_ADDRESS + PersonBuilder.DEFAULT_ADDRESS + " "
+                        + CliSyntax.PREFIX_BIRTHDAY + PersonBuilder.DEFAULT_BIRTHDAY + " "
+                        + CliSyntax.PREFIX_EMAIL + PersonBuilder.DEFAULT_EMAIL + " "
+                        + CliSyntax.PREFIX_TAG + tagName + " ")
+                .execute(model));
+
+        assertTrue(model.getTagMapping().containsKey(tagName));
+        assertEquals(1,
+                model.getTagMapping()
+                        .get(tagName)
+                        .getDeepCopiedPersonList()
+                        .stream()
+                        .filter(p -> p.getName().fullName.equals(nameA))
+                        .count());
+    }
+
+    // Ensure that if a Person is added with a Tag that already exists in the address book, the
+    // Tag that the Person points to is the same object as the Tag that exists in the address book.
+    @Test
+    public void execute_addPersonWithTag_tagAlreadyExistsInTagMapping() throws Exception {
+        Model model = new ModelManager();
+        String tagName = "Operations";
+        model.addTag(new Tag(tagName));
+
+        assertAll(() -> new AddCommandParser(model).parse(" "
+                        + CliSyntax.PREFIX_NAME + PersonBuilder.DEFAULT_NAME + " "
+                        + CliSyntax.PREFIX_PHONE + PersonBuilder.DEFAULT_PHONE + " "
+                        + CliSyntax.PREFIX_EMAIL + PersonBuilder.DEFAULT_EMAIL + " "
+                        + CliSyntax.PREFIX_ADDRESS + PersonBuilder.DEFAULT_ADDRESS + " "
+                        + CliSyntax.PREFIX_BIRTHDAY + PersonBuilder.DEFAULT_BIRTHDAY + " "
+                        + CliSyntax.PREFIX_TAG + tagName + " ")
+                .execute(model));
+
+        List<Tag> listOfTagsFromPerson = new ArrayList<>(model.getAddressBook().getPersonList().get(0).getTags());
+        Tag tagFromPerson = listOfTagsFromPerson.get(0);
+        Tag tagFromTagMapping = model.getTagMapping().get(tagName);
+
+        assertSame(tagFromTagMapping, tagFromPerson);
+    }
+
+    // Tag being added already exists in UniqueTagMapping because a Note has it
+    @Test
+    public void execute_addPersonWithTag_tagAlreadyExistsInTagMappingDueToNote() throws Exception {
+        Model model = new ModelManager();
+        String tagName = "Operations";
+
+        assertAll(() -> new AddNoteCommandParser(model).parse(" "
+                        + CliSyntax.PREFIX_NOTES_TITLE + NoteBuilder.DEFAULT_TITLE + " "
+                        + CliSyntax.PREFIX_NOTES_CONTENT + NoteBuilder.DEFAULT_CONTENT + " "
+                        + CliSyntax.PREFIX_TAG + tagName)
+                .execute(model));
+
+        assertAll(() -> new AddCommandParser(model).parse(" "
+                        + CliSyntax.PREFIX_NAME + PersonBuilder.DEFAULT_NAME + " "
+                        + CliSyntax.PREFIX_PHONE + PersonBuilder.DEFAULT_PHONE + " "
+                        + CliSyntax.PREFIX_EMAIL + PersonBuilder.DEFAULT_EMAIL + " "
+                        + CliSyntax.PREFIX_ADDRESS + PersonBuilder.DEFAULT_ADDRESS + " "
+                        + CliSyntax.PREFIX_BIRTHDAY + PersonBuilder.DEFAULT_BIRTHDAY + " "
+                        + CliSyntax.PREFIX_TAG + tagName + " ")
+                .execute(model));
+
+        List<Tag> listOfTagsFromPerson = new ArrayList<>(model.getAddressBook().getPersonList().get(0).getTags());
+        Tag tagFromPerson = listOfTagsFromPerson.get(0);
+        Tag tagFromTagMapping = model.getTagMapping().get(tagName);
+
+        assertSame(tagFromTagMapping, tagFromPerson);
     }
 
     @Test
@@ -114,6 +206,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void addNote(Note note) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setAddressBook(ReadOnlyAddressBook newData) {
             throw new AssertionError("This method should not be called.");
         }
@@ -129,7 +226,17 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasNote(Note note) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deletePerson(Person target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteNote(Note target) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -139,12 +246,53 @@ public class AddCommandTest {
         }
 
         @Override
+        public void setNote(Note target, Note editedNote) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addTag(Tag tag) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void removeTag(Tag tag) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableMap<String, Tag> getTagMapping() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean notebookContainsTag(Tag tag) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Person> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
+        public ObservableList<Note> getFilteredNoteList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void filterPersonListByName(String preamble, String messageUsage, ParseException pe)
+                throws ParseException {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredNoteList(Predicate<Note> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
@@ -183,6 +331,11 @@ public class AddCommandTest {
         public void addPerson(Person person) {
             requireNonNull(person);
             personsAdded.add(person);
+        }
+
+        @Override
+        public ObservableMap<String, Tag> getTagMapping() {
+            return FXCollections.observableHashMap();
         }
 
         @Override

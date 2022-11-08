@@ -1,0 +1,31 @@
+@startuml
+start
+:User executes editNote command;
+
+:Parses the command;
+
+switch ()
+
+case ( [invalid] )
+  :Show parse
+  error message;
+
+case ([command given index/title])
+  :Executes editNote
+  command;
+
+  switch()
+  case ([valid index and descriptor])
+  :Edit note with
+  new details;
+
+  case ([else])
+  :Show invalid note
+  index error message;
+
+  endswitch
+
+
+endswitch
+stop
+@enduml

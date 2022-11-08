@@ -1,0 +1,56 @@
+@startuml
+start
+    :User Interface is loaded;
+repeat
+
+    switch ()
+
+    case ()
+        if () then ([User presses SPACE])
+            :CommandBox captures the event tied
+            to the space key;
+        else ([User clicks on the CommandBox])
+        endif
+        :ResultDisplay opacity increases
+        from 0 to 0.8 over the period of 0.3 seconds;
+        :User types in command;
+        :User presses the enter button;
+
+        if ()
+            ->[User typed in "exit"]                        ;
+            stop
+        else ()
+            :Execute command;
+        endif
+
+    case ([User clicks on anywhere outside of CommandBox])
+        if () then ([ResultDisplay is shown])
+            :ResultDisplay opacity is reduced from
+            0.8 to 0 over a period of 0.3 seconds;
+        else ([ResultDisplay is hidden])
+        endif
+
+    case (  [User clicks on any PersonCard])
+        :Selection Model of the ListView of Persons
+        is updated to the selected person;
+        :Inspection Panel captures the change in
+        Selection Model;
+        :Inspection Panel updates the labels with the
+        selection Person's particulars;
+
+    endswitch
+
+
+    'Since the beta syntax does not support placing the condition outside the
+    'diamond we place it as the true branch instead.
+
+    if () then ([valid command])
+        :ResultDisplay shows command result message;
+        :UI updates state based on UIState and arguments passed;
+    else ([else])
+        :ResultDisplay shows invalid command result message;
+    endif
+    repeat while (more commands?) is ([yes])
+    ->[User presses the cross icon on the window];
+stop
+@enduml

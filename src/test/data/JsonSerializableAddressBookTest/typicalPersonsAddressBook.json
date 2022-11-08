@@ -5,42 +5,64 @@
     "phone" : "94351253",
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
-    "tagged" : [ "friends" ]
+    "birthday": "02/02/2000",
+    "tagged" : [ "friends" ],
+    "loan": "0.0",
+    "history" : [ ]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
-    "tagged" : [ "owesMoney", "friends" ]
+    "birthday": "01/01/2000",
+    "tagged" : [ "owesMoney" ],
+    "loan": "0.0",
+    "history" : [ ]
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "address" : "wall street",
-    "tagged" : [ ]
+    "birthday": "03/03/2000",
+    "tagged" : [ ],
+    "loan": "0.0",
+    "history" : [ ]
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "address" : "10th street",
-    "tagged" : [ "friends" ]
+    "birthday": "11/11/2000",
+    "tagged" : [ "friends" ],
+    "loan": "0.0",
+    "history" : [ ]
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "email" : "werner@example.com",
     "address" : "michegan ave",
-    "tagged" : [ ]
+    "birthday": "04/04/2000",
+    "tagged" : [ ],
+    "loan": "-10.0",
+    "history" : [ ]
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "address" : "little tokyo",
-    "tagged" : [ ]
+    "birthday": "05/05/2000",
+    "tagged" : [ ],
+    "loan": "50.0",
+    "history" : [ ]
   }, {
     "name" : "George Best",
     "phone" : "9482442",
     "email" : "anna@example.com",
     "address" : "4th street",
-    "tagged" : [ ]
-  } ]
+    "birthday": "06/06/2000",
+    "tagged" : [ ],
+    "loan": "0.0",
+    "history" : [ ]
+  } ],
+  "tags": [ "friends", "owesMoney" ]
 }
