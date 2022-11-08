@@ -19,7 +19,7 @@ public class PrimaryParser extends CommandParser<Command> {
         try {
             taskType = PrimaryCommand.valueOf(commandWord.toUpperCase());
         } catch (IllegalArgumentException e) {
-            throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
+            throw new ParseException(String.format(Messages.MESSAGE_UNKNOWN_COMMAND, Command.MESSAGE_USAGE));
         }
         return taskType.runParseFunction(args);
     }

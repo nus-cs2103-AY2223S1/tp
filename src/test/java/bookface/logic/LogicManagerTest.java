@@ -1,7 +1,6 @@
 package bookface.logic;
 
 import static bookface.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
-import static bookface.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static bookface.testutil.Assert.assertThrows;
 import static bookface.testutil.TypicalPersons.AMY;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -13,6 +12,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import bookface.commons.core.Messages;
+import bookface.logic.commands.Command;
 import bookface.logic.commands.CommandResult;
 import bookface.logic.commands.CommandTestUtil;
 import bookface.logic.commands.exceptions.CommandException;
@@ -51,7 +52,7 @@ public class LogicManagerTest {
     @Test
     public void execute_invalidCommandFormat_throwsParseException() {
         String invalidCommand = "uicfhmowqewca";
-        assertParseException(invalidCommand, MESSAGE_UNKNOWN_COMMAND);
+        assertParseException(invalidCommand, String.format(Messages.MESSAGE_UNKNOWN_COMMAND, Command.MESSAGE_USAGE));
     }
 
     @Test
