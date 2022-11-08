@@ -27,13 +27,13 @@ public class EditBookCommand extends EditCommand {
                     + "[" + PREFIX_AUTHOR + "AUTHOR] [" + PREFIX_TITLE + "TITLE]...", COMMAND_WORD
                     + " t/The Broken House");
 
-    public static final String MESSAGE_EDIT_BOOK_SUCCESS = "Edited User: %1$s";
+    public static final String MESSAGE_EDIT_BOOK_SUCCESS = "Edited Book: %1$s";
 
     private final Index index;
     private final EditBookDescriptor editBookDescriptor;
 
     /**
-     * @param index              of the book in the filtered user list to edit
+     * @param index the book index in the filtered book list to edit
      * @param editBookDescriptor details to edit the book with
      */
     public EditBookCommand(Index index, EditBookDescriptor editBookDescriptor) {
@@ -97,8 +97,8 @@ public class EditBookCommand extends EditCommand {
     }
 
     /**
-     * Stores the details to edit the user with. Each non-empty field value will replace the
-     * corresponding field value of the user.
+     * Stores the details to edit the book with. Each non-empty field value will replace the
+     * corresponding field value of the book.
      */
     public static class EditBookDescriptor {
         private Author author;
@@ -109,7 +109,6 @@ public class EditBookCommand extends EditCommand {
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
          */
         public EditBookDescriptor(EditBookDescriptor toCopy) {
             setTitle(toCopy.title);
@@ -124,8 +123,7 @@ public class EditBookCommand extends EditCommand {
         }
 
         /**
-         * Returns an unmodifiable book arraylist, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
+         * Returns the Author of the {@code Book}
          * Returns {@code Optional#empty()} if {@code book} is null.
          */
         public Optional<Author> getAuthor() {
@@ -133,16 +131,14 @@ public class EditBookCommand extends EditCommand {
         }
 
         /**
-         * Sets {@code book} to this object's {@code book}.
-         * A defensive copy of {@code book} is used internally.
+         * Sets the author of the {@code book} to this object's {@code book} author.
          */
         public void setAuthor(Author author) {
             this.author = author;
         }
 
         /**
-         * Returns an unmodifiable book arraylist, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
+         * Returns the Title of the {@code Book}
          * Returns {@code Optional#empty()} if {@code book} is null.
          */
         public Optional<Title> getTitle() {
@@ -150,8 +146,7 @@ public class EditBookCommand extends EditCommand {
         }
 
         /**
-         * Sets {@code book} to this object's {@code book}.
-         * A defensive copy of {@code book} is used internally.
+         * Sets the Title of the {@code Book} to this object's {@code book} title.
          */
         public void setTitle(Title title) {
             this.title = title;

@@ -52,7 +52,7 @@ public class ArgumentTokenizer {
      */
     private static List<PrefixPosition> findPrefixPositions(String argsString, Prefix prefix) throws ParseException {
         List<PrefixPosition> positions = new ArrayList<>();
-        boolean isMultipleAllowed = PREFIXES_MULTIPLE_ALLOWED.contains(prefix);
+        boolean isMultipleAllowed = PREFIXES_MULTIPLE_ALLOWED.get(0) == prefix;
 
         int prefixPosition = findPrefixPosition(argsString, prefix.getPrefix(), 0);
         while (prefixPosition != -1) {
