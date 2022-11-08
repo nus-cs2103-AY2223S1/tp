@@ -94,6 +94,7 @@ public class Book {
      */
     public void markBookAsReturned() {
         this.loanee = null;
+        this.returnDate = null;
     }
 
     /**

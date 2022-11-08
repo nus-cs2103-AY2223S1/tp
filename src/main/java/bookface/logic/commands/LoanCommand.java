@@ -25,7 +25,7 @@ public class LoanCommand extends Command {
             + " user identified by the index number in user list from the book identified by the index number in book"
             + " list", "USER_INDEX (must be a positive integer), BOOK_INDEX (must be a "
             + "positive integer), [DUE_DATE] (refer to User Guide for valid date formats)",
-            COMMAND_WORD + " 3 2 [2022-10-30]");
+            COMMAND_WORD + " 3 2 2022-10-30");
 
     public static final String MESSAGE_LOAN_SUCCESS = "User %1$s loaned book %2$s. (Due date: %3$s)";
 

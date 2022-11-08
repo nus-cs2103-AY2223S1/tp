@@ -130,8 +130,8 @@ public class BookFace implements ReadOnlyBookFace {
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
 
-        persons.setPerson(target, editedPerson);
         updateLoanAssociationForEditedPerson(target, editedPerson);
+        persons.setPerson(target, editedPerson);
         books.refreshBookListAfterEditingPerson(editedPerson);
     }
 
@@ -143,8 +143,8 @@ public class BookFace implements ReadOnlyBookFace {
     public void setBook(Book target, Book editedBook) {
         requireNonNull(editedBook);
 
-        books.setBook(target, editedBook);
         updateLoanAssociationForEditedBook(target, editedBook);
+        books.setBook(target, editedBook);
         persons.refreshUserListAfterOperationOnBook(editedBook);
     }
 
