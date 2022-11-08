@@ -7,9 +7,15 @@ title: User Guide
     <img src="images/LTNS_logo.png" width="200" height="200">
 </p>
 
-Long Time No See (LTNS) is a  **comprehensive desktop app built for financial advisors to manage their clients' financial policies and events**. It is optimized for use via a **[Command Line Interface](#command-line-interface-cli) (CLI)** while still having the benefits of an intuitive and minimalistic **[Graphical User Interface](#graphic-user-interface-gui) (GUI)**. With all the essential tools packed into one app, LTNS will enable you to streamline your financial advising journey immediately!
+Hello there! Long Time No See! Having stumbled upon this user guide, you are likely a financial advisor looking for easier life, well, at financial advising! Look no further, as the LongTimeNoSee (LTNS) app is just the right tool you need!
 
-This document is the official user guide of the Long Time No See (LTNS) app. This guide serves as an introduction to LTNS and a help menu should you have any doubts while using the app.
+With LTNS, gone are the days of frantically searching through stacks and stacks of paper, just for that one client information! All you have to do, is simply type a few words into our revolutionary **[Command Line Interface](#command-line-interface-cli) (CLI)** and voilà! The information you need appears right in front of you, it's that easy!
+
+Furthermore, LTNS is not just any other tool, it is a smart tool. Having surveyed countless financial advisors, we sympathize with your needs of something, not just to manage clients, but policies and even events! Therefore, LTNS strategically revolves around three stunning features! You've probably guessed it, they are **client, policy and event management!** Exactly the tools you need to be the best financial advisor out there. 
+
+So, what are you waiting for? Start revolutionizing your financial advising journey [here](#tutorial)!
+
+P.S. This document is the official user guide of the Long Time No See (LTNS) app. This guide serves as an introduction to LTNS and a help menu should you have any doubts while using the app.
 
 # Table of Contents
 1. [Quickstart](#quick-start)
@@ -135,7 +141,7 @@ Like all things, learning can take some time, but you'll soon realise that each 
 
 --------------------------------------------------------------------------------------------------------------------
 
-# Features
+# Features Overview
 
 **Long Time No See (LTNS)** allows you to track your clients, policies and events.
 As such, the features available to you are split into **4** main features:
@@ -148,11 +154,11 @@ As such, the features available to you are split into **4** main features:
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the [parameters](#parameter) to be supplied by the user.<br>
+* Words in `UPPER_CASE` are the [parameters](#parameter) by the user.<br>
   e.g. in `addClient n/NAME`, `NAME` is a parameter which can be used as `addClient n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or `n/John Doe`.
 
 * Items with `…` after them can be used multiple times.<br>
   e.g. `[t/TAG]…​` can be used as `​` (i.e. 0 times).<br>
@@ -161,7 +167,7 @@ As such, the features available to you are split into **4** main features:
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected once in the command, but has been specified multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
@@ -171,13 +177,15 @@ As such, the features available to you are split into **4** main features:
 
 </div>
 
-#### __________________________________________________________________________
+#### _______________________________________________________________________________________________________________________________________________________________________________
 
 ## Common Features
 
+#### __________________________
+
 ### Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+Help! I have no idea what's going on? When in doubt, just type `help` and help is on the way! Upon entering `help`, LTNS shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -187,9 +195,11 @@ Example Usage: `help`
 
 Example Result: Help message pop up appears
 
+#### __________________________
+
 ### Clearing all entries : `clear`
 
-Clears all data from your application. 
+Are you sure you want to do this? This clears all data from your application. 
 
 <div markdown="span" class="alert alert-primary">:warning: **Warning:**
 This action is irreversible! 
@@ -202,9 +212,11 @@ Example Usage: `clear`
 
 Example Result: Clears all Application data.
 
+#### __________________________
+
 ### Exiting the program : `exit`
 
-Exits the program.
+Take a break! Financial advisors are people too! This exits the program.
 
 Format: `exit`
 
@@ -212,11 +224,17 @@ Example Usage: `exit`
 
 Example Result: Exits the app
 
+#### __________________________
+
 ### Saving the data
 
-LTNS application data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Don't worry! LTNS application data is saved in the hard disk automatically after any command that changes the data. You don't have to do anything!
 
-### Editing the data file
+#### __________________________
+
+### Editing the data file (For the pros)
+
+Psst! Wondering if you can do more? You could edit the data files straight away to mass edit client data! But, with great power comes great responsibility, use it carefully!
 
 LTNS application data is saved as a [JSON](#json-file) file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
@@ -231,9 +249,11 @@ Below is an example of what your JSON File should look like:
 If your changes to the data file makes its format invalid, LTNS will discard all data and start with an empty data file at the next run.
 </div>
 
-
+#### _______________________________________________________________________________________________________________________________________________________________________________
 
 ## Client Features
+
+#### __________________________
 
 ### Adding a client : `addClient`
 
@@ -281,6 +301,8 @@ Example Usage:
 * `addClient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01, b/2000-05-05 i/5000.0 ra/L` adds John Doe into the LTNS.
 * `addClient n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal b/1920-05-06 i/1000000 ra/H` adds Betsy Crowe into the LTNS.
 
+#### __________________________
+
 ### Switching to the view of currently listed clients : `clients`
 Switches the display to show the current list of clients.
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -295,6 +317,8 @@ Format: `clients`
 
 Example Usage: `clients`
 
+#### __________________________
+
 ### Listing all clients : `allClients`
 
 Shows a list of all clients in the LTNS, without any filters.
@@ -302,6 +326,8 @@ Shows a list of all clients in the LTNS, without any filters.
 Format: `allClients`
 
 Example Usage: `allClients`
+
+#### __________________________
 
 ### Editing a client : `editClient`
 
@@ -320,6 +346,8 @@ Example Usage:
 *  `editClient 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client to be `91234567` and `johndoe@example.com` respectively.
 *  `editClient 2 n/Betsy Crower t/` Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags.
 *  `editClient 3 b/2000-01-01` Edits the birthday of the 3rd client to be the 1st January 2000.
+
+#### __________________________
 
 ### Searching for Clients : `findClient`
 
@@ -362,6 +390,8 @@ Example Usage:
 Below is an example of what you will expect to see when you call `findClient n/alex`:
 ![findClientExample](./images/findClientExample.png)
 
+#### __________________________
+
 ### Deleting a client : `deleteClient`
 
 Deletes the specified client from the LTNS.
@@ -375,6 +405,8 @@ Format: `deleteClient CLIENT_INDEX`
 Example Usage:
 * `allClients` followed by `deleteClient 2` deletes the 2nd client in the LTNS.
 * `findClient n/Betsy` followed by `deleteClient 1` deletes the 1st Client in the results of the `findClient` command.
+
+#### __________________________
 
 ### Sorting all Clients : `sort`
 
@@ -412,6 +444,8 @@ Below is an example of what you will expect to see when you call `sort email`:
 
 ![SortEmailExample](./images/SortEmailExample.png)
 
+#### __________________________
+
 ### Pin a Client: `pin`
 Allows pin and unpin of important clients to be viewed separately with command `viewPin`
 * Format: `pin INDEX` <br>
@@ -419,12 +453,19 @@ Allows pin and unpin of important clients to be viewed separately with command `
 Example Usage:
 * `pin 1` pins the first client on list
 
+#### __________________________
+
 ### Assigning a Client to an Event/Policy 
 An existing client in your Client list can be assigned to an Event or Policy.<br>
 To find out how to do so, you can refer to the [Adding an Event](#adding-an-event-addevent) guide to assign a Client to an Event or refer to the [Assigning a Policy to a Client](#assigning-a-policy-to-a-client--assign) guide to find out how you can assign a Client to a Policy.
 
+#### _______________________________________________________________________________________________________________________________________________________________________________
+
 ## Policy Features
+
 Store policies from a large assortment of companies, with different coverages and customisable yearly commissions! Assign them to a client when you secure a deal with ease.
+
+#### __________________________
 
 ### Adding a policy : `addPolicy`
 
@@ -478,6 +519,7 @@ Example Usage:
 * `addPolicy ti/PruShield cmp/PRU cms/10% 5% 1% cov/LIFE`
 * `addPolicy ti/ManuInvest Duo cmp/MNF cms/6% 3% 1.5% cov/INVESTMENT cov/LIFE`
 
+#### __________________________
 
 ### Switching to the view of currently listed policies : `policies`
 Switches the display to show the current list of policies.
@@ -496,7 +538,7 @@ Example Usage: `policies`
 Example Result: Shows the currently listed policies on the screen.
 ![Policies](./images/policies.png)
 
-
+#### __________________________
 
 ### Viewing all policies: `allPolicies`
 Switches the display to show **all** the policies stored.
@@ -516,6 +558,7 @@ Example Usage:
 * `allPolicies` followed by `deletePolicy 2` deletes the 2nd policy in LTNS.
 * `findPolicy ti/PruShield` followed by `deletePolicy 1` deletes the 1st policy in the results of the `findPolicy` command.
 
+#### __________________________
 
 ### Searching for a Policy : `findPolicy`
 
@@ -540,6 +583,8 @@ Example Usage:
 * `findPolicy cov/LIFE cov/HEALTH` returns policies that cover both `LIFE` and `HEALTH`
 * `findPolicy cmp/PRU` returns policies that belong to `Prudential Assurance Company`
 * `findPolicy ti/Shield cov/LIFE` returns polices with `Shield` in its title and covers the `LIFE` coverage type
+
+#### __________________________
 
 ### Assigning a Policy to a Client : `assign` 
 
@@ -569,6 +614,8 @@ first client in the list from Step 2, with the following details:
   2. Start date of 10th October 2010
   3. End date of 12th October 2021
 
+#### __________________________
+
 ### Listing out policies assigned to a client : `listAssigned`
 
 If you'd like to recall which policies a client has taken up, this command lists out the policies 
@@ -581,6 +628,8 @@ Example Usage:
 1. `findClient n/John Doe` to filter the list of clients to find `John Doe`.
 2. `listAssigned 1` to list out the policies assigned to the first client in the list from Step 1.
 
+#### __________________________
+
 ### Deleting assigned policies from a client : `deleteAssigned`
 
 Unfortunate, but it happens. If a client cancels their policy prematurely, reflect the deletion of their assigned policy
@@ -591,6 +640,8 @@ Format: `deleteAssigned CLIENT_INDEX ASSIGNED_POLICY_INDEX`
 Example Usage:
 1. Similar to [listAssigned](#listing-out-policies-assigned-to-a-client--listassigned), filter the list for the desired client and find out which policies they have been assigned to.
 2. `deleteAssigned 1 1` to delete the first assigned policy in the assigned policy list from Step 1, of the first client obtained from filtering the client list.
+
+#### __________________________
 
 ### Tracking your Income  : `viewIncome`
 
@@ -609,6 +660,8 @@ Example Usage:
 ![result for 'viewIncome 2000'](images/viewIncome.png)
 
 (Result after typing the command `viewIncome 2000`, which displays three year expected income starting from year 2000)
+
+#### _______________________________________________________________________________________________________________________________________________________________________________
 
 ## Event Features
 
@@ -643,6 +696,7 @@ If you have not added this Client to your Client list, you can refer to the [Add
 * Example Usage: `addEvent desc/CS101 Consultation n/Ben Leong date/2023-01-01 st/12:00 et/13:00`
 * Example Result: add an event with `Ben Leong` from `12:00` to `13:00` for the `1st January 2023` for a CS101 consultation.
 
+#### __________________________
 
 ### Deleting an Event: `deleteEvent`
 
@@ -653,6 +707,8 @@ Format: `deleteEvent EVENT_INDEX`
 
 * Example Usage: `deleteEvent 2`
 * Example Result: deletes the 2nd event from the list.
+
+#### __________________________
 
 ### Switching to the view of currently listed events : `events`
 Switches the display to show the current list of events
@@ -668,6 +724,8 @@ Format: `events`
 
 Example Usage: `events`
 
+#### __________________________
+
 ### Viewing all Events : `allEvents`
 
 This allows you to view all Events that have been previously added.
@@ -679,7 +737,7 @@ Example Results: Lists all events added to the app, automatically sorted in chro
 
 ![result for 'allEventsSample'](images/allEventsSample.png)
 
-
+#### __________________________
 
 ### Searching for an Event : `findEvent`
 
@@ -706,11 +764,15 @@ Example Usage:
 * `findEvent date/2022-12-30` returns all events which occurs on `30th December 2022`
 * `findEvent n/Alice date/2022-11-15` returns all events for which participant name contains `Alice` and occurs on `15th November 2022`
 
+#### __________________________
+
 ### Viewing all Events in the next 7 days : `calendar`
 
 This allows you to view all Events that you have in the next 7 days, allowing you to keep track of any upcoming important appointments you have scheduled. 
 
 Format: `calendar`
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
@@ -767,8 +829,11 @@ A: Fret not! Simply [reach out to us](#contact-us), and we will reply within thr
 | Start time          | st/    | - Only valid time inputs of the HH:mm format are allowed. e.g `23:59`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | End time            | et/    | - Only valid time inputs of the HH:mm format are allowed. e.g `23:59` <br/> - Should be later than the associated start time                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 
+--------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
+
+What's a guide without a summary? Here you go! Everything you need, summarised into one section!
 
 ### General Commands
 
@@ -829,6 +894,8 @@ Note: `allEvents` shows all existing events inside LTNS, while `events` show all
 * For better clarity, `INDEX` has been placed in parentheses to denote clearly which index is being referred to (either CLIENT, POLICY or EVENT). At the same time, it is compulsory to include `INDEX`.
   <br> E.g: `(INDEX of EVENT)` refers to index from a list of events.
 
+--------------------------------------------------------------------------------------------------------------------
+
 ## Glossary 
 
 #### Parameter
@@ -855,6 +922,7 @@ A standard of measurement. In the case of LTNS, a metric in sorting or searching
 #### Income Bracket
 Various income level ranges categorised by levels. LTNS uses the Inland Revenue Authority of Singapore's (IRAS) measurement of an income bracket.
 
+--------------------------------------------------------------------------------------------------------------------
 
 ## Contact Us 
 You may contact us at the following email: `e0725346@u.nus.edu`
