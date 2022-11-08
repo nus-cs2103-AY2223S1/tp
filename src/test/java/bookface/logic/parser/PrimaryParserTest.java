@@ -1,7 +1,6 @@
 package bookface.logic.parser;
 
 import static bookface.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static bookface.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static bookface.testutil.Assert.assertThrows;
 import static bookface.testutil.TestUtil.preparePredicateToCheckPersonForPartialWordIgnoreCase;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -12,6 +11,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import bookface.commons.core.Messages;
 import bookface.logic.commands.ClearCommand;
 import bookface.logic.commands.Command;
 import bookface.logic.commands.ExitCommand;
@@ -112,6 +112,7 @@ public class PrimaryParserTest {
 
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parse("unknownCommand"));
+        assertThrows(ParseException.class, String.format(Messages.MESSAGE_UNKNOWN_COMMAND,
+                Command.MESSAGE_USAGE), () -> parser.parse("unknownCommand"));
     }
 }

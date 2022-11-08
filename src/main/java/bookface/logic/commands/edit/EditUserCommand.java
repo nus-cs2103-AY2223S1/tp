@@ -176,9 +176,9 @@ public class EditUserCommand extends EditCommand {
         }
 
         /**
-         * Returns an unmodifiable book arraylist, which throws {@code UnsupportedOperationException}
+         * Returns an unmodifiable book set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code book} is null.
+         * Returns {@code Optional#empty()} if {@code loanedBooks} is null.
          */
         public Optional<Set<Book>> getLoanedBooks() {
             return (loanedBooks != null) ? Optional.of(Collections.unmodifiableSet(loanedBooks)) : Optional.empty();
