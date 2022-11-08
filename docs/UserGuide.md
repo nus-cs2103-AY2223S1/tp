@@ -65,6 +65,8 @@ This document is the official user guide of the Long Time No See (LTNS) app. Thi
 
 5. Not sure where to start? The following section is a detailed Tutorial on how to use the Application. Feel free to [skip](#features) this section if you are confident in using the application.
 
+
+
 ## Tutorial 
 
 Welcome to the LongTimeNoSee Tutorial! Here we will guide you through your journey of learning how to use your App!
@@ -168,6 +170,8 @@ As such, the features available to you are split into **4** main features:
 * Click [here](#command-format-table) for a list of all possible parameters and their constraints
 
 </div>
+
+#### __________________________________________________________________________
 
 ## Common Features
 
