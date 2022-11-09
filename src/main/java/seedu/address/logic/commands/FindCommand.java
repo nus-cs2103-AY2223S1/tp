@@ -46,12 +46,12 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public String getParameter() {
+    public String getParameters() {
         return PARAMETER;
     }
 
     @Override
-    public String getExample() {
+    public String getExamples() {
         return EXAMPLE;
     }
 

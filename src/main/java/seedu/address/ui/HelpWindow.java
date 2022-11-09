@@ -174,8 +174,8 @@ public class HelpWindow extends UiPart<Stage> {
         try {
             Command commandInstance = commandClass.getDeclaredConstructor().newInstance();
             desc.setText(commandInstance.getDescription());
-            param.setText(commandInstance.getParameter());
-            ex.setText(commandInstance.getExample());
+            param.setText(commandInstance.getParameters());
+            ex.setText(commandInstance.getExamples());
         } catch (InvocationTargetException | NoSuchMethodException
                  | InstantiationException | IllegalAccessException e) {
             logger.warning("Unable to set help labels");
