@@ -667,47 +667,65 @@ Example Usage:
 
 ## Event Features
 
+Great job making it past the Client and Policy features! Just one more to go, and you're all set
+
+Now, you've added a bunch of clients, but how do you <B> track appointments </B> with them?
+
+Fret not! Our handy app let's you track `Events` with clients! 
+
 #### __________________________
 
 ### Adding an Event: `addEvent`
+Adds an `Event` into the address book.
 
-Find a detailed explanation of different input restrictions [here](#command-format-table).
 
-An `Event` represents an appointment with an existing Client. It has the duration (represented by the start and end time) and
-the date of the appointment. It also has a handy description to briefly describe the contents of the meeting.
+An `Event` consists of four primary indicators. Think of it like any event, you'd want to know the "Who", "What", "When"!
 
-Never miss another meeting today!
+1. <B>Who</B>: The `name` of the client you are about to meet!
+2. <B>What</B>: A short `description` of the event. This could be anything you'd like, from the location of the event, to some short meeting notes.
+3. <B>When</B>: The `date` and `duration` of the event.
+
 
 Format: `addEvent desc/EVENT_DESCRIPTION n/CLIENT_NAME date/EVENT_DATE st/START_TIME et/END_TIME`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-    START_TIME must be chronologically before END_TIME. All times are in the format: `HH:MM`.
-</div>
+Oh no... what's all this? For more details, find a detailed explanation of different input restrictions [here](#command-format-table).
 
+For any event in LTNS, the client specified by your event should already be present in the app.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-    EVENT_DATE follows a standard date format for our app (i.e: YYYY-MM-DD).
-</div>
+Let's ensure you have `Ben Leong` in your app before continuing on. Do refer to [Adding a Client](#adding-a-client--addclient) if you need a refresher
 
+Now, let's add `Ben Leong`. In the command box, simply enter the `addClient` command as follows: 
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-    CLIENT_NAME indicates the name of a valid client within the Client List. All Events must be tagged to a single client.
-</div>
+`addClient p/98765432 n/Ben Leong e/dcsbenleong@example.com a/Com3 b/2000-01-01 i/90000.0 ra/M`
 
-If you have not added this Client to your Client list, you can refer to the [Adding a Client](#adding-a-client--addclient) guide to add your Client first.
+Not to worry about the specifics of Prof Ben, we just want to ensure a client named `Ben Leong` exists within the app. 
 
+Now, we're ready to add the event proper.
 
 * Example Usage: `addEvent desc/CS101 Consultation n/Ben Leong date/2023-01-01 st/12:00 et/13:00`
 * Example Result: add an event with `Ben Leong` from `12:00` to `13:00` for the `1st January 2023` for a CS101 consultation.
+
+If all's good, you should see the following command result at the top of your screen.
+
+![result for adding Ben Leong event](images/addEventResult.JPG)
+
+If not, not to worry! Just match the error message you've gotten with our helpful [Frequently Asked Questions](#faq) section.
 
 #### __________________________
 
 ### Deleting an Event: `deleteEvent`
 
-Deletes the event at the specified `EVENT_INDEX`. The index refers to the index number shown in the displayed event list.
-The index **must be a positive integer** 1, 2, 3, …​
+Deletes the event at the specified `EVENT_INDEX`. 
+
+Oh my, you've keyed in an event wrongly! Well, it happens to the best of us...
+
+Fret not! With LTNS, you can easily delete events by specifying it's index.
 
 Format: `deleteEvent EVENT_INDEX`
+
+The index refers to the index number shown in the displayed event list.
+The index **must be a positive integer** 1, 2, 3, …​
+
 
 * Example Usage: `deleteEvent 2`
 * Example Result: deletes the 2nd event from the list.
@@ -716,13 +734,26 @@ Format: `deleteEvent EVENT_INDEX`
 
 ### Switching to the view of currently listed events : `events`
 Switches the display to show the current list of events
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-If you previously filtered the event list and switched to view policy/income, this command will allow you to return to the filtered list of events. 
-</div>
+
+Hey, I'm on another page and I want a quick glance at my current events. How do I switch back and forth quickly?
+
+Well this is the command for you!
+If you previously filtered the event list ([via an event search](#searching-for-an-event--findevent)) and switched to view to other lists, this command will allow you to <B> come straight back to the filtered event list </B>
+
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-If you wish to view the **full** list of events, you may do so with the command `allEvents`. 
+If you wish to view the **full** list of events, you may do so with the command `allEvents`. In fact, it's right next up! 
 </div>
+
+For a quick illustration, suppose I've previously searched for all events with `Ben Leong` [via an event search](#searching-for-an-event--findevent)
+
+Now, imagine I'm viewing my income currently, and I'm on this page
+
+![result for 'viewIncome 2000'](images/viewIncome.png)
+
+By doing the `events` command, I'm immediately brought back to my previously filtered event list.
+
+![result for find event](images/findEventsSwitchTab.png)
 
 Format: `events`
 
@@ -731,50 +762,72 @@ Example Usage: `events`
 #### __________________________
 
 ### Viewing all Events : `allEvents`
+Switches the display to show all events in LTNS
 
-This allows you to view all Events that have been previously added.
-* Note that events are automatically sorted in chronological order.
+
+Need to view every single event you've added? Well, look no further!
+
+This command helps you to view all events you've added. The format is simply as follows
 
 Format: `allEvents` <br>
-Example Usage: `allEvents` <br>
-Example Results: Lists all events added to the app, automatically sorted in chronological order.
 
+
+Example Usage: `allEvents` <br>
+Example Result: Lists all events added to the app, automatically sorted in chronological order.
+
+Here's an example result
 ![result for 'allEventsSample'](images/allEventsSample.png)
 
 #### __________________________
 
 ### Searching for an Event : `findEvent`
-
 Search for events based on certain [metrics](#metric)
 
-Format: `findEvent [desc/EVENT_DESCRIPTION] [n/NAME] [date/EVENT_DATE]`
+So, you've added tons of events. Now, I just need to find that one event happening tomorrow... 
+
+Easy! Just specify the appropriate [metrics](#metric), and LTNS will do the work for you. You can specify multiple metrics if you want your search to be more specific
 
 <div markdown="span" class="alert alert-primary">:information_source: **Note:**
 At least one metric has to be specified for the command to be valid
 </div>
 
-The following table illustrates the details of each metric and their search range:
+For a full list of the details of each metric and their search ranges, click [here!](#findevent-detailed-specifications) 
 
-| Metric                                                                     | Prefix | Search range                                                                                                                                                                                                                                                                                                                                                                                            |
-|----------------------------------------------------------------------------|--------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Event Description                                                          | desc/  | - The search is case-insensitive. e.g `Meeting to discuss plans` will match `meeting to discuss plans`<br/> - Only full phrases will be matched e.g. `Meeting to discuss plans` will not match `Plans`<br/> - Only events for which description contains the complete specified phrase will be listed. <br/> e.g. `discuss plans` will return `Meeting to discuss plans` and `Discuss plans`            |
-| Name<br/><br/> Note: Name here refers to the name of the event participant | n/     | - The search is case-insensitive. e.g `John` will match `john`<br/> - The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`<br/> - Only full words will be matched e.g. `Han` will not match `Hans`<br/> - Events with the participant name containing at least one keyword will be listed. <br/> e.g. `Hans Bo` will return events which involve `Hans Gruber` or `Bo Yang`   |
-| Event Date                                                                 | date/  | - Only events which occur on the specified date will be listed                                                                                                                                                                                                                                                                                                                                          |
+Format: `findEvent [desc/EVENT_DESCRIPTION] [n/NAME] [date/EVENT_DATE]`
+
 
 Example Usage:
 
 * `findEvent desc/coffee break meeting` returns events `morning coffee break meeting` and `afternoon coffee break meeting`
-* `findEvent n/Bernice` returns all events for which participant name contains `Bernice`
 * `findEvent date/2022-12-30` returns all events which occurs on `30th December 2022`
 * `findEvent n/Alice date/2022-11-15` returns all events for which participant name contains `Alice` and occurs on `15th November 2022`
+
+Let's take a look at one example
+* `findEvent n/Clement Tan date/2022-10-10` returns all events with `Clement Tan` on `10th October, 2022`.
+
+Here's the result
+
+![result for 'findEvent'](images/findEventSuccessful.png)
 
 #### __________________________
 
 ### Viewing all Events in the next 7 days : `calendar`
+Views all events in the next 7 days.
 
-This allows you to view all Events that you have in the next 7 days, allowing you to keep track of any upcoming important appointments you have scheduled. 
+One of the highlights of our app, the `calendar` function shows all events you have in the next 7 days
+
+As usual, it's sorted in chronological order, for you to prioritize what's coming up the soonest
+
+Now, your immediately schedule is literally one word away
 
 Format: `calendar`
+
+Sample Result:
+
+Note that at the time of writing, the current date is `November 9, 2022`.
+
+Hence, we display all events from `November 9, 2022 - November 16, 2022`.
+![result for 'calendar'](images/viewCalendarSuccessful.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -827,11 +880,11 @@ A: Fret not! Simply [reach out to us](#contact-us), and we will reply within thr
 | Commission          | cms/   | - Has to be in the format of (Y1COMMISSION)% (Y2COMMISSION)% (Y3ONWARDS)%, where the commission values and the brackets are to be replaced with numeric values between 0 and 100 inclusive, with up to 5 decimals.                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | Premium             | pr/    | - Only positive numbers below 1000000000, with or without 2 decimal places are allowed                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 | Start date          | sd/    | - Only valid date inputs of the YYYY-MM-DD format are allowed. e.g `2020-12-30`<br/> - Only dates that fall between the 20th and 21th century are allowed (i.e between the years 1900 and 2100)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| End date            | ed/    | - Only valid date inputs of the YYYY-MM-DD format are allowed. e.g `2020-12-30`<br/> - Only dates that fall between the 20th and 21th century are allowed (i.e between the years 1900 and 2100) <br/> - Should be later than the associated start date                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| End date            | ed/    | - Only valid date inputs of the YYYY-MM-DD format are allowed. e.g `2020-12-30`<br/> - Only dates that fall between the 20th and 21th century are allowed (i.e between the years 1900 and 2100) <br/> - One small note: The end date should come <B>after</B> start time! We haven't invented time travel as of the writing of this guide                                                                                                                                                                                                                                                                                                                                                      |
 | Event Description   | desc/  | - Only alphanumeric characters and spaces can be specified, and it should not be blank<br/> - Only a maximum of 175 characters is allowed                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | Event Date          | date/  | - Only valid date inputs of the YYYY-MM-DD format are allowed. e.g `2020-12-30`<br/> - Only dates that fall between the 20th and 21th century are allowed (i.e between the years 1900 and 2100)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | Start time          | st/    | - Only valid time inputs of the HH:mm format are allowed. e.g `23:59`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| End time            | et/    | - Only valid time inputs of the HH:mm format are allowed. e.g `23:59` <br/> - Should be later than the associated start time                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| End time            | et/    | - Only valid time inputs of the HH:mm format are allowed. e.g `23:59` <br/> - Should be later than the associated start time <br/> -- One small note: Similar to adding dates, the end time must come after start time!                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -866,33 +919,50 @@ Note: `allClients` shows all existing clients inside LTNS, while `clients` show 
 
 ### Commands For Policy
 
-| Action                     | Format, Examples                                                                                                                                              |
-|----------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Find Policy**            | `findPolicy [ti/TITLE] [cov/COVERAGE]…​ [cmp/COMPANY_CODE]` <br/><br>  e.g: `findPolicy cov/LIFE`                                                             |        
+| Action                     | Format, Examples                                                                                                                                            |
+|----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Find Policy**            | `findPolicy [ti/TITLE] [cov/COVERAGE]…​ [cmp/COMPANY_CODE]` <br/><br>  e.g: `findPolicy cov/LIFE`                                                           |        
 | **Add Policy**             | `addPolicy ti/POLICY_TITLE cmp/POLICY_COMPANY cms/POLICY_COMMISSION cov/POLICY_COVERAGE...` <br><br> e.g: `addPolicy ti/Health cmp/MNF cms/4% 3% 2% cov/LIFE` |                                                                                                                         
-| **Delete Policy**          | `deletePolicy (INDEX of POLICY)` <br> <br> e.g: `deletePolicy 1`                                                                                              |                                                                                                                                                                                             
-| **View All Policies**      | `allPolicies`                                                                                                                                                 |
-| **View Filtered Policies** | `policies`                                                                                                                                                    |
-| **Assign Policies**        | `assign (INDEX of CLIENT) (INDEX of POLICY) pr/PREMIUM_PAID sd/START_DATE ed/END_DATE` <br> <br> e.g: `assign 1 1 pr/10000 sd/2000-01-02 ed/2000-02-01`       |
-| **Delete Assigned**        | `deleteAssigned (INDEX of CLIENT) (INDEX of POLICY)` <br><br> e.g: `deleteAssigned 1 1`                                                                       |                                                                                                                                                                                                               
-| **List Assigned**          | `listAssigned (INDEX of CLIENT) ` <br> <br> e.g: `listAssigned 1`                                                                                             |
-| **View Income**            | `viewIncome YEAR` <br><br> e.g: `viewIncome 2000`                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                           
+| **Delete Policy**          | `deletePolicy (INDEX of POLICY)` <br> <br> e.g: `deletePolicy 1`                                                                                            |                                                                                                                                                                                             
+| **View All Policies**      | `allPolicies`                                                                                                                                               |
+| **View Filtered Policies** | `policies`                                                                                                                                                  |
+| **Assign Policies**        | `assign (INDEX of CLIENT) (INDEX of POLICY) pr/PREMIUM_PAID sd/START_DATE ed/END_DATE` <br> <br> e.g: `assign 1 1 pr/10000 sd/2000-01-02 ed/2000-02-01`     |
+| **Delete Assigned**        | `deleteAssigned (INDEX of CLIENT) (INDEX of POLICY)` <br><br> e.g: `deleteAssigned 1 1`                                                                     |                                                                                                                                                                                                               
+| **List Assigned**          | `listAssigned (INDEX of CLIENT) ` <br> <br> e.g: `listAssigned 1`                                                                                           |
+| **View Income**            | `viewIncome YEAR` <br><br> e.g: `viewIncome 2000`                                                                                                           |                                                                                                                                                                                                                                                                                                                                                                           
 
 Note: `allPolicies` shows all existing policies inside LTNS, while `policies` show all policies based on filter metric placed previously.
 
 ### Commands For Events
 
 
-| Action                   | Format, Examples                                                                                                                                                                       |
-|--------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Find Event**           | `findEvent [desc/EVENT_DESCRIPTION] [n/NAME] [date/EVENT_DATE]` <br/><br> e.g: `findEvent date/2022-05-05`                                                                             |
-| **Add Event**            | `addEvent desc/EVENT_DESCRIPTION n/NAME date/EVENT_DATE st/START_TIME et/END_TIME` <br><br>  e.g: `addEvent desc/Meet Clement at Noon n/Clement Tan date/2022-10-10 st/12:00 et/13:00` |
-| **Delete Event**         | `deleteEvent (INDEX of EVENT)` <br><br>  e.g: `deleteEvent 1`                                                                                                                          |
-| **View All Events**      | `allEvents`                                                                                                                                                                            |
-| **View Filtered Events** | `events`                                                                                                                                                                               |
-| **View Calendar**        | `calendar`                                                                                                                                                                             |                                                                                                                                                                                                     
+
+
+
+
+
+| Action                   | Format, Examples                                                                                                                                                                       | Link back to Command Guide                                                                |
+|--------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|
+| **Find Event**           | `findEvent [desc/EVENT_DESCRIPTION] [n/NAME] [date/EVENT_DATE]` <br/><br> e.g: `findEvent date/2022-05-05`                                                                             | [Searching for an Event](#searching-for-an-event--findevent)                              |
+| **Add Event**            | `addEvent desc/EVENT_DESCRIPTION n/NAME date/EVENT_DATE st/START_TIME et/END_TIME` <br><br>  e.g: `addEvent desc/Meet Clement at Noon n/Clement Tan date/2022-10-10 st/12:00 et/13:00` | [Adding an Event](#adding-an-event-addevent)                                              |
+| **Delete Event**         | `deleteEvent (INDEX of EVENT)` <br><br>  e.g: `deleteEvent 1`                                                                                                                          | [Deleting an Event](#deleting-an-event-deleteevent)                                       |
+| **View All Events**      | `allEvents`                                                                                                                                                                            | [Listing all Events](#viewing-all-events--allevents)                                      |
+| **View Filtered Events** | `events`                                                                                                                                                                               | [Switching to Event View](#switching-to-the-view-of-currently-listed-events--events)      |
+| **View Calendar**        | `calendar`                                                                                                                                                                             | [Viewing all Events in the next 7 days](#viewing-all-events-in-the-next-7-days--calendar) |
 
 Note: `allEvents` shows all existing events inside LTNS, while `events` show all events based on filter metric placed previously.
+
+#### FindEvent Detailed Specifications
+
+The following table illustrates the details of each metric and their search range:
+
+| findEvent Metrics                                                          | Prefix | Search range                                                                                                                                                                                                                                                                                                                                                                                            |
+|----------------------------------------------------------------------------|--------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Event Description                                                          | desc/  | - The search is case-insensitive. e.g `Meeting to discuss plans` will match `meeting to discuss plans`<br/> - Only full phrases will be matched e.g. `Meeting to discuss plans` will not match `Plans`<br/> - Only events for which description contains the complete specified phrase will be listed. <br/> e.g. `discuss plans` will return `Meeting to discuss plans` and `Discuss plans`            |
+| Name<br/><br/> Note: Name here refers to the name of the event participant | n/     | - The search is case-insensitive. e.g `John` will match `john`<br/> - The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`<br/> - Only full words will be matched e.g. `Han` will not match `Hans`<br/> - Events with the participant name containing at least one keyword will be listed. <br/> e.g. `Hans Bo` will return events which involve `Hans Gruber` or `Bo Yang`   |
+| Event Date                                                                 | date/  | - Only events which occur on the specified date will be listed                                                                                                                                                                                                                                                                                                                                          |
+
+Ready to try some examples? Navigate back to FindEvent command section [here](#searching-for-an-event--findevent)!
 
 #### Additional Notes:
 * For better clarity, `INDEX` has been placed in parentheses to denote clearly which index is being referred to (either CLIENT, POLICY or EVENT). At the same time, it is compulsory to include `INDEX`.
