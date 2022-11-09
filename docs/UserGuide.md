@@ -253,64 +253,48 @@ If your changes to the data file makes its format invalid, LTNS will discard all
 
 ## Client Features
 
+Now let's embark on our journey! Like the dedicated financial advisor that you are, you will certainly want to keep track of your client information. Let's take a look at how we can do so.
+
 #### __________________________
 
 ### Adding a client : `addClient`
 
-Adds a client to the LTNS.
+Congratulations! You have just secured another client, LTNS lets you add a client, along with all their essential details, to have you keep track of them easily.
 
 Format: `addClient n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ b/BIRTHDAY i/INCOME ra/RISK_APPETITE`
 
-Find a detailed explanation of different input restrictions [here](#command-format-table).
+This may seem like a lot of different information to manage, but not to worry, you can find a detailed list of the different input restrictions [here](#command-format-table).
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A client can have any number of tags (including 0)
+<div markdown="span" class="alert alert-primary">:bulb: **Additional Tips:** <br/>
+
+- A client can have any number of tags (including 0)
+- The income added is based on an individual's Yearly income.<br/>
+- An income added is based on the **tax income brackets** set up by [IRAS for Financial Year 2022-2023.](https://www.iras.gov.sg/taxes/individual-income-tax/basics-of-individual-income-tax/tax-residency-and-tax-rates/individual-income-tax-rates)
+- More details on the tax income brackets can be found [here](#income-brackets)
+
 </div>
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-The format for entering a birthday is "YYYY-MM-DD". The dates entered must be valid.
-</div>
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-The `Risk Appetite` can be classified as High, Medium or Low. They are represented by characters "H", "M" and
-"L" respectively. e.g: "ra/H". All other values will be ignored.
-</div>
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-The income added is based on an individual's Yearly income.
-
-An income added is based on the **tax income brackets** set up by [IRAS for Financial Year 2022-2023.](https://www.iras.gov.sg/taxes/individual-income-tax/basics-of-individual-income-tax/tax-residency-and-tax-rates/individual-income-tax-rates)
-
-This information will be displayed in the app
-</div>
-
-| Income Bracket | Yearly Income range                                 |
-|----------------|-----------------------------------------------------|
-| First          | Less than or equal to S$30,000                      |
-| Second         | More than S$30,000, less than or equal to $40,000   |
-| Third          | More than S$40,000, less than or equal to $80,000   |
-| Fourth         | More than S$80,000, less than or equal to $120,000  |
-| Fifth          | More than S$120,000, less than or equal to $160,000 |
-| Sixth          | More than S$160,000, less than or equal to $200,000 |
-| Seventh        | More than S$200,000, less than or equal to $240,000 |
-| Eight          | More than S$240,000, less than or equal to $280,000 |
-| Ninth          | More than S$280,000, less than or equal to $320,000 |
-| Tenth          | More than $320,0000                                 |
 
 Example Usage:
-* `addClient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01, b/2000-05-05 i/5000.0 ra/L` adds John Doe into the LTNS.
-* `addClient n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal b/1920-05-06 i/1000000 ra/H` adds Betsy Crowe into the LTNS.
+* `addClient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01, b/2000-05-05 i/5000.0 ra/L` adds John Doe into LTNS.
+* `addClient n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal b/1920-05-06 i/1000000 ra/H` adds Betsy Crowe into LTNS.
+
+Let's try to add John Doe's details into LTNS. Simply enter the command `addClient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01, b/2000-05-05 i/5000.0 ra/L`
+
+If successful, you should see the following message in the application status box
+![addClientSuccessMessage](./images/addClientSuccessMessage.png)
+and you should now see John Doe's client information in LTNS
+![addJohnDoeSuccess](./images/addJohnDoeSuccess.png)
+
+If not, not to worry, visit the [Frequently Asked Questions](#faq) to get some help
 
 #### __________________________
 
 ### Switching to the view of currently listed clients : `clients`
-Switches the display to show the current list of clients.
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-If you previously filtered the client list and switched to view events/policy/income, this command will allow you to return to the filtered list of clients. 
-</div>
+ 
+After taking a look at your [policies](#switching-to-the-view-of-currently-listed-policies--policies) or [events](#switching-to-the-view-of-currently-listed-events--events), you may want to switch LTNS back to showing your clients. Well `clients` is the command for you, as it switches the display to show the current list of clients.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-If you wish to view the **full** list of clients, you may do so with the command `allClients`. 
+If you performed a search previously, `clients` maintains the same list of filtered clients. Alternatively if you wish to view the **full** list of clients, you may do so with the command [allClients](#listing-all-clients--allclients) 
 </div>
 
 Format: `clients`
@@ -321,7 +305,7 @@ Example Usage: `clients`
 
 ### Listing all clients : `allClients`
 
-Shows a list of all clients in the LTNS, without any filters.
+Shows a list of all clients in LTNS, without any filters.
 
 Format: `allClients`
 
@@ -331,7 +315,7 @@ Example Usage: `allClients`
 
 ### Editing a client : `editClient`
 
-Edits an existing client in the LTNS.
+Oops! Seems like some of your clients changed their contact details. Not to worry, there is no need to delete their contact and add them again, LTNS allows you to edit an existing client's information.
 
 Format: `editClient CLIENT_INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [b/BIRTHDAY] [i/INCOME] [ra/RISK_APPETITE] ​`
 
@@ -347,37 +331,25 @@ Example Usage:
 *  `editClient 2 n/Betsy Crower t/` Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags.
 *  `editClient 3 b/2000-01-01` Edits the birthday of the 3rd client to be the 1st January 2000.
 
+Let's run through an example on editing your client information. Suppose LTNS already contains a client named Alex Yeoh, and he has just informed you that he changed his number to 98765432
+![alexYeohContact](./images/alexYeohContact.png)
+
+As he is currently first on the list, simply enter `editClient 1 p/98765432` and his client details should be immediately updated as shown
+![editAlexYeohSuccess](./images/editAlexYeohSuccess.png)
+
 #### __________________________
 
 ### Searching for Clients : `findClient`
 
-Search for clients based on certain [metrics](#metric)
-
-Format: `findClient [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [b/BIRTHDAY] [i/INCOME] [ra/RISK_APPETITE] [ti/TITLE] [cov/COVERAGE]…​ [cmp/COMPANY_CODE]`
+Seems like your career is advancing steadily, you now have a large number of clients you need to manage, and it is getting difficult to scroll and find clients. Fret not, you can easily search for clients based on certain [metrics](#metric)
 
 <div markdown="span" class="alert alert-primary">:information_source: **Note:**
 At least one metric has to be specified for the command to be valid
 </div>
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Title, Coverage and Company Code refer to the Assigned Policy information of the client. More details can be found in the [Policies](#policy-features) section
-</div>
+For a full list of the details of each metric and their search ranges, click [here](#findclient-detailed-specifications)!
 
-The following table illustrates the details of each metric and their search range:
-
-| Metric        | Prefix | Search range                                                                                                                                                                                                                                                                                                                                              |
-|---------------|--------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Name          | n/     | - The search is case-insensitive. e.g `hans` will match `Hans`<br/> - The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`<br/> - Only full words will be matched e.g. `Han` will not match `Hans`<br/> - clients matching at least one keyword will be listed. <br/> e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`       |
-| Phone         | p/     | - All clients whose phone number contains the exact specified numbers will be listed                                                                                                                                                                                                                                                                      |
-| Email         | e/     | - The search is case-insensitive. e.g `alice@example.com` will match `Alice@example.com` <br/> - All clients whose email matches the input will be listed                                                                                                                                                                                                 |
-| Address       | a/     | - The search is case-insensitive. e.g `Bedok` will match `bedok`<br/> - All clients whose address contains the input will be listed                                                                                                                                                                                                                       |
-| Tag           | t/     | - The search is case-insensitive. e.g `friends` will match `Friends`<br/> - Only full words will be matched e.g. `colleagues` will not match `colleague`<br/> - More than one tag can be specified to list all clients that have all the specified tags. <br/> e.g. `friends` and `family` will list all clients with both the `friends` and `family` tag |
-| Birthday      | b/     | - Only clients whose birthday falls on the specified date will be listed                                                                                                                                                                                                                                                                                  |
-| Income        | i/     | - Any valid income value can be entered and it will be matched with the corresponding income bracket<br/> - All clients whose income falls under the same income bracket as the specified income will be listed <br/> e.g `15000` will be matched with `12000`                                                                                            |
-| Risk Appetite | ra/    | - All clients whose risk appetite matches the specified risk level will be listed                                                                                                                                                                                                                                                                         |
-| Title         | ti/    | - The search is case insensitive. e.g `Health Plan` will match `health plan`<br/> - Clients who are covered by a policy of which title contains at least one keyword will be listed                                                                                                                                                                       |
-| Coverage      | cov/   | - More than one coverage can be specified to list all clients with all of the specified coverage types. <br/> e.g. `HEALTH` and `LIFE` will list all clients with both the `HEALTH` and `LIFE` coverage type <br/> - Clients who are covered by policies which covers all the specified coverage types will be listed                                     |
-| Company Code  | cmp/   | - Clients who are covered by a policy belonging to the specified company will be listed                                                                                                                                                                                                                                                                   |
+Format: `findClient [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [b/BIRTHDAY] [i/INCOME] [ra/RISK_APPETITE] [ti/TITLE] [cov/COVERAGE]…​ [cmp/COMPANY_CODE]`
 
 Example Usage:
 
@@ -387,14 +359,18 @@ Example Usage:
 * `findClient t/colleagues t/friends` returns clients with both the `colleagues` and `friends` tag
 * `findClient n/alex t/friends` returns clients with the name `alex` and tagged with a `friends` tag
 
-Below is an example of what you will expect to see when you call `findClient n/alex`:
+Let’s take a look at one example
+- `findClient n/alex`
+
+Here's the result
+
 ![findClientExample](./images/findClientExample.png)
 
 #### __________________________
 
 ### Deleting a client : `deleteClient`
 
-Deletes the specified client from the LTNS.
+Unfortunately it seems like you are no longer working with one of your clients, looks like we will have to delete their client details from LTNS.
 
 Format: `deleteClient CLIENT_INDEX`
 
@@ -410,30 +386,14 @@ Example Usage:
 
 ### Sorting all Clients : `sort`
 
-This allows you to sort your clients in the LTNS based on a specified metric.
+With all the success you are having in your client acquisition, you are probably looking for a way to organise all these information that you have. LTNS allows you to sort all your client based on certain [metrics](#metrics)
+
+Click [here](#sorting-keywords) for a list of all the possible keywords
 
 Format: `sort KEYWORD`
 
 * Sorts the list of clients based on specified keyword
 * Keyword must be from client details
-
-
-Sorting **KEYWORDS** are shown in the table below: 
-
-| KEYWORD          | Function                                                                                                             |
-|:-----------------|:---------------------------------------------------------------------------------------------------------------------|
-| `default`        | Based on when a client was added, from oldest to newest                                                              |
-| `name`           | By alphabetical order ie. "a" to "z"                                                                                 |
-| `email`          | Clients using the same email platform are grouped together, thereafter, alphabetical order is used within each group |
-| `phone`          | By numerical order of the phone number                                                                               |
-| `birthday`       | From oldest to youngest                                                                                              |                                                                                             
-| `income`         | From lowest to highest income                                                                                        |
-| `risk appetite`  | From lowest to highest ie. "L" to "M" to "H"                                                                         |
-
-
-<div markdown="span" class="alert alert-primary">:warning: **Warning:**
-If your client's name contains numbers, sorting by name might behave incorrectly!
-</div>
 
 Example Usage: 
 * `sort name` will display your Client list view in alphabetical order based on their name
@@ -447,11 +407,25 @@ Below is an example of what you will expect to see when you call `sort email`:
 #### __________________________
 
 ### Pin a Client: `pin`
-Allows pin and unpin of important clients to be viewed separately with command `viewPin`
+
+Now what if you want to pay special attention to certain clients? LTNS also allows you to do so by pinning them to a special dashboard.
+
 * Format: `pin INDEX` <br>
 
 Example Usage:
 * `pin 1` pins the first client on list
+
+To view these pinned clients, simply enter the command `viewPin`
+
+
+Let's try to pin Bernice's details in LTNS
+![pinExample](./images/pinExample.png)
+
+If successful, you should see the following success message
+![pinSuccessMessage](./images/pinSuccessMessage.png)
+
+Now you will be able to see Bernice's contact after entering `viewPin`
+![viewPinExample](./images/viewPinExample.png)
 
 #### __________________________
 
@@ -836,6 +810,12 @@ Hence, we display all events from `November 9, 2022 - November 16, 2022`.
 Q: How do I transfer my data to another Computer? <br/>
 A : Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous LTNS home folder.
 
+Q: Why am I seeing `This client already exists in the address book` when trying to add a client?<br>
+A: You probably already have a client with the same name in LTNS. You can try to add someone with a different name, or check out these sections to either [edit](#editing-a-client--editclient) their details or [delete](#deleting-a-client--deleteclient) their contact
+
+Q: Why am I unable to edit my client details?
+A: Do ensure that you are providing a valid `INDEX` to the command. `INDEX` should be a valid client index number that can be currently seen in the [Client View](#switching-to-the-view-of-currently-listed-clients--clients)
+
 Q: Why am I seeing `The person you specified doesn't exist` when trying to add an event?<br/>
 A : When specifying the Client that you're meeting for this event, this Client must exist in your client list first.
 
@@ -873,7 +853,7 @@ A: Fret not! Simply [reach out to us](#contact-us), and we will reply within thr
 | Tag                 | t/     | - Only single word, alphanumeric inputs are allowed                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | Birthday            | b/     | - Only valid date inputs of the YYYY-MM-DD format are allowed. e.g `1990-12-30`<br/> - Birthdays cannot be set in the future or before the 20th century (i.e 1900)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | Income              | i/     | - Only positive decimal numbers are allowed                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| Risk Appetite       | ra/    | - Only one of the 3 levels, {H, M, L}, is allowed                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Risk Appetite       | ra/    | - Only one of the 3 levels, {H, M, L}, is allowed<br/> - They represent the levels of High, Medium and Low respectively<br/>e.g `H` is valid while `High` is not valid                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 | Title               | ti/    | - Only alphanumeric characters and spaces can be specified, and it should not be blank<br/> - Only a maximum of 40 characters is allowed                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | Coverage            | cov/   | - Only inputs of the valid coverage type options are allowed                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | Company Code        | cmp/   | - Only one of the valid company codes is allowed                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
@@ -903,19 +883,73 @@ What's a guide without a summary? Here you go! Everything you need, summarised i
 
 ### Commands For Clients
 
-| Action                    | Format, Examples                                                                                                                                                                                                          |
-|---------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Find Client**           | `findClient [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [b/BIRTHDAY] [i/INCOME] [ra/RISK_APPETITE] [ti/TITLE] [cov/COVERAGE]…​ [cmp/COMPANY_CODE]` <br><br> e.g: `findClient n/Jim p/98765432`                      |
-| **Add Client**            | `addClient n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS t/TAG…​`  <br><br> e.g: `addClient n/Clement Tan p/98765432 e/clementTan@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney b/2019-05-05 i/10000.00 ra/M` |
-| **Delete Client**         | `deleteClient (INDEX of CLIENT)` <br><br> e.g: `deleteClient 3`                                                                                                                                                           |
-| **Edit Client**           | `editClient (INDEX of CLIENT) [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br><br> e.g: `editClient 2 n/James Lee e/jameslee@example.com`                                                                  |
-| **View All Clients**      | `allClients`                                                                                                                                                                                                              |
-| **View Filtered Clients** | `clients`                                                                                                                                                                                                                 |                                                              
-| **Sort Clients**          | `sort SORTING_METRIC`<br> eg. `sort name`                                                                                                                                                                                 |
-| **Pin**                   | `pin (INDEX of CLIENT)` <br><br> e.g: `pin 1`                                                                                                                                                                             |
-| **View Pinned**           | `viewPin`                                                                                                                                                                                                                 |
+| Action                    | Format, Examples                                                                                                                                                                                                          | Link back to Command Guide                                                              |
+|---------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------|
+| **Find Client**           | `findClient [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [b/BIRTHDAY] [i/INCOME] [ra/RISK_APPETITE] [ti/TITLE] [cov/COVERAGE]…​ [cmp/COMPANY_CODE]` <br><br> e.g: `findClient n/Jim p/98765432`                      | [Searching for a Client](#searching-for-clients--findclient)                            |
+| **Add Client**            | `addClient n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS t/TAG…​`  <br><br> e.g: `addClient n/Clement Tan p/98765432 e/clementTan@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney b/2019-05-05 i/10000.00 ra/M` | [Adding a Client](#adding-a-client--addclient)                                          |
+| **Delete Client**         | `deleteClient (INDEX of CLIENT)` <br><br> e.g: `deleteClient 3`                                                                                                                                                           | [Deleting a Client](#deleting-a-client--deleteclient)                                   |
+| **Edit Client**           | `editClient (INDEX of CLIENT) [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br><br> e.g: `editClient 2 n/James Lee e/jameslee@example.com`                                                                  | [Editing a Client](#editing-a-client--editclient)                                       |
+| **View All Clients**      | `allClients`                                                                                                                                                                                                              | [Listing all Clients](#listing-all-clients--allclients)                                 |
+| **View Filtered Clients** | `clients`                                                                                                                                                                                                                 | [Switching to Client View](#switching-to-the-view-of-currently-listed-clients--clients) |                                                         
+| **Sort Clients**          | `sort SORTING_METRIC`<br> eg. `sort name`                                                                                                                                                                                 | [Sorting all Clients](#sorting-all-clients--sort)                                       |
+| **Pin**                   | `pin (INDEX of CLIENT)` <br><br> e.g: `pin 1`                                                                                                                                                                             | [Pin a Client](#pin-a-client-pin)                                                       |
+| **View Pinned**           | `viewPin`                                                                                                                                                                                                                 | [Pin a Client](#pin-a-client-pin)                                                       |
 
 Note: `allClients` shows all existing clients inside LTNS, while `clients` show all clients based on filter metric placed previously.
+
+#### Income brackets
+
+| Income Bracket | Yearly Income range                                 |
+|----------------|-----------------------------------------------------|
+| First          | Less than or equal to S$30,000                      |
+| Second         | More than S$30,000, less than or equal to $40,000   |
+| Third          | More than S$40,000, less than or equal to $80,000   |
+| Fourth         | More than S$80,000, less than or equal to $120,000  |
+| Fifth          | More than S$120,000, less than or equal to $160,000 |
+| Sixth          | More than S$160,000, less than or equal to $200,000 |
+| Seventh        | More than S$200,000, less than or equal to $240,000 |
+| Eight          | More than S$240,000, less than or equal to $280,000 |
+| Ninth          | More than S$280,000, less than or equal to $320,000 |
+| Tenth          | More than $320,000                                  |
+
+#### FindClient Detailed Specifications
+
+| Metric        | Prefix | Search range                                                                                                                                                                                                                                                                                                                                              |
+|---------------|--------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Name          | n/     | - The search is case-insensitive. e.g `hans` will match `Hans`<br/> - The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`<br/> - Only full words will be matched e.g. `Han` will not match `Hans`<br/> - clients matching at least one keyword will be listed. <br/> e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`       |
+| Phone         | p/     | - All clients whose phone number contains the exact specified numbers will be listed                                                                                                                                                                                                                                                                      |
+| Email         | e/     | - The search is case-insensitive. e.g `alice@example.com` will match `Alice@example.com` <br/> - All clients whose email matches the input will be listed                                                                                                                                                                                                 |
+| Address       | a/     | - The search is case-insensitive. e.g `Bedok` will match `bedok`<br/> - All clients whose address contains the input will be listed                                                                                                                                                                                                                       |
+| Tag           | t/     | - The search is case-insensitive. e.g `friends` will match `Friends`<br/> - Only full words will be matched e.g. `colleagues` will not match `colleague`<br/> - More than one tag can be specified to list all clients that have all the specified tags. <br/> e.g. `friends` and `family` will list all clients with both the `friends` and `family` tag |
+| Birthday      | b/     | - Only clients whose birthday falls on the specified date will be listed                                                                                                                                                                                                                                                                                  |
+| Income        | i/     | - Any valid income value can be entered and it will be matched with the corresponding income bracket<br/> - All clients whose income falls under the same income bracket as the specified income will be listed <br/> e.g `15000` will be matched with `12000`                                                                                            |
+| Risk Appetite | ra/    | - All clients whose risk appetite matches the specified risk level will be listed                                                                                                                                                                                                                                                                         |
+| Title         | ti/    | - The search is case insensitive. e.g `Health Plan` will match `health plan`<br/> - Clients who are covered by a policy of which title contains at least one keyword will be listed                                                                                                                                                                       |
+| Coverage      | cov/   | - More than one coverage can be specified to list all clients with all of the specified coverage types. <br/> e.g. `HEALTH` and `LIFE` will list all clients with both the `HEALTH` and `LIFE` coverage type <br/> - Clients who are covered by policies which covers all the specified coverage types will be listed                                     |
+| Company Code  | cmp/   | - Clients who are covered by a policy belonging to the specified company will be listed                                                                                                                                                                                                                                                                   |
+
+Note: `Title`, `Coverage` and `Company Code` refer to the details of policies assigned to the client. More details can be found in the [Policies](#policy-features) section
+
+
+Ready to try some examples? Navigate back to the `findClient` command section [here](#searching-for-clients--findclient)!
+
+#### Sorting keywords
+
+| KEYWORD          | Function                                                                                                             |
+|:-----------------|:---------------------------------------------------------------------------------------------------------------------|
+| `default`        | Based on when a client was added, from oldest to newest                                                              |
+| `name`           | By alphabetical order ie. "a" to "z"                                                                                 |
+| `email`          | Clients using the same email platform are grouped together, thereafter, alphabetical order is used within each group |
+| `phone`          | By numerical order of the phone number                                                                               |
+| `birthday`       | From oldest to youngest                                                                                              |                                                                                             
+| `income`         | From lowest to highest income                                                                                        |
+| `risk appetite`  | From lowest to highest ie. "L" to "M" to "H"                                                                         |
+
+<div markdown="span" class="alert alert-primary">:warning: **Warning:**
+If your client's name contains numbers, sorting by name might behave incorrectly!
+</div>
+
+Ready to try some examples? Navigate back to the `sort` command section [here](#sorting-all-clients--sort)!
 
 ### Commands For Policy
 
