@@ -54,19 +54,29 @@ public class TimeInterval implements ITimesAvailable {
 
     /**
      * Returns true if the given String is a valid time interval.
-     * @param test Another given String.
+     * @param test A string.
      * @return A boolean value.
      */
     public static boolean isValidTimeInterval(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns the String representation of the point in time at which the given time interval starts.
+     * @param test A time interval.
+     * @return A start time.
+     */
     public static String getStartingDayTimeInWeek(String test) {
         assert isValidTimeInterval(test);
         String[] tokens = test.split("-");
         return tokens[0].trim();
     }
 
+    /**
+     * Returns the String representation of the point in time at which the given time interval ends.
+     * @param test A time interval.
+     * @return An end time.
+     */
     public static String getEndingDayTimeInWeek(String test) {
         assert isValidTimeInterval(test);
         String[] tokens = test.split("-");
@@ -77,6 +87,11 @@ public class TimeInterval implements ITimesAvailable {
         return TIME_INTERVAL_CONSTRAINTS;
     }
 
+    /**
+     * Returns true if the given {@code dayTimeInWeek} lies within this {@code TimeInterval}.
+     * @param dayTimeInWeek A {@code DayTimeInWeek}.
+     * @return A boolean value.
+     */
     @Override
     public boolean isAvailable(DayTimeInWeek dayTimeInWeek) {
         // Must consider the case where user is available from Sunday night to Monday morning
@@ -90,7 +105,8 @@ public class TimeInterval implements ITimesAvailable {
     }
 
     /**
-     * Returns hashcode for purpose of the equals method.
+     * Returns hashcode for purpose of the  {@link #equals(Object)} method.
+     * @return The hashcode of the String representation of the object.
      */
     @Override
     public int hashCode() {

@@ -26,7 +26,10 @@ public class Tag {
     }
 
     /**
-     * Returns true if a given string is a valid tag name.
+     * Returns true if a given string is a valid tag.
+     *
+     * @param test A string.
+     * @return A boolean value.
      */
     public static boolean isValidTagName(String test) {
         return test.matches(VALIDATION_REGEX);
@@ -39,6 +42,10 @@ public class Tag {
                 && tagName.equals(((Tag) other).tagName)); // state check
     }
 
+    /**
+     * Returns hashcode for purpose of the  {@link #equals(Object)} method.
+     * @return The hashcode of the String representation of the object.
+     */
     @Override
     public int hashCode() {
         return tagName.hashCode();

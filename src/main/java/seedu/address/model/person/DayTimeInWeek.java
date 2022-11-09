@@ -40,8 +40,9 @@ public class DayTimeInWeek {
     }
 
     /**
-     * Returns true if a given string is matches the valid
-     * regex for DayTimeInWeek.
+     * Returns true if the given string matches the valid regex for DayTimeInWeek.
+     * @param test A string.
+     * @return A boolean value.
      */
     public static boolean isValidDayTimeInWeekRegex(String test) {
         return test.matches(VALIDATION_REGEX);
@@ -183,6 +184,10 @@ public class DayTimeInWeek {
                 .minutesSinceMondayMidnight)); // state check
     }
 
+    /**
+     * Returns hashcode for purpose of the  {@link #equals(Object)} method.
+     * @return The hashcode of the String representation of the object.
+     */
     @Override
     public int hashCode() {
         return minutesSinceMondayMidnight.hashCode();

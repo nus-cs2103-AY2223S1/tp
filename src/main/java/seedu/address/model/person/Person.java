@@ -32,11 +32,22 @@ public class Person {
     private final Set<Tag> tags;
     private final Set<ITimesAvailable> timeIntervals;
 
+
     /**
-     * Every field must be present and not null.
+     * Constructs a {@code Person}.
+     *
+     * @param name A valid name.
+     * @param minecraftName A valid minecraft name.
+     * @param phone A valid phone number.
+     * @param email A valid email address.
+     * @param address A valid home address.
+     * @param socials A valid set of social handles.
+     * @param tags A valid set of tags.
+     * @param servers A valid set of minecraft servers.
+     * @param country A valid country.
+     * @param gameTypes A valid set of minecraft game types.
+     * @param timeIntervals A valid set of time intervals.
      */
-
-
     public Person(Name name, MinecraftName minecraftName, Phone phone, Email email, Address address,
                   Set<Social> socials, Set<Tag> tags, Set<Server> servers, Country country, Set<GameType> gameTypes,
                   Set<ITimesAvailable> timeIntervals) {
@@ -79,6 +90,11 @@ public class Person {
         return country;
     }
 
+    /**
+     * Returns an immutable social set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     * @return A Set collection that contains {@code Social}
+     */
     public Set<Social> getSocials() {
         return Collections.unmodifiableSet(socials);
     }
@@ -86,21 +102,36 @@ public class Person {
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
+     * @return A Set collection that contains {@code Tag}
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
 
+    /**
+     * Returns an immutable server set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     * @return A Set collection that contains {@code Server}
+     */
     public Set<Server> getServers() {
         return Collections.unmodifiableSet(servers);
     }
 
+    /**
+     * Returns an immutable game type set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     * @return A Set collection that contains {@code GameType}
+     */
     public Set<GameType> getGameType() {
         return Collections.unmodifiableSet(gameTypes);
     }
 
+    /**
+     * Returns an immutable time interval set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     * @return A Set collection that contains {@code ITimesAvailable}
+     */
     public Set<ITimesAvailable> getTimesAvailable() {
-        // TODO: Remove placeholder and implement TimesAvailable
         return Collections.unmodifiableSet(timeIntervals);
     }
 
@@ -108,6 +139,8 @@ public class Person {
      * Returns true if both persons have the same Minecraft name.
      * Minecraft names are guaranteed to be unique,
      * so this defines a weaker notion of equality between two persons.
+     * @param otherPerson A second {@code Person}.
+     * @return A boolean value.
      */
     public boolean isSamePerson(Person otherPerson) {
         if (otherPerson == this) {
@@ -124,6 +157,8 @@ public class Person {
     /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of quality between two persons.
+     * @param other The other object.
+     * @return A boolean value.
      */
     @Override
     public boolean equals(Object other) {
@@ -140,6 +175,10 @@ public class Person {
                 && otherPerson.getMinecraftName().equals(getMinecraftName());
     }
 
+    /**
+     * Returns hashcode for purpose of the {@link #equals(Object)} method.
+     * @return The hashcode.
+     */
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own

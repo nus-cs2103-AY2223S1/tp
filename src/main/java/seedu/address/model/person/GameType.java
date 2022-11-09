@@ -32,7 +32,10 @@ public class GameType {
     }
 
     /**
-     * Returns true if a given string is a valid name.
+     * Returns true if a given string is a valid game type.
+     *
+     * @param test A string.
+     * @return A boolean value.
      */
     public static boolean isValidGameType(String test) {
         return test.matches(VALIDATION_REGEX);
@@ -51,7 +54,8 @@ public class GameType {
     }
 
     /**
-     * Returns hashcode for purpose of the equals method.
+     * Returns hashcode for purpose of the  {@link #equals(Object)} method.
+     * @return The hashcode of the String representation of the object.
      */
     @Override
     public int hashCode() {

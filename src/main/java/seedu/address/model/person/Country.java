@@ -24,6 +24,12 @@ public class Country {
         country = fullCountry;
     }
 
+    /**
+     * Returns true if a given string is a valid country.
+     *
+     * @param test A string.
+     * @return A boolean value.
+     */
     public static boolean isValidCountry(String test) {
         return test.matches(VALIDATION_REGEX);
     }

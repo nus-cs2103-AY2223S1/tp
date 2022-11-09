@@ -32,18 +32,27 @@ public class Name {
     }
 
     /**
-     * Returns true if a given string is a valid name.
+     * Returns true if the given String is a valid name.
+     * @param test A string.
+     * @return A boolean value.
      */
     public static boolean isValidName(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
-
+    /**
+     * Returns the String representation of the object.
+     * @return String
+     */
     @Override
     public String toString() {
         return fullName;
     }
 
+    /**
+     * Returns hashcode for purpose of the  {@code #equals(Object)} method.
+     * @return The hashcode of the String representation of the object.
+     */
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

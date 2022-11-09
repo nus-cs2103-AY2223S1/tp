@@ -26,7 +26,10 @@ public class Email {
     }
 
     /**
-     * Returns if a given string is a valid email.
+     * Returns true if a given string is a valid email.
+     *
+     * @param test A string.
+     * @return A boolean value.
      */
     public static boolean isValidEmail(String test) {
         return test.matches(VALIDATION_REGEX);
@@ -44,6 +47,10 @@ public class Email {
                 && value.equals(((Email) other).value)); // state check
     }
 
+    /**
+     * Returns hashcode for purpose of the  {@link #equals(Object)} method.
+     * @return The hashcode of the String representation of the object.
+     */
     @Override
     public int hashCode() {
         return value.hashCode();

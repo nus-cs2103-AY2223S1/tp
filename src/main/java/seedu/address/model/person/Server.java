@@ -26,6 +26,12 @@ public class Server {
         this.serverName = serverName;
     }
 
+    /**
+     * Returns true if a given string is a valid server name.
+     *
+     * @param test A string.
+     * @return A boolean value.
+     */
     public static boolean isValidServerName(String test) {
         return test.matches(VALIDATION_REGEX);
     }
@@ -39,7 +45,8 @@ public class Server {
     }
 
     /**
-     * Returns hashcode for purpose of the equals method.
+     * Returns hashcode for purpose of the  {@link #equals(Object)} method.
+     * @return The hashcode of the String representation of the object.
      */
     @Override
     public int hashCode() {
