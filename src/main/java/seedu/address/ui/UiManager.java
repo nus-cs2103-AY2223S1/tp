@@ -44,7 +44,7 @@ public class UiManager implements Ui {
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
 
-            // Show help window at the start of the application
+            // Shows help window at the start of the application if new user or data/addressbook.json does not exist.
             showHelpWindow();
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));
@@ -87,8 +87,10 @@ public class UiManager implements Ui {
         System.exit(1);
     }
 
+    /**
+     * Checks if data/addressbook.json exists, shows help window if it does not.
+     */
     private void showHelpWindow() {
-        // Show help window at the start of the application if new user
         if (MainApp.isNewDataFileCreated()) {
             mainWindow.handleHelp();
         }

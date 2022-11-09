@@ -146,6 +146,7 @@ public class PersonBuilder {
                 .collect(Collectors.toList()));
         return this;
     }
+
     /**
      * Sets the {@code servers} of the {@code Person} that we are building.
      */
@@ -159,7 +160,6 @@ public class PersonBuilder {
     /**
      * Sets the {@code gameTypes} of the {@code Person} that we are building.
      */
-
     public PersonBuilder withGameType(String ... gameType) {
         this.gameTypes = new HashSet<>(Arrays.asList(gameType).stream()
                 .map(GameType::new)

@@ -15,12 +15,12 @@ public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
     public static final String DESCRIPTION = "Finds all persons whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.";
-    public static final String PARAMETER = "KEYWORD [MORE_KEYWORDS]...";
-    public static final String EXAMPLE = COMMAND_WORD + " alice bob charlie";
+    public static final String PARAMETERS = "KEYWORD [MORE_KEYWORDS]...";
+    public static final String EXAMPLES = COMMAND_WORD + " alice bob charlie";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": " + DESCRIPTION + "\n"
-            + PARAMETER + "\n"
-            + "Example: " + EXAMPLE;
+            + PARAMETERS + "\n"
+            + "Example: " + EXAMPLES;
 
     private final NameContainsKeywordsPredicate predicate;
 
@@ -46,13 +46,13 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public String getParameter() {
-        return PARAMETER;
+    public String getParameters() {
+        return PARAMETERS;
     }
 
     @Override
-    public String getExample() {
-        return EXAMPLE;
+    public String getExamples() {
+        return EXAMPLES;
     }
 
     @Override

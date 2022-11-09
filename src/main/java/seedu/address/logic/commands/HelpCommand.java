@@ -9,8 +9,8 @@ public class HelpCommand extends Command {
 
     public static final String COMMAND_WORD = "help";
     public static final String DESCRIPTION = "Shows program usage instructions.";
-    public static final String PARAMETER = "";
-    public static final String EXAMPLE = COMMAND_WORD;
+    public static final String PARAMETERS = "";
+    public static final String EXAMPLES = COMMAND_WORD;
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows program usage instructions.\n"
             + "Example: " + COMMAND_WORD;
@@ -28,12 +28,12 @@ public class HelpCommand extends Command {
     }
 
     @Override
-    public String getParameter() {
-        return PARAMETER;
+    public String getParameters() {
+        return PARAMETERS;
     }
 
     @Override
-    public String getExample() {
-        return EXAMPLE;
+    public String getExamples() {
+        return EXAMPLES;
     }
 }

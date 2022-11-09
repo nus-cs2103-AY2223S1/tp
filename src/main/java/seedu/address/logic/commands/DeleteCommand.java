@@ -19,13 +19,13 @@ public class DeleteCommand extends Command {
 
     public static final String DESCRIPTION =
             "Deletes a person identified by the index number used in the displayed person list.";
-    public static final String PARAMETER = "INDEX (must be a positive integer)";
-    public static final String EXAMPLE = COMMAND_WORD + " 1";
+    public static final String PARAMETERS = "INDEX (must be a positive integer)";
+    public static final String EXAMPLES = COMMAND_WORD + " 1";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": " + DESCRIPTION + "\n"
-            + "Parameters: " + PARAMETER + "\n"
-            + "Example: " + EXAMPLE;
+            + "Parameters: " + PARAMETERS + "\n"
+            + "Example: " + EXAMPLES;
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
 
@@ -59,13 +59,13 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public String getParameter() {
-        return PARAMETER;
+    public String getParameters() {
+        return PARAMETERS;
     }
 
     @Override
-    public String getExample() {
-        return EXAMPLE;
+    public String getExamples() {
+        return EXAMPLES;
     }
 
     @Override
