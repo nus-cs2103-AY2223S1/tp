@@ -3,20 +3,17 @@ layout: page
 title: User Guide
 ---
 
-Welcome to InTrack!
+# Welcome to InTrack!
 
-InTrack is a desktop application for Computer Science students to manage their different internship applications.
+Tired of tracking your internship applications on your calendar or Microsoft Excel?
 
-InTrack allows users to:
+Or perhaps you're looking for a more efficient way to track your internship applications now that you've made countless 
+applications?
 
-* seamlessly search for and update their various internship applications, as well as
-* keep track of the relevant timings and deadlines, 
+Well, look no further!
 
-all through a simple and easy-to-use platform!
+InTrack might just be the solution for you! Let InTrack manage your internship applications, and you can simply
 
-InTrack is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User
-Interface (GUI). If you're a Computer Science student who can type fast, InTrack can help you manage your
-internship applications more efficiently and effectively than traditional GUI apps.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -35,6 +32,23 @@ Alternatively, consider looking at the [Command Summary](#command-summary) for a
 
 * Table of Contents
 {:toc}
+
+--------------------------------------------------------------------------------------------------------------------
+
+# Introduction - What Is InTrack?
+
+InTrack is a desktop application for Computer Science students to manage their different internship applications.
+
+InTrack allows users to:
+
+* seamlessly search for and update their various internship applications, as well as
+* keep track of the relevant timings and deadlines,
+
+all through a simple and easy-to-use platform!
+
+InTrack is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User
+Interface (GUI). If you're a Computer Science student who can type fast, InTrack can help you manage your
+internship applications more efficiently and effectively than traditional GUI apps.
 
 --------------------------------------------------------------------------------------------------------------------
 
