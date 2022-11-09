@@ -69,18 +69,21 @@ Commands have to be written in the correct format to be used. The format for eac
 
 1. Ensure you have Java `11` or above installed in your computer. 
 
+    - If you already have Java installed, you may follow [these instructions](https://appuals.com/check-java-version-win-mac/) on how to check which version you have installed.
+    - If you have not installed, you may download Java for your OS from [this website](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html). 
+
    <div markdown="span" class="alert alert-info">:information_source: **Note:** JARVIS is supported on Windows, Linux, and OS-X platforms.
    </div>
 
-2. Download the latest `jarvis.jar` from [here](https://github.com/AY2223S1-CS2103T-T11-3/tp/releases).
+3. Download the latest `jarvis.jar` from [here](https://github.com/AY2223S1-CS2103T-T11-3/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for JARVIS.
+4. Copy the file to the folder you want to use as the _home folder_ for JARVIS.
 
-4. Double-click the file to start the app. The GUI should appear in a few seconds. Set the app to fullscreen for a better view of the sample data.
+5. Double-click the file to start the app. The GUI should appear in a few seconds. Set the app to fullscreen for a better view of the sample data.
 
    ![Ui](images/Ui.png)
 
-5. Type the command in the Command Box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.
+6. Type the command in the Command Box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.
 
    <div markdown="span" class="alert alert-primary">
    :bulb: **Tip:** The following diagram shows the different components of the GUI. <br>
@@ -98,7 +101,7 @@ Commands have to be written in the correct format to be used. The format for eac
 
    * **`exit`** : Exits the app.
 
-6. Refer to the [Basic commands](#basic-commands) below to get started with the basic commands.
+7. Refer to the [Basic commands](#basic-commands) below to get started with the basic commands.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -109,7 +112,7 @@ This section contains the basic commands of JARVIS.
 
 ### Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+Shows a message explaining how to access our user guide, which provides detailed information on how to use JARVIS.
 
 ![help message](images/helpMessage.png)
 
@@ -117,7 +120,7 @@ Format: `help`
 
 ### Listing all students : `liststudent`
 
-Shows an expanded list of all students.
+Shows an expanded list of all your students, so that you can see all the student details.
 
 ![liststudentCommand](images/liststudentCommand.png)
 
@@ -127,7 +130,7 @@ Format: `liststudent`
 
 ### Listing all tasks : `listtask`
 
-Shows an expanded list of all tasks.
+Shows an expanded list of all your tasks, so that you can see all the task details.
 
 ![listtaskCommand](images/listtaskCommand.png)
 
@@ -135,7 +138,7 @@ Format: `listtask`
 
 ### Listing all students : `listlesson`
 
-Shows an expanded list of all lessons.
+Shows an expanded list of all your lessons, so that you can see all the lesson details.
 
 ![listlessonCommand](images/listlessonCommand.png)
 
@@ -145,7 +148,7 @@ Format: `listlesson`
 
 ### Listing all students, tasks and lessons : `listall`
 
-Shows the truncated lists of students, tasks and lessons.
+Shows an overview of your student, task and lesson lists.
 
 ![listallCommand](images/listallCommand.png)
 
@@ -169,7 +172,7 @@ This action is irreversible! Please think twice before you use this command!
 
 ### Exiting the program : `exit`
 
-Exits the program.
+Exits the program. Your changes will be saved automatically.
 
 Format: `exit`
 
@@ -182,13 +185,13 @@ This section contains commands for managing students.
 
 ### Adding a student: `addstudent`
 
-Adds a student to JARVIS.
+Adds a student to your student list.
 
 Format: `addstudent s/NAME m/MATRIC_NUM`
 
 * `m/MATRIC_NUM` must start with 'A', followed by 7 digits and a capital letter.
-* A maximum of 10 students can exist in the student list at any point in time. The user will not be allowed to add more students after reaching the limit of 10 students.
-* `MATRIC_NUM` provided must not already exist in student list. 
+* A maximum of 10 students can exist in your student list at any point in time. You will not be allowed to add more students after reaching the limit of 10 students.
+* `MATRIC_NUM` provided must not already exist in your student list. 
 
 Examples:
 * `addstudent s/John Doe m/A0123459G` adds a student named `John Doe` with matric number `A0123459G` to your student list.
@@ -196,11 +199,11 @@ Examples:
 
 ### Deleting a student : `deletestudent`
 
-Deletes a student from the student list.
+Deletes a student from your student list.
 
 Format: `deletestudent STUDENT_INDEX`
 
-* `STUDENT_INDEX` refer to the index number shown in the student list.
+* `STUDENT_INDEX` refer to the index number shown in your student list.
 * `STUDENT_INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
@@ -208,7 +211,7 @@ Examples:
 
 ### Editing a student : `editstudent`
 
-Edits an existing student in JARVIS.
+Edits the details of an existing student in your student list.
 
 Format: `editstudent STUDENT_INDEX [s/NAME] [m/MATRIC_NUM]`
 
@@ -230,7 +233,7 @@ If you have two or more students with similar names, you can use the `editstuden
 
 ### Locating students by name: `findstudent`
 
-Finds students whose names contain any of the given keywords.
+Finds students whose names contain any of the given keywords, so that you can search for students easily.
 
 Format: `findstudent KEYWORD [MORE_KEYWORDS]`
 
@@ -246,7 +249,7 @@ Examples:
 
 ### Adding grades to a student : `grade`
 
-Adds grades to a student.
+Records grades for a student's assessments.
 
 Format: `grade STUDENT_INDEX [ra1/MARKS] [ra2/MARKS] [mt/MARKS] [pa/MARKS] [fn/MARKS]`
 
@@ -267,7 +270,7 @@ Examples:
 
 ### Setting mastery check result for a student : `mc`
 
-Sets mastery check result for a student.
+Sets mastery check result for a student, so that you can keep track of which students have completed or need to complete this assessment.
 
 Format: `mc STUDENT_INDEX num/MC_NUM r/MC_RESULT`
 
@@ -291,7 +294,7 @@ This section contains commands for managing tasks.
 
 ### Adding a task: `addtask`
 
-Adds a task to JARVIS.
+Adds a task to your task list.
 
 Format: `addtask t/TASK_DESC [d/DEADLINE]`
 
@@ -306,11 +309,11 @@ Examples:
 
 ### Deleting a task : `deletetask`
 
-Deletes a task from the task list.
+Deletes a task from your task list.
 
 Format: `deletetask TASK_INDEX`
 
-* `TASK_INDEX` refer to the index number shown in the task list.
+* `TASK_INDEX` refer to the index number shown in your task list.
 * `TASK_INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
@@ -355,7 +358,7 @@ This section contains commands for managing lessons.
 
 ### Adding a studio lesson: `addstudio`
 
-Adds a studio lesson to JARVIS.
+Adds a studio lesson to your lesson list.
 
 Format: `addstudio [l/LESSON_DESC] sd/START_DATE st/START_TIME [ed/END_DATE] et/END_TIME`
 
@@ -363,15 +366,15 @@ Format: `addstudio [l/LESSON_DESC] sd/START_DATE st/START_TIME [ed/END_DATE] et/
 * `sd/START_DATE` and `ed/END_DATE` should be in the format `yyyy-MM-dd`.
 * `st/START_TIME` and `et/END_TIME` should be in the format `hh:mm`.
 * `ed/END_DATE` is optional, if unspecified `END_DATE` will be assumed to be the same as `START_DATE`.
-* Studio to be added must not already exist in the lesson list.
-* Studio to be added must not clash with other lessons in the lesson list.
+* Studio to be added must not already exist in your lesson list.
+* Studio to be added must not clash with other lessons in your lesson list.
 
 Examples:
 * `addstudio l/Studio 3 sd/2022-10-12 st/14:00 et/16:00` adds a studio lesson with description `Studio 3` on `Oct-12-2022` from `14:00` to `16:00`.
 
 ### Adding a consult lesson: `addconsult`
 
-Adds a consult lesson to JARVIS.
+Adds a consult lesson to your lesson list.
 
 Format: `addconsult [l/LESSON_DESC] sd/START_DATE st/START_TIME [ed/END_DATE] et/END_TIME si/STUDENT_INDEX...`
 
@@ -380,8 +383,8 @@ Format: `addconsult [l/LESSON_DESC] sd/START_DATE st/START_TIME [ed/END_DATE] et
 * `st/START_TIME` and `et/END_TIME` should be in the format `hh:mm`.
 * `ed/END_DATE` is optional, if unspecified `END_DATE` will be assumed to be the same as `START_DATE`
 * `si/STUDENT_INDEX` can be specified one or more times according to the number of attending students.
-* Consult to be added must not already exist in the lesson list.
-* Consult to be added must not clash with other lessons in the lesson list.
+* Consult to be added must not already exist in your lesson list.
+* Consult to be added must not clash with other lessons in your lesson list.
 
 Examples:
 * `addconsult l/Consultation on recursion sd/2022-10-14 st/12:00 et/14:00 si/3 si/4` adds a consult lesson with description `Consultation on recursion` on `Oct-14-2022` from `12:00` to `14:00` with the 3rd and 4th student in your student list.
@@ -389,7 +392,7 @@ Examples:
 
 ### Adding a mastery check lesson: `addmc`
 
-Adds a mastery check lesson to JARVIS.
+Adds a mastery check lesson to your lesson list.
 
 Format: `addmc [l/LESSON_DESC] sd/START_DATE st/START_TIME [ed/END_DATE] et/END_TIME si/STUDENT_INDEX...`
 
@@ -398,8 +401,8 @@ Format: `addmc [l/LESSON_DESC] sd/START_DATE st/START_TIME [ed/END_DATE] et/END_
 * `st/START_TIME` and `et/END_TIME` should be in the format `hh:mm`.
 * `ed/END_DATE` is optional, if unspecified `END_DATE` will be assumed to be the same as `START_DATE`
 * `si/STUDENT_INDEX` can be specified one or more times according to the number of attending students.
-* Mastery Check to be added must not already exist in the lesson list.
-* Mastery Check to be added must not clash with other lessons in the lesson list.
+* Mastery Check to be added must not already exist in your lesson list.
+* Mastery Check to be added must not clash with other lessons in your lesson list.
 
 Examples:
 * `addmc l/Mastery check 1 sd/2022-10-12 st/12:00 et/14:00 si/1 si/2` adds a mastery check lesson with description `Mastery check 1` on `Oct-20-2022` from `12:00` to `14:00` with the 1st and 2nd student in your student list.
@@ -407,11 +410,11 @@ Examples:
 
 ### Deleting a lesson : `deletelesson`
 
-Deletes a lesson from the lesson list.
+Deletes a lesson from your lesson list.
 
 Format: `deletelesson LESSON_INDEX`
 
-* `LESSON_INDEX` refer to the index number shown in the lesson list.
+* `LESSON_INDEX` refer to the index number shown in your lesson list.
 * `LESSON_INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
@@ -425,7 +428,7 @@ Format: `marklesson LESSON_INDEX`
 
 ![marklessonCommand](images/marklessonCommand.png)
 
-* `LESSON_INDEX` refer to the index number shown in the lesson list.
+* `LESSON_INDEX` refer to the index number shown in your lesson list.
 * `LESSON_INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Example:
@@ -441,7 +444,7 @@ Marks a lesson as not completed.
 
 Format: `unmarklesson LESSON_INDEX`
 
-* `LESSON_INDEX` refer to the index number shown in the lesson list.
+* `LESSON_INDEX` refer to the index number shown in your lesson list.
 * `LESSON_INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Example:
@@ -449,7 +452,7 @@ Example:
 
 ### Marking a student as present for a lesson : `markstudent`
 
-Marks a student as present for a lesson.
+Marks a student as present for a lesson, so that you can take attendance easily.
 
 ![markstudentCommand](images/markstudentCommand.png)
 
@@ -465,7 +468,7 @@ Example:
 
 ### Marking a student as absent for a lesson : `unmarkstudent`
 
-Marks a student as absent for a lesson.
+Marks a student as absent for a lesson, so that you can take attendance easily.
 
 Format: `unmarkstudent li/LESSON_INDEX si/STUDENT_INDEX`
 
@@ -478,7 +481,7 @@ Example:
 
 ### Adding a note to a lesson : `addnote`
 
-Adds a note for a lesson or for a specific student in a lesson.
+Adds a note for a lesson or for a specific student in a lesson, so that you can take down notes in an organised manner.
 
 ![addnoteCommand.png](images/addnoteCommand.png)
 
@@ -511,7 +514,7 @@ Example:
 
 ### Adding participation for a student in a lesson : `addpart`
 
-Adds participation for a student in a lesson.
+Adds participation for a student in a lesson, so that you can track class participation easily.
 
 ![addparticipationCommand](images/addparticipationCommand.png)
 
@@ -533,7 +536,7 @@ Example:
 
 ## Saving the data
 
-JARVIS data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+JARVIS data is saved in your hard disk automatically after any command that changes the data. There is no need to save manually.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -544,7 +547,7 @@ JARVIS data is saved in 3 JSON files:
 2. `[JAR file location]/data/taskbook.json` for task data
 3. `[JAR file location]/data/lessonbook.json` for lesson data
 
-Advanced users are welcome to update data directly by editing the data files.
+If you are an advanced user, you may update data directly by editing the data files, but do heed the advisory below.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, JARVIS will discard all data and start with empty data files at the next run.
