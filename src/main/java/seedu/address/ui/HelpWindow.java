@@ -130,6 +130,9 @@ public class HelpWindow extends UiPart<Stage> {
         clipboard.setContent(url);
     }
 
+    /**
+     * Fills the dropdown box with all the valid commands.
+     */
     private void setChoiceBox() {
         choiceBox.setStyle("-fx-font-family: 'Minecraft';");
         choiceBox.getItems().addAll("Add", "Delete", "Edit", "Find", "List", "Help", "Clear", "Suggest", "Exit");
@@ -170,6 +173,10 @@ public class HelpWindow extends UiPart<Stage> {
         choiceBox.setValue("Add");
     }
 
+    /**
+     * Sets the text labels according to the given {@code Command} class.
+     * @param commandClass {@code Command} class.
+     */
     private void setHelpLabels(Class<? extends Command> commandClass) {
         try {
             Command commandInstance = commandClass.getDeclaredConstructor().newInstance();
@@ -183,6 +190,9 @@ public class HelpWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Allows the text labels to be continued to the next line when the side of the window is reached.
+     */
     private void setTextAutoWrap() {
         desc.wrappingWidthProperty().bind(scene.widthProperty().subtract(20));
         param.wrappingWidthProperty().bind(scene.widthProperty().subtract(20));
