@@ -17,14 +17,19 @@ public class PersonSuggestionPredicate implements Predicate<Person> {
 
     /**
      * Creates a predicate based off the constraints below.
-     * @param dayTimeInWeek The object representing the day of week and the time in day.
-     * @param keywords The keywords that the friend needs to contain.
+     * @param dayTimeInWeek The Set collection that contains {@code DayTimeInWeek}.
+     * @param keywords The Set collection that contains the {@code Keyword} that the friend needs to contain.
      */
     public PersonSuggestionPredicate(Set<DayTimeInWeek> dayTimeInWeek, Set<Keyword> keywords) {
         this.dayTimeInWeek = dayTimeInWeek;
         this.keywords = keywords;
     }
 
+    /**
+     * Tests if the {@code person} should be suggested based on the attribute constraints given.
+     * @param person A {@code Person}.
+     * @return A boolean value.
+     */
     @Override
     public boolean test(Person person) {
 

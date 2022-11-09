@@ -11,10 +11,20 @@ import seedu.address.commons.util.StringUtil;
 public class NameContainsKeywordsPredicate implements Predicate<Person> {
     private final List<String> keywords;
 
+    /**
+     * Constructs a {@code NameContainsKeywordsPredicate}.
+     *
+     * @param keywords A list of keywords.
+     */
     public NameContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
+    /**
+     * Tests if the {@code Person}'s name matches any of the keywords given.
+     * @param person A Person.
+     * @return A boolean value.
+     */
     @Override
     public boolean test(Person person) {
         return keywords.stream()

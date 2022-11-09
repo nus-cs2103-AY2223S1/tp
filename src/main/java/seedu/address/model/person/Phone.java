@@ -28,6 +28,8 @@ public class Phone {
 
     /**
      * Returns true if a given string is a valid phone number.
+     * @param test A string.
+     * @return A boolean value.
      */
     public static boolean isValidPhone(String test) {
         return test.matches(VALIDATION_REGEX);
@@ -45,6 +47,10 @@ public class Phone {
                 && value.equals(((Phone) other).value)); // state check
     }
 
+    /**
+     * Returns hashcode for purpose of the  {@link #equals(Object)} method.
+     * @return The hashcode of the String representation of the object.
+     */
     @Override
     public int hashCode() {
         return value.hashCode();

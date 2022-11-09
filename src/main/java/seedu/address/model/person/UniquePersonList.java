@@ -79,13 +79,17 @@ public class UniquePersonList implements Iterable<Person> {
         }
     }
 
+    /**
+     * Replaces the contents of this list with all the {@code persons} in the given {@link UniquePersonList}.
+     * {@code UniquePersonList} must not contain duplicate persons.
+     */
     public void setPersons(UniquePersonList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
 
     /**
-     * Replaces the contents of this list with {@code persons}.
+     * Replaces the contents of this list with all the {@code Person}s inside the given {@code persons} list.
      * {@code persons} must not contain duplicate persons.
      */
     public void setPersons(List<Person> persons) {

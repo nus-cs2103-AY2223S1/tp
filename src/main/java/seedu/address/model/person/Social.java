@@ -51,7 +51,10 @@ public class Social {
     }
 
     /**
-     * Returns true if a given string is a valid name.
+     * Returns true if a given string is a valid social handle.
+     *
+     * @param test A string.
+     * @return A boolean value.
      */
     public static boolean isValidSocial(String test) {
         String[] strArray = test.split("@");
@@ -61,7 +64,8 @@ public class Social {
     }
 
     /**
-     * Returns hashcode for purpose of the equals method.
+     * Returns hashcode for purpose of the  {@link #equals(Object)} method.
+     * @return The hashcode of the String representation of the object.
      */
     @Override
     public int hashCode() {

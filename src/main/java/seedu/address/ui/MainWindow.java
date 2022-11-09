@@ -260,11 +260,19 @@ public class MainWindow extends UiPart<Stage> {
         isCreeperAnimationRunning = false;
     }
 
+    /**
+     * Creates a {@code MediaPlayer} that plays a sound using the {@code soundFile}
+     * @param soundFile name of the sound file.
+     * @return A MediaPlayer object.
+     */
     private MediaPlayer loadSound(String soundFile) {
         Media sound = new Media(getClass().getResource(soundFile).toString());
         return new MediaPlayer(sound);
     }
 
+    /**
+     * Plays the sound of an explosion.
+     */
     private void playSound() {
         MediaPlayer explosionSound = loadSound("/audio/explosion_sound.mp3");
         explosionSound.play();
