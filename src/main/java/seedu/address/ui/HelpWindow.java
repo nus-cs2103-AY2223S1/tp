@@ -130,6 +130,9 @@ public class HelpWindow extends UiPart<Stage> {
         clipboard.setContent(url);
     }
 
+    /**
+     * Sets the choice box to display the list of commands.
+     */
     private void setChoiceBox() {
         choiceBox.setStyle("-fx-font-family: 'Minecraft';");
         choiceBox.getItems().addAll("Add", "Delete", "Edit", "Find", "List", "Help", "Clear", "Suggest", "Exit");
@@ -170,6 +173,10 @@ public class HelpWindow extends UiPart<Stage> {
         choiceBox.setValue("Add");
     }
 
+    /**
+     * Sets the help labels to display the command's description, parameters and examples.
+     * @param commandClass The class of the command.
+     */
     private void setHelpLabels(Class<? extends Command> commandClass) {
         try {
             Command commandInstance = commandClass.getDeclaredConstructor().newInstance();
@@ -183,6 +190,9 @@ public class HelpWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Sets the text to auto wrap.
+     */
     private void setTextAutoWrap() {
         desc.wrappingWidthProperty().bind(scene.widthProperty().subtract(20));
         param.wrappingWidthProperty().bind(scene.widthProperty().subtract(20));

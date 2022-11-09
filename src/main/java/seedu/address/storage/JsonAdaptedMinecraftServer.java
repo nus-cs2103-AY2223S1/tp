@@ -7,7 +7,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Server;
 
 /**
- * Json model of minecraft server address.
+ * Jackson-friendly version of {@link Server}.
  */
 public class JsonAdaptedMinecraftServer {
 
@@ -28,8 +28,8 @@ public class JsonAdaptedMinecraftServer {
     }
 
     /**
-     * Parses the serverName to produce a Server object
-     * @return Server object
+     * Parses the serverName to produce a Server object.
+     * @return the server object
      * @throws IllegalValueException if the serverName is invalid
      */
     public Server toModelType() throws IllegalValueException {

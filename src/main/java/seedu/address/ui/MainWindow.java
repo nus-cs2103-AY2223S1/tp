@@ -222,6 +222,9 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Executes the animation when an invalid command is entered.
+     */
     private void executeAnimation() {
         playSound();
         if (isCreeperAnimationRunning) {

@@ -173,9 +173,9 @@ public class ParserUtil {
     /**
      * Parses a {@code String socialStr} into a {@code Social}.
      *
-     * @param socialStr the social media platform to be parsed
+     * @param socialStr the social media platform string to be parsed
      * @return The social media platform
-     * @throws ParseException if the given {@code socialStr} is invalid.
+     * @throws ParseException if the given {@code socialStr} is invalid
      */
     public static Social parseSocial(String socialStr) throws ParseException {
         requireNonNull(socialStr);
@@ -252,9 +252,9 @@ public class ParserUtil {
     /**
      * Parses a {@code String server} into a {@code Server}.
      *
-     * @param server the server to be parsed
-     * @return the server
-     * @throws ParseException if the given {@code server} is invalid.
+     * @param server the {@code server} string to be parsed
+     * @return the {@code Server} object
+     * @throws ParseException if the given {@code server} string is invalid
      */
     public static Server parseServer(String server) throws ParseException {
         requireNonNull(server);
@@ -268,9 +268,9 @@ public class ParserUtil {
     /**
      * Parses {@code Collection<String> servers} into a {@code Set<Server>}.
      *
-     * @param servers Collection of servers to be parsed.
-     * @return Set of servers.
-     * @throws ParseException if any of the servers are invalid.
+     * @param servers the collection of servers to be parsed
+     * @return a set of servers
+     * @throws ParseException if any of the servers are invalid
      */
     public static Set<Server> parseServers(Collection<String> servers) throws ParseException {
         requireNonNull(servers);
