@@ -10,6 +10,9 @@ import java.time.format.DateTimeFormatter;
  */
 public class CurrentTimeConverter {
 
+    /**
+     * The standard format to convert Date and Time to.
+     */
     public static final DateTimeFormatter STANDARD_TIME_FORMAT = DateTimeFormatter.ofPattern("HHmm");
 
     /**

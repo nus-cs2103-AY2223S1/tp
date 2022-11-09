@@ -137,7 +137,8 @@ public class ParserUtil {
     /**
      * Parses a {@code String dayTimeInWeek} into an {@code DayTimeInWeek}.
      * Leading and trailing whitespaces will be trimmed.
-     *
+     * @param dayTimeInWeek A String representation of a day and time in a week.
+     * @return A DayTimeInWeek object.
      * @throws ParseException if the given {@code dayTimeInWeek} is invalid.
      */
     public static DayTimeInWeek parseDayTimeInWeek(String dayTimeInWeek) throws ParseException {
