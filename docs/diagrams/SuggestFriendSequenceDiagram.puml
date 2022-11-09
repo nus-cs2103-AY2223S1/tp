@@ -1,0 +1,27 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+!include style.puml
+
+participant ":SuggestCommand" as SuggestCommand LOGIC_COLOR
+participant ":Model" as Model MODEL_COLOR
+participant "filteredPersons:FilteredList" as FilteredList MODEL_COLOR
+
+[-> SuggestCommand: execute(model)
+activate SuggestCommand
+
+SuggestCommand -> Model: updateFilteredPersonList(predicate)
+activate Model
+
+Model -> FilteredList: setPredicate(predicate)
+activate FilteredList
+
+Model <-- FilteredList
+deactivate FilteredList
+
+SuggestCommand <-- Model
+deactivate Model
+
+[<-- SuggestCommand: CommandResult
+deactivate SuggestCommand
+
+@enduml

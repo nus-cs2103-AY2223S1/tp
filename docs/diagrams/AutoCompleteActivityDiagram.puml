@@ -1,0 +1,24 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR_T2
+skinparam classBackgroundColor MODEL_COLOR_T2
+
+(*) --> "User types into CommandBox"
+
+--> "AutoComplete matches user input against list of commands"
+
+if "AutoComplete finds a match" then
+    -->[yes] "AutoComplete displays the matching command in the AutoCompletePopup"
+    --> "User presses TAB key"
+    --> "AutoComplete replaces the user input with the match"
+    --> "User presses ENTER key"
+    --> "Command is executed"
+    --> (*)
+else
+    -->[no] "AutoComplete displays no commands in the AutoCompletePopup"
+    --> (*)
+    endif
+
+
+@enduml

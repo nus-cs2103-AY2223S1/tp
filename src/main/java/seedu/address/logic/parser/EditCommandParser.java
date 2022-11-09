@@ -3,10 +3,16 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COUNTRY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GAME_TYPE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MINECRAFT_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MINECRAFT_SERVER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SOCIAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_INTERVAL;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -17,7 +23,11 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.GameType;
+import seedu.address.model.person.ITimesAvailable;
+import seedu.address.model.person.Server;
+import seedu.address.model.person.Social;
+import seedu.address.model.person.Tag;
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -30,10 +40,13 @@ public class EditCommandParser implements Parser<EditCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public EditCommand parse(String args) throws ParseException {
-        requireNonNull(args);
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
 
+        requireNonNull(args);
+
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_MINECRAFT_NAME, PREFIX_PHONE, PREFIX_EMAIL,
+                        PREFIX_ADDRESS, PREFIX_SOCIAL, PREFIX_TAG, PREFIX_MINECRAFT_SERVER, PREFIX_COUNTRY,
+                        PREFIX_GAME_TYPE, PREFIX_TIME_INTERVAL);
         Index index;
 
         try {
@@ -41,10 +54,17 @@ public class EditCommandParser implements Parser<EditCommand> {
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
-
+        assert index.getZeroBased() >= 0 : "index should be more than or equal to 0";
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
+
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+        }
+        if (argMultimap.getValue(PREFIX_MINECRAFT_NAME).isPresent()) {
+            editPersonDescriptor.setMinecraftName(ParserUtil.parseMinecraftName(
+                    argMultimap.getValue(PREFIX_MINECRAFT_NAME).get()
+                    )
+            );
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
             editPersonDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
@@ -55,7 +75,20 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
+        if (argMultimap.getValue(PREFIX_COUNTRY).isPresent()) {
+            editPersonDescriptor.setCountry(ParserUtil.parseCountry(argMultimap.getValue(PREFIX_COUNTRY).get()));
+        }
+
+        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG))
+                .ifPresent(editPersonDescriptor::setTags);
+        parseSocialsForEdit(argMultimap.getAllValues(PREFIX_SOCIAL))
+                .ifPresent(editPersonDescriptor::setSocials);
+        parseMinecraftServersForEdit(argMultimap.getAllValues(PREFIX_MINECRAFT_SERVER))
+                .ifPresent(editPersonDescriptor::setServers);
+        parseGameTypesForEdit(argMultimap.getAllValues(PREFIX_GAME_TYPE))
+                .ifPresent(editPersonDescriptor::setGameTypes);
+        parseTimeIntervalsForEdit(argMultimap.getAllValues(PREFIX_TIME_INTERVAL))
+                .ifPresent(editPersonDescriptor::setTimeIntervals);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
@@ -79,4 +112,67 @@ public class EditCommandParser implements Parser<EditCommand> {
         return Optional.of(ParserUtil.parseTags(tagSet));
     }
 
+    /**
+     * Parses {@code Collection<String> socials} into a {@code Set<Social>} if {@code socials} is non-empty.
+     * If {@code socials} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<Social>} containing zero socials.
+     */
+    private Optional<Set<Social>> parseSocialsForEdit(Collection<String> socials) throws ParseException {
+        assert socials != null;
+
+        if (socials.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> socialSet = socials.size() == 1 && socials.contains("") ? Collections.emptySet() : socials;
+        return Optional.of(ParserUtil.parseSocials(socialSet));
+    }
+
+    /**
+     * Parses {@code Collection<String> servers} into a {@code Set<Server>} if {@code servers} is non-empty.
+     * If {@code servers} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<Server>} containing zero servers.
+     */
+    private Optional<Set<Server>> parseMinecraftServersForEdit(Collection<String> servers) throws ParseException {
+        assert servers != null;
+
+        if (servers.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> serverSet = servers.size() == 1 && servers.contains("") ? Collections.emptySet() : servers;
+        return Optional.of(ParserUtil.parseServers(serverSet));
+    }
+
+    /**
+     * Parses {@code Collection<String> gameTypes} into a {@code Set<GameType>} if {@code gameTypes} is non-empty.
+     * If {@code gameTypes} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<GameType>} containing zero gameTypes.
+     */
+    private Optional<Set<GameType>> parseGameTypesForEdit(Collection<String> gameTypes) throws ParseException {
+        assert gameTypes != null;
+
+        if (gameTypes.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> gameTypesSet =
+                gameTypes.size() == 1 && gameTypes.contains("") ? Collections.emptySet() : gameTypes;
+        return Optional.of(ParserUtil.parseGameTypes(gameTypesSet));
+    }
+
+    /**
+     * Parses {@code Collection<String> timeIntervals} into a {@code Set<ITimesAvailable>}
+     * if {@code timeIntervals} is non-empty.
+     * If {@code timeIntervals} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<ITimesAvailable>} containing zero ITimesAvailable.
+     */
+    private Optional<Set<ITimesAvailable>> parseTimeIntervalsForEdit(Collection<String> timeIntervals)
+            throws ParseException {
+        assert timeIntervals != null;
+
+        if (timeIntervals.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> timeIntervalSet =
+                timeIntervals.size() == 1 && timeIntervals.contains("") ? Collections.emptySet() : timeIntervals;
+        return Optional.of(ParserUtil.parseTimeIntervals(timeIntervalSet));
+    }
 }

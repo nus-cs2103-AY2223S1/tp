@@ -5,55 +5,61 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the email `zbz.lvlv@gmail.com`
 
 ## Project team
 
-### John Doe
+### Zhang Bozheng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/zbz-lvlv.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/zbz-lvlv)]
 
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/zbz-lvlv.md)]
 
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: All
 
-### Johnny Doe
+### Kang Wenhan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/onepersonhere.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/onepersonhere)]
+
+[[portfolio](team/onepersonhere.md)]
+
+* Role: Co-Lead
+* Responsibilities: Code Quality
+
+### Justin Cheng
+
+<img src="images/chustinjeng.png" width="200px">
+
+[[github](http://github.com/Chustinjeng)]
+
+[[portfolio](team/chustinjeng.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Functional developer and test cases
 
-### Jean Doe
+### Shawn Tan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/shawnkai.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/shawnkai)]
+
+[[portfolio](team/shawnkai.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Code Quality
 
-### James Doe
+### Sheryl Kong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/sherylkong18.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/sherylkong18)]
+
+[[portfolio](team/sherylkong18.md)]
 
 * Role: Developer
 * Responsibilities: UI

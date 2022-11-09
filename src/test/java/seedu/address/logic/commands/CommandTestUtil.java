@@ -3,10 +3,16 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COUNTRY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GAME_TYPE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MINECRAFT_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MINECRAFT_SERVER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SOCIAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_INTERVAL;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -28,6 +34,8 @@ public class CommandTestUtil {
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
+    public static final String VALID_MINECRAFT_NAME_AMY = "AmyBee123";
+    public static final String VALID_MINECRAFT_NAME_BOB = "bobby11234";
     public static final String VALID_PHONE_AMY = "11111111";
     public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
@@ -36,21 +44,42 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_SOCIAL_INSTAGRAM = "ig@Amy123";
+    public static final String VALID_SOCIAL_TWITTER = "twitter@Bobby456";
+    public static final String VALID_COUNTRY_UK = "United Kingdom";
+    public static final String VALID_COUNTRY_CANADA = "Canada";
+    public static final String VALID_GAME_TYPE_MINEPLEX = "MinePlex";
+    public static final String VALID_GAME_TYPE_SURVIVAL = "Survival";
+    public static final String VALID_SERVER_123_456 = "server@123.456";
+    public static final String VALID_SERVER_111_222 = "server@111.222";
+    public static final String VALID_TIME_INTERVAL_SUNDAY_NIGHT_TO_MONDAY_MORNING =
+            "sun@2300-mon@0100";
+    public static final String VALID_TIME_INTERVAL_TUES_AFTERNOON = "tue@1400-tue@1600";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
+    public static final String MINECRAFT_NAME_DESC_AMY = " " + PREFIX_MINECRAFT_NAME + VALID_MINECRAFT_NAME_AMY;
+    public static final String MINECRAFT_NAME_DESC_BOB = " " + PREFIX_MINECRAFT_NAME + VALID_MINECRAFT_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
+    public static final String COUNTRY_DESC_CANADA = " " + PREFIX_COUNTRY + VALID_COUNTRY_CANADA;
+    public static final String COUNTRY_DESC_UK = " " + PREFIX_COUNTRY + VALID_COUNTRY_UK;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
-
-    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
+    public static final String GAME_TYPE_DESC_MINEPLEX = " " + PREFIX_GAME_TYPE + VALID_GAME_TYPE_MINEPLEX;
+    public static final String GAME_TYPE_DESC_SURVIVAL = " " + PREFIX_GAME_TYPE + VALID_GAME_TYPE_SURVIVAL;
+    public static final String MINECRAFT_SERVER_DESC_111_222 = " " + PREFIX_MINECRAFT_SERVER + VALID_SERVER_111_222;
+    public static final String MINECRAFT_SERVER_DESC_123_456 = " " + PREFIX_MINECRAFT_SERVER + VALID_SERVER_123_456;
+    public static final String SOCIAL_DESC_INSTAGRAM = " " + PREFIX_SOCIAL + VALID_SOCIAL_INSTAGRAM;
+    public static final String SOCIAL_DESC_TWITTER = " " + PREFIX_SOCIAL + VALID_SOCIAL_TWITTER;
+    public static final String TI_DESC_SUN_TO_MON = " " + PREFIX_TIME_INTERVAL
+            + VALID_TIME_INTERVAL_SUNDAY_NIGHT_TO_MONDAY_MORNING;
+    public static final String TI_DESC_TUES = " " + PREFIX_TIME_INTERVAL + VALID_TIME_INTERVAL_TUES_AFTERNOON;
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
-    public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 

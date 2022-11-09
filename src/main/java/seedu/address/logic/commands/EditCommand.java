@@ -2,10 +2,16 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COUNTRY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GAME_TYPE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MINECRAFT_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MINECRAFT_SERVER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SOCIAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_INTERVAL;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -20,11 +26,17 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Country;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.GameType;
+import seedu.address.model.person.ITimesAvailable;
+import seedu.address.model.person.MinecraftName;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.Server;
+import seedu.address.model.person.Social;
+import seedu.address.model.person.Tag;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -32,21 +44,32 @@ import seedu.address.model.tag.Tag;
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
+    public static final String DESCRIPTION = "Edits the details of the person identified "
             + "by the index number used in the displayed person list. "
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Existing values will be overwritten by the input values.";
+    public static final String PARAMETERS = "INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
+            + "[" + PREFIX_COUNTRY + "COUNTRY] "
+            + "[" + PREFIX_MINECRAFT_NAME + "MINECRAFT_NAME] "
+            + "[" + PREFIX_MINECRAFT_SERVER + "MINECRAFT_SERVER]* "
+            + "[" + PREFIX_GAME_TYPE + "GAME_TYPE]* "
+            + "[" + PREFIX_SOCIAL + "SOCIAL]* "
+            + "[" + PREFIX_TAG + "TAG]* "
+            + "[" + PREFIX_TIME_INTERVAL + "TIME_INTERVAL]*";
+    public static final String EXAMPLES = COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_EMAIL + "johndoe@example.com "
+            + PREFIX_SOCIAL + "fb@John Doe ";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": " + DESCRIPTION + "\n\n"
+            + "Parameters: \n"
+            + PARAMETERS + "\n"
+            + "Example: " + EXAMPLES;
+
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited friend: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
@@ -54,6 +77,16 @@ public class EditCommand extends Command {
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
+     * An empty constructor for EditCommand.
+     */
+    public EditCommand() {
+        this.index = null;
+        this.editPersonDescriptor = null;
+    }
+
+    /**
+     * Constructs a {@code EditCommand}.
+     *
      * @param index of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
@@ -86,6 +119,21 @@ public class EditCommand extends Command {
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
 
+    @Override
+    public String getDescription() {
+        return DESCRIPTION;
+    }
+
+    @Override
+    public String getParameters() {
+        return PARAMETERS;
+    }
+
+    @Override
+    public String getExamples() {
+        return EXAMPLES;
+    }
+
     /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
@@ -94,12 +142,21 @@ public class EditCommand extends Command {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
+        MinecraftName updatedMinecraftName = editPersonDescriptor.getMinecraftName()
+                .orElse(personToEdit.getMinecraftName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        Set<Social> updatedSocials = editPersonDescriptor.getSocials().orElse(personToEdit.getSocials());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Set<Server> updatedServers = editPersonDescriptor.getServers().orElse(personToEdit.getServers());
+        Country updatedCountry = editPersonDescriptor.getCountry().orElse(personToEdit.getCountry());
+        Set<GameType> updatedGameType = editPersonDescriptor.getGameTypes().orElse(personToEdit.getGameType());
+        Set<ITimesAvailable> updatedTimeIntervals = editPersonDescriptor.getTimeIntervals()
+                .orElse(personToEdit.getTimesAvailable());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedMinecraftName, updatedPhone, updatedEmail, updatedAddress,
+                updatedSocials, updatedTags, updatedServers, updatedCountry, updatedGameType, updatedTimeIntervals);
     }
 
     @Override
@@ -125,11 +182,18 @@ public class EditCommand extends Command {
      * corresponding field value of the person.
      */
     public static class EditPersonDescriptor {
+
         private Name name;
+        private MinecraftName minecraftName;
         private Phone phone;
         private Email email;
         private Address address;
+        private Set<Social> socials;
         private Set<Tag> tags;
+        private Set<Server> servers;
+        private Country country;
+        private Set<GameType> gameTypes;
+        private Set<ITimesAvailable> timeIntervals;
 
         public EditPersonDescriptor() {}
 
@@ -139,17 +203,24 @@ public class EditCommand extends Command {
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
+            setMinecraftName(toCopy.minecraftName);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setSocials(toCopy.socials);
             setTags(toCopy.tags);
+            setServers(toCopy.servers);
+            setCountry(toCopy.country);
+            setGameTypes(toCopy.gameTypes);
+            setTimeIntervals(toCopy.timeIntervals);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, minecraftName, phone, email, address,
+                    socials, tags, servers, country, gameTypes, timeIntervals);
         }
 
         public void setName(Name name) {
@@ -158,6 +229,14 @@ public class EditCommand extends Command {
 
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
+        }
+
+        public void setMinecraftName(MinecraftName name) {
+            this.minecraftName = name;
+        }
+
+        public Optional<MinecraftName> getMinecraftName() {
+            return Optional.ofNullable(minecraftName);
         }
 
         public void setPhone(Phone phone) {
@@ -185,6 +264,25 @@ public class EditCommand extends Command {
         }
 
         /**
+         * Sets {@code socials} to this object's {@code socials}.
+         * A defensive copy of {@code socials} is used internally.
+         */
+        public void setSocials(Set<Social> socials) {
+            this.socials = (socials != null) ? new HashSet<>(socials) : null;
+        }
+
+        /**
+         * Returns an unmodifiable socials set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code socials} is null.
+         */
+        public Optional<Set<Social>> getSocials() {
+            return (socials != null)
+                    ? Optional.of(Collections.unmodifiableSet(socials))
+                    : Optional.empty();
+        }
+
+        /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
          */
@@ -201,8 +299,41 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        public void setServers(Set<Server> servers) {
+            this.servers = (servers != null) ? new HashSet<>(servers) : null;
+        }
+
+        public Optional<Set<Server>> getServers() {
+            return (servers != null) ? Optional.of(Collections.unmodifiableSet(servers)) : Optional.empty();
+        }
+
+        public void setCountry(Country country) {
+            this.country = country;
+        }
+
+        public Optional<Country> getCountry() {
+            return Optional.ofNullable(country);
+        }
+
+        public void setGameTypes(Set<GameType> gameTypes) {
+            this.gameTypes = (gameTypes != null) ? new HashSet<>(gameTypes) : null;
+        }
+
+        public Optional<Set<GameType>> getGameTypes() {
+            return (gameTypes != null) ? Optional.of(Collections.unmodifiableSet(gameTypes)) : Optional.empty();
+        }
+
+        public void setTimeIntervals(Set<ITimesAvailable> timeIntervals) {
+            this.timeIntervals = (timeIntervals != null) ? new HashSet<>(timeIntervals) : null;
+        }
+
+        public Optional<Set<ITimesAvailable>> getTimeIntervals() {
+            return (timeIntervals != null) ? Optional.of(Collections.unmodifiableSet(timeIntervals)) : Optional.empty();
+        }
+
         @Override
         public boolean equals(Object other) {
+
             // short circuit if same object
             if (other == this) {
                 return true;
@@ -217,10 +348,16 @@ public class EditCommand extends Command {
             EditPersonDescriptor e = (EditPersonDescriptor) other;
 
             return getName().equals(e.getName())
+                    && getMinecraftName().equals(e.getMinecraftName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags());
+                    && getSocials().equals(e.getSocials())
+                    && getTags().equals(e.getTags())
+                    && getServers().equals(e.getServers())
+                    && getCountry().equals(e.getCountry())
+                    && getGameTypes().equals(e.getGameTypes())
+                    && getTimeIntervals().equals(e.getTimeIntervals());
         }
     }
 }

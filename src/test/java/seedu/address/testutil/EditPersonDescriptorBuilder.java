@@ -6,11 +6,18 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Country;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.GameType;
+import seedu.address.model.person.ITimesAvailable;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.Server;
+import seedu.address.model.person.Social;
+import seedu.address.model.person.Tag;
+import seedu.address.model.person.TimeInterval;
+
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.
@@ -33,10 +40,15 @@ public class EditPersonDescriptorBuilder {
     public EditPersonDescriptorBuilder(Person person) {
         descriptor = new EditPersonDescriptor();
         descriptor.setName(person.getName());
+        descriptor.setMinecraftName(person.getMinecraftName());
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
+        descriptor.setServers(person.getServers());
         descriptor.setTags(person.getTags());
+        descriptor.setSocials(person.getSocials());
+        descriptor.setCountry(person.getCountry());
+        descriptor.setGameTypes(person.getGameType());
     }
 
     /**
@@ -72,12 +84,62 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
+     * Sets the {@code Country} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withCountry(String country) {
+        descriptor.setCountry(new Country(country));
+        return this;
+    }
+
+    /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
      * that we are building.
      */
     public EditPersonDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
+        return this;
+    }
+
+    /**
+     * Parses the {@code server} into a {@code Set<Server>} and set it to the {@code EditPersonDescriptor}
+     * that we are building.
+     */
+    public EditPersonDescriptorBuilder withServer(String... servers) {
+        Set<Server> serverSet = Stream.of(servers).map(Server::new).collect(Collectors.toSet());
+        descriptor.setServers(serverSet);
+        return this;
+    }
+
+    /**
+     * Parses the {@code social} into a {@code Set<Social>} and set it to the {@code EditPersonDescriptor}
+     * that we are building.
+     */
+    public EditPersonDescriptorBuilder withSocial(String... socials) {
+        Set<Social> socialSet = Stream.of(socials).map(Social::new).collect(Collectors.toSet());
+        descriptor.setSocials(socialSet);
+        return this;
+    }
+
+    /**
+     * Parses the {@code timeInterval} into a {@code Set<TimeInterval>} and set it to the {@code EditPersonDescriptor}
+     * that we are building.
+     */
+    public EditPersonDescriptorBuilder withTimeInterval(String... timeInterval) {
+        Set<ITimesAvailable> timeIntervalSet =
+                Stream.of(timeInterval).map(TimeInterval::new).collect(Collectors.toSet());
+        descriptor.setTimeIntervals(timeIntervalSet);
+        return this;
+    }
+
+    /**
+     * Parses the {@code gameTypes} into a {@code Set<GameType>} and set it to the {@code EditPersonDescriptor}
+     * that we are building.
+     */
+
+    public EditPersonDescriptorBuilder withGameTypes(String... gameTypes) {
+        Set<GameType> gameTypeSet = Stream.of(gameTypes).map(GameType::new).collect(Collectors.toSet());
+        descriptor.setGameTypes(gameTypeSet);
         return this;
     }
 

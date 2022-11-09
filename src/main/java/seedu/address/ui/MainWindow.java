@@ -2,14 +2,21 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.animation.PauseTransition;
+import javafx.animation.ScaleTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
@@ -50,6 +57,15 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane statusbarPlaceholder;
 
+    @FXML
+    private StackPane creeperPlaceHolder;
+
+    @FXML private StackPane mineFriendsPlaceHolder;
+
+    private ImageView creeperImageView;
+    private ImageView explosionImageView;
+    private boolean isCreeperAnimationRunning;
+
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -62,6 +78,7 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
+        primaryStage.setMinWidth(800.0);
 
         setAccelerators();
 
@@ -121,6 +138,16 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        creeperImageView = new ImageView(
+                new Image(getClass().getResource("/images/creeper_mob.png").toString()));
+        explosionImageView = new ImageView(
+                new Image(getClass().getResource("/images/explosion2.png").toString()));
+        creeperImageView.setScaleX(1 / 1.2);
+        creeperImageView.setScaleY(1 / 1.2);
+        creeperPlaceHolder.getChildren().add(creeperImageView);
+        creeperPlaceHolder.getChildren().add(explosionImageView);
+        explosionImageView.setVisible(false);
     }
 
     /**
@@ -190,7 +217,64 @@ public class MainWindow extends UiPart<Stage> {
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
+            executeAnimation();
             throw e;
         }
+    }
+
+    /**
+     * Executes the animation when an invalid command is entered.
+     */
+    private void executeAnimation() {
+        playSound();
+        if (isCreeperAnimationRunning) {
+            return;
+        }
+        // start of creeper animation
+        isCreeperAnimationRunning = true;
+        ScaleTransition scaleTransitionExpand = new ScaleTransition();
+        scaleTransitionExpand.setDuration(Duration.seconds(0.5));
+        scaleTransitionExpand.setToX(1.2);
+        scaleTransitionExpand.setToY(1.2);
+        scaleTransitionExpand.setNode(creeperImageView);
+        scaleTransitionExpand.play();
+        PauseTransition creeperExplosionPause = new PauseTransition(Duration.seconds(0.4375));
+        creeperExplosionPause.setOnFinished(
+                event -> {
+                    creeperImageView.setVisible(false);
+                    explosionImageView.setVisible(true);
+                }
+        );
+        creeperExplosionPause.play();
+        PauseTransition endOfExplosionPause = new PauseTransition(Duration.seconds(0.75));
+        endOfExplosionPause.setOnFinished(
+                event -> {
+                    explosionImageView.setVisible(false);
+                    creeperImageView.setScaleX(1 / 1.2);
+                    creeperImageView.setScaleY(1 / 1.2);
+                    creeperImageView.setVisible(true);
+                }
+        );
+        endOfExplosionPause.play();
+        // end of creeper animation
+        isCreeperAnimationRunning = false;
+    }
+
+    /**
+     * Creates a {@code MediaPlayer} that plays a sound using the {@code soundFile}
+     * @param soundFile name of the sound file.
+     * @return A MediaPlayer object.
+     */
+    private MediaPlayer loadSound(String soundFile) {
+        Media sound = new Media(getClass().getResource(soundFile).toString());
+        return new MediaPlayer(sound);
+    }
+
+    /**
+     * Plays the sound of an explosion.
+     */
+    private void playSound() {
+        MediaPlayer explosionSound = loadSound("/audio/explosion_sound.mp3");
+        explosionSound.play();
     }
 }

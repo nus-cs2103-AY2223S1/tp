@@ -11,14 +11,31 @@ import seedu.address.model.Model;
 public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
+    public static final String DESCRIPTION = "Lists all persons in the address book.";
+    public static final String PARAMETERS = "";
+    public static final String EXAMPLES = COMMAND_WORD;
 
     public static final String MESSAGE_SUCCESS = "Listed all persons";
-
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(MESSAGE_SUCCESS);
+    }
+
+    @Override
+    public String getDescription() {
+        return DESCRIPTION;
+    }
+
+    @Override
+    public String getParameters() {
+        return PARAMETERS;
+    }
+
+    @Override
+    public String getExamples() {
+        return EXAMPLES;
     }
 }

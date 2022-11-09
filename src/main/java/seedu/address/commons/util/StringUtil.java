@@ -39,6 +39,19 @@ public class StringUtil {
     }
 
     /**
+     * Checks if sentence contains str, ignoring case.
+     * @param sentence The longer string
+     * @param str The keyword to check in the longer string
+     * @return A boolean indicating if sentence contains str ignoring case.
+     */
+    public static boolean containsIgnoreCase(String sentence, String str) {
+        requireNonNull(sentence);
+        requireNonNull(str);
+
+        return sentence.toLowerCase().contains(str.toLowerCase());
+    }
+
+    /**
      * Returns a detailed message of the t, including the stack trace.
      */
     public static String getDetails(Throwable t) {

@@ -9,13 +9,13 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Address {
 
-    public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Any string can be accepted";
 
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final String VALIDATION_REGEX = ".*";
 
     public final String value;
 
@@ -31,12 +31,19 @@ public class Address {
     }
 
     /**
-     * Returns true if a given string is a valid email.
+     * Returns true if a given string is a valid address.
+     *
+     * @param test A string.
+     * @return A boolean value.
      */
     public static boolean isValidAddress(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns the String representation of the object.
+     * @return String
+     */
     @Override
     public String toString() {
         return value;
@@ -49,6 +56,10 @@ public class Address {
                 && value.equals(((Address) other).value)); // state check
     }
 
+    /**
+     * Returns hashcode for purpose of the  {@link #equals(Object)} method.
+     * @return The hashcode of the String representation of the object.
+     */
     @Override
     public int hashCode() {
         return value.hashCode();

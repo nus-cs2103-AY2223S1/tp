@@ -1,0 +1,36 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR
+skinparam classBackgroundColor LOGIC_COLOR
+
+class "<<interface>>\nPredicate" as Predicate
+class "{abstract}\nCommand" as Command
+class SuggestCommand
+class PersonSuggestionPredicate
+class DayTimeInWeek
+class Keyword
+
+Predicate <|- PersonSuggestionPredicate
+Command <|- SuggestCommand
+SuggestCommand *-- "1" PersonSuggestionPredicate
+PersonSuggestionPredicate *-- "0..*" DayTimeInWeek
+PersonSuggestionPredicate *-- "0..*" Keyword
+
+class Command {
+    CommandResult execute(Model model)
+}
+
+class Predicate {
+    boolean test()
+}
+
+class SuggestCommand {
+    CommandResult execute(Model model)
+}
+
+class PersonSuggestionPredicate {
+    boolean test(Person person)
+}
+
+@enduml

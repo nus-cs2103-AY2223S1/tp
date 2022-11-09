@@ -1,0 +1,30 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR
+skinparam classBackgroundColor LOGIC_COLOR
+
+class "{abstract}\nCommand" as Command
+class "<<interface>>\nModel" as Model
+class EditCommand
+class ModelManager
+class EditPersonDescriptor
+
+Command <|- EditCommand
+Model <|- ModelManager
+EditCommand *-- "1" EditPersonDescriptor
+ModelManager <-down- EditCommand
+
+abstract class Model {
+    void setPerson(Person target, Person editedPerson)
+}
+
+abstract class Command {
+    CommandResult execute(Model model)
+}
+
+class EditCommand {
+    CommandResult execute(Model model
+}
+
+@enduml

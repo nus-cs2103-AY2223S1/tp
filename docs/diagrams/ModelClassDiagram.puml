@@ -17,9 +17,14 @@ Class Person
 Class Address
 Class Email
 Class Name
+Class MinecraftName
+Class Country
 Class Phone
 Class Tag
-
+Class GameType
+Class Server
+Class Social
+Class TimeInterval
 }
 
 Class HiddenOutside #FFFFFF
@@ -36,11 +41,17 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniquePersonList
 UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
+Person *--> "1" Name
+Person *--> "1" MinecraftName
+Person *--> "0..1" Country
+Person *--> "0..1" Phone
+Person *--> "0..1" Email
+Person *--> "0..1" Address
 Person *--> "*" Tag
+Person *--> "*" GameType
+Person *--> "*" Server
+Person *--> "*" Social
+Person *--> "*" TimeInterval
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address

@@ -10,13 +10,13 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Name {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Any string can be accepted";
 
-    /*
+    /**
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = ".*";
 
     public final String fullName;
 
@@ -32,18 +32,27 @@ public class Name {
     }
 
     /**
-     * Returns true if a given string is a valid name.
+     * Returns true if the given String is a valid name.
+     * @param test A string.
+     * @return A boolean value.
      */
     public static boolean isValidName(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
-
+    /**
+     * Returns the String representation of the object.
+     * @return String
+     */
     @Override
     public String toString() {
         return fullName;
     }
 
+    /**
+     * Returns hashcode for purpose of the  {@code #equals(Object)} method.
+     * @return The hashcode of the String representation of the object.
+     */
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

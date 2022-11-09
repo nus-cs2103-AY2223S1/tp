@@ -29,32 +29,44 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
-    private Label name;
+    private Label names;
     @FXML
     private Label id;
     @FXML
-    private Label phone;
-    @FXML
-    private Label address;
-    @FXML
-    private Label email;
+    private Label information;
     @FXML
     private FlowPane tags;
+    @FXML
+    private FlowPane socials;
+    @FXML
+    private FlowPane servers;
+    @FXML
+    private FlowPane gameTypes;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
     public PersonCard(Person person, int displayedIndex) {
+
         super(FXML);
         this.person = person;
+
         id.setText(displayedIndex + ". ");
-        name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
+        names.setText(person.getMinecraftName().toString() + " [" + person.getName().toString() + "]");
+        information.setText(person.toDisplayString());
+
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+
+        person.getSocials().stream()
+                .forEach(soc -> socials.getChildren().add(new Label(soc.toString())));
+
+        person.getServers().stream()
+                .forEach(ser -> servers.getChildren().add(new Label(ser.toString())));
+
+        person.getGameType().stream()
+                .forEach(gam -> gameTypes.getChildren().add(new Label(gam.toString())));
     }
 
     @Override

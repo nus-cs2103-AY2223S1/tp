@@ -1,0 +1,20 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR_T4
+skinparam classBackgroundColor UI_COLOR
+
+class Person
+class TimeInterval
+class DayTimeInWeek
+interface "<<interface>> \n ITimesAvailable"
+
+"<<interface>> \n ITimesAvailable" <|.. TimeInterval
+Person *--> "                        *" TimeInterval
+TimeInterval *-- "2 " DayTimeInWeek
+
+interface "<<interface>> \n ITimesAvailable" {
+isAvailable(DayTimeInWeek)
+}
+
+@enduml

@@ -21,7 +21,6 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
@@ -39,6 +38,8 @@ public class MainApp extends Application {
     public static final Version VERSION = new Version(0, 2, 0, true);
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
+
+    private static boolean isNewDataFileCreated = false;
 
     protected Ui ui;
     protected Logic logic;
@@ -79,15 +80,18 @@ public class MainApp extends Application {
         try {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+                logger.info("Data file not found. Will be starting with an empty AddressBook");
+                isNewDataFileCreated = true;
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = addressBookOptional.orElseGet(AddressBook::new);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
+            isNewDataFileCreated = true;
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
+            isNewDataFileCreated = true;
         }
 
         return new ModelManager(initialData, userPrefs);
@@ -179,5 +183,9 @@ public class MainApp extends Application {
         } catch (IOException e) {
             logger.severe("Failed to save preferences " + StringUtil.getDetails(e));
         }
+    }
+
+    public static boolean isNewDataFileCreated() {
+        return isNewDataFileCreated;
     }
 }
