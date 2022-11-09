@@ -1,0 +1,13 @@
+@startuml
+!include style.puml
+
+object "<u> :ListCommand" as ListCommand
+object "<u> :IsFoodAddedOnThisDatePredicate" as IsFoodAddedOnThisDatePredicate {
+    dateTime = 29 July 2022
+}
+
+ListCommand -right-> IsFoodAddedOnThisDatePredicate
+
+show attributes
+
+@enduml

@@ -1,0 +1,58 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":ReviewCommand" as ReviewCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "p:IsFoodAddedOnThisDatePredicate" as IsFoodAddedOnThisDatePredicate MODEL_COLOR
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> ReviewCommand : execute()
+activate ReviewCommand
+
+create IsFoodAddedOnThisDatePredicate
+ReviewCommand -> IsFoodAddedOnThisDatePredicate : IsFoodAddedOnThisDatePredicate(today)
+activate IsFoodAddedOnThisDatePredicate
+
+IsFoodAddedOnThisDatePredicate --> ReviewCommand : p
+deactivate IsFoodAddedOnThisDatePredicate
+
+ReviewCommand -> Model : updateFilteredFoodList(p)
+activate Model
+
+Model --> ReviewCommand
+deactivate Model
+
+ReviewCommand -> Model : getTotalCalorie()
+activate Model
+
+Model --> ReviewCommand
+deactivate Model
+
+ReviewCommand -> Model : getCalorieTarget()
+activate Model
+
+Model --> ReviewCommand
+deactivate Model
+
+ReviewCommand -> Model : getCalorieDifference()
+activate Model
+
+Model --> ReviewCommand
+deactivate Model
+
+create CommandResult
+ReviewCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ReviewCommand
+deactivate CommandResult
+
+[<--ReviewCommand : result
+deactivate ReviewCommand
+
+@enduml

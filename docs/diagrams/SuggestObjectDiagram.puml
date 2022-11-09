@@ -1,0 +1,9 @@
+@startuml
+!include style.puml
+
+object "<u> s:SuggestCommand" as SuggestCommand
+object "<u> suggestedCalorie:Calorie" as Calorie
+
+SuggestCommand -right-> Calorie
+
+@enduml

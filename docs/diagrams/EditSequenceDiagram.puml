@@ -1,0 +1,81 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":NutriGoalsParser" as NutriGoalsParser LOGIC_COLOR
+participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
+participant "e:EditCommand" as EditCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("edit 1 n/Sushi")
+activate LogicManager
+
+LogicManager -> NutriGoalsParser : parseCommand("edit 1 n/Sushi")
+activate NutriGoalsParser
+
+create EditCommandParser
+NutriGoalsParser -> EditCommandParser
+activate EditCommandParser
+
+EditCommandParser --> NutriGoalsParser
+deactivate EditCommandParser
+
+NutriGoalsParser -> EditCommandParser : parse("1 n/Sushi")
+activate EditCommandParser
+
+create EditCommand
+EditCommandParser -> EditCommand
+activate EditCommand
+
+EditCommand --> EditCommandParser : e
+deactivate EditCommand
+
+EditCommandParser --> NutriGoalsParser : e
+deactivate EditCommandParser
+EditCommandParser -[hidden]-> NutriGoalsParser
+destroy EditCommandParser
+
+NutriGoalsParser --> LogicManager : e
+deactivate NutriGoalsParser
+
+LogicManager -> EditCommand : execute()
+activate EditCommand
+
+EditCommand -> Model : setFood(foodToEdit, editedFood)
+activate Model
+
+Model --> EditCommand
+deactivate Model
+
+EditCommand -> Model : getDatePredicate()
+activate Model
+
+Model --> EditCommand : predicate
+deactivate Model
+
+EditCommand -> Model : updateFilteredFoodList(predicate)
+activate Model
+
+Model --> EditCommand
+deactivate Model
+
+create CommandResult
+EditCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditCommand
+deactivate CommandResult
+
+EditCommand --> LogicManager : result
+deactivate EditCommand
+
+[<-- LogicManager
+deactivate LogicManager
+
+@enduml

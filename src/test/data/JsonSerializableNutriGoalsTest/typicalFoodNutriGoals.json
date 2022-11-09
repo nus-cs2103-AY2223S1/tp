@@ -1,0 +1,67 @@
+{
+  "_comment": "NutriGoals save file which contains the same Food values as in TypicalFoods#getTypicalNutriGoals()",
+  "foods" : [ {
+    "calorie" : "2000",
+    "tagged" : "breakfast",
+    "dateTime" : "2022-10-04T13:05:29.586882100",
+    "name" : "Apple"
+  }, {
+    "calorie" : "2000",
+    "tagged" : "lunch",
+    "dateTime" : "2022-10-04T13:05:29.586882100",
+    "name" : "Bread"
+  }, {
+    "calorie" : "2000",
+    "tagged" : "lunch",
+    "dateTime" : "2022-10-04T13:05:29.586882100",
+    "name" : "Carbonara"
+  }, {
+    "calorie" : "2000",
+    "tagged" : "lunch",
+    "dateTime" : "2022-10-04T13:05:29.586882100",
+    "name" : "Dragon fruit"
+  }, {
+    "calorie" : "2000",
+    "tagged" : "dinner",
+    "dateTime" : "2022-10-04T13:05:29.586882100",
+    "name" : "Egg soup"
+  }, {
+    "calorie" : "2000",
+    "tagged" : "dinner",
+    "dateTime" : "2022-10-04T13:05:29.586882100",
+    "name" : "Fishcake"
+  }, {
+    "calorie" : "2000",
+    "tagged" : "dinner",
+    "dateTime" : "2022-10-04T13:05:29.586882100",
+    "name" : "Grapes"
+  } ],
+  "nusGymsLocations" : [ {
+    "name" : "MPSH",
+    "latitude" : 1.3007599674153045,
+    "longitude" : 103.77578206094384
+  }, {
+    "name" : "STEPHEN RIADY CENTRE",
+    "latitude" : 1.304511666901411,
+    "longitude" : 103.77205745840185
+  }, {
+    "name" : "USC",
+    "latitude" : 1.2998680145010344,
+    "longitude" : 103.77528575803385
+  }, {
+    "name" : "EUSOFF HALL",
+    "latitude" : 1.2937696692719094,
+    "longitude" : 103.77043696074193
+  }, {
+    "name" : "TEMASEK HALL",
+    "latitude" : 1.2930639982706684,
+    "longitude" : 103.77084097639103
+  }, {
+    "name" : "KENT RIDGE HALL",
+    "latitude" : 1.2918512226940035,
+    "longitude" : 103.77477995285786
+  } ],
+  "calorieTarget" : {
+    "value" : "2000"
+  }
+}

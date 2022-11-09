@@ -1,0 +1,22 @@
+@startuml
+
+start
+:User executes ProfileCommand;
+
+: NutriGoalsParser parses the input;
+
+if () then ([isInputValid])
+    : Creates a ProfileCommand;
+    : ProfileCommand is executed;
+    if () then ([isUserCreated])
+        : Extract user's details;
+        : Display success message and user's details;
+    else ([else])
+        : Display error message;
+    endif
+else ([else])
+    : Display error message;
+endif
+stop
+
+@enduml
