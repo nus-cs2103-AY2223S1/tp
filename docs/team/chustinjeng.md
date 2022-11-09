@@ -1,10 +1,13 @@
-# Project Portfolio Page for Justin Cheng
+---
+layout: page
+title: Project Portfolio Page for Justin Cheng
+---
 
 ---
 ## Overview
 
 ---
-MineFriends is an application for Minecraft multiplayer players to keep track of their Minecraft friends. It aims to help players to find the right people to play the right game mode at the right time.
+Minefriends is an application for Minecraft multiplayer players to keep track of their Minecraft friends. It aims to help players to find the right people to play the right game mode at the right time.
 
 ## Summary of Contributions
 
@@ -18,10 +21,11 @@ The link to my contributions in the code dashboard is [here](https://nus-cs2103-
 
 ### Enhancements implemented
 
-- Added additional fields to the Person class such as Minecraft servers and available timings to improve versatility of user input
-- Implemented the "suggest now" feature that allows players to find friends that are online currently
-  - This involved using the current time shown on personal device to filter out friends
-- Conducted thorough bug finding and bug fixing on functional code and error handling
+- Added additional fields to the `Person` class such as Minecraft servers and available timings to improve versatility of user input
+- Implemented the `suggest dt/now` feature that allows players to find friends that are online currently
+  - This involved using the current time shown on personal device to filter out friends, plus utilising inbuilt Java API such as LocalDateTime.
+- Conducted thorough bug finding and bug fixing on functional code
+- Added many JUnit test cases that address edge cases and common bugs
 
 ### Contributions to the User Guide
 
@@ -32,7 +36,9 @@ The link to my contributions in the code dashboard is [here](https://nus-cs2103-
 ### Contributions to the Developer's Guide
 
 - In charge of UML diagrams of the features implemented in the application
-
+  - Some UML diagrams are the `EditCommand` class diagram, `EditCommand` sequence diagram, as well as the `suggest dt/now` sequence diagram
+  - These UML diagrams are meant to provide developers with a better visual representation of how different classes and objects work with one another to ensure that the application runs.
+- Proofreading and styling of the guide to ensure good readability.
 
 ### Contributions to team-based tasks
 

@@ -99,7 +99,7 @@ public class CommandBox extends UiPart<Region> {
     }
 
     /**
-     * Sets the autocomplete feature for the command box.
+     * Sets up the autocomplete feature for the command box.
      */
     private void setAutoComplete() {
         AutoCompletionBinding<String> autoComplete = TextFields.bindAutoCompletion(commandTextField, commands);

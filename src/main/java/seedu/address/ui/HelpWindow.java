@@ -131,7 +131,7 @@ public class HelpWindow extends UiPart<Stage> {
     }
 
     /**
-     * Fills the dropdown box with all the valid commands.
+     * Sets the choice box to display the list of commands.
      */
     private void setChoiceBox() {
         choiceBox.setStyle("-fx-font-family: 'Minecraft';");
@@ -174,15 +174,15 @@ public class HelpWindow extends UiPart<Stage> {
     }
 
     /**
-     * Sets the text labels according to the given {@code Command} class.
-     * @param commandClass {@code Command} class.
+     * Sets the help labels to display the command's description, parameters and examples.
+     * @param commandClass The class of the command.
      */
     private void setHelpLabels(Class<? extends Command> commandClass) {
         try {
             Command commandInstance = commandClass.getDeclaredConstructor().newInstance();
             desc.setText(commandInstance.getDescription());
-            param.setText(commandInstance.getParameter());
-            ex.setText(commandInstance.getExample());
+            param.setText(commandInstance.getParameters());
+            ex.setText(commandInstance.getExamples());
         } catch (InvocationTargetException | NoSuchMethodException
                  | InstantiationException | IllegalAccessException e) {
             logger.warning("Unable to set help labels");
@@ -191,7 +191,7 @@ public class HelpWindow extends UiPart<Stage> {
     }
 
     /**
-     * Allows the text labels to be continued to the next line when the side of the window is reached.
+     * Sets the text to auto wrap.
      */
     private void setTextAutoWrap() {
         desc.wrappingWidthProperty().bind(scene.widthProperty().subtract(20));

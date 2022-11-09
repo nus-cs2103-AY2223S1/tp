@@ -17,6 +17,8 @@ public class TimeIntervalTest {
     public static final String VALID_TIME_INTERVAL_FROM_SUNDAY_NIGHT_TO_MONDAY_MORNING =
             "sun@2300 - mon@0200";
 
+    public static final TimeInterval VALID_TEST_TIME_INTERVAL =
+            new TimeInterval("mon@2200-mon@2300");
     @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new TimeInterval(null));
@@ -84,5 +86,11 @@ public class TimeIntervalTest {
         assertFalse(timeInterval.isAvailable(unavailableTime)); // mon@0300 is not within the time interval
 
         assertTrue(timeInterval.isAvailable(availableTime)); // mon@0100 is within the time interval
+    }
+
+    @Test
+    public void isEqualsTimeInterval() {
+        TimeInterval testTimeInterval = new TimeInterval("mon@2200 - mon@2300");
+        assertTrue(VALID_TEST_TIME_INTERVAL.equals(testTimeInterval));
     }
 }

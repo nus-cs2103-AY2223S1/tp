@@ -31,7 +31,7 @@
           <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
         </padding>
 
-        <Label fx:id="title" text="MineFriends Help">
+        <Label fx:id="title" text="Minefriends Help">
         </Label>
             <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0">
                <children>

@@ -17,6 +17,6 @@ public abstract class Command {
      */
     public abstract CommandResult execute(Model model) throws CommandException;
     public abstract String getDescription();
-    public abstract String getParameter();
-    public abstract String getExample();
+    public abstract String getParameters();
+    public abstract String getExamples();
 }

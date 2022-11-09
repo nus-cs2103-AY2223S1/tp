@@ -55,12 +55,12 @@ public class HelpWindowTest {
 
     @Test
     public void assertDefaultParam() {
-        verifyThat("#param", hasText(AddCommand.PARAMETER));
+        verifyThat("#param", hasText(AddCommand.PARAMETERS));
     }
 
     @Test
     public void assertDefaultEx() {
-        verifyThat("#ex", hasText(AddCommand.EXAMPLE));
+        verifyThat("#ex", hasText(AddCommand.EXAMPLES));
     }
 
     private static void setHeadless() {

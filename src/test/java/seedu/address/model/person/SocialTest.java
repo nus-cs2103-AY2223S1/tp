@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 public class SocialTest {
 
+    public static final Social VALID_TEST_SOCIAL = new Social("ig@testAccount");
     @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Social(null));
@@ -28,5 +29,11 @@ public class SocialTest {
         assertTrue(Social.isValidSocial("snapchat@hellokitty")); // alphabets only
         assertTrue(Social.isValidSocial("2002@123456")); // numbers only
         assertTrue(Social.isValidSocial("facebook@user123")); // alphanumeric
+    }
+
+    @Test
+    public void isEqualSocial() {
+        Social testSocial = new Social("ig@testAccount");
+        assertTrue(VALID_TEST_SOCIAL.equals(testSocial));
     }
 }

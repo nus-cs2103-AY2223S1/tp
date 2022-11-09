@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 
 public class TagTest {
 
+    public static final Tag VALID_TEST_TAG = new Tag("test");
+
     @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Tag(null));
@@ -26,5 +28,11 @@ public class TagTest {
         // Valid Tag names
         assertTrue(Tag.isValidTagName("friend"));
         assertTrue(Tag.isValidTagName("123"));
+    }
+
+    @Test
+    public void isEqualTagName() {
+        Tag testTag = new Tag("test");
+        assertTrue(VALID_TEST_TAG.equals(testTag));
     }
 }

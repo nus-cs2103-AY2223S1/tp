@@ -60,15 +60,6 @@ public class JsonAdaptedPersonTest {
     }
 
     @Test
-    public void toModelType_invalidName_throwsIllegalValueException() {
-        JsonAdaptedPerson person =
-                new JsonAdaptedPerson(INVALID_NAME, VALID_MINECRAFT_NAME, VALID_PHONE,
-                        VALID_EMAIL, VALID_ADDRESS, VALID_SOCIALS, VALID_TAGS,
-                        VALID_SERVERS, VALID_COUNTRY, VALID_GAME_TYPE, VALID_TIME_INTERVAL);
-        String expectedMessage = Name.MESSAGE_CONSTRAINTS;
-    }
-
-    @Test
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(null, VALID_MINECRAFT_NAME,
                 VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,

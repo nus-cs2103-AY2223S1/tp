@@ -19,15 +19,15 @@ activate ParserUtil
 loop for each Server in Servers
     ParserUtil -> ParserUtil: parseServer(Server)
     activate ParserUtil
-    ParserUtil -> ParserUtil: Server
+    ParserUtil --> ParserUtil: Server
     deactivate ParserUtil
 end
-ParserUtil -> AddCommandParser: ServerSet
+ParserUtil --> AddCommandParser: ServerSet
 deactivate ParserUtil
 
 AddCommandParser -> Person: Person
 activate Person
-Person -> AddCommandParser
+Person --> AddCommandParser
 deactivate Person
 [<-- AddCommandParser: addCommand(Person)
 deactivate AddCommandParser

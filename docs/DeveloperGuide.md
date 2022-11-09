@@ -262,7 +262,7 @@ the `EditCommand` class, there is a `EditPersonDescriptor` nested class which ta
 the updated details of the friend to be edited. For the fields that are not updated, the 
 original fields will be used in the `EditPersonDescriptor` class.
 
-MineFriends will then call the `createEditedPerson` method which will create a new person
+Minefriends will then call the `createEditedPerson` method which will create a new person
 with new details. This will then invoke a call to the `ModelManager` class to replace the target person
 with the edited person in the addressBook.
 
@@ -274,7 +274,7 @@ The following sequence diagram shows the flow of the execution of the
 edit command. Some details related to the general parsing and execution of 
 commands are omitted as they have been explained under [logic](#logic-component).
 
-<img src="images/EditCommandSequenceDiagram.png" height="280"/>
+<img src="images/EditCommandSequenceDiagram.png" height="350"/>
 
 ### *Suggest a Friend*
 
@@ -329,7 +329,7 @@ The autocomplete feature is facilitated through the `TextFields` class under the
 The `TextFields` class provides a static method `bindAutoCompletion` that will create a new autocompletion binding between
 the given TextField using the given autocomplete suggestions.
 
-Everytime the user modifies the input, a `AutoCompletePopup` object, which is a `PopupWindow`, will appear below the CommandBox.
+Everytime the user modifies the input, a `AutoCompletePopup` object, which is a `PopupWindow`, will appear below the `CommandBox`.
 The object will display a list of suggestions that matches the current text in the text field.
 
 Alternative implementations of coming up with our own classes were considered aside from using the ControlsFX library. 
@@ -379,7 +379,7 @@ distinct coloured tags under the friend's profile.
 
 #### Implementation
 
-The display feature is facilitated through the `PersonCard`, `PersonListPanel` and `UIPart` class, 
+The display feature is facilitated through the `PersonCard`, `PersonListPanel` and `UIPart` classes, 
 and configured using the `DarkTheme.css` file.
 
 The `PersonCard` class inherits from the `UIPart` class, representing the panel that displays each friend's profile. 
@@ -396,16 +396,16 @@ The following class diagram shows the relationship between the classes in the UI
 
 <img src="images/PersonTagClassDiagram.png" width="250" />
 
-#### Design Considerations:
+#### Design Consideration
 
-#### 1. Which user information should be shown as tags?
+#### Which user information should be shown as tags?
 
 * **Alternative 1 (current choice):** Only in-game preferences (such as preferred game types and Minecraft servers) and social handles. 
   * Pros:
     * Strategic display of only the more important user details.
     * Less cluttered, cleaner user interface.
   * Cons: 
-    * We have to decide which user details are of higher priority to Minecraft users, which may differ from user to user.
+    * We have to decide which user details are of higher priority to Minefriends users, which may differ from user to user.
 * Alternative 2: Show all information as tags.
   * Pros:
     * Easy to implement as the format is consistent for all information.
@@ -425,14 +425,14 @@ a server address e.g. `111.111.111.111`
 This is much less user-friendly as compared to the new representation
 where users are able to remember various servers by their server names,
 and distinguish servers with the same names by their server addresses
-e.g. `Mineplex @ 111.111.111.111`
+e.g. `Mineplex@111.111.111.111`
 
 #### Implementation
 
 The server class currently only allows the server to be documented in the
 format of an IP address.
 
-With the input `ms/ 111.111.111.111`, <br>
+With the input `ms/111.111.111.111`, <br>
 1) The `Parse` method in `AddCommandParser` will recognize the `prefix_minecraft_server`.<br>
 2) The method will then call `parseServers` method of `ParserUtil`. <br>
 3) `parseServers` method of `ParserUtil` will examine the validity of the
@@ -476,7 +476,7 @@ Priority legend
 | High    | Minecraft player | know my friend's phone number                      | call/text them when I want to play with them                                |
 | High    | Minecraft player | know my friend's social media handles              | contact them when I want to play with them                                  |
 | High    | Minecraft player | know my friend's preferred game modes              | find friends with compatible game type interests                            |
-| High    | Minecraft player | know my friend's preferred Minecraft servers       | find friends with compatible server interests with me at that point in time |
+| High    | Minecraft player | know my friend's preferred Minecraft servers       | find friends with compatible server interests with me                       |
 | High    | Minecraft player | know my friend's preferred play timings            | find friends who are free at a particular time                              |
 | Medium  | Minecraft player | know my friend's email address                     | contact them when I want to play with them                                  |
 | Medium  | Minecraft player | know my friend's physical address                  | go to their houses to play together                                         |
@@ -500,7 +500,7 @@ Priority legend
 **MSS**
 
 1.  User requests to add a specific friend in the list
-2.  MineFriends adds the friend to the list
+2.  Minefriends adds the friend to the list
 
     Use case ends.
 
@@ -508,13 +508,13 @@ Priority legend
 
 * 1a. The format of the given command is invalid.
 
-    * 1a1. MineFriends shows an error message.
+    * 1a1. Minefriends shows an error message.
   
       Use case ends.
     
 * 1b. The friend already exists in the friend list.
 
-    * 1b1. MineFriends shows an error message.
+    * 1b1. Minefriends shows an error message.
       
       Use case ends.
 
@@ -523,9 +523,9 @@ Priority legend
 **MSS**
 
 1.  User requests to list friends
-2.  MineFriends shows a list of friends
+2.  Minefriends shows a list of friends
 3.  User requests to delete a specific friend in the list
-4.  MineFriends deletes the friend
+4.  Minefriends deletes the friend
 
     Use case ends.
 
@@ -537,7 +537,7 @@ Priority legend
 
 * 3a. The given index is invalid.
 
-    * 3a1. MineFriends shows an error message.
+    * 3a1. Minefriends shows an error message.
 
       Use case resumes at step 2.
 
@@ -546,9 +546,9 @@ Priority legend
 **MSS**
 
 1.  User requests to list friends
-2.  MineFriends shows a list of friends
+2.  Minefriends shows a list of friends
 3.  User requests to edit a specific friend in the list
-4.  MineFriends edits the friend
+4.  Minefriends edits the friend
 
     Use case ends.
 
@@ -560,19 +560,19 @@ Priority legend
 
 * 3a. The given index is invalid.
 
-    * 3a1. MineFriends shows an error message.
+    * 3a1. Minefriends shows an error message.
 
       Use case resumes at step 2.
   
 * 3b. The format of the given field to edit is invalid.
 
-    * 3b1.  MineFriends shows an error message.
+    * 3b1.  Minefriends shows an error message.
   
       Use case resumes at step 2.
 
 * 3c. User requests to edit a friend's username to one that belongs to another friend in the list.
 
-  * 3b1.  MineFriends shows an error message.
+  * 3b1.  Minefriends shows an error message.
 
     Use case resumes at step 2.
 
@@ -581,7 +581,7 @@ Priority legend
 **MSS**
 
 1. User requests to find a friend in the list using their name as a keyword.
-2. MineFriends shows a list of the friends matched.
+2. Minefriends shows a list of the friends matched.
 
     Use case ends.
 
@@ -593,7 +593,7 @@ Priority legend
 
 * 2b. The search does not match the given name to any friend in the list.
 
-  * 2b1. MineFriends returns an empty friend list.
+  * 2b1. Minefriends returns an empty friend list.
   
     Use case ends.
   
@@ -602,7 +602,7 @@ Priority legend
 **MSS**
 
 1. User requests to suggest friends in the list who matches the given keywords and time intervals.
-2. MineFriends shows the list of friends matched.
+2. Minefriends shows the list of friends matched.
 
    Use case ends.
 
@@ -610,13 +610,13 @@ Priority legend
 
 * 1a. The format of the given command is invalid.
 
-    * 1a1. MineFriends shows an error message.
+    * 1a1. Minefriends shows an error message.
 
       Use case resumes at step 2.
 
 * 2a. The search does not match the given fields to any friend in the list.
 
-    * 2a1. MineFriends returns an empty friend list.
+    * 2a1. Minefriends returns an empty friend list.
 
       Use case ends.
 
@@ -625,7 +625,7 @@ Priority legend
 **MSS**
 
 1. User attempts to enter a command.
-2. MineFriends shows a drop-down list of auto-completed command suggestions.
+2. Minefriends shows a drop-down list of auto-completed command suggestions.
 
    Use case ends.
 
@@ -647,7 +647,7 @@ Priority legend
 4.  Not suitable for platforms with on-screen keyboards as the keyboard popup may block the screen view.
 5.  Should be able to launch multiple instance of the app on the same device.
 6.  Should be able to be used by a person who has never used a CLI program before.
-7.  Not required to handle the messaging send between the friends.
+7.  Not required to handle the sending of messages between friends.
 8.  Not required to handle the app on mobile platform.
 9.  Not required to handle the display of the User Interface properly if the window is smaller than 1280 x 720 pixels in resolution.
 
@@ -660,15 +660,15 @@ Priority legend
 
 | Terminology        | Definition                                                                                       |
 |--------------------|--------------------------------------------------------------------------------------------------|
-| **Minecraft**      | An open world sandbox game, [official website](https://www.minecraft.net/en-us)                  |
-| **Minefriends**    | The name of our app                                                                              | 
-| **Username**       | The uniquely identifiable Minecraft username of each player                                      |                                                  
-| **Server**         | A multiplayer Minecraft server                                                                   |
-| **Player**         | A person who plays Minecraft                                                                     |
-| **Mojang Studios** | The company that created and owns Minecraft                                                      |
-| **Microsoft**      | The company that bought over Mojang Studios in 2014                                              |  
-| **Game mode**      | There are many ways to enjoy Minecraft, and the game mode describes how the game is being played |
-| **Game type**      | A synonym for game mode                                                                          | 
+| Minecraft          | An open world sandbox game, [official website](https://www.minecraft.net/en-us)                  |
+| Minefriends        | The name of our app                                                                              | 
+| Username           | The uniquely identifiable Minecraft username of each player                                      |                                                  
+| Server             | A multiplayer Minecraft server                                                                   |
+| Player             | A person who plays Minecraft                                                                     |
+| Mojang Studios     | The company that created and owns Minecraft                                                      |
+| Microsoft          | The company that bought over Mojang Studios in 2014                                              |  
+| Game mode          | There are many ways to enjoy Minecraft, and the game mode describes how the game is being played |
+| Game type          | A synonym for game mode                                                                          | 
 
 For a complete glossary of Minecraft terms, please visit this page on the
 [Minecraft wiki](https://minecraft.fandom.com/wiki/Tutorials/Game_terms).
@@ -678,8 +678,6 @@ For a complete glossary of Minecraft terms, please visit this page on the
 | Terminology   | Definition                                                                                                         |
 |---------------|--------------------------------------------------------------------------------------------------------------------|
 | Mainstream OS | A mainstream desktop operating system, such as Windows, Linux, OS-X                                                |
-| Person        | A contact that is created in the app                                                                               |
-| Friend        | A person that is created in the app                                                                                |
 | Socials       | A person's social media account information, such as their Telegram handle, Instagram username or Twitter username |
 | CLI           | An acronym for "command line interface"                                                                            |
 | GUI           | An acronym for "graphical user interface"                                                                          |
@@ -766,7 +764,7 @@ Initial launch: `data/addressbook.json` is not present.
 
 Run `help`
 
-**Expected:** Help window opens with a list of commands and their descriptions. The window size may not be optimum.
+**Expected:** Help window opens with a list of commands and their descriptions.
 
 ## **Appendix F: Effort**
 
@@ -784,7 +782,7 @@ This includes, but is not limited to:
 * Redesigning the `edit` command to include more fields
 * Adding a new command to `suggest` friends
 * Adding and designing a help window to show the user a list of commands
-* Adding the auto-complete feature to the command box
+* Adding the autocomplete feature to the command box
 
 Amongst these changes, we had the hardest time redesigning the `Person` model, as we encountered various bugs after
 we had modified it to include additional fields, thus in the end we took many hours to fix more than 200 test cases related to it. 

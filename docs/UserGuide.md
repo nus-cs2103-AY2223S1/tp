@@ -68,7 +68,7 @@ To navigate to see a particular command, you can click on the link in blue.
 The window is empty because no friends have been added yet. Adding more friends will change the look of the window.
 </div>
 
-6. Type the command in the [command box](#user-interface-breakdown) and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+* Type the command in the [command box](#user-interface-breakdown) and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
 
 Some sample commands you can try out:
 
@@ -141,7 +141,7 @@ Example:<br>
 Upon typing `help` or clicking on the `help` option, a help window
 as such will appear:
 
-<img src="images/HelpWindow.png" width="275" />
+<img src="images/HelpWindow.png" width="325" />
 
 You can choose a specific command by clicking on the drop-down menu in order to view the
 information for that command.
@@ -168,7 +168,7 @@ it also provides you with additional information for your understanding.
  | Minecraft server | `[ms/MINECRAFT_SERVER]*` | **Optional, Multiple** | The minecraft servers that your friend plays on. <br><br> Minecraft servers are in the format of `ServerName@ServerAddress`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | Social Handle | `[s/SOCIAL]*` | **Optional, Multiple** | The social media handles of your friend, such as their Instagram username, Telegram handle etc. <br><br> Social handles are in the format of `SocialMedia@Username`.                                                                                                                                                                                                                                                                                                                                                                                                                           |
 | Game Type | `[gt/GAME_TYPE]*` | **Optional, Multiple** | Game types refer to the different ways to play multiplayer Minecraft. <br><br>  They can be anything, such as `survival games`, `skyblock` or `creative`.                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| Tag | `[t/TAG]*` | **Optional, Multiple** | Tags are used to provide additional information about your friend. <br><br> They can be anything, as long as there are no spaces.                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Tag | `[t/TAG]*` | **Optional, Multiple** | Tags are used to provide additional information about your friend. <br><br> They can be anything, as long as there are no spaces and are alphanumeric.                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | Time Interval | `[ti/TIME_INTERVAL]*` | **Optional, Multiple** | This refers to the timings in which your friend is available. <br><br> Time interval comes in the format `day@hhmm-day@hhmm`, such as `mon@2100-mon@2300`, with the hours and minutes in 24-hour format. The first date-time being the start and the second date-time being the end of their availability period. `day` can be `mon`, `tue`, `wed`, `thu`, `fri`, `sat` or `sun` only. <br><br> If the start and end time interval for a friend are the same, it is treated as one point in time at that exact moment. To indicate availability across the whole week, use `mon@0000-sun@2359`. |
 
 <div markdown="block" class="alert alert-info">
@@ -456,15 +456,15 @@ the second `Enter` key press will execute the command.
 
 | Terminology        | Definition                                                                                       |
 |--------------------|--------------------------------------------------------------------------------------------------|
-| **Minecraft**      | An open world sandbox game, [official website](https://www.minecraft.net/en-us)                  |
-| **Minefriends**    | The name of our app                                                                              | 
-| **Username**       | The uniquely identifiable Minecraft username of each player                                      |                                                  
-| **Server**         | A multiplayer Minecraft server                                                                   |
-| **Player**         | A person who plays Minecraft                                                                     |
-| **Mojang Studios** | The company that created and owns Minecraft                                                      |
-| **Microsoft**      | The company that bought over Mojang Studios in 2014                                              |  
-| **Game mode**      | There are many ways to enjoy Minecraft, and the game mode describes how the game is being played |
-| **Game type**      | A synonym for game mode                                                                          | 
+| Minecraft          | An open world sandbox game, [official website](https://www.minecraft.net/en-us)                  |
+| Minefriends        | The name of our app                                                                              | 
+| Username           | The uniquely identifiable Minecraft username of each player                                      |                                                  
+| Server             | A multiplayer Minecraft server                                                                   |
+| Player             | A person who plays Minecraft                                                                     |
+| Mojang Studios     | The company that created and owns Minecraft                                                      |
+| Microsoft          | The company that bought over Mojang Studios in 2014                                              |  
+| Game mode          | There are many ways to enjoy Minecraft, and the game mode describes how the game is being played |
+| Game type          | A synonym for game mode                                                                          | 
 
 For a complete glossary of Minecraft terms, please visit this page on the
 [Minecraft wiki](https://minecraft.fandom.com/wiki/Tutorials/Game_terms).
@@ -474,8 +474,6 @@ For a complete glossary of Minecraft terms, please visit this page on the
 | Terminology   | Definition                                                                                                         |
 |---------------|--------------------------------------------------------------------------------------------------------------------|
 | Mainstream OS | A mainstream desktop operating system, such as Windows, Linux, OS-X                                                |
-| Person        | A contact that is created in the app                                                                               |
-| Friend        | A person that is created in the app                                                                                |
 | Socials       | A person's social media account information, such as their Telegram handle, Instagram username or Twitter username |
 | CLI           | An acronym for "command line interface"                                                                            |
 | GUI           | An acronym for "graphical user interface"                                                                          |

@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Server in the address book.
+ * Represents a Person's server in the address book.
  */
 public class Server {
 
@@ -18,7 +18,7 @@ public class Server {
 
     /**
      * Constructs a {@code Server}.
-     * @param serverName A valid server name.
+     * @param serverName the server's name
      */
     public Server(String serverName) {
         requireNonNull(serverName);

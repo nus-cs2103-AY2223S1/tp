@@ -223,7 +223,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Executes the animation of the explosion of the creeper figure on this window.
+     * Executes the animation when an invalid command is entered.
      */
     private void executeAnimation() {
         playSound();
