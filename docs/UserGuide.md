@@ -66,7 +66,7 @@ Before we start, this guide would contain some symbols and syntax, which has bee
 
 | Symbol/Syntax                                  | Meaning                                                                                                                                         |
 |------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
-| :exclamation: **Caution**                      | Very important information that you must know before using a command                                                                            |
+| :warning: **Caution**                      | Very important information that you must know before using a command                                                                            |
 | :information_source: **Notes**                 | Important information that you should pay attention to                                                                                          |
 | :bulb: **Tip**                                 | Helpful information that you might want to know                                                                                                 |
 | `Highlighted text block`                       | Commands or parameters relevant to the application                                                                                              |
