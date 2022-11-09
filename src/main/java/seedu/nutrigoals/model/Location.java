@@ -43,6 +43,8 @@ public class Location {
      * @param other
      * @return
      */
+    // Solution adapted from
+    // stackoverflow.com/questions/27928/calculate-distance-between-two-latitude-longitude-points-haversine-formula
     public Double distTo(Location other) {
         var radius = 6371; // Radius of the earth in km
         var dLat = deg2rad(other.latitude - this.latitude);
