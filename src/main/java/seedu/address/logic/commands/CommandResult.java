@@ -17,13 +17,33 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    /** Denotes what the command is specific to. */
+    private final CommandSpecific specific;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, CommandSpecific specific) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.specific = specific;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser}, {@code showHelp}, {@code exit}.
+     * {@code specific} is set to their default value.
+     */
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+        this(feedbackToUser, showHelp, exit, CommandSpecific.NONSPECIFIC);
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code specific}.
+     * {@code showHelp}, {@code exit} is set to their default value.
+     */
+    public CommandResult(String feedbackToUser, CommandSpecific specific) {
+        this(feedbackToUser, false, false, specific);
     }
 
     /**
@@ -31,7 +51,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        this(feedbackToUser, false, false, CommandSpecific.NONSPECIFIC);
     }
 
     public String getFeedbackToUser() {
@@ -44,6 +64,10 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+
+    public CommandSpecific getCommandSpecific() {
+        return specific;
     }
 
     @Override

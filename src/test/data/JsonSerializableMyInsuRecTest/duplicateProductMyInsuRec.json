@@ -1,0 +1,13 @@
+{
+  "clients" : [ {
+    "@UUID" : "c4fa6f3d-a49f-495d-a5eb-d282b344a36d",
+    "name" : "Alice Pauline",
+    "phone" : "94351253",
+    "email" : "alice@example.com",
+    "address" : "123, Jurong West Ave 6, #08-111",
+    "birthday" : "",
+    "meetings": [ ],
+    "products" : [ "Product1" ]
+  } ],
+  "products" : ["Product1", "Product1"]
+}

@@ -9,51 +9,65 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Ho Lok Wah
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/thomashoooo.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/ThomasHoooo)]
+[[portfolio](team/thomashoooo.md)]
 
-* Role: Project Advisor
+* Role:
+    * Team Lead
+    * Git expert
 
-### Jane Doe
+### Chang Si Kai
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/sikai00.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/sikai00)]
+[[portfolio](team/sikai00.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role:
+    * Developer
+* Responsibilities:
+    * Testing
+    * Integration
 
-### Johnny Doe
+### Ong Han Wei
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/rexong.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/rexong)]
+[[portfolio](team/rexong.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role:
+    * Developer
+* Responsibilities:
+    * Code quality
+    * Testing
 
-### Jean Doe
+### Moo Jun Wei
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/junweimoo.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/junweimoo)]
+[[portfolio](team/junweimoo.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role:
+    * Developer
+* Responsibilities:
+    * UI
+    * Deliverables and deadlines
+    * Scheduling and tracking
 
-### James Doe
+### Tina Agarwal
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/thing1thing2.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/Thing1Thing2)]
+[[portfolio](team/thing1thing2.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role:
+    * Developer
+* Responsibilities:
+    * Documentation

@@ -1,0 +1,19 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Product <<Rectangle>>{
+Class Product
+Class Name
+}
+Class Client
+
+Class HiddenOutside #FFFFFF
+HiddenOutside --> Product
+
+Product --> "1" Name
+Product "*" <-- "*" Client
+
+@enduml

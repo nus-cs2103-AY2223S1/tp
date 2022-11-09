@@ -7,8 +7,10 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.ReadOnlyMyInsuRec;
+import seedu.address.model.client.Client;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.model.product.Product;
 
 /**
  * API of the Logic component
@@ -24,19 +26,30 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the MyInsuRec.
      *
-     * @see seedu.address.model.Model#getAddressBook()
+     * @see seedu.address.model.Model#getMyInsuRec()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyMyInsuRec getMyInsuRec();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered list of clients */
+    ObservableList<Client> getFilteredClientList();
+
+    /** Returns an unmodifiable view of the filtered list of meetings */
+    ObservableList<Meeting> getFilteredMeetingList();
+    /** Returns an unmodifiable view of the filtered list of products */
+    ObservableList<Product> getFilteredProductList();
+
+    /** Returns an unmodifiable view of the detailed list of clients */
+    ObservableList<Client> getDetailedClientList();
+
+    /** Returns an unmodifiable view of the detailed list of meetings */
+    ObservableList<Meeting> getDetailedMeetingList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' MyInsuRec file path.
      */
-    Path getAddressBookFilePath();
+    Path getMyInsuRecFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

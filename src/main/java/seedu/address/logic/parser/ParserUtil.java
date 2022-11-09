@@ -1,19 +1,28 @@
 package seedu.address.logic.parser;
 
+import static java.time.format.ResolverStyle.STRICT;
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.client.Address;
+import seedu.address.model.client.Birthday;
+import seedu.address.model.client.Email;
+import seedu.address.model.client.Name;
+import seedu.address.model.client.Phone;
+import seedu.address.model.meeting.MeetingDate;
+import seedu.address.model.meeting.MeetingTime;
+import seedu.address.model.product.Product;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -21,6 +30,8 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_DATE_KEYWORD =
+            "The date keyword should be either tomorrow, week, or month";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -96,29 +107,85 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code tag} is invalid.
+     * Parses {@code String date} into a {@code LocalDate}.
      */
-    public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+    public static LocalDate parseDate(String date, String type) throws ParseException {
+        requireNonNull(date);
+        try {
+            return LocalDate.parse(date, DateTimeFormatter.ofPattern("ddMMuuuu").withResolverStyle(STRICT));
+        } catch (DateTimeParseException e) {
+            if (type.equals("meeting")) {
+                throw new ParseException(MeetingDate.MESSAGE_CONSTRAINTS);
+            } else {
+                throw new ParseException(Birthday.MESSAGE_FORMAT_CONSTRAINTS);
+            }
         }
-        return new Tag(trimmedTag);
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses {@code String keyword} into a {@code DateKeyword}.
      */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
+    public static DateKeyword parseDateKeyword(String dateKeyword) throws ParseException {
+        requireNonNull(dateKeyword);
+
+        switch(dateKeyword) {
+        case "tomorrow":
+            return DateKeyword.TOMORROW;
+        case "week":
+            return DateKeyword.THIS_WEEK;
+        case "month":
+            return DateKeyword.THIS_MONTH;
+        default:
+            throw new ParseException(MESSAGE_INVALID_DATE_KEYWORD);
         }
-        return tagSet;
+    }
+
+    /**
+     * Parses {@code String time} into a {@code MeetingTime}.
+     */
+    public static MeetingTime parseTime(String time) throws ParseException {
+        requireNonNull(time);
+
+        try {
+            LocalTime parsedTime = LocalTime.parse(time, DateTimeFormatter.ofPattern("HHmm"));
+            return new MeetingTime(parsedTime);
+        } catch (DateTimeParseException e) {
+            throw new ParseException(MeetingTime.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    /**
+     * Parses a {@code String product} into a {@code Product}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code product} is invalid.
+     */
+    public static Product parseProduct(String product) throws ParseException {
+        requireNonNull(product);
+        String trimmedProduct = product.trim();
+        if (!Product.isValidProductName(trimmedProduct)) {
+            throw new ParseException(Product.MESSAGE_CONSTRAINTS);
+        }
+        return new Product(trimmedProduct);
+    }
+
+    /**
+     * Parses {@code Collection<String> products} into a {@code Set<Product>}.
+     */
+    public static Set<Product> parseProducts(Collection<String> products) throws ParseException {
+        requireNonNull(products);
+        final Set<Product> productSet = new HashSet<>();
+        for (String productName : products) {
+            productSet.add(parseProduct(productName));
+        }
+        return productSet;
+    }
+
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    public static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }

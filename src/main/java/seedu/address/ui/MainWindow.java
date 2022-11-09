@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -14,6 +15,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.CommandSpecific;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -24,6 +26,10 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
+    private static final String DARK_CSS = "/view/DarkTheme.css";
+    private static final String LIGHT_CSS = "/view/LightTheme.css";
+    private static final String DARK_EXTENSION_CSS = "/view/ExtensionsDark.css";
+    private static final String LIGHT_EXTENSION_CSS = "/view/ExtensionsLight.css";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -31,9 +37,16 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private ClientListPanel clientListPanel;
+    private MeetingListPanel meetingListPanel;
+    private ProductListPanel productListPanel;
+    private ClientDetailedViewPanel clientDetailedViewPanel;
+    private MeetingDetailedViewPanel meetingDetailedViewPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+
+    @FXML
+    private Scene mainScene;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -42,7 +55,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane clientListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -110,13 +123,18 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        clientListPanel = new ClientListPanel(logic.getFilteredClientList());
+        clientListPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
+
+        meetingListPanel = new MeetingListPanel(logic.getFilteredMeetingList());
+        productListPanel = new ProductListPanel(logic.getFilteredProductList());
+        meetingDetailedViewPanel = new MeetingDetailedViewPanel(logic.getDetailedMeetingList());
+        clientDetailedViewPanel = new ClientDetailedViewPanel(logic.getDetailedClientList());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getMyInsuRecFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
@@ -163,8 +181,50 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    /**
+     * Loads the light themed css.
+     */
+    @FXML
+    public void handleLightTheme() {
+        mainScene.getStylesheets().clear();
+        mainScene.getStylesheets().add(getClass().getResource(LIGHT_CSS).toExternalForm());
+        mainScene.getStylesheets().add(getClass().getResource(LIGHT_EXTENSION_CSS).toExternalForm());
+    }
+
+    /**
+     * Loads the dark themed css.
+     */
+    @FXML
+    public void handleDarkTheme() {
+        mainScene.getStylesheets().clear();
+        mainScene.getStylesheets().add(getClass().getResource(DARK_CSS).toExternalForm());
+        mainScene.getStylesheets().add(getClass().getResource(DARK_EXTENSION_CSS).toExternalForm());
+    }
+
+    private void setListPanel(CommandSpecific specific) {
+        switch (specific) { // clear only in case, since we don't want to clear for default
+        case CLIENT:
+            clientListPanelPlaceholder.getChildren().clear();
+            clientListPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
+            break;
+        case MEETING:
+            clientListPanelPlaceholder.getChildren().clear();
+            clientListPanelPlaceholder.getChildren().add(meetingListPanel.getRoot());
+            break;
+        case PRODUCT:
+            clientListPanelPlaceholder.getChildren().clear();
+            clientListPanelPlaceholder.getChildren().add(productListPanel.getRoot());
+            break;
+        case DETAILED_CLIENT:
+            clientListPanelPlaceholder.getChildren().clear();
+            clientListPanelPlaceholder.getChildren().add(clientDetailedViewPanel.getRoot());
+            break;
+        case DETAILED_MEETING:
+            clientListPanelPlaceholder.getChildren().clear();
+            clientListPanelPlaceholder.getChildren().add(meetingDetailedViewPanel.getRoot());
+            break;
+        default:
+        }
     }
 
     /**
@@ -177,6 +237,8 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            setListPanel(commandResult.getCommandSpecific());
+            logger.info("Switched view panel to: " + commandResult.getCommandSpecific());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

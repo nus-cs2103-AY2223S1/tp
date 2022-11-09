@@ -1,0 +1,19 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User inputs Meeting Date;
+if () then ([Invalid Date])
+    :System throws error;
+    stop
+else ([else])
+    if () then ([Date Passed])
+        :System throws error;
+    else ([else])
+            :System continues
+            with command execution;
+endif
+
+stop
+
+@enduml

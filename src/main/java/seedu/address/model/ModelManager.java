@@ -11,33 +11,48 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.model.client.Client;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.exceptions.ConflictingMeetingException;
+import seedu.address.model.product.Product;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the client book data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final MyInsuRec myInsuRec;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Client> filteredClients;
+    private final FilteredList<Meeting> filteredMeetings;
+    private final FilteredList<Product> filteredProducts;
+    private final FilteredList<Client> detailedClients;
+    private final FilteredList<Meeting> detailedMeetings;
+
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given myInsuRec and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyMyInsuRec myInsuRec, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(myInsuRec, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with client book: " + myInsuRec + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.myInsuRec = new MyInsuRec(myInsuRec);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+
+        filteredClients = new FilteredList<>(this.myInsuRec.getClientList());
+        filteredMeetings = new FilteredList<>(this.myInsuRec.getMeetingList());
+
+        detailedMeetings = new FilteredList<>(this.myInsuRec.getMeetingList());
+        detailedClients = new FilteredList<>(this.myInsuRec.getClientList());
+
+        filteredProducts = new FilteredList<>(this.myInsuRec.getProductList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new MyInsuRec(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -65,67 +80,175 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getMyInsuRecFilePath() {
+        return userPrefs.getMyInsuRecFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setMyInsuRecFilePath(Path myInsuRecFilePath) {
+        requireNonNull(myInsuRecFilePath);
+        userPrefs.setMyInsuRecFilePath(myInsuRecFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== myInsuRec ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
-    }
-
-    @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public void setMyInsuRec(ReadOnlyMyInsuRec myInsuRec) {
+        this.myInsuRec.resetData(myInsuRec);
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public ReadOnlyMyInsuRec getMyInsuRec() {
+        return myInsuRec;
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public boolean hasClient(Client client) {
+        requireNonNull(client);
+        return myInsuRec.hasClient(client);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void deleteClient(Client target) {
+        myInsuRec.removeClient(target);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-
-        addressBook.setPerson(target, editedPerson);
+    public void addClient(Client client) {
+        myInsuRec.addClient(client);
+        updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    @Override
+    public void setClient(Client target, Client editedClient) {
+        requireAllNonNull(target, editedClient);
+
+        myInsuRec.setClient(target, editedClient);
+        updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
+    }
+
+    @Override
+    public void deleteMeeting(Meeting meeting) {
+        requireNonNull(meeting);
+        myInsuRec.removeMeeting(meeting);
+    }
+
+    @Override
+    public boolean hasMeeting(Meeting meeting) {
+        requireNonNull(meeting);
+        return myInsuRec.hasMeeting(meeting);
+    }
+
+    @Override
+    public boolean hasSpecificMeeting(Meeting meeting) {
+        requireNonNull(meeting);
+        return myInsuRec.hasSpecificMeeting(meeting);
+    }
+
+    @Override
+    public void setMeeting(Meeting target, Meeting editedMeeting) throws ConflictingMeetingException {
+        requireAllNonNull(target, editedMeeting);
+
+        myInsuRec.setMeeting(target, editedMeeting);
+    }
+
+
+    @Override
+    public void addMeeting(Meeting meeting) {
+        requireNonNull(meeting);
+        myInsuRec.addMeeting(meeting);
+    }
+
+    @Override
+    public void addProduct(Product product) {
+        requireNonNull(product);
+        myInsuRec.addProduct(product);
+    }
+
+    @Override
+    public void deleteProduct(Product product) {
+        requireNonNull(product);
+        myInsuRec.removeProduct(product);
+    }
+
+    @Override
+    public boolean hasProduct(Product product) {
+        requireNonNull(product);
+        return myInsuRec.hasProduct(product);
+    }
+
+    //=========== Filtered Client List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * Returns an unmodifiable view of the list of {@code Client} backed by the internal list of
+     * {@code versionedMyInsuRec}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Client> getFilteredClientList() {
+        return filteredClients;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredClientList(Predicate<Client> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredClients.setPredicate(predicate);
+    }
+
+    //=========== Detailed Client List Accessors ==============================================================
+
+    @Override
+    public ObservableList<Client> getDetailedClientList() {
+        return detailedClients;
+    }
+
+    @Override
+    public void setDetailedClient(Client client) {
+        detailedClients.setPredicate(x -> x.equals(client));
+    }
+
+    //=========== Filtered Meeting List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Meeting} backed by the internal list of
+     * {@code versionedMyInsuRec}.
+     */
+    @Override
+    public ObservableList<Meeting> getFilteredMeetingList() {
+        return filteredMeetings;
+    }
+
+    @Override
+    public void updateFilteredMeetingList(Predicate<Meeting> predicate) {
+        requireNonNull(predicate);
+        filteredMeetings.setPredicate(predicate);
+    }
+
+    //=========== Detailed Meeting List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Meeting} to be viewed in details backed by the internal
+     * list of {@code versionedMyInsuRec}. By default, no meetings are set to be viewed in detail.
+     */
+    @Override
+    public ObservableList<Meeting> getDetailedMeetingList() {
+        return detailedMeetings;
+    }
+
+    @Override
+    public void setDetailedMeeting(Meeting meeting) {
+        detailedMeetings.setPredicate(x -> x.equals(meeting));
+    }
+
+    //=========== Filtered Product List Accessors =============================================================
+    @Override
+    public ObservableList<Product> getFilteredProductList() {
+        return filteredProducts;
+    }
+
+    @Override
+    public void updateFilteredProductList(Predicate<Product> predicate) {
+        requireNonNull(predicate);
+        filteredProducts.setPredicate(predicate);
     }
 
     @Override
@@ -142,9 +265,11 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return myInsuRec.equals(other.myInsuRec)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredClients.equals(other.filteredClients)
+                && filteredMeetings.equals(other.filteredMeetings)
+                && filteredProducts.equals(other.filteredProducts);
     }
 
 }

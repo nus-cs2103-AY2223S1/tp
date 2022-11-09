@@ -3,10 +3,14 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_MEETING1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEETING_DATE_MEETING1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEETING_TIME_MEETING1;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalClients.ALICE;
+import static seedu.address.testutil.TypicalClients.BENSON;
+import static seedu.address.testutil.TypicalMeetings.MEETING1;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -15,8 +19,10 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.model.client.NameContainsKeywordsPredicate;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.testutil.MeetingBuilder;
+import seedu.address.testutil.MyInsuRecBuilder;
 
 public class ModelManagerTest {
 
@@ -26,7 +32,7 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new AddressBook(), new AddressBook(modelManager.getAddressBook()));
+        assertEquals(new MyInsuRec(), new MyInsuRec(modelManager.getMyInsuRec()));
     }
 
     @Test
@@ -37,14 +43,14 @@ public class ModelManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setAddressBookFilePath(Paths.get("address/book/file/path"));
+        userPrefs.setMyInsuRecFilePath(Paths.get("address/book/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setAddressBookFilePath(Paths.get("new/address/book/file/path"));
+        userPrefs.setMyInsuRecFilePath(Paths.get("new/address/book/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -61,47 +67,102 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.setAddressBookFilePath(null));
+    public void setMyInsuRecFilePath_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setMyInsuRecFilePath(null));
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
+    public void setMyInsuRecFilePath_validPath_setsMyInsuRecFilePath() {
         Path path = Paths.get("address/book/file/path");
-        modelManager.setAddressBookFilePath(path);
-        assertEquals(path, modelManager.getAddressBookFilePath());
+        modelManager.setMyInsuRecFilePath(path);
+        assertEquals(path, modelManager.getMyInsuRecFilePath());
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasPerson(null));
+    public void hasClient_nullClient_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasClient(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(modelManager.hasPerson(ALICE));
+    public void hasClient_clientNotInMyInsuRec_returnsFalse() {
+        assertFalse(modelManager.hasClient(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
-        modelManager.addPerson(ALICE);
-        assertTrue(modelManager.hasPerson(ALICE));
+    public void hasClient_clientInMyInsuRec_returnsTrue() {
+        modelManager.addClient(ALICE);
+        assertTrue(modelManager.hasClient(ALICE));
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    public void getFilteredClientList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredClientList().remove(0));
+    }
+
+    @Test
+    public void getFilteredMeetingList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredMeetingList().remove(0));
+    }
+
+    @Test
+    public void getDetailedClientList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getDetailedClientList().remove(0));
+    }
+
+    @Test
+    public void getDetailedMeetingList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getDetailedMeetingList().remove(0));
+    }
+
+    @Test
+    public void updateFilteredMeetingList_setEmpty_success() {
+        MyInsuRec myInsuRec = new MyInsuRecBuilder().withClient(ALICE).withClient(BENSON).build();
+        UserPrefs userPrefs = new UserPrefs();
+
+        // same values -> returns true
+        modelManager = new ModelManager(myInsuRec, userPrefs);
+        Meeting meeting1 = new MeetingBuilder(MEETING1)
+                .withDescription(VALID_DESCRIPTION_MEETING1)
+                .withMeetingDate(VALID_MEETING_DATE_MEETING1)
+                .withMeetingStartTime(VALID_MEETING_TIME_MEETING1)
+                .withClient(ALICE)
+                .build();
+        modelManager.addMeeting(meeting1);
+        assertEquals(modelManager.getFilteredMeetingList().size(), 1);
+        modelManager.updateFilteredMeetingList(unused -> false);
+        assertEquals(modelManager.getFilteredMeetingList().size(), 0);
+    }
+
+    @Test
+    public void hasMeeting() {
+        MyInsuRec myInsuRec = new MyInsuRecBuilder().withClient(ALICE).withClient(BENSON).build();
+        UserPrefs userPrefs = new UserPrefs();
+
+        // same values -> returns true
+        modelManager = new ModelManager(myInsuRec, userPrefs);
+        Meeting meeting1 = new MeetingBuilder(MEETING1)
+                .withDescription(VALID_DESCRIPTION_MEETING1)
+                .withMeetingDate(VALID_MEETING_DATE_MEETING1)
+                .withMeetingStartTime(VALID_MEETING_TIME_MEETING1)
+                .withClient(ALICE)
+                .build();
+        modelManager.addMeeting(meeting1);
+        assertTrue(modelManager.hasMeeting(meeting1));
+        modelManager.updateFilteredMeetingList(unused -> false);
+        assertTrue(modelManager.hasMeeting(meeting1));
+        modelManager.deleteMeeting(meeting1);
+        assertFalse(modelManager.hasMeeting(meeting1));
     }
 
     @Test
     public void equals() {
-        AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
-        AddressBook differentAddressBook = new AddressBook();
+        MyInsuRec myInsuRec = new MyInsuRecBuilder().withClient(ALICE).withClient(BENSON).build();
+        MyInsuRec differentMyInsuRec = new MyInsuRec();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(addressBook, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs);
+        modelManager = new ModelManager(myInsuRec, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(myInsuRec, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -113,20 +174,20 @@ public class ModelManagerTest {
         // different types -> returns false
         assertFalse(modelManager.equals(5));
 
-        // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
+        // different myInsuRec -> returns false
+        assertFalse(modelManager.equals(new ModelManager(differentMyInsuRec, userPrefs)));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
+        modelManager.updateFilteredClientList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        assertFalse(modelManager.equals(new ModelManager(myInsuRec, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        modelManager.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
-        differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
+        differentUserPrefs.setMyInsuRecFilePath(Paths.get("differentFilePath"));
+        assertFalse(modelManager.equals(new ModelManager(myInsuRec, differentUserPrefs)));
     }
 }
