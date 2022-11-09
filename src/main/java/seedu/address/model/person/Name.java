@@ -12,7 +12,7 @@ public class Name {
     public static final String MESSAGE_CONSTRAINTS =
             "Any string can be accepted";
 
-    /*
+    /**
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */

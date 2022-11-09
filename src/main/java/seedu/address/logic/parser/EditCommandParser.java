@@ -112,6 +112,11 @@ public class EditCommandParser implements Parser<EditCommand> {
         return Optional.of(ParserUtil.parseTags(tagSet));
     }
 
+    /**
+     * Parses {@code Collection<String> socials} into a {@code Set<Social>} if {@code socials} is non-empty.
+     * If {@code socials} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<Social>} containing zero socials.
+     */
     private Optional<Set<Social>> parseSocialsForEdit(Collection<String> socials) throws ParseException {
         assert socials != null;
 
@@ -122,6 +127,11 @@ public class EditCommandParser implements Parser<EditCommand> {
         return Optional.of(ParserUtil.parseSocials(socialSet));
     }
 
+    /**
+     * Parses {@code Collection<String> servers} into a {@code Set<Server>} if {@code servers} is non-empty.
+     * If {@code servers} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<Server>} containing zero servers.
+     */
     private Optional<Set<Server>> parseMinecraftServersForEdit(Collection<String> servers) throws ParseException {
         assert servers != null;
 
@@ -132,6 +142,11 @@ public class EditCommandParser implements Parser<EditCommand> {
         return Optional.of(ParserUtil.parseServers(serverSet));
     }
 
+    /**
+     * Parses {@code Collection<String> gameTypes} into a {@code Set<GameType>} if {@code gameTypes} is non-empty.
+     * If {@code gameTypes} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<GameType>} containing zero gameTypes.
+     */
     private Optional<Set<GameType>> parseGameTypesForEdit(Collection<String> gameTypes) throws ParseException {
         assert gameTypes != null;
 
@@ -143,6 +158,12 @@ public class EditCommandParser implements Parser<EditCommand> {
         return Optional.of(ParserUtil.parseGameTypes(gameTypesSet));
     }
 
+    /**
+     * Parses {@code Collection<String> timeIntervals} into a {@code Set<ITimesAvailable>}
+     * if {@code timeIntervals} is non-empty.
+     * If {@code timeIntervals} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<ITimesAvailable>} containing zero ITimesAvailable.
+     */
     private Optional<Set<ITimesAvailable>> parseTimeIntervalsForEdit(Collection<String> timeIntervals)
             throws ParseException {
         assert timeIntervals != null;

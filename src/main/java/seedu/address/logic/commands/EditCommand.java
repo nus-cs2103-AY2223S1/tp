@@ -85,6 +85,8 @@ public class EditCommand extends Command {
     }
 
     /**
+     * Constructs a {@code EditCommand}.
+     *
      * @param index of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */

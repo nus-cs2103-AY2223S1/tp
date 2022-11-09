@@ -15,7 +15,7 @@ import seedu.address.model.person.Keyword;
 import seedu.address.model.person.PersonSuggestionPredicate;
 
 /**
- * Parses input arguments and creates a new FindCommand object
+ * Parses input arguments and creates a new SuggestCommand object
  */
 public class SuggestCommandParser implements Parser<SuggestCommand> {
 

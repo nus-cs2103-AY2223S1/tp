@@ -24,10 +24,19 @@ public class FindCommand extends Command {
 
     private final NameContainsKeywordsPredicate predicate;
 
+    /**
+     * Default constructor for {@code FindCommand}.
+     */
     public FindCommand() {
         this.predicate = null;
     }
 
+    /**
+     * Constructs a {@code FindCommand}.
+     *
+     * @param predicate The NameContainsKeywordsPredicate that is used for
+     *                  FindCommand.
+     */
     public FindCommand(NameContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }

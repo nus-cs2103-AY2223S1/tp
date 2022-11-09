@@ -118,6 +118,14 @@ public class TimeInterval implements ITimesAvailable {
         return startTime + "-" + endTime;
     }
 
+    /**
+     * Checks if a TimeInterval object is equal to another
+     * object.
+     * @param other Another object of comparison.
+     * @return true if they are of the same object
+     *      or if they are different TimeInterval objects with the same start
+     *      and end time.
+     */
     @Override
     public boolean equals(Object other) {
         return this == other // short circuit if same object

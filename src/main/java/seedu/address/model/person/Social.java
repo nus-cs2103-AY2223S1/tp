@@ -12,7 +12,7 @@ public class Social {
     public static final String MESSAGE_CONSTRAINTS =
             "Social media handles should be social_media@username.";
 
-    /*
+    /**
      * The first character of the social must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */

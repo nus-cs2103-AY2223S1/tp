@@ -44,10 +44,19 @@ public class SuggestCommand extends Command {
 
     private final PersonSuggestionPredicate predicate;
 
+    /**
+     * Default constructor for {@code SuggestCommand}.
+     */
     public SuggestCommand() {
         this.predicate = null;
     }
 
+    /**
+     * Constructs a {@code SuggestCommand}.
+     *
+     * @param predicate The PersonSuggestionPredicate for the SuggestCommand
+     *                  to run on.
+     */
     public SuggestCommand(PersonSuggestionPredicate predicate) {
         this.predicate = predicate;
     }
