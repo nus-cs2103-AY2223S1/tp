@@ -35,12 +35,12 @@ our app.
 3. Throughout this guide, you will encounter the icons :bulb:,
   :information_source:, :eye:, :exclamation:. Their meanings are as follows:
 
-| Icon                 | Meaning                                                                     |
-|----------------------|-----------------------------------------------------------------------------|
-| :bulb:               | A relevant tip which you may find helpful.                                  |
-| :information_source: | Information that you should **must** note of when using a specific feature. |
-| :eye:                | A feature related to the section you are currently looking at.              |
-| :exclamation:        | A disclaimer related to the section you are currently looking at.           |
+| Icon                 | Meaning                                                                   |
+|----------------------|---------------------------------------------------------------------------|
+| :bulb:               | A relevant tip which you may find helpful.                                |
+| :information_source: | Information that you **must** take note of when using a specific feature. |
+| :eye:                | A feature related to the section you are currently looking at.            |
+| :exclamation:        | A disclaimer related to the section you are currently looking at.         |
 
 
 ## 1. Quick start
