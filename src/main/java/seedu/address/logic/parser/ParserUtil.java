@@ -120,7 +120,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses day times of week.
+     * Parses a {@code Collection<String> dayTimesInWeek} into a {@code Set<DayTimeInWeek>}.
      * @param dayTimesInWeek The collection of the days of week.
      * @return The set of days of week.
      * @throws ParseException if the given {@code daysOfWeek} is invalid.
