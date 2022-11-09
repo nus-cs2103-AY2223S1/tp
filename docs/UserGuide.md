@@ -572,7 +572,7 @@ Listed here are some frequently asked questions that we hope will be helpful for
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-### Field summary
+## Field summary
 
 The format and constraints of fields in GuestBook are listed in the table below.
 
