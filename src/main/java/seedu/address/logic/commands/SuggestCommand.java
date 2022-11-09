@@ -22,11 +22,11 @@ public class SuggestCommand extends Command {
             + "Provide keywords, and they will be matched against all attributes "
             + "(Minecraft username, social handles etc.) by checking if the attributes "
             + "contain the given keywords. All keywords must be matched.";
-    public static final String PARAMETER =
+    public static final String PARAMETERS =
             "[" + PREFIX_DAY_TIME_OF_WEEK + "DAY TIME OF WEEK] "
             + "[" + PREFIX_KEYWORD + "KEYWORD]\n"
             + "All day time of week must come before all keywords";
-    public static final String EXAMPLE = COMMAND_WORD + " "
+    public static final String EXAMPLES = COMMAND_WORD + " "
             + PREFIX_DAY_TIME_OF_WEEK + "mon@1755 "
             + PREFIX_DAY_TIME_OF_WEEK + "fri@2355 "
             + PREFIX_DAY_TIME_OF_WEEK + "now "
@@ -39,8 +39,8 @@ public class SuggestCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": " + DESCRIPTION + "\n\n"
             + "Parameters:\n"
-            + PARAMETER + "\n\n"
-            + "Example: " + EXAMPLE;
+            + PARAMETERS + "\n\n"
+            + "Example: " + EXAMPLES;
 
     private final PersonSuggestionPredicate predicate;
 
@@ -67,12 +67,12 @@ public class SuggestCommand extends Command {
 
     @Override
     public String getParameters() {
-        return PARAMETER;
+        return PARAMETERS;
     }
 
     @Override
     public String getExamples() {
-        return EXAMPLE;
+        return EXAMPLES;
     }
 
     @Override

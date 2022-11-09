@@ -47,7 +47,7 @@ public class EditCommand extends Command {
     public static final String DESCRIPTION = "Edits the details of the person identified "
             + "by the index number used in the displayed person list. "
             + "Existing values will be overwritten by the input values.";
-    public static final String PARAMETER = "INDEX (must be a positive integer) "
+    public static final String PARAMETERS = "INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
@@ -59,15 +59,15 @@ public class EditCommand extends Command {
             + "[" + PREFIX_SOCIAL + "SOCIAL]* "
             + "[" + PREFIX_TAG + "TAG]* "
             + "[" + PREFIX_TIME_INTERVAL + "TIME_INTERVAL]*";
-    public static final String EXAMPLE = COMMAND_WORD + " 1 "
+    public static final String EXAMPLES = COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com "
             + PREFIX_SOCIAL + "fb@John Doe ";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": " + DESCRIPTION + "\n\n"
             + "Parameters: \n"
-            + PARAMETER + "\n"
-            + "Example: " + EXAMPLE;
+            + PARAMETERS + "\n"
+            + "Example: " + EXAMPLES;
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited friend: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -124,12 +124,12 @@ public class EditCommand extends Command {
 
     @Override
     public String getParameters() {
-        return PARAMETER;
+        return PARAMETERS;
     }
 
     @Override
     public String getExamples() {
-        return EXAMPLE;
+        return EXAMPLES;
     }
 
     /**

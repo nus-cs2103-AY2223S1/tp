@@ -9,8 +9,8 @@ public class ExitCommand extends Command {
 
     public static final String COMMAND_WORD = "exit";
     public static final String DESCRIPTION = "Exits the program.";
-    public static final String PARAMETER = "";
-    public static final String EXAMPLE = COMMAND_WORD;
+    public static final String PARAMETERS = "";
+    public static final String EXAMPLES = COMMAND_WORD;
 
     public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Exiting Address Book as requested ...";
 
@@ -26,12 +26,12 @@ public class ExitCommand extends Command {
 
     @Override
     public String getParameters() {
-        return PARAMETER;
+        return PARAMETERS;
     }
 
     @Override
     public String getExamples() {
-        return EXAMPLE;
+        return EXAMPLES;
     }
 
 }

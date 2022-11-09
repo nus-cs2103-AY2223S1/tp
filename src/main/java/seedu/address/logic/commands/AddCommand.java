@@ -24,7 +24,7 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
     public static final String DESCRIPTION = "Adds a person to the address book.";
-    public static final String PARAMETER =
+    public static final String PARAMETERS =
             PREFIX_NAME + "NAME "
             + PREFIX_MINECRAFT_NAME + "MINECRAFT_NAME \n"
             + "[" + PREFIX_PHONE + "PHONE] "
@@ -36,7 +36,7 @@ public class AddCommand extends Command {
             + "[" + PREFIX_TAG + "TAG]* "
             + "[" + PREFIX_GAME_TYPE + "GAME_TYPE]* "
             + "[" + PREFIX_TIME_INTERVAL + "TIME_INTERVAL]*";
-    public static final String EXAMPLE =
+    public static final String EXAMPLES =
             COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_MINECRAFT_NAME + "john_doe_12345 "
@@ -52,8 +52,8 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "owesMoney";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": " + DESCRIPTION + "\n\n"
             + "Parameters: \n"
-            + PARAMETER + "\n\n"
-            + "Example: \n" + EXAMPLE;
+            + PARAMETERS + "\n\n"
+            + "Example: \n" + EXAMPLES;
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
@@ -91,12 +91,12 @@ public class AddCommand extends Command {
 
     @Override
     public String getParameters() {
-        return PARAMETER;
+        return PARAMETERS;
     }
 
     @Override
     public String getExamples() {
-        return EXAMPLE;
+        return EXAMPLES;
     }
 
     @Override
