@@ -14,9 +14,6 @@ import seedu.address.model.person.PersonSuggestionPredicate;
  */
 public class SuggestCommand extends Command {
 
-    /**
-     * The word that initiates the command.
-     */
     public static final String COMMAND_WORD = "suggest";
     public static final String DESCRIPTION = "Suggests a list of friends based on a given set of constraints.\n\n"
             + "Provide some DayTimeInWeek (eg. mon@1930) "
