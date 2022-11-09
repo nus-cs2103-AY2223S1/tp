@@ -1,0 +1,15 @@
+@startuml
+skinparam activity {
+    ArrowColor #A80036
+    BackgroundColor #FEFECE
+    BorderColor #A80036
+    BorderThickness 1.5
+}
+start
+:User executes markroomsunclean command;
+:Get list of guests to edit isRoomClean status;
+:Create new list of guests with isRoomClean fields set to "no";
+:Set new list of guests to model;
+stop
+
+@enduml

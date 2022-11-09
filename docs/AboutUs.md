@@ -5,55 +5,54 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
-### John Doe
+### Justin Peng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/justinpeng13.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[homepage](https://www.justinpeng.com)]
+[[github](https://github.com/JustinPeng13)]
+[[portfolio](team/justinpeng13.md)]
 
-* Role: Project Advisor
+* Role: Secondary Team Lead
+* Responsibilities: Deliverables and deadlines, Scheduling and tracking, Git/SourceTree expert
 
-### Jane Doe
+### Soh Je Hou
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jehousoh.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/jehousoh)]
+[[portfolio](team/jehousoh.md)]
 
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: Deliverables and deadlines, Scheduling and tracking
 
-### Johnny Doe
+### Lan Jingbo
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/lan-jingbo.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/Lan-Jingbo)] [[portfolio](team/lan-jingbo.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Data, Testing, Project Management
 
-### James Doe
+### Kang Zong Xian
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/kangzongxian.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/kangzongxian)]
+[[portfolio](team/kangzongxian.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Code Quality, Documentation
+
+### Ho Cheng En Bryan
+
+<img src="images/bryanhce.png" width="200px">
+
+[[github](http://github.com/bryanhce)]
+[[portfolio](team/bryanhce.md)]
+
+* Role: Developer
+* Responsibilities: Code quality, Documentation
