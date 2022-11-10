@@ -7,7 +7,7 @@ title: User Guide
 
 Tired of tracking your internship applications on your calendar or Microsoft Excel?
 
-Or perhaps you're looking for a more efficient way to track your countless internship applications?
+Looking for a more efficient way to track your countless internship applications?
 
 Well, look no further!
 
@@ -62,11 +62,15 @@ the [Table of Contents](#table-of-contents) for more detailed explanations of in
 
 Alternatively, consider looking at the [Command Summary](#command-summary) for a brief outline of all the commands.
 
+At any point of the user guide, if you're unsure of the technical jargon used, fret not! Head over to our
+[Glossary](#glossary) to find out what they mean. Or if you have a question, check out our [FAQ](#faq) in case your
+question already has a quick answer!
+
 Before we start, this guide would contain some symbols and syntax, which has been collated in this table below:
 
 | Symbol/Syntax                                  | Meaning                                                                                                                                         |
 |------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
-| :warning: **Caution**                      | Very important information that you must know before using a command                                                                            |
+| :warning: **Caution**                          | Very important information that you must know before using a command                                                                            |
 | :information_source: **Notes**                 | Important information that you should pay attention to                                                                                          |
 | :bulb: **Tip**                                 | Helpful information that you might want to know                                                                                                 |
 | `Highlighted text block`                       | Commands or parameters relevant to the application                                                                                              |
@@ -77,14 +81,14 @@ Before we start, this guide would contain some symbols and syntax, which has bee
 
 # Quick start
 
-1. Ensure you have Java 11 or above installed in your Computer.
+1. Ensure you have Java 11 or above [installed in your Computer](#faq).
 
 2. Download the latest `InTrack.jar` from [here](https://github.com/AY2223S1-CS2103T-T11-2/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for **InTrack**.
 
 4. Launch the app by double-clicking the file or by using the command `java -jar InTrack.jar` in your terminal. The GUI
-   similar to the below should appear in a few seconds. Note how the app contains some default sample data.<br>
+   similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
 
    ![Ui](images/UiBefore.png)
 
@@ -97,7 +101,7 @@ Before we start, this guide would contain some symbols and syntax, which has bee
 
    * **`list`** : Lists all internship applications.
 
-   * **`add`**`c/Microsoft p/Software Engineer s/5000 e/hr@microsoft.com w/careers.microsoft.com t/Urgent` :
+   * **`add c/Microsoft p/Software Engineer s/5000 e/hr@microsoft.com w/https://careers.microsoft.com t/Urgent`** :
      Adds an internship application for `Software Engineer` at `Microsoft` to **InTrack**.
 
    * **`delete 1`** : Deletes the first internship application displayed in **InTrack**.
@@ -135,7 +139,7 @@ of the selected internship will be shown here.
   E.g. in `add p/POSITION`, `POSITION` is a parameter which can be used as `add p/Software Engineer`.
 
 * Items in square brackets are optional.<br>
-  E.g `w/WEBSITE [t/TAG]` can be used as `w/careers.microsoft.com t/Urgent` or as `w/careers.microsoft.com`.
+  E.g `w/WEBSITE [t/TAG]` can be used as `w/https://careers.microsoft.com t/Urgent` or as `w/https://careers.microsoft.com`.
 
 * Items with `…` after them can be used multiple times including zero times.<br>
   E.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/Urgent`, `t/Urgent t/Remote` etc.
@@ -164,8 +168,8 @@ Format: `help`
 
 ### Viewing statistics of internship applications: `stats`
 
-This command displays the statistical breakdown of your current list of internship applications. The statistics are 
-calculated based on the number of offered, in-progress and rejected applications.
+This command displays the statistical breakdown of your current list of internship applications. The statistics display
+the proportions of offered, in-progress and rejected applications.
 
 Format: `stats`
 
@@ -183,8 +187,8 @@ Format: `exit`
 
 ### Saving the data
 
-**InTrack** data is saved in the hard disk automatically after any command that changes the data.
-There is no need to save manually.
+**InTrack** data is saved in the hard disk automatically after any command that changes the data so there is no need for
+you to save manually.
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -246,7 +250,8 @@ Expected outcome:
 
 ### Deleting an internship application: `delete`
 
-Deletes the internship application at the specified `INDEX` from **InTrack**.
+If you have withdrawn from an internship application, you can delete the internship application at the specified `INDEX` 
+from **InTrack**.
 
 Format: `delete INDEX`
 
@@ -274,7 +279,7 @@ After deleting the internship application for `Software Engineer` at `Microsoft`
 
 ### Updating status of an internship application : `status`
 
-Updates the status of the internship application at the specified `INDEX` in **InTrack** with 1 of 3 possible statuses:
+Updates the status of your internship application at the specified `INDEX` in **InTrack** with 1 of 3 possible statuses:
 `o` for `Offered`, `p` for `Progress` or `r` for `Rejected`.
 
 Format: `status INDEX STATUS`
@@ -767,6 +772,8 @@ If you have Java 11 installed, the correct version of Java is installed and you 
 **Q**: What is a positive unsigned integer?<br>
 **A**: A positive unsigned integer is a whole number that ranges from 1 to 4294967295 inclusive.
 
+[Back to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 # Command summary
@@ -806,3 +813,23 @@ If you have Java 11 installed, the correct version of Java is installed and you 
 | **Find by tag**                      | `findt KEYWORD [MORE_KEYWORDS]...`<br/> e.g. `findt Urgent`   |
 | **Filter by status**                 | `filter STATUS` <br/> e.g. `filter o`                         |
 | **Sort by time or salary**           | `sort SORT_TYPE SORT_ORDER`<br/> e.g. `sort time a`           |
+
+[Back to Table of Contents](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
+# Glossary
+
+| Term                                  |   Definition                                                                                        |
+|---------------------------------------|-----------------------------------------------------------------------------------------------------|
+| **Command**                           | A command is an executable instruction which the application can run                                |
+| **Parameter**                         | A parameter is an input that you can use in a command to execute instructions with specific details |
+| **Task**                              | A task is any deliverables that you have to do for a specific internship application                |
+| **Remark**                            | A remark is any note that you want to add to a specific internship application                      |
+| **Java**                              | Java is a programming language that **InTrack** used for development                                |
+| **Index**                             | An index is the position of an item in a numbered list                                              |
+| **JAR File**                          | An executable file that stores the files necessary to run **InTrack**, which can be run by double-clicking it |
+| **CLI (Command Line Interface)**      | A CLI is a text-based user interface (UI) which connects the user to the program                    |
+| **GUI (Graphical User Interface)**    | A GUI is user interface that allows users to interact with the program with interactive visual components (e.g. icons, buttons, etc) |
+
+[Back to Table of Contents](#table-of-contents)
