@@ -246,11 +246,11 @@ Format: `add c/COMPANY p/POSITION e/EMAIL w/WEBSITE s/SALARY [t/TAG]…`
 | `SALARY `  | Salary of the position                       | Must contain only numbers                                                     |
 | `TAG`      | Tag(s) of the internship application         | Must be one word per tag and contain only alphanumeric characters             |
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="span" class="alert alert-primary" style="page-break-after: always;">
 :bulb: **Tip:** An internship can have any number of tags (including 0), and you can add multiple tags at once.
 </div>
 
-<div markdown="block" class="alert alert-info" style="page-break-after: always;">
+<div markdown="block" class="alert alert-info">
 
 **:information_source: Note about duplicates:**<br>
 
