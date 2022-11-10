@@ -632,15 +632,13 @@ Fret not! Our handy app let's you track `Events` with clients!
 #### __________________________
 
 ### Adding an Event: `addEvent`
-Adds an `Event` into the address book.
-
-
 An `Event` consists of four primary indicators. Think of it like any event, you'd want to know the "Who", "What", "When"!
 
 1. <B>Who</B>: The `name` of the client you are about to meet!
 2. <B>What</B>: A short `description` of the event. This could be anything you'd like, from the location of the event, to some short meeting notes.
 3. <B>When</B>: The `date` and `duration` of the event.
 
+This function adds an `Event` into the address book
 
 Format: `addEvent desc/EVENT_DESCRIPTION n/CLIENT_NAME date/EVENT_DATE st/START_TIME et/END_TIME`
 
@@ -670,12 +668,11 @@ If not, not to worry! Just match the error message you've gotten with our helpfu
 #### __________________________
 
 ### Deleting an Event: `deleteEvent`
-
-Deletes the event at the specified `EVENT_INDEX`. 
-
 Oh my, you've keyed in an event wrongly! Well, it happens to the best of us...
 
-Fret not! With LTNS, you can easily delete events by specifying it's index.
+Fret not! With LTNS, you can easily delete events by specifying its index.
+
+It deletes the event at the specified `EVENT_INDEX`.
 
 Format: `deleteEvent EVENT_INDEX`
 
@@ -689,23 +686,21 @@ The index **must be a positive integer** 1, 2, 3, …​
 #### __________________________
 
 ### Switching to the view of currently listed events : `events`
-Switches the display to show the current list of events
-
 Hey, I'm on another page and I want a quick glance at my current events. How do I switch back and forth quickly?
 
 Well this is the command for you!
-If you previously filtered the event list ([via an event search](#searching-for-an-event--findevent)) and switched to view to other lists, this command will allow you to <B> come straight back to the filtered event list </B>
+If you previously filtered the event list ([via an Event Search](#searching-for-an-event--findevent)) and switched to view to other lists, this command will allow you to <B> come straight back to the filtered event list </B>
 
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 If you wish to view the **full** list of events, you may do so with the command `allEvents`. In fact, it's right next up! 
 </div>
 
-For a quick illustration, suppose I've previously searched for all events with `Ben Leong` [via an event search](#searching-for-an-event--findevent)
+For a quick illustration, suppose I've previously searched for all events with `Ben Leong` [via an Event Search](#searching-for-an-event--findevent)
 
-Now, imagine I'm viewing my income currently, and I'm on this page
+Now, imagine I'm just searched for "Alex Yeoh" in my app. Now, I want to go back to my events view.
 
-![result for 'viewIncome 2000'](images/viewIncome.png)
+
 
 By doing the `events` command, I'm immediately brought back to my previously filtered event list.
 
@@ -715,12 +710,13 @@ Format: `events`
 
 Example Usage: `events`
 
+Here's an example result!
+
+![result for 'viewIncome 2000'](images/findClientExample.png)
+
 #### __________________________
 
 ### Viewing all Events : `allEvents`
-Switches the display to show all events in LTNS
-
-
 Need to view every single event you've added? Well, look no further!
 
 This command helps you to view all events you've added. The format is simply as follows
@@ -768,9 +764,8 @@ Here's the result
 #### __________________________
 
 ### Viewing all Events in the next 7 days : `calendar`
-Views all events in the next 7 days.
-
 One of the highlights of our app, the `calendar` function shows all events you have in the next 7 days
+
 
 As usual, it's sorted in chronological order, for you to prioritize what's coming up the soonest
 
@@ -865,17 +860,17 @@ What's a guide without a summary? Here you go! Everything you need, summarised i
 
 ### Commands For Clients
 
-| Action                    | Format, Examples                                                                                                                                                                                                          | Link back to Command Guide                                                              |
-|---------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------|
-| **Find Client**           | `findClient [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [b/BIRTHDAY] [i/INCOME] [ra/RISK_APPETITE] [ti/TITLE] [cov/COVERAGE]…​ [cmp/COMPANY_CODE]` <br><br> e.g: `findClient n/Jim p/98765432`                      | [Searching for a Client](#searching-for-clients--findclient)                            |
-| **Add Client**            | `addClient n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS t/TAG…​`  <br><br> e.g: `addClient n/Clement Tan p/98765432 e/clementTan@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney b/2019-05-05 i/10000.00 ra/M` | [Adding a Client](#adding-a-client--addclient)                                          |
-| **Delete Client**         | `deleteClient (INDEX of CLIENT)` <br><br> e.g: `deleteClient 3`                                                                                                                                                           | [Deleting a Client](#deleting-a-client--deleteclient)                                   |
-| **Edit Client**           | `editClient (INDEX of CLIENT) [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br><br> e.g: `editClient 2 n/James Lee e/jameslee@example.com`                                                                  | [Editing a Client](#editing-a-client--editclient)                                       |
-| **View All Clients**      | `allClients`                                                                                                                                                                                                              | [Listing all Clients](#listing-all-clients--allclients)                                 |
-| **View Filtered Clients** | `clients`                                                                                                                                                                                                                 | [Switching to Client View](#switching-to-the-view-of-currently-listed-clients--clients) |                                                         
-| **Sort Clients**          | `sort SORTING_METRIC`<br> eg. `sort name`                                                                                                                                                                                 | [Sorting all Clients](#sorting-all-clients--sort)                                       |
-| **Pin**                   | `pin (INDEX of CLIENT)` <br><br> e.g: `pin 1`                                                                                                                                                                             | [Pin a Client](#pin-a-client-pin)                                                       |
-| **View Pinned**           | `viewPin`                                                                                                                                                                                                                 | [Pin a Client](#pin-a-client-pin)                                                       |
+| Action                    | Format, Examples                                                                                                                                                                                                                                                    | Link back to Command Guide                                                              |
+|---------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------|
+| **Find Client**           | `findClient [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [b/BIRTHDAY] [i/INCOME] [ra/RISK_APPETITE] [ti/TITLE] [cov/COVERAGE]…​ [cmp/COMPANY_CODE]` <br><br> e.g: `findClient n/Jim p/98765432`                                                                | [Searching for a Client](#searching-for-clients--findclient)                            |
+| **Add Client**            | `addClient n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]... b/BIRTHDAY i/INCOME ra/RISK_APPETITE ​`  <br><br> e.g: `addClient n/Clement Tan p/98765432 e/clementTan@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney b/2019-05-05 i/10000.00 ra/M` | [Adding a Client](#adding-a-client--addclient)                                          |
+| **Delete Client**         | `deleteClient (INDEX of CLIENT)` <br><br> e.g: `deleteClient 3`                                                                                                                                                                                                     | [Deleting a Client](#deleting-a-client--deleteclient)                                   |
+| **Edit Client**           | `editClient (INDEX of CLIENT) [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [b/BIRTHDAY] [i/INCOME] [ra/RISK_APPETITE] ` <br><br> e.g: `editClient 2 n/James Lee e/jameslee@example.com`                                                                | [Editing a Client](#editing-a-client--editclient)                                       |
+| **View All Clients**      | `allClients`                                                                                                                                                                                                                                                        | [Listing all Clients](#listing-all-clients--allclients)                                 |
+| **View Filtered Clients** | `clients`                                                                                                                                                                                                                                                           | [Switching to Client View](#switching-to-the-view-of-currently-listed-clients--clients) |                                                         
+| **Sort Clients**          | `sort SORTING_METRIC`<br> eg. `sort name`                                                                                                                                                                                                                           | [Sorting all Clients](#sorting-all-clients--sort)                                       |
+| **Pin**                   | `pin (INDEX of CLIENT)` <br><br> e.g: `pin 1`                                                                                                                                                                                                                       | [Pin a Client](#pin-a-client-pin)                                                       |
+| **View Pinned**           | `viewPin`                                                                                                                                                                                                                                                           | [Pin a Client](#pin-a-client-pin)                                                       |
 
 Note: `allClients` shows all existing clients inside LTNS, while `clients` show all clients based on filter metric placed previously.
 
