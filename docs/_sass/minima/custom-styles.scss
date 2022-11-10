@@ -7,18 +7,28 @@ h6 {
   font-weight: bold;
 }
 
-h2, h3 {
+h1, h2, h3 {
   color: #FF0078;
   font-weight: 900;
   padding: 4px 8px;
   margin-bottom: 18px;
 }
 
-h1 {
+.title {
   color: #000000;
   font-weight: 900;
   padding: 4px 8px;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.subtitle {
+  color: #000000;
+  font-weight: 400;
+  padding: 4px 8px;
   margin-bottom: 18px;
+  font-style: italic;
+  text-align: center;
 }
 
 // Bootstrap style alerts

@@ -5,7 +5,8 @@ title: User Guide
 
 <p align="center">
   <img src="./images/Coydir_Logo.png" width=400rem />
-  <h1 align="center"><font size="7">Coydir</font><br><em><font size="5">The Ultimate Company Directory</font></em></h1>
+  <p class="title"><font size="7">Coydir</font></p>
+  <p class="subtitle"><font size="5">The Ultimate Company Directory</font></p>
 </p>
 
 ## **Coydir /(‘kohy-də)/**
