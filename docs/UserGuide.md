@@ -4,20 +4,21 @@ title: User Guide
 ---
 
 ## Introduction
-_Are you a new NUS student that's not sure what food options there are in NUS? 
-Or perhaps are you stuck on what to eat for lunch?_ <br>
+_Are you a new NUS student that's not sure what food options there are in NUS? <br>
+Or perhaps, are you stuck on what to eat for lunch?_ <br>
 
-Presenting to you, NUSEatWhere's `Food Guide`! Our `Food Guide` is a desktop application that stores
-information on NUS canteens and eateries.
+Presenting to you, NUSEatWhere's Food Guide! `NUSEatWhere` is a desktop application that stores
+information on NUS canteens and eateries in the form of a `Food Guide`.
 It also supports a variety of search functions and the ability to randomly generate
 eateries to eat at! 
 
-`Food Guide` is designed for all NUS Students who have a hard time remembering 
+`NUSEatWhere` is designed for all NUS Students who have a hard time remembering 
 all the food options in NUS and/or cannot decide on a place to eat. 
-Additionally, `Food Guide`'s **Command-line Interface (CLI)** is optimized for fast-typists to 
+Additionally, `NUSEatWhere`'s **Command-line Interface (CLI)** is optimized for fast-typists to 
 quickly execute complicated commands in a simple manner, and is simple to pick up for all users!
 
-With `Food Guide`, you can search for the available food options in NUS and make an informed decision on where to eat!
+With `NUSEatWhere`, you can search for the available food options in NUS and make an informed decision on where to eat 
+faster than ever before!
 
 ## Table of Contents
 * [Introduction](#introduction)
@@ -27,27 +28,31 @@ With `Food Guide`, you can search for the available food options in NUS and make
 * [Quick Start](#quick-start)
 * [Features](#features)
   * [Introduction to Our Features](#introduction-to-our-features)
-  * [Help](#help-command--help)
-  * [List](#listing-all-eateries--list)
-  * [Exit](#exit-command--exit)
-  * [Find](#find-eateries-by-name--find) / [FindLocation](#find-eateries-by-location--findlocation) /
-    [FindCuisine](#find-eateries-by-cuisine--findcuisine) / [FindPrice](#find-eateries-by-price--findprice) /
-    [FindTag](#find-eateries-by-tag--findtag)
-  * [Tag](#add-tag-to-eatery--tag) / [Untag](#remove-tag-from-eatery--untag)
-  * [Fav](#favourite-eatery--fav) / [Unfav](#unfavourite-eatery--unfav)
-  * [Add](#add-eatery--add) / [Delete](#delete-eatery--delete) / [Edit](#edit-eatery--edit)
-  * [Clear](#clear-food-guide--clear)
-
+  * [Utility commands](#utility-commands): 
+    * [Help](#help-command--help) / [List](#listing-all-eateries--list) / [Exit](#exit-command--exit)
+  * [Find-style commands](#commands-for-finding-eateries): 
+    * [Find](#find-eateries-by-name--find) / [FindLocation](#find-eateries-by-location--findlocation) /
+      [FindCuisine](#find-eateries-by-cuisine--findcuisine) / [FindPrice](#find-eateries-by-price--findprice) /
+      [FindTag](#find-eateries-by-tag--findtag)
+  * [Modification commands](#commands-for-modifying-eateries): 
+    * [Tag](#add-tag-to-eatery--tag) / [Untag](#remove-tag-from-eatery--untag)
+    * [Fav](#favourite-eatery--fav) / [Unfav](#unfavourite-eatery--unfav)
+    * [Add](#add-eatery--add) / [Delete](#delete-eatery--delete) / [Edit](#edit-eatery--edit)
+    * [Clear](#clear-food-guide--clear)
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
 
+<br>
+
+---
+
 ## Using the User Guide
-This user guide aims to orientate users (such as _you!_) on how to install, use, and troubleshoot `Food Guide`.
+This user guide aims to orientate users (such as _you!_) on how to install, use, and troubleshoot `NUSEatWhere`.
 
 For all new users, we highly recommend you check out the [Quick Start](#quick-start) section, which covers the
 installation instructions and the basic features of our application.
 
-After getting acquainted with `Food Guide`, you should take a look at our [Features](#features) section, which
+After getting acquainted with `NUSEatWhere`, you should take a look at our [Features](#features) section, which
 lists down all of our features in detail and how they work!
 
 Are you an experienced user that just needs a summary on how to use our application? <br>
@@ -56,7 +61,7 @@ instead for a quick overview of all our supported commands.
 
 Got any other burning questions? Try looking in our [FAQ](#faq) section! <br>
 If your queries cannot be answered, you can try contacting the development team
-by referring to our [About Us](AboutUs.md) page or
+by referring to our [About Us](https://ay2223s1-cs2103t-w11-1.github.io/tp/AboutUs.html) page or
 raising an issue on our [GitHub](https://github.com/AY2223S1-CS2103T-W11-1/tp)!
 
 --------------------------------------------------------------------------------------------------------------------
@@ -90,6 +95,9 @@ e.g. typing `help` and pressing Enter will open the help window. <br>
    * `exit`: Closes the application
 
 6. You can refer to [Features](#features) below for the details of each command.
+
+<br>
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -153,12 +161,22 @@ This may be useful to include eateries near NUS (such as Supper Stretch!).
 <br>
 </div>
 
+---
+
 ### Utility Commands
+These commands deal with the general function of the `NUSEatWhere` application.
+As such, we recommend memorizing these commands so that your experience with our 
+application will be as smooth as possible!
+
+<br>
 
 #### Help command : `help`
 
 _Displays a pop-out window listing out all the available commands & their functions. <br>
 The window also contains a link to this User Guide._
+<div markdown="span" class="alert alert-primary"> :bulb:  **Tip:**
+When in doubt, use the help feature to see the list of commands within NUSEatWhere!
+</div>
 
 **Format**: `help`
 
@@ -167,7 +185,8 @@ The window also contains a link to this User Guide._
 #### Listing all eateries : `list`
 
 _Lists out all the eateries in your `Food Guide`. <br>
-If a command such as `find` has hidden eateries from you, you can simply type `list` to view all your eateries again._
+If a command (e.g. `find`) has hidden some eateries from you, 
+you can simply type `list` to view all your eateries again._
 
 **Format:** `list [-h]`
 
@@ -178,11 +197,15 @@ If a command such as `find` has hidden eateries from you, you can simply type `l
 
 #### Exit command : `exit`
 
-_Closes the `Food Guide`. All information is saved beforehand._
+_Closes `NUSEatWhere`. All information is saved beforehand._
 
 **Format:** `exit`
 
-### Commands for Finding
+<br>
+
+---
+
+### Commands for Finding Eateries
 These commands search the list of eateries for ones that match your criteria. All find commands support
 a randomizer functionality to pick out a number of eateries at random.
 
@@ -190,6 +213,17 @@ a randomizer functionality to pick out a number of eateries at random.
 If there are fewer eateries matching the criteria than the number specified to the randomizer,
 they will all be displayed.
 </div>
+
+Please note that for all find commands:
+* The searches are case-insensitive. e.g `koi` will match `KOI`
+* Eateries matching at least one keyword will be returned. <br>
+(e.g. if `findCuisine chinese thai` is used to search within the eateries' cuisine types, 
+eateries that have a cuisine type of either `chinese` and/or `thai` will be listed.)
+* You may give a shorter version of the name as long as the spelling is correct <br>
+  (e.g. `find veg` will return eateries
+  with `vegetarian` in their name.)
+
+<br>
 
 #### Find eateries by name : `find`
 
@@ -199,7 +233,7 @@ You can also quickly narrow down your choices with the randomizer feature._
 **Format:** `find KEYWORD…​ [-r NUMBER] [-h]`
 
 <div markdown="span" class="alert alert-primary"> :bulb:  **Tip:**
-You can leave KEYWORD empty if you are using the randomizer (-r) feature
+You can leave KEYWORD empty if you are using the randomizer (-r) feature!
 </div>
 
 **Inputs:** <br>
@@ -207,13 +241,6 @@ You can leave KEYWORD empty if you are using the randomizer (-r) feature
 `NUMBER`: how many randomly selected eateries to show (more than 0) <br>
 `-h`: displays help message (specific to find)
 <br>
-
-Note:
-* The search is case-insensitive. e.g `koi` will match `KOI`
-* Eateries matching at least one keyword will be returned.
-  e.g. `find coffee cafe` will return eateries with either `coffee` or `cafe` in their name.
-* You may give a shorter version of the name as long as the spelling is correct e.g. `find veg` will return eateries
-  with `vegetarian` in their name.
 
 Example: `find veg -r 2`
 
@@ -236,13 +263,6 @@ You can also quickly narrow down your choices with the randomizer feature._
 `NUMBER`: how many randomly selected eateries to show (more than 0) <br>
 `-h`: displays help message (specific to findLocation) <br>
 
-Note:
-* The search is case-insensitive. e.g `arts` will match `Arts`
-* Eateries matching at least one location will be returned.
-  e.g. `findLocation engineering science` will list eateries at either location.
-* You may give a shorter version of the location as long as the spelling is correct e.g. `find deck` will return eateries
-  with `The Deck` in their name.
-
 Example: `findLocation University Town -r 2` <br>
 Example: `findLocation University Town`
 
@@ -260,11 +280,6 @@ You can also quickly narrow down your choices with the randomizer feature._
 `NUMBER`: how many randomly selected eateries to show (more than 0) <br>
 `-h`: displays help message (specific to findCuisine)
 <br>
-
-Note:
-* The search is case-insensitive. e.g `korean` will match `Korean`
-* Eateries matching at least one cuisine will be returned.
-  e.g. `findCuisine Western Japanese` will return eateries that sell either cuisine.
 
 Example: `findCuisine Chinese -r 2` <br>
 Example: `findCuisine Chinese`
@@ -284,11 +299,6 @@ You can also quickly narrow down your choices with the randomizer feature._
 `-h`: displays help message (specific to findCuisine)
 <br>
 
-Note:
-* `PRICE` can be either `$`, `$$`, or `$$$`.
-* Eateries matching at least one price will be returned.
-  e.g. `findPrice $ $$` will return eateries that have either of the prices.
-
 Example: `findPrice $ -r 2` <br>
 Example: `findPrice $`
 
@@ -302,7 +312,7 @@ You can also quickly narrow down your choices with the randomizer feature._
 **Format:** `findTag TAGNAME…​ [-r NUMBER] [-h]`
 
 <div markdown="span" class="alert alert-primary"> :bulb: **Tip:**
-You can search for any number of tags by typing them all after findTag
+You can search for any number of tags by typing them all after the findTag command!
 </div>
 
 **Inputs:** <br>
@@ -320,8 +330,14 @@ Example: `findTag restaurant`
 
 <br>
 
-### Commands for Adding, Editing and Removing Eateries
-These commands modify the list of eateries in `Food Guide`, or change existing eateries.
+---
+
+### Commands for Modifying Eateries
+These commands are used to modify and customise the list of eateries in `NUSEatWhere`.
+If you would like to add/remove/edit any sort of information within the application, these are the commands for you.
+Feel free to personalise the `Food Guide` eatery list to your liking!
+
+<br>
 
 #### Add tag to eatery : `tag`
 
@@ -461,18 +477,23 @@ This action is irreversible.
 
 ## FAQ
 
-**Where is my data saved?**
-NUSEatWhere's `Food Guide` automatically saves your data (including your tags and any new eateries) into a file
+**Where is my data saved?** <br>
+NUSEatWhere's `Food Guide` data (including your tags and any new eateries) is automatically saved into the file named
 `foodguide.json` in the `data` folder.
 
-**Transferring data to friends or other devices**:
+**How do I transfer data to friends or other devices?** <br>
 Make a copy of the data file (`foodguide.json` in the `data` folder) and transfer it to your friend or the other device
 by any means of file sharing (thumbdrive, email, Google Drive, etc.). In the other installation of
 `Food Guide`, replace the default data file with your data.
 
-**Manually editing `Food Guide` data**:
+**How can I manually edit `Food Guide` data?** <br>
 If you are familiar with the `json` file format, you may edit the data file `foodguide.json` directly.
-Do make a backup as an invalid data file will cause `Food Guide` to override it with an empty file.
+Do make a backup as an invalid data file will cause `NUSEatWhere` to override it with an empty file.
+
+**I would like to modify/build on NUSEatWhere, how do I go about this?** <br>
+Feel free to refer to the source code on our [GitHub](https://github.com/AY2223S1-CS2103T-W11-1/tp)!
+If you would like to know the specifics of how we implemented the application, 
+do visit our [Developer Guide](https://ay2223s1-cs2103t-w11-1.github.io/tp/DeveloperGuide.html)!
 
 --------------------------------------------------------------------------------------------------------------------
 
