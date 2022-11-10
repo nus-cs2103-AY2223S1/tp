@@ -424,7 +424,7 @@ After the command has been successfully executed, a new window will pop up, with
    
 - If a summary window is opened, using any other commands will close the summary window.
 - You should call the `summary` command again after any changes.
-   
+   help
 </div>
 
 ### General Commands

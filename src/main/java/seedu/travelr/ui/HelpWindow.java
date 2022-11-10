@@ -20,8 +20,8 @@ import seedu.travelr.commons.core.LogsCenter;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String WELCOME_MESSAGE = "Welcome to TravelR!!";
-    public static final String MESSAGE = "The following table contains the app's command summary";
+    public static final String WELCOME_MESSAGE = "Welcome to Travelr!";
+    public static final String MESSAGE = "The following table contains a summary of the app's list of commands";
     public static final String UG_URL = "https://ay2223s1-cs2103t-w17-1.github.io/tp/UserGuide.html";
     public static final String USER_GUIDE_MESSAGE = "For more details refer to the user guide: " + UG_URL;
     public static final String COMMAND_SUMMARY =
