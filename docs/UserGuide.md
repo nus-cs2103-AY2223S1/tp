@@ -283,7 +283,7 @@ Format: `view INDEX`
 Example:
 * `view 5` displays the remarks and transactions of the client at the 5<sup>th</sup> index.
 
-> <div markdown="span" class="alert alert-primary">:bulb: Tip: Use the "list" command if you want to get back the full list of clients</div>
+> <div markdown="span" class="alert alert-primary">:bulb: Tip: Use the [list](#listing-all-clients-list) command if you want to get back the full list of clients</div>
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -400,7 +400,7 @@ Examples:
 * `sort 1 latest` displays the 1<sup>st</sup> client transactions sorted by the latest transaction on top.
 * `sort 5 oldest` displays the 5<sup>th</sup> client transactions sorted by the oldest transaction on top.
 
-> <div markdown="span" class="alert alert-primary">:bulb: Tip: The sort command will filter the list of clients panel to display only the specified client.<br/>Use the "list" command to get back the full list of clients.</div>
+> <div markdown="span" class="alert alert-primary">:bulb: Tip: The sort command will filter the list of clients panel to display only the specified client.<br/>Use the [list](#listing-all-clients-list) command to get back the full list of clients.</div>
 
 [Back to Table of Contents](#table-of-contents)
 
