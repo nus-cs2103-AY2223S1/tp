@@ -480,7 +480,7 @@ Examples:
 
 ### Deleting a customer: `delcus`
 
-Deletes the customer at `INDEX` from the ArtBuddy.
+Deletes the customer at `INDEX` from ArtBuddy.
 
 Format: `delcus INDEX`
 
