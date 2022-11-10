@@ -39,7 +39,7 @@ P.S. This document is the official user guide of the Long Time No See (LTNS) app
     * [Policy Features](#policy-features)<br>
         * [Adding a Policy](#adding-a-policy--addpolicy)
         * [Switching to Policy View](#switching-to-the-view-of-currently-listed-policies--policies)
-        * [Listing all Policies](#viewing-all-policies-allpolicies)
+        * [Listing all Policies](#listing-all-policies-allpolicies)
         * [Deleting a Policy](#deleting-a-policy--deletepolicy)
         * [Searching for a Policy](#searching-for-a-policy--findpolicy)
         * [Assigning a Policy to a Client](#assigning-a-policy-to-a-client--assign)
@@ -437,7 +437,7 @@ To find out how to do so, you can refer to the [Adding an Event](#adding-an-even
 
 ## Policy Features
 
-Store policies from a large assortment of companies, with different coverages and customisable yearly commissions! Assign them to a client when you secure a deal with ease.
+Policies are a financial advisor’s best friend. Whether it’s an insurance policy, or an investment linked policy, LTNS has got you “covered”! (Pun not intended) Store policies from all kinds of coverages and the top companies in Singapore and even to assign them to clients under your care when you secure a deal. Let’s take a look at how it all works!
 
 #### __________________________
 
@@ -447,62 +447,34 @@ Adds a policy to the LTNS.
 
 Format: `addPolicy ti/TITLE cmp/COMPANY_CODE cms/Y1COMMISION% Y2COMISSION% Y3ONWARDS% cov/COVERAGE...`
 
-Find a detailed explanation of different input restrictions [here](#command-format-table).
+The information here seems pretty intimidating at first but fret not, you can find detailed help on the different input restrictions [here](#command-format-table).
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A policy must have one or more coverages.
-</div>  
+Found a new policy you want to pitch to your clients? LTNS lets you add the policy alongside company, coverage categories and commission levels, to easily access it in future.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-These are the valid coverages and their corresponding codes.
-</div>
-
-| Coverage Code | Coverage Name        |
-|---------------|----------------------|
-| LIFE          | Life Insurance       |
-| MOTOR         | Motor Insurance      |
-| HEALTH        | Health Insurance     |
-| TRAVEL        | Travel Insurance     |
-| PROPERTY      | Property Insurance   |
-| MOBILE        | Mobile Insurance     |
-| BITE          | Bite-sized Insurance |
-| INVESTMENT    | Investment based     |
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-These are the valid companies and their corresponding codes.
-</div>
-
-| Company Code | Company Name                       |
-|--------------|------------------------------------|
-| MNF          | Manulife Financial Private Limited |
-| PRU          | Prudential Assurance Company       |
-| AXA          | AXA Insurance Private Limited      |
-| GEL          | Great Eastern Life                 |
-| NTU          | NTUC Income Insurance              |
-| ETQ          | Etiqa Insurance                    |
-| TML          | Tokio Marine Life Insurance        |
-| AIA          | AIA Singapore Private Limited      |
-| AVI          | Aviva Limited                      |
-| FWD          | FWD Singapore Private Limited      |
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Commissions must take positive percentages within 0% to 100%! (e.g. 10% 3.5% 1.0%)
+<div markdown="span" class="alert alert-primary">:bulb: **Additional Tips:**
+* What does your policy cover? A policy must have one or more coverages when created. Find the possible coverages and their corresponding codes [here](#valid-coverage-codes).
+* Which company does your policy belong to? Find out the valid companies and their corresponding codes [here](#valid-company-codes).
+* If you’d like to sell a policy from a company/with a coverage not in our list, write to us at e0773789@u.nus.edu, and we’ll add it in if there are a significant number of requests!
+* Money is the name of the game! Enter the commissions agreed to with the provider in positive percentages from 0% to 100%! (e.g. 10% 3.5% 1.0%)
 </div>  
 
 Example Usage:
 * `addPolicy ti/PruShield cmp/PRU cms/10% 5% 1% cov/LIFE`
 * `addPolicy ti/ManuInvest Duo cmp/MNF cms/6% 3% 1.5% cov/INVESTMENT cov/LIFE`
 
+Let's try to add in the PruShield policy from above!
+
+If successful, you should see the following success message:
+
+
 #### __________________________
 
 ### Switching to the view of currently listed policies : `policies`
-Switches the display to show the current list of policies.
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-If you previously filtered the policy list and switched to view events/clients/income, this command will allow you to return to the filtered list of policies. 
-</div>
+After viewing your [clients](#client-features) or [events](#event-features), you may want to switch LTNS back to the view of your policies. 
+Do it in an instant with the `policies` command!
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-If you wish to view the **full** list of policies, you may do so with the command `allPolicies`. 
+If you performed a search previously, `policies` maintains the same list of filtered policies. Alternatively, if you wish to view the **full** list of clients, you may do so with the command [allPolicies](#listing-all-policies--allpolicies)
 </div>
 
 Format: `policies`
@@ -514,8 +486,8 @@ Example Result: Shows the currently listed policies on the screen.
 
 #### __________________________
 
-### Viewing all policies: `allPolicies`
-Switches the display to show **all** the policies stored.
+### Listing all policies: `allPolicies`
+Need to get an overview of all the policies you’ve stored? Simply type `allPolicies` to have all the policies stored be displayed, without any filtering.
 
 Format: `allPolicies` <br />
 Example Usage: `allPolicies` <br />
@@ -524,9 +496,7 @@ Example Result: Shows all policies stored in LTNS, on the screen.
 #### __________________________
 
 ### Deleting a policy : `deletePolicy`
-Deletes the policy at the specified `INDEX`.
-The index refers to the index number shown in the displayed list of policies.
-The index **must be a positive integer** 1, 2, 3, …​
+Changed your mind on a policy? Has a company decided to phase out a policy? Update that with the `deletePolicy` command. It lets you delete a policy at the specified `INDEX`. The index refers to the index number shown in the displayed list of policies. The index must be a positive integer 1, 2, 3, …
 
 Format: `deletePolicy POLICY_INDEX`
 
@@ -538,7 +508,7 @@ Example Usage:
 
 ### Searching for a Policy : `findPolicy`
 
-Search for policies based on certain [metrics](#metric)
+You’re at a meeting, and your client wants to know what options they might have for a policy that covers their properties. Find it easily with based on certain [metrics](#metric).
 
 Format: `findPolicy [ti/TITLE] [cov/COVERAGE]…​ [cmp/COMPANY_CODE]`
 
@@ -546,13 +516,7 @@ Format: `findPolicy [ti/TITLE] [cov/COVERAGE]…​ [cmp/COMPANY_CODE]`
 At least one metric has to be specified for the command to be valid
 </div>
 
-The following table illustrates the details of each metric and their search range:
-
-| Metric       | Prefix | Search range                                                                                                                                                                                                                                                                                |
-|--------------|--------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Title        | ti/    | - The search is case insensitive. e.g `Health Plan` will match `health plan`<br/> - Policies which titles contains at least one keyword will be listed                                                                                                                                      |
-| Coverage     | cov/   | - More than one coverage can be specified to list all policies with all of the specified coverage types. <br/> e.g. `HEALTH` and `LIFE` will list all policies with both the `HEALTH` and `LIFE` coverage type <br/> - Policies which cover all the specified coverage types will be listed |
-| Company Code | cmp/   | - Policies which belong to the specified company will be listed                                                                                                                                                                                                                             |
+For a full list of the details of each metric and their search ranges, click [here](#findpolicysearching-for-a-policy--findpolicy-detailed-specifications)!
 
 Example Usage:
 * `findPolicy ti/Health plan` returns policies with the title `health plan` and `life plan`
@@ -560,27 +524,34 @@ Example Usage:
 * `findPolicy cmp/PRU` returns policies that belong to `Prudential Assurance Company`
 * `findPolicy ti/Shield cov/LIFE` returns polices with `Shield` in its title and covers the `LIFE` coverage type
 
+Let's look at an example:
+
+Here's the result:
+
+If not, not to worry, visit the [Frequently Asked Questions](#faq) to get some help.
+
 #### __________________________
 
 ### Assigning a Policy to a Client : `assign` 
 
-If you have successfully sealed a deal with a client, you can keep track of this by assigning the policy to your client! 
+Congratulations! You’ve just sealed a deal with a client! Keep track of this by assigning the policy to your client in LTNS.
 
+<div markdown="span" class="alert alert-primary">:information_source: **Note:**
 If you have yet to add either your Client or Policy to the Application, you can refer to the [Adding a Client](#adding-a-client--addclient) or [Adding a Policy](#adding-a-policy--addpolicy) guides.
+</div>
 
 Format: `assign CLIENT_INDEX POLICY_INDEX pr/PREMIUM sd/STARTDATE ed/ENDDATE`
 
 Find a detailed explanation of different input restrictions [here](#command-format-table).
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-The start and end dates should be of the format "YYYY-MM-DD", and within the years 1900 - 2100.
-</div>
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Premium should be any positive numeric value below `1000000000` with or without 2 decimal places.
+<div markdown="span" class="alert alert-primary">:bulb: **Additional Tips:**
+* The start and end dates should be of the format "YYYY-MM-DD", and within the years 1900 - 2100.
+* Premium should be any positive numeric value below `1000000000` with or without 2 decimal places.
 </div>
 
 Example Usage:
+
+Assigning a policy can be quite complicated, so here’s a step-by-step example!
 
 * Step 1: `findPolicy cmp/PRU` to filter the list of policies that belong to Prudential Assurance Company.
 * Step 2: `findClient n/John Doe` to filter the list of clients to find 'John Doe'.
@@ -594,8 +565,9 @@ first client in the list from Step 2, with the following details:
 
 ### Listing out policies assigned to a client : `listAssigned`
 
-If you'd like to recall which policies a client has taken up, this command lists out the policies 
-that have been assigned to a specific client, in the status message.
+Congrats on sealing deals with numerous clients! Need a quick reminder on the policies a client has taken up? 
+This command lists out the policies that have been assigned to the client at the specified `INDEX`. 
+The index refers to the index number shown in the displayed list of clients. The index must be a positive integer 1, 2, 3, …
 
 Format: `listAssigned CLIENT_INDEX`
 
@@ -608,9 +580,7 @@ Example Usage:
 
 ### Deleting assigned policies from a client : `deleteAssigned`
 
-Unfortunate, but it happens. If a client cancels their policy prematurely, reflect the deletion of their assigned policy
-in the LTNS using this command.
-
+It’s unfortunate, but it happens. If a client cancels their policy prematurely, reflect the deletion of their assigned policy in LTNS using this command. Specify the client’s index number in the displayed list of clients, and the corresponding assigned policies in their list of assigned policies. The indexes must be positive integers e.g. 1, 2, 3, …
 Format: `deleteAssigned CLIENT_INDEX ASSIGNED_POLICY_INDEX`
 
 Example Usage:
@@ -953,19 +923,63 @@ Ready to try some examples? Navigate back to the `sort` command section [here](#
 
 ### Commands For Policy
 
-| Action                     | Format, Examples                                                                                                                                            |
-|----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Find Policy**            | `findPolicy [ti/TITLE] [cov/COVERAGE]…​ [cmp/COMPANY_CODE]` <br/><br>  e.g: `findPolicy cov/LIFE`                                                           |        
+| Action                     | Format, Examples                                                                                                                                              |
+|----------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Find Policy**            | `findPolicy [ti/TITLE] [cov/COVERAGE]…​ [cmp/COMPANY_CODE]` <br/><br>  e.g: `findPolicy cov/LIFE`                                                             |        
 | **Add Policy**             | `addPolicy ti/POLICY_TITLE cmp/POLICY_COMPANY cms/POLICY_COMMISSION cov/POLICY_COVERAGE...` <br><br> e.g: `addPolicy ti/Health cmp/MNF cms/4% 3% 2% cov/LIFE` |                                                                                                                         
-| **Delete Policy**          | `deletePolicy (INDEX of POLICY)` <br> <br> e.g: `deletePolicy 1`                                                                                            |                                                                                                                                                                                             
-| **View All Policies**      | `allPolicies`                                                                                                                                               |
-| **View Filtered Policies** | `policies`                                                                                                                                                  |
-| **Assign Policies**        | `assign (INDEX of CLIENT) (INDEX of POLICY) pr/PREMIUM_PAID sd/START_DATE ed/END_DATE` <br> <br> e.g: `assign 1 1 pr/10000 sd/2000-01-02 ed/2000-02-01`     |
-| **Delete Assigned**        | `deleteAssigned (INDEX of CLIENT) (INDEX of POLICY)` <br><br> e.g: `deleteAssigned 1 1`                                                                     |                                                                                                                                                                                                               
-| **List Assigned**          | `listAssigned (INDEX of CLIENT) ` <br> <br> e.g: `listAssigned 1`                                                                                           |
-| **View Income**            | `viewIncome YEAR` <br><br> e.g: `viewIncome 2000`                                                                                                           |                                                                                                                                                                                                                                                                                                                                                                           
+| **Delete Policy**          | `deletePolicy (INDEX of POLICY)` <br> <br> e.g: `deletePolicy 1`                                                                                              |                                                                                                                                                                                             
+| **View All Policies**      | `allPolicies`                                                                                                                                                 |
+| **View Filtered Policies** | `policies`                                                                                                                                                    |
+| **Assign Policies**        | `assign (INDEX of CLIENT) (INDEX of POLICY) pr/PREMIUM_PAID sd/START_DATE ed/END_DATE` <br> <br> e.g: `assign 1 1 pr/10000 sd/2000-01-02 ed/2000-02-01`       |
+| **Delete Assigned**        | `deleteAssigned (INDEX of CLIENT) (INDEX of POLICY)` <br><br> e.g: `deleteAssigned 1 1`                                                                       |                                                                                                                                                                                                               
+| **List Assigned**          | `listAssigned (INDEX of CLIENT) ` <br> <br> e.g: `listAssigned 1`                                                                                             |
+| **View Income**            | `viewIncome YEAR` <br><br> e.g: `viewIncome 2000`                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                           
 
 Note: `allPolicies` shows all existing policies inside LTNS, while `policies` show all policies based on filter metric placed previously.
+
+#### Valid Coverage codes
+
+| Coverage Code | Coverage Name        |
+|---------------|----------------------|
+| LIFE          | Life Insurance       |
+| MOTOR         | Motor Insurance      |
+| HEALTH        | Health Insurance     |
+| TRAVEL        | Travel Insurance     |
+| PROPERTY      | Property Insurance   |
+| MOBILE        | Mobile Insurance     |
+| BITE          | Bite-sized Insurance |
+| INVESTMENT    | Investment based     |
+
+Ready to try some examples? Navigate back to the `addPolicy` command section [here](#adding-a-policy--addpolicy)!
+
+#### Valid Company codes
+
+| Company Code | Company Name                       |
+|--------------|------------------------------------|
+| MNF          | Manulife Financial Private Limited |
+| PRU          | Prudential Assurance Company       |
+| AXA          | AXA Insurance Private Limited      |
+| GEL          | Great Eastern Life                 |
+| NTU          | NTUC Income Insurance              |
+| ETQ          | Etiqa Insurance                    |
+| TML          | Tokio Marine Life Insurance        |
+| AIA          | AIA Singapore Private Limited      |
+| AVI          | Aviva Limited                      |
+| FWD          | FWD Singapore Private Limited      |
+
+Ready to try some examples? Navigate back to the `addPolicy` command section [here](#adding-a-policy--addpolicy)!
+
+#### [findPolicy](#searching-for-a-policy--findpolicy) Detailed Specifications
+
+The following table illustrates the details of each metric and their search range:
+
+| Metric       | Prefix | Search range                                                                                                                                                                                                                                                                                |
+|--------------|--------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Title        | ti/    | - The search is case insensitive. e.g `Health Plan` will match `health plan`<br/> - Policies which titles contains at least one keyword will be listed                                                                                                                                      |
+| Coverage     | cov/   | - More than one coverage can be specified to list all policies with all of the specified coverage types. <br/> e.g. `HEALTH` and `LIFE` will list all policies with both the `HEALTH` and `LIFE` coverage type <br/> - Policies which cover all the specified coverage types will be listed |
+| Company Code | cmp/   | - Policies which belong to the specified company will be listed                                                                                                                                                                                                                             |
+
+Ready to try some examples? Navigate back to the `findPolicy` command section [here](#searching-for-a-policy--findpolicy)!
 
 ### Commands For Events
 
