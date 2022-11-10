@@ -115,13 +115,11 @@ Here are some text styles to look out for as well.
 
 3. Double-click on `truthtable.jar` to start the application. A window which looks similar to the screenshot below
    should appear in a few seconds. ![Ui](images/Ui.png)
-
-<div markdown="block" class="alert alert-success">**:bulb: Sample data**:
-We have also added some sample data for you to play around and familiarize yourself with 
-TruthTable's [features](#commands)!
-</div>
-
-5. Before we dive into TruthTable's features, let's try and understand how to
+   <div markdown="block" class="alert alert-success">**:bulb: Sample data**:
+   We have also added some sample data for you to play around and familiarize yourself with 
+   TruthTable's [features](#commands)!
+   </div>
+4. Before we dive into TruthTable's features, let's try and understand how to
    [navigate the application](#navigating-truthtables-application-interface) first.
 
 [Back to Table of Contents](#table-of-contents)
@@ -148,10 +146,10 @@ listed.
 There will always be one team in TruthTable named "default" (if no name is specified).
 </div>
 
-| Number | Component       | Description                                    |
-|--------|-----------------|------------------------------------------------|
-| 1      | [Index](#index) | The index of the team in the list of all teams |  
-| 2      | Name            | The name of the team at the specified index    |
+| Number                           | Component                                      | Description                                                                   |
+|----------------------------------|------------------------------------------------|-------------------------------------------------------------------------------|
+| <span class="text-blue">1</span> | <span class="text-blue">[Index](#index)</span> | <span class="text-blue">The index of the team in the list of all teams</span> |  
+| <span class="text-blue">2</span> | <span class="text-blue">Name</span>            | <span class="text-blue">The name of the team at the specified index</span>    |
 
 ### Current Team Section
 
@@ -160,18 +158,18 @@ There will always be one team in TruthTable named "default" (if no name is speci
 This section contains information about your current team. It displays the currently selected team, along with the team
 description, links, tasks, and members related to said team.
 
-| Number | Component              | Description                                                                                                                     |
-|--------|------------------------|---------------------------------------------------------------------------------------------------------------------------------|
-| 1      | Team Name              | The name of the selected team                                                                                                   |  
-| 2      | Team Description       | The description of the selected team                                                                                            |
-| 3      | Link Name              | The name of a link related to the selected team                                                                                 |
-| 4      | Member [Index](#index) | The index of a member in the team's list of members                                                                             |
-| 5      | Member Name            | The name of a member at the specified member index                                                                              |
-| 6      | Task [Index](#index)   | The index of a task in the team's list of tasks                                                                                 |
-| 7      | Task Name              | The name of a task at the specified task index                                                                                  |
-| 8      | Task Assignee          | The name(s) of the member(s) assigned to the task                                                                               |
-| 9      | Task Completion Status | The completion status of a task. `[X]` is displayed if task is completed, whereas `[ ]` is displayed if the task is incomplete. |
-| 10     | Task Completion Rate   | The number (and percentage) of tasks that have been completed by the selected team.                                             |
+| Number                        | Component                                         | Description                                                                                                                                               |
+|-------------------------------|---------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| <span class="green">1</span>  | <span class="green">Team Name</span>              | <span class="green">The name of the selected team</span>                                                                                                  |  
+| <span class="green">2</span>  | <span class="green">Team Description</span>       | <span class="green">The description of the selected team</span>                                                                                           |
+| <span class="green">3</span>  | <span class="green">Link Name</span>              | <span class="green">The name of a link related to the selected team</span>                                                                                |
+| <span class="green">4</span>  | <span class="green">Member [Index](#index)</span> | <span class="green">The index of a member in the team's list of members</span>                                                                            |
+| <span class="green">5</span>  | <span class="green">Member Name</span>            | <span class="green">The name of a member at the specified member index</span>                                                                             |
+| <span class="green">6</span>  | <span class="green">Task [Index](#index)</span>   | <span class="green">The index of a task in the team's list of tasks</span>                                                                                |
+| <span class="green">7</span>  | <span class="green">Task Name</span>              | <span class="green">The name of a task at the specified task index</span>                                                                                 |
+| <span class="green">8</span>  | <span class="green">Task Assignee</span>          | <span class="green">The name(s) of the member(s) assigned to the task</span>                                                                              |
+| <span class="green">9</span>  | <span class="green">Task Completion Status</span> | <span class="green">The completion status of a task. `[X]` is displayed if task is completed, whereas `[ ]` is displayed if the task is incomplete</span> |
+| <span class="green">10</span> | <span class="green">Task Completion Rate</span>   | <span class="green">The number (and percentage) of tasks that have been completed by the selected team</span>                                             |
 
 ### Persons Section
 
@@ -180,13 +178,13 @@ description, links, tasks, and members related to said team.
 This section displays the names, phone number, email, address, and tags of all persons that you have created in
 TruthTable. This section is also known as the "Contacts" section.
 
-| Number | Component       | Description                                |
-|--------|-----------------|--------------------------------------------|
-| 1      | [Index](#index) | The index of a person in TruthTable        |
-| 2      | Name            | The name of the person at a specific index |
-| 3      | Tags            | The tags associated with a person          |
-| 4      | Phone Number    | The phone number of a person               |
-| 5      | Email           | The email address of a person              |
+| Number                          | Component                                     | Description                                                              |
+|---------------------------------|-----------------------------------------------|--------------------------------------------------------------------------|
+| <span class="text-red">1</span> | <span class="text-red">[Index](#index)</span> | <span class="text-red">The index of a person in the TruthTable</span>    |
+| <span class="text-red">2</span> | <span class="text-red">Name</span>            | <span class="text-red">The name of the person at a specific index</span> |
+| <span class="text-red">3</span> | <span class="text-red">Tags</span>            | <span class="text-red">The tags associated with a person</span>          |
+| <span class="text-red">4</span> | <span class="text-red">Phone Number</span>    | <span class="text-red">The phone number of a person</span>               |
+| <span class="text-red">5</span> | <span class="text-red">Email</span>           | <span class="text-red">The email address of a person</span>              |
 
 ### Command Section
 
@@ -195,10 +193,10 @@ TruthTable. This section is also known as the "Contacts" section.
 This section contains an input box where you can enter the commands for the actions that you wish to perform. Try
 typing `help` in the input box and press <kbd>Enter</kbd> to see what happens!
 
-| Number | Component         | Description                                                                                  |
-|--------|-------------------|----------------------------------------------------------------------------------------------|
-| 1      | Command Result    | The result of executing a command in the Command Input Box                                   |
-| 2      | Command Input Box | The input box for commands to be entered, which can be executed by pressing <kbd>Enter</kbd> |
+| Number                           | Component                                        | Description                                                                                                                 |
+|----------------------------------|--------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
+| <span class="text-pink">1</span> | <span class="text-pink">Command Result</span>    | <span class="text-pink">The result of executing a command in the Command Input Box</span>                                   |
+| <span class="text-pink">2</span> | <span class="text-pink">Command Input Box</span> | <span class="text-pink">The input box for commands to be entered, which can be executed by pressing <kbd>Enter</kbd></span> |
 
 [Back to Table of Contents](#table-of-contents)
 
