@@ -3,72 +3,68 @@ layout: page
 title: User Guide
 ---
 
-This document contains everything you need to know about TruthTable.
-
 ## About TruthTable
 
-TruthTable is a **desktop application** that enables team leaders to **manage their software engineering teams** using a
-single application.
+Welcome to the User Guide for TruthTable! TruthTable is a desktop application that enables **student team leaders** 
+to manage their **software engineering teams**, including **tasks, links and team member info**, in a single application.
 
 TruthTable is **optimized for use via a [Command Line Interface (CLI)](#command-line-interface)** while still having the
-benefits of a [Graphical User Interface (GUI)](#graphical-user-interface).
+benefits of a [Graphical User Interface (GUI)](#graphical-user-interface). If you can type fast, TruthTable can get your
+task management done _blazingly fast_, faster than traditional GUI applications.
 
 <div markdown="block" class="alert alert-primary">**:information_source: Unsure what CLI or GUI means?**
-Head over [to this section](#understanding-truthtables-cli) to learn more!
+Head over to [this section](#understanding-truthtables-cli) to learn more!
 </div>
 
-If you can type fast, TruthTable can get your task management done _blazingly fast_, faster than traditional GUI
-applications.
+If you're a student team leader for a software engineering team, this guide will help you understand how the various
+features of TruthTable can help you manage your teams more efficiently.
 
-Click [here](#getting-started) to get started with TruthTable.
+Feel free to read on, or if you can't wait to get started, skip ahead to our [Getting Started guide](#getting-started) to start using TruthTable now!
 
 ## Key Features of TruthTable
 
-### Too many cooks spoil the Truth
+### Organise all your info in one place
 
-Managing project documents and information has always been an annoying task to do. Besides the multitude of links and
+Managing project documents and information has always been annoying. Aside from the multitude of links and
 slides created by your team, you may be using task management applications like
-<a href="https://www.notion.so/" target="_blank">Notion</a> to track your team's progress as well. This is where
-TruthTable comes in.
+<a href="https://www.notion.so/" target="_blank">Notion</a> to track your team's progress as well. 
 
-TruthTable allows you to collate and organize your tasks, links, and members' information **all in one place**.
+Find it hard to keep things organised? TruthTable allows you to collate and organize your **tasks, links, and team member info** all in one place.
 
-### Seeing is believing
+### Track progress and delegate work
 
 It is often difficult to visualize and communicate your team's progress to stakeholders. TruthTable solves this through
 its clean and comprehensive user interface.
 
-At a glance, you can see the number of tasks completed by your team, and **determine the team's overall progress**.
+At a glance, you can see the **number of tasks completed by your team**, and determine the team's overall progress.
 
-TruthTable allows you to see which members are assigned to which tasks, enabling you to **delegate work in a fair and
-equitable manner**.
+TruthTable allows you to see **which members are assigned to which tasks**, enabling you to delegate work in a fair and
+equitable manner.
 
-### Built for convenience and speed
+### Convenient and fast
 
 Context switching is a productivity killer. Having to switch from project management to product development usually
 means switching from GUI-based applications to CLI code editors.
 
-Hence, TruthTable allows you to use a **CLI for all your project management needs**, reducing the impact of context
+Hence, TruthTable allows you to use a **single CLI for all your project management needs**, reducing the impact of context
 switching.
 
 <div markdown="span" class="alert alert-info">
 **:star: For experienced CLI users**:
 <br><br>
 TruthTable's command syntax is actually very similar to other command line applications like
-[git](https://git-scm.com/) and [docker](https://docs.docker.com/engine/reference/commandline/cli/)!
+[Git](https://git-scm.com/) and [Docker](https://docs.docker.com/engine/reference/commandline/cli/)!
 
 Hence, you will become familiar with TruthTable's commands in no time.
 </div>
 
 ## Using This Guide
 
-If you are a software engineering team lead looking to get started with TruthTable, make sure that you have the
-[pre-requisites installed](#getting-started).
-
 This document will guide you on how to get familiar with all of TruthTable's [features](#key-features-of-truthtable).
-
 If you are an experienced user of TruthTable, this guide also contains valuable tips on how you can maximize your
 productivity while using TruthTable.
+
+While this guide can be quite long, feel free to jump ahead to any section in the [Table of Contents](#table-of-contents) below.
 
 Here are the alerts to look out for while using this guide:
 
@@ -90,10 +86,10 @@ This alert contains important information to be wary of.
 
 Here are some text styles to look out for as well.
 
-| Text Style                 | Meaning                                              |
+| Text Style Example         | Meaning                                              |
 |----------------------------|------------------------------------------------------|
 | [Glossary link](#glossary) | Clickable link to navigate to a section in the guide |
-| `text with background`     | Text relevant to the commands or name of a file      |
+| `text with background`     | Text relevant to commands or filenames               |
 | <kbd>Esc</kbd>             | Keyboard button                                      |
 
 ## Table of Contents
@@ -105,11 +101,11 @@ Here are some text styles to look out for as well.
 
 ## Getting Started
 
-1. Ensure you have **Java 11** or above installed in your computer. If not, don't worry! Click
-   <a href="https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html" target="_blank">here</a>
+1. Ensure you have **Java 11** or above installed on your computer. If not, follow the
+   <a href="https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html" target="_blank">Java Installation Guide</a>
    for further instructions on how to download and install **Java 11**.
 
-2. Download the latest version of `truthtable.jar` from [here](https://github.com/AY2223S1-CS2103T-W13-4/tp/releases).
+2. Download the latest version of `truthtable.jar` from [our "Releases" page](https://github.com/AY2223S1-CS2103T-W13-4/tp/releases).
    The file can be located under the "Assets" section of the page as seen in the image below.
    ![TruthTable Download Location](images/DownloadLocation.png)
 
@@ -119,8 +115,7 @@ Here are some text styles to look out for as well.
    We have also added some sample data for you to play around and familiarize yourself with 
    TruthTable's [features](#commands)!
    </div>
-4. Before we dive into TruthTable's features, let's try and understand how to
-   [navigate the application](#navigating-truthtables-application-interface) first.
+4. That's it! You can now follow our guide below on how to [navigate the application](#navigating-truthtables-application-interface).
 
 [Back to Table of Contents](#table-of-contents)
 
