@@ -921,6 +921,21 @@ the data of your previous StudMap home folder. See how to back up your data [her
 **Q**: How can I transfer my data from an existing spreadsheet to StudMap?<br>
 **A**: You can use the [`import`](#534-importing-students-from-csv-file-import) command.
 
+**Q**: Do I have to pay to use StudMap?<br>
+**A**: StudMap is completely free!
+
+**Q**: Why is the list empty when I use the feature `list`?<br>
+**A**: It is likely that you have not added/transferred any data into StudMap. Start adding students
+through our `import` or `add` feature now!
+
+**Q**: Why do I need to state the student's student ID to add him/her into StudMap?<br>
+**A**: To track a student effectively, we deem student ID as an important aspect since most assignments
+require students to state their student ID.
+
+**Q**: What if there are 2 student of the same given name?<br>
+**A**: By using either `find` or `filter` feature, you will be able to search for
+the specific student even if they have the same given name.
+
 ---
 
 # 7. Command Summary
