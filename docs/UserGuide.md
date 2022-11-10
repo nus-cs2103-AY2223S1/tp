@@ -708,9 +708,9 @@ address, email, location, name, phone. Please provide **one** out of the five wh
 
 Examples:
 
-* `find a/6th College Ave West`
-* `find e/blackball@furry.com`
-* `find ph/98986668`
+* `find a/6th College Ave West`, looks for and displays (if any) any person who lives at this address.
+* `find e/blackball@furry.com`, looks for and displays (if any) any person who has this email address.
+* `find ph/98986668`, looks for and displays (if any) any person whose phone number is that.
 
 <div markdown="span" class="alert alert-info">
 
@@ -736,9 +736,9 @@ for more information on prefixes and attributes.
 
 Examples:
 
-* `find-b a/6th College Ave West`, looks for and displays (if any) a `Buyer` who lives at this address.
-* `find-b e/blackball@furry.com`, looks for and displays (if any) a `Buyer` who has this email address.
-* `find-b ph/98986668`, looks for and displays (if any) a `Buyer` whose phone number is that.
+* `find-b a/6th College Ave West`, looks for and displays any `Buyer` who lives at this address.
+* `find-b e/blackball@furry.com`, looks for and displays any `Buyer` who has this email address.
+* `find-b ph/98986668`, looks for and displays any `Buyer` whose phone number is that.
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
@@ -754,9 +754,9 @@ for more information on prefixes and attributes.
 
 Examples:
 
-* `find-d a/6th College Ave West`, looks for and displays (if any) a `Deliverer` who lives at this address.
-* `find-d e/blackball@furry.com`, looks for and displays (if any) a `Deliverer` who has this email address.
-* `find-d ph/98986668`, looks for and displays (if any) a `Deliverer` whose phone number is that.
+* `find-d a/6th College Ave West`, looks for and displays any `Deliverer` who lives at this address.
+* `find-d e/blackball@furry.com`, looks for and displays any `Deliverer` who has this email address.
+* `find-d ph/98986668`, looks for and displays any `Deliverer` whose phone number is that.
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
@@ -772,9 +772,9 @@ for more information on prefixes and attributes.
 
 Examples:
 
-* `find-s a/6th College Ave West`, looks for and displays (if any) a `Supplier` who lives at this address.
-* `find-s e/blackball@furry.com`, looks for and displays (if any) a `Supplier` who has this email address.
-* `find-s ph/98986668`, looks for and displays (if any) a `Supplier` whose phone number is that.
+* `find-s a/6th College Ave West`, looks for and displays any `Supplier` who lives at this address.
+* `find-s e/blackball@furry.com`, looks for and displays any `Supplier` who has this email address.
+* `find-s ph/98986668`, looks for and displays any `Supplier` whose phone number is that.
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
