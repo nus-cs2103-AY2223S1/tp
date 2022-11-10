@@ -36,17 +36,21 @@ by any of the terms used!
 1. Ensure you have Java `11` or above installed in your Computer. This [link](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html#GUID-8677A77F-231A-40F7-98B9-1FD0B48C346A)
    (external link to Oracle) provides a step-by-step installation guide for Java, if needed.
 
-2. Download the latest `cobb.jar` from our [release page](https://github.com/AY2223S1-CS2103T-F12-1/tp/releases).
-
-3. Copy the file to the folder you want to use as the _main folder_ for Cobb. All data will be created and stored
+2. Download the latest `cobb.jar` from our [release page](https://github.com/AY2223S1-CS2103T-F12-1/tp/releases). 
+   After clicking into the release page, scroll down slightly until you reach the **Assets** section of the page. This section should look like this:<br>
+   ![Release Page](images/ReleasePage.png)
+   
+   Simply click on `cobb.jar`, and Cobb should begin downloading automatically on your computer!
+   
+3. Copy the `cobb.jar` file to the folder you want to use as the _main folder_ for Cobb. All data will be created and stored
    within this folder.
 
-4. Double-click the file to start the app. A window similar to the below should appear in a few seconds. Note how the application contains some sample data.<br>
+4. Double-click the file to start the app. A window similar to the image below should appear in a few seconds. Note how the application contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 Congratulations! Cobb is now set up and ready to work on your system.
 
-If you encounter any bugs during the setup process, do check out the [FAQ](#faq) section of this guide, which hopefully
+If you encounter any bugs during the setup process, please check out the [FAQ](#faq) section of this guide, which hopefully
 contains some information that can help you diagnose your issue.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution (for advanced users):**
@@ -60,8 +64,8 @@ error in the formatting of the data in these files.
 ## Key definitions
 [Back to top](#table-of-contents)
 
-This section aims to define some terms that pop up throughout the user guide. These terms are used often, so it would be 
-good to take note of them before continuing.
+This section aims to define some terms that pop up throughout the user guide. These terms are used often, so do take note of them 
+before continuing!
 
 ### Command-specific terms
 1. **Command**: An instruction that you can type into the [command input box](#1-command-input-and-output-boxes) to do
@@ -75,14 +79,14 @@ something in Cobb. See [Features](#features) for a list of commands.
 2. **Characteristics**: The characteristics of a property that a buyer desires. For example, a buyer that has characteristics
    `bright; sunny` is ideally looking for a property that is also `bright` and `sunny`.
 3. **Priority**: The priority that a buyer is assigned. Can be `LOW`, `NORMAL` or `HIGH`.
-4. **Time of Creation**: The time at which the buyer was added to the database with `addbuyer`.
+4. **Time of Creation**: The time at which the buyer was added to the database with an [addbuyer](#adding-a-buyer-to-the-database-addbuyer) command.
 
 ### Property-specific terms
 1. **Characteristics**: The characteristics associated with a property. For example, a property that has characteristics
    `windy; roomy` is both `windy` and `roomy`.
 2. **Owner Name**: The name of the owner of the property.
 3. **Owner Phone**: The phone number of the owner of the property.
-4. **Time of Creation**: The time at which the property was added to the database with `addprop`.
+4. **Time of Creation**: The time at which the property was added to the database with an [addprop](#adding-a-property-to-the-database-addprop) command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -97,6 +101,10 @@ These boxes are located at the top section of the window.<br><br>
 ![CommandBox](images/CommandBox.png)<br><br>
 The __command input box__ is located where the placeholder text `Enter command here...` is.<br>
 Clicking on it will allow you to input commands for Cobb to execute. 
+
+The __command output box__ is located directly beneath the __command input box__ as shown in the image above. Upon execution of any command,
+Cobb will display some information regarding the command, regardless of whether the command was successfully or
+not successfully executed.
 
 You can also use the up and down arrow keys to navigate the commands you have entered.
 * The **up arrow** brings back a previously entered command into the command input box.
@@ -121,10 +129,6 @@ This buyer has a specified price range, and desired characteristics for the prop
 
 Refer to the [Features](#features) below for details of each command.
 
-The __command output box__ is located directly beneath the __command input box__. Upon execution of any command,
-Cobb will display some information regarding the command, regardless of whether the command was successfully or 
-not successfully executed.
-
 <div markdown="span" class="alert alert-primary">:exclamation: **Note:**
 If a command was not successfully executed, the text within the command input box will turn red.
 </div>
@@ -132,18 +136,20 @@ If a command was not successfully executed, the text within the command input bo
 ### 2. Buyer List
 You can find the buyer list located at the left section of the window.<br><br>
 <img src="images/BuyerList.png" width="300" /><br><br>
-The __Buyer List__ displays information regarding buyers who are currently stored in Cobb's database. The buyer list
-might not be showing *all* the buyers in the database all the time (see [FAQ](#faq)).
+The buyer list displays information regarding buyers who are currently stored in Cobb's database. 
 
-The buyer list can be filtered and modified using commands given in the [features](#features) section of the guide.
+Note that it might not be showing *all* the buyers in the database all the time (please look at the [FAQ](#faq) for more information).
+
+It can also be filtered and modified using commands given in the [features](#features) section of the guide.
 
 ### 3. Property List
 You can find the property list located at the right section of the window.<br><br>
 <img src="images/PropertyList.png" width="300" /><br><br>
-The __Property List__ displays information regarding properties that are currently stored in Cobb's database. The property list
-might not be showing *all* the properties in the database all the time (see [FAQ](#faq)).
+The property list displays information regarding properties that are currently stored in Cobb's database. 
 
-The property list can be filtered and modified using commands given in the [features](#features) section of the guide.
+Note that it might not be showing *all* the properties in the database all the time (please look at the [FAQ](#faq) for more information).
+
+It can also be filtered and modified using commands given in the [features](#features) section of the guide.
 
 ### 4. Help Window
 This will appear as a separate window, and is not part of the main window.
@@ -161,9 +167,9 @@ Take a look at the [command summary](#command-summary) for a quick summary of th
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+**:information_source: Notes about the command syntax:**<br>
 
-* The first word in the command string specifies which command you are using. For example, `help` specifies that you 
+* The first word in the command text specifies which command you are using. For example, `help` specifies that you 
 are using the `help` command, while `editbuyer 1 -n Jane Doe` specifies that you are using the `editbuyer` command.
 
 
@@ -511,7 +517,7 @@ Syntax: `help`
 
 ### Saving the data
 
-Cobb's data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Cobb's data is saved for you automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
@@ -527,7 +533,7 @@ If your changes to the data file makes its format invalid, Cobb will discard all
 [Back to top](#table-of-contents)
 
 **Q**: Why am I not seeing some properties and buyers in my property and buyer lists?<br>
-**A**: You might be looking at a filtered portion of the database. This is because you previously executed a 
+**A**: You might be looking at a filtered portion of the lists. This is because you previously executed a 
 [Filter Command](#filter-commands) or a [Find Command](#find-commands) or a [Match Command](#match-commands). To view all buyers and properties again, 
 use the [List Commands](#list-commands).
 
@@ -536,21 +542,22 @@ use the [List Commands](#list-commands).
 Alternatively, copy and paste the data file with the *same name* from your old computer.
 
 **Q**: Help! I can't seem to get a command to work...<br>
-**A**: Refer to the [features](#features) section of our guide for command information and syntax. Make sure that you have supplied all necessary inputs for the command and specified the flags in a correct manner.
+**A**: Please refer to the [features](#features) section of our guide for command information and syntax. Make sure that you have supplied all necessary inputs for the command and specified the flags in a correct manner!
 
 **Q**: How do I run the app if double-clicking the jar file does nothing? <br>
-**A**: Take a look at the [quick start](#quick-start) section of the guide for setup information. For the more technically inclined, try running this command in the jar file's home directory: `java -jar cobb.jar`<br>
+**A**: If you are experiencing this problem, there is a high likelihood that Java has not been installed correctly on your computer.
+Please take a look at the [quick start](#quick-start) section of the guide for more setup information! For the more technically inclined, try running this command in the jar file's home directory: `java -jar cobb.jar`<br>
 If the problem persists, please report the bug to us.
 
 **Q**: I deleted my data file! Is there any way to recover the data that I lost?<br>
-**A**: Try looking in your trash bin for the files that were deleted. If the files can't be found, then we apologise, but there is currently
+**A**: Try looking in your computer's trash bin (or recycling bin) for the files that were deleted. If the files can't be found, then we apologise, but there is currently
 no way for you to retrieve lost data. :(
 
 **Q**: How do I uninstall Cobb? <br>
-**A**: We are sad to see you go :( Cobb is not installed onto your hard drive, so you only need to delete the `cobb.jar` file as well as any associated data files.
+**A**: We are sad to see you go :( Cobb is not installed onto your hard drive, so you only need to delete the folder that contains `cobb.jar` (that is, the *home folder* of Cobb).
 
 **Q**: I don't understand some terms used in the guide...<br>
-**A**: Do check out the [key definitions](#key-definitions) portion of the guide and see if the term that you are confused about is documented there!
+**A**: Please check out the [key definitions](#key-definitions) portion of the guide and see if the term that you are confused about is documented there!
 
 --------------------------------------------------------------------------------------------------------------------
 
