@@ -61,8 +61,6 @@ title: User Guide
 
 Welcome HR executives and Department Heads! **Coydir** is a desktop app to efficiently track key employee details within your company, optimized for use via a Command Line Interface (CLI). **Coydir** would not only allow you to quickly access the list of all employees and their details but also make necessary updates such as leaves and performance rating information.
 
-Made for HR executives and Department Heads, Coydir is 
-
 ## Using this Guide
 
 Are you a HR executive or a Department Head seeking a solution to efficiently track employee information and observe key statistics of your company? **Coydir** is here to elegantly solve your problems. This user guide will teach you everything you need to know about the **Coydir** product, and start using our features today!
