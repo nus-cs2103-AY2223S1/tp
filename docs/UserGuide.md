@@ -18,7 +18,7 @@ Perfect for SWE professionals, Swift+ is built around a **command line interface
 If you have fast fingers, Swift+ can help you manage contacts and tasks more quickly than a traditional point-and-click interface.
 
 This user guide provides details on how to use Swift+ in your daily workflow. This guide covers how to set up Swift+ and
-use its text-based commands. Get started now by heading over to the [How to use this User Guide](#how-to-use-this-user-guide) section!
+use its text-based commands. Get started now by heading over to the [How to use this user guide](#how-to-use-this-user-guide) section!
 
 ---
 
@@ -30,7 +30,7 @@ use its text-based commands. Get started now by heading over to the [How to use 
 
 ---
 
-## **How to use this User Guide**
+## **How to use this user guide**
 
 ### Icons
 
