@@ -16,7 +16,7 @@ To use this guide, simply click on the items you would like to learn more about 
   * [Viewing help : `help`](#Viewing-help--help)
   * [Listing all students : `liststudent`](#Listing-all-students--liststudent)
   * [Listing all tasks : `listtask`](#Listing-all-tasks--listtask)
-  * [Listing all students : `listlesson`](#Listing-all-students--listlesson)
+  * [Listing all lessons : `listlesson`](#Listing-all-lessons--listlesson)
   * [Listing all students, tasks and lessons : `listall`](#Listing-all-students-tasks-and-lessons--listall)
   * [Clearing all entries : `clear`](#Clearing-all-entries--clear)
   * [Exiting the program : `exit`](#Exiting-the-program--exit)
@@ -202,7 +202,7 @@ Shows an expanded list of all your tasks, so that you can see all the task detai
 
 Format: `listtask`
 
-### Listing all students : `listlesson`
+### Listing all lessons : `listlesson`
 
 Shows an expanded list of all your lessons, so that you can see all the lesson details.
 
