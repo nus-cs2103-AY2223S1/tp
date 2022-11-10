@@ -26,7 +26,7 @@ P.S. This document is the official user guide of the Long Time No See (LTNS) app
         * [Clearing Entries](#clearing-all-entries--clear)
         * [Exiting the Program](#exiting-the-program--exit)
         * [Saving Data](#saving-the-data)
-        * [Manually Editing Data File](#editing-the-data-file)
+        * [Manually Editing Data File](#editing-the-data-file-for-the-pros)
     * [Client Features](#client-features)<br>
         * [Adding a Client](#adding-a-client--addclient)
         * [Switching to Client View](#switching-to-the-view-of-currently-listed-clients--clients)
@@ -452,9 +452,13 @@ The information here seems pretty intimidating at first but fret not, you can fi
 Found a new policy you want to pitch to your clients? LTNS lets you add the policy alongside company, coverage categories and commission levels, to easily access it in future.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Additional Tips:**
+<br/>
 * What does your policy cover? A policy must have one or more coverages when created. Find the possible coverages and their corresponding codes [here](#valid-coverage-codes).
+<br/>
 * Which company does your policy belong to? Find out the valid companies and their corresponding codes [here](#valid-company-codes).
+<br/>
 * If you’d like to sell a policy from a company/with a coverage not in our list, write to us at e0773789@u.nus.edu, and we’ll add it in if there are a significant number of requests!
+<br/>
 * Money is the name of the game! Enter the commissions agreed to with the provider in positive percentages from 0% to 100%! (e.g. 10% 3.5% 1.0%)
 </div>  
 
@@ -464,8 +468,11 @@ Example Usage:
 
 Let's try to add in the PruShield policy from above!
 
+![img_1.png](images/addPolicy1.png)
+
 If successful, you should see the following success message:
 
+![img_1.png](images/addPolicy2.png)
 
 #### __________________________
 
@@ -526,7 +533,11 @@ Example Usage:
 
 Let's look at an example:
 
+![img_1.png](images/findPolicy1.png)
+
 Here's the result:
+
+![img_1.png](images/findPolicy2.png)
 
 If not, not to worry, visit the [Frequently Asked Questions](#faq) to get some help.
 
@@ -545,7 +556,9 @@ Format: `assign CLIENT_INDEX POLICY_INDEX pr/PREMIUM sd/STARTDATE ed/ENDDATE`
 Find a detailed explanation of different input restrictions [here](#command-format-table).
 
 <div markdown="span" class="alert alert-primary">:bulb: **Additional Tips:**
+<br/>
 * The start and end dates should be of the format "YYYY-MM-DD", and within the years 1900 - 2100.
+<br/>
 * Premium should be any positive numeric value below `1000000000` with or without 2 decimal places.
 </div>
 
@@ -581,6 +594,7 @@ Example Usage:
 ### Deleting assigned policies from a client : `deleteAssigned`
 
 It’s unfortunate, but it happens. If a client cancels their policy prematurely, reflect the deletion of their assigned policy in LTNS using this command. Specify the client’s index number in the displayed list of clients, and the corresponding assigned policies in their list of assigned policies. The indexes must be positive integers e.g. 1, 2, 3, …
+
 Format: `deleteAssigned CLIENT_INDEX ASSIGNED_POLICY_INDEX`
 
 Example Usage:
