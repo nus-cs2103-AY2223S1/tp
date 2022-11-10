@@ -78,17 +78,15 @@ Now, let’s continue to learn how to [navigate the application](#tutorial-navig
 
 <img src="images/UiDetails.png" width="800" />
 
-| Number | Component Name       | Details                                                                                                                                                                       |
-|:------:|----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|   1.   | Command Line Section | The section where you can enter commands for PayMeLah, and where the status of your commands are displayed.                                                                   |
-|   2.   | Person List Section  | The section showing the list of people added to PayMeLah. The names can be clicked to show their person card, containing their person details as well as their list of debts. |
-|   3.   | Debt List Section    | The section showing details about each debt of a person.                                                                                                                      |
+Each section is made of several components which are explained in their respective diagrams below:
 
 <div style="page-break-after: always;"></div>
 
 #### Command Line Section
 
 <img src="images/CommandLineSection.png" width="800" />
+
+This is the section where you can enter commands for PayMeLah, and where the status of your commands are displayed.
 
 | Number | Component Name | Details                                                                                                                                               |
 |:------:|----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -100,6 +98,8 @@ Now, let’s continue to learn how to [navigate the application](#tutorial-navig
 #### Person List Section
 
 <img src="images/PersonCard.png" width="800" />
+
+This is the section showing the list of people added to PayMeLah. The names can be clicked to show their person card: a box containing their person details as well as their list of debts.
 
 | Number | Component Name  | Details                                       |
 |:------:|-----------------|-----------------------------------------------|
@@ -116,6 +116,8 @@ Now, let’s continue to learn how to [navigate the application](#tutorial-navig
 #### Debt List Section
 
 <img src="images/DebtList.png" width="800" />
+
+This is the section showing details about each debt of a person.
 
 | Number | Component Name | Details                                     |
 |:------:|----------------|---------------------------------------------|
