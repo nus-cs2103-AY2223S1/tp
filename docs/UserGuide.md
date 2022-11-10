@@ -318,7 +318,7 @@ the list on the 07/11/2000.
 
 ![Ui](images/SampleBuySellCommand2.PNG)
 
-> <div markdown="span" class="alert alert-primary">:bulb: Tip: If you use the "buy" or "sell" command while the "Client List Panel" has more than one client, you will not be able to see the addition.<br/>Use the "view" command to see it.</div>
+> <div markdown="span" class="alert alert-primary">:bulb: Tip: If you use the "buy" or "sell" command while the "Client List Panel" has more than one client, you will not be able to see the addition.<br/>Use the [view](#viewing-a-client-view) command to see it.</div>
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -337,7 +337,7 @@ Example (refer to diagram below):
 
 `edit 1 m/transaction q/100 g/Apples price/1.5` edits the transaction at index 1 in the displayed list of transactions (pear), to have a new **goods name**: "Apples", **quantity**: "100", **price**: 1.5.
 
-> <div markdown="span" class="alert alert-warning">:warning: Warning: You must use "view" command first before you can edit a transaction. If not, there will be an error within the application!
+> <div markdown="span" class="alert alert-warning">:warning: Warning: You must use [view](#viewing-a-client-view) command first before you can edit a transaction. If not, there will be an error within the application!
 
 
 ![EditTransactionExample](images/EditTransactionExample.PNG)
@@ -357,7 +357,7 @@ Example:
 
 `delete 1 m/transaction` deletes the transaction at index 1 in the displayed list of transactions.
 
-> <div markdown="span" class="alert alert-warning">:warning: Warning: You must use "view" command first before you can delete a transaction. If not, there will be an error within the application!
+> <div markdown="span" class="alert alert-warning">:warning: Warning: You must use [view](#viewing-a-client-view) command first before you can delete a transaction. If not, there will be an error within the application!
 
 > <div markdown="span" class="alert alert-danger">❗ Danger: **Deleting a transaction is an irreversible process! It will be gone forever**: Be very careful here!
 
@@ -424,7 +424,7 @@ Examples:
 * `remark 1 punctual buyer` adds the remark `punctual buyer` to the client at index 1.
 
 
-> <div markdown="span" class="alert alert-primary">:bulb: Tip: If you use the "remark" command while the "Client List Panel" has more than one client, you will not be able to see the addition.<br/>Use the "view" command to see it.</div>
+> <div markdown="span" class="alert alert-primary">:bulb: Tip: If you use the "remark" command while the "Client List Panel" has more than one client, you will not be able to see the addition.<br/>Use the [view](#viewing-a-client-view) command to see it.</div>
 
 
 [Back to Table of Contents](#table-of-contents)
@@ -444,7 +444,7 @@ Example:
 
 `edit 1 m/remark Client replies very fast` edits the remark at index 1 to 'Client replies very fast' in the displayed remark list. 
 
-> <div markdown="span" class="alert alert-warning">:warning: Warning: You must use "view" command first before you can edit a remark. If not, there will be an error within the application!
+> <div markdown="span" class="alert alert-warning">:warning: Warning: You must use [view](#viewing-a-client-view) command first before you can edit a remark. If not, there will be an error within the application!
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -457,7 +457,7 @@ Format: `delete INDEX m/remark`
 * `INDEX` refers to the index number shown in the displayed list of remarks.
 * **Must be a positive integer within the range display, and must not contain any signs** e.g. +1, -3.
 
-> <div markdown="span" class="alert alert-warning">:warning: Warning: You must use "view" command first before you can delete a remark. If not, there will be an error within the application!
+> <div markdown="span" class="alert alert-warning">:warning: Warning: You must use [view](#viewing-a-client-view) command first before you can delete a remark. If not, there will be an error within the application!
 
 > <div markdown="span" class="alert alert-danger">❗ Danger: **Deleting a remark is an irreversible process**: Be very careful here!
 
@@ -503,9 +503,9 @@ Example:
 
 ### Viewing help: `help`
 
-`help` returns the list of all commands in the `Application's Reply`. 
+`help` returns the list of all commands in the `Application's Reply` panel. 
 
-`help [COMMAND]` returns the detailed description of that specified command in the `Application's Reply`.
+`help [COMMAND]` returns the detailed description of that specified command in the `Application's Reply` panel.
 
 [//]: # (![help message]&#40;images/helpMessage.png&#41;)
 
