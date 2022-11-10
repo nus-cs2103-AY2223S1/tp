@@ -3,19 +3,22 @@ layout: page
 title: User Guide
 ---
 
+This document is the official user guide of the LongTimeNoSee (LTNS) app. This guide is an introduction to LTNS and a help menu should you have any doubts while using the app.
+<br>
+<br>
+
 <p align="center">
     <img src="images/LTNS_logo.png" width="200" height="200">
 </p>
 
-Hello there! Long time no see! Having stumbled upon this user guide, you are likely a financial advisor looking for easier life, well, at financial advising! Look no further, as the LongTimeNoSee (LTNS) app is just the right tool you need!
+<br>
+Hello there! Long time no see! Suppose you are a financial advisor looking for an easier life. In that case, the LongTimeNoSee (LTNS) app is just the right tool you need!
 
-With LTNS, gone are the days of frantically searching through stacks and stacks of paper, just for that one client information! All you have to do, is simply type a few words into our revolutionary **[Command Line Interface](#command-line-interface-cli) (CLI)** and voilà! The information you need appears right in front of you, it's that easy!
+The LTNS app is not just any other tool. It is an intelligent tool. Having surveyed countless financial advisors, we sympathize with your need for a way to manage clients, policies, and events! Therefore, the LTNS app strategically revolves around three stunning features! They are **client, policy, and event management!** Just the right tools you need to be the best financial advisor out there!
 
-Furthermore, LTNS is not just any other tool, it is a smart tool. Having surveyed countless financial advisors, we sympathize with your needs of something, not just to manage clients, but policies and even events! Therefore, LTNS strategically revolves around three stunning features! You've probably guessed it, they are **client, policy and event management!** Exactly the tools you need to be the best financial advisor out there. 
+Furthermore, with the in-built **[Command Line Interface](#command-line-interface-cli) (CLI)**, the LTNS app has revolutionized information access. To access any information you need, simply type into the CLI, and the information appears right in front of you!
 
 So, what are you waiting for? Start revolutionizing your financial advising journey [here](#tutorial)!
-
-P.S. This document is the official user guide of the LongTimeNoSee (LTNS) app. This guide serves as an introduction to LTNS and a help menu should you have any doubts while using the app.
 
 # Table of Contents
 1. [Quickstart](#quick-start)
@@ -36,6 +39,7 @@ P.S. This document is the official user guide of the LongTimeNoSee (LTNS) app. T
         * [Deleting a Client](#deleting-a-client--deleteclient)
         * [Sorting all Clients](#sorting-all-clients--sort)
         * [Pin a Client](#pin-a-client-pin)
+        * [Viewing Pinned Clients](#viewing-pinned-clients-viewpin)
     * [Policy Features](#policy-features)<br>
         * [Adding a Policy](#adding-a-policy--addpolicy)
         * [Switching to Policy View](#switching-to-the-view-of-currently-listed-policies--policies)
@@ -177,7 +181,7 @@ As such, the features available to you are split into **4** main features:
 
 </div>
 
-#### _______________________________________________________________________________________________________________________________________________________________________________
+--------------------------------------------------------------------------------------------------------------------
 
 ## Common Features
 
@@ -232,7 +236,7 @@ Don't worry! LTNS application data is saved in the hard disk automatically after
 
 #### __________________________
 
-### Editing the data file (For the pros)
+### Editing the data file (For advance users)
 
 Psst! Wondering if you can do more? You could edit the data files straight away to mass edit client data! But, with great power comes great responsibility, use it carefully!
 
@@ -249,8 +253,7 @@ Below is an example of what your JSON File should look like:
 If your changes to the data file makes its format invalid, LTNS will discard all data and start with an empty data file at the next run.
 </div>
 
-#### _______________________________________________________________________________________________________________________________________________________________________________
-
+--------------------------------------------------------------------------------------------------------------------
 ## Client Features
 
 Now let's embark on our journey! Like the dedicated financial advisor that you are, you will certainly want to keep track of your client information. Let's take a look at how we can do so.
@@ -408,23 +411,36 @@ Below is an example of what you will expect to see when you call `sort email`:
 
 ### Pin a Client: `pin`
 
-Now what if you want to pay special attention to certain clients? LTNS also allows you to do so by pinning them to a special dashboard.
+Not all clients are equal, some are more important than others! How do you pay special attention to certain clients? `pin` allows you to do so by pinning them to a special list of clients.
 
 * Format: `pin INDEX` <br>
 
 Example Usage:
 * `pin 1` pins the first client on list
 
-To view these pinned clients, simply enter the command `viewPin`
+To view these pinned clients, look [here](#viewing-pinned-clients-viewpin).
 
+For example, let's try to pin Bernice's details in LTNS:
 
-Let's try to pin Bernice's details in LTNS
 ![pinExample](./images/pinExample.png)
 
-If successful, you should see the following success message
+If successful, you should see the following success message:
+
 ![pinSuccessMessage](./images/pinSuccessMessage.png)
 
-Now you will be able to see Bernice's contact after entering `viewPin`
+#### __________________________
+
+### Viewing Pinned Clients: `viewPin`
+
+So, how exactly do I view these special clients? An extension of the pin function, the `viewPin` allows you to view all pinned clients at an instance!
+
+* Format: `viewPin` <br>
+
+Example Usage:
+* `viewPin` opens up the list of pinned clients!
+
+Remember pinning Bernice previously? Now you will be able to see Bernice's contact after entering `viewPin`:
+
 ![viewPinExample](./images/viewPinExample.png)
 
 #### __________________________
@@ -433,7 +449,7 @@ Now you will be able to see Bernice's contact after entering `viewPin`
 An existing client in your Client list can be assigned to an Event or Policy.<br>
 To find out how to do so, you can refer to the [Adding an Event](#adding-an-event-addevent) guide to assign a Client to an Event or refer to the [Assigning a Policy to a Client](#assigning-a-policy-to-a-client--assign) guide to find out how you can assign a Client to a Policy.
 
-#### _______________________________________________________________________________________________________________________________________________________________________________
+--------------------------------------------------------------------------------------------------------------------
 
 ## Policy Features
 
@@ -619,7 +635,7 @@ Example Usage:
 
 (Result after typing the command `viewIncome 2000`, which displays three year expected income starting from year 2000)
 
-#### _______________________________________________________________________________________________________________________________________________________________________________
+--------------------------------------------------------------------------------------------------------------------
 
 ## Event Features
 
@@ -841,6 +857,8 @@ A: Fret not! Simply [reach out to us](#contact-us), and we will reply within thr
 
 What's a guide without a summary? Here you go! Everything you need, summarised into one section!
 
+#### ______________________________________________________________________________
+
 ### General Commands
 
 | Action                      | Format, Examples                                                                                                                                                                                              |
@@ -849,6 +867,7 @@ What's a guide without a summary? Here you go! Everything you need, summarised i
 | **Help**                    | `help`                                                                                                                                                                                                        |
 | **Exit Application**        | `exit`                                                                                                                                                                                                        |
 
+#### ______________________________________________________________________________
 
 ### Commands For Clients
 
@@ -866,6 +885,8 @@ What's a guide without a summary? Here you go! Everything you need, summarised i
 
 Note: `allClients` shows all existing clients inside LTNS, while `clients` show all clients based on filter metric placed previously.
 
+#### ______________________________________________________________________________
+
 #### Income brackets
 
 | Income Bracket | Yearly Income range                                 |
@@ -880,6 +901,8 @@ Note: `allClients` shows all existing clients inside LTNS, while `clients` show 
 | Eight          | More than S$240,000, less than or equal to $280,000 |
 | Ninth          | More than S$280,000, less than or equal to $320,000 |
 | Tenth          | More than $320,000                                  |
+
+#### ______________________________________________________________________________
 
 #### FindClient Detailed Specifications
 
@@ -897,10 +920,11 @@ Note: `allClients` shows all existing clients inside LTNS, while `clients` show 
 | Coverage      | cov/   | - More than one coverage can be specified to list all clients with all of the specified coverage types. <br/> e.g. `HEALTH` and `LIFE` will list all clients with both the `HEALTH` and `LIFE` coverage type <br/> - Clients who are covered by policies which covers all the specified coverage types will be listed                                     |
 | Company Code  | cmp/   | - Clients who are covered by a policy belonging to the specified company will be listed                                                                                                                                                                                                                                                                   |
 
-Note: `Title`, `Coverage` and `Company Code` refer to the details of policies assigned to the client. More details can be found in the [Policies](#policy-features) section
-
+**Note:** `Title`, `Coverage` and `Company Code` refer to the details of policies assigned to the client. More details can be found in the [Policies](#policy-features) section
 
 Ready to try some examples? Navigate back to the `findClient` command section [here](#searching-for-clients--findclient)!
+
+#### ______________________________________________________________________________
 
 #### Sorting keywords
 
@@ -920,21 +944,25 @@ If your client's name contains numbers, sorting by name might behave incorrectly
 
 Ready to try some examples? Navigate back to the `sort` command section [here](#sorting-all-clients--sort)!
 
+#### ______________________________________________________________________________
+
 ### Commands For Policy
 
-| Action                     | Format, Examples                                                                                                                                              |
-|----------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Find Policy**            | `findPolicy [ti/TITLE] [cov/COVERAGE]…​ [cmp/COMPANY_CODE]` <br/><br>  e.g: `findPolicy cov/LIFE`                                                             |        
-| **Add Policy**             | `addPolicy ti/POLICY_TITLE cmp/POLICY_COMPANY cms/POLICY_COMMISSION cov/POLICY_COVERAGE...` <br><br> e.g: `addPolicy ti/Health cmp/MNF cms/4% 3% 2% cov/LIFE` |                                                                                                                         
-| **Delete Policy**          | `deletePolicy (INDEX of POLICY)` <br> <br> e.g: `deletePolicy 1`                                                                                              |                                                                                                                                                                                             
-| **View All Policies**      | `allPolicies`                                                                                                                                                 |
-| **View Filtered Policies** | `policies`                                                                                                                                                    |
-| **Assign Policies**        | `assign (INDEX of CLIENT) (INDEX of POLICY) pr/PREMIUM_PAID sd/START_DATE ed/END_DATE` <br> <br> e.g: `assign 1 1 pr/10000 sd/2000-01-02 ed/2000-02-01`       |
-| **Delete Assigned**        | `deleteAssigned (INDEX of CLIENT) (INDEX of POLICY)` <br><br> e.g: `deleteAssigned 1 1`                                                                       |                                                                                                                                                                                                               
-| **List Assigned**          | `listAssigned (INDEX of CLIENT) ` <br> <br> e.g: `listAssigned 1`                                                                                             |
-| **View Income**            | `viewIncome YEAR` <br><br> e.g: `viewIncome 2000`                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                           
+| Action                     | Format, Examples                                                                                                                                              |                                                                                                       |
+|----------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------|
+| **Find Policy**            | `findPolicy [ti/TITLE] [cov/COVERAGE]…​ [cmp/COMPANY_CODE]` <br/><br>  e.g: `findPolicy cov/LIFE`                                                             | [Searching for a Policy](#searching-for-a-policy--findpolicy)                                         |        
+| **Add Policy**             | `addPolicy ti/POLICY_TITLE cmp/POLICY_COMPANY cms/POLICY_COMMISSION cov/POLICY_COVERAGE...` <br><br> e.g: `addPolicy ti/Health cmp/MNF cms/4% 3% 2% cov/LIFE` | [Adding a Policy](#adding-a-policy--addpolicy)                                                        |                                                                                                                         
+| **Delete Policy**          | `deletePolicy (INDEX of POLICY)` <br> <br> e.g: `deletePolicy 1`                                                                                              | [Deleting a Policy](#deleting-a-policy--deletepolicy)                                                 |                                                                                                                                                                                             
+| **View All Policies**      | `allPolicies`                                                                                                                                                 | [Listing all policies](#listing-all-policies-allpolicies)                                             |
+| **View Filtered Policies** | `policies`                                                                                                                                                    | [Switching to Policy View](#switching-to-the-view-of-currently-listed-policies--policies)             |
+| **Assign Policies**        | `assign (INDEX of CLIENT) (INDEX of POLICY) pr/PREMIUM_PAID sd/START_DATE ed/END_DATE` <br> <br> e.g: `assign 1 1 pr/10000 sd/2000-01-02 ed/2000-02-01`       | [Assigning a Policy to a Client](#assigning-a-policy-to-a-client--assign)                             |
+| **Delete Assigned**        | `deleteAssigned (INDEX of CLIENT) (INDEX of POLICY)` <br><br> e.g: `deleteAssigned 1 1`                                                                       | [Deleting Assigned Policies from a Client](#deleting-assigned-policies-from-a-client--deleteassigned) |                                                                                                                                                                                                               
+| **List Assigned**          | `listAssigned (INDEX of CLIENT) ` <br> <br> e.g: `listAssigned 1`                                                                                             | [Listing all Assigned Policies](#listing-out-policies-assigned-to-a-client--listassigned)             |
+| **View Income**            | `viewIncome YEAR` <br><br> e.g: `viewIncome 2000`                                                                                                             | [Tracking your Income](#tracking-your-income---viewincome)                                            |                                                                                                                                                                                                                                                                                                                                                                           
 
 Note: `allPolicies` shows all existing policies inside LTNS, while `policies` show all policies based on filter metric placed previously.
+
+#### ______________________________________________________________________________
 
 #### Valid Coverage codes
 
@@ -950,6 +978,8 @@ Note: `allPolicies` shows all existing policies inside LTNS, while `policies` sh
 | INVESTMENT    | Investment based     |
 
 Ready to try some examples? Navigate back to the `addPolicy` command section [here](#adding-a-policy--addpolicy)!
+
+#### ______________________________________________________________________________
 
 #### Valid Company codes
 
@@ -968,6 +998,8 @@ Ready to try some examples? Navigate back to the `addPolicy` command section [he
 
 Ready to try some examples? Navigate back to the `addPolicy` command section [here](#adding-a-policy--addpolicy)!
 
+#### ______________________________________________________________________________
+
 #### FindPolicy Detailed Specifications
 
 The following table illustrates the details of each metric and their search range:
@@ -980,13 +1012,9 @@ The following table illustrates the details of each metric and their search rang
 
 Ready to try some examples? Navigate back to the `findPolicy` command section [here](#searching-for-a-policy--findpolicy)!
 
+#### ______________________________________________________________________________
+
 ### Commands For Events
-
-
-
-
-
-
 
 | Action                   | Format, Examples                                                                                                                                                                       | Link back to Command Guide                                                                |
 |--------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|
@@ -998,6 +1026,8 @@ Ready to try some examples? Navigate back to the `findPolicy` command section [h
 | **View Calendar**        | `calendar`                                                                                                                                                                             | [Viewing all Events in the next 7 days](#viewing-all-events-in-the-next-7-days--calendar) |
 
 Note: `allEvents` shows all existing events inside LTNS, while `events` show all events based on filter metric placed previously.
+
+#### ______________________________________________________________________________
 
 #### FindEvent Detailed Specifications
 
