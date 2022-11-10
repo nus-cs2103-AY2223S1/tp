@@ -467,8 +467,10 @@ A person can have any number of tags (including 0).
 
 **Examples:**
 
-* `add person -n "John Doe" -p 98765432 -e johnd@example.com` adds a person named "John Doe"
-* `a p -n "Betsy Crowe" -e betsycrowe@example.com -p 1234567 -t criminal friend`
+* `add person -n "John Doe" -p 98765432 -e johnd@example.com` adds a person named "John Doe", with phone number
+  "98765432" and email "johnd@example.com".
+* `a p -n "Betsy Crowe" -e betsycrowe@example.com -p 12345678 -t criminal friend` adds a person named "Betsy Crowe",
+  with phone number "12345678" and tags named "criminal" and "friend".
 
 #### Editing a person: `edit person`
 
@@ -477,8 +479,8 @@ Edits an existing person in TruthTable. The edited person's details will be show
 
 ![Edit Person Example](images/EditPersonExample.png)
 
-**Format:** <code>edit person [-h] ([-n=<PERSON_NAME>] [-p=<PERSON_PHONE>] [-e=<PERSON_EMAIL>] 
-[-t[=<PERSON_TAGS>...]]...) <PERSON_INDEX></code>
+**Format:** `edit person [-h] ([-n=<PERSON_NAME>] [-p=<PERSON_PHONE>] [-e=<PERSON_EMAIL>] 
+[-t[=\<PERSON_TAGS\>...]]...) <PERSON_INDEX>`
 
 | Flags           | Required   | Remarks                                                                |
 |-----------------|------------|------------------------------------------------------------------------|
@@ -506,8 +508,8 @@ Edits an existing person in TruthTable. The edited person's details will be show
 **Examples:**
 
 * `edit person 1 -p 91234567 -e johndoe@example.com` Edits the phone number and email address of the 1st person to be
-  `91234567` and `johndoe@example.com` respectively.
-* `edit person 2 -n Betsy Crower -t` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+  "91234567" and "johndoe@example.com" respectively.
+* `edit person 2 -n Betsy Crowe -t` Edits the name of the 2nd person to be "Betsy Crowe" and clears all existing tags.
 
 #### Deleting a person: `delete person`
 
