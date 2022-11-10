@@ -10,7 +10,7 @@ To use this guide, simply click on the items you would like to learn more about 
 
 * [What is JARVIS?](#what-is-jarvis)
 * [Using this guide](#using-this-guide)
-* [The Basics](#the-Basics)
+* [The Basics](#the-basics)
 * [Quick start](#quick-start)
 * [Basic commands](#basic-commands)
   * [Viewing help : `help`](#viewing-help--help)
