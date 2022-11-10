@@ -74,11 +74,11 @@ This section guides you along the process of downloading and opening FRIDAY.
 This User Guide has been structured in a way to help you find information easily and quickly. In the next subsection,
  you can find a multitude of tips on how to use this User Guide. The following sections documents the main features of FRIDAY.
 
-1. [Student management](#student-management)
-2. [Grading students](#grading-students)
-3. [Organizing students](#organizing-students)
+1. [Student Management](#student-management)
+2. [Grading Students](#grading-students)
+3. [Organizing Students](#organizing-students)
 4. [Advanced Features](#advanced-features)
-5. [Miscellaneous features](#miscellaneous-features)
+5. [Miscellaneous Features](#miscellaneous-features)
 
 ### Reading This Document
 This section on reading the document will introduce you to some technical terms and formats that will be used throughout the guide.
@@ -161,11 +161,11 @@ e.g. Typing `help` and press Enter will open a help window.
 ## Features
 
 This section contains all the information and details of each feature of **FRIDAY**. These features are split into 5 sections based on their purpose and function:
-1. [Student management](#student-management)
-2. [Grading students](#grading-students)
-3. [Organizing students](#organizing-students)
+1. [Student Management](#student-management)
+2. [Grading Students](#grading-students)
+3. [Organizing Students](#organizing-students)
 4. [Advanced Features](#advanced-features)
-5. [Miscellaneous features](#miscellaneous-features)
+5. [Miscellaneous Features](#miscellaneous-features)
 
 <div style="page-break-after: always;"></div>
 
