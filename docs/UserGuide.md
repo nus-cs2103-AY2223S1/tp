@@ -180,6 +180,7 @@ A patient can have any number of medications (including 0)!
 </div>
 
 <div markdown="block" class="alert alert-info">
+
 **:notebook: Notes about Patient Type:**<br>
 When the patient is an outpatient, `add` will throw an error if any values are input for the `hw/`, `fn/` and `wn/` fields.
 Similarly, for an inpatient, `add` will throw an error if values are **not** input any of the `hw/`, `fn/` and `wn/` fields.
