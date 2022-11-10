@@ -259,6 +259,7 @@ in your **Customers Tab** does!
 | 6   | Saved Data File  | For advanced users, the [file path](#glossary) displayed here is where ArtBuddy stores your saved data (which you can [edit](#editing-the-data-file)).                                                      |
 
 <div style="page-break-after: always;"></div>
+
 {: .no_toc}
 ### Commissions Tab
 
@@ -463,6 +464,7 @@ Creates the customer entry for John Doe with his details including multiple tags
 * <code>addcus n/<em>Betsy Crowe</em> e/<em>betsycrowe@example.com</em> p/<em>12345867</em></code>
 Creates the customer entry for Betsy Crowe with her email and phone number.
 
+![addcus](images/addcus.png)
 
 ### Editing a customer: `editcus`
 
@@ -474,15 +476,18 @@ Format: `editcus INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
 Examples:
 * <code>editcus <em>1</em> p/<em>91234567</em> e/<em>johndoe@example.com</em></code> Edits the first customer's phone number and email.
 
+![editcus](images/editcus.png)
+
 ### Deleting a customer: `delcus`
 
-Deletes the customer at `INDEX` from the ArtBuddy.
+Deletes the customer at `INDEX` from ArtBuddy.
 
 Format: `delcus INDEX`
 
 Examples:
 * <code>delcus <em>2</em></code> Deletes the 2nd customer in the ArtBuddy and all commissions made by the customer.
 
+![delcus](images/delcus.png)
 
 <div align="right">
 <br>
@@ -537,6 +542,8 @@ Examples:
 * <code>addcom n/<em>Rimuru</em> f/<em>40</em> d/<em>2022-11-01</em> t/<em>traditional</em> s/<em>Y</em> t/<em>chibi</em></code> creates the commission entry titled "Rimuru" with the given fee, due date, completion status and tags.
 * <code>addcom n/<em>Fate Archer</em> f/<em>60</em> d/<em>2022-10-15</em> s/<em>false</em> p/<em>Archery</em> t/<em>night</em> t/<em>city</em></code> creates a commission entry titled "Fate Archer" with the given fee, due date, completion status, description and tags.
 
+![addcom](images/addcom.png)
+
 ### Editing a commission: `editcom`
 
 Edits a commission at `INDEX`.
@@ -549,6 +556,8 @@ Example:
   Edits the first commission to have the above fields.
 * <code>editcom <em>2</em> s/<em>True</em></code> Edits the second commission to be completed.
 
+![editcom](images/editcom.png)
+
 ### Deleting a commission: `delcom`
 
 Deletes a commission at `INDEX` and iterations related to the commission.
@@ -557,6 +566,8 @@ Format: `delcom INDEX`
 
 Example:
 * <code>delcom <em>14</em></code>
+
+![delcom](images/delcom.png)
 
 <div align="right">
 <br>
@@ -689,6 +700,8 @@ Lists all the customers.
 
 Format: `list`
 
+![list](images/list.png)
+
 ### Find a customer: `find`
 Finds all the customers who satisfy keyword matching in the name and tag filters. The tag filter more specifically will include customers who contain all tags under `-all` and at least one of the tags under `-any`.
 
@@ -699,6 +712,8 @@ Examples:
 * <code>find k/<em>Kevin</em></code> Finds customers who have the name Kevin.
 * <code>find -all t/<em>friend</em> t/<em>colleague</em></code> Finds customers who are tagged both `friend` and `colleague`.
 * <code>find -any t/<em>friend</em> t/<em>colleague</em></code> Finds customers who are either tagged `friend` or `colleague`.
+
+![find](images/find.png)
 
 ### Sorting the customer list: `sortcus`
 
@@ -718,10 +733,14 @@ Format: `sortcus PREFIX/SUFFIX`
 Examples:
 * `sortcus r/+` Sorts the customer list by the total revenue generated from each customer in increasing order.
 
+![sortcus](images/sortcus.png)
+
 ### List the commissions: `listcom`
 Lists all the commissions made by selected customer.
 
 Format: `listcom`
+
+![listcom](images/listcom.png)
 
 ### Viewing all commissions: `allcom`
 
@@ -731,6 +750,8 @@ Format: `allcom`
 
 After running `allcom`, you should be switched to the commissions tab to view all commissions.
 To view the commissions for a specific customer, return to the customer list ([`opencus`](#viewing-a-customer-opencus)) and select the customer from the list ([`opencus INDEX`](#viewing-a-customer-opencus)).
+
+![allcom](images/allcom.png)
 
 ### Find a commission: `findcom`
 Finds all the commissions in the list which satisfy keyword matching in the title and tag filters. The tag filter more specifically will include commissions which contain all tags under `-all` and at least one of the tags under `-any`.
@@ -742,6 +763,8 @@ Examples:
 * <code>findcom k/<em>Tree Painting</em></code> Finds commissions which have the title `Tree Painting`.
 * <code>findcom -all t/<em>oil painting</em> t/<em>canvas</em></code> Finds commissions which are tagged both `oil painting` and `canvas`.
 * <code>findcom -any t/<em>oil painting</em> t/<em>canvas</em></code> Finds commissions who are either tagged `oil painting` or `canvas`.
+
+![findcom](images/findcom.png)
 
 <div align="right">
 <br>
