@@ -597,12 +597,14 @@ command, you may wish to view all persons again. To do so, the `list persons` co
 
 ### Commands to Manage Members
 
-Summary of the commands to manage members can be found [here](#summary-of-member-commands)
+Summary of the commands to manage members can be found [here](#summary-of-member-commands).
 
 #### Adding a new member to the team: `add member`
 
 Adds a new team member to the user’s currently selected team. If the member already exists in the team, an error message
 will be displayed.
+
+![Add Member Example](images/AddMemberExample.png)
 
 **Format:** `add member [-h] <PERSON_INDEX>`
 
@@ -729,7 +731,7 @@ Sorts all members in the current team by name and displays them in the member li
 
 ### Commands to Manage Teams
 
-Summary of the commands to manage teams can be found [here](#summary-of-team-commands)
+Summary of the commands to manage teams can be found [here](#summary-of-team-commands).
 
 #### Creating a new team: `add team`
 
@@ -823,7 +825,7 @@ displayed if team does not exist.
 
 ### Commands to Manage Tasks
 
-Summary of the commands to manage tasks can be found [here](#summary-of-task-commands)
+Summary of the commands to manage tasks can be found [here](#summary-of-task-commands).
 
 #### Add task to team: `add task`
 
@@ -1173,7 +1175,7 @@ View the number of tasks assigned to each member in the team.
 
 ### Commands to Manage Links / URLs
 
-Summary of the commands to manage links can be found [here](#summary-of-link-commands)
+Summary of the commands to manage links can be found [here](#summary-of-link-commands).
 
 #### Add a new link: `add link`
 
@@ -1249,7 +1251,7 @@ Delete the specified link from the currently selected team.
 
 ### General Commands
 
-Summary of the general commands can be found [here](#summary-of-general-commands)
+Summary of the general commands can be found [here](#summary-of-general-commands).
 
 #### Clearing all entries: `clear`
 
