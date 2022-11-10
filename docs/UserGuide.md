@@ -29,7 +29,7 @@ Managing project documents and information has always been annoying. Aside from 
 slides created by your team, you may be using task management applications like
 <a href="https://www.notion.so/" target="_blank">Notion</a> to track your team's progress as well. 
 
-Find it hard to keep things organised? TruthTable allows you to collate and organize your **tasks, links, and team member info** all in one place.
+Find it hard to keep things organized? TruthTable allows you to collate and organize your **tasks, links, and team member info** all in one place.
 
 ### Track progress and delegate work
 
@@ -246,7 +246,7 @@ Here's a summary of what each highlighted section represents.
 
 ### Understanding the help message
 
-Every command in TruthTable has itsg own flags and parameters, so you don't have to remember all of them.
+Every command in TruthTable has its own flags and parameters, so you don't have to remember all of them.
 
 Instead, each command allows you to specify the `-h` and `--help` flag, which brings up the available flags and
 parameters for the command. Alternatively, you can also refer to this user guide to find out the details of any command.
