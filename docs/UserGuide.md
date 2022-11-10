@@ -442,7 +442,7 @@ Example:
 - `view 2` returns the details of the second employee in the current list.
 
 <div markdown="span" class="alert alert-primary">:bulb:
-Note that an INDEX is different from an ID. More information about the difference in INDEX and ID can be found on the FAQ page.
+Note that an INDEX is different from an ID. More information about the difference in INDEX and ID can be found on the <a href="#faq">FAQ</a> page.
 </div>
 
 #### Listing all employees: `list`
@@ -523,7 +523,7 @@ This command results in one of two cases below:
 **Case 1: Valid ID, date and sufficient leaves**
 
 If the employee exists, the leave date given is valid,
-and the employee has sufficient leaves, the leave period will be added and shown in the table of leaves The total leaves remaining will be deducted accordingly. The employee's "On Leave" status will become "True" when the timeframe is within the leave period.
+and the employee has sufficient leaves, the leave period will be added and shown in the table of leaves. The total leaves remaining will be deducted accordingly. The employee's "On Leave" status will become "True" when the timeframe is within the leave period.
 
 **Case 2: Invalid ID, date or insufficient leaves**
 
@@ -779,6 +779,7 @@ If your changes to the data file makes its format invalid, Coydir will discard a
 7. **CSV** : A file which is used to store data, which adheres to a format called [Comma-Separated Values (CSV)](https://en.wikipedia.org/wiki/Comma-separated_values).
 8. **JAR** : Otherwise known as [Java ARchive](https://docs.oracle.com/javase/8/docs/technotes/guides/jar/jarGuide.html) file, it is a file format that combines many files into one. It can also be 
 a executable.
+9. **Integer** : A whole number like 1,9,15,27.
 
 ## Command Summary
 
