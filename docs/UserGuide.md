@@ -247,7 +247,7 @@ Example:
 Let's say you want to delete the 3rd student in the list. You can follow the steps below. 
 
 Steps:
-1. Type `delete 3` in the *Command Box*
+1. Type `delete 3` in the *Command Box*.
 2. Press `Enter` to execute. 
 
 Outcome:
@@ -277,9 +277,8 @@ Example:
 
 
 Let's say you have incorrect and missing details for a student, and you wish to update them accordingly. For 
-instance, you wish to change the name, Telegram handle, consultation date, Mastery Check date and tags of the student 
-to "Alex Yap", "@AlexYap", "2022-10-10", "2022-11-06" and the tags "Experienced coder" and "Intern" respectively.<br>
-You can follow the steps below to edit the student.
+instance, you wish to change the name, [Telegram handle](#glossary), consultation date, [Mastery Check](#glossary) date and tags of the student 
+to "Alex Yap", "@AlexYap", "2022-10-10", "2022-11-06" and the tags "Experienced coder" and "Intern" respectively. You can follow the steps below to edit the student.
 
 Steps:
 1. Type `edit 1 n/Alex Yap t/AlexYap tag/Experienced coder tag/Intern m/2022-11-06 c/2022-10-10` in the *Command Box*.
@@ -320,8 +319,7 @@ remove any existing remark for the specified student.<br>
 Example:
 
 Let's say you wish to add a remark "Aspiring to be a CS1101S TA for next year" for a student (Alex Yap) to take
-note and remind yourself that Alex Yap is interested in applying for the CS1101S TA position.<br>
-You can follow the steps below to add the remark for the student.
+note and remind yourself that Alex Yap is interested in applying for the CS1101S TA position. You can follow the steps below to add the remark for the student.
 
 Steps:
 1. Type `remark 1 r/Aspiring to be a CS1101S TA for next year` into the *Command Box*.
@@ -346,14 +344,14 @@ These features allow you to record your students grades.
 Before you dive into using the features, you may want to have a look at the [parameters](#glossary) used.
 The table below shows a list of command parameters that will be used.
 
-| Parameter Name    | Description                                                                                                                                                                                        | Example                                                                             |
-|-------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|
-| `RA1_SCORE`       | The student's score for the first Reading Assessment. <br><br> The following applies to all `SCORE` parameters: <br> They must be numerical (up to two decimal places), and represent percentages. | E.g. Typing `70` would mean a score of 70% for the first Reading Assessment.        |
-| `RA2_SCORE`       | The student's score for the second Reading Assessment.                                                                                                                                             | `100`                                                                               |
-| `PRACTICAL_SCORE` | The student's score for the Practical Assessment.                                                                                                                                                  | `69.5`                                                                              |
-| `MIDTERM_SCORE`   | The student's score for the Midterm Test.                                                                                                                                                          | `40.37`                                                                             |
-| `FINALS_SCORE`    | The student's score for the Final Test.                                                                                                                                                            | `80.1`                                                                              |
-| `INDEX`           | The index of the student in the displayed list.                                                                                                                                                    | E.g. Typing `1` would mean the student at the first position in the displayed list. |
+| Parameter Name    | Description                                                                                                                                                                                                              | Example                                                                             |
+|-------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|
+| `RA1_SCORE`       | The student's score for the first Reading Assessment. <br><br> The following applies to all `SCORE` parameters: <br> They must be numerical (up to two decimal places), and represent percentages ranging from 0 to 100. | E.g. Typing `70` would mean a score of 70% for the first Reading Assessment.        |
+| `RA2_SCORE`       | The student's score for the second Reading Assessment.                                                                                                                                                                   | `100`                                                                               |
+| `PRACTICAL_SCORE` | The student's score for the Practical Assessment.                                                                                                                                                                        | `69.5`                                                                              |
+| `MIDTERM_SCORE`   | The student's score for the Midterm Test.                                                                                                                                                                                | `40.37`                                                                             |
+| `FINALS_SCORE`    | The student's score for the Final Test.                                                                                                                                                                                  | `80.1`                                                                              |
+| `INDEX`           | The index of the student in the displayed list.                                                                                                                                                                          | E.g. Typing `1` would mean the student at the first position in the displayed list. |
 
 #### Recording grades for a student: `grade`
 
@@ -384,8 +382,7 @@ Example:
 
 Let's say you wish to enter the grades of a student (Alex Yap) into FRIDAY, with the scores of "90" for 
 Reading Assessment 1, "80.1" for Reading Assessment 2, "100.0" for Practical Assessment, "85.23" for Midterm Test, and 
-"78" for Final Test.<br>
-You can follow the steps below to record the grades of the student.
+"78" for Final Test. You can follow the steps below to record the grades of the student.
 
 Steps:
 1. Type `grade 1 ra1/90 ra2/80.1 pa/100.00 mt/85.23 ft/78` in the *Command Box*.
@@ -417,7 +414,7 @@ Format: `mark INDEX`
 
 Example:
 
-Let's say the first student in your list has passed their. You can follow the steps below to mark their Mastery Check as passed.
+Let's say your student (Alex Yeoh) has passed their Mastery Check. You can follow the steps below to mark their Mastery Check as passed.
 
 Steps:
 1. Type `mark 1` in the *Command Box*.
@@ -452,7 +449,7 @@ Format: `unmark INDEX`
 
 Example:
 
-Let's say you have accidentally marked the Mastery Check of the first student in your list as passed, even though that is not the case. You can follow the steps below to un-mark this student's Mastery Check.
+Let's say you have accidentally marked the Mastery Check of a student (Alex Yeoh) as passed, even though that is not the case. You can follow the steps below to un-mark this student's Mastery Check.
 
 Steps:
 1. Type `unmark 1` in the *Command Box*.
@@ -580,7 +577,7 @@ Format: `list`
 
 Example:
 
-Let's say you just used the `find` command to `find` students named alex. Now, you want to view all your students. You can follow the steps below to view all students.
+Let's say you just used the `find` command to find students named alex. Now, you want to view all your students again. You can follow the steps below to do so.
 
 Steps:
 
@@ -619,7 +616,7 @@ Format: `alias a/ALIAS k/COMMAND_KEYWORD`
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: Note:<br>
+**:information_source: Note:** <br>
 
 * An alias is valid if:
 1. It is not a default command keyword.
@@ -678,7 +675,7 @@ Format: `unalias a/ALIAS`
 
 Example: 
 
-Let's say you had previously added an alias `ls`. You find yourself not using this alias and want to remove it. You can follow the steps before to remove the alias.
+Let's say you had previously added an alias `ls`. You find yourself not using this alias and want to remove it. You can follow the steps below to remove the alias.
 
 Steps:
 
@@ -702,7 +699,7 @@ You can view all [aliases](#glossary) in FRIDAY, so that you know what aliases y
 
 Example:
 
-Let's say you forgot the aliases you have in FRIDAY and wish to view all your aliases. You can follow the steps below to view all your aliases. 
+Let's say you forgot the aliases you have in FRIDAY and wish to view all your aliases. You can follow the steps below to do so. 
 
 Format: `aliaslist`
 
