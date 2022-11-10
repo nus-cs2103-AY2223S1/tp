@@ -10,15 +10,15 @@ Overall structure of this user guide is adapted from https://ay2223s1-cs2103t-w1
 ## **About Swift+**
 
 Swift+ is a **project management app** designed to help software engineering (SWE) project leads in tracking their daily
-interactions with contacts. As a project lead, you can easily **record down your clients and teammates** by creating contacts
-using Swift+. Using Swift+’s **task management system**, you can assign tasks to contacts and mark tasks as completed.
+interactions with contacts. As a project lead, you can easily **record down your clients and teammates** by creating and editing 
+contacts using Swift+. Using Swift+’s **task management system**, you can assign tasks to contacts and mark tasks as completed.
 Finally, you can gain an overview of your project with our intuitive side-by-side user interface.
 
 Perfect for SWE professionals, Swift+ is built around a **command line interface**, complete with an **autocomplete** feature.
 If you have fast fingers, Swift+ can help you manage contacts and tasks more quickly than a traditional point-and-click interface.
 
 This user guide provides details on how to use Swift+ in your daily workflow. This guide covers how to set up Swift+ and
-use its text-based commands. Get started now by heading over to [How to use this User Guide](#how-to-use-this-user-guide)!
+use its text-based commands. Get started now by heading over to the [How to use this User Guide](#how-to-use-this-user-guide) section!
 
 ---
 
@@ -110,7 +110,7 @@ This table showcases the components shared by both Contact View and Task View.
 
 #### Contact View
 
-The contact view is primarily for viewing contacts. The main panel on the left displays a list of contacts and all of their details. The right sidebar contains a list of tasks with some essential details.
+The contact view is primarily for viewing contacts. The main panel on the left shows a list of contacts and all of their contact information. The right sidebar contains tasks with essential details.
 
 | Component Name   | Image                                                                |
 | ---------------- | -------------------------------------------------------------------- |
@@ -119,7 +119,7 @@ The contact view is primarily for viewing contacts. The main panel on the left d
 
 #### Task View
 
-The task view is primarily for viewing tasks. The main panel on the left displays a list of tasks and all of their details. The right sidebar contains a list of contacts with some essential details.
+The task view is mainly for viewing tasks. The main panel on the left displays a list of tasks and all of their details. The right sidebar contains contacts with essential contact information.
 
 | Component Name      | Image                                                                      |
 | ------------------- | -------------------------------------------------------------------------- |
@@ -135,8 +135,6 @@ let's learn the basic components and format of a command.
 
 A flag is a delimiter that allows Swift+ to distinguish different input fields. For each flag, you would put in the
 corresponding parameter immediately after.
-
-Refer to the [Command Format](#command-format) section on how to use flags and parameters together.
 
 | Flag  | Corresponding Parameter |
 | ----- | ----------------------- |
@@ -170,11 +168,7 @@ Refer to the [Command Format](#command-format) section on how to use flags and p
     <tr>
         <td markdown="span">`ADDRESS`</td>
         <td markdown="span">`a/`</td>
-        <td markdown="block">Specifies the address of a contact.
-
-- Cannot be blank.
-
-</td>
+        <td markdown="span">Specifies the address of a contact. An example use for this field include recording a client's home or office address.</td>
     </tr>
     <tr>
         <td markdown="span">`CONTACT_INDEX`</td>
@@ -199,15 +193,14 @@ Refer to the [Command Format](#command-format) section on how to use flags and p
         <td markdown="span">`dl/`</td>
         <td markdown="block">Specifies the due date of a task.
 
-- Must be in the format of **`dd-MM-yyyy HHmm`**, e.g. `12-06-2020 1234` represents `12 June 2020 12:34`.
-- If `HHmm` is specified as `2400`, the date will increase to the following day with the time at 00:00.
+- Must be in the format of **`dd-MM-yyyy HHmm`**. e.g. `12-06-2020 1234` represents `12 June 2020 12:34`.
 
 </td>
     </tr>
     <tr>
         <td markdown="span">`DESCRIPTION`</td>
         <td markdown="span">`d/`</td>
-        <td markdown="block">Specifies the description and further details of a task.
+        <td markdown="block">Specifies the description and details of a task.
 
 - Should only contain alphanumeric characters, spaces, and the following symbols: `$` `&` `+` `,` `:` `;` `=` `?` `@` `#` `|` `'` `<` `>` `.` `\` `-` `^` `*` `(` `)` `%` `!`.
 
@@ -282,17 +275,17 @@ To understand how a full command is interpreted, let's look at the following exa
 
 **Example:** `add_contact n/CONTACT_NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
-|                    | Component Name | Meaning                                                 |
-| ------------------ | -------------- | ------------------------------------------------------- |
-| **`add_contact`**  | Command Word   | Tells Swift+ what command you wish to execute.          |
-| **`n/`**           | Flag           | Distinguishes input fields.                             |
-| **`CONTACT_NAME`** | Parameter      | Represents placeholder for data that you wish to input. |
+|                    | Component Name | Meaning                                                            |
+| ------------------ | -------------- |--------------------------------------------------------------------|
+| **`add_contact`**  | Command Word   | Tells Swift+ to execute command to add contact.                    |
+| **`n/`**           | Flag           | Distinguishes `CONTACT_NAME` from other input fields.              |
+| **`CONTACT_NAME`** | Parameter      | Represents placeholder for name of contact that you wish to input. |
 
 Notice how `t/TAG` is wrapped in `[ ]`. Items in square brackets are **optional**.
 
 - For example, `n/CONTACT_NAME [t/TAG]` can be used as `n/Mark t/friend` or as `n/Mark`.
 
-Furthermore, notice how `[t/TAG]` is followed by `…`​. Items followed by `…`​ can be used **multiple times**, including
+Furthermore, notice how `[t/TAG]` is followed by `…`​. Items followed by `…`​ can be inputted **multiple times**, including
 zero times.
 
 - For example, `n/CONTACT_NAME [t/TAG]…​` can be used as `n/Mark` (i.e. 0 times), `n/Mark t/friend`, `n/Mark t/friend t/family`, and etc.
@@ -312,9 +305,9 @@ zero times.
 
 ## **Commands**
 
-This section covers how to use each command in detail. You may wish to refer to the [Parameter](#parameter) section to view the constraints for each parameter.
+This section covers how to use each command in detail. You can refer to the [Parameter](#parameter) section to view the constraints for each parameter.
 
-### Contact commands
+### Contact Commands
 
 #### Adding a contact: `add_contact`
 
@@ -323,13 +316,13 @@ This section covers how to use each command in detail. You may wish to refer to 
 **Format:** `add_contact n/CONTACT_NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip** <br>
-A contact can have any number of tags (including 0)
+A contact can have any number of tags (including 0).
 </div>
 
 **Examples:**
 
 - `add_contact n/Mark Yang p/12345678 e/mark@example.com a/block 123` adds a contact named `Mark Yang` with a phone number of `12345678`, email of `mark@example.com`, and address of `block 123`.
-- `add_contact n/Anne Marie t/developer e/anne@example.com a/Newgate office p/87654321 t/client` adds a contact named `Anne Marie` with a tag of `developer` and `friend`, email of `anne@example.com`, address of `Newgate office`, and phone number of `87654321`.
+- `add_contact n/Anne Marie t/developer e/anne@example.com a/Newgate office p/87654321 t/client` adds a contact named `Anne Marie` with a `developer` tag, a `friend` tag, email of `anne@example.com`, address of `Newgate office`, and phone number of `87654321`.
 
 #### Listing all contacts: `list_contact`
 
@@ -356,7 +349,7 @@ A contact can have any number of tags (including 0)
 
 **Examples:**
 
-- `find_contact John` returns `john` and `John Doe`.
+- `find_contact Mark` returns `Mark` and `mark`.
 - `find_contact alex david` returns `Alex Yeoh` and `David Li`.
   ![result for 'find alex david'](images/user-guide/findAlexDavidResult.png)
 
@@ -371,7 +364,7 @@ A contact can have any number of tags (including 0)
 - Edits the contact at the specified `CONTACT_INDEX`.
 - At least one of the optional fields must be provided.
 - Existing values will be updated to the input values.
-- When editing tags, the existing tags of the contact will be removed i.e. adding of tags is not cumulative.
+- When editing tags, the existing tags of the contact will be removed, i.e. adding of tags is not cumulative.
 - You can remove all the contact's tags by typing `t/` without specifying any tags after it.
 
 </div>
@@ -379,7 +372,7 @@ A contact can have any number of tags (including 0)
 **Examples:**
 
 - `edit_contact 1 p/91234567 e/mark@example.com` edits the phone number and email address of the 1st contact to be `91234567` and `mark@example.com` respectively.
-- `edit_contact 2 n/Anne t/` edits the name of the 2nd contact to be `Anne` and clears all existing tags.
+- `edit_contact 2 n/Anne t/` edits the name of the 2nd contact to be `Anne` and clears all of `Anne`'s tags.
 
 #### Deleting a contact: `delete_contact`
 
@@ -403,7 +396,7 @@ A contact can have any number of tags (including 0)
 - `list_contact` followed by `select_contact 1` selects the 1st contact in the entire contact list and shows all tasks assigned to that contact.
 - `find_contact Hermione` followed by `select_contact 1` selects the 1st contact in the results of the `find_contact Hermione` command and shows all task assigned to that person.
 
-### Task commands
+### Task Commands
 
 #### Adding a task: `add_task`
 
@@ -561,7 +554,7 @@ A contact can have any number of tags (including 0)
 - `unassign c/1 t/1` removes the contact at index 1 from the task at index 1.
 - `unassign c/3 t/2` removes the contact at index 3 from the task at index 2.
 
-### General commands
+### General Commands
 
 #### Toggling between contacts and tasks tabs: `Ctrl + Tab`
 
@@ -590,7 +583,7 @@ Alternatively, you can click on the **Help button** in the top toolbar.
 **Format:** `clear`
 
 <div markdown="span" class="alert alert-warning">:warning: **Caution** <br>
-Executing the `clear` command would cause all of your existing data to be discarded forever and start with an empty data file. There will be no prompt for confirmation before clearing data.
+Executing the `clear` command will cause all of your existing data to be discarded forever and the app will start with an empty data file. There will be no confirmation prompt before clearing data.
 </div>
 
 #### Exiting the program : `exit`
@@ -628,7 +621,7 @@ Swift+ data are saved in the hard disk automatically after any command that chan
 Swift+ data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:warning: **Caution** <br>
-If your changes to the data file makes its format invalid, Swift+ will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, Swift+ will discard all data and start with an empty data file in the next run.
 </div>
 
 ---
@@ -644,6 +637,8 @@ If your changes to the data file makes its format invalid, Swift+ will discard a
 ---
 
 ## **Command Summary**
+
+This section contains a summary of all commands in Swift+ listed in alphabetical order. 
 
 | Action             | Format                                                                                         |
 | ------------------ | ---------------------------------------------------------------------------------------------- |
