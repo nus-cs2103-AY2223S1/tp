@@ -1,14 +1,35 @@
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
+[![CI Status](https://github.com/AY2223S1-CS2103T-T14-2/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/AY2223S1-CS2103T-T14-2/tp/actions/workflows/gradle.yml)
+[![Code coverage](https://codecov.io/gh/AY2223S1-CS2103T-T14-2/tp/branch/master/graph/badge.svg?token=HGCQQ52YOS)](https://codecov.io/gh/AY2223S1-CS2103T-T14-2/tp)
 
 ![Ui](docs/images/Ui.png)
 
-* This is **a sample project for Software Engineering (SE) students**.<br>
-  Example usages:
-  * as a starting point of a course project (as opposed to writing everything from scratch)
-  * as a case study
-* The project simulates an ongoing software project for a desktop application (called _AddressBook_) used for managing contact details.
-  * It is **written in OOP fashion**. It provides a **reasonably well-written** code base **bigger** (around 6 KLoC) than what students usually write in beginner-level SE modules, without being overwhelmingly big.
-  * It comes with a **reasonable level of user and developer documentation**.
-* It is named `AddressBook Level 3` (`AB3` for short) because it was initially created as a part of a series of `AddressBook` projects (`Level 1`, `Level 2`, `Level 3` ...).
-* For the detailed documentation of this project, see the **[Address Book Product Website](https://se-education.org/addressbook-level3)**.
-* This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
+# About
+
+CodeConnect aims to help busy students manage their tasks, while facilitating collaboration between students.
+By integrating one's contacts and task list, CodeConnect provides convenient features such as searching for contacts that are able to help with a particular task in your task list, through a simple command line interface.
+
+Of course, CodeConnect is able to perform sorting and filtering functions on your contacts/tasks.
+
+With CodeConnect, the friction between getting stuck on an assignment and reaching out for help will be reduced, allowing you to focus on what really matters.
+
+## Main Features
+
+* Keep track of your tasks, their deadlines, and the modules they belong to
+  * Mark tasks as complete or incomplete
+  * Sort tasks by deadline
+* Manage your contacts and keep track of the modules they are taking
+  * Search for contacts taking a specified module
+  * Search for contacts that can help with your specified task
+
+# Documentation
+
+Learn more about how to get started with our [User Guide](https://ay2223s1-cs2103t-t14-2.github.io/tp/UserGuide.html)!
+
+For information about CodeConnect's application structure, check our [Developer Guide](https://ay2223s1-cs2103t-t14-2.github.io/tp/DeveloperGuide.html).
+
+# Acknowledgements
+
+This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+
+We use the following libraries in CodeConnect:
+* [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5), [jchronic](https://github.com/samtingleff/jchronic)

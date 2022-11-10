@@ -6,9 +6,11 @@ skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
 Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+Class "<<interface>>\nReadOnlyTaskList" as ReadOnlyTaskList
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
 Class AddressBook
+Class TaskList
 Class ModelManager
 Class UserPrefs
 
@@ -20,31 +22,61 @@ Class Name
 Class Phone
 Class Tag
 
+Class UniqueTaskList
+Class Task
+Class TaskName
+Class Module
+Class Deadline
+Class Status
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+ModelManager .left.|> Model
 
-ModelManager .up.|> Model
-Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
-ModelManager -right-> "1" UserPrefs
+Model .down.> ReadOnlyAddressBook
+Model .down.> ReadOnlyUserPrefs
+Model .down.> ReadOnlyTaskList
+
+ReadOnlyAddressBook -[hidden]right-> ReadOnlyUserPrefs
+ReadOnlyUserPrefs -[hidden]right-> ReadOnlyTaskList
+
+AddressBook .up.|> ReadOnlyAddressBook
 UserPrefs .up.|> ReadOnlyUserPrefs
+TaskList .up.|> ReadOnlyTaskList
+
+ModelManager --> "1" AddressBook
+ModelManager --> "1" TaskList
+ModelManager --> "1" UserPrefs
 
 AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
+' The *all and *filtered labels are defined on the opposite lines because PlantUML is unable to lay out the labels properly. Hopefully we can find a fix for this.
+UniquePersonList --> "          ~* filtered" Person
 Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
+Person --> "*" Module
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
 
-ModelManager -->"~* filtered" Person
+ModelManager -->"~* all       " Person
+
+TaskList *--> "1" UniqueTaskList
+UniqueTaskList --> "~* all" Task
+Task *--> TaskName
+Task *--> "1" Module
+Task *--> Deadline
+Task *--> Status
+
+TaskName -[hidden]right-> Module
+Module -[hidden]right-> Deadline
+Deadline -[hidden]right-> Status
+
+ModelManager -->"~* filtered  " Task
+
 @enduml

@@ -1,0 +1,74 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":FindTaskCommandParser" as FindTaskCommandParser LOGIC_COLOR
+participant "p:TaskContainsKeywordsPredicate" as TaskContainsKeywordsPredicate LOGIC_COLOR
+participant "f:FindTaskCommand" as FindTaskCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("find n/ Lab 2")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("find n/ Lab 2")
+activate AddressBookParser
+
+create FindTaskCommandParser
+AddressBookParser -> FindTaskCommandParser
+activate FindTaskCommandParser
+
+FindTaskCommandParser --> AddressBookParser
+deactivate FindTaskCommandParser
+
+AddressBookParser -> FindTaskCommandParser : parse("n/ Lab 2")
+activate FindTaskCommandParser
+
+create TaskContainsKeywordsPredicate
+FindTaskCommandParser -> TaskContainsKeywordsPredicate
+activate TaskContainsKeywordsPredicate
+
+TaskContainsKeywordsPredicate --> FindTaskCommandParser : p
+deactivate TaskContainsKeywordsPredicate
+
+create FindTaskCommand
+FindTaskCommandParser -> FindTaskCommand : FindTaskCommand(p)
+activate FindTaskCommand
+
+FindTaskCommand --> FindTaskCommandParser : f
+deactivate FindTaskCommand
+
+FindTaskCommandParser --> AddressBookParser : f
+deactivate FindTaskCommandParser
+
+AddressBookParser --> LogicManager : f
+deactivate AddressBookParser
+
+LogicManager -> FindTaskCommand : execute()
+activate FindTaskCommand
+
+FindTaskCommand -> Model : updateFilteredTaskList(p)
+activate Model
+
+Model --> FindTaskCommand
+deactivate Model
+
+create CommandResult
+FindTaskCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindTaskCommand
+deactivate CommandResult
+
+FindTaskCommand --> LogicManager : result
+deactivate FindTaskCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
