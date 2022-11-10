@@ -129,18 +129,21 @@ If your provided inputs are too long, PayMeLah may not be able to fully display 
 
 Once you have familiarised yourself with PayMeLah’s [user interface](#tutorial-navigating-the-application), it is time to officially start using PayMeLah! The following section provides a step-by-step guide that walks you through the process of adding a debt to PayMeLah. You can choose to follow the sample commands word-for-word, or if you are feeling adventurous, you can try replacing the sample inputs with your own inputs instead.
 
-1. If you are a first time user, your PayMeLah may still be filled with the sample data that came with the [installation process](#tutorial-installing-paymelah). You can remove all the sample data with a single [`clear` command](#clearing-all-entries-clear), which you can do by simply entering `clear`. Don’t worry about losing this data - they are unlikely to be useful to you! Soon, your PayMeLah
+1. If you are a first time user, your PayMeLah may still be filled with the sample data that came with the [installation process](#tutorial-installing-paymelah). You can **remove all the sample data** with a single [`clear` command](#clearing-all-entries-clear), which you can do by simply entering `clear`. Don’t worry about losing this data - they are unlikely to be useful to you! Soon, your PayMeLah
    will be filled with the information you actually want instead.<br>
+
 You should see that the person list is now empty.
 
    ![Empty person list](images/EmptyPersonList.png)
 
 1. You can now **add your first person** to PayMeLah with the [`add` command](#adding-a-person-add). The example we will use in this section is `add n/Ryan Tan tele/ryantan123`. Entering this command will add a person named `Ryan Tan` with `ryantan123` as his Telegram handle into PayMeLah.<br>
+
 You should see that the person card for `Ryan Tan` is now visible in the person list. You can click on his name to expand his person card, as per the picture below. However, he does not have any debts associated with him just yet!
 
    ![Ryan Tan list](images/RyanTanList.png)
 
 1. You are now ready to **add a debt** to `Ryan Tan` using the [`adddebt` command](#adding-a-debt-adddebt)! This time, the example we will use is `adddebt 1 d/mcdonalds m/9.80`. Entering this command will add a debt of `$9.80` with the description `mcdonalds` to the 1st person in the person list, who happens to be `Ryan Tan`.<br>
+
 You should see that the person card for `Ryan Tan` should now be updated. Congratulations! You have just added your first debt to PayMeLah!
 
    ![YourFirstDebt](images/YourFirstDebt.png)
@@ -745,18 +748,21 @@ If you are trying to locate a debt without knowing its full description, conside
 
 ## Glossary
 
-* <span id="glossary-command">_Command_</span>: An instruction for PayMeLah to execute. All commands start with a _command phrase_ and any inputs the command may require.
-* <span id="glossary-command-line-interface-cli">_Command Line Interface (CLI)_</span>: The method by which you instruct PayMeLah to perform tasks, which is by entering _commands_ into the _command box_.
-* <span id="glossary-command-phrase">_Command phrase_</span>: The name of the instruction for PayMeLah to execute. For example, `list` is the command phrase to show the list of people added to PayMeLah.
-* <span id="glossary-debt">_Debt_</span>: A transaction event (e.g. group purchase, shared Grab food order) where someone owes you money.
-* <span id="glossary-debt-index">_Debt index_</span>: The number that appears next to each _debt_’s description in a person’s _debt list_.
-* <span id="glossary-debtor">_Debtor_</span>: A person who owes you money.
-* <span id="glossary-entering-a-command">_Enter[ing]_ a command</span>: Type the _command_ into the _command box_, and press the <kbd>Enter</kbd> key.
-* <span id="glossary-index">_Index_</span>: The number that appears next to each person’s name or each _debt_’s description.
-* <span id="glossary-input">_Input_</span>: Additional information supplied by you that is used to run a _command_.
-* <span id="glossary-keyboard-shortcut">_Keyboard shortcut_</span>: A key or sequence of keys which you may press to perform actions without your mouse.
-* <span id="glossary-person-index">_Person index_</span>: The number that appears next to each person’s name in the _person list_.
-* <span id="glossary-prefix">_Prefix_</span>: A short piece of text indicating what type of information follows. For example, `n/` is the prefix that indicates that what follows is a name.
+| Term                                                                                 | Description                                                                                                                                                                                             |
+|--------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| <span id="glossary-command">_Command_</span>                                         | An instruction for PayMeLah to execute. All commands start with a [_command phrase_](#glossary-command-phrase)and any [_inputs_](#glossary-input) the command may require.                              |
+| <span id="glossary-command-line-interface-cli">_Command Line Interface (CLI)_</span> | The method by which you instruct PayMeLah to perform tasks, which is by entering _commands_ into the [_command box_](#command-line-section).                                                            |
+| <span id="glossary-command-phrase">_Command phrase_</span>                           | The name of the instruction for PayMeLah to execute. For example, [`list`](#listing-all-persons-list) is the [_command phrase_](#glossary-command-phrase) to show the list of people added to PayMeLah. |
+| <span id="glossary-debt">_Debt_</span>                                               | A transaction event (e.g. group purchase, shared Grab food order) where someone owes you money.                                                                                                         |
+| <span id="glossary-debt-index">_Debt index_</span>                                   | The number that appears next to each [_debt_’s](#glossary-debt) description in a person’s [_debt list_](#debt-list-section).                                                                            |
+| <span id="glossary-debtor">_Debtor_</span>                                           | A person who owes you money.                                                                                                                                                                            |
+| <span id="glossary-entering-a-command">_Enter[ing]_ a command</span>                 | Type the [_command_](#glossary-command) into the [_command box_](#command-line-section), and press the <kbd>Enter</kbd> key.                                                                            |
+| <span id="glossary-index">_Index_</span>                                             | The number that appears next to each person’s name or each [_debt_’s](#glossary-debt) description.                                                                                                      |
+| <span id="glossary-input">_Input_</span>                                             | Additional information supplied by you that is used to run a [_command_](#glossary-command)                                                                                                             |
+| <span id="glossary-keyboard-shortcut">_Keyboard shortcut_</span>                     | A key or sequence of keys which you may press to perform actions without your mouse.                                                                                                                    |
+| <span id="glossary-person-index">_Person index_</span>                               | The number that appears next to each person’s name in the [_person list_](#person-list-section).                                                                                                        |
+| <span id="glossary-prefix">_Prefix_</span>                                           | A short piece of text indicating what type of information follows. For example, `n/` is the prefix that indicates that what follows is a name.                                                          |
+
 
 [Return to Table of Contents](#table-of-contents)
 
