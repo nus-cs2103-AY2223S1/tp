@@ -5,28 +5,33 @@ title: User Guide
 
 Welcome to the PayMeLah user guide!
 
-Are you a student who enjoys participating in group buys? Or perhaps do you just need some way to remember how much money your friends owe you? PayMeLah is a desktop app for **keeping track of** and **managing the debts** your friends owe you. It can also help **do simple calculations** for you, such as including GST or splitting debts amongst your friends. What’s more, it is optimised for you to do everything from just your keyboard!
+Are you a NUS student who stays on campus and enjoys organising or participating in group buys? Do you struggle with **remembering** the people involved in each group order, **calculating** how to split the bill and **tracking** who is still yet to pay you back?
+
+PayMeLah is a desktop app for solving all these problems and more! PayMeLah can **keep track of** and **manage the debts** your friends owe you. It can even **do simple calculations** for you, such as adding GST or splitting debts amongst your friends. What’s more, it is optimised for you to do everything **from just your keyboard**! This way, you can seamlessly switch between managing your debts and acing your assignments without even needing your mouse. Save time on the nitty-gritties of organising group buys so that you can be more productive! :thumbs-up:
 
 <div style="page-break-after: always;"></div>
 
 ### Using this guide
-If you are a new user looking to get started with PayMeLah, this user guide can help you with [the installation process](#quick-start), guide you through [adding your first debt to PayMeLah](#tutorial-adding-your-first-debt), and familiarise you with how to use all of [PayMeLah’s features](#features).
+If you are a new user looking to get started with PayMeLah, this user guide can help you with [the installation process](#tutorial-installing-paymelah), guide you through [adding your first debt to PayMeLah](#tutorial-adding-your-first-debt), and familiarise you with how to use all of [PayMeLah’s features](#features).
 
-If you are already familiar with the basic features of PayMeLah, this guide can also provide you with tips and tricks to get the most out of PayMeLah!
+For a full overview of everything this guide has to offer, do make use of the [Table of Contents](#table-of-contents)!
 
-Here are some of the symbols and text formatting to look out for as you make use of this guide:
+Additionally, for our advanced users, we have a special section just for you! Click [here](#advanced-features) if you want to learn tricks like [keyboard shortcuts](#keyboard-shortcuts) and how to directly [edit your data](#linklinklink).
 
-| Symbol | Meaning |
-| :----: | ------- |
-| :information_source: | Essential Information for All Users |
-| :bulb: | Tips for Intermediate Users |
-| :star: | Tips for Advanced Users |
-| :exclamation: | Warning |
+Finally, here are some of the symbols and text formatting to look out for as you make use of this guide:
+
+<div markdown="block" class="alert alert-primary">
+:bulb: **Tips:** Blue boxes contain useful tips for using PayMeLah.
+<div>
+
+<div markdown="block" class="alert alert-warning">
+:exclamation: Warnings: Yellow boxes contain important warnings.
+<div>
 
 |          Text Formatting           | Meaning |
 |:----------------------------------:| ------- |
 | [Hyperlink to Glossary](#glossary) | Clickable hyperlink to navigate to another section |
-|               `Text`               | Text relevant to PayMeLah user commands |
+|           `command text`           | Text relevant to PayMeLah user commands |
 |          <kbd>Ctrl</kbd>           | A keyboard key |
 
 --------------------------------------------------------------------------------------------------------------------
