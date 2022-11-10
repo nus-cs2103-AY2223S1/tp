@@ -503,7 +503,9 @@ Example:
 
 ### Viewing help: `help`
 
-`help` returns the list of all commands. `help [COMMAND]` returns the detailed description of that specified command.
+`help` returns the list of all commands in the `Application's Reply`. 
+
+`help [COMMAND]` returns the detailed description of that specified command in the `Application's Reply`.
 
 [//]: # (![help message]&#40;images/helpMessage.png&#41;)
 
@@ -520,12 +522,13 @@ Examples:
 
 ### Getting the User Guide: `user_guide`
 
-Displays the link to this user guide in the `Application's Reply`.
+Displays the link to this user guide in a pop-up window.
 
 Format: `user_guide`
 
 * Displays a pop-up that contains the url to this user guide.
-* You can click on the `Copy URL` button to copy this url to your clipboard.
+* You can click on the `Copy URL` button to copy this url to your clipboard and 
+paste it in your browser if you need to refer to this user guide.
 
 ![Ui](images/SampleUserguide.png)
 
