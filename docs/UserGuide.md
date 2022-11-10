@@ -110,6 +110,7 @@ Before we start, this guide would contain some symbols and syntax, which has bee
 | `Highlighted text block`                       | Commands or parameters relevant to the application                                                                                              |
 | [Hyperlinks](#how-to-use-this-guide)           | When clicked, you will be led to a designated section within this document or an external link                                                  |
 
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -446,6 +447,8 @@ Before an internship application can be edited, it must first be selected via th
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 Format: `edit [c/NEW_COMPANY] [p/NEW_POSITION] [e/NEW_EMAIL] [w/NEW_WEBSITE] [s/NEW_SALARY] [t/NEW_TAG]...`
 
 | Parameter      | Representation                               | Constraints                                                                   |
@@ -541,6 +544,8 @@ Before a task can be deleted from an internship application, the internship must
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 Format: `deltask TASK_INDEX`
 
 | Parameter    | Significance                 | Constraints                                                                                         |
@@ -622,6 +627,8 @@ Format: `mail`
 * `mail` invokes the native desktop application of the default mail app.
 
 [Back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ## List Management
 
