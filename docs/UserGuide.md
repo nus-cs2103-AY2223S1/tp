@@ -148,16 +148,16 @@ The [table of contents](#table-of-contents) provides links to every command. But
 
 Below are some symbols that you may encounter in the User Guide.
 
-| Symbol                                                                         | Meaning                                                              |
-|--------------------------------------------------------------------------------|----------------------------------------------------------------------|
-| <div markdown="span" class="alert alert-danger">:exclamation: **Danger**</div> | Something that could cause irreversible damage when done incorrectly |
-| <div markdown="span" class="alert alert-warning">:warning: **Warning**</div>   | Something that could go wrong and should be noted                    |
-| <div markdown="span" class="alert alert-primary">:bulb: **Tip**</div>          | Something that can aid you to optimally utilise JeeqTracker          |
+| Symbol                                                                     | Meaning                                                              |
+|----------------------------------------------------------------------------|----------------------------------------------------------------------|
+| <div markdown="span" class="alert alert-danger">:exclamation: Danger</div> | Something that could cause irreversible damage when done incorrectly |
+| <div markdown="span" class="alert alert-warning">:warning: Warning</div>   | Something that could go wrong and should be noted                    |
+| <div markdown="span" class="alert alert-primary">:bulb: Tip</div>          | Something that can aid you to optimally utilise JeeqTracker          |
 
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:** It is recommended to understand the [User Interface](#user-interface-overview) as it will help you to navigate the application easily!</div>
+> <div markdown="span" class="alert alert-primary">:bulb: Tip: It is recommended to understand the [User Interface](#user-interface-overview) as it will help you to navigate the application easily!</div>
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:** The term `INDEX` will appear in several command formats.<br/> **Red circle** in the diagram below refers to the **INDEX** for **clients**.<br/>**Blue circles** refer to the **INDEX** for **transactions**.<br/>**Green circles** refer to the **INDEX** For **remarks**.</div>
+> <div markdown="span" class="alert alert-primary">:bulb: Tip: The term `INDEX` will appear in several command formats.<br/> **Red circle** in the diagram below refers to the **INDEX** for **clients**.<br/>**Blue circles** refer to the **INDEX** for **transactions**.<br/>**Green circles** refer to the **INDEX** For **remarks**.</div>
 
 ![IndexMeaning](images/IndexMeaning.PNG)
 
@@ -283,15 +283,7 @@ Format: `view INDEX`
 Example:
 * `view 5` displays the remarks and transactions of the client at the 5<sup>th</sup> index.
 
-<div markdown="span" class="alert alert-primary">
-:bulb: **Tip:** Use the "list" command if you want to get back the full list of clients
-</div> <br>
-
-[//]: # (<div markdown="span" class="alert alert-primary"> )
-
-[//]: # (:bulb: **Tip 2:** For more details on what each prefix represents, kindly refer to [List of Prefixes]&#40;#list-of-prefixes&#41;.)
-
-[//]: # (</div>)
+> <div markdown="span" class="alert alert-primary">:bulb: Tip: Use the "list" command if you want to get back the full list of clients</div>
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -326,9 +318,7 @@ the list on the 07/11/2000.
 
 ![Ui](images/SampleBuySellCommand2.PNG)
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:** If you use the "buy" or "sell" command while the "Client List Panel" has more than one client, you will not be able to see the addition.<br/>Use the "view" command to see it.</div>
-
-If you are not sure how to use the `view` command, you can click [here](#viewing-a-client-view) to see how to use it.
+> <div markdown="span" class="alert alert-primary">:bulb: Tip: If you use the "buy" or "sell" command while the "Client List Panel" has more than one client, you will not be able to see the addition.<br/>Use the "view" command to see it.</div>
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -389,7 +379,7 @@ Examples:
 * `filter buy` displays all buy transactions.
 * `filter sell` displays all sell transactions.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:** The transactions listed in "List of Transactions" panel does not belong to anyone, it is all transactions with all your clients</div>
+> <div markdown="span" class="alert alert-primary">:bulb: Tip: The transactions listed in "List of Transactions" panel does not belong to anyone, it is all transactions with all your clients</div>
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -410,7 +400,7 @@ Examples:
 * `sort 1 latest` displays the 1<sup>st</sup> client transactions sorted by the latest transaction on top.
 * `sort 5 oldest` displays the 5<sup>th</sup> client transactions sorted by the oldest transaction on top.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:** The sort command will filter the list of clients panel to display only the specified client.<br/>Use the "list" command to get back the full list of clients.</div>
+> <div markdown="span" class="alert alert-primary">:bulb: Tip: The sort command will filter the list of clients panel to display only the specified client.<br/>Use the "list" command to get back the full list of clients.</div>
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -434,7 +424,7 @@ Examples:
 * `remark 1 punctual buyer` adds the remark `punctual buyer` to the client at index 1.
 
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:** If you use the "remark" command while the "Client List Panel" has more than one client, you will not be able to see the addition.<br/>Use the "view" command to see it.</div>
+> <div markdown="span" class="alert alert-primary">:bulb: Tip: If you use the "remark" command while the "Client List Panel" has more than one client, you will not be able to see the addition.<br/>Use the "view" command to see it.</div>
 
 
 [Back to Table of Contents](#table-of-contents)
@@ -513,9 +503,9 @@ Example:
 
 ### Viewing help: `help`
 
-`help` returns the list of all commands in the `Application's Reply` panel. 
+`help` returns the list of all commands in the `Application's Reply`. 
 
-`help [COMMAND]` returns the detailed description of that specified command in the `Application's Reply` panel.
+`help [COMMAND]` returns the detailed description of that specified command in the `Application's Reply`.
 
 [//]: # (![help message]&#40;images/helpMessage.png&#41;)
 
