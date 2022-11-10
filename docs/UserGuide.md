@@ -312,15 +312,26 @@ A valid command is `assign task 1 -a 1 2 3` where `1 2 3` are recognized as the 
 
 ### Aliases
 
-TruthTable allows for aliases (i.e. alternative names) to represent the same commands, similar to nicknames. 
-Consequently, commands and flags may have alternative names to execute the same instruction.
+To help you use our program even faster, we have introduced short forms for each of our commands!
 
-For instance, the `add person` command has the following command aliases,
+These short forms are what we call "aliases", which are available for both commands and flags. 
+
+For instance, the [`add person`](#creating-a-new-person-add-person) command has the following command aliases,
 - `add p`
 - `a person`
 - `a p`
 
-Refer to the [command summary section](#command-aliases) to view the commands and their respective aliases.
+The `add person` command also has the following flags, and their corresponding aliases.
+- `-h`, `--help`
+- `-e`, `--email`
+- `-n`, `--name`
+- `-p`,`--phone`
+- `-t`,`--tags`
+
+You can find out more about these flags [here](#creating-a-new-person-add-person).
+
+To view all commands and their respective aliases, head over to the [command summary section](#command-aliases) 
+to find out more.
 
 [Back to Table of Contents](#table-of-contents)
 
