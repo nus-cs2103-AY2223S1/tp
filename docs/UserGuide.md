@@ -213,10 +213,18 @@ Format: `add n/NAME [t/TELEGRAM_HANDLE] [c/CONSULTATION_DATE] [m/MASTERY_CHECK_D
 </div>
 
 
-Example: `add n/Alex Yeoh t/al3xx c/2022-10-25 m/2022-08-16 tag/cool guy tag/quiet`
-
-Outcome: A student named Alex Yeoh is added, with the following details: Telegram handle as "@al3xx", consultation date on 2022-10-25,
+Example: 
+Let's say you want to add a student named Alex Yeoh, with Telegram handle as "@al3xx", consultation date on 2022-10-25,
 Mastery Check date on 2022-08-16, and the tags "cool guy" and "quiet".
+
+Steps: 
+1. Type `add n/Alex Yeoh t/al3xx c/2022-10-25 m/2022-08-16 tag/cool guy tag/quiet` in the *Command Box*.
+2. Press `Enter` to execute.
+
+Outcome:
+1. FRIDAY will add a student named Alex Yeoh.
+2. The *Result Display* will show a success message.
+<br>
 
 ![AddCommandOutcome.png](images/AddCommandOutcome.png)
 <i> Outcome of add command</i>
@@ -311,8 +319,6 @@ The table below shows a list of command parameters that will be used.
 
 Once you have many students added to FRIDAY, viewing relevant information can get messy. To help with that, you can 
 sort students in FRIDAY with a given criteria, in ascending or descending order.
-As shown in the example below, this will come in useful by allowing you to see which students have [Mastery Checks](#glossary) closest 
-to the current date by sorting the list according to the students' Mastery Check dates.
 
 Format: `sort CRITERIA/ORDER`
 
@@ -343,12 +349,22 @@ Criteria are sorted in the following order:
   will be shown before students with Telegram handles.
 </div>
 
-Example: Enter `sort m/a` with an unsorted list of students.
+Example:
+Let's say you want to see which students have [Mastery Checks](#glossary) closest to the current date. 
+To achieve that, you can sort the list according to the students' Mastery Check dates.
+
+Steps:
+1. Type `sort m/a` in the *Command Box*.
+2. Press `Enter` to execute.
+<br>
 
 ![SortCommand.png](images/SortCommand.png)
 <i> Before sort command</i>
 
-Outcome: Students are sorted by Mastery Check date, from earliest to latest.
+Outcome: 
+1. FRIDAY will sort the students by Mastery Check date, from earliest to latest.
+2. The *Result Display* will show a success message.
+<br>
 
 ![SortCommandOutcome.png](images/SortCommandOutcome.png)
 <i> Outcome of sort command</i>
