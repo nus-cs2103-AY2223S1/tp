@@ -40,7 +40,7 @@ To use this guide, simply click on the items you would like to learn more about 
   * [Marking a lesson as completed : `marklesson`](#Marking-a-lesson-as-completed--marklesson)
   * [Marking a lesson as not completed : `unmarklesson`](#Marking-a-lesson-as-not-completed--unmarklesson)
   * [Marking a student as present for a lesson : `markstudent`](#Marking-a-student-as-present-for-a-lesson--markstudent)
-  * [Marking a student as absent for a lesson : `unmarkstudent`](Marking-a-student-as-absent-for-a-lesson--unmarkstudent)
+  * [Marking a student as absent for a lesson : `unmarkstudent`](#Marking-a-student-as-absent-for-a-lesson--unmarkstudent)
   * [Adding a note to a lesson : `addnote`](#Adding-a-note-to-a-lesson--addnote)
   * [Deleting a note from a lesson : `deletenote`](#Deleting-a-note-from-a-lesson--deletenote)
   * [Adding participation for a student in a lesson : `addpart`](#Adding-participation-for-a-student-in-a-lesson--addpart)
