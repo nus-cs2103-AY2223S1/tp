@@ -76,12 +76,12 @@ Here are the alerts to look out for while using this guide:
 Important information for all users to take note
 </div>
 
-<div markdown="block" class="alert alert-success">**:bulb: Tip**:
-Tip for all users
+<div markdown="block" class="alert alert-success">**:bulb: Tip for all users**:
+Useful information.
 </div>
 
-<div markdown="block" class="alert alert-info">**:star: Tip**:
-This alert contains helpful information
+<div markdown="block" class="alert alert-info">**:star: Tip for advanced users**:
+Useful information for more experienced users.
 </div>
 
 <div markdown="block" class="alert alert-warning">**:exclamation: Warning alert**:
