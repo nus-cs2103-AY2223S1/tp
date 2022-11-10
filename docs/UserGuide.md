@@ -154,7 +154,7 @@ Of course, this is not yet the end of your journey with PayMeLah - there are sti
 
 ## Features
 
-**:information_source: Notes about the command format:**<br>
+### About the command format
 
 * The first word in the command is the command phrase that specifies which command will be carried out by PayMeLah.
   e.g. in `add n/<name>`, `add` is the command phrase for PayMeLah to add a person.
