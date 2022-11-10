@@ -109,7 +109,9 @@ Navigating in between patients and their records is done easily with 2 commands:
 
 **Patient List View (Default):**
 
-![ui-patient-list](images/UiPatients.png){: .shadow}
+<p align="center" width="100%">
+<img src="images/UiPatients.png" alt="ui-patients" width="550"/>
+</p>
 
 Navigating into each patient's records is done through the [`rlist`](#listing-all-records-of-a-patient-rlist) command.
 
@@ -117,7 +119,9 @@ Example: `rlist 1` will enter the **Record List View** of `Alex Yeoh`
 <div style="page-break-after: always;"></div>
 **Record List View:**
 
-![ui-record-list](images/UiRecords.png){: .shadow}
+<p align="center" width="100%">
+<img src="images/UiRecords.png" alt="ui-records" width="550"/>
+</p>
 
 To return to the Patient List View, simply type [`list`](#listing-all-patients-list).
 
@@ -140,7 +144,9 @@ go through the general command format.
 
 Here is an example command [`radd`](#adding-a-record-radd):
 
-![command-format](images/CommandFormat.png){: .shadow}
+<p align="center" width="100%">
+<img src="images/CommandFormat.png.png" alt="command-format" width="550"/>
+</p>
 
 1. **Command Word**: Determines what action you want OmniHealth to execute.
 2. **User Input Fields**: Parameters which you input **valid data** with.
