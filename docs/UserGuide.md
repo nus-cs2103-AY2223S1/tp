@@ -294,7 +294,7 @@ When you want to close PayMeLah using your keyboard (rather than your mouse), th
 `exit`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You can also click the 'X' button in the upper right corner of the PayMeLah window. There is no difference, and both methods exit PayMeLah safely.
+You can also click the 'X' button at the top of the PayMeLah window. There is no difference, and both methods exit PayMeLah safely.
 </div>
 
 
@@ -312,7 +312,7 @@ This command adds a person to PayMeLah.
 
 **When to use:**<br>
 When you want to start tracking debts owed by a particular person, you can use this command to first add that person (and some of their particulars, like their phone number or Telegram handle) to PayMeLah.
-After adding the person to PayMeLah, you can [add debts to start tracking](#adding-a-debt-adddebt).
+After adding the person to PayMeLah, you can [add debts](#adding-a-debt-adddebt) to them for tracking.
 
 **Format:**<br>
 `add n/<name> [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]…`
@@ -344,7 +344,7 @@ When a person’s particulars in PayMeLah have changed (e.g. phone number or Tel
 **Additional information:**<br>
 * Edits the person at the specified `<index>`. The index refers to the person index shown in the displayed person list.
 * At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
+* Pre-existing values will be updated to the input values.
 * You can remove all the person’s tags by typing `t/` without
   specifying any tags after it.
 
@@ -511,7 +511,7 @@ When you want to indicate that a particular debt has been paid, but still keep a
 This command marks the debts specified from a person in PayMeLah as unpaid. Specifying multiple debts will mark all those debts as unpaid.
 
 **When to use:**<br>
-When you realise that a previously marked-as-paid debt has in fact not been repaid yet, you can use this command to indicate that it is still unpaid.
+When you realise that a debt you had previously [marked as paid](#marking-debts-as-paid-mark) was actually not paid yet, you can use this command to indicate that it is still unpaid.
 
 **Format:**<br>
 `unmark <person index> debt/<debt index…>`
