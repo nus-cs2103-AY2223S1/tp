@@ -8,6 +8,7 @@ title: User Guide
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Introduction
 
@@ -35,7 +36,9 @@ interactive graphical icons such as buttons.
 If you are interested to try, jump to [Quick Start](#quick-start) to learn how to start using **FRIDAY**!
 
 --------------------------------------------------------------------------------------------------------------------
-## Quick Start
+<div style="page-break-after: always;"></div>
+
+## Quick start
 
 This section guides you along the process of downloading and opening FRIDAY.
 
@@ -65,6 +68,8 @@ This section guides you along the process of downloading and opening FRIDAY.
 [Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## About
 ### Document Structure
 This User Guide has been structured in a way to help you find information easily and quickly. In the next subsection
@@ -152,6 +157,7 @@ In this image above we have a labelled box in red called the command box. CLI or
 [Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Features
 
@@ -162,7 +168,9 @@ This section contains all the information and details of each feature of **FRIDA
 4. [Miscellaneous Features](#miscellaneous-features)
 5. [Features for Advanced Users](#features-for-advanced-users)
 
-### Student Management
+<div style="page-break-after: always;"></div>
+
+## Student management
 
 These features allow you to add and delete students, and edit their details.
 
@@ -282,6 +290,7 @@ Outcome: The student at the 1st index (Alex Yap) will have the remark "Aspiring 
 
 [Table of Contents](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
 
 ### Organizing Students
 
@@ -377,6 +386,7 @@ Format: `list`
 
 [Table of Contents](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
 
 ### Grading Students
 
@@ -470,19 +480,21 @@ Format: `unmark INDEX`
 * The index of the student must be specified and there should be exactly one `INDEX` parameter.
 </div>
 
-Example before entering `unmark 1` (Assuming student 1's Mastery Check has previously been marked as passed):
+Example: Enter `unmark 1` (Assuming student 1's Mastery Check has previously been marked as passed).
 
 ![UnmarkCommandBefore.png](images/UnmarkCommandBefore.png)
 <i> Before unmark command</i>
 
-Example after entering `unmark 1`:
+Outcome: The Mastery Check of the first student in the list has been unmarked.
 
 ![UnmarkCommandOutcome.png](images/UnmarkCommandOutcome.png)
 <i> Outcome of unmark command</i>
 
 As you can see, the "(passed)" status has been removed from student 1's Mastery Check after the `unmark` command is run.
 
-### Features for advanced users
+<div style="page-break-after: always;"></div>
+
+## Features for advanced users
 
 These features help you personalize your FRIDAY experience and improve your productivity when using FRIDAY.
 
@@ -548,7 +560,9 @@ Views all [aliases](#glossary) in FRIDAY, so that you know what aliases you have
 
 Format: `aliaslist`
 
-### Miscellaneous Features
+<div style="page-break-after: always;"></div>
+
+## Miscellaneous features
 
 Other features that aid you in using FRIDAY.
 
@@ -594,6 +608,7 @@ If your changes to the data file makes its format invalid, FRIDAY will ignore al
 
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## FAQ
 
@@ -627,6 +642,7 @@ Some Frequently Asked Questions:
 
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Command Summary
 
@@ -652,6 +668,7 @@ Some Frequently Asked Questions:
 [Table of Contents](#table-of-contents)
 
 ---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Glossary
 1. **CS1101S:** CS1101S Programming Methodology is a Computer Science module in National Univeristy of Singapore (NUS), School of Computing. This module introduces the concepts of programming and computational problem-solving, and is the first and foremost introductory module to computing, hence it is usually taken by first year Computer Science undergraduate students.
@@ -666,26 +683,28 @@ Some Frequently Asked Questions:
 
 6. **JAR:** The file format of FRIDAY.
 
-7. **Command:** The text that you type in the input command box is a command.
+7. **Home folder:** The folder in which you want to store all FRIDAY-related files.
 
-8. **Parameter:** The text that follows the first word of your input in the input box.
+8. **Command:** The text that you enter in the input box is a command.
 
-9. **Prefix:** A word or letter used in commands to specify the field you are adding, editing or sorting by.
+9. **Parameter:** The text that follows the first word of your input in the input box.
 
-10. **RA1:** Reading assessment 1 is a minor assessment in the CS1101S module that tests the content of the first half of the CS1101S module.
+10. **Prefix:** A word or letter used in commands to specify the field you are adding, editing or sorting by.
 
-11. **RA2:** Reading assessment 2 is a minor assessment in the CS1101S module that tests the content of the second half of the CS1101S module.
+11. **RA1:** Reading assessment 1 is a minor assessment in the CS1101S module that tests the content of the first half of the CS1101S module.
 
-12. **Midterm:** Midterm examination is a major assessment that occurs halfway through the CS1101S module.
+12. **RA2:** Reading assessment 2 is a minor assessment in the CS1101S module that tests the content of the second half of the CS1101S module.
 
-13. **Practical:** Practical examination is a major non-paper assessment that occurs at the end of the CS1101S module.
+13. **Midterm:** Midterm examination is a major assessment that occurs halfway through the CS1101S module.
 
-14. **Final:** Final examination is a major paper assessment that occurs at the end of the CS1101S module.
+14. **Practical:** Practical examination is a major non-paper assessment that occurs at the end of the CS1101S module.
 
-15. **Mastery Check:** A pass/fail assessment on students to assess their understanding of the concepts taught. There are 2 Mastery checks per semester.
+15. **Final:** Final examination is a major paper assessment that occurs at the end of the CS1101S module.
 
-16. **Alias:** A nickname or an alternate name that you can set for a command.
+16. **Mastery Check:** A pass/fail assessment on students to assess their understanding of the concepts taught. There are 2 Mastery checks per semester.
 
-17. **Telegram Handle:** The username in the widely-used messaging application Telegram.
+17. **Alias:** A nickname or an alternate name that you can set for a command.
+
+18. **Telegram Handle:** The username in the widely-used messaging application Telegram.
 
 [Table of Contents](#table-of-contents)
