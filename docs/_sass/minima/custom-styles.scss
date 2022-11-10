@@ -32,6 +32,18 @@ h2, h3, h4, h5, h6 {
   }
 }
 
+h4#command-line-section {
+  color: #900603;
+}
+
+h4#person-list-section {
+  color: #1fc72b;
+}
+
+h4#debt-list-section {
+  color: #0000b9;
+}
+
 // Keyboard key style from https://developer.mozilla.org/en-US/docs/Web/HTML/Element/kbd
 kbd {
   background-color: #eee;
