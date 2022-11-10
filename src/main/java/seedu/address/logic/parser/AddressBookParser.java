@@ -6,16 +6,31 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddCommissionCommand;
+import seedu.address.logic.commands.AddCustomerCommand;
+import seedu.address.logic.commands.AllCommissionCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.DeleteCommissionCommand;
+import seedu.address.logic.commands.DeleteCustomerCommand;
+import seedu.address.logic.commands.EditCommissionCommand;
+import seedu.address.logic.commands.EditCustomerCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindCommissionCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListCommissionCommand;
+import seedu.address.logic.commands.OpenCommissionCommand;
+import seedu.address.logic.commands.OpenCustomerCommand;
+import seedu.address.logic.commands.SortCustomerCommand;
+import seedu.address.logic.commands.iteration.AddIterationCommand;
+import seedu.address.logic.commands.iteration.DeleteIterationCommand;
+import seedu.address.logic.commands.iteration.EditIterationCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.iteration.AddIterationCommandParser;
+import seedu.address.logic.parser.iteration.DeleteIterationCommandParser;
+import seedu.address.logic.parser.iteration.EditIterationCommandParser;
 
 /**
  * Parses user input.
@@ -44,14 +59,29 @@ public class AddressBookParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+        case AddCustomerCommand.COMMAND_WORD:
+            return new AddCustomerCommandParser().parse(arguments);
 
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
+        case AddCommissionCommand.COMMAND_WORD:
+            return new AddCommissionCommandParser().parse(arguments);
 
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
+        case OpenCustomerCommand.COMMAND_WORD:
+            return new OpenCustomerCommandParser().parse(arguments);
+
+        case OpenCommissionCommand.COMMAND_WORD:
+            return new OpenCommissionCommandParser().parse(arguments);
+
+        case EditCustomerCommand.COMMAND_WORD:
+            return new EditCustomerCommandParser().parse(arguments);
+
+        case EditCommissionCommand.COMMAND_WORD:
+            return new EditCommissionCommandParser().parse(arguments);
+
+        case EditIterationCommand.COMMAND_WORD:
+            return new EditIterationCommandParser().parse(arguments);
+
+        case DeleteCustomerCommand.COMMAND_WORD:
+            return new DeleteCustomerCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
@@ -59,14 +89,35 @@ public class AddressBookParser {
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
+        case FindCommissionCommand.COMMAND_WORD:
+            return new FindCommissionCommandParser().parse(arguments);
+
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+
+        case ListCommissionCommand.COMMAND_WORD:
+            return new ListCommissionCommand();
+
+        case AllCommissionCommand.COMMAND_WORD:
+            return new AllCommissionCommand();
+
+        case AddIterationCommand.COMMAND_WORD:
+            return new AddIterationCommandParser().parse(arguments);
+
+        case DeleteIterationCommand.COMMAND_WORD:
+            return new DeleteIterationCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case DeleteCommissionCommand.COMMAND_WORD:
+            return new DeleteCommissionCommandParser().parse(arguments);
+
+        case SortCustomerCommand.COMMAND_WORD:
+            return new SortCustomerCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

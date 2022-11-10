@@ -5,55 +5,59 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+With our ArtBuddy, we would like to power up the way commission-based artists have been managing their business
+and help them reach to their maximum potential. With our passion for arts, we have realized that we don't have a suitable application
+that helps artists manage their business. With our application, artists will be able to leave all their administrative tasks to ArtBuddy
+and focus on creating their best art.
 
 ## Project team
 
-### John Doe
+### Nyamdavaa Amar
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/nvmdava.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/nvmdava)]
+[[portfolio](team/nvmdava.md)]
 
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: Storage
 
-### Johnny Doe
+### Leong See Leng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/seelengxd.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/seelengxd)]
+[[portfolio](team/seelengxd.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Model, Code Quality
 
-### James Doe
+### Chloe Lim
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/chloeelim.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/chloeelim)]
+[[portfolio](team/chloeelim.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: UI, Integration
+
+### Ng Xing Yu
+
+<img src="images/ngxingyu.png" alt="ngxingyu" width="200px">
+
+[[github](http://github.com/ngxingyu)]
+[[portfolio](team/ngxingyu.md)]
+
+* Role: Developer
+* Responsibilities: Logic + Testing
+
+### James Chiu
+
+<img src="images/zlimez.png" alt="jameschiu" width="200px">
+
+[[github](http://github.com/zlimez)]
+[[portfolio](team/zlimez.md)]
+
+* Role: Developer
+* Responsibilities: Model + Documentation

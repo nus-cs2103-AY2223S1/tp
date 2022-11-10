@@ -2,7 +2,7 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalCustomers.getTypicalAddressBook;
 
 import java.nio.file.Path;
 
@@ -26,7 +26,8 @@ public class StorageManagerTest {
     public void setUp() {
         JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        SimpleImageStorage imageStorage = new SimpleImageStorage(getTempFilePath("images/"));
+        storageManager = new StorageManager(addressBookStorage, userPrefsStorage, imageStorage);
     }
 
     private Path getTempFilePath(String fileName) {

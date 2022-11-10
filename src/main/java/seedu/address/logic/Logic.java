@@ -3,12 +3,17 @@ package seedu.address.logic;
 import java.nio.file.Path;
 
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.util.Pair;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.ObservableObject;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.commission.Commission;
+import seedu.address.model.customer.Customer;
+import seedu.address.ui.GuiTab;
 
 /**
  * API of the Logic component
@@ -30,9 +35,13 @@ public interface Logic {
      */
     ReadOnlyAddressBook getAddressBook();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the sorted and filtered list of customers */
+    ObservableList<Customer> getSortedFilteredCustomerList();
 
+    /**
+     * Returns an unmodifiable view of the filtered list of commission
+     */
+    ObservableObject<Pair<Customer, FilteredList<Commission>>> getObservableFilteredCommissionList();
     /**
      * Returns the user prefs' address book file path.
      */
@@ -47,4 +56,26 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Returns the currently selected customer.
+     */
+    ObservableObject<Customer> getSelectedCustomer();
+
+    void selectCustomer(Customer customer);
+
+    /**
+     * Returns the currently selected commission.
+     */
+    ObservableObject<Commission> getSelectedCommission();
+
+    void selectCommission(Commission commission);
+
+    /** Selects a customer within the existing list */
+    void selectValidCustomer();
+
+    /** Selects a commission within the existing list */
+    void selectValidCommission();
+
+    GuiTab getSelectedTab();
 }

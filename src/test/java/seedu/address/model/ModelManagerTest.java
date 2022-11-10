@@ -2,11 +2,13 @@ package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CUSTOMERS;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalCustomers.ALICE;
+import static seedu.address.testutil.TypicalCustomers.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -14,9 +16,15 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.transformation.FilteredList;
+import javafx.util.Pair;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.commission.Commission;
+import seedu.address.model.customer.Customer;
+import seedu.address.model.customer.NameContainsKeywordsPredicate;
 import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.testutil.CommissionBuilder;
+import seedu.address.testutil.CustomerBuilder;
 
 public class ModelManagerTest {
 
@@ -27,6 +35,8 @@ public class ModelManagerTest {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
         assertEquals(new AddressBook(), new AddressBook(modelManager.getAddressBook()));
+        // Sets selected customer to ObservableObject of null if AddressBook is empty
+        assertNull(modelManager.getSelectedCustomer().getValue());
     }
 
     @Test
@@ -73,60 +83,107 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasPerson(null));
+    public void hasCustomer_nullCustomer_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasCustomer(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(modelManager.hasPerson(ALICE));
+    public void hasCustomer_customerNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.hasCustomer(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
-        modelManager.addPerson(ALICE);
-        assertTrue(modelManager.hasPerson(ALICE));
+    public void hasCustomer_customerInAddressBook_returnsTrue() {
+        modelManager.addCustomer(ALICE);
+        assertTrue(modelManager.hasCustomer(ALICE));
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    public void getSelectedCustomer_addressBookNonEmpty_returnsFirstCustomer() {
+        modelManager.addCustomer(ALICE);
+        modelManager.selectCustomer(ALICE);
+        assertEquals(ALICE, modelManager.getSelectedCustomer().getValue());
     }
+
+    @Test
+    public void selectCustomer() {
+        modelManager.addCustomer(ALICE);
+        modelManager.selectCustomer(ALICE);
+        modelManager.addCustomer(BENSON);
+        assertEquals(ALICE, modelManager.getSelectedCustomer().getValue());
+        modelManager.selectCustomer(BENSON);
+        assertEquals(BENSON, modelManager.getSelectedCustomer().getValue());
+
+    }
+
+    @Test
+    public void getSortedFilteredCustomerList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getSortedFilteredCustomerList().remove(0));
+    }
+
+    @Test
+    public void selectCustomer_newCustomer_selectsNewCustomer() {
+        Customer testCustomer = new CustomerBuilder(ALICE).build();
+        modelManager.addCustomer(testCustomer);
+        Commission testCommission = new CommissionBuilder().build(testCustomer);
+        testCustomer.addCommission(testCommission);
+        modelManager.selectCustomer(testCustomer);
+        assertEquals(testCustomer, modelManager.getSelectedCustomer().getValue());
+        modelManager.addCustomer(BENSON);
+        modelManager.selectCustomer(BENSON);
+        assertEquals(BENSON, modelManager.getSelectedCustomer().getValue());
+        modelManager.selectCustomer(null);
+        assertNull(modelManager.getSelectedCommission().getValue());
+    }
+
+    @Test
+    public void addCommission_emptyList_updatesObservableList() {
+        Customer aliceCopy = new CustomerBuilder(ALICE).build();
+        modelManager.selectCustomer(null);
+        Pair<Customer, FilteredList<Commission>> originalList =
+                modelManager.getObservableFilteredCommissionList().getValue();
+        modelManager.addCustomer(aliceCopy);
+        Commission testCommission = new CommissionBuilder().build(aliceCopy);
+        modelManager.selectCustomer(aliceCopy);
+        aliceCopy.addCommission(testCommission);
+        assertNotEquals(originalList, modelManager.getObservableFilteredCommissionList().getValue());
+    }
+
 
     @Test
     public void equals() {
-        AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        AddressBook addressBook = new AddressBookBuilder().withCustomer(ALICE).withCustomer(BENSON).build();
         AddressBook differentAddressBook = new AddressBook();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
         modelManager = new ModelManager(addressBook, userPrefs);
         ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs);
-        assertTrue(modelManager.equals(modelManagerCopy));
+        assertEquals(modelManager, modelManagerCopy);
 
         // same object -> returns true
-        assertTrue(modelManager.equals(modelManager));
+        assertEquals(modelManager, modelManager);
 
         // null -> returns false
-        assertFalse(modelManager.equals(null));
+        assertNotEquals(null, modelManager);
 
         // different types -> returns false
-        assertFalse(modelManager.equals(5));
+        assertNotEquals(5, modelManager);
 
         // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
+        assertNotEquals(modelManager, new ModelManager(differentAddressBook, userPrefs));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
+        modelManager.updateFilteredCustomerList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        assertNotEquals(modelManager, new ModelManager(addressBook, userPrefs));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        modelManager.updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
+        assertNotEquals(modelManager, new ModelManager(addressBook, differentUserPrefs));
     }
 }

@@ -1,0 +1,54 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddIterationCommandParser" as AddIterationCommandParser LOGIC_COLOR
+participant "t:AddIterationCommand" as AddIterationCommand LOGIC_COLOR
+participant "**<<class>>**\nParserUtil" as ParserUtil LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "toAdd:Iteration" as Iteration MODEL_COLOR
+end box
+
+mainframe **sd**  parse additer user input
+
+AddressBookParser -> AddIterationCommandParser : parse("d/2022-10-10\n\
+n/Changed the colour scheme \np//Users/john/Downloads/Draft 1.png\n\
+f/Updated colour scheme is much better")
+activate AddIterationCommandParser
+
+AddIterationCommandParser -> ParserUtil : parseDate("2022-10-10")
+activate ParserUtil
+
+ParserUtil --> AddIterationCommandParser : date
+deactivate ParserUtil
+
+AddIterationCommandParser -> ParserUtil : parseIterationDescription("Changed the colour scheme")
+activate ParserUtil
+
+ParserUtil --> AddIterationCommandParser : description
+deactivate ParserUtil
+
+AddIterationCommandParser -> ParserUtil : parseImagePath("/Users/john/Downloads/Draft 1.png")
+activate ParserUtil
+
+ParserUtil --> AddIterationCommandParser : path
+deactivate ParserUtil
+
+AddIterationCommandParser -> ParserUtil : parseFeedback("Updated colour scheme is much better")
+activate ParserUtil
+
+ParserUtil --> AddIterationCommandParser : feedback
+deactivate ParserUtil
+
+create Iteration
+AddIterationCommandParser -> Iteration
+activate Iteration
+
+Iteration --> AddIterationCommandParser : toAdd
+deactivate Iteration
+
+AddIterationCommandParser --> AddressBookParser : toAdd
+@enduml

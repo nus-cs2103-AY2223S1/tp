@@ -1,5 +1,6 @@
 package seedu.address.storage;
 
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
@@ -19,13 +20,16 @@ public class StorageManager implements Storage {
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private AddressBookStorage addressBookStorage;
     private UserPrefsStorage userPrefsStorage;
+    private ImageStorage imageStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage,
+                          ImageStorage imageStorage) {
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
+        this.imageStorage = imageStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -75,4 +79,33 @@ public class StorageManager implements Storage {
         addressBookStorage.saveAddressBook(addressBook, filePath);
     }
 
+    @Override
+    public Path getBaseDirectoryPath() {
+        return imageStorage.getBaseDirectoryPath();
+    }
+
+    @Override
+    public Path getRandomImagePath() {
+        return imageStorage.getRandomImagePath();
+    }
+
+    @Override
+    public boolean isPathInBaseDirectory(Path path) {
+        return imageStorage.isPathInBaseDirectory(path);
+    }
+
+    @Override
+    public boolean isValidImage(Path path) {
+        return imageStorage.isValidImage(path);
+    }
+
+    @Override
+    public BufferedImage getImage(Path path) throws IOException {
+        return imageStorage.getImage(path);
+    }
+
+    @Override
+    public void saveImage(BufferedImage image, Path path) throws IOException {
+        imageStorage.saveImage(image, path);
+    }
 }

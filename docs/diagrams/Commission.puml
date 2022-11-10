@@ -1,0 +1,28 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+class Customer
+class UniqueCommissionList
+class Commission
+class Title
+class Fee
+class Deadline
+class CompletionStatus
+class UniqueIterationList
+class Tag
+class Description
+
+Customer *--> "1" UniqueCommissionList
+UniqueCommissionList --> "*" Commission
+Commission --> "1" Customer
+Commission *--> "1" Title
+Commission *--> "1" Fee
+Commission *--> "1" Deadline
+Commission *--> "1" CompletionStatus
+Commission *--> "0..1" Description
+Commission *--> "1" UniqueIterationList
+Commission *--> "*" Tag
+@enduml

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Region?>
+
+<VBox id="iterationListItem" fx:id="iterationListItem"
+      xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" prefWidth="0">
+
+    <BorderPane style="-fx-padding: 4 16 4 16">
+        <left>
+            <Label fx:id="id" styleClass="cell_small_label" text="\$id"
+                   style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-font-family: Arial;
+                   -fx-text-fill: #666C77;">
+                <BorderPane.margin>
+                    <Insets right="16"/>
+                </BorderPane.margin>
+            </Label>
+        </left>
+        <center>
+            <HBox alignment="CENTER_LEFT">
+                <Label fx:id="description" styleClass="cell_small_label"
+                       style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-font-family: Arial;
+                       -fx-text-fill: #D8D8D8;" text="\$description" wrapText="true">
+                    <minHeight>
+                        <!-- Ensures that the label text is never truncated (with the wrapText attribute)-->
+                        <Region fx:constant="USE_PREF_SIZE" />
+                    </minHeight>
+                </Label>
+                <BorderPane.margin>
+                    <Insets right="16"/>
+                </BorderPane.margin>
+            </HBox>
+        </center>
+        <right>
+            <HBox alignment="TOP_RIGHT">
+                <Label fx:id="date" styleClass="cell_small_label" text="\$date"
+                       style="-fx-text-fill: #666C77"/>
+            </HBox>
+        </right>
+        <VBox.margin>
+            <Insets top="4.0" bottom="8.0" />
+        </VBox.margin>
+    </BorderPane>
+    <HBox alignment="CENTER_LEFT" style="-fx-padding: 4 16 4 16">
+        <ImageView fx:id="artImage" fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+            <HBox.margin>
+                <Insets right="16.0" />
+            </HBox.margin>
+        </ImageView>
+        <Label fx:id="feedback" style="-fx-text-align: CENTER;" styleClass="cell_small_label" text="\$feedback"
+               wrapText="true">
+            <minHeight>
+                <!-- Ensures that the label text is never truncated (with the wrapText attribute)-->
+                <Region fx:constant="USE_PREF_SIZE" />
+            </minHeight>
+        </Label>
+    </HBox>
+    <VBox.margin>
+        <Insets bottom="4.0" />
+    </VBox.margin>
+</VBox>

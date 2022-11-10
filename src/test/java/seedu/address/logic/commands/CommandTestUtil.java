@@ -3,23 +3,38 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FEE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ITERATION_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ITERATION_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ITERATION_FEEDBACK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ITERATION_IMAGEPATH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.iteration.EditIterationCommand;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.model.commission.Commission;
+import seedu.address.model.customer.Customer;
+import seedu.address.model.customer.NameContainsKeywordsPredicate;
+import seedu.address.storage.Storage;
+import seedu.address.testutil.EditCommissionDescriptorBuilder;
+import seedu.address.testutil.EditCustomerDescriptorBuilder;
+import seedu.address.testutil.EditIterationDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -36,6 +51,75 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_TAG_ANIMAL = "animal";
+    public static final String VALID_TAG_CARNIVORE = "carnivore";
+    public static final String VALID_TAG_HERBIVORE = "herbivore";
+    public static final String VALID_TAG_MAMMAL = "mammal";
+    public static final String VALID_TAG_FISH = "fish";
+    public static final String VALID_TAG_BIRD = "bird";
+    public static final String VALID_TAG_PET = "pet";
+    public static final String VALID_TAG_MARINE = "marine";
+    public static final String VALID_TAG_LAND = "land";
+    public static final String VALID_TAG_FOOD = "food";
+
+    public static final String VALID_TITLE_CAT = "Garfield Cat";
+    public static final String VALID_TITLE_DOG = "Poodle Dog";
+    public static final String VALID_TITLE_ELEPHANT = "African Elephant";
+    public static final String VALID_TITLE_PENGUIN = "King Penguin";
+    public static final String VALID_TITLE_SHARK = "Great White Shark";
+    public static final String VALID_TITLE_ZEBRA = "African Zebra";
+    public static final String VALID_TITLE_WHALE = "Great Blue Whale";
+    public static final String VALID_TITLE_DEER = "Bambi Deer";
+    public static final String VALID_DESCRIPTION_CAT = "A white cat";
+    public static final String VALID_DESCRIPTION_DOG = "A black dog";
+    public static final String VALID_DESCRIPTION_ELEPHANT = "A red elephant";
+    public static final String VALID_DESCRIPTION_PENGUIN = "A cute penguin";
+    public static final String VALID_DESCRIPTION_SHARK = "A fierce shark";
+    public static final String VALID_DESCRIPTION_ZEBRA = "A camouflaged zebra";
+    public static final String VALID_DESCRIPTION_WHALE = "A big whale";
+    public static final String VALID_DESCRIPTION_DEER = "A beautiful deer";
+
+    public static final String VALID_FEE_LITTLE = "0.341245";
+    public static final String VALID_FEE_NORMAL = "50.03";
+
+    public static final String VALID_FALSE_STATUS = "False";
+    public static final String VALID_TRUE_STATUS = "true";
+
+    public static final String VALID_DATE_FIRST_DAY_OF_YEAR = "2022-01-01";
+    public static final String VALID_DATE_LAST_DAY_OF_YEAR = "2022-12-31";
+    public static final String INVALID_DATE_YYYY_M_D = "2022-3-1";
+    public static final String INVALID_DATE_YY_MM_DD = "22-2-2";
+    public static final String INVALID_DATE_NO_DELIMINATOR = "2022 10 10";
+
+    public static final String VALID_ITERATION_DESCRIPTION_FINALISE = "Finalised the commission";
+    public static final String VALID_ITERATION_DESCRIPTION_COLOR = "Added colours to the artwork";
+    public static final String VALID_ITERATION_DESCRIPTION_REMOVE = "Removed the character from the scene";
+    public static final String VALID_FEEDBACK_HORRIBLE = "This looks horrible!";
+    public static final String VALID_FEEDBACK_UGLY = "The colours are very ugly- please change it";
+    public static final String VALID_FEEDBACK_AMAZING = "Wow, looks amazing";
+    public static final String VALID_ITERATION_IMAGEPATH_FINALISE = System.getProperty("user.dir")
+            + "/src/test/data/images/test_image_1.png";
+    public static final String VALID_ITERATION_IMAGEPATH_COLOR = System.getProperty("user.dir")
+            + "/src/test/data/images/test_image_2.png";
+
+    public static final String TITLE_DESC_CAT = " " + PREFIX_TITLE + VALID_TITLE_CAT;
+    public static final String TITLE_DESC_DOG = " " + PREFIX_TITLE + VALID_TITLE_DOG;
+    public static final String TITLE_DESC_ELEPHANT = " " + PREFIX_TITLE + VALID_TITLE_ELEPHANT;
+
+    public static final String FEE_DESC_LITTLE = " " + PREFIX_FEE + VALID_FEE_LITTLE;
+    public static final String FEE_DESC_NORMAL = " " + PREFIX_FEE + VALID_FEE_NORMAL;
+
+    public static final String STATUS_DESC_FALSE = " " + PREFIX_STATUS + VALID_FALSE_STATUS;
+    public static final String STATUS_DESC_TRUE = " " + PREFIX_STATUS + VALID_TRUE_STATUS;
+
+    public static final String DESC_OF_CAT = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_CAT;
+    public static final String DESC_OF_DOG = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_DOG;
+    public static final String DESC_OF_ELEPHANT = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_ELEPHANT;
+
+    public static final String DEADLINE_DESC_START = " " + PREFIX_DEADLINE
+            + VALID_DATE_FIRST_DAY_OF_YEAR;
+    public static final String DEADLINE_DESC_END = " " + PREFIX_DEADLINE
+            + VALID_DATE_LAST_DAY_OF_YEAR;
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -48,25 +132,68 @@ public class CommandTestUtil {
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
+    public static final String TAG_DESC_ANIMAL = " " + PREFIX_TAG + VALID_TAG_ANIMAL;
+
+    public static final String TAG_DESC_FOOD = " " + PREFIX_TAG + VALID_TAG_FOOD;
+
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
+    public static final String INVALID_TITLE_DESC = " " + PREFIX_TITLE + " ";
+
+    public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE + "next monday";
+
+    public static final String INVALID_STATUS_DESC = " " + PREFIX_STATUS + "troo :)";
+
+    public static final String INVALID_FEE_DESC = " " + PREFIX_FEE + "-1.2345678";
+
+    public static final String ITERATION_DESCRIPTION_DESC_FINALISE = " " + PREFIX_ITERATION_DESCRIPTION
+            + VALID_ITERATION_DESCRIPTION_FINALISE;
+    public static final String ITERATION_DESCRIPTION_DESC_COLOR = " " + PREFIX_ITERATION_DESCRIPTION
+            + VALID_ITERATION_DESCRIPTION_COLOR;
+    public static final String ITERATION_DATE_DESC_FINALISE = " " + PREFIX_ITERATION_DATE
+            + VALID_DATE_FIRST_DAY_OF_YEAR;
+    public static final String ITERATION_DATE_DESC_COLOR = " " + PREFIX_ITERATION_DATE
+            + VALID_DATE_LAST_DAY_OF_YEAR;
+    public static final String ITERATION_FEEDBACK_DESC_FINALISE = " " + PREFIX_ITERATION_FEEDBACK
+            + VALID_FEEDBACK_HORRIBLE;
+    public static final String ITERATION_FEEDBACK_DESC_COLOR = " " + PREFIX_ITERATION_FEEDBACK
+            + VALID_FEEDBACK_UGLY;
+    public static final String ITERATION_IMAGEPATH_DESC_FINALISE = " " + PREFIX_ITERATION_IMAGEPATH
+            + VALID_ITERATION_IMAGEPATH_FINALISE;
+    public static final String ITERATION_IMAGEPATH_DESC_COLOR = " " + PREFIX_ITERATION_IMAGEPATH
+            + VALID_ITERATION_DESCRIPTION_COLOR;
+
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditPersonDescriptor DESC_AMY;
-    public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditCustomerCommand.EditCustomerDescriptor DESC_AMY;
+    public static final EditCustomerCommand.EditCustomerDescriptor DESC_BOB;
+
+    public static final EditCommissionCommand.EditCommissionDescriptor DESC_CAT;
+    public static final EditCommissionCommand.EditCommissionDescriptor DESC_DOG;
+
+    public static final EditIterationCommand.EditIterationDescriptor DESC_FINALISE;
+    public static final EditIterationCommand.EditIterationDescriptor DESC_COLOR;
 
     static {
-        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_AMY = new EditCustomerDescriptorBuilder().withName(VALID_NAME_AMY)
+            .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+            .withTags(VALID_TAG_FRIEND).build();
+        DESC_BOB = new EditCustomerDescriptorBuilder().withName(VALID_NAME_BOB)
+            .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
+            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_CAT = new EditCommissionDescriptorBuilder().withTitle(VALID_TITLE_CAT)
+                .withDescription(VALID_DESCRIPTION_CAT).withFee(50).build();
+        DESC_DOG = new EditCommissionDescriptorBuilder().withTitle(VALID_TITLE_DOG)
+                .withDescription(VALID_DESCRIPTION_DOG).withFee(60).build();
+        DESC_FINALISE = new EditIterationDescriptorBuilder()
+                .withDescription(VALID_ITERATION_DESCRIPTION_FINALISE).withFeedback(VALID_FEEDBACK_HORRIBLE).build();
+        DESC_COLOR = new EditIterationDescriptorBuilder().withDescription(VALID_ITERATION_DESCRIPTION_COLOR)
+                .withFeedback(VALID_FEEDBACK_UGLY).withDate(LocalDate.parse(VALID_DATE_LAST_DAY_OF_YEAR)).build();
     }
 
     /**
@@ -75,9 +202,9 @@ public class CommandTestUtil {
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-            Model expectedModel) {
+                                            Model expectedModel) {
         try {
-            CommandResult result = command.execute(actualModel);
+            CommandResult result = command.execute(actualModel, null);
             assertEquals(expectedCommandResult, result);
             assertEquals(expectedModel, actualModel);
         } catch (CommandException ce) {
@@ -90,7 +217,7 @@ public class CommandTestUtil {
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) {
+                                            Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
@@ -99,30 +226,46 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered person list and selected person in {@code actualModel} remain unchanged
+     * - the address book, filtered customer list and selected customer in {@code actualModel} remain unchanged
      */
-    public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
+    public static void assertCommandFailure(Command command, Model actualModel, Storage actualStorage,
+                                            String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
-        List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
+        List<Customer> expectedFilteredList = new ArrayList<>(actualModel.getSortedFilteredCustomerList());
 
-        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
+        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel, actualStorage));
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
-        assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
+        assertEquals(expectedFilteredList, actualModel.getSortedFilteredCustomerList());
     }
+
     /**
-     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
+     * Updates {@code model}'s filtered list to show only the customer at the given {@code targetIndex} in the
      * {@code model}'s address book.
      */
-    public static void showPersonAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
+    public static void showCustomerAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getSortedFilteredCustomerList().size());
 
-        Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
-        final String[] splitName = person.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        Customer customer = model.getSortedFilteredCustomerList().get(targetIndex.getZeroBased());
+        final String[] splitName = customer.getName().fullName.split("\\s+");
+        model.updateFilteredCustomerList(new NameContainsKeywordsPredicate(Collections.singletonList(splitName[0])));
 
-        assertEquals(1, model.getFilteredPersonList().size());
+        assertEquals(1, model.getSortedFilteredCustomerList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the commission at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showCommissionAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getSortedFilteredCustomerList().size());
+
+        Commission targetCommission = model.getFilteredCommissionList().get(targetIndex.getZeroBased());
+        model.updateFilteredCommissionList(commission -> commission.isSameCommission(targetCommission));
+
+        assertEquals(1, model.getFilteredCommissionList().size());
+
     }
 
 }
