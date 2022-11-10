@@ -529,6 +529,8 @@ A contact can have any number of tags (including 0).
 
 - Assigns the task at the specified `TASK_INDEX` to the contact at the specified `CONTACT_INDEX`.
 - Existing assignments are not affected.
+- To view a task's assigned contact(s), you can view the labels on the right side of the task list. <br>e.g. In the diagram below, the 1st task is assigned to `Alex Yeoh`.
+  ![Assign contact](images/assign-contact.png)
 
 </div>
 
