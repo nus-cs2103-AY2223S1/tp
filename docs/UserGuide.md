@@ -3,42 +3,72 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+HackAssist is a desktop application which aims to help manage tasks in software development hackathons. In hackathon projects, task management is often hectic because we are required to complete a large number of tasks in a short amount of time. However, with HackAssist, we aim to make your task management workflow easier, so you can focus on building your hackathon project :)
+
+This guide provides an overview on how to perform the main functionalities of HackAssist: [People Management](#people-management) and [Tasks Management](#tasks-management).
+
+For advanced users, you can go straight to the [Command Summary](#command-summary).
 
 * Table of Contents
 {:toc}
-
+ 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
+   * To check if you have Java installed, please open up a terminal (search for `Command Prompt` on Windows and `Terminal` on Mac OS) and type in `java -version`. This will show your java version, if you have it installed.
+   * If you do not have Java 11 or above installed, please proceed to this [link](https://www.oracle.com/java/technologies/downloads/#java11) and download the appropriate Java for your operating system.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+2. Download the latest `HackAssist.jar` from [here](https://github.com/AY2223S1-CS2103T-F12-2/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+3. Copy the file to the folder you want to use as the _home folder_ for your HackAssist.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. A GUI similar to the one shown below will appear in a few seconds. Note how HackAssist contains sample data for you to experiment with.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * **`listTasks`** : Lists all tasks in the task list.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`addTask`**`n/Create profile page d/User profile pr/medium c/frontend dl/2023-01-01` : Adds task `Create profile page` to the task list.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+   * **`deleteTask`**`1` : Deletes the first task from the task list.
 
-   * **`clear`** : Deletes all contacts.
+   * **`help`** : Displays help text.
 
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+Refer to the [Features](#features) below for details of each command.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Layout
+
+![Ui](images/layout1.png)
+
+![Ui](images/layout2.png)
+
+1. Command Box: This is where you key in your commands. Press Enter to execute it.
+2. Feedback Box: This is where you can see the response from HackAssist when you execute a command. You will either see a confirmation message, or an error message informing you what went wrong with your command.
+
+3. Tabs: This is where you can choose for HackAssist to display Members or Tasks List
+
+4. Members/ Tasks List: This is where the current list is displayed which includes details about each member (person in your team) or task.
+
+5. Storage Location: This is where you can see the location of HackAssist data file.
+
+6. Tasks List Setting: This portion displays what the current sort and filter setting for Tasks List are, if any.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
+
+This section provides information on how you can use HackAssist commands for people management and tasks management.
+You can click [General](#general) to learn about general commands, [People Management](#people-management) to learn about commands specific to People Management, or [Task Management](#tasks-management) to learn about commands specific to Task Management.
+
+Before you learn any commands, please read the following notes about HackAssist command format.
 
 <div markdown="block" class="alert alert-info">
 
@@ -59,134 +89,303 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Any parameters given for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
 
-### Viewing help : `help`
+<br>
 
-Shows a message explaning how to access the help page.
+### General
+
+#### Viewing help: `help`
+
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
 
+#### Clearing all entries: `clear`
 
-### Adding a person: `add`
-
-Adds a person to the address book.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
-
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
-
-### Listing all persons : `list`
-
-Shows a list of all persons in the address book.
-
-Format: `list`
-
-### Editing a person : `edit`
-
-Edits an existing person in the address book.
-
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
-
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-
-### Locating persons by name: `find`
-
-Finds persons whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
-### Deleting a person : `delete`
-
-Deletes the specified person from the address book.
-
-Format: `delete INDEX`
-
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
-
-### Clearing all entries : `clear`
-
-Clears all entries from the address book.
+Clears all contacts and tasks from the application.
 
 Format: `clear`
 
-### Exiting the program : `exit`
+#### Exiting the program: `exit`
 
 Exits the program.
 
 Format: `exit`
 
-### Saving the data
+#### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+HackAssist data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Editing the data file
+#### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+HackAssist data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, HackAssist will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
+<br>
 
-_Details coming soon ..._
+### People Management
+
+#### Adding a person: `add`
+
+Adds a new person to the address book.
+* Note: You cannot add a task if another task with the same name already exists in the task list.
+
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+
+<div markdown="span" class="alert alert-primary">:bulb: Tip:
+A person can have any number of tags (including 0)
+</div>
+
+Refer to the [Person Parameters](#person-parameters) section for details about the format of each parameter.
+
+Examples:
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 `
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal `
+
+#### Deleting a person: `delete`
+
+Deletes the specified person from the address book.
+* Note: This will delete the person permanently
+
+Format: `delete INDEX`
+
+* Deletes the person at the specified INDEX.
+* The index refers to the index number shown in the displayed person list.
+* The index must be a positive integer 1, 2, 3, …​
+
+Examples:
+* `list` followed by `delete 2 ` deletes the 2nd person in the address book.
+* `find Betsy` followed by `delete 1 ` deletes the 1st person in the results of the find command, which should be Betsy.
+
+#### Editing a person: `edit`
+
+Edits an existing person in the address book.
+The values inside [] indicate optional fields
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+
+
+* Edits the person at the specified INDEX. The index refers to the index number shown in the displayed person list. The index must be a positive integer 1, 2, 3, …​
+* At least one of the optional fields must be provided, otherwise you would not be updating anything.
+* Existing values will be updated to the input values.
+*  None of the provided optional fields may be of the same value as the original value
+* When editing tags, all existing tags of the person will be removed and completely replaced with the new tags.
+* You can remove all the person’s tags by typing `t/` without specifying any tags after it.
+* To edit what tasks a person is assigned to, instead of editing the person, edit the relevant task. The edit will be reflected in the person list after you edit the task. There is no way to edit a task using the edit person command.
+
+Examples:
+*  `edit 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 2 n/Betsy Crower t/` edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+
+#### Locating persons by name: `find`
+
+Finds persons whose names contain any of the given keywords.
+
+Format: `find KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g. hans will match Hans
+* The order of the keywords does not matter. e.g. Hans Bo will match Bo Hans
+* Only the names of people will be considered.
+* Only full words will be matched e.g. Han will not match Hans
+* Persons matching at least one keyword will be returned (i.e. only one keyword has to match).
+  e.g. Hans Bo will return Hans Gruber, Bo Yang, despite the fact that neither match Hans Bo (both names match at least one word)
+
+Examples:
+* `find John` returns john and John Doe
+* `find alex david` returns Alex Yeoh, David Li<br>
+
+#### Listing all persons: `list`
+
+Shows a list of all persons in the address book.
+This command can be used to reset the displayed person list after a find command.
+
+Format: `list`
+
+<br>
+
+### Task Management
+
+The following commands are for viewing and managing your hackathon tasks. These tasks may be related to software development, product design, project presentation etc. Each task can be assigned to a person to represent that they are responsible for completing that task.
+
+#### Adding a task: `addTask`
+
+Adds a task to the task list. Note that you cannot add a task if another task with the same name already exists in the task list.
+
+Format: `addTask n/TASK_NAME d/DESCRIPTION pr/PRIORITY c/CATEGORY dl/DEADLINE [pe/EMAIL_OF_PERSON_ASSIGNED]`
+
+* If the optional parameter `pe/EMAIL_OF_PERSON_ASSIGNED` is provided, the task will be assigned to that person. If not, it will remain unassigned. This might be useful at the beginning of your project when you are scoping out the tasks that need to be done.
+
+Refer to the [Task Parameters](#task-parameters) section for details about the format of each parameter.
+
+Examples:
+
+* `addTask n/Fix toggle d/Fix dark mode button pr/low c/frontend dl/2022-12-12` adds task `Fix toggle` to the task list
+* `addTask n/Fix routing d/Handle routing for POST req pr/high c/backend dl/2022-11-11 pe/john@example.com` adds task `Fix routing` to the task list and assigns it to person with email `john@example.com`
+
+#### Deleting a task: `deleteTask`
+
+Deletes a task from the task list.
+* **Note: The task will be permanently deleted**. To mark a task as `completed` but have it remain in the task list, use the [`editTask`](#editing-a-task-edittask) command instead.
+
+Format: `deleteTask INDEX`
+* Deletes the task at the specified `INDEX`.
+* The index refers to the task number shown in the displayed task list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `deleteTask 1` deletes the first task from the displayed task list
+
+#### Editing a Task: `editTask`
+
+Edits the parameter(s) of an existing task in the task list. You can also use this command to mark tasks as `completed` or to assign the task to a person in your team.
+
+Format: `editTask INDEX [n/TASK_NAME] [d/DESCRIPTION] [pr/PRIORITY] [c/CATEGORY] [dl/DEADLINE] [pe/EMAIL_OF_PERSON_ASSIGNED] [do/IS_DONE]`
+
+* Edits the task at the specified `INDEX`. The `INDEX` refers to the index number shown in the displayed task list. It must be a positive integer 1, 2, 3, …​ and less than or equal to the number of tasks in the task list.
+* At least one of the optional fields must be provided.
+* None of the provided optional fields may be of the same value as the original value
+* Existing values will be updated to the input values.
+* To un-assign a person from a task, write `none` in the EMAIL_OF_PERSON_ASSIGNED field, i.e. `pe/none`.
+* To mark a task's status as `completed` or `not completed`, write `true` or `false` in the IS_DONE field, e.g. `do/true`.
+
+Refer to the [Task Parameters](#task-parameters) section for details about the format of each parameter.
+
+Examples:
+* `editTask 2 c/frontend pe/charlotte@example.com` edits the category of the 2nd task in the displayed task list to be `frontend` and assigns the task to  the person with email `charlotte@example.com`.
+* `editTask 4 do/true` marks the 4th task in the displayed task list as `completed`.
+
+#### Finding a Task using keywords: `findTask`
+
+Finds tasks with names or descriptions that contain any of the given keywords.
+
+Format: `findTask KEYWORD [MORE_KEYWORDS]...`
+
+* The search is case-insensitive. e.g. fix will match Fix
+* The order of the keywords does not matter. e.g. Toggle fix will match Fix toggle
+* The name and description are both searched.
+* Only full words will be matched e.g. Dark will not match Darkmode
+* Task with names or descriptions matching at least one keyword will be returned (i.e. OR search).
+  e.g. Fix will return Fix toggle, Fix routing
+
+Examples:
+* `findTask fix` returns Fix toggle and Fix routing
+* `findTask dark` returns Fix routing (description: Fix **dark** mode button)
+
+#### Filtering tasks: `filter`
+
+Filters the task list based on either CATEGORY or DEADLINE or both. Use this when you want to view only tasks in a certain category or before a certain deadline.
+
+Format: `filter [c/CATEGORY] [dl/DEADLINE]`
+
+* Filters the task list based on the parameters provided.
+* At least one of the optional parameters must be provided.
+* Only tasks that match the filter condition will be displayed in the task list.
+* To remove the filter, use the [`listTasks`](#viewing-all-tasks-listtasks) command.
+
+Refer to the [Task Parameters](#task-parameters) section for details about the format of each parameter.
+
+Examples:
+*  `filter c/backend` displays only tasks that have `backend` as CATEGORY
+*  `filter c/backend dl/2022-12-12` displays only tasks that have `backend` as CATEGORY and DEADLINE on `2022-12-12` or before
+
+#### Viewing all tasks: `listTasks`
+
+Displays all existing tasks in the task list. Use this after using the [`filter`](#filtering-tasks-filter) command to remove the filter.
+
+Format: `listTasks`
+
+#### Sorting tasks: `sort`
+
+Sorts the task list by the specified field in the specified order. For instance, you can sort tasks in descending order of PRIORITY to help you decide which tasks should be done first.
+
+Format: `sort [pr/ORDER] [dl/ORDER]`
+
+* Exactly one of the optional parameters must be provided.
+* Use the `pr/` parameter to sort by PRIORITY.
+* Use the `dl/` parameter to sort by DEADLINE.
+* Order must be either `asc` for ascending or `desc` for descending.
+
+Examples:
+* `sort pr/asc` sorts tasks by PRIORITY in ascending order
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Command summary
+
+| Action                | Format, Examples                                                                                                                                                                                                       |
+|-----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add Person**        | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`                                                  |
+| **Delete Person**     | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                    |
+| **Edit Person**       | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                           |
+| **Find Person**       | `find KEYWORD [MORE_KEYWORDS]` <br> e.g., `find James Jake`                                                                                                                                                            |
+| **List People**       | `list`                                                                                                                                                                                                                 |
+| **Clear All Entries** | `clear`                                                                                                                                                                                                                |
+| **Help**              | `help`                                                                                                                                                                                                                 |
+| **Add Task**          | `addTask n/TASK_NAME d/DESCRIPTION pr/PRIORITY c/CATEGORY dl/DEADLINE [pe/EMAIL_OF_PERSON_ASSIGNED]` <br> e.g., `addTask n/Fix toggle d/Fix dark mode button pr/low c/frontend dl/2022-12-12 pe/charlotte@example.com` |
+| **Edit Task**         | `editTask INDEX [n/TASK_NAME] [d/DESCRIPTION] [pr/PRIORITY] [c/CATEGORY] [dl/DEADLINE] [pe/EMAIL_OF_PERSON_ASSIGNED] [do/IS_DONE]` <br> e.g., `editTask 2 c/frontend pe/charlotte@example.com`                         |
+| **Delete Task**       | `deleteTask INDEX` <br> e.g., `deleteTask 1`                                                                                                                                                                           |
+| **List Tasks**        | `listTasks`                                                                                                                                                                                                            |
+| **Find Task**         | `findTask KEYWORD [MORE_KEYWORDS]...` <br> e.g., `findTask refactor`                                                                                                                                                   |
+| **Filter Tasks**      | `filter [c/CATEGORY] [dl/DEADLINE]` <br> e.g., `filter c/backend dl/2022-12-12`                                                                                                                                        |
+| **Sort Tasks**        | `sort [pr/ORDER] [dl/ORDER]` <br> e.g., `sort pr/asc`                                                                                                                                                                  |
+
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous HackAssist home folder.<br>
+**Q**: Do I need internet to run HackAssist?<br>
+**A**: Internet is not needed to run the application.<br>
+**Q**: Will my data be lost after closing the application?<br>
+**A**: No, your data will be stored in the `HackAssist.json` file. Data will only be lost if `HackAssist.json` file is deleted.<br>
+**Q**: How do I backup my data?<br>
+**A**: Create a copy of the `HackAssist.json` file in another directory.<br>
+**Q**: What is the difference between member (members) and person (people)?<br>
+**A**: Member (or team member) refers to `Person` objects in the contact.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## Glossary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+| Word      | Definition                                                                                                   |
+|-----------|--------------------------------------------------------------------------------------------------------------|
+| GUI       | Graphical User Interface - The visual representation of the application                                      |
+| Parameter | Inputs provided after the main command. For example, `c/uiux` is a parameter to the command `filter c/uiux`, |
+| JSON file | A file format (JavaScript Object Notation) used for storing data                                             |
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Appendix
+
+### Person Parameters
+
+| Parameter      | Format                                                                                                                                                                                                                                                                                                                                                                                             |
+|----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| n/NAME         | Should contain only alphanumeric characters and spaces                                                                                                                                                                                                                                                                                                                                             |
+| d/PHONE_NUMBER | Should contain only numbers                                                                                                                                                                                                                                                                                                                                                                        |
+| e/EMAIL        | Has 2 parts separated by a '@' character.<br /> <br /> The first should only contain alphanumeric characters and these special characters, +_.- <br /> <br />The second part should consists of one or more labels. These labels should :<br /> - have start and end with alphanumeric characters, <br /> - have be at least 2 characters long <br /> - have be separated only by hyphens, if any. |
+| c/ADDRESS      | No restriction on what characters can be entered in this field                                                                                                                                                                                                                                                                                                                                     |
+
+### Task Parameters
+
+| Parameter                   | Format                                                                                                                                                                                |
+|-----------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| n/NAME                      | Should contain only alphanumeric characters and spaces                                                                                                                                |
+| d/DESCRIPTION               | Should contain only alphanumeric characters and spaces                                                                                                                                |
+| pr/PRIORITY                 | Should be either  `high`, `medium`, or `low` (case-insensitive)                                                                                                                       |
+| c/CATEGORY                  | Should be one of the following (case-insensitive): <br/>- `database`<br/>- `frontend`<br/>- `backend`<br/>- `uiux`<br/>- `presentation`<br/>- `others`                                |
+| dl/DEADLINE                 | Should be in the format `YYYY-MM-DD` and after the current date                                                                                                                       |
+| pe/EMAIL_OF_PERSON_ASSIGNED | Should be the email address of an existing person (case-insensitive) in your contacts. For the [`editTask`](#editing-a-task-edittask) command, it can also be `none`, i.e. `pe/none`. |
+| do/IS_DONE                  | *For [`editTask`](#editing-a-task-edittask) command only.* Should be either `true` or `false` (case-insensitive)                                                                      |
+
+

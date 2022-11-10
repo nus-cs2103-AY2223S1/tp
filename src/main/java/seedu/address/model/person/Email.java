@@ -31,7 +31,20 @@ public class Email {
     private static final String DOMAIN_REGEX = "(" + DOMAIN_PART_REGEX + "\\.)*" + DOMAIN_LAST_PART_REGEX;
     public static final String VALIDATION_REGEX = LOCAL_PART_REGEX + "@" + DOMAIN_REGEX;
 
+
+    /**
+     * Email representing tasks with no person assigned.
+     */
+    private static final Email noEmail = new Email();
+
     public final String value;
+
+    /**
+     * Constructor for noEmail instance.
+     */
+    private Email() {
+        value = "NO PERSON";
+    }
 
     /**
      * Constructs an {@code Email}.
@@ -60,7 +73,7 @@ public class Email {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Email // instanceof handles nulls
-                && value.equals(((Email) other).value)); // state check
+                && value.equalsIgnoreCase(((Email) other).value)); // state check
     }
 
     @Override
@@ -68,4 +81,7 @@ public class Email {
         return value.hashCode();
     }
 
+    public static Email getNoEmailInstance() {
+        return noEmail;
+    }
 }

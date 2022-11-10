@@ -1,0 +1,90 @@
+@startuml
+!include style.puml
+
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":EditTaskCommandParser" as EditTaskCommandParser LOGIC_COLOR
+participant ":EditTaskCommand.EditTaskDescriptor" as EditTaskCommand.EditTaskDescriptor LOGIC_COLOR
+participant ":EditTaskCommand" as EditTaskCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute(\n"editTask 1 do/true")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(\n"editTask 1 do/true")
+activate AddressBookParser
+
+create EditTaskCommandParser
+AddressBookParser -> EditTaskCommandParser : EditTaskCommandParser()
+activate EditTaskCommandParser
+
+EditTaskCommandParser --> AddressBookParser
+deactivate EditTaskCommandParser
+
+
+AddressBookParser -> EditTaskCommandParser : parse("1 do/true")
+activate EditTaskCommandParser
+
+create EditTaskCommand.EditTaskDescriptor
+EditTaskCommandParser -> EditTaskCommand.EditTaskDescriptor : EditTaskDescriptor()
+activate EditTaskCommand.EditTaskDescriptor
+
+EditTaskCommand.EditTaskDescriptor --> EditTaskCommandParser
+deactivate EditTaskCommand.EditTaskDescriptor
+
+EditTaskCommandParser -> EditTaskCommand.EditTaskDescriptor : setDone(true)
+activate EditTaskCommand.EditTaskDescriptor
+EditTaskCommand.EditTaskDescriptor --> EditTaskCommandParser
+deactivate EditTaskCommand.EditTaskDescriptor
+
+create EditTaskCommand
+EditTaskCommandParser -> EditTaskCommand : EditTaskCommand(index, editTaskDescriptor)
+activate EditTaskCommand
+
+EditTaskCommand --> EditTaskCommandParser
+deactivate EditTaskCommand
+
+
+EditTaskCommandParser --> AddressBookParser
+deactivate EditTaskCommandParser
+
+AddressBookParser --> LogicManager
+
+LogicManager -> EditTaskCommand : execute()
+activate EditTaskCommand
+
+EditTaskCommand -> Model : getFilteredTaskList()
+activate Model
+Model --> EditTaskCommand
+
+
+EditTaskCommand -> EditTaskCommand : createEditedTask(\ntaskToEdit, \neditTaskDescriptor)
+activate EditTaskCommand
+deactivate EditTaskCommand
+
+
+EditTaskCommand -> Model : setTask(taskToEdit, editedTask)
+
+Model --> EditTaskCommand
+deactivate
+
+create CommandResult
+EditTaskCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditTaskCommand
+deactivate CommandResult
+
+EditTaskCommand --> LogicManager : commandResult
+deactivate EditTaskCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

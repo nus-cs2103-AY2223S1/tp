@@ -9,51 +9,51 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Sim Zhe Feng Kenneth
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/kennethsim2000.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/kennethsim2000)]
+[[portfolio](team/kennethsim2000.md)]
 
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: Overall project coordination and code quality
 
-### Johnny Doe
+### Aaron Li Wen Hao
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/alwhgithub.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/alwhgithub)]
+[[portfolio](team/alwhgithub.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Testing
+* Responsibilities: Ensures the testing of the project is done properly and on time
 
-### Jean Doe
+### Albert Ariel Widiaatmaja
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/albertarielw.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/albertarielw)]
+[[portfolio](team/albertarielw.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Management of Deliverables
+* Responsibilities: Ensure project deliverables are defined, assigned, and done on time in the right format
 
-### James Doe
+### Joe Eng Yu Siang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yusiangeng.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/yusiangeng)] [[portfolio](team/yusiangeng.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Integration
+* Responsibilities: Code versioning, maintaining code repository, and integrating various parts of the software to create a whole
+
+### Low Zan Hao
+
+<img src="images/paotheroo.png" width="200px">
+
+[[github](http://github.com/paotheroo)]
+[[portfolio](team/paotheroo.md)]
+
+* Role: Documentation
+* Responsibilities: Quality of various project documents

@@ -10,6 +10,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
+
 
 /**
  * Adds a person to the address book.
@@ -34,7 +36,8 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_PERSON = "A person with the same email address already exists in the"
+            + " address book";
 
     private final Person toAdd;
 
@@ -54,7 +57,15 @@ public class AddCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
+        for (Task task : model.getFilteredTaskList()) {
+            if (task.getEmail().equals(toAdd.getEmail())) {
+                task.setPerson(toAdd);
+                toAdd.addTask(task);
+            }
+        }
+
         model.addPerson(toAdd);
+        model.update();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

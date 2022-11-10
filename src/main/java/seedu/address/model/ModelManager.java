@@ -1,17 +1,26 @@
 package seedu.address.model;
 
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.task.Task;
+
 
 /**
  * Represents the in-memory model of the address book data.
@@ -22,6 +31,9 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Task> filteredTasks;
+    private final SortedList<Task> sortedTasks;
+
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,6 +46,15 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        sortedTasks = new SortedList<>(this.addressBook.getTaskList());
+        filteredTasks = new FilteredList<>(sortedTasks);
+        for (Person person : this.addressBook.getPersonList()) {
+            for (Task task : this.addressBook.getTaskList()) {
+                if (person.getEmail().equals(task.getEmail())) {
+                    person.addTask(task);
+                }
+            }
+        }
     }
 
     public ModelManager() {
@@ -43,14 +64,14 @@ public class ModelManager implements Model {
     //=========== UserPrefs ==================================================================================
 
     @Override
-    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
-        requireNonNull(userPrefs);
-        this.userPrefs.resetData(userPrefs);
+    public ReadOnlyUserPrefs getUserPrefs() {
+        return userPrefs;
     }
 
     @Override
-    public ReadOnlyUserPrefs getUserPrefs() {
-        return userPrefs;
+    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
+        requireNonNull(userPrefs);
+        this.userPrefs.resetData(userPrefs);
     }
 
     @Override
@@ -78,19 +99,36 @@ public class ModelManager implements Model {
     //=========== AddressBook ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public ReadOnlyAddressBook getAddressBook() {
+        return addressBook;
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public void setAddressBook(ReadOnlyAddressBook addressBook) {
+        this.addressBook.resetData(addressBook);
     }
 
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
         return addressBook.hasPerson(person);
+    }
+
+    @Override
+    public boolean hasPersonByEmail(Person person) {
+        requireNonNull(person);
+        try {
+            addressBook.getPersonByEmail(person.getEmail());
+            return true;
+        } catch (PersonNotFoundException e) {
+            return false;
+        }
+    }
+
+    @Override
+    public Person getPersonByEmail(Email email) throws PersonNotFoundException {
+        requireNonNull(email);
+        return addressBook.getPersonByEmail(email);
     }
 
     @Override
@@ -107,9 +145,39 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         addressBook.setPerson(target, editedPerson);
     }
+
+    @Override
+    public boolean hasTask(Task task) {
+        requireNonNull(task);
+        return addressBook.hasTask(task);
+    }
+
+    @Override
+    public void deleteTask(Task target) {
+        addressBook.removeTask(target);
+    }
+
+    @Override
+    public void addTask(Task task) {
+        addressBook.addTask(task);
+    }
+
+    @Override
+    public void setTask(Task target, Task editedTask) {
+        requireAllNonNull(target, editedTask);
+        addressBook.setTask(target, editedTask);
+    }
+
+    @Override
+    public void update() {
+        List<Person> newPersonList = new ArrayList<>(addressBook.getPersonList());
+        List<Task> newTaskList = new ArrayList<>(addressBook.getTaskList());
+        addressBook.setPersons(newPersonList);
+        addressBook.setTasks(newTaskList);
+    }
+
 
     //=========== Filtered Person List Accessors =============================================================
 
@@ -128,6 +196,30 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    //=========== Filtered Task List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Tasks} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Task> getFilteredTaskList() {
+        return filteredTasks;
+    }
+
+    @Override
+    public void updateFilteredTaskList(Predicate<Task> predicate) {
+        requireNonNull(predicate);
+        filteredTasks.setPredicate(predicate);
+    }
+
+
+    @Override
+    public void updateSortingCriteria(Comparator<Task> comparator) {
+        requireNonNull(comparator);
+        sortedTasks.setComparator(comparator);
+    }
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -142,9 +234,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
-                && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+        return addressBook.equals(other.addressBook) && userPrefs.equals(other.userPrefs)
+                && filteredPersons.equals(other.filteredPersons) && filteredTasks.equals(other.filteredTasks);
     }
-
 }
