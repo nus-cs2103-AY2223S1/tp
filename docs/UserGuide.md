@@ -6,6 +6,8 @@ This guide provides everything a CS1101S Teaching Assistant (TA) needs to know t
 
 To use this guide, simply click on the items you would like to learn more about in the table of contents, or scroll down to the relevant sections.
 
+# Table of Contents
+
 * Table of Contents
 {:toc}
 
@@ -21,6 +23,8 @@ Using JARVIS, the TA can
 
 If you are a CS1101S TA who is familiar with Command Line Interface and can type fast, JARVIS will allow you to efficiently manage your students, tasks and lessons.
 
+[🠕 Back To Top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 ## Using this guide
 
@@ -33,6 +37,7 @@ Before reading the rest of this guide, you might find it helpful to know the mea
 | :exclamation:        | Warnings you should read before proceeding |
 | `markdown`           | Commands or examples                       |    
 
+[🠕 Back To Top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 ## The Basics
@@ -78,6 +83,8 @@ Commands have to be written in the correct format to be used. The format for eac
 
 </div>
 
+[🠕 Back To Top](#table-of-contents)
+
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your computer. 
@@ -115,6 +122,8 @@ Commands have to be written in the correct format to be used. The format for eac
    * **`exit`** : Exits the app.
 
 7. Refer to the [Basic commands](#basic-commands) below to get started with the basic commands.
+
+[🠕 Back To Top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -206,6 +215,8 @@ This action is irreversible! Please think twice before you use this command!
 Exits the program. Your changes will be saved automatically.
 
 Format: `exit`
+
+[🠕 Back To Top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -316,6 +327,8 @@ Format: `mc STUDENT_INDEX num/MC_NUM r/MC_RESULT`
 Examples:
 * `mc 1 num/1 r/pass` sets the mastery check result for the 1st student in your student list to `PASS`.
 
+[🠕 Back To Top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
@@ -379,6 +392,8 @@ Format: `unmarktask TASK_INDEX`
 
 Example:
 * `unmarktask 2` marks the 2nd task in your task list as not done.
+
+[🠕 Back To Top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -560,6 +575,8 @@ Format: `addpart p/PARTICIPATION li/LESSON_INDEX si/STUDENT_INDEX`
 Example:
 * `addpart p/100 li/1 si/2` sets participation for the 2nd student in the 1st lesson in your lesson list to be 100.
 
+[🠕 Back To Top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
@@ -568,6 +585,8 @@ Example:
 ## Saving the data
 
 JARVIS data is saved in your hard disk automatically after any command that changes the data. There is no need to save manually.
+
+[🠕 Back To Top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -584,6 +603,8 @@ If you are an advanced user, you may update data directly by editing the data fi
 If your changes to the data file makes its format invalid, JARVIS will discard all data and start with empty data files at the next run.
 </div>
 
+[🠕 Back To Top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -593,6 +614,8 @@ If your changes to the data file makes its format invalid, JARVIS will discard a
 
 **Q**: Can I import my timetable into JARVIS to manage my other lessons?<br>
 **A**: This functionality is currently not supported by JARVIS but could be implemented in the future.
+
+[🠕 Back To Top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -629,3 +652,5 @@ If your changes to the data file makes its format invalid, JARVIS will discard a
 | **Add note**                 | `addnote n/NOTE li/LESSON_INDEX [si/STUDENT_INDEX]`                                                    | `addnote n/Get back to jeff on streams li/1 si/2`                                  |
 | **Delete note**              | `deletenote ni/NOTE_INDEX li/LESSON_INDEX [si/STUDENT_INDEX]`                                          | `deletenote ni/1 li/1 si/2`                                                        |
 | **Add participation**        | `addpart p/PARTICIPATION li/LESSON_INDEX si/STUDENT_INDEX`                                             | `addpart p/100 li/1 si/2`                                                          |
+
+[🠕 Back To Top](#table-of-contents)
