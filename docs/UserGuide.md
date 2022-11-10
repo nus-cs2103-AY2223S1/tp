@@ -78,17 +78,20 @@ Now, let’s continue to learn how to [navigate the application](#tutorial-navig
 
 <img src="images/UiDetails.png" width="800" /> <br>
 
-| Number | Component Name | Details                                                                                                                                               |
-|:------:|----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
-|   1.   | Command Box    | The box where you enter commands for PayMeLah to carry out.                                                                                           |
-|   2.   | Message Box    | The box where a success message will be displayed when PayMeLah carries out a command successfully, or an error message when PayMeLah fails to do so. |
-|   3.   | Person Card    | The card containing personal details.                                                                                                                 |
-|   4.   | Debt List      | The box containing the list of debts owed by a person.                                                                                                |
-|   5.   | Person List    | The box containing the full list of person cards. Only one person card can be viewed at a time.                                                       |
+| Number | Component Name       | Details                                                                                                                                           |
+|:------:|----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|
+|   1.   | Command Line Section | The section where you can enter commands for PayMeLah, and where the status of your commands are displayed.                                       |
+|   2.   | Debt List Section    | The section showing details about each debt of a person.                                                                                          |
+|   3.   | Person List Section  | The section showing the list of people added to PayMeLah. The names can be clicked to show their personal details as well as their list of debts. |
 
 <div style="page-break-after: always;"></div>
 
 <img src="images/CommandLineSection.png" width="800" /> <br>
+
+| Number | Component Name | Details                                                                                                                                               |
+|:------:|----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
+|   1.   | Command box    | The box where you enter commands for PayMeLah to carry out.                                                                                           |
+|   2.   | Message box    | The box where a success message will be displayed when PayMeLah carries out a command successfully, or an error message when PayMeLah fails to do so. |
 
 <div style="page-break-after: always;"></div>
 
@@ -106,6 +109,8 @@ Now, let’s continue to learn how to [navigate the application](#tutorial-navig
 
 <div style="page-break-after: always;"></div>
 
+<img src="images/DebtList.png" width="800" /> <br>
+
 | Number | Component Name | Details                                     |
 |:------:|----------------|---------------------------------------------|
 |   1.   | Debt Index     | The index of the debt in the debt list.     |
@@ -113,8 +118,6 @@ Now, let’s continue to learn how to [navigate the application](#tutorial-navig
 |   3.   | Money          | The amount of money owed for the debt.      |
 |   4.   | Date/Time      | The date and time of the debt.              |
 |   5.   | Payment Status | The debt’s payment status (paid or unpaid). |
-
-<img src="images/DebtList.png" width="800" /> <br>
 
 <div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
 If your provided inputs are too long, PayMeLah may not be able to fully display them and cut them off! While this is rare, do try to avoid entering unnecessarily long inputs to PayMeLah (e.g., save a person's nickname rather than their full name).
