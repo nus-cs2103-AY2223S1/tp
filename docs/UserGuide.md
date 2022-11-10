@@ -587,17 +587,17 @@ Example: Enter `alias a/ls k/list`
 Outcome: The alias `ls` is added for the viewing all students command `list`.
 
 ![AliasCommandAfter.png](images/AliasCommandAfter.PNG)
-<i> Outcome of alias command</i>
+<i>Outcome of alias command</i>
 
 Now, typing `ls` into the command box.
 
 ![UsingAliasBefore.png](images/UsingAliasBefore.PNG)
-<i> Before using alias</i>
+<i>Before using alias</i>
 
 Will execute the `list` command.
 
 ![UsingAliasAfter.png](images/UsingAliasAfter.PNG)
-<i> Outcome of using alias</i>
+<i>Outcome of using alias</i>
 
 
 #### Deleting aliases: `unalias`
@@ -609,12 +609,12 @@ Format: `unalias a/ALIAS`
 Example: Enter `unalias a/ls`
 
 ![UnaliasCommandBefore.png](images/UnaliasCommandBefore.PNG)
-<i> Before unalias command</i>
+<i>Before unalias command</i>
 
 Outcome: The alias `ls` will be deleted from FRIDAY.
 
 ![UnaliasCommandAfter.png](images/UnaliasCommandAfter.PNG)
-<i> Outcome of unalias command</i>
+<i>Outcome of unalias command</i>
 
 #### Viewing aliases: `aliaslist`
 
