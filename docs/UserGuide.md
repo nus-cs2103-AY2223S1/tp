@@ -61,7 +61,7 @@ Getting started with PayMeLah is easy! Here is a tutorial on how to get PayMeLah
 4. Finally, you are ready to use PayMeLah. Simply double-click the *paymelah.jar* in the folder you created to start the app. After a few seconds, you should see PayMeLah appear. Notice how we have some sample persons and debts present for you to experiment with our [features](#features).  <br>
    <img src="images/Ui.png" width="800" /> <br>
 
-Now, let’s continue to learn how to [navigate the application](#tutorial-navigating-the-application-interface) before familiarising ourselves with the [features](#features) you can use in PayMeLah.
+Now, let’s continue to learn how to [navigate the application](#tutorial-navigating-the-application) before familiarising ourselves with the [features](#features) you can use in PayMeLah.
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -127,7 +127,7 @@ If your provided inputs are too long, PayMeLah may not be able to fully display 
 
 ### Tutorial: Adding your first debt
 
-Once you have familiarised yourself with PayMeLah’s [user interface](#tutorial-navigating-the-application-interface), it is time to officially start using PayMeLah! The following section provides a step-by-step guide that walks you through the process of adding a debt to PayMeLah. You can choose to follow the sample commands word-for-word, or if you are feeling adventurous, you can try replacing the sample inputs with your own inputs instead.
+Once you have familiarised yourself with PayMeLah’s [user interface](#tutorial-navigating-the-application), it is time to officially start using PayMeLah! The following section provides a step-by-step guide that walks you through the process of adding a debt to PayMeLah. You can choose to follow the sample commands word-for-word, or if you are feeling adventurous, you can try replacing the sample inputs with your own inputs instead.
 
 1. If you are a first time user, your PayMeLah may still be filled with the sample data that came with the [installation process](#tutorial-installing-paymelah). You can remove all the sample data with a single [`clear` command](#clearing-all-entries-clear), which you can do by simply entering `clear`. Don’t worry about losing this data - they are unlikely to be useful to you! Soon, your PayMeLah
    will be filled with the information you actually want instead.<br>
