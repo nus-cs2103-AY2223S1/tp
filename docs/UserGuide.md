@@ -171,7 +171,7 @@ You are now ready to use the application! Head over to [Quick Start](#quick-star
 
 This section showcases **all** commands in JeeqTracker that you can use. It is split into five sections, namely `Client Commands`, `Transaction Commands`, `Remark Commands`, `Miscellaneous Commands`, and `Data Storage`.
 
-## **Client Commands**
+### **Client Commands**
 
 The following section highlights **all** commands related to `clients`.
 
@@ -283,11 +283,11 @@ Format: `view INDEX`
 Example:
 * `view 5` displays the remarks and transactions of the client at the 5<sup>th</sup> index.
 
-> <div markdown="span" class="alert alert-primary">:bulb: Tip: Use the "list" command if you want to get back the full list of clients</div>
+> <div markdown="span" class="alert alert-primary">:bulb: Tip: Use the [list](#listing-all-clients-list) command if you want to get back the full list of clients</div>
 
 [Back to Table of Contents](#table-of-contents)
 
-## **Transaction Commands**
+### **Transaction Commands**
 
 The following section highlights **all** commands related to `clients`.
 
@@ -318,7 +318,7 @@ the list on the 07/11/2000.
 
 ![Ui](images/SampleBuySellCommand2.PNG)
 
-> <div markdown="span" class="alert alert-primary">:bulb: Tip: If you use the "buy" or "sell" command while the "Client List Panel" has more than one client, you will not be able to see the addition.<br/>Use the "view" command to see it.</div>
+> <div markdown="span" class="alert alert-primary">:bulb: Tip: If you use the "buy" or "sell" command while the "Client List Panel" has more than one client, you will not be able to see the addition.<br/>Use the [view](#viewing-a-client-view) command to see it.</div>
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -337,7 +337,7 @@ Example (refer to diagram below):
 
 `edit 1 m/transaction q/100 g/Apples price/1.5` edits the transaction at index 1 in the displayed list of transactions (pear), to have a new **goods name**: "Apples", **quantity**: "100", **price**: 1.5.
 
-> <div markdown="span" class="alert alert-warning">:warning: Warning: You must use "view" command first before you can edit a transaction. If not, there will be an error within the application!
+> <div markdown="span" class="alert alert-warning">:warning: Warning: You must use [view](#viewing-a-client-view) command first before you can edit a transaction. If not, there will be an error within the application!
 
 
 ![EditTransactionExample](images/EditTransactionExample.PNG)
@@ -357,7 +357,7 @@ Example:
 
 `delete 1 m/transaction` deletes the transaction at index 1 in the displayed list of transactions.
 
-> <div markdown="span" class="alert alert-warning">:warning: Warning: You must use "view" command first before you can delete a transaction. If not, there will be an error within the application!
+> <div markdown="span" class="alert alert-warning">:warning: Warning: You must use [view](#viewing-a-client-view) command first before you can delete a transaction. If not, there will be an error within the application!
 
 > <div markdown="span" class="alert alert-danger">❗ Danger: **Deleting a transaction is an irreversible process! It will be gone forever**: Be very careful here!
 
@@ -400,11 +400,11 @@ Examples:
 * `sort 1 latest` displays the 1<sup>st</sup> client transactions sorted by the latest transaction on top.
 * `sort 5 oldest` displays the 5<sup>th</sup> client transactions sorted by the oldest transaction on top.
 
-> <div markdown="span" class="alert alert-primary">:bulb: Tip: The sort command will filter the list of clients panel to display only the specified client.<br/>Use the "list" command to get back the full list of clients.</div>
+> <div markdown="span" class="alert alert-primary">:bulb: Tip: The sort command will filter the list of clients panel to display only the specified client.<br/>Use the [list](#listing-all-clients-list) command to get back the full list of clients.</div>
 
 [Back to Table of Contents](#table-of-contents)
 
-## **Remark Commands**
+### **Remark Commands**
 
 The following section highlights **all** commands related to `remarks`.
 
@@ -424,7 +424,7 @@ Examples:
 * `remark 1 punctual buyer` adds the remark `punctual buyer` to the client at index 1.
 
 
-> <div markdown="span" class="alert alert-primary">:bulb: Tip: If you use the "remark" command while the "Client List Panel" has more than one client, you will not be able to see the addition.<br/>Use the "view" command to see it.</div>
+> <div markdown="span" class="alert alert-primary">:bulb: Tip: If you use the "remark" command while the "Client List Panel" has more than one client, you will not be able to see the addition.<br/>Use the [view](#viewing-a-client-view) command to see it.</div>
 
 
 [Back to Table of Contents](#table-of-contents)
@@ -444,7 +444,7 @@ Example:
 
 `edit 1 m/remark Client replies very fast` edits the remark at index 1 to 'Client replies very fast' in the displayed remark list. 
 
-> <div markdown="span" class="alert alert-warning">:warning: Warning: You must use "view" command first before you can edit a remark. If not, there will be an error within the application!
+> <div markdown="span" class="alert alert-warning">:warning: Warning: You must use [view](#viewing-a-client-view) command first before you can edit a remark. If not, there will be an error within the application!
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -457,7 +457,7 @@ Format: `delete INDEX m/remark`
 * `INDEX` refers to the index number shown in the displayed list of remarks.
 * **Must be a positive integer within the range display, and must not contain any signs** e.g. +1, -3.
 
-> <div markdown="span" class="alert alert-warning">:warning: Warning: You must use "view" command first before you can delete a remark. If not, there will be an error within the application!
+> <div markdown="span" class="alert alert-warning">:warning: Warning: You must use [view](#viewing-a-client-view) command first before you can delete a remark. If not, there will be an error within the application!
 
 > <div markdown="span" class="alert alert-danger">❗ Danger: **Deleting a remark is an irreversible process**: Be very careful here!
 
@@ -467,7 +467,7 @@ Example:
 
 [Back to Table of Contents](#table-of-contents)
 
-## **Miscellaneous Commands**
+### **Miscellaneous Commands**
 
 This section contains **all** miscellaneous commands.
 
@@ -503,7 +503,9 @@ Example:
 
 ### Viewing help: `help`
 
-`help` returns the list of all commands. `help [COMMAND]` returns the detailed description of that specified command.
+`help` returns the list of all commands in the `Application's Reply` panel. 
+
+`help [COMMAND]` returns the detailed description of that specified command in the `Application's Reply` panel.
 
 [//]: # (![help message]&#40;images/helpMessage.png&#41;)
 
@@ -520,12 +522,15 @@ Examples:
 
 ### Getting the User Guide: `user_guide`
 
-Displays the link to this user guide in the `Application's Reply`.
+Displays the link to this user guide in a pop-up window.
 
 Format: `user_guide`
 
 * Displays a pop-up that contains the url to this user guide.
-* You can click on the `Copy URL` button to copy this url to your clipboard.
+* You can click on the `Copy URL` button to copy this url to your clipboard and 
+paste it in your browser if you need to refer to this user guide.
+
+![Ui](images/SampleUserguide.png)
 
 [Back to Table of Contents](#table-of-contents)
 
