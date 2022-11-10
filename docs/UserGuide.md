@@ -56,10 +56,6 @@ Finally, here are some of the symbols and text formatting to look out for as you
    <img src="images/howToDownload_1.png" width="500" /> <br>
    <img src="images/howToDownload_2.png" width="500" /> <br>
 
-<div markdown="block" class="alert alert-primary">
-:bulb: **What is a JAR file?**<br> Check out the term in the [glossary](#jar-file)!
-</div>
-
 4. Finally, you are ready to use PayMeLah. Simply double-click the *paymelah.jar* in the folder you created to start the app. After a few seconds, you should see PayMeLah appear. Notice how we have some sample persons and debts present for you to experiment with our [features](#features).  <br>
    <img src="images/Ui.png" width="800" /> <br>
 
