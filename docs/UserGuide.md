@@ -7,11 +7,11 @@ This document contains everything you need to know about TruthTable.
 
 ## About TruthTable
 
-TruthTable is a **desktop application** that enables team leaders to **manage their software
-engineering teams** using a single application.
+TruthTable is a **desktop application** that enables team leaders to **manage their software engineering teams** using a
+single application.
 
-TruthTable is **optimized for use via a [Command Line Interface (CLI)](#command-line-interface)** while still having 
-the benefits of a [Graphical User Interface (GUI)](#graphical-user-interface). 
+TruthTable is **optimized for use via a [Command Line Interface (CLI)](#command-line-interface)** while still having the
+benefits of a [Graphical User Interface (GUI)](#graphical-user-interface).
 
 <div markdown="block" class="alert alert-primary">**:information_source: Unsure what CLI or GUI means?**
 Head over [to this section](#understanding-truthtables-cli) to learn more!
@@ -26,17 +26,17 @@ Click [here](#getting-started) to get started with TruthTable.
 
 ### Too many cooks spoil the Truth
 
-Managing project documents and information has always been an annoying task to do. Besides the multitude of
-links and slides created by your team, you may be using task management applications like 
-<a href="https://www.notion.so/" target="_blank">Notion</a> to track your team's progress as well. This is where 
+Managing project documents and information has always been an annoying task to do. Besides the multitude of links and
+slides created by your team, you may be using task management applications like
+<a href="https://www.notion.so/" target="_blank">Notion</a> to track your team's progress as well. This is where
 TruthTable comes in.
 
 TruthTable allows you to collate and organize your tasks, links, and members' information **all in one place**.
 
 ### Seeing is believing
 
-It is often difficult to visualize and communicate your team's progress to stakeholders. TruthTable solves this
-through its clean and comprehensive user interface.
+It is often difficult to visualize and communicate your team's progress to stakeholders. TruthTable solves this through
+its clean and comprehensive user interface.
 
 At a glance, you can see the number of tasks completed by your team, and **determine the team's overall progress**.
 
@@ -62,12 +62,12 @@ Hence, you will become familiar with TruthTable's commands in no time.
 
 ## Using This Guide
 
-If you are a software engineering team lead looking to get started with TruthTable, make sure that you have the 
+If you are a software engineering team lead looking to get started with TruthTable, make sure that you have the
 [pre-requisites installed](#getting-started).
 
-This document will guide you on how to get familiar with all of TruthTable's [features](#key-features-of-truthtable). 
+This document will guide you on how to get familiar with all of TruthTable's [features](#key-features-of-truthtable).
 
-If you are an experienced user of TruthTable, this guide also contains valuable tips on how you can maximize your 
+If you are an experienced user of TruthTable, this guide also contains valuable tips on how you can maximize your
 productivity while using TruthTable.
 
 Here are the alerts to look out for while using this guide:
@@ -106,20 +106,23 @@ Here are some text styles to look out for as well.
 ## Getting Started
 
 1. Ensure you have **Java 11** or above installed in your computer. If not, don't worry! Click
-<a href="https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html" target="_blank">here</a> 
+   <a href="https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html" target="_blank">here</a>
    for further instructions on how to download and install **Java 11**.
 
 2. Download the latest version of `truthtable.jar` from [here](https://github.com/AY2223S1-CS2103T-W13-4/tp/releases).
-The file can be located under the "Assets" section of the page as seen in the image below.
-![TruthTable Download Location](images/DownloadLocation.png)
+   The file can be located under the "Assets" section of the page as seen in the image below.
+   ![TruthTable Download Location](images/DownloadLocation.png)
 
-3. Double-click on `truthtable.jar` to start the application. A window which looks similar to the screenshot below 
-   should 
-appear in a few seconds. We have also added some sample data for you to play around and familiarize yourself with 
-   TruthTable's [features](#commands)! ![Ui](images/Ui.png)
+3. Double-click on `truthtable.jar` to start the application. A window which looks similar to the screenshot below
+   should appear in a few seconds. ![Ui](images/Ui.png)
 
-4. Before we dive into TruthTable's features, let's try and understand how to 
-[navigate the application](#navigating-truthtables-application-interface) first.
+<div markdown="block" class="alert alert-success">**:bulb: Sample data**:
+We have also added some sample data for you to play around and familiarize yourself with 
+TruthTable's [features](#commands)!
+</div>
+
+5. Before we dive into TruthTable's features, let's try and understand how to
+   [navigate the application](#navigating-truthtables-application-interface) first.
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -131,15 +134,15 @@ After opening TruthTable for the first time, you should see the following screen
 
 ![Application Interface](images/ApplicationInterface.png)
 
-Each section contains several [components](#component), which will be labelled in their respective sections below. 
-These parts are numbered, and their names and descriptions will be displayed in a tabular format.
+Each section contains several [components](#component), which will be labelled in their respective sections below. These
+parts are numbered, and their names and descriptions will be displayed in a tabular format.
 
 ### Teams Section
 
 ![Teams Section](images/TeamsSection.png)
 
-This section displays the names of all the teams that you have created in TruthTable. Only the names of each team 
-is listed.  
+This section displays the names of all the teams that you have created in TruthTable. Only the names of each team is
+listed.
 
 <div markdown="block" class="alert alert-primary">**:information_source: Note:**
 There will always be one team in TruthTable named "default" (if no name is specified).
@@ -154,8 +157,8 @@ There will always be one team in TruthTable named "default" (if no name is speci
 
 ![Current Team Section](images/CurrentTeamSection.png)
 
-This section contains information about your current team. It displays the currently selected team, along with the 
-team description, links, tasks, and members related to said team.
+This section contains information about your current team. It displays the currently selected team, along with the team
+description, links, tasks, and members related to said team.
 
 | Number | Component              | Description                                                                                                                     |
 |--------|------------------------|---------------------------------------------------------------------------------------------------------------------------------|
@@ -174,7 +177,7 @@ team description, links, tasks, and members related to said team.
 
 ![Persons Section](images/PersonsSection.png)
 
-This section displays the names, phone number, email, address, and tags of all persons that you have created in 
+This section displays the names, phone number, email, address, and tags of all persons that you have created in
 TruthTable. This section is also known as the "Contacts" section.
 
 | Number | Component       | Description                                |
@@ -189,7 +192,7 @@ TruthTable. This section is also known as the "Contacts" section.
 
 ![Command Section](images/CommandSection.png)
 
-This section contains an input box where you can enter the commands for the actions that you wish to perform. Try 
+This section contains an input box where you can enter the commands for the actions that you wish to perform. Try
 typing `help` in the input box and press <kbd>Enter</kbd> to see what happens!
 
 | Number | Component         | Description                                                                                  |
@@ -197,29 +200,27 @@ typing `help` in the input box and press <kbd>Enter</kbd> to see what happens!
 | 1      | Command Result    | The result of executing a command in the Command Input Box                                   |
 | 2      | Command Input Box | The input box for commands to be entered, which can be executed by pressing <kbd>Enter</kbd> |
 
-
 [Back to Table of Contents](#table-of-contents)
 
 ---
 
 ## Understanding TruthTable's CLI
 
-[Command Line Interface (CLI)](#command-line-interface) applications like TruthTable requires you to execute 
-instructions by typing specific words to make use of the application's features. On the other hand, 
-[Graphical User Interface (GUI)](#graphical-user-interface) programs usually require you to use a mouse and keyboard
-to click on objects and perform certain features.
+[Command Line Interface (CLI)](#command-line-interface) applications like TruthTable requires you to execute
+instructions by typing specific words to make use of the application's features. On the other hand,
+[Graphical User Interface (GUI)](#graphical-user-interface) programs usually require you to use a mouse and keyboard to
+click on objects and perform certain features.
 
-If you are not an experienced CLI user, however, terms like "commands", "flags", and "parameters" may appear
-daunting.
+If you are not an experienced CLI user, however, terms like "commands", "flags", and "parameters" may appear daunting.
 
 But fret not! This section will cover what all these terms actually mean.
 
 ### Commands, flags, and parameters
 
-All instructions are executed through **[commands](#command)**. Each command can have **[flags](#flag) specified after 
+All instructions are executed through **[commands](#command)**. Each command can have **[flags](#flag) specified after
 the command**, which modifies how the instruction should be carried out.
 
-For each of these flags, there may be **[parameters](#parameter)** specified after it. But, **not all commands** 
+For each of these flags, there may be **[parameters](#parameter)** specified after it. But, **not all commands**
 require parameters.
 
 Note that flags and parameters always **come after the command**.
@@ -230,12 +231,11 @@ parameters, and flags?**
 Nope!
 <br><br>
 
-While you're going through this section, don't worry too much about memorizing the details of every command, 
-as they all have their own help messages that you can refer to at any time.
+While you're going through this section, don't worry too much about memorizing the details of every command, as they all
+have their own help messages that you can refer to at any time.
 <br><br>
-
-Furthermore, the commands in TruthTable are designed to be **easy to remember** and **natural**, so you will be 
-familiar with them in no time! 
+Furthermore, the commands in TruthTable are designed to be **easy to remember** and **natural**, so you will be familiar
+with them in no time!
 </div>
 
 Let's use an example to break down what we've talked about.
@@ -254,11 +254,10 @@ Here's a summary of what each highlighted section represents.
 
 ### Understanding the help message
 
-Every command in TruthTable has their own flags and parameters, so you don't have to remember all of them.
+Every command in TruthTable has itsg own flags and parameters, so you don't have to remember all of them.
 
-Instead, each command allows you to specify the `-h` and `--help` flag, which brings up the available flags
-and parameters for the command. Alternatively, you can also refer to this user guide to find out the details of
-any command.
+Instead, each command allows you to specify the `-h` and `--help` flag, which brings up the available flags and
+parameters for the command. Alternatively, you can also refer to this user guide to find out the details of any command.
 
 #### Example Command Help Message: `assign task --help`
 
@@ -282,7 +281,7 @@ Here's a summary of what each highlighted section represents.
 - Specifying an "equal" sign (`=`) after the flag is optional, and it has no effect on the command.
 - Optional flags are wrapped with square brackets (`[]`)
 - Flags can be specified in any order
-  - For e.g. `-n name -p 98765432` is the same as `-p 98765432 -n name`
+    - For e.g. `-n name -p 98765432` is the same as `-p 98765432 -n name`
 
 </div>
 
@@ -295,6 +294,7 @@ Use of quotation marks around parameters (`""` and `''`) is optional.
 Otherwise, TruthTable will not carry out the command properly.
 
 For instance,
+
 - `add person -n "full name" ...` will recognize "full name" as the name being specified for the new person
 - `add person -n full name ...` will recognize "full" as the name being specified for the new person, however, this
   command will not execute successfully as `name` will be treated as a **flag** (and this flag does not exist for
@@ -305,8 +305,10 @@ quotation mark), the command will not be executed. If the parameter specified co
 rejected as well.
 
 For instance,
+
 - `'word` is invalid as the open quotation mark `'` does not have a corresponding close quotation mark.
 - `"'"` is invalid as `'` will be passed as a parameter, which is invalid.
+
 </div>
 
 <div markdown="block" class="alert alert-success">
@@ -329,15 +331,17 @@ TruthTable supports clustered options as specified in
 
 To help you use our program even faster, we have introduced short forms for our commands and flags!
 
-These short forms are what we call "aliases", and they allow you to execute instructions _blazingly fast_ by
-minimising the number of letters you need to type. 
+These short forms are what we call "aliases", and they allow you to execute instructions _blazingly fast_ by minimising
+the number of letters you need to type.
 
 For instance, the [`add person`](#creating-a-new-person-add-person) command has the following command aliases,
+
 - `add p`
 - `a person`
 - `a p`
 
 The `add person` command also has the following flags and their corresponding aliases,
+
 - aliases for `-h`: `--help`
 - aliases for `-e`: `--email`
 - aliases for `-n`: `--name`
@@ -346,7 +350,7 @@ The `add person` command also has the following flags and their corresponding al
 
 You can find out more about these flags [here](#creating-a-new-person-add-person).
 
-To view all commands and their respective aliases, head over to the [command summary section](#command-aliases) 
+To view all commands and their respective aliases, head over to the [command summary section](#command-aliases)
 to find out more.
 
 [Back to Table of Contents](#table-of-contents)
@@ -363,8 +367,8 @@ TruthTable allows you to manage members, tasks, links, and members through the u
 
 <div markdown="block" class="alert alert-primary">**:information_source: Persons vs Members**
 
-The persons in TruthTable (as seen in the [persons section](#persons-section)) may not all be in a team. However, 
-any member of a team must be an existing person in TruthTable. 
+The persons in TruthTable (as seen in the [persons section](#persons-section)) may not all be in a team. However, any
+member of a team must be an existing person in TruthTable.
 <br><br>
 This is why TruthTable distinguishes between person and member commands.
 </div>
@@ -379,7 +383,7 @@ Consequently, the commands are split into **5** main sections:
 
 <div markdown="block" class="alert alert-primary">**:information_source: Command Format**
 
-The format for each command adheres to the structure laid out in the 
+The format for each command adheres to the structure laid out in the
 [help command section](#example-command-help-message-assign-task---help).
 </div>
 
@@ -395,36 +399,36 @@ Each parameter has their own constraints, which can be found [here](#flag-and-pa
 <div markdown="block" class="alert alert-primary">**:information_source: Flags and Parameters**
 
 - Every command has a `-h` and `--help` flag available to see their help message
-- Flags wrapped with brackets (`()`) indicates that at least 1 flag inside the brackets
-  must be specified
-  - For `([-n <NAME>] [-p <PHONE>] [-e <EMAIL>] [-t [<TAGS>]]...)`, the following examples are valid
-    1. `-n name`
-    2. `-p 98765432`
-    3. `-e new@email.com`
-    4. `-t developer`
-- Flags wrapped with brackets (`()`) and separated with `|` indicates that you must specify only 1 flag inside the 
+- Flags wrapped with brackets (`()`) indicates that at least 1 flag inside the brackets must be specified
+    - For `([-n <NAME>] [-p <PHONE>] [-e <EMAIL>] [-t [<TAGS>]]...)`, the following examples are valid
+        1. `-n name`
+        2. `-p 98765432`
+        3. `-e new@email.com`
+        4. `-t developer`
+- Flags wrapped with brackets (`()`) and separated with `|` indicates that you must specify only 1 flag inside the
   brackets
-  - For `(-n=<NAME_KEYWORDS> | -e=<EMAIL_KEYWORDS>)`, the following examples are valid
-    1. `-n one two`
-    2. `-e three four`
-  - However, the following are invalid
-    1. `-n one two -e three four`
-    2. when both flags are empty
+    - For `(-n=<NAME_KEYWORDS> | -e=<EMAIL_KEYWORDS>)`, the following examples are valid
+        1. `-n one two`
+        2. `-e three four`
+    - However, the following are invalid
+        1. `-n one two -e three four`
+        2. when both flags are empty
 - Flags/Parameters with ellipsis (`...`) behind them means that more than 1 parameter can be specified
-  - For `[-t [TAGS...]]...`, the following examples are valid
-    1. `-t`
-    2. `-t one`
-    3. `-t one two`
-    4. `-t one -t two`
+    - For `[-t [TAGS...]]...`, the following examples are valid
+        1. `-t`
+        2. `-t one`
+        3. `-t one two`
+        4. `-t one -t two`
 - Flags can be combined if they all begin with `-`, where the flags are clustered. Find out more
   <a href="https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap12.html#tag_12_02" target="_blank">here</a>
-  - For `[-h] [-c] [-i]`, the following examples are valid
-    1. `-h`
-    2. `-hc`
-    3. `-ci`
-    4. `-hci`
+    - For `[-h] [-c] [-i]`, the following examples are valid
+        1. `-h`
+        2. `-hc`
+        3. `-ci`
+        4. `-hci`
 - If an extra parameter is specified, the command will not execute and an error message will be displayed
-  - For e.g. `help with extra words` will display an error message
+    - For e.g. `help with extra words` will display an error message
+
 </div>
 
 <div markdown="span" class="alert alert-success">
@@ -433,15 +437,14 @@ Note that the parameters in this user guide are all upper-cased, which differs f
 the help message that TruthTable displays whenever you run a command with `-h`.
 </div>
 
-
 ### Commands to Manage Persons
 
 Summary of the commands to manage persons can be found [here](#summary-of-person-commands).
 
 #### Creating a new person: `add person`
 
-Adds a new person to TruthTable. The new person is added to the [persons section](#persons-section) as seen in the
-image below.
+Adds a new person to TruthTable. The new person is added to the [persons section](#persons-section) as seen in the image
+below.
 
 ![Add Person Example Before](images/AddPersonExampleBefore.png)
 ![Add Person Example After](images/AddPersonExampleAfter.png)
@@ -461,12 +464,12 @@ A person can have any number of tags (including 0).
 </div>
 
 **Command Aliases:**
+
 - `a person`
 - `add p`
 - `a p`
 
 **Examples:**
-
 
 * `add person -n "John Doe" -p 98765432 -e johnd@example.com` adds a person named "John Doe"
 * `a p -n "Betsy Crowe" -e betsycrowe@example.com -p 1234567 -t criminal friend`
@@ -475,7 +478,8 @@ A person can have any number of tags (including 0).
 
 Edits an existing person in TruthTable.
 
-**Format:** `edit person [-h] ([-n=<PERSON_NAME>] [-p=<PERSON_PHONE>] [-e=<PERSON_EMAIL>] [-t[=<PERSON_TAGS>...]]...) <PERSON_INDEX>`
+**Format:** <code>edit person [-h] ([-n=<PERSON_NAME>] [-p=<PERSON_PHONE>] [-e=<PERSON_EMAIL>] 
+[-t[=<PERSON_TAGS>...]]...) <PERSON_INDEX></code>
 
 | Flags           | Required   | Remarks                                                                |
 |-----------------|------------|------------------------------------------------------------------------|
@@ -495,15 +499,16 @@ Edits an existing person in TruthTable.
 * So, you can remove all the person’s tags by typing `-t` without specifying any tags after it.
 
 **Command Aliases:**
+
 - `edit p`
 - `e person`
 - `e p`
 
 **Examples:**
-*  `edit person 1 -p 91234567 -e johndoe@example.com` Edits the phone number and email address of the 1st person to be
-   `91234567` and `johndoe@example.com` respectively.
-*  `edit person 2 -n Betsy Crower -t` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing
-   tags.
+
+* `edit person 1 -p 91234567 -e johndoe@example.com` Edits the phone number and email address of the 1st person to be
+  `91234567` and `johndoe@example.com` respectively.
+* `edit person 2 -n Betsy Crower -t` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
 #### Deleting a person: `delete person`
 
@@ -520,15 +525,17 @@ Deletes the specified person from TruthTable.
 * `PERSON_INDEX` **must be a positive integer:** 1, 2, 3,...
 
 **Command Aliases:**
+
 - `delete p`
 - `d person`
 - `d p`
 
 **Examples:**
-* [`list persons`](#listing-all-persons-list-persons) followed by `delete person 2` deletes the 
-2nd person in TruthTable.
-* [`find person Betsy`](#finding-a-person-find-person) followed by `delete person 1` deletes the 1st person in the 
-results of the `find person` command.
+
+* [`list persons`](#listing-all-persons-list-persons) followed by `delete person 2` deletes the 2nd person in
+  TruthTable.
+* [`find person Betsy`](#finding-a-person-find-person) followed by `delete person 1` deletes the 1st person in the
+  results of the `find person` command.
 
 #### Finding a person: `find person`
 
@@ -544,18 +551,19 @@ Finds all persons whose names contain any of the given keywords.
 * The search is case-insensitive, e.g. `hans` will match `Hans`.
 * The order of the keywords does not matter, e.g. `Hans Bo` will match `Bo Hans`.
 * Persons with names partially matching the keywords will be returned, e.g. `han` will match `Hans`.
-* Persons with names matching at least one keyword will be returned, e.g. `hans bo` will match `Hans Gruber`, `Bo
-  Yang`.
+* Persons with names matching at least one keyword will be returned, e.g. `hans bo` will match `Hans Gruber`, `Bo Yang`.
 
 **Command Aliases:**
+
 - `find p`
 - `f person`
 - `f p`
 
 **Examples:**
+
 * `find person John` returns `john` and `John Doe`
 * `find person alex david` returns `Alex Yeoh`, `David Li`<br>
- 
+
 For instance, the output of running `find person alex david` is shown below:
 ![result for 'find person alex david'](images/findPersonAlexDavidResult.png)
 
@@ -570,6 +578,7 @@ Shows a list of all persons in TruthTable.
 | `-h`, `--help` | :x:      | Shows [help message](#understanding-the-help-message) for this command |
 
 **Command Aliases:**
+
 - `list p`
 - `l persons`
 - `l p`
@@ -580,8 +589,8 @@ Summary of the commands to manage members can be found [here](#summary-of-member
 
 #### Adding a new member to the team: `add member`
 
-Adds a new team member to the user’s currently selected team. If the member already exists in 
-the team, an error message will be displayed.
+Adds a new team member to the user’s currently selected team. If the member already exists in the team, an error message
+will be displayed.
 
 **Format:** `add member [-h] <PERSON_INDEX>`
 
@@ -592,13 +601,14 @@ the team, an error message will be displayed.
 * `PERSON_INDEX` **must be a positive integer:** 1, 2, 3,...
 
 **Command Aliases:**
+
 - `add m`
 - `a member`
 - `a m`
 
-**Examples:** 
+**Examples:**
 
-- `add member 1` will add the first person in the [persons sections](#persons-section) as a new member to the 
+- `add member 1` will add the first person in the [persons sections](#persons-section) as a new member to the
   [currently selected team](#current-team-section).
 
 #### Delete a member from team: `delete member`
@@ -614,11 +624,12 @@ Delete a team member from the user’s team.
 * `MEMBER_INDEX` **must be a positive integer:** 1, 2, 3,...
 
 **Command Aliases:**
+
 - `delete m`
 - `d member`
 - `d m`
 
-**Examples:** 
+**Examples:**
 
 - `delete member 2` will delete the second member of the current team.
 
@@ -648,11 +659,13 @@ should **not** use both `-n` and `-e` in the `find member` command.
 * Persons matching at least one keyword will be returned, e.g. `Hans Bo` will match `Hans Gruber`, `Bo Yang`.
 
 **Command Aliases:**
+
 - `find m`
 - `f member`
 - `f m`
 
 **Examples:**
+
 * `find member -n Alex` finds team members with **names** containing the word "Alex".
 * `find member -n Alex Beatrice` finds team members with **names** containing **either** "Alex" or "Beatrice".
 * `find member -e alex@gmail.com`  finds team members with **emails** containing "alex@gmail.com".
@@ -668,6 +681,7 @@ View all the members currently in the team, in the form of a list.
 | `-h`, `--help` | :x:      | Shows [help message](#understanding-the-help-message) for this command |
 
 **Command Aliases:**
+
 - `list m`
 - `l members`
 - `l m`
@@ -689,11 +703,13 @@ Sorts all members in the current team by name and displays them in the member li
 | `res`       | **Resets** the order of the team members shown back to default (unsorted)   |
 
 **Command Aliases:**
+
 - `sort m`
 - `so members`
 - `so m`
 
 **Examples:**
+
 * `sort members asc` sorts team members in **ascending** order.
 * `sort members dsc` sorts team members in **descending** order.
 * `sort members res` **resets** the order of team members shown.
@@ -714,11 +730,12 @@ Add a new team to your list of teams, an error will be displayed if the team nam
 | `-d`, `--description` | :x:      | Description of team (e.g. "A team to manage CS2103T")                  | 
 
 **Command Aliases:**
+
 - `add te`
 - `a team`
 - `a te`
 
-**Examples:** 
+**Examples:**
 
 - `add team CS2103T` will create a new team by the name of "CS2103T"
 - `add team CS2102 -d "Database Systems"` will create a new team by the name of "CS2102" and "Database Systems"
@@ -737,11 +754,13 @@ Add a new team to your list of teams, an error will be displayed if the team nam
 :asterisk: - at least one of the flags for name and description must be specified
 
 **Command Aliases:**
+
 - `edit te`
 - `e team`
 - `e te`
 
 **Examples:**
+
 - `edit team -n CS2103T -d "Software Engineering"` will edit the name of the
   [currently selected team](#current-team-section) to CS2103T and description to "Software Engineering"
 
@@ -759,6 +778,7 @@ Delete an existing team, and an error is displayed if
 | `-h`, `--help` | :x:      | Shows [help message](#understanding-the-help-message) for this command |
 
 **Command Aliases:**
+
 - `delete te`
 - `d team`
 - `d te`
@@ -769,7 +789,7 @@ Delete an existing team, and an error is displayed if
 
 #### Set a new team: `set team`
 
-Updates the [selected team](#current-team-section) and changes the current "working" team to another. An error is 
+Updates the [selected team](#current-team-section) and changes the current "working" team to another. An error is
 displayed if team does not exist.
 
 **Format:** `set team [-h] <TEAM_NAME>`
@@ -779,11 +799,12 @@ displayed if team does not exist.
 | `-h`, `--help` | :x:      | Shows [help message](#understanding-the-help-message) for this command |
 
 **Command Aliases:**
+
 - `set te`
 - `s team`
 - `s te`
 
-**Examples:** 
+**Examples:**
 
 - `set team CS2103T` will change the currently selected team to be the "CS2103T" team.
 
@@ -803,12 +824,13 @@ Add a new task to your current team. Each task can have multiple assignees and a
 | `-d`, `--deadline` | :x:      | Deadline of task (e.g. 2023-02-25 23:59)                               |  
 | `-a`, `--assignee` | :x:      | Index of members in [members section](#current-team-section)           |
 
-* `TASK_DEADLINE` contains both the date and time in `YYYY-MM-DD HH:MM` format, and it **does not have quotation marks 
+* `TASK_DEADLINE` contains both the date and time in `YYYY-MM-DD HH:MM` format, and it **does not have quotation marks
   (`""`)
   around the parameter**.
 * `TASK_ASSIGNEES` **must be positive integers:** 1, 2, 3,...
 
 **Command Aliases:**
+
 - `add ta`
 - `a task`
 - `a ta`
@@ -816,10 +838,10 @@ Add a new task to your current team. Each task can have multiple assignees and a
 **Examples:**
 
 * `add task "Create PR"` will add a task with the name "Create PR", to the current team's task list.
-* `add task "Merge PR" -a 1 -d 2022-12-02 23:59` will add a task with the name "Merge PR", assigned to the first 
-member of your team's members list, and a deadline of 2nd Dec 2022 23:59, to the current team's task list.
-* `add task "Review PR" -a 1 3 -d 2022-12-02 23:59` will add a task with the name "Review PR", assigned to the first 
-and third members of your team's members list, and a deadline of 2nd Dec 2022 23:59, to the current team's task list.
+* `add task "Merge PR" -a 1 -d 2022-12-02 23:59` will add a task with the name "Merge PR", assigned to the first member
+  of your team's members list, and a deadline of 2nd Dec 2022 23:59, to the current team's task list.
+* `add task "Review PR" -a 1 3 -d 2022-12-02 23:59` will add a task with the name "Review PR", assigned to the first and
+  third members of your team's members list, and a deadline of 2nd Dec 2022 23:59, to the current team's task list.
 
 #### Edit task in team: `edit task`
 
@@ -832,7 +854,6 @@ Edits a specified task in the current team's task list.
 Ensure that `TASK_INDEX` is entered before entering any `ASSIGNEES`, as they both take in positive integers. 
 Passing `TASK_INDEX` after `ASSIGNEES` makes it impossible to distinguish which number is actually the `TASK_INDEX`.
 </div>
-
 
 | Flags              | Required   | Remarks                                                                |
 |--------------------|------------|------------------------------------------------------------------------|
@@ -849,25 +870,24 @@ Passing `TASK_INDEX` after `ASSIGNEES` makes it impossible to distinguish which 
   around the parameter**.
 * `TASK_INDEX` and `ASSIGNEES` **must be positive integers:** 1, 2, 3,...
 * Each field only updates if the flag for that field is specified.
-* When editing assignees, the existing assignees of the task will be **completely replaced** by the new assignees 
+* When editing assignees, the existing assignees of the task will be **completely replaced** by the new assignees
   specified.
 * So, you can remove all the assignees of the task by typing `-a` without specifying any assignees after it.
 
 **Command Aliases:**
+
 - `edit ta`
 - `e task`
 - `e ta`
 
-**Examples:** 
+**Examples:**
 
-* `edit task 1 "Merge PR" -a 1 -d 2022-12-02 23:59` will edit the first task in the current team's task
-list, setting the name as "Merge PR", assignees as the first member in the team list, and deadline
-as 2nd Dec 2022 23:59.
-* `edit task 1 "Update UG" -d 2022-12-02 23:59` will edit the first task in the current team's task
-list, setting the name as "Update UG" and deadline as 2nd Dec 2022 23:59. The assignees are not modified
-in this example.
-* `edit task 1 -a` will edit the first task in the current team's task list, removing all assignees from the task. 
-The name and deadline are not modified in this example.
+* `edit task 1 "Merge PR" -a 1 -d 2022-12-02 23:59` will edit the first task in the current team's task list, setting
+  the name as "Merge PR", assignees as the first member in the team list, and deadline as 2nd Dec 2022 23:59.
+* `edit task 1 "Update UG" -d 2022-12-02 23:59` will edit the first task in the current team's task list, setting the
+  name as "Update UG" and deadline as 2nd Dec 2022 23:59. The assignees are not modified in this example.
+* `edit task 1 -a` will edit the first task in the current team's task list, removing all assignees from the task. The
+  name and deadline are not modified in this example.
 
 #### Delete task from team: `delete task`
 
@@ -882,6 +902,7 @@ Delete an existing task from the team at the given task index.
 * `TASK_INDEX` **must be a positive integer:** 1, 2, 3,...
 
 **Command Aliases:**
+
 - `delete ta`
 - `d task`
 - `d ta`
@@ -906,15 +927,17 @@ To reset the task list, see the [list tasks command](#list-tasks-in-team-list-ta
 * The search is case-insensitive. e.g. `user guide` will match `User Guide`
 * The order of the keywords does not matter. e.g. `User Guide` will match `guide user`
 * Tasks with names partially matching the keywords will be returned, e.g. `user` will match `userguide`.
-* Tasks with names matching at least one keyword will be returned, e.g. `guide case` will match `use case`, `user
-  guide`.
+* Tasks with names matching at least one keyword will be returned, e.g. `guide case` will match `use case`, 
+  `user guide`.
 
 **Command Aliases:**
+
 - `find ta`
 - `f task`
 - `f ta`
 
 **Examples:**
+
 * `find task User Guide` finds tasks with **names** containing **either** the word "User" or "Guide".
 
 #### Mark tasks as done: `mark`
@@ -930,6 +953,7 @@ Mark a specified task as done. To undo this command, see the [unmark command](#u
 * `TASK_INDEX` **must be a positive integer:** 1, 2, 3,...
 
 **Command Aliases:**
+
 - `m`
 
 **Examples:**
@@ -949,6 +973,7 @@ Mark a specified task as incomplete. This will undo the [mark command](#mark-tas
 * `TASK_INDEX` **must be a positive integer:** 1, 2, 3,...
 
 **Command Aliases:**
+
 - `u`
 
 **Examples:**
@@ -966,11 +991,12 @@ Set a deadline for an existing task, and the deadline must be in `YYYY-MM-DD HH:
 | `-h`, `--help` | :x:      | Shows [help message](#understanding-the-help-message) for this command |
 
 * `TASK_INDEX` **must be a positive integer:** 1, 2, 3,...
-* `TASK_DEADLINE` contains both the date and time in `YYYY-MM-DD HH:MM` format, and it **does not have quotation marks 
+* `TASK_DEADLINE` contains both the date and time in `YYYY-MM-DD HH:MM` format, and it **does not have quotation marks
   (`""`)
   around the parameter**.
 
 **Command Aliases:**
+
 - `set d`
 - `s deadline`
 - `s d`
@@ -988,10 +1014,12 @@ Assign an existing task to a team member in the user’s team.
 <div markdown="block" class="alert alert-success">**:bulb: Note**:
 
 The format for the `-a` flag indicates that you must specify at least 1 `-a` flag in your command,
+
 - the first instance of `-a` indicates that you must specify the `-a` flag, and
 - the second instance of `-a` indicates that you can specify 0 or more `-a` flags.
-<br>
-This results in requiring at least 1 `-a` flag. 
+  <br>
+  This results in requiring at least 1 `-a` flag.
+
 </div>
 
 | Flags              | Required           | Remarks                                                                |
@@ -1004,11 +1032,12 @@ This results in requiring at least 1 `-a` flag.
 * To remove assignees from a task, you can use the [`edit task` command](#edit-task-in-team-edit-task)
 
 **Command Aliases:**
+
 - `assign ta`
 - `as task`
 - `as ta`
 
-**Examples:** 
+**Examples:**
 
 - `assign task 1 -a` will not do anything.
 - `assign task 1 -a 1` will assign the first task on the task list to the first member in the team.
@@ -1016,8 +1045,8 @@ This results in requiring at least 1 `-a` flag.
 
 #### Assign a task to random team member: `assign random`
 
-Assign an existing task to a random team member in the user’s team. This command will not work if the team is empty
-or if the task has already been assigned to all members of the team.
+Assign an existing task to a random team member in the user’s team. This command will not work if the team is empty or
+if the task has already been assigned to all members of the team.
 
 **Format:** `assign random [-h] <TASK_INDEX>`
 
@@ -1028,11 +1057,12 @@ or if the task has already been assigned to all members of the team.
 * `TASK_INDEX` **must be a positive integer:** 1, 2, 3,...
 
 **Command Aliases:**
+
 - `assign r`
 - `as random`
 - `as r`
 
-**Examples:** 
+**Examples:**
 
 - `assign random 1` will assign the first task on the task list to a random team member.
 
@@ -1049,17 +1079,19 @@ Find all tasks that have been assigned to a particular member in the currently s
 * `MEMBER_INDEX` **must be a positive integer:** 1, 2, 3,...
 
 **Command Aliases:**
+
 - `to`
 
 **Examples:**
+
 * `tasksof 1` will show all tasks assigned to the first member in your current team's member list.
 
 #### List tasks in team: `list tasks`
 
-View all the tasks in the [currently selected team](#current-team-section). These tasks can also be filtered based on 
+View all the tasks in the [currently selected team](#current-team-section). These tasks can also be filtered based on
 whether they are complete or incomplete tasks.
 
-This command can also be used to view all tasks again after using the [`find task` command](#finding-a-task-find-task) 
+This command can also be used to view all tasks again after using the [`find task` command](#finding-a-task-find-task)
 as the `find task` command filters the current team’s tasks based on some keyword(s).
 
 **Format:** `list tasks [-h] [-c] [-i]`
@@ -1071,11 +1103,13 @@ as the `find task` command filters the current team’s tasks based on some keyw
 | `-i`, `--incomplete` | :x:      | Filter for incomplete tasks                                            |
 
 **Command Aliases:**
+
 - `list ta`
 - `l tasks`
 - `l ta`
 
-**Examples:** 
+**Examples:**
+
 - `list tasks` will list all the tasks of the current team.
 - `list tasks -i` will list all the incomplete tasks of the current team.
 - `list tasks -c` will list all the completed tasks of the current team.
@@ -1098,11 +1132,13 @@ Sorts all tasks in the current team by name and displays them in the task list.
 | `res`       | **Resets** the order of the tasks shown back to default (unsorted)   |
 
 **Command Aliases:**
+
 - `sort ta`
 - `so tasks`
 - `so ta`
 
 **Examples:**
+
 * `sort tasks asc` sorts tasks in **ascending** order.
 * `sort tasks dsc` sorts tasks in **descending** order.
 * `sort tasks res` **resets** the order of the tasks shown.
@@ -1118,6 +1154,7 @@ View the number of tasks assigned to each member in the team.
 | `-h`, `--help` | :x:      | Shows [help message](#understanding-the-help-message) for this command |
 
 **Command Aliases:**
+
 - `sum`
 - `su`
 
@@ -1138,11 +1175,13 @@ Add a new link to the currently selected team.
 | `-n`, `--name` | :heavy_check_mark: | Name of link (e.g. "Meeting #1")                                       |
 
 **Command Aliases:**
+
 - `add l`
 - `a link`
 - `a l`
 
 **Examples:**
+
 - `add link -n google -l https://google.com` will add a link named "google" with the URL "https://google.com".
 
 #### Edit an existing link: `edit link`
@@ -1162,13 +1201,15 @@ Edit an existing link in the currently selected team.
 * `LINK_INDEX` **must be a positive integer:** 1, 2, 3,...
 
 **Command Aliases:**
+
 - `edit l`
 - `e link`
 - `e l`
 
 **Examples:**
-- `edit link 1 -n facebook -l https://facebook.com` will update the 1st link to have the name "facebook" with the 
-  URL of "https://facebook.com".
+
+- `edit link 1 -n facebook -l https://facebook.com` will update the 1st link to have the name "facebook" with the URL
+  of "https://facebook.com".
 - `edit link 1 -n google` will update the 1st link to have the name "google".
 
 #### Delete an existing link: `delete link`
@@ -1184,11 +1225,13 @@ Delete the specified link from the currently selected team.
 * `LINK_INDEX` **must be a positive integer:** 1, 2, 3,...
 
 **Command Aliases:**
+
 - `delete l`
 - `d link`
 - `d l`
 
 **Examples:**
+
 - `delete link 1` will delete the 1st link
 
 ### General Commands
@@ -1210,7 +1253,7 @@ Deletes everything from the application, including persons, teams, tasks, links,
 
 #### Switching between light and dark theme: `theme`
 
-Whether you're someone that likes a light theme or dark theme, we've got you covered! 
+Whether you're someone that likes a light theme or dark theme, we've got you covered!
 
 This command allows you to toggle between light theme and dark theme.
 
@@ -1221,6 +1264,7 @@ This command allows you to toggle between light theme and dark theme.
 | `-h`, `--help` | :x:      | Shows [help message](#understanding-the-help-message) for this command |
 
 **Command Aliases:**
+
 - `th`
 
 #### Exiting the program: `exit`
@@ -1234,6 +1278,7 @@ Closes the program after 3 seconds.
 | `-h`, `--help` | :x:      | Shows [help message](#understanding-the-help-message) for this command |
 
 **Command Aliases:**
+
 - `quit`
 - `bye`
 - `ex`
@@ -1249,21 +1294,22 @@ Shows the available commands in TruthTable as well as URL to this help page at t
 | `-h`, `--help` | :x:      | Shows [help message](#understanding-the-help-message) for this command |
 
 **Command Aliases:**
+
 - `h`
 
 ---
 
 ## Saving the data
 
-TruthTable's data is saved in the hard disk automatically after running any command that changes data. There is no 
-need to save manually.
+TruthTable's data is saved in the hard disk automatically after running any command that changes data. There is no need
+to save manually.
 
 [Back to Table of Contents](#table-of-contents)
 
 ## Editing the data file
 
-TruthTable data is saved as a [JSON file](#json-file), which can be found in the location where `truthtable.jar` 
-is opened from (let's call it `TRUTHTABLE_LOCATION`) and going to `TRUTHTABLE_LOCATION/data/truthtable.json`. 
+TruthTable data is saved as a [JSON file](#json-file), which can be found in the location where `truthtable.jar`
+is opened from (let's call it `TRUTHTABLE_LOCATION`) and going to `TRUTHTABLE_LOCATION/data/truthtable.json`.
 
 Advanced users are welcomed to update data directly by editing that data file.
 
@@ -1355,7 +1401,7 @@ the data of your previous TruthTable home folder.
 
 [Back to Table of Contents](#table-of-contents)
 
-### Summary of Person Commands 
+### Summary of Person Commands
 
 | Action                | Format                                                                                                                    | Examples                                                                |
 |-----------------------|---------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------|
@@ -1374,10 +1420,10 @@ the data of your previous TruthTable home folder.
 | Action                            | Format                                                                                      | Examples                                                     |
 |-----------------------------------|---------------------------------------------------------------------------------------------|:-------------------------------------------------------------|
 | Adding a new member to the team   | `add member [-h] <PERSON_INDEX>`                                                            | `add member 1`                                               |
- | Delete a member from team         | `delete member [-h] <MEMBER_INDEX>`                                                         | `delete member 2`                                            |
- | Finding a member                  | <code>find member [-h] (-n=<MEMBER_NAME_KEYWORDS> &#124; -e=<MEMBER_EMAIL_KEYWORDS>)</code> | - `find member -n Alex`<br>- `find member -e alex@gmail.com` |                                                                                             |                             |
+| Delete a member from team         | `delete member [-h] <MEMBER_INDEX>`                                                         | `delete member 2`                                            |
+| Finding a member                  | <code>find member [-h] (-n=<MEMBER_NAME_KEYWORDS> &#124; -e=<MEMBER_EMAIL_KEYWORDS>)</code> | - `find member -n Alex`<br>- `find member -e alex@gmail.com` |                                                                                             |                             |
 | Listing all members of the team   | `list members [-h]`                                                                         | `list members`                                               |
- | Sort members                      | `sort members [-h] <ORDER>`                                                                 | `sort members asc`                                           |
+| Sort members                      | `sort members [-h] <ORDER>`                                                                 | `sort members asc`                                           |
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -1410,7 +1456,6 @@ the data of your previous TruthTable home folder.
 | Sort tasks                               | `sort tasks [-h] <ORDER>`                                                              | `sort tasks asc`                                  |
 | View summary of task assignments in team | `summary [-h]`                                                                         | `summary`                                         |
 
-
 [Back to Table of Contents](#table-of-contents)
 
 ### Summary of Link Commands
@@ -1418,8 +1463,8 @@ the data of your previous TruthTable home folder.
 | Action                  | Format                                                           | Examples                                          |
 |-------------------------|------------------------------------------------------------------|:--------------------------------------------------|
 | Add a new link          | `add link [-h] -l=<LINK_URL> -n=<LINK_NAME>`                     | `add link -n google -l https://google.com`        |
- | Edit an existing link   | `edit link [-h] ([-n=<LINK_NAME>] [-l=<LINK_URL>]) <LINK_INDEX>` | `edit link 1 -n facebook -l https://facebook.com` |
- | Delete an existing link | `delete link [-h] <LINK_INDEX>`                                  | `delete link 1`                                   |
+| Edit an existing link   | `edit link [-h] ([-n=<LINK_NAME>] [-l=<LINK_URL>]) <LINK_INDEX>` | `edit link 1 -n facebook -l https://facebook.com` |
+| Delete an existing link | `delete link [-h] <LINK_INDEX>`                                  | `delete link 1`                                   |
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -1446,9 +1491,10 @@ Find out more in the [Understanding TruthTable's CLI section](#understanding-tru
 
 Information that is used to modify [commands](#command), often used with [flags](#flag).
 
-For instance, in the `edit person 1 -n Name` example command, 
+For instance, in the `edit person 1 -n Name` example command,
+
 - `1` is the parameter for the `edit person` command (in this case, `1` refers to the index of a person).
-- `Name` is the parameter for the flag `-n` (in this case, `Name` is the new name to be assigned to the person at 
+- `Name` is the parameter for the flag `-n` (in this case, `Name` is the new name to be assigned to the person at
   index `1`).
 
 Find out more in the [understanding TruthTable's CLI section](#understanding-truthtables-cli).
@@ -1458,6 +1504,7 @@ Find out more in the [understanding TruthTable's CLI section](#understanding-tru
 Specific characters that are used to modify [commands](#command), often used with [flags](#flag).
 
 For instance, in the `edit person 1 -n Name` example command,
+
 - `-n` is a flag for the `edit person` command (in this case, `-n` is used to update the person's name)
 
 Find out more in the [understanding TruthTable's CLI section](#understanding-truthtables-cli).
@@ -1471,6 +1518,7 @@ Refers to the position of an item in some collection.
 Indexes must be positive integers, so they can only be 1, 2, 3, ...
 
 For instance, in a list of 3 alphabets containing ("a", "b", "c") in that order,
+
 - index 1 would refer to "a"
 - index 2 would refer to "b"
 - index 3 would refer to "c"
@@ -1480,25 +1528,28 @@ For instance, in a list of 3 alphabets containing ("a", "b", "c") in that order,
 An alias is used to indicate that a named item is also known as another specified name.
 
 For instance,
+
 - `e` is an alias for the `edit` command in TruthTable.
 
 ### Command Line Interface
 
-A text-based [user interface](#user-interface) which allows the user to perform some action through the use of 
+A text-based [user interface](#user-interface) which allows the user to perform some action through the use of
 [commands](#command).
 
 Find out more in the [understanding TruthTable's CLI section](#understanding-truthtables-cli).
 
 Examples include
+
 - <a href="https://en.wikipedia.org/wiki/Unix_shell" target="_blank">Unix shells</a> like `sh`, `zsh`, `Bash`
 - <a href="https://en.wikipedia.org/wiki/Cmd.exe" target="_blank">Command Prompt</a> in the Windows Operating System
 
-### Graphical User Interface 
+### Graphical User Interface
 
-A visual [user interface](#user-interface) which allows the user to interact with a program using visual elements 
-such as shapes, diagrams, and buttons. 
+A visual [user interface](#user-interface) which allows the user to interact with a program using visual elements such
+as shapes, diagrams, and buttons.
 
 Examples include
+
 - Operating systems like Microsoft Windows, Apple's macOS, Apple's IOS, Linux
 
 ### User Interface
@@ -1506,6 +1557,7 @@ Examples include
 The user interface is some interface of which we interact with computers and devices in.
 
 Examples include
+
 - Monitors
 - Keyboards
 
@@ -1517,7 +1569,7 @@ For instance, the input box in the [command section](#command-section) is a comp
 
 ### JSON File
 
-A file which is used to store data, which adheres to a format called 
+A file which is used to store data, which adheres to a format called
 <a href="https://en.wikipedia.org/wiki/JSON" target="_blank">JavaScript Object Notation (JSON)</a>.
 
 [Back to Table of Contents](#table-of-contents)
