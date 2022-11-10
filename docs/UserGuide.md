@@ -435,8 +435,30 @@ Summary of the commands to manage persons can be found [here](#summary-of-person
 
 #### Creating a new person: `add person`
 
-Adds a new person to TruthTable. The new person is added to the [persons section](#persons-section) as seen in the image
-below.
+It is the start of a new semester and you are excited to work with your new classmates on software engineering projects. 
+You want to get to know them better before you work with them in your teams. There is a person that seem like a really 
+fun person to work with, and you cannot wait to know more about them. Simply ask for their name, email and phone number 
+and simply key in `add person -e <EMAIL> -n<NAME> -p<PHONE>` and their contact details will be ! Now you can contact 
+them easily before you form your project groups. You may optionally specify `-t <TAGS>` for any interesting features 
+you remember of the person!
+
+The `add person` command allows you to add a new person to TruthTable. The new person is added to the [persons section](#persons-section) as seen in the image
+below. Do not worry if an error shows up, you might have typed something wrongly. Here, let us take a quick walkthrough 
+on how to add a person.
+
+Let us try to add a new person called John Doe. Enter the command
+
+`add person -n "John Doe" -p 98765432 -e johnd@example.com` 
+
+If done successfully, you should see a new person show up in the [persons section](#persons-section) as seen below. Please 
+refer below. 
+
+If you are still unsure, please enter `add person -h` and our application will give you a comprehensive guide on how 
+to use this command. 
+
+If you want to know more about the details of the command, please refer to the format and table directly below.
+
+If you want more examples usages, please see the examples below.
 
 ![Add Person Example](images/AddPersonExample.png)
 
@@ -469,8 +491,33 @@ A person can have any number of tags (including 0).
 
 #### Editing a person: `edit person`
 
-Edits an existing person in TruthTable. The edited person's details will be shown in the 
-[persons section](#persons-section) as seen in the image below.
+Opps! Seems like your classmate might have provided his school email instead of his github email. Not to worry, you 
+can edit their contact details easily with `edit person`! First, identify the index number of your classmate in the
+[persons section](#persons-section). If you are not able to find their name visibly, refer to 
+[find command](#finding-a-person-find-person) on how you can find your classmate easily. Next, key in 
+`edit person <INDEX_NUMBER> -e <NEW_EMAIL>` to change their email! You can edit other contact details as well.
+
+The `edit person` command allows you to edit an existing person in TruthTable. The edited person's details will be shown in the
+[persons section](#persons-section) as seen in the image below. As always, do not panic if you see an error message. Let 
+us run through how to edit the details of a person.
+
+Suppose your classmate Alex Yeoh has provided you with the wrong phone and email. Identify the index number of
+`Alex Yeoh` in the application (1 in the image below). Enter the command 
+
+`edit person 1 -p 91234567 -e johndoe@example.com`
+
+If done successfully, you should see the new details show up under in the [persons section](#persons-section)
+under `Alex Yeoh` as seen below. 
+
+Unable to find a person you are looking for? Please check that you have added the person into TruthTable! Refer to the 
+above [add person command](#creating-a-new-person-add-person) to add a new person into TruthTable. 
+
+If you are still unsure, please enter `edit person -h` and our application will give you a comprehensive guide on how
+to use this command.
+
+If you want to know more about the details of the command, please refer to the format and table directly below.
+
+If you want more examples usages, please see the examples below.
 
 ![Edit Person Example](images/EditPersonExample.png)
 
@@ -508,8 +555,32 @@ Edits an existing person in TruthTable. The edited person's details will be show
 
 #### Deleting a person: `delete person`
 
-Deletes the specified person from TruthTable. The person deleted will be removed from the 
-[persons section](#persons-section) as seen in the image below.
+Alas, you are done with the project and will no longer be working with this classmate of yours. Not to worry, you
+can delete their contact details easily with `delete person`! First, identify the index number of your classmate in the
+[persons section](#persons-section). If you are not able to find their name visibly, refer to 
+[find command](#finding-a-person-find-person) on how you can find your classmate easily. Next, key in `delete person <INDEX_NUMBER>` 
+to remove them from TruthTable.
+
+The `delete person` command allows you to delete the specified person from TruthTable. The person deleted will be 
+removed from the [persons section](#persons-section) as seen in the image below. Let us run through how to delete a 
+person.
+
+Suppose you will never work with your classmate Alex Yeoh. Identify the index number of `Alex Yeoh` in the
+application (1 in the image below). Enter the command
+
+`delete person 1`
+
+If done successfully, you should the person `Alex Yeoh` removed under the [persons section](#persons-section).
+
+Unable to find a person you are looking for? Please check that you have added the person into TruthTable! Refer to the
+above [add person command](#creating-a-new-person-add-person) to add a new person into TruthTable.
+
+If you are still unsure, please enter `delete person -h` and our application will give you a comprehensive guide on how
+to use this command.
+
+If you want to know more about the details of the command, please refer to the format and table directly below.
+
+If you want more examples usages, please see the examples below.
 
 ![Delete Person Example](images/DeletePersonExample.png)
 
@@ -538,10 +609,33 @@ Deletes the specified person from TruthTable. The person deleted will be removed
 
 #### Finding a person: `find person`
 
-Finds all persons whose names contain any of the given keywords. The persons with matching names will be shown
-in the [persons section](#persons-section) as seen in the image below.
+You recall talking to the guy called Alex in your class but you do not remember his full name. Not to worry, you
+can find their contact details easily with `find person`! First, recall his first name or any keyword you can remember 
+from his full name. Next, key in `find person <PERSON_NAME_KEYWORDS>`, and TruthTable will show you all persons with 
+names that contain the keywords that you specified!
 
-![Find Person Example](images/DeletePersonExample.png)
+The `delete person` command allows you to finds all persons whose names contain any of the given keywords. 
+The persons with matching names will be shown in the [persons section](#persons-section) as seen in the image below.
+Let us run through how to find a person.
+
+Suppose you want to find all people named Alex and all people named David. Enter the command
+
+`find person alex david`
+
+If done successfully, you should the see all persons named Alex and David show up under in the
+[persons section](#persons-section).
+
+Unable to find a person you are looking for? Please check that you have added the person into TruthTable! Refer to the
+above [add person command](#creating-a-new-person-add-person) to add a new person into TruthTable.
+
+If you are still unsure, please enter `find person -h` and our application will give you a comprehensive guide on how
+to use this command.
+
+If you want to know more about the details of the command, please refer to the format and table directly below.
+
+If you want more examples usages, please see the examples below.
+
+![result for 'find person alex david'](images/findPersonAlexDavidResult.png)
 
 **Format:** `find person [-h] <PERSON_NAME_KEYWORDS>`
 
@@ -567,14 +661,27 @@ in the [persons section](#persons-section) as seen in the image below.
 * `find person John` returns `john` and `John Doe`.
 * `find person alex david` returns `Alex Yeoh`, `David Li`.
 
-For instance, the output of running `find person alex david` is shown below:
-![result for 'find person alex david'](images/findPersonAlexDavidResult.png)
-
 #### Listing all persons: `list persons`
 
-Shows a list of all persons in TruthTable. After running the [`find person`](#finding-a-person-find-person)
-command, you may wish to view all persons again. To do so, the `list persons` command will update the
-[persons section](#persons-section) and display all persons as seen in the image below.
+You want to see an overview of all your classmates. Key in `list persons`, and TruthTable will show you all persons that 
+currently exist in your TruthTable
+
+The `list persons` command shows a list of all persons in TruthTable. After running the 
+[`find person`](#finding-a-person-find-person) command, you may wish to view all persons again. To do so, the list 
+persons command will update the [persons section](#persons-section) and display all persons as seen in the image below.
+
+If done successfully, you should the see all persons show up under in the [persons section](#persons-section) as shown
+below.
+
+Unable to find a person you are looking for? Please check that you have added the person into TruthTable! Refer to the
+above [add person command](#creating-a-new-person-add-person) to add a new person into TruthTable.
+
+If you are still unsure, please enter `list persons -h` and our application will give you a comprehensive guide on how
+to use this command.
+
+If you want to know more about the details of the command, please refer to the format and table directly below.
+
+If you want more examples usages, please see the examples below.
 
 ![List Persons Example](images/DeletePersonExample.png)
 
