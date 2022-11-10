@@ -441,22 +441,23 @@ Policies are a financial advisor’s best friend. Whether it’s an insurance po
 
 #### __________________________
 
-### Adding a policy : `addPolicy`
+### Adding a Policy : `addPolicy`
 
-Adds a policy to the LTNS.
+Found a new policy you want to pitch to your clients? LTNS lets you add the policy alongside company, coverage categories and commission levels, to easily access it in future.
 
 Format: `addPolicy ti/TITLE cmp/COMPANY_CODE cms/Y1COMMISION% Y2COMISSION% Y3ONWARDS% cov/COVERAGE...`
 
 The information here seems pretty intimidating at first but fret not, you can find detailed help on the different input restrictions [here](#command-format-table).
 
-Found a new policy you want to pitch to your clients? LTNS lets you add the policy alongside company, coverage categories and commission levels, to easily access it in future.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Additional Tips:** <br/>
 
 - What does your policy cover? A policy must have one or more coverages when created. Find the possible coverages and their corresponding codes [here](#valid-coverage-codes).<br/>
 - Which company does your policy belong to? Find out the valid companies and their corresponding codes [here](#valid-company-codes).<br/>
 - If you’d like to sell a policy from a company/with a coverage not in our list, write to us [here](#contact-us), and we’ll add it in if there are a significant number of requests!<br/>
-- Money is the name of the game! Enter the commissions agreed to with the provider in positive percentages from 0% to 100%! (e.g. 10% 3.5% 1.0%)</div>  
+- Money is the name of the game! Enter the commissions agreed to with the provider in positive percentages from 0% to 100%! (e.g. 10% 3.5% 1.0%)
+
+</div>  
 
 Example Usage:
 * `addPolicy ti/PruShield cmp/PRU cms/10% 5% 1% cov/LIFE`
@@ -472,7 +473,7 @@ If successful, you should see the following success message:
 
 #### __________________________
 
-### Switching to the view of currently listed policies : `policies`
+### Switching to the View of Currently Listed Policies : `policies`
 After viewing your [clients](#client-features) or [events](#event-features), you may want to switch LTNS back to the view of your policies. 
 Do it in an instant with the `policies` command!
 
@@ -489,7 +490,7 @@ Example Result: Shows the currently listed policies on the screen.
 
 #### __________________________
 
-### Listing all policies: `allPolicies`
+### Listing All Policies: `allPolicies`
 Need to get an overview of all the policies you’ve stored? Simply type `allPolicies` to have all the policies stored be displayed, without any filtering.
 
 Format: `allPolicies` <br />
@@ -498,7 +499,7 @@ Example Result: Shows all policies stored in LTNS, on the screen.
 
 #### __________________________
 
-### Deleting a policy : `deletePolicy`
+### Deleting a Policy : `deletePolicy`
 Changed your mind on a policy? Has a company decided to phase out a policy? Update that with the `deletePolicy` command. It lets you delete a policy at the specified `INDEX`. The index refers to the index number shown in the displayed list of policies. The index must be a positive integer 1, 2, 3, …
 
 Format: `deletePolicy POLICY_INDEX`
@@ -572,7 +573,7 @@ first client in the list from Step 2, with the following details:
 
 #### __________________________
 
-### Listing out policies assigned to a client : `listAssigned`
+### Listing Out Policies Assigned to a Client : `listAssigned`
 
 Congrats on sealing deals with numerous clients! Need a quick reminder on the policies a client has taken up? 
 This command lists out the policies that have been assigned to the client at the specified `INDEX`. 
@@ -588,7 +589,7 @@ Example Usage:
 
 #### __________________________
 
-### Deleting assigned policies from a client : `deleteAssigned`
+### Deleting Assigned Policies from a Client : `deleteAssigned`
 
 It’s unfortunate, but it happens. If a client cancels their policy prematurely, reflect the deletion of their assigned policy in LTNS using this command. Specify the client’s index number in the displayed list of clients, and the corresponding assigned policies in their list of assigned policies. The indexes must be positive integers e.g. 1, 2, 3, …
 
