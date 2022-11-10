@@ -511,8 +511,11 @@ There are two ways to check for the live availability of employees.
 
 1. First is using the `view-department` command: `view-department general management` opens up a table to show all the employees of the general management department. The number of employees in the department that are available or on leave will be shown.
 
+![View employee leave - Example](./images/ui-screenshots/view-employee-leave.png)
+
 2. The other way is using the `view` command, or simply just clicking on the profile card of a specific employee: `view 1`, or clicking on the first person card in the current list of employees, opens up the full information of the employee on the right hand side of the screen. You will be able to check if they are on leave by looking for the "On Leave" field.
 
+![View employee leave - Example](./images/ui-screenshots/department-leave.png)
 #### Adding a leave period for an employee: `add-leave`
 
 This adds a leave period to an employee given the employee ID and a start and end date. The leave period will also be displayed in a table which can be seen when viewing the employee's particulars.
