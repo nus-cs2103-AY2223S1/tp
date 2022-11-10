@@ -265,8 +265,10 @@ on 2022-08-16, consultation date on 2022-11-11, and a tag "Colour blind".
 ![EditCommandInitial.png](images/EditCommandInitial.png)
 <i> Before edit command</i>
 
-Outcome: Student's name changed to "Alex Yap", along with the following details: Telegram handle as "@AlexYap",
+Outcome: 
+1. Student's name changed to "Alex Yap", along with the following details: Telegram handle as "@AlexYap",
 Mastery Check date as 2022-11-06, consultation date as 2022-10-10, and tags as "Experienced coder" and "Intern".
+2. The *Result Display* will show a success message.
 
 ![EditCommandOutcome.png](images/EditCommandOutcome.png)
 <i> Outcome of edit command</i>
@@ -297,7 +299,9 @@ Steps:
 1. Type `remark 1 r/Aspiring to be a CS1101S TA for next year` into the *Command Box*.
 2. Press `Enter` to execute.
 
-Outcome: The student at the 1st index (Alex Yap) will have the remark "Aspiring to be a CS1101S TA for next year".
+Outcome: 
+1. Alex Yap will have the remark "Aspiring to be a CS1101S TA for next year".
+2. The *Result Display* will show a success message.
 
 ![RemarkCommandOutcome.png](images/RemarkCommandOutcome.png)
 <i> Outcome of remark command</i>
@@ -451,7 +455,9 @@ Steps:
 1. Type `grade 1 ra1/90 ra2/80.1 pa/100.00 mt/85.23 ft/78` in the *Command Box*.
 2. Press `Enter` to execute.
 
-Outcome: The student at the 1st index (Alex Yap) will have their grades updated.
+Outcome:
+1. Alex Yap will have their grades updated.
+2. The *Result Display* will show a success message.
 
 ![GradeCommand.png](images/GradeCommand.png)
 <i> Outcome of grade command</i>
