@@ -215,9 +215,7 @@ Format: `add n/NAME [t/TELEGRAM_HANDLE] [c/CONSULTATION_DATE] [m/MASTERY_CHECK_D
 
 Example: 
 Let's say you want to add a student named Alex Yeoh, with Telegram handle as "@al3xx", consultation date on 2022-10-25,
-Mastery Check date on 2022-08-16, and the tags "cool guy" and "quiet".
-
-You can follow the steps below to do so. 
+Mastery Check date on 2022-08-16, and the tags "cool guy" and "quiet". You can follow the steps below. 
 
 Steps: 
 1. Type `add n/Alex Yeoh t/al3xx c/2022-10-25 m/2022-08-16 tag/cool guy tag/quiet` in the *Command Box*.
@@ -241,6 +239,17 @@ Format: `delete INDEX`
 **:information_source: Note:** <br>
 * The index of the student must be specified and there should be exactly one INDEX parameter.
 </div>
+
+Example:
+Let's say you want to delete the 3rd student in the list. You can follow the steps below. 
+
+Steps:
+1. Type `delete 3` in the *Command Box*
+2. Press `Enter` to execute. 
+
+Outcome:
+1. FRIDAY will delete the 3rd student in the list. 
+2. The *Result Display* will show a success message.
 
 #### Editing a student: `edit`
 
@@ -352,9 +361,7 @@ Format: `sort CRITERIA/ORDER`
 
 Example:
 Let's say you want to see which students have [Mastery Checks](#glossary) closest to the current date. 
-To achieve that, you can sort the list according to the students' Mastery Check dates.
-
-You can follow the steps below to do so. 
+To achieve that, you can sort the list according to the students' Mastery Check dates, by following the steps below. 
 
 Steps:
 1. Type `sort m/a` in the *Command Box*.
