@@ -77,8 +77,8 @@ This User Guide has been structured in a way to help you find information easily
 1. [Student management](#student-management)
 2. [Grading students](#grading-students)
 3. [Organizing students](#organizing-students)
-4. [Miscellaneous features](#miscellaneous-features)
-5. [Features for advanced users](#features-for-advanced-users)
+4. [Advanced Features](#advanced-features)
+5. [Miscellaneous features](#miscellaneous-features)
 
 ### Reading This Document
 This section on reading the document will introduce you to some technical terms and formats that will be used throughout the guide.
@@ -161,11 +161,11 @@ e.g. Typing `help` and press Enter will open a help window.
 ## Features
 
 This section contains all the information and details of each feature of **FRIDAY**. These features are split into 5 sections based on their purpose and function:
-1. [Student Management](#student-management)
-2. [Grading Students](#grading-students)
-3. [Organizing Students](#organizing-students)
-4. [Miscellaneous Features](#miscellaneous-features)
-5. [Features for Advanced Users](#features-for-advanced-users)
+1. [Student management](#student-management)
+2. [Grading students](#grading-students)
+3. [Organizing students](#organizing-students)
+4. [Advanced Features](#advanced-features)
+5. [Miscellaneous features](#miscellaneous-features)
 
 <div style="page-break-after: always;"></div>
 
@@ -614,7 +614,7 @@ Outcome:
 
 <div style="page-break-after: always;"></div>
 
-### Features For Advanced Users
+### Advanced Features
 
 These features help you personalize your FRIDAY experience and improve your productivity when using FRIDAY.
 
@@ -870,24 +870,42 @@ Some Frequently Asked Questions:
 
 ## Command Summary
 
-| Action                                       | Format                                                                                                  |
-|----------------------------------------------|---------------------------------------------------------------------------------------------------------|
-| **Add a student**                            | `add n/NAME [t/TELEGRAM_HANDLE] [c/CONSULTATION_DATE] [m/MASTERY_CHECK_DATE] [tag/TAG]...`              |
-| **Delete a student**                         | `delete INDEX`                                                                                          |
-| **Edit a student's details**                 | `edit INDEX [n/NAME] [t/TELEGRAM_HANDLE] [c/CONSULTATION] [m/MASTERY_CHECK] [tag/TAG]...`               |
-| **Add remarks for a student**                | `remark INDEX [r/REMARK]`                                                                               |
-| **Record the grades for a student**          | `grade INDEX [ra1/RA1_SCORE] [ra2/RA2_SCORE] [pa/PRACTICAL_SCORE] [mt/MIDTERM_SCORE] [ft/FINALS_SCORE]` |
-| **Find a student's details**                 | `find KEYWORDS`                                                                                         |
-| **Mark a student's Mastery Check as passed** | `mark INDEX`                                                                                            |
-| **Unmark a student's Mastery Check**         | `unmark INDEX`                                                                                          |
-| **View all students**                        | `list`                                                                                                  |
-| **Sort students**                            | `sort CRITERIA/ORDER`                                                                                   |
-| **Add Alias**                                | `alias a/ALIAS k/COMMAND_KEYWORD`                                                                       |
-| **Delete Alias**                             | `unalias a/ALIAS`                                                                                       |
-| **View all alias**                           | `aliaslist`                                                                                             |
-| **Get a link to the User Guide**             | `guide`                                                                                                 |
-| **Getting Help**                             | `help`                                                                                                  |
-| **Exiting FRIDAY**                           | `exit`                                                                                                  |
+### Commands for Student Management
+| Action                           | Format                                                                                     |
+|----------------------------------|--------------------------------------------------------------------------------------------|
+| **Adding a student**             | `add n/NAME [t/TELEGRAM_HANDLE] [c/CONSULTATION_DATE] [m/MASTERY_CHECK_DATE] [tag/TAG]...` |
+| **Deleting a student**           | `delete INDEX`                                                                             |
+| **Editing a student's details**  | `edit INDEX [n/NAME] [t/TELEGRAM_HANDLE] [c/CONSULTATION] [m/MASTERY_CHECK] [tag/TAG]...`  |
+| **Adding remarks for a student** | `remark INDEX [r/REMARK]`                                                                  |
+
+### Commands for Grading Students
+| Action                                          | Format                                                                                                  |
+|-------------------------------------------------|---------------------------------------------------------------------------------------------------------|
+| **Recording the grades for a student**          | `grade INDEX [ra1/RA1_SCORE] [ra2/RA2_SCORE] [pa/PRACTICAL_SCORE] [mt/MIDTERM_SCORE] [ft/FINALS_SCORE]` |
+| **Marking a student's Mastery Check as passed** | `mark INDEX`                                                                                            |
+| **Unmarking a student's Mastery Check**         | `unmark INDEX`                                                                                          |
+
+### Commands for Organizing Students
+| Action                          | Format                |
+|---------------------------------|-----------------------|
+| **Sorting students**            | `sort CRITERIA/ORDER` |
+| **Finding a student's details** | `find KEYWORDS`       |
+| **Viewing all students**        | `list`                |
+
+### Commands for Advanced Features
+| Action                | Format                                                                                                  |
+|-----------------------|---------------------------------------------------------------------------------------------------------|
+| **Adding alias**      | `alias a/ALIAS k/COMMAND_KEYWORD`                                                                       |
+| **Deleting alias**    | `unalias a/ALIAS`                                                                                       |
+| **Viewing all alias** | `aliaslist`                                                                                             |
+
+### Commands for Miscellaneous Features
+| Action                               | Format  |
+|--------------------------------------|---------|
+| **Getting a link to the User Guide** | `guide` |
+| **Getting help**                     | `help`  |
+| **Clearing all existing data**       | `clear` |
+| **Exiting FRIDAY**                   | `exit`  |
 
 [Back to top](#table-of-contents)
 
