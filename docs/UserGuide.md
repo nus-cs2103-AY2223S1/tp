@@ -28,12 +28,12 @@ title: User Guide
   - [Managing Employee Profiles](#managing-employee-profiles)
     - [What's in an Employee Profile](#whats-in-an-employee-profile)
     - [Adding an employee](#adding-an-employee-add)
-    - [Editing an employee](#editing-an-employee-edit)
-    - [Deleting an employee](#deleting-an-employee-delete)
     - [Adding multiple employees at once](#adding-multiple-employees-at-once-batch-add)
     - [View details of an employee](#view-details-of-an-employee-view)
-    - [Listing all employees](#listing-all-employees-list)
+    - [Editing an employee](#editing-an-employee-edit)
+    - [Deleting an employee](#deleting-an-employee-delete)
     - [Finding an employee](#finding-an-employee-find)
+    - [Listing all employees](#listing-all-employees-list)
   - [Managing Employee Leaves](#managing-employee-leaves)
     - [Controlling total leaves for an employee](#controlling-total-leave-for-an-employee)
     - [Checking if an employee is on leave](#checking-if-an-employee-is-on-leave)
@@ -71,7 +71,7 @@ Here are some symbols to look out for while using this guide:
 | `code`               | Text relevant to commands or name of a file. |
 | :information source: | Information that is useful to take note of.  |
 | :bulb:               | Tips for Coydir Users.                       |
-| :exclamation:        | Be wary and proceed with caution.            |
+| :warning:            | Be wary and proceed with caution.            |
 
 ### Navigating the User Guide
 
@@ -130,7 +130,7 @@ This shows a specific employee's particulars.
 Things to note:
 
 1. On startup of the application, this panel shows Coydir logo.
-2. To view an employee's particulars, refer to the [view command]([#view-details-of-an-employee--view).
+2. To view an employee's particulars, refer to the [view command]([#view-details-of-an-employee-view).
 3. If you delete an employee that you are currently viewing, the employee info view will display the next employee's particulars.
 4. If there is no next employee, this panel will revert to the Coydir logo.
 
@@ -212,7 +212,9 @@ We will explore each of these fields in great detail as we continue along, but b
 - If a parameter is provided, anything after the prefix for that parameter until the end, or until the next parameter, will be taken as the value for the parameter.<br>
   e.g. if you specify `n/John 91234567 a/Little India`, the entire length of "John 91234567" will be taken as the name.
 
-:warning: **Integer input values cannot be too large**: any values greater than 2<sup>31</sup>-1, or 2147483647, is not supported.
+<div markdown="block" class="alert alert-warning">:warning:
+  **Integer input values cannot be too large**: any values greater than 2<sup>31</sup>-1, or 2147483647, is not supported.
+</div>
 
 For more information about the format of each field, head over to [Field Formats](#field-formats).
 
@@ -249,14 +251,17 @@ The complete employee profile allows you to specify _a fair amount_ of details f
 | **Leaves Left**  | No. of leaves left for employee        | **Cannot Set** | 14            |
 | **Rating**       | Latest performance rating for employee | **Cannot Set** | _None_        |
 
-<div markdown="block" class="alert alert-info">:bulb:
-##### Bonus Information on the Profile
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Bonus Information on the Profile**
+
 - **Employee ID** is a unique number assigned to each employee, and is used for several powerful commands. To ensure the uniqueness of the IDs, Coydir **does not support** any editing/manipulation of the employee IDs.
   - If you really wish to, you can [edit the data file](#editing-the-data-file) directly to "control" the employee IDs. However, this is _strongly discouraged_.
 - For simplicity, Coydir (_in v1.4_) currently supports a fixed list of departments.
   - You can find out more about this in the [Department Management section here](#managing-departments).
 - For each employee, Coydir supports managing individual employee leaves, as well as performance ratings, helping you to track the particulars that are not meant to be set (no. of leaves left, employee rating)
   - You can find out more about [employee leave management here](#managing-employee-leaves), and about [performance ratings here](#managing-employee-performance).
+
 </div>
 
 #### Adding an employee: `add`
@@ -276,19 +281,135 @@ Format: `add n/NAME j/POSITION d/DEPARTMENT [p/PHONE] [e/EMAIL] [a/ADDRESS] [l/L
 | `LEAVE`      | l/  | Total number of entitled leaves | **Optional**   | 14            |
 | `TAG`        | t/  | Information tags                | **Optional**   | _None_        |
 
-<div markdown="span" class="alert alert-primary">:bulb:
-An employee can have any number of tags (including 0).
-</div>
+<div markdown="block" class="alert alert-primary">
 
-<div markdown="span" class="alert alert-primary">:bulb:
-The only compulsory fields are name, position and department.
-Leaves will be default 14 while the other fields will be initialised as N/A.
+:bulb: **More on the Various Fields**
+
+- An employee can have any number of tags (including 0).
+- The only compulsory fields are name, position and department.
+- Leaves will be default 14 while the other fields will be initialised as N/A.
+
 </div>
 
 Examples:
 
 - `add n/John Doe p/98765432 e/johnd@example.com j/Recruiter d/Human Resources a/311, Clementi Ave 2, #02-25 l/20 t/friends t/owesMoney`
 - `add n/Peter Mars j/Chief Operating Officer d/General Management`
+
+#### Adding multiple employees at once: `batch-add`
+
+Adds multiple employees to Coydir by importing their data from `.csv` file
+
+This feature will come in handy when:
+
+1. You are a new user and have your employee data stored in a `.csv` file.
+2. There has been a recruitment cycle and the company has recruited multiple employees.
+
+With this feature, you would not need to spend time to manually add each employee in!
+
+Format: `batch-add FILENAME`
+
+Example:`batch-add coydir.csv`
+
+Below are the steps to use this command:
+
+**Step 1 (Creating CSV file) :**
+
+Things to note:
+
+- A header row is required to indicate the purpose of the field and must be the first row in the `.csv` file.
+- For multiple tags for an employee, the tags should be separated by " \ ".
+
+Order of headers is as such (**Order must be followed**):
+
+| Index | Field          | Requirement    | Default Value |
+| ----- | -------------- | -------------- | ------------- |
+| 1.    | `NAME`         | **Compulsory** | -             |
+| 2.    | `PHONE`        | Optional       | N/A           |
+| 3.    | `EMAIL`        | Optional       | N/A           |
+| 4.    | `POSITION`     | **Compulsory** | -             |
+| 5.    | `DEPARTMENT`   | **Compulsory** | -             |
+| 6.    | `ADDRESS`      | Optional       | N/A           |
+| 7.    | `NO_OF_LEAVES` | Optional       | 14            |
+| 8.    | `TAGS`         | Optional       | _None_        |
+
+Sample `.csv` file:
+
+![](images/batch-add-images/sampleCSV.png)
+
+Sample `.xlsx` file:
+![](images/batch-add-images/SampleExcel.png)
+Note: You can export this to `.csv`.
+
+<div markdown="span" class="alert alert-warning">:warning: **Caution:** No commas to be used in the file. For the fields, make sure that they follow the same specifications as written in the `add` command.
+</div>
+
+**Step 2 (Uploading CSV file) :**
+
+1. Go to the folder where you stored the `jar` file.
+2. Move CSV file to the `data` folder.
+   ![](images/batch-add-images/movingFile.png)
+
+_If you are a new user (have not run any command yet), you will not see the `data` folder.
+You can run the [`clear` command](#clearing-the-data-clear) to remove the sample employees first.
+After this, you should be able to see the `data` folder._
+
+**Step 3 (Running CSV file) :**
+
+1. Once done, run `batch-add FILENAME` in the command box.
+
+Successful Batch Add:
+![](images/batch-add-images/BatchAddSuccess.png)
+
+Unsuccessful Batch Add:
+
+In the case of an unsuccessful Batch Add, **NONE** of the employees in the `.csv` will be added.
+
+**Case 1 (Duplicate Employee):**
+
+If there is another employee with the same name in the database or in the csv, command will fail
+and error will be raised.
+![](images/batch-add-images/DuplicateEmployee.png)
+
+**Case 2 (Any of the fields in wrong format):**
+
+If any of the fields are in a wrong format (as specified in `add` command), command will fail
+and error with regard to field in the wrong format will be raised
+
+![](images/batch-add-images/Incorrect Format.png)
+_In this case, a `Phone` field was in the wrong format._
+
+As of version `1.4.0` , this feature only supports `.csv` files and adding employees with the fields mentioned above.
+
+In the upcoming versions, we will expand `batch-add` feature to:
+
+1. Support different types of files
+2. Include more fields like rating etc.
+
+#### View details of an employee: `view`
+
+After adding new employees to the database, accessing their freshly built employee profile is a simple command away.
+
+Keying in the `view` command allows you to see the profile of a specified employee, and the chosen profile will pop up on the Display Panel.
+You can check the details that are contained in the profile by referring to the previous section [here](#whats-in-an-employee-profile).
+
+To use the command, simply key in `view`, followed by the number representing the index of the employee of your choice.
+
+Format: `view INDEX`
+
+Example:
+
+- `view 2` returns the details of the second employee in the current list.
+
+<div markdown="span" class="alert alert-info">
+
+:information_source:
+Note that an INDEX is different from an ID.
+Because of this, also note that the `view` command can only be used on employees currently listed on the Employee-List-Panel.
+
+More information about the difference in INDEX and ID can be found on the [FAQ page](#faq).
+
+</div>
 
 #### Editing an employee: `edit`
 
@@ -326,9 +447,11 @@ Example:
 
 #### Deleting an employee: `delete`
 
-Deletes the specified employee from Coydir, given the employee ID.
+As time passes, you might run into situations where employees leave the company, and need to be removed from the databse.
 
-This command results in one of two cases below:
+You can remove these employees' data with the `delete` command, which removes all associated data from Coydir, so long as you provide the employee ID of the person to remove.
+
+When running the command, there are **two** possible outcomes:
 
 **Case 1: Employee with ID exists**
 
@@ -336,7 +459,7 @@ If Coydir has an employee with the respective ID, Coydir will delete it.
 
 **Case 2: Employee with ID does not exist**
 
-Otherwise, if Coydir has no employee with ID that matches the specified name, Coydir will prompt users that the employee ID entered is invalid.
+Otherwise, if Coydir has no employee with ID that matches the specified name, Coydir will prompt you that the employee ID entered is invalid.
 
 Format: `delete ID`
 
@@ -344,118 +467,11 @@ Example:
 
 - `delete 1` deletes the employee with employee ID of 1.
 
-#### Adding multiple employees at once: `batch-add`
-
-Adds multiple employees to Coydir by importing their data from `.csv` file
-
-This feature will come in handy when:
-
-1. You are a new user and have your employee data stored in a `.csv` file.
-2. There has been a recruitment cycle and the company has recruited multiple employees.
-
-With this feature, you would not need to spend time to manually add each employee in!
-
-Format: `batch-add FILENAME`
-
-Example:`batch-add coydir.csv`
-
-How can you use this feature?
-
-#### Step 1 (Creating CSV file) :
-
-Things to note:
-
-- A header row is required to indicate the purpose of the field and must be the first row in the `.csv` file.
-- No commas to be used in the file.
-- For multiple tags for an employee, the tags should be separated by " \ ".
-- For the fields, make sure that they follow the same specifications as written in the `add` command.
-
-Order of headers is as such (**Order must be followed**):
-
-| Index | Field          | Requirement    | Default Value |
-| ----- | -------------- | -------------- | ------------- |
-| 1.    | `NAME`         | **Compulsory** | -             |
-| 2.    | `PHONE`        | Optional       | N/A           |
-| 3.    | `EMAIL`        | Optional       | N/A           |
-| 4.    | `POSITION`     | **Compulsory** | -             |
-| 5.    | `DEPARTMENT`   | **Compulsory** | -             |
-| 6.    | `ADDRESS`      | Optional       | N/A           |
-| 7.    | `NO_OF_LEAVES` | Optional       | 14            |
-| 8.    | `TAGS`         | Optional       | _None_        |
-
-Sample `.csv` file:
-
-![](images/batch-add-images/sampleCSV.png)
-
-Sample `.xlsx` file:
-![](images/batch-add-images/SampleExcel.png)
-Note: You can export this to `.csv`.
-
-#### Step 2 (Uploading CSV file) :
-
-1. Go to the folder where you stored the `jar` file.
-2. Move CSV file to the `data` folder.
-   ![](images/batch-add-images/movingFile.png)
-
-_If you are a new user (have not run any command yet), you will not see the `data` folder.
-You can run the [`clear` command](#clearing-the-data-clear) to remove the sample employees first.
-After this, you should be able to see the `data` folder._
-
-#### Step 3 (Running CSV file) :
-
-1. Once done, run `batch-add FILENAME` in the command box.
-
-Successful Batch Add:
-![](images/batch-add-images/BatchAddSuccess.png)
-
-Unsuccessful Batch Add:
-
-In the case of an unsuccessful Batch Add, **NONE** of the employees in the `.csv` will be added.
-
-**Case 1 (Duplicate Employee):**
-
-If there is another employee with the same name in the database or in the csv, command will fail
-and error will be raised.
-![](images/batch-add-images/DuplicateEmployee.png)
-
-**Case 2 (Any of the fields in wrong format):**
-
-If any of the fields are in a wrong format (as specified in `add` command), command will fail
-and error with regard to field in the wrong format will be raised
-
-![](images/batch-add-images/Incorrect Format.png)
-_In this case, a `Phone` field was in the wrong format._
-
-As of version `1.4.0` , this feature only supports `.csv` files and adding employees with the fields mentioned above.
-
-In the upcoming versions, we will expand `batch-add` feature to:
-
-1. Support different types of files
-2. Include more fields like rating etc.
-
-#### View details of an employee: `view`
-
-Views the details of an existing employee in the current list.
-
-Format: `view INDEX`
-
-Example:
-
-- `view 2` returns the details of the second employee in the current list.
-
-<div markdown="span" class="alert alert-primary">:bulb:
-Note that an INDEX is different from an ID. More information about the difference in INDEX and ID can be found on the <a href="#faq">FAQ</a> page.
-</div>
-
-#### Listing all employees: `list`
-
-Shows a list of all employees in the company.
-
-Format: `list`
-
 #### Finding an employee: `find`
 
-Once you get familiar with Coydir and batch-adding numerous employees into the database, using `list` simply isn't sufficient to look for the right employee.
+Once you get familiar with Coydir and batch-adding numerous employees into the database, your database might get a bit larger.
+If you start to feel that scrolling through and looking for an employee is getting tedious, we have just the thing for you.
+
 The `find` command is a specific, precise function meant for searching through your employee directory.
 
 You can find employees by searching for:
@@ -474,10 +490,13 @@ Format: `find [n/NAME_KEYWORD] [j/POSITION_KEYWORD] [d/DEPARTMENT_KEYWORD]`
 | `POSITION`   | j/  | Search keyword for position of employee   | **Optional** | -             |
 | `DEPARTMENT` | d/  | Search keyword for department of employee | **Optional** | -             |
 
-<div markdown="block" class="alert alert-primary">:bulb:
-##### Important Tips!
-  - There must be _at least one_ parameter (and keyword) in the search, else Coydir will not know what to search for!
-  - The keywords you input for searching are **case-insensitive**. Additionally, they need not be full words, just a segment will do. This means that searching for the department "tech" will show results for both "Technology and "Information Technology".
+<div markdown="block" class="alert alert-primary">
+
+:bulb: **Important Tips!**
+
+- There must be _at least one_ parameter (and keyword) in the search, else Coydir will not know what to search for!
+- The keywords you input for searching are **case-insensitive**. Additionally, they need not be full words, just a segment will do. This means that searching for the department "tech" will show results for both "Technology and "Information Technology".
+
 </div>
 
 Example:
@@ -490,6 +509,13 @@ Example:
 
 - `find n/Roy j/Design d/Tech` displays 1 employee, "Roy Balakrishnan" who is a "UI/UX Designer" in the "Information Technology" department.
 
+#### Listing all employees: `list`
+
+After searching for employees with the `find` command, you might notice that the Employee List Panel no longer shows all the employees of your company.
+In order to get the full employee list again, simply use the list command, and the Employee List Panel will return to the default view of all employees.
+
+Format: `list`
+
 ### Managing Employee Leaves
 
 Employee leave management can sometimes be a surprisingly _tedious_ matter to tackle.
@@ -500,7 +526,10 @@ Here is how we support you in leave management.
 
 #### Controlling total leave for an employee
 
-You can set the total leave available for an **incoming new** employee when adding them to the database. This can be done by including the optional leave field, `l/`, when using the `add` command.
+You can set the total leave available for an **incoming new** employee when adding them to the database.
+This can be done by including the optional leave field, `l/`, when using the `add` command.
+
+While we do set the inital value of total leaves as 14 by default, this could be useful for leaves that are carried over, or other special leaves and circumstances.
 
 Example: `add n/Yi Long Ma j/Chief Operating Officer d/General Management l/20` adds an employee, and specifies his **total leave** to be **20**.
 
@@ -510,11 +539,15 @@ Example: `edit 1 l/10` edits the total leave of the **first** employee in the cu
 
 #### Checking if an employee is on leave
 
-There are two ways to check for the live availability of employees.
+There are two ways to check for the live availability of employees, a critical aspect of ensuring smooth daily operations.
 
-1. First is using the `view-department` command: `view-department general management` opens up a table to show all the employees of the general management department. The number of employees in the department that are available or on leave will be shown.
+1. First is using the [`view-department` command](#view-details-of-a-department-view-department): `view-department general management` opens up a table to show all the employees of the general management department. The number of employees in the department that are available or on leave will be shown.
 
-2. The other way is using the `view` command, or simply just clicking on the profile card of a specific employee: `view 1`, or clicking on the first person card in the current list of employees, opens up the full information of the employee on the right hand side of the screen. You will be able to check if they are on leave by looking for the "On Leave" field.
+![View employee leave - Example](./images/ui-screenshots/view-employee-leave.png)
+
+2. The other way is using the [`view` command](#view-details-of-an-employee-view), or simply just clicking on the profile card of a specific employee: `view 1`, or clicking on the first person card in the current list of employees, opens up the full information of the employee on the right hand side of the screen. You will be able to check if they are on leave by looking for the "On Leave" field.
+
+![View employee leave - Example](./images/ui-screenshots/department-leave.png)
 
 #### Adding a leave period for an employee: `add-leave`
 
@@ -529,11 +562,7 @@ and the employee has sufficient leaves, the leave period will be added and shown
 
 **Case 2: Invalid ID, date or insufficient leaves**
 
-If any of employee ID, date is invalid, or the employee does not possess enough leaves, Coydir will prompt the users accordingly, and the command will not execute.
-
-<div markdown="span" class="alert alert-primary">:bulb:
-Leaves are ordered by reverse chronological order in the table view.
-</div>
+If any of employee ID, date is invalid, or the employee does not possess enough leaves, Coydir will prompt you accordingly, and the command will not execute.
 
 Format: `add-leave id/ID sd/START_DATE ed/END_DATE`
 
@@ -542,6 +571,10 @@ Format: `add-leave id/ID sd/START_DATE ed/END_DATE`
 | `ID`         | id/ | Employee ID                               | **Compulsory** | N.A.          |
 | `START_DATE` | sd/ | Start date of leave, in dd-MM-YYYY format | **Compulsory** | N.A.          |
 | `END_DATE`   | ed/ | End date of leave, in dd-MM-YYYY format   | **Compulsory** | N.A.          |
+
+<div markdown="span" class="alert alert-primary">:bulb:
+Leaves are ordered by reverse chronological order in the table view.
+</div>
 
 Example:
 
@@ -564,7 +597,7 @@ If the employee exists, the index given is valid, the leave period at that index
 
 **Case 2: Invalid ID, or index**
 
-If the employee ID, or the index is invalid, Coydir will prompt the users accordingly, and the command will not execute.
+If the employee ID, or the index is invalid, Coydir will prompt you accordingly, and the command will not execute.
 
 Format: `delete-leave id/ID i/INDEX`
 
@@ -594,13 +627,21 @@ Here, Coydir offers a **simple yet powerful** way of keeping track of and making
 **:information_source: Note:** 5-point rating scale.<br><br>
 
 The 5 point performance appraisal ratings system is the most commonly used performance rating scale across the world.
-A 1 to 5 rating scale has a total of 5 categories with 2 negative and 2 positive options. A middle option is a neutral option for those who have met the expectations in terms of work performance. This rating scale is well-defined with a separate category for the employees who neither fall in the below expectations (requiring performance review) nor in the exceeds expectations categories.
+
+A 1 to 5 rating scale has a total of 5 categories with 2 negative and 2 positive options.
+A middle option is a neutral option for those who have met the expectations in terms of work performance.
+
+This rating scale is well-defined with a separate category for the employees who neither fall in the below expectations (requiring performance review) nor in the exceeds expectations categories.
 
 </div>
 
 #### Rating the performance of an employee: `rate`
 
-Rate the performance of an employee given the employee ID and a numeric rating.
+The core of Coydir's performance tracking system is the `rate` command.
+This simple command adds a performance rating for an employee, together with today's date as a timestamp record.
+You can use and adapt this to your own company policies, by rating according to your desired monthly/quarterly intervals, for example.
+
+To use the command, key in the `rate` command, and provide the employee ID and a numeric rating.
 Ratings can take any values from 1 - 5, and it should not be blank.
 
 The numeric representation of the ratings follows as such:
@@ -610,11 +651,11 @@ This command results in one of two cases below:
 
 **Case 1: Valid ID and rating**
 
-If the employee exists, and the rating given is valid (is a number from 1-5 inclusive), the performance rating will be added and the performance field of the employee will be updated accordingly.
+If the employee exists, and the rating given is valid (is a integer from 1-5 inclusive), the performance rating will be added and the performance field of the employee will be updated accordingly.
 
 **Case 2: Invalid ID or rating**
 
-If the rating given for any employee is invalid (is not an integer from 1-5 inclusive), Coydir will prompt the users accordingly, and the command will not execute.
+If the rating given for any employee is invalid (is not an integer from 1-5 inclusive), Coydir will prompt you accordingly, and the command will not execute.
 
 Format: `rate id/ID r/RATING`
 
@@ -627,23 +668,20 @@ Example:
 
 - `rate id/1 r/3` adds a performance rating to an employee of ID 1 with a rating of 3: Satisfactory.
 
-#### Employee Performance History
+<div markdown="span" class="alert alert-primary">
 
-In each employee profile below their current performance rating field, there is a performance history line graph showing all their past `ratings` over time, marked by a `value` and `timestamp`. The line graph allows the user to appreciate the employee's performance trend, and make key decisions regarding talent development.
-
-The individual rating values will be displayed beside each node in the performance rating graph. This makes it clearer for users to visualize an employee's overall performance at a glance.
-
-![Performance History Graph](./images/ui-screenshots/performance-history-graph.jpg)
-
-<div markdown="span" class="alert alert-info">
-
-**:information_source: Note:** You can only rate the performance of an employee once per day.<br><br>
-
-- Rating an employee who already has a `Rating` with `timestamp` of that same day with the `rate` command will throw a `employee already rated` error.
-
-- This is to prevent multiple ratings per day, and avoid a distorted performance history graph.
+:bulb: **Note:** You can only rate the performance of an employee once per day.<br><br>
 
 </div>
+
+#### Employee Performance History
+
+In each employee profile below their current performance rating field, there is a performance history line graph showing all their past `ratings` over time, marked by a `value` and `timestamp`. The line graph allows you to appreciate the employee's performance trend, and make key decisions regarding talent development.
+
+The individual rating values will be displayed beside each node in the performance rating graph.
+This makes it clearer for you to visualize an employee's overall performance at a glance.
+
+![Performance History Graph](./images/ui-screenshots/performance-history-graph.jpg)
 
 ### Managing Departments
 
@@ -651,9 +689,9 @@ Apart from supporting the core HR functions, Coydir also supports _department-le
 
 With these features, we offer a view that is broader than an individual employee profile and more specific than the full directory.
 
-Complete with **real-time statistics and analytics**, Coydir makes department management much simpler. With these information, HR can easily observe the structure of a particular department, track the number of currently available employees for better tasks delegation, or even perform a department restructure to improve the overall efficiency of the company.
+Complete with **real-time statistics and analytics**, Coydir makes department management much simpler. With these information, department heads can easily observe the structure of a particular department, track the number of currently available employees for better tasks delegation, or even perform a department restructure to improve the overall efficiency of the company.
 
-Currently, our application only provides a list of default departments for the user to choose from. Future update will include customizable department name. Our current list of valid departments are:
+Currently, our application only provides a list of default departments for you to choose from. Future update will include customizable department name. Our current list of valid departments are:
 
 - Administration
 - Board of Directors
@@ -674,20 +712,12 @@ Currently, our application only provides a list of default departments for the u
 
 #### View details of a department: `view-department`
 
-View the summarized details of a department given the name of the department.
+For department heads, pulling up data relevant to your department can be done through the `view-department` command.
 
-Details include the number of employee in that particular department, employees who are currently available, employees who are currently on leave, and a table of employees in that department with their corresponding performance ratings and availability.
+This allows you to view the summarized details of a department given the name of the department.
+Details include the number of employee in that particular department, employees who are currently available, employees who are currently on leave, and a table of employees in that department with their corresponding performance ratings.
 
-<p align="center">
-  <img src="images/ui-screenshots/view_department.png" />
-  <br><em>Result of view-department on General Management</em>
-</p>
-
-Format: `view-department DEPARTMENT`
-
-Example:
-
-- `view-department Finance` displays a brief summary of the Finance department's details on the right panel.
+Simply enter the `view-department` command, followed by the name of the department.
 
 This command results in one of the two cases below:
 
@@ -699,13 +729,26 @@ If the department exists, the right panel will correctly displays the summary of
 
 If the department name is invalid, the program will notify you through the result box, with a list of valid department name for easier reference.
 
-<div markdown="span" class="alert alert-primary">:bulb:
-DEPARTMENT is case-insensitive.
+Format: `view-department DEPARTMENT`
+
+<p align="center">
+  <img src="images/ui-screenshots/view_department.png" />
+  <br><em>Result of view-department on General Management</em>
+</p>
+
+Example:
+
+- `view-department Finance` displays a brief summary of the Finance department's details on the right panel.
+
+<div markdown="span" class="alert alert-primary">
+
+:bulb: DEPARTMENT is case-insensitive.
+
 </div>
 
 ### Additional Features
 
-To wrap up, let us take a look at a couple of additional features that give _a little boost_ to your HR management on Coydir.
+To wrap up, let us take a look at a couple of additional features that give _a little boost_ to your HR and department management on Coydir.
 These features and techniques serve to make your usage of the application **smoother, easier, and more flexible**.
 
 #### Getting help: `help`
@@ -719,11 +762,12 @@ Format: `help`
 
 With this command, you should see a window like this appear.
 
-**[Insert screenshot of updated Help Window]**
+![Help Window](./images/ui-screenshots/help-window.png)
 
 #### Exiting the program: `exit`
 
-Exits the program.
+At the end of your work, you can exit Coydir and close the application by entering in the `exit` command.
+Alternatively, you can also click the close button on the window.
 
 Format: `exit`
 
@@ -731,11 +775,13 @@ Format: `exit`
 
 Clears all the data currently stored in the database.
 
-If you are a new user, you can use this command after you have experimented with Coydir
-to start keying in your actual employee information.
+If you are a new user, you can use this command after you have experimented with Coydir to start keying in your actual employee information.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning">
+
+:warning: **Caution:**
 Once you run this command, you lose all data immediately.
+
 </div>
 
 Format: `clear`
@@ -751,8 +797,11 @@ It is possible to manipulate data by editing the data file directly, but even fo
 
 If you still choose to do so, we **cannot guarantee** that Coydir continues to support your HR operations smoothly.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning">
+
+:warning: **Caution:**
 If your changes to the data file makes its format invalid, Coydir will discard all data and start with an empty data file at the next run.
+
 </div>
 
 ---
@@ -774,14 +823,13 @@ If your changes to the data file makes its format invalid, Coydir will discard a
 
 1. **CLI** : A _text-based_ user interface which allows the user to perform some action through the use of commands.
 2. **Parameter** : The additional input provided for the command to run.
-3. **GUI** : A visual user interface that uses  visual elements such as shapes, diagrams, and buttons to allow the user to interact with a program.
+3. **GUI** : A visual user interface that uses visual elements such as shapes, diagrams, and buttons to allow the user to interact with a program.
 4. **Prefix** : An input to help identify the type of information in Coydir.
 5. **Hard disk** : A component in your computer that stores your data.
 6. **JSON** : A file which is used to store data, which adheres to a format called [JavaScript Object Notation (JSON)](https://www.json.org/json-en.html).
 7. **CSV** : A file which is used to store data, which adheres to a format called [Comma-Separated Values (CSV)](https://en.wikipedia.org/wiki/Comma-separated_values).
-8. **JAR** : Otherwise known as [Java ARchive](https://docs.oracle.com/javase/8/docs/technotes/guides/jar/jarGuide.html) file, it is a file format that combines many files into one. It can also be 
-a executable (a file that contains a program).
-9. **Integer** : A whole number like 1,9,15,27.
+8. **JAR** : Otherwise known as [Java ARchive](https://docs.oracle.com/javase/8/docs/technotes/guides/jar/jarGuide.html) file, it is a file format that combines many files into one. It can also be a executable (a file that contains a program).
+9. **Integer** : A whole number like 1, 9, 15, 27, etc.
 
 ## Field Formats
 This table describes the requirements for the input format of the fields.
