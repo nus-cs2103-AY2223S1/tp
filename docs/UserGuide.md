@@ -237,33 +237,32 @@ Avoid giving irrelevant inputs to commands that do not accept those inputs. For 
 #### Viewing help: `help`
 
 **What it does:**<br>
-Using `help` will provide you with a link to our online user guide.<br>
-If you get lost while using PayMeLah, this is the one command to remember!
+This command provides you with a link to our online user guide.
+
+**When to use:**<br>
+When you are unsure of how to perform an action while using PayMeLah, you can use this command to access this user guide!
 
 ![help message](images/helpMessage.png)
 
 **Format:**<br>
 `help`
 
-<div markdown="block" class="alert alert-secondary">
-**:star: Advanced Tip:**
-Pressing <kbd> F1 </kbd> will also open up the help message.
-</div>
-
 #### Undoing a command: `undo`
 
 **What it does:**<br>
-This is the command to use when you make a mistake, and want to undo previous command(s) that modified PayMeLah's data. After you undo a command, PayMeLah will automatically show the full list of persons for you to check whether the correct changes have been reverted. Be careful though, your undo history will be gone when you close the app!
+This command undoes the most recent command that modified PayMeLah's data.
+
+**When to use:**<br>
+When you accidentally enter a wrong command and want to revert the changes made, this is the command to use!
 
 **Format:**<br>
 `undo`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-This command will only undo commands that directly modified PayMeLah's data contents (e.g., `adddebt`, `delete`, `sort`). It does not undo commands that only change the display (e.g., `listdebtors`, `find`). To view all the persons in PayMeLah, use the `list` command instead.
-</div>
+**Additional information:**<br>
+After you undo a command, PayMeLah will automatically show the full list of persons for you to check whether the correct changes have been reverted. Be careful though, your undo history will be gone when you close the app!
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-The undo history of PayMeLah will only save your 10 most recent commands that modified its data! Make sure to check the list of persons regularly if you are making many changes in one session!
+The undo history of PayMeLah will only save your 10 most recent commands! Make sure to check the list of persons regularly if you are making many changes in one session!
 </div>
 
 <div style="page-break-after: always;"></div>
@@ -271,26 +270,31 @@ The undo history of PayMeLah will only save your 10 most recent commands that mo
 #### Clearing all entries: `clear`
 
 **What it does:**<br>
-Clears all entries from PayMeLah.<br>
-You can use this command to delete all info from PayMeLah and start afresh!
+This command clears all data from PayMeLah.
+
+**When to use:**<br>
+When you want to start afresh with an empty person list, this is the command to use!
 
 **Format:**<br>
 `clear`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-This is the command to use when you want to start using PayMeLah for real and delete all the sample data that exist when you first use PayMeLah!
+If you accidentally run this command, don't worry! You can use the `undo` command to easily get your data back.
 </div>
 
 #### Exiting the program: `exit`
 
 **What it does:**<br>
-Exits the program.
+This command closes the PayMeLah application.
+
+**When to use:**<br>
+When you want to close PayMeLah using your keyboard (rather than your mouse), this is the command to use!
 
 **Format:**<br>
 `exit`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You can also just press the 'X' button in the upper right corner. There is no difference, and both methods help safely exit PayMeLah :)
+You can also click the 'X' button in the upper right corner of the PayMeLah window. There is no difference, and both methods exit PayMeLah safely.
 </div>
 
 
@@ -304,8 +308,11 @@ You can also just press the 'X' button in the upper right corner. There is no di
 #### Adding a person: `add`
 
 **What it does:**<br>
-Adds a person to PayMeLah. <br>
-This command will let you add the people who owe you money (and some of their information, like their phone number or Telegram handle) to PayMeLah.
+This command adds a person to PayMeLah.
+
+**When to use:**<br>
+When you want to start tracking debts owed by a particular person, you can use this command to first add that person (and some of their particulars, like their phone number or Telegram handle) to PayMeLah.
+After adding the person to PayMeLah, you can [add debts to start tracking](#adding-a-debt-adddebt).
 
 **Format:**<br>
 `add n/<name> [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]…`
@@ -316,7 +323,6 @@ A person can have any number of tags (including 0).
 
 **Additional information:**<br>
 * You can only have 1 person of a certain `name`. This means you *cannot* store 2 `Isaac Lee`s with different phone numbers in PayMeLah.
-* However, `name` is case-sensitive. If you have 2 friends of the same name and would prefer to store both of them under their actual name, you *can* store an `Isaac Lee` and an `isaac lee`.
 
 **Examples:**<br>
 * `add n/John Doe p/98765432 tele/johndoe a/John street, block 123, #01-01` will add a person named `John Doe` with `98765432` as his phone number, `johndoe` as their Telegram handle and `John street, block 123, #01-01` as their address to PayMeLah.
@@ -327,20 +333,20 @@ A person can have any number of tags (including 0).
 #### Editing a person: `edit`
 
 **What it does:**<br>
-Edits an existing person in PayMeLah.<br>
-You can use this command to edit information about people you have already added in PayMeLah, in case some of their particulars such as their phone number or Telegram handle have changed.
+This command edits an existing person in PayMeLah.
+
+**When to use:**<br>
+When a person’s particulars in PayMeLah have changed (e.g. phone number or Telegram handle), you can use this command to edit them!
 
 **Format:**<br>
 `edit <index> [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]…`
 
 **Additional information:**<br>
-* Edits the person at the specified `<index>`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …
+* Edits the person at the specified `<index>`. The index refers to the person index shown in the displayed person list.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
   specifying any tags after it.
-* Cannot be used to modify a person's debts
 
 **Examples:**<br>
 *  `edit 1 p/91234567 tele/johndoe` will edit the phone number and Telegram handle of the 1st person to be `91234567` and `@johndoe` respectively.
@@ -351,16 +357,17 @@ You can use this command to edit information about people you have already added
 #### Deleting a person: `delete`
 
 **What it does:**<br>
-Deletes the specified person from PayMeLah.<br>
-You can use this to remove people you no longer need to track debts for from PayMeLah.
+This command deletes the specified person from PayMeLah.
+
+**When to use:**<br>
+When you no longer need to track debts for a particular person, you can use this command to remove them from PayMeLah.
 
 **Format:**<br>
 `delete <index>`
 
 **Additional information:**<br>
 * Deletes the person at the specified `<index>`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …
+* The index refers to the person index shown in the displayed person list.
 
 **Examples:**<br>
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
@@ -376,8 +383,10 @@ You can use this to remove people you no longer need to track debts for from Pay
 #### Adding a debt: `adddebt`
 
 **What it does:**<br>
-Adds a debt to a person in PayMeLah for you to track. Specifying multiple people will add a copy of this debt to each person specified.<br>
-This command will help you add debts to the people in PayMeLah, so that the app can help you to remember all the debts you are owed instead.
+This command adds a debt to a person in PayMeLah for you to track. Specifying multiple people will add a copy of this debt to each person specified.
+
+**When to use:**<br>
+When you want PayMeLah to keep track of a debt for one particular person, or the same debt for multiple persons, this is the command to use!
 
 **Format:**<br>
 `adddebt <person index…> d/<description> m/<money> [date/<date>] [time/<time>]`
@@ -401,13 +410,6 @@ Be very careful! The default behaviour is slightly different across the differen
 
 <div style="page-break-after: always;"></div>
 
-* One person **cannot** have 2 debts with the same description, money, date and time. However, they **can** have 2 debts with 3 out of 4 of description, money, date and time being the same.
-
-<div markdown="block" class="alert alert-secondary"> **:star: Advanced Tip:**
-Description is case-sensitive! In case you need to store 2 separate debts with the same description, money, date and time for a single person, you can consider storing the first with capital letters and the second without.<br>
-For example, you can have a `Lunch` debt and a `lunch` debt. However, you are recommended to store the debts with more specific descriptions to make it easier to figure out what they really are in the future! You can still find both `lunch drink` and `lunch meal` debts by making use of the [`finddebt` command](#locating-persons-by-debt-description-finddebt).
-</div>
-
 **Example:**<br>
 * `adddebt 3 d/McDonalds m/8.9` will add a debt with the current date and time to the 3rd person in the person list. This debt is worth `$8.90` and has the description `McDonalds`.
 * `adddebt 1 4 d/chicken rice m/10++ date/2022-10-12 time/13:00` will add debts with `2022-10-12` and `13:00` as the date and time respectively to **both** the 1st person and 4th person. These debts require Service Charge and GST to be added to an initial price of `$10`, and will be recorded with the description `chicken rice`. Note that PayMeLah will automatically calculate the money for both debts and display the amounts as `$11.77`.
@@ -417,14 +419,16 @@ For example, you can have a `Lunch` debt and a `lunch` debt. However, you are re
 #### Splitting a debt: `splitdebt`
 
 **What it does:**<br>
-Splits a debt among several people in PayMeLah for you to track. <br>
-This command will help you with the Maths of dividing shared costs equally among people in PayMeLah. Sharing is made easy as PayMeLah does the Maths for you!
+This command splits a debt evenly among several people in PayMeLah for you to track.
+
+**When to use:**<br>
+When you want to divide a group expense equally between multiple persons, you can use this command to let PayMeLah help you with the calculations and keep track of their debts!
 
 **Format:**<br>
 `splitdebt <person index…> d/<description> m/<money> [date/<date>] [time/<time>]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You can split a debt among as many people as you want. You can even include yourself with index '0'. But you cannot split a debt between just yourself.
+You can split a debt among as many people as you want. You can even include yourself with index `0`. But you cannot split a debt between just yourself.
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -446,8 +450,6 @@ Splitting a debt is just like [adding a debt](#adding-a-debt-adddebt) to multipl
 Be very careful! The default behaviour is slightly different across the different combinations of whether you provided date and time inputs.
 </div>
 
-* One person **cannot** have 2 debts with the same description (case-sensitive), money, date and time. However, they **can** have 2 debts with 3 out of 4 of these items being the same.
-
 **Examples:**<br>
 * `splitdebt 1 2 d/Pizza m/33.99` will add debts with the current date and time to the 1st and 2nd person in the person list. This debt has the description `Pizza`and is worth `$33.99` in total before being divided by 2, over the 1st person and the 2nd person. Note that PayMeLah will automatically calculate the money for both debts and display the amounts as `$17.00`.
 * `splitdebt 0 2 5 d/KFC chicken bucket m/30+ date/2022-10-12` will add debts with `2022-10-12` and with the default `00:00` as the date and time respectively to **both** the 2nd person and 5th person. These debts will be recorded with the description `KFC chicken bucket` and require GST to be added to an initial total price of `$30` before dividing the costs by 3, over yourself, the 2nd person and the 5th person. Note that PayMeLah will automatically calculate the money for both debts and display the amounts as `$10.70`.
@@ -457,8 +459,11 @@ Be very careful! The default behaviour is slightly different across the differen
 #### Deleting a debt: `deletedebt`
 
 **What it does:**<br>
-Deletes the specified debts from a person in PayMeLah. Specifying multiple debts will delete those debts from the person specified. <br>
-This command will help you fully remove debts from people in PayMeLah, so that their current debts can be better organised.
+This command deletes the specified debts from a person in PayMeLah. Specifying multiple debts will delete those debts from the person specified.
+
+**When to use:**<br>
+When you no longer need to track some particular debt(s) owed by a person, you can use this command to remove them from PayMeLah!
+You can also [mark a debt as paid without deleting it](#marking-debts-as-paid-mark) if you still wish to keep track of it.
 
 **Format:**<br>
 `deletedebt <person index> debt/<debt index…>`
@@ -469,8 +474,10 @@ This command will help you fully remove debts from people in PayMeLah, so that t
 #### Clearing debts: `cleardebts`
 
 **What it does:**<br>
-Clears all of a debtor's debts from PayMeLah. <br>
-You can use this command to delete all of a person’s debts and your relationship can start afresh!
+This command clears all of a debtor's debts from PayMeLah.
+
+**When to use:**<br>
+When you no longer need to keep track of any debts of a person, you can use this command to clear their debt list! If you want to stop keeping track of only some of a person's debts, you can [delete specific debts](#deleting-a-debt-deletedebt).
 
 **Format:**<br>
 `cleardebts <person index>`
@@ -487,8 +494,10 @@ You might find it difficult to find the index of a specific person when your lis
 #### Marking debts as paid: `mark`
 
 **What it does:**<br>
-Marks the debts specified from a person in PayMeLah as paid. Specifying multiple debts will mark all those debts as paid. <br>
-This command will help you keep track of which debts have been paid and which debts have not been paid.
+This command marks the debts specified from a person in PayMeLah as paid. Specifying multiple debts will mark all those debts as paid.
+
+**When to use:**<br>
+When you want to indicate that a particular debt has been paid, but still keep a record of it in PayMeLah, this is the command to use!
 
 **Format:**<br>
 `mark <person index> debt/<debt index…>`
@@ -499,8 +508,10 @@ This command will help you keep track of which debts have been paid and which de
 #### Marking debts as unpaid: `unmark`
 
 **What it does:**<br>
-Marks the debts specified from a person in PayMeLah as unpaid. Specifying multiple debts will mark all those debts as unpaid. <br>
-This command will help you undo any mistake you made when marking a debt as paid.
+This command marks the debts specified from a person in PayMeLah as unpaid. Specifying multiple debts will mark all those debts as unpaid.
+
+**When to use:**<br>
+When you realise that a previously marked-as-paid debt has in fact not been repaid yet, you can use this command to indicate that it is still unpaid.
 
 **Format:**<br>
 `unmark <person index> debt/<debt index…>`
@@ -513,18 +524,16 @@ This command will help you undo any mistake you made when marking a debt as paid
 #### Getting the statement: `statement`
 
 **What it does:**<br>
-Gets a statement of the total sum of debts you are owed from everyone in the displayed person list. <br>
-This command will save you the time and effort of manually summing up debts in PayMeLah.
+This command gets a statement of the total value of debts you are owed by everyone in the displayed person list.
+
+**When to use:**<br>
+When you want to quickly find out the total amount of money you are owed, you can use this command to let PayMeLah do the calculations for you!
 
 **Format:**<br>
 `statement`
 
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Note:**
-
+<div markdown="block" class="alert alert-info">**:information_source: Note:**
 The statement will only sum up the debts that are not marked as paid from the list that is currently displayed. This means that if you have shortened the list using the [`find` command](#locating-persons-by-inputs-find) or [`finddebt` command](#locating-persons-by-debt-description-finddebt), the statement will only sum up the debts that are not marked as paid from the shortened list.
-
 </div>
 
 **Example:**<br>
@@ -540,35 +549,35 @@ The statement will only sum up the debts that are not marked as paid from the li
 #### Locating persons by inputs: `find`
 
 **What it does:**<br>
-Finds persons who match all the given conditions.<br>
-This is one of the most powerful tools available to look through your person list, as you can search by almost anything.
+This command finds and displays persons who match all the given conditions.
+
+**When to use:**<br>
+When you are looking for specific person(s) in PayMeLah, you can use this command to filter the displayed person list!
 
 **Format:**<br>
 `find [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]…
-[d/<description>]… [m/<money>]… [above/<money>] [below/<money>]
-[date/<date>]… [before/<date>] [after/<date>] [time/<time>]…`
+[d/<description>] [m/<money>] [above/<money>] [below/<money>]
+[date/<date>] [before/<date>] [after/<date>] [time/<time>]`
 
 The following table is a summary of all the inputs this command can accept:
 
-| Input              | Description                                                                                                                                                                                                                                                                                                                                                                                                                                       | Examples                                                                                                                                                                                                                                                                                                                        |
-|--------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `n/<name>`         | Looks for people who have names containing `<name>`                                                                                                                                                                                                                                                                                                                                                                                               | `find n/rob` will find people named `Robin Jones` and `Grobert Smith`                                                                                                                                                                                                                                                           |
-| `p/<phone number>` | Looks for people who have the phone number `<phone number>`                                                                                                                                                                                                                                                                                                                                                                                       | `find p/91234567` will find people with the exact phone number `91234567`, but not `891234567` or `912345678`                                                                                                                                                                                                                   |
-| `tele/<telegram>`  | Looks for people by the Telegram handle `<telegram>`                                                                                                                                                                                                                                                                                                                                                                                              | Either `find tele/juliaw` or `find tele/@juliaw` will find people with the exact Telegram handle `@juliawatson`, but not `@juliawatson` or `@alicejuliaw`                                                                                                                                                                       |
-| `a/<address>`      | Looks for people who have addresses containing `<address>`                                                                                                                                                                                                                                                                                                                                                                                        | `find a/main` will find people living at `123 Main St` or `456 Main Ave`                                                                                                                                                                                                                                                        |
-| `t/<tag>`          | Looks for people who have the tag `<tag>`                                                                                                                                                                                                                                                                                                                                                                                                         | `find t/buddy t/roommate` will find people with _both_ the `buddy` and `roommate` tags, but not people with `best buddy` or `RoomMate` tags (unless they also have both the `buddy` and `roommate` tags)                                                                                                                        |
-| `d/<description>`  | Looks for people who owe money for a debt described by `<description>`                                                                                                                                                                                                                                                                                                                                                                            | `find d/McDonald's` will find people who owe money for `McDonald's`, but not `mcdonalds` or `McDonald's burger` (unless they also owe for `McDonald's`)                                                                                                                                                                         |
-| `m/<money>`        | Looks for people who owe money for a debt with the monetary value `<money>`                                                                                                                                                                                                                                                                                                                                                                       | `find m/10` will find people with a debt in their debt list worth exactly `$10.00`, but not `$10.50` or `$0.10`                                                                                                                                                                                                                 |
-| `above/<money>`    | Looks for people who owe money for a debt above or equal to the monetary value `<money>`; can be used with `below/<money>` for more precise searches                                                                                                                                                                                                                                                                                              | `find above/11` will find people with a debt in their debt list worth exactly `$11.00`, `$11.01`, or `$259.23`, but not `$10.00` or `$10.99`<br>`find above/11 below/20` will find people with a debt in their debt list worth exactly `$11.00`, `$20.00`, or `$15.49`, but not `$100.00` or `$10.00`                           |
-| `below/<money>`    | Looks for people who owe money for a debt below or equal to the monetary value `<money>`; can be used with `above/<money>` for more precise searches                                                                                                                                                                                                                                                                                              | `find below/9` will find people with a debt in their debt list worth exactly `$9.00` or `$0.01`, but not `$9.01`<br>For combined usage with `above/<money>`, see the above row                                                                                                                                                  |
-| `date/<date>`      | Looks for people who owe money for a debt on the given `<date>`; using this with `time/<time>` does _not_ look for a debt at the given date and time, but rather looks for people with both a debt that falls on the given `<date>`, and a debt at the given `<time>` (which may or may not be the same as the previous debt; see the [details on combining inputs](#combining-inputs-to-find) below)                                             | `find d/2022-10-31` will find people with a debt in their debt list on `2022-10-31`, but not `2023-10-31`, `2022-12-31`, or `2022-10-30`                                                                                                                                                                                        |
-| `before/<date>`    | Looks for people who owe money for a debt before or on the given `<date>`; can be used with `after/<date>` for more precise searches, but using this with `time/<time>` does _not_ look for a debt before the given `<date>` and `<time>` (see the above row)                                                                                                                                                                                     | `find before/2022-10-30` will find people with a debt in their debt list on `2022-10-30`, `2022-01-03`, or `1999-12-31`, but not `2022-10-31`<br>`find before/2022-10-31 after/2022-10-01` will find people with a debt in their debt list on `2022-10-01`, `2022-10-15`, or `2022-10-31`, but not `2000-10-31` or `2022-11-01` |
-| `after/<date>`     | Looks for people who owe money for a debt after or on the given `<date>`; can be used with `before/<date>` for more precise searches, but using this with `time/<time>` does _not_ look for a debt after the given `<date>` and `<time>` (see 2 rows above)                                                                                                                                                                                       | `find after/2022-10-31` will find people with a debt in their debt list on `2022-10-31`, `2022-11-31`, or `2030-01-01`, but not `2022-10-30`<br>For combined usage with `before/<date>`, see the above row                                                                                                                      |
-| `time/<time>`      | Looks for people who owe money for a debt at the given `<time>`; using this with `date/<date>`, `before/<date>` or `after/<date>` does _not_ look for a debt at the given date and time, but rather looks for people with both a debt at the given `<time>`, and a debt that matches the other `<date>` condition (which may or may not be the same as the previous debt; see the [details on combining inputs](#combining-inputs-to-find) below) | `find time/11:00` will find people with a debt in their debt list at `11:00`, but not `11:30` or `23:00`                                                                                                                                                                                                                        |
+| Input              | Description                                                                              | Examples                                                                                             |
+|--------------------|------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|
+| `n/<name>`         | Looks for people who have names containing `<name>`                                      | `find n/rob` will find people named `Robin Jones` and `Grobert Smith`                                |
+| `p/<phone number>` | Looks for people who have the phone number `<phone number>`                              | `find p/91234567` will find people with the phone number `91234567`                                  |
+| `tele/<telegram>`  | Looks for people by the Telegram handle `<telegram>`                                     | Either `find tele/juliaw` or `find tele/@juliaw` will find people with the Telegram handle `@juliaw` |
+| `a/<address>`      | Looks for people who have addresses containing `<address>`                               | `find a/main` will find people living at `123 Main St` or `456 Main Ave`                             |
+| `t/<tag>`          | Looks for people who have the tag `<tag>`                                                | `find t/buddy t/roommate` will find people with _both_ the `buddy` and `roommate` tags               |
+| `d/<description>`  | Looks for people who owe money for a debt described by `<description>`                   | `find d/McDonald's` will find people who owe money for `McDonald's`                                  |
+| `m/<money>`        | Looks for people who owe money for a debt with the monetary value `<money>`              | `find m/10` will find people with a debt in their debt list worth exactly `$10.00`                   |
+| `above/<money>`    | Looks for people who owe money for a debt above or equal to the monetary value `<money>` | `find above/11` will find people with a debt in their debt list worth above or equal to `$11.00`     |
+| `below/<money>`    | Looks for people who owe money for a debt below or equal to the monetary value `<money>` | `find below/9` will find people with a debt in their debt list worth below or equal to `$9.00`       |
+| `date/<date>`      | Looks for people who owe money for a debt on the given `<date>`                          | `find d/2022-10-31` will find people with a debt in their debt list on `2022-10-31`                  |
+| `before/<date>`    | Looks for people who owe money for a debt before or on the given `<date>`                | `find before/2022-10-30` will find people with a debt in their debt list on or before `2022-10-30`   |
+| `after/<date>`     | Looks for people who owe money for a debt after or on the given `<date>`                 | `find after/2022-10-31` will find people with a debt in their debt list on or after `2022-10-31`     |
+| `time/<time>`      | Looks for people who owe money for a debt at the given `<time>`                          | `find time/11:00` will find people with a debt in their debt list at `11:00`                         |
 
 **Additional information:**<br>
-* Inputs `name/<name>` and `address/<address>` are case-insensitive (they ignore capitalisation) and perform partial matching (they match anything that contains them).
-* All other inputs (including `d/<description>`) are case-sensitive (capitalisation is important), and perform exact matching (they only match if the parts they are matching are exactly the same).
 * The order of the conditions does not matter.
 * At least one input must be provided, `find` cannot work with no inputs.
 
@@ -578,36 +587,34 @@ The following table is a summary of all the inputs this command can accept:
 
 When multiple inputs are provided to `find`, only people matching all conditions will be shown.
 
-Note that combining the inputs looking for people with a specific debt in their debt list means to look for a person with at least one debt that matches each input, but they do not need to have any debt in their debt list that matches all the inputs at once.
-The input pairs `above/<money> below/<money>` and `before/<date> after/<date>` are exceptions: respectively, they mean to look for a person with a debt with a monetary value both above and below the given amounts,
-and to look for a person with a debt that falls on a date both before and after the given dates.
-Using these input pairs with each other or other inputs looking for people with a specific debt in their debt list behaves similarly to the other inputs; see the examples below.
+Note that combining the inputs looking for people with a specific debt in their debt list means to look for a person with at least one debt that matches all the inputs.
 
 Examples:
 * `find n/hans p/81234567` will match `Hansel` or `Hans Gruber` if his phone number is `81234567`.
 * `find d/burger n/hans` will match `Hansel` if he owes money for `burger`.
-* `find d/burger m/10` will match anyone who both owes money for `burger` and owes `$10.00` for something (or someone who owes `$10.00` for `burger`).
-* `find above/10 below/20 d/fries` will match anyone who both owes money for `fries` and owes between `$10.00` and `$20.00` inclusive for something (or someone who owes between `$10.00` and `$20.00` inclusive for `fries`).
-* `find before/2022-11-30 after/2022-11-01 time/11:00` will match anyone who both owes money for something between `2022-11-01` and `2022-11-30` inclusive (the month of November 2022) and owes money for something at `11:00` (or someone who owes money for something at `11:00` during the month of November 2022).
-* `find tele/janesmith above/10 below/20 before/2022-11-30 after/2022-11-01` will match anyone with the Telegram handle `@janesmith` who both owes between `$10.00` and `$20.00` inclusive for something and owes money for something during the month of November 2022 (or someone who owes between `$10.00` and `$20.00` inclusive for something during the month of November 2022).
+* `find d/burger m/10` will match anyone who owes `$10.00` for `burger`.
+* `find above/10 below/20 d/fries` will match anyone who owes between `$10.00` and `$20.00` inclusive for `fries`.
+* `find before/2022-11-30 after/2022-11-01 time/11:00` will match anyone who owes money for something at `11:00` during the month of November 2022.
+* `find tele/janesmith above/10 below/20 before/2022-11-30 after/2022-11-01` will match anyone with the Telegram handle `@janesmith` who owes between `$10.00` and `$20.00` inclusive for something during the month of November 2022.
 
 <div style="page-break-after: always;"></div>
 
 #### Locating persons by debt description: `finddebt`
 
 **What it does:**<br>
-Finds persons who are associated with any debts that match any of the given keywords.<br>
-This is useful if you do not remember the exact description of a debt you want to look for (e.g. was it `KFC` or `kfc`?).
+This command finds and displays persons who owe any debts that match any of the given keywords.
+
+**When to use:**<br>
+When you do not remember the exact description of a debt you want to look for (e.g. was it `KFC meal` or just `kfc`?), this is the command to use!
 
 **Format:**<br>
 `finddebt <keyword…>`
 
 **Additional information:**<br>
-* The search is case-insensitive. e.g. `burger` will match `Burger`
 * The order of the keywords does not matter. e.g. `Sharing Meal` will match `Meal Sharing`
 * Only the descriptions of the debts are searched for the keywords.
 * Only full words will be matched e.g. `Burger` will not match `Burgers`
-* Persons with debts matching at least one keyword will be returned (i.e. `OR` search).
+* Persons with debts matching at least one keyword will be returned.
   e.g. `burger meal` will return people associated with debts that have descriptions `Chicken Burger` or `Meal Sharing`
 
 **Examples:**<br>
@@ -617,8 +624,10 @@ This is useful if you do not remember the exact description of a debt you want t
 #### Listing all persons: `list`
 
 **What it does:**<br>
-Shows a list of all persons in PayMeLah.<br>
-You can use this command to return to displaying the full list of people you have added to PayMeLah.
+This command displays the full person list in PayMeLah.
+
+**When to use:**<br>
+When you have previously filtered the displayed person list (using commands such as `find` and `finddebt`) and want to view the full list again, this is the command to use!
 
 **Format:**<br>
 `list`
@@ -628,7 +637,10 @@ You can use this command to return to displaying the full list of people you hav
 #### Listing all debtors: `listdebtors`
 
 **What it does:**<br>
-Shows a list of all persons that owe you more than or equal to a certain amount of money in PayMeLah. If no amount is provided, a list of persons who owe any amount of debt is displayed.
+This command shows a list of all persons that owe you more than or equal to a certain amount of money in PayMeLah. If no amount is provided, a list of persons who owe any amount of debt is displayed.
+
+**When to use:**<br>
+When you want to quickly find out who owes you significant amounts of money, this is the command to use!
 
 **Format:**<br>
 `listdebtors [m/<money>]`
@@ -640,6 +652,9 @@ Shows a list of all persons that owe you more than or equal to a certain amount 
 
 **What it does:**<br>
 Sorts and displays the list of persons using the given criterion and order.
+
+**When to use:**<br>
+When you want to organise your data in PayMeLah, you can use this command to arrange the person list in an order you like!
 
 **Format:**<br>
 `sort <criterion prefix><order>`
@@ -673,27 +688,15 @@ When you sort by time since oldest debt, all persons who do not owe any debt wil
 
 #### Saving the data
 
-PayMeLah data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+PayMeLah data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 #### Editing the data file
 
-PayMeLah data are saved as a JSON file `[JAR file location]/data/paymelah.json`. Advanced users are welcome to update data directly by editing that data file.
+PayMeLah data is saved as a JSON file `[JAR file location]/data/paymelah.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, PayMeLah will discard all data and start with an empty data file at the next run.
 </div>
-
-[Return to Table of Contents](#table-of-contents)
-
---------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
-
-### Planned Features
-
-#### Editing debts: `editdebt` (Not yet implemented)
-
-This command would allow you to edit the details of a specific debt, such as its description, amount, etc. Do look forward to it in a future update!
-As a workaround for now, you may delete the old debt using [`deletedebt`](#deleting-a-debt-deletedebt), and add a new debt with the edited details using [`adddebt`](#adding-a-debt-adddebt).
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -706,11 +709,11 @@ As a workaround for now, you may delete the old debt using [`deletedebt`](#delet
 **A**: You can install PayMeLah in the other computer and replace the data file in the other computer with the data file in your current computer's PayMeLah home folder.
 
 **Q2**: I can't find something that I **know** I have added to PayMeLah. Where did it go?<br>
-**A**: If you are trying to locate a person, try using the [`find` command](#locating-persons-by-inputs-find)! When searching for names, the `find` command is case-insensitive and returns partial matches, so it will find `Bobby` even if you search for `bob`.<br>
-If you are trying to locate a debt by its description, consider using the [`finddebt` command](#locating-persons-by-debt-description-finddebt) instead to make use of case-insensitive search for debt descriptions.<br>
+**A**: If you are trying to locate a person, try using the [`find` command](#locating-persons-by-inputs-find)! When searching for names, the `find` command returns partial matches, so it will find `Bobby` even if you search for `bob`.<br>
+If you are trying to locate a debt without knowing its full description, consider using the [`finddebt` command](#locating-persons-by-debt-description-finddebt) instead.<br>
 <div markdown="span" class="alert alert-primary">:bulb: **Other Tips:**
-1. You can try [combining inputs](#combining-inputs-to-find) to narrow your search scope, but sometimes, you cannot find something because you may have misremembered a detail like the date, or keyed it into PayMeLah wrongly by accident. In this situation, you may want to consider not making your search scope too specific.<br>
-2. As a last resort, the [`list` command](#listing-all-persons-list) will list every person in PayMeLah. You can then [sort the list](#sorting-list-of-persons-sort) to make it easier to manually check through the list. If you still cannot find the person or debt you are looking for in the full person list displayed by `list`, then unfortunately it means the item you are looking for is not in PayMeLah :(
+1. You can try [combining inputs](#combining-inputs-to-find) to refine your search, but sometimes, you cannot find something because you may have misremembered a detail like the date, or keyed it into PayMeLah wrongly by accident. In this situation, you may want to consider not making your search too specific, or using `before/` and `after/` inputs to search around a date instead of on that specific date.<br>
+2. As a last resort, the [`list` command](#listing-all-persons-list) will list every person in PayMeLah. You can then [sort the list](#sorting-list-of-persons-sort) to make it easier to manually check through the list. If you still cannot find the person or debt you are looking for in the full person list displayed by `list`, then unfortunately it means the item you are looking for is not in PayMeLah.
 </div>
 
 **Q3**: PayMeLah is not letting me use the command I want! What can I do?<br>
