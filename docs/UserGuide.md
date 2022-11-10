@@ -6,10 +6,48 @@ This guide provides everything a CS1101S Teaching Assistant (TA) needs to know t
 
 To use this guide, simply click on the items you would like to learn more about in the table of contents, or scroll down to the relevant sections.
 
-# Table of Contents
+## Table of Contents
 
-* Table of Contents
-{:toc}
+* [What is JARVIS?](#What-is-JARVIS)
+* [Using this guide](#Using-this-guide)
+* [The Basics](#The-Basics)
+* [Quick start](#Quick-start)
+* [Basic commands](#Basic-commands)
+  * [Viewing help : `help`](#Viewing-help--help)
+  * [Listing all students : `liststudent`](#Listing-all-students--liststudent)
+  * [Listing all tasks : `listtask`](#Listing-all-tasks--listtask)
+  * [Listing all lessons : `listlesson`](#Listing-all-lessons--listlesson)
+  * [Listing all students, tasks and lessons : `listall`](#Listing-all-students-tasks-and-lessons--listall)
+  * [Clearing all entries : `clear`](#Clearing-all-entries--clear)
+  * [Exiting the program : `exit`](#Exiting-the-program--exit)
+* [Student commands](#Student-commands)
+  * [Adding a student : `addstudent`](#Adding-a-student--addstudent)
+  * [Deleting a student : `deletestudent`](#Deleting-a-student--deletestudent)
+  * [Editing a student : `editstudent`](#Editing-a-student--editstudent)
+  * [Locating students by name : `findstudent`](#Locating-students-by-name--findstudent)
+  * [Adding grades to a student : `grade`](#Adding-grades-to-a-student--grade)
+  * [Setting mastery check result for a student : `mc`](#Setting-mastery-check-result-for-a-student--mc)
+* [Task commands](#Task-commands)
+  * [Adding a task : `addtask`](#Adding-a-task--addtask)
+  * [Deleting a task : `deletetask`](#Deleting-a-task--deletetask)
+  * [Marking a task as done : `marktask`](#Marking-a-task-as-done--marktask)
+  * [Marking a task as not done : `unmarktask`](#Marking-a-task-as-not-done--unmarktask)
+* [Lesson commands](#Lesson-commands)
+  * [Adding a studio lesson : `addstudio`](#Adding-a-studio-lesson--addstudio)
+  * [Adding a consult lesson : `addconsult`](#Adding-a-consult-lesson--addconsult)
+  * [Adding a mastery check lesson : `addmc`](#Adding-a-mastery-check-lesson--addmc)
+  * [Deleting a lesson : `deletelesson`](#Deleting-a-lesson--deletelesson)
+  * [Marking a lesson as completed : `marklesson`](#Marking-a-lesson-as-completed--marklesson)
+  * [Marking a lesson as not completed : `unmarklesson`](#Marking-a-lesson-as-not-completed--unmarklesson)
+  * [Marking a student as present for a lesson : `markstudent`](#Marking-a-student-as-present-for-a-lesson--markstudent)
+  * [Marking a student as absent for a lesson : `unmarkstudent`](#Marking-a-student-as-absent-for-a-lesson--unmarkstudent)
+  * [Adding a note to a lesson : `addnote`](#Adding-a-note-to-a-lesson--addnote)
+  * [Deleting a note from a lesson : `deletenote`](#Deleting-a-note-from-a-lesson--deletenote)
+  * [Adding participation for a student in a lesson : `addpart`](#Adding-participation-for-a-student-in-a-lesson--addpart)
+* [Saving the data](#Saving-the-data)
+* [Editing the data file](#Editing-the-data-file)
+* [FAQ](#FAQ)
+* [Command summary](#Command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 ## What is JARVIS?
@@ -23,7 +61,7 @@ Using JARVIS, the TA can
 
 If you are a CS1101S TA who is familiar with Command Line Interface and can type fast, JARVIS will allow you to efficiently manage your students, tasks and lessons.
 
-[🠕 Back To Top](#title-user-guide)
+[🠕 Back To Top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 ## Using this guide
@@ -164,7 +202,7 @@ Shows an expanded list of all your tasks, so that you can see all the task detai
 
 Format: `listtask`
 
-### Listing all students : `listlesson`
+### Listing all lessons : `listlesson`
 
 Shows an expanded list of all your lessons, so that you can see all the lesson details.
 
@@ -225,7 +263,7 @@ Format: `exit`
 ## Student commands
 This section contains commands for managing students.
 
-### Adding a student: `addstudent`
+### Adding a student : `addstudent`
 
 Adds a student to your student list.
 
@@ -273,7 +311,7 @@ If you have two or more students with similar names, you can use the `editstuden
 
 </div>
 
-### Locating students by name: `findstudent`
+### Locating students by name : `findstudent`
 
 Finds students whose names contain any of the given keywords, so that you can search for students easily.
 
@@ -336,7 +374,7 @@ Examples:
 ## Task commands
 This section contains commands for managing tasks.
 
-### Adding a task: `addtask`
+### Adding a task : `addtask`
 
 Adds a task to your task list.
 
@@ -402,7 +440,7 @@ Example:
 ## Lesson commands
 This section contains commands for managing lessons.
 
-### Adding a studio lesson: `addstudio`
+### Adding a studio lesson : `addstudio`
 
 Adds a studio lesson to your lesson list.
 
@@ -418,7 +456,7 @@ Format: `addstudio [l/LESSON_DESC] sd/START_DATE st/START_TIME [ed/END_DATE] et/
 Examples:
 * `addstudio l/Studio 3 sd/2022-10-12 st/14:00 et/16:00` adds a studio lesson with description `Studio 3` on `Oct-12-2022` from `14:00` to `16:00`.
 
-### Adding a consult lesson: `addconsult`
+### Adding a consult lesson : `addconsult`
 
 Adds a consult lesson to your lesson list.
 
@@ -436,7 +474,7 @@ Examples:
 * `addconsult l/Consultation on recursion sd/2022-10-14 st/12:00 et/14:00 si/3 si/4` adds a consult lesson with description `Consultation on recursion` on `Oct-14-2022` from `12:00` to `14:00` with the 3rd and 4th student in your student list.
 * `addconsult sd/2022-10-15 st/23:00 ed/2022-10-16 et/00:00 si/1` adds a consult lesson from `Oct-15-22 23:00` to `Oct-16-22 00:00` with the 1st student in your student list.
 
-### Adding a mastery check lesson: `addmc`
+### Adding a mastery check lesson : `addmc`
 
 Adds a mastery check lesson to your lesson list.
 
