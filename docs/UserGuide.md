@@ -25,7 +25,7 @@ Finally, here are some of the symbols and text formatting to look out for as you
 <div>
 
 <div markdown="block" class="alert alert-warning">
-:exclamation: Warnings: Yellow boxes contain important warnings.
+:exclamation: **Warnings:** Yellow boxes contain important warnings.
 <div>
 
 |          Text Formatting           | Meaning |
