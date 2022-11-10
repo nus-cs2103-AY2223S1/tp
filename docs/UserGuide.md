@@ -8,6 +8,7 @@ title: User Guide
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Introduction
 
@@ -15,8 +16,7 @@ Welcome to the User Guide of **FRIDAY**!
 
 As a [CS1101S teaching assistant](#glossary), do you find yourself scrambling between your notes, students' contacts, 
 and calendar to consolidate and manage of all your students' information? Do you spend hours consolidating your students'
-work and keeping track of their progress to ensure that they have completed their tasks on time and are coping well in 
-the module?
+work, keeping track of their progress and ensuring that they are coping well in the module?
 
 Worry no more! Our application, **FRIDAY**, will reduce the hassle of managing your students and save you valuable time
 and effort by alleviating your workload. You can spend more time focusing on your own studies, improving your 
@@ -35,7 +35,9 @@ interactive graphical icons such as buttons.
 If you are interested to try, jump to [Quick Start](#quick-start) to learn how to start using **FRIDAY**!
 
 --------------------------------------------------------------------------------------------------------------------
-## Quick Start
+<div style="page-break-after: always;"></div>
+
+## Quick start
 
 This section guides you along the process of downloading and opening FRIDAY.
 
@@ -43,10 +45,10 @@ This section guides you along the process of downloading and opening FRIDAY.
 
 2. Download the latest [JAR](#glossary) file `friday.jar` from [here](https://github.com/AY2223S1-CS2103T-W15-4/tp/releases).
 
-3. Copy the file to the folder you want to use as the *home folder* for your FRIDAY.
+3. Copy the file to the folder you want to use as the *[home folder](#glossary)* for FRIDAY.
 
 4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Startup.png](images/Startup.png)
+![Layout](images/Startup.png)
 
 5. Type the [command](#glossary) in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -62,14 +64,15 @@ This section guides you along the process of downloading and opening FRIDAY.
 
 6. Refer to the [Features](#features) below for details of each command.
 
-[Table of Contents](#table-of-contents)
+[Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## About
 ### Document Structure
-This User Guide has been structured in a way to help you find information easily and quickly. In the next subsection
-,Section - reading this document, you can find a multitude of tips on how to use this User Guide. The following sections 
-documents the main features of FRIDAY
+This User Guide has been structured in a way to help you find information easily and quickly. In the next subsection,
+ you can find a multitude of tips on how to use this User Guide. The following sections documents the main features of FRIDAY.
 
 1. [Student management](#student-management)
 2. [Organizing students](#organizing-students)
@@ -94,8 +97,9 @@ The table explains the general syntax and common occurrences throughout the user
 
 | Syntax                         | Meaning and usage                                                                                                   |
 |--------------------------------|---------------------------------------------------------------------------------------------------------------------|
-| `Sample command`               | A purple color highlighted box specifying an executable command that can be entered in the command box              |
+| `Sample command`               | A white color highlighted box specifying an executable command that can be entered in the command box               |
 | CAPITALIZED TEXT               | Indicates a parameter that follows the first word of a command                                                      |
+| *italics*                      | Indicates that the text has a definition specific to FRIDAY, or it is a caption for a Figure in the guide           |
 | **:information_source: Info:** | The icon indicates a section of increased importance and provides essential information to the smooth use of FRIDAY |
 | **:bulb: Tip:**                | A quick memorable form of advice to the user to make their friday experience enjoyable                              |
 | **:exclamation: Caution:**     | A warning sign indicating that the following text is important                                                      |
@@ -111,9 +115,9 @@ and hyperlinks to the first occurrence of the word in each section of the User g
 
 ![Layout](images/layout.png)
   <i> GUI Layout</i><br>
-In this image above we have a labelled box in red called the command box. CLI or command line interface refers to
-  <b>commands</b> in the form of text/<b>lines</b> that you as a user enter in the command box to create a response
-  in the result display which is your <b> interface </b>. 
+In this image above we have a labelled box in red called the command box.
+You can type commands into the command box at the top of the screen, and press Enter on your keyboard to execute it.<br>
+e.g. Typing `help` and press Enter will open a help window.
 </div>
 
 <div markdown="block" class="alert alert-info">
@@ -136,22 +140,23 @@ In this image above we have a labelled box in red called the command box. CLI or
 
   e.g. if the command specifies `n/NAME t/TELEGRAM_HANDLE`, `t/TELEGRAM_HANDLE n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken. Note that this does not apply to the `INDEX` parameter in commands that have it, namely the `delete`, `edit`, `remark`, `grade`, `mark` and `unmark` commands, as they expect exactly one `INDEX` parameter.<br>
-
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `t/johndoe t/johndoe123`, only `t/johndoe123` will be taken.
+  However, for commands that require the `INDEX` parameter, you must enter exactly one `INDEX`.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* For commands that do not take in parameters, irrelevant parameters will be ignored.<br>
 
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+  e.g. if you enter `help 123`, it will be interpreted as `help`.
 
 * `INDEX` is used in commands to refer to a specific student by their index number on the currently displayed list,
-  so it ` **must be a positive integer** 1, 2, 3, …​
+  so it **must be a positive integer** such as 1, 2, 3, …​
 
 </div>
 
-[Table of Contents](#table-of-contents)
+[Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Features
 
@@ -162,7 +167,9 @@ This section contains all the information and details of each feature of **FRIDA
 4. [Miscellaneous Features](#miscellaneous-features)
 5. [Features for Advanced Users](#features-for-advanced-users)
 
-### Student Management
+<div style="page-break-after: always;"></div>
+
+## Student management
 
 These features allow you to add and delete students, and edit their details.
 
@@ -208,14 +215,15 @@ Format: `add n/NAME [t/TELEGRAM_HANDLE] [c/CONSULTATION_DATE] [m/MASTERY_CHECK_D
 
 Example: `add n/Alex Yeoh t/al3xx c/2022-10-25 m/2022-08-16 tag/cool guy tag/quiet`
 
-Outcome: a student named Alex Yeoh is added.
+Outcome: A student named Alex Yeoh is added, with the following details: Telegram handle as "@al3xx", consultation date on 2022-10-25,
+Mastery Check date on 2022-08-16, and the tags "cool guy" and "quiet".
 
 ![AddCommandOutcome.png](images/AddCommandOutcome.png)
 <i> Outcome of add command</i>
 
 #### Deleting a student: `delete`
 
-You may need to delete students from your list in certain cases, such as when they decide to drop the module. The `delete` function allows you to do this and deletes the student at the given index from FRIDAY.
+You may need to delete students from your list, such as when they decide to drop the module. The `delete` function allows you to do this and deletes the student at the given index from FRIDAY.
 
 Format: `delete INDEX`
 
@@ -226,7 +234,7 @@ Format: `delete INDEX`
 
 #### Editing a student: `edit`
 
-You may not have all your students' details at the start, or you may have typed in the wrong details for a specific student. You can use the `edit` feature to add in or edit a student's details after getting this information. This feature is also useful for adding [Mastery Check](#glossary) and Consultation dates you have scheduled with your students.
+You may not have all your students' details when you added them, or you may have typed in the wrong details for a specific student. You can use the `edit` feature to add in or edit a student's details if there are changes to be made.
 
 Format: `edit INDEX [n/NAME] [t/TELEGRAM_HANDLE] [c/CONSULTATION] [m/MASTERY_CHECK] [tag/TAG]...`
 
@@ -248,7 +256,7 @@ Initial: A student with name "Alex Yeoh", with the following details: Telegram h
 on 2022-08-16, consultation date on 2022-11-11, and a tag "Colour blind".
 
 ![EditCommandInitial.png](images/EditCommandInitial.png)
-<i> Before edit command</i>**
+<i> Before edit command</i>
 
 Outcome: Student's name changed to "Alex Yap", along with the following details: Telegram handle as "@AlexYap",
 Mastery Check date as 2022-11-06, consultation date as 2022-10-10, and tags as "Experienced coder" and "Intern".
@@ -280,8 +288,9 @@ Outcome: The student at the 1st index (Alex Yap) will have the remark "Aspiring 
 ![RemarkCommandOutcome.png](images/RemarkCommandOutcome.png)
 <i> Outcome of remark command</i>
 
-[Table of Contents](#table-of-contents)
+[Back to top](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
 
 ### Organizing Students
 
@@ -308,18 +317,18 @@ to the current date by sorting the list according to the students' Mastery Check
 Format: `sort CRITERIA/ORDER`
 
 * `CRITERIA` can be
-    * `n` (name)
-    * `t` ([Telegram handle](#glossary))
-    * `c` (consultation)
-    * `m` ([Mastery Check](#glossary))
-    * `ra1` ([Reading Assessment 1](#glossary))
-    * `ra2` ([Reading Assessment 2](#glossary))
-    * `pa` ([Practical Assessment](#glossary))
-    * `mt` ([Midterm Test](#glossary))
-    * `ft` ([Final Examination](#glossary))
+    * Name - `n`
+    * [Telegram Handle](#glossary) - `t`
+    * Consultation date - `c`
+    * Mastery Check date - `m`
+    * [Reading Assessment 1](#glossary) - `ra1`
+    * [Reading Assessment 2](#glossary) - `ra2`
+    * [Practical Assessment](#glossary) - `pa`
+    * [Midterm Test](#glossary) - `mt`
+    * [Final Examination](#glossary) - `ft`
 * `ORDER` can be
-    * `a` (ascending)
-    * `d` (descending)
+    * Ascending - `a`
+    * Descending - `d`
 
 Criteria are sorted in the following order: 
 * Names and Telegram handles - alphabetical order
@@ -375,8 +384,9 @@ Lists all students in FRIDAY. This helps you to reset the sorting and finding do
 
 Format: `list`
 
-[Table of Contents](#table-of-contents)
+[Back to top](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
 
 ### Grading Students
 
@@ -470,19 +480,21 @@ Format: `unmark INDEX`
 * The index of the student must be specified and there should be exactly one `INDEX` parameter.
 </div>
 
-Example before entering `unmark 1` (Assuming student 1's Mastery Check has previously been marked as passed):
+Example: Enter `unmark 1` (Assuming student 1's Mastery Check has previously been marked as passed).
 
 ![UnmarkCommandBefore.png](images/UnmarkCommandBefore.png)
 <i> Before unmark command</i>
 
-Example after entering `unmark 1`:
+Outcome: The Mastery Check of the first student in the list has been unmarked.
 
 ![UnmarkCommandOutcome.png](images/UnmarkCommandOutcome.png)
 <i> Outcome of unmark command</i>
 
 As you can see, the "(passed)" status has been removed from student 1's Mastery Check after the `unmark` command is run.
 
-### Features for advanced users
+<div style="page-break-after: always;"></div>
+
+## Features for advanced users
 
 These features help you personalize your FRIDAY experience and improve your productivity when using FRIDAY.
 
@@ -548,9 +560,11 @@ Views all [aliases](#glossary) in FRIDAY, so that you know what aliases you have
 
 Format: `aliaslist`
 
-### Miscellaneous Features
+<div style="page-break-after: always;"></div>
 
-Overview: Other features that aid you in using FRIDAY.
+## Miscellaneous features
+
+Other features that aid you in using FRIDAY.
 
 #### Getting User Guide link: `guide`
 
@@ -590,10 +604,11 @@ Advanced users are welcome to update data directly by editing the data file.
 If your changes to the data file makes its format invalid, FRIDAY will ignore all data and start with an empty file in the next run.<br>
 </div>
 
-[Table of Contents](#table-of-contents)
+[Back to top](#table-of-contents)
 
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## FAQ
 
@@ -623,10 +638,11 @@ Some Frequently Asked Questions:
 4. Easy import and export of data
 5. Undoing previous actions
 
-[Table of Contents](#table-of-contents)
+[Back to top](#table-of-contents)
 
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Command Summary
 
@@ -649,9 +665,10 @@ Some Frequently Asked Questions:
 | **Getting Help**                             | `help`                                                                                                  |
 | **Exiting FRIDAY**                           | `exit`                                                                                                  |
 
-[Table of Contents](#table-of-contents)
+[Back to top](#table-of-contents)
 
 ---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Glossary
 1. **CS1101S:** CS1101S Programming Methodology is a Computer Science module in National Univeristy of Singapore (NUS), School of Computing. This module introduces the concepts of programming and computational problem-solving, and is the first and foremost introductory module to computing, hence it is usually taken by first year Computer Science undergraduate students.
@@ -666,26 +683,28 @@ Some Frequently Asked Questions:
 
 6. **JAR:** The file format of FRIDAY.
 
-7. **Command:** The text that you type in the input command box is a command.
+7. **Home folder:** The folder in which you want to store all FRIDAY-related files.
 
-8. **Parameter:** The text that follows the first word of your input in the input box.
+8. **Command:** The text that you enter in the input box is a command.
 
-9. **Prefix:** A word or letter used in commands to specify the field you are adding, editing or sorting by.
+9. **Parameter:** The text that follows the first word of your input in the input box.
 
-10. **RA1:** Reading assessment 1 is a minor assessment in the CS1101S module that tests the content of the first half of the CS1101S module.
+10. **Prefix:** A word or letter used in commands to specify the field you are adding, editing or sorting by.
 
-11. **RA2:** Reading assessment 2 is a minor assessment in the CS1101S module that tests the content of the second half of the CS1101S module.
+11. **RA1:** Reading assessment 1 is a minor assessment in the CS1101S module that tests the content of the first half of the CS1101S module.
 
-12. **Midterm:** Midterm examination is a major assessment that occurs halfway through the CS1101S module.
+12. **RA2:** Reading assessment 2 is a minor assessment in the CS1101S module that tests the content of the second half of the CS1101S module.
 
-13. **Practical:** Practical examination is a major non-paper assessment that occurs at the end of the CS1101S module.
+13. **Midterm:** Midterm examination is a major assessment that occurs halfway through the CS1101S module.
 
-14. **Final:** Final examination is a major paper assessment that occurs at the end of the CS1101S module.
+14. **Practical:** Practical examination is a major non-paper assessment that occurs at the end of the CS1101S module.
 
-15. **Mastery Check:** A pass/fail assessment on students to assess their understanding of the concepts taught. There are 2 Mastery checks per semester.
+15. **Final:** Final examination is a major paper assessment that occurs at the end of the CS1101S module.
 
-16. **Alias:** A nickname or an alternate name that you can set for a command.
+16. **Mastery Check:** A pass/fail assessment on students to assess their understanding of the concepts taught. There are 2 Mastery checks per semester.
 
-17. **Telegram Handle:** The username in the widely-used messaging application Telegram.
+17. **Alias:** A nickname or an alternate name that you can set for a command.
 
-[Table of Contents](#table-of-contents)
+18. **Telegram Handle:** The username in the widely-used messaging application Telegram.
+
+[Back to top](#table-of-contents)
