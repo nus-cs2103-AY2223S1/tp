@@ -713,7 +713,7 @@ Double-click on the `paymelah.json` file to open it.
 You should see the following:
 INSERT IMAGE
 
-You can now edit the data by changing any of the green words you see! Do ensure that your replacement words are surrounded by double-inverted commas (`””`), as per the image above.
+You can now edit the data by changing any of the green words you see! Do ensure that your replacement words are surrounded by double-inverted commas (`""`), as per the image above.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Warning:**<br>
 Make sure your edits still follow the [requirements of each input](#input-specific-behaviour)! For example, if you edit the date, it should still be in the `yyyy-mm-dd` format.<br>
