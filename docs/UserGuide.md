@@ -452,14 +452,20 @@ The information here seems pretty intimidating at first but fret not, you can fi
 Found a new policy you want to pitch to your clients? LTNS lets you add the policy alongside company, coverage categories and commission levels, to easily access it in future.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Additional Tips:**
-<br/>
-* What does your policy cover? A policy must have one or more coverages when created. Find the possible coverages and their corresponding codes [here](#valid-coverage-codes).
-<br/>
-* Which company does your policy belong to? Find out the valid companies and their corresponding codes [here](#valid-company-codes).
-<br/>
-* If you’d like to sell a policy from a company/with a coverage not in our list, write to us at e0773789@u.nus.edu, and we’ll add it in if there are a significant number of requests!
-<br/>
-* Money is the name of the game! Enter the commissions agreed to with the provider in positive percentages from 0% to 100%! (e.g. 10% 3.5% 1.0%)
+<ul>
+<li>
+What does your policy cover? A policy must have one or more coverages when created. Find the possible coverages and their corresponding codes [here](#valid-coverage-codes).
+</li>
+<li>
+Which company does your policy belong to? Find out the valid companies and their corresponding codes [here](#valid-company-codes).
+</li>
+<li>
+If you’d like to sell a policy from a company/with a coverage not in our list, write to us [here](#contact-us), and we’ll add it in if there are a significant number of requests!
+</li>
+<li>
+Money is the name of the game! Enter the commissions agreed to with the provider in positive percentages from 0% to 100%! (e.g. 10% 3.5% 1.0%)
+</li>
+</ul>
 </div>  
 
 Example Usage:
@@ -523,7 +529,7 @@ Format: `findPolicy [ti/TITLE] [cov/COVERAGE]…​ [cmp/COMPANY_CODE]`
 At least one metric has to be specified for the command to be valid
 </div>
 
-For a full list of the details of each metric and their search ranges, click [here](#findpolicysearching-for-a-policy--findpolicy-detailed-specifications)!
+For a full list of the details of each metric and their search ranges, click [here](#findpolicy-detailed-specifications)!
 
 Example Usage:
 * `findPolicy ti/Health plan` returns policies with the title `health plan` and `life plan`
@@ -556,10 +562,14 @@ Format: `assign CLIENT_INDEX POLICY_INDEX pr/PREMIUM sd/STARTDATE ed/ENDDATE`
 Find a detailed explanation of different input restrictions [here](#command-format-table).
 
 <div markdown="span" class="alert alert-primary">:bulb: **Additional Tips:**
-<br/>
-* The start and end dates should be of the format "YYYY-MM-DD", and within the years 1900 - 2100.
-<br/>
-* Premium should be any positive numeric value below `1000000000` with or without 2 decimal places.
+<ul>
+<li>
+The start and end dates should be of the format "YYYY-MM-DD", and within the years 1900 - 2100.
+</li>
+<li>
+Premium should be any positive numeric value below `1000000000` with or without 2 decimal places.
+</li>
+</ul>
 </div>
 
 Example Usage:
@@ -580,7 +590,8 @@ first client in the list from Step 2, with the following details:
 
 Congrats on sealing deals with numerous clients! Need a quick reminder on the policies a client has taken up? 
 This command lists out the policies that have been assigned to the client at the specified `INDEX`. 
-The index refers to the index number shown in the displayed list of clients. The index must be a positive integer 1, 2, 3, …
+The index refers to the index number shown in the displayed list of clients. The index must be a positive integer 1, 2, 3, ….
+<br>
 
 Format: `listAssigned CLIENT_INDEX`
 
@@ -983,7 +994,7 @@ Ready to try some examples? Navigate back to the `addPolicy` command section [he
 
 Ready to try some examples? Navigate back to the `addPolicy` command section [here](#adding-a-policy--addpolicy)!
 
-#### [findPolicy](#searching-for-a-policy--findpolicy) Detailed Specifications
+#### FindPolicy Detailed Specifications
 
 The following table illustrates the details of each metric and their search range:
 
