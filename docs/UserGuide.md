@@ -252,7 +252,8 @@ Outcome:
 
 #### Editing a student: `edit`
 
-You may not have all your students' details when you added them, or you may have typed in the wrong details for a specific student. You can use the `edit` feature to add in or edit a student's details if there are changes to be made.
+You can edit a student's details using the `grade` command. This allows you to make changes to your recorded students'
+details in FRIDAY to correctly update their information.
 
 Format: `edit INDEX [n/NAME] [t/TELEGRAM_HANDLE] [c/CONSULTATION] [m/MASTERY_CHECK] [tag/TAG]...`
 
@@ -268,7 +269,14 @@ optional fields, but there should be at least one field specified for the `edit`
 * A student can have any number of tags (including 0).
 </div>
 
-Example: `edit 1 n/Alex Yap t/AlexYap tag/Experienced coder tag/Intern m/2022-11-06 c/2022-10-10`
+Example: Let's say you have incorrect and missing details for a student, and you wish to update them accordingly. For 
+instance, you wish to change the name, Telegram handle, consultation date, Mastery Check date and tags of the student 
+to "Alex Yap", "@AlexYap", "2022-10-10", "2022-11-06" and the tags "Experienced coder" and "Intern" respectively.<br>
+You can follow the steps below to edit the student.
+
+Steps:
+1. Type `edit 1 n/Alex Yap t/AlexYap tag/Experienced coder tag/Intern m/2022-11-06 c/2022-10-10` in the *Command Box*.
+2. Press `Enter` to execute.
 
 Initial: A student with name "Alex Yeoh", with the following details: Telegram handle as "@al3xx", Mastery Check date
 on 2022-08-16, consultation date on 2022-11-11, and a tag "Colour blind".
@@ -276,15 +284,18 @@ on 2022-08-16, consultation date on 2022-11-11, and a tag "Colour blind".
 ![EditCommandInitial.png](images/EditCommandInitial.png)
 <i> Before edit command</i>
 
-Outcome: Student's name changed to "Alex Yap", along with the following details: Telegram handle as "@AlexYap",
+Outcome: 
+1. Student's name changed to "Alex Yap", along with the following details: Telegram handle as "@AlexYap",
 Mastery Check date as 2022-11-06, consultation date as 2022-10-10, and tags as "Experienced coder" and "Intern".
+2. The *Result Display* will show a success message.
 
 ![EditCommandOutcome.png](images/EditCommandOutcome.png)
 <i> Outcome of edit command</i>
 
 #### Editing a remark for a student: `remark`
 
-You may have noted something interesting about a student, which you wish to save as a remark in your list. The `remark` feature allows you to add this remark to the specified student.
+You can add a remark for a specified student using the `remark` command. This allows you to record important and useful
+notes and information about your student.
 
 Format: `remark INDEX [r/REMARK]`
 
@@ -299,9 +310,17 @@ Format: `remark INDEX [r/REMARK]`
 remove any existing remark for the specified student.<br>
 </div>
 
-Example: `remark 1 r/Aspiring to be a CS1101S TA for next year`
+Example: Let's say you wish to add a remark "Aspiring to be a CS1101S TA for next year" for a student (Alex Yap) to take
+note and remind yourself that Alex Yap is interested in applying for the CS1101S TA position.<br>
+You can follow the steps below to add the remark for the student.
 
-Outcome: The student at the 1st index (Alex Yap) will have the remark "Aspiring to be a CS1101S TA for next year".
+Steps:
+1. Type `remark 1 r/Aspiring to be a CS1101S TA for next year` into the *Command Box*.
+2. Press `Enter` to execute.
+
+Outcome: 
+1. Alex Yap will have the remark "Aspiring to be a CS1101S TA for next year".
+2. The *Result Display* will show a success message.
 
 ![RemarkCommandOutcome.png](images/RemarkCommandOutcome.png)
 <i> Outcome of remark command</i>
@@ -459,9 +478,18 @@ Format: `grade INDEX [ra1/RA1_SCORE] [ra2/RA2_SCORE] [pa/PRACTICAL_SCORE] [mt/MI
 * The scores are optional, but there should be at least one score specified for `grade` command to be valid.
 </div>
 
-Example: Enter `grade 1 ra1/90 ra2/80.1 pa/100.00 mt/85.23 ft/78`.
+Example: Let's say you wish to enter the grades of a student (Alex Yap) into FRIDAY, with the scores of "90" for 
+Reading Assessment 1, "80.1" for Reading Assessment 2, "100.0" for Practical Assessment, "85.23" for Midterm Test, and 
+"78" for Final Test.<br>
+You can follow the steps below to record the grades of the student.
 
-Outcome: The student at the 1st index (Alex Yap) will have their grades updated.
+Steps:
+1. Type `grade 1 ra1/90 ra2/80.1 pa/100.00 mt/85.23 ft/78` in the *Command Box*.
+2. Press `Enter` to execute.
+
+Outcome:
+1. Alex Yap will have their grades updated.
+2. The *Result Display* will show a success message.
 
 ![GradeCommand.png](images/GradeCommand.png)
 <i> Outcome of grade command</i>
