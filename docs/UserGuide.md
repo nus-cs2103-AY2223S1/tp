@@ -436,7 +436,7 @@ the help message that TruthTable displays whenever you run a command with `-h`.
 
 ### Commands to Manage Persons
 
-Summary of the commands to manage persons can be found [here](#summary-of-person-commands)
+Summary of the commands to manage persons can be found [here](#summary-of-person-commands).
 
 #### Creating a new person: `add person`
 
