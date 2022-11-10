@@ -735,7 +735,7 @@ If you are trying to locate a debt by its description, consider using the [`find
 * <span id="glossary-entering-a-command">_Enter[ing]_ a command</span>: Type the _command_ into the _command box_, and press the <kbd>Enter</kbd> key.
 * <span id="glossary-index">_Index_</span>: The number that appears next to each person’s name or each _debt_’s description.
 * <span id="glossary-input">_Input_</span>: Additional information supplied by you that is used to run a _command_.
-* <span id="glossary-json-file">_JSON file_</span>: A type of file used by many applications to store data in a format easily readable and editable by advanced users.
+* <span id="glossary-json-file">_JSON file_</span>: A [common type of file](https://fileinfo.com/extension/json) used by many applications to store data in a format easily readable and editable by advanced users.
 * <span id="glossary-keyboard-shortcut">_Keyboard shortcut_</span>: A key or sequence of keys which you may press to perform actions without your mouse.
 * <span id="glossary-person-index">_Person index_</span>: The number that appears next to each person’s name in the _person list_.
 * <span id="glossary-prefix">_Prefix_</span>: A short piece of text indicating what type of information follows. For example, `n/` is the prefix that indicates that what follows is a name.
