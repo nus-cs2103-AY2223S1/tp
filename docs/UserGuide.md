@@ -23,7 +23,7 @@ Feel free to read on, or if you can't wait to get started, skip ahead to our [Ge
 
 ## Key Features of TruthTable
 
-### Organise all your info in one place
+### Organize all your info in one place
 
 Managing project documents and information has always been annoying. Aside from the multitude of links and
 slides created by your team, you may be using task management applications like
@@ -323,7 +323,7 @@ TruthTable supports clustered options as specified in
 
 To help you use our program even faster, we have introduced short forms for our commands and flags!
 
-These short forms are what we call "aliases", and they allow you to execute instructions _blazingly fast_ by minimising
+These short forms are what we call "aliases", and they allow you to execute instructions _blazingly fast_ by minimizing
 the number of letters you need to type.
 
 For instance, the [`add person`](#creating-a-new-person-add-person) command has the following command aliases,
