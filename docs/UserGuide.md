@@ -847,7 +847,7 @@ TaskBook data is saved in the hard disk automatically after any command that cha
 
 TaskBook data is saved as a JSON file `[JAR file location]/data/taskbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">
+<div markdown="block" class="alert alert-warning">
 
 **:exclamation: Caution:**<br>
 
