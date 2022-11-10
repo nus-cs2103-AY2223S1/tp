@@ -76,6 +76,8 @@ Finally, here are some of the symbols and text formatting to look out for as you
 
 <div style="page-break-after: always;"></div>
 
+<img src="images/UiDetails.png" width="800" /> <br>
+
 | Number | Component Name | Details                                                                                                                                               |
 |:------:|----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
 |   1.   | Command Box    | The box where you enter commands for PayMeLah to carry out.                                                                                           |
@@ -84,9 +86,13 @@ Finally, here are some of the symbols and text formatting to look out for as you
 |   4.   | Debt List      | The box containing the list of debts owed by a person.                                                                                                |
 |   5.   | Person List    | The box containing the full list of person cards. Only one person card can be viewed at a time.                                                       |
 
-<img src="images/UiDetails.png" width="800" /> <br>
+<div style="page-break-after: always;"></div>
+
+<img src="images/CommandLineSection.png" width="800" /> <br>
 
 <div style="page-break-after: always;"></div>
+
+<img src="images/PersonCard.png" width="800" /> <br>
 
 | Number | Component Name  | Details                                       |
 |:------:|-----------------|-----------------------------------------------|
@@ -98,7 +104,6 @@ Finally, here are some of the symbols and text formatting to look out for as you
 |   6.   | Address         | The person’s address.                         |
 |   7.   | Total Debt      | The total amount of money owed by the person. |
 
-<img src="images/PersonCard.png" width="800" /> <br>
 <div style="page-break-after: always;"></div>
 
 | Number | Component Name | Details                                     |
