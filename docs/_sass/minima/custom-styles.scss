@@ -14,6 +14,23 @@ h1, h2, h3 {
   margin-bottom: 18px;
 }
 
+.title {
+  color: #000000;
+  font-weight: 900;
+  padding: 4px 8px;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.subtitle {
+  color: #000000;
+  font-weight: 400;
+  padding: 4px 8px;
+  margin-bottom: 18px;
+  font-style: italic;
+  text-align: center;
+}
+
 // Bootstrap style alerts
 .alert {
   position: relative;

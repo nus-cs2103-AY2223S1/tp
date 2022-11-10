@@ -5,7 +5,8 @@ title: User Guide
 
 <p align="center">
   <img src="./images/Coydir_Logo.png" width=400rem />
-  <h1 align="center"><font size="7">Coydir</font><br><em><font size="5">The Ultimate Company Directory</font></em></h1>
+  <p class="title"><font size="7">Coydir</font></p>
+  <p class="subtitle"><font size="5">The Ultimate Company Directory</font></p>
 </p>
 
 ## **Coydir /(‘kohy-də)/**
@@ -54,6 +55,7 @@ title: User Guide
 - [Command summary](#command-summary)
 
 ---
+
 <img class="centerImage" src="images/Coydir.png" height=100>
 
 ## Introduction
@@ -64,7 +66,7 @@ Welcome HR executives and Department Heads! **Coydir** is a desktop app to effic
 
 Are you a HR executive or a Department Head seeking a solution to efficiently track employee information and observe key statistics of your company? **Coydir** is here to elegantly solve your problems. This user guide will teach you everything you need to know about the **Coydir** product, and start using our features today!
 
-This guide walks you through the comprehensive features of **Coydir**. Do feel free to refer to this whenever you need help. 
+This guide walks you through the comprehensive features of **Coydir**. Do feel free to refer to this whenever you need help.
 
 Is this your first time using **Coydir**? Check out our [Introduction](#introduction) to learn what **Coydir** is about! Refer to our [Table of Contents](#table-of-contents) to easily navigate between the different sections of our User Guide. If you can't wait to get started on this amazing product, head over to [Quick Start](#quick-start) to install and start using **Coydir**.
 
@@ -88,12 +90,12 @@ Below is an image of Coydir User Interface with the main components labelled.
 
 ![Labelled GUI](images/ui-screenshots/Labelled-GUI.png)
 
-| No. | Component             | Description                                                                                                                    |
-|-----|-----------------------|--------------------------------------------------------------------------------------------------------------------------------|
-| 1   | Toolbar               | Includes information on frequently-used commands. Switch to light/dark mode.                                                                        |
-| 2   | Employee List Panel    | Displays the list of employees. Includes basic information such as `tags`, `position`, `employee ID`.      |
-| 3   | Display Panel          | Displays the information of an employee or department. The information includes the employee's personal details, leave information, performance information.     | 
-| 4   | Command Panel            | Displays the system message after the execution of a command. The system message describes the outcome of the entered command. |
+| No. | Component           | Description                                                                                                                                                  |
+| --- | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 1   | Toolbar             | Includes information on frequently-used commands. Switch to light/dark mode.                                                                                 |
+| 2   | Employee List Panel | Displays the list of employees. Includes basic information such as `tags`, `position`, `employee ID`.                                                        |
+| 3   | Display Panel       | Displays the information of an employee or department. The information includes the employee's personal details, leave information, performance information. |
+| 4   | Command Panel       | Displays the system message after the execution of a command. The system message describes the outcome of the entered command.                               |
 
 #### Toolbar
 
@@ -127,9 +129,9 @@ Things to note:
 3. If you delete an employee that you are currently viewing, the employee info view will display the next employee's particulars.
 4. If there is no next employee, this panel will revert to the Coydir logo.
 
-#### Command Box
+#### Command Panel
 
-![Command Box](images/ui-screenshots/Command.png)
+![Command Panel](images/ui-screenshots/Command.png)
 
 You can enter your user commands in the bottom section labeled as `Enter command here...`.
 
@@ -152,7 +154,7 @@ The top section displays relevant messages/errors after the command is entered.
 
   <img class="centerImage" src="./images/Ui.png"/>
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command panel and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    - **`list`** : Lists all employees in the company.
@@ -165,7 +167,6 @@ The top section displays relevant messages/errors after the command is entered.
 
 6. Refer to the [Features](#features) below for details of each command.
 
-
 ## Symbols and Syntax
 
 Here are some symbols to look out for while using this guide:
@@ -175,7 +176,7 @@ Here are some symbols to look out for while using this guide:
 | `code`               | Text relevant to commands or name of a file. |
 | :information_source: | Information that is useful to take note of.  |
 | :bulb:               | Tips for Coydir Users.                       |
-| :warning:        | Be wary and proceed with caution.            |
+| :warning:            | Be wary and proceed with caution.            |
 
 ## Features
 
@@ -361,7 +362,7 @@ After this, you should be able to see the `data` folder._
 
 **Step 3 (Running CSV file) :**
 
-1. Once done, run `batch-add FILENAME` in the command box.
+1. Once done, run `batch-add FILENAME` in the command panel.
 
 Successful Batch Add:
 ![](images/batch-add-images/BatchAddSuccess.png)
@@ -722,7 +723,7 @@ For department heads, pulling up data relevant to your department can be done th
 This allows you to view the summarized details of a department given the name of the department.
 Details include the number of employee in that particular department, employees who are currently available, employees who are currently on leave, and a table of employees in that department with their corresponding performance ratings.
 
-Simply enter the `view-department` command, followed by the name of the department.
+Simply enter the `view-department` command, followed by the name of the department (which is case-insensitive).
 
 This command results in one of the two cases below:
 
@@ -744,12 +745,6 @@ Format: `view-department DEPARTMENT`
 Example:
 
 - `view-department Finance` displays a brief summary of the Finance department's details on the right panel.
-
-<div markdown="span" class="alert alert-primary">
-
-:bulb: DEPARTMENT is case-insensitive.
-
-</div>
 
 ### Additional Features
 
@@ -837,21 +832,22 @@ If your changes to the data file makes its format invalid, Coydir will discard a
 9. **Integer** : A whole number like 1, 9, 15, 27, etc.
 
 ## Field Formats
+
 This table describes the requirements for the input format of the fields.
 
-| Field        | Prefix | Requirement                                                                                                                                                                                                                                                                                                         | Example                                                    |
-|--------------|-------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------| 
-| `NAME`       | n/    | Only alphanumeric characters and spaces only.                                                                                                                                                                                                                                                                       | `Prittam Yung`, `Shawn Chang Jun`                          | 
-| `PHONE`      | p/    | Contain numbers only from 3 digits long to 15 digits long                                                                                                                                                                                                                                                           | `80101126`,  `973629831`, `999`                            | 
-| `EMAIL`      | e/    | Be in the format of local-part@domain. local-part should contain only alphanumeric characters and/or certain special characters (+_.-), and cannot start or end with any special characters. domain should start and end with alphanumeric characters, must be at least 2 characters long, and can contain hyphens. | `prittam_yung@example.com`, `shawn@gg.com`                 |
-| `POSITION`   | j/    | Can take any value.                                                                                                                                                                                                                                                                                                  | `Software Engineer Level 2`, `Team-Lead `                  | 
-| `DEPARTMENT` | d/    | Must be within the list of [departments offered by Coydir](#managing-departments).                                                                                                                                                                                                                                    | `Sales`, `General Management`                              |
-| `ADDRESS`    | a/    | Can take any value.                                                                                                                                                                                                                                                                                                  | `Little India`, `Blk 30 Lorong 3 Serangoon Gardens #07-18` |
-| `LEAVE`      | l/    | Must be an integer.                                                                                                                                                                                                                                                                                                   | `1`, `10`, `20`                                            | 
-| `TAG`        | t/    | Only alphanumeric characters and spaces only.                                                                                                                                                                                                                                                                       | `Promotion Coming`, ` 5 Years`                             |
-| `START_DATE` | sd/   | Date in DD-MM-YYYY format.                                                                                                                                                                                                                                                                                          | `10-01-2022`, `15-12-2022`                                  |
-| `END_DATE`   | ed/   | Date in DD-MM-YYYY format.                                                                                                                                                                                                                                                                                          | `10-01-2022`, `15-12-2022`                          |
-| `RATING`     | r/    | Integer from 1 to 5.                                                                                                                                                                                                                                                                                                 | `1`, `3`,`5`                                               |
+| Field        | Prefix | Requirement                                                                                                                                                                                                                                                                                                          | Example                                                    |
+| ------------ | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
+| `NAME`       | n/     | Only alphanumeric characters and spaces only.                                                                                                                                                                                                                                                                        | `Prittam Yung`, `Shawn Chang Jun`                          |
+| `PHONE`      | p/     | Contain numbers only from 3 digits long to 15 digits long                                                                                                                                                                                                                                                            | `80101126`, `973629831`, `999`                             |
+| `EMAIL`      | e/     | Be in the format of local-part@domain. local-part should contain only alphanumeric characters and/or certain special characters (+\_.-), and cannot start or end with any special characters. domain should start and end with alphanumeric characters, must be at least 2 characters long, and can contain hyphens. | `prittam_yung@example.com`, `shawn@gg.com`                 |
+| `POSITION`   | j/     | Can take any value.                                                                                                                                                                                                                                                                                                  | `Software Engineer Level 2`, `Team-Lead `                  |
+| `DEPARTMENT` | d/     | Must be within the list of [departments offered by Coydir](#managing-departments).                                                                                                                                                                                                                                   | `Sales`, `General Management`                              |
+| `ADDRESS`    | a/     | Can take any value.                                                                                                                                                                                                                                                                                                  | `Little India`, `Blk 30 Lorong 3 Serangoon Gardens #07-18` |
+| `LEAVE`      | l/     | Must be an integer.                                                                                                                                                                                                                                                                                                  | `1`, `10`, `20`                                            |
+| `TAG`        | t/     | Only alphanumeric characters and spaces only.                                                                                                                                                                                                                                                                        | `Promotion Coming`, ` 5 Years`                             |
+| `START_DATE` | sd/    | Date in DD-MM-YYYY format.                                                                                                                                                                                                                                                                                           | `10-01-2022`, `15-12-2022`                                 |
+| `END_DATE`   | ed/    | Date in DD-MM-YYYY format.                                                                                                                                                                                                                                                                                           | `10-01-2022`, `15-12-2022`                                 |
+| `RATING`     | r/     | Integer from 1 to 5.                                                                                                                                                                                                                                                                                                 | `1`, `3`,`5`                                               |
 
 ## Command Summary
 
