@@ -75,8 +75,8 @@ This User Guide has been structured in a way to help you find information easily
  you can find a multitude of tips on how to use this User Guide. The following sections documents the main features of FRIDAY.
 
 1. [Student management](#student-management)
-2. [Organizing students](#organizing-students)
-3. [Grading students](#grading-students)
+2. [Grading students](#grading-students)
+3. [Organizing students](#organizing-students)
 4. [Miscellaneous features](#miscellaneous-features)
 5. [Features for advanced users](#features-for-advanced-users)
 
@@ -162,8 +162,8 @@ e.g. Typing `help` and press Enter will open a help window.
 
 This section contains all the information and details of each feature of **FRIDAY**. These features are split into 5 sections based on their purpose and function:
 1. [Student Management](#student-management)
-2. [Organizing Students](#organizing-students)
-3. [Grading Students](#grading-students)
+2. [Grading Students](#grading-students)
+3. [Organizing Students](#organizing-students)
 4. [Miscellaneous Features](#miscellaneous-features)
 5. [Features for Advanced Users](#features-for-advanced-users)
 
@@ -213,6 +213,8 @@ Format: `add n/NAME [t/TELEGRAM_HANDLE] [c/CONSULTATION_DATE] [m/MASTERY_CHECK_D
 
 
 Example: 
+
+
 Let's say you want to add a student named Alex Yeoh, with Telegram handle as "@al3xx", consultation date on 2022-10-25,
 Mastery Check date on 2022-08-16, and the tags "cool guy" and "quiet". You can follow the steps below. 
 
@@ -240,6 +242,8 @@ Format: `delete INDEX`
 </div>
 
 Example:
+
+
 Let's say you want to delete the 3rd student in the list. You can follow the steps below. 
 
 Steps:
@@ -270,6 +274,8 @@ optional fields, but there should be at least one field specified for the `edit`
 </div>
 
 Example: 
+
+
 Let's say you have incorrect and missing details for a student, and you wish to update them accordingly. For 
 instance, you wish to change the name, Telegram handle, consultation date, Mastery Check date and tags of the student 
 to "Alex Yap", "@AlexYap", "2022-10-10", "2022-11-06" and the tags "Experienced coder" and "Intern" respectively.<br>
@@ -312,6 +318,8 @@ remove any existing remark for the specified student.<br>
 </div>
 
 Example: 
+
+
 Let's say you wish to add a remark "Aspiring to be a CS1101S TA for next year" for a student (Alex Yap) to take
 note and remind yourself that Alex Yap is interested in applying for the CS1101S TA position.<br>
 You can follow the steps below to add the remark for the student.
@@ -373,6 +381,8 @@ Format: `grade INDEX [ra1/RA1_SCORE] [ra2/RA2_SCORE] [pa/PRACTICAL_SCORE] [mt/MI
 </div>
 
 Example: 
+
+
 Let's say you wish to enter the grades of a student (Alex Yap) into FRIDAY, with the scores of "90" for 
 Reading Assessment 1, "80.1" for Reading Assessment 2, "100.0" for Practical Assessment, "85.23" for Midterm Test, and 
 "78" for Final Test.<br>
@@ -447,7 +457,6 @@ As you can see, the "(passed)" status has been removed from student 1's Mastery 
 
 <div style="page-break-after: always;"></div>
 
-
 ### Organizing Students
 
 These features allow you to organize your list of students to suit your needs.
@@ -496,6 +505,8 @@ Format: `sort CRITERIA/ORDER`
 </div>
 
 Example:
+
+
 Let's say you want to see which students have [Mastery Checks](#glossary) closest to the current date.
 To achieve that, you can sort the list according to the students' Mastery Check dates, by following the steps below.
 
@@ -530,7 +541,10 @@ Format: `find KEYWORDS`
 * When searching for exam grade, use the format `find [exam_name:EXAM_SCORE]`.
 </div>
 
-Example: Lets say you need to access a student alex to view his final examination grades. You can do so by following the steps below to find the student.
+Example: 
+
+
+Lets say you need to access a student alex to view his final examination grades. You can do so by following the steps below to find the student.
 
 Steps:
 1. Type `find alex` in the <i>command box</i>.
@@ -551,6 +565,21 @@ Outcome:
 Lists all students in FRIDAY. This helps you to reset the sorting and finding done by the `sort` and `find` commands respectively.
 
 Format: `list`
+
+Example:
+
+Let's say you just used the `find` command to `find` students named alex. Now, you want to view all your students. You can follow the steps below to view all students.
+
+Steps:
+
+1. Type `list` in the *Command Box*.
+2. Press `Enter` to execute.
+
+Outcome:
+
+1. FRIDAY will display all students you have.
+2. The *Result Display* will show a success message.
+
 
 [Back to top](#table-of-contents)
 
@@ -579,48 +608,93 @@ Format: `alias a/ALIAS k/COMMAND_KEYWORD`
 * `COMMAND_KEYWORD` must be a default command keyword (e.g. `add` in Adding students)
 * `ALIAS` must not be a default command keyword and contain exactly one word
 
-Example: Enter `alias a/ls k/list`
+Example: 
+
+Let's say you find yourself using the `list` command very often and would like to type a shorter word, like `ls`, to use this command. You can follow the steps below to add the alias.
+
+Steps:
+
+1. Type `alias a/ls k/list` in the *Command Box*.
+2. Press `Enter` to execute.
 
 ![AliasCommandBefore.png](images/AliasCommandBefore.PNG)
 <i>Before alias command</i>
 
-Outcome: The alias `ls` is added for the viewing all students command `list`.
+Outcome: 
+
+1. FRIDAY will add the alias `ls` for the viewing all students command `list`.
+2. The *Result Display* will show a success message.
+3. Now you can use `ls` in place of `list`.
 
 ![AliasCommandAfter.png](images/AliasCommandAfter.PNG)
-<i> Outcome of alias command</i>
+<i>Outcome of alias command</i>
 
-Now, typing `ls` into the command box.
+Example:
+
+Now you have an alias `ls` for the `list` command. You can follow the steps below to use the alias.
+
+Steps:
+
+1. Type `ls` into the *Command Box*.
+2. Press `Enter` to execute.
 
 ![UsingAliasBefore.png](images/UsingAliasBefore.PNG)
-<i> Before using alias</i>
+<i>Before using alias</i>
 
-Will execute the `list` command.
+Outcome:
+
+1. FRIDAY will execute the `list` command.
+2. FRIDAY will display all students you have.
+3. The *Result Display* will show a success message.
 
 ![UsingAliasAfter.png](images/UsingAliasAfter.PNG)
-<i> Outcome of using alias</i>
+<i>Outcome of using alias</i>
 
 
 #### Deleting aliases: `unalias`
 
-Deletes an existing [alias](#glossary), which is no longer needed, in FRIDAY.
+Deletes an existing [alias](#glossary) in FRIDAY.
 
 Format: `unalias a/ALIAS`
 
-Example: Enter `unalias a/ls`
+Example: 
+
+Let's say you had previously added an alias `ls`. You find yourself not using this alias and want to remove it. You can follow the steps before to remove the alias.
+
+Steps:
+
+1. Type `unalias a/ls` in the *Command Box*.
+2. Press `Enter` to execute.
 
 ![UnaliasCommandBefore.png](images/UnaliasCommandBefore.PNG)
-<i> Before unalias command</i>
+<i>Before unalias command</i>
 
-Outcome: The alias `ls` will be deleted from FRIDAY.
+Outcome:
+
+1. FRIDAY will remove the alias `ls`.
+2. The *Result Display* will show a success message.
 
 ![UnaliasCommandAfter.png](images/UnaliasCommandAfter.PNG)
-<i> Outcome of unalias command</i>
+<i>Outcome of unalias command</i>
 
 #### Viewing aliases: `aliaslist`
 
 Views all [aliases](#glossary) in FRIDAY, so that you know what aliases you have created and the commands they are for.
 
+Example:
+
+Let's say you forgot the aliases you have in FRIDAY and wish to view all your aliases. You can follow the steps below to view all your aliases. 
+
 Format: `aliaslist`
+
+Steps:
+
+1. Type `aliaslist` in the *CommandBox*.
+2. Press `Enter` to execute.
+
+Outcome:
+
+1. The *Result Display* will display all aliases you have.
 
 <div style="page-break-after: always;"></div>
 
