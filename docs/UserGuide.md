@@ -453,6 +453,7 @@ Found a new policy you want to pitch to your clients? LTNS lets you add the poli
 
 <div markdown="span" class="alert alert-primary">:bulb: **Additional Tips:**
 <br/>
+
 - What does your policy cover? A policy must have one or more coverages when created. Find the possible coverages and their corresponding codes [here](#valid-coverage-codes).
 - Which company does your policy belong to? Find out the valid companies and their corresponding codes [here](#valid-company-codes).
 - If you’d like to sell a policy from a company/with a coverage not in our list, write to us [here](#contact-us), and we’ll add it in if there are a significant number of requests!
@@ -553,6 +554,7 @@ Format: `assign CLIENT_INDEX POLICY_INDEX pr/PREMIUM sd/STARTDATE ed/ENDDATE`
 Find a detailed explanation of different input restrictions [here](#command-format-table).
 
 <div markdown="span" class="alert alert-primary">:bulb: **Additional Tips:** <br/>
+
 - The start and end dates should be of the format "YYYY-MM-DD", and within the years 1900 - 2100.
 - Premium should be any positive numeric value below `1000000000` with or without 2 decimal places.
 </div>
