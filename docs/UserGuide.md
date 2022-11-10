@@ -223,7 +223,7 @@ require parameters.
 
 Note that flags and parameters always **come after the command**.
 
-<div markdown="block" class="alert alert-primary">**:information_source: Do I need to memorise all these commands, 
+<div markdown="block" class="alert alert-primary">**:information_source: Do I need to memorize all these commands, 
 parameters, and flags?**
 <br><br>
 Nope!
