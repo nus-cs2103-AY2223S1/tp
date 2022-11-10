@@ -440,7 +440,10 @@ Summary of the commands to manage persons can be found [here](#summary-of-person
 
 #### Creating a new person: `add person`
 
-Adds a person to TruthTable.
+![Add Person Example](images/AddPersonExample.png)
+
+Adds a new person to TruthTable. The new person is added to the [persons section](#persons-section) as seen in the
+image above.
 
 **Format:** `add person [-h] -e=<EMAIL> -n=<NAME> -p=<PHONE> [-t[=<TAGS>...]]...`
 
@@ -462,7 +465,9 @@ A person can have any number of tags (including 0).
 - `a p`
 
 **Examples:**
-* `add person -n "John Doe" -p 98765432 -e johnd@example.com`
+
+
+* `add person -n "John Doe" -p 98765432 -e johnd@example.com` adds a person named "John Doe"
 * `a p -n "Betsy Crowe" -e betsycrowe@example.com -p 1234567 -t criminal friend`
 
 #### Editing a person: `edit person`
