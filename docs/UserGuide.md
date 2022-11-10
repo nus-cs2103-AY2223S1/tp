@@ -673,7 +673,7 @@ When you sort by time since oldest debt, all persons who do not owe any debt wil
 
 Rest assured that the information in this section is **optional**!
 
-The following section is meant for advanced users of PayMeLah who are already comfortable with the basics features and are looking to further increase their efficiency in using PayMeLah. If you are a new user still getting used to PayMeLah, don't worry about reading this section yet. You can always come back to this section in the future after gaining more experience!
+The following section is meant for advanced users of PayMeLah who are already comfortable with the basic features and are looking to further increase their efficiency in using PayMeLah. If you are a new user still getting used to PayMeLah, don't worry about reading this section yet. You can always come back to this section in the future after gaining more experience!
 
 ### Keyboard shortcuts
 
@@ -696,7 +696,6 @@ The table below lists every keyboard shortcut currently available in PayMeLah:
 
 #### Saving the data
 
-<<<<<<< HEAD
 Your computer automatically saves PayMeLah data after any command that changes it. There is no need to save manually! Within the folder you saved your PayMeLah, you might have noticed that there is a `data` folder. As the name suggests, your PayMeLah data is saved in a `paymelah.json` file within that folder.
 
 <div markdown="block" class="alert alert-primary">
