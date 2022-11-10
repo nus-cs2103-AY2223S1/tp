@@ -443,7 +443,8 @@ Summary of the commands to manage persons can be found [here](#summary-of-person
 Adds a new person to TruthTable. The new person is added to the [persons section](#persons-section) as seen in the
 image below.
 
-![Add Person Example](images/AddPersonExample.png)
+![Add Person Example Before](images/AddPersonExampleBefore.png)
+![Add Person Example After](images/AddPersonExampleAfter.png)
 
 **Format:** `add person [-h] -e=<EMAIL> -n=<NAME> -p=<PHONE> [-t[=<TAGS>...]]...`
 
