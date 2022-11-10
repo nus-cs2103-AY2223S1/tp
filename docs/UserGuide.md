@@ -279,7 +279,14 @@ Adds a contact to your TaskBook.
 
 * For more information on the `NAME` parameter, see [NAME Parameter](#name-parameter).
 * For more information on the `PHONE_NUMBER` parameter, see [PHONE_NUMBER Parameter](#phone_number-parameter).
-* Note that adding a new contact [will remove the effect of a `find` command](#finding), displaying the full list of contacts.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note about contact add:**<br>
+
+* Adding a new contact [will remove the effect of a `find` command](#finding), displaying the full list of contacts.
+
+</div>
 
 Examples:
 1. `contact add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
@@ -313,7 +320,6 @@ Adds a task of type todo into your task list.
 * Adds a todo assigned by (`m/`) or assigned to (`o/`) a contact.
 * Input "Myself" or omit the `m/` and `o/` flags to assign yourself a todo.
     * Self-assignment defaults to `m/Myself` when `m/` and `o/` flags are omitted.
-* Note that adding a new task [will remove the effect of a `find` command](#finding), displaying the full list of tasks.
 
 <div markdown="block" class="alert alert-info">
 
@@ -322,6 +328,7 @@ Adds a task of type todo into your task list.
 * `NAME` must be written in full.
 * `NAME` is case-sensitive.
 * `NAME` must exist in the contacts list.
+* Adding a new task [will remove the effect of a `find` command](#finding), displaying the full list of tasks.
 
 </div>
 
@@ -362,7 +369,6 @@ Adds a task of type deadline into the task list.
 * Input "Myself" or omit the `m/` and `o/` flags to assign yourself the deadline.
     * Self-assignment defaults to `m/Myself` when `m/` and `o/` flags are omitted.
 * For more information on `DATE` formats, see [Accepted Date Formats](#accepted-date-formats).
-* Note that adding a new task [will remove the effect of a `find` command](#finding), displaying the full list of tasks.
 
 <div markdown="block" class="alert alert-info">
 
@@ -371,6 +377,7 @@ Adds a task of type deadline into the task list.
 * `NAME` must be written in full.
 * `NAME` is case-sensitive.
 * `NAME` must exist in the contacts list.
+* Adding a new task [will remove the effect of a `find` command](#finding), displaying the full list of tasks.
 
 </div>
 
@@ -410,7 +417,6 @@ Adds a task of type event into your task list.
 * Adds an event assigned by (`m/`) or assigned to (`o/`) a contact.
     * Self-assignment defaults to `m/Myself` when `m/` and `o/` flags are omitted.
 * For more information on `DATE` formats, see [Accepted Date Formats](#accepted-date-formats).
-* Note that adding a new task [will remove the effect of a `find` command](#finding), displaying the full list of tasks.
 
 <div markdown="block" class="alert alert-info">
 
@@ -419,6 +425,7 @@ Adds a task of type event into your task list.
 * `NAME` must be written in full.
 * `NAME` is case-sensitive.
 * `NAME` must exist in the contacts list.
+* Adding a new task [will remove the effect of a `find` command](#finding), displaying the full list of tasks.
 
 </div>
 
@@ -458,10 +465,8 @@ Edits the specified contact in your contact list.
 
 </div>
 
-* Edits the contact at the specified `INDEX` with the parameters provided.
-* The index refers to the index number shown in the displayed contact list.
-* The index **must be a positive integer** 1, 2, 3, …​
-* Include only the parameters you wish to be edited, however all included parameters **must** be changed from the original.
+* Edits the contact at the specified `INDEX` in the displayed contact list, with the parameters provided.
+* Include only the parameters to be edited, however all included parameters **must** differ from the original.
 
 <div markdown="block" class="alert alert-warning">
 
@@ -501,9 +506,7 @@ Edits the specified task in your task list.
 
 </div>
 
-* Edits the task at the specified `INDEX` with the parameters provided.
-* The index refers to the index number shown in the displayed task list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* Edits the task at the specified `INDEX` in the displayed task list, with the parameters provided.
 * Only one of assignor `m/` or assignee `o/` can be specified.
     * A task can be **re-assigned to** "Person Y" by providing parameter `o/Person Y`.
     * A task can be **re-assigned by** "Person X" by providing parameter `m/Person X`.
@@ -563,14 +566,11 @@ Deletes the specified contact from your displayed contact list.
 
 </div>
 
-* Deletes the contact at the specified `INDEX`.
-* The index refers to the index number shown in your displayed contact list.
-* The index **must be a positive integer** 1, 2, 3, …​
-* Deletion of contact is blocked if the contact has tasks associated to it.
+* Deletes the contact at the specified `INDEX` in the displayed contact list.
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about contact delete:**<br>
+**:information_source: Note about contact delete:**<br>
 
 * A contact cannot be deleted if there are tasks assigned to or by the contact.
 
@@ -590,9 +590,7 @@ Deletes the specified task from your task list.
 
 </div>
 
-* Deletes the task at the specified `INDEX`.
-* The index refers to the index number shown in your displayed task list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* Deletes the task at the specified `INDEX` in the displayed task list.
 
 Example:
 1. `task list` followed by `task delete i/2` deletes the 2nd task in your task list.
@@ -618,7 +616,8 @@ Displays all contacts matching the arguments provided by you.
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about contact find:**
+**:information_source: Note about contact find:**
+
 * QUERY is not case-sensitive.
 
 </div>
@@ -639,6 +638,7 @@ Displays all tasks matching the arguments provided by you.
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about task find:**
+
 * QUERY is not case-sensitive.
 * ASSIGNMENT is either FROM or TO, representing "m/" and "o/", or 'Assigned by' and 'Assigned to', respectively.
 * DONE is either X or O, representing 'Done' and 'Not done' respectively.
@@ -684,7 +684,7 @@ Sorts your contact list based on the input parameter.
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about alphabetical sorting:**<br>
+**:information_source: Note about alphabetical sorting:**<br>
 
 * Alphabetical sorting will prioritize valid letters by their ASCII values, meaning capital letters come before their non-capital counterparts with `contact sort s/a`. This order is reversed for `contact sort s/ca`.
 
@@ -718,9 +718,9 @@ Sorts your task list based on the input parameter.
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about alphabetical sorting:**<br>
+**:information_source: Note about alphabetical sorting:**<br>
 
-* Alphabetical sorting for tasks are not case sensitive. Between any lower-case letter and their capital counterpart, there is no guarantee on the order of the sort.
+* Alphabetical sorting for tasks are not case-sensitive. Between any lower-case letter and their capital counterpart, there is no guarantee on the order of the sort.
 
 </div>
 
@@ -741,9 +741,7 @@ Marks the specified task from your task list as done.
 
 </div>
 
-* Marks the task at the specified `INDEX` as done.
-* The index refers to the index number shown in your displayed task list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* Marks the task at the specified `INDEX` in the displayed task list as done.
 
 Example:
 1. `task list` followed by `task mark i/2` marks the 2nd task in your task list.
@@ -758,9 +756,7 @@ Marks the specified task from your task list as not done.
 
 </div>
 
-* Marks the task at the specified `INDEX` as not done.
-* The index refers to the index number shown in your displayed task list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* Marks the task at the specified `INDEX` in the displayed task list as not done.
 
 Example:
 1. `task list` followed by `task unmark i/2` marks the 2nd task in your task list.
@@ -788,9 +784,9 @@ Undoes the previous command and reverts your TaskBook to the previous state.
 </div>
 
 Example:
-1. `task todo m/Bob d/Add undo feature` - some command that causes a change in state
+1. `task todo m/Bob d/Add undo feature` - some command that causes a change in state.
 
-2. `undo` will undo the previous command
+2. `undo` will undo the previous command.
 
 #### Redo Command : `redo`
 
@@ -803,11 +799,11 @@ Redoes the previous undo action and reverts your TaskBook to a previously undone
 </div>
 
 Example:
-1. `task delete i/1` - some command that causes a change in state
+1. `task delete i/1` - some command that causes a change in state.
 
-2. `undo` will undo the previous command
+2. `undo` will undo the previous command.
 
-3. `redo` will revert the state such that the task is deleted
+3. `redo` will revert the state such that the task is deleted.
 
 ### Exiting the program : `bye`
 
@@ -854,6 +850,7 @@ TaskBook data is saved as a JSON file `[JAR file location]/data/taskbook.json`. 
 <div markdown="span" class="alert alert-warning">
 
 **:exclamation: Caution:**
+
 * If your changes to the data file makes its format invalid, TaskBook will discard all data and start with an empty data file on the next run.
 
 </div>
