@@ -6,7 +6,7 @@ This guide provides everything a CS1101S Teaching Assistant (TA) needs to know t
 
 To use this guide, simply click on the items you would like to learn more about in the table of contents, or scroll down to the relevant sections.
 
-## Table of Contents
+# Table of Contents
 
 * Table of Contents
 {:toc}
@@ -23,7 +23,7 @@ Using JARVIS, the TA can
 
 If you are a CS1101S TA who is familiar with Command Line Interface and can type fast, JARVIS will allow you to efficiently manage your students, tasks and lessons.
 
-[🠕 Back To Top](#table-of-contents)
+[🠕 Back To Top](#title-user-guide)
 
 --------------------------------------------------------------------------------------------------------------------
 ## Using this guide
