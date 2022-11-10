@@ -7,7 +7,7 @@ Welcome to the PayMeLah user guide!
 
 Are you a NUS student who stays on campus and enjoys organising or participating in group buys? Do you struggle with **remembering** the people involved in each group order, **calculating** how to split the bill and **tracking** who is still yet to pay you back?
 
-PayMeLah is a desktop app for solving all these problems and more! PayMeLah can **keep track of** and **manage the debts** your friends owe you. It can even **do simple calculations** for you, such as adding GST or splitting debts amongst your friends. What’s more, it is optimised for you to do everything **from just your keyboard**! This way, you can seamlessly switch between managing your debts and acing your assignments without even needing your mouse. Save time on the nitty-gritties of organising group buys so that you can be more productive! :thumbs-up:
+PayMeLah is a desktop app for solving all these problems and more! PayMeLah can **keep track of** and **manage the debts** your friends owe you. It can even **do simple calculations** for you, such as adding GST or splitting debts amongst your friends. What’s more, it is optimised for you to do everything **from just your keyboard**! This way, you can seamlessly switch between managing your debts and acing your assignments without even needing your mouse. Save time on the nitty-gritties of organising group buys so that you can be more productive! :+1:
 
 <div style="page-break-after: always;"></div>
 
@@ -16,12 +16,12 @@ If you are a new user looking to get started with PayMeLah, this user guide can 
 
 For a full overview of everything this guide has to offer, do make use of the [Table of Contents](#table-of-contents)!
 
-Additionally, for our advanced users, we have a special section just for you! Click [here](#advanced-features) if you want to learn tricks like [keyboard shortcuts](#keyboard-shortcuts) and how to directly [edit your data](#linklinklink).
+Additionally, for our advanced users, we have a special section just for you! Click [here](#advanced-features) if you want to learn tricks like [keyboard shortcuts](#keyboard-shortcuts) and how to directly [manage your data file](#features-for-data-management).
 
 Finally, here are some of the symbols and text formatting to look out for as you make use of this guide:
 
 <div markdown="block" class="alert alert-primary">
-:bulb: **Tips:** Blue boxes contain useful tips for using PayMeLah.
+:bulb: **Tips:** Blue boxes contain additional information that may be useful for enhancing your PayMeLah experience.
 </div>
 
 <div markdown="block" class="alert alert-warning">
@@ -56,7 +56,9 @@ Finally, here are some of the symbols and text formatting to look out for as you
    <img src="images/howToDownload_1.png" width="500" /> <br>
    <img src="images/howToDownload_2.png" width="500" /> <br>
 
-
+<div markdown="block" class="alert alert-primary">
+:bulb: **What is a JAR file?**<br> Check out the term in the [glossary](#jar-file)!
+</div>
 
 4. Finally, you are ready to use PayMeLah. Simply double-click the *paymelah.jar* in the folder you created to start the app. After a few seconds, you should see PayMeLah appear. Notice how we have some sample persons and debts present for you to experiment with our [features](#features).  <br>
    <img src="images/Ui.png" width="800" /> <br>
@@ -114,24 +116,6 @@ Finally, here are some of the symbols and text formatting to look out for as you
 <div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
 If your provided inputs are too long, PayMeLah may not be able to fully display them and cut them off! While this is rare, do try to avoid entering unnecessarily long inputs to PayMeLah (e.g., save a person's nickname rather than their full name).
 </div>
-
-<div style="page-break-after: always;"></div>
-
-<div id="advanced-keyboard-shortcuts" markdown="block" class="alert alert-secondary">
-**:star: Advanced keyboard shortcuts:**
-Although you can make use of the mouse to perform some functions in PayMeLah, you may also use various keyboard shortcuts to do so.
-
-</div>
-
-|                Keyboard Key                 | Function                                                                                                                                                                                                                                                                                                                                              |
-|:-------------------------------------------:|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|               <kbd>Tab</kbd>                | When you are in the command box, press <kbd>Tab</kbd> twice to navigate to the person list. When you are in the person list, use <kbd>Tab</kbd> to move down the list. At the end of the person list, press <kbd>Tab</kbd> once to return to the command box.                                                                                         |
-|      <kbd>Shift</kbd> + <kbd>Tab</kbd>      | Same as <kbd>Tab</kbd> but moves up instead.                                                                                                                                                                                                                                                                                                          |
-|              <kbd>Space</kbd>               | When you are in the person list, use <kbd>Space</kbd> to expand or close the person card you are currently on. After expanding the person card, press <kbd>Tab</kbd> followed by <kbd>Space</kbd> to navigate to the person’s debt list. Once you are done viewing the person's debt list, press <kbd>Tab</kbd> again to navigate to the person list. |
-|  <kbd>PageUp</kbd> and <kbd>PageDown</kbd>  | When you are in the person list, use <kbd>PageUp</kbd> and <kbd>PageDown</kbd> to move up or down the list, automatically expanding each person card as you move. When you are in a person's debt list, use <kbd>PageUp</kbd> and <kbd>PageDown</kbd> to move up or down the debt list.                                                               |
-| <kbd>UpArrow</kbd> and <kbd>DownArrow</kbd> | Similar to <kbd>PageUp</kbd> and <kbd>PageDown</kbd>, but without expanding the person cards.                                                                                                                                                                                                                                                         |
-|               <kbd>Home</kbd>               | When you are in the person list, press the <kbd>Home</kbd> key to jump to the first person in the list. When you are in a person's debt list, press the <kbd>Home</kbd> key to jump to the first debt in the list.                                                                                                                                    |
-|               <kbd>End</kbd>                | When you are in the person list, press the <kbd>End</kbd> key to jump to the last person in the list. When you are in a person's debt list, press the <kbd>End</kbd> key to jump to the last debt in the list.                                                                                                                                        |
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -669,18 +653,55 @@ When you sort by time since oldest debt, all persons who do not owe any debt wil
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
+## Advanced Features
+
+Rest assured that the information in this section is **optional**!
+
+The following section is meant for advanced users of PayMeLah who are already comfortable with the basics features and are looking to further increase their efficiency in using PayMeLah. If you are a new user still getting used to PayMeLah, don't worry about reading this section yet. You can always come back to this section in the future after gaining more experience!
+
+### Keyboard shortcuts
+
+Although you can use the mouse to perform some functions in PayMeLah, it can be faster if you do not have to lift your hand from your keyboard at all. This is where keyboard shortcuts will come in handy for **speeding up your navigation** of the application.
+
+The table below lists every keyboard shortcut currently available in PayMeLah:
+
+|                Keyboard Key                 | Function                                                                                                                                                                                                                                                                                                                                                                                                                       |
+|:-------------------------------------------:|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|               <kbd>Tab</kbd>                | **Scrolling down the [person list](#person-list-section):**<br> When you are in the command box, press <kbd>Tab</kbd> twice to navigate to the person list. Once you are in the person list, you can use <kbd>Tab</kbd> to continue moving down the list. Press <kbd>Tab</kbd> again after reaching the end of the list will return you to the command box.                                                                    |
+|      <kbd>Shift</kbd> + <kbd>Tab</kbd>      | **Scrolling up the [person list](#person-list-section):**<br> Same as <kbd>Tab</kbd> but moves up instead.                                                                                                                                                                                                                                                                                                                     |
+|              <kbd>Space</kbd>               | **Navigating a [person card](#person-list-section):**<br> When you are in the person list, use <kbd>Space</kbd> to expand or close the person card you are currently on. After expanding the person card, pressing <kbd>Tab</kbd> followed by <kbd>Space</kbd> will navigate you to the person’s debt list. Once you are done viewing the person's debt list, you can press <kbd>Tab</kbd> again to return to the person list. |
+|  <kbd>PageUp</kbd> and <kbd>PageDown</kbd>  | **Moving to another [person card](#person-list-section):**<br> When you are in the person list, use <kbd>PageUp</kbd> and <kbd>PageDown</kbd> to move up or down the list, automatically expanding each person card as you move. When you are in a person's debt list, use <kbd>PageUp</kbd> and <kbd>PageDown</kbd> to move up or down the debt list.                                                                         |
+| <kbd>UpArrow</kbd> and <kbd>DownArrow</kbd> | **Moving to another [person card](#person-list-section):**<br> Similar to <kbd>PageUp</kbd> and <kbd>PageDown</kbd>, but without expanding the person cards you scroll by.                                                                                                                                                                                                                                                     |
+|               <kbd>Home</kbd>               | **Jumping to the top of the [person list](#person-list-section):**<br> When you are in the person list, press the <kbd>Home</kbd> key to jump to the first person in the person list. When you are in a person's debt list, press the <kbd>Home</kbd> key to jump to the first debt in the debt list.                                                                                                                          |
+|               <kbd>End</kbd>                | **Jumping to the bottom of the [person list](#person-list-section):**<br> When you are in the person list, press the <kbd>End</kbd> key to jump to the last person in the person list. When you are in a person's debt list, press the <kbd>End</kbd> key to jump to the last debt in the debt list.                                                                                                                           |
+<div style="page-break-after: always;"></div>
+
 ### Features for Data Management
 
 #### Saving the data
 
-PayMeLah data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Your computer automatically saves PayMeLah data after any command that changes it. There is no need to save manually! Within the folder you saved your PayMeLah, you might have noticed that there is a `data` folder. As the name suggests, your PayMeLah data is saved in a `paymelah.json` file within that folder.
+
+<div markdown="block" class="alert alert-primary">
+:bulb: **What is a JSON file?**<br> Check out the term in the [glossary](#glossary-json-file)!
+</div>
 
 #### Editing the data file
 
-PayMeLah data are saved as a JSON file `[JAR file location]/data/paymelah.json`. Advanced users are welcome to update data directly by editing that data file.
+You can actually update the data in PayMeLah without even launching the application! To **save time**, advanced users are welcome to update data by directly editing `paymelah.json`.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, PayMeLah will discard all data and start with an empty data file at the next run.
+Here is a quick tutorial on editing the data file:
+
+Double-click on the `paymelah.json` file to open it.
+You should see the following:
+INSERT IMAGE
+
+You can now edit the data by changing any of the green words you see! Do ensure that your replacement words are surrounded by double-inverted commas (`””`), as per the image above.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Warning:**
+Make sure your edits still follow the [requirements of each input](#input-specific-behaviour)! For example, if you edit the date, it should still be in the `yyyy-mm-dd` format.
+
+If the data file fails to follow the required format, PayMeLah will **discard all data** and start with an empty data file the next time you launch it. This is **irreversible**! As such, please edit the data file directly only if you are very confident in what you are doing.
 </div>
 
 [Return to Table of Contents](#table-of-contents)
