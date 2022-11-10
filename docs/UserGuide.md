@@ -129,7 +129,7 @@ This shows a specific employee's particulars.
 Things to note:
 
 1. On startup of the application, this panel shows Coydir logo.
-2. To view an employee's particulars, refer to the [view command]([#view-details-of-an-employee--view).
+2. To view an employee's particulars, refer to the [view command]([#view-details-of-an-employee-view).
 3. If you delete an employee that you are currently viewing, the employee info view will display the next employee's particulars.
 4. If there is no next employee, this panel will revert to the Coydir logo.
 
@@ -385,7 +385,12 @@ In the upcoming versions, we will expand `batch-add` feature to:
 
 #### View details of an employee: `view`
 
-Views the details of an existing employee in the current list.
+After adding new employees to the database, accessing their freshly built employee profile is a simple command away.
+
+Keying in the `view` command allows you to see the profile of a specified employee, and the chosen profile will pop up on the Display Panel.
+You can check the details that are contained in the profile by referring to the previous section [here](#whats-in-an-employee-profile).
+
+To use the command, simply key in `view`, followed by the number representing the index of the employee of your choice.
 
 Format: `view INDEX`
 
@@ -393,8 +398,14 @@ Example:
 
 - `view 2` returns the details of the second employee in the current list.
 
-<div markdown="span" class="alert alert-info">:information_source:
-  Note that an INDEX is different from an ID. More information about the difference in INDEX and ID can be found on the [FAQ page](#faq).
+<div markdown="span" class="alert alert-info">
+
+:information_source:
+Note that an INDEX is different from an ID.
+Because of this, also note that the `view` command can only be used on employees currently listed on the Employee-List-Panel.
+
+More information about the difference in INDEX and ID can be found on the [FAQ page](#faq).
+
 </div>
 
 #### Editing an employee: `edit`
@@ -433,9 +444,11 @@ Example:
 
 #### Deleting an employee: `delete`
 
-Deletes the specified employee from Coydir, given the employee ID. This command can be used when an employee is no longer part of the company, and needs to be removed from the database.
+As time passes, you might run into situations where employees leave the company, and need to be removed from the databse.
 
-This command results in one of two cases below:
+You can remove these employees' data with the `delete` command, which removes all associated data from Coydir, so long as you provide the employee ID of the person to remove.
+
+When running the command, there are **two** possible outcomes:
 
 **Case 1: Employee with ID exists**
 
@@ -453,7 +466,9 @@ Example:
 
 #### Finding an employee: `find`
 
-Once you get familiar with Coydir and batch-adding numerous employees into the database, using `list` simply isn't sufficient to look for the right employee.
+Once you get familiar with Coydir and batch-adding numerous employees into the database, your database might get a bit larger.
+If you start to feel that scrolling through and looking for an employee is getting tedious, we have just the thing for you.
+
 The `find` command is a specific, precise function meant for searching through your employee directory.
 
 You can find employees by searching for:
@@ -507,7 +522,10 @@ Here is how we support you in leave management.
 
 #### Controlling total leave for an employee
 
-You can set the total leave available for an **incoming new** employee when adding them to the database. This can be done by including the optional leave field, `l/`, when using the `add` command.
+You can set the total leave available for an **incoming new** employee when adding them to the database.
+This can be done by including the optional leave field, `l/`, when using the `add` command.
+
+While we do set the inital value of total leaves as 14 by default, this could be useful for leaves that are carried over, or other special leaves and circumstances.
 
 Example: `add n/Yi Long Ma j/Chief Operating Officer d/General Management l/20` adds an employee, and specifies his **total leave** to be **20**.
 
@@ -517,15 +535,16 @@ Example: `edit 1 l/10` edits the total leave of the **first** employee in the cu
 
 #### Checking if an employee is on leave
 
-There are two ways to check for the live availability of employees.
+There are two ways to check for the live availability of employees, a critical aspect of ensuring smooth daily operations.
 
-1. First is using the `view-department` command: `view-department general management` opens up a table to show all the employees of the general management department. The number of employees in the department that are available or on leave will be shown.
+1. First is using the [`view-department` command](#view-details-of-a-department-view-department): `view-department general management` opens up a table to show all the employees of the general management department. The number of employees in the department that are available or on leave will be shown.
 
 ![View employee leave - Example](./images/ui-screenshots/view-employee-leave.png)
 
-2. The other way is using the `view` command, or simply just clicking on the profile card of a specific employee: `view 1`, or clicking on the first person card in the current list of employees, opens up the full information of the employee on the right hand side of the screen. You will be able to check if they are on leave by looking for the "On Leave" field.
+2. The other way is using the [`view` command](#view-details-of-an-employee-view), or simply just clicking on the profile card of a specific employee: `view 1`, or clicking on the first person card in the current list of employees, opens up the full information of the employee on the right hand side of the screen. You will be able to check if they are on leave by looking for the "On Leave" field.
 
 ![View employee leave - Example](./images/ui-screenshots/department-leave.png)
+
 #### Adding a leave period for an employee: `add-leave`
 
 This adds a leave period to an employee given the employee ID and a start and end date. The leave period will also be displayed in a table which can be seen when viewing the employee's particulars.
@@ -541,13 +560,6 @@ and the employee has sufficient leaves, the leave period will be added and shown
 
 If any of employee ID, date is invalid, or the employee does not possess enough leaves, Coydir will prompt the users accordingly, and the command will not execute.
 
-<<<<<<< HEAD
-<div markdown="span" class="alert alert-primary">:bulb:
-  Leaves are ordered by reverse chronological order in the table view.
-</div>
-
-=======
->>>>>>> e6a829cc1ddd412f10bac7f7211c690675efb395
 Format: `add-leave id/ID sd/START_DATE ed/END_DATE`
 
 | Field        | TAG | Description                               | Requirement    | Default Value |
@@ -621,7 +633,11 @@ This rating scale is well-defined with a separate category for the employees who
 
 #### Rating the performance of an employee: `rate`
 
-Rate the performance of an employee given the employee ID and a numeric rating.
+The core of Coydir's performance tracking system is the `rate` command.
+This simple command adds a performance rating for an employee, together with today's date as a timestamp record.
+You can use and adapt this to your own company policies, by rating according to your desired monthly/quarterly intervals, for example.
+
+To use the command, key in the `rate` command, and provide the employee ID and a numeric rating.
 Ratings can take any values from 1 - 5, and it should not be blank.
 
 The numeric representation of the ratings follows as such:
@@ -648,19 +664,20 @@ Example:
 
 - `rate id/1 r/3` adds a performance rating to an employee of ID 1 with a rating of 3: Satisfactory.
 
-#### Employee Performance History
-
-In each employee profile below their current performance rating field, there is a performance history line graph showing all their past `ratings` over time, marked by a `value` and `timestamp`. The line graph allows you to appreciate the employee's performance trend, and make key decisions regarding talent development.
-
-The individual rating values will be displayed beside each node in the performance rating graph. This makes it clearer for you to visualize an employee's overall performance at a glance.
-
-![Performance History Graph](./images/ui-screenshots/performance-history-graph.jpg)
-
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Note:** You can only rate the performance of an employee once per day.<br><br>
 
 </div>
+
+#### Employee Performance History
+
+In each employee profile below their current performance rating field, there is a performance history line graph showing all their past `ratings` over time, marked by a `value` and `timestamp`. The line graph allows you to appreciate the employee's performance trend, and make key decisions regarding talent development.
+
+The individual rating values will be displayed beside each node in the performance rating graph.
+This makes it clearer for you to visualize an employee's overall performance at a glance.
+
+![Performance History Graph](./images/ui-screenshots/performance-history-graph.jpg)
 
 ### Managing Departments
 
@@ -691,20 +708,12 @@ Currently, our application only provides a list of default departments for the u
 
 #### View details of a department: `view-department`
 
-View the summarized details of a department given the name of the department.
+For department heads, pulling up data relevant to your department can be done through the `view-department` command.
 
+This allows you to view the summarized details of a department given the name of the department.
 Details include the number of employee in that particular department, employees who are currently available, employees who are currently on leave, and a table of employees in that department with their corresponding performance ratings.
 
-<p align="center">
-  <img src="images/ui-screenshots/view_department.png" />
-  <br><em>Result of view-department on General Management</em>
-</p>
-
-Format: `view-department DEPARTMENT`
-
-Example:
-
-- `view-department Finance` displays a brief summary of the Finance department's details on the right panel.
+Simply enter the `view-department` command, followed by the name of the department.
 
 This command results in one of the two cases below:
 
@@ -715,6 +724,17 @@ If the department exists, the right panel will correctly displays the summary of
 **Case 2: Invalid department name**
 
 If the department name is invalid, the program will notify you through the result box, with a list of valid department name for easier reference.
+
+Format: `view-department DEPARTMENT`
+
+<p align="center">
+  <img src="images/ui-screenshots/view_department.png" />
+  <br><em>Result of view-department on General Management</em>
+</p>
+
+Example:
+
+- `view-department Finance` displays a brief summary of the Finance department's details on the right panel.
 
 <div markdown="span" class="alert alert-primary">
 
@@ -738,11 +758,12 @@ Format: `help`
 
 With this command, you should see a window like this appear.
 
-**[Insert screenshot of updated Help Window]**
+![Help Window](./images/ui-screenshots/help-window.png)
 
 #### Exiting the program: `exit`
 
-Exits the program.
+At the end of your work, you can exit Coydir and close the application by entering in the `exit` command.
+Alternatively, you can also click the close button on the window.
 
 Format: `exit`
 
@@ -750,8 +771,7 @@ Format: `exit`
 
 Clears all the data currently stored in the database.
 
-If you are a new user, you can use this command after you have experimented with Coydir
-to start keying in your actual employee information.
+If you are a new user, you can use this command after you have experimented with Coydir to start keying in your actual employee information.
 
 <div markdown="span" class="alert alert-warning">
 
