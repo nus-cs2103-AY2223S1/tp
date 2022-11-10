@@ -267,9 +267,9 @@ This may seem like a lot of different information to manage, but not to worry, y
 
 <div markdown="span" class="alert alert-primary">:bulb: **Additional Tips:** <br/>
 
-- A client can have any number of tags (including 0)
+- A client can have any number of tags (including 0)<br/>
 - The income added is based on an individual's Yearly income.<br/>
-- An income added is based on the **tax income brackets** set up by [IRAS for Financial Year 2022-2023.](https://www.iras.gov.sg/taxes/individual-income-tax/basics-of-individual-income-tax/tax-residency-and-tax-rates/individual-income-tax-rates)
+- An income added is based on the **tax income brackets** set up by [IRAS for Financial Year 2022-2023.](https://www.iras.gov.sg/taxes/individual-income-tax/basics-of-individual-income-tax/tax-residency-and-tax-rates/individual-income-tax-rates)<br/>
 - More details on the tax income brackets can be found [here](#income-brackets)
 
 </div>
