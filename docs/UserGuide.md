@@ -28,12 +28,12 @@ title: User Guide
   - [Managing Employee Profiles](#managing-employee-profiles)
     - [What's in an Employee Profile](#whats-in-an-employee-profile)
     - [Adding an employee](#adding-an-employee-add)
-    - [Editing an employee](#editing-an-employee-edit)
-    - [Deleting an employee](#deleting-an-employee-delete)
     - [Adding multiple employees at once](#adding-multiple-employees-at-once-batch-add)
     - [View details of an employee](#view-details-of-an-employee-view)
-    - [Listing all employees](#listing-all-employees-list)
+    - [Editing an employee](#editing-an-employee-edit)
+    - [Deleting an employee](#deleting-an-employee-delete)
     - [Finding an employee](#finding-an-employee-find)
+    - [Listing all employees](#listing-all-employees-list)
   - [Managing Employee Leaves](#managing-employee-leaves)
     - [Controlling total leaves for an employee](#controlling-total-leave-for-an-employee)
     - [Checking if an employee is on leave](#checking-if-an-employee-is-on-leave)
@@ -287,60 +287,6 @@ Examples:
 - `add n/John Doe p/98765432 e/johnd@example.com j/Recruiter d/Human Resources a/311, Clementi Ave 2, #02-25 l/20 t/friends t/owesMoney`
 - `add n/Peter Mars j/Chief Operating Officer d/General Management`
 
-#### Editing an employee: `edit`
-
-There might be times when you have to change an employee's particulars and details after adding them into the database.
-It could be a typo in the address, a mobile number change, maybe even a promotion...
-
-In any case, editing an employee's details can be done through a simple command.
-
-- Provide the **index number** of the employee (not the Employee ID) based on the **employee list currently displayed**, along with the updated details you wish to change to.
-- Any existing value, if it exists, will be overwritten by the updated value that is keyed in. Otherwise, details that are not specified will remain as they are, unchanged.
-
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/POSITION] [d/DEPARTMENT] [a/ADDRESS] [l/LEAVE] [t/TAG]…​`
-
-| Field        | TAG | Description                         | Requirement    | Default Value |
-| ------------ | --- | ----------------------------------- | -------------- | ------------- |
-| `INDEX`      | -   | Index of employee in displayed list | **Compulsory** | -             |
-| `NAME`       | n/  | Updated name of employee            | **Optional**   | -             |
-| `PHONE`      | p/  | Updated phone number of employee    | **Optional**   | -             |
-| `EMAIL`      | e/  | Updated email of employee           | **Optional**   | -             |
-| `POSITION`   | j/  | Updated position of employee        | **Optional**   | -             |
-| `DEPARTMENT` | d/  | Updated department of employee      | **Optional**   | -             |
-| `ADDRESS`    | a/  | Updated address of employee         | **Optional**   | -             |
-| `LEAVE`      | l/  | Updated total leave of employee     | **Optional**   | -             |
-| `TAG`        | t/  | Updated tag(s) of employee          | **Optional**   | -             |
-
-<div markdown="span" class="alert alert-primary">:bulb:
-  There must be _at least one_ update parameter provided (such as name, phone, email, etc.). Otherwise, Coydir will not run the command, as you would not be editing anything at all!
-</div>
-
-Example:
-
-![Edit command - example 1](./images/ui-screenshots/edit-example1.png)
-
-- `edit 2 p/91234567 l/20 t/colleagues` edits the 2nd displayed employee (_Irfan Ibrahim_) to have a phone number `91234567`, a total leave of `20`, and a single tag `colleagues`.
-
-#### Deleting an employee: `delete`
-
-Deletes the specified employee from Coydir, given the employee ID.
-
-This command results in one of two cases below:
-
-**Case 1: Employee with ID exists**
-
-If Coydir has an employee with the respective ID, Coydir will delete it.
-
-**Case 2: Employee with ID does not exist**
-
-Otherwise, if Coydir has no employee with ID that matches the specified name, Coydir will prompt users that the employee ID entered is invalid.
-
-Format: `delete ID`
-
-Example:
-
-- `delete 1` deletes the employee with employee ID of 1.
-
 #### Adding multiple employees at once: `batch-add`
 
 Adds multiple employees to Coydir by importing their data from `.csv` file
@@ -444,11 +390,59 @@ Example:
 Note that an INDEX is different from an ID. More information about the difference in INDEX and ID can be found on the FAQ page.
 </div>
 
-#### Listing all employees: `list`
+#### Editing an employee: `edit`
 
-Shows a list of all employees in the company.
+There might be times when you have to change an employee's particulars and details after adding them into the database.
+It could be a typo in the address, a mobile number change, maybe even a promotion...
 
-Format: `list`
+In any case, editing an employee's details can be done through a simple command.
+
+- Provide the **index number** of the employee (not the Employee ID) based on the **employee list currently displayed**, along with the updated details you wish to change to.
+- Any existing value, if it exists, will be overwritten by the updated value that is keyed in. Otherwise, details that are not specified will remain as they are, unchanged.
+
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/POSITION] [d/DEPARTMENT] [a/ADDRESS] [l/LEAVE] [t/TAG]…​`
+
+| Field        | TAG | Description                         | Requirement    | Default Value |
+| ------------ | --- | ----------------------------------- | -------------- | ------------- |
+| `INDEX`      | -   | Index of employee in displayed list | **Compulsory** | -             |
+| `NAME`       | n/  | Updated name of employee            | **Optional**   | -             |
+| `PHONE`      | p/  | Updated phone number of employee    | **Optional**   | -             |
+| `EMAIL`      | e/  | Updated email of employee           | **Optional**   | -             |
+| `POSITION`   | j/  | Updated position of employee        | **Optional**   | -             |
+| `DEPARTMENT` | d/  | Updated department of employee      | **Optional**   | -             |
+| `ADDRESS`    | a/  | Updated address of employee         | **Optional**   | -             |
+| `LEAVE`      | l/  | Updated total leave of employee     | **Optional**   | -             |
+| `TAG`        | t/  | Updated tag(s) of employee          | **Optional**   | -             |
+
+<div markdown="span" class="alert alert-primary">:bulb:
+  There must be _at least one_ update parameter provided (such as name, phone, email, etc.). Otherwise, Coydir will not run the command, as you would not be editing anything at all!
+</div>
+
+Example:
+
+![Edit command - example 1](./images/ui-screenshots/edit-example1.png)
+
+- `edit 2 p/91234567 l/20 t/colleagues` edits the 2nd displayed employee (_Irfan Ibrahim_) to have a phone number `91234567`, a total leave of `20`, and a single tag `colleagues`.
+
+#### Deleting an employee: `delete`
+
+Deletes the specified employee from Coydir, given the employee ID.
+
+This command results in one of two cases below:
+
+**Case 1: Employee with ID exists**
+
+If Coydir has an employee with the respective ID, Coydir will delete it.
+
+**Case 2: Employee with ID does not exist**
+
+Otherwise, if Coydir has no employee with ID that matches the specified name, Coydir will prompt users that the employee ID entered is invalid.
+
+Format: `delete ID`
+
+Example:
+
+- `delete 1` deletes the employee with employee ID of 1.
 
 #### Finding an employee: `find`
 
@@ -486,6 +480,12 @@ Example:
 ![Find Command - Example](./images/ui-screenshots/find-example2.png)
 
 - `find n/Roy j/Design d/Tech` displays 1 employee, "Roy Balakrishnan" who is a "UI/UX Designer" in the "Information Technology" department.
+
+#### Listing all employees: `list`
+
+Shows a list of all employees in the company.
+
+Format: `list`
 
 ### Managing Employee Leaves
 
