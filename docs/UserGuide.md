@@ -31,7 +31,7 @@ To use this guide, simply click on the items you would like to learn more about 
   * [Adding a task : `addtask`](#Adding-a-task--addtask)
   * [Deleting a task : `deletetask`](#Deleting-a-task--deletetask)
   * [Marking a task as done : `marktask`](#Marking-a-task-as-done--marktask)
-  * [Marking a task as not done : `unmarktask`](#Marking-a-task-as-not-done-unmarktask)
+  * [Marking a task as not done : `unmarktask`](#Marking-a-task-as-not-done--unmarktask)
 * [Lesson commands](#Lesson-commands)
   * [Adding a studio lesson : `addstudio`](#Adding-a-studio-lesson--addstudio)
   * [Adding a consult lesson : `addconsult`](#Adding-a-consult-lesson--addconsult)
