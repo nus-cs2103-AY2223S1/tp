@@ -42,7 +42,7 @@ This section guides you along the process of downloading and opening FRIDAY.
 
 2. Download the latest [JAR](#glossary) file `friday.jar` from [here](https://github.com/AY2223S1-CS2103T-W15-4/tp/releases).
 
-3. Copy the file to the folder you want to use as the *[home folder](#glossary)* for your FRIDAY.
+3. Copy the file to the folder you want to use as the *[home folder](#glossary)* for FRIDAY.
 
 4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
 ![Layout](images/Startup.png)
@@ -135,16 +135,16 @@ e.g. Typing `help` and press Enter will open a help window.
 
   e.g. if the command specifies `n/NAME t/TELEGRAM_HANDLE`, `t/TELEGRAM_HANDLE n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken. Note that this does not apply to the `INDEX` parameter in commands that have it, namely the `delete`, `edit`, `remark`, `grade`, `mark` and `unmark` commands, as they expect exactly one `INDEX` parameter.<br>
-
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `t/johndoe t/johndoe123`, only `t/johndoe123` will be taken.
+  However, for commands that require the `INDEX` parameter, you must enter exactly one `INDEX`.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* For commands that do not take in parameters, irrelevant parameters will be ignored.<br>
 
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+  e.g. if you enter `help 123`, it will be interpreted as `help`.
 
 * `INDEX` is used in commands to refer to a specific student by their index number on the currently displayed list,
-  so it **must be a positive integer** 1, 2, 3, …​
+  so it **must be a positive integer** such as 1, 2, 3, …​
 
 </div>
 
@@ -207,14 +207,15 @@ Format: `add n/NAME [t/TELEGRAM_HANDLE] [c/CONSULTATION_DATE] [m/MASTERY_CHECK_D
 
 Example: `add n/Alex Yeoh t/al3xx c/2022-10-25 m/2022-08-16 tag/cool guy tag/quiet`
 
-Outcome: a student named Alex Yeoh is added.
+Outcome: A student named Alex Yeoh is added, with the following details: Telegram handle as "@al3xx", consultation date on 2022-10-25,
+Mastery Check date on 2022-08-16, and the tags "cool guy" and "quiet".
 
 ![AddCommandOutcome.png](images/AddCommandOutcome.png)
 <i> Outcome of add command</i>
 
 #### Deleting a student: `delete`
 
-You may need to delete students from your list in certain cases, such as when they decide to drop the module. The `delete` function allows you to do this and deletes the student at the given index from FRIDAY.
+You may need to delete students from your list, such as when they decide to drop the module. The `delete` function allows you to do this and deletes the student at the given index from FRIDAY.
 
 Format: `delete INDEX`
 
@@ -225,7 +226,7 @@ Format: `delete INDEX`
 
 #### Editing a student: `edit`
 
-You may not have all your students' details at the start, or you may have typed in the wrong details for a specific student. You can use the `edit` feature to add in or edit a student's details after getting this information. This feature is also useful for adding [Mastery Check](#glossary) and Consultation dates you have scheduled with your students.
+You may not have all your students' details when you added them, or you may have typed in the wrong details for a specific student. You can use the `edit` feature to add in or edit a student's details if there are changes to be made.
 
 Format: `edit INDEX [n/NAME] [t/TELEGRAM_HANDLE] [c/CONSULTATION] [m/MASTERY_CHECK] [tag/TAG]...`
 
@@ -307,18 +308,18 @@ to the current date by sorting the list according to the students' Mastery Check
 Format: `sort CRITERIA/ORDER`
 
 * `CRITERIA` can be
-    * `n` (name)
-    * `t` ([Telegram handle](#glossary))
-    * `c` (consultation)
-    * `m` ([Mastery Check](#glossary))
-    * `ra1` ([Reading Assessment 1](#glossary))
-    * `ra2` ([Reading Assessment 2](#glossary))
-    * `pa` ([Practical Assessment](#glossary))
-    * `mt` ([Midterm Test](#glossary))
-    * `ft` ([Final Examination](#glossary))
+    * Name - `n`
+    * Telegram Handle - `t`
+    * Consultation date - `c`
+    * Mastery Check date - `m`
+    * Reading Assessment 1 - `ra1`
+    * Reading Assessment 2 - `ra2`
+    * Practical Assessment - `pa`
+    * Midterm Test - `mt`
+    * Final Examination - `ft`
 * `ORDER` can be
-    * `a` (ascending)
-    * `d` (descending)
+    * Ascending - `a`
+    * Descending - `d`
 
 Criteria are sorted in the following order: 
 * Names and Telegram handles - alphabetical order
