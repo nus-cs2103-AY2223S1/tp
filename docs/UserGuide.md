@@ -336,14 +336,13 @@ Format: `sort CRITERIA/ORDER`
     * Ascending - `a`
     * Descending - `d`
 
-Criteria are sorted in the following order: 
-* Names and Telegram handles - alphabetical order
-* Consultations and Mastery Checks - chronological order
-* Grades - numerical order
-
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Note:**<br>
+* Criteria are sorted in the following order: 
+    * Names and Telegram handles - alphabetical order
+    * Consultations and Mastery Checks - chronological order
+    * Grades - numerical order
 * If the `find` command was run before `sort`, using `sort` will undo the result of `find` and all students will be sorted.
 * Students with missing information will be sorted first in descending order, e.g. students with no Telegram handles
   will be shown before students with Telegram handles.
