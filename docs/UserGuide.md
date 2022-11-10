@@ -390,7 +390,7 @@ The format for each command adheres to the structure laid out in the
 Parameters are written in uppercase and wrapped with angle brackets (e.g. `<PARAMETER>`) in this guide.
 <br><br>
 
-Each parameter has their own constraints, which can be found [here](#flag-and-parameter-constraints).
+Each parameter has its own constraints, which can be found [here](#flag-and-parameter-constraints).
 </div>
 
 
@@ -545,10 +545,11 @@ Finds all persons whose names contain any of the given keywords.
 | `-h`, `--help` | :x:      | Shows [help message](#understanding-the-help-message) for this command |
 
 * Only the name is searched.
-* The search is case-insensitive, e.g. `hans` will match `Hans`.
-* The order of the keywords does not matter, e.g. `Hans Bo` will match `Bo Hans`.
-* Persons with names partially matching the keywords will be returned, e.g. `han` will match `Hans`.
-* Persons with names matching at least one keyword will be returned, e.g. `hans bo` will match `Hans Gruber`, `Bo Yang`.
+* The search is case-insensitive, e.g. `alex` will match `Alex`.
+* The order of the keywords does not matter, e.g. `Yeoh Alex` will match `Alex Yeoh`.
+* Persons with names partially matching the keywords will be returned, e.g. `ale` will match `Alex`.
+* Persons with names matching at least one keyword will be returned, e.g. `alex yu` will match 
+  `Alex Yeoh`, `Bernice Yu`.
 
 **Command Aliases:**
 
@@ -650,10 +651,11 @@ should **not** use both `-n` and `-e` in the `find member` command.
 :hash: - exactly one of the flags for name or email must be specified
 
 * Only the name or email is searched.
-* The search is case-insensitive, e.g. `hans` will match `Hans`.
-* The order of the keywords does not matter, e.g. `Hans Bo` will match `Bo Hans`.
-* Persons with names/emails partially matching the keywords will be returned, e.g. `han` will match `Hans`.
-* Persons matching at least one keyword will be returned, e.g. `Hans Bo` will match `Hans Gruber`, `Bo Yang`.
+* The search is case-insensitive, e.g. `alex` will match `Alex`.
+* The order of the keywords does not matter, e.g. `Yeoh Alex` will match `Alex Yeoh`.
+* Persons with names partially matching the keywords will be returned, e.g. `ale` will match `Alex`.
+* Persons with names matching at least one keyword will be returned, e.g. `alex yu` will match
+  `Alex Yeoh`, `Bernice Yu`.
 
 **Command Aliases:**
 
@@ -1405,7 +1407,7 @@ the data of your previous TruthTable home folder.
 | Creating a new person | `add person [-h] -e=<EMAIL> -n=<NAME> -p=<PHONE> [-t[=<TAGS>...]]...`                                                     | `add person -n "John Doe" -p 98765432 -e johnd@example.com -t frontend` |
 | Editing a person      | `edit person [-h] ([-n=<PERSON_NAME>] [-p=<PERSON_PHONE>] [-e=<PERSON_EMAIL>] [-t[=<PERSON_TAGS>...]]...) <PERSON_INDEX>` | `edit person 1 -p 91234567 -e johndoe@example.com`                      |
 | Deleting a person     | `delete person [-h] <PERSON_INDEX>`                                                                                       | `delete person 2`                                                       |
-| Finding a person      | `find person [-h] <PERSON_NAME_KEYWORDS>`                                                                                 | `find person John`                                                      |
+| Finding a person      | `find person [-h] <PERSON_NAME_KEYWORDS>`                                                                                 | `find person Alex`                                                      |
 | Listing all persons   | `list persons [-h]`                                                                                                       | `list persons`                                                          |
 
 [View detailed command descriptions](#commands-to-manage-persons)
@@ -1414,13 +1416,13 @@ the data of your previous TruthTable home folder.
 
 ### Summary of Member Commands
 
-| Action                            | Format                                                                                      | Examples                                                     |
-|-----------------------------------|---------------------------------------------------------------------------------------------|:-------------------------------------------------------------|
-| Adding a new member to the team   | `add member [-h] <PERSON_INDEX>`                                                            | `add member 1`                                               |
-| Delete a member from team         | `delete member [-h] <MEMBER_INDEX>`                                                         | `delete member 2`                                            |
-| Finding a member                  | <code>find member [-h] (-n=<MEMBER_NAME_KEYWORDS> &#124; -e=<MEMBER_EMAIL_KEYWORDS>)</code> | - `find member -n Alex`<br>- `find member -e alex@gmail.com` |                                                                                             |                             |
-| Listing all members of the team   | `list members [-h]`                                                                         | `list members`                                               |
-| Sort members                      | `sort members [-h] <ORDER>`                                                                 | `sort members asc`                                           |
+| Action                            | Format                                                                                      | Examples                                                           |
+|-----------------------------------|---------------------------------------------------------------------------------------------|:-------------------------------------------------------------------|
+| Adding a new member to the team   | `add member [-h] <PERSON_INDEX>`                                                            | `add member 1`                                                     |
+| Delete a member from team         | `delete member [-h] <MEMBER_INDEX>`                                                         | `delete member 2`                                                  |
+| Finding a member                  | <code>find member [-h] (-n=<MEMBER_NAME_KEYWORDS> &#124; -e=<MEMBER_EMAIL_KEYWORDS>)</code> | - `find member -n Alex`<br>- `find member -e alexyeoh@example.com` |                                                                                             |                             |
+| Listing all members of the team   | `list members [-h]`                                                                         | `list members`                                                     |
+| Sort members                      | `sort members [-h] <ORDER>`                                                                 | `sort members asc`                                                 |
 
 [Back to Table of Contents](#table-of-contents)
 
