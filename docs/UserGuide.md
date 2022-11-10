@@ -698,22 +698,17 @@ If you wish to view the **full** list of events, you may do so with the command 
 
 For a quick illustration, suppose I've previously searched for all events with `Ben Leong` [via an Event Search](#searching-for-an-event--findevent)
 
-Now, imagine I'm just searched for "Alex Yeoh" in my app. Now, I want to go back to my events view.
-
-
-
 By doing the `events` command, I'm immediately brought back to my previously filtered event list.
 
-![result for find event](images/findEventsSwitchTab.png)
+
 
 Format: `events`
 
 Example Usage: `events`
 
-Here's an example result!
+Here's the example result!
 
-![result for 'viewIncome 2000'](images/findClientExample.png)
-
+![result for find event](images/findEventsSwitchTab.png)
 #### __________________________
 
 ### Viewing all Events : `allEvents`
@@ -733,8 +728,6 @@ Here's an example result
 #### __________________________
 
 ### Searching for an Event : `findEvent`
-Search for events based on certain [metrics](#metric)
-
 So, you've added tons of events. Now, I just need to find that one event happening tomorrow... 
 
 Easy! Just specify the appropriate [metrics](#metric), and LTNS will do the work for you. You can specify multiple metrics if you want your search to be more specific
@@ -765,7 +758,6 @@ Here's the result
 
 ### Viewing all Events in the next 7 days : `calendar`
 One of the highlights of our app, the `calendar` function shows all events you have in the next 7 days
-
 
 As usual, it's sorted in chronological order, for you to prioritize what's coming up the soonest
 
