@@ -17,7 +17,7 @@ To use this guide, simply click on the items you would like to learn more about 
   * [Listing all students : `liststudent`](#Listing-all-students--liststudent)
   * [Listing all tasks : `listtask`](#Listing-all-tasks--listtask)
   * [Listing all students : `listlesson`](#Listing-all-students--listlesson)
-  * [Listing all students, tasks and lessons : `listall`](#Listing-all-students,-tasks-and-lessons--listall)
+  * [Listing all students, tasks and lessons : `listall`](#Listing-all-students-tasks-and-lessons--listall)
   * [Clearing all entries : `clear`](#Clearing-all-entries--clear)
   * [Exiting the program : `exit`](#Exiting-the-program--exit)
 * [Student commands](#Student-commands)
