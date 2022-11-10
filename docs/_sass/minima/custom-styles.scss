@@ -7,8 +7,15 @@ h6 {
   font-weight: bold;
 }
 
-h1, h2, h3 {
+h2, h3 {
   color: #FF0078;
+  font-weight: 900;
+  padding: 4px 8px;
+  margin-bottom: 18px;
+}
+
+h1 {
+  color: #000000;
   font-weight: 900;
   padding: 4px 8px;
   margin-bottom: 18px;

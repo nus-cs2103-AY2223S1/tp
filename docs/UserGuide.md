@@ -128,9 +128,9 @@ Things to note:
 3. If you delete an employee that you are currently viewing, the employee info view will display the next employee's particulars.
 4. If there is no next employee, this panel will revert to the Coydir logo.
 
-#### Command Box
+#### Command Panel
 
-![Command Box](images/ui-screenshots/Command.png)
+![Command Panel](images/ui-screenshots/Command.png)
 
 You can enter your user commands in the bottom section labeled as `Enter command here...`.
 
@@ -153,7 +153,7 @@ The top section displays relevant messages/errors after the command is entered.
 
   <img class="centerImage" src="./images/Ui.png"/>
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command panel and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    - **`list`** : Lists all employees in the company.
@@ -361,7 +361,7 @@ After this, you should be able to see the `data` folder._
 
 **Step 3 (Running CSV file) :**
 
-1. Once done, run `batch-add FILENAME` in the command box.
+1. Once done, run `batch-add FILENAME` in the command panel.
 
 Successful Batch Add:
 ![](images/batch-add-images/BatchAddSuccess.png)
@@ -722,7 +722,7 @@ For department heads, pulling up data relevant to your department can be done th
 This allows you to view the summarized details of a department given the name of the department.
 Details include the number of employee in that particular department, employees who are currently available, employees who are currently on leave, and a table of employees in that department with their corresponding performance ratings.
 
-Simply enter the `view-department` command, followed by the name of the department.
+Simply enter the `view-department` command, followed by the name of the department (which is case-insensitive).
 
 This command results in one of the two cases below:
 
@@ -744,12 +744,6 @@ Format: `view-department DEPARTMENT`
 Example:
 
 - `view-department Finance` displays a brief summary of the Finance department's details on the right panel.
-
-<div markdown="span" class="alert alert-primary">
-
-:bulb: DEPARTMENT is case-insensitive.
-
-</div>
 
 ### Additional Features
 
