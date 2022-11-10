@@ -15,21 +15,12 @@ Given below are my contributions to the project.
     * NIL
 
 * **Enhancements implemented**
-    * Created and was involved in implementing the classes:
-      * `UniqueItemList` 
-      * `ItineraryDuration`
-      * `Budget`
-      * `AddItemCommand`
-      * `AddItemCommandParser`
-      * `Item`
-    * Implemented test cases for the classes:
-      * `JsonAdaptedItinerary`
-      * `JsonWaddleStorage`
-      * `JsonSerializableWaddle`
-      * `JsonAdaptedItem`
-      * `JsonAdaptedItinerary`
-      * `AddCommandParser`
-    * Fixed bugs for:
+    * Created and was involved in implementing:
+      * The classes `UniqueItemList`, `ItineraryDuration`, `Budget`, `AddItemCommand`, and `AddItemCommandParser`
+      * Storage functionality for Itinerary, and Item: `JsonAdaptedItinerary` and `JsonAdaptedItem`
+    * Wrote tests for the classes `Budget`, `DeleteItemCommand`, `AddItemCommand`, `AddCommandParser`, 
+      `JsonAdaptedItem`, and `JsonAdaptedItinerary`
+    * Fixed minor bugs for:
       * Invalid itinerary details
     
 
@@ -39,6 +30,7 @@ Given below are my contributions to the project.
         * Introduction section
     * Developer Guide:
         * Edit an itinerary section
+        * Use case for Add an item to an itinerary
 
 * **Community**:
   * Reported bugs for other teams
