@@ -614,7 +614,7 @@ _Failure_
 Invalid index:
 delL 2356739457
 ```
-![deleteL Invalid ListingId example](images/deleteLInvalidId.png)
+![delL Invalid ListingId example](images/delLInvalidId.png)
 
 **Expected Success Output:**<br>
 The listing at `INDEX` 1 is deleted from REal-Time.<br>
