@@ -51,6 +51,7 @@ title: User Guide
     - [Saving the data](#saving-the-data)
     - [Editing the data file](#editing-the-data-file)
 - [FAQ](#faq)
+- [Glossary](#glossary)
 - [Command summary](#command-summary)
 
 ---
@@ -441,7 +442,7 @@ Example:
 - `view 2` returns the details of the second employee in the current list.
 
 <div markdown="span" class="alert alert-primary">:bulb:
-Note that an INDEX is different from an ID. More information about the difference in INDEX and ID can be found on the FAQ page.
+Note that an INDEX is different from an ID. More information about the difference in INDEX and ID can be found on the <a href="#faq">FAQ</a> page.
 </div>
 
 #### Listing all employees: `list`
@@ -522,7 +523,7 @@ This command results in one of two cases below:
 **Case 1: Valid ID, date and sufficient leaves**
 
 If the employee exists, the leave date given is valid,
-and the employee has sufficient leaves, the leave period will be added and shown in the table of leaves The total leaves remaining will be deducted accordingly. The employee's "On Leave" status will become "True" when the timeframe is within the leave period.
+and the employee has sufficient leaves, the leave period will be added and shown in the table of leaves. The total leaves remaining will be deducted accordingly. The employee's "On Leave" status will become "True" when the timeframe is within the leave period.
 
 **Case 2: Invalid ID, date or insufficient leaves**
 
@@ -767,7 +768,20 @@ If your changes to the data file makes its format invalid, Coydir will discard a
 
 ---
 
-## Command summary
+## Glossary
+
+1. **CLI** : A _text-based_ user interface which allows the user to perform some action through the use of commands.
+2. **Parameter** : The additional input provided for the command to run.
+3. **GUI** : A visual user interface that uses  visual elements such as shapes, diagrams, and buttons to allow the user to interact with a program.
+4. **Prefix** : An input to help identify the type of information in Coydir.
+5. **Hard disk** : A component in your computer that stores your data.
+6. **JSON** : A file which is used to store data, which adheres to a format called [JavaScript Object Notation (JSON)](https://www.json.org/json-en.html).
+7. **CSV** : A file which is used to store data, which adheres to a format called [Comma-Separated Values (CSV)](https://en.wikipedia.org/wiki/Comma-separated_values).
+8. **JAR** : Otherwise known as [Java ARchive](https://docs.oracle.com/javase/8/docs/technotes/guides/jar/jarGuide.html) file, it is a file format that combines many files into one. It can also be 
+a executable (a file that contains a program).
+9. **Integer** : A whole number like 1,9,15,27.
+
+## Command Summary
 
 | Action              | Format, Examples                                                                                                                                                                     |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
