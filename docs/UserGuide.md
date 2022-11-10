@@ -234,6 +234,8 @@ Format: `edit INDEX {Prefix}/{Parameter}...`
   and before `gmail` is empty).
 * Examples: `john@checkup.com`, `john-doe@checkup.com`, `john.doe@checkup.com`,  `john_doe@check-up.com`.
 
+<div markdown="block" class="alert alert-info">
+
 **:notebook: Notes about Patient Type:**<br>
 When the patient type is edited from an inpatient to an outpatient and subsequently back to an inpatient, 
 you will have to manually input the hospital wing, floor number and ward number again.
@@ -244,6 +246,8 @@ you will have to manually input the hospital wing, floor number and ward number 
 * Existing values will be updated to the input values.
 * To remove all patient’s medications, just type `m/` without specifying any medication after it.
 * To remove all upcoming appointments, just type `ua/` without specifying any date after it.
+
+<div markdown="block" class="alert alert-info">
 
 :exclamation: **Caution:**
 When editing medication, the existing medication of the patient will be removed i.e. adding of medication is not
