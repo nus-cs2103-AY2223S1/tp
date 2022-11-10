@@ -452,20 +452,11 @@ The information here seems pretty intimidating at first but fret not, you can fi
 Found a new policy you want to pitch to your clients? LTNS lets you add the policy alongside company, coverage categories and commission levels, to easily access it in future.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Additional Tips:**
-<ul>
-<li>
-What does your policy cover? A policy must have one or more coverages when created. Find the possible coverages and their corresponding codes [here](#valid-coverage-codes).
-</li>
-<li>
-Which company does your policy belong to? Find out the valid companies and their corresponding codes [here](#valid-company-codes).
-</li>
-<li>
-If you’d like to sell a policy from a company/with a coverage not in our list, write to us [here](#contact-us), and we’ll add it in if there are a significant number of requests!
-</li>
-<li>
-Money is the name of the game! Enter the commissions agreed to with the provider in positive percentages from 0% to 100%! (e.g. 10% 3.5% 1.0%)
-</li>
-</ul>
+<br/>
+- What does your policy cover? A policy must have one or more coverages when created. Find the possible coverages and their corresponding codes [here](#valid-coverage-codes).
+- Which company does your policy belong to? Find out the valid companies and their corresponding codes [here](#valid-company-codes).
+- If you’d like to sell a policy from a company/with a coverage not in our list, write to us [here](#contact-us), and we’ll add it in if there are a significant number of requests!
+- Money is the name of the game! Enter the commissions agreed to with the provider in positive percentages from 0% to 100%! (e.g. 10% 3.5% 1.0%)
 </div>  
 
 Example Usage:
@@ -561,15 +552,9 @@ Format: `assign CLIENT_INDEX POLICY_INDEX pr/PREMIUM sd/STARTDATE ed/ENDDATE`
 
 Find a detailed explanation of different input restrictions [here](#command-format-table).
 
-<div markdown="span" class="alert alert-primary">:bulb: **Additional Tips:**
-<ul>
-<li>
-The start and end dates should be of the format "YYYY-MM-DD", and within the years 1900 - 2100.
-</li>
-<li>
-Premium should be any positive numeric value below `1000000000` with or without 2 decimal places.
-</li>
-</ul>
+<div markdown="span" class="alert alert-primary">:bulb: **Additional Tips:** <br/>
+- The start and end dates should be of the format "YYYY-MM-DD", and within the years 1900 - 2100.
+- Premium should be any positive numeric value below `1000000000` with or without 2 decimal places.
 </div>
 
 Example Usage:
