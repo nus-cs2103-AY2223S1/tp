@@ -16,7 +16,7 @@ If you are a new user looking to get started with PayMeLah, this user guide can 
 
 For a full overview of everything this guide has to offer, do make use of the [Table of Contents](#table-of-contents)!
 
-Additionally, for our advanced users, we have a special section just for you! Click [here](#advanced-features) if you want to learn tricks like [keyboard shortcuts](#keyboard-shortcuts) and how to directly [manage your data file](#features-for-data-management).
+Additionally, for our advanced users, we have a special section just for you! Click [here](#advanced-features) if you want to learn tricks such as [keyboard shortcuts](#keyboard-shortcuts) or [direct data file management](#features-for-data-management) that can further improve your efficiency when using PayMeLah.
 
 Finally, here are some of the symbols and text formatting to look out for as you make use of this guide:
 
