@@ -95,7 +95,9 @@ Don't be overwhelmed, here's a rundown of the different sections of OmniHealth:
 
 **OmniHealth's GUI:**
 
+<p align="center" width="100%">
 <img src="images/UiAnnotated.png" alt="ui-annotated" width="550"/>
+</p>
 
 ### Navigation
 Managing your patient database is made easy with OmniHealth and navigating it is easier!
