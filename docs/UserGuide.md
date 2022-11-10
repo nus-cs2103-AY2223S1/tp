@@ -5,7 +5,7 @@ title: User Guide
 
 Welcome to the PayMeLah user guide!
 
-Are you a NUS student who stays on campus and enjoys organising or participating in group buys? Do you struggle with **remembering** the people involved in each group order, **calculating** how to split the bill and **tracking** who is still yet to pay you back?
+Are you a NUS student who stays on campus and enjoys organising or participating in group buys? Do you struggle with **remembering** who is involved in each group order, **calculating** how to split the bill and **tracking** which of your friends are still yet to pay you back?
 
 PayMeLah is a desktop app for solving all these problems and more! PayMeLah can **keep track of** and **manage the debts** your friends owe you. It can even **do simple calculations** for you, such as adding GST or splitting debts amongst your friends. What’s more, it is optimised for you to do everything **from just your keyboard**! This way, you can seamlessly switch between managing your debts and acing your assignments without even needing your mouse. Save time on the nitty-gritties of organising group buys so that you can be more productive! :+1:
 
@@ -48,7 +48,9 @@ Finally, here are some of the symbols and text formatting to look out for as you
 ## Quick start
 ### Tutorial: Installing PayMeLah
 
-1. To run the PayMeLah application, you will need to have *Java 11* or above [installed](https://www.baeldung.com/java-check-is-installed) in your Computer ([Mac](https://www.geeksforgeeks.org/how-to-install-java-on-macos/), [Windows](https://phoenixnap.com/kb/install-java-windows)).
+Getting started with PayMeLah is easy! Here is a tutorial on how to get PayMeLah up and running in just 4 simple steps.
+
+1. Firstly, to run the PayMeLah application, you will need to have *Java 11* or above [installed](https://www.baeldung.com/java-check-is-installed) in your Computer ([Mac](https://www.geeksforgeeks.org/how-to-install-java-on-macos/), [Windows](https://phoenixnap.com/kb/install-java-windows)).
 
 2. Next, you will need to prepare an [empty folder](https://www.wikihow.com/Make-a-New-Folder-on-a-Computer) to download PayMeLah to.
 
@@ -59,14 +61,14 @@ Finally, here are some of the symbols and text formatting to look out for as you
 4. Finally, you are ready to use PayMeLah. Simply double-click the *paymelah.jar* in the folder you created to start the app. After a few seconds, you should see PayMeLah appear. Notice how we have some sample persons and debts present for you to experiment with our [features](#features).  <br>
    <img src="images/Ui.png" width="800" /> <br>
 
-5. Now, let’s continue to learn how to [navigate the application](#tutorial-navigating-the-application-interface) before familiarising ourselves with the [features](#features) you can use in PayMeLah.
+Now, let’s continue to learn how to [navigate the application](#tutorial-navigating-the-application-interface) before familiarising ourselves with the [features](#features) you can use in PayMeLah.
 
 [Return to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-### Tutorial: Navigating the application interface
+### Tutorial: Navigating the application
 
 * PayMeLah uses a Command Line Interface (CLI) - which means that you perform actions by entering commands for PayMeLah to carry out.
 * Once a command has been successfully carried out, PayMeLah will display the results accordingly.
@@ -127,29 +129,19 @@ If your provided inputs are too long, PayMeLah may not be able to fully display 
 
 Once you have familiarised yourself with PayMeLah’s [user interface](#tutorial-navigating-the-application-interface), it is time to officially start using PayMeLah! The following section provides a step-by-step guide that walks you through the process of adding a debt to PayMeLah. You can choose to follow the sample commands word-for-word, or if you are feeling adventurous, you can try replacing the sample inputs with your own inputs instead.
 
-<div markdown="block" class="alert alert-secondary">
-**:star: Using the keyboard instead of the mouse**
-
-As this section is meant for new users, it will not cover how to navigate the application using keyboard shortcuts to avoid overloading new users with information. However, PayMeLah is still ultimately designed to be the fastest for users who prefer keyboard shortcuts - If this describes you, do refer to the section on [advanced keyboard shortcuts](#advanced-keyboard-shortcuts) to learn more.
-
-</div>
-
 1. If you are a first time user, your PayMeLah may still be filled with the sample data that came with the [installation process](#tutorial-installing-paymelah). You can remove all the sample data with a single [`clear` command](#clearing-all-entries-clear), which you can do by simply entering `clear`. Don’t worry about losing this data - they are unlikely to be useful to you! Soon, your PayMeLah
-   will be filled with the information you actually want instead.
-
-1. You should see that the person list is now empty.
+   will be filled with the information you actually want instead.<br>
+You should see that the person list is now empty.
 
    ![Empty person list](images/EmptyPersonList.png)
 
-1. You can now add your first person to PayMeLah with the [`add` command](#adding-a-person-add). The example we will use in this section is `add n/Ryan Tan tele/ryantan123`. Entering this command will add a person named `Ryan Tan` with `ryantan123` as his Telegram handle into PayMeLah.
-
-1. You should see that the person card for `Ryan Tan` is now visible in the person list. You can click on his name to expand his person card, as per the picture below. However, he does not have any debts associated with him just yet!
+1. You can now **add your first person** to PayMeLah with the [`add` command](#adding-a-person-add). The example we will use in this section is `add n/Ryan Tan tele/ryantan123`. Entering this command will add a person named `Ryan Tan` with `ryantan123` as his Telegram handle into PayMeLah.<br>
+You should see that the person card for `Ryan Tan` is now visible in the person list. You can click on his name to expand his person card, as per the picture below. However, he does not have any debts associated with him just yet!
 
    ![Ryan Tan list](images/RyanTanList.png)
 
-1. You are now ready to add a debt to `Ryan Tan` using the [`adddebt` command](#adding-a-debt-adddebt)! This time, the example we will use is `adddebt 1 d/mcdonalds m/9.80`. Entering this command will add a debt of `$9.80` with the description `mcdonalds` to the 1st person in the person list, who happens to be `Ryan Tan`.
-
-1. The person card for `Ryan Tan` should now be updated. Congratulations! You have just added your first debt to PayMeLah!
+1. You are now ready to **add a debt** to `Ryan Tan` using the [`adddebt` command](#adding-a-debt-adddebt)! This time, the example we will use is `adddebt 1 d/mcdonalds m/9.80`. Entering this command will add a debt of `$9.80` with the description `mcdonalds` to the 1st person in the person list, who happens to be `Ryan Tan`.<br>
+You should see that the person card for `Ryan Tan` should now be updated. Congratulations! You have just added your first debt to PayMeLah!
 
    ![YourFirstDebt](images/YourFirstDebt.png)
 
@@ -690,6 +682,7 @@ The table below lists every keyboard shortcut currently available in PayMeLah:
 | <kbd>UpArrow</kbd> and <kbd>DownArrow</kbd> | **Moving to another [person card](#person-list-section):**<br> Similar to <kbd>PageUp</kbd> and <kbd>PageDown</kbd>, but without expanding the person cards you scroll by.                                                                                                                                                                                                                                                     |
 |               <kbd>Home</kbd>               | **Jumping to the top of the [person list](#person-list-section):**<br> When you are in the person list, press the <kbd>Home</kbd> key to jump to the first person in the person list. When you are in a person's debt list, press the <kbd>Home</kbd> key to jump to the first debt in the debt list.                                                                                                                          |
 |               <kbd>End</kbd>                | **Jumping to the bottom of the [person list](#person-list-section):**<br> When you are in the person list, press the <kbd>End</kbd> key to jump to the last person in the person list. When you are in a person's debt list, press the <kbd>End</kbd> key to jump to the last debt in the debt list.                                                                                                                           |
+
 <div style="page-break-after: always;"></div>
 
 ### Features for Data Management
