@@ -827,7 +827,7 @@ If your changes to the data file makes its format invalid, Coydir will discard a
 6. **JSON** : A file which is used to store data, which adheres to a format called [JavaScript Object Notation (JSON)](https://www.json.org/json-en.html).
 7. **CSV** : A file which is used to store data, which adheres to a format called [Comma-Separated Values (CSV)](https://en.wikipedia.org/wiki/Comma-separated_values).
 8. **JAR** : Otherwise known as [Java ARchive](https://docs.oracle.com/javase/8/docs/technotes/guides/jar/jarGuide.html) file, it is a file format that combines many files into one. It can also be a executable (a file that contains a program).
-9. **Integer** : A whole number like 1,9,15,27.
+9. **Integer** : A whole number like 1, 9, 15, 27, etc.
 
 ## Command Summary
 
