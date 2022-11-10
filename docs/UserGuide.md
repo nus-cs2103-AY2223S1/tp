@@ -6,7 +6,7 @@ This guide provides everything a CS1101S Teaching Assistant (TA) needs to know t
 
 To use this guide, simply click on the items you would like to learn more about in the table of contents, or scroll down to the relevant sections.
 
-# Table of Contents
+## Table of Contents
 
 * Table of Contents
 {:toc}
