@@ -501,6 +501,8 @@ A contact can have any number of tags (including 0)
 <div markdown="block" class="alert alert-info">:information_source: **Note**<br>
 
 - Specified task must be currently incomplete for command to succeed.
+- The diagram below shows the task being marked as indicated by the checked tickbox.<br>
+  ![Task marked as complete](images/mark.png)
 
 </div>
 
@@ -518,6 +520,8 @@ A contact can have any number of tags (including 0)
 <div markdown="block" class="alert alert-info">:information_source: **Note**<br>
 
 - Specified task must be currently completed for command to succeed.
+- The diagram below shows the task being unmarked as indicated by the unchecked tickbox.<br>
+  ![Task marked as incomplete](images/unmark.png)
 
 </div>
 
