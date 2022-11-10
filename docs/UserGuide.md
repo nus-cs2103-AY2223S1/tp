@@ -142,7 +142,7 @@ This section displays the names of all the teams that you have created in TruthT
 is listed.  
 
 <div markdown="block" class="alert alert-primary">**:information_source: Note:**
-There will always be one team in TruthTable,
+There will always be one team in TruthTable named "default" (if no name is specified).
 </div>
 
 | Number | Component       | Description                                    |
@@ -192,10 +192,10 @@ TruthTable. This section is also known as the "Contacts" section.
 This section contains an input box where you can enter the commands for the actions that you wish to perform. Try 
 typing `help` in the input box and press <kbd>Enter</kbd> to see what happens!
 
-| Number | Component         | Description                                                                                       |
-|--------|-------------------|---------------------------------------------------------------------------------------------------|
-| 1      | Command Result    | The result of executing a command in the Command Input Box                                        |
-| 2      | Command Input Box | The input box for commands to be entered, which can be executed by pressing <br/><kbd>Enter</kbd> |
+| Number | Component         | Description                                                                                  |
+|--------|-------------------|----------------------------------------------------------------------------------------------|
+| 1      | Command Result    | The result of executing a command in the Command Input Box                                   |
+| 2      | Command Input Box | The input box for commands to be entered, which can be executed by pressing <kbd>Enter</kbd> |
 
 
 [Back to Table of Contents](#table-of-contents)
@@ -240,7 +240,7 @@ familiar with them in no time!
 
 Let's use an example to break down what we've talked about.
 
-#### Example Command - `add person`
+#### Example Command: `add person`
 
 ![CLI Syntax](images/CliSyntax.png)
 
@@ -440,10 +440,10 @@ Summary of the commands to manage persons can be found [here](#summary-of-person
 
 #### Creating a new person: `add person`
 
-![Add Person Example](images/AddPersonExample.png)
-
 Adds a new person to TruthTable. The new person is added to the [persons section](#persons-section) as seen in the
-image above.
+image below.
+
+![Add Person Example](images/AddPersonExample.png)
 
 **Format:** `add person [-h] -e=<EMAIL> -n=<NAME> -p=<PHONE> [-t[=<TAGS>...]]...`
 
