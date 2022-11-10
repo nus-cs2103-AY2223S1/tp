@@ -735,6 +735,7 @@ If you are trying to locate a debt by its description, consider using the [`find
 * _Enter[ing]_ a command: Type the _command_ into the _command box_, and press the <kbd>Enter</kbd> key.
 * _Index_: The number that appears next to each person’s name or each _debt_’s description.
 * _Input_: Additional information supplied by you that is used to run a _command_.
+* _JSON file_: A type of file used by many applications to store data in a format easily readable and editable by advanced users.
 * _Keyboard shortcut_: A key or sequence of keys which you may press to perform actions without your mouse.
 * _Person index_: The number that appears next to each person’s name in the _person list_.
 * _Prefix_: A short piece of text indicating what type of information follows. For example, `n/` is the prefix that indicates that what follows is a name.
