@@ -20,13 +20,13 @@ P.S. This document is the official user guide of the Long Time No See (LTNS) app
 # Table of Contents
 1. [Quickstart](#quick-start)
 2. [Tutorial](#tutorial)
-3. [Features](#features)<br>
+3. [Features](#features-overview)<br>
     * [Common Features](#common-features)<br>
         * [Viewing Help](#viewing-help--help)
         * [Clearing Entries](#clearing-all-entries--clear)
         * [Exiting the Program](#exiting-the-program--exit)
         * [Saving Data](#saving-the-data)
-        * [Manually Editing Data File](#editing-the-data-file)
+        * [Manually Editing Data File](#editing-the-data-file-for-the-pros)
     * [Client Features](#client-features)<br>
         * [Adding a Client](#adding-a-client--addclient)
         * [Switching to Client View](#switching-to-the-view-of-currently-listed-clients--clients)
@@ -69,7 +69,7 @@ P.S. This document is the official user guide of the Long Time No See (LTNS) app
 4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
 ![Ui.png](./images/Ui.png)
 
-5. Not sure where to start? The following section is a detailed Tutorial on how to use the Application. Feel free to [skip](#features) this section if you are confident in using the application.
+5. Not sure where to start? The following section is a detailed Tutorial on how to use the Application. Feel free to [skip](#features-overview) this section if you are confident in using the application.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -95,19 +95,19 @@ Now that you are familiar with your Application's layout, it's time to learn how
 #### Learning to Use Commands 
 As shown in the diagram above, the command box, also known as the [Command Line Interface (CLI)](#command-line-interface-cli) is where you will type your commands.
 
-But what commands can you type? We will now learn how to understand the [Features](#features) section below.
+But what commands can you type? We will now learn how to understand the [Features](#features-overview) section below.
 
-Each Feature section begins with an **introduction**, followed by the **command format**. 
+Each Feature section begins with an **Introduction**, followed by the **Command Format**. 
 
-Each Command begins with a **Command Word**, followed by accompanying **tags**, if applicable.
+Each Command begins with a **Command Word**, followed by accompanying **Parameters**, if applicable. Parameters are additional information that the command needs to run. For example, if you want to add a Client, some parameters needed include a Client's name, contact number etc.
 
-For example, when [Adding A Client](#adding-a-client--addclient), this is what you will see:
+For example, when [Adding A Client](#adding-a-client--addclient), this is what you will see:<br>
 Format: `addClient n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ b/BIRTHDAY i/INCOME ra/RISK_APPETITE`
 
-Let us understand how to read this. Firstly, `addClient` is the **Command Word**. This is followed by some tags, such as the `n/` tag which represents a **Name**.
+Let us understand how to read this. Firstly, `addClient` is the Command Word. This is followed by some Parameters, such as the `n/` parameter which represents a **Name**.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A tag wrapped in square brackets, such as `[t/TAG]` are optional tags! Tags with ellipses behind such as `[t/TAG]...` indicate that there can be multiple tags
+A Parameter wrapped in square brackets, such as `[t/TAG]` are optional Parameters! Parameters with ellipses behind such as `[t/TAG]...` indicate that there can be multiple parameters of the same type
 </div>
 
 An example of how we can use the `addClient` command is shown below: 
@@ -118,13 +118,13 @@ Try typing the command above into the command box and hit `enter`. Now observe t
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Notice that `[t/TAG]` are not required as they are optional. Also notice how we type the tag first before the client information eg. `b/2000-01-01` indicates a birthday on 1st January 2000
+Notice that `[t/TAG]` are not required as they are optional. Also notice how we type the Parameter first before the client information eg. `b/2000-01-01` indicates a birthday on 1st January 2000
 </div>
 
 #### Last Word of Advice 
 Congratulations! You are now ready to begin your journey of using LongTimeNoSee! 
 
-When you are ready, go to the [Feature](#features) section to find out about the commands you can use. 
+When you are ready, go to the [Feature](#features-overview) section to find out about the commands you can use. 
 
 For ease of reading, each feature follows the following format:
 1. Description
@@ -386,7 +386,7 @@ Example Usage:
 
 ### Sorting all Clients : `sort`
 
-With all the success you are having in your client acquisition, you are probably looking for a way to organise all these information that you have. LTNS allows you to sort all your client based on certain [metrics](#metrics)
+With all the success you are having in your client acquisition, you are probably looking for a way to organise all these information that you have. LTNS allows you to sort all your client based on certain [metrics](#metric)
 
 Click [here](#sorting-keywords) for a list of all the possible keywords
 
