@@ -8,7 +8,7 @@ To use this guide, simply click on the items you would like to learn more about 
 
 ## Table of Contents
 
-* [What is JARVIS?](#What-is-JARVIS?)
+* [What is JARVIS?](#What-is-JARVIS)
 * [Using this guide](#Using-this-guide)
 * [The Basics](#The-Basics)
 * [Quick start](#Quick-start)
@@ -21,21 +21,21 @@ To use this guide, simply click on the items you would like to learn more about 
   * [Clearing all entries : `clear`](#Clearing-all-entries--clear)
   * [Exiting the program : `exit`](#Exiting-the-program--exit)
 * [Student commands](#Student-commands)
-  * [Adding a student: `addstudent`](#Adding-a-student--addstudent)
+  * [Adding a student : `addstudent`](#Adding-a-student--addstudent)
   * [Deleting a student : `deletestudent`](#Deleting-a-student--deletestudent)
   * [Editing a student : `editstudent`](#Editing-a-student--editstudent)
-  * [Locating students by name: `findstudent`](#Locating-students-by-name--findstudent)
+  * [Locating students by name : `findstudent`](#Locating-students-by-name--findstudent)
   * [Adding grades to a student : `grade`](#Adding-grades-to-a-student--grade)
   * [Setting mastery check result for a student : `mc`](#Setting-mastery-check-result-for-a-student--mc)
 * [Task commands](#Task-commands)
-  * [Adding a task: `addtask`](#Adding-a-task--addtask)
+  * [Adding a task : `addtask`](#Adding-a-task--addtask)
   * [Deleting a task : `deletetask`](#Deleting-a-task--deletetask)
   * [Marking a task as done : `marktask`](#Marking-a-task-as-done--marktask)
   * [Marking a task as not done : `unmarktask`](#Marking-a-task-as-not-done-unmarktask)
 * [Lesson commands](#Lesson-commands)
-  * [Adding a studio lesson: `addstudio`](#Adding-a-studio-lesson--addstudio)
-  * [Adding a consult lesson: `addconsult`](#Adding-a-consult-lesson--addconsult)
-  * [Adding a mastery check lesson: `addmc`](#Adding-a-mastery-check-lesson--addmc)
+  * [Adding a studio lesson : `addstudio`](#Adding-a-studio-lesson--addstudio)
+  * [Adding a consult lesson : `addconsult`](#Adding-a-consult-lesson--addconsult)
+  * [Adding a mastery check lesson : `addmc`](#Adding-a-mastery-check-lesson--addmc)
   * [Deleting a lesson : `deletelesson`](#Deleting-a-lesson--deletelesson)
   * [Marking a lesson as completed : `marklesson`](#Marking-a-lesson-as-completed--marklesson)
   * [Marking a lesson as not completed : `unmarklesson`](#Marking-a-lesson-as-not-completed--unmarklesson)
@@ -263,7 +263,7 @@ Format: `exit`
 ## Student commands
 This section contains commands for managing students.
 
-### Adding a student: `addstudent`
+### Adding a student : `addstudent`
 
 Adds a student to your student list.
 
@@ -311,7 +311,7 @@ If you have two or more students with similar names, you can use the `editstuden
 
 </div>
 
-### Locating students by name: `findstudent`
+### Locating students by name : `findstudent`
 
 Finds students whose names contain any of the given keywords, so that you can search for students easily.
 
@@ -374,7 +374,7 @@ Examples:
 ## Task commands
 This section contains commands for managing tasks.
 
-### Adding a task: `addtask`
+### Adding a task : `addtask`
 
 Adds a task to your task list.
 
@@ -440,7 +440,7 @@ Example:
 ## Lesson commands
 This section contains commands for managing lessons.
 
-### Adding a studio lesson: `addstudio`
+### Adding a studio lesson : `addstudio`
 
 Adds a studio lesson to your lesson list.
 
@@ -456,7 +456,7 @@ Format: `addstudio [l/LESSON_DESC] sd/START_DATE st/START_TIME [ed/END_DATE] et/
 Examples:
 * `addstudio l/Studio 3 sd/2022-10-12 st/14:00 et/16:00` adds a studio lesson with description `Studio 3` on `Oct-12-2022` from `14:00` to `16:00`.
 
-### Adding a consult lesson: `addconsult`
+### Adding a consult lesson : `addconsult`
 
 Adds a consult lesson to your lesson list.
 
@@ -474,7 +474,7 @@ Examples:
 * `addconsult l/Consultation on recursion sd/2022-10-14 st/12:00 et/14:00 si/3 si/4` adds a consult lesson with description `Consultation on recursion` on `Oct-14-2022` from `12:00` to `14:00` with the 3rd and 4th student in your student list.
 * `addconsult sd/2022-10-15 st/23:00 ed/2022-10-16 et/00:00 si/1` adds a consult lesson from `Oct-15-22 23:00` to `Oct-16-22 00:00` with the 1st student in your student list.
 
-### Adding a mastery check lesson: `addmc`
+### Adding a mastery check lesson : `addmc`
 
 Adds a mastery check lesson to your lesson list.
 
