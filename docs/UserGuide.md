@@ -305,7 +305,7 @@ Example Usage: `clients`
 
 ### Listing all clients : `allClients`
 
-Shows a list of all clients in LTNS, without any filters.
+Need to get an overview of all the clients you’ve stored? Simply type `allClients` to have all the clients stored be displayed, without any filtering.
 
 Format: `allClients`
 
