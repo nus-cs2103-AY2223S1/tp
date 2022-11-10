@@ -156,11 +156,11 @@ In this image above we have a labelled box in red called the command box. CLI or
 ## Features
 
 This section contains all the information and details of each feature of **FRIDAY**. These features are split into 5 sections based on their purpose and function:
-1. [Student management](#student-management)
-2. [Organizing students](#organizing-students)
-3. [Grading students](#grading-students)
-4. [Miscellaneous features](#miscellaneous-features)
-5. [Features for advanced users](#features-for-advanced-users)
+1. [Student Management](#student-management)
+2. [Organizing Students](#organizing-students)
+3. [Grading Students](#grading-students)
+4. [Miscellaneous Features](#miscellaneous-features)
+5. [Features for Advanced Users](#features-for-advanced-users)
 
 ### Student Management
 
@@ -170,16 +170,16 @@ These features allow you to add and delete students, and edit their details.
 Before you dive into using the features, you may want to have a look at the common [parameters](#glossary) used.
 The table below shows a list of [command](#glossary) parameters that will be used.
 
-<table>
-<tr><th>Parameter Name</th><th>Description</th><th>Example</th></tr>
-<tr><td><pre>NAME</pre></td><td>The name of the student. <br><br> It must be an alphanumeric word.</td><td>E.g. Typing <code>John Doe</code> would represent the name of the student saved in the list.</td></tr>
-<tr><td><pre>TELEGRAM_HANDLE</pre></td><td>The Telegram handle of the student. <br> <br> The Telegram handle can only contain alphanumeric characters and underscores. <br> <br> It must also be between 5 and 32 characters long.</td><td><code>johndoe_123</code></td></tr>
-<tr><td><pre>CONSULTATION_DATE</pre></td><td>The consultation date of the student. <br> <br> It must be a valid date in the <code> YYYY-MM-DD </code> format, where the year is between 1900 and 2999.</td><td>E.g. <code>2022-09-27</code> would represent the student's consultation date of 27 September 2022.</td></tr>
-<tr><td><pre>MASTERY_CHECK_DATE</pre></td><td>The Mastery Check date of the student. <br> <br> It must be a valid date in the <code> YYYY-MM-DD </code> format, where the year is between 1900 and 2999.</td><td>E.g. <code>2022-08-30</code> would represent the student's Mastery Check date of 30 August 2022.</td></tr>
-<tr><td><pre>TAG</pre></td><td>The additional information you want to attach to the student. </td><td>E.g. Typing <code>cool guy</code> would mean that "cool guy" is an additional information associated with the student.</td></tr>
-<tr><td><pre>REMARK</pre></td><td>The remark you want to add for the student. </td><td>E.g. Typing <code>Needs more help</code> would mean that "Needs more help" is an additional information associated with the student.</td></tr>
-<tr><td><pre>INDEX</pre></td><td>The index of the student in the displayed list. <br> <br> It must be a valid and positive index number.</td><td>E.g. Typing <code>2</code> would mean the student at the second position in the displayed list.</td></tr>
-</table>
+| Parameter Name        | Description                                                                                                                                                                            | Example
+|-----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------
+| `NAME`                | The name of the student. <br><br> It must be an alphanumeric word.                                                                                                                     | E.g. Typing `John Doe` would represent the name of the student saved in the list.
+| `TELEGRAM_HANDLE`     | The Telegram handle of the student. <br> <br> The Telegram handle can only contain alphanumeric characters and underscores. <br> <br> It must also be between 5 and 32 characters long.| `johndoe_123`
+| `CONSULTATION_DATE`   | The consultation date of the student. <br> <br> It must be a valid date in the `YYYY-MM-DD` format, where the year is between 1900 and 2999.                                           | E.g. `2022-08-30` would represent the student's consultation date of 30 August 2022.
+| `MASTERY_CHECK_DATE`  | The Mastery Check date of the student. <br> <br> It must be a valid date in the `YYYY-MM-DD` format, where the year is between 1900 and 2999.                                          | E.g. `2022-09-27` would represent the student's Mastery Check date of 27 September 2022.
+| `TAG`                 | The additional information you want to attach to the student.                                                                                                                          | E.g. Typing `cool guy` would mean that "cool guy" is an additional information associated with the student.
+| `REMARK`              | The remark you want to add for the student.                                                                                                                                            | E.g. Typing `Needs more help` would mean that "Needs more help" is an additional information associated with the student.
+| `INDEX`               | The index of the student in the displayed list. <br> <br> It must be a valid and positive index number.                                                                                | E.g. Typing `2` would mean the student at the second position in the displayed list.
+
 
 #### Adding a student: `add`
 
@@ -291,12 +291,12 @@ These features allow you to organize your list of students to suit your needs.
 Before you dive into using the features, you may want to have a look at the [parameters](#glossary) used.
 The table below shows a list of command parameters that will be used.
 
-<table>
-<tr><th>Parameter Name</th><th>Description</th><th>Example</th></tr>
-<tr><td><pre>CRITERIA</pre></td><td>The criteria the displayed student list is sorted by.</td><td>E.g. Typing <code>n</code> would mean the displayed student list is sorted by students' names.</td></tr>
-<tr><td><pre>ORDER</pre></td><td>The order the displayed student list is sorted in.</td><td>E.g. Typing <code>a</code> would mean the displayed student list is sorted in ascending order.</td></tr>
-<tr><td><pre>KEYWORDS</pre></td><td>The keywords to search with to find students' information. </td><td>E.g. Typing <code>cool guy</code> would represent finding students with the information "cool guy" associated with them.</td></tr>
-</table>
+| Parameter Name        | Description                                                                                                             | Example
+|-----------------------|-------------------------------------------------------------------------------------------------------------------------|-----------
+| `CRITERIA`            | The criteria the displayed student list is sorted by.                                                                   | E.g. Typing `n` would mean the displayed student list is sorted by students' names.
+| `ORDER`               | The order the displayed student list is sorted in.                                                                      | E.g. Typing `a` would mean the displayed student list is sorted in ascending order.
+| `KEYWORDS`            | The keywords to search with to find students' information.                                                              | E.g. Typing `cool guy` would represent finding students with the information "cool guy" associated with them.
+
 
 #### Sorting students: `sort`
 
@@ -386,15 +386,14 @@ These features allow you to record your students grades.
 Before you dive into using the features, you may want to have a look at the [parameters](#glossary) used.
 The table below shows a list of command parameters that will be used.
 
-<table>
-<tr><th>Parameter Name</th><th>Description</th><th>Example</th></tr>
-<tr><td><pre>RA1_SCORE</pre></td><td>The student's score for the first Reading Assessment. <br><br> The following applies to all `SCORE` parameters: <br> They must be numerical (up to two decimal places), and represent percentages. </td><td>E.g. <code> 70 </code> </td></tr>
-<tr><td><pre>RA2_SCORE</pre></td><td>The student's score for the second Reading Assessment. </td><td>E.g. <code> 89 </code> </td></tr>
-<tr><td><pre>PRACTICAL_SCORE</pre></td><td>The student's score for the Practical Assessment. </td><td>E.g. <code> 68.50 </code> </td></tr>
-<tr><td><pre>MIDTERM_SCORE</pre></td><td>The student's score for the Midterm Test. </td><td>E.g. <code> 100 </code> </td></tr>
-<tr><td><pre>FINALS_SCORE</pre></td><td>The student's score for the Final Examination. </td><td>E.g. <code> 95.5 </code> </td></tr>
-<tr><td><pre>INDEX</pre></td><td>The index of the student in the displayed list. </td><td> E.g. Typing <code>2</code> would mean the student at the second position in the displayed list.</td></tr>
-</table>
+| Parameter Name        | Description                                                                                                             | Example
+|-----------------------|-------------------------------------------------------------------------------------------------------------------------|-----------
+| `RA1_SCORE`           | The student's score for the first Reading Assessment. <br><br> The following applies to all `SCORE` parameters: <br> They must be numerical (up to two decimal places), and represent percentages. | E.g. Typing `70` would mean a score of 70% for the first Reading Assessment.
+| `RA2_SCORE`           | The student's score for the second Reading Assessment.                                                                      | `100`
+| `PRACTICAL_SCORE`     | The student's score for the Practical Assessment.                                                                           | `69.5`
+| `MIDTERM_SCORE`       | The student's score for the Midterm Test.                                                                                   | `40.37`
+| `FINALS_SCORE`        | The student's score for the Final Examination.                                                                              | `80.1`
+| `INDEX`               | The index of the student in the displayed list.                                                                             | E.g. Typing `1` would mean the student at the first position in the displayed list.
 
 #### Recording grades for a student: `grade`
 
@@ -491,11 +490,10 @@ These features help you personalize your FRIDAY experience and improve your prod
 Before you dive into using the features, you may want to have a look at the parameters used.
 The table below shows a list of command parameters that will be used.
 
-<table>
-<tr><th>Parameter Name</th><th>Description</th><th>Example</th></tr>
-<tr><td><pre>ALIAS</pre></td><td>An alias that you can set for a command. </td><td>E.g. <code> a </code> </td></tr>
-<tr><td><pre>COMMAND_KEYWORD</pre></td><td> The command keyword of the original command. </td><td>E.g. <code> add </code> </td></tr>
-</table>
+| Parameter Name        | Description                                                                                                             | Example
+|-----------------------|-------------------------------------------------------------------------------------------------------------------------|-----------
+| `ALIAS`               | An [alias](#glossary) that you can set for a command.                                                                   | `a`
+| `COMMAND_KEYWORD`     | The command keyword of the original command.                                                                            | `add`
 
 #### Adding aliases: `alias`
 
