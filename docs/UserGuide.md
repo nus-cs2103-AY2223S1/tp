@@ -2,191 +2,477 @@
 layout: page
 title: User Guide
 ---
-
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
-
-* Table of Contents
+* Table of Contents 
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+Travelr allows you to plan trips around the activities in your bucket list. You will be able to keep track of your bucket list, travel dates, travel locations, and trip itineraries, all within the same app!
 
+In this guide, you will be introduced to the various features of Travelr, which will help you to use Travelr to build up your bucket list, plan future trips, and look back on your past trip experiences in an effective manner.
+
+--------------------------------------------------------------------------------------------------------------------
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
-
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
-
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
-
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+2. Download the latest `Travelr.jar` [here](https://github.com/AY2223S1-CS2103T-W17-1/tp/releases).
+3. Copy the file to the folder you want to use as the _home folder_ for Travelr.
+4. Double-click the file to start the app. The GUI should appear in a few seconds, and will look similar to the screenshot below. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
-
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the input box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * `list-e` : Lists events in the bucket list.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `add-e n/Sightseeing d/Visit Mountains` : Adds an event with the respective title and description into your bucket list.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+   * `delete-e 3` : Deletes the 3rd event in the bucket list.
 
-   * **`clear`** : Deletes all contacts.
-
-   * **`exit`** : Exits the app.
-
-1. Refer to the [Features](#features) below for details of each command.
+   * `exit` : Exits the app.
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## Parts of our GUI
+**Notes about the UI:**
+
+On app startup, the Trip List Display will show all trips and the Event List Display will display
+the events in the bucket list i.e Events that haven't been added to any trips.
+
+Trips can be marked as completed via the [`mark`](#marking-trips-as-completed-mark) command. Completed trips will be labelled with a tick icon
+to the right of the trip's title.
+
+The trips display sorts the trips by completion automatically. Completed trips will remain at the bottom of the list.
+
+Titles, locations and descriptions that are too long will be truncated. To view the full details of an event or trip, use [`display-e`](#displaying-specified-event-details-display-e) and [`display`](#displaying-specified-trip-details-display) commands respectively.
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+**:information_source: Explanation of our User Interface:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+![UI_Explanation](images/UI_Explanation.png)
+ 
+|`Component`|`Explanation`|
+|:-:|:--|
+|**Input Box**|where you enter your commands.|
+|**Output Box**|where the results of your command are shown.
+   |**Selected Trip Box**| where the current selected trip is shown.<br><br> Use [<code>select</code>](#selecting-a-trip-to-view-its-itinerary-select) to select a trip.|
+|**Trip List Display** |where the Trips stored in Travelr are shown.<br><br> Commands to change the types of trips being shown: <br>[<code>completed</code>](#viewing-all-completed-trips-and-events-completed), [<code>view</code>](#viewing-all-trips-and-events-view), [<code>list</code>](#viewing-trips-list-list) <br> See feature list for more information about the commands.|
+|**Event List Display**|where the Events stored in Travelr are shown.<br><br> Commands to change the types of events being shown: <br>[<code>completed</code>](#viewing-all-completed-trips-and-events-completed), [<code>view</code>](#viewing-all-trips-and-events-view), [<code>list-e</code>](#viewing-bucket-list-list-e), [<code>select</code>](#selecting-a-trip-to-view-its-itinerary-select) <br> See feature list for more information about the commands.
 
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+</div>
+--------------------------------------------------------------------------------------------------------------------
 
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+## Features
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+<div markdown="block" class="alert alert-block alert-warning">
+   
+**:warning: Notes about the command format:**<br>
+
+|`Component`|`Formatting Details`|
+|:-:|:--|
+|**Input**| Words in UPPER_CASE are the inputs to be supplied by the user. <br> e.g. in `add n/TITLE d/DESCRIPTION l/LOCATION D/DATE`, `TITLE`, `DESCRIPTION`, `LOCATION`, and `DATE` are inputs which can be used as `add n/Switzerland Trip d/With family and friends l/Switzerland D/29-09-2022 `|
+|**Optional Inputs**| Items in square brackets are optional. <br> e.g `sort [by/FACTOR] [r/]` can be used as `sort by/time r/` or as `sort`. |
+|**Prefixes**| The relevant prefixes must be used to separate parameters supplied by the user. <br> e.g. in `add-e n/TITLE d/DESCRIPTION`, `n/`  and `d/` are two designated used to separate the two parameters supplied which can be used as `add-e n/Sightseeing d/Visit mountains`.|
+|**Unnecessary inputs** | Unnecessary inputs for commands that do not require inputs (such as `list`) will be ignored. <br> e.g. if the command specifies `list 123`, it will be interpreted as `list`.|
+|**Ordering of inputs**| Inputs can be in any order. <br> e.g. if the command specifies `n/TITLE d/DESCRIPTION`, `d/DESCRIPTION n/TITLE` is also acceptable.|
+|**Multiple inputs**| If an input is expected only once in the command but you specified it multiple times, only the last occurrence of the input will be taken. <br> e.g. if you specify `n/Singapore Trip n/Malaysia Trip`, only `n/Malaysia Trip` will be taken.|
+|**Case Sensitivity**| `TITLE` is case-sensitive, so titles with the same letters and spacing but different capitalizations will be considered different. This applies for both events and trips. This is done in order to allow for the differentiation of words with different meanings when different capitalizations are used.<br> e.g. Two different trips with titles `December Turkey trip` and `December turkey trip` may refer to two different trips, where the former refers to a trip to Turkey, while the latter refers to a trip that involves the consumption of turkey.|
+|**Duplicates**| Events with the same title are considered duplicates, and duplicate events are not allowed. <br> Trips with the same title are considered duplicates, and duplicate trips are not allowed.|
 
 </div>
 
-### Viewing help : `help`
+### Managing Events
 
-Shows a message explaning how to access the help page.
+#### Adding events: `add-e`
+Adds an event to the bucket list.
 
-![help message](images/helpMessage.png)
+Format: `add-e n/TITLE d/DESCRIPTION`
 
-Format: `help`
-
-
-### Adding a person: `add`
-
-Adds a person to the address book.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+<div class="alert alert-block alert-success">
+   
+:point_up: <strong>Use case:</strong><br>
+   
+Have something new to add to your bucket list? Use the <code>add-e</code> to add a new event to your bucket list! 
+   
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+- `add-e n/Skydiving d/Skydiving with crew`
+- `add-e n/Sailing d/Sail in the Danube River`
 
-### Listing all persons : `list`
+The following is an example of how the `add-e` command can be run in the GUI. 
 
-Shows a list of all persons in the address book.
+![AddEvent](images/AddEvent.png)
+
+After the event has been successfully added, a confirmation message will be shown in the output box. You will also be able to see your new event in the event list display as seen below.
+
+![AddEventDone](images/AddEventDone.png)
+   
+
+
+#### Viewing bucket list: `list-e`
+Shows a list of all events present in the bucket list.
+
+Format: `list-e`
+
+#### Deleting events: `delete-e`
+Deletes the specified event from the bucket list.
+
+Format: `delete-e INDEX`
+- Deletes the event at the specified INDEX.
+- The index refers to the index number shown in the bucket list.
+- The index must be a positive integer 1, 2, 3, …
+
+Examples:
+- `delete-e 2` deletes the 2nd event in the bucket list.
+
+#### Displaying specified event details: `display-e`
+Displays the full title, description of the event at the specified INDEX of the displayed events list in the output box.
+
+Format: `display-e INDEX`
+
+<div class="alert alert-block alert-success">
+   
+:point_up: <strong>Use case:</strong><br>
+
+Occasionally, you may add events with titles or descriptions that are too long, which leads to these information being truncated in the UI. To view the truncated information, you can use the <code>display-e</code> command to look at a specified event's full title and description.
+
+</div>
+
+The following is an example of how the `display-e` command can be run in the GUI.
+
+![DisplayEvent](images/DisplayEvent.png)
+
+After the command has been successfully executed, a full description of the specified event will be shown in the output box as seen below.
+
+![DisplayEventDone](images/DisplayEventDone.png)
+   
+
+### Managing Trips
+
+#### Adding trips: `add`
+Adds a trip to the trip list.
+
+Format: `add n/TITLE d/DESCRIPTION l/LOCATION D/DATE`
+- All fields are compulsory.
+- Date must follow the format `dd-mm-yyyy`.
+
+<div class="alert alert-block alert-success">
+   
+:point_up: <strong>Use case:</strong><br>
+   
+   Planning an upcoming trip? Use the <code>add</code> command to add a new trip to your trip list!
+</div>
+
+Examples:
+- `add n/Trip to Iceland d/Skiing in Iceland l/Iceland D/26-12-2023`
+
+The following is an example of how the `add` command can be run in the GUI.
+
+
+![AddTrip](images/AddTrip.png)
+
+After the trip has been successfully added, a confirmation message will be shown in the output box. You will also be able to see your new trip in the trip list display as seen below.
+![AddTripDone](images/AddTripDone.png)
+ 
+
+
+#### Viewing trips list: `list`
+Shows a list of all trips added.
 
 Format: `list`
 
-### Editing a person : `edit`
-
-Edits an existing person in the address book.
-
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
-
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-
-### Locating persons by name: `find`
-
-Finds persons whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
-### Deleting a person : `delete`
-
-Deletes the specified person from the address book.
+#### Deleting trips: `delete`
+Deletes a trip at the specified INDEX of the displayed trip list. Events in the deleted trip will be returned to the bucket list.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+Examples:
+- `delete 1`
+
+#### Displaying specified trip details: `display`
+
+Displays the full title, description, location, and date of the trip at the specified INDEX of the displayed trip list in the output box.
+Format: `display INDEX`
+
+<div class="alert alert-block alert-success">
+   
+:point_up: <strong>Use case:</strong><br>
+   
+Occasionally, you may add trips with titles or descriptions that are too long, which leads to these information being truncated in the UI. To view the truncated information, you can use the <code>display</code> command to look at a specified trip's full title and description.
+
+</div>
+
+The following is an example of how the `display` command can be run in the GUI.
+
+![DisplayTrip](images/DisplayTrip.png)
+
+After the command has been successfully executed, a full description of the specified trip will be shown in the output box as seen below.
+
+![DisplayTripDone](images/DisplayTripDone.png)
+   
+
+### Managing a Trip's Itinerary
+
+#### Adding event to a trip's itinerary: `add-et`
+Adds the specified event from the bucket list to the specified trip's itinerary.
+
+Format: `add-et n/EVENT NAME t/TRIP NAME`
+- Adds the event with the specified EVENT NAME
+- Event is added to the trip at the specified TRIP NAME
+- The TRIP NAME must exist in Travelr.
+- The EVENT NAME must exist in the bucket list.
+
+*Note: Event names and trip names are used as inputs instead of indexes to make the command as specific as possible.
+
+<div class="alert alert-block alert-success">
+   
+:point_up: <strong>Use case:</strong><br> 
+   
+<code>add-et</code> can be used to help you to plan your trip's itinerary. You can pick and choose any event that exists in your bucket list and add them into a specified trip's itinerary, which you can then view via the <code>select</code> command.
+
+</div>
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+- `add-et n/Visit the Swiss Alps t/Trip to Switzerland` adds the event titled `Visit the Swiss Alps` in the bucket list to the itinerary of the trip with the title `Trip to Switzerland`.
 
-### Clearing all entries : `clear`
+The following is an example of how the `add-et` command can be run in the GUI.
 
-Clears all entries from the address book.
+![AddEventToTrip](images/AddEventToTrip.png)
+
+
+#### Removing event from a trip's itinerary: `delete-et`
+Remove the specified event from the specified trip. The event will then be returned to the bucket list.
+
+Format: `delete-et n/EVENT NAME t/TRIP NAME`
+- Remove the event with the specified event titled `EVENT NAME` from the specified trip titled `TRIP NAME`
+- Event is added to the bucket list.
+- The TRIP NAME must exist in Travelr.
+- The EVENT NAME must exist in the trip's itinerary.
+
+<div class="alert alert-block alert-success">
+   
+:point_up: <strong>Use case:</strong><br>
+   
+Perhaps you have changed your mind about including a particular event in a specified trip's itinerary. You can then use <code>delete-et</code> to remove that event and put it back to your bucket list, where you can save it for future trips. 
+</div>
+
+Examples:
+- `delete-et n/Visit the Swiss Alps t/Trip to Switzerland` remove the event titled `Visit the Swiss Alps` from the itinerary of the trip titled `Trip to Switzerland` and returns it to the bucket list.
+
+
+#### Selecting a trip to view its itinerary `select`
+Selects the trip in the specified INDEX and displays all events added to that trip in the events list panel.
+
+Format: `select INDEX`
+- Selects the trip at the specified INDEX.
+- The index refers to the index number shown in the current displayed trip list.
+- The index must be a positive integer 1, 2, 3, …
+
+<div class="alert alert-block alert-success">
+   
+:point_up: <strong>Use case:</strong><br> 
+   
+Now that you have added events into a trip's itinerary, you may want to take a look at how that trip's itinerary looks like. You can run the <code>select</code> command to select a trip and view all the events that have been added its itinerary. 
+
+</div>
+
+The following is an example of how the `select` command can be run in the GUI.
+
+![SelectTrip](images/SelectTrip.png)
+
+After the trip has been successfully selected, a confirmation message will be shown in the output box. You will be able to see your selected trip in the selected trip box, along with the list of events in its itinerary.
+
+![SelectTripDone](images/SelectTripDone.png)
+   
+
+
+### Managing a Trip's Completion Status
+
+#### Marking trips as completed: `mark`
+Mark the trip in the specified INDEX as done. After the specified trip has been marked as completed, it will be moved downwards to the set of completed trips in the trip list. 
+
+Format: `mark INDEX`
+- Marks the trip at the specified INDEX as done.
+- The index refers to the index number shown in the trip list.
+- The index must be a positive integer 1, 2, 3, …
+
+<div class="alert alert-block alert-success">
+   
+:point_up: <strong>Use case:</strong><br>
+   
+Congratulations, you have just completed a trip! You can now mark it as completed using the <code>mark</code> command.
+
+</div>
+
+Examples:
+- `mark 1` marks the first trip in the trip list as done.
+
+The following is an example of how the `mark` command can be run in the GUI.
+
+![MarkTrip](images/MarkTrip.png)
+
+After the trip has been successfully marked, a confirmation message will be shown in the output box. A completed icon will now be displayed beside the title of your completed trip as seen below.
+
+![MarkTripDone](images/MarkTripDone.png)
+
+
+
+#### Marking trips as incomplete: `unmark`
+Mark the trip in the specified INDEX as not done. After the specified trip has been marked as incomplete, it will be moved upwards to the set of incomplete trips in the trip list. 
+
+Format: `unmark INDEX`
+- Marks the trip at the specified INDEX as not done.
+- The index refers to the index number shown in the trip list.
+- The index must be a positive integer 1, 2, 3, …
+
+<div class="alert alert-block alert-success">
+   
+:point_up: <strong>Use case:</strong><br>
+   
+Accidentally marked a trip as completed on accident? Use the <code>unmark</code> command to set it back to incomplete.
+
+</div>
+
+Examples:
+- `unmark 1` marks the first trip in the trip list as not done.
+   
+
+### Sorting
+
+#### Sorting trips: `sort`
+Sorts the trips according to the provided factor. 
+Note that completed and incomplete trips will be sorted separately, with completed trips
+being at the bottom.
+
+Format: `sort [by/FACTOR] [r/]`
+- Sorts the trip according to provided FACTOR.
+- FACTOR is case-insensitive
+- Completed and incomplete trips are sorted separately.
+- Order of sort reversed when the `r/` prefix is provided.
+- If no parameters are given, the trips will be sorted by their title in alphabetical order by default.
+- A valid FACTOR must be provided if the `by/` prefix is provided.
+- Extraneous parameters for `r/` prefix will be ignored.
+
+Examples:
+- `sort by/time r/` sorts the trip by reversed chronological order.
+
+| FACTOR | Description |
+| --- | --- |
+| `title` | Sort by trips' title in alphabetical order |
+| `time` | Sort by trips' date in chronological order |
+| `location` | Sort by trips' location in alphabetical order |
+| `eventcount` | Sort by trips' number of events in ascending order |
+
+#### Sorting all events in app: `sort-e`
+Sorts all events according to alphabetical order.
+
+Format: `sort-e [r/]`
+- Order of sort reversed when the `r/` prefix is provided.
+- Extraneous parameters for `r/` prefix will be ignored.
+
+
+### Overview Display Commands
+
+#### Viewing all completed trips and events: `completed`
+Displays all completed trips and events.
+
+Format: `completed`
+
+<div class="alert alert-block alert-success">
+   
+:point_up: <strong>Use case:</strong><br>
+   
+Take a stroll down memory lane and revisit happy memories as a list of all your completed trips and events are shown to you. 
+
+</div>
+
+#### Viewing all trips and events: `view`
+Displays all trips and events in Travelr. This includes events that are part of the bucket list or events that are part of a trip.
+
+Format: `view`
+
+#### Viewing lifetime summary: `summary`
+Displays a summary window of your lifetime travels.
+
+Format: `summary`
+
+- Calculates the number of unique locations you visited.
+- Includes list of completed trips.
+- Total number of completed trips and events.
+- Progress indicator for trips and events.
+- Command must be used again to view updates to the summary.
+
+<div class="alert alert-block alert-success">
+   
+:point_up: <strong>Use case:</strong><br>
+   
+How much of your bucket list has been completed? How many countries have you visited thus far? All of your answers can be found via the <code>summary</code> command.
+
+</div>
+
+After the command has been successfully executed, a new window will pop up, with information summarising your lifetime travels.
+
+![Summary_Window](images/SummaryScreenshot.png)
+ 
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about the Summary Command**<br>
+   
+- If a summary window is opened, using any other commands will close the summary window.
+- You should call the `summary` command again after any changes.
+   help
+</div>
+
+### General Commands
+
+#### Clearing all entries: `clear`
+
+Clears all entries from Travelr, which includes the trips and the events.
 
 Format: `clear`
 
-### Exiting the program : `exit`
 
+#### Viewing help: `help`
+
+Shows a command summary as well as link to the User Guide page. The link can be copied by clicking the `Copy URL` button.
+
+Format: `help`
+
+<div class="alert alert-block alert-success">
+   
+:point_up: <strong>Use case:</strong><br>
+   
+Need help with using Travelr effectively? The <code>help</code> command provides a summarized list of commands that you can try out. 
+
+</div>
+
+After running the `help` command, a list of commands will be displayed as shown in the screenshot below.
+
+![help message](images/helpMessage.png)
+
+#### Exiting the program: `exit`
 Exits the program.
 
 Format: `exit`
 
-### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+### Saving data
+Travelr data are saved locally automatically after any command. There is no need to save manually.
 
-### Editing the data file
+## Glossary
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+* **Bucket list**: List of events that haven't been added to any trips
+* **Displayed events list**: List of events being displayed in the right panel of the UI
+* **Displayed trips list**: List of trips being displayed in the left panel of the UI
+* **GUI**: Stands for Graphical User Interface, which refers to the user interface that you will be interacting with.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
-</div>
+## Icons 
+Given below are the definition of the icons used in this User Guide.
 
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
---------------------------------------------------------------------------------------------------------------------
-
-## FAQ
-
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
-
---------------------------------------------------------------------------------------------------------------------
-
-## Command summary
-
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+* :information_source: - The segment will provide useful information for using Travelr.
+* :warning: - The segment will provide important notes about Travelr.
+* :point_up: - The segment explains the uses of a feature.

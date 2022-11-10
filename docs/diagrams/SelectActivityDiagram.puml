@@ -1,0 +1,18 @@
+@startuml
+start
+:User executes command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([index exists])
+    :Check filteredEventList for
+    events in selected trip's
+    itinerary;
+    :Display trip's itinerary;
+    :Display selected trip;
+else ([else])
+    :Display error message;
+endif
+stop
+@enduml

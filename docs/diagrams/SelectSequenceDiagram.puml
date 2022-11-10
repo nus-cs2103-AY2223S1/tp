@@ -1,0 +1,95 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TravelrParser" as TravelrParser LOGIC_COLOR
+participant ":SelectCommandParser" as SelectCommandParser LOGIC_COLOR
+participant "s:SelectCommand" as SelectCommand LOGIC_COLOR
+participant "e:EventInItineraryPredicate" as EventInItineraryPredicate LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("select 1")
+activate LogicManager
+
+LogicManager -> TravelrParser : parseCommand("select 1")
+activate TravelrParser
+
+create SelectCommandParser
+TravelrParser -> SelectCommandParser
+activate SelectCommandParser
+
+SelectCommandParser --> TravelrParser
+deactivate SelectCommandParser
+
+TravelrParser -> SelectCommandParser : parse("1")
+activate SelectCommandParser
+
+create EventInItineraryPredicate
+SelectCommandParser -> EventInItineraryPredicate
+activate EventInItineraryPredicate
+
+EventInItineraryPredicate --> SelectCommandParser
+deactivate EventInItineraryPredicate
+
+create SelectCommand
+SelectCommandParser -> SelectCommand
+activate SelectCommand
+
+SelectCommand --> SelectCommandParser : d
+deactivate SelectCommand
+
+SelectCommandParser --> TravelrParser : d
+deactivate SelectCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+SelectCommandParser -[hidden]-> TravelrParser
+destroy SelectCommandParser
+
+TravelrParser --> LogicManager : d
+deactivate TravelrParser
+
+LogicManager -> SelectCommand : execute()
+activate SelectCommand
+
+SelectCommand -> Model : getFilteredTripList()
+activate Model
+
+Model --> SelectCommand
+deactivate Model
+
+SelectCommand -> EventInItineraryPredicate : setItinerary(tripItinerary)
+activate EventInItineraryPredicate
+
+EventInItineraryPredicate --> SelectCommand
+deactivate EventInItineraryPredicate
+
+SelectCommand -> Model : updateFilteredEventList(e)
+activate Model
+
+Model --> SelectCommand
+deactivate Model
+
+SelectCommand -> Model : updateSelectedTrip(tripToDisplay)
+activate Model
+
+Model --> SelectCommand
+deactivate Model
+
+create CommandResult
+SelectCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> SelectCommand
+deactivate CommandResult
+
+SelectCommand --> LogicManager : result
+deactivate SelectCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

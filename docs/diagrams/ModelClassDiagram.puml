@@ -5,46 +5,56 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+Class "<<interface>>\nReadOnlyTravelr" as ReadOnlyTravelr
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
-Class AddressBook
+Class Travelr
 Class ModelManager
 Class UserPrefs
 
-Class UniquePersonList
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
-Class Tag
+Class UniqueTripList
+Class UniqueEventList
+Class BucketList
+
+Class Trip
+Class Location
+Class DateField
+Class Title
+Class Description
+Class Itinerary
+Class Event
 
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+Travelr .up.|> ReadOnlyTravelr
 
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
+Model .left.> ReadOnlyTravelr
+ModelManager -left-> "1" Travelr
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+Travelr *--> "1" UniqueTripList
+Travelr *--> "1" UniqueEventList
+Travelr *--> "1" BucketList
+UniqueEventList --> "~* all" Event
+BucketList *--> "*" Event
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+UniqueTripList --> "~* all" Trip
+Trip *--> Title
+Trip *--> Description
+Trip *--> DateField
+Trip *--> Location
+Trip *--> Itinerary
+Itinerary *--> "*" Event
 
-ModelManager -->"~* filtered" Person
+BucketList -[hidden]right-> Itinerary
+
+ModelManager -->"~* filtered" Trip
+ModelManager -->"~* filtered" Event
+
 @enduml

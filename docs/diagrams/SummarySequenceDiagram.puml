@@ -1,0 +1,53 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TravelrParser" as TravelrParser LOGIC_COLOR
+participant "u:SummaryCommand" as SummaryCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":SummaryVariables" as SummaryVariables MODEL_COLOR
+end box
+[-> LogicManager : execute(summary)
+activate LogicManager
+
+LogicManager -> TravelrParser : parseCommand(Summary)
+activate TravelrParser
+
+create SummaryCommand
+TravelrParser -> SummaryCommand
+activate SummaryCommand
+
+SummaryCommand --> TravelrParser
+deactivate SummaryCommand
+
+TravelrParser --> LogicManager : u
+deactivate TravelrParser
+
+LogicManager -> SummaryCommand : execute()
+activate SummaryCommand
+
+SummaryCommand -> Model : refreshSummaryVariables()
+activate Model
+
+Model -> SummaryVariables : refresh(trips, events)
+activate SummaryVariables
+
+SummaryVariables -> SummaryVariables : set()
+SummaryVariables --> Model :
+deactivate SummaryVariables
+
+Model --> SummaryCommand
+deactivate Model
+
+SummaryCommand --> LogicManager : result
+deactivate SummaryCommand
+SummaryCommand -[hidden]-> LogicManager : result
+destroy SummaryCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

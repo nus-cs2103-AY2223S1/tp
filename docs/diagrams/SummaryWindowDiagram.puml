@@ -1,0 +1,53 @@
+@startuml
+!include style.puml
+
+box UI UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+participant ":SummaryWindow" as SummaryWindow UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":Logic" as Logic LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+[-> MainWindow : executeCommand("summary")
+activate MainWindow
+
+MainWindow -> Logic : execute("summary")
+activate Logic
+
+Logic  --> MainWindow : commandResult
+deactivate Logic
+
+MainWindow -> CommandResult : isShowSummary()
+activate CommandResult
+
+CommandResult --> MainWindow : true
+deactivate CommandResult
+
+
+MainWindow -> MainWindow : handleSummary()
+activate MainWindow
+alt summary window is showing
+
+    MainWindow -> SummaryWindow : focus()
+    activate SummaryWindow
+    SummaryWindow --> MainWindow
+    deactivate SummaryWindow
+
+else else
+
+    MainWindow -> SummaryWindow : show()
+    activate SummaryWindow
+    SummaryWindow --> MainWindow
+    deactivate SummaryWindow
+
+end
+MainWindow --> MainWindow
+deactivate MainWindow
+
+
+[<--MainWindow
+deactivate MainWindow
+@enduml

@@ -1,0 +1,81 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TravelrParser" as TravelrParser LOGIC_COLOR
+participant "vc:ViewCompletedCommand" as ViewCompletedCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant "tc:TripCompletedPredicate" as TripCompletedPredicate LOGIC_COLOR
+participant "ec:EventCompletedPredicate" as EventCompletedPredicate LOGIC_COLOR
+
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("completed")
+activate LogicManager
+
+LogicManager -> TravelrParser : parseCommand("completed")
+activate TravelrParser
+
+
+create ViewCompletedCommand
+TravelrParser -> ViewCompletedCommand
+activate ViewCompletedCommand
+
+ViewCompletedCommand --> TravelrParser : vc
+deactivate ViewCompletedCommand
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+
+
+TravelrParser --> LogicManager : vc
+deactivate TravelrParser
+
+LogicManager -> ViewCompletedCommand : execute()
+activate ViewCompletedCommand
+
+
+create TripCompletedPredicate
+ViewCompletedCommand -> TripCompletedPredicate
+activate TripCompletedPredicate
+TripCompletedPredicate --> ViewCompletedCommand : tc
+deactivate TripCompletedPredicate
+
+ViewCompletedCommand -> Model : updateFilteredTripList(tc)
+activate Model
+Model --> ViewCompletedCommand
+deactivate Model
+
+ViewCompletedCommand -> Model : getFilteredTripList()
+activate Model
+Model --> ViewCompletedCommand : filteredTripList
+deactivate Model
+
+create EventCompletedPredicate
+ViewCompletedCommand -> EventCompletedPredicate : EventCompletedPredicate(filteredTripList)
+activate EventCompletedPredicate
+EventCompletedPredicate --> ViewCompletedCommand : ec
+deactivate EventCompletedPredicate
+
+ViewCompletedCommand -> Model : updateFilteredEventList(ec)
+activate Model
+Model --> ViewCompletedCommand
+deactivate Model
+
+create CommandResult
+ViewCompletedCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ViewCompletedCommand
+deactivate CommandResult
+
+ViewCompletedCommand --> LogicManager : result
+deactivate ViewCompletedCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

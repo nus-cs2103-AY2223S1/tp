@@ -1,0 +1,95 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TravelrParser" as TravelrParser LOGIC_COLOR
+participant ":AddEventToTripCommandParser" as AddEventToTripCommandParser LOGIC_COLOR
+participant "a:AddEventToTripCommand" as AddEventToTripCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant ":CommandException" as CommandException LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "toAddInto:Trip" as trip MODEL_COLOR
+end box
+
+[-> LogicManager : execute("add-et n/Dive t/Bali")
+activate LogicManager
+
+LogicManager -> TravelrParser : parseCommand("add-et n/Dive t/Bali")
+activate TravelrParser
+
+create AddEventToTripCommandParser
+TravelrParser -> AddEventToTripCommandParser
+activate AddEventToTripCommandParser
+
+AddEventToTripCommandParser --> TravelrParser
+deactivate AddEventToTripCommandParser
+
+TravelrParser -> AddEventToTripCommandParser : parse("n/Dive t/Bali")
+activate AddEventToTripCommandParser
+
+create AddEventToTripCommand
+AddEventToTripCommandParser -> AddEventToTripCommand
+activate AddEventToTripCommand
+
+AddEventToTripCommand --> AddEventToTripCommandParser : a
+deactivate AddEventToTripCommand
+
+AddEventToTripCommandParser --> TravelrParser : a
+deactivate AddEventToTripCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddEventToTripCommandParser -[hidden]-> TravelrParser
+
+TravelrParser --> LogicManager : a
+deactivate TravelrParser
+
+LogicManager -> AddEventToTripCommand : execute()
+activate AddEventToTripCommand
+
+alt invalid trip or event
+
+create CommandException
+AddEventToTripCommand -> CommandException
+
+activate CommandException
+CommandException -> AddEventToTripCommand
+AddEventToTripCommand -> LogicManager
+deactivate CommandException
+
+end
+
+
+AddEventToTripCommand -> Model : addEventToTrip(...)
+activate Model
+
+Model -> Model : changeBucketList
+activate Model
+Model --> Model
+deactivate Model
+
+Model -> trip : addEvent(..)
+activate trip
+
+trip --> Model
+deactivate trip
+
+Model --> AddEventToTripCommand :
+deactivate Model
+
+
+create CommandResult
+AddEventToTripCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddEventToTripCommand
+deactivate CommandResult
+
+AddEventToTripCommand --> LogicManager : result
+deactivate AddEventToTripCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
