@@ -690,6 +690,7 @@ The table below lists every keyboard shortcut currently available in PayMeLah:
 | <kbd>UpArrow</kbd> and <kbd>DownArrow</kbd> | **Moving to another [person card](#person-list-section):**<br> Similar to <kbd>PageUp</kbd> and <kbd>PageDown</kbd>, but without expanding the person cards you scroll by.                                                                                                                                                                                                                                                     |
 |               <kbd>Home</kbd>               | **Jumping to the top of the [person list](#person-list-section):**<br> When you are in the person list, press the <kbd>Home</kbd> key to jump to the first person in the person list. When you are in a person's debt list, press the <kbd>Home</kbd> key to jump to the first debt in the debt list.                                                                                                                          |
 |               <kbd>End</kbd>                | **Jumping to the bottom of the [person list](#person-list-section):**<br> When you are in the person list, press the <kbd>End</kbd> key to jump to the last person in the person list. When you are in a person's debt list, press the <kbd>End</kbd> key to jump to the last debt in the debt list.                                                                                                                           |
+
 <div style="page-break-after: always;"></div>
 
 ### Features for Data Management
@@ -699,7 +700,7 @@ The table below lists every keyboard shortcut currently available in PayMeLah:
 Your computer automatically saves PayMeLah data after any command that changes it. There is no need to save manually! Within the folder you saved your PayMeLah, you might have noticed that there is a `data` folder. As the name suggests, your PayMeLah data is saved in a `paymelah.json` file within that folder.
 
 <div markdown="block" class="alert alert-primary">
-:bulb: **What is a JSON file?**<br> Check out the term in the [glossary](#glossary-json-file)!
+:bulb: **What is a JSON file?** Check out the term in the [glossary](#glossary-json-file)!
 </div>
 
 #### Editing the data file
@@ -714,8 +715,8 @@ INSERT IMAGE
 
 You can now edit the data by changing any of the green words you see! Do ensure that your replacement words are surrounded by double-inverted commas (`””`), as per the image above.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Warning:**
-Make sure your edits still follow the [requirements of each input](#input-specific-behaviour)! For example, if you edit the date, it should still be in the `yyyy-mm-dd` format.
+<div markdown="span" class="alert alert-warning">:exclamation: **Warning:**<br>
+Make sure your edits still follow the [requirements of each input](#input-specific-behaviour)! For example, if you edit the date, it should still be in the `yyyy-mm-dd` format.<br>
 
 If the data file fails to follow the required format, PayMeLah will **discard all data** and start with an empty data file the next time you launch it. This is **irreversible**! As such, please edit the data file directly only if you are very confident in what you are doing.
 </div>
