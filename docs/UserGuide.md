@@ -228,7 +228,6 @@ parameters, and flags?**
 <br><br>
 Nope!
 <br><br>
-
 While you're going through this section, don't worry too much about memorizing the details of every command, as they all
 have their own help messages that you can refer to at any time.
 <br><br>
@@ -444,7 +443,7 @@ Summary of the commands to manage persons can be found [here](#summary-of-person
 Adds a new person to TruthTable. The new person is added to the [persons section](#persons-section) as seen in the image
 below.
 
-![Add Person Example Before](images/AddPersonExample.png)
+![Add Person Example](images/AddPersonExample.png)
 
 **Format:** `add person [-h] -e=<EMAIL> -n=<NAME> -p=<PHONE> [-t[=<TAGS>...]]...`
 
@@ -473,7 +472,10 @@ A person can have any number of tags (including 0).
 
 #### Editing a person: `edit person`
 
-Edits an existing person in TruthTable.
+Edits an existing person in TruthTable. The edited person's details will be shown in the 
+[persons section](#persons-section) as seen in the image below.
+
+![Edit Person Example](images/EditPersonExample.png)
 
 **Format:** <code>edit person [-h] ([-n=<PERSON_NAME>] [-p=<PERSON_PHONE>] [-e=<PERSON_EMAIL>] 
 [-t[=<PERSON_TAGS>...]]...) <PERSON_INDEX></code>
@@ -509,7 +511,10 @@ Edits an existing person in TruthTable.
 
 #### Deleting a person: `delete person`
 
-Deletes the specified person from TruthTable.
+Deletes the specified person from TruthTable. The person deleted will be removed from the 
+[persons section](#persons-section) as seen in the image below.
+
+![Delete Person Example](images/DeletePersonExample.png)
 
 **Format:** `delete person [-h] <PERSON_INDEX>`
 
@@ -536,7 +541,10 @@ Deletes the specified person from TruthTable.
 
 #### Finding a person: `find person`
 
-Finds all persons whose names contain any of the given keywords.
+Finds all persons whose names contain any of the given keywords. The persons with matching names will be shown
+in the [persons section](#persons-section) as seen in the image below.
+
+![Find Person Example](images/DeletePersonExample.png)
 
 **Format:** `find person [-h] <PERSON_NAME_KEYWORDS>`
 
@@ -559,15 +567,19 @@ Finds all persons whose names contain any of the given keywords.
 
 **Examples:**
 
-* `find person John` returns `john` and `John Doe`
-* `find person alex david` returns `Alex Yeoh`, `David Li`<br>
+* `find person John` returns `john` and `John Doe`.
+* `find person alex david` returns `Alex Yeoh`, `David Li`.
 
 For instance, the output of running `find person alex david` is shown below:
 ![result for 'find person alex david'](images/findPersonAlexDavidResult.png)
 
 #### Listing all persons: `list persons`
 
-Shows a list of all persons in TruthTable.
+Shows a list of all persons in TruthTable. After running the [`find person`](#finding-a-person-find-person)
+command, you may wish to view all persons again. To do so, the `list persons` command will update the
+[persons section](#persons-section) and display all persons as seen in the image below.
+
+![List Persons Example](images/DeletePersonExample.png)
 
 **Format:** `list persons [-h]`
 
