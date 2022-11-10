@@ -70,7 +70,7 @@ Here are some symbols to look out for while using this guide:
 | `code`               | Text relevant to commands or name of a file. |
 | :information source: | Information that is useful to take note of.  |
 | :bulb:               | Tips for Coydir Users.                       |
-| :warning:        | Be wary and proceed with caution.            |
+| :warning:            | Be wary and proceed with caution.            |
 
 ### Navigating the User Guide
 
@@ -211,7 +211,9 @@ We will explore each of these fields in great detail as we continue along, but b
 - If a parameter is provided, anything after the prefix for that parameter until the end, or until the next parameter, will be taken as the value for the parameter.<br>
   e.g. if you specify `n/John 91234567 a/Little India`, the entire length of "John 91234567" will be taken as the name.
 
-<div markdown="span" class="alert alert-warning">:warning: **Integer input values cannot be too large**: any values greater than 2<sup>31</sup>-1, or 2147483647, is not supported. </div>
+<div markdown="block" class="alert alert-warning">:warning:
+  **Integer input values cannot be too large**: any values greater than 2<sup>31</sup>-1, or 2147483647, is not supported.
+</div>
 
 ### Managing Employee Profiles
 
@@ -246,14 +248,17 @@ The complete employee profile allows you to specify _a fair amount_ of details f
 | **Leaves Left**  | No. of leaves left for employee        | **Cannot Set** | 14            |
 | **Rating**       | Latest performance rating for employee | **Cannot Set** | _None_        |
 
-<div markdown="block" class="alert alert-info">:bulb:
-##### Bonus Information on the Profile
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Bonus Information on the Profile**
+
 - **Employee ID** is a unique number assigned to each employee, and is used for several powerful commands. To ensure the uniqueness of the IDs, Coydir **does not support** any editing/manipulation of the employee IDs.
   - If you really wish to, you can [edit the data file](#editing-the-data-file) directly to "control" the employee IDs. However, this is _strongly discouraged_.
 - For simplicity, Coydir (_in v1.4_) currently supports a fixed list of departments.
   - You can find out more about this in the [Department Management section here](#managing-departments).
 - For each employee, Coydir supports managing individual employee leaves, as well as performance ratings, helping you to track the particulars that are not meant to be set (no. of leaves left, employee rating)
   - You can find out more about [employee leave management here](#managing-employee-leaves), and about [performance ratings here](#managing-employee-performance).
+
 </div>
 
 #### Adding an employee: `add`
@@ -273,13 +278,14 @@ Format: `add n/NAME j/POSITION d/DEPARTMENT [p/PHONE] [e/EMAIL] [a/ADDRESS] [l/L
 | `LEAVE`      | l/  | Total number of entitled leaves | **Optional**   | 14            |
 | `TAG`        | t/  | Information tags                | **Optional**   | _None_        |
 
-<div markdown="span" class="alert alert-primary">:bulb:
-An employee can have any number of tags (including 0).
-</div>
+<div markdown="block" class="alert alert-primary">
 
-<div markdown="span" class="alert alert-primary">:bulb:
-The only compulsory fields are name, position and department.
-Leaves will be default 14 while the other fields will be initialised as N/A.
+:bulb: **More on the Various Fields**
+
+- An employee can have any number of tags (including 0).
+- The only compulsory fields are name, position and department.
+- Leaves will be default 14 while the other fields will be initialised as N/A.
+
 </div>
 
 Examples:
@@ -386,8 +392,8 @@ Example:
 
 - `view 2` returns the details of the second employee in the current list.
 
-<div markdown="span" class="alert alert-primary">:bulb:
-Note that an INDEX is different from an ID. More information about the difference in INDEX and ID can be found on the FAQ page.
+<div markdown="span" class="alert alert-info">:information_source:
+  Note that an INDEX is different from an ID. More information about the difference in INDEX and ID can be found on the [FAQ page](#faq).
 </div>
 
 #### Editing an employee: `edit`
@@ -465,10 +471,13 @@ Format: `find [n/NAME_KEYWORD] [j/POSITION_KEYWORD] [d/DEPARTMENT_KEYWORD]`
 | `POSITION`   | j/  | Search keyword for position of employee   | **Optional** | -             |
 | `DEPARTMENT` | d/  | Search keyword for department of employee | **Optional** | -             |
 
-<div markdown="block" class="alert alert-primary">:bulb:
-##### Important Tips!
-  - There must be _at least one_ parameter (and keyword) in the search, else Coydir will not know what to search for!
-  - The keywords you input for searching are **case-insensitive**. Additionally, they need not be full words, just a segment will do. This means that searching for the department "tech" will show results for both "Technology and "Information Technology".
+<div markdown="block" class="alert alert-primary">
+
+:bulb: **Important Tips!**
+
+- There must be _at least one_ parameter (and keyword) in the search, else Coydir will not know what to search for!
+- The keywords you input for searching are **case-insensitive**. Additionally, they need not be full words, just a segment will do. This means that searching for the department "tech" will show results for both "Technology and "Information Technology".
+
 </div>
 
 Example:
@@ -529,7 +538,7 @@ and the employee has sufficient leaves, the leave period will be added and shown
 If any of employee ID, date is invalid, or the employee does not possess enough leaves, Coydir will prompt the users accordingly, and the command will not execute.
 
 <div markdown="span" class="alert alert-primary">:bulb:
-Leaves are ordered by reverse chronological order in the table view.
+  Leaves are ordered by reverse chronological order in the table view.
 </div>
 
 Format: `add-leave id/ID sd/START_DATE ed/END_DATE`
@@ -591,7 +600,11 @@ Here, Coydir offers a **simple yet powerful** way of keeping track of and making
 **:information_source: Note:** 5-point rating scale.<br><br>
 
 The 5 point performance appraisal ratings system is the most commonly used performance rating scale across the world.
-A 1 to 5 rating scale has a total of 5 categories with 2 negative and 2 positive options. A middle option is a neutral option for those who have met the expectations in terms of work performance. This rating scale is well-defined with a separate category for the employees who neither fall in the below expectations (requiring performance review) nor in the exceeds expectations categories.
+
+A 1 to 5 rating scale has a total of 5 categories with 2 negative and 2 positive options.
+A middle option is a neutral option for those who have met the expectations in terms of work performance.
+
+This rating scale is well-defined with a separate category for the employees who neither fall in the below expectations (requiring performance review) nor in the exceeds expectations categories.
 
 </div>
 
@@ -632,9 +645,9 @@ The individual rating values will be displayed beside each node in the performan
 
 ![Performance History Graph](./images/ui-screenshots/performance-history-graph.jpg)
 
-<div markdown="span" class="alert alert-info">
+<div markdown="span" class="alert alert-primary">
 
-**:information_source: Note:** You can only rate the performance of an employee once per day.<br><br>
+:bulb: **Note:** You can only rate the performance of an employee once per day.<br><br>
 
 - Rating an employee who already has a `Rating` with `timestamp` of that same day with the `rate` command will throw a `employee already rated` error.
 
@@ -696,8 +709,10 @@ If the department exists, the right panel will correctly displays the summary of
 
 If the department name is invalid, the program will notify you through the result box, with a list of valid department name for easier reference.
 
-<div markdown="span" class="alert alert-primary">:bulb:
-DEPARTMENT is case-insensitive.
+<div markdown="span" class="alert alert-primary">
+
+:bulb: DEPARTMENT is case-insensitive.
+
 </div>
 
 ### Additional Features
@@ -731,8 +746,11 @@ Clears all the data currently stored in the database.
 If you are a new user, you can use this command after you have experimented with Coydir
 to start keying in your actual employee information.
 
-<div markdown="span" class="alert alert-warning">:warning: **Caution:**
+<div markdown="span" class="alert alert-warning">
+
+:bulb: **Caution:**
 Once you run this command, you lose all data immediately.
+
 </div>
 
 Format: `clear`
@@ -748,8 +766,11 @@ It is possible to manipulate data by editing the data file directly, but even fo
 
 If you still choose to do so, we **cannot guarantee** that Coydir continues to support your HR operations smoothly.
 
-<div markdown="span" class="alert alert-warning">:warning: **Caution:**
+<div markdown="span" class="alert alert-warning">
+
+:warning: **Caution:**
 If your changes to the data file makes its format invalid, Coydir will discard all data and start with an empty data file at the next run.
+
 </div>
 
 ---
