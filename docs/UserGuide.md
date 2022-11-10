@@ -690,6 +690,7 @@ The table below lists every keyboard shortcut currently available in PayMeLah:
 | <kbd>UpArrow</kbd> and <kbd>DownArrow</kbd> | **Moving to another [person card](#person-list-section):**<br> Similar to <kbd>PageUp</kbd> and <kbd>PageDown</kbd>, but without expanding the person cards you scroll by.                                                                                                                                                                                                                                                     |
 |               <kbd>Home</kbd>               | **Jumping to the top of the [person list](#person-list-section):**<br> When you are in the person list, press the <kbd>Home</kbd> key to jump to the first person in the person list. When you are in a person's debt list, press the <kbd>Home</kbd> key to jump to the first debt in the debt list.                                                                                                                          |
 |               <kbd>End</kbd>                | **Jumping to the bottom of the [person list](#person-list-section):**<br> When you are in the person list, press the <kbd>End</kbd> key to jump to the last person in the person list. When you are in a person's debt list, press the <kbd>End</kbd> key to jump to the last debt in the debt list.                                                                                                                           |
+
 <div style="page-break-after: always;"></div>
 
 ### Features for Data Management
@@ -699,7 +700,8 @@ The table below lists every keyboard shortcut currently available in PayMeLah:
 Your computer automatically saves PayMeLah data after any command that changes it. There is no need to save manually! Within the folder you saved your PayMeLah, you might have noticed that there is a `data` folder. As the name suggests, your PayMeLah data is saved in a `paymelah.json` file within that folder.
 
 <div markdown="block" class="alert alert-primary">
-:bulb: **What is a JSON file?**<br> Check out the term in the [glossary](#glossary-json-file)!
+:bulb: **What is a JSON file?**<br>
+A [JSON file](https://fileinfo.com/extension/json) is a common type of file used by many applications to store data in a format easily readable and editable by advanced users.
 </div>
 
 #### Editing the data file
@@ -712,10 +714,10 @@ Double-click on the `paymelah.json` file to open it.
 You should see the following:
 INSERT IMAGE
 
-You can now edit the data by changing any of the green words you see! Do ensure that your replacement words are surrounded by double-inverted commas (`””`), as per the image above.
+You can now edit the data by changing any of the green words you see! Do ensure that your replacement words are surrounded by double-inverted commas (`""`), as per the image above.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Warning:**
-Make sure your edits still follow the [requirements of each input](#input-specific-behaviour)! For example, if you edit the date, it should still be in the `yyyy-mm-dd` format.
+<div markdown="span" class="alert alert-warning">:exclamation: **Warning:**<br>
+Make sure your edits still follow the [requirements of each input](#input-specific-behaviour)! For example, if you edit the date, it should still be in the `yyyy-mm-dd` format.<br>
 
 If the data file fails to follow the required format, PayMeLah will **discard all data** and start with an empty data file the next time you launch it. This is **irreversible**! As such, please edit the data file directly only if you are very confident in what you are doing.
 </div>
@@ -760,7 +762,6 @@ If you are trying to locate a debt without knowing its full description, conside
 * <span id="glossary-entering-a-command">_Enter[ing]_ a command</span>: Type the _command_ into the _command box_, and press the <kbd>Enter</kbd> key.
 * <span id="glossary-index">_Index_</span>: The number that appears next to each person’s name or each _debt_’s description.
 * <span id="glossary-input">_Input_</span>: Additional information supplied by you that is used to run a _command_.
-* <span id="glossary-json-file">_JSON file_</span>: A [common type of file](https://fileinfo.com/extension/json) used by many applications to store data in a format easily readable and editable by advanced users.
 * <span id="glossary-keyboard-shortcut">_Keyboard shortcut_</span>: A key or sequence of keys which you may press to perform actions without your mouse.
 * <span id="glossary-person-index">_Person index_</span>: The number that appears next to each person’s name in the _person list_.
 * <span id="glossary-prefix">_Prefix_</span>: A short piece of text indicating what type of information follows. For example, `n/` is the prefix that indicates that what follows is a name.
