@@ -169,7 +169,7 @@ This section contains all the information and details of each feature of **FRIDA
 
 <div style="page-break-after: always;"></div>
 
-### Student management
+### Student Management
 
 These features allow you to add and delete students, and edit their details.
 
@@ -524,7 +524,7 @@ As you can see, the "(passed)" status has been removed from student 1's Mastery 
 
 <div style="page-break-after: always;"></div>
 
-## Features for advanced users
+### Features For Advanced Users
 
 These features help you personalize your FRIDAY experience and improve your productivity when using FRIDAY.
 
@@ -592,7 +592,7 @@ Format: `aliaslist`
 
 <div style="page-break-after: always;"></div>
 
-## Miscellaneous features
+### Miscellaneous Features
 
 Other features that aid you in using FRIDAY.
 
