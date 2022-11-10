@@ -246,11 +246,11 @@ Let's use an example to break down what we've talked about.
 
 Here's a summary of what each highlighted section represents.
 
-| Number | Name               | Meaning                                                                                 |
-|--------|--------------------|-----------------------------------------------------------------------------------------|
-| 1      | Command            | The name of an instruction                                                              |
-| 2      | Flag/Option        | Text that is used to modify the operation of a command, often starting with `-` or `--` |
-| 3      | Parameter/Argument | Information specified for a command to operate, often used after flags                  |
+| Number                            | Name                                               | Meaning                                                                                                                |
+|-----------------------------------|----------------------------------------------------|------------------------------------------------------------------------------------------------------------------------|
+| <span class="text-red">1</span>   | <span class="text-red">Command</span>              | <span class="text-red">The name of an instruction</span>                                                               |
+| <span class="text-blue">2</span>  | <span class="text-blue">Flag/Option</span>         | <span class="text-blue">Text that is used to modify the operation of a command, often starting with `-` or `--`</span> |
+| <span class="text-green">3</span> | <span class="text-green">Parameter/Argument</span> | <span class="text-green">Information specified for a command to operate, often used after flags</span>                 |
 
 ### Understanding the help message
 
@@ -266,15 +266,15 @@ any command.
 
 Here's a summary of what each highlighted section represents.
 
-| Number | Name                            | Special Syntax         | Remarks                                                                        |
-|--------|---------------------------------|------------------------|--------------------------------------------------------------------------------|
-| 1      | Command                         | -                      | Only alphabets and spaces (all commands can be found [here](#commands))        |
-| 2      | Optional Flag with no Parameter | `[-flag]`              | -                                                                              |
-| 3      | Optional Flag with Parameters   | `[-flag=<parameters>]` | An ellipsis `...` is present only if more than 1 parameter is **allowed**      |
-| 4      | Required Flag with Parameters   | `flag=<parameters>`    | An ellipsis `...` is present only if more than 1 parameter is **allowed**      |
-| 5      | Required Parameter              | `<parameter>`          | All parameters are required by default                                         |
-| 6      | Flag/Parameter Name and Alias   | -                      | All aliases of a flag/parameter will be listed and separated with commas (`,`) |
-| 7      | Flag/Parameter Description      | -                      | Brief description of flag/parameter                                            |
+| Number                            | Name                                                            | Special Syntax                                         | Remarks                                                                                                       |
+|-----------------------------------|-----------------------------------------------------------------|--------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
+| <span class="text-red">1</span>   | <span class="text-red">Command</span>                           | <span class="text-red">-</span>                        | <span class="text-red">Only alphabets and spaces (all commands can be found [here](#commands))</span>         |
+| <span class="text-green">2</span> | <span class="text-green">Optional Flag with no Parameter</span> | <span class="text-green">`[-flag]`</span>              | <span class="text-green">-</span>                                                                             |
+| <span class="text-green">3</span> | <span class="text-green">Optional Flag with Parameters</span>   | <span class="text-green">`[-flag=<parameters>]`</span> | <span class="text-green">An ellipsis `...` is present only if more than 1 parameter is **allowed**</span>     |
+| <span class="text-blue">4</span>  | <span class="text-blue">Required Flag with Parameters</span>    | <span class="text-blue">`flag=<parameters>`</span>     | <span class="text-blue">An ellipsis `...` is present only if more than 1 parameter is **allowed**</span>      |
+| <span class="text-blue">5</span>  | <span class="text-blue">Required Parameter</span>               | <span class="text-blue">`<parameter>`</span>           | <span class="text-blue">All parameters are required by default</span>                                         |
+| <span class="text-pink">6</span>  | <span class="text-pink">Flag/Parameter Name and Alias</span>    | <span class="text-pink">-</span>                       | <span class="text-pink">All aliases of a flag/parameter will be listed and separated with commas (`,`)</span> |
+| <span class="text-pink">7</span>  | <span class="text-pink">Flag/Parameter Description</span>       | <span class="text-pink">-</span>                       | <span class="text-pink">Brief description of flag/parameter</span>                                            |
 
 <div markdown="block" class="alert alert-primary">
 **:information_source: Important note for flags**
