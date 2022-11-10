@@ -457,7 +457,7 @@ If Coydir has an employee with the respective ID, Coydir will delete it.
 
 **Case 2: Employee with ID does not exist**
 
-Otherwise, if Coydir has no employee with ID that matches the specified name, Coydir will prompt users that the employee ID entered is invalid.
+Otherwise, if Coydir has no employee with ID that matches the specified name, Coydir will prompt you that the employee ID entered is invalid.
 
 Format: `delete ID`
 
@@ -560,7 +560,7 @@ and the employee has sufficient leaves, the leave period will be added and shown
 
 **Case 2: Invalid ID, date or insufficient leaves**
 
-If any of employee ID, date is invalid, or the employee does not possess enough leaves, Coydir will prompt the users accordingly, and the command will not execute.
+If any of employee ID, date is invalid, or the employee does not possess enough leaves, Coydir will prompt you accordingly, and the command will not execute.
 
 Format: `add-leave id/ID sd/START_DATE ed/END_DATE`
 
@@ -595,7 +595,7 @@ If the employee exists, the index given is valid, the leave period at that index
 
 **Case 2: Invalid ID, or index**
 
-If the employee ID, or the index is invalid, Coydir will prompt the users accordingly, and the command will not execute.
+If the employee ID, or the index is invalid, Coydir will prompt you accordingly, and the command will not execute.
 
 Format: `delete-leave id/ID i/INDEX`
 
@@ -653,7 +653,7 @@ If the employee exists, and the rating given is valid (is a integer from 1-5 inc
 
 **Case 2: Invalid ID or rating**
 
-If the rating given for any employee is invalid (is not an integer from 1-5 inclusive), Coydir will prompt the users accordingly, and the command will not execute.
+If the rating given for any employee is invalid (is not an integer from 1-5 inclusive), Coydir will prompt you accordingly, and the command will not execute.
 
 Format: `rate id/ID r/RATING`
 
@@ -689,7 +689,7 @@ With these features, we offer a view that is broader than an individual employee
 
 Complete with **real-time statistics and analytics**, Coydir makes department management much simpler. With these information, department heads can easily observe the structure of a particular department, track the number of currently available employees for better tasks delegation, or even perform a department restructure to improve the overall efficiency of the company.
 
-Currently, our application only provides a list of default departments for the user to choose from. Future update will include customizable department name. Our current list of valid departments are:
+Currently, our application only provides a list of default departments for you to choose from. Future update will include customizable department name. Our current list of valid departments are:
 
 - Administration
 - Board of Directors
@@ -777,7 +777,7 @@ If you are a new user, you can use this command after you have experimented with
 
 <div markdown="span" class="alert alert-warning">
 
-:bulb: **Caution:**
+:warning: **Caution:**
 Once you run this command, you lose all data immediately.
 
 </div>
@@ -826,8 +826,7 @@ If your changes to the data file makes its format invalid, Coydir will discard a
 5. **Hard disk** : A component in your computer that stores your data.
 6. **JSON** : A file which is used to store data, which adheres to a format called [JavaScript Object Notation (JSON)](https://www.json.org/json-en.html).
 7. **CSV** : A file which is used to store data, which adheres to a format called [Comma-Separated Values (CSV)](https://en.wikipedia.org/wiki/Comma-separated_values).
-8. **JAR** : Otherwise known as [Java ARchive](https://docs.oracle.com/javase/8/docs/technotes/guides/jar/jarGuide.html) file, it is a file format that combines many files into one. It can also be
-   a executable (a file that contains a program).
+8. **JAR** : Otherwise known as [Java ARchive](https://docs.oracle.com/javase/8/docs/technotes/guides/jar/jarGuide.html) file, it is a file format that combines many files into one. It can also be a executable (a file that contains a program).
 9. **Integer** : A whole number like 1,9,15,27.
 
 ## Command Summary
