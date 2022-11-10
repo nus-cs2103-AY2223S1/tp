@@ -250,7 +250,7 @@ Format: `add c/COMPANY p/POSITION e/EMAIL w/WEBSITE s/SALARY [t/TAG]…`
 :bulb: **Tip:** An internship can have any number of tags (including 0), and you can add multiple tags at once.
 </div>
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-info" style="page-break-after: always;">
 
 **:information_source: Note about duplicates:**<br>
 
