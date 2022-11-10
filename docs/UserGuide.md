@@ -24,8 +24,7 @@ So what are you waiting for? This user guide contains step-by-step instructions 
 # Table of Contents
 
 * Table of Contents
-
-  {:toc}
+{:toc}
 
 
 --------------------------------------------------------------------------------------------------------------------
