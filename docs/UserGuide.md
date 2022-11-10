@@ -236,9 +236,9 @@ the Terminal window and hit **return** on your keyboard.
 
 ## Getting familiar with ArtBuddy's interface
 
-Cool! You now have gotten ArtBuddy up and running. Let's get you familiar with ArtBuddy's user interface.
+Cool! You now have ArtBuddy up and running. Let's get you familiar with ArtBuddy's user interface.
 
-ArtBuddy has two tabs: a **Customers Tab**, and a **Commissions Tab**. Let's take a closer look at each tab individually.
+ArtBuddy has two tabs: a [**Customers Tab**](#customers-tab), and a [**Commissions Tab**](#commissions-tab). Let's take a closer look at each tab individually.
 
 {: .no_toc}
 ### Customers Tab
@@ -255,8 +255,23 @@ in your **Customers Tab** does!
 | 2   | Command Input    | The command input is where you can key in your commands to tell ArtBuddy what you want to get done. To learn more about ArtBuddy's CLI, refer to the [next section](#artbuddys-command-line-interface-cli). |
 | 3   | Result Display   | The result display is where you'll see ArtBuddy's replies to your commands.                                                                                                                                 |
 | 4   | Customer List    | The default tab opened when you first start ArtBuddy is the customer tab. Notice how the **Customer** tab is highlighted? That indicates that ArtBuddy is currently showing you your list of Customers.     |
-| 5   | Customer Details | When you select a customer from your **Customer List**, ArtBuddy will show you the details and statistics of your selected customer in this pane.                                                           |
+| 5   | Customer Details | When you select a customer from your **Customer List**, ArtBuddy will show you the details and [statistics](#statistics-view) of your selected customer in this pane.                                       |
 | 6   | Saved Data File  | For advanced users, the [file path](#glossary) displayed here is where ArtBuddy stores your saved data (which you can [edit](#editing-the-data-file)).                                                      |
+
+<div id="statistics-view"></div>
+
+**Statistics View**
+
+Let's take a closer look at the customer statistics ArtBuddy offers. Analyse your revenue streams and keep your top customers happy!
+
+![Statistics View](images/statistics%20view.png)
+
+|     | Component                       | Description                                                                                                                    |
+|-----|---------------------------------|--------------------------------------------------------------------------------------------------------------------------------|
+| 1   | Total Revenue                   | Displays the total revenue you've generated from this customer.                                                                |
+| 2   | Total Commission Count          | Displays the total number of commissions commissioned by this customer.                                                        |
+| 3   | Commission Breakdown Pie Chart  | Provides visualisation of the breakdown of the customer's commissions by their completion statuses in the form of a pie chart. |
+| 4   | Commission Breakdown            | Breaks down the commissions made by the customer by their completion statuses.                                                 |
 
 <div style="page-break-after: always;"></div>
 
@@ -442,7 +457,7 @@ Customers stored in ArtBuddy have the following details:
 
 ### Viewing a customer: `opencus`
 
-Opens a customer at `INDEX` and shows customer details with various analytics you can use. The commissions tab will be updated to show the commissions made by the customer you selected. If no `INDEX` is provided, you will just switch to the customers tab.
+Opens a customer at `INDEX` and shows customer details with [various analytics](#statistics-view) you can use. The commissions tab will be updated to show the commissions made by the customer you selected. If no `INDEX` is provided, you will just switch to the customers tab.
 
 Format: `opencus [INDEX]`
 
@@ -498,8 +513,9 @@ Examples:
 
 ## Commission related commands
 
-A customer may ask for multiple commissions with different needs.
-That is why we created the commission to help you keep track of all the commissions.
+Being able to keep track of your customers is great, but that's not enough. Ever missed
+a deadline for a commission? Well, not anymore. With ArtBuddy's ability to help you track
+commissions made by each customer, say goodbye to missed deadlines.
 
 ArtBuddy offers the following commands to help you manage your commissions:
 * [Viewing a commission: `opencom`](#viewing-a-commission-opencom)
@@ -509,13 +525,13 @@ ArtBuddy offers the following commands to help you manage your commissions:
 
 Commissions stored in ArtBuddy have the following details:
 
-| Detail               | Explanation                                                                                                            | Constraints                                                                                         |
-|----------------------|------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
-| Title                | The name of the commission ([case sensitive, and must be unique](#unique-commission))                                  | Alphanumeric and space characters                                                                   |
-| Deadline             | The due date of the commission                                                                                         | <code>YYYY-MM-DD</code> format                                                                      |
-| Status               | The completion status of the commission                                                                                | `y`, `yes`, `t`, `true` for complete status <br> `n`, `no`, `f`, `false` for incomplete status      |
-| Optional description | A description of the commission (for instance, the commission requirements)                                            | See [Appendix: Limitations of no-constraint text inputs](#limitations-of-no-constraint-text-inputs) |
-| Optional tags        | A commission may be tagged with any number of tags (including 0) which can be used to help categorise your commissions | Each tag at most 25 alphanumeric and space characters                                               |
+| Detail               | Explanation                                                                                                            | Constraints                                                                                                                                                                               |
+|----------------------|------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Title                | The name of the commission ([case sensitive, and must be unique](#unique-commission))                                  | Alphanumeric and space characters                                                                                                                                                         |
+| Deadline             | The due date of the commission                                                                                         | [`YYYY-MM-DD`](#further-notes-on-command-parameters) format (four-digit year, followed by a 2-digit month, and 2-digit day number; so "7 November 2022" should be passed as `2022-11-07`) |
+| Status               | The completion status of the commission                                                                                | `y`, `yes`, `t`, `true` for complete status <br> `n`, `no`, `f`, `false` for incomplete status                                                                                            |
+| Optional description | A description of the commission (for instance, the commission requirements)                                            | See [Appendix: Limitations of no-constraint text inputs](#limitations-of-no-constraint-text-inputs)                                                                                       |
+| Optional tags        | A commission may be tagged with any number of tags (including 0) which can be used to help categorise your commissions | Each tag at most 25 alphanumeric and space characters                                                                                                                                     |
 
 ### Viewing a commission: `opencom`
 
@@ -535,7 +551,8 @@ Examples:
 Adds a commission to the currently opened customer.
 
 Format: `addcom n/TITLE f/FEE d/DEADLINE s/STATUS [p/DESCRIPTION] [t/TAG]...​`
-* Fee is the amount you are charging the customer for this commission. _Note: Though there is no limit to the number of decimal places for input, only up to two decimal places will be displayed on the graphical interface._
+* Fee is the amount you are charging the customer for this commission.
+  * _Note: Though there is no limit to the number of decimal places for input, only up to two decimal places will be displayed on the graphical interface._
 * Status states if the commission is done or not and can only take `y`, `yes`, `t`, `true` for complete status and `n`, `no`, `f`, `false` for incomplete status. It is case-insensitive.
 
 Examples:
@@ -590,15 +607,15 @@ ArtBuddy offers the following commands to help you manage your iterations:
 
 Iterations stored in ArtBuddy have the following details:
 
-| Detail      | Explanation                                                                                                     | Constraints                                                                                                                                                     |
-|-------------|-----------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Description | Describes the progress that was made in the iteration ([case sensitive, and must be unique](#unique-iteration)) | See [Appendix: Limitations of no-constraint text inputs](#limitations-of-no-constraint-text-inputs)                                                             |
-| Date        | Records the date tied to the iteration (for instance, when the iteration was created)                           | In <code>YYYY-MM-DD</code> format (four-digit year, followed by a 2-digit month, and 2-digit day number; so "7 November 2022" should be passed as `2022-11-07`) |
-| Image       | A picture that captures how the commission looks like in the current iteration                                  | File path (Refer to [Appendix](#what-are-file-paths-and-root-directories) for more info)                                                                        |
-| Feedback    | Feedback attached to the current iteration (for instance, areas for improvement)                                | See [Appendix: Limitations of no-constraint text inputs](#limitations-of-no-constraint-text-inputs)                                                             |
+| Detail      | Explanation                                                                                                     | Constraints                                                                                                                                                                                  |
+|-------------|-----------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Description | Describes the progress that was made in the iteration ([case sensitive, and must be unique](#unique-iteration)) | See [Appendix: Limitations of no-constraint text inputs](#limitations-of-no-constraint-text-inputs)                                                                                          |
+| Date        | Records the date tied to the iteration (for instance, when the iteration was created)                           | In [`YYYY-MM-DD`](#further-notes-on-command-parameters) format (four-digit year, followed by a 2-digit month, and 2-digit day number; so "7 November 2022" should be passed as `2022-11-07`) |
+| Image       | A picture that captures how the commission looks like in the current iteration                                  | File path (Refer to [Appendix](#what-are-file-paths-and-root-directories) for more info)                                                                                                     |
+| Feedback    | Feedback attached to the current iteration (for instance, areas for improvement)                                | See [Appendix: Limitations of no-constraint text inputs](#limitations-of-no-constraint-text-inputs)                                                                                          |
 
 ### Adding an iteration to a commission: `additer`
-Adds an iteration to the currently selected commission. This can be done either by the
+Adds an iteration to the selected commission. This can be done either by the
 [CLI](#adding-by-the-command-line-interface) or [GUI](#adding-by-graphical-interface).
 
 <div markdown="span" class="alert alert-warning">
@@ -614,7 +631,7 @@ Format: `additer n/DESCRIPTION d/DATE p/FILEPATH f/FEEDBACK`
 
 * The file path specified should be an absolute path from your root directory. If you're not familiar with file paths
 and root directories, you might find the explanation in the [Appendix](#what-are-file-paths-and-root-directories) helpful.
-* The command requires a commission to be selected in the app internally.
+* The command requires a commission to be selected.
 * Currently, only image file types .png, .jpg, .bmp and .gif are supported.
 
 Example:
@@ -653,10 +670,10 @@ move your original copy of the file without affecting the uploaded image on ArtB
 </div>
 
 ### Editing an iteration from commission: `edititer`
-Edits an iteration at `INDEX` in a commission.
+Edits an iteration at `INDEX` in the selected commission.
 
 Format: `edititer INDEX [n/DESCRIPTION] [d/DATE] [p/FILEPATH] [f/FEEDBACK]`
-* The command requires a commission to be selected in the app internally.
+* The command requires a commission to be selected.
 * At least one field to edit must be provided.
 
 Example:
@@ -665,10 +682,10 @@ Example:
 ![Edit Iteration](images/EditIteration.png)
 
 ### Deleting an iteration from commission: `deliter`
-Deletes an iteration at `INDEX` from a commission.
+Deletes an iteration at `INDEX` from the selected commission.
 
 Format: `deliter INDEX`
-* The command requires a commission to be selected in the app internally.
+* The command requires a commission to be selected.
 * You may want to note that your local copy of the image will not be deleted.
 
 Example:
@@ -731,12 +748,12 @@ Suffix: `+` (increasing) or `-` (decreasing)
 Format: `sortcus PREFIX/SUFFIX`
 
 Examples:
-* `sortcus r/+` Sorts the customer list by the total revenue generated from each customer in increasing order.
+* `sortcus r/+` Sorts your customer list by the total revenue generated from each customer in increasing order.
 
 ![sortcus](images/sortcus.png)
 
 ### List the commissions: `listcom`
-Lists all the commissions made by selected customer.
+Lists all the commissions made by the selected customer.
 
 Format: `listcom`
 
@@ -744,7 +761,7 @@ Format: `listcom`
 
 ### Viewing all commissions: `allcom`
 
-Displays all commissions across all customers in ArtBuddy.
+Displays all your commissions made by all customers in ArtBuddy.
 
 Format: `allcom`
 
@@ -754,7 +771,7 @@ To view the commissions for a specific customer, return to the customer list ([`
 ![allcom](images/allcom.png)
 
 ### Find a commission: `findcom`
-Finds all the commissions in the list which satisfy keyword matching in the title and tag filters. The tag filter more specifically will include commissions which contain all tags under `-all` and at least one of the tags under `-any`.
+Finds all the commissions in the list which satisfies your search query. You can also search for commissions by their tags using the `-all` and `-any` filters.
 
 Format: `findcom [k/KEYWORDS]... -all [t/TAGS]... -any [t/TAGS]...`
 * The keywords, all, and any filters are all optional and can be omitted, but at least one should exist.
@@ -773,6 +790,7 @@ Examples:
 </div>
 
 <div style="page-break-after: always;"></div>
+
 ## Miscellaneous
 
 ### Viewing help: `help`
