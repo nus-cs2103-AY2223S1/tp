@@ -74,11 +74,11 @@ This section guides you along the process of downloading and opening FRIDAY.
 This User Guide has been structured in a way to help you find information easily and quickly. In the next subsection,
  you can find a multitude of tips on how to use this User Guide. The following sections documents the main features of FRIDAY.
 
-1. [Student management](#student-management)
-2. [Grading students](#grading-students)
-3. [Organizing students](#organizing-students)
-4. [Miscellaneous features](#miscellaneous-features)
-5. [Features for advanced users](#features-for-advanced-users)
+1. [Student Management](#student-management)
+2. [Grading Students](#grading-students)
+3. [Organizing Students](#organizing-students)
+4. [Advanced Features](#advanced-features)
+5. [Miscellaneous Features](#miscellaneous-features)
 
 ### Reading This Document
 This section on reading the document will introduce you to some technical terms and formats that will be used throughout the guide.
@@ -164,8 +164,8 @@ This section contains all the information and details of each feature of **FRIDA
 1. [Student Management](#student-management)
 2. [Grading Students](#grading-students)
 3. [Organizing Students](#organizing-students)
-4. [Miscellaneous Features](#miscellaneous-features)
-5. [Features for Advanced Users](#features-for-advanced-users)
+4. [Advanced Features](#advanced-features)
+5. [Miscellaneous Features](#miscellaneous-features)
 
 <div style="page-break-after: always;"></div>
 
@@ -317,8 +317,7 @@ Format: `remark INDEX [r/REMARK]`
 remove any existing remark for the specified student.<br>
 </div>
 
-Example: 
-
+Example:
 
 Let's say you wish to add a remark "Aspiring to be a CS1101S TA for next year" for a student (Alex Yap) to take
 note and remind yourself that Alex Yap is interested in applying for the CS1101S TA position.<br>
@@ -353,7 +352,7 @@ The table below shows a list of command parameters that will be used.
 | `RA2_SCORE`       | The student's score for the second Reading Assessment.                                                                                                                                             | `100`                                                                               |
 | `PRACTICAL_SCORE` | The student's score for the Practical Assessment.                                                                                                                                                  | `69.5`                                                                              |
 | `MIDTERM_SCORE`   | The student's score for the Midterm Test.                                                                                                                                                          | `40.37`                                                                             |
-| `FINALS_SCORE`    | The student's score for the Final Examination.                                                                                                                                                     | `80.1`                                                                              |
+| `FINALS_SCORE`    | The student's score for the Final Test.                                                                                                                                                            | `80.1`                                                                              |
 | `INDEX`           | The index of the student in the displayed list.                                                                                                                                                    | E.g. Typing `1` would mean the student at the first position in the displayed list. |
 
 #### Recording grades for a student: `grade`
@@ -402,12 +401,7 @@ Outcome:
 
 #### Marking a student's Mastery Check as passed: `mark`
 
-After a student has passed their [Mastery Check](#glossary), you can use the `mark` command to mark their Mastery Check as passed. This will update the list of students with the status of the specified student's Mastery Check.
-
-The Mastery Check of a student can only be marked as passed if:
-1. It has not already been marked as passed.
-2. The student has a scheduled Mastery Check date (i.e. the student's Mastery Check field is not empty).
-3. The scheduled date of the Mastery Check is not beyond the current date.
+Mark a student's Mastery Check as passed.
 
 Format: `mark INDEX`
 
@@ -416,42 +410,77 @@ Format: `mark INDEX`
 * The index of the student must be specified and there should be exactly one `INDEX` parameter.
 </div>
 
-Example: Enter `mark 1`.
+<div markdown="block" class="alert alert-info">
 
+**:information_source: Notes about marking Mastery Checks:**<br>
+
+The Mastery Check of a student can only be marked as passed if:
+1. It has not already been marked as passed.
+2. The student has a scheduled Mastery Check date (i.e. the student's Mastery Check field is not empty).
+3. The scheduled date of the Mastery Check is not beyond the current date.
+
+</div>
+
+Example:
+
+Let's say the first student in your list has passed their [Mastery Check](#glossary). You can follow the steps below to mark their Mastery Check as passed.
+
+Steps:
+1. Type `mark 1` in the *Command Box*.
+2. Press `Enter` to execute.
+
+Initial: The first student in the list, Alex Yeoh, does not have their Mastery Check marked as passed.
 ![MarkCommandBefore.png](images/MarkCommandBefore.png)
-<i> Before mark command</i>
+<i>Before mark command</i>
 
+Outcome: 
 
-Outcome: The Mastery Check of the first student in the list has been marked as passed.
+1. FRIDAY will mark the Mastery Check of the first student as passed and update the list of students with the status of the specified student's Mastery Check by adding a "(passed)" status to their Mastery Check.
+2. The *Result Display* will show a success message.
 
 ![MarkCommandOutcome.png](images/MarkCommandOutcome.png)
-<i> Outcome of mark command</i>
-
-As you can see, a "(passed)" status is added to student 1's Mastery Check after the `mark` command is run.
+<i>Outcome of mark command</i>
 
 #### Unmarking a student's Mastery Check: `unmark`
 
-Unmarks the [Mastery Check](#glossary) of a specified student and removes its "(passed)" status. This will come in handy if you accidentally mark the Mastery Check of a student as passed, even though that is not the case.
-
-The Mastery Check of a student can only be unmarked if:
-1. It has already been marked as passed.
-2. The student has a scheduled Mastery Check date (i.e. the student's Mastery Check field is not empty)
+Unmarks the [Mastery Check](#glossary) of a specified student.
 
 Format: `unmark INDEX`
+
 <div markdown="block" class="alert alert-info">
 **:information_source: Note:** <br>
 * The index of the student must be specified and there should be exactly one `INDEX` parameter.
 </div>
 
-Example: Enter `unmark 1` (Assuming student 1's Mastery Check has previously been marked as passed).
+<div markdown="block" class="alert alert-info">
 
+**:information_source: Notes about unmarking Mastery Checks:**<br>
+
+The Mastery Check of a student can only be unmarked if:
+1. It has already been marked as passed.
+2. The student has a scheduled Mastery Check date (i.e. the student's Mastery Check field is not empty).
+
+</div>
+
+Example:
+
+Let's say you have accidentally marked the Mastery Check of the first student in your list as passed, even though that is not the case. You can follow the steps below to unmark this student's Mastery Check.
+
+Steps:
+1. Type `unmark 1` in the *Command Box*.
+2. Press `Enter` to execute.
+
+Initial: The first student in the list, Alex Yeoh, has their Mastery Check marked as passed.
 ![UnmarkCommandBefore.png](images/UnmarkCommandBefore.png)
-<i> Before unmark command</i>
+<i>Before unmark command</i>
 
-Outcome: The Mastery Check of the first student in the list has been unmarked.
+Outcome: 
+
+1. FRIDAY will unmark the Mastery Check of the first student and update the list of students with the status of the specified student's Mastery Check by removing the "(passed)" status from their Mastery Check.
+2. The *Result Display* will show a success message.
 
 ![UnmarkCommandOutcome.png](images/UnmarkCommandOutcome.png)
-<i> Outcome of unmark command</i>
+<i>Outcome of unmark command</i>
 
 As you can see, the "(passed)" status has been removed from student 1's Mastery Check after the `unmark` command is run.
 
@@ -544,7 +573,7 @@ Format: `find KEYWORDS`
 Example: 
 
 
-Lets say you need to access a student alex to view his final examination grades. You can do so by following the steps below to find the student.
+Let's say you need to access a student alex to view his final examination grades. You can do so by following the steps below to find the student.
 
 Steps:
 1. Type `find alex` in the <i>command box</i>.
@@ -585,7 +614,7 @@ Outcome:
 
 <div style="page-break-after: always;"></div>
 
-### Features For Advanced Users
+### Advanced Features
 
 These features help you personalize your FRIDAY experience and improve your productivity when using FRIDAY.
 
@@ -704,28 +733,88 @@ Other features that aid you in using FRIDAY.
 
 #### Getting User Guide link: `guide`
 
-If you ever need to refer to our User Guide while using FRIDAY, use this command to obtain the link to FRIDAY's User Guide.
+Get a link to FRIDAY's User Guide.
 
 Format: `guide`
 
+Example:
+
+If you ever need to refer to our User Guide while using FRIDAY, you can follow the steps below to get a link to this User Guide.
+
+Steps:
+
+1. Type `guide` in the *Command Box*.
+2. Press `Enter` to execute.
+
+Outcome:
+1. The link to this User Guide will be shown in the *Result Display*, which you can copy and paste into your browser in order to access this User Guide.
+
+![GuideCommandOutcome.png](images/GuideCommandOutcome.png)
+<i>Outcome of guide command</i>
+
 #### Getting help: `help`
 
-Shows a summary of commands along with their command word used in FRIDAY. This allows you to have an easily accessible summary when using FRIDAY.<br>
+Get help in using FRIDAY in the form of a summary of commands along with their command word.<br>
 It also includes a link to this User Guide if needed.
 
 Format: `help`
 
+Example:
+
+Let's say you have forgotten what commands are available in FRIDAY. You can follow the steps below to see a command summary and get the link to this User Guide.
+
+Steps:
+
+1. Type `help` in the *Command Box*.
+2. Press `Enter` to execute.
+
+Outcome:
+1. A new window with the command summary and a button to copy the link to this User Guide to your clipboard will be opened.
+2. The *Result Display* will show a success message.
+
+![HelpCommandOutcome.png](images/HelpCommandOutcome.png)
+<i>Outcome of help command</i>
+
 #### Clearing all existing data: `clear`
 
-On your first launch of FRIDAY, a sample list of students is displayed. The `clear` command allows you to clear this and any other existing data in FRIDAY, resulting in an empty Student list.
+Clear all existing data in FRIDAY.
 
 Format: `clear`
 
+Example:
+
+On your first launch of FRIDAY, the application will open a sample list of students for you to try the commands on. Let's say you are done with this and are ready to start making your own list of students. You can follow the steps below to clear the existing list of students in FRIDAY.
+
+Steps:
+
+1. Type `clear` in the *Command Box*.
+2. Press `Enter` to execute.
+
+Outcome:
+
+1. FRIDAY clears all existing students in the list.
+2. The *Result Display* will show a success message.
+
+![ClearCommandOutcome.png](images/ClearCommandOutcome.png)
+<i>Outcome of clear command</i>
+
 #### Exiting FRIDAY : `exit`
 
-Exits FRIDAY. See you again soon!
+Exits FRIDAY and closes the application.
 
 Format: `exit`
+
+Example:
+
+Now that you are done using FRIDAY for now, you can follow the steps below to close the application.
+
+Steps:
+
+1. Type `exit` in the *Command Box*.
+2. Press `Enter` to execute.
+
+Outcome:
+1. FRIDAY is closed.
 
 #### Saving the data
 
@@ -751,19 +840,18 @@ If your changes to the data file makes its format invalid, FRIDAY will ignore al
 Some Frequently Asked Questions:
 
 **Q**: How do I transfer my data to another computer?<br>
-**A**: Install FRIDAY in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FRIDAY home folder.
+**A**: By default, FRIDAY saves all your data in a folder named `data` in the same directory as the application. You may follow the steps below to transfer your data to another computer:
+1. Install FRIDAY in the other computer as per the steps given in the [Quick Start section](#quick-start).
+2. Make a copy of the `data` folder from the original computer you used to run FRIDAY.
+3. Place this copy in the *home folder* of FRIDAY in the other computer. If there already exists a `data` folder in this other computer, simply replace the folder with this copy.
+4. Run FRIDAY.
 
 **Q**: I accidentally made the data file invalid and now my old data does not show in FRIDAY. How do I fix this?<br>
-**A**: To retrieve the old data, revert all invalid changes in the data file **before running any commands** in FRIDAY.
+**A**: To retrieve the old data, revert all invalid changes in the data file before running any commands in FRIDAY.
 
-**Q**: Which computers can run this software?<br>
-**A**: All computers can run this software as it not limited by hardware. However on the software side Windows computers <br>
-       minimally must be of version 7. All versions above Windows 7 should be compatible. All MacOS versions above Version 10.10 (Yosemite) will be compatible with FRIDAY.
-
-**Q**: What if I am not good at typing. Is FRIDAY for me?<br>
+**Q**: What if I am not good at typing? Is FRIDAY for me?<br>
 **A**: Yes Friday is still for you. Why you may ask? The commands are still very short and even if you are a slow typist,
-       you will be saving time as compared to pen and paper or an Excel sheet. <br>
-       Furthermore, FRIDAY is more aesthetically pleasing and has all the necessary features easily accessible at your fingertips.
+       you will be saving time as compared to using pen and paper or a spreadsheet such as Microsoft Excel.
 
 **Q**: What are the additional features coming to FRIDAY?<br>
 **A**: FRIDAY is always expanding to serve you better. In the near future you can expect to see:
@@ -782,24 +870,42 @@ Some Frequently Asked Questions:
 
 ## Command Summary
 
-| Action                                       | Format                                                                                                  |
-|----------------------------------------------|---------------------------------------------------------------------------------------------------------|
-| **Add a student**                            | `add n/NAME [t/TELEGRAM_HANDLE] [c/CONSULTATION_DATE] [m/MASTERY_CHECK_DATE] [tag/TAG]...`              |
-| **Delete a student**                         | `delete INDEX`                                                                                          |
-| **Edit a student's details**                 | `edit INDEX [n/NAME] [t/TELEGRAM_HANDLE] [c/CONSULTATION] [m/MASTERY_CHECK] [tag/TAG]...`               |
-| **Add remarks for a student**                | `remark INDEX [r/REMARK]`                                                                               |
-| **Record the grades for a student**          | `grade INDEX [ra1/RA1_SCORE] [ra2/RA2_SCORE] [pa/PRACTICAL_SCORE] [mt/MIDTERM_SCORE] [ft/FINALS_SCORE]` |
-| **Find a student's details**                 | `find KEYWORDS`                                                                                         |
-| **Mark a student's Mastery Check as passed** | `mark INDEX`                                                                                            |
-| **Unmark a student's Mastery Check**         | `unmark INDEX`                                                                                          |
-| **View all students**                        | `list`                                                                                                  |
-| **Sort students**                            | `sort CRITERIA/ORDER`                                                                                   |
-| **Add Alias**                                | `alias a/ALIAS k/COMMAND_KEYWORD`                                                                       |
-| **Delete Alias**                             | `unalias a/ALIAS`                                                                                       |
-| **View all alias**                           | `aliaslist`                                                                                             |
-| **Get a link to the User Guide**             | `guide`                                                                                                 |
-| **Getting Help**                             | `help`                                                                                                  |
-| **Exiting FRIDAY**                           | `exit`                                                                                                  |
+### Commands for Student Management
+| Action                           | Format                                                                                     |
+|----------------------------------|--------------------------------------------------------------------------------------------|
+| **Adding a student**             | `add n/NAME [t/TELEGRAM_HANDLE] [c/CONSULTATION_DATE] [m/MASTERY_CHECK_DATE] [tag/TAG]...` |
+| **Deleting a student**           | `delete INDEX`                                                                             |
+| **Editing a student's details**  | `edit INDEX [n/NAME] [t/TELEGRAM_HANDLE] [c/CONSULTATION] [m/MASTERY_CHECK] [tag/TAG]...`  |
+| **Adding remarks for a student** | `remark INDEX [r/REMARK]`                                                                  |
+
+### Commands for Grading Students
+| Action                                          | Format                                                                                                  |
+|-------------------------------------------------|---------------------------------------------------------------------------------------------------------|
+| **Recording the grades for a student**          | `grade INDEX [ra1/RA1_SCORE] [ra2/RA2_SCORE] [pa/PRACTICAL_SCORE] [mt/MIDTERM_SCORE] [ft/FINALS_SCORE]` |
+| **Marking a student's Mastery Check as passed** | `mark INDEX`                                                                                            |
+| **Unmarking a student's Mastery Check**         | `unmark INDEX`                                                                                          |
+
+### Commands for Organizing Students
+| Action                          | Format                |
+|---------------------------------|-----------------------|
+| **Sorting students**            | `sort CRITERIA/ORDER` |
+| **Finding a student's details** | `find KEYWORDS`       |
+| **Viewing all students**        | `list`                |
+
+### Commands for Advanced Features
+| Action                | Format                                                                                                  |
+|-----------------------|---------------------------------------------------------------------------------------------------------|
+| **Adding alias**      | `alias a/ALIAS k/COMMAND_KEYWORD`                                                                       |
+| **Deleting alias**    | `unalias a/ALIAS`                                                                                       |
+| **Viewing all alias** | `aliaslist`                                                                                             |
+
+### Commands for Miscellaneous Features
+| Action                               | Format  |
+|--------------------------------------|---------|
+| **Getting a link to the User Guide** | `guide` |
+| **Getting help**                     | `help`  |
+| **Clearing all existing data**       | `clear` |
+| **Exiting FRIDAY**                   | `exit`  |
 
 [Back to top](#table-of-contents)
 
@@ -807,40 +913,40 @@ Some Frequently Asked Questions:
 <div style="page-break-after: always;"></div>
 
 ## Glossary
-1. **CS1101S:** CS1101S Programming Methodology is a Computer Science module in National Univeristy of Singapore (NUS), School of Computing. This module introduces the concepts of programming and computational problem-solving, and is the first and foremost introductory module to computing, hence it is usually taken by first year Computer Science undergraduate students.
+1. **CS1101S:** CS1101S Programming Methodology is a Computer Science module in National University of Singapore (NUS), School of Computing. This module introduces the concepts of programming and computational problem-solving, and is the first and foremost introductory module to computing, hence it is usually taken by first year Computer Science undergraduate students.
 
 2. **Teaching Assistant:** Teaching assistants (TA) are people who help and support teachers or lecturers to provide and coordinate effective classroom instruction. For CS1101S, teaching assistants are undergraduate students who have completed the module. The role of a CS1101S TA involves planning, preparing and delivering weekly tutorial sessions, marking assignments and monitoring their students' progress and engagement levels.
 
-3. **CLI:** CLI stands for command line interface. It is a system wherein the user enters textual one line inputs into an input box and the computer responds with a textual or graphical output.
+3. **CLI:** CLI stands for command line interface. It is a system wherein the user enters textual one line inputs into an input box and the program responds with a textual or graphical output.
 
-4. **GUI:** GUI stands for graphical user interface. It is the opposite of CLI wherein the user interacts with icons and items on the screen to communicate with the computer. Outputs are also displayed in graphical form.
+4. **GUI:** GUI stands for graphical user interface, where the user interacts with icons and items on the screen to communicate with the program. Outputs are also displayed in graphical form.
 
-5. **Java:** Java is a programming language introduced in the 90's. It is used to create many applications that you use today. Including this one.
+5. **Java:** Java is a programming language introduced in the 90's. It is used to create many applications that you use today.
 
 6. **JAR:** The file format of FRIDAY.
 
 7. **Home folder:** The folder in which you want to store all FRIDAY-related files.
 
-8. **Command:** The text that you enter in the input box is a command.
+8. **Command:** The instruction to be given to FRIDAY to execute certain tasks. This refers to the text that you enter into the *Command Box*.
 
-9. **Parameter:** The text that follows the first word of your input in the input box.
+9. **Parameter:** Parameters are the details associated with the commands. This text comes after the command word of your command.
 
-10. **Prefix:** A word or letter used in commands to specify the field you are adding, editing or sorting by.
+10. **Prefix:** A word or letter used in commands to specify the parameters of the command.
 
-11. **RA1:** Reading assessment 1 is a minor assessment in the CS1101S module that tests the content of the first half of the CS1101S module.
+11. **Mastery Check:** A pass/fail assessment on students to assess their understanding of the concepts taught. There are 2 Mastery checks per semester.
 
-12. **RA2:** Reading assessment 2 is a minor assessment in the CS1101S module that tests the content of the second half of the CS1101S module.
+12. **Telegram Handle:** The username in the widely-used messaging application Telegram.
 
-13. **Midterm:** Midterm examination is a major assessment that occurs halfway through the CS1101S module.
+13. **Reading Assessment (RA1/RA2):** Assessments in the form of online quiz with Multiple-Choice Questions (MCQ). There are a total of two reading assessments, namely RA1 and RA2, throughout the semester.
 
-14. **Practical:** Practical examination is a major non-paper assessment that occurs at the end of the CS1101S module.
+14. **Midterm Test:** Midterm Test is a major assessment that occurs halfway through the CS1101S module.
 
-15. **Final:** Final examination is a major paper assessment that occurs at the end of the CS1101S module.
+15. **Practical Assessment:** Practical Assessment is a major assessment that occurs at the end of the CS1101S module.
 
-16. **Mastery Check:** A pass/fail assessment on students to assess their understanding of the concepts taught. There are 2 Mastery checks per semester.
+16. **Final Test:** Final Test is a major assessment that occurs at the end of the CS1101S module.
 
-17. **Alias:** A nickname or an alternate name that you can set for a command.
+17. **Alias:** An alternate name that you can set for a command.
 
-18. **Telegram Handle:** The username in the widely-used messaging application Telegram.
+
 
 [Back to top](#table-of-contents)
