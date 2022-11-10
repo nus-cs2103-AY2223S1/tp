@@ -213,6 +213,8 @@ Format: `add n/NAME [t/TELEGRAM_HANDLE] [c/CONSULTATION_DATE] [m/MASTERY_CHECK_D
 
 
 Example: 
+
+
 Let's say you want to add a student named Alex Yeoh, with Telegram handle as "@al3xx", consultation date on 2022-10-25,
 Mastery Check date on 2022-08-16, and the tags "cool guy" and "quiet". You can follow the steps below. 
 
@@ -240,6 +242,8 @@ Format: `delete INDEX`
 </div>
 
 Example:
+
+
 Let's say you want to delete the 3rd student in the list. You can follow the steps below. 
 
 Steps:
@@ -270,6 +274,8 @@ optional fields, but there should be at least one field specified for the `edit`
 </div>
 
 Example: 
+
+
 Let's say you have incorrect and missing details for a student, and you wish to update them accordingly. For 
 instance, you wish to change the name, Telegram handle, consultation date, Mastery Check date and tags of the student 
 to "Alex Yap", "@AlexYap", "2022-10-10", "2022-11-06" and the tags "Experienced coder" and "Intern" respectively.<br>
@@ -312,6 +318,8 @@ remove any existing remark for the specified student.<br>
 </div>
 
 Example: 
+
+
 Let's say you wish to add a remark "Aspiring to be a CS1101S TA for next year" for a student (Alex Yap) to take
 note and remind yourself that Alex Yap is interested in applying for the CS1101S TA position.<br>
 You can follow the steps below to add the remark for the student.
@@ -373,6 +381,8 @@ Format: `grade INDEX [ra1/RA1_SCORE] [ra2/RA2_SCORE] [pa/PRACTICAL_SCORE] [mt/MI
 </div>
 
 Example: 
+
+
 Let's say you wish to enter the grades of a student (Alex Yap) into FRIDAY, with the scores of "90" for 
 Reading Assessment 1, "80.1" for Reading Assessment 2, "100.0" for Practical Assessment, "85.23" for Midterm Test, and 
 "78" for Final Test.<br>
@@ -495,6 +505,8 @@ Format: `sort CRITERIA/ORDER`
 </div>
 
 Example:
+
+
 Let's say you want to see which students have [Mastery Checks](#glossary) closest to the current date.
 To achieve that, you can sort the list according to the students' Mastery Check dates, by following the steps below.
 
@@ -529,7 +541,10 @@ Format: `find KEYWORDS`
 * When searching for exam grade, use the format `find [exam_name:EXAM_SCORE]`.
 </div>
 
-Example: Lets say you need to access a student alex to view his final examination grades. You can do so by following the steps below to find the student.
+Example: 
+
+
+Lets say you need to access a student alex to view his final examination grades. You can do so by following the steps below to find the student.
 
 Steps:
 1. Type `find alex` in the <i>command box</i>.
@@ -550,6 +565,21 @@ Outcome:
 Lists all students in FRIDAY. This helps you to reset the sorting and finding done by the `sort` and `find` commands respectively.
 
 Format: `list`
+
+Example:
+
+Let's say you just used the `find` command to `find` students named alex. Now, you want to view all your students. You can follow the steps below to view all students.
+
+Steps:
+
+1. Type `list` in the *Command Box*.
+2. Press `Enter` to execute.
+
+Outcome:
+
+1. FRIDAY will display all students you have.
+2. The *Result Display* will show a success message.
+
 
 [Back to top](#table-of-contents)
 
