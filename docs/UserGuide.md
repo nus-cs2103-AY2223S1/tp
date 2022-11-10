@@ -76,17 +76,19 @@ Now, let’s continue to learn how to [navigate the application](#tutorial-navig
 
 <div style="page-break-after: always;"></div>
 
-<img src="images/UiDetails.png" width="800" /> <br>
+<img src="images/UiDetails.png" width="800" />
 
-| Number | Component Name       | Details                                                                                                                                           |
-|:------:|----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|
-|   1.   | Command Line Section | The section where you can enter commands for PayMeLah, and where the status of your commands are displayed.                                       |
-|   2.   | Debt List Section    | The section showing details about each debt of a person.                                                                                          |
-|   3.   | Person List Section  | The section showing the list of people added to PayMeLah. The names can be clicked to show their personal details as well as their list of debts. |
+| Number | Component Name       | Details                                                                                                                                                                       |
+|:------:|----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|   1.   | Command Line Section | The section where you can enter commands for PayMeLah, and where the status of your commands are displayed.                                                                   |
+|   2.   | Person List Section  | The section showing the list of people added to PayMeLah. The names can be clicked to show their person card, containing their person details as well as their list of debts. |
+|   3.   | Debt List Section    | The section showing details about each debt of a person.                                                                                                                      |
 
 <div style="page-break-after: always;"></div>
 
-<img src="images/CommandLineSection.png" width="800" /> <br>
+#### Command Line Section
+
+<img src="images/CommandLineSection.png" width="800" />
 
 | Number | Component Name | Details                                                                                                                                               |
 |:------:|----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -95,7 +97,9 @@ Now, let’s continue to learn how to [navigate the application](#tutorial-navig
 
 <div style="page-break-after: always;"></div>
 
-<img src="images/PersonCard.png" width="800" /> <br>
+#### Person List Section
+
+<img src="images/PersonCard.png" width="800" />
 
 | Number | Component Name  | Details                                       |
 |:------:|-----------------|-----------------------------------------------|
@@ -109,7 +113,9 @@ Now, let’s continue to learn how to [navigate the application](#tutorial-navig
 
 <div style="page-break-after: always;"></div>
 
-<img src="images/DebtList.png" width="800" /> <br>
+#### Debt List Section
+
+<img src="images/DebtList.png" width="800" />
 
 | Number | Component Name | Details                                     |
 |:------:|----------------|---------------------------------------------|
