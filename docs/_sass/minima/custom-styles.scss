@@ -28,7 +28,8 @@ h2, h3, h4, h5, h6 {
 
 @each $color, $value in $theme-colors {
   .alert-#{$color} {
-    @include alert-variant(color-level($value, $alert-bg-level), color-level($value, $alert-border-level), color-level($value, $alert-color-level));
+    @include alert-variant(color-level($value, $alert-bg-level), color-level($value, $alert-border-level),
+            color-level($value, $alert-color-level));
   }
 }
 
@@ -66,6 +67,13 @@ kbd {
 // Custom link styles
 .page-content a {
   font-weight: 600;
+}
+
+table .text-red a,
+table .text-blue a,
+table .text-green a,
+table .text-pink a {
+  color: inherit;
 }
 
 // Custom text colors
