@@ -1520,8 +1520,6 @@ For instance, in the `edit person 1 -n Name` example command,
 
 Find out more in the [understanding TruthTable's CLI section](#understanding-truthtables-cli).
 
-### Positional Parameter
-
 ### Index
 
 Refers to the position of an item in some collection.
