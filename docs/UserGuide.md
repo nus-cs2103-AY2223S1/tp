@@ -166,7 +166,7 @@ of the selected internship will be shown here.
 
 # Features
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-info" style="page-break-after: always;">
 
 **:information_source: Notes about the command format:**<br>
 
@@ -187,12 +187,6 @@ of the selected internship will be shown here.
   E.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
-
-
-
-
-
-<div style="page-break-after: always;"></div>
 
 ## General Features
 
