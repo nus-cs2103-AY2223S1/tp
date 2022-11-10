@@ -1203,7 +1203,9 @@ Deletes everything from the application, including persons, teams, tasks, links,
 
 #### Switching between light and dark theme: `theme`
 
-Toggles between light theme and dark theme.
+Whether you're someone that likes a light theme or dark theme, we've got you covered! 
+
+This command allows you to toggle between light theme and dark theme.
 
 **Format:** `theme [-h]`
 
