@@ -25,6 +25,7 @@ Click [here](#tutorial-for-cli) to learn more about what is CLI.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Table of Contents
 
@@ -59,6 +60,7 @@ Click [here](#tutorial-for-cli) to learn more about what is CLI.
 7. [Glossary](#glossary)
 
 ---
+<div style="page-break-after: always;"></div>
 
 ## Quick Start
 
@@ -86,6 +88,7 @@ Note how the app contains some sample data. If the app does not start and an `er
 7. Refer to the **Features** section below for details of each command.
 
 ---
+<div style="page-break-after: always;"></div>
 
 ## Overview of Features
 
@@ -125,6 +128,7 @@ understanding of basic functionalities of `Arrow`, before diving into specific c
     10. Editing a Task
     11. Listing all project title
 
+<div style="page-break-after: always;"></div>
 
 ## Features
 
@@ -162,6 +166,7 @@ it will be completed and disappears from the task panel as it is NOT incomplete.
 
 </div>
 
+<div style="page-break-after: always;"></div>
 
 ---
 ## Basic Commands
@@ -570,6 +575,8 @@ add tasks of the same name (different projects) since categorisation will be don
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## Command Summary
 
 This summary provides a list of useful and straightforward instructions on how to use the command lines more efficiently.
@@ -611,6 +618,8 @@ This summary provides a list of useful and straightforward instructions on how t
 | Task project | `task project`                                                                                                 | -                                       |
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## FAQ
 
@@ -676,6 +685,8 @@ Details of each task can be added, which helps the team managers no fear of leav
 **Arrow** helps tracking details of every team member and links them to their tasks to be finished.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## Glossary
 
