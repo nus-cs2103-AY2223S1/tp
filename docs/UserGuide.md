@@ -726,19 +726,19 @@ If you are trying to locate a debt by its description, consider using the [`find
 
 ## Glossary
 
-* _Command_: An instruction for PayMeLah to execute. All commands start with a _command phrase_ and any inputs the command may require.
-* _Command Line Interface (CLI)_: The method by which you instruct PayMeLah to perform tasks, which is by entering _commands_ into the _command box_.
-* _Command phrase_: The name of the instruction for PayMeLah to execute. For example, `list` is the command phrase to show the list of people added to PayMeLah.
-* _Debt_: A transaction event (e.g. group purchase, shared Grab food order) where someone owes you money.
-* _Debt index_: The number that appears next to each _debt_’s description in a person’s _debt list_.
-* _Debtor_: A person who owes you money.
-* _Enter[ing]_ a command: Type the _command_ into the _command box_, and press the <kbd>Enter</kbd> key.
-* _Index_: The number that appears next to each person’s name or each _debt_’s description.
-* _Input_: Additional information supplied by you that is used to run a _command_.
-* _JSON file_: A type of file used by many applications to store data in a format easily readable and editable by advanced users.
-* _Keyboard shortcut_: A key or sequence of keys which you may press to perform actions without your mouse.
-* _Person index_: The number that appears next to each person’s name in the _person list_.
-* _Prefix_: A short piece of text indicating what type of information follows. For example, `n/` is the prefix that indicates that what follows is a name.
+* <span id="glossary-command">_Command_</span>: An instruction for PayMeLah to execute. All commands start with a _command phrase_ and any inputs the command may require.
+* <span id="glossary-command-line-interface-cli">_Command Line Interface (CLI)_</span>: The method by which you instruct PayMeLah to perform tasks, which is by entering _commands_ into the _command box_.
+* <span id="glossary-command-phrase">_Command phrase_</span>: The name of the instruction for PayMeLah to execute. For example, `list` is the command phrase to show the list of people added to PayMeLah.
+* <span id="glossary-debt">_Debt_</span>: A transaction event (e.g. group purchase, shared Grab food order) where someone owes you money.
+* <span id="glossary-debt-index">_Debt index_</span>: The number that appears next to each _debt_’s description in a person’s _debt list_.
+* <span id="glossary-debtor">_Debtor_</span>: A person who owes you money.
+* <span id="glossary-entering-a-command">_Enter[ing]_ a command</span>: Type the _command_ into the _command box_, and press the <kbd>Enter</kbd> key.
+* <span id="glossary-index">_Index_</span>: The number that appears next to each person’s name or each _debt_’s description.
+* <span id="glossary-input">_Input_</span>: Additional information supplied by you that is used to run a _command_.
+* <span id="glossary-json-file">_JSON file_</span>: A type of file used by many applications to store data in a format easily readable and editable by advanced users.
+* <span id="glossary-keyboard-shortcut">_Keyboard shortcut_</span>: A key or sequence of keys which you may press to perform actions without your mouse.
+* <span id="glossary-person-index">_Person index_</span>: The number that appears next to each person’s name in the _person list_.
+* <span id="glossary-prefix">_Prefix_</span>: A short piece of text indicating what type of information follows. For example, `n/` is the prefix that indicates that what follows is a name.
 
 [Return to Table of Contents](#table-of-contents)
 
