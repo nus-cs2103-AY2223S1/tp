@@ -849,7 +849,7 @@ TaskBook data is saved as a JSON file `[JAR file location]/data/taskbook.json`. 
 
 <div markdown="span" class="alert alert-warning">
 
-**:exclamation: Caution:**
+**:exclamation: Caution:**<br>
 
 * If your changes to the data file makes its format invalid, TaskBook will discard all data and start with an empty data file on the next run.
 
