@@ -47,7 +47,7 @@ Boxes like this indicate extra information you might be curious about.
 Boxes like this indicate more tips to help you make the most out of CodeConnect.
 
 </div>
-<div style="page-break-after: always;"></div>
+<div class="page-new"></div>
 
 ## Quick start
 
@@ -65,7 +65,7 @@ CodeConnect works on all major OSes (Windows, Mac, Linux) and only requires Java
 
     ![UiOnStartup](images/UiOnStartup.png)
 
-<div style="page-break-after: always;"></div>
+<div class="page-new"></div>
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -83,7 +83,7 @@ CodeConnect works on all major OSes (Windows, Mac, Linux) and only requires Java
 6. Refer to the [Features](#features) below for details of all available commands.
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
+<div class="page-new"></div>
 
 ## Navigating CodeConnect
 
@@ -100,7 +100,7 @@ This section explains the various graphical components of CodeConnect's interfac
 | 5   | Contact/Task List | Display current contacts/tasks, depending on command executed.                    |
 | 6   | Data File Path    | Location of the file in your computer where your contact and task data is stored. |
 
-<div style="page-break-after: always;"></div>
+<div class="page-new"></div>
 
 ## Features
 
@@ -126,8 +126,6 @@ CodeConnect has 2 main sets of commands, one set to manage your contacts and one
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. If the command specifies `help 123`, it will be interpreted as `help`.
 
-<div style="page-break-after: always;"></div>
-
 <div markdown="block" class="alert alert-info">
 
 :bulb: A Note on Indexes
@@ -138,7 +136,7 @@ Several commands below require an `index` to be specified, as they operate on a 
 * This value ranges from 1, 2, 3...
 
 </div>
-<div style="page-break-after: always;"></div>
+<div class="page-new"></div>
 
 ### Managing tasks
 
@@ -178,7 +176,7 @@ We will attempt to resolve these issues in a future version.
 
 </div>
 
-<div style="page-break-after: always;"></div>
+<div class="page-new"></div>
 
 <div markdown="block" class="alert alert-info">
 
@@ -216,7 +214,7 @@ Examples:
 `field_prefix` can be any task field used in the [add task command](#adding-a-task-add).
 
 </div>
-<div style="page-break-after: always;"></div>
+<div class="page-new"></div>
 
 #### Deleting a task: `del`
 
@@ -240,7 +238,7 @@ Format: `clean`
 This command has similar spelling to the [clear command](#clearing-all-contacts--clear), which **deletes all contacts**.
 
 </div>
-<div style="page-break-after: always;"></div>
+<div class="page-new"></div>
 
 #### Marking a task: `mark`
 
@@ -264,7 +262,7 @@ Format:
 Example:
 `unmark 3` - undo the marking of the task at index 2 shown by a cross beside the task description.
 
-<div style="page-break-after: always;"></div>
+<div class="page-new"></div>
 
 #### Finding tasks: `find`
 
@@ -291,7 +289,7 @@ Examples:
 * `find m/CS2030S CS2040S` - returns all tasks with module that matches "CS2030S" or "CS2040S".
 * `find m/20` - returns all tasks with module that matches "20".
 
-<div style="page-break-after: always;"></div>
+<div class="page-new"></div>
 
 `find m/CS2103T` returns this:
 
@@ -316,7 +314,7 @@ Format: `list`  `list time`
 </div>
 
 Click [here](#introduction) to return to the top of the page.
-<div style="page-break-after: always;"></div>
+<div class="page-new"></div>
 
 ### Managing contacts
 
@@ -349,7 +347,7 @@ Due to the limitations of the code, the adding of same names is currently not su
 E.g. `addc n/John Lim p/80009123` will not work if there is already a contact with name `John Lim`. To add this contact, you can try adding a descriptor such as (school) by doing `addc n/John Lim (school) p/80009123`, or simply make the name of the contact to be added different from `John Lim`.
 
 </div>
-<div style="page-break-after: always;"></div>
+<div class="page-new"></div>
 
 #### Listing all contacts : `listc`
 
@@ -366,7 +364,7 @@ Format: `delc {contact_index}`
 Examples:
 * `delc 2` - deletes the contact at index 2 from the contact list.
 
-<div style="page-break-after: always;"></div>
+<div class="page-new"></div>
 
 #### Editing a contact : `editc`
 
@@ -386,7 +384,7 @@ Examples:
 `field_prefix` can be any contact field used in the [add contact command](#adding-a-contact-addc).
 
 </div>
-<div style="page-break-after: always;"></div>
+<div class="page-new"></div>
 
 #### Finding contacts: `findc`
 
@@ -429,7 +427,7 @@ Example:
 There's a command for that! See [find contacts command](#finding-contacts-findc).
 
 </div>
-<div style="page-break-after: always;"></div>
+<div class="page-new"></div>
 
 #### Clearing all contacts : `clear`
 
@@ -437,8 +435,10 @@ Deletes all contacts.
 
 Format: `clear`
 
-<div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+
 Deleted contacts are **unrecoverable**!
+
 </div>
 
 Click [here](#introduction) to return to the top of the page.
@@ -508,7 +508,7 @@ If your changes to the data file makes its format invalid, CodeConnect will disc
 | **Quick contact search**   | `saveme`                                                                                                                                                                                                     |
 | **Clear contacts**         | `clear`                                                                                                                                                                                                      |
 
-<div style="page-break-after: always;"></div>
+<div class="page-new"></div>
 
 ## List of Prefixes
 
