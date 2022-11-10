@@ -309,14 +309,14 @@ Format: `sort CRITERIA/ORDER`
 
 * `CRITERIA` can be
     * Name - `n`
-    * Telegram Handle - `t`
+    * [Telegram Handle](#glossary) - `t`
     * Consultation date - `c`
     * Mastery Check date - `m`
-    * Reading Assessment 1 - `ra1`
-    * Reading Assessment 2 - `ra2`
-    * Practical Assessment - `pa`
-    * Midterm Test - `mt`
-    * Final Examination - `ft`
+    * [Reading Assessment 1](#glossary) - `ra1`
+    * [Reading Assessment 2](#glossary) - `ra2`
+    * [Practical Assessment](#glossary) - `pa`
+    * [Midterm Test](#glossary) - `mt`
+    * [Final Examination](#glossary) - `ft`
 * `ORDER` can be
     * Ascending - `a`
     * Descending - `d`
