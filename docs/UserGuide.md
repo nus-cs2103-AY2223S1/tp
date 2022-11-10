@@ -671,7 +671,7 @@ The following section is meant for advanced users of PayMeLah who are already co
 
 Although you can use the mouse to perform some functions in PayMeLah, it can be faster if you do not have to lift your hand from your keyboard at all. This is where keyboard shortcuts will come in handy for **speeding up your navigation** of the application.
 
-The table below lists every keyboard shortcut currently available in PayMeLah:
+The following table lists every keyboard shortcut currently available in PayMeLah:
 
 |                Keyboard Key                 | Function                                                                                                                                                                                                                                                                                                                                                                                                                       |
 |:-------------------------------------------:|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -813,4 +813,3 @@ If you are trying to locate a debt without knowing its full description, conside
 [Return to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-
