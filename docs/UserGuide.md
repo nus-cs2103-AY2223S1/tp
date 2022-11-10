@@ -70,7 +70,7 @@ Here are some symbols to look out for while using this guide:
 | `code`               | Text relevant to commands or name of a file. |
 | :information source: | Information that is useful to take note of.  |
 | :bulb:               | Tips for Coydir Users.                       |
-| :exclamation:        | Be wary and proceed with caution.            |
+| :warning:        | Be wary and proceed with caution.            |
 
 ### Navigating the User Guide
 
@@ -211,7 +211,7 @@ We will explore each of these fields in great detail as we continue along, but b
 - If a parameter is provided, anything after the prefix for that parameter until the end, or until the next parameter, will be taken as the value for the parameter.<br>
   e.g. if you specify `n/John 91234567 a/Little India`, the entire length of "John 91234567" will be taken as the name.
 
-:warning: **Integer input values cannot be too large**: any values greater than 2<sup>31</sup>-1, or 2147483647, is not supported.
+<div markdown="span" class="alert alert-warning">:warning: **Integer input values cannot be too large**: any values greater than 2<sup>31</sup>-1, or 2147483647, is not supported. </div>
 
 ### Managing Employee Profiles
 
@@ -731,7 +731,7 @@ Clears all the data currently stored in the database.
 If you are a new user, you can use this command after you have experimented with Coydir
 to start keying in your actual employee information.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning">:warning: **Caution:**
 Once you run this command, you lose all data immediately.
 </div>
 
@@ -748,7 +748,7 @@ It is possible to manipulate data by editing the data file directly, but even fo
 
 If you still choose to do so, we **cannot guarantee** that Coydir continues to support your HR operations smoothly.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning">:warning: **Caution:**
 If your changes to the data file makes its format invalid, Coydir will discard all data and start with an empty data file at the next run.
 </div>
 
