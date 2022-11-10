@@ -24,14 +24,16 @@ title: User Guide
           3. [Add a field](#add-a-new-field-field-add)
           4. [Edit a field](#edit-a-field-field-edit)
           5. [Delete a field](#delete-a-field-field-delete)
+          6. [Rename a group, person or task](#rename-the-name-of-items-on-the-screen)
+          7. [Find command](#find-command-find)
        2. [Team/Group commands](#2-teamgroup-commands)
-          1. [Create a team](#create-a-team)
-          2. [Delete a team](#delete-a-team)
-          3. [Navigate to a team](#navigate-to-a-team)
+          1. [Create a team](#create-a-team-team-new)
+          2. [Delete a team](#delete-a-team-team-delete)
+          3. [Navigate to a team](#navigate-to-a-team-cg)
           4. [Add new contact to team](#add-new-contacts-within-a-team)
           5. [Remove contact from team](#removing-contacts-from-team-team-remove)
           6. [Creating or deleting a subteam](#creating-and-deleting-a-subteam)
-          7. [Find a team](#finding-a-team-team-remove)
+          7. [Find a team](#finding-a-team-find)
        3. [Contact commands](#3-contact-commands)
           1. [Create a contact](#create-a-contact)
           2. [Delete a contact](#delete-a-contact)
@@ -394,19 +396,31 @@ delete all your information before doing so.**
 
 ### Exits the program: `exit`
 
-When this command is executed, the program will **save** the current session and **close** the application.
+When this command is executed, the program will **save** all the groups, contacts
+and tasks present in Contactmation and **closes** the application.
 
 **Format:** `exit`
 
 ### Add a new field: `field add`
 
-This command will add a field to a group, task, or person. A field can provide additional information to the
-`ITEM` when it is needed.
+This command is for you to add additional information to a group, task, or person. This extra information
+will appear as text below the name of the group, task or person, as shown below:
+
+![field add default](images/FieldAddDefault.png)
+
+Here, we can see that additional information that "`Funding`" is "`On hold`" in the group `Research_and_development`.
+
+A field can provide additional information to the [item](#constraints-on-placeholder-words) when it is needed.
 
 **Format:**
-- `field add u/<INDEX> <FIELD NAME> <DESCRIPTION>` to add a new field to the person at the current `INDEX`
-- `field add g/<INDEX> <FIELD NAME> <DESCRIPTION>` to add a new field to the group at the current `INDEX`
-- `field add t/<INDEX> <FIELD NAME> <DESCRIPTION>` to add a new field to the task at the current `INDEX`
+- `field add u/<INDEX> <FIELD NAME> <DESCRIPTION>` to add a new field to the person at the current `INDEX`.
+
+
+- `field add g/<INDEX> <FIELD NAME> <DESCRIPTION>` to add a new field to the group at the current `INDEX`.
+
+
+- `field add t/<INDEX> <FIELD NAME> <DESCRIPTION>` to add a new field to the task at the current `INDEX`.
+
 
 For example, let us say we have a task `Do paperwork`, and we want to add additional information to it. We can
 call the command `field add t/1 Priority High` to add a field with the `NAME` as `Priority` and
@@ -419,30 +433,49 @@ the `DESCRIPTION` as `High` to the task with `INDEX` 1.
 This command will attempt to edit an **existing** field that belongs to a group, task or person. It replaces the
 description of an existing field name to a new description.
 
+Do visit the [glossary](#glossary) for more details on what a field is.
+
 However, if the field name does not exist, then the field should be added first through the `field add` command
 explained above. Field names are case-sensitive.
 
 **Format**:
 
 - `field edit u/<INDEX> <FIELD NAME> <NEW DESCRIPTION>` to edit the field named `FIELD NAME` to the person at 
-   the current `INDEX`
-- `field edit g/<INDEX> <FIELD NAME> <NEW DESCRIPTION>` to edit the field named `FIELD NAME` to the group at
-   the current `INDEX`
-- `field edit t/<INDEX> <FIELD NAME> <NEW DESCRIPTION>` to edit the field named `FIELD NAME` to the task at
-   the current `INDEX`
+   the current `INDEX`.
 
-![Edit Field Example]()
+
+- `field edit g/<INDEX> <FIELD NAME> <NEW DESCRIPTION>` to edit the field named `FIELD NAME` to the group at
+   the current `INDEX`.
+
+
+- `field edit t/<INDEX> <FIELD NAME> <NEW DESCRIPTION>` to edit the field named `FIELD NAME` to the task at
+   the current `INDEX`.
+
+
+Here is an example. Let us say that we have a group, `Research_and_development`, that has
+its "`Funding`" field to be "`On hold`".
+
+![Edit Field Example](images/FieldAddDefault.png)
+
+Let us now change "`On hold`" to "`No longer on hold`", using the command `field edit g/2 Funding No longer on hold`.
+
+![Edit field updated Example](images/EditFieldDefault.png)
+
+The field is now successfully updated!
 
 ### Delete a field: `field delete`
 
 The command will attempt to delete a field that belongs to a group, task or person.
-A field can provide additional information to the
-`ITEM` when it is needed.
+A field can provide additional information to the [item](#constraints-on-placeholder-words) when it is needed.
 
 **Format:**
-- `field delete u/<INDEX> <FIELD NAME>` to delete a field from the person at the current `INDEX`
-- `field delete g/<INDEX> <FIELD NAME>` to delete a field from the group at the current `INDEX`
-- `field delete t/<INDEX> <FIELD NAME>` to delete a field from the task at the current `INDEX`
+- `field delete u/<INDEX> <FIELD NAME>` to delete a field from the person at the current `INDEX`.
+
+
+- `field delete g/<INDEX> <FIELD NAME>` to delete a field from the group at the current `INDEX`.
+
+
+- `field delete t/<INDEX> <FIELD NAME>` to delete a field from the task at the current `INDEX`.
 
 Continuing from the example in [add a new field](#add-a-new-field-field-add), let us now
 delete the `Priority High` field. To do this, we have to write `field delete t/1 Priority`
@@ -454,30 +487,50 @@ As we can see, the `Priority High` field is now deleted from the `Do paperwork` 
 
 ### Rename the name of items on the screen
 
-If you want to rename any item in the app, this `rename` command is for you.
+If you want to rename any [item](#constraints-on-placeholder-words) in the app, this `rename` command is for you.
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:**<br>
+
+In the following sections, `<new name>` here refers to the **new name that you
+want the group, contact or task to be renamed to**.
+
+</div>
 
 **Format:**
-- `rename (g, u, t)/<INDEX> <new name>`
-- or `<type> select <INDEX> rename <new name>`
+- `rename g/<INDEX> <new name>` to rename the group at the listed `INDEX`.
+
+
+- `rename u/<INDEX> <new name>` to rename the contact at the listed `INDEX`.
+
+
+- `rename t/<INDEX> <new name>` to rename the task at the listed `INDEX`.
+
+
+- `<ITEM> select <INDEX> rename <new name>`
 
 **Example:**
-- rename g/1 newGroupName
-  - this will rename the first **group** in your list to 'newGroupName'
-- or u select 1 rename newUserName
-  - this will rename the first **user** in your list to 'newUserName'
+- `rename g/1 Marketing`
+  - this will rename the first **group** in your list to `Marketing`.
 
 
-### Assign a user to a group: `assign`
+- `person select 1 rename Jimmy`
+  - this will rename the first **user** in your list to `Jimmy`.
 
-If you want to place an existing member into a group, you can use this command.
+### Find command: `find`
 
-**Format:**
-- `assign u/INDEX g/INDEX`
+Searches for a contact, group or task that matches the given `KEYWORD`. Searches may also include `MORE_KEYWORDS`
+to further expand the search for a contact, subgroup or task within the [current team](#contactmation-window-guide).
 
-**Example:**
-If you want to add the first user in your user list into the second group on your groups list,
-your command will be `assign u/1 g/2`.
+**Format:** `<ITEM> find <KEYWORD> [<MORE_KEYWORDS>]`
 
+**Examples:**
+
+- `person find John Doe`
+  - This means that we will find all persons in the current team with the current 
+
+
+- `task find task1 task2`
 
 ## 2. Team/Group commands
 
@@ -488,7 +541,15 @@ Team-related commands in Contactmation begin with the `team` keyword.
 
 ### Create a team: `team new`
 
-Contactmation provides the `team new` command to create a new team with a specified team name in the current scope.
+This command helps you create a new group/team name in the current team. 
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:**<br>
+
+For more information on creating teams within teams, check [this](#making-groups-within-groups)
+section on what it really means to create teams within teams.
+
+</div>
 
 **Format**: `team new <TEAM NAME>`
 
@@ -499,9 +560,14 @@ you can type in `TEAM NAME`.
 **Examples**:
 
 - `team new Vongola_X`
-- `team new Team_Alpha_Centauri`
+
+
+- `team new vero-employees`
 
 ![Create Team Screenshot](images/user-guide-img/CreateTeamScreenshot.png)
+
+As seen in the example above, we are able to add team `vero-employees` to our 
+[group list](#contactmation-window-guide).
 
 ### Delete a team: `team delete`
 
@@ -513,16 +579,16 @@ the current display of the team list.
 **Examples**:
 
 - `team delete 1`
-    - The above command deletes team number 1 in the list of teams.
+    - The above command deletes team number 1 in the [team list](#contactmation-window-guide).
     
+> What happens to all the people and tasks in that current team when I delete the team?
+
+All `persons` and `tasks` will be transferred to the [root group](#glossary).
+
 ### Navigate to a team: `cg`
 
 To perform commands specific to a team, you will have to navigate first to that specific team. You can use the `cg`
-command to navigate to a specified team. This command updates the group scope that is currently being displayed in
-the application.
-
-This command is similar to going into a folder on your desktop, or stepping
-out of it.
+command to navigate to a specified team.
 
 :bulb: **Tip**: Please take a look at [making groups within groups](#making-groups-within-groups) 
 for a tutorial on team navigation before executing this command.
@@ -530,18 +596,39 @@ for a tutorial on team navigation before executing this command.
 **Formats**:
 
 - `cg <INDEX>`
-- `cg ..` navigates to its parent group. This is similar to stepping out of a folder once.
-- `cg /` navigates to its root group. This is similar to moving your current context to the root folder.
+
+
+- `cg ..` moves you out of the group and into the parent group. To better understand this, let us have the following
+example:
+
+![Change group example](images/ChangeGroupExample.png)
+
+Here, we can see that we are in the group `/Research_and_development/Vero_ltd`.
+However, when we use the `cg ..` command, we are able to move to the `/Research_and_development` group.
+
+![Change group example out](images/ChangeGroupExample2.png)
+
+When we are in the `/Research_and_development` group, we can see that there is a group in the [group list](#contactmation-window-guide).
+That is the group we were in at first, before we used the `cg ..` command! 
+
+- `cg /` moves you to the [root group](#glossary) in Contactmation. 
+From the root group, you are able to **see all the groups currently existing in Contactmation**.
+
+![Change group example root](images/ChangeGroupExample3.png)
+
+Following the previous examples in for the `cg` command, we see the `/Research_and_development` group,
+`/Research_and_development/Vero_ltd` and an additional group, `/Marketing`, all at once!
 
 **Examples**:
 
 - `cg 3`
-    - The above command allows you to navigate to team number 3 in the list of teams.
+    - The above command allows you to navigate to team number 3 in your current [team list](#contactmation-window-guide).
     - Before:
       ![Create Team Screenshot](images/user-guide-img/NavigateTeamBefore.png)
     - After:
       ![Create Team Screenshot](images/user-guide-img/NavigateTeamAfter.png)
 - `cg ..`
+- `cg /`
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Note for experienced programmers:**<br>
@@ -553,32 +640,39 @@ command (`cg`) in Contactmation follows a similar syntax to the change directory
 
 ### Add new contacts within a team
 
-Once you have navigated to a team, you can add a new contact within that team, which is done through the same command
-as adding a contact to Contactmation.
-
-**Format**: `person new n/<NAME> [p/<PHONE>] [e/<EMAIL>] [a/<ADDRESS>] [t/<TAG>]...`
-
-**Examples**:
-
-- `person new n/Charlotte Smith`
-- `person new n/Michael Brown p/01234567 e/michael.brown@gmail.com a/West Coast Avenue Blk 321 14-540A t/Employee`
+Once you have [navigated to a team](#navigate-to-a-team-cg), you can add a new contact within that team, which is done through the same command
+as [adding a contact](#create-a-contact) to Contactmation.
 
 ### Removing contacts from team: `team remove`
 
 Removes the contact from the current group by their currently specified `INDEX` as shown in
 the application window.
 
+There is an important distinction between a `team remove` and a `team delete`. In `team remove`,
+the `INDEX` refers to a person, whereas in `team delete`, we are deleting a team altogether
+from Contactmation.
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:**<br>
+
+This command simply **removes a person from the team you are currently in**. But this does not
+mean that the person is deleted from Contactmation! The person is simply shifted to the
+[root group](#glossary).
+
+</div>
+
 **Format:** `team remove <INDEX>`
 
 **Example:**
 
 - `team remove 3`
-    - This command removes contact number 3 in the specified team.
+    - This command removes contact number 3 in the specified team, and transfers the contact to 
+    the [root group](#glossary).
     
 ### Creating and Deleting a subteam
 
 Contactmation allows the creation and deletion of a subteam within a team using the same command as
-[creating a team](#create-a-team) and [deleting a team](#delete-a-team).
+[creating a team](#create-a-team-team-new) and [deleting a team](#delete-a-team-team-delete).
 
 ### Finding a team: `find`
 
@@ -617,24 +711,32 @@ You can use the `person delete` command to delete a contact from the list of per
 
 - `person delete 1`
 
+### Assign a user to a group: `assign`
+
+If you want to place an existing `person` into a `group`, you can use this command.
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:**<br>
+
+This command only works if the `person` is not part of the `group` yet.
+
+</div>
+
+**Format:**
+- `assign u/<INDEX> g/<INDEX>`
+
+**Example:**
+
+If you want to add the first person in your [person list](#contactmation-window-guide) into the second group on
+your [group list](#contactmation-window-guide), your command will be `assign u/1 g/2`.
+
+
 ### Listing all contacts in current team
 
-Contactmation supports the `list` command that displays all of your contacts into a list of persons.
+Contactmation supports the `list` command that displays all of your contacts within the [current group](#contactmation-window-guide) 
+into your [person list](#contactmation-window-guide).
 
 **Format**: `list`
-
-### Find command: `find`
-
-Searches for a contact, group or task that matches the given `KEYWORD`. Searches may also include `MORE_KEYWORDS`
-to further narrow the search for a contact, subgroup or task within the current [scope](#glossary).
-
-**Format:** `<ITEM> find <KEYWORD> [<MORE_KEYWORDS>]`
-
-**Examples:**
-
-- `person find John Doe`
-- `task find task1 task2`
-- `team find task1 task2`
 
 ---
 
@@ -1019,12 +1121,12 @@ Our future plans for Contactmation includes:
 | Command / Command sequence   | What you would write in the command box to interact with the application.                                                  |
 | Contact                      | A contact with contact information.                                                                                        |
 | Alphanumeric                 | The text can contain capitalised and non-capitalised alphabets and numbers only.                                           |
+| Field                        | A way to represent additional information for a group, person or task.                                            |
 | Team                         | A container that contains people that work on a similar project.                                                           |
 | Index                        | The numerical placing of a group, contact or task in the current application display.                                      |
 | Item                         | An item can refer to a group, contact or task.                                                                             |
 | Pipe                         | The output of the previous section of commands will be used as input for the next set of commands.                         |
 | Root group                   | Refers to the application being able to view all groups in the display.                                                    |
-| Scope                        | A constraint on the groups, people and tasks you are able to view at one time on the display.                              |
 | Task                         | Assigned to people or groups.                                                                                              |
 | Word                         | Text in a command sequence that is separated from other words by a white space.                                            |
 
@@ -1035,11 +1137,13 @@ Our future plans for Contactmation includes:
 
 | Command                                                       | Format                                                                        |
 | ------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| Clear all items                                               | `clear`                                                                         |
-| Exit Contacmation                                             | `exit`                                                                          |
-| Resets filters and list all contents within the current scope | `list`                                                                         |
-| Rename the name of items on the screen                        | `rename (g, u, t)/<INDEX> <new name>` or `<type> select <INDEX> rename <new name>` |
-| Assigning user to a existing group                            | `assign u/<INDEX> g/<INDEX>`                                                  |
+| Clear all [items](#glossary) from Contactmation               | `clear`                                                                         |
+| Exit Contactmation                                            | `exit`                                                                          |
+| Add additional information to an item                         | `field add u/<INDEX> <FIELD NAME> <DESCRIPTION>` or `field add g/<INDEX> <FIELD NAME> <DESCRIPTION>` or `field add t/<INDEX> <FIELD NAME> <DESCRIPTION>` |
+| Edit some additional information in an item                   | `field edit u/<INDEX> <FIELD NAME> <NEW DESCRIPTION>` or `field edit g/<INDEX> <FIELD NAME> <NEW DESCRIPTION>` or `field edit t/<INDEX> <FIELD NAME> <NEW DESCRIPTION>` |
+| Delete some additional information in an item                 | `field delete u/<INDEX> <FIELD NAME>` or `field delete g/<INDEX> <FIELD NAME>` or `field delete t/<INDEX> <FIELD NAME>`                                                                         |
+| Rename the name of items on the screen                        | `rename u/<INDEX> <new name>` or `rename g/<INDEX> <new name>` or `rename t/<INDEX> <new name>` or  `<ITEM> select <INDEX> rename <new name>`|
+| Find a person, group or task                                  | `<ITEM> find <KEYWORD> [<MORE_KEYWORDS>]` |
 
 
 ### Group commands summary
@@ -1048,9 +1152,9 @@ Our future plans for Contactmation includes:
 |------------------------------------|------------------------------------------------------------|
 | Adding new team                    | `team new <NAME>`                                          |
 | Delete team                        | `team delete <INDEX>` or `team select <INDEX> team delete` |
+| Changing teams                     | `cg <INDEX>` or `cg ..` or `cg /`                          |
 | Removing contact from current team | `team remove <Contact INDEX>`                              |
-| Changing team scope                | `cg <INDEX>` or `cg ..` or `cg /`                          |
-| Finding/filtering team             | `team find <keywords>`                                     |
+| Finding a team                     | `team find <KEYWORD> [<MORE_KEYWORDS>]`                    |
 
 ### Contact commands summary
 
@@ -1059,12 +1163,14 @@ Our future plans for Contactmation includes:
 | Adding new contact to current context | `person new n/<NAME> [p/<PHONE_NUMBER>] [e/<EMAIL>] [a/<ADDRESS>] [t/<TAG>...]` |
 | Delete contact                        | `person delete <INDEX>` or `person select <INDEX> person delete`                |
 | Finding/filtering contacts            | `person find <keywords>`                                                        |
+| Assigning a user to an existing group | `assign u/<INDEX> g/<INDEX>`                                                    |
+
 
 ### Task commands summary
 
 | Command                            | Format                                                                   |
 |------------------------------------|--------------------------------------------------------------------------|
-| Adding new task to current context | `team new t/<title> d/<description>`                                     |
+| Adding new task to current context | `task new t/<title> d/<description>`                                     |
 | Delete a task                      | `task delete <INDEX>` or `task select <INDEX> task delete`               |
 | Marking a task as complete         | `task mark <INDEX>` or `mark <INDEX>` or task select <INDEX> mark`       |
 | Marking a task as incomplete       | `task unmark <INDEX>` or `unmark <INDEX>` or task select <INDEX> unmark` |
