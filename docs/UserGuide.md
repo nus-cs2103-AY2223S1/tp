@@ -418,13 +418,13 @@ Adds a person to TruthTable.
 
 **Format:** `add person [-h] -e=<EMAIL> -n=<NAME> -p=<PHONE> [-t[=<TAGS>...]]...`
 
-| Flags           | Required           | Remarks                                 |
-|-----------------|--------------------|-----------------------------------------|
-| `-h`, `--help`  | :x:                | Shows help message for this command     |
-| `-e`, `--email` | :heavy_check_mark: | Email of person (e.g. truth@table.com)  |
-| `-n`, `--name`  | :heavy_check_mark: | Name of person (e.g. "Truth Table")     |
-| `-p`,`--phone`  | :heavy_check_mark: | Phone of person (e.g. 98765432)         |
-| `-t`,`--tags`   | :x:                | Tags of person (e.g. Frontend, Backend) |
+| Flags           | Required           | Remarks                                                                |
+|-----------------|--------------------|------------------------------------------------------------------------|
+| `-h`, `--help`  | :x:                | Shows [help message](#understanding-the-help-message) for this command |
+| `-e`, `--email` | :heavy_check_mark: | Email of person (e.g. truth@table.com)                                 |
+| `-n`, `--name`  | :heavy_check_mark: | Name of person (e.g. "Truth Table")                                    |
+| `-p`,`--phone`  | :heavy_check_mark: | Phone of person (e.g. 98765432)                                        |
+| `-t`,`--tags`   | :x:                | Tags of person (e.g. Frontend, Backend)                                |
 
 <div markdown="span" class="alert alert-success">:bulb: **Tip:**
 A person can have any number of tags (including 0)
@@ -445,13 +445,13 @@ Edits an existing person in TruthTable.
 
 **Format:** `edit person [-h] ([-n=<PERSON_NAME>] [-p=<PERSON_PHONE>] [-e=<PERSON_EMAIL>] [-t[=<PERSON_TAGS>...]]...) <PERSON_INDEX>`
 
-| Flags           | Required   | Remarks                                 |
-|-----------------|------------|-----------------------------------------|
-| `-h`, `--help`  | :x:        | Shows help message for this command     |
-| `-e`, `--email` | :asterisk: | Email of person (e.g. truth@table.com)  |
-| `-n`, `--name`  | :asterisk: | Name of person (e.g. "Truth Table")     |
-| `-p`,`--phone`  | :asterisk: | Phone of person (e.g. 98765432)         |
-| `-t`,`--tags`   | :asterisk: | Tags of person (e.g. Frontend, Backend) |
+| Flags           | Required   | Remarks                                                                |
+|-----------------|------------|------------------------------------------------------------------------|
+| `-h`, `--help`  | :x:        | Shows [help message](#understanding-the-help-message) for this command |
+| `-e`, `--email` | :asterisk: | Email of person (e.g. truth@table.com)                                 |
+| `-n`, `--name`  | :asterisk: | Name of person (e.g. "Truth Table")                                    |
+| `-p`,`--phone`  | :asterisk: | Phone of person (e.g. 98765432)                                        |
+| `-t`,`--tags`   | :asterisk: | Tags of person (e.g. Frontend, Backend)                                |
 
 :asterisk: - at least one of the flags for email, name, phone, and tags must be specified
 
@@ -479,9 +479,9 @@ Deletes the specified person from TruthTable.
 
 **Format:** `delete person [-h] <PERSON_INDEX>`
 
-| Flags          | Required | Remarks                             |
-|----------------|----------|-------------------------------------|
-| `-h`, `--help` | :x:      | Shows help message for this command |
+| Flags          | Required | Remarks                                                                |
+|----------------|----------|------------------------------------------------------------------------|
+| `-h`, `--help` | :x:      | Shows [help message](#understanding-the-help-message) for this command |
 
 * Deletes the person at the specified `PERSON_INDEX`, which refers to the index number shown in the
   [persons section](#persons-section)
@@ -504,9 +504,9 @@ Finds all persons whose names contain any of the given keywords.
 
 **Format:** `find person [-h] <PERSON_NAME_KEYWORDS>`
 
-| Flags          | Required | Remarks                             |
-|----------------|----------|-------------------------------------|
-| `-h`, `--help` | :x:      | Shows help message for this command |
+| Flags          | Required | Remarks                                                                |
+|----------------|----------|------------------------------------------------------------------------|
+| `-h`, `--help` | :x:      | Shows [help message](#understanding-the-help-message) for this command |
 
 * Only the name is searched.
 * The search is case-insensitive, e.g. `hans` will match `Hans`.
@@ -533,9 +533,9 @@ Shows a list of all persons in TruthTable.
 
 **Format:** `list persons [-h]`
 
-| Flags          | Required | Remarks                             |
-|----------------|----------|-------------------------------------|
-| `-h`, `--help` | :x:      | Shows help message for this command |
+| Flags          | Required | Remarks                                                                |
+|----------------|----------|------------------------------------------------------------------------|
+| `-h`, `--help` | :x:      | Shows [help message](#understanding-the-help-message) for this command |
 
 **Command Aliases:**
 - `list p`
@@ -553,9 +553,9 @@ the team, an error message will be displayed.
 
 **Format:** `add member [-h] <PERSON_INDEX>`
 
-| Flags          | Required | Remarks                             |
-|----------------|----------|-------------------------------------|
-| `-h`, `--help` | :x:      | Shows help message for this command |
+| Flags          | Required | Remarks                                                                |
+|----------------|----------|------------------------------------------------------------------------|
+| `-h`, `--help` | :x:      | Shows [help message](#understanding-the-help-message) for this command |
 
 * `PERSON_INDEX` **must be a positive integer:** 1, 2, 3,...
 
@@ -575,9 +575,9 @@ Delete a team member from the user’s team.
 
 **Format:** `delete member [-h] <MEMBER_INDEX>`
 
-| Flags          | Required | Remarks                             |
-|----------------|----------|-------------------------------------|
-| `-h`, `--help` | :x:      | Shows help message for this command |
+| Flags          | Required | Remarks                                                                |
+|----------------|----------|------------------------------------------------------------------------|
+| `-h`, `--help` | :x:      | Shows [help message](#understanding-the-help-message) for this command |
 
 * `MEMBER_INDEX` **must be a positive integer:** 1, 2, 3,...
 
@@ -601,11 +601,11 @@ should **not** use both `-n` and `-e` in the `find member` command.
 
 **Format:** `find member [-h] (-n=<MEMBER_NAME_KEYWORDS> | -e=<MEMBER_EMAIL_KEYWORDS>)`
 
-| Flags           | Required | Remarks                             |
-|-----------------|----------|-------------------------------------|
-| `-h`, `--help`  | :x:      | Shows help message for this command |
-| `-n`, `--name`  | :hash:   | Keywords to filter by name          |
-| `-e`, `--email` | :hash:   | Keywords to filter by email         |
+| Flags           | Required | Remarks                                                                |
+|-----------------|----------|------------------------------------------------------------------------|
+| `-h`, `--help`  | :x:      | Shows [help message](#understanding-the-help-message) for this command |
+| `-n`, `--name`  | :hash:   | Keywords to filter by name                                             |
+| `-e`, `--email` | :hash:   | Keywords to filter by email                                            |
 
 :hash: - exactly one of the flags for name or email must be specified
 
@@ -631,9 +631,9 @@ View all the members currently in the team, in the form of a list.
 
 **Format:** `list members [-h]`
 
-| Flags          | Required | Remarks                             |
-|----------------|----------|-------------------------------------|
-| `-h`, `--help` | :x:      | Shows help message for this command |
+| Flags          | Required | Remarks                                                                |
+|----------------|----------|------------------------------------------------------------------------|
+| `-h`, `--help` | :x:      | Shows [help message](#understanding-the-help-message) for this command |
 
 **Command Aliases:**
 - `list m`
@@ -646,9 +646,9 @@ Sorts all members in the current team by name and displays them in the member li
 
 **Format:** `sort members [-h] <ORDER>`
 
-| Flags          | Required | Remarks                             |
-|----------------|----------|-------------------------------------|
-| `-h`, `--help` | :x:      | Shows help message for this command |
+| Flags          | Required | Remarks                                                                |
+|----------------|----------|------------------------------------------------------------------------|
+| `-h`, `--help` | :x:      | Shows [help message](#understanding-the-help-message) for this command |
 
 | Order Value | Description                                                                 |
 |-------------|-----------------------------------------------------------------------------|
@@ -676,10 +676,10 @@ Add a new team to your list of teams, an error will be displayed if the team nam
 
 **Format:** `add team [-h] [-d=TEAM_DESCRIPTION] <TEAM_NAME>`
 
-| Flags                 | Required | Remarks                                               |
-|-----------------------|----------|-------------------------------------------------------|
-| `-h`, `--help`        | :x:      | Shows help message for this command                   |
-| `-d`, `--description` | :x:      | Description of team (e.g. "A team to manage CS2103T") | 
+| Flags                 | Required | Remarks                                                                |
+|-----------------------|----------|------------------------------------------------------------------------|
+| `-h`, `--help`        | :x:      | Shows [help message](#understanding-the-help-message) for this command |
+| `-d`, `--description` | :x:      | Description of team (e.g. "A team to manage CS2103T")                  | 
 
 **Command Aliases:**
 - `add te`
@@ -696,11 +696,11 @@ Add a new team to your list of teams, an error will be displayed if the team nam
 
 **Format:** `edit team [-h] ([-n=<TEAM_NAME>] [-d=<TEAM_DESCRIPTION>])`
 
-| Flags                 | Required   | Remarks                                               |
-|-----------------------|------------|-------------------------------------------------------|
-| `-h`, `--help`        | :x:        | Shows help message for this command                   |
-| `-n`, `--name`        | :asterisk: | Name of team (e.g. "CS2103T")                         |
-| `-d`, `--description` | :asterisk: | Description of team (e.g. "A team to manage CS2103T") | 
+| Flags                 | Required   | Remarks                                                                |
+|-----------------------|------------|------------------------------------------------------------------------|
+| `-h`, `--help`        | :x:        | Shows [help message](#understanding-the-help-message) for this command |
+| `-n`, `--name`        | :asterisk: | Name of team (e.g. "CS2103T")                                          |
+| `-d`, `--description` | :asterisk: | Description of team (e.g. "A team to manage CS2103T")                  | 
 
 :asterisk: - at least one of the flags for name and description must be specified
 
@@ -722,9 +722,9 @@ Delete an existing team, and an error is displayed if
 
 **Format:** `delete team [-h] <TEAM_NAME>`
 
-| Flags          | Required | Remarks                             |
-|----------------|----------|-------------------------------------|
-| `-h`, `--help` | :x:      | Shows help message for this command |
+| Flags          | Required | Remarks                                                                |
+|----------------|----------|------------------------------------------------------------------------|
+| `-h`, `--help` | :x:      | Shows [help message](#understanding-the-help-message) for this command |
 
 **Command Aliases:**
 - `delete te`
@@ -742,9 +742,9 @@ displayed if team does not exist.
 
 **Format:** `set team [-h] <TEAM_NAME>`
 
-| Flags          | Required | Remarks                             |
-|----------------|----------|-------------------------------------|
-| `-h`, `--help` | :x:      | Shows help message for this command |
+| Flags          | Required | Remarks                                                                |
+|----------------|----------|------------------------------------------------------------------------|
+| `-h`, `--help` | :x:      | Shows [help message](#understanding-the-help-message) for this command |
 
 **Command Aliases:**
 - `set te`
@@ -765,11 +765,11 @@ Add a new task to your current team. Each task can have multiple assignees and a
 
 **Format:** `add task [-h] [-d=<TASK_DEADLINE>] [-a[=<TASK_ASSIGNEES>...]]... <TASK_NAME>`
 
-| Flags              | Required | Remarks                                                      |
-|--------------------|----------|--------------------------------------------------------------|
-| `-h`, `--help`     | :x:      | Shows help message for this command                          |
-| `-d`, `--deadline` | :x:      | Deadline of task (e.g. 2023-02-25 23:59)                     |  
-| `-a`, `--assignee` | :x:      | Index of members in [members section](#current-team-section) |
+| Flags              | Required | Remarks                                                                |
+|--------------------|----------|------------------------------------------------------------------------|
+| `-h`, `--help`     | :x:      | Shows [help message](#understanding-the-help-message) for this command |
+| `-d`, `--deadline` | :x:      | Deadline of task (e.g. 2023-02-25 23:59)                               |  
+| `-a`, `--assignee` | :x:      | Index of members in [members section](#current-team-section)           |
 
 * `TASK_DEADLINE` contains both the date and time in `YYYY-MM-DD HH:MM` format, and it **does not have quotation marks 
   (`""`)
@@ -803,12 +803,12 @@ Passing `TASK_INDEX` after `ASSIGNEES` makes it impossible to distinguish which 
 </div>
 
 
-| Flags              | Required   | Remarks                                                      |
-|--------------------|------------|--------------------------------------------------------------|
-| `-h`, `--help`     | :x:        | Shows help message for this command                          |
-| `-n`, `--name`     | :asterisk: | Name of task (e.g. "merge PR#12")                            |
-| `-d`, `--deadline` | :asterisk: | Deadline of task (e.g. 2023-02-25 23:59)                     |
-| `-a`, `--assignee` | :asterisk: | Index of members in [members section](#current-team-section) |
+| Flags              | Required   | Remarks                                                                |
+|--------------------|------------|------------------------------------------------------------------------|
+| `-h`, `--help`     | :x:        | Shows [help message](#understanding-the-help-message) for this command |
+| `-n`, `--name`     | :asterisk: | Name of task (e.g. "merge PR#12")                                      |
+| `-d`, `--deadline` | :asterisk: | Deadline of task (e.g. 2023-02-25 23:59)                               |
+| `-a`, `--assignee` | :asterisk: | Index of members in [members section](#current-team-section)           |
 
 :asterisk: - at least one of the flags for name, deadline, and assignees must be specified
 
@@ -844,9 +844,9 @@ Delete an existing task from the team at the given task index.
 
 **Format:** `delete task [-h] <TASK_INDEX>`
 
-| Flags          | Required | Remarks                             |
-|----------------|----------|-------------------------------------|
-| `-h`, `--help` | :x:      | Shows help message for this command |
+| Flags          | Required | Remarks                                                                |
+|----------------|----------|------------------------------------------------------------------------|
+| `-h`, `--help` | :x:      | Shows [help message](#understanding-the-help-message) for this command |
 
 * `TASK_INDEX` **must be a positive integer:** 1, 2, 3,...
 
@@ -867,9 +867,9 @@ To reset the task list, see the [list tasks command](#list-tasks-in-team-list-ta
 
 **Format:** `find task [-h] <TASK_NAME_KEYWORDS>`
 
-| Flags          | Required | Remarks                             |
-|----------------|----------|-------------------------------------|
-| `-h`, `--help` | :x:      | Shows help message for this command |
+| Flags          | Required | Remarks                                                                |
+|----------------|----------|------------------------------------------------------------------------|
+| `-h`, `--help` | :x:      | Shows [help message](#understanding-the-help-message) for this command |
 
 * Only the task name is searched.
 * The search is case-insensitive. e.g. `user guide` will match `User Guide`
@@ -892,9 +892,9 @@ Mark a specified task as done. To undo this command, see the [unmark command](#u
 
 **Format:** `mark [-h] <TASK_INDEX>`
 
-| Flags          | Required | Remarks                             |
-|----------------|----------|-------------------------------------|
-| `-h`, `--help` | :x:      | Shows help message for this command |
+| Flags          | Required | Remarks                                                                |
+|----------------|----------|------------------------------------------------------------------------|
+| `-h`, `--help` | :x:      | Shows [help message](#understanding-the-help-message) for this command |
 
 * `TASK_INDEX` **must be a positive integer:** 1, 2, 3,...
 
@@ -911,9 +911,9 @@ Mark a specified task as incomplete. This will undo the [mark command](#mark-tas
 
 **Format:** `unmark [-h] <TASK_INDEX>`
 
-| Flags          | Required | Remarks                             |
-|----------------|----------|-------------------------------------|
-| `-h`, `--help` | :x:      | Shows help message for this command |
+| Flags          | Required | Remarks                                                                |
+|----------------|----------|------------------------------------------------------------------------|
+| `-h`, `--help` | :x:      | Shows [help message](#understanding-the-help-message) for this command |
 
 * `TASK_INDEX` **must be a positive integer:** 1, 2, 3,...
 
@@ -930,9 +930,9 @@ Set a deadline for an existing task, and the deadline must be in `YYYY-MM-DD HH:
 
 **Format:** `set deadline [-h] <TASK_INDEX> <TASK_DEADLINE>`
 
-| Flags          | Required | Remarks                             |
-|----------------|----------|-------------------------------------|
-| `-h`, `--help` | :x:      | Shows help message for this command |
+| Flags          | Required | Remarks                                                                |
+|----------------|----------|------------------------------------------------------------------------|
+| `-h`, `--help` | :x:      | Shows [help message](#understanding-the-help-message) for this command |
 
 * `TASK_INDEX` **must be a positive integer:** 1, 2, 3,...
 * `TASK_DEADLINE` contains both the date and time in `YYYY-MM-DD HH:MM` format, and it **does not have quotation marks 
@@ -963,10 +963,10 @@ The format for the `-a` flag indicates that you must specify at least 1 `-a` fla
 This results in requiring at least 1 `-a` flag. 
 </div>
 
-| Flags              | Required           | Remarks                                                      |
-|--------------------|--------------------|--------------------------------------------------------------|
-| `-h`, `--help`     | :x:                | Shows help message for this command                          |
-| `-a`, `--assignee` | :heavy_check_mark: | Index of members in [members section](#current-team-section) |
+| Flags              | Required           | Remarks                                                                |
+|--------------------|--------------------|------------------------------------------------------------------------|
+| `-h`, `--help`     | :x:                | Shows [help message](#understanding-the-help-message) for this command |
+| `-a`, `--assignee` | :heavy_check_mark: | Index of members in [members section](#current-team-section)           |
 
 * `TASK_INDEX` and `TASK_ASSIGNEES` **must be positive integers:** 1, 2, 3,...
 * The original assignees of the task will not be replaced with this command, instead, only new assignees can be added.
@@ -990,9 +990,9 @@ or if the task has already been assigned to all members of the team.
 
 **Format:** `assign random [-h] <TASK_INDEX>`
 
-| Flags          | Required | Remarks                             |
-|----------------|----------|-------------------------------------|
-| `-h`, `--help` | :x:      | Shows help message for this command |
+| Flags          | Required | Remarks                                                                |
+|----------------|----------|------------------------------------------------------------------------|
+| `-h`, `--help` | :x:      | Shows [help message](#understanding-the-help-message) for this command |
 
 * `TASK_INDEX` **must be a positive integer:** 1, 2, 3,...
 
@@ -1011,9 +1011,9 @@ Find all tasks that have been assigned to a particular member in the currently s
 
 **Format:** `tasksof [-h] <MEMBER_INDEX>`
 
-| Flags          | Required | Remarks                             |
-|----------------|----------|-------------------------------------|
-| `-h`, `--help` | :x:      | Shows help message for this command |
+| Flags          | Required | Remarks                                                                |
+|----------------|----------|------------------------------------------------------------------------|
+| `-h`, `--help` | :x:      | Shows [help message](#understanding-the-help-message) for this command |
 
 * `MEMBER_INDEX` **must be a positive integer:** 1, 2, 3,...
 
@@ -1033,11 +1033,11 @@ as the `find task` command filters the current team’s tasks based on some keyw
 
 **Format:** `list tasks [-h] [-c] [-i]`
 
-| Flags                | Required | Remarks                             |
-|----------------------|----------|-------------------------------------|
-| `-h`, `--help`       | :x:      | Shows help message for this command |
-| `-c`, `--complete`   | :x:      | Filter for completed tasks          |
-| `-i`, `--incomplete` | :x:      | Filter for incomplete tasks         |
+| Flags                | Required | Remarks                                                                |
+|----------------------|----------|------------------------------------------------------------------------|
+| `-h`, `--help`       | :x:      | Shows [help message](#understanding-the-help-message) for this command |
+| `-c`, `--complete`   | :x:      | Filter for completed tasks                                             |
+| `-i`, `--incomplete` | :x:      | Filter for incomplete tasks                                            |
 
 **Command Aliases:**
 - `list ta`
@@ -1056,9 +1056,9 @@ Sorts all tasks in the current team by name and displays them in the task list.
 
 **Format:** `sort tasks [-h] <ORDER>`
 
-| Flags          | Required | Remarks                             |
-|----------------|----------|-------------------------------------|
-| `-h`, `--help` | :x:      | Shows help message for this command |
+| Flags          | Required | Remarks                                                                |
+|----------------|----------|------------------------------------------------------------------------|
+| `-h`, `--help` | :x:      | Shows [help message](#understanding-the-help-message) for this command |
 
 | Order Value | Description                                                          |
 |-------------|----------------------------------------------------------------------|
@@ -1082,9 +1082,9 @@ View the number of tasks assigned to each member in the team.
 
 **Format:** `summary [-h]`
 
-| Flags          | Required | Remarks                             |
-|----------------|----------|-------------------------------------|
-| `-h`, `--help` | :x:      | Shows help message for this command |
+| Flags          | Required | Remarks                                                                |
+|----------------|----------|------------------------------------------------------------------------|
+| `-h`, `--help` | :x:      | Shows [help message](#understanding-the-help-message) for this command |
 
 **Command Aliases:**
 - `sum`
@@ -1100,11 +1100,11 @@ Add a new link to the currently selected team.
 
 **Format:** `add link [-h] -l=<LINK_URL> -n=<LINK_NAME>`
 
-| Flags          | Required           | Remarks                               |
-|----------------|--------------------|---------------------------------------|
-| `-h`, `--help` | :x:                | Shows help message for this command   |
-| `-l`, `--link` | :heavy_check_mark: | URL of link (e.g. https://google.com) |
-| `-n`, `--name` | :heavy_check_mark: | Name of link (e.g. "Meeting #1")      |
+| Flags          | Required           | Remarks                                                                |
+|----------------|--------------------|------------------------------------------------------------------------|
+| `-h`, `--help` | :x:                | Shows [help message](#understanding-the-help-message) for this command |
+| `-l`, `--link` | :heavy_check_mark: | URL of link (e.g. https://google.com)                                  |
+| `-n`, `--name` | :heavy_check_mark: | Name of link (e.g. "Meeting #1")                                       |
 
 **Command Aliases:**
 - `add l`
@@ -1120,11 +1120,11 @@ Edit an existing link in the currently selected team.
 
 **Format:** `edit link [-h] ([-n=<LINK_NAME>] [-l=<LINK_URL>]) <LINK_INDEX>`
 
-| Flags          | Required   | Remarks                               |
-|----------------|------------|---------------------------------------|
-| `-h`, `--help` | :x:        | Shows help message for this command   |
-| `-l`, `--link` | :asterisk: | URL of link (e.g. https://google.com) |
-| `-n`, `--name` | :asterisk: | Name of link (e.g. "Meeting #1")      |
+| Flags          | Required   | Remarks                                                                |
+|----------------|------------|------------------------------------------------------------------------|
+| `-h`, `--help` | :x:        | Shows [help message](#understanding-the-help-message) for this command |
+| `-l`, `--link` | :asterisk: | URL of link (e.g. https://google.com)                                  |
+| `-n`, `--name` | :asterisk: | Name of link (e.g. "Meeting #1")                                       |
 
 :asterisk: - at least one of the flags for link and name must be specified
 
@@ -1146,9 +1146,9 @@ Delete the specified link from the currently selected team.
 
 **Format:** `delete link [-h] <LINK_INDEX>`
 
-| Flags          | Required | Remarks                             |
-|----------------|----------|-------------------------------------|
-| `-h`, `--help` | :x:      | Shows help message for this command |
+| Flags          | Required | Remarks                                                                |
+|----------------|----------|------------------------------------------------------------------------|
+| `-h`, `--help` | :x:      | Shows [help message](#understanding-the-help-message) for this command |
 
 * `LINK_INDEX` **must be a positive integer:** 1, 2, 3,...
 
@@ -1173,9 +1173,9 @@ Deletes everything from the application, including persons, teams, tasks, links,
 
 **Format:** `clear [-h]`
 
-| Flags          | Required | Remarks                             |
-|----------------|----------|-------------------------------------|
-| `-h`, `--help` | :x:      | Shows help message for this command |
+| Flags          | Required | Remarks                                                                |
+|----------------|----------|------------------------------------------------------------------------|
+| `-h`, `--help` | :x:      | Shows [help message](#understanding-the-help-message) for this command |
 
 #### Switching between light and dark theme: `theme`
 
@@ -1183,9 +1183,9 @@ Toggles between light theme and dark theme.
 
 **Format:** `theme [-h]`
 
-| Flags          | Required | Remarks                             |
-|----------------|----------|-------------------------------------|
-| `-h`, `--help` | :x:      | Shows help message for this command |
+| Flags          | Required | Remarks                                                                |
+|----------------|----------|------------------------------------------------------------------------|
+| `-h`, `--help` | :x:      | Shows [help message](#understanding-the-help-message) for this command |
 
 **Command Aliases:**
 - `th`
@@ -1196,9 +1196,9 @@ Closes the program after 3 seconds.
 
 **Format:** `exit [-h]`
 
-| Flags          | Required | Remarks                             |
-|----------------|----------|-------------------------------------|
-| `-h`, `--help` | :x:      | Shows help message for this command |
+| Flags          | Required | Remarks                                                                |
+|----------------|----------|------------------------------------------------------------------------|
+| `-h`, `--help` | :x:      | Shows [help message](#understanding-the-help-message) for this command |
 
 **Command Aliases:**
 - `quit`
@@ -1211,9 +1211,9 @@ Shows the available commands in TruthTable as well as URL to this help page at t
 
 **Format:** `help [-h]`
 
-| Flags          | Required | Remarks                             |
-|----------------|----------|-------------------------------------|
-| `-h`, `--help` | :x:      | Shows help message for this command |
+| Flags          | Required | Remarks                                                                |
+|----------------|----------|------------------------------------------------------------------------|
+| `-h`, `--help` | :x:      | Shows [help message](#understanding-the-help-message) for this command |
 
 **Command Aliases:**
 - `h`
