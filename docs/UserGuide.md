@@ -2,8 +2,8 @@
 layout: page
 title: User Guide
 ---
-Ever forget a deadline? Or lost track of your customers? Many commission-based artists struggle to organise
-their business. With so many things to keep track of, you might have found yourself wondering if there were a
+Ever forgot a deadline? Or lost track of your customers? Many commission-based artists struggle to organise
+their business. With so many things to keep track of, you might have found yourself wondering if there was a
 better way to manage all of these.
 
 That's why we built **ArtBuddy** (AB), a commission-based artist's best buddy, just for you. Developed with your
@@ -103,7 +103,7 @@ major operating systems (Windows, macOS, Linux).
 #### Let ArtBuddy help you...
 
 1. [**Manage your customers**](#customer-related-commands)  
-ArtBuddy lets you store, edit and delete your customer's information. Consolidate all your customer's
+ArtBuddy lets you store, edit and delete your customer's information. Consolidate all your customers'
 contact details, so you never have to lose a contact again.  
 
 
@@ -116,7 +116,7 @@ commissions as you wish.
 3. [**Keep track of your progress**](#iteration-related-commands)  
 ArtBuddy wants you help you hone your craft, and learning from yourself is a critical part of that.
 With ArtBuddy, keep track of the progress of your commissions using iterations. Each iteration is simply 
-a version of your artwork. Learn from feedback and your past work, so you can continuously improve your craft.  
+a version of your artwork. Learn from the feedbacks and your past work to continuously improve your craft.  
 
 
 4. [**Supercharge your business**](#statistical-commands)  
@@ -188,7 +188,7 @@ to run ArtBuddy.
 ## Starting up ArtBuddy
 
 Nice! Now that you've downloaded ArtBuddy (if not, our [installation instructions](#installation-instructions)
-might be useful), let's ArtBuddy up and running.
+might be useful), let's get ArtBuddy up and running.
 
 <div markdown="span" class="alert alert-warning">
 
@@ -253,7 +253,7 @@ in your **Customers Tab** does!
 |-----|------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | 1   | Menu Bar         | The menu bar contains menu options to [exit](#exiting-the-program-exit) from ArtBuddy and to get [help](#viewing-help-help).                                                                                |
 | 2   | Command Input    | The command input is where you can key in your commands to tell ArtBuddy what you want to get done. To learn more about ArtBuddy's CLI, refer to the [next section](#artbuddys-command-line-interface-cli). |
-| 3   | Result Display   | The result display is where you'll see ArtBuddy's replies to your commands.                                                                                                                                 |
+| 3   | Result Display   | The result display is where you'll see ArtBuddy's responses to your commands.                                                                                                                               |
 | 4   | Customer List    | The default tab opened when you first start ArtBuddy is the customer tab. Notice how the **Customer** tab is highlighted? That indicates that ArtBuddy is currently showing you your list of Customers.     |
 | 5   | Customer Details | When you select a customer from your **Customer List**, ArtBuddy will show you the details and [statistics](#statistics-view) of your selected customer in this pane.                                       |
 | 6   | Saved Data File  | For advanced users, the [file path](#glossary) displayed here is where ArtBuddy stores your saved data (which you can [edit](#editing-the-data-file)).                                                      |
@@ -266,12 +266,12 @@ Let's take a closer look at the customer statistics ArtBuddy offers. Analyse you
 
 ![Statistics View](images/statistics%20view.png)
 
-|     | Component                       | Description                                                                                                                    |
-|-----|---------------------------------|--------------------------------------------------------------------------------------------------------------------------------|
-| 1   | Total Revenue                   | Displays the total revenue you've generated from this customer.                                                                |
-| 2   | Total Commission Count          | Displays the total number of commissions commissioned by this customer.                                                        |
-| 3   | Commission Breakdown Pie Chart  | Provides visualisation of the breakdown of the customer's commissions by their completion statuses in the form of a pie chart. |
-| 4   | Commission Breakdown            | Breaks down the commissions made by the customer by their completion statuses.                                                 |
+|     | Component                       | Description                                                                                                        |
+|-----|---------------------------------|--------------------------------------------------------------------------------------------------------------------|
+| 1   | Total Revenue                   | Displays the total revenue you've generated from this customer.                                                    |
+| 2   | Total Commission Count          | Displays the total number of commissions received from this customer.                                              |
+| 3   | Commission Breakdown Pie Chart  | Provides a visual breakdown of the customer's commissions by their completion statuses in the form of a pie chart. |
+| 4   | Commission Breakdown            | Breaks down the commissions made by the customer by their completion statuses.                                     |
 
 <div style="page-break-after: always;"></div>
 
@@ -303,7 +303,7 @@ clicking on buttons, you can also tell ArtBuddy what you want to get done just b
 
 Right now, ArtBuddy only understands certain commands (the complete list of commands can be found in
 [Features](#features)). These commands must be formatted in a specific way. It's just the way ArtBuddy
-is wired to think and listen to words. So let's learn how to talk to ArtBuddy!
+is wired to think and listen. So let's learn how to talk to ArtBuddy!
 
 {: .no_toc}
 ### Command Input  
@@ -463,7 +463,7 @@ Format: `opencus [INDEX]`
 
 Examples:
 * <code>opencus <em>2</em></code>
-  Shows details about the second customer and updates the commissions tab with second customer's commissions.
+  Shows details about the second customer and updates the commissions tab with the second customer's commissions.
 
 ![opencus](images/opencus.png)
 
@@ -487,6 +487,7 @@ Edits the details of the customer at `INDEX`.
 
 Format: `editcus INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
 * At least one field to edit must be provided.
+* For tags, a replacement mechanism is in place. This means if you want to add a new tag `VIP` and retain the original tag `friend`, both must be included in the command, e.g. `editcus 2 t/VIP t/friend`.
 
 Examples:
 * <code>editcus <em>1</em> p/<em>91234567</em> e/<em>johndoe@example.com</em></code> Edits the first customer's phone number and email.
@@ -567,6 +568,7 @@ Edits a commission at `INDEX`.
 
 Format: `editcom INDEX [n/TITLE] [f/FEE] [d/DEADLINE] [s/COMPLETION STATUS] [p/DESCRIPTION] [t/TAG]`
 * At least one field to edit must be provided.
+* For tags, a replacement mechanism is in place. This means if you want to add a new tag `watercolor` and retain the original tag `urgent`, both must be included in the command, e.g. `editcus 2 t/watercolor t/urgent`.
 
 Example:
 * <code>editcom <em>1</em> n/<em>Tokyo Ghoul Kaneki</em> f/<em>50</em> d/<em>2022-10-10</em> s/<em>False</em> p/<em>Unfamiliar, I will need to do up a reference board first.</em> t/<em>digital</em> t/<em>neon</em></code>
@@ -720,7 +722,7 @@ Format: `list`
 ![list](images/list.png)
 
 ### Find a customer: `find`
-Finds all the customers who satisfy keyword matching in the name and tag filters. The tag filter more specifically will include customers who contain all tags under `-all` and at least one of the tags under `-any`.
+Finds all the customers who satisfy keyword matching in the name and tag filters. The tag filter, more specifically will include customers who contain all tags under `-all` and at least one of the tags under `-any`.
 
 Format: `find [k/KEYWORDS]... -all [t/TAGS]... -any [t/TAGS]...`
 * The keywords, all, and any filters are all optional and can be omitted, but at least one should exist.
@@ -778,8 +780,8 @@ Format: `findcom [k/KEYWORDS]... -all [t/TAGS]... -any [t/TAGS]...`
 
 Examples:
 * <code>findcom k/<em>Tree Painting</em></code> Finds commissions which have the title `Tree Painting`.
-* <code>findcom -all t/<em>oil painting</em> t/<em>canvas</em></code> Finds commissions which are tagged both `oil painting` and `canvas`.
-* <code>findcom -any t/<em>oil painting</em> t/<em>canvas</em></code> Finds commissions who are either tagged `oil painting` or `canvas`.
+* <code>findcom -all t/<em>oil painting</em> t/<em>canvas</em></code> Finds commissions that are tagged with both `oil painting` and `canvas`.
+* <code>findcom -any t/<em>oil painting</em> t/<em>canvas</em></code> Finds commissions that are either tagged with `oil painting` or `canvas`.
 
 ![findcom](images/findcom.png)
 
