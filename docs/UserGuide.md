@@ -230,9 +230,11 @@ parameters, and flags?**
 <br>
 Nope!
 <br>
+
 While you're going through this section, don't worry too much about memorizing the details of every command, 
 as they all have their own help messages that you can refer to at any time.
 <br>
+
 Furthermore, the commands in TruthTable are designed to be **easy to remember** and **natural**, so you will be 
 familiar with them in no time! 
 </div>
@@ -319,8 +321,9 @@ A valid command is `assign task 1 -a 1 2 3` where `1 2 3` are recognized as the 
 
 
 <div markdown="block" class="alert alert-info">
-**:star: POSIX clustered short options:** TruthTable supports clustered options as specified 
-<a href="https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap12.html#tag_12_02" target="_blank">here</a>
+**:star: POSIX clustered short options** <br>
+TruthTable supports clustered options as specified 
+<a href="https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap12.html#tag_12_02" target="_blank">here</a>.
 </div>
 
 ### Aliases
@@ -389,7 +392,7 @@ Each parameter has their own constraints, which can be found [here](#flag-and-pa
 </div>
 
 
-<div markdown="block" class="alert alert-primary">**:information_source: Notes on Flags and Parameters**
+<div markdown="block" class="alert alert-primary">**:information_source: Flags and Parameters**
 
 - Every command has a `-h` and `--help` flag available to see their help message
 - Flags wrapped with brackets (`()`) indicates that at least 1 flag inside the brackets
@@ -425,8 +428,7 @@ Each parameter has their own constraints, which can be found [here](#flag-and-pa
 </div>
 
 <div markdown="span" class="alert alert-success">
-**:bulb: Letter casing for parameters**
-
+**:bulb: Letter casing for parameters** <br>
 Note that the parameters in this user guide are all upper-cased, which differs from the lower-cased parameters in 
 the help message that TruthTable displays whenever you run a command with `-h`.
 </div>
@@ -451,7 +453,7 @@ Adds a person to TruthTable.
 | `-t`,`--tags`   | :x:                | Tags of person (e.g. Frontend, Backend)                                |
 
 <div markdown="span" class="alert alert-success">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A person can have any number of tags (including 0).
 </div>
 
 **Command Aliases:**
@@ -619,7 +621,7 @@ Delete a team member from the user’s team.
 Finds all members in the current team whose names or emails contain any of the given keywords.
 
 <div markdown="span" class="alert alert-primary">
-:information_source: **Note:** You can find members using **either** emails or names. This means that you 
+:information_source: **Note** <br> You can find members using **either** emails or names. This means that you 
 should **not** use both `-n` and `-e` in the `find member` command. 
 </div>
 
@@ -820,8 +822,7 @@ Edits a specified task in the current team's task list.
 **Format:** `edit task [-h] ([-n=<NAME>] [-d=<DEADLINE>] [-a[=<ASSIGNEES>...]]...) <TASK_INDEX>`
 
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Command Format:**
-
+<div markdown="span" class="alert alert-warning">:exclamation: **Command Format** <br>
 Ensure that `TASK_INDEX` is entered before entering any `ASSIGNEES`, as they both take in positive integers. 
 Passing `TASK_INDEX` after `ASSIGNEES` makes it impossible to distinguish which number is actually the `TASK_INDEX`.
 </div>
