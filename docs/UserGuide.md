@@ -188,7 +188,7 @@ are using the `help` command, while `editbuyer 1 -n Jane Doe` specifies that you
 
 
 * For commands immediately followed by an `INDEX`, `INDEX` refers to the index of the entry on the 
-  [Buyer List](#2-buyer-list) or [Property List](#3-property-list).<br>
+  [Buyer List](#2-buyer-list) or [Property List](#3-property-list).
   * Note that if an entry is not currently displayed on the list (see [FAQ](#faq)), then the command cannot be executed on it,
     e.g. `deletebuyer 7` if the buyer list is only 5 entries long.
 
