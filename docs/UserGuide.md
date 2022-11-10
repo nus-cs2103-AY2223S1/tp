@@ -302,16 +302,14 @@ Format: `batch-add FILENAME`
 
 Example:`batch-add coydir.csv`
 
-How can you use this feature?
+Below are the steps to use this command:
 
-#### Step 1 (Creating CSV file) :
+**Step 1 (Creating CSV file) :**
 
 Things to note:
 
 - A header row is required to indicate the purpose of the field and must be the first row in the `.csv` file.
-- No commas to be used in the file.
 - For multiple tags for an employee, the tags should be separated by " \ ".
-- For the fields, make sure that they follow the same specifications as written in the `add` command.
 
 Order of headers is as such (**Order must be followed**):
 
@@ -334,7 +332,10 @@ Sample `.xlsx` file:
 ![](images/batch-add-images/SampleExcel.png)
 Note: You can export this to `.csv`.
 
-#### Step 2 (Uploading CSV file) :
+<div markdown="span" class="alert alert-warning">:warning: **Caution:** No commas to be used in the file. For the fields, make sure that they follow the same specifications as written in the `add` command.
+</div>
+
+**Step 2 (Uploading CSV file) :**
 
 1. Go to the folder where you stored the `jar` file.
 2. Move CSV file to the `data` folder.
@@ -344,7 +345,7 @@ _If you are a new user (have not run any command yet), you will not see the `dat
 You can run the [`clear` command](#clearing-the-data-clear) to remove the sample employees first.
 After this, you should be able to see the `data` folder._
 
-#### Step 3 (Running CSV file) :
+**Step 3 (Running CSV file) :**
 
 1. Once done, run `batch-add FILENAME` in the command box.
 
@@ -426,7 +427,7 @@ Example:
 
 #### Deleting an employee: `delete`
 
-Deletes the specified employee from Coydir, given the employee ID.
+Deletes the specified employee from Coydir, given the employee ID. This command can be used when an employee is no longer part of the company, and needs to be removed from the database.
 
 This command results in one of two cases below:
 
@@ -483,7 +484,7 @@ Example:
 
 #### Listing all employees: `list`
 
-Shows a list of all employees in the company.
+Shows a list of all employees in the company. This command can be used when you want to briefly look through all the employee profiles.
 
 Format: `list`
 
@@ -531,10 +532,6 @@ and the employee has sufficient leaves, the leave period will be added and shown
 
 If any of employee ID, date is invalid, or the employee does not possess enough leaves, Coydir will prompt the users accordingly, and the command will not execute.
 
-<div markdown="span" class="alert alert-primary">:bulb:
-Leaves are ordered by reverse chronological order in the table view.
-</div>
-
 Format: `add-leave id/ID sd/START_DATE ed/END_DATE`
 
 | Field        | TAG | Description                               | Requirement    | Default Value |
@@ -542,6 +539,10 @@ Format: `add-leave id/ID sd/START_DATE ed/END_DATE`
 | `ID`         | id/ | Employee ID                               | **Compulsory** | N.A.          |
 | `START_DATE` | sd/ | Start date of leave, in dd-MM-YYYY format | **Compulsory** | N.A.          |
 | `END_DATE`   | ed/ | End date of leave, in dd-MM-YYYY format   | **Compulsory** | N.A.          |
+
+<div markdown="span" class="alert alert-primary">:bulb:
+Leaves are ordered by reverse chronological order in the table view.
+</div>
 
 Example:
 
@@ -610,7 +611,7 @@ This command results in one of two cases below:
 
 **Case 1: Valid ID and rating**
 
-If the employee exists, and the rating given is valid (is a number from 1-5 inclusive), the performance rating will be added and the performance field of the employee will be updated accordingly.
+If the employee exists, and the rating given is valid (is a integer from 1-5 inclusive), the performance rating will be added and the performance field of the employee will be updated accordingly.
 
 **Case 2: Invalid ID or rating**
 
@@ -629,19 +630,15 @@ Example:
 
 #### Employee Performance History
 
-In each employee profile below their current performance rating field, there is a performance history line graph showing all their past `ratings` over time, marked by a `value` and `timestamp`. The line graph allows the user to appreciate the employee's performance trend, and make key decisions regarding talent development.
+In each employee profile below their current performance rating field, there is a performance history line graph showing all their past `ratings` over time, marked by a `value` and `timestamp`. The line graph allows you to appreciate the employee's performance trend, and make key decisions regarding talent development.
 
-The individual rating values will be displayed beside each node in the performance rating graph. This makes it clearer for users to visualize an employee's overall performance at a glance.
+The individual rating values will be displayed beside each node in the performance rating graph. This makes it clearer for you to visualize an employee's overall performance at a glance.
 
 ![Performance History Graph](./images/ui-screenshots/performance-history-graph.jpg)
 
 <div markdown="span" class="alert alert-info">
 
 **:information_source: Note:** You can only rate the performance of an employee once per day.<br><br>
-
-- Rating an employee who already has a `Rating` with `timestamp` of that same day with the `rate` command will throw a `employee already rated` error.
-
-- This is to prevent multiple ratings per day, and avoid a distorted performance history graph.
 
 </div>
 
@@ -651,7 +648,7 @@ Apart from supporting the core HR functions, Coydir also supports _department-le
 
 With these features, we offer a view that is broader than an individual employee profile and more specific than the full directory.
 
-Complete with **real-time statistics and analytics**, Coydir makes department management much simpler. With these information, HR can easily observe the structure of a particular department, track the number of currently available employees for better tasks delegation, or even perform a department restructure to improve the overall efficiency of the company.
+Complete with **real-time statistics and analytics**, Coydir makes department management much simpler. With these information, department heads can easily observe the structure of a particular department, track the number of currently available employees for better tasks delegation, or even perform a department restructure to improve the overall efficiency of the company.
 
 Currently, our application only provides a list of default departments for the user to choose from. Future update will include customizable department name. Our current list of valid departments are:
 
@@ -705,7 +702,7 @@ DEPARTMENT is case-insensitive.
 
 ### Additional Features
 
-To wrap up, let us take a look at a couple of additional features that give _a little boost_ to your HR management on Coydir.
+To wrap up, let us take a look at a couple of additional features that give _a little boost_ to your HR and department management on Coydir.
 These features and techniques serve to make your usage of the application **smoother, easier, and more flexible**.
 
 #### Getting help: `help`
