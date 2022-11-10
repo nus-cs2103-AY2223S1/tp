@@ -76,23 +76,30 @@ Now, let’s continue to learn how to [navigate the application](#tutorial-navig
 
 <div style="page-break-after: always;"></div>
 
-<img src="images/UiDetails.png" width="800" /> <br>
+<img src="images/UiDetails.png" width="800" />
+
+| Number | Component Name       | Details                                                                                                                                                                       |
+|:------:|----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|   1.   | Command Line Section | The section where you can enter commands for PayMeLah, and where the status of your commands are displayed.                                                                   |
+|   2.   | Person List Section  | The section showing the list of people added to PayMeLah. The names can be clicked to show their person card, containing their person details as well as their list of debts. |
+|   3.   | Debt List Section    | The section showing details about each debt of a person.                                                                                                                      |
+
+<div style="page-break-after: always;"></div>
+
+#### Command Line Section
+
+<img src="images/CommandLineSection.png" width="800" />
 
 | Number | Component Name | Details                                                                                                                                               |
 |:------:|----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
-|   1.   | Command Box    | The box where you enter commands for PayMeLah to carry out.                                                                                           |
-|   2.   | Message Box    | The box where a success message will be displayed when PayMeLah carries out a command successfully, or an error message when PayMeLah fails to do so. |
-|   3.   | Person Card    | The card containing personal details.                                                                                                                 |
-|   4.   | Debt List      | The box containing the list of debts owed by a person.                                                                                                |
-|   5.   | Person List    | The box containing the full list of person cards. Only one person card can be viewed at a time.                                                       |
+|   1.   | Command box    | The box where you enter commands for PayMeLah to carry out.                                                                                           |
+|   2.   | Message box    | The box where a success message will be displayed when PayMeLah carries out a command successfully, or an error message when PayMeLah fails to do so. |
 
 <div style="page-break-after: always;"></div>
 
-<img src="images/CommandLineSection.png" width="800" /> <br>
+#### Person List Section
 
-<div style="page-break-after: always;"></div>
-
-<img src="images/PersonCard.png" width="800" /> <br>
+<img src="images/PersonCard.png" width="800" />
 
 | Number | Component Name  | Details                                       |
 |:------:|-----------------|-----------------------------------------------|
@@ -106,6 +113,10 @@ Now, let’s continue to learn how to [navigate the application](#tutorial-navig
 
 <div style="page-break-after: always;"></div>
 
+#### Debt List Section
+
+<img src="images/DebtList.png" width="800" />
+
 | Number | Component Name | Details                                     |
 |:------:|----------------|---------------------------------------------|
 |   1.   | Debt Index     | The index of the debt in the debt list.     |
@@ -113,8 +124,6 @@ Now, let’s continue to learn how to [navigate the application](#tutorial-navig
 |   3.   | Money          | The amount of money owed for the debt.      |
 |   4.   | Date/Time      | The date and time of the debt.              |
 |   5.   | Payment Status | The debt’s payment status (paid or unpaid). |
-
-<img src="images/DebtList.png" width="800" /> <br>
 
 <div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
 If your provided inputs are too long, PayMeLah may not be able to fully display them and cut them off! While this is rare, do try to avoid entering unnecessarily long inputs to PayMeLah (e.g., save a person's nickname rather than their full name).
@@ -154,7 +163,7 @@ Of course, this is not yet the end of your journey with PayMeLah - there are sti
 
 ## Features
 
-**:information_source: Notes about the command format:**<br>
+### About the command format
 
 * The first word in the command is the command phrase that specifies which command will be carried out by PayMeLah.
   e.g. in `add n/<name>`, `add` is the command phrase for PayMeLah to add a person.
@@ -671,7 +680,7 @@ The following section is meant for advanced users of PayMeLah who are already co
 
 Although you can use the mouse to perform some functions in PayMeLah, it can be faster if you do not have to lift your hand from your keyboard at all. This is where keyboard shortcuts will come in handy for **speeding up your navigation** of the application.
 
-The table below lists every keyboard shortcut currently available in PayMeLah:
+The following table lists every keyboard shortcut currently available in PayMeLah:
 
 |                Keyboard Key                 | Function                                                                                                                                                                                                                                                                                                                                                                                                                       |
 |:-------------------------------------------:|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -763,7 +772,9 @@ If you are trying to locate a debt without knowing its full description, conside
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-## Command summary
+## Command Summary
+
+### Summary for general utility
 
 | *Actions for* <br> [**General Utility**](#features-for-general-utility) | Format, Examples |
 |-------------------------------------------------------------------------|------------------|
@@ -772,6 +783,9 @@ If you are trying to locate a debt without knowing its full description, conside
 | [**Clear**](#clearing-all-entries-clear)                                | `clear`          |
 | [**Exit**](#exiting-the-program-exit)                                   | `exit`           |
 
+<div style="page-break-after: always;"></div>
+
+### Summary for managing persons
 
 | *Actions for* <br> [**Managing Persons**](#features-for-managing-persons) | Format, Examples                                                                                                                                                             |
 |---------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -780,6 +794,8 @@ If you are trying to locate a debt without knowing its full description, conside
 | [**Delete person**](#deleting-a-person-delete)                            | `delete <index>`<br> e.g., `delete 3`                                                                                                                                        |
 
 <div style="page-break-after: always;"></div>
+
+### Summary for managing debts
 
 | *Actions for* <br> [**Managing Debts**](#features-for-managing-debts) | Format, Examples                                                                                                                                        |
 |-----------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -793,6 +809,8 @@ If you are trying to locate a debt without knowing its full description, conside
 
 <div style="page-break-after: always;"></div>
 
+### Summary for searching
+
 | *Actions for* <br> [**Searching**](#features-for-searching)      | Format, Examples                                                                                                                                                                                                                                        |
 |------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | [**Find person**](#locating-persons-by-inputs-find)              | `find [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]… [d/<description>]… [m/<money>]…`<br> `[above/<money>] [below/<money>] [date/<date>]… [before/<date>] [after/<date>] [time/<time>]…`<br> e.g., `find d/burger above/10.0` |
@@ -804,4 +822,3 @@ If you are trying to locate a debt without knowing its full description, conside
 [Return to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-
