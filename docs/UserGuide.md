@@ -22,11 +22,11 @@ Finally, here are some of the symbols and text formatting to look out for as you
 
 <div markdown="block" class="alert alert-primary">
 :bulb: **Tips:** Blue boxes contain useful tips for using PayMeLah.
-<div>
+</div>
 
 <div markdown="block" class="alert alert-warning">
 :exclamation: **Warnings:** Yellow boxes contain important warnings.
-<div>
+</div>
 
 |          Text Formatting           | Meaning |
 |:----------------------------------:| ------- |
