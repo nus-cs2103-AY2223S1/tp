@@ -20,8 +20,7 @@ title: User Guide
 
 - [Introduction](#introduction)
 - [Using this Guide](#using-this-guide)
-  - [Navigating the User Guide](#navigating-the-user-guide)
-  - [The User Interface](#the-user-interface)
+- [The User Interface](#the-user-interface)
 - [Quick Start](#quick-start)
 - [Features](#features)
   - [Coydir Commands Format](#coydir-commands-format)
@@ -96,7 +95,7 @@ Below is an image of Coydir User Interface with the main components labelled.
 | 3   | Display Panel          | Displays the information of an employee or department. The information includes the employee's personal details, leave information, performance information.     | 
 | 4   | Command Panel            | Displays the system message after the execution of a command. The system message describes the outcome of the entered command. |
 
-### Toolbar
+#### Toolbar
 
 <img src="images/ui-screenshots/Toolbar.png" height=40>
 
@@ -106,7 +105,7 @@ This Toolbar can be used to :
 2. Access the Help guide through the **Help** button
 3. Change from Dark mode to Light Mode or vice versa through the **Theme** button
 
-### Employee List Panel
+#### Employee List Panel
 
 ![Employee List Panel](images/ui-screenshots/Employee-List-Panel.png)
 This shows the whole employee list with basic information such as _Name_, _Employee ID_ and _Position_.
@@ -116,7 +115,7 @@ This will come in handy if:
 1. You want a general overview of the employees in the company as of this moment.
 2. You want to quickly find out their Employee ID to view more details.
 
-### Employee Info Panel
+#### Employee Info Panel
 
 ![Employee Info Panel](images/ui-screenshots/Employee-Info-Panel.png)
 This shows a specific employee's particulars.
@@ -128,7 +127,7 @@ Things to note:
 3. If you delete an employee that you are currently viewing, the employee info view will display the next employee's particulars.
 4. If there is no next employee, this panel will revert to the Coydir logo.
 
-### Command Box
+#### Command Box
 
 ![Command Box](images/ui-screenshots/Command.png)
 
