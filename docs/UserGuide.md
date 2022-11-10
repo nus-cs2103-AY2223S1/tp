@@ -560,6 +560,7 @@ Arrow data are saved as JSON files, one for AddressBook (Teammates) and one for 
 Data file should not be edited manually!
 </div>
 
+<div style="page-break-after: always;"></div>
 
 ## Proposed Features
 
@@ -664,6 +665,8 @@ To improve the speed of your actions and quality of your life while using the ap
 * When you enter a command, it disappears from the command box is run by the application. You may use the `UP` arrow key to go back to a previous command or `DOWN` arrow key to go to the next command. However, if there is text entered, then you cannot use this feature.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## Behind Everything
 
