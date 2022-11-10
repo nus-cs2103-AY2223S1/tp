@@ -177,16 +177,15 @@ These features allow you to add and delete students, and edit their details.
 Before you dive into using the features, you may want to have a look at the common [parameters](#glossary) used.
 The table below shows a list of [command](#glossary) parameters that will be used.
 
-| Parameter Name        | Description                                                                                                                                                                            | Example
-|-----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------
-| `NAME`                | The name of the student. <br><br> It must be an alphanumeric word.                                                                                                                     | E.g. Typing `John Doe` would represent the name of the student saved in the list.
-| `TELEGRAM_HANDLE`     | The Telegram handle of the student. <br> <br> The Telegram handle can only contain alphanumeric characters and underscores. <br> <br> It must also be between 5 and 32 characters long.| `johndoe_123`
-| `CONSULTATION_DATE`   | The consultation date of the student. <br> <br> It must be a valid date in the `YYYY-MM-DD` format, where the year is between 1900 and 2999.                                           | E.g. `2022-08-30` would represent the student's consultation date of 30 August 2022.
-| `MASTERY_CHECK_DATE`  | The Mastery Check date of the student. <br> <br> It must be a valid date in the `YYYY-MM-DD` format, where the year is between 1900 and 2999.                                          | E.g. `2022-09-27` would represent the student's Mastery Check date of 27 September 2022.
-| `TAG`                 | The additional information you want to attach to the student.                                                                                                                          | E.g. Typing `cool guy` would mean that "cool guy" is an additional information associated with the student.
-| `REMARK`              | The remark you want to add for the student.                                                                                                                                            | E.g. Typing `Needs more help` would mean that "Needs more help" is an additional information associated with the student.
-| `INDEX`               | The index of the student in the displayed list. <br> <br> It must be a valid and positive index number.                                                                                | E.g. Typing `2` would mean the student at the second position in the displayed list.
-
+| Parameter Name       | Description                                                                                                                                                                             | Example                                                                                                                   |
+|----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
+| `NAME`               | The name of the student. <br><br> It must be an alphanumeric word.                                                                                                                      | E.g. Typing `John Doe` would represent the name of the student saved in the list.                                         |
+| `TELEGRAM_HANDLE`    | The Telegram handle of the student. <br> <br> The Telegram handle can only contain alphanumeric characters and underscores. <br> <br> It must also be between 5 and 32 characters long. | `johndoe_123`                                                                                                             |
+| `CONSULTATION_DATE`  | The consultation date of the student. <br> <br> It must be a valid date in the `YYYY-MM-DD` format, where the year is between 1900 and 2999.                                            | E.g. `2022-08-30` would represent the student's consultation date of 30 August 2022.                                      |
+| `MASTERY_CHECK_DATE` | The Mastery Check date of the student. <br> <br> It must be a valid date in the `YYYY-MM-DD` format, where the year is between 1900 and 2999.                                           | E.g. `2022-09-27` would represent the student's Mastery Check date of 27 September 2022.                                  |
+| `TAG`                | The additional information you want to attach to the student.                                                                                                                           | E.g. Typing `cool guy` would mean that "cool guy" is an additional information associated with the student.               |
+| `REMARK`             | The remark you want to add for the student.                                                                                                                                             | E.g. Typing `Needs more help` would mean that "Needs more help" is an additional information associated with the student. |
+| `INDEX`              | The index of the student in the displayed list. <br> <br> It must be a valid and positive index number.                                                                                 | E.g. Typing `2` would mean the student at the second position in the displayed list.                                      |
 
 #### Adding a student: `add`
 
@@ -300,12 +299,11 @@ These features allow you to organize your list of students to suit your needs.
 Before you dive into using the features, you may want to have a look at the [parameters](#glossary) used.
 The table below shows a list of command parameters that will be used.
 
-| Parameter Name        | Description                                                                                                             | Example
-|-----------------------|-------------------------------------------------------------------------------------------------------------------------|-----------
-| `CRITERIA`            | The criteria the displayed student list is sorted by.                                                                   | E.g. Typing `n` would mean the displayed student list is sorted by students' names.
-| `ORDER`               | The order the displayed student list is sorted in.                                                                      | E.g. Typing `a` would mean the displayed student list is sorted in ascending order.
-| `KEYWORDS`            | The keywords to search with to find students' information.                                                              | E.g. Typing `cool guy` would represent finding students with the information "cool guy" associated with them.
-
+| Parameter Name | Description                                                | Example                                                                                                       |
+|----------------|------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
+| `CRITERIA`     | The criteria the displayed student list is sorted by.      | E.g. Typing `n` would mean the displayed student list is sorted by students' names.                           |
+| `ORDER`        | The order the displayed student list is sorted in.         | E.g. Typing `a` would mean the displayed student list is sorted in ascending order.                           |
+| `KEYWORDS`     | The keywords to search with to find students' information. | E.g. Typing `cool guy` would represent finding students with the information "cool guy" associated with them. |
 
 #### Sorting students: `sort`
 
@@ -325,7 +323,7 @@ Format: `sort CRITERIA/ORDER`
     * [Reading Assessment 2](#glossary) - `ra2`
     * [Practical Assessment](#glossary) - `pa`
     * [Midterm Test](#glossary) - `mt`
-    * [Final Examination](#glossary) - `ft`
+    * [Final Test](#glossary) - `ft`
 * `ORDER` can be
     * Ascending - `a`
     * Descending - `d`
@@ -396,14 +394,14 @@ These features allow you to record your students grades.
 Before you dive into using the features, you may want to have a look at the [parameters](#glossary) used.
 The table below shows a list of command parameters that will be used.
 
-| Parameter Name        | Description                                                                                                             | Example
-|-----------------------|-------------------------------------------------------------------------------------------------------------------------|-----------
-| `RA1_SCORE`           | The student's score for the first Reading Assessment. <br><br> The following applies to all `SCORE` parameters: <br> They must be numerical (up to two decimal places), and represent percentages. | E.g. Typing `70` would mean a score of 70% for the first Reading Assessment.
-| `RA2_SCORE`           | The student's score for the second Reading Assessment.                                                                      | `100`
-| `PRACTICAL_SCORE`     | The student's score for the Practical Assessment.                                                                           | `69.5`
-| `MIDTERM_SCORE`       | The student's score for the Midterm Test.                                                                                   | `40.37`
-| `FINALS_SCORE`        | The student's score for the Final Examination.                                                                              | `80.1`
-| `INDEX`               | The index of the student in the displayed list.                                                                             | E.g. Typing `1` would mean the student at the first position in the displayed list.
+| Parameter Name    | Description                                                                                                                                                                                        | Example                                                                             |
+|-------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|
+| `RA1_SCORE`       | The student's score for the first Reading Assessment. <br><br> The following applies to all `SCORE` parameters: <br> They must be numerical (up to two decimal places), and represent percentages. | E.g. Typing `70` would mean a score of 70% for the first Reading Assessment.        |
+| `RA2_SCORE`       | The student's score for the second Reading Assessment.                                                                                                                                             | `100`                                                                               |
+| `PRACTICAL_SCORE` | The student's score for the Practical Assessment.                                                                                                                                                  | `69.5`                                                                              |
+| `MIDTERM_SCORE`   | The student's score for the Midterm Test.                                                                                                                                                          | `40.37`                                                                             |
+| `FINALS_SCORE`    | The student's score for the Final Test.                                                                                                                                                            | `80.1`                                                                              |
+| `INDEX`           | The index of the student in the displayed list.                                                                                                                                                    | E.g. Typing `1` would mean the student at the first position in the displayed list. |
 
 #### Recording grades for a student: `grade`
 
@@ -439,12 +437,7 @@ Outcome: The student at the 1st index (Alex Yap) will have their grades updated.
 
 #### Marking a student's Mastery Check as passed: `mark`
 
-After a student has passed their [Mastery Check](#glossary), you can use the `mark` command to mark their Mastery Check as passed. This will update the list of students with the status of the specified student's Mastery Check.
-
-The Mastery Check of a student can only be marked as passed if:
-1. It has not already been marked as passed.
-2. The student has a scheduled Mastery Check date (i.e. the student's Mastery Check field is not empty).
-3. The scheduled date of the Mastery Check is not beyond the current date.
+Mark a student's Mastery Check as passed.
 
 Format: `mark INDEX`
 
@@ -453,42 +446,77 @@ Format: `mark INDEX`
 * The index of the student must be specified and there should be exactly one `INDEX` parameter.
 </div>
 
-Example: Enter `mark 1`.
+<div markdown="block" class="alert alert-info">
 
+**:information_source: Notes about marking Mastery Checks:**<br>
+
+The Mastery Check of a student can only be marked as passed if:
+1. It has not already been marked as passed.
+2. The student has a scheduled Mastery Check date (i.e. the student's Mastery Check field is not empty).
+3. The scheduled date of the Mastery Check is not beyond the current date.
+
+</div>
+
+Example:
+
+Let's say the first student in your list has passed their [Mastery Check](#glossary). You can follow the steps below to mark their Mastery Check as passed.
+
+Steps:
+1. Type `mark 1` in the *Command Box*.
+2. Press `Enter` to execute.
+
+Initial: The first student in the list, Alex Yeoh, does not have their Mastery Check marked as passed.
 ![MarkCommandBefore.png](images/MarkCommandBefore.png)
-<i> Before mark command</i>
+<i>Before mark command</i>
 
+Outcome: 
 
-Outcome: The Mastery Check of the first student in the list has been marked as passed.
+1. FRIDAY will mark the Mastery Check of the first student as passed and update the list of students with the status of the specified student's Mastery Check by adding a "(passed)" status to their Mastery Check.
+2. The *Result Display* will show a success message.
 
 ![MarkCommandOutcome.png](images/MarkCommandOutcome.png)
-<i> Outcome of mark command</i>
-
-As you can see, a "(passed)" status is added to student 1's Mastery Check after the `mark` command is run.
+<i>Outcome of mark command</i>
 
 #### Unmarking a student's Mastery Check: `unmark`
 
-Unmarks the [Mastery Check](#glossary) of a specified student and removes its "(passed)" status. This will come in handy if you accidentally mark the Mastery Check of a student as passed, even though that is not the case.
-
-The Mastery Check of a student can only be unmarked if:
-1. It has already been marked as passed.
-2. The student has a scheduled Mastery Check date (i.e. the student's Mastery Check field is not empty)
+Unmarks the [Mastery Check](#glossary) of a specified student.
 
 Format: `unmark INDEX`
+
 <div markdown="block" class="alert alert-info">
 **:information_source: Note:** <br>
 * The index of the student must be specified and there should be exactly one `INDEX` parameter.
 </div>
 
-Example: Enter `unmark 1` (Assuming student 1's Mastery Check has previously been marked as passed).
+<div markdown="block" class="alert alert-info">
 
+**:information_source: Notes about unmarking Mastery Checks:**<br>
+
+The Mastery Check of a student can only be unmarked if:
+1. It has already been marked as passed.
+2. The student has a scheduled Mastery Check date (i.e. the student's Mastery Check field is not empty).
+
+</div>
+
+Example:
+
+Let's say you have accidentally marked the Mastery Check of the first student in your list as passed, even though that is not the case. You can follow the steps below to unmark this student's Mastery Check.
+
+Steps:
+1. Type `unmark 1` in the *Command Box*.
+2. Press `Enter` to execute.
+
+Initial: The first student in the list, Alex Yeoh, has their Mastery Check marked as passed.
 ![UnmarkCommandBefore.png](images/UnmarkCommandBefore.png)
-<i> Before unmark command</i>
+<i>Before unmark command</i>
 
-Outcome: The Mastery Check of the first student in the list has been unmarked.
+Outcome: 
+
+1. FRIDAY will unmark the Mastery Check of the first student and update the list of students with the status of the specified student's Mastery Check by removing the "(passed)" status from their Mastery Check.
+2. The *Result Display* will show a success message.
 
 ![UnmarkCommandOutcome.png](images/UnmarkCommandOutcome.png)
-<i> Outcome of unmark command</i>
+<i>Outcome of unmark command</i>
 
 As you can see, the "(passed)" status has been removed from student 1's Mastery Check after the `unmark` command is run.
 
@@ -502,10 +530,10 @@ These features help you personalize your FRIDAY experience and improve your prod
 Before you dive into using the features, you may want to have a look at the parameters used.
 The table below shows a list of command parameters that will be used.
 
-| Parameter Name        | Description                                                                                                             | Example
-|-----------------------|-------------------------------------------------------------------------------------------------------------------------|-----------
-| `ALIAS`               | An [alias](#glossary) that you can set for a command.                                                                   | `a`
-| `COMMAND_KEYWORD`     | The command keyword of the original command.                                                                            | `add`
+| Parameter Name    | Description                                           | Example |
+|-------------------|-------------------------------------------------------|---------|
+| `ALIAS`           | An [alias](#glossary) that you can set for a command. | `a`     |
+| `COMMAND_KEYWORD` | The command keyword of the original command.          | `add`   |
 
 #### Adding aliases: `alias`
 
@@ -568,28 +596,88 @@ Other features that aid you in using FRIDAY.
 
 #### Getting User Guide link: `guide`
 
-If you ever need to refer to our User Guide while using FRIDAY, use this command to obtain the link to FRIDAY's User Guide.
+Get a link to FRIDAY's User Guide.
 
 Format: `guide`
 
+Example:
+
+If you ever need to refer to our User Guide while using FRIDAY, you can follow the steps below to get a link to this User Guide.
+
+Steps:
+
+1. Type `guide` in the *Command Box*.
+2. Press `Enter` to execute.
+
+Outcome:
+1. The link to this User Guide will be shown in the *Result Display*, which you can copy and paste into your browser in order to access this User Guide.
+
+![GuideCommandOutcome.png](images/GuideCommandOutcome.png)
+<i>Outcome of guide command</i>
+
 #### Getting help: `help`
 
-Shows a summary of commands along with their command word used in FRIDAY. This allows you to have an easily accessible summary when using FRIDAY.<br>
+Get help in using FRIDAY in the form of a summary of commands along with their command word.<br>
 It also includes a link to this User Guide if needed.
 
 Format: `help`
 
+Example:
+
+Let's say you have forgotten what commands are available in FRIDAY. You can follow the steps below to see a command summary and get the link to this User Guide.
+
+Steps:
+
+1. Type `help` in the *Command Box*.
+2. Press `Enter` to execute.
+
+Outcome:
+1. A new window with the command summary and a button to copy the link to this User Guide to your clipboard will be opened.
+2. The *Result Display* will show a success message.
+
+![HelpCommandOutcome.png](images/HelpCommandOutcome.png)
+<i>Outcome of help command</i>
+
 #### Clearing all existing data: `clear`
 
-On your first launch of FRIDAY, a sample list of students is displayed. The `clear` command allows you to clear this and any other existing data in FRIDAY, resulting in an empty Student list.
+Clear all existing data in FRIDAY.
 
 Format: `clear`
 
+Example:
+
+On your first launch of FRIDAY, the application will open a sample list of students for you to try the commands on. Let's say you are done with this and are ready to start making your own list of students. You can follow the steps below to clear the existing list of students in FRIDAY.
+
+Steps:
+
+1. Type `clear` in the *Command Box*.
+2. Press `Enter` to execute.
+
+Outcome:
+
+1. FRIDAY clears all existing students in the list.
+2. The *Result Display* will show a success message.
+
+![ClearCommandOutcome.png](images/ClearCommandOutcome.png)
+<i>Outcome of clear command</i>
+
 #### Exiting FRIDAY : `exit`
 
-Exits FRIDAY. See you again soon!
+Exits FRIDAY and closes the application.
 
 Format: `exit`
+
+Example:
+
+Now that you are done using FRIDAY for now, you can follow the steps below to close the application.
+
+Steps:
+
+1. Type `exit` in the *Command Box*.
+2. Press `Enter` to execute.
+
+Outcome:
+1. FRIDAY is closed.
 
 #### Saving the data
 
@@ -615,19 +703,18 @@ If your changes to the data file makes its format invalid, FRIDAY will ignore al
 Some Frequently Asked Questions:
 
 **Q**: How do I transfer my data to another computer?<br>
-**A**: Install FRIDAY in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FRIDAY home folder.
+**A**: By default, FRIDAY saves all your data in a folder named `data` in the same directory as the application. You may follow the steps below to transfer your data to another computer:
+1. Install FRIDAY in the other computer as per the steps given in the [Quick Start section](#quick-start).
+2. Make a copy of the `data` folder from the original computer you used to run FRIDAY.
+3. Place this copy in the *home folder* of FRIDAY in the other computer. If there already exists a `data` folder in this other computer, simply replace the folder with this copy.
+4. Run FRIDAY.
 
 **Q**: I accidentally made the data file invalid and now my old data does not show in FRIDAY. How do I fix this?<br>
-**A**: To retrieve the old data, revert all invalid changes in the data file **before running any commands** in FRIDAY.
+**A**: To retrieve the old data, revert all invalid changes in the data file before running any commands in FRIDAY.
 
-**Q**: Which computers can run this software?<br>
-**A**: All computers can run this software as it not limited by hardware. However on the software side Windows computers <br>
-       minimally must be of version 7. All versions above Windows 7 should be compatible. All MacOS versions above Version 10.10 (Yosemite) will be compatible with FRIDAY.
-
-**Q**: What if I am not good at typing. Is FRIDAY for me?<br>
+**Q**: What if I am not good at typing? Is FRIDAY for me?<br>
 **A**: Yes Friday is still for you. Why you may ask? The commands are still very short and even if you are a slow typist,
-       you will be saving time as compared to pen and paper or an Excel sheet. <br>
-       Furthermore, FRIDAY is more aesthetically pleasing and has all the necessary features easily accessible at your fingertips.
+       you will be saving time as compared to using pen and paper or a spreadsheet such as Microsoft Excel.
 
 **Q**: What are the additional features coming to FRIDAY?<br>
 **A**: FRIDAY is always expanding to serve you better. In the near future you can expect to see:
@@ -671,40 +758,40 @@ Some Frequently Asked Questions:
 <div style="page-break-after: always;"></div>
 
 ## Glossary
-1. **CS1101S:** CS1101S Programming Methodology is a Computer Science module in National Univeristy of Singapore (NUS), School of Computing. This module introduces the concepts of programming and computational problem-solving, and is the first and foremost introductory module to computing, hence it is usually taken by first year Computer Science undergraduate students.
+1. **CS1101S:** CS1101S Programming Methodology is a Computer Science module in National University of Singapore (NUS), School of Computing. This module introduces the concepts of programming and computational problem-solving, and is the first and foremost introductory module to computing, hence it is usually taken by first year Computer Science undergraduate students.
 
 2. **Teaching Assistant:** Teaching assistants (TA) are people who help and support teachers or lecturers to provide and coordinate effective classroom instruction. For CS1101S, teaching assistants are undergraduate students who have completed the module. The role of a CS1101S TA involves planning, preparing and delivering weekly tutorial sessions, marking assignments and monitoring their students' progress and engagement levels.
 
-3. **CLI:** CLI stands for command line interface. It is a system wherein the user enters textual one line inputs into an input box and the computer responds with a textual or graphical output.
+3. **CLI:** CLI stands for command line interface. It is a system wherein the user enters textual one line inputs into an input box and the program responds with a textual or graphical output.
 
-4. **GUI:** GUI stands for graphical user interface. It is the opposite of CLI wherein the user interacts with icons and items on the screen to communicate with the computer. Outputs are also displayed in graphical form.
+4. **GUI:** GUI stands for graphical user interface, where the user interacts with icons and items on the screen to communicate with the program. Outputs are also displayed in graphical form.
 
-5. **Java:** Java is a programming language introduced in the 90's. It is used to create many applications that you use today. Including this one.
+5. **Java:** Java is a programming language introduced in the 90's. It is used to create many applications that you use today.
 
 6. **JAR:** The file format of FRIDAY.
 
 7. **Home folder:** The folder in which you want to store all FRIDAY-related files.
 
-8. **Command:** The text that you enter in the input box is a command.
+8. **Command:** The instruction to be given to FRIDAY to execute certain tasks. This refers to the text that you enter into the *Command Box*.
 
-9. **Parameter:** The text that follows the first word of your input in the input box.
+9. **Parameter:** Parameters are the details associated with the commands. This text comes after the command word of your command.
 
-10. **Prefix:** A word or letter used in commands to specify the field you are adding, editing or sorting by.
+10. **Prefix:** A word or letter used in commands to specify the parameters of the command.
 
-11. **RA1:** Reading assessment 1 is a minor assessment in the CS1101S module that tests the content of the first half of the CS1101S module.
+11. **Mastery Check:** A pass/fail assessment on students to assess their understanding of the concepts taught. There are 2 Mastery checks per semester.
 
-12. **RA2:** Reading assessment 2 is a minor assessment in the CS1101S module that tests the content of the second half of the CS1101S module.
+12. **Telegram Handle:** The username in the widely-used messaging application Telegram.
 
-13. **Midterm:** Midterm examination is a major assessment that occurs halfway through the CS1101S module.
+13. **Reading Assessment (RA1/RA2):** Assessments in the form of online quiz with Multiple-Choice Questions (MCQ). There are a total of two reading assessments, namely RA1 and RA2, throughout the semester.
 
-14. **Practical:** Practical examination is a major non-paper assessment that occurs at the end of the CS1101S module.
+14. **Midterm Test:** Midterm Test is a major assessment that occurs halfway through the CS1101S module.
 
-15. **Final:** Final examination is a major paper assessment that occurs at the end of the CS1101S module.
+15. **Practical Assessment:** Practical Assessment is a major assessment that occurs at the end of the CS1101S module.
 
-16. **Mastery Check:** A pass/fail assessment on students to assess their understanding of the concepts taught. There are 2 Mastery checks per semester.
+16. **Final Test:** Final Test is a major assessment that occurs at the end of the CS1101S module.
 
-17. **Alias:** A nickname or an alternate name that you can set for a command.
+17. **Alias:** An alternate name that you can set for a command.
 
-18. **Telegram Handle:** The username in the widely-used messaging application Telegram.
+
 
 [Back to top](#table-of-contents)
