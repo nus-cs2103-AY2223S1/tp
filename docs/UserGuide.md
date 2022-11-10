@@ -169,7 +169,7 @@ This section contains all the information and details of each feature of **FRIDA
 
 <div style="page-break-after: always;"></div>
 
-## Student management
+### Student management
 
 These features allow you to add and delete students, and edit their details.
 
@@ -378,19 +378,25 @@ You can search for keywords using the `find` command and FRIDAY will show you th
 
 Format: `find KEYWORDS`
 
-<div markdown="block" class="alert alert-primary">
-**:bulb: Tip:** <br>
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:** <br>
 * Use student name/telegram handle/consultation/mastery check date/remark to search up a particular student.
 * Multiple keywords can be entered and each keyword is separated by a space.
 * When searching for exam grade, use the format `find [exam_name:EXAM_SCORE]`.
 </div>
 
-Example: Enter `find alex`
+Example: Lets say you need to access a student alex to view his final examination grades. You can do so by following the steps below to find the student.
+
+Steps:
+1. Type `find alex` in the <i>command box</i>.
+2. Press `Enter` to execute.
 
 ![FindCommand.png](images/FindCommand.png)
 <i> Before find command</i>
 
-Outcome: The only student in the list whose details match the keyword "alex" is shown.
+Outcome:
+1. FRIDAY will display a list of students whose details match the keyword "alex" is shown.
+2. The <i>Result display</i> will show a success message.
 
 ![FindCommandOutcome.png](images/FindCommandOutcome.png)
 <i> Outcome of find command</i>
