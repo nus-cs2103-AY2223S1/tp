@@ -368,14 +368,16 @@ Format: `find KEYWORDS`
 
 Example: Lets say you need to access a student alex to view his final examination grades. You can do so by following the steps below to find the student.
 
-Steps
-1. Type `find alex` in the command box.
+Steps:
+1. Type `find alex` in the <i>command box</i>.
 2. Press `Enter` to execute.
 
 ![FindCommand.png](images/FindCommand.png)
 <i> Before find command</i>
 
-Outcome: The students in the list whose details match the keyword "alex" is shown.
+Outcome:
+1. FRIDAY will display a list of students whose details match the keyword "alex" is shown.
+2. The <i>Result display</i> will show a success message.
 
 ![FindCommandOutcome.png](images/FindCommandOutcome.png)
 <i> Outcome of find command</i>
