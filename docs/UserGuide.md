@@ -23,8 +23,42 @@ So what are you waiting for? This user guide contains step-by-step instructions 
 
 # Table of Contents
 
-* Table of Contents
-{:toc}
+- [Introduction](#introduction---what-is-intrack)
+- [How To Use This Guide](#how-to-use-this-guide)
+- [Quick Start](#quick-start)
+- [GUI Summary](#gui-summary)
+- [Features](#features)
+  - [General Features](#general-features)
+    - [Viewing help: `help`](#viewing-help-help)
+    - [Viewing statistics of internship applications: `stats`](#viewing-statistics-of-internship-applications-stats)
+    - [Exiting the program: `exit`](#exiting-the-program-exit)
+    - [Saving the data](#saving-the-data)
+  - [Internship Application Management](#internship-application-management)
+    - [Adding an internship application: `add`](#adding-an-internship-application-add)
+    - [Deleting an internship application: `delete`](#deleting-an-internship-application-delete)
+    - [Updating status of an internship application: `status`](#updating-status-of-an-internship-application--status)
+    - [Adding a tag to an internship application: `addtag`](#adding-a-tag-to-an-internship-application--addtag)
+    - [Deleting a tag from an internship application: `deltag`](#deleting-a-tag-from-an-internship-application--deltag)
+    - [Selecting an internship application: `select`](#selecting-an-internship-application--select)
+    - [Editing an internship application: `edit`](#editing-an-internship-application--edit)
+    - [Adding a task to a selected internship application: `addtask`](#adding-a-task-to-a-selected-internship-application--addtask)
+    - [Deleting a task from a selected internship application: `deltask`](#deleting-a-task-from-a-selected-internship-application--deltask)
+    - [Adding a remark to an internship application: `remark`](#adding-a-remark-to-an-internship-application--remark)
+    - [Sending an email to a company: `mail`](#sending-an-email-to-a-company--mail)
+  - [List Management](#list-management)
+    - [Listing all internship applications: `list`](#listing-all-internship-applications--list)
+    - [Clearing all internship applications: `clear`](#clearing-all-internship-applications--clear)
+    - [Finding internship applications by company name: `findc`](#finding-internship-applications-by-company-name--findc)
+    - [Finding internship applications by position: `findp`](#finding-internship-applications-by-position--findp)
+    - [Finding internship applications by tags: `findt`](#finding-internship-applications-by-tags--findt)
+    - [Filtering internship applications by status: `filter`](#filtering-internship-applications-by-status--filter)
+    - [Sorting internship applications: `sort`](#sorting-internship-applications-sort)
+- [FAQ](#faq)
+- [Command Summary](#command-summary)
+  - [General Features](#general-features)
+  - [Internship Application Management](#internship-application-management)
+  - [List Management](#list-management)
+- [Glossary](#glossary)
 
 
 --------------------------------------------------------------------------------------------------------------------
