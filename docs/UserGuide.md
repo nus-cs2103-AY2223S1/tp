@@ -51,6 +51,7 @@ title: User Guide
     - [Saving the data](#saving-the-data)
     - [Editing the data file](#editing-the-data-file)
 - [FAQ](#faq)
+- [Glossary](#glossary)
 - [Command summary](#command-summary)
 
 ---
@@ -767,7 +768,19 @@ If your changes to the data file makes its format invalid, Coydir will discard a
 
 ---
 
-## Command summary
+## Glossary
+
+1. **CLI** : A _text-based_ user interface which allows the user to perform some action through the use of commands.
+2. **Parameter** : The additional input provided for the command to run.
+3. **GUI** : A visual user interface that uses  visual elements such as shapes, diagrams, and buttons to allow the user to interact with a program.
+4. **Prefix** : An input to help identify the type of information in Coydir.
+5. **Hard disk** : A component in your computer that stores your data.
+6. **JSON** : A file which is used to store data, which adheres to a format called [JavaScript Object Notation (JSON)](https://www.json.org/json-en.html).
+7. **CSV** : A file which is used to store data, which adheres to a format called [Comma-Separated Values (CSV)](https://en.wikipedia.org/wiki/Comma-separated_values).
+8. **JAR** : Otherwise known as [Java ARchive](https://docs.oracle.com/javase/8/docs/technotes/guides/jar/jarGuide.html) file, it is a file format that combines many files into one. It can also be 
+a executable.
+
+## Command Summary
 
 | Action              | Format, Examples                                                                                                                                                                     |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
