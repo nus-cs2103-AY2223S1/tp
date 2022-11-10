@@ -6,10 +6,48 @@ This guide provides everything a CS1101S Teaching Assistant (TA) needs to know t
 
 To use this guide, simply click on the items you would like to learn more about in the table of contents, or scroll down to the relevant sections.
 
-# Table of Contents
+## Table of Contents
 
-* Table of Contents
-{:toc}
+* [What is JARVIS?](#What-is-JARVIS?)
+* [Using this guide](#Using-this-guide)
+* [The Basics](#The-Basics)
+* [Quick start](#Quick-start)
+* [Basic commands](#Basic-commands)
+  * [Viewing help : `help`](#Viewing-help--help)
+  * Listing all students : `liststudent`
+  * Listing all tasks : `listtask`
+  * Listing all students : `listlesson`
+  * Listing all students, tasks and lessons : `listall`
+  * Clearing all entries : `clear`
+  * Exiting the program : `exit`
+* Student commands
+  * Adding a student: `addstudent`
+  * Deleting a student : `deletestudent`
+  * Editing a student : `editstudent`
+  * Locating students by name: `findstudent`
+  * Adding grades to a student : `grade`
+  * Setting mastery check result for a student : `mc`
+* Task commands
+  * Adding a task: `addtask`
+  * Deleting a task : `deletetask`
+  * Marking a task as done : `marktask`
+  * Marking a task as not done : `unmarktask`
+  * Lesson commands
+  * Adding a studio lesson: `addstudio`
+  * Adding a consult lesson: `addconsult`
+  * Adding a mastery check lesson: `addmc`
+  * Deleting a lesson : `deletelesson`
+  * Marking a lesson as completed : `marklesson`
+  * Marking a lesson as not completed : `unmarklesson`
+  * Marking a student as present for a lesson : `markstudent`
+  * Marking a student as absent for a lesson : `unmarkstudent`
+  * Adding a note to a lesson : `addnote`
+  * Deleting a note from a lesson : `deletenote`
+  * Adding participation for a student in a lesson : `addpart`
+* Saving the data
+* Editing the data file
+* FAQ
+* Command summary
 
 --------------------------------------------------------------------------------------------------------------------
 ## What is JARVIS?
@@ -23,7 +61,7 @@ Using JARVIS, the TA can
 
 If you are a CS1101S TA who is familiar with Command Line Interface and can type fast, JARVIS will allow you to efficiently manage your students, tasks and lessons.
 
-[🠕 Back To Top](#title-user-guide)
+[🠕 Back To Top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 ## Using this guide
