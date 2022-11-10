@@ -15,8 +15,7 @@ Welcome to the User Guide of **FRIDAY**!
 
 As a [CS1101S teaching assistant](#glossary), do you find yourself scrambling between your notes, students' contacts, 
 and calendar to consolidate and manage of all your students' information? Do you spend hours consolidating your students'
-work and keeping track of their progress to ensure that they have completed their tasks on time and are coping well in 
-the module?
+work, keeping track of their progress and ensuring that they are coping well in the module?
 
 Worry no more! Our application, **FRIDAY**, will reduce the hassle of managing your students and save you valuable time
 and effort by alleviating your workload. You can spend more time focusing on your own studies, improving your 
@@ -43,10 +42,10 @@ This section guides you along the process of downloading and opening FRIDAY.
 
 2. Download the latest [JAR](#glossary) file `friday.jar` from [here](https://github.com/AY2223S1-CS2103T-W15-4/tp/releases).
 
-3. Copy the file to the folder you want to use as the *home folder* for your FRIDAY.
+3. Copy the file to the folder you want to use as the *[home folder](#glossary)* for your FRIDAY.
 
 4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Startup.png](images/Startup.png)
+![Layout](images/Startup.png)
 
 5. Type the [command](#glossary) in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -62,14 +61,13 @@ This section guides you along the process of downloading and opening FRIDAY.
 
 6. Refer to the [Features](#features) below for details of each command.
 
-[Table of Contents](#table-of-contents)
+[Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 ## About
 ### Document Structure
-This User Guide has been structured in a way to help you find information easily and quickly. In the next subsection
-,Section - reading this document, you can find a multitude of tips on how to use this User Guide. The following sections 
-documents the main features of FRIDAY
+This User Guide has been structured in a way to help you find information easily and quickly. In the next subsection,
+ you can find a multitude of tips on how to use this User Guide. The following sections documents the main features of FRIDAY.
 
 1. [Student management](#student-management)
 2. [Organizing students](#organizing-students)
@@ -94,8 +92,9 @@ The table explains the general syntax and common occurrences throughout the user
 
 | Syntax                         | Meaning and usage                                                                                                   |
 |--------------------------------|---------------------------------------------------------------------------------------------------------------------|
-| `Sample command`               | A purple color highlighted box specifying an executable command that can be entered in the command box              |
+| `Sample command`               | A white color highlighted box specifying an executable command that can be entered in the command box               |
 | CAPITALIZED TEXT               | Indicates a parameter that follows the first word of a command                                                      |
+| *italics*                      | Indicates that the text has a definition specific to FRIDAY, or it is a caption for a Figure in the guide           |
 | **:information_source: Info:** | The icon indicates a section of increased importance and provides essential information to the smooth use of FRIDAY |
 | **:bulb: Tip:**                | A quick memorable form of advice to the user to make their friday experience enjoyable                              |
 | **:exclamation: Caution:**     | A warning sign indicating that the following text is important                                                      |
@@ -111,9 +110,9 @@ and hyperlinks to the first occurrence of the word in each section of the User g
 
 ![Layout](images/layout.png)
   <i> GUI Layout</i><br>
-In this image above we have a labelled box in red called the command box. CLI or command line interface refers to
-  <b>commands</b> in the form of text/<b>lines</b> that you as a user enter in the command box to create a response
-  in the result display which is your <b> interface </b>. 
+In this image above we have a labelled box in red called the command box.
+You can type commands into the command box at the top of the screen, and press Enter on your keyboard to execute it.<br>
+e.g. Typing `help` and press Enter will open a help window.
 </div>
 
 <div markdown="block" class="alert alert-info">
@@ -145,11 +144,11 @@ In this image above we have a labelled box in red called the command box. CLI or
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * `INDEX` is used in commands to refer to a specific student by their index number on the currently displayed list,
-  so it ` **must be a positive integer** 1, 2, 3, …​
+  so it **must be a positive integer** 1, 2, 3, …​
 
 </div>
 
-[Table of Contents](#table-of-contents)
+[Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -280,7 +279,7 @@ Outcome: The student at the 1st index (Alex Yap) will have the remark "Aspiring 
 ![RemarkCommandOutcome.png](images/RemarkCommandOutcome.png)
 <i> Outcome of remark command</i>
 
-[Table of Contents](#table-of-contents)
+[Back to top](#table-of-contents)
 
 
 ### Organizing Students
@@ -375,7 +374,7 @@ Lists all students in FRIDAY. This helps you to reset the sorting and finding do
 
 Format: `list`
 
-[Table of Contents](#table-of-contents)
+[Back to top](#table-of-contents)
 
 
 ### Grading Students
@@ -592,7 +591,7 @@ Advanced users are welcome to update data directly by editing the data file.
 If your changes to the data file makes its format invalid, FRIDAY will ignore all data and start with an empty file in the next run.<br>
 </div>
 
-[Table of Contents](#table-of-contents)
+[Back to top](#table-of-contents)
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -625,7 +624,7 @@ Some Frequently Asked Questions:
 4. Easy import and export of data
 5. Undoing previous actions
 
-[Table of Contents](#table-of-contents)
+[Back to top](#table-of-contents)
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -651,7 +650,7 @@ Some Frequently Asked Questions:
 | **Getting Help**                             | `help`                                                                                                  |
 | **Exiting FRIDAY**                           | `exit`                                                                                                  |
 
-[Table of Contents](#table-of-contents)
+[Back to top](#table-of-contents)
 
 ---------------------------------------------------------------------------------------------------------------------
 
@@ -690,4 +689,4 @@ Some Frequently Asked Questions:
 
 17. **Telegram Handle:** The username in the widely-used messaging application Telegram.
 
-[Table of Contents](#table-of-contents)
+[Back to top](#table-of-contents)
