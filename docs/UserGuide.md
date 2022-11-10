@@ -171,7 +171,7 @@ You are now ready to use the application! Head over to [Quick Start](#quick-star
 
 This section showcases **all** commands in JeeqTracker that you can use. It is split into five sections, namely `Client Commands`, `Transaction Commands`, `Remark Commands`, `Miscellaneous Commands`, and `Data Storage`.
 
-## **Client Commands**
+### **Client Commands**
 
 The following section highlights **all** commands related to `clients`.
 
@@ -287,7 +287,7 @@ Example:
 
 [Back to Table of Contents](#table-of-contents)
 
-## **Transaction Commands**
+### **Transaction Commands**
 
 The following section highlights **all** commands related to `clients`.
 
@@ -404,7 +404,7 @@ Examples:
 
 [Back to Table of Contents](#table-of-contents)
 
-## **Remark Commands**
+### **Remark Commands**
 
 The following section highlights **all** commands related to `remarks`.
 
@@ -467,7 +467,7 @@ Example:
 
 [Back to Table of Contents](#table-of-contents)
 
-## **Miscellaneous Commands**
+### **Miscellaneous Commands**
 
 This section contains **all** miscellaneous commands.
 
