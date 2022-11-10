@@ -7,7 +7,7 @@ title: User Guide
     <img src="images/LTNS_logo.png" width="200" height="200">
 </p>
 
-Hello there! Long Time No See! Having stumbled upon this user guide, you are likely a financial advisor looking for easier life, well, at financial advising! Look no further, as the LongTimeNoSee (LTNS) app is just the right tool you need!
+Hello there! Long time no see! Having stumbled upon this user guide, you are likely a financial advisor looking for easier life, well, at financial advising! Look no further, as the LongTimeNoSee (LTNS) app is just the right tool you need!
 
 With LTNS, gone are the days of frantically searching through stacks and stacks of paper, just for that one client information! All you have to do, is simply type a few words into our revolutionary **[Command Line Interface](#command-line-interface-cli) (CLI)** and voilà! The information you need appears right in front of you, it's that easy!
 
@@ -15,7 +15,7 @@ Furthermore, LTNS is not just any other tool, it is a smart tool. Having surveye
 
 So, what are you waiting for? Start revolutionizing your financial advising journey [here](#tutorial)!
 
-P.S. This document is the official user guide of the Long Time No See (LTNS) app. This guide serves as an introduction to LTNS and a help menu should you have any doubts while using the app.
+P.S. This document is the official user guide of the LongTimeNoSee (LTNS) app. This guide serves as an introduction to LTNS and a help menu should you have any doubts while using the app.
 
 # Table of Contents
 1. [Quickstart](#quick-start)
@@ -143,7 +143,7 @@ Like all things, learning can take some time, but you'll soon realise that each 
 
 # Features Overview
 
-**Long Time No See (LTNS)** allows you to track your clients, policies and events.
+**LongTimeNoSee (LTNS)** allows you to track your clients, policies and events.
 As such, the features available to you are split into **4** main features:
 1. [Common Features](#common-features): Here you can find basic Application features
 2. [Client Features](#client-features): Here you can find all features related to keeping track of all your clients 
@@ -455,8 +455,11 @@ Found a new policy you want to pitch to your clients? LTNS lets you add the poli
 <br/>
 
 - What does your policy cover? A policy must have one or more coverages when created. Find the possible coverages and their corresponding codes [here](#valid-coverage-codes).
+  <br/>
 - Which company does your policy belong to? Find out the valid companies and their corresponding codes [here](#valid-company-codes).
+  <br/>
 - If you’d like to sell a policy from a company/with a coverage not in our list, write to us [here](#contact-us), and we’ll add it in if there are a significant number of requests!
+  <br/>
 - Money is the name of the game! Enter the commissions agreed to with the provider in positive percentages from 0% to 100%! (e.g. 10% 3.5% 1.0%)
 </div>  
 
@@ -556,6 +559,7 @@ Find a detailed explanation of different input restrictions [here](#command-form
 <div markdown="span" class="alert alert-primary">:bulb: **Additional Tips:** <br/>
 
 - The start and end dates should be of the format "YYYY-MM-DD", and within the years 1900 - 2100.
+<br/>
 - Premium should be any positive numeric value below `1000000000` with or without 2 decimal places.
 </div>
 
