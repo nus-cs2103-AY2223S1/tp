@@ -4,24 +4,57 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.model.order.Order;
+import seedu.address.model.person.Buyer;
+import seedu.address.model.person.Deliverer;
+import seedu.address.model.person.MasterList;
+import seedu.address.model.person.Supplier;
+import seedu.address.model.pet.Pet;
 
 /**
  * Represents the in-memory model of the address book data.
  */
 public class ModelManager implements Model {
+
+    //@@author Hongyi6328-reused
+    //Reused from https://github.com/RussellDash332/ip/blob/master/src/main/java/stashy/parser/Parser.java
+    //with minor modification, it is a pretty good way to organise and extend the acceptable date formats.
+    public static final String[] ACCEPTABLE_DATE_FORMATS = new String[]{
+        "MMM dd yyyy",
+        "dd/MM/yyyy",
+        "yyyy/MM/dd",
+        "yyyy-MM-dd",
+        "dd MMM yyyy",
+        "dd MMM yyyy",
+        "MMM dd, yyyy",
+        "MMM dd, yyyy"
+    };
+
+    public static final String PREFERRED_DATE_FORMAT = "yyyy-MM-dd";
+
+    public static final DateTimeFormatter PREFERRED_FORMATTER = DateTimeFormatter.ofPattern(PREFERRED_DATE_FORMAT);
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Buyer> filteredBuyers;
+    private final FilteredList<Supplier> filteredSuppliers;
+    private final FilteredList<Deliverer> filteredDeliverers;
+    private final FilteredList<Pet> filteredPets;
+    private final FilteredList<Order> filteredOrders;
+    private final MasterList filteredAll;
+    private FilteredList<?> filteredCurrList;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -33,7 +66,14 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredBuyers = new FilteredList<>(this.addressBook.getBuyerList());
+        filteredSuppliers = new FilteredList<>(this.addressBook.getSupplierList());
+        filteredDeliverers = new FilteredList<>(this.addressBook.getDelivererList());
+        filteredPets = new FilteredList<>(this.addressBook.getPetList());
+        filteredOrders = new FilteredList<>(this.addressBook.getOrderList());
+        filteredAll = new MasterList();
+        collect();
+        switchToMainList();
     }
 
     public ModelManager() {
@@ -88,44 +128,356 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public boolean hasBuyer(Buyer buyer) {
+        requireNonNull(buyer);
+        return addressBook.hasBuyer(buyer);
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public boolean hasSupplier(Supplier supplier) {
+        requireNonNull(supplier);
+        return addressBook.hasSupplier(supplier);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public boolean hasDeliverer(Deliverer deliverer) {
+        requireNonNull(deliverer);
+        return addressBook.hasDeliverer(deliverer);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-
-        addressBook.setPerson(target, editedPerson);
+    public boolean hasPet(Pet pet) {
+        requireNonNull(pet);
+        return addressBook.hasPet(pet);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    @Override
+    public boolean hasOrder(Order order) {
+        requireNonNull(order);
+        return addressBook.hasOrder(order);
+    }
+
+    @Override
+    public void deleteBuyer(Buyer target) {
+        addressBook.removeBuyer(target);
+        collect();
+    }
+
+    @Override
+    public void deleteSupplier(Supplier target) {
+        addressBook.removeSupplier(target);
+        collect();
+    }
+
+    @Override
+    public void deleteDeliverer(Deliverer target) {
+        addressBook.removeDeliverer(target);
+        collect();
+    }
+
+    @Override
+    public void deletePet(Pet target) {
+        addressBook.removePet(target);
+        collect();
+    }
+
+    @Override
+    public void deleteOrder(Order target) {
+        addressBook.removeOrder(target);
+        collect();
+    }
+
+    @Override
+    public void addBuyer(Buyer buyer) {
+        addressBook.addBuyer(buyer);
+        updateFilteredBuyerList(PREDICATE_SHOW_ALL_BUYERS);
+    }
+
+    @Override
+    public void addSupplier(Supplier supplier) {
+        addressBook.addSupplier(supplier);
+        updateFilteredSupplierList(PREDICATE_SHOW_ALL_SUPPLIERS);
+    }
+
+    @Override
+    public void addDeliverer(Deliverer deliverer) {
+        addressBook.addDeliverer(deliverer);
+        updateFilteredDelivererList(PREDICATE_SHOW_ALL_DELIVERERS);
+    }
+
+    @Override
+    public void addPet(Pet pet) {
+        addressBook.addPet(pet);
+        updateFilteredPetList(PREDICATE_SHOW_ALL_PETS);
+    }
+
+    @Override
+    public void addOrder(Order order) {
+        addressBook.addOrder(order);
+        updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
+    }
+
+    @Override
+    public void setBuyer(Buyer target, Buyer editedBuyer) {
+        requireAllNonNull(target, editedBuyer);
+
+        addressBook.setBuyer(target, editedBuyer);
+        List<Order> orderFromId = addressBook.getOrderFromId(target.getOrderIds());
+        for (Order order: orderFromId) {
+            order.setBuyer(editedBuyer);
+        }
+        collect();
+    }
+
+    @Override
+    public void setSupplier(Supplier target, Supplier editedSupplier) {
+        requireAllNonNull(target, editedSupplier);
+
+        addressBook.setSupplier(target, editedSupplier);
+        List<Pet> petFromId = addressBook.getPetFromId(target.getPetIds());
+        for (Pet pet: petFromId) {
+            pet.setSupplier(editedSupplier);
+        }
+        collect();
+    }
+
+    @Override
+    public void setDeliverer(Deliverer target, Deliverer editedDeliverer) {
+        requireAllNonNull(target, editedDeliverer);
+
+        addressBook.setDeliverer(target, editedDeliverer);
+
+        collect();
+    }
+
+    @Override
+    public void setPet(Pet target, Pet editedPet) {
+        requireAllNonNull(target, editedPet);
+
+        addressBook.setPet(target, editedPet);
+        collect();
+    }
+
+    @Override
+    public void setOrder(Order target, Order editedOrder) {
+        requireAllNonNull(target, editedOrder);
+
+        addressBook.setOrder(target, editedOrder);
+        collect();
+    }
+
+    @Override
+    public void sortBuyer(Comparator<Buyer> comparator) {
+        requireNonNull(comparator);
+        addressBook.sortBuyer(comparator);
+        collect();
+    }
+
+    @Override
+    public void sortSupplier(Comparator<Supplier> comparator) {
+        requireNonNull(comparator);
+        addressBook.sortSupplier(comparator);
+        collect();
+    }
+
+    @Override
+    public void sortDeliverer(Comparator<Deliverer> comparator) {
+        requireNonNull(comparator);
+        addressBook.sortDeliverer(comparator);
+        collect();
+    }
+
+    @Override
+    public void sortOrder(Comparator<Order> comparator) {
+        requireNonNull(comparator);
+        addressBook.sortOrder(comparator);
+        collect();
+    }
+
+    @Override
+    public void sortPet(Comparator<Pet> comparator) {
+        requireNonNull(comparator);
+        addressBook.sortPet(comparator);
+        collect();
+    }
+
+    //=========== Filtered Objects List Accessors =============================================================
+    /**
+     * Returns an ObservableList of buyers in the filteredPersons list.
+     *
+     * @return ObservableList of buyers.
+     */
+    public ObservableList<Buyer> getFilteredBuyerList() {
+        return filteredBuyers;
+    }
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * Returns an ObservableList of suppliers in the filteredPersons list.
+     *
+     * @return ObservableList of suppliers.
      */
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Supplier> getFilteredSupplierList() {
+        return filteredSuppliers;
+    }
+
+    /**
+     * Returns an ObservableList of deliverers in the filteredPersons list.
+     *
+     * @return ObservableList of deliverers.
+     */
+    public ObservableList<Deliverer> getFilteredDelivererList() {
+        return filteredDeliverers;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public ObservableList<Pet> getFilteredPetList() {
+        return filteredPets;
+    }
+
+    @Override
+    public ObservableList<Order> getFilteredOrderList() {
+        return filteredOrders;
+    }
+
+    @Override
+    public ObservableList<Object> getFilteredMainList() {
+        collect();
+        return filteredAll.getMasterList();
+    }
+
+    @Override
+    public ObservableList<Object> getFilteredCurrList() {
+
+        @SuppressWarnings("unchecked")
+        ObservableList<Object> res = (ObservableList<Object>) filteredCurrList;
+
+        return res;
+    }
+
+    @Override
+    public void updateFilteredBuyerList(Predicate<Buyer> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredBuyers.setPredicate(predicate);
+        collect();
+    }
+
+    @Override
+    public void updateFilteredSupplierList(Predicate<Supplier> predicate) {
+        requireNonNull(predicate);
+        filteredSuppliers.setPredicate(predicate);
+        collect();
+    }
+
+    @Override
+    public void updateFilteredDelivererList(Predicate<Deliverer> predicate) {
+        requireNonNull(predicate);
+        filteredDeliverers.setPredicate(predicate);
+        collect();
+    }
+
+    @Override
+    public void updateFilteredPetList(Predicate<Pet> predicate) {
+        requireNonNull(predicate);
+        filteredPets.setPredicate(predicate);
+        collect();
+    }
+
+    @Override
+    public void updateFilteredOrderList(Predicate<Order> predicate) {
+        requireNonNull(predicate);
+        filteredOrders.setPredicate(predicate);
+        collect();
+    }
+
+    @Override
+    public List<Order> getOrdersFromBuyer(Buyer buyer) {
+        requireNonNull(buyer);
+        return addressBook.getOrderFromId(buyer.getOrderIds());
+    }
+
+    @Override
+    public List<Order> getOrdersFromDeliverer(Deliverer deliverer) {
+        requireNonNull(deliverer);
+        return addressBook.getOrderFromId(deliverer.getOrders());
+    }
+
+    @Override
+    public List<Pet> getPetsFromSupplier(Supplier supplier) {
+        requireNonNull(supplier);
+        return addressBook.getPetFromId(supplier.getPetIds());
+    }
+
+    @Override
+    public void clearCurrList() {
+        filteredAll.clear();
+        filteredCurrList.clear();
+    }
+
+    @Override
+    public void switchToBuyerList() {
+        filteredCurrList = filteredBuyers;
+    }
+
+    @Override
+    public void switchToSupplierList() {
+        filteredCurrList = filteredSuppliers;
+    }
+
+    @Override
+    public void switchToDelivererList() {
+        filteredCurrList = filteredDeliverers;
+    }
+
+    @Override
+    public void switchToOrderList() {
+        filteredCurrList = filteredOrders;
+    }
+
+    @Override
+    public void switchToPetList() {
+        filteredCurrList = filteredPets;
+    }
+
+    @Override
+    public void switchToMainList() {
+        filteredCurrList = new FilteredList<>(filteredAll.getMasterList());
+    }
+
+    @Override
+    public void checkBuyerOrder(Buyer buyer) {
+        ObservableList<Order> orders = FXCollections.observableArrayList(getOrdersFromBuyer(buyer));
+        filteredCurrList = new FilteredList<>(orders);
+    }
+
+    @Override
+    public void checkSupplierPet(Supplier supplier) {
+        ObservableList<Pet> pets = FXCollections.observableArrayList(getPetsFromSupplier(supplier));
+        filteredCurrList = new FilteredList<>(pets);
+    }
+
+    @Override
+    public void checkDelivererOrder(Deliverer deliverer) {
+        ObservableList<Order> orders = FXCollections.observableArrayList(getOrdersFromDeliverer(deliverer));
+        filteredCurrList = new FilteredList<>(orders);
+    }
+
+    @Override
+    public void checkBuyerOfOrder(Order order) {
+        ObservableList<Buyer> buyers = FXCollections.observableArrayList(order.getBuyer());
+        filteredCurrList = new FilteredList<>(buyers);
+    }
+
+    @Override
+    public void checkSupplierOfPet(Pet pet) {
+        ObservableList<Supplier> suppliers = FXCollections.observableArrayList(pet.getSupplier());
+        filteredCurrList = new FilteredList<>(suppliers);
+    }
+
+    private void collect() {
+        filteredAll.clear();
+        filteredAll.addAll(filteredBuyers);
+        filteredAll.addAll(filteredSuppliers);
+        filteredAll.addAll(filteredDeliverers);
     }
 
     @Override
@@ -144,7 +496,11 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredBuyers.equals(other.filteredBuyers)
+                && filteredSuppliers.equals(other.filteredSuppliers)
+                && filteredDeliverers.equals(other.filteredDeliverers)
+                && filteredPets.equals(other.filteredPets)
+                && filteredOrders.equals(other.filteredOrders);
     }
 
 }

@@ -1,0 +1,69 @@
+@startuml
+!include style.puml
+
+box Ui UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+participant ":AddCommandPopupWindow" as AddCommandPopupWindow UI_COLOR
+participant ":PopupPanelForSupplier" as PopupPanelForSupplier UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant "a:AddCommandWithPopup" as AddCommandWithPopup LOGIC_COLOR
+end box
+
+[-> MainWindow : executeCommand("add supplier")
+activate MainWindow
+
+MainWindow -> LogicManager : execute("add supplier")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(""add supplier")
+activate AddressBookParser
+
+create AddCommandWithPopup
+AddressBookParser -> AddCommandWithPopup
+activate AddCommandWithPopup
+
+AddCommandWithPopup --> AddressBookParser
+deactivate AddCommandWithPopup
+
+AddressBookParser --> LogicManager : a
+deactivate AddressBookParser
+
+LogicManager -> AddCommandWithPopup : execute()
+activate AddCommandWithPopup
+
+AddCommandWithPopup --> LogicManager : command result
+deactivate AddCommandWithPopup
+AddCommandWithPopup -[hidden]-> LogicManager
+destroy AddCommandWithPopup
+
+LogicManager --> MainWindow : command result
+deactivate LogicManager
+
+MainWindow -> MainWindow : handleAddByPopup("SUPPLIER")
+activate MainWindow
+
+create AddCommandPopupWindow
+MainWindow -> AddCommandPopupWindow
+activate AddCommandPopupWindow
+
+create PopupPanelForSupplier
+AddCommandPopupWindow -> PopupPanelForSupplier
+activate PopupPanelForSupplier
+
+PopupPanelForSupplier --> AddCommandPopupWindow
+deactivate PopupPanelForSupplier
+
+AddCommandPopupWindow --> MainWindow
+deactivate AddCommandPopupWindow
+
+MainWindow --> MainWindow
+deactivate MainWindow
+
+[<-- MainWindow
+deactivate MainWindow
+
+@enduml

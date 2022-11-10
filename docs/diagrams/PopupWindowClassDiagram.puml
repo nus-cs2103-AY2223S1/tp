@@ -1,0 +1,64 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR_T4
+skinparam classBackgroundColor UI_COLOR
+
+package UI <<Rectangle>>{
+Class "<<interface>>\nUi" as Ui
+Class "{abstract}\nUiPart" as UiPart
+Class "{abstract}\nPopupPanel" as PopupPanel
+Class UiManager
+Class MainWindow
+Class AddCommandPopupWindow
+Class ResultDisplay
+Class PopupPanelForBuyer
+Class PopupPanelForOrder
+Class PopupPanelForPet
+Class PopupPanelForSupplier
+}
+
+package Model <<Rectangle>> {
+Class HiddenModel #FFFFFF
+}
+
+package Logic <<Rectangle>> {
+Class HiddenLogic #FFFFFF
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Ui
+UiManager .left.|> Ui
+
+UiManager --> Logic
+MainWindow -left-> Logic
+AddCommandPopupWindow--> Logic
+
+UiManager --> "1" MainWindow
+MainWindow *--> "1" ResultDisplay
+MainWindow --> "0..1" AddCommandPopupWindow
+AddCommandPopupWindow -left-> "1" ResultDisplay
+AddCommandPopupWindow *--> "0..1" PopupPanelForBuyer
+AddCommandPopupWindow *--> "0..1" PopupPanelForSupplier
+
+MainWindow -left-|> UiPart
+ResultDisplay --|> UiPart
+AddCommandPopupWindow --|> UiPart
+PopupPanel --|> UiPart
+
+PopupPanelForBuyer --|> PopupPanel
+PopupPanelForSupplier --|> PopupPanel
+PopupPanelForOrder --|> PopupPanel
+PopupPanelForPet --|> PopupPanel
+
+PopupPanelForBuyer --> "*" PopupPanelForOrder
+PopupPanelForSupplier --> "*" PopupPanelForPet
+
+PopupPanelForBuyer ..> Model
+PopupPanelForSupplier ..> Model
+PopupPanelForOrder ..> Model
+PopupPanelForPet ..> Model
+
+PopupPanel -[hidden]down- Model
+
+@enduml

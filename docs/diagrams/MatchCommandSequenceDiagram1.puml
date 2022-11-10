@@ -1,0 +1,49 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":MatchCommandParser" as MatchCommandParser LOGIC_COLOR
+participant "m:MatchCommand" as MatchCommand LOGIC_COLOR
+end box
+
+[-> LogicManager : execute("match 1")
+activate LogicManager
+
+LogicManager -> AddressBookParser
+activate AddressBookParser
+
+create MatchCommandParser
+AddressBookParser -> MatchCommandParser
+activate MatchCommandParser
+
+MatchCommandParser -> MatchCommandParser : parse("1")
+activate MatchCommandParser
+
+create MatchCommand
+MatchCommandParser -> MatchCommand
+activate MatchCommand
+
+MatchCommand --> MatchCommandParser : m
+deactivate MatchCommand
+
+MatchCommandParser --> MatchCommandParser : m
+deactivate MatchCommandParser
+
+MatchCommandParser --> AddressBookParser : m
+deactivate MatchCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+MatchCommandParser -[hidden]-> AddressBookParser
+destroy MatchCommandParser
+
+AddressBookParser --> LogicManager : m
+deactivate AddressBookParser
+
+ref over LogicManager, MatchCommand
+    execute(model) - execution of the Match Command
+end ref
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

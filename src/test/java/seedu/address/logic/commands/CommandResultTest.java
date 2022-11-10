@@ -14,7 +14,7 @@ public class CommandResultTest {
 
         // same values -> returns true
         assertTrue(commandResult.equals(new CommandResult("feedback")));
-        assertTrue(commandResult.equals(new CommandResult("feedback", false, false)));
+        //assertTrue(commandResult.equals(new CommandResult("feedback", false, false)));
 
         // same object -> returns true
         assertTrue(commandResult.equals(commandResult));
@@ -50,5 +50,28 @@ public class CommandResultTest {
 
         // different exit value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, true).hashCode());
+    }
+
+    @Test
+    public void isHelpShown() {
+        CommandResult helpShown = new CommandResult("feedback", true, true);
+        CommandResult helpNotShown = new CommandResult("feedback", false, true);
+        assertTrue(helpShown.isHelpShown());
+        assertFalse(helpNotShown.isHelpShown());
+    }
+
+    @Test
+    public void isExit() {
+        CommandResult exit = new CommandResult("feedback", true, true);
+        CommandResult notExit = new CommandResult("feedback", true, false);
+        assertTrue(exit.isExit());
+        assertFalse(notExit.isExit());
+    }
+
+    @Test
+    public void isAddedByPopup() {
+        CommandResult popupCommandResult = CommandResult.createAddByPopupCommandResult("feedback",
+                "Buyer");
+        assertTrue(popupCommandResult.isAddedByPopup());
     }
 }

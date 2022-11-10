@@ -1,0 +1,87 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant "m:MatchCommand" as MatchCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant "petScoreMap:HashMap" as HashMap LOGIC_COLOR
+participant "comparator:Comparator" as Comparator LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "model:Model" as Model MODEL_COLOR
+participant "grader:PetGrader" as PetGrader MODEL_COLOR
+end box
+
+[-> LogicManager : execute("match 1")
+activate LogicManager
+
+ref over LogicManager, MatchCommand
+    Creation of MatchCommand
+end ref
+
+LogicManager -> MatchCommand : execute(model)
+activate MatchCommand
+
+create PetGrader
+MatchCommand -> PetGrader
+activate PetGrader
+
+PetGrader --> MatchCommand : grader
+deactivate PetGrader
+
+create HashMap
+MatchCommand -> HashMap
+activate HashMap
+
+HashMap --> MatchCommand : petScoreMap
+deactivate HashMap
+
+loop until there are no more pets in filteredPets
+    MatchCommand -> HashMap
+    activate HashMap
+    HashMap -> HashMap : put(Pet, PetGrader)
+    activate HashMap
+    HashMap -> PetGrader : evaluate(Pet)
+    activate PetGrader
+    PetGrader --> HashMap : score
+    deactivate PetGrader
+    deactivate HashMap
+
+end
+    HashMap --> MatchCommand : petScoreMap
+    deactivate HashMap
+
+create Comparator
+MatchCommand -> Comparator
+activate Comparator
+
+Comparator --> MatchCommand : comparator
+deactivate Comparator
+
+MatchCommand -> Model : sortPet(comparator)
+activate Model
+
+Model --> MatchCommand
+deactivate Model
+
+MatchCommand -> Model : switchToPetList()
+activate Model
+
+Model --> MatchCommand
+deactivate Model
+
+create CommandResult
+MatchCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> MatchCommand
+deactivate CommandResult
+
+MatchCommand --> LogicManager : result
+deactivate MatchCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

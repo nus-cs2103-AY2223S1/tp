@@ -1,0 +1,39 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Class AddressBook
+Class UniquePetList
+Class Supplier
+Class Color
+Class ColorPattern
+Class DateOfBirth
+Class Species
+Class Weight
+Class Height
+Class VaccinationStatus
+Class UniqueId
+Class Price
+Class Tag
+Class PetCertificate
+
+AddressBook *--> "1" UniquePetList
+
+UniquePetList-right->"0..*" Pet
+
+Pet *--> "1" Supplier
+Pet *--> "1" Color
+Pet *--> "1" ColorPattern
+Pet *--> "1" DateOfBirth
+Pet *--> "1" Species
+Pet *--> "1" Weight
+Pet *--> "1" Height
+Pet *--> "1" VaccinationStatus
+Pet *--> "1" UniqueId
+Pet *--> "1" Price
+Pet *--> "0..*" Tag
+Pet *--> "0..*" PetCertificate
+
+@enduml

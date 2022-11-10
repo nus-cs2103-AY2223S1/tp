@@ -1,0 +1,45 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR_T4
+skinparam classBackgroundColor LOGIC_COLOR
+
+Class "{abstract}\nDeleteCommand" as DeleteCommand
+Class DeleteBuyerCommand
+Class DeleteDelivererCommand
+Class DeleteSupplierCommand
+Class DeleteOrderCommand
+Class DeletePetCommand
+
+package "Parser classes"{
+Class "<<interface>>\nParser" as Parser
+Class AddressBookParser
+Class DeleteBuyerCommandParser
+Class DeleteSupplierCommandParser
+Class DeleteDelivererCommandParser
+Class DeleteOrderCommandParser
+Class DeletePetCommandParser
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> AddressBookParser
+
+AddressBookParser .down.> DeleteBuyerCommandParser: creates >
+AddressBookParser .down.> DeleteSupplierCommandParser: creates >
+AddressBookParser .down.> DeleteDelivererCommandParser: creates >
+AddressBookParser .down.> DeleteOrderCommandParser: creates >
+AddressBookParser .down.> DeletePetCommandParser: creates >
+
+DeleteBuyerCommandParser .down.|> Parser
+DeleteSupplierCommandParser .down.|> Parser
+DeleteDelivererCommandParser .down.|> Parser
+DeleteOrderCommandParser .down.|> Parser
+DeletePetCommandParser .down.|> Parser
+
+AddressBookParser ..> DeleteCommand : returns >
+DeleteBuyerCommand -up-|> DeleteCommand
+DeleteSupplierCommand -up-|> DeleteCommand
+DeleteDelivererCommand -up-|> DeleteCommand
+DeleteOrderCommand -up-|> DeleteCommand
+DeletePetCommand -up-|> DeleteCommand
+@enduml

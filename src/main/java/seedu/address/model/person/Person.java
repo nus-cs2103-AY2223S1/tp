@@ -2,12 +2,9 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
-import seedu.address.model.tag.Tag;
+import seedu.address.model.order.Order;
 
 /**
  * Represents a Person in the address book.
@@ -15,25 +12,53 @@ import seedu.address.model.tag.Tag;
  */
 public class Person {
 
+    private Order order;
+
     // Identity fields
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final PersonCategory personCategory;
 
     // Data fields
     private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
+    private final Location location;
+
 
     /**
-     * Every field must be present and not null.
+     * Every field must be present and not null, except Location, which is
+     * set by default to Singapore.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(PersonCategory personCategory,
+                  Name name,
+                  Phone phone,
+                  Email email,
+                  Address address) {
+        requireAllNonNull(personCategory, name, phone, email, address);
+        this.personCategory = personCategory;
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.tags.addAll(tags);
+        this.location = new Location("Singapore");
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Person(PersonCategory personCategory,
+                  Name name,
+                  Phone phone,
+                  Email email,
+                  Address address,
+                  Location location) {
+        requireAllNonNull(personCategory, name, phone, email, address);
+        this.personCategory = personCategory;
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.location = location;
     }
 
     public Name getName() {
@@ -52,16 +77,17 @@ public class Person {
         return address;
     }
 
-    /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public PersonCategory getPersonCategory() {
+        return personCategory;
     }
 
     /**
-     * Returns true if both persons have the same name.
+     * Returns true if both persons have the same name and the same email address.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Person otherPerson) {
@@ -70,7 +96,8 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+                && otherPerson.getName().equals(getName())
+                && otherPerson.getEmail().equals(getEmail());
     }
 
     /**
@@ -88,17 +115,18 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
-        return otherPerson.getName().equals(getName())
+        return otherPerson.getPersonCategory().equals(getPersonCategory())
+                && otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getLocation().equals(getLocation());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(personCategory, name, phone, email, address);
     }
 
     @Override
@@ -110,13 +138,9 @@ public class Person {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress());
-
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
-        }
+                .append(getAddress())
+                .append("; Location: ")
+                .append(getLocation());
         return builder.toString();
     }
 

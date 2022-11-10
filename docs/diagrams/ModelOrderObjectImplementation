@@ -1,0 +1,34 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Class AddressBook
+Class UniqueOrderList
+Class Order
+Class Buyer
+Class PriceRange
+Class Request
+Class AdditionalRequests
+Class LocalDate
+Class Price
+Class "<<enum>>\nOrderStatus" as OrderStatus
+Class UniqueId
+
+AddressBook *--> "1" UniqueOrderList
+
+UniqueOrderList-right->"0..*" Order
+
+Order *--> Buyer
+Order *--> PriceRange
+Order *--> Request
+Order *--> AdditionalRequests
+Order *--> OrderStatus
+Order *--> UniqueId
+Order *--> "byDate" LocalDate
+Order *--> "settled price" Price
+
+Price -left[hidden]- LocalDate
+LocalDate -left[hidden]- Price
+@enduml

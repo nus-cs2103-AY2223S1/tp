@@ -51,6 +51,14 @@ public class Email {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Compares an email with another email.
+     * @param email The other email being compared.
+     */
+    public int compareTo(Email email) {
+        return this.value.compareTo(email.value);
+    }
+
     @Override
     public String toString() {
         return value;
