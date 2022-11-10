@@ -177,8 +177,6 @@ Of course, this is not yet the end of your journey with PayMeLah - there are sti
 
 ## Features
 
-<div markdown="block" class="alert alert-info">
-
 **:information_source: Notes about the command format:**<br>
 
 * The first word in the command is the command phrase that specifies which command will be carried out by PayMeLah.
@@ -201,11 +199,7 @@ Of course, this is not yet the end of your journey with PayMeLah - there are sti
 Be very careful with how a command is formatted! If the `…` is found within the diamond brackets `<>` that correspond to an input as in `<person index…>`, then only the input itself is to be repeated. However, if the `…` is found outside the `<>` as in `[t/<tag>]…`, then both the prefix and input must be repeated.
 </div>
 
-</div>
-
 <div style="page-break-after: always;"></div>
-
-<div markdown="block" class="alert alert-info">
 
 * Inputs can be in any order.<br>
   e.g. if the command specifies `d/<description> m/<money>`, `m/<money> d/<description>` is also acceptable.
@@ -220,12 +214,9 @@ Be very careful with how a command is formatted! If the `…` is found within th
 Avoid giving irrelevant inputs to commands that do not accept those inputs. For example, `mark` expects a `<person index>` input and a `debt/<debt index…>` input, but not a `t/<tag>` input. Giving such inputs may cause unexpected behaviour in PayMeLah!
 </div>
 
-</div>
-
 <div style="page-break-after: always;"></div>
 
 #### Input-specific behaviour
-<div markdown="block" class="alert alert-info">
 
 * Whenever `<date>` is specified as an input, you should input it in the format `yyyy-mm-dd` where `y` is year, `m` is month and `d` is day.<br>
   e.g. September 5 2022 should be input as `2022-09-05`.
@@ -235,8 +226,6 @@ Avoid giving irrelevant inputs to commands that do not accept those inputs. For 
 
 * Whenever `<money>` is specified as an input, you should input the amount in dollars and cents. You can also let PayMeLah help you with calculations by ending with '+' to add GST, or '++' to add both Service Charge and GST to the amount specified. **All calculated values are automatically rounded up to the nearest cent.**<br>
   e.g. when you input `2.00++`, PayMeLah will store a debt with a money amount that has Service Charge and GST added, i.e. `2.36`.
-
-</div>
 
 [Return to Table of Contents](#table-of-contents)
 
