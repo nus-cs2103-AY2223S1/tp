@@ -5,28 +5,33 @@ title: User Guide
 
 Welcome to the PayMeLah user guide!
 
-Are you a student who enjoys participating in group buys? Or perhaps do you just need some way to remember how much money your friends owe you? PayMeLah is a desktop app for **keeping track of** and **managing the debts** your friends owe you. It can also help **do simple calculations** for you, such as including GST or splitting debts amongst your friends. What’s more, it is optimised for you to do everything from just your keyboard!
+Are you a NUS student who stays on campus and enjoys organising or participating in group buys? Do you struggle with **remembering** the people involved in each group order, **calculating** how to split the bill and **tracking** who is still yet to pay you back?
+
+PayMeLah is a desktop app for solving all these problems and more! PayMeLah can **keep track of** and **manage the debts** your friends owe you. It can even **do simple calculations** for you, such as adding GST or splitting debts amongst your friends. What’s more, it is optimised for you to do everything **from just your keyboard**! This way, you can seamlessly switch between managing your debts and acing your assignments without even needing your mouse. Save time on the nitty-gritties of organising group buys so that you can be more productive! :thumbs-up:
 
 <div style="page-break-after: always;"></div>
 
 ### Using this guide
-If you are a new user looking to get started with PayMeLah, this user guide can help you with [the installation process](#quick-start), guide you through [adding your first debt to PayMeLah](#tutorial-adding-your-first-debt), and familiarise you with how to use all of [PayMeLah’s features](#features).
+If you are a new user looking to get started with PayMeLah, this user guide can help you with [the installation process](#tutorial-installing-paymelah), guide you through [adding your first debt to PayMeLah](#tutorial-adding-your-first-debt), and familiarise you with how to use all of [PayMeLah’s features](#features).
 
-If you are already familiar with the basic features of PayMeLah, this guide can also provide you with tips and tricks to get the most out of PayMeLah!
+For a full overview of everything this guide has to offer, do make use of the [Table of Contents](#table-of-contents)!
 
-Here are some of the symbols and text formatting to look out for as you make use of this guide:
+Additionally, for our advanced users, we have a special section just for you! Click [here](#advanced-features) if you want to learn tricks like [keyboard shortcuts](#keyboard-shortcuts) and how to directly [edit your data](#linklinklink).
 
-| Symbol | Meaning |
-| :----: | ------- |
-| :information_source: | Essential Information for All Users |
-| :bulb: | Tips for Intermediate Users |
-| :star: | Tips for Advanced Users |
-| :exclamation: | Warning |
+Finally, here are some of the symbols and text formatting to look out for as you make use of this guide:
+
+<div markdown="block" class="alert alert-primary">
+:bulb: **Tips:** Blue boxes contain useful tips for using PayMeLah.
+<div>
+
+<div markdown="block" class="alert alert-warning">
+:exclamation: **Warnings:** Yellow boxes contain important warnings.
+<div>
 
 |          Text Formatting           | Meaning |
 |:----------------------------------:| ------- |
 | [Hyperlink to Glossary](#glossary) | Clickable hyperlink to navigate to another section |
-|               `Text`               | Text relevant to PayMeLah user commands |
+|           `command text`           | Text relevant to PayMeLah user commands |
 |          <kbd>Ctrl</kbd>           | A keyboard key |
 
 --------------------------------------------------------------------------------------------------------------------
@@ -172,8 +177,6 @@ Of course, this is not yet the end of your journey with PayMeLah - there are sti
 
 ## Features
 
-<div markdown="block" class="alert alert-info">
-
 **:information_source: Notes about the command format:**<br>
 
 * The first word in the command is the command phrase that specifies which command will be carried out by PayMeLah.
@@ -196,11 +199,7 @@ Of course, this is not yet the end of your journey with PayMeLah - there are sti
 Be very careful with how a command is formatted! If the `…` is found within the diamond brackets `<>` that correspond to an input as in `<person index…>`, then only the input itself is to be repeated. However, if the `…` is found outside the `<>` as in `[t/<tag>]…`, then both the prefix and input must be repeated.
 </div>
 
-</div>
-
 <div style="page-break-after: always;"></div>
-
-<div markdown="block" class="alert alert-info">
 
 * Inputs can be in any order.<br>
   e.g. if the command specifies `d/<description> m/<money>`, `m/<money> d/<description>` is also acceptable.
@@ -215,12 +214,9 @@ Be very careful with how a command is formatted! If the `…` is found within th
 Avoid giving irrelevant inputs to commands that do not accept those inputs. For example, `mark` expects a `<person index>` input and a `debt/<debt index…>` input, but not a `t/<tag>` input. Giving such inputs may cause unexpected behaviour in PayMeLah!
 </div>
 
-</div>
-
 <div style="page-break-after: always;"></div>
 
 #### Input-specific behaviour
-<div markdown="block" class="alert alert-info">
 
 * Whenever `<date>` is specified as an input, you should input it in the format `yyyy-mm-dd` where `y` is year, `m` is month and `d` is day.<br>
   e.g. September 5 2022 should be input as `2022-09-05`.
@@ -230,8 +226,6 @@ Avoid giving irrelevant inputs to commands that do not accept those inputs. For 
 
 * Whenever `<money>` is specified as an input, you should input the amount in dollars and cents. You can also let PayMeLah help you with calculations by ending with '+' to add GST, or '++' to add both Service Charge and GST to the amount specified. **All calculated values are automatically rounded up to the nearest cent.**<br>
   e.g. when you input `2.00++`, PayMeLah will store a debt with a money amount that has Service Charge and GST added, i.e. `2.36`.
-
-</div>
 
 [Return to Table of Contents](#table-of-contents)
 
