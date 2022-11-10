@@ -763,7 +763,9 @@ If you are trying to locate a debt without knowing its full description, conside
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-## Command summary
+## Command Summary
+
+### Summary for general utility
 
 | *Actions for* <br> [**General Utility**](#features-for-general-utility) | Format, Examples |
 |-------------------------------------------------------------------------|------------------|
@@ -772,6 +774,9 @@ If you are trying to locate a debt without knowing its full description, conside
 | [**Clear**](#clearing-all-entries-clear)                                | `clear`          |
 | [**Exit**](#exiting-the-program-exit)                                   | `exit`           |
 
+<div style="page-break-after: always;"></div>
+
+### Summary for managing persons
 
 | *Actions for* <br> [**Managing Persons**](#features-for-managing-persons) | Format, Examples                                                                                                                                                             |
 |---------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -780,6 +785,8 @@ If you are trying to locate a debt without knowing its full description, conside
 | [**Delete person**](#deleting-a-person-delete)                            | `delete <index>`<br> e.g., `delete 3`                                                                                                                                        |
 
 <div style="page-break-after: always;"></div>
+
+### Summary for managing debts
 
 | *Actions for* <br> [**Managing Debts**](#features-for-managing-debts) | Format, Examples                                                                                                                                        |
 |-----------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -792,6 +799,8 @@ If you are trying to locate a debt without knowing its full description, conside
 | [**Get statement**](#getting-the-statement-statement)                 | `statement`                                                                                                                                             |
 
 <div style="page-break-after: always;"></div>
+
+### Summary for searching
 
 | *Actions for* <br> [**Searching**](#features-for-searching)      | Format, Examples                                                                                                                                                                                                                                        |
 |------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
