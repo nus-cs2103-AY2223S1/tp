@@ -527,6 +527,8 @@ Format: `user_guide`
 * Displays a pop-up that contains the url to this user guide.
 * You can click on the `Copy URL` button to copy this url to your clipboard.
 
+![Ui](images/SampleUserguide.png)
+
 [Back to Table of Contents](#table-of-contents)
 
 ## **Data Storage**
