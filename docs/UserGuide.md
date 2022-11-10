@@ -217,6 +217,8 @@ Example:
 Let's say you want to add a student named Alex Yeoh, with Telegram handle as "@al3xx", consultation date on 2022-10-25,
 Mastery Check date on 2022-08-16, and the tags "cool guy" and "quiet".
 
+You can follow the steps below to do so. 
+
 Steps: 
 1. Type `add n/Alex Yeoh t/al3xx c/2022-10-25 m/2022-08-16 tag/cool guy tag/quiet` in the *Command Box*.
 2. Press `Enter` to execute.
@@ -351,6 +353,8 @@ Format: `sort CRITERIA/ORDER`
 Example:
 Let's say you want to see which students have [Mastery Checks](#glossary) closest to the current date. 
 To achieve that, you can sort the list according to the students' Mastery Check dates.
+
+You can follow the steps below to do so. 
 
 Steps:
 1. Type `sort m/a` in the *Command Box*.
