@@ -14,40 +14,40 @@ To use this guide, simply click on the items you would like to learn more about 
 * [Quick start](#Quick-start)
 * [Basic commands](#Basic-commands)
   * [Viewing help : `help`](#Viewing-help--help)
-  * Listing all students : `liststudent`
-  * Listing all tasks : `listtask`
-  * Listing all students : `listlesson`
-  * Listing all students, tasks and lessons : `listall`
-  * Clearing all entries : `clear`
-  * Exiting the program : `exit`
-* Student commands
-  * Adding a student: `addstudent`
-  * Deleting a student : `deletestudent`
-  * Editing a student : `editstudent`
-  * Locating students by name: `findstudent`
-  * Adding grades to a student : `grade`
-  * Setting mastery check result for a student : `mc`
-* Task commands
-  * Adding a task: `addtask`
-  * Deleting a task : `deletetask`
-  * Marking a task as done : `marktask`
-  * Marking a task as not done : `unmarktask`
-  * Lesson commands
-  * Adding a studio lesson: `addstudio`
-  * Adding a consult lesson: `addconsult`
-  * Adding a mastery check lesson: `addmc`
-  * Deleting a lesson : `deletelesson`
-  * Marking a lesson as completed : `marklesson`
-  * Marking a lesson as not completed : `unmarklesson`
-  * Marking a student as present for a lesson : `markstudent`
-  * Marking a student as absent for a lesson : `unmarkstudent`
-  * Adding a note to a lesson : `addnote`
-  * Deleting a note from a lesson : `deletenote`
-  * Adding participation for a student in a lesson : `addpart`
-* Saving the data
-* Editing the data file
-* FAQ
-* Command summary
+  * [Listing all students : `liststudent`](#Listing-all-students--liststudent)
+  * [Listing all tasks : `listtask`](#Listing-all-tasks--listtask)
+  * [Listing all students : `listlesson`](#Listing-all-students--listlesson)
+  * [Listing all students, tasks and lessons : `listall`](#Listing-all-students,-tasks-and-lessons--listall)
+  * [Clearing all entries : `clear`](#Clearing-all-entries--clear)
+  * [Exiting the program : `exit`](#Exiting-the-program--exit)
+* [Student commands](#Student-commands)
+  * [Adding a student: `addstudent`](#Adding-a-student--addstudent)
+  * [Deleting a student : `deletestudent`](#Deleting-a-student--deletestudent)
+  * [Editing a student : `editstudent`](#Editing-a-student--editstudent)
+  * [Locating students by name: `findstudent`](#Locating-students-by-name--findstudent)
+  * [Adding grades to a student : `grade`](#Adding-grades-to-a-student--grade)
+  * [Setting mastery check result for a student : `mc`](#Setting-mastery-check-result-for-a-student--mc)
+* [Task commands](#Task-commands)
+  * [Adding a task: `addtask`](#Adding-a-task--addtask)
+  * [Deleting a task : `deletetask`](#Deleting-a-task--deletetask)
+  * [Marking a task as done : `marktask`](#Marking-a-task-as-done--marktask)
+  * [Marking a task as not done : `unmarktask`](#Marking-a-task-as-not-done-unmarktask)
+* [Lesson commands](#Lesson-commands)
+  * [Adding a studio lesson: `addstudio`](#Adding-a-studio-lesson--addstudio)
+  * [Adding a consult lesson: `addconsult`](#Adding-a-consult-lesson--addconsult)
+  * [Adding a mastery check lesson: `addmc`](#Adding-a-mastery-check-lesson--addmc)
+  * [Deleting a lesson : `deletelesson`](#Deleting-a-lesson--deletelesson)
+  * [Marking a lesson as completed : `marklesson`](#Marking-a-lesson-as-completed--marklesson)
+  * [Marking a lesson as not completed : `unmarklesson`](#Marking-a-lesson-as-not-completed--unmarklesson)
+  * [Marking a student as present for a lesson : `markstudent`](#Marking-a-student-as-present-for-a-lesson--markstudent)
+  * [Marking a student as absent for a lesson : `unmarkstudent`](Marking-a-student-as-absent-for-a-lesson--unmarkstudent)
+  * [Adding a note to a lesson : `addnote`](#Adding-a-note-to-a-lesson--addnote)
+  * [Deleting a note from a lesson : `deletenote`](#Deleting-a-note-from-a-lesson--deletenote)
+  * [Adding participation for a student in a lesson : `addpart`](#Adding-participation-for-a-student-in-a-lesson--addpart)
+* [Saving the data](#Saving-the-data)
+* [Editing the data file](#Editing-the-data-file)
+* [FAQ](#FAQ)
+* [Command summary](#Command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 ## What is JARVIS?
