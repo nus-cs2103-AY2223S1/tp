@@ -18,7 +18,7 @@ can also serve as a reference for experienced users, with a convenient [Command 
 
 <div markdown="block" class="alert alert-info">
 
-:notebook: We store this data locally on your device. This means that you can benefit from extremely quick loading times!
+:notebook: **Note:** We store this data locally on your device. This means that you can benefit from extremely quick loading times!
 
 </div>
 
@@ -40,11 +40,11 @@ To tell if you already have the correct version of Java installed on your system
 ### Installation 
 1. Download the latest `checkUp.jar` from [here](https://github.com/AY2223S1-CS2103T-W16-3/tp/releases).
 
-2. Copy the file to the folder you want to use as the _home folder_ for your checkUp instance.
+2. Copy the file to the folder you want to use as the _home folder_ for your checkUp app.
 
-3. Double click the file to start the app.
+3. Double-click the file to start the app.
 
-4. The GUI similar to the below will appear in a few seconds. Note how the app contains some sample data.<br>
+4. The user interface similar to the below will appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/ug-images/Ui-explanations.png)
    
 
@@ -68,35 +68,24 @@ To tell if you already have the correct version of Java installed on your system
 
     * **`view `** `1` : Views the 1st patient shown in the current patient list panel by displaying it on the patient details panel.
 
-2. Refer to the [Features](#features) below for details of each command.
- 
+2. You can refer to the [Features](#features) section for details of each command.
+3. When you come across an unfamiliar term used, refer to the [Glossary](#glossary) section.
+
+
 <sup><sub>[back to top](#back-to-topt)</sub></sup>
 
 ---
-## Glossary
-
-| Term              | Definition                                                                                 |
-|-------------------|--------------------------------------------------------------------------------------------|
-| **Appointment**   | An arrangement to consult the doctor at a particular date.                                 |
-| **Diagnosis**     | The identification of diseases by the examination of symptoms and signs.                   |
-| **Inpatient**     | A patient who stays in a hospital while under treatment.                                   |
-| **Outpatient**    | A patient who goes to a hospital or clinic for treatment without staying there overnight.  |
-| **Hospital Wing** | The section of the hospital where the inpatient is in.                                     |
-| **Floor Number**  | The floor where the inpatient is on.                                                       |
-| **Medication**    | A drug or other form of medicine that is used to treat or prevent disease.                 |
-| **Next-Of-Kin**   | The patient's closest living relative.                                                     |
-| **Ward Number**   | The ward where the inpatient is in.                                                        |
 
 ## Symbols
 
-| Symbol        | Meaning                                 |
-|---------------|-----------------------------------------|
-| :bulb:        | Tip that may be useful to know.         |
-| :notebook:    | Information that may be useful to know. |
-| :exclamation: | Dangerous commands - use with care.     |
-| `+`           | Required field.                         |
-| `-`           | Optional field.                         |
-| `*`           | Multiple inputs are allowed.            |
+| Symbol        | Meaning                                                                                                        |
+|---------------|----------------------------------------------------------------------------------------------------------------|
+| :bulb:        | Tip that may be useful to know.  This symbol is followed by a label ‘Tip’.                                     |
+| :notebook:    | Information that may be useful to know. This symbol is followed by a label ‘Note’.                             |
+| :exclamation: | Crucial information you need to know before using the command. This symbol is followed by a label ‘Caution’.   |
+| `+`           | Required field.                                                                                                |
+| `-`           | Optional field.                                                                                                |
+| `*`           | Multiple inputs are allowed.                                                                                   |
 
 <sub><sup>[back to top](#back-to-topt)</sup></sub>
 
@@ -104,11 +93,15 @@ To tell if you already have the correct version of Java installed on your system
 
 ## Features
 
+This section guides you on how to use features available in checkUp. 
+
+Do **take some time to read the following note** to better understand how you can use this section!
+
 <div markdown="block" class="alert alert-info">
 
 **:notebook: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+* Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
   e.g. in `get /n NAME`, `NAME` is a parameter which can be used as `get /n John Doe`.
 
 * Items in square brackets are optional.<br>
@@ -243,16 +236,19 @@ Format: `edit INDEX {Prefix}/{Parameter}...`
 
 **:notebook: Notes about Patient Type:**<br>
 When the patient type is edited from an inpatient to an outpatient and subsequently back to an inpatient, 
-the user will have to manually input the hospital wing, floor number and ward number again.
+you will have to manually input the hospital wing, floor number and ward number again.
 </div>
 
 **Requirements**
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing medication, the existing medication of the patient will be removed i.e. adding of medication is not
-  cumulative.
 * To remove all patient’s medications, just type `m/` without specifying any medication after it.
 * To remove all upcoming appointments, just type `ua/` without specifying any date after it.
+
+:exclamation: **Caution:**
+When editing medication, the existing medication of the patient will be removed i.e. adding of medication is not
+cumulative.
+</div>
 
 **Upon Execution**
 
@@ -367,8 +363,7 @@ If not, please follow the error message given and format above to enter the corr
 <sub><sup>[back to top](#back-to-topt), [back to features](#features), [back to segment top](#creating-patient-info)</sup></sub>
 
 ### Consulting a patient: `consult`
-Creates a past appointment for the patient on the current date. If the patient has an upcoming appointment for the current 
-date, complete it and clear the upcoming appointment field.
+Adds the diagnostic report of a patient after the consultation.
 
 Format: `consult INDEX {Prefix}/{Parameter}...`
 
@@ -410,7 +405,6 @@ Lists all the patients in checkUp.
 
 Format: `list`
 
-* This command resets any filters applied via the `get` command below.
 
 <sub><sup>[back to top](#back-to-topt), [back to features](#features), [back to segment top](#retrieving-patient-info)</sup></sub>
 
@@ -773,5 +767,21 @@ For example, the Java version installed on the example system is Java 11.0.9, wh
 
 If you do not see a similar result in the terminal after Step 3, or have an earlier version of Java,
 head over to [Oracle's Java download page](https://www.oracle.com/java/technologies/downloads/) to install Java.
+
+<sub><sup>[back to top](#back-to-topt)</sup></sub>
+
+## Glossary
+
+| Term              | Definition                                                                                 |
+|-------------------|--------------------------------------------------------------------------------------------|
+| **Appointment**   | An arrangement to consult the doctor at a particular date.                                 |
+| **Diagnosis**     | The identification of diseases by the examination of symptoms and signs.                   |
+| **Inpatient**     | A patient who stays in a hospital while under treatment.                                   |
+| **Outpatient**    | A patient who goes to a hospital or clinic for treatment without staying there overnight.  |
+| **Hospital Wing** | The section of the hospital where the inpatient is in.                                     |
+| **Floor Number**  | The floor where the inpatient is on.                                                       |
+| **Medication**    | A drug or other form of medicine that is used to treat or prevent disease.                 |
+| **Next-Of-Kin**   | The patient's closest living relative.                                                     |
+| **Ward Number**   | The ward where the inpatient is in.                                                        |
 
 <sub><sup>[back to top](#back-to-topt)</sup></sub>
