@@ -269,7 +269,8 @@ optional fields, but there should be at least one field specified for the `edit`
 * A student can have any number of tags (including 0).
 </div>
 
-Example: Let's say you have incorrect and missing details for a student, and you wish to update them accordingly. For 
+Example: 
+Let's say you have incorrect and missing details for a student, and you wish to update them accordingly. For 
 instance, you wish to change the name, Telegram handle, consultation date, Mastery Check date and tags of the student 
 to "Alex Yap", "@AlexYap", "2022-10-10", "2022-11-06" and the tags "Experienced coder" and "Intern" respectively.<br>
 You can follow the steps below to edit the student.
@@ -310,7 +311,8 @@ Format: `remark INDEX [r/REMARK]`
 remove any existing remark for the specified student.<br>
 </div>
 
-Example: Let's say you wish to add a remark "Aspiring to be a CS1101S TA for next year" for a student (Alex Yap) to take
+Example: 
+Let's say you wish to add a remark "Aspiring to be a CS1101S TA for next year" for a student (Alex Yap) to take
 note and remind yourself that Alex Yap is interested in applying for the CS1101S TA position.<br>
 You can follow the steps below to add the remark for the student.
 
@@ -324,114 +326,6 @@ Outcome:
 
 ![RemarkCommandOutcome.png](images/RemarkCommandOutcome.png)
 <i> Outcome of remark command</i>
-
-[Back to top](#table-of-contents)
-
-<div style="page-break-after: always;"></div>
-
-### Organizing Students
-
-These features allow you to organize your list of students to suit your needs.
-
-#### Command Parameters
-Before you dive into using the features, you may want to have a look at the [parameters](#glossary) used.
-The table below shows a list of command parameters that will be used.
-
-| Parameter Name | Description                                                | Example                                                                                                       |
-|----------------|------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
-| `CRITERIA`     | The criteria the displayed student list is sorted by.      | E.g. Typing `n` would mean the displayed student list is sorted by students' names.                           |
-| `ORDER`        | The order the displayed student list is sorted in.         | E.g. Typing `a` would mean the displayed student list is sorted in ascending order.                           |
-| `KEYWORDS`     | The keywords to search with to find students' information. | E.g. Typing `cool guy` would represent finding students with the information "cool guy" associated with them. |
-
-#### Sorting students: `sort`
-
-Once you have many students added to FRIDAY, viewing relevant information can get messy. To help with that, you can 
-sort students in FRIDAY with a given criteria, in ascending or descending order.
-
-Format: `sort CRITERIA/ORDER`
-
-* `CRITERIA` can be
-    * Name - `n`
-    * [Telegram Handle](#glossary) - `t`
-    * Consultation date - `c`
-    * Mastery Check date - `m`
-    * [Reading Assessment 1](#glossary) - `ra1`
-    * [Reading Assessment 2](#glossary) - `ra2`
-    * [Practical Assessment](#glossary) - `pa`
-    * [Midterm Test](#glossary) - `mt`
-    * [Final Examination](#glossary) - `ft`
-* `ORDER` can be
-    * Ascending - `a`
-    * Descending - `d`
-
-
-<div markdown="block" class="alert alert-info">
-**:information_source: Note:**<br>
-* Criteria are sorted in the following order: 
-    * Names and Telegram handles - alphabetical order
-    * Consultations and Mastery Checks - chronological order
-    * Grades - numerical order
-* If the `find` command was run before `sort`, using `sort` will undo the result of `find` and all students will be sorted.
-* Students with missing information will be sorted first in descending order, e.g. students with no Telegram handles
-  will be shown before students with Telegram handles.
-</div>
-
-Example:
-Let's say you want to see which students have [Mastery Checks](#glossary) closest to the current date. 
-To achieve that, you can sort the list according to the students' Mastery Check dates, by following the steps below. 
-
-Steps:
-1. Type `sort m/a` in the *Command Box*.
-2. Press `Enter` to execute.
-<br>
-
-![SortCommand.png](images/SortCommand.png)
-<i> Before sort command</i>
-
-Outcome: 
-1. FRIDAY will sort the students by Mastery Check date, from earliest to latest.
-2. The *Result Display* will show a success message.
-<br>
-
-![SortCommandOutcome.png](images/SortCommandOutcome.png)
-<i> Outcome of sort command</i>
-
-#### Finding individual student details: `find`
-
-Once you have many students added to FRIDAY, viewing specific information can be hectic.
-To help you with finding specific information FRIDAY provides you with a find command .
-You can search for keywords using the `find` command and FRIDAY will show you the students whose details match these keywords.
-
-Format: `find KEYWORDS`
-
-<div markdown="block" class="alert alert-info">
-**:information_source: Note:** <br>
-* Use student name/telegram handle/consultation/mastery check date/remark to search up a particular student.
-* Multiple keywords can be entered and each keyword is separated by a space.
-* When searching for exam grade, use the format `find [exam_name:EXAM_SCORE]`.
-</div>
-
-Example: Lets say you need to access a student alex to view his final examination grades. You can do so by following the steps below to find the student.
-
-Steps:
-1. Type `find alex` in the <i>command box</i>.
-2. Press `Enter` to execute.
-
-![FindCommand.png](images/FindCommand.png)
-<i> Before find command</i>
-
-Outcome:
-1. FRIDAY will display a list of students whose details match the keyword "alex" is shown.
-2. The <i>Result display</i> will show a success message.
-
-![FindCommandOutcome.png](images/FindCommandOutcome.png)
-<i> Outcome of find command</i>
-
-#### Viewing all students: `list`
-
-Lists all students in FRIDAY. This helps you to reset the sorting and finding done by the `sort` and `find` commands respectively.
-
-Format: `list`
 
 [Back to top](#table-of-contents)
 
@@ -478,7 +372,8 @@ Format: `grade INDEX [ra1/RA1_SCORE] [ra2/RA2_SCORE] [pa/PRACTICAL_SCORE] [mt/MI
 * The scores are optional, but there should be at least one score specified for `grade` command to be valid.
 </div>
 
-Example: Let's say you wish to enter the grades of a student (Alex Yap) into FRIDAY, with the scores of "90" for 
+Example: 
+Let's say you wish to enter the grades of a student (Alex Yap) into FRIDAY, with the scores of "90" for 
 Reading Assessment 1, "80.1" for Reading Assessment 2, "100.0" for Practical Assessment, "85.23" for Midterm Test, and 
 "78" for Final Test.<br>
 You can follow the steps below to record the grades of the student.
@@ -549,6 +444,115 @@ Outcome: The Mastery Check of the first student in the list has been unmarked.
 <i> Outcome of unmark command</i>
 
 As you can see, the "(passed)" status has been removed from student 1's Mastery Check after the `unmark` command is run.
+
+<div style="page-break-after: always;"></div>
+
+
+### Organizing Students
+
+These features allow you to organize your list of students to suit your needs.
+
+#### Command Parameters
+Before you dive into using the features, you may want to have a look at the [parameters](#glossary) used.
+The table below shows a list of command parameters that will be used.
+
+| Parameter Name | Description                                                | Example                                                                                                       |
+|----------------|------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
+| `CRITERIA`     | The criteria the displayed student list is sorted by.      | E.g. Typing `n` would mean the displayed student list is sorted by students' names.                           |
+| `ORDER`        | The order the displayed student list is sorted in.         | E.g. Typing `a` would mean the displayed student list is sorted in ascending order.                           |
+| `KEYWORDS`     | The keywords to search with to find students' information. | E.g. Typing `cool guy` would represent finding students with the information "cool guy" associated with them. |
+
+#### Sorting students: `sort`
+
+Once you have many students added to FRIDAY, viewing relevant information can get messy. To help with that, you can
+sort students in FRIDAY with a given criteria, in ascending or descending order.
+
+Format: `sort CRITERIA/ORDER`
+
+* `CRITERIA` can be
+    * Name - `n`
+    * [Telegram Handle](#glossary) - `t`
+    * Consultation date - `c`
+    * Mastery Check date - `m`
+    * [Reading Assessment 1](#glossary) - `ra1`
+    * [Reading Assessment 2](#glossary) - `ra2`
+    * [Practical Assessment](#glossary) - `pa`
+    * [Midterm Test](#glossary) - `mt`
+    * [Final Examination](#glossary) - `ft`
+* `ORDER` can be
+    * Ascending - `a`
+    * Descending - `d`
+
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:**<br>
+* Criteria are sorted in the following order: 
+    * Names and Telegram handles - alphabetical order
+    * Consultations and Mastery Checks - chronological order
+    * Grades - numerical order
+* If the `find` command was run before `sort`, using `sort` will undo the result of `find` and all students will be sorted.
+* Students with missing information will be sorted first in descending order, e.g. students with no Telegram handles
+  will be shown before students with Telegram handles.
+</div>
+
+Example:
+Let's say you want to see which students have [Mastery Checks](#glossary) closest to the current date.
+To achieve that, you can sort the list according to the students' Mastery Check dates, by following the steps below.
+
+Steps:
+1. Type `sort m/a` in the *Command Box*.
+2. Press `Enter` to execute.
+   <br>
+
+![SortCommand.png](images/SortCommand.png)
+<i> Before sort command</i>
+
+Outcome:
+1. FRIDAY will sort the students by Mastery Check date, from earliest to latest.
+2. The *Result Display* will show a success message.
+   <br>
+
+![SortCommandOutcome.png](images/SortCommandOutcome.png)
+<i> Outcome of sort command</i>
+
+#### Finding individual student details: `find`
+
+Once you have many students added to FRIDAY, viewing specific information can be hectic.
+To help you with finding specific information FRIDAY provides you with a find command .
+You can search for keywords using the `find` command and FRIDAY will show you the students whose details match these keywords.
+
+Format: `find KEYWORDS`
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:** <br>
+* Use student name/telegram handle/consultation/mastery check date/remark to search up a particular student.
+* Multiple keywords can be entered and each keyword is separated by a space.
+* When searching for exam grade, use the format `find [exam_name:EXAM_SCORE]`.
+</div>
+
+Example: Lets say you need to access a student alex to view his final examination grades. You can do so by following the steps below to find the student.
+
+Steps:
+1. Type `find alex` in the <i>command box</i>.
+2. Press `Enter` to execute.
+
+![FindCommand.png](images/FindCommand.png)
+<i> Before find command</i>
+
+Outcome:
+1. FRIDAY will display a list of students whose details match the keyword "alex" is shown.
+2. The <i>Result display</i> will show a success message.
+
+![FindCommandOutcome.png](images/FindCommandOutcome.png)
+<i> Outcome of find command</i>
+
+#### Viewing all students: `list`
+
+Lists all students in FRIDAY. This helps you to reset the sorting and finding done by the `sort` and `find` commands respectively.
+
+Format: `list`
+
+[Back to top](#table-of-contents)
 
 <div style="page-break-after: always;"></div>
 
