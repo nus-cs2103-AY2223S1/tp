@@ -13,8 +13,8 @@ engineering teams** using a single application.
 TruthTable is **optimized for use via a [Command Line Interface (CLI)](#command-line-interface)** while still having 
 the benefits of a [Graphical User Interface (GUI)](#graphical-user-interface). 
 
-<div markdown="block" class="alert alert-info">**Unsure what CLI means?**
-Head over [to this section](#understanding-truthtables-cli) to learn more
+<div markdown="block" class="alert alert-primary">**:information_source: Unsure what CLI or GUI means?**
+Head over [to this section](#understanding-truthtables-cli) to learn more!
 </div>
 
 If you can type fast, TruthTable can get your task management done _blazingly fast_, faster than traditional GUI
@@ -205,26 +205,39 @@ typing `help` in the input box and press <kbd>Enter</kbd> to see what happens!
 
 ## Understanding TruthTable's CLI
 
-CLI applications like TruthTable requires you to execute instructions by typing specific words to make use of the 
-application's features. However, if you are not an experienced user, terms like "commands", "flags", and "parameters" 
-may seem daunting.
+[Command Line Interface (CLI)](#command-line-interface) applications like TruthTable requires you to execute 
+instructions by typing specific words to make use of the application's features. On the other hand, 
+[Graphical User Interface (GUI)](#graphical-user-interface) programs usually require you to use a mouse and keyboard
+to click on objects and perform certain features.
 
-But fret not! This section will cover what all these terms actually mean. 
+If you are not an experienced CLI user, however, terms like "commands", "flags", and "parameters" may appear
+daunting.
 
-While you're going through this section, don't worry too much about memorizing the details of every "command", 
-as they all have their own help messages for your reference at any time. Furthermore, the "commands" in TruthTable are 
-designed to be **easy to remember** and **natural**, so you will get up to speed in no time! 
+But fret not! This section will cover what all these terms actually mean.
 
 ### Commands, flags, and parameters
 
-All instructions are executed through **commands**. Each command can have **flags specified after the command**, 
-which modifies how the instruction should be carried out.
+All instructions are executed through **[commands](#command)**. Each command can have **[flags](#flag) specified after 
+the command**, which modifies how the instruction should be carried out.
 
-For each of these flags, there may be **parameters** specified after it. But, **not all commands** require this.
+For each of these flags, there may be **[parameters](#parameter)** specified after it. But, **not all commands** 
+require parameters.
 
 Note that flags and parameters always **come after the command**.
 
-Let's use an example to break down what each term means.
+<div markdown="block" class="alert alert-primary">**:information_source: Do I need to memorise all these commands, 
+parameters, and flags?**
+<br>
+Nope!
+<br>
+While you're going through this section, don't worry too much about memorizing the details of every command, 
+as they all have their own help messages that you can refer to at any time.
+<br>
+Furthermore, the commands in TruthTable are designed to be **easy to remember** and **natural**, so you will be 
+familiar with them in no time! 
+</div>
+
+Let's use an example to break down what we've talked about.
 
 #### Example Command - `add person`
 
