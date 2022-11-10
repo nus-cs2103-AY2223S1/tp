@@ -54,6 +54,7 @@ title: User Guide
 - [Command summary](#command-summary)
 
 ---
+<img class="centerImage" src="images/Coydir.png" height=100>
 
 ## Introduction
 
@@ -98,7 +99,7 @@ Below is an image of Coydir User Interface with the main components labelled.
 
 ### Toolbar
 
-<img src="images/ui-screenshots/Toolbar.png" height=40 class="centerImage">
+<img src="images/ui-screenshots/Toolbar.png" height=40>
 
 This Toolbar can be used to :
 
@@ -174,7 +175,7 @@ Here are some symbols to look out for while using this guide:
 | Symbol               | Meaning                                      |
 | -------------------- | -------------------------------------------- |
 | `code`               | Text relevant to commands or name of a file. |
-| :information source: | Information that is useful to take note of.  |
+| :information_source: | Information that is useful to take note of.  |
 | :bulb:               | Tips for Coydir Users.                       |
 | :warning:        | Be wary and proceed with caution.            |
 
