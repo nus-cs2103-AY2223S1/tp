@@ -177,16 +177,15 @@ These features allow you to add and delete students, and edit their details.
 Before you dive into using the features, you may want to have a look at the common [parameters](#glossary) used.
 The table below shows a list of [command](#glossary) parameters that will be used.
 
-| Parameter Name        | Description                                                                                                                                                                            | Example
-|-----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------
-| `NAME`                | The name of the student. <br><br> It must be an alphanumeric word.                                                                                                                     | E.g. Typing `John Doe` would represent the name of the student saved in the list.
-| `TELEGRAM_HANDLE`     | The Telegram handle of the student. <br> <br> The Telegram handle can only contain alphanumeric characters and underscores. <br> <br> It must also be between 5 and 32 characters long.| `johndoe_123`
-| `CONSULTATION_DATE`   | The consultation date of the student. <br> <br> It must be a valid date in the `YYYY-MM-DD` format, where the year is between 1900 and 2999.                                           | E.g. `2022-08-30` would represent the student's consultation date of 30 August 2022.
-| `MASTERY_CHECK_DATE`  | The Mastery Check date of the student. <br> <br> It must be a valid date in the `YYYY-MM-DD` format, where the year is between 1900 and 2999.                                          | E.g. `2022-09-27` would represent the student's Mastery Check date of 27 September 2022.
-| `TAG`                 | The additional information you want to attach to the student.                                                                                                                          | E.g. Typing `cool guy` would mean that "cool guy" is an additional information associated with the student.
-| `REMARK`              | The remark you want to add for the student.                                                                                                                                            | E.g. Typing `Needs more help` would mean that "Needs more help" is an additional information associated with the student.
-| `INDEX`               | The index of the student in the displayed list. <br> <br> It must be a valid and positive index number.                                                                                | E.g. Typing `2` would mean the student at the second position in the displayed list.
-
+| Parameter Name       | Description                                                                                                                                                                             | Example                                                                                                                   |
+|----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
+| `NAME`               | The name of the student. <br><br> It must be an alphanumeric word.                                                                                                                      | E.g. Typing `John Doe` would represent the name of the student saved in the list.                                         |
+| `TELEGRAM_HANDLE`    | The Telegram handle of the student. <br> <br> The Telegram handle can only contain alphanumeric characters and underscores. <br> <br> It must also be between 5 and 32 characters long. | `johndoe_123`                                                                                                             |
+| `CONSULTATION_DATE`  | The consultation date of the student. <br> <br> It must be a valid date in the `YYYY-MM-DD` format, where the year is between 1900 and 2999.                                            | E.g. `2022-08-30` would represent the student's consultation date of 30 August 2022.                                      |
+| `MASTERY_CHECK_DATE` | The Mastery Check date of the student. <br> <br> It must be a valid date in the `YYYY-MM-DD` format, where the year is between 1900 and 2999.                                           | E.g. `2022-09-27` would represent the student's Mastery Check date of 27 September 2022.                                  |
+| `TAG`                | The additional information you want to attach to the student.                                                                                                                           | E.g. Typing `cool guy` would mean that "cool guy" is an additional information associated with the student.               |
+| `REMARK`             | The remark you want to add for the student.                                                                                                                                             | E.g. Typing `Needs more help` would mean that "Needs more help" is an additional information associated with the student. |
+| `INDEX`              | The index of the student in the displayed list. <br> <br> It must be a valid and positive index number.                                                                                 | E.g. Typing `2` would mean the student at the second position in the displayed list.                                      |
 
 #### Adding a student: `add`
 
@@ -234,7 +233,8 @@ Format: `delete INDEX`
 
 #### Editing a student: `edit`
 
-You may not have all your students' details when you added them, or you may have typed in the wrong details for a specific student. You can use the `edit` feature to add in or edit a student's details if there are changes to be made.
+You can edit a student's details using the `grade` command. This allows you to make changes to your recorded students'
+details in FRIDAY to correctly update their information.
 
 Format: `edit INDEX [n/NAME] [t/TELEGRAM_HANDLE] [c/CONSULTATION] [m/MASTERY_CHECK] [tag/TAG]...`
 
@@ -250,7 +250,14 @@ optional fields, but there should be at least one field specified for the `edit`
 * A student can have any number of tags (including 0).
 </div>
 
-Example: `edit 1 n/Alex Yap t/AlexYap tag/Experienced coder tag/Intern m/2022-11-06 c/2022-10-10`
+Example: Let's say you have incorrect and missing details for a student, and you wish to update them accordingly. For 
+instance, you wish to change the name, Telegram handle, consultation date, Mastery Check date and tags of the student 
+to "Alex Yap", "@AlexYap", "2022-10-10", "2022-11-06" and the tags "Experienced coder" and "Intern" respectively.<br>
+You can follow the steps below to edit the student.
+
+Steps:
+1. Type `edit 1 n/Alex Yap t/AlexYap tag/Experienced coder tag/Intern m/2022-11-06 c/2022-10-10` in the *Command Box*.
+2. Press `Enter` to execute.
 
 Initial: A student with name "Alex Yeoh", with the following details: Telegram handle as "@al3xx", Mastery Check date
 on 2022-08-16, consultation date on 2022-11-11, and a tag "Colour blind".
@@ -266,7 +273,8 @@ Mastery Check date as 2022-11-06, consultation date as 2022-10-10, and tags as "
 
 #### Editing a remark for a student: `remark`
 
-You may have noted something interesting about a student, which you wish to save as a remark in your list. The `remark` feature allows you to add this remark to the specified student.
+You can add a remark for a specified student using the `remark` command. This allows you to record important and useful
+notes and information about your student.
 
 Format: `remark INDEX [r/REMARK]`
 
@@ -281,7 +289,13 @@ Format: `remark INDEX [r/REMARK]`
 remove any existing remark for the specified student.<br>
 </div>
 
-Example: `remark 1 r/Aspiring to be a CS1101S TA for next year`
+Example: Let's say you wish to add a remark "Aspiring to be a CS1101S TA for next year" for a student (Alex Yap) to take
+note and remind yourself that Alex Yap is interested in applying for the CS1101S TA position.<br>
+You can follow the steps below to add the remark for the student.
+
+Steps:
+1. Type `remark 1 r/Aspiring to be a CS1101S TA for next year` into the *Command Box*.
+2. Press `Enter` to execute.
 
 Outcome: The student at the 1st index (Alex Yap) will have the remark "Aspiring to be a CS1101S TA for next year".
 
@@ -300,12 +314,11 @@ These features allow you to organize your list of students to suit your needs.
 Before you dive into using the features, you may want to have a look at the [parameters](#glossary) used.
 The table below shows a list of command parameters that will be used.
 
-| Parameter Name        | Description                                                                                                             | Example
-|-----------------------|-------------------------------------------------------------------------------------------------------------------------|-----------
-| `CRITERIA`            | The criteria the displayed student list is sorted by.                                                                   | E.g. Typing `n` would mean the displayed student list is sorted by students' names.
-| `ORDER`               | The order the displayed student list is sorted in.                                                                      | E.g. Typing `a` would mean the displayed student list is sorted in ascending order.
-| `KEYWORDS`            | The keywords to search with to find students' information.                                                              | E.g. Typing `cool guy` would represent finding students with the information "cool guy" associated with them.
-
+| Parameter Name | Description                                                | Example                                                                                                       |
+|----------------|------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
+| `CRITERIA`     | The criteria the displayed student list is sorted by.      | E.g. Typing `n` would mean the displayed student list is sorted by students' names.                           |
+| `ORDER`        | The order the displayed student list is sorted in.         | E.g. Typing `a` would mean the displayed student list is sorted in ascending order.                           |
+| `KEYWORDS`     | The keywords to search with to find students' information. | E.g. Typing `cool guy` would represent finding students with the information "cool guy" associated with them. |
 
 #### Sorting students: `sort`
 
@@ -396,14 +409,14 @@ These features allow you to record your students grades.
 Before you dive into using the features, you may want to have a look at the [parameters](#glossary) used.
 The table below shows a list of command parameters that will be used.
 
-| Parameter Name        | Description                                                                                                             | Example
-|-----------------------|-------------------------------------------------------------------------------------------------------------------------|-----------
-| `RA1_SCORE`           | The student's score for the first Reading Assessment. <br><br> The following applies to all `SCORE` parameters: <br> They must be numerical (up to two decimal places), and represent percentages. | E.g. Typing `70` would mean a score of 70% for the first Reading Assessment.
-| `RA2_SCORE`           | The student's score for the second Reading Assessment.                                                                      | `100`
-| `PRACTICAL_SCORE`     | The student's score for the Practical Assessment.                                                                           | `69.5`
-| `MIDTERM_SCORE`       | The student's score for the Midterm Test.                                                                                   | `40.37`
-| `FINALS_SCORE`        | The student's score for the Final Examination.                                                                              | `80.1`
-| `INDEX`               | The index of the student in the displayed list.                                                                             | E.g. Typing `1` would mean the student at the first position in the displayed list.
+| Parameter Name    | Description                                                                                                                                                                                        | Example                                                                             |
+|-------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|
+| `RA1_SCORE`       | The student's score for the first Reading Assessment. <br><br> The following applies to all `SCORE` parameters: <br> They must be numerical (up to two decimal places), and represent percentages. | E.g. Typing `70` would mean a score of 70% for the first Reading Assessment.        |
+| `RA2_SCORE`       | The student's score for the second Reading Assessment.                                                                                                                                             | `100`                                                                               |
+| `PRACTICAL_SCORE` | The student's score for the Practical Assessment.                                                                                                                                                  | `69.5`                                                                              |
+| `MIDTERM_SCORE`   | The student's score for the Midterm Test.                                                                                                                                                          | `40.37`                                                                             |
+| `FINALS_SCORE`    | The student's score for the Final Examination.                                                                                                                                                     | `80.1`                                                                              |
+| `INDEX`           | The index of the student in the displayed list.                                                                                                                                                    | E.g. Typing `1` would mean the student at the first position in the displayed list. |
 
 #### Recording grades for a student: `grade`
 
@@ -429,7 +442,14 @@ Format: `grade INDEX [ra1/RA1_SCORE] [ra2/RA2_SCORE] [pa/PRACTICAL_SCORE] [mt/MI
 * The scores are optional, but there should be at least one score specified for `grade` command to be valid.
 </div>
 
-Example: Enter `grade 1 ra1/90 ra2/80.1 pa/100.00 mt/85.23 ft/78`.
+Example: Let's say you wish to enter the grades of a student (Alex Yap) into FRIDAY, with the scores of "90" for 
+Reading Assessment 1, "80.1" for Reading Assessment 2, "100.0" for Practical Assessment, "85.23" for Midterm Test, and 
+"78" for Final Test.<br>
+You can follow the steps below to record the grades of the student.
+
+Steps:
+1. Type `grade 1 ra1/90 ra2/80.1 pa/100.00 mt/85.23 ft/78` in the *Command Box*.
+2. Press `Enter` to execute.
 
 Outcome: The student at the 1st index (Alex Yap) will have their grades updated.
 
@@ -502,10 +522,10 @@ These features help you personalize your FRIDAY experience and improve your prod
 Before you dive into using the features, you may want to have a look at the parameters used.
 The table below shows a list of command parameters that will be used.
 
-| Parameter Name        | Description                                                                                                             | Example
-|-----------------------|-------------------------------------------------------------------------------------------------------------------------|-----------
-| `ALIAS`               | An [alias](#glossary) that you can set for a command.                                                                   | `a`
-| `COMMAND_KEYWORD`     | The command keyword of the original command.                                                                            | `add`
+| Parameter Name    | Description                                           | Example |
+|-------------------|-------------------------------------------------------|---------|
+| `ALIAS`           | An [alias](#glossary) that you can set for a command. | `a`     |
+| `COMMAND_KEYWORD` | The command keyword of the original command.          | `add`   |
 
 #### Adding aliases: `alias`
 
