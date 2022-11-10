@@ -305,7 +305,7 @@ Example Usage: `clients`
 
 ### Listing all clients : `allClients`
 
-Shows a list of all clients in LTNS, without any filters.
+Need to get an overview of all the clients you’ve stored? Simply type `allClients` to have all the clients stored be displayed, without any filtering.
 
 Format: `allClients`
 
@@ -451,17 +451,12 @@ The information here seems pretty intimidating at first but fret not, you can fi
 
 Found a new policy you want to pitch to your clients? LTNS lets you add the policy alongside company, coverage categories and commission levels, to easily access it in future.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Additional Tips:**
-<br/>
+<div markdown="span" class="alert alert-primary">:bulb: **Additional Tips:** <br/>
 
-- What does your policy cover? A policy must have one or more coverages when created. Find the possible coverages and their corresponding codes [here](#valid-coverage-codes).
-  <br/>
-- Which company does your policy belong to? Find out the valid companies and their corresponding codes [here](#valid-company-codes).
-  <br/>
-- If you’d like to sell a policy from a company/with a coverage not in our list, write to us [here](#contact-us), and we’ll add it in if there are a significant number of requests!
-  <br/>
-- Money is the name of the game! Enter the commissions agreed to with the provider in positive percentages from 0% to 100%! (e.g. 10% 3.5% 1.0%)
-</div>  
+- What does your policy cover? A policy must have one or more coverages when created. Find the possible coverages and their corresponding codes [here](#valid-coverage-codes).<br/>
+- Which company does your policy belong to? Find out the valid companies and their corresponding codes [here](#valid-company-codes).<br/>
+- If you’d like to sell a policy from a company/with a coverage not in our list, write to us [here](#contact-us), and we’ll add it in if there are a significant number of requests!<br/>
+- Money is the name of the game! Enter the commissions agreed to with the provider in positive percentages from 0% to 100%! (e.g. 10% 3.5% 1.0%)</div>  
 
 Example Usage:
 * `addPolicy ti/PruShield cmp/PRU cms/10% 5% 1% cov/LIFE`
