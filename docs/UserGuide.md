@@ -52,8 +52,8 @@ Hence, TruthTable allows you to use a **CLI for all your project management need
 switching.
 
 <div markdown="span" class="alert alert-info">
-**:star: For experienced CLI users:**
-
+**:star: For experienced CLI users**:
+<br><br>
 TruthTable's command syntax is actually very similar to other command line applications like
 [git](https://git-scm.com/) and [docker](https://docs.docker.com/engine/reference/commandline/cli/)!
 
@@ -138,12 +138,11 @@ These parts are numbered, and their names and descriptions will be displayed in 
 
 ![Teams Section](images/TeamsSection.png)
 
-[//]: # (TODO: reference to team explanation / why at least 1 will always appear)
 This section displays the names of all the teams that you have created in TruthTable. Only the names of each team 
 is listed.  
 
 <div markdown="block" class="alert alert-primary">**:information_source: Note:**
-There will always be one team in TruthTable, 
+There will always be one team in TruthTable,
 </div>
 
 | Number | Component       | Description                                    |
@@ -227,13 +226,13 @@ Note that flags and parameters always **come after the command**.
 
 <div markdown="block" class="alert alert-primary">**:information_source: Do I need to memorise all these commands, 
 parameters, and flags?**
-<br>
+<br><br>
 Nope!
-<br>
+<br><br>
 
 While you're going through this section, don't worry too much about memorizing the details of every command, 
 as they all have their own help messages that you can refer to at any time.
-<br>
+<br><br>
 
 Furthermore, the commands in TruthTable are designed to be **easy to remember** and **natural**, so you will be 
 familiar with them in no time! 
@@ -291,7 +290,7 @@ Here's a summary of what each highlighted section represents.
 **:information_source: Important note for parameters**
 
 Use of quotation marks around parameters (`""` and `''`) is optional.
-
+<br><br>
 **However**, if you are specifying a parameter with multiple words, you will need to wrap the words in quotes.
 Otherwise, TruthTable will not carry out the command properly.
 
@@ -312,9 +311,9 @@ For instance,
 
 <div markdown="block" class="alert alert-success">
 **:bulb: Flags with multiple parameters**
-
+<br><br>
 If a flag is displayed with `...` behind it, this means that the flag accepts more than 1 parameter.
-
+<br><br>
 For instance, in the `assign task` command, we can specify more than 1 assignee (provided they are valid).
 A valid command is `assign task 1 -a 1 2 3` where `1 2 3` are recognized as the assignees to the task with index `1`.
 </div>
@@ -322,27 +321,28 @@ A valid command is `assign task 1 -a 1 2 3` where `1 2 3` are recognized as the 
 
 <div markdown="block" class="alert alert-info">
 **:star: POSIX clustered short options** <br>
-TruthTable supports clustered options as specified 
-<a href="https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap12.html#tag_12_02" target="_blank">here</a>.
+TruthTable supports clustered options as specified in
+<a href="https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap12.html#tag_12_02" target="_blank">this document</a>.
 </div>
 
 ### Aliases
 
-To help you use our program even faster, we have introduced short forms for each of our commands!
+To help you use our program even faster, we have introduced short forms for our commands and flags!
 
-These short forms are what we call "aliases", which are available for both commands and flags. 
+These short forms are what we call "aliases", and they allow you to execute instructions _blazingly fast_ by
+minimising the number of letters you need to type. 
 
 For instance, the [`add person`](#creating-a-new-person-add-person) command has the following command aliases,
 - `add p`
 - `a person`
 - `a p`
 
-The `add person` command also has the following flags, and their corresponding aliases.
-- `-h`, `--help`
-- `-e`, `--email`
-- `-n`, `--name`
-- `-p`,`--phone`
-- `-t`,`--tags`
+The `add person` command also has the following flags and their corresponding aliases,
+- aliases for `-h`: `--help`
+- aliases for `-e`: `--email`
+- aliases for `-n`: `--name`
+- aliases for `-p`:`--phone`
+- aliases for `-t`:`--tags`
 
 You can find out more about these flags [here](#creating-a-new-person-add-person).
 
@@ -359,19 +359,19 @@ to find out more.
 [read this section](#understanding-truthtables-cli) before continuing!**
 </div>
 
-TruthTable allows you to manage members, tasks, links, and members. 
+TruthTable allows you to manage members, tasks, links, and members through the use of commands.
 
-<div markdown="block" class="alert alert-primary">**:information_source: Persons and Members**
+<div markdown="block" class="alert alert-primary">**:information_source: Persons vs Members**
 
-The persons in TruthTable (as seen in the [persons section](#persons-section)) may not be in a team. Hence, not all 
-persons are members. However, any member of a team must be an existing person in TruthTable.
-
-This is why TruthTable distinguishes between persons and member commands.
+The persons in TruthTable (as seen in the [persons section](#persons-section)) may not all be in a team. However, 
+any member of a team must be an existing person in TruthTable. 
+<br><br>
+This is why TruthTable distinguishes between person and member commands.
 </div>
 
 Consequently, the commands are split into **5** main sections:
 
-1. [Person commands](#commands-to-manage-persons) and [Member commands](#commands-to-manage-members)
+1. [Person commands](#commands-to-manage-persons) and [member commands](#commands-to-manage-members)
 2. [Team commands](#commands-to-manage-teams)
 3. [Task commands](#commands-to-manage-tasks)
 4. [Link commands](#commands-to-manage-links--urls)
@@ -386,7 +386,7 @@ The format for each command adheres to the structure laid out in the
 <div markdown="block" class="alert alert-primary">**:information_source: Parameters and Constraints**
 
 Parameters are written in uppercase and wrapped with angle brackets (e.g. `<PARAMETER>`) in this guide.
-<br>
+<br><br>
 
 Each parameter has their own constraints, which can be found [here](#flag-and-parameter-constraints).
 </div>
