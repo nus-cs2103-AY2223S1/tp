@@ -4,8 +4,8 @@ title: User Guide
 ---
 
 <p align="center">
-  <img src="./images/Coydir_Logo.png" />
-  <h1 align="center"><font size="7">Coydir</font><br><em>The Ultimate Company Directory</em></h1>
+  <img src="./images/Coydir_Logo.png" width=400rem />
+  <h1 align="center"><font size="7">Coydir</font><br><em><font size="5">The Ultimate Company Directory</font></em></h1>
 </p>
 
 ## **Coydir /(‘kohy-də)/**
@@ -57,61 +57,56 @@ title: User Guide
 
 ## Introduction
 
-Welcome HR executives and Department Heads! Coydir is a desktop app to efficiently track key employee details within your company, optimized for use via a Command Line Interface (CLI). Coydir would not only allow you to quickly access the list of all employees and their details but also make necessary updates such as leaves and performance rating information.
+Welcome HR executives and Department Heads! **Coydir** is a desktop app to efficiently track key employee details within your company, optimized for use via a Command Line Interface (CLI). **Coydir** would not only allow you to quickly access the list of all employees and their details but also make necessary updates such as leaves and performance rating information.
+
+Made for HR executives and Department Heads, Coydir is 
 
 ## Using this Guide
 
-### Symbols and Syntax
+Are you a HR executive or a Department Head seeking a solution to efficiently track employee information and observe key statistics of your company? **Coydir** is here to elegantly solve your problems. This user guide will teach you everything you need to know about the **Coydir** product, and start using our features today!
 
-Here are some symbols to look out for while using this guide:
+This guide walks you through the comprehensive features of **Coydir**. Do feel free to refer to this whenever you need help. 
 
-| Symbol               | Meaning                                      |
-| -------------------- | -------------------------------------------- |
-| `code`               | Text relevant to commands or name of a file. |
-| :information source: | Information that is useful to take note of.  |
-| :bulb:               | Tips for Coydir Users.                       |
-| :exclamation:        | Be wary and proceed with caution.            |
+Is this your first time using **Coydir**? Check out our [Introduction](#introduction) to learn what **Coydir** is about! Refer to our [Table of Contents](#table-of-contents) to easily navigate between the different sections of our User Guide. If you can't wait to get started on this amazing product, head over to [Quick Start](#quick-start) to install and start using **Coydir**.
 
-### Navigating the User Guide
+All done setting up Coydir? Head over to our [Features](#features) section to learn how to use the features we offer. To summarize, Coydir helps you...
 
-This document might look daunting at first! But fear not, in this section, you will learn how to use
-this user guide like a professional.
+1. [**Manage Employee Profiles**](#managing-employee-profiles)
 
-#### Interested in how to setup?
+2. [**Manage Employee Leaves**](#managing-employee-leaves)
 
-You can head over to [Quick Start](#quick-start) to install and run Coydir.
+3. [**Manage Employee Performance**](#managing-employee-performance)
 
-#### Interested in what Coydir can do?
+4. [**Manage Departments**](#managing-departments)
 
-You can head over to [Features](#features) to learn how to use the features
-offered in Coydir.
+Still have doubts about our product? Head over to [FAQ](#faq) to view some frequently asked questions and answers. If your question is not answered in the _FAQ_, you can always contact us at _coydir@gmail.com_, and we will be happy to answer you.
 
-#### Have some questions that you are unsure of?
+Just want a quick overview of all the features Coydir can offer? You can head over to [Command Summary](#command-summary) for a quick look of all the commands you can use.
 
-You can head over to [FAQ](#faq) to view some frequently asked questions to get your answer.
-However, if your question is not answered in the _FAQ_, you can always contact us at _coydir@gmail.com_, and
-we will be happy to answer you.
-
-#### Just want a quick overview of all the features Coydir can offer?
-
-You can head over to [Command Summary](#command-summary) for a quick look of all the commands you can use.
-
-### The User Interface
+## The User Interface
 
 Below is an image of Coydir User Interface with the main components labelled.
 
 ![Labelled GUI](images/ui-screenshots/Labelled-GUI.png)
 
-#### Toolbar
+| No. | Component             | Description                                                                                                                    |
+|-----|-----------------------|--------------------------------------------------------------------------------------------------------------------------------|
+| 1   | Toolbar               | Includes information on frequently-used commands. Switch to light/dark mode.                                                                        |
+| 2   | Employee List Panel    | Displays the list of employees. Includes basic information such as `tags`, `position`, `employee ID`.      |
+| 3   | Display Panel          | Displays the information of an employee or department. The information includes the employee's personal details, leave information, performance information.     | 
+| 4   | Command Panel            | Displays the system message after the execution of a command. The system message describes the outcome of the entered command. |
 
-![Toolbar](images/ui-screenshots/Toolbar.png)
+### Toolbar
+
+<img src="images/ui-screenshots/Toolbar.png" height=40 class="centerImage">
+
 This Toolbar can be used to :
 
 1. Exit the application through the **File** button
 2. Access the Help guide through the **Help** button
 3. Change from Dark mode to Light Mode or vice versa through the **Theme** button
 
-#### Employee List Panel
+### Employee List Panel
 
 ![Employee List Panel](images/ui-screenshots/Employee-List-Panel.png)
 This shows the whole employee list with basic information such as _Name_, _Employee ID_ and _Position_.
@@ -121,7 +116,7 @@ This will come in handy if:
 1. You want a general overview of the employees in the company as of this moment.
 2. You want to quickly find out their Employee ID to view more details.
 
-#### Employee Info Panel
+### Employee Info Panel
 
 ![Employee Info Panel](images/ui-screenshots/Employee-Info-Panel.png)
 This shows a specific employee's particulars.
@@ -133,7 +128,7 @@ Things to note:
 3. If you delete an employee that you are currently viewing, the employee info view will display the next employee's particulars.
 4. If there is no next employee, this panel will revert to the Coydir logo.
 
-#### Command Box
+### Command Box
 
 ![Command Box](images/ui-screenshots/Command.png)
 
@@ -170,6 +165,18 @@ The top section displays relevant messages/errors after the command is entered.
    - **`exit`** : Exits the app.
 
 6. Refer to the [Features](#features) below for details of each command.
+
+
+## Symbols and Syntax
+
+Here are some symbols to look out for while using this guide:
+
+| Symbol               | Meaning                                      |
+| -------------------- | -------------------------------------------- |
+| `code`               | Text relevant to commands or name of a file. |
+| :information source: | Information that is useful to take note of.  |
+| :bulb:               | Tips for Coydir Users.                       |
+| :warning:        | Be wary and proceed with caution.            |
 
 ## Features
 
