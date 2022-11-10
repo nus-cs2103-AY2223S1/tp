@@ -6,6 +6,8 @@ This guide provides everything a CS1101S Teaching Assistant (TA) needs to know t
 
 To use this guide, simply click on the items you would like to learn more about in the table of contents, or scroll down to the relevant sections.
 
+## Table of Contents {.unlisted}
+
 * Table of Contents
 {:toc}
 
@@ -35,7 +37,7 @@ Before reading the rest of this guide, you might find it helpful to know the mea
 | :exclamation:        | Warnings you should read before proceeding |
 | `markdown`           | Commands or examples                       |    
 
-[🠕 Back To Top](#title-user-guide)
+[🠕 Back To Top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 ## The Basics
@@ -81,7 +83,7 @@ Commands have to be written in the correct format to be used. The format for eac
 
 </div>
 
-[🠕 Back To Top](#title-user-guide)
+[🠕 Back To Top](#table-of-contents)
 
 ## Quick start
 
@@ -121,7 +123,7 @@ Commands have to be written in the correct format to be used. The format for eac
 
 7. Refer to the [Basic commands](#basic-commands) below to get started with the basic commands.
 
-[🠕 Back To Top](#title-user-guide)
+[🠕 Back To Top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -214,7 +216,7 @@ Exits the program. Your changes will be saved automatically.
 
 Format: `exit`
 
-[🠕 Back To Top](#title-user-guide)
+[🠕 Back To Top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -325,7 +327,7 @@ Format: `mc STUDENT_INDEX num/MC_NUM r/MC_RESULT`
 Examples:
 * `mc 1 num/1 r/pass` sets the mastery check result for the 1st student in your student list to `PASS`.
 
-[🠕 Back To Top](#title-user-guide)
+[🠕 Back To Top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -391,7 +393,7 @@ Format: `unmarktask TASK_INDEX`
 Example:
 * `unmarktask 2` marks the 2nd task in your task list as not done.
 
-[🠕 Back To Top](#title-user-guide)
+[🠕 Back To Top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -573,7 +575,7 @@ Format: `addpart p/PARTICIPATION li/LESSON_INDEX si/STUDENT_INDEX`
 Example:
 * `addpart p/100 li/1 si/2` sets participation for the 2nd student in the 1st lesson in your lesson list to be 100.
 
-[🠕 Back To Top](#title-user-guide)
+[🠕 Back To Top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -584,7 +586,7 @@ Example:
 
 JARVIS data is saved in your hard disk automatically after any command that changes the data. There is no need to save manually.
 
-[🠕 Back To Top](#title-user-guide)
+[🠕 Back To Top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -601,7 +603,7 @@ If you are an advanced user, you may update data directly by editing the data fi
 If your changes to the data file makes its format invalid, JARVIS will discard all data and start with empty data files at the next run.
 </div>
 
-[🠕 Back To Top](#title-user-guide)
+[🠕 Back To Top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -613,7 +615,7 @@ If your changes to the data file makes its format invalid, JARVIS will discard a
 **Q**: Can I import my timetable into JARVIS to manage my other lessons?<br>
 **A**: This functionality is currently not supported by JARVIS but could be implemented in the future.
 
-[🠕 Back To Top](#title-user-guide)
+[🠕 Back To Top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -651,4 +653,4 @@ If your changes to the data file makes its format invalid, JARVIS will discard a
 | **Delete note**              | `deletenote ni/NOTE_INDEX li/LESSON_INDEX [si/STUDENT_INDEX]`                                          | `deletenote ni/1 li/1 si/2`                                                        |
 | **Add participation**        | `addpart p/PARTICIPATION li/LESSON_INDEX si/STUDENT_INDEX`                                             | `addpart p/100 li/1 si/2`                                                          |
 
-[🠕 Back To Top](#title-user-guide)
+[🠕 Back To Top](#table-of-contents)
