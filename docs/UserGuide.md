@@ -116,8 +116,8 @@ and hyperlinks to the first occurrence of the word in each section of the User g
 ![Layout](images/layout.png)
   <i> GUI Layout</i><br>
 In this image above we have a labelled box in red called the command box.
-You can type commands into the command box at the top of the screen, and press Enter on your keyboard to execute it.<br>
-e.g. Typing `help` and press Enter will open a help window.
+You can type commands into the command box at the top of the screen, and press `Enter` on your keyboard to execute it.<br>
+e.g. Typing `help` and pressing `Enter` will open a help window.
 </div>
 
 <div markdown="block" class="alert alert-info">
@@ -201,7 +201,7 @@ Format: `add n/NAME [t/TELEGRAM_HANDLE] [c/CONSULTATION_DATE] [m/MASTERY_CHECK_D
     * Tags - `tag`
 
 <div markdown="block" class="alert alert-info">
-**:information_source: Note:** <br>
+**:information_source: Notes:** <br>
 * All student names and Telegram handles in FRIDAY must be unique.
 * Names and Telegram handles are case-insensitive.
 </div>
@@ -256,13 +256,13 @@ Outcome:
 
 #### Editing a student: `edit`
 
-You can edit a student's details using the `grade` command. This allows you to make changes to your recorded students'
+You can edit a student's details using the `edit` command. This allows you to make changes to your recorded students'
 details in FRIDAY to correctly update their information.
 
 Format: `edit INDEX [n/NAME] [t/TELEGRAM_HANDLE] [c/CONSULTATION] [m/MASTERY_CHECK] [tag/TAG]...`
 
 <div markdown="block" class="alert alert-info">
-**:information_source: Note:** <br>
+**:information_source: Notes:** <br>
 * The index of the student must be specified and there should be exactly one INDEX parameter.
 * You can choose which field to edit for the student. Name, Telegram handle, consultation, Mastery Check, and tag(s) are
 optional fields, but there should be at least one field specified for the `edit` command to be valid.<br>
@@ -401,20 +401,14 @@ Outcome:
 
 #### Marking a student's Mastery Check as passed: `mark`
 
-Mark a student's Mastery Check as passed.
+You can mark a student's [Mastery Check](#glossary) as passed.
 
 Format: `mark INDEX`
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Note:** <br>
 * The index of the student must be specified and there should be exactly one `INDEX` parameter.
-</div>
-
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Notes about marking Mastery Checks:**<br>
-
-The Mastery Check of a student can only be marked as passed if:
+* The Mastery Check of a student can only be marked as passed if:
 1. It has not already been marked as passed.
 2. The student has a scheduled Mastery Check date (i.e. the student's Mastery Check field is not empty).
 3. The scheduled date of the Mastery Check is not beyond the current date.
@@ -423,7 +417,7 @@ The Mastery Check of a student can only be marked as passed if:
 
 Example:
 
-Let's say the first student in your list has passed their [Mastery Check](#glossary). You can follow the steps below to mark their Mastery Check as passed.
+Let's say the first student in your list has passed their. You can follow the steps below to mark their Mastery Check as passed.
 
 Steps:
 1. Type `mark 1` in the *Command Box*.
@@ -435,28 +429,22 @@ Initial: The first student in the list, Alex Yeoh, does not have their Mastery C
 
 Outcome: 
 
-1. FRIDAY will mark the Mastery Check of the first student as passed and update the list of students with the status of the specified student's Mastery Check by adding a "(passed)" status to their Mastery Check.
+1. FRIDAY will mark the Mastery Check of the first student as passed and update the list of students with the status of the specified student's Mastery Check by adding a "(Passed)" status to their Mastery Check.
 2. The *Result Display* will show a success message.
 
 ![MarkCommandOutcome.png](images/MarkCommandOutcome.png)
 <i>Outcome of mark command</i>
 
-#### Unmarking a student's Mastery Check: `unmark`
+#### Un-marking a student's Mastery Check: `unmark`
 
-Unmarks the [Mastery Check](#glossary) of a specified student.
+You can un-mark the [Mastery Check](#glossary) of a specified student.
 
 Format: `unmark INDEX`
 
 <div markdown="block" class="alert alert-info">
-**:information_source: Note:** <br>
+**:information_source: Notes:** <br>
 * The index of the student must be specified and there should be exactly one `INDEX` parameter.
-</div>
-
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Notes about unmarking Mastery Checks:**<br>
-
-The Mastery Check of a student can only be unmarked if:
+* The Mastery Check of a student can only be unmarked if:
 1. It has already been marked as passed.
 2. The student has a scheduled Mastery Check date (i.e. the student's Mastery Check field is not empty).
 
@@ -464,7 +452,7 @@ The Mastery Check of a student can only be unmarked if:
 
 Example:
 
-Let's say you have accidentally marked the Mastery Check of the first student in your list as passed, even though that is not the case. You can follow the steps below to unmark this student's Mastery Check.
+Let's say you have accidentally marked the Mastery Check of the first student in your list as passed, even though that is not the case. You can follow the steps below to un-mark this student's Mastery Check.
 
 Steps:
 1. Type `unmark 1` in the *Command Box*.
@@ -476,13 +464,13 @@ Initial: The first student in the list, Alex Yeoh, has their Mastery Check marke
 
 Outcome: 
 
-1. FRIDAY will unmark the Mastery Check of the first student and update the list of students with the status of the specified student's Mastery Check by removing the "(passed)" status from their Mastery Check.
+1. FRIDAY will un-mark the Mastery Check of the first student and update the list of students with the status of the specified student's Mastery Check by removing the "(Passed)" status from their Mastery Check.
 2. The *Result Display* will show a success message.
 
 ![UnmarkCommandOutcome.png](images/UnmarkCommandOutcome.png)
 <i>Outcome of unmark command</i>
 
-As you can see, the "(passed)" status has been removed from student 1's Mastery Check after the `unmark` command is run.
+As you can see, the "(Passed)" status has been removed from student 1's Mastery Check after the `unmark` command is run.
 
 <div style="page-break-after: always;"></div>
 
@@ -502,8 +490,7 @@ The table below shows a list of command parameters that will be used.
 
 #### Sorting students: `sort`
 
-Once you have many students added to FRIDAY, viewing relevant information can get messy. To help with that, you can
-sort students in FRIDAY with a given criteria, in ascending or descending order.
+You can sort students in FRIDAY with a given criteria, in ascending or descending order. This helps you to organize your list of students and view relevant information easily.
 
 Format: `sort CRITERIA/ORDER`
 
@@ -511,7 +498,7 @@ Format: `sort CRITERIA/ORDER`
     * Name - `n`
     * [Telegram Handle](#glossary) - `t`
     * Consultation date - `c`
-    * Mastery Check date - `m`
+    * [Mastery Check](#glossary) date - `m`
     * [Reading Assessment 1](#glossary) - `ra1`
     * [Reading Assessment 2](#glossary) - `ra2`
     * [Practical Assessment](#glossary) - `pa`
@@ -523,7 +510,7 @@ Format: `sort CRITERIA/ORDER`
 
 
 <div markdown="block" class="alert alert-info">
-**:information_source: Note:**<br>
+**:information_source: Notes:**<br>
 * Criteria are sorted in the following order: 
     * Names and Telegram handles - alphabetical order
     * Consultations and Mastery Checks - chronological order
@@ -536,7 +523,7 @@ Format: `sort CRITERIA/ORDER`
 Example:
 
 
-Let's say you want to see which students have [Mastery Checks](#glossary) closest to the current date.
+Let's say you want to see which students have Mastery Checks closest to the current date.
 To achieve that, you can sort the list according to the students' Mastery Check dates, by following the steps below.
 
 Steps:
@@ -557,41 +544,37 @@ Outcome:
 
 #### Finding individual student details: `find`
 
-Once you have many students added to FRIDAY, viewing specific information can be hectic.
-To help you with finding specific information FRIDAY provides you with a find command .
-You can search for keywords using the `find` command and FRIDAY will show you the students whose details match these keywords.
+You can search for keywords using the `find` command and FRIDAY will show you the students whose details match these keywords. This helps you to easily find a student with specific information.
 
 Format: `find KEYWORDS`
 
 <div markdown="block" class="alert alert-info">
-**:information_source: Note:** <br>
-* Use student name/telegram handle/consultation/mastery check date/remark to search up a particular student.
+**:information_source: Notes:** <br>
+* You can search for a particular student by their name, Telegram handle, consultation date, Mastery check date or remark.
 * Multiple keywords can be entered and each keyword is separated by a space.
-* When searching for exam grade, use the format `find [exam_name:EXAM_SCORE]`.
+* When searching by grades, use the format `find [exam_name:EXAM_SCORE]`.
 </div>
 
-Example: 
-
-
+Example:
 Let's say you need to access a student alex to view his final examination grades. You can do so by following the steps below to find the student.
 
 Steps:
-1. Type `find alex` in the <i>command box</i>.
+1. Type `find alex` in the *Command Box*.
 2. Press `Enter` to execute.
 
 ![FindCommand.png](images/FindCommand.png)
 <i> Before find command</i>
 
 Outcome:
-1. FRIDAY will display a list of students whose details match the keyword "alex" is shown.
-2. The <i>Result display</i> will show a success message.
+1. FRIDAY will display a list of students whose details match the keyword "alex".
+2. The *Result Display* will show a success message.
 
 ![FindCommandOutcome.png](images/FindCommandOutcome.png)
 <i> Outcome of find command</i>
 
 #### Viewing all students: `list`
 
-Lists all students in FRIDAY. This helps you to reset the sorting and finding done by the `sort` and `find` commands respectively.
+You can list all students in FRIDAY. This helps you to reset the sorting and finding done by the `sort` and `find` commands respectively.
 
 Format: `list`
 
@@ -624,18 +607,25 @@ The table below shows a list of command parameters that will be used.
 
 | Parameter Name    | Description                                           | Example |
 |-------------------|-------------------------------------------------------|---------|
-| `ALIAS`           | An [alias](#glossary) that you can set for a command. | `a`     |
-| `COMMAND_KEYWORD` | The command keyword of the original command.          | `add`   |
+| `ALIAS`           | An [alias](#glossary) that you can set for a command. | `ls`    |
+| `COMMAND_KEYWORD` | The command keyword of the original command.          | `list`  |
 
 #### Adding aliases: `alias`
 
-Adds an [alias](#glossary) for a command into FRIDAY, which you can use in place of the default command keywords.<br>
+You can add an [alias](#glossary) for a command into FRIDAY, which you can use in place of the default command keywords.<br>
 This allows you to be more efficient in using FRIDAY.
 
 Format: `alias a/ALIAS k/COMMAND_KEYWORD`
 
-* `COMMAND_KEYWORD` must be a default command keyword (e.g. `add` in Adding students)
-* `ALIAS` must not be a default command keyword and contain exactly one word
+<div markdown="block" class="alert alert-info">
+
+:information_source: Note:<br>
+
+* An alias is valid if:
+1. It is not a default command keyword.
+2. It contains exactly one word.
+
+</div>
 
 Example: 
 
@@ -682,7 +672,7 @@ Outcome:
 
 #### Deleting aliases: `unalias`
 
-Deletes an existing [alias](#glossary) in FRIDAY.
+You can delete an existing [alias](#glossary) in FRIDAY.
 
 Format: `unalias a/ALIAS`
 
@@ -708,7 +698,7 @@ Outcome:
 
 #### Viewing aliases: `aliaslist`
 
-Views all [aliases](#glossary) in FRIDAY, so that you know what aliases you have created and the commands they are for.
+You can view all [aliases](#glossary) in FRIDAY, so that you know what aliases you have created and the commands they are for.
 
 Example:
 
@@ -718,7 +708,7 @@ Format: `aliaslist`
 
 Steps:
 
-1. Type `aliaslist` in the *CommandBox*.
+1. Type `aliaslist` in the *Command Box*.
 2. Press `Enter` to execute.
 
 Outcome:
@@ -733,7 +723,7 @@ Other features that aid you in using FRIDAY.
 
 #### Getting User Guide link: `guide`
 
-Get a link to FRIDAY's User Guide.
+You can get a link to FRIDAY's User Guide.
 
 Format: `guide`
 
@@ -754,7 +744,7 @@ Outcome:
 
 #### Getting help: `help`
 
-Get help in using FRIDAY in the form of a summary of commands along with their command word.<br>
+You can get help in using FRIDAY in the form of a summary of commands along with their command word.<br>
 It also includes a link to this User Guide if needed.
 
 Format: `help`
@@ -777,7 +767,7 @@ Outcome:
 
 #### Clearing all existing data: `clear`
 
-Clear all existing data in FRIDAY.
+You can clear all existing data in FRIDAY.
 
 Format: `clear`
 
@@ -800,7 +790,7 @@ Outcome:
 
 #### Exiting FRIDAY : `exit`
 
-Exits FRIDAY and closes the application.
+You can exit FRIDAY and close the application.
 
 Format: `exit`
 
@@ -822,7 +812,7 @@ FRIDAY's data is saved in the hard disk automatically after any command that cha
 
 #### Editing the data file
 
-FRIDAY's student and alias data is saved as a JSON file at `[JAR file location]/data/friday.json`.<br>
+FRIDAY's student and alias data is saved as a file in the data folder of the *home folder*.<br>
 Advanced users are welcome to update data directly by editing the data file.
 
 <div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
@@ -871,6 +861,7 @@ Some Frequently Asked Questions:
 ## Command Summary
 
 ### Commands for Student Management
+
 | Action                           | Format                                                                                     |
 |----------------------------------|--------------------------------------------------------------------------------------------|
 | **Adding a student**             | `add n/NAME [t/TELEGRAM_HANDLE] [c/CONSULTATION_DATE] [m/MASTERY_CHECK_DATE] [tag/TAG]...` |
@@ -879,13 +870,15 @@ Some Frequently Asked Questions:
 | **Adding remarks for a student** | `remark INDEX [r/REMARK]`                                                                  |
 
 ### Commands for Grading Students
+
 | Action                                          | Format                                                                                                  |
 |-------------------------------------------------|---------------------------------------------------------------------------------------------------------|
 | **Recording the grades for a student**          | `grade INDEX [ra1/RA1_SCORE] [ra2/RA2_SCORE] [pa/PRACTICAL_SCORE] [mt/MIDTERM_SCORE] [ft/FINALS_SCORE]` |
 | **Marking a student's Mastery Check as passed** | `mark INDEX`                                                                                            |
-| **Unmarking a student's Mastery Check**         | `unmark INDEX`                                                                                          |
+| **Un-marking a student's Mastery Check**        | `unmark INDEX`                                                                                          |
 
 ### Commands for Organizing Students
+
 | Action                          | Format                |
 |---------------------------------|-----------------------|
 | **Sorting students**            | `sort CRITERIA/ORDER` |
@@ -893,6 +886,7 @@ Some Frequently Asked Questions:
 | **Viewing all students**        | `list`                |
 
 ### Commands for Advanced Features
+
 | Action                | Format                                                                                                  |
 |-----------------------|---------------------------------------------------------------------------------------------------------|
 | **Adding alias**      | `alias a/ALIAS k/COMMAND_KEYWORD`                                                                       |
@@ -900,6 +894,7 @@ Some Frequently Asked Questions:
 | **Viewing all alias** | `aliaslist`                                                                                             |
 
 ### Commands for Miscellaneous Features
+
 | Action                               | Format  |
 |--------------------------------------|---------|
 | **Getting a link to the User Guide** | `guide` |
