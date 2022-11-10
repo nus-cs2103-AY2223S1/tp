@@ -214,6 +214,8 @@ We will explore each of these fields in great detail as we continue along, but b
 
 :warning: **Integer input values cannot be too large**: any values greater than 2<sup>31</sup>-1, or 2147483647, is not supported.
 
+For more information about the format of each field, head over to [Field Formats](#field-formats).
+
 ### Managing Employee Profiles
 
 What's Human Resources without the Human aspect? (_P.S. It's not "Resources"_)
@@ -780,6 +782,23 @@ If your changes to the data file makes its format invalid, Coydir will discard a
 8. **JAR** : Otherwise known as [Java ARchive](https://docs.oracle.com/javase/8/docs/technotes/guides/jar/jarGuide.html) file, it is a file format that combines many files into one. It can also be 
 a executable (a file that contains a program).
 9. **Integer** : A whole number like 1,9,15,27.
+
+## Field Formats
+This table describes the requirements for the input format of the fields.
+
+| Field        | Prefix | Requirement                                                                                                                                                                                                                                                                                                         | Example                                                    |
+|--------------|-------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------| 
+| `NAME`       | n/    | Only alphanumeric characters and spaces only.                                                                                                                                                                                                                                                                       | `Prittam Yung`, `Shawn Chang Jun`                          | 
+| `PHONE`      | p/    | Contain numbers only from 3 digits long to 15 digits long                                                                                                                                                                                                                                                           | `80101126`,  `973629831`, `999`                            | 
+| `EMAIL`      | e/    | Be in the format of local-part@domain. local-part should contain only alphanumeric characters and/or certain special characters (+_.-), and cannot start or end with any special characters. domain should start and end with alphanumeric characters, must be at least 2 characters long, and can contain hyphens. | `prittam_yung@example.com`, `shawn@gg.com`                 |
+| `POSITION`   | j/    | Can take any value.                                                                                                                                                                                                                                                                                                  | `Software Engineer Level 2`, `Team-Lead `                  | 
+| `DEPARTMENT` | d/    | Must be within the list of [departments offered by Coydir](#managing-departments).                                                                                                                                                                                                                                    | `Sales`, `General Management`                              |
+| `ADDRESS`    | a/    | Can take any value.                                                                                                                                                                                                                                                                                                  | `Little India`, `Blk 30 Lorong 3 Serangoon Gardens #07-18` |
+| `LEAVE`      | l/    | Must be an integer.                                                                                                                                                                                                                                                                                                   | `1`, `10`, `20`                                            | 
+| `TAG`        | t/    | Only alphanumeric characters and spaces only.                                                                                                                                                                                                                                                                       | `Promotion Coming`, ` 5 Years`                             |
+| `START_DATE` | sd/   | Date in DD-MM-YYYY format.                                                                                                                                                                                                                                                                                          | `10-01-2022`, `15-12-2022`                                  |
+| `END_DATE`   | ed/   | Date in DD-MM-YYYY format.                                                                                                                                                                                                                                                                                          | `10-01-2022`, `15-12-2022`                          |
+| `RATING`     | r/    | Integer from 1 to 5.                                                                                                                                                                                                                                                                                                 | `1`, `3`,`5`                                               |
 
 ## Command Summary
 
