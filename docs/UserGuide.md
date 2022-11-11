@@ -84,7 +84,7 @@ single application!
 ### Track Progress And Delegate Work
 
 We know that it is often difficult to visualize and communicate your team's progress to various stakeholders 
-(e.g. Professors, tutors, etc.). 
+(e.g. professors, tutors, etc.). 
 
 Well, you never have to worry about tracking your team's progress anymore! Using TruthTable, you can see the 
 **number of tasks completed by your team** as well as **which members have been assigned to which tasks** - all in 
@@ -127,7 +127,6 @@ So, fret not, you will become familiar with TruthTable's commands in no time.
    should appear in a few seconds. ![Ui](images/Ui.png)
    <br><br>
    <div markdown="block" class="alert alert-success">**:bulb: Sample data**:
-   <br><br>
    We have also added some sample data for you to play around with and get familiar with TruthTable's 
    [commands](#commands)!
    </div>
@@ -242,7 +241,6 @@ Note that flags and parameters always come **after** the command.
 
 <div markdown="block" class="alert alert-primary">**:information_source: Do I need to memorize all these commands, 
 parameters, and flags?**
-<br><br>
 Nope!
 <br><br>
 While you're going through this section, don't worry too much about memorizing the details of every command, as they all
@@ -304,7 +302,6 @@ For instance,
 
 <div markdown="block" class="alert alert-success">
 **:bulb: Flags with multiple parameters**
-<br><br>
 If a flag is displayed with `...` behind it, this means that the flag accepts more than 1 parameter.
 <br><br>
 For instance, in the `assign task` command, we can specify more than 1 assignee (provided they are valid).
