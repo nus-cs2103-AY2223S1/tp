@@ -103,7 +103,6 @@ The various sections of the interface have been labeled in blue for your referen
 If this is your first time launching Waddle, you will see the following page with two sample itineraries:
 ![main-page-sample-ui](images/ug-beg-tut/main-page-sample-ui.png)
 
-
 If you wish to, you can [clear](#clearing-itineraries--clear) the sample itineraries by typing `clear` into the command box and pressing Enter.
 You will then see the below message:
 ![clear-command](images/clearCommand.png)
@@ -131,7 +130,22 @@ For example, if "Summer Trip" is shown as the first itinerary on the list, enter
 You will now see the planning page for the itinerary as follows:
 ![planning-page-ui](images/ug-beg-tut/planning-page-ui.png)
 
+The planning page for an itinerary displays all your current items.
+Unscheduled items will appear in the Wishlist section, whereas scheduled items will be listed under the corresponding Day.
+The various sections of the interface have been labeled in blue for your reference.
+
 You can return to the main page anytime you wish by executing `home`.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes:**<br>
+
+* Note that the commands for the home page are different from those for an itinerary planning page.
+Some commands only apply to one type of page while some are universally applicable (i.e. they can be executed on any page).
+* To find out more about which commands apply to your current page, visit the user guide's [Features](#features) section.
+
+</div>
+<div style="page-break-after: always"></div>
 
 To add an item to your Wishlist, use the [`add` command](#adding-an-item--add).
 Try adding a new item by typing in `add d/Meiji Shrine du/120` to the command box and press Enter.
