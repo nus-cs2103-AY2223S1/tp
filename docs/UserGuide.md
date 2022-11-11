@@ -184,7 +184,7 @@ INSERT IMAGE
   e.g. in `add n/<name>`, `add` is the command phrase for PayMeLah to add a person.
 
 * **User Supplied Inputs**<br>
-  Words in diamond brackets `<>` are **inputs to be supplied by you**.<br>
+  Words in diamond brackets `<>` are **additional information to be supplied by you**.<br>
   e.g. in `add n/<name>`, `<name>` is an input which can be used as `add n/John`.
 
 * **Prefixes**<br>
@@ -198,7 +198,7 @@ INSERT IMAGE
   e.g. for `add n/<name> [t/<tag>]…`, the following usages are both acceptable: `add n/Alan Poe t/theatre kid`, `add n/Alan Poe`.
 
 * **Repeatable Inputs**<br>
-  Inputs with … can be used **multiple times**, but remember to separate each usage with a space character in between.<br>
+  Inputs with `…` can be used **multiple times**, but remember to separate each usage with a space character in between.<br>
   e.g. in `adddebt <person index…>`, `<person index…>` is an input which can be used as `adddebt 1` or as `adddebt 1 2`.<br>
   e.g. in `add n/<name> [t/<tag>]…`, `[t/<tag>]…` is a pair of prefix and input which can be used as `add n/Alan t/Poet` or as `add n/Alan t/Poet t/Friend`.
 
@@ -760,8 +760,8 @@ You can actually update the data in PayMeLah without even launching the applicat
 Here is a quick tutorial on editing the data file:
 
 1. Double-click on the `paymelah.json` file to open it.<br>
-   You should see the following:<br>
-   INSERT IMAGE
+   You should see the following (don't worry if the words in your file appear to be in a different colour, it does not matter):<br>
+   <img src="images/jackson.png" width="600" />
 
 2. You can now edit the data by changing any of the green words you see! Do ensure that your replacement words are surrounded by double-inverted commas (`""`), as per the image above.
 
