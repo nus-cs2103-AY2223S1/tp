@@ -22,9 +22,13 @@ Yet, it has all the benefits of a traditional application with a **graphical int
 at a glance, a neat overview of what you need to see. If you type fast, StudMap can get your student management tasks 
 **done faster** than anything else.
 
-This user guide aims to help you understand StudMap, so that you can make the best use of our features. Read on to find out more!
+This user guide aims to help you understand StudMap, so that you can make the best use of our features. You can read on to find out 
+more about why StudMap is a [good fit for you](#2-why-studmap), or if you can't wait to use this application, jump straight into the
+next section introducing our [user guide](#3-how-to-use-this-user-guide).
 
 ---
+
+## 1.1 Table of Contents
 
 * Table of Contents
 {:toc}
@@ -338,11 +342,11 @@ summary of the parameters and any remarks (e.g. **constraints**) that might be o
 | g/GITNAME    | GitHub Username for your student                                                                                                                                                |
 | h/TELEHANDLE | Telegram Handle for your student. <br/>**Constraint:** Must have `@` before the handle e.g. @handle                                                                             |
 | id/ID        | Student ID for your student                                                                                                                                                     |
-| m/MODULE     | [module](#module) for your student. <br/>**Constraint:** Must follow NUS Module naming convention: letters, then 4 digits, and finally an optional letter suffix (i.e. CS2103T) |
+| m/MODULE     | [Module](#module) for your student. <br/>**Constraint:** Must follow NUS Module naming convention: letters, then 4 digits, and finally an optional letter suffix (i.e. CS2103T) |
 | n/NAME       | Name for your student                                                                                                                                                           |
 | p/COMPONENT  | Participation component to be recorded for your student. <br/>**Constraint:** Must consist of [alphanumerics](#alphanumeric), spaces, dashes and underscores only               |
 | p/PHONE      | Phone number for your student. <br/>**Constraint:** Must consist of only numbers, and an optional `+` at the beginning. Must have at least 3 digits                             |
-| t/TAG        | Tag for your student <br/>**Constraint:** Must be only [alphanumeric](#alphanumeric)                                                                                            |
+| t/TAG        | [Tag](#tag) for your student <br/>**Constraint:** Must be only [alphanumeric](#alphanumeric)                                                                                    |
 
 <div markdown="block" class="alert alert-info">
 :information_source: Here are some explanations about the format constraints for certain parameters that you may 
@@ -896,7 +900,7 @@ If your changes to the data file makes its format invalid, StudMap will discard 
 **Function:** Shows a message linking to the online User Guide.
 
 Confused about the usage of a certain feature? Don't worry, self-help is available on the comprehensive online User
-Guide.<br><br>
+Guide, right here!<br><br>
 
 ![Help Message](images/misc/helpMessage.png)
 
@@ -987,5 +991,11 @@ advanced users can edit their student data easily if they wish.
 
 Each module of study has a unique module code consisting of a two- or three-letter prefix that generally denotes the
 discipline, and four digits, and sometimes a suffix. e.g. `CS2101`, `CS2103T`.
+
+### Tag
+
+This is a small label that you can add to student entries, enabling you to keep track of small details about your students,
+and better identify them. For instance, you can tag weaker students as `Needs Help` or Macintosh users as `Mac Users`.
+
 
 
