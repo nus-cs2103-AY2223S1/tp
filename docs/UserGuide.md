@@ -160,7 +160,7 @@ This is the area under the command box. It is where the feedback information is 
 
 <p align="center">
 
-<img src="images/unknownCommand.png"/>
+<img src="images/unknownCommand.png" width="400px"/>
 
 </p>
 
@@ -547,6 +547,8 @@ Examples:
 
 This edits the details of Alex Miller by changing his name to Tom Doe. Note that the Description Panel and the List Display Panel have been updated.
 
+<div style="page-break-after: always;"></div>
+
 ### Assign class to a person: `assign`
 
 Assign an existing tuition class to a specific student/tutor.
@@ -582,6 +584,8 @@ Examples:
 <img src="images/assignCommand_after.png"/>
 
 </p>
+
+<div style="page-break-after: always;"></div>
 
 ### Unassign class from a person: `unassign`
 
@@ -619,6 +623,8 @@ Examples:
 <img src="images/unassignCommand_after.png"/>
 
 </p>
+
+<div style="page-break-after: always;"></div>
 
 ### Add next of kin to a student: `nok`
 
