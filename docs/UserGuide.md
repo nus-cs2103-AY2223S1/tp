@@ -181,17 +181,26 @@ INSERT IMAGE
 
 * **Command Phrase**<br>
   The first word in the [command](#glossary-command) is the **command phrase** that specifies which command will be carried out by PayMeLah.
-  e.g. in `add n/<name>`, `add` is the command phrase for PayMeLah to add a person.
-
-* **User Supplied Inputs**<br>
-  Words in diamond brackets `<>` are **additional information to be supplied by you**.<br>
-  e.g. in `add n/<name>`, `<name>` is an input which can be used as `add n/John`.
+  (add reference to pic)
 
 * **Prefixes**<br>
   To separate inputs that represent different information, you should precede inputs with their respective **[prefixes]((#glossary-prefix))** that end with a `/`. <br>
-  e.g. in `add n/<name> [t/<tag>]…`, `n/` and `t/` are prefixes preceding the inputs `<name>` and `<tag>` respectively.
+  (add reference to pic)
+
+* **Inputs**<br>
+  These are **additional information to be supplied by you**. Be careful! Some inputs have [special behaviours](#input-specific-behaviour) you need to look out for.<br>
+  (add reference to pic)
 
 <div style="page-break-after: always;"></div>
+
+#### How to read command formats
+
+In this user guide, we will provide you with the format of each command. All you have to do to use a command is to replace the necessary parts with your own input!<br>
+This section will guide you on how to interpret the formats given so that you can be a master at commanding PayMeLah!
+
+* **User Supplied Inputs**<br>
+  Words in diamond brackets `<>` are **inputs to be supplied by you**.<br>
+  e.g. in `add n/<name>`, `<name>` is an input which can be used as `add n/John`.
 
 * **Optional Inputs**<br>
   Inputs in square brackets `[]` are **optional**.<br>
