@@ -785,14 +785,14 @@ Here is a quick tutorial on editing the data file:
 
 1. Double-click on the _paymelah.json_ file to open it.<br>
    You should see some text similar to the following (don't worry if the words in your file appear to be in a different colour, it does not matter):<br>
-   <p style="text-align:center;"><img src="images/jackson.png" width="400" /></p>
+   <p style="text-align:center;"><img src="images/jackson.png" width="350" /></p>
 
 2. You can now edit the data by changing any of the green words you see here in our example image! Do ensure that your replacement words are surrounded by double-inverted commas (`" "`), as per the image above.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Warning:**<br>
 Make sure your edits still follow the [requirements of each input](#input-specific-behaviour)! For example, if you edit the date, it should still be in the `yyyy-mm-dd` format.<br>
 
-If the data file fails to follow the required format, PayMeLah will **discard all data** and start with an empty data file the next time you launch it. This is **irreversible**! As such, please edit the data file directly only if you are very confident in what you are doing.
+If the data file fails to follow the required format, PayMeLah will **discard all data** and start with an empty data file the next time you launch it. This is **irreversible**! As such, please edit the data file directly only after you have already backed up your data in another file.
 </div>
 
 [Return to Table of Contents](#table-of-contents)
