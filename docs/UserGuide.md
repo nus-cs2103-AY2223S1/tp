@@ -602,6 +602,7 @@ Examples:
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Alternatively to export files using GUI, you can either go to `Export` -> `Export` in the Menu Bar or enter the command `export`. The following window will open on doing so:<br><br>
+  
 <center><img src="images/ExportWindow.png"></center><br>
 Now you can easily export the displayed list of candidates by selecting a location and providing a name for the resultant file.
 </div>
@@ -622,6 +623,7 @@ Examples:
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Alternatively to import files using GUI, you can either go to `Import` -> `Import` in the Menu Bar or enter the command `import`. The following window will open on doing so:<br><br>
+  
 <center><img src="images/ImportWindow.png"></center><br>
 Now you can easily select a file to import into the addressbook.
 </div>
