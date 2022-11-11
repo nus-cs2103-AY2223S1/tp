@@ -627,6 +627,8 @@ If done successfully, you should the see all persons named Alex and David show u
 Unable to find a person you are looking for? Please check that you have added the person into TruthTable! Refer to the
 above [add person command](#creating-a-new-person-add-person) to add a new person into TruthTable.
 
+To reset the person list, see the [list persons command](#listing-all-persons-list-persons).
+
 ![result for 'find person alex david'](images/findPersonAlexDavidResult.png)
 
 **Format:** `find person [-h] <PERSON_NAME_KEYWORDS>`
@@ -794,6 +796,7 @@ Unable to find an existing team member? Please check that you have added the tea
 [current team section](#current-team-section). Refer to the above
 [add member command](#adding-a-new-member-to-the-team-add-member) on how to add a new team member.
 
+To reset the member list, see the [list members command](#listing-all-members-of-the-team-list-members).
 
 <div markdown="span" class="alert alert-primary">
 :information_source: **Note** <br> You can find members using **either** emails or names. This means that you 
@@ -1058,7 +1061,24 @@ Summary of the commands to manage tasks can be found [here](#summary-of-task-com
 
 #### Add task to team: `add task`
 
-Add a new task to your current team. Each task can have multiple assignees and a deadline.
+Your professor has just announced a list of submissions that you need to complete for the project. You want to record
+the list of tasks that needs to be done in order to complete the submission on time. Decide on a task name and key in
+`add task <TASK_NAME>` and a new task will be added to the task list in [current team section](#current-team-section).
+You may optionally specify a deadline and assignees for this command using `-d <TASK_DEADLINE>` and 
+`-a <TASK_ASSIGNEES>` respectively. Please refer to the respective commands on how to 
+[set deadlines](#set-deadline-for-task-set-deadline) and [set assignees](#assign-a-task-to-team-member-assign-task)!
+
+The `add task` allow you to add a new task to your current team. Each task can have multiple assignees and a deadline.
+The new task will be displayed in the task list of your [current team section](#current-team-section). Do not worry if 
+an error shows up, you might have typed something wrongly. Here, let us take a quick walk-through on how to add a new 
+task.
+
+Let us try to add a task called `Create PR`. Enter the command 
+
+`add task "Create PR"`
+
+If done successfully, a new task with the name `Create PR` will be added to the task list in 
+[current team section](#current-team-section).
 
 **Format:** `add task [-h] [-d=<TASK_DEADLINE>] [-a[=<TASK_ASSIGNEES>...]]... <TASK_NAME>`
 
@@ -1089,10 +1109,30 @@ Add a new task to your current team. Each task can have multiple assignees and a
 
 #### Edit task in team: `edit task`
 
-Edits a specified task in the current team's task list.
+Opps! Seems like you did not like the name that you have given your task. Not to worry, you can edit the details of the 
+task easily with `edit task`! First, identify the index number of the task in the task list of
+[current team section](#current-team-section). If you are not able to find the task visibly, refer to
+[find task command](#finding-a-task-find-task) on how you can find your task easily. Next, key in
+`edit task <INDEX_NUMBER> -n <NEW_TASK_NAME>` to change the name of the task! You can edit other information such as 
+deadline and assignees as well. Please refer to the respective commands on how to
+[set deadlines](#set-deadline-for-task-set-deadline) and [set assignees](#assign-a-task-to-team-member-assign-task)!
+
+The `edit task` command allows you to edit an existing task in your team. The edited task's details will be shown in the
+task list of the [current team section](#current-team-section). As always, do not panic if you see an error message. Let
+us run through how to edit the details of a task.
+
+Suppose you want to change the task name from `Create PR` to `Merge PR`. Identify the index number of
+`Create PR` in the application (1 in the image below). Enter the command
+
+`edit task 1 -n "Merge PR"`
+
+If done successfully, you should see the new details show up under in the task list of the
+[current team section](#current-team-section), with the task name of `Merge PR`.
+
+Unable to find a task you are looking for? Please check that you have added the task into TruthTable! Refer to the
+above [add task command](#add-task-to-team-add-task) to add a new task into TruthTable.
 
 **Format:** `edit task [-h] ([-n=<NAME>] [-d=<DEADLINE>] [-a[=<ASSIGNEES>...]]...) <TASK_INDEX>`
-
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Command Format** <br>
 Ensure that `TASK_INDEX` is entered before entering any `ASSIGNEES`, as they both take in positive integers. 
@@ -1135,7 +1175,26 @@ Passing `TASK_INDEX` after `ASSIGNEES` makes it impossible to distinguish which 
 
 #### Delete task from team: `delete task`
 
-Delete an existing task from the team at the given task index.
+You realise that the task that you added is too big and can be split into smaller sub-tasks. Not to worry, you
+can delete the tasks easily with `delete task`! First, identify the index number of task in the task list of
+[current team section](#current-team-section). If you are not able to find the task visibly, refer to
+[find task command](#finding-a-task-find-task). Next, key in `delete task <INDEX_NUMBER>`
+to remove the task from TruthTable.
+
+The `delete task` command allows you to delete the specified task from TruthTable. The task deleted will be
+removed from the task list of the [current team section](#current-team-section). Let us run through how to delete a
+task.
+
+Suppose you want to delete a task called `Merge PR`. Identify the index number of `Merge PR` in the
+application (1 in the image below). Enter the command
+
+`delete task 1`
+
+If done successfully, you should the task `Merge PR` removed under the task list of
+[current team section](#current-team-section).
+
+Unable to find a task you are looking for? Please check that you have added the task into TruthTable! Refer to the
+above [add task command](#add-task-to-team-add-task) to add a new task into TruthTable.
 
 **Format:** `delete task [-h] <TASK_INDEX>`
 
@@ -1157,7 +1216,25 @@ Delete an existing task from the team at the given task index.
 
 #### Finding a task: `find task`
 
-Find all tasks in the current team's task list whose names matches any of the given keywords.
+Deadline is coming up the there so many tasks to complete. You recall adding a task called merge but you are not sure
+about the full name of the task. Not to worry, you can find the task easily with `find task`! First, recall any keyword
+you can remember from the task. Next, key in `find person <PERSON_NAME_KEYWORDS>`, and TruthTable will show you all tasks with
+names that contain the keywords that you specified!
+
+The `find task` command allows you to finds all tasks whose names contain any of the given keywords.
+The tasks with matching names will be shown in the task list of [current team section](#current-team-section).
+
+Let us run through how to find a task.
+
+Suppose you want to find all tasks named User and all tasks named Guide. Enter the command
+
+`find person User Guide`
+
+If done successfully, you should the see all tasks named User or Guide show up under in the
+task list of [current team section](#current-team-section).
+
+Unable to find a task you are looking for? Please check that you have added the task into TruthTable! Refer to the
+above [add task command](#add-task-to-team-add-task) to add a new task into TruthTable.
 
 To reset the task list, see the [list tasks command](#list-tasks-in-team-list-tasks).
 
@@ -1186,7 +1263,28 @@ To reset the task list, see the [list tasks command](#list-tasks-in-team-list-ta
 
 #### Mark tasks as done: `mark`
 
-Mark a specified task as done. To undo this command, see the [unmark command](#unmark-tasks-as-done-unmark)
+Seems like the task is finally completed. Hooray! You can mark the task as done easily with `mark task`! 
+First, identify the index number of the task in the task list of[current team section](#current-team-section). 
+If you are not able to find the task visibly, refer to [find task command](#finding-a-task-find-task) on how you can 
+find your task easily. Next, key in `mark task <INDEX_NUMBER>` to mark the task as completed.
+
+The `mark task` command allows you to mark an existing task as done. The marked task will be shown in the
+task list of the [current team section](#current-team-section).  
+
+Let us run through how to mark an existing task.
+
+Suppose you want to mark the task of `Create PR` as done. Identify the index number of
+`Create PR` in the application (1 in the image below). Enter the command
+
+`mark task 1`
+
+If done successfully, you should see a cross appear beside the task named of `Merge PR`, under in the task list of the
+[current team section](#current-team-section).
+
+Unable to find a task you are looking for? Please check that you have added the task into TruthTable! Refer to the
+above [add task command](#add-task-to-team-add-task) to add a new task into TruthTable.
+
+To undo this command, please see the [unmark command](#unmark-tasks-as-done-unmark)
 
 **Format:** `mark [-h] <TASK_INDEX>`
 
@@ -1206,7 +1304,27 @@ Mark a specified task as done. To undo this command, see the [unmark command](#u
 
 #### Unmark tasks as done: `unmark`
 
-Mark a specified task as incomplete. This will undo the [mark command](#mark-tasks-as-done-mark).
+Opps, something about the task was incomplete. Not to worry, you can mark the task as incomplete easily with 
+`unmark task`! First, identify the index number of the task in the task list of 
+[current team section](#current-team-section). If you are not able to find the task visibly, refer to [find task command](#finding-a-task-find-task) on how you can
+find your task easily. Next, key in `unmark task <INDEX_NUMBER>` to mark the task as incomplete.
+
+The `unmark task` command allows you to mark an existing task as incomplete. The unmarked task will be shown in the
+task list of the [current team section](#current-team-section).
+
+Let us run through how to mark an existing task.
+
+Suppose the task of `Create PR` was originally complete and you want to mark the task of `Create PR` as incomplete. 
+Identify the index number of `Create PR` in the application (1 in the image below). Enter the command
+
+`unmark task 1`
+
+If done successfully, you should the cross beside the task named of `Merge PR` disappear.
+
+Unable to find a task you are looking for? Please check that you have added the task into TruthTable! Refer to the
+above [add task command](#add-task-to-team-add-task) to add a new task into TruthTable.
+
+To undo this command, please see the [mark command](#mark-tasks-as-done-mark).
 
 **Format:** `unmark [-h] <TASK_INDEX>`
 
