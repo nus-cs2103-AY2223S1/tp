@@ -158,11 +158,10 @@ This is where you key in commands. After typing the commands, simply press <kbd>
 
 This is the area under the command box. It is where the feedback information is displayed after you execute a command. For example, if you had entered an invalid command, the feedback “Unknown command” would be shown in the box.
 
-<p align="center">
-
+<div align="center">
 <img src="images/unknownCommand.png" width="400px"/>
+</div>
 
-</p>
 
 ### 3. List Display Panel
 
@@ -178,7 +177,7 @@ In the **student list** and **tutor list**, clicking on the individual student o
 
 Note that the card for the person being displayed will be highlighted as well.
 
-<div style="page-break-after: always;"></div>
+<div style="page-break-after: always; padding: 0px;"></div>
 
 ### 4. List Tabs
 
