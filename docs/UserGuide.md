@@ -102,9 +102,10 @@ These boxes are located at the top section of the window.<br><br>
 The **command input box** is located where the placeholder text `Enter command here...` is.<br>
 Clicking on it will allow you to type commands for Cobb to execute. 
 
-The **command output box** is located directly beneath the **command input box**, as shown in the image above, where it is 
-displaying the message "Listed all buyers". Upon execution of any command, Cobb will display some information regarding 
-the command, regardless of whether the command is successfully or not successfully executed.
+The **command output box** is located directly beneath the **command input box**. Upon execution of any command, Cobb will 
+display some information regarding the command, regardless of whether the command is successfully or not successfully executed.
+In the image above, it is displaying the message "Listed all buyers", the message shown after successfully executing
+the [List Buyers Command](#list-buyers-in-database-listbuyers).
 
 <div markdown="span" class="alert alert-primary">:exclamation: **Note:**
 If a command is not successfully executed, the text within the command input box will turn <span style="color:red">red</span>.
