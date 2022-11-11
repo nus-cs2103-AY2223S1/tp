@@ -25,6 +25,7 @@ faster than ever before!
 * [Table of Contents](#table-of-contents)
 * [Using the User Guide](#using-the-user-guide)
 * [Quick Start](#quick-start)
+* [Data Fields] (#data-fields)
 * [First Glance](#first-glance)
 * [Features](#features)
   * [Introduction to Our Features](#introduction-to-our-features)
