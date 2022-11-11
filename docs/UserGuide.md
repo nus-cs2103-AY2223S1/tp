@@ -278,7 +278,18 @@ The complete employee profile allows you to specify _a fair amount_ of details f
 
 #### Adding an employee: `add`
 
-Adds an employee to Coydir.
+Now, how do we build the employee profiles?
+
+The first step is to add a new employee to the database, so Coydir can begin managing their particulars and profile for you.
+To do this, you use the `add` command, together with the employee particulars that you have available for this person.
+
+Upon successfully adding a new employee, Coydir will then keep track of the new profile and details in the database, and you are free to access and modify the particulars with other commands later on.
+
+However, this function could fail (and Coydir simply doesn't add anyone), if:
+
+1. There are missing particulars which are **compulsory**. These mandatory details are listed below.
+2. The particulars keyed in are in the wrong format. You can find out more about the formats [here](#field-formats).
+3. The new employee added is a _duplicate_, i.e. there is someone in the database who already shares the same name.
 
 Format: `add n/NAME j/POSITION d/DEPARTMENT [p/PHONE] [e/EMAIL] [a/ADDRESS] [l/LEAVE] [t/TAG]…​`
 
@@ -305,13 +316,13 @@ Format: `add n/NAME j/POSITION d/DEPARTMENT [p/PHONE] [e/EMAIL] [a/ADDRESS] [l/L
 
 Examples:
 
-- `add n/John Doe p/98765432 e/johnd@example.com j/Recruiter d/Human Resources a/311, Clementi Ave 2, #02-25 l/20 t/friends t/owesMoney`
+- `add n/John Doe p/98765432 e/johnd@example.com j/Recruiter d/Human Resources a/311, Clementi Ave 2, #02-25 l/20 t/Experienced`
 - `add n/Peter Mars j/Chief Operating Officer d/General Management`
 
 #### Adding multiple employees at once: `batch-add`
 
-Adds multiple employees to Coydir by importing their data from `.csv` file
-
+Tired of adding new employees one by one?
+Coydir also allows you to add several employees altogether from a `.csv` file.
 This feature will come in handy when:
 
 1. You are a new user and have your employee data stored in a `.csv` file.
@@ -495,7 +506,7 @@ You can find employees by searching for:
 - Position
 - Department
 
-Or any combination of the above. Coydir will then display all employees that fulfill your search criteria.
+Or any combination of the above. Coydir will then display all employees that fulfill your search criteria in the Employee List Panel.
 
 Format: `find [n/NAME_KEYWORD] [j/POSITION_KEYWORD] [d/DEPARTMENT_KEYWORD]`
 
