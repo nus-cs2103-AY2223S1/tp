@@ -785,9 +785,9 @@ Unable to find an existing team member? Please check that you have added the tea
 
 #### Finding a member: `find member`
 
-Your software project is growing and your team is getting bigger. However, you are no longer able to find specific team 
+As your software project is growing and your team is getting bigger, you are no longer able to find specific team 
 members. Fret not, you can find your team members easily with the `find member` command.  
-First, recall any part of the member's name you are looking for. Next, key in 
+First, recall any part (keyword) of the member's name you are looking for. Next, key in 
 `find member -n <PERSON_NAME_KEYWORDS>`, and TruthTable will show you all team members with names that contain those
 keywords! You can also find your team members by their email using the `-e` flag.
 
@@ -878,7 +878,7 @@ View all the members currently in the team, in the form of a list.
 
 #### Sort members: `sort members`
 
-Your team size is getting larger, and it is confusing for you to make sense of the list of members in your team. Not to 
+Your team size is getting larger, and it is getting confusing for you to track the list of members in your team. Not to 
 worry, you can sort your team members by name with our `sort members` command! Suppose you want to see whether there is 
 team member called `Caroline`, but you are unsure of how to spell it. First, key in `sort members asc`, and TruthTable 
 will sort the list of team members alphabetically by name in ascending order. You can now verify if `Caroline` indeed 
@@ -927,11 +927,10 @@ Summary of the commands to manage teams can be found [here](#summary-of-team-com
 
 #### Creating a new team: `add team`
 
-You have formed your group for the project and are ready to work on the best software project ever created! Now you are
-ready to create a new team. First, decide on a nice team name and a description that fits the purposes of your team. 
+You have formed your group for the project and are ready to work on your software project! Now you are
+ready to create a new team. First, decide on a team name and a description of your team. 
 Next, key in `add team -n <TEAM_NAME> -d <TEAM_DESCRIPTION>` and a new team will be created. Combine this with 
-[set team command](#set-a-new-team-set-team) to directly switch to the team you just created. Now you are ready to work
-on the best project ever.
+[set team command](#set-a-new-team-set-team) to switch to the team you just created. You are all set to work on your new software project!
 
 The `add team` command allows you to add a new team to your list of teams. The new team is added to the 
 [teams section](#teams-section) as seen in the image below. Do not worry if an error shows up, you might have typed 
@@ -959,14 +958,11 @@ If done successfully, you should see a new team show up in the [teams section](#
 **Examples:**
 
 - `add team CS2103T` will create a new team by the name of "CS2103T"
-- `add team CS2102 -d "Database Systems"` will create a new team by the name of "CS2102" and "Database Systems"
-  as description
+- `add team CS2102 -d "Database Systems"` will create a new team with the name "CS2102" and description "Database Systems"
 
 #### Edit current team: `edit team`
 
-You discussed the group name with your team members, and they do not like the name you proposed! They prefer it to be
-something cooler instead. Not to worry, you are able to edit the details of your current team. Once you decided on better team 
-name and a better description, key in `edit team -n <TEAM_NAME> -d <TEAM_DESCRIPTION>` and the details your
+After a while, your group decides to change its team name. Not to worry, you are able to edit both, the name and the description, of a team. Once you decide on the new team name and description, key in `edit team -n <TEAM_NAME> -d <TEAM_DESCRIPTION>` and the details your
 [currently selected team](#current-team-section) will be edited. 
 
 The `edit team` command allows you to edit the details your currently selected team.
@@ -1034,12 +1030,12 @@ If done successfully, you should see the team `CS2103T` removed under the [teams
 
 #### Set a new team: `set team`
 
-It is a busy semester and you have multiple teams that you need to manage. You can change the team that you are managing to 
+It is a busy semester, and you have multiple teams that you need to manage. You can change the team that you are managing to 
 any other team that is displayed in the [teams section](#teams-section). Simply enter `set team <TEAM_NAME>` to change
 the working team to the target team.
 
 The `set team` command allows you to change the [currently selected team](#current-team-section) to a new team from 
-the list of teams in the [teams section](#teams-section). Let us show you an example of how to use this command.
+the list of teams in the [teams section](#teams-section). Let's see an example of how to use this command.
 
 Suppose you have finished the tasks in your current team CS2103T and have an existing team called CS2102. You want to
 start managing that team instead. Enter the command
@@ -1076,12 +1072,10 @@ the list of tasks that needs to be done in order to complete the submission on t
 `add task <TASK_NAME>` and a new task will be added to the task list in [current team section](#current-team-section).
 You may optionally specify a deadline and assignees for this command using `-d <TASK_DEADLINE>` and 
 `-a <TASK_ASSIGNEES>` respectively. Please refer to the respective commands on how to 
-[set deadlines](#set-deadline-for-task-set-deadline) and [set assignees](#assign-a-task-to-team-member-assign-task)!
+[set deadlines](#set-deadline-for-task-set-deadline) and [set assignees](#assign-a-task-to-team-member-assign-task) after a task has been created.
 
-The `add task` allow you to add a new task to your current team. Each task can have multiple assignees and a deadline.
-The new task will be displayed in the task list of your [current team section](#current-team-section). Do not worry if 
-an error shows up, you might have typed something wrongly. Here, let us take a quick walk-through on how to add a new 
-task.
+The `add task` allow you to add a new task to your current team. Each task can have a deadline and multiple assignees.
+The new task will be displayed in the task list of your [current team section](#current-team-section). Here, let's take a quick walk-through on how to add a new task.
 
 Let us try to add a task called `Create PR`. Enter the command 
 
@@ -1119,16 +1113,15 @@ If done successfully, a new task with the name `Create PR` will be added to the 
 
 #### Edit task in team: `edit task`
 
-Opps! Seems like you did not like the name that you have given your task. Not to worry, you can edit the details of the 
-task easily with `edit task`! First, identify the index number of the task in the task list of
+Accidentally spelt the name of a task incorrectly? Not to worry, you can edit the details of the  task easily with the `edit task` command! First, identify the index number of the task in the task list of
 [current team section](#current-team-section). If you are not able to find the task visibly, refer to
 [find task command](#finding-a-task-find-task) on how you can find your task easily. Next, key in
 `edit task <INDEX_NUMBER> -n <NEW_TASK_NAME>` to change the name of the task! You can edit other information such as 
 deadline and assignees as well. Please refer to the respective commands on how to
-[set deadlines](#set-deadline-for-task-set-deadline) and [set assignees](#assign-a-task-to-team-member-assign-task)!
+[set deadlines](#set-deadline-for-task-set-deadline) and [set assignees](#assign-a-task-to-team-member-assign-task).
 
 The `edit task` command allows you to edit an existing task in your team. The edited task's details will be shown in the
-task list of the [current team section](#current-team-section). As always, do not panic if you see an error message. Let
+task list of the [current team section](#current-team-section). Let
 us run through how to edit the details of a task.
 
 Suppose you want to change the task name from `Create PR` to `Merge PR`. Identify the index number of
@@ -1158,6 +1151,8 @@ Passing `TASK_INDEX` after `ASSIGNEES` makes it impossible to distinguish which 
 
 :asterisk: - at least one of the flags for name, deadline, and assignees must be specified
 
+Take note that:
+
 * Edits the person at the specified `TASK_INDEX`, which refers to the index number shown in the
   [team members section](#current-team-section)
 * `DEADLINE` contains both the date and time in `YYYY-MM-DD HH:MM` format, and it **does not have quotation marks (`""`)
@@ -1185,14 +1180,14 @@ Passing `TASK_INDEX` after `ASSIGNEES` makes it impossible to distinguish which 
 
 #### Delete task from team: `delete task`
 
-You realise that the task that you added is too big and can be split into smaller sub-tasks. Not to worry, you
-can delete the tasks easily with `delete task`! First, identify the index number of task in the task list of
+You realise that the task that you created is actually not very important, and you'd like to remove it. Not to worry, you
+can delete the tasks easily with `delete task`! First, identify the index of the task in the task list of
 [current team section](#current-team-section). If you are not able to find the task visibly, refer to
 [find task command](#finding-a-task-find-task). Next, key in `delete task <INDEX_NUMBER>`
 to remove the task from TruthTable.
 
 The `delete task` command allows you to delete the specified task from TruthTable. The task deleted will be
-removed from the task list of the [current team section](#current-team-section). Let us run through how to delete a
+removed from the task list of the [current team section](#current-team-section). Let us run through an example on how to delete a
 task.
 
 Suppose you want to delete a task called `Merge PR`. Identify the index number of `Merge PR` in the
@@ -1225,22 +1220,22 @@ above [add task command](#add-task-to-team-add-task) to add a new task into Trut
 - `delete task 1` will delete the first task of the current team.
 
 #### Finding a task: `find task`
-
-Deadline is coming up the there so many tasks to complete. You recall adding a task called merge but you are not sure
+ 
+The final deadline is coming up, and there so many tasks yet to complete. You recall adding a task called "merge", but you are not sure
 about the full name of the task. Not to worry, you can find the task easily with `find task`! First, recall any keyword
-you can remember from the task. Next, key in `find person <PERSON_NAME_KEYWORDS>`, and TruthTable will show you all tasks with
+you can remember from the task. Next, key in `find task <TASK_NAME_KEYWORDS>`, and TruthTable will show you all tasks with
 names that contain the keywords that you specified!
 
 The `find task` command allows you to finds all tasks whose names contain any of the given keywords.
 The tasks with matching names will be shown in the task list of [current team section](#current-team-section).
 
-Let us run through how to find a task.
+Let us run through an example on how to find a task.
 
-Suppose you want to find all tasks named User and all tasks named Guide. Enter the command
+Suppose you want to find all tasks containing the keywords "User" or "Guide". Enter the command
 
 `find person User Guide`
 
-If done successfully, you should the see all tasks named User or Guide show up under in the
+If done successfully, you should the see all tasks whose name contain "User" or "Guide" show up under in the
 task list of [current team section](#current-team-section).
 
 Unable to find a task you are looking for? Please check that you have added the task into TruthTable! Refer to the
@@ -1253,6 +1248,8 @@ To reset the task list, see the [list tasks command](#list-tasks-in-team-list-ta
 | Flags          | Required | Remarks                                                                |
 |----------------|----------|------------------------------------------------------------------------|
 | `-h`, `--help` | :x:      | Shows [help message](#understanding-the-help-message) for this command |
+
+Take note that:
 
 * Only the task name is searched.
 * The search is case-insensitive. e.g. `user guide` will match `User Guide`
@@ -1273,7 +1270,7 @@ To reset the task list, see the [list tasks command](#list-tasks-in-team-list-ta
 
 #### Mark tasks as done: `mark`
 
-Seems like the task is finally completed. Hooray! You can mark the task as done easily with `mark task`! 
+Seems like the task is finally completed. Hooray! You can mark the task as done with `mark task`! 
 First, identify the index number of the task in the task list of[current team section](#current-team-section). 
 If you are not able to find the task visibly, refer to [find task command](#finding-a-task-find-task) on how you can 
 find your task easily. Next, key in `mark task <INDEX_NUMBER>` to mark the task as completed.
@@ -1281,7 +1278,7 @@ find your task easily. Next, key in `mark task <INDEX_NUMBER>` to mark the task 
 The `mark task` command allows you to mark an existing task as done. The marked task will be shown in the
 task list of the [current team section](#current-team-section).  
 
-Let us run through how to mark an existing task.
+Let us run through an example on how to mark an existing task.
 
 Suppose you want to mark the task of `Create PR` as done. Identify the index number of
 `Create PR` in the application (1 in the image below). Enter the command
@@ -1314,7 +1311,7 @@ To undo this command, please see the [unmark command](#unmark-tasks-as-done-unma
 
 #### Unmark tasks as done: `unmark`
 
-Opps, something about the task was incomplete. Not to worry, you can mark the task as incomplete easily with 
+Oops, something about the task was incomplete. Not to worry, you can mark the task as incomplete easily with 
 `unmark task`! First, identify the index number of the task in the task list of 
 [current team section](#current-team-section). If you are not able to find the task visibly, refer to [find task command](#finding-a-task-find-task) on how you can
 find your task easily. Next, key in `unmark task <INDEX_NUMBER>` to mark the task as incomplete.
@@ -1362,6 +1359,8 @@ Set a deadline for an existing task, and the deadline must be in `YYYY-MM-DD HH:
 |----------------|----------|------------------------------------------------------------------------|
 | `-h`, `--help` | :x:      | Shows [help message](#understanding-the-help-message) for this command |
 
+Take note that:
+
 * `TASK_INDEX` **must be a positive integer:** 1, 2, 3,...
 * `TASK_DEADLINE` contains both the date and time in `YYYY-MM-DD HH:MM` format, and it **does not have quotation marks
   (`""`)
@@ -1399,8 +1398,10 @@ The format for the `-a` flag indicates that you must specify at least 1 `-a` fla
 | `-h`, `--help`     | :x:                | Shows [help message](#understanding-the-help-message) for this command |
 | `-a`, `--assignee` | :heavy_check_mark: | Index of members in [members section](#current-team-section)           |
 
+Take note that:
+
 * `TASK_INDEX` and `TASK_ASSIGNEES` **must be positive integers:** 1, 2, 3,...
-* The original assignees of the task will not be replaced with this command, instead, only new assignees can be added.
+* The original assignees of the task will not be replaced with this command. Tnstead, only new assignees can be added.
 * To remove assignees from a task, you can use the [`edit task` command](#edit-task-in-team-edit-task)
 
 **Command Aliases:**
