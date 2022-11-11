@@ -1112,6 +1112,8 @@ Let us try to add a task called `Create PR`. Enter the command
 If done successfully, a new task with the name `Create PR` will be added to the task list in 
 [current team section](#current-team-section).
 
+![Add Task Example](images/AddTaskExample.png)
+
 **Format:** `add task [-h] [-d=<TASK_DEADLINE>] [-a[=<TASK_ASSIGNEES>...]]... <TASK_NAME>`
 
 | Flags              | Required | Remarks                                                                |
@@ -1160,6 +1162,8 @@ Suppose you want to change the task name from `Create PR` to `Merge PR`. Identif
 
 If done successfully, you should see the new details show up under in the task list of the
 [current team section](#current-team-section), with the task name of `Merge PR`.
+
+![Edit Task Example](images/EditTaskExample.png)
 
 Unable to find a task you are looking for? Please check that you have added the task into TruthTable! Refer to the
 above [add task command](#add-task-to-team-add-task) to add a new task into TruthTable.
@@ -1225,6 +1229,8 @@ application (1 in the image below). Enter the command
 If done successfully, you should the task `Merge PR` removed under the task list of
 [current team section](#current-team-section).
 
+![Delete Task Example](images/DeleteTaskExample.png)
+
 Unable to find a task you are looking for? Please check that you have added the task into TruthTable! Refer to the
 above [add task command](#add-task-to-team-add-task) to add a new task into TruthTable.
 
@@ -1250,7 +1256,7 @@ above [add task command](#add-task-to-team-add-task) to add a new task into Trut
 
 Deadline is coming up the there so many tasks to complete. You recall adding a task called merge but you are not sure
 about the full name of the task. Not to worry, you can find the task easily with `find task`! First, recall any keyword
-you can remember from the task. Next, key in `find person <PERSON_NAME_KEYWORDS>`, and TruthTable will show you all tasks with
+you can remember from the task. Next, key in `find task <TASK_NAME_KEYWORDS>`, and TruthTable will show you all tasks with
 names that contain the keywords that you specified!
 
 The `find task` command allows you to finds all tasks whose names contain any of the given keywords.
@@ -1260,10 +1266,12 @@ Let us run through how to find a task.
 
 Suppose you want to find all tasks named User and all tasks named Guide. Enter the command
 
-`find person User Guide`
+`find task User Guide`
 
 If done successfully, you should the see all tasks named User or Guide show up under in the
 task list of [current team section](#current-team-section).
+
+![Find Task Example](images/FindTaskExample.png)
 
 Unable to find a task you are looking for? Please check that you have added the task into TruthTable! Refer to the
 above [add task command](#add-task-to-team-add-task) to add a new task into TruthTable.
@@ -1313,6 +1321,8 @@ Suppose you want to mark the task of `Create PR` as done. Identify the index num
 If done successfully, you should see a cross appear beside the task named of `Merge PR`, under in the task list of the
 [current team section](#current-team-section).
 
+![Mark Example](images/MarkExample.png)
+
 Unable to find a task you are looking for? Please check that you have added the task into TruthTable! Refer to the
 above [add task command](#add-task-to-team-add-task) to add a new task into TruthTable.
 
@@ -1336,7 +1346,7 @@ To undo this command, please see the [unmark command](#unmark-tasks-as-done-unma
 
 #### Unmark tasks as done: `unmark`
 
-Opps, something about the task was incomplete. Not to worry, you can mark the task as incomplete easily with 
+Oops, something about the task was incomplete. Not to worry, you can mark the task as incomplete easily with 
 `unmark task`! First, identify the index number of the task in the task list of 
 [current team section](#current-team-section). If you are not able to find the task visibly, refer to [find task command](#finding-a-task-find-task) on how you can
 find your task easily. Next, key in `unmark task <INDEX_NUMBER>` to mark the task as incomplete.
@@ -1352,6 +1362,8 @@ Identify the index number of `Create PR` in the application (1 in the image belo
 `unmark task 1`
 
 If done successfully, you should the cross beside the task named of `Merge PR` disappear.
+
+![Unmark Example](images/UnmarkExample.png)
 
 Unable to find a task you are looking for? Please check that you have added the task into TruthTable! Refer to the
 above [add task command](#add-task-to-team-add-task) to add a new task into TruthTable.
