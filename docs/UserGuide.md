@@ -138,7 +138,7 @@ You can return to the main page anytime you wish by executing `home`.
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes:**<br>
+**:information_source: Note about commands:**<br>
 
 * Note that the commands for the home page are different from those for an itinerary planning page.
 Some commands only apply to one type of page while some are universally applicable (i.e. they can be executed on any page).
