@@ -1,0 +1,33 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+Class "<<interface>>\nComparator" as Comparator
+
+Class PropertyComparator {
++ int compare(Buyer firstBuyer, Buyer secondBuyer)
+}
+
+class PropertyNameComparator {
+- Order order
++ int compare(PropertyName firstName, PropertyName secondName)
+}
+
+class PriceComparator {
+- Order order
++ int compare(Price firstPrice, Price secondPrice)
+}
+
+class TimeComparator {
+- Order order
++ int compare(LocalDateTime firstTime, LocalDateTime secondTime)
+}
+
+PropertyComparator ..|> Comparator
+PropertyNameComparator ..|> Comparator
+PriceComparator ..|> Comparator
+TimeComparator ..|> Comparator
+
+PropertyComparator --> "nameComparator 0..1" PropertyNameComparator
+PropertyComparator --> "priceComparator 0..1" PriceComparator
+PropertyComparator --> "timeComparator 0..1" TimeComparator
+@enduml

@@ -31,7 +31,8 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private BuyerListPanel buyerListPanel;
+    private PropertyListPanel propertyListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -42,13 +43,19 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane buyerListPanelPlaceholder;
+
+    @FXML
+    private StackPane propertyListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
-    private StackPane statusbarPlaceholder;
+    private StackPane buyerStatusBarPlaceholder;
+
+    @FXML
+    private StackPane propertyStatusBarPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -110,14 +117,20 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        buyerListPanel = new BuyerListPanel(logic.getFilteredBuyerList());
+        buyerListPanelPlaceholder.getChildren().add(buyerListPanel.getRoot());
+
+        propertyListPanel = new PropertyListPanel(logic.getFilteredPropertyList());
+        propertyListPanelPlaceholder.getChildren().add(propertyListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+        BuyerStatusBarFooter buyerStatusBarFooter = new BuyerStatusBarFooter(logic.getBuyerBookFilePath());
+        buyerStatusBarPlaceholder.getChildren().add(buyerStatusBarFooter.getRoot());
+
+        PropertyStatusBarFooter propertyStatusBarFooter = new PropertyStatusBarFooter(logic.getPropertyBookFilePath());
+        propertyStatusBarPlaceholder.getChildren().add(propertyStatusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
@@ -163,8 +176,12 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public BuyerListPanel getBuyerListPanel() {
+        return buyerListPanel;
+    }
+
+    public PropertyListPanel getPropertyListPanel() {
+        return propertyListPanel;
     }
 
     /**

@@ -14,12 +14,19 @@ Class JsonUserPrefsStorage
 Class "<<interface>>\nStorage" as Storage
 Class StorageManager
 
-package "AddressBook Storage" #F4F6F6{
-Class "<<interface>>\nAddressBookStorage" as AddressBookStorage
-Class JsonAddressBookStorage
-Class JsonSerializableAddressBook
-Class JsonAdaptedPerson
-Class JsonAdaptedTag
+package "BuyerBook Storage" #F4F6F6{
+Class "<<interface>>\nBuyerBookStorage" as BuyerBookStorage
+Class JsonBuyerBookStorage
+Class JsonSerializableBuyerBook
+Class JsonAdaptedBuyer
+}
+
+package "PropertyBook Storage" #F4F6F6{
+Class "<<interface>>\nPropertyBookStorage" as PropertyBookStorage
+Class JsonPropertyBookStorage
+Class JsonSerializablePropertyBook
+Class JsonAdaptedProperty
+Class JsonAdaptedOwner
 }
 
 }
@@ -29,15 +36,21 @@ HiddenOutside ..> Storage
 
 StorageManager .up.|> Storage
 StorageManager -up-> "1" UserPrefsStorage
-StorageManager -up-> "1" AddressBookStorage
+StorageManager -up-> "1" BuyerBookStorage
+StorageManager -up-> "1" PropertyBookStorage
 
-Storage -left-|> UserPrefsStorage
-Storage -right-|> AddressBookStorage
+Storage -down-|> UserPrefsStorage
+Storage -down-|> BuyerBookStorage
+Storage -down-|> PropertyBookStorage
 
 JsonUserPrefsStorage .up.|> UserPrefsStorage
-JsonAddressBookStorage .up.|> AddressBookStorage
-JsonAddressBookStorage ..> JsonSerializableAddressBook
-JsonSerializableAddressBook --> "*" JsonAdaptedPerson
-JsonAdaptedPerson --> "*" JsonAdaptedTag
+JsonBuyerBookStorage .up.|> BuyerBookStorage
+JsonBuyerBookStorage ..> JsonSerializableBuyerBook
+JsonSerializableBuyerBook --> "*" JsonAdaptedBuyer
+JsonPropertyBookStorage .up.|> PropertyBookStorage
+JsonPropertyBookStorage ..> JsonSerializablePropertyBook
+JsonSerializablePropertyBook --> "*" JsonAdaptedProperty
+JsonAdaptedProperty --> "1" JsonAdaptedOwner
+
 
 @enduml

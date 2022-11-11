@@ -1,4 +1,4 @@
-title: "AB-3"
+title: "Cobb"
 theme: minima
 
 header_pages:
@@ -13,3 +13,4 @@ github_icon: "images/github-icon.png"
 
 plugins:
   - jemoji
+

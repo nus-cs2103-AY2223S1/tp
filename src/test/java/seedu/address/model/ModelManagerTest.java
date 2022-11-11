@@ -3,20 +3,16 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalBuyers.ALICE;
+import static seedu.address.testutil.TypicalProperties.PEAKRESIDENCE;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
 
@@ -26,7 +22,8 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new AddressBook(), new AddressBook(modelManager.getAddressBook()));
+        assertEquals(new BuyerBook(), new BuyerBook(modelManager.getBuyerBook()));
+        assertEquals(new PropertyBook(), new PropertyBook(modelManager.getPropertyBook()));
     }
 
     @Test
@@ -37,14 +34,14 @@ public class ModelManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setAddressBookFilePath(Paths.get("address/book/file/path"));
+        userPrefs.setBuyerBookFilePath(Paths.get("address/book/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setAddressBookFilePath(Paths.get("new/address/book/file/path"));
+        userPrefs.setBuyerBookFilePath(Paths.get("new/address/book/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -61,72 +58,123 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.setAddressBookFilePath(null));
+    public void setBuyerBookFilePath_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setBuyerBookFilePath(null));
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
+    public void setBuyerBookFilePath_validPath_setsBuyerBookFilePath() {
         Path path = Paths.get("address/book/file/path");
-        modelManager.setAddressBookFilePath(path);
-        assertEquals(path, modelManager.getAddressBookFilePath());
+        modelManager.setBuyerBookFilePath(path);
+        assertEquals(path, modelManager.getBuyerBookFilePath());
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasPerson(null));
+    public void hasBuyer_nullBuyer_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasBuyer(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(modelManager.hasPerson(ALICE));
+    public void hasBuyer_buyerNotInBuyerBook_returnsFalse() {
+        assertFalse(modelManager.hasBuyer(ALICE));
+    }
+
+    //    @Test
+    //    public void hasPerson_personInAddressBook_returnsTrue() {
+    //        modelManager.addPerson(ALICE);
+    //        assertTrue(modelManager.hasPerson(ALICE));
+    //    }
+
+    @Test
+    public void getFilteredBuyerList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredBuyerList().remove(0));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
-        modelManager.addPerson(ALICE);
-        assertTrue(modelManager.hasPerson(ALICE));
+    public void setPropertyBookFilePath_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setPropertyBookFilePath(null));
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    public void setPropertyBookFilePath_validPath_setsPropertyBookFilePath() {
+        Path path = Paths.get("address/book/file/path");
+        modelManager.setPropertyBookFilePath(path);
+        assertEquals(path, modelManager.getPropertyBookFilePath());
     }
 
     @Test
-    public void equals() {
-        AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
-        AddressBook differentAddressBook = new AddressBook();
-        UserPrefs userPrefs = new UserPrefs();
-
-        // same values -> returns true
-        modelManager = new ModelManager(addressBook, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs);
-        assertTrue(modelManager.equals(modelManagerCopy));
-
-        // same object -> returns true
-        assertTrue(modelManager.equals(modelManager));
-
-        // null -> returns false
-        assertFalse(modelManager.equals(null));
-
-        // different types -> returns false
-        assertFalse(modelManager.equals(5));
-
-        // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
-
-        // different filteredList -> returns false
-        String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
-
-        // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-
-        // different userPrefs -> returns false
-        UserPrefs differentUserPrefs = new UserPrefs();
-        differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
+    public void hasProperty_nullProperty_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasProperty(null));
     }
+
+    @Test
+    public void hasProperty_propertyNotInPropertyBook_returnsFalse() {
+        assertFalse(modelManager.hasProperty(PEAKRESIDENCE));
+    }
+
+    @Test
+    public void hasProperty_propertyInPropertyBook_returnsTrue() {
+        modelManager.addProperty(PEAKRESIDENCE);
+        assertTrue(modelManager.hasProperty(PEAKRESIDENCE));
+    }
+
+    @Test
+    public void getFilteredPropertyList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPropertyList().remove(0));
+    }
+
+    //    @Test
+    //    public void equals() {
+    //        BuyerBook personBook = new PersonModelBuilder().withPerson(ALICE).withPerson(BENSON).build();
+    //        BuyerBook differentPersonBook = new BuyerBook();
+    //        PropertyBook propertyBook = new PropertyModelBuilder().withProperty(PEAKRESIDENCE)
+    //        .withProperty(HUT).build();
+    //        PropertyBook differentPropertyBook = new PropertyBook();
+    //        UserPrefs userPrefs = new UserPrefs();
+    //
+    //        // same values -> returns true
+    //        modelManager = new ModelManager(personBook, propertyBook, userPrefs);
+    //        ModelManager modelManagerCopy = new ModelManager(personBook, propertyBook, userPrefs);
+    //        assertTrue(modelManager.equals(modelManagerCopy));
+    //
+    //        // same object -> returns true
+    //        assertTrue(modelManager.equals(modelManager));
+    //
+    //        // null -> returns false
+    //        assertFalse(modelManager.equals(null));
+    //
+    //        // different types -> returns false
+    //        assertFalse(modelManager.equals(5));
+    //
+    //        // different buyerBook -> returns false
+    //        assertFalse(modelManager.equals(new ModelManager(differentPersonBook, propertyBook, userPrefs)));
+    //
+    //        // different propertyBook -> returns false
+    //        assertFalse(modelManager.equals(new ModelManager(personBook, differentPropertyBook, userPrefs)));
+    //
+    //        // different personBook and propertyBook -> returns false
+    //        assertFalse(modelManager.equals(new ModelManager(differentPersonBook, differentPropertyBook, userPrefs)));
+    //
+    //        // different filteredPersonList -> returns false
+    //        String[] keywordsForAlice = ALICE.getName().fullName.split("\\s+");
+    //        modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywordsForAlice)));
+    //        assertFalse(modelManager.equals(new ModelManager(personBook, propertyBook, userPrefs)));
+    //
+    //        // resets filteredPersonList in modelManager for upcoming tests
+    //        modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    //
+    //        // different filteredPropertyList -> returns false
+    //        String[] keywordsForPeak = PEAKRESIDENCE.getPropertyName().fullName.split("\\s+");
+    //        modelManager.updateFilteredPropertyList(
+    //                new PropertyNameContainsKeywordsPredicate(Arrays.asList(keywordsForPeak)));
+    //        assertFalse(modelManager.equals(new ModelManager(personBook, propertyBook, userPrefs)));
+    //
+    //        // resets filteredPropertyList in modelManager for upcoming tests
+    //        modelManager.updateFilteredPropertyList(PREDICATE_SHOW_ALL_PROPERTIES);
+    //
+    //        // different userPrefs -> returns false
+    //        UserPrefs differentUserPrefs = new UserPrefs();
+    //        differentUserPrefs.setPersonBookFilePath(Paths.get("differentFilePath"));
+    //        assertFalse(modelManager.equals(new ModelManager(personBook, propertyBook, differentUserPrefs)));
+    //    }
 }

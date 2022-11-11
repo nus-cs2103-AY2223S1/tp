@@ -31,11 +31,19 @@
 !define STORAGE_COLOR_T3 #806600
 !define STORAGE_COLOR_T2 #544400
 
+!define EXTERNAL_COLOR #EC9006
+!define EXTERNAL_COLOR_T1 #DC6601
+!define EXTERNAL_COLOR_T2 #D24E01
+
 !define USER_COLOR #000000
 
 skinparam BackgroundColor #FFFFFFF
 
 skinparam Shadowing false
+
+skinparam default {
+    FontSize 11
+}
 
 skinparam Class {
     FontColor #FFFFFF

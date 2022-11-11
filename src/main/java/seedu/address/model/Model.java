@@ -1,18 +1,29 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Person;
+import seedu.address.model.buyer.Buyer;
+import seedu.address.model.property.Property;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    /**
+     * {@code Predicate} that always evaluate to true
+     */
+    Predicate<Buyer> PREDICATE_SHOW_ALL_BUYERS = unused -> true;
+
+    /**
+     * {@code Predicate} that always evaluate to true
+     */
+    Predicate<Property> PREDICATE_SHOW_ALL_PROPERTIES = unused -> true;
+
+    //=========== UserPrefs ==================================================================================
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -35,53 +46,136 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' buyer book file path.
      */
-    Path getAddressBookFilePath();
+    Path getBuyerBookFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' buyer book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setBuyerBookFilePath(Path buyerBookFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Returns the user prefs' property book file path.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
-
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    Path getPropertyBookFilePath();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Sets the user prefs' property book file path.
      */
-    boolean hasPerson(Person person);
+    void setPropertyBookFilePath(Path propertyBookFilePath);
+
+    //=========== BuyerBook ================================================================================
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Replaces buyer book data with the data in {@code buyerBook}.
      */
-    void deletePerson(Person target);
+    void setBuyerBook(ReadOnlyBuyerBook buyerBook);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Returns the BuyerBook
      */
-    void addPerson(Person person);
+    ReadOnlyBuyerBook getBuyerBook();
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
+     * Returns true if a buyer with the same identity as {@code buyer} exists in the address book.
+     */
+    boolean hasBuyer(Buyer buyer);
+
+    /**
+     * Deletes the given buyer.
+     * {@code buyer} must exist in the buyer book.
+     */
+    void deleteBuyer(Buyer buyer);
+
+    /**
+     * Adds the given buyer.
+     * {@code buyer} must not already exist in the buyer book.
+     */
+    void addBuyer(Buyer buyer);
+
+    /**
+     * Replaces the given buyer {@code target} with {@code editedBuyer}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The buyer identity of {@code editedBuyer} must not be the same as another existing buyer in the address book.
      */
-    void setPerson(Person target, Person editedPerson);
+    void setBuyer(Buyer target, Buyer editedBuyer);
 
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
+    //=========== Filtered Buyer List Accessors =============================================================
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Returns an unmodifiable view of the filtered buyer list
+     */
+    ObservableList<Buyer> getFilteredBuyerList();
+
+    /**
+     * Updates the filter of the filtered buyer list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredBuyerList(Predicate<Buyer> predicate);
+
+    /**
+     * Sorts the buyer book's buyer list by the given {@code comparator}.
+     * @throws NullPointerException if {@code comparator} is null.
+     */
+    void sortBuyerList(Comparator<Buyer> comparator);
+
+    //=========== PropertyBook ================================================================================
+
+    /**
+     * Replaces property book data with the data in {@code propertyBook}.
+     */
+    void setPropertyBook(ReadOnlyPropertyBook propertyBook);
+
+    /**
+     * Returns the PropertyBook
+     */
+    ReadOnlyPropertyBook getPropertyBook();
+
+    /**
+     * Returns true if a property with the same identity as {@code property} exists in the property book.
+     */
+    boolean hasProperty(Property property);
+
+    /**
+     * Deletes the given property.
+     * The property must exist in the property book.
+     */
+    void deleteProperty(Property target);
+
+    /**
+     * Adds the given property.
+     * {@code property} must not already exist in the property book.
+     */
+    void addProperty(Property property);
+
+    /**
+     * Replaces the given property {@code target} with {@code editedProperty}.
+     * {@code target} must exist in the property book.
+     * The property identity of {@code editedProperty} must not be the same as another existing property in the address
+     * book.
+     */
+    void setProperty(Property target, Property editedProperty);
+
+    //=========== Filtered Property List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the filtered property list
+     */
+    ObservableList<Property> getFilteredPropertyList();
+
+    /**
+     * Updates the filter of the filtered property list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredPropertyList(Predicate<Property> predicate);
+
+    /**
+     * Sorts the property book's property list by the given {@code comparator}.
+     * @throws NullPointerException if {@code comparator} is null.
+     */
+    void sortPropertyList(Comparator<Property> comparator);
+
 }

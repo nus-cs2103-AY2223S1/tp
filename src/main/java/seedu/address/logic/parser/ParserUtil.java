@@ -1,26 +1,31 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.logic.sortcomparators.Order;
+import seedu.address.model.address.Address;
+import seedu.address.model.buyer.Email;
+import seedu.address.model.buyer.Name;
+import seedu.address.model.buyer.Phone;
+import seedu.address.model.buyer.Priority;
+import seedu.address.model.characteristics.Characteristics;
+import seedu.address.model.price.Price;
+import seedu.address.model.price.PriceRange;
+import seedu.address.model.property.Description;
+import seedu.address.model.property.Owner;
+import seedu.address.model.property.PropertyName;
+
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_INDEX = "Index is not a positive integer or is too large.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -96,29 +101,129 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
+     * Parses a {@code String priority} into a {@code Priority}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code tag} is invalid.
+     * @throws ParseException if the given {@code priority} is invalid.
      */
-    public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+    public static Priority parsePriority(String priority) throws ParseException {
+        requireNonNull(priority);
+        String trimmedPriority = priority.trim().toUpperCase();
+        if (!Priority.isValidPriority(trimmedPriority)) {
+            throw new ParseException(Priority.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(trimmedTag);
+        return new Priority(trimmedPriority);
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses a {@code String description} into a {@code Description}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code description} is invalid.
      */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
+    public static Description parseDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        if (!Description.isValidDescription(trimmedDescription)) {
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
         }
-        return tagSet;
+        return new Description(trimmedDescription);
+    }
+
+    /**
+     * Parses {@code String range} into a {@code PriceRange}.
+     */
+    public static PriceRange parsePriceRange(String range) throws ParseException {
+        requireNonNull(range);
+        String trimmedRange = range.trim();
+        if (!PriceRange.isValidPriceRange(trimmedRange)) {
+            throw new ParseException(PriceRange.MESSAGE_CONSTRAINTS);
+        }
+        if (trimmedRange.isEmpty()) {
+            return PriceRange.RESET_PRICE_RANGE;
+        }
+        return new PriceRange(trimmedRange);
+    }
+
+    /**
+     * Parses {@code String characteristics} into a {@code Characteristics}.
+     */
+    public static Characteristics parseCharacteristics(String characteristics) throws ParseException {
+        requireNonNull(characteristics);
+        String trimmedCharacteristics = characteristics.trim();
+        if (!Characteristics.isValidCharacteristics(trimmedCharacteristics)) {
+            throw new ParseException(Characteristics.MESSAGE_CONSTRAINTS);
+        }
+        if (trimmedCharacteristics.isEmpty()) {
+            return Characteristics.RESET_CHARACTERISTICS;
+        }
+        return new Characteristics(trimmedCharacteristics);
+    }
+
+    /**
+     * Parses a {@code String price} into a {@code Price}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code price} is invalid.
+     */
+    public static Price parsePrice(String price) throws ParseException {
+        requireNonNull(price);
+        String trimmedPrice = price.trim();
+        if (!Price.isValidPrice(trimmedPrice)) {
+            throw new ParseException(Price.MESSAGE_CONSTRAINTS);
+        }
+        return new Price(trimmedPrice);
+    }
+
+    /**
+     * Parses a {@code String propertyName} into a {@code PropertyName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code propertyName} is invalid.
+     */
+    public static PropertyName parsePropertyName(String propertyName) throws ParseException {
+        requireNonNull(propertyName);
+        String trimmedPropertyName = propertyName.trim();
+        if (!PropertyName.isValidPropertyName(trimmedPropertyName)) {
+            throw new ParseException(PropertyName.MESSAGE_CONSTRAINTS);
+        }
+        return new PropertyName(trimmedPropertyName);
+    }
+
+    /**
+     * Parses a {@code String ownerName} and a {@code String ownerPhone} into an {@code Owner}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code ownerName} or {@code ownerPhone} is invalid.
+     */
+    public static Owner parseOwner(String ownerName, String ownerPhone) throws ParseException {
+        requireAllNonNull(ownerName, ownerPhone);
+        String trimmedOwnerName = ownerName.trim();
+        String trimmedOwnerPhone = ownerPhone.trim();
+
+        if (!Name.isValidName(trimmedOwnerName)) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+
+        if (!Phone.isValidPhone(trimmedOwnerPhone)) {
+            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+        }
+
+        return new Owner(new Name(trimmedOwnerName), new Phone(trimmedOwnerPhone));
+    }
+
+    /**
+     * Parses a {@code String order} into an {@code Order}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code order} is invalid.
+     */
+    public static Order parseOrder(String order) throws ParseException {
+        requireNonNull(order);
+        String trimmedOrder = order.trim();
+        if (!Order.isValidOrder(trimmedOrder)) {
+            throw new ParseException(Order.MESSAGE_CONSTRAINTS);
+        }
+        return new Order(trimmedOrder);
     }
 }

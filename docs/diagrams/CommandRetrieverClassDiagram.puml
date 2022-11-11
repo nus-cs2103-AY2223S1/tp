@@ -1,0 +1,23 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class CommandBox
+class CommandRetriever
+
+CommandBox*--CommandRetriever
+
+class CommandBox {
+-handleCommandEntered()
+-handleKeyReleased(KeyEvent e)
+}
+
+class CommandRetriever {
+ArrayList<String> commandHistory
+int index
+String currentCommand
++addCommand()
++getNextCommand()
++getPreviousCommand()
+}
+
+@enduml

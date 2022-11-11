@@ -7,8 +7,10 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.ReadOnlyBuyerBook;
+import seedu.address.model.ReadOnlyPropertyBook;
+import seedu.address.model.buyer.Buyer;
+import seedu.address.model.property.Property;
 
 /**
  * API of the Logic component
@@ -24,19 +26,35 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the BuyerBook.
      *
-     * @see seedu.address.model.Model#getAddressBook()
+     * @see seedu.address.model.Model#getBuyerBook()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyBuyerBook getBuyerBook();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered list of buyers */
+    ObservableList<Buyer> getFilteredBuyerList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the PropertyBook.
+     *
+     * @see seedu.address.model.Model#getPropertyBook()
      */
-    Path getAddressBookFilePath();
+    ReadOnlyPropertyBook getPropertyBook();
+
+    /** Returns an unmodifiable view of the filtered list of properties */
+    ObservableList<Property> getFilteredPropertyList();
+
+
+    /**
+     * Returns the user prefs' buyer book file path.
+     */
+    Path getBuyerBookFilePath();
+
+    /**
+     * Returns the user prefs' property book file path.
+     */
+    Path getPropertyBookFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

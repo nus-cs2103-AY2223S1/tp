@@ -1,0 +1,35 @@
+@startuml
+!include style.puml
+skinparam ClassFontColor #000000
+skinparam ClassBorderColor #000000
+
+title Final state
+
+class AddBuyerCommand as "__:AddBuyerCommand__"
+
+package Buyer {
+    class Buyer as "__:Buyer__"
+    class Name as "__name:Name__"
+    class Address as "__address:Address__"
+    class Priority as "__priority:Priority__"
+    class LocalDateTime as "__entryTime:LocalDateTime__"
+    class Phone as "__phone:Phone__"
+    class Email as "__email:Email__"
+    class PriceRange as "__priceRange:PriceRange__"
+}
+
+AddBuyerCommand --> Buyer
+
+Buyer --> Name
+Buyer --> Address
+Buyer --> LocalDateTime
+Buyer --> Phone
+Buyer --> Priority
+Buyer --> Email
+Buyer --> PriceRange
+
+Name -[hidden]> Address
+Address -[hidden]> LocalDateTime
+Email -[hidden]> LocalDateTime
+Phone -[hidden]> LocalDateTime
+@end

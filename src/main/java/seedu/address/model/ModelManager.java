@@ -4,6 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,34 +14,43 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.model.buyer.Buyer;
+import seedu.address.model.property.Property;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the buyer book and property book data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final BuyerBook buyerBook;
+    private final PropertyBook propertyBook;
+    private final FilteredList<Buyer> filteredBuyers;
+    private final FilteredList<Property> filteredProperties;
+
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given buyerBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyBuyerBook buyerBook, ReadOnlyPropertyBook propertyBook,
+                        ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(buyerBook, propertyBook, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with buyer book: " + buyerBook + " and property book: " + propertyBook
+                + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.buyerBook = new BuyerBook(buyerBook);
+        this.propertyBook = new PropertyBook(propertyBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredBuyers = new FilteredList<>(this.buyerBook.getBuyerList());
+        filteredProperties = new FilteredList<>(this.propertyBook.getPropertyList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new BuyerBook(), new PropertyBook(), new UserPrefs());
     }
+
 
     //=========== UserPrefs ==================================================================================
 
@@ -65,67 +77,146 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getBuyerBookFilePath() {
+        return userPrefs.getBuyerBookFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
-    }
-
-    //=========== AddressBook ================================================================================
-
-    @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setBuyerBookFilePath(Path buyerBookFilePath) {
+        requireNonNull(buyerBookFilePath);
+        userPrefs.setBuyerBookFilePath(buyerBookFilePath);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public Path getPropertyBookFilePath() {
+        return userPrefs.getPropertyBookFilePath();
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public void setPropertyBookFilePath(Path propertyBookFilePath) {
+        requireNonNull(propertyBookFilePath);
+        userPrefs.setPropertyBookFilePath(propertyBookFilePath);
+    }
+
+    //=========== BuyerBook ================================================================================
+
+    @Override
+    public void setBuyerBook(ReadOnlyBuyerBook buyerBook) {
+        this.buyerBook.resetData(buyerBook);
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public ReadOnlyBuyerBook getBuyerBook() {
+        return buyerBook;
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public boolean hasBuyer(Buyer buyer) {
+        requireNonNull(buyer);
+        return buyerBook.hasBuyer(buyer);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-
-        addressBook.setPerson(target, editedPerson);
+    public void deleteBuyer(Buyer target) {
+        buyerBook.removeBuyer(target);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    @Override
+    public void addBuyer(Buyer buyer) {
+        buyerBook.addBuyer(buyer);
+        updateFilteredBuyerList(PREDICATE_SHOW_ALL_BUYERS);
+    }
+
+    @Override
+    public void setBuyer(Buyer target, Buyer editedBuyer) {
+        requireAllNonNull(target, editedBuyer);
+        buyerBook.setBuyer(target, editedBuyer);
+    }
+
+    //=========== Filtered Buyer List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * Returns an unmodifiable view of the list of {@code Buyer} backed by the internal list of
+     * {@code BuyerBook}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Buyer> getFilteredBuyerList() {
+        return filteredBuyers;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredBuyerList(Predicate<Buyer> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredBuyers.setPredicate(predicate);
+    }
+
+    @Override
+    public void sortBuyerList(Comparator<Buyer> comparator) {
+        requireNonNull(comparator);
+        List<Buyer> buyerList = new ArrayList<>(buyerBook.getBuyerList());
+        buyerList.sort(comparator);
+        buyerBook.setBuyers(buyerList);
+    }
+
+
+    //=========== PropertyBook ================================================================================
+
+    @Override
+    public void setPropertyBook(ReadOnlyPropertyBook propertyBook) {
+        this.propertyBook.resetData(propertyBook);
+    }
+
+    @Override
+    public ReadOnlyPropertyBook getPropertyBook() {
+        return propertyBook;
+    }
+
+    @Override
+    public boolean hasProperty(Property property) {
+        requireNonNull(property);
+        return propertyBook.hasProperty(property);
+    }
+
+    @Override
+    public void deleteProperty(Property target) {
+        propertyBook.removeProperty(target);
+    }
+
+    @Override
+    public void addProperty(Property property) {
+        propertyBook.addProperty(property);
+        updateFilteredPropertyList(PREDICATE_SHOW_ALL_PROPERTIES);
+    }
+
+    @Override
+    public void setProperty(Property target, Property editedProperty) {
+        requireAllNonNull(target, editedProperty);
+        propertyBook.setProperty(target, editedProperty);
+    }
+
+    //=========== Filtered Property List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Property} backed by the internal list of
+     * {@code PropertyBook}
+     */
+    @Override
+    public ObservableList<Property> getFilteredPropertyList() {
+        return filteredProperties;
+    }
+
+    @Override
+    public void updateFilteredPropertyList(Predicate<Property> predicate) {
+        requireNonNull(predicate);
+        filteredProperties.setPredicate(predicate);
+    }
+
+    @Override
+    public void sortPropertyList(Comparator<Property> comparator) {
+        requireNonNull(comparator);
+        List<Property> sortedList = new ArrayList<>(propertyBook.getPropertyList());
+        sortedList.sort(comparator);
+        propertyBook.setProperties(sortedList);
     }
 
     @Override
@@ -142,9 +233,11 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
-                && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
-    }
 
+        return userPrefs.equals(other.userPrefs)
+                && buyerBook.equals(other.buyerBook)
+                && propertyBook.equals(other.propertyBook)
+                && filteredBuyers.equals(other.filteredBuyers)
+                && filteredProperties.equals(other.filteredProperties);
+    }
 }

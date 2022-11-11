@@ -1,0 +1,69 @@
+ @startuml
+'https://plantuml.com/sequence-diagram
+!include style.puml
+
+Actor User as user USER_COLOR
+Participant ":UI" as ui UI_COLOR
+Participant ":CommandBox" as commandbox UI_COLOR_T1
+Participant ":CommandRetriever" as commandretriever UI_COLOR_T2
+Participant ":TextField" as textfield MODEL_COLOR
+Participant ":Logic" as logic LOGIC_COLOR
+
+user -[UI_COLOR]> ui: "listbuyers"
+activate ui UI_COLOR
+ui -[UI_COLOR]> commandbox: handleCommandEntered()
+activate commandbox UI_COLOR_T1
+commandbox -[UI_COLOR_T1]> logic: execute("listbuyers")
+activate logic LOGIC_COLOR
+logic -[LOGIC_COLOR]-> commandbox
+deactivate logic
+commandbox -[UI_COLOR_T1]> commandretriever: addCommand("listbuyers", textfield)
+activate commandretriever UI_COLOR_T2
+commandretriever -[UI_COLOR_T2]> textfield: setText("")
+activate textfield MODEL_COLOR
+textfield -[MODEL_COLOR]-> commandretriever
+deactivate textfield
+commandretriever -[UI_COLOR_T2]-> commandbox
+deactivate commandretriever
+commandbox -[UI_COLOR_T1]-> ui
+deactivate commandbox
+ui -[UI_COLOR]-> user
+deactivate ui
+
+user -[UI_COLOR]> ui: Key released
+activate ui UI_COLOR
+ui -[UI_COLOR]> commandbox: handleKeyReleased()
+activate commandbox UI_COLOR_T1
+alt Key is UP
+commandbox -[UI_COLOR_T1]> commandretriever: getPreviousCommand(textfield)
+activate commandretriever UI_COLOR_T2
+opt A previous command exists
+opt Command is user's currently inputted command
+commandretriever -[UI_COLOR_T2]> commandretriever: setCurrentCommand(command)
+end
+commandretriever -[UI_COLOR_T2]> textfield: setText(previousCommand)
+activate textfield MODEL_COLOR
+textfield -[MODEL_COLOR]-> commandretriever
+deactivate textfield
+end
+commandretriever -[UI_COLOR_T2]-> commandbox
+
+else Key is DOWN
+commandbox -[UI_COLOR_T1]> commandretriever: getNextCommand(textfield)
+opt A next command exists
+opt Command is latest command in history
+commandretriever -[UI_COLOR_T2]> commandretriever: getCurrentCommand()
+end
+commandretriever -[UI_COLOR_T2]> textfield: setText(nextCommand)
+activate textfield MODEL_COLOR
+textfield -[MODEL_COLOR]-> commandretriever
+deactivate textfield
+end
+commandretriever -[UI_COLOR_T2]-> commandbox
+deactivate commandretriever
+end
+commandbox -[UI_COLOR_T1]-> ui
+deactivate commandbox
+ui -[UI_COLOR]-> user
+deactivate ui
+@enduml
