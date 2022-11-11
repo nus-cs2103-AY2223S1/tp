@@ -1408,6 +1408,8 @@ Then, enter the command `set deadline 1 2022-11-11 23:59`.
 If done successfully, you should see the `Create PR` task with the new deadline show up  under in the task list of the
 [current team section](#current-team-section).
 
+![Set Deadline Example](images/SetDeadlineExample.png)
+
 **Format:** `set deadline [-h] <TASK_INDEX> <TASK_DEADLINE>`
 
 | Flags          | Required | Remarks                                                                |
@@ -1455,6 +1457,8 @@ Then, enter the command `assign task 1 -a 1`.
 If done successfully, you should see the `Create PR` task being assigned to `Alex Yeoh` show up under in the task list 
 of the [current team section](#current-team-section).
 
+![Assign Task Example](images/AssignTaskExample.png)
+
 **Format:** `assign task [-h] -a[=<TASK_ASSIGNEES>...] [-a[=<TASK_ASSIGNEES>...]]... <TASK_INDEX>`
 
 <div markdown="block" class="alert alert-success">**:bulb: Note**:
@@ -1493,6 +1497,8 @@ The format for the `-a` flag indicates that you must specify at least 1 `-a` fla
 
 Assign an existing task to a random team member in the user’s team. This command will not work if the team is empty or
 if the task has already been assigned to all members of the team.
+
+![Assign Random Example](images/AssignRandomExample.png)
 
 **Format:** `assign random [-h] <TASK_INDEX>`
 
