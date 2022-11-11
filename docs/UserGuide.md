@@ -179,19 +179,19 @@ Of course, this is not yet the end of your journey with PayMeLah - there are sti
 
 As you have learnt in the [navigation section](#tutorial-navigating-the-application), PayMeLah uses a [CLI](#glossary-command-line-interface-cli) to fulfill your needs. Let's take a closer look at what a [command](#glossary-command) consists of!
 
-<img src="images/ExampleCommand.png" width="800" />
+<img src="images/ExampleCommand.png" width="700" />
 
 * **Command Phrase**<br>
-  The first word in the [command](#glossary-command) is the **command phrase** that specifies which command will be carried out by PayMeLah.
-  (add reference to pic)
+  The first word in the [command](#glossary-command) is the **command phrase** that specifies which command will be carried out by PayMeLah.<br>
+  e.g. in the command above, `adddebt` is the command phrase
 
 * **Inputs**<br>
   These are **additional information to be supplied by you**. Check out [input behaviours](#general-input-behaviour) to learn more about how you should type them out!<br>
-  (add reference to pic)
+  e.g. in the command above, `9.80` is an input to specify some amount of money
 
 * **Prefixes**<br>
   To separate inputs that represent different information, you should precede inputs with their respective **[prefixes](#glossary-prefix)** that end with a `/`. <br>
-  (add reference to pic)
+  e.g. in the command above, `d/` is a prefix to indicate that the input after it, `mcdonalds`, is a debt description
 
 <a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Return to Table of Contents</a>
 
