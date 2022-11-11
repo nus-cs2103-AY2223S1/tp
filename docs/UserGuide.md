@@ -869,10 +869,11 @@ team members as seen in the image below.
 If done successfully, you should the see all team members show up under in the member list in the
 [current team section](#current-team-section) as shown below.
 
+![List Members Example](images/ListMembersExample.png)
+
 Unable to find an existing team member? Please check that you have added the team member into your team as shown in the
 [current team section](#current-team-section). Refer to the above
 [add member command](#adding-a-new-member-to-the-team-add-member) on how to add a new team member.
-
 
 View all the members currently in the team, in the form of a list.
 
@@ -902,12 +903,14 @@ be shown in member list the [current team section](#current-team-section)  as se
 
 Let us run through an example on how to sort your team members.
 
-Suppose you want to sort your team members alphabetically in ascending order. Enter the command
+Suppose you want to sort your team members alphabetically in descending order. Enter the command
 
-`sort members asc`
+`sort members dsc`
 
 If done successfully, the sorted team members will be shown in the member list in 
 [current team section](#current-team-section)
+
+![Sort Members Example](images/SortMembersExample.png)
 
 **Format:** `sort members [-h] <ORDER>`
 
