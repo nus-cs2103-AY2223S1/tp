@@ -138,8 +138,9 @@ Some applicable commands that helps to modify your data are: [assign](#assign-cl
     
 </div>
 
----
 <div style="page-break-after: always;"></div>
+
+---
 
 ## Layout
 
@@ -177,6 +178,8 @@ In the **student list** and **tutor list**, clicking on the individual student o
 
 Note that the card for the person being displayed will be highlighted as well.
 
+<div style="page-break-after: always;"></div>
+
 ### 4. List Tabs
 
 There are three tabs: `Student`, `Tutor` and `Class`.  
@@ -200,6 +203,7 @@ The highlighted tab indicates which list is currently being displayed.
 
 This is an example of a student entry being displayed in the description panel. When there is no person being displayed, the line “No Person Displayed” would be shown.
 
+<div style="page-break-after: always;"></div>
 
 ### 6. Toolbar 
 
@@ -256,7 +260,7 @@ Examples:
 
 <p align="center">
 
-<img src="images/helpCommand.png"/>
+<img src="images/helpCommand.png" width="500px" />
 
 </p>
 
@@ -341,6 +345,8 @@ Examples:
 
 The new student has been added into the database.
 
+<div style="page-break-after: always;"></div>
+
 ### Adding a class: `add`
 
 Adds a class to the myStudent database.
@@ -409,6 +415,8 @@ Examples:
 
 This adds the class into the database. 
 
+<div style="page-break-after: always;"></div>
+
 ### Deleting an entry: `delete`
 
 Deletes an entry from the myStudent database.
@@ -430,7 +438,7 @@ Examples:
 
 <p align="center">
 
-<img src="images/deleteCommand_after.png"  width="400""/>
+<img src="images/deleteCommand_after.png" width="400"/>
 
 </p>
 
