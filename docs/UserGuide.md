@@ -168,8 +168,6 @@ You can use this command to view the list of modules that you have added into Pr
 
 ![mlist](images/userguide/mlist.png)
 
-<div style="page-break-after: always;"></div>
-
 #### 4.2.3. Viewing more details of a module in the list of modules: `vtarget`
 
 You can use this command to get more information about a module in ProfNUS.
@@ -334,6 +332,8 @@ Now, let's use `mdel` to delete a module in ProfNUS!
 
 ![mdel_step2](images/userguide/mdel_step2.png)
 
+<div style="page-break-after: always;"></div>
+
 ### 4.3. Student Manager
 
 As SoC Professors, you certainly have many students and teaching assistants to keep track of.
@@ -349,6 +349,8 @@ can be both a student and a teaching assistant at the same time.
 As we can see, the person `Bernice Yu` is a student of the module `CS2040S` as seen by the red label and a
 teaching assistant of the module `CS2030S` as seen by the green label. If you edit or delete `Bernice Yu`, the changes will
 be saved on both sides.
+
+<div style="page-break-after: always;"></div>
 
 #### 4.3.1. Student Manager Command Parameters
 
@@ -367,6 +369,8 @@ continue!
 | `MODULE_CODE` | This parameter represents the module code of a module in ProfNUS. Using module code can uniquely determine a module. The format should abide by the Module Code Format of NUS.                                                                                                                                                                                                                                                               | `CS2030S`                           |
 | `CLASS_GROUP` | This parameter represents the group label if there are multiple lecture, tutorial, lab, or reflection groups.<br/>There are no restrictions on the information added to class groups. When a module is deleted, the class group will still remain.                                                                                                                                                                                           | `CS2030S:L1`                        |
 | `INDEX`       | This parameter represents the index of the student / teaching assistant in thier respective lists.<br/>The index must be in the range of the numbers provided.                                                                                                                                                                                                                                                                               | `1`                                 |
+
+<div style="page-break-after: always;"></div>
 
 #### 4.3.2. Listing all students: `list`
 
@@ -594,6 +598,8 @@ Now, let's use the `find` command to find students / teaching assistants with th
 **Step 2**: Press `Enter` to executre the command, then you will see students with the name `alex` or `david`.
 
 ![find_step2](images/userguide/student/find_step2.png)
+
+<div style="page-break-after: always;"></div>
 
 ### 4.4. Schedule Manager
 
@@ -861,6 +867,8 @@ If your changes to the data file makes its format invalid, ProfNUS will discard 
 | [Switch to dark mode](#412-switch-to-dark-mode-dark)    | `dark`                                                                                                             | `dark`                                                                                                                                                                    |
 | [View help](#413-viewing-help-help)                     | `help`                                                                                                             | `help`                                                                                                                                                                     |
 
+<div style="page-break-after: always;"></div>
+
 ### 6.2. Module Manager Command Summary
 
 | Action                                                                                                       | Format                                                                         | Example                                                                              |
@@ -871,6 +879,8 @@ If your changes to the data file makes its format invalid, ProfNUS will discard 
 | [Add a module](#425-adding-a-module-madd)                                                                    | `madd n/MODULE_NAME c/MODULE_CODE d/MODULE_DESCRIPTION [t/TAG]…​`              | `madd n/Computer Organisation c/CS2100 d/Teaches you more on computer hardware t/Y2` |
 | [Editing a module](#426-editing-a-module-medit)                                                              | `medit MODULE_CODE n/MODULE_NAME c/MODULE_CODE d/MODULE_DESCRIPTION [t/TAG]…​` | `medit cs2100 n/Database systems c/cs2102 d/SQL t/important`                         |
 | [Delete a module](#427-deleting-a-module-mdel)                                                               | `mdel c/MODULE_CODE`                                                           | `mdel c/CS1101S`                                                                     |
+
+<div style="page-break-after: always;"></div>
 
 ### 6.3. Student Manager Command Summary
 
@@ -884,6 +894,8 @@ If your changes to the data file makes its format invalid, ProfNUS will discard 
 | [Delete a teaching assistant](#437-deleting-a-teaching-assistant-delta)                          | `delta INDEX`                                                                                                                                  | `delta 1`                                                                                                                                                              |
 | [Find a student/teaching assistant](#438-locating-students-and-teaching-assistants-by-name-find) | `find KEYWORD [MORE_KEYWORD]`                                                                                                                  | `find Adam Do`                                                                                                                                                         |
 
+<div style="page-break-after: always;"></div>
+
 ### 6.4. Schedule Manager Command Summary
 
 | Action                                                    | Format                                                                                            | Example                                                          |
@@ -894,6 +906,8 @@ If your changes to the data file makes its format invalid, ProfNUS will discard 
 | [Edit your schedule](#445-edit-your-schedule-sedit)       | `sedit INDEX [c/MODULE_CODE] [w/WEEKDAY] [ct/PERIOD] [cc/CLASS_TYPE] [cg/CLASS_GROUP] [cv/VENUE]` | `sedit 1 w/Monday ct/09:00-10:00 cc/tut cv/COM1-B103`            |
 | [Delete your schedule](#446-delete-your-schedule-sdelete) | `sdelete INDEX`                                                                                   | `sdelete 1`                                                      |
 | [Clear your schedule](#447-clear-your-schedule-sclear)    | `sclear [c/MODULE_CODE]...`                                                                       | `sclear c/CS2103T c/CS1101S`                                     |
+
+<div style="page-break-after: always;"></div>
 
 ### 6.5. Miscellaneous Command Summary
 
