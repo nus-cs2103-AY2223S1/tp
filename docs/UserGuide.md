@@ -54,13 +54,13 @@ Getting started with PayMeLah is easy! Here is a tutorial on how to get PayMeLah
 
 2. Next, you will need to prepare an [empty folder](https://www.wikihow.com/Make-a-New-Folder-on-a-Computer) to download PayMeLah to.
 
-3. Now, you will need to visit [this link](https://github.com/AY2223S1-CS2103T-W13-3/tp/releases) to click and download the latest version of *paymelah.jar*. Make sure to download it to the folder you created in step 2! <br>
+3. Now, you will need to visit [this link](https://github.com/AY2223S1-CS2103T-W13-3/tp/releases) to click and download the latest version of *PayMeLah.jar*. Make sure to download it to the folder you created in step 2! <br>
    <img src="images/howToDownload_1.png" width="500" /> <br>
    <img src="images/howToDownload_2.png" width="500" /> <br>
 
 <div style="page-break-after: always;"></div>
 
-4. Finally, you are ready to use PayMeLah. Simply double-click the *paymelah.jar* in the folder you created to start the app. After a few seconds, you should see PayMeLah appear. Notice how we have some sample persons and debts present for you to experiment with our [features](#features).  <br>
+4. Finally, you are ready to use PayMeLah. Simply double-click the *PayMeLah.jar* in the folder you created to start the app. After a few seconds, you should see PayMeLah appear. Notice how we have some sample persons and debts present for you to experiment with our [features](#features).  <br>
 
    <img src="images/Ui.png" width="800" /> <br>
 
@@ -148,11 +148,15 @@ You should see that the [person list](#person-list-section) is now empty.
 
    ![Empty person list](images/EmptyPersonList.png)
 
+<div style="page-break-after: always;"></div>
+
 2. You can now **add your first person** to PayMeLah with the [`add` command](#adding-a-person-add). The example we will use in this section is `add n/Ryan Tan tele/ryantan123`. Entering this command will add a person named `Ryan Tan` with `ryantan123` as his Telegram handle into PayMeLah.<br>
 
 You should see that the person card for `Ryan Tan` is now visible in the [person list](#person-list-section). You can click on his name to expand his person card, as per the picture below. However, he does not have any debts associated with him just yet!
 
    ![Ryan Tan list](images/RyanTanList.png)
+
+<div style="page-break-after: always;"></div>
 
 3. You are now ready to **add a debt** to `Ryan Tan` using the [`adddebt` command](#adding-a-debt-adddebt)! This time, the example we will use is `adddebt 1 d/mcdonalds m/9.80`. Entering this command will add a debt of `$9.80` with the description `mcdonalds` to the 1st person in the [person list](#person-list-section), who happens to be `Ryan Tan`.<br>
 
@@ -171,7 +175,11 @@ Of course, this is not yet the end of your journey with PayMeLah - there are sti
 
 ### About the command format
 
-* **[Command](#glossary-command) Phrase**<br>
+As you have learnt in the [navigation section](#tutorial-navigating-the-application), PayMeLah uses a [CLI](#glossary-command-line-interface-cli) to fulfill your needs. Let's take a closer look at what a [command](#glossary-command) consists of!
+
+INSERT IMAGE
+
+* **Command Phrase**<br>
   The first word in the [command](#glossary-command) is the **command phrase** that specifies which command will be carried out by PayMeLah.
   e.g. in `add n/<name>`, `add` is the command phrase for PayMeLah to add a person.
 
@@ -182,6 +190,8 @@ Of course, this is not yet the end of your journey with PayMeLah - there are sti
 * **[Prefixes](#glossary-prefix)**<br>
   To separate [inputs](#glossary-prefix) that represent different information, you should precede inputs with their respective **prefixes** that end with `/`. <br>
   e.g. in `add n/<name> [t/<tag>]…`, `n/` and `t/` are prefixes preceding the inputs `<name>` and `<tag>` respectively.
+
+<div style="page-break-after: always;"></div>
 
 * **Optional Inputs**<br>
   Inputs in square brackets `[]` are **optional**.<br>
@@ -253,6 +263,8 @@ When you are unsure of how to perform an action while using PayMeLah, you can us
 **Format:**<br>
 `help`
 
+--------------------------------------------------------------------------------------------------------------------
+
 #### Undoing a command: `undo`
 
 **What it does:**<br>
@@ -287,6 +299,8 @@ When you want to start afresh with an empty [person list](#person-list-section),
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 If you accidentally run this command, don't worry! You can use the `undo` command to easily get your data back.
 </div>
+
+--------------------------------------------------------------------------------------------------------------------
 
 #### Exiting the program: `exit`
 
@@ -705,13 +719,13 @@ Rest assured that the information in this section is **optional**!
 
 The following section is meant for advanced users of PayMeLah who are already comfortable with the basic features and are looking to further increase their efficiency in using PayMeLah. If you are a new user still getting used to PayMeLah, don't worry about reading this section yet. You can always come back to this section in the future after gaining more experience!
 
-<div style="page-break-after: always;"></div>
-
 ### Keyboard shortcuts
 
 Although you can use the mouse to perform some functions in PayMeLah, it can be faster if you do not have to lift your hand from your keyboard at all. This is where keyboard shortcuts will come in handy for **speeding up your navigation** of the application.
 
-The following table lists every keyboard shortcut currently available in PayMeLah:
+The table on the next page lists every keyboard shortcut currently available in PayMeLah!
+
+<div style="page-break-after: always;"></div>
 
 |                Keyboard Key                 | Function                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 |:-------------------------------------------:|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -723,6 +737,9 @@ The following table lists every keyboard shortcut currently available in PayMeLa
 |               <kbd>Home</kbd>               | **Jumping to the top of the [person list](#person-list-section):**<br> When you are in the [person list](#person-list-section), press the <kbd>Home</kbd> key to jump to the first person in the [person list](#person-list-section). When you are in a person's [debt list](#debt-list-section), press the <kbd>Home</kbd> key to jump to the first debt in the [debt list](#debt-list-section).                                                                                                                          |
 |               <kbd>End</kbd>                | **Jumping to the bottom of the [person list](#person-list-section):**<br> When you are in the [person list](#person-list-section), press the <kbd>End</kbd> key to jump to the last person in the [person list](#person-list-section). When you are in a person's [debt list](#debt-list-section), press the <kbd>End</kbd> key to jump to the last debt in the [debt list](#debt-list-section).                                                                                                                           |
 
+[Return to Table of Contents](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
 ### Features for Data Management
@@ -817,6 +834,9 @@ If you are trying to locate a debt without knowing its full description, conside
 | [**Clear**](#clearing-all-entries-clear)                                | `clear`          |
 | [**Exit**](#exiting-the-program-exit)                                   | `exit`           |
 
+[Return to Table of Contents](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
 ### Summary for managing persons
@@ -827,6 +847,9 @@ If you are trying to locate a debt without knowing its full description, conside
 | [**Edit person**](#editing-a-person-edit)                                 | `edit <person index> [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]…`<br> e.g.,`edit 2 n/James Lee tele/James_L33`                                  |
 | [**Delete person**](#deleting-a-person-delete)                            | `delete <person index>`<br> e.g., `delete 3`                                                                                                                                 |
 
+[Return to Table of Contents](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
 ### Summary for managing debts
@@ -841,6 +864,9 @@ If you are trying to locate a debt without knowing its full description, conside
 | [**Unmark debts**](#marking-debts-as-unpaid-unmark)                   | `unmark <person index> debt/<debt index…>` <br> e.g., `unmark 2 debt/2 3`                                                                               |
 | [**Get statement**](#getting-the-statement-statement)                 | `statement`                                                                                                                                             |
 
+[Return to Table of Contents](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
 ### Summary for searching
