@@ -103,7 +103,7 @@ Below is an image of Coydir User Interface with the main components labelled.
 | 4   | Command Panel       | Displays the system message after the execution of a command. The system message describes the outcome of the entered command.                               |
 
 <br>
-<br>
+
 
 #### 1. Toolbar
 
@@ -125,6 +125,9 @@ This will come in handy if:
 
 1. You want a general overview of the employees in the company as of this moment.
 2. You want to quickly find out their Employee ID to view more details.
+
+<br>
+<br>
 
 #### 3. Display Panel
 
@@ -379,7 +382,7 @@ Note: You can export this to `.csv`.
 1. Go to the folder where you stored the `jar` file.
 2. Move CSV file to the `data` folder.
    ![](images/batch-add-images/movingFile.png)
-<br></br>
+
 _If you are a new user (have not run any command yet), you will not see the `data` folder.
 You can run the [`clear` command](#clearing-the-data-clear) to remove the sample employees first.
 After this, you should be able to see the `data` folder._
