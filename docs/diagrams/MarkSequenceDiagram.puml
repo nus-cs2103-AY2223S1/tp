@@ -1,0 +1,66 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TruthTableParser" as TruthTableParser LOGIC_COLOR
+participant ":MarkCommandParser" as MarkCommandParser LOGIC_COLOR
+participant ":MarkCommand" as MarkCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("mark 3")
+activate LogicManager
+
+LogicManager -> TruthTableParser : parseCommand("mark 3")
+activate TruthTableParser
+
+create MarkCommandParser
+TruthTableParser -> MarkCommandParser
+activate MarkCommandParser
+
+MarkCommandParser --> TruthTableParser
+deactivate MarkCommandParser
+
+TruthTableParser -> MarkCommandParser : parse("3")
+activate MarkCommandParser
+
+create MarkCommand
+MarkCommandParser -> MarkCommand
+activate MarkCommand
+
+MarkCommand --> MarkCommandParser
+deactivate MarkCommand
+
+MarkCommandParser --> TruthTableParser
+deactivate MarkCommandParser
+
+TruthTableParser --> LogicManager
+deactivate TruthTableParser
+
+LogicManager -> MarkCommand : execute()
+activate MarkCommand
+
+MarkCommand -> Model : markTask(3)
+activate Model
+
+Model --> MarkCommand
+deactivate Model
+
+create CommandResult
+MarkCommand -> CommandResult
+activate CommandResult
+
+CommandResult -->  MarkCommand
+deactivate CommandResult
+
+MarkCommand --> LogicManager : result
+deactivate MarkCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

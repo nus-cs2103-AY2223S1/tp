@@ -5,46 +5,61 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+Class "<<interface>>\nReadOnlyTruthTable" as ReadOnlyTruthTable
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
-Class AddressBook
+Class TruthTable
 Class ModelManager
 Class UserPrefs
 
 Class UniquePersonList
 Class Person
-Class Address
 Class Email
 Class Name
 Class Phone
 Class Tag
 
+Class UniqueTeamList
+Class Team
+Class UniqueLinkList
+Class Link
+Class LinkName
+Class TaskList
+Class Task
+Class TaskName
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+TruthTable .up.|> ReadOnlyTruthTable
 
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
+Model .left.> ReadOnlyTruthTable
+ModelManager -left-> "1" TruthTable
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
+TruthTable *--> "1" UniquePersonList
+UniquePersonList --> "*" Person
 Person *--> Name
 Person *--> Phone
 Person *--> Email
-Person *--> Address
 Person *--> "*" Tag
 
 Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
 
-ModelManager -->"~* filtered" Person
+ModelManager --> Person
+
+TruthTable *-down-> "1" UniqueTeamList
+UniqueTeamList --> "*" Team
+Team --> "1" UniquePersonList
+Team *-down-> "1" UniqueLinkList
+Team *-down-> "1" TaskList
+UniqueLinkList *-down-> "*" Link
+TaskList *-down-> "*" Task
+Task *-down-> "1" TaskName
+Task *-right-> "*" Person : assigned to >
+Link *-down-> "1" LinkName
 @enduml

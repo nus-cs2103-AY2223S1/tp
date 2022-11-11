@@ -1,39 +1,34 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
+import static seedu.address.testutil.Assert.assertThrows;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import picocli.CommandLine;
+import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
 
-/**
- * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
- */
-public class ListCommandTest {
+class ListCommandTest {
+    private final Model model = new ModelManager();
+    private final Model expectedModel = new ModelManager();
+    private final Command commandToBeTested = new ListCommand();
 
-    private Model model;
-    private Model expectedModel;
-
-    @BeforeEach
-    public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-    }
-
+    private final CommandLine commandLine = new CommandLine(commandToBeTested);
     @Test
-    public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+    public void execute_helpFlagSupplied_success() {
+        commandLine.parseArgs(FLAG_HELP_STR);
+        CommandResult expectedResult = new CommandResult(
+                ListCommand.HELP_MESSAGE + commandLine.getUsageMessage());
+        assertCommandSuccess(commandToBeTested, model, expectedResult, expectedModel);
     }
-
     @Test
-    public void execute_listIsFiltered_showsEverything() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
-        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+    public void execute_noSubCommand_throwsError() {
+        String resultString = String.format(
+                Messages.MESSAGE_INVALID_COMMAND_WITH_HELP_FORMAT, ListCommand.COMMAND_WORD);
+        assertThrows(CommandException.class, resultString, () -> commandToBeTested.execute(model));
     }
 }

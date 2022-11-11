@@ -1,67 +1,96 @@
 ---
-layout: page
+layout: page 
 title: Developer Guide
 ---
-* Table of Contents
+
+## **Overview**
+
+TruthTable is a **desktop app for managing software engineering teams, optimized for use via a Command Line Interface**
+(CLI) while still having the benefits of a Graphical User Interface (GUI). 
+
+This Developer Guide will help you get familiar with the architecture of TruthTable and understand the design choices 
+and implementations of key features in TruthTable, in case you are interested in contributing to this project.
+
+---
+
+## **Table of Contents**
+
+- Table of Contents
 {:toc}
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+- Our application is based on the [AddressBook-Level3](https://se-education.org/addressbook-level3/) project created by the [SE-EDU initiative](https://se-education.org/).
+- Our application makes use of the [picocli](https://picocli.info/) library for parsing commands.
+- Our application makes use of [JavaFX](https://openjfx.io/) as the UI framework.
+- Our application makes use of [Jackson](https://github.com/FasterXML/jackson) as the JSON parser.
+- Our application makes use of [JUnit5](https://junit.org/junit5/) as the testing framework.
 
---------------------------------------------------------------------------------------------------------------------
+---
 
-## **Setting up, getting started**
+## **Setting Up / Getting Started**
 
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
+If this is your first time contributing to our application, please take a look at the guide [_Setting up and getting started_](SettingUp.md).
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Design**
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in
+the [diagrams](https://github.com/AY2223S1-CS2103T-W13-4/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML
+Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit
+diagrams.
+
 </div>
 
 ### Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
-The ***Architecture Diagram*** given above explains the high-level design of the App.
+The **_Architecture Diagram_** given above explains the high-level design of the App.
 
 Given below is a quick overview of main components and how they interact with each other.
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
-* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
-* At shut down: Shuts down the components and invokes cleanup methods where necessary.
+**`Main`** has two classes
+called [`Main`](https://github.com/AY2223S1-CS2103T-W13-4/tp/tree/master/src/main/java/seedu/address/Main.java)
+and [`MainApp`](https://github.com/AY2223S1-CS2103T-W13-4/tp/tree/master/src/main/java/seedu/address/MainApp.java). It
+is responsible for,
+
+- At app launch: Initializes the components in the correct sequence, and connects them up with each other.
+- At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
-
+- [**`UI`**](#ui-component): The UI of the App.
+- [**`Logic`**](#logic-component): The command executor.
+- [**`Model`**](#model-component): Holds the data of the App in memory.
+- [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues
+the command `delete person 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
 Each of the four main components (also shown in the diagram above),
 
-* defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+- defines its _API_ in an `interface` with the same name as the component.
+- implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding
+  API `interface` mentioned in the previous point).
 
-For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
+For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using
+the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component
+through its interface rather than the concrete class (reason: to prevent outside components being coupled to the
+implementation of a component), as illustrated in the (partial) class diagram below.
 
 <img src="images/ComponentManagers.png" width="300" />
 
@@ -69,187 +98,358 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified
+in [`Ui.java`](https://github.com/AY2223S1-CS2103T-W13-4/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
+
+The classes are related to each other as such:
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+For the sake of readability and understanding, the classes related to `TeamListPanel` and `TaskDetailsPanel` have been omitted in the above diagram. They have been extracted out in a separate diagram as follows:
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+![Structure of the Teams Component of UI](images/UiTeamsClassDiagram.png)
+
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`
+, `StatusBarFooter`, `TeamListPanel`, `TeamDetailsPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures
+the commonalities between classes that represent parts of the visible GUI.
+
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that
+are in the `src/main/resources/view` folder. For example, the layout of
+the [`MainWindow`](https://github.com/AY2223S1-CS2103T-W13-4/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java)
+is specified
+in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-W13-4/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
-* executes user commands using the `Logic` component.
-* listens for changes to `Model` data so that the UI can be updated with the modified data.
-* keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+- executes user commands using the `Logic` component.
+- listens for changes to `Model` data so that the UI can be updated with the modified data.
+- keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
+- depends on some classes in the `Model` component. For example, the `PersonListPanel` displays the `Person` object residing in the `Model`.
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-W13-4/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+1. When `Logic` is called upon to execute a command, it uses the `TruthTableParser` class to parse the user command.
+1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddPersonCommand`) which is
+   executed by the `LogicManager`.
+1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+1. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
+
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete person 1")` API
+call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
-
-Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
+Here are the other classes in `Logic` (some of which omitted from the class diagram above) that are used for parsing a user command:
 
 <img src="images/ParserClasses.png" width="600"/>
 
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** The classes in Orange above are provided by picocli. For more info, check out the
+[picocli documentation page](https://picocli.info/).
+</div>
+
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+
+- When called upon to parse a user command, the `TruthTableParser` class calls the static method `tokenize` from 
+  `ArgumentTokenizer`, which will split a string into a string array of tokens `args` (inspired by the 
+  [Shell Command Language](https://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html#tag_18_03), 
+  a string is split into space-separated strings, except for quoted strings which will remain as a single token, 
+  e.g. `token1 "token 2" token-3` will be read as 3 separate tokens `token1`, `token 2`, `token-3`).
+- The `TruthTableParser` class passes `args` to the `CommandLine` class provided by picocli, which will parse the  
+  command `XYZComnand` (`XYZ` is a placeholder for the specific command e.g. `DeletePersonCommand`), converting any
+  arguments from strings to specific types using `ABCConverter` (`ABC` is a placeholder for the type argument e.g. 
+ `IndexConverter` since `DeletePersonCommand` takes in an integer as an `Index`).
+- All `ABCConverter` classes (e.g., `IndexConverter`, `NameConverter`, `EmailConverter` ...) extend the 
+  `CommandLine.IConverter` interface to be utilized by picocli.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W13-4/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
+<img src="images/ModelClassDiagram.png"/>
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+- stores the TruthTable data i.e., all `Person` objects (which are contained in a `UniquePersonList` object) and `Team`
+  objects (which are contained in a `UniqueTeamList` object) each of which containing `Task`, `Link` and `Person`
+  objects (see the section below regarding `Team`).
+- stores the currently 'selected' `Person` or `Team` objects (e.g., results of a search query) as a separate _filtered_ list which
+  is exposed to other classes as an unmodifiable `ObservableList<T>` where `T` is either `Person` or `Team` that can be 'observed' e.g. the UI can be bound to
+  this list so that the UI automatically updates when the data in the list change.
+- stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as
+  a `ReadOnlyUserPref` objects.
+- does not depend on any of the other three components (as the `Model` represents data entities of the domain, they
+  should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+Each `Team` object,
+
+- stores a list of `Task` objects (in a `TaskList` object), list of team members (`Person` objects in a 
+  `UniquePersonList` object) and `Link` objects (in a `UniqueLinkList`).
+- exposes a list of `Person` or `Task` objects as a `DisplayList<T>`, which itself contains a `FilteredList<T>` (where 
+  `T` refers to either `Person` or `Task`). This `FilteredList` will store a 'filtered' view on the data (e.g., results 
+  of a search query) sorted in a particular manner. It can be 'observed' e.g. the UI can be bound to this list so that 
+  the UI automatically updates when the data (or its order) in the list changes.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `TruthTable`, which `Person` references. This allows `TruthTable` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
 </div>
 
-
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-W13-4/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<img src="images/StorageClassDiagram.png" width="700" />
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+
+- can save both TruthTable data and user preference data in json format, and read them back into corresponding
+  objects.
+- inherits from both `TruthTableStorage` and `UserPrefStorage`, which means it can be treated as either one (if only
+  the functionality of only one is needed).
+- depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects
+  that belong to the `Model`)
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** Currently, as `Team`, `Task` and the overall `TruthTable` objects all have references to 
+`Person`, for ease of a copy of the entire `Person` object is stored within each of its `JsonAdaptedXYZ` parent objects 
+in the json file (where `XYZ` refers to `Team`, `Task` or `TruthTable`. An alternative (arguably better) implementation 
+would be to only store the name of each `Person` object and repopulate its fields from the `TruthTable` list of `Person`
+objects, which would reduce repetition.
+</div>
+
 
 ### Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Add Team Feature
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The `add team` feature allows users to add a specific team to their list of teams.
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+The `TruthTable` object is designed to have a list of teams called `UniqueTeamList`.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+The following is an example of how a team is added:
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+Precondition: Team name is valid (it cannot be empty or begin with a space)
+1. User keys in the add team command with the name of the team to be added (e.g. `add team CS2103`)
+2. A team is created added to the team list.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+If the team name provided is invalid, an appropriate exception will be thrown and the respective error message will be
+shown to the user.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+The following activity diagram summarizes the action taken when the `AddTeamCommand` is executed.
+![AddTeamActivityDiagram](images/AddTeamActivityDiagram.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+### Add Task Feature
 
-![UndoRedoState1](images/UndoRedoState1.png)
+#### Implementation
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+The `add task` feature allows users to add a specific task to their team's task list. The following is an example of how
+a task is added:
 
-![UndoRedoState2](images/UndoRedoState2.png)
+Precondition: Task name is valid (it cannot be empty or have quotation marks).
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+1. User keys in the add task command with the name of the task to be added (e.g. `add task Complete Resume`)
+2. A task is created and added to the current team's task list.
 
-</div>
+If the task name provided is invalid, an appropriate exception will be thrown and the respective error message will be
+shown to the user.
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+The following activity diagram summarizes the action taken when `AddTaskCommand` is executed:
+![AddTaskActivityDiagram](images/AddTaskActivityDiagram.png)
 
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
+_Activity diagram of adding a task_
 
 #### Design considerations:
 
-**Aspect: How undo & redo executes:**
+- **Alternative 1**: Store a global list of tasks and each task keeps track of which team it was created for through an
+  attribute.
+    - Pros: A single list of tasks makes it easier to list all the tasks associated with all teams.
+    - Cons: Does not accurately model how teams actually work in terms of task distribution.
+- **Alternative 2**: Each team stores a list of tasks that are associated with it.
+    - Pros: Better modularization since a team contains all the information related to itself, including the tasks
+      associated with it.
+    - Cons: It is slightly more complicated to find the list of all tasks associated with a person if the person belongs
+      to multiple teams since there multiple task lists.
 
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+We decided to use alternative 2 because it scales better as the number of teams increase.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+### Mark Task as Done Feature
 
-_{more aspects and alternatives to be added}_
+#### Implementation
 
-### \[Proposed\] Data archiving
+The `mark` feature allows users to mark a specific task as done.
 
-_{Explain here how the data archiving feature will be implemented}_
+The following is an example usage scenario of how a task is marked as done:
 
+Precondition: Task index provided is valid.
 
+1. User keys in mark command with the specific index of the task. (e.g. `mark 1`)
+2. The first task in the task list is marked as done.
+
+If any of the following occurs:
+
+1. Index given is negative
+2. Index given is out of range (i.e. There are fewer tasks than the specified index)
+3. Task has already been marked as done
+
+Then, an appropriate exception will be thrown and the respective error message will be shown to the user.
+
+The following activity diagram summarizes the action taken when `MarkCommand` is executed:
+
+![MarkActivityDiagram](images/MarkActivityDiagram.png)
+
+_Activity diagram of marking task as done_
+
+### Add Member to Team Feature
+
+#### Implementation
+
+The add member to team feature allows users to add a user to the current team using the person's name.
+
+The following is an example usage scenario of how a member is added to a team:
+
+Precondition: Index provided is valid and the current working team is set to the team that the member should be added to.
+
+1. User keys in `add member` command along with the person's index.
+2. The person at the specified index in the list is added to the team.
+
+If any of the following occurs:
+
+1. The index provided is less than 1
+2. The index provided is greater than the number of persons in TruthTable
+3. Person at the specified index is already in the team
+
+Then, an appropriate exception will be thrown and the respective error message will be shown to the user.
+
+The following activity diagram summarizes the action taken when the `AddMemberCommand` is executed:
+
+![AddMemberActivityDiagram](images/AddMemberActivityDiagram.png)
+
+_Activity diagram of adding member to team_
+
+In the `Logic` component, once `LogicManager#execute()` is called, `TruthTableParser` and `AddMemberCommandParser`
+parses the index of the person in the user input, and generates a `AddMemberCommand` object. `LogicManager` then
+executes the `AddMemberCommand` object, which adds the person to the current team in the `Model` component. A
+`CommandResult` is generated with a message indicating the person being added to the team.
+
+### List Members Feature
+
+#### Implementation
+
+The list members feature allows users to view the members in their current team.
+
+The list members command updates the `PersonListPanel` and shows the members in the
+current team.
+
+Currently, `PersonListPanel` displays all persons that satisfy some `Predicate`, which is stored in the
+`filteredPersons` in `ModelManager`.
+
+Whenever list members command is called, the `Predicate` for `filteredPersons` is then updated and the corresponding
+members of the team is shown.
+
+The following sequence diagram illustrates what happens within the `Logic` component when the list members command is
+executed:
+![ListMembersSequenceDiagram](images/ListMembersSequenceDiagram.png)
+
+### Randomly Assign Task Feature
+#### Implementation
+
+The randomly assign task feature allows users to assign a `Task` (within a particular `Team`) to a random team member (
+represented as a `Person` object) within the team, who are not already assigned to that `Task`.
+
+This functionality is exposed to the user through the `assign random` command, and the logic is executed
+in `AssignTaskRandomlyCommand#execute()`.
+
+Given below is an example usage scenario and the state of the `Team` object at each step.
+
+Step 1. The user launches the application and adds multiple users into the current team, as well as at least one task.
+The `Team` will contain multiple `Person` objects (representing team members).
+
+![RandomlyAssignTaskState0](images/RandomlyAssignTaskState0.png)
+
+Step 2. The user executes the command `assign random 1` to assign the first (and only) `Task` randomly to any team
+member. As none of the team members have been added, all of them are candidates for random assignment. One of them will
+be randomly assigned the task (see <span style="color:red">red arrow</span>).
+
+![RandomlyAssignTaskState1](images/RandomlyAssignTaskState1.png)
+
+Step 3. The user may want to assign a second team member to the task, hence executing `assign random 1` again. The
+team member who has previously been allocated will not be considered. Similar to above, one more team member will be
+randomly allocated the task (see <span style="color:red">red arrow</span>).
+
+![RandomlyAssignTaskState2](images/RandomlyAssignTaskState2.png)
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** If there are no team members left to allocate (e.g. all team members have already been assigned to this task), an error will be thrown.
+</div>
+
+The following activity diagram summarizes the flow of `AssignTaskRandomlyCommand#execute()`.
+
+![RandomlyAssignTaskActivityDiagram](images/RandomlyAssignTaskActivityDiagram.png)
+
+_Activity diagram of randomly assigning a task_
+
+### Add Link Feature
+
+#### Implementation
+
+The add link feature allows users to add links to their current team.
+
+The add link command updates the `LinkListPanel` and adds the link to the list.
+
+The following is an example usage scenario of how a member is added to a team:
+
+Precondition: Link name and URL provided is valid and the current working team is set to the team that the link should
+be added to.
+
+1. User keys in `add link` command along with the `-n` flag and the link name, and the `-l` flag and the link URL.
+2. The link is added to the link list of the current working team.
+
+If any of the following occurs:
+
+1. The link name is invalid
+2. The URL is badly formatted
+3. Either the link or the URL is missing
+
+Then, an appropriate exception will be thrown and the respective error message will be shown to the user.
+
+The following activity diagram summarizes the action taken when the `AddMemberCommand` is executed:
+
+![AddLinkActivityDiagram](images/AddLinkActivityDiagram.png)
+
+The following sequence diagram illustrates what happens within the `Logic` component when the add link command is
+executed:
+![AddLinkSequenceDiagram](images/AddLinkSequenceDiagram.png)
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## **Documentation, Logging, Testing, Configuration, DevOps**
 
-* [Documentation guide](Documentation.md)
-* [Testing guide](Testing.md)
-* [Logging guide](Logging.md)
-* [Configuration guide](Configuration.md)
-* [DevOps guide](DevOps.md)
+- [Documentation guide](Documentation.md)
+- [Testing guide](Testing.md)
+- [Logging guide](Logging.md)
+- [Configuration guide](Configuration.md)
+- [DevOps guide](DevOps.md)
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Appendix: Requirements**
 
@@ -257,73 +457,327 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+- Tech-savvy university student leading teams in software engineering modules to build software projects
+- Having trouble keeping track of the team’s progress and delegating tasks effectively
+- Student who prefers CLI to GUI for productivity’s sake
+- Desperate for a single source of truth on who is doing what and by when
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:
 
+- Users can collate different project-related information (e.g. GitHub project PRs, issues, links to Zoom meetings, and
+  Google Docs)
+- Users can visualize teams’ progress easily
+- Users can delegate tasks to their teammates conveniently
+- CLI interface to manage project tasks much more quickly than GUI based products
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
-*{More to be added}*
+| Priority | As a ...              | I want to ...                                                                            | So that I can...                                                                                     |
+|----------|-----------------------|------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|
+| `* * *`  | New User              | See usage instructions                                                                   | Refer to instructions when I forget how to use the App                                               |
+| `* * *`  | Team Leader           | View completed tasks                                                                     | Track the status of the project                                                                      |
+| `* * *`  | Team Leader           | Add new tasks                                                                            | Track things my team needs to do                                                                     |
+| `* * *`  | Team Leader           | Add team members with their contact information                                          | Keep track of my team members and contact them with their preferred mode of communication            |
+| `* * *`  | Team Leader           | View tasks based on contact’s name/email                                                 | Keep track of each person’s tasks                                                                    |
+| `* * *`  | Team Leader           | Assign deadlines to tasks                                                                | Track whether we are meeting deadlines for all tasks or not                                          |
+| `* * *`  | Team Leader           | Create multiple stages of completion for a task (e.g. in progress, in code review, done) | See the progress of each task at a glance                                                            |
+| `* * *`  | Team Leader           | Delete tasks                                                                             | Remove tasks that are no longer required to be completed or have been added on mistake               |
+| `* * *`  | Team Leader           | Delete members                                                                           | Remove information of members who are no longer working on my project                                |
+| `* *`    | Team Leader           | Modify existing tasks                                                                    | Update project requirements and track things to do                                                   |
+| `* *`    | Team Leader           | Assign tasks to team members                                                             | Distribute workload evenly and keep everyone accountable                                             |
+| `* *`    | Team Leader           | Edit the contact information of my team members                                          | Correct it if I accidentally added the wrong number/email                                            |
+| `* *`    | Team Leader           | Give priority to tasks                                                                   | Better plan which tasks are to be assigned to whom and when                                          |
+| `* *`    | Engineering Team Lead | Store links that lead me to an issue on the repo                                         | Easily view the diff, progress, etc.                                                                 |
+| `* *`    | Team Leader           | View links to future Zoom meetings                                                       | Avoid opening Zoom separately and can directly join the meeting from the application                 |
+| `* *`    | Team Leader           | Add subtasks                                                                             | Break down tasks into manageable parts                                                               |
+| `* *`    | Team Leader           | View a summary of how many tasks each member has been assigned                           | Assign tasks to the members more equally, based on how occupied they might be                        |
+| `* *`    | Team Leader           | Add recurring tasks such as weekly meetings                                              | Assign a recurring tasks once instead of having to schedule it every occurrence                      |
+| `*`      | Team Leader           | View past meeting minutes                                                                | Refer to what has been discussed before                                                              |
+| `*`      | Team Leader           | View past meetings                                                                       | Remember which date we completed each meeting                                                        |
+| `*`      | Team Leader           | View upcoming meetings                                                                   | Plan for upcoming meetings                                                                           |
+| `*`      | Team Leader           | Modify upcoming meetings                                                                 | Reschedule future meetings when the need arises                                                      |
+| `*`      | Team Leader           | Copy team member’s email                                                                 | Easily send an email to remind him/her to do their task                                              |
+| `*`      | Team Leader           | Have 2 kinds of deadlines - soft and hard                                                | Let my team members finish the task by the soft deadline and I can review/merge by the hard deadline |
+| `*`      | Team Leader           | Receive reminders when a deadline is due                                                 | Ensure tasks are completed on time                                                                   |
+| `*`      | Team Leader           | Randomly assign a task to any team member                                                | Assign tasks easily if nobody has any preference                                                     |
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `TruthTable` and the **Actor** is the `user`, unless specified
+otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 - Add a member to a team**
+
+Preconditions: The current working team is set to the team that the member should be added to.
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to add member and provides member name
+2. TruthTable adds the member
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+- 1a. There is no name provided.
+
+    - 1a1. TruthTable shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: UC02 - Delete a member from a team**
+
+Preconditions: The current working team is set to the team that the member should be deleted from.
+
+**MSS**
+
+1. User requests to list members
+2. TruthTable shows a list of members
+3. User requests to delete a specific member in the list
+4. TruthTable deletes the member
+
+   Use case ends.
+
+**Extensions**
+
+- 2a. The list is empty.
 
   Use case ends.
 
-* 3a. The given index is invalid.
+- 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    - 3a1. TruthTable shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: UC03 - List all members of a team**
+
+Preconditions: The current working team is set to the team that the members should be listed from.
+
+**MSS**
+
+1. User requests to list members
+2. TruthTable shows a list of members belonging to the team
+
+   Use case ends.
+
+**Extensions**
+
+- 2a. The list is empty.
+
+  Use case ends.
+
+**Use case: UC04 - Add a task to a team**
+
+Preconditions: The current working team is set to the team that the task should be added to.
+
+**MSS**
+
+1. User requests to add task and provides task name, task deadline and assignee(s)
+2. TruthTable adds the task to the list of tasks
+
+   Use case ends.
+
+**Extensions**
+
+- 1a. There is no task name provided.
+
+    - 1a1. TruthTable shows an error message.
+
+      Use case resumes at step 1.
+
+- 1b. The task deadline is badly formatted.
+
+    - 1b1. TruthTable shows an error message.
+
+      Use case resumes at step 1.
+
+- 1c. The assignee index is out of bounds.
+
+    - 1c1. TruthTable shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: UC05 - Delete a task from a team**
+
+Preconditions: The current working team is set to the team that the task should be deleted from.
+
+**MSS**
+
+1. User requests to list tasks
+2. TruthTable shows a list of tasks
+3. User requests to delete a specific task in the list
+4. TruthTable deletes the task
+
+   Use case ends.
+
+**Extensions**
+
+- 2a. The list is empty.
+
+  Use case ends.
+
+- 3a. The given index is invalid.
+
+    - 3a1. TruthTable shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: UC06 - List all tasks of a team**
+
+Preconditions: The current working team is set to the team whose list of task is to be displayed.
+
+**MSS**
+
+1. User requests to list tasks
+2. TruthTable shows a list of tasks belonging to the team
+
+   Use case ends.
+
+**Extensions**
+
+- 2a. The list is empty.
+
+  Use case ends.
+
+**Use case: UC07 - Add deadline to existing task**
+
+Preconditions: The current working team is set to the team that has the existing task.
+
+**MSS**
+
+1. User requests to list tasks
+2. TruthTable shows a list of tasks
+3. User requests to add deadline to specific task in the list
+4. TruthTable adds deadline to task
+
+   Use case ends.
+
+**Extensions**
+
+- 2a. The list is empty.
+
+  Use case ends.
+
+- 3a. The given index is invalid.
+
+    - 3a1. TruthTable shows an error message.
+
+      Use case resumes at step 2.
+
+- 3b. The given deadline is invalid.
+
+    - 3b1. TruthTable shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: UC08 - Create new team**
+
+**MSS**
+
+1. User requests create new team and provides new team name
+2. TruthTable creates a new team and sets current working team to new team
+
+   Use case ends.
+
+**Extensions**
+
+- 1a. The given team name is used for an existing team already.
+
+    - 1a1. TruthTable shows an error message.
+
+      Use case resumes at step 1.
+
+- 1b. There is no team name given.
+
+    - 1b1. TruthTable shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: UC09 - Change current working team**
+
+**MSS**
+
+1. User requests to change current working team
+2. TruthTable sets current working team to specified team
+
+   Use case ends.
+
+**Extensions**
+
+- 1a. There is no team name given.
+
+    - 1a1. TruthTable shows an error message.
+
+      Use case resumes at step 1.
+- 1b. Team provided does not exist.
+
+    - 1b1. TruthTable shows an error message
+
+      Use case resumes at step 1.
+- 1c. Team provided already set as current team.
+
+    - 1c1. TruthTable shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: UC10 - Add a link to a team**
+
+Preconditions: The current working team is set to the team that the link should be added to.
+
+**MSS**
+
+1. User requests to add link and provides link name and link URL
+2. TruthTable adds the link to the list of links
+
+   Use case ends.
+
+**Extensions**
+
+- 1a. There is no link name provided.
+
+    - 1a1. TruthTable shows an error message.
+
+      Use case resumes at step 1.
+
+- 1b. The link URL is badly formatted.
+
+    - 1b1. TruthTable shows an error message.
+
+      Use case resumes at step 1.
+
+- 1c. There is no URL provided.
+
+    - 1c1. TruthTable shows an error message.
+
+      Use case resumes at step 1.
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be
+   able to accomplish most of the tasks faster using commands than using the mouse.
+4. Should not require internet connection.
+5. Any changes to the data should be saved permanently and automatically.
+6. Must be able to be packaged into an executable JAR file that is less than 100MB.
+7. The data should be stored locally in a readable and human-editable format.
+8. No database management system should be used.
+9. Should be able to respond to user requests in less than 1 second when there are less than 1000 persons' data stored.
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+- **Issue**: Generally refers to an issue created on GitHub that is used to track the progress of a software development
+  project.
+- **Mainstream OS**: Windows, Linux, Unix, OS-X
+- **Member**: A person in the team, working on a project.
+- **Repo**: A short-form for "repository" meant to store code (usually on a platform such as GitHub or GitLab)
+- **Task**: Anything that needs to be completed for the project to move forward.
+- **Team Leader**: The person in-charge of a project, typically a software engineering project.
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Appendix: Instructions for manual testing**
 
@@ -338,40 +792,528 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+    1. Download the latest _truthtable.jar_ file from the [latest release](https://github.com/AY2223S1-CS2103T-W13-4/tp/releases)
+   and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    2. Double-click the jar file<br>
+       Expected: Shows the GUI with a set of sample contacts. The window size may not be
+       optimum.
 
 1. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Testing Commands to Manage Persons
+#### Adding a person
+1. Adding a person to TruthTable 
 
-### Deleting a person
+    1. Test case: `add person -n John Doe -p 98765432 -e johnd@example.com -t developer designer` <br>
+       Expected: If there is already a person called `John Doe` in TruthTable, then an error message will appear
+       in the output box. Otherwise, a new person will be added to the list in the right output box, with name `John Doe`,
+       phone number `98765432`, email `johnd@example.com`, and tags `developer` and `designer`.
+   
+    2. Test case: `add person -n Jane Doe -p 92345678 -e janed@example.com` <br>
+           Expected: If there is already a person called `Jane Doe` in TruthTable, then an error message will appear
+           in the output box. Otherwise, a new person will be added to the list in the right output box, with name
+           `Jane Doe`, phone number `92345678`, email `janed@example.com`, and no tags.
+
+    3. Test case: `add person -n John Doe -p 98765432`<br>
+       Expected: No person is added. Error details shown in the message displayed in the output box.
+
+    4. Other incorrect `add person` commands to try: `add person -p 98765432 -e johnd@example.com -t developer`,
+       `add person -n John Doe -p 98765432`, `...` (where one or more attributes
+       are missing in the command)<br>
+       Expected: An error message of `Invalid command format` will be displayed in the output box.
+
+#### Editing a person
+1. Editing a person while all persons are being shown
+
+    1. Prerequisites: List all persons using the `list persons` command. Person list is not empty.
+
+    2. Test case: `edit person 1 -p 92345678 -e johndoe@example.com`
+       Expected: Edits the phone number and email address of the first person to be 92345678 and johndoe@example.com
+       respectively.
+
+    3. Test case: `edit person 0 -p 92345678 -e johndoe@example.com`
+       Expected: No person is edited. Error details shown in the output box.
+
+    4. Other incorrect edit commands to try: `edit person`, `edit person X -n John`, `...`
+       (where X is a positive integer larger than the displayed persons list size)<br>
+       Expected: Similar to previous.
+
+#### Deleting a person
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all persons using the `list persons` command. Person list is not empty.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    2. Test case: `delete person 1`<br>
+       Expected: First person is deleted from the list. Details of the deleted contact shown in the output box.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    3. Test case: `delete person 0`<br>
+       Expected: No person is deleted. Error details shown in the output box.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+    4. Other incorrect delete commands to try: `delete person`, `delete person X`, `...`
+       (where X is a positive integer larger than the persons list size)<br>
+       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+#### Finding a person
 
-### Saving data
+1. Finding all persons whose names contain any of the given keywords
 
-1. Dealing with missing/corrupted data files
+    1. Prerequisites: Person list is not empty.
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    2. Test case: `find person John`<br>
+       Suppose that there is a person named `John Doe`.<br>
+       Expected: Message indicating number of persons found is displayed. Person list on the right updates to only show
+       the persons found.
 
-1. _{ more test cases …​ }_
+    3. Test case: `find person Jane`<br>
+       Suppose that there is no person with a name containing `Jane`.<br>
+       Expected: Message indicating that no persons were found is displayed.
+
+    4. Test case: `find person`<br>
+       Expected: An error message of `Invalid command format` will be displayed in the output box.
+
+#### Listing all persons
+
+1. Listing all persons in TruthTable
+
+   1. Test case: `list persons`<br>
+      Expected: All persons stored in TruthTable are displayed.
+
+### Testing Commands to Manage Members
+#### Adding a member
+1. Adding a member to the currently selected team
+    1. Prerequisites: List all persons using the `list persons` command. Person list is not empty.
+   
+    2. Test case: `add member 1` <br>
+       Expected: If the first person on the person list is already a member in the team, then an error message will be
+       displayed on the output box. Otherwise, the first person is added to the team from the list.
+       Details of the added member shown in the output box.
+    
+    3. Test case: `add member 0` <br>
+       Expected: No member is added. Error details shown in the output box.
+
+    4. Other incorrect delete commands to try: `add member`, `add member X`, `...`
+       (where X is a positive integer larger than the displayed persons list size)<br>
+       Expected: Similar to previous.
+
+#### Deleting a member
+
+1. Deleting a member to the currently selected team
+
+    1. Prerequisites: List all members using the `list members` command. Member list is not empty.
+
+    2. Test case: `delete member 1`<br>
+       Expected: First member is deleted from the list. Details of the deleted member shown in the output box.
+
+    3. Test case: `delete member 0`<br>
+       Expected: No member is deleted. Error details shown in the output box.
+
+    4. Other incorrect delete commands to try: `delete member`, `delete member X`, `...`
+       (where X is a positive integer larger than the displayed members list size)<br>
+       Expected: Similar to previous.
+
+#### Finding a member
+
+1. Finding all members whose names or emails contain any of the given keywords
+
+    1. Prerequisites: Member list is not empty.
+
+    2. Test case: `find member John`<br>
+       Suppose that there is a member on the team named `John Doe`.<br>
+       Expected: Message indicating number of persons found is displayed. Member list updates to only show
+       the persons found.
+
+    3. Test case: `find member Jane`<br>
+       Suppose that there is no member with a name containing `Jane`.<br>
+       Expected: Message indicating that no persons were found is displayed.
+
+    4. Test case: `find member`<br>
+       Expected: An error message of `Invalid command format` will be displayed in the output box.
+
+#### Listing all members
+
+1. Listing all members in the currently selected team
+
+    1. Test case: `list members`<br>
+       Expected: All members in the currently selected team in TruthTable are displayed.
+
+#### Sorting members
+
+1. Sorting members in the currently selected team
+    1. Test case: `sort members asc`<br>
+       Expected: Team members are sorted in ascending alphabetical order in task list, based on their names.
+
+    2. Test case: `sort members dsc`<br>
+       Expected: Team members are sorted in descending alphabetical order in task list, based on their names.
+
+    3. Test case: `sort members res`<br>
+       Expected: Order of team members in member list is reset to order of insertion.
+
+    4. Test case: `sort members`<br>
+       Expected: An error message of `Invalid command format` will be displayed in the output box.
+
+### Testing Commands to Manage Teams
+#### Adding a team
+1. Creating a team on TruthTable
+
+    1. Test case: `add team CS2102 -d "Database Systems"` <br>
+       Expected: If there is already a team called `CS2102` in TruthTable, then an error message will appear
+       in the output box. Otherwise, a new team will be added to the team list tabs, with name `CS2102`,
+       and team description `Database Systems`.
+
+    2. Test case: `add team CS2103T` <br>
+       Expected: If there is already a team called `CS2103T` in TruthTable, then an error message will appear
+       in the output box. Otherwise, a new team will be added to the team list tabs, with name
+       `CS2103T` and a default team description.
+
+    3. Test case: `add team -d "Software Engineering"`<br>
+       Expected: No team is created. Error details shown in the message displayed in the output box.
+
+    4. Test case: `add team`<br>
+       Expected: An error message of `Invalid command format` will be displayed in the output box.
+
+#### Editing a team
+1. Editing the current team on TruthTable
+
+    1. Prerequisites: The current working team is set to the team to be edited
+
+    2. Test case: `edit team -n CS2102 -d "Database Systems`<br>
+       Expected: Edits the team name and team description of the current team to be `CS2102` and `Database Systems`
+       respectively.
+
+#### Deleting a team
+
+1. Deleting an existing team from TruthTable
+
+    1. Prerequisites: The target team is not the only existing team
+
+    2. Test case: `delete team CS2103T`<br>
+       Expected: If there is no team named `CS2103T`, an error message is displayed in the output box and no team will
+       be deleted. Otherwise, the team with name `CS2103T` will be deleted from TruthTable
+
+#### Setting a team
+
+1. Sets the current working team to the target team
+
+     1. Test case: `set team CS2103T`<br>
+        Expected: If there is no team named `CS2103T`, or the current team is named `CS2103T`, an error message is 
+        displayed in the output box and the current working team will not be changed.
+        Otherwise, the team with name `CS2103T` will be set as the current working team.
+
+### Testing Commands to Manage Tasks
+#### Adding a task
+1. Adding a task to TruthTable
+
+    1. Test case: `add task "Create PR"` <br>
+       Expected: If there is already a task called `Create PR` in TruthTable, then an error message will appear
+       in the output box. Otherwise, a new task will be added to the task list, with name `Create PR`.
+
+    2. Test case: `add task "Review PR" -a 1 3 -d 2022-12-02 23:59` <br>
+       Expected: If there is already a task called `Review PR` in TruthTable, or if there are fewer than three members, 
+       then an error message will appear in the output box. Otherwise, a new task will be added to the task list, with 
+       name `Review PR`, assigned to the first and third members of your team's members list, and a deadline of 2nd Dec 
+       2022 23:59.
+
+    4. Test case: `add task -a 1 3 -d 2022-12-02 23:59`<br>
+       Expected: No task is added as no task name is provided. Error details shown in the message displayed in the output box.
+
+#### Editing a task
+1. Editing a task while all tasks are being shown
+
+    1. Prerequisites: List all tasks in the current team using the `list tasks` command. Task list is not empty.
+
+    2. Test case: `edit task 1 -n "Merge PR" -a 1 -d 2022-12-02 23:59 `
+       Expected: The first task in the current team's task list is edited, setting the name as
+       `Merge PR`, assignees as the first member in the team list, and deadline as 2nd Dec 2022 23:59.
+
+    3. Test case: `edit task 1 -a`
+       Expected: The first task in the current team's task list is edited, removing all assignees from the task.
+       The name and deadline are not modified in this example.
+
+    4. Other incorrect delete commands to try: `edit task`, `edit task X -n Meeting`, `...`
+       (where X is a positive integer larger than the displayed tasks list size)<br>
+       Expected: Similar to previous.
+
+#### Deleting a task
+
+1. Deleting a task while all tasks are being shown
+
+    1. Prerequisites: List all tasks using the `list tasks` command. Task list is not empty.
+
+    2. Test case: `delete task 1`<br>
+       Expected: First task is deleted from the list. Details of the deleted task shown in the output box.
+
+    3. Test case: `delete task 0`<br>
+       Expected: No task is deleted. Error details shown in the output box.
+
+    4. Other incorrect delete commands to try: `delete task`, `delete task X`, `...`
+       (where X is a positive integer larger than the displayed tasks list size)<br>
+       Expected: Similar to previous.
+
+#### Finding a task
+
+1. Finding all tasks whose names contain any of the given keywords
+
+    1. Prerequisites: Task list is not empty.
+
+    2. Test case: `find task User Guide`<br>
+       Suppose that there is a task named `User Guide`.<br>
+       Expected: Message indicating number of tasks found is displayed. Task list updates to only show
+       the tasks found.
+
+    3. Test case: `find task Review PR`<br>
+       Suppose that there is no task with a name containing `Review` or `PR`.<br>
+       Expected: Message indicating that no tasks were found is displayed.
+
+    4. Test case: `find task`<br>
+       Expected: An error message of `Invalid command format` will be displayed in the output box.
+
+#### Listing all tasks
+
+1. Listing all tasks in the current team
+
+    1. Test case: `list tasks`<br>
+       Expected: All tasks in the current team are displayed.
+
+#### Mark tasks as done
+
+1. Marking a specified task as done
+    1. Prerequisites: Task list is not empty.
+
+    2. Test case: `mark 1`<br>
+       Expected: If the first task is already marked as done, an error message is shown in the output box. Otherwise,
+       the first task in the team is marked as done.
+
+    3. Test case: `mark 0`<br>
+       Expected: No task is marked as done. Error details shown in the output box.
+
+    4. Other incorrect delete commands to try: `mark`, `mark X`, `...`
+       (where X is a positive integer larger than the displayed tasks list size)<br>
+       Expected: Similar to previous.
+
+#### Unmark tasks as done
+
+1. Undoing the mark command to mark specified task as incomplete
+    1. Prerequisites: Task list is not empty.
+
+    2. Test case: `unmark 1`<br>
+       Expected: If the first task has not been marked as done, an error message is shown in the output box. Otherwise,
+       the first task in the team is marked as incomplete.
+
+    3. Test case: `unmark 0`<br>
+       Expected: No task is marked as incomplete. Error details shown in the output box.
+
+    4. Other incorrect delete commands to try: `unmark`, `unmark X`, `...`
+       (where X is a positive integer larger than the displayed tasks list size)<br>
+       Expected: Similar to previous.
+
+#### Setting Deadline for task
+
+1. Setting a deadline for an existing task
+    1. Prerequisites: Task list is not empty.
+
+    2. Test case: `set deadline 1 2023-12-25 23:59`<br>
+       Expected: The deadline for the first task on the task list is set as 25 Dec 2023 23:59.
+
+    3. Test case: `set deadline 0 2023-12-25 23:59`<br>
+       Expected: No deadline is set for any task. Error details shown in the output box.
+
+    4. Other incorrect set deadline commands to try: `set deadline`, `set deadline X 2023-12-25 23:59`, `...`
+       (where X is a positive integer larger than the displayed tasks list size)<br>
+       Expected: Similar to previous.
+
+#### Assigning a task to team member
+
+1. Assign an existing task to a team member in the current team.
+    1. Prerequisites: Task list is not empty. Multiple tasks in task list. Member list is not empty. Multiple tasks
+       in member list.
+
+    2. Test case: `assign task 2 -a 1 2`<br>
+       Expected: The second task on the task list is assigned to the first and second member in the team. If either of
+       the members have previously been assigned to the task, a warning will show up in the output box.
+
+    4. Test case: `assign task 1 -a`<br>
+       Expected: No additional assignee is set for any task. No error message will be shown. 
+
+    5. Test case: `assign task 0 -a 1 2`<br>
+       Expected: No assignee is set for any task. Error details shown in the output box.
+
+    6. Other incorrect set deadline commands to try: `assign task`, `assign task X -a Y`, `...`
+       (where X is a positive integer larger than the displayed tasks list size, and/or Y is a positive integer larger
+       than the displayed members list size)<br>
+       Expected: Similar to previous.
+
+#### Assigning a task to random team member
+
+1. Assign an existing task to a random team member in the current team.
+    1. Prerequisites: Task list is not empty. Multiple tasks in task list. Member list is not empty. Task is not
+       already assigned to all members of the team.
+
+    2. Test case: `assign random 1`<br>
+        Expected: The first task on the task list is assigned to a random team member.
+
+    3. Test case: `assign random 0`<br>
+       Expected: No assignee is set for any task. Error details shown in the output box.
+
+    4. Other incorrect set deadline commands to try: `assign random`, `assign random X`, `...`
+       (where X is a positive integer larger than the displayed tasks list size)<br>
+       Expected: Similar to previous.
+
+#### Filtering tasks by team member
+
+1. Find all tasks that have been assigned to a particular member in the currently selected team.
+    1. Prerequisites: Member list is not empty.
+
+    2. Test case: `tasksof 1`<br>
+       Expected: All tasks assigned to the first member in your current team's member list is displayed.
+
+    3. Test case: `tasksof 0`<br>
+       Expected: Error details shown in the output box.
+
+    4. Other incorrect set deadline commands to try: `tasksof`, `tasksof X`, `...`
+       (where X is a positive integer larger than the displayed members list size)<br>
+       Expected: Similar to previous.
+
+#### Sorting members
+
+1. Sorting tasks in the currently selected team
+    1. Test case: `sort tasks asc`<br>
+       Expected: Tasks are sorted in ascending alphabetical order in task list, based on their names.
+
+    2. Test case: `sort tasks dsc`<br>
+       Expected: Tasks are sorted in descending alphabetical order in task list, based on their names.
+
+    3. Test case: `sort tasks res`<br>
+       Expected: Order of tasks in task list is reset.
+
+    4. Test case: `sort tasks`<br>
+       Expected: An error message of `Invalid command format` will be displayed in the output box.
+
+#### View summary of task assignments in team
+
+1. Viewing the number of tasks assigned to each member in the team.
+
+    1. Test case: `summary`<br>
+       Expected: The number of tasks assigned to each member in the team is displayed in the output box.
+
+### Testing Commands to Manage Links
+#### Adding a new link
+1. Add a new link to the currently selected team
+
+    1. Test case: `add link -n google -l https://google.com` <br>
+       Expected: If there is already a link called `google` in TruthTable, then an error message will appear
+       in the output box. Otherwise, a new link will be added to the link list, with name `google`,
+       and URL `https://google.com`.
+
+    2. Test case: `add link -n google"`<br>
+       Expected: No link is created. Error details shown in the message displayed in the output box.
+
+    3. Test case: `add link`<br>
+       Expected: An error message of `Invalid command format` will be displayed in the output box.
+
+#### Editing a link
+1. Editing an existing link in the team
+
+    1. Prerequisites: Task list is not empty.
+
+    2. Test case: `edit link 1 -n facebook -l https://facebook.com`
+       Expected: The first link in the current team's link list is edited, setting the name as
+       `facebook`, with the URL of `https://facebook.com`.
+
+    3. Test case: `edit link 1 -n google`
+       Expected: The first link in the current team's link list is edited, setting the name as
+       `google`.
+
+    4. Test case: `edit link 0 -n google`
+       Expected: No link is edited. Error details shown in the output box.
+
+    5. Other incorrect delete commands to try: `edit link`, `edit link X -n Meeting`, `...`
+       (where X is a positive integer larger than the displayed links list size)<br>
+       Expected: Similar to previous.
+
+#### Deleting a link
+
+1. Deleting an existing link from the team
+
+    1. Prerequisites: Link list is not empty.
+
+    2. Test case: `delete link 1`<br>
+       Expected: The first link will be deleted from the link list
+   
+    3. Test case: `delete link 0`<br>
+       Expected: No link is deleted. Error details shown in the output box.
+
+    4. Other incorrect delete commands to try: `delete link`, `delete link X`, `...`
+       (where X is a positive integer larger than the link list size)<br>
+       Expected: Similar to previous.
+
+## Effort
+
+TruthTable was a complex project requiring extensive effort by all our team members.
+
+### Going beyond our limits
+Here are some features of our project that makes our project distinct and unique:
+
+#### Using `picocli` as our parsing library
+As our app is catered for Software Engineering team leads, we wanted our app to feel similar to other Command-Line 
+Interfaces (CLI) they may be acquainted with.
+Software Engineering team leads are generally proficient with using the Terminal to get things done, 
+such as using `git` via its CLI, and many are highly familiar with the shell on Linux OS. Hence, we decided that the 
+original  AddressBook Level-3 (AB3) parser was not suitable as its syntax was relatively unintuitive, and steepens the 
+learning curve for our target users.
+
+
+We opted to scrape the parsers and used [picocli](https://picocli.info/) as our parsing library, which enabled things 
+like subcommands (using commands with spaces in them like `add person` instead of `add_person`) and flags to specify 
+options (e.g. `-n` vs `n/` in AB3), which and makes it **more intuitive** for users.
+
+#### Multiple Classes
+As our application's primary function is to manage software engineering projects, including URLs, tasks, and team members 
+within each team, we had to introduce new classes like `Team`, `Task` and `Link`. This added a high degree of complexity
+to our app as entities can be tied to each other in multiple ways, such as enabling tasks to have multiple assignees.
+This allows our app to provide extra functionality that makes our app more useful for Software Engineering team leads.
+
+This resulted in the number of commands increasing from **9** (in AB3) to **42** (in TruthTable), which meant
+that more classes had to be written to accommodate the wide variety of commands (including intermediary data types such 
+as `Index` and new objects in our model such as `Team` and `Task`), and more testing had to be done to ensure our 
+app works as intended.
+
+#### Improved UI
+The original AB3 program only displayed the list of persons which is not very useful for a task management application.
+To make our app effective, we created additional panels for teams, members, tasks and links which makes it easier for the
+user to track the status of their team as they execute their commands. 
+
+In terms of colour scheme, we thought that the dark theme of AB3 was uninspiring and made use of own light theme to give
+this app a nice, warm and welcoming feel. For users that prefer a dark scheme however, we have provided the ability to 
+switch themes as well.
+
+#### Extensive Testing
+The use of picocli meant that all parser classes had to be removed, and the way the commands are generated is
+different. Hence, all commands and parser tests in AB3 had to be removed and reimplemented.
+
+Furthermore, the increased number of classes, along with all the commands, means that code coverage is likely to decrease 
+and more testing had to be done.
+
+Hence, we took it as an opportunity to do extensive testing for our application through writing effective unit tests 
+for our commands, parsers and model objects. We redesigned how testing is done for commands and manage to cover
+all commands successfully. We maintained a **~73%** code coverage from the original **~72%** in AB3, and increased the
+number of test cases from **248** (in AB3) to **527** (in TruthTable).
+
+### Conclusion
+Overall, this project has been extremely fulfilling, and we believe our team has managed to create a highly functional app.
+Over the few months of development, we pushed our limits and picked up skills that are extremely valuable in writing 
+quality code and designing robust software.
+
+This section only scratches the surface of the level of effort that we put into this project, and there were many
+other things like the countless discussions that went into design decisions big and small, and the invisible effort of 
+documentation in this project. The additional challenges that we overcome as a team are not included here for the sake 
+of brevity.
+
+Hopefully, we hope that this Developer Guide will help you to understand the design and implementation of TruthTable. We
+welcome all Software Engineering student team leads to try, maintain or even extend our application.

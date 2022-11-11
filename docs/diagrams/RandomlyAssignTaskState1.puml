@@ -1,0 +1,30 @@
+@startuml
+!include style.puml
+skinparam ClassFontColor #000000
+skinparam ClassBorderColor #000000
+
+title After running command "assign random 1" for first time
+
+skinparam object {
+    BackgroundColor<<Team>> Business
+    BackgroundColor<<Person>> APPLICATION
+    BackgroundColor<<TaskTYpe>> PHYSICAL
+}
+
+hide stereotype
+
+object "__:Team__" as Team <<Team>>
+object "__task1:Task__" as Task <<TaskType>>
+object "__person1:Person__" as Person1 <<Person>>
+object "__person2:Person__" as Person2 <<Person>>
+object "__person3:Person__" as Person3 <<Person>>
+
+Team --> Person1
+Team --> Person2
+Team --> Person3
+Team -right-> Task
+Task -[hidden]down-> Person1
+Task -[#f00]-> Person2
+Task -[hidden]down-> Person3
+
+@end

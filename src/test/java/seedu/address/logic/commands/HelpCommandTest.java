@@ -1,20 +1,35 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.HelpCommand.SHOWING_HELP_MESSAGE;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import picocli.CommandLine;
+import seedu.address.logic.parser.TruthTableParser;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 
 public class HelpCommandTest {
-    private Model model = new ModelManager();
-    private Model expectedModel = new ModelManager();
+    private final Model model = new ModelManager();
+
+    private final Model expectedModel = new ModelManager();
+    private Command commandToBeTested;
+
+    private CommandLine commandLine;
+
+    @BeforeEach
+    public void setUp() throws Exception {
+        commandToBeTested = (HelpCommand) new TruthTableParser().parseCommand(HelpCommand.COMMAND_WORD);
+        commandLine = new CommandLine(commandToBeTested);
+    }
 
     @Test
-    public void execute_help_success() {
-        CommandResult expectedCommandResult = new CommandResult(SHOWING_HELP_MESSAGE, true, false);
-        assertCommandSuccess(new HelpCommand(), model, expectedCommandResult, expectedModel);
+    public void execute_helpFlagSupplied_success() {
+        commandLine.parseArgs(FLAG_HELP_STR);
+        CommandResult expectedResult = new CommandResult(
+                HelpCommand.HELP_MESSAGE + commandLine.getUsageMessage());
+        assertCommandSuccess(commandToBeTested, model, expectedResult, expectedModel);
     }
 }

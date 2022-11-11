@@ -9,51 +9,65 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Devansh Shah
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/devanshshah1309.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[homepage](https://www.linkedin.com/in/devansh-shah-305a59201/)
 
-* Role: Project Advisor
+[github](https://github.com/devanshshah1309)
 
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[portfolio](team/devanshshah1309.md)
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: In charge of the UI Component.
 
-### Jean Doe
+### Marcus Pang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/marcuspang.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[homepage](https://www.linkedin.com/in/marcus-pang-yu-yang/)
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+[github](http://github.com/marcuspang)
 
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[portfolio](team/marcuspang.md)
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: In charge of the Parser component.
+
+### Gui Ling Ling
+
+<img src="images/ling-ui.png" width="200px">
+
+[github](http://github.com/ling-ui)
+
+[portfolio](team/ling-ui.md)
+
+* Role: Developer
+* Responsibilities: In charge of CI/CD.
+
+
+### Chang Jing Yan
+
+<img src="images/changjy44.png" width="200px">
+
+[homepage](https://www.linkedin.com/in/chang-jing-yan-079928146/)
+
+[github](http://github.com/changjy44)
+
+[portfolio](team/changjy44.md)
+
+* Role: Developer
+* Responsibilities: In charge of testing.
+
+
+### Gui Ming Jiang
+
+<img src="images/mjgui.png" width="200px">
+
+[github](http://github.com/mjgui)
+
+[portfolio](team/mjgui.md)
+
+* Role: Developer
+* Responsibilities: In charge of Code Quality

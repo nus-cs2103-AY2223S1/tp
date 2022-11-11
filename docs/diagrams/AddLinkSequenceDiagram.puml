@@ -1,0 +1,77 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TruthTableParser" as TruthTableParser LOGIC_COLOR
+participant "<<class>>\nArgumentTokenizer" as ArgumentTokenizer LOGIC_COLOR
+participant ":CommandLine" as CommandLine LOGIC_COLOR
+participant "d:AddLinkCommand" as AddLinkCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Link" as Link MODEL_COLOR
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute(\n"add link -n google -l google.com")
+activate LogicManager
+
+LogicManager -> TruthTableParser : parseCommand(\n"add link -n google -l google.com")
+activate TruthTableParser
+
+
+TruthTableParser -> ArgumentTokenizer : tokenize(\n"add link -n google -l google.com")
+activate ArgumentTokenizer
+
+ArgumentTokenizer --> TruthTableParser : args
+deactivate ArgumentTokenizer
+
+TruthTableParser -> CommandLine : parseArgs(args)
+activate CommandLine
+
+create AddLinkCommand
+CommandLine -> AddLinkCommand
+activate AddLinkCommand
+
+AddLinkCommand --> CommandLine : a
+deactivate AddLinkCommand
+
+CommandLine --> TruthTableParser : a
+deactivate CommandLine
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ArgumentTokenizer -[hidden]-> TruthTableParser
+
+TruthTableParser --> LogicManager : a
+deactivate TruthTableParser
+
+LogicManager -> AddLinkCommand : execute()
+activate AddLinkCommand
+
+create Link
+AddLinkCommand -> Link
+activate Link
+
+Link --> AddLinkCommand : toAdd
+deactivate Link
+
+AddLinkCommand -> Model : addLink()
+activate Model
+
+Model --> AddLinkCommand
+deactivate Model
+
+create CommandResult
+AddLinkCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddLinkCommand
+deactivate CommandResult
+
+AddLinkCommand --> LogicManager : result
+deactivate AddLinkCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
