@@ -468,6 +468,7 @@ Lists all the patients in checkUp.
 **Reasons for usage:**
 
 * You want to have a full list of all patients in checkUp before using one of the `get` commands.
+* You want a clear view of all the patients in checkUp.
 
 <sub><sup>[back to top](#back-to-topt), [back to features](#features), [back to segment top](#retrieving-patient-info)</sup></sub>
 
@@ -647,7 +648,7 @@ Finds all the outpatients in checkUp.
 
 **Reason for usage:**
 
-* You want to check how many patients are only here for their appointment.
+* You want to check how many patients are only here for their appointment and not staying overnight.
 
 <sub><sup>[back to top](#back-to-topt), [back to features](#features), [back to segment top](#retrieving-patient-info)</sup></sub>
 
@@ -718,6 +719,12 @@ taking each type of long-term medication.
 * If 32 of those patients are on long-term antidepressants, the count will also display
   `antidepressants: 32`.
 
+**Reasons for usage:**
+
+* You want to know if the hospital is currently oversubscribed.
+* You want to keep track of the hospital's medicine inventory.
+* You want a breakdown of the number of patients taking each type of long-term medication for stock-taking.
+
 <sub><sup>[back to top](#back-to-topt), [back to features](#features), [back to segment top](#retrieving-patient-info)</sup></sub>
 
 ---
@@ -742,6 +749,10 @@ Displays the details of a patient specified by the index number from the patient
 
 * The index **must be a positive integer** 1, 2, 3, …​
 * Details are displayed on the patient details panel.
+
+**Reason for usage:**
+
+* You want to view all of a patient's information in detail.
 
 <div markdown="span" class="alert alert-primary">
 
@@ -792,6 +803,10 @@ Opens the Help Window, which allows you to copy the URL of the User Guide to you
 
 **Format:** `help`
 
+**Reason for usage:**
+
+* You are unsure of the commands available and want to access the User Guide.
+
 ### Exiting the program : `exit`
 
 Exits checkUp.
@@ -799,6 +814,10 @@ Exits checkUp.
 **Format:** `exit`
 
 * GUI settings (window height and width) are preserved during this process.
+
+**Reason for usage:**
+
+* After you have completed your tasks using the app, you want to close the program.
 
 <sub><sup>[back to top](#back-to-topt), [back to features](#features), [back to segment top](#general-commands)</sup></sub>
 
@@ -824,7 +843,7 @@ Although CheckUp is built as a Command Line Interface application, it also suppo
 
 **Reason for usage:**
 
-* You want to quickly view a patient's detailed info without having to enter a command.
+* You want to quickly view all of a patient's information in detail without having to enter a command.
 
 **Example:**
 
@@ -855,7 +874,7 @@ Similar to other CLI applications, CheckUp supports a few keyboard shortcuts:
 **Reasons for usage:**
 
 * You want to quickly access a previously entered command without having to retype it.
-* You want to clear the input line of a long command without having to manually delete it.
+* You want to quickly clear the input line of a long command without having to manually delete it.
 
 <sub><sup>[back to top](#back-to-topt), [back to features](#features), [back to segment top](#general-commands)</sup></sub>
 
