@@ -1401,7 +1401,7 @@ Let us run through an example on how to set deadlines.
 
 Suppose you have task called "User Stories", and you need it to be completed by 11 November 2022, 2359hrs.
 Identify the index of "User Stories" in the application (1 in the image below). If you are not able to find the 
-task, refer to [find task command](#finding-a-task-find-task) on how you can find your task easily.
+task, refer to the [find task command](#finding-a-task-find-task).
 
 Then, enter the command `set deadline 1 2022-11-11 23:59`.
 
@@ -1449,10 +1449,10 @@ Let us run through an example on how to assign tasks to your team members.
 Suppose you have task called "User Stories", and you want to assign it to Alex Yeoh.
 
 Identify the index of "User Stories" in the application (1 in the image below). If you are not able to find the 
-task, refer to [find task command](#finding-a-task-find-task) on how you can find your task easily.
+task, refer to the [find task command](#finding-a-task-find-task).
 
-Identify the index of "Alex Yeoh" in the application (1 in the image below). If you are not able to find the 
-member, refer to [find member command](#finding-a-member-find-member) on how you can find your team member easily.
+Next, identify the index of "Alex Yeoh" in the application (1 in the image below). If you are not able to find the 
+member, refer to the [find member command](#finding-a-member-find-member).
 
 Then, enter the command `assign task 1 -a 1`.
 
@@ -1483,7 +1483,7 @@ The format for the `-a` flag indicates that you must specify at least 1 `-a` fla
 Please take note that:
 
 * `TASK_INDEX` and `TASK_ASSIGNEES` **must be positive integers:** 1, 2, 3,...
-* The original assignees of the task will not be replaced with this command. Tnstead, only new assignees can be added.
+* The original assignees of the task will not be replaced with this command. Instead, only new assignees can be added.
 * To remove assignees from a task, you can use the [`edit task` command](#edit-task-in-team-edit-task)
 
 **Command Aliases:**
@@ -1557,7 +1557,7 @@ easily.
 
 Then, enter the command `tasksof 1`.
 
-If done successfully, you should see the all tasks that "Alex Yeoh" is assigned. It should show up 
+If done successfully, you should see the all the tasks that "Alex Yeoh" is assigned to. It should show up 
 in the task list of the [current team section](#current-team-section) as shown below.
 
 ![Tasks Of Example](images/TasksOfExample.png)
@@ -1582,7 +1582,7 @@ Please take note that:
 
 #### List tasks in team: `list tasks`
 
-The final deadline is approaching and you want to view all the tasks for your team. You can use the 
+The final deadline is approaching, and you want to view all the tasks for your team. You can use the 
 `list tasks` command to see a list of all your tasks in your team.
 
 The `list tasks` command shows a list of all tasks in your team. After running the 
@@ -1670,7 +1670,7 @@ You may sort your tasks in descending order with `sort tasks dsc` or reset to th
 
 #### View summary of task assignments in team: `summary`
 
-As always, the number of tasks keep increasing, and you want to assign task equally to everyone. How do you check the 
+As always, the number of tasks keep increasing, and you want to assign tasks fairly to everyone. How do you check the 
 number of tasks each person is assigned? You can use the `summary` function to gain an overview of the
 number of tasks each person is assigned in your team! Now you can make better decisions on whom to assign the new
 tasks to.
