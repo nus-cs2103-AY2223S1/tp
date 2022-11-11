@@ -256,13 +256,15 @@ step-by-step!
   e.g. PennyWise will add the following **Income** with the description: "October Allowance" upon running the following command.
   
   ```
-  add t/i d/Monthly Allowance a/200.00 da/01-10-2022 c/Allowance d/Oct Allowance d/October Allowance
+  add t/i d/Monthly Allowance a/200.00 da/01-10-2022 c/Allowance
+  d/Oct Allowance d/October Allowance
   ```
   
   You should expect to see this output:
 
     ```
-    New entry added: October Allowance; Date: 01-10-2022; Amount: 200.00; Tag: Allowance
+    New entry added: October Allowance; Date: 01-10-2022; Amount: 200.00;
+    Tag: Allowance
     ```
 
 - PennyWise will **IGNORE** any extra words or characters present after the following commands:
