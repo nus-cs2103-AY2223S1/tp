@@ -99,7 +99,7 @@ This is the section where you can enter commands for PayMeLah, and where the sta
 
 <img src="images/PersonCard.png" width="800" />
 
-This is the section showing the list of people added to PayMeLah. The names can be clicked to show their person card: a box containing their person details as well as their list of debts.
+This is the section showing the list of persons added to PayMeLah. The names can be clicked to show their person card: a box containing their person details as well as their list of debts.
 
 | Number | Component Name  | Details                                       |
 |:------:|-----------------|-----------------------------------------------|
@@ -330,10 +330,10 @@ This command edits an existing person in PayMeLah.
 When a person’s particulars in PayMeLah have changed (e.g. phone number or Telegram handle), you can use this command to edit them!
 
 **Format:**<br>
-`edit <index> [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]…`
+`edit <person index> [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]…`
 
 **Additional information:**<br>
-* Edits the person at the specified `<index>`. The index refers to the person index shown in the displayed [person list](#person-list-section).
+* Edits the person at the specified `<person index>` in the currently displayed [person list](#person-list-section).
 * At least one of the optional fields must be provided.
 * Pre-existing values will be updated to the input values.
 * You can remove all the person’s tags by typing `t/` without
@@ -354,11 +354,10 @@ This command deletes the specified person from PayMeLah.
 When you no longer need to track debts for a particular person, you can use this command to remove them from PayMeLah.
 
 **Format:**<br>
-`delete <index>`
+`delete <person index>`
 
 **Additional information:**<br>
-* Deletes the person at the specified `<index>`.
-* The index refers to the person index shown in the displayed [person list](#person-list-section).
+* Deletes the person at the specified `<person index>` of the currently displayed [person list](#person-list-section).
 
 **Examples:**<br>
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
@@ -374,7 +373,7 @@ When you no longer need to track debts for a particular person, you can use this
 #### Adding a debt: `adddebt`
 
 **What it does:**<br>
-This command adds a debt to a person in PayMeLah for you to track. Specifying multiple people will add a copy of this debt to each person specified.
+This command adds a debt to a person in PayMeLah for you to track. Specifying multiple persons will add a copy of this debt to each person specified.
 
 **When to use:**<br>
 When you want PayMeLah to keep track of a debt for one particular person, or the same debt for multiple persons, this is the command to use!
@@ -410,7 +409,7 @@ Be very careful! The default behaviour is slightly different across the differen
 #### Splitting a debt: `splitdebt`
 
 **What it does:**<br>
-This command splits a debt evenly among several people in PayMeLah for you to track.
+This command splits a debt evenly among several persons in PayMeLah for you to track.
 
 **When to use:**<br>
 When you want to divide a group expense equally between multiple persons, you can use this command to let PayMeLah help you with the calculations and keep track of their debts!
@@ -419,7 +418,7 @@ When you want to divide a group expense equally between multiple persons, you ca
 `splitdebt <person index…> d/<description> m/<money> [date/<date>] [time/<time>]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You can split a debt among as many people as you want. You can even include yourself with index `0`. But you cannot split a debt between just yourself.
+You can split a debt among as many persons as you want. You can even include yourself with the special person index `0`. But you cannot split a debt between just yourself.
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -427,7 +426,7 @@ You might find it difficult to find the index of a specific person when your lis
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Splitting a debt is just like [adding a debt](#adding-a-debt-adddebt) to multiple people; however, here we divide the money of the debt over the people who shared it (and round up to the closest cent). Thus, you can similarly tell PayMeLah to add Service Charge and GST to the amount of money specified by including `++` at the back of the amount. A single `+` will add only GST instead.
+Splitting a debt is just like [adding a debt](#adding-a-debt-adddebt) to multiple persons; however, here we divide the money of the debt over the persons who shared it (and round up to the closest cent). Thus, you can similarly tell PayMeLah to add Service Charge and GST to the amount of money specified by including `++` at the back of the amount. A single `+` will add only GST instead.
 </div>
 
 <div style="page-break-after: always;"></div>
@@ -551,21 +550,21 @@ When you are looking for specific person(s) in PayMeLah, you can use this comman
 
 The following table is a summary of all the inputs this command can accept:
 
-| Input              | Description                                                                              | Examples                                                                                                                 |
-|--------------------|------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| `n/<name>`         | Looks for people who have names containing `<name>`                                      | `find n/rob` will find people named `Robin Jones` and `Grobert Smith`                                                    |
-| `p/<phone number>` | Looks for people who have the phone number `<phone number>`                              | `find p/91234567` will find people with the phone number `91234567`                                                      |
-| `tele/<telegram>`  | Looks for people by the Telegram handle `<telegram>`                                     | Either `find tele/juliaw` or `find tele/@juliaw` will find people with the Telegram handle `@juliaw`                     |
-| `a/<address>`      | Looks for people who have addresses containing `<address>`                               | `find a/main` will find people living at `123 Main St` or `456 Main Ave`                                                 |
-| `t/<tag>`          | Looks for people who have the tag `<tag>`                                                | `find t/buddy t/roommate` will find people with _both_ the `buddy` and `roommate` tags                                   |
-| `d/<description>`  | Looks for people who owe money for a debt described by `<description>`                   | `find d/McDonald's` will find people who owe money for `McDonald's`                                                      |
-| `m/<money>`        | Looks for people who owe money for a debt with the monetary value `<money>`              | `find m/10` will find people with a debt in their [debt list](#debt-list-section) worth exactly `$10.00`                 |
-| `above/<money>`    | Looks for people who owe money for a debt above or equal to the monetary value `<money>` | `find above/11` will find people with a debt in their [debt list](#debt-list-section) worth above or equal to `$11.00`   |
-| `below/<money>`    | Looks for people who owe money for a debt below or equal to the monetary value `<money>` | `find below/9` will find people with a debt in their [debt list](#debt-list-section) worth below or equal to `$9.00`     |
-| `date/<date>`      | Looks for people who owe money for a debt on the given `<date>`                          | `find d/2022-10-31` will find people with a debt in their [debt list](#debt-list-section) on `2022-10-31`                |
-| `before/<date>`    | Looks for people who owe money for a debt before or on the given `<date>`                | `find before/2022-10-30` will find people with a debt in their [debt list](#debt-list-section) on or before `2022-10-30` |
-| `after/<date>`     | Looks for people who owe money for a debt after or on the given `<date>`                 | `find after/2022-10-31` will find people with a debt in their [debt list](#debt-list-section) on or after `2022-10-31`   |
-| `time/<time>`      | Looks for people who owe money for a debt at the given `<time>`                          | `find time/11:00` will find people with a debt in their [debt list](#debt-list-section) at `11:00`                       |
+| Input              | Description                                                                               | Examples                                                                                                                  |
+|--------------------|-------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
+| `n/<name>`         | Looks for persons who have names containing `<name>`                                      | `find n/rob` will find persons named `Robin Jones` and `Grobert Smith`                                                    |
+| `p/<phone number>` | Looks for persons who have the phone number `<phone number>`                              | `find p/91234567` will find persons with the phone number `91234567`                                                      |
+| `tele/<telegram>`  | Looks for persons by the Telegram handle `<telegram>`                                     | Either `find tele/juliaw` or `find tele/@juliaw` will find persons with the Telegram handle `@juliaw`                     |
+| `a/<address>`      | Looks for persons who have addresses containing `<address>`                               | `find a/main` will find persons living at `123 Main St` or `456 Main Ave`                                                 |
+| `t/<tag>`          | Looks for persons who have the tag `<tag>`                                                | `find t/buddy t/roommate` will find persons with _both_ the `buddy` and `roommate` tags                                   |
+| `d/<description>`  | Looks for persons who owe money for a debt described by `<description>`                   | `find d/McDonald's` will find persons who owe money for `McDonald's`                                                      |
+| `m/<money>`        | Looks for persons who owe money for a debt with the monetary value `<money>`              | `find m/10` will find persons with a debt in their [debt list](#debt-list-section) worth exactly `$10.00`                 |
+| `above/<money>`    | Looks for persons who owe money for a debt above or equal to the monetary value `<money>` | `find above/11` will find persons with a debt in their [debt list](#debt-list-section) worth above or equal to `$11.00`   |
+| `below/<money>`    | Looks for persons who owe money for a debt below or equal to the monetary value `<money>` | `find below/9` will find persons with a debt in their [debt list](#debt-list-section) worth below or equal to `$9.00`     |
+| `date/<date>`      | Looks for persons who owe money for a debt on the given `<date>`                          | `find d/2022-10-31` will find persons with a debt in their [debt list](#debt-list-section) on `2022-10-31`                |
+| `before/<date>`    | Looks for persons who owe money for a debt before or on the given `<date>`                | `find before/2022-10-30` will find persons with a debt in their [debt list](#debt-list-section) on or before `2022-10-30` |
+| `after/<date>`     | Looks for persons who owe money for a debt after or on the given `<date>`                 | `find after/2022-10-31` will find persons with a debt in their [debt list](#debt-list-section) on or after `2022-10-31`   |
+| `time/<time>`      | Looks for persons who owe money for a debt at the given `<time>`                          | `find time/11:00` will find persons with a debt in their [debt list](#debt-list-section) at `11:00`                       |
 
 **Additional information:**<br>
 * The order of the conditions does not matter.
@@ -575,9 +574,9 @@ The following table is a summary of all the inputs this command can accept:
 
 ##### Combining inputs to `find`
 
-When multiple inputs are provided to `find`, only people matching all conditions will be shown.
+When multiple inputs are provided to `find`, only persons matching all conditions will be shown.
 
-Note that combining the inputs looking for people with a specific debt in their [debt list](#debt-list-section) means to look for a person with at least one debt that matches all the inputs.
+Note that combining the inputs looking for persons with a specific debt in their [debt list](#debt-list-section) means to look for a person with at least one debt that matches all the inputs.
 
 Examples:
 * `find n/hans p/81234567` will match `Hansel` or `Hans Gruber` if his phone number is `81234567`.
@@ -605,7 +604,7 @@ When you do not remember the exact description of a debt you want to look for (e
 * Only the descriptions of the debts are searched for the keywords.
 * Only full words will be matched e.g. `Burger` will not match `Burgers`
 * Persons with debts matching at least one keyword will be displayed.
-  e.g. `burger meal` will display people associated with debts that have descriptions `Chicken Burger` or `Meal Sharing`
+  e.g. `burger meal` will display persons associated with debts that have descriptions `Chicken Burger` or `Meal Sharing`
 
 **Examples:**<br>
 * `finddebt Burger` displays persons associated with debts that have descriptions `burger` or `Chicken Burger`
@@ -758,20 +757,20 @@ If you are trying to locate a debt without knowing its full description, conside
 
 ## Glossary
 
-| Term                                                                                 | Description                                                                                                                                                                                             |
-|--------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| <span id="glossary-command">_Command_</span>                                         | An instruction for PayMeLah to execute. All commands start with a [_command phrase_](#glossary-command-phrase) and any [_inputs_](#glossary-input) the command may require.                             |
-| <span id="glossary-command-line-interface-cli">_Command Line Interface (CLI)_</span> | The method by which you instruct PayMeLah to perform tasks, which is by entering [_commands_](#glossary-command) into the [_command box_](#command-line-section).                                       |
-| <span id="glossary-command-phrase">_Command phrase_</span>                           | The name of the instruction for PayMeLah to execute. For example, [`list`](#listing-all-persons-list) is the [_command phrase_](#glossary-command-phrase) to show the list of people added to PayMeLah. |
-| <span id="glossary-debt">_Debt_</span>                                               | A transaction event (e.g. group purchase, shared Grab food order) where someone owes you money.                                                                                                         |
-| <span id="glossary-debt-index">_Debt index_</span>                                   | The number that appears next to each [_debt_’s](#glossary-debt) description in a person’s [_debt list_](#debt-list-section).                                                                            |
-| <span id="glossary-debtor">_Debtor_</span>                                           | A person who owes you money.                                                                                                                                                                            |
-| <span id="glossary-entering-a-command">_Enter[ing]_ a command</span>                 | Type the [_command_](#glossary-command) into the [_command box_](#command-line-section), and press the <kbd>Enter</kbd> key.                                                                            |
-| <span id="glossary-index">_Index_</span>                                             | The number that appears next to each person’s name or each [_debt_’s](#glossary-debt) description.                                                                                                      |
-| <span id="glossary-input">_Input_</span>                                             | Additional information supplied by you that is used to run a [_command_](#glossary-command).                                                                                                            |
-| <span id="glossary-keyboard-shortcut">_Keyboard shortcut_</span>                     | A key or sequence of keys which you may press to perform actions without your mouse.                                                                                                                    |
-| <span id="glossary-person-index">_Person index_</span>                               | The number that appears next to each person’s name in the [_person list_](#person-list-section).                                                                                                        |
-| <span id="glossary-prefix">_Prefix_</span>                                           | A short piece of text indicating what type of information follows. For example, `n/` is the prefix that indicates that what follows is a name.                                                          |
+| Term                                                                                 | Description                                                                                                                                                                                              |
+|--------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| <span id="glossary-command">_Command_</span>                                         | An instruction for PayMeLah to execute. All commands start with a [_command phrase_](#glossary-command-phrase) and any [_inputs_](#glossary-input) the command may require.                              |
+| <span id="glossary-command-line-interface-cli">_Command Line Interface (CLI)_</span> | The method by which you instruct PayMeLah to perform tasks, which is by entering [_commands_](#glossary-command) into the [_command box_](#command-line-section).                                        |
+| <span id="glossary-command-phrase">_Command phrase_</span>                           | The name of the instruction for PayMeLah to execute. For example, [`list`](#listing-all-persons-list) is the [_command phrase_](#glossary-command-phrase) to show the list of persons added to PayMeLah. |
+| <span id="glossary-debt">_Debt_</span>                                               | A transaction event (e.g. group purchase, shared Grab food order) where someone owes you money.                                                                                                          |
+| <span id="glossary-debt-index">_Debt index_</span>                                   | The number that appears next to each [_debt_’s](#glossary-debt) description in a person’s [_debt list_](#debt-list-section).                                                                             |
+| <span id="glossary-debtor">_Debtor_</span>                                           | A person who owes you money.                                                                                                                                                                             |
+| <span id="glossary-entering-a-command">_Enter[ing]_ a command</span>                 | Type the [_command_](#glossary-command) into the [_command box_](#command-line-section), and press the <kbd>Enter</kbd> key.                                                                             |
+| <span id="glossary-index">_Index_</span>                                             | The number that appears next to each person’s name or each [_debt_’s](#glossary-debt) description.                                                                                                       |
+| <span id="glossary-input">_Input_</span>                                             | Additional information supplied by you that is used to run a [_command_](#glossary-command).                                                                                                             |
+| <span id="glossary-keyboard-shortcut">_Keyboard shortcut_</span>                     | A key or sequence of keys which you may press to perform actions without your mouse.                                                                                                                     |
+| <span id="glossary-person-index">_Person index_</span>                               | The number that appears next to each person’s name in the current displayed [_person list_](#person-list-section).                                                                                       |
+| <span id="glossary-prefix">_Prefix_</span>                                           | A short piece of text indicating what type of information follows. For example, `n/` is the prefix that indicates that what follows is a name.                                                           |
 
 
 [Return to Table of Contents](#table-of-contents)
@@ -797,8 +796,8 @@ If you are trying to locate a debt without knowing its full description, conside
 | *Actions for* <br> [**Managing Persons**](#features-for-managing-persons) | Format, Examples                                                                                                                                                             |
 |---------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | [**Add person**](#adding-a-person-add)                                    | `add n/<name> p/<phone number> tele/<telegram> a/<address> [t/<tag>]…` <br> e.g., `add n/James Ho p/22224444 tele/James_H0 a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| [**Edit person**](#editing-a-person-edit)                                 | `edit <index> [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]…`<br> e.g.,`edit 2 n/James Lee tele/James_L33`                                         |
-| [**Delete person**](#deleting-a-person-delete)                            | `delete <index>`<br> e.g., `delete 3`                                                                                                                                        |
+| [**Edit person**](#editing-a-person-edit)                                 | `edit <person index> [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]…`<br> e.g.,`edit 2 n/James Lee tele/James_L33`                                  |
+| [**Delete person**](#deleting-a-person-delete)                            | `delete <person index>`<br> e.g., `delete 3`                                                                                                                                 |
 
 <div style="page-break-after: always;"></div>
 
