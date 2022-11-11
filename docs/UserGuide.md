@@ -102,6 +102,9 @@ Below is an image of Coydir User Interface with the main components labelled.
 | 3   | Display Panel       | Displays the information of an employee or department. The information includes the employee's personal details, leave information, performance information. |
 | 4   | Command Panel       | Displays the system message after the execution of a command. The system message describes the outcome of the entered command.                               |
 
+<br>
+<br>
+
 #### 1. Toolbar
 
 <img src="images/ui-screenshots/Toolbar.png" height=40>
@@ -173,7 +176,6 @@ The top section displays relevant messages/errors after the command is entered.
 
 6. Refer to the [Features](#features) below for details of each command.
 
-<br>
 
 ## Symbols and Syntax
 
