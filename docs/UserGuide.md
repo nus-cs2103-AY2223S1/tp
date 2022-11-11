@@ -813,8 +813,6 @@ Format: `sort <order>`
     <p></p>
   * **reverse**: Sorts the **displayed list** in reverse order.
 
-<div style="page-break-after: always;"></div>
-
 Examples:
 * `sort alpha`
 
