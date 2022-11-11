@@ -1522,6 +1522,8 @@ if the task has already been assigned to all members of the team.
 
 Find all tasks that have been assigned to a particular member in the currently selected team.
 
+![Tasks Of Example](images/TasksOfExample.png)
+
 **Format:** `tasksof [-h] <MEMBER_INDEX>`
 
 | Flags          | Required | Remarks                                                                |
@@ -1545,6 +1547,8 @@ whether they are complete or incomplete tasks.
 
 This command can also be used to view all tasks again after using the [`find task` command](#finding-a-task-find-task)
 as the `find task` command filters the current team’s tasks based on some keyword(s).
+
+![List Tasks Example](images/ListTasksExample.png)
 
 **Format:** `list tasks [-h] [-c] [-i]`
 
@@ -1570,6 +1574,8 @@ as the `find task` command filters the current team’s tasks based on some keyw
 #### Sort tasks: `sort tasks`
 
 Sorts all tasks in the current team by name and displays them in the task list.
+
+![Sort Tasks Example](images/SortTasksExample.png)
 
 **Format:** `sort tasks [-h] <ORDER>`
 
@@ -1598,6 +1604,8 @@ Sorts all tasks in the current team by name and displays them in the task list.
 #### View summary of task assignments in team: `summary`
 
 View the number of tasks assigned to each member in the team.
+
+![Summary Example](images/SummaryExample.png)
 
 **Format:** `summary [-h]`
 
