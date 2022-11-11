@@ -762,7 +762,7 @@ Sorts your task list based on the input parameter.
 Example:
 
 1. `task sort s/a` displays a task list sorted by description alphabetical order.
-   * Given 3 tasks with descriptions: Walk the dog, Do homework, do chores, the order of the list will be: Do homework, Walk the dog, do chores.
+   * Given 3 tasks with descriptions: Walk the dog, Do homework, do chores, the order of the list will be: Do homework, do chores, Walk the dog.
 
 [↑ Back to top](#table-of-contents)
 
