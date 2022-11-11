@@ -624,7 +624,7 @@ In this section, we list all the parameters you will encounter of following comm
 
 #### 4.4.2. View your schedule: `sview`
  
-You can use this command to view the list of all your schedules.
+You can use this command to view the list of all of your schedules.
 
 **Format:** `sview`
 
