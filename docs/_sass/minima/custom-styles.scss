@@ -69,31 +69,28 @@ kbd {
   font-weight: 600;
 }
 
-table .text-red a,
-table .text-blue a,
-table .text-green a,
-table .text-pink a {
+table .text-with-color a {
   color: inherit;
   text-decoration: underline;
 }
 
 // Custom text colors
-.text-red {
+.text-with-color.red {
   color: #ff0000;
 }
 
-.text-blue {
+.text-with-color.blue {
   color: #1400ff;
 }
 
-.text-green {
+.text-with-color.green {
   color: #009d6e;
 }
 
-.text-pink {
+.text-with-color.pink {
   color: #ff00c7;
 }
 
-.text-orange {
+.text-with-color.orange {
   color: #ff4d00;
 }

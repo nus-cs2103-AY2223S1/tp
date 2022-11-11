@@ -74,17 +74,21 @@ Throughout this guide, we use different text styles for different purposes. Here
 
 ### Organize All Your Information In One Place
 
-We understand that managing project documents and information is a difficult task. Aside from the large number of links and
-slides created by your team, you may be using task management applications like
+We understand that managing project documents and information is a difficult task. Aside from the large number of links 
+and slides created by your team, you may be using task management applications like
 <a href="https://www.notion.so/" target="_blank">Notion</a> to track your team's progress as well. 
 
-This is why TruthTable allows you to collate and organize your **tasks, links, and team members' information** in a single application!
+This is why TruthTable allows you to collate and organize your **tasks, links, and team members' information** in a 
+single application!
 
 ### Track Progress And Delegate Work
 
-We know that it is often difficult to visualize and communicate your team's progress to various stakeholders (e.g. Professors, tutors, etc.). 
+We know that it is often difficult to visualize and communicate your team's progress to various stakeholders 
+(e.g. Professors, tutors, etc.). 
 
-Well, you never have to worry about tracking your team's progress anymore! Using TruthTable, you can see the **number of tasks completed by your team** as well as **which members have been assigned to which tasks** - all in one glance!
+Well, you never have to worry about tracking your team's progress anymore! Using TruthTable, you can see the 
+**number of tasks completed by your team** as well as **which members have been assigned to which tasks** - all in 
+one glance!
 
 This can also help you to delegate future tasks more fairly, by considering the workload of all your members.
 
@@ -92,10 +96,12 @@ This can also help you to delegate future tasks more fairly, by considering the 
 
 We all know that context switching is a productivity killer.
 
-Having to switch back and forth between project management and coding usually means switching between [GUI](#graphical-user-interface)-based applications (for project management) [CLI](#command-line-interface) code editors (for coding). 
+Having to switch back and forth between project management and coding usually means switching between 
+[GUI](#graphical-user-interface)-based applications (for project management) [CLI](#command-line-interface) code editors 
+(for coding). 
 
-To solve this issue, TruthTable allows you to use a **single CLI for all your project management needs**, reducing the impact of context
-switching. You never have to use a mouse again!
+To solve this issue, TruthTable allows you to use a **single CLI for all your project management needs**, reducing 
+the impact of context switching. You never have to use a mouse again!
 
 <div markdown="span" class="alert alert-info">
 **:star: For experienced CLI users**:
@@ -112,18 +118,21 @@ So, fret not, you will become familiar with TruthTable's commands in no time.
    <a href="https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html" target="_blank">Java Installation Guide</a>
    for further instructions on how to download and install **Java 11**.
 
-2. Download the latest version of `truthtable.jar` from [our "Releases" page](https://github.com/AY2223S1-CS2103T-W13-4/tp/releases).
+2. Download the latest version of `truthtable.jar` from 
+   [our "Releases" page](https://github.com/AY2223S1-CS2103T-W13-4/tp/releases).
    The file can be located under the "Assets" section of the page as seen in the image below.
    ![TruthTable Download Location](images/DownloadLocation.png)
 
 3. Double-click on `truthtable.jar` to start the application. A window which looks similar to the screenshot below
    should appear in a few seconds. ![Ui](images/Ui.png)
-    <br/><br/>
+   <br><br>
    <div markdown="block" class="alert alert-success">**:bulb: Sample data**:
    <br><br>
-   We have also added some sample data for you to play around with and get familiar with TruthTable's [commands](#commands)!
+   We have also added some sample data for you to play around with and get familiar with TruthTable's 
+   [commands](#commands)!
    </div>
-4. That's it! You can now follow our guide below on how to [navigate the application](#navigating-truthtables-interface).
+4. That's it! You can now follow our guide below on how to 
+   [navigate the application](#navigating-truthtables-interfaceuser-interface).
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -149,10 +158,10 @@ listed.
 There will always be one team in TruthTable named "default" (if you do not specify any name).
 </div>
 
-| Number                           | Component                                      | Description                                                                      |
-|----------------------------------|------------------------------------------------|----------------------------------------------------------------------------------|
-| <span class="text-blue">1</span> | <span class="text-blue">[Index](#index)</span> | <span class="text-blue">The position of the team in the list of all teams</span> |  
-| <span class="text-blue">2</span> | <span class="text-blue">Name</span>            | <span class="text-blue">The name of the team at the specified index</span>       |
+| Number                                      | Component                                                 | Description                                                                                 |
+|---------------------------------------------|-----------------------------------------------------------|---------------------------------------------------------------------------------------------|
+| <span class="text-with-color blue">1</span> | <span class="text-with-color blue">[Index](#index)</span> | <span class="text-with-color blue">The position of the team in the list of all teams</span> |  
+| <span class="text-with-color blue">2</span> | <span class="text-with-color blue">Name</span>            | <span class="text-with-color blue">The name of the team at the specified index</span>       |
 
 ### Current Team Section
 
@@ -161,19 +170,19 @@ There will always be one team in TruthTable named "default" (if you do not speci
 This section contains information about your current team. It displays the currently selected team, along with the team
 description, links, tasks, and members related to this team.
 
-| Number                             | Component                                              | Description                                                                                                                                                    |
-|------------------------------------|--------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| <span class="text-green">1</span>  | <span class="text-green">Team Name</span>              | <span class="text-green">The name of the selected team</span>                                                                                                  |  
-| <span class="text-green">2</span>  | <span class="text-green">Team Description</span>       | <span class="text-green">The description of the selected team</span>                                                                                           |
-| <span class="text-green">3</span>  | <span class="text-green">Link Index</span>             | <span class="text-green">The name of a link related to the selected team</span>                                                                                |
-| <span class="text-green">4</span>  | <span class="text-green">Link Name</span>              | <span class="text-green">The name of a link related to the selected team</span>                                                                                |
-| <span class="text-green">5</span>  | <span class="text-green">Member [Index](#index)</span> | <span class="text-green">The position of a member in the team's list of members</span>                                                                         |
-| <span class="text-green">6</span>  | <span class="text-green">Member Name</span>            | <span class="text-green">The name of a member at the specified member index</span>                                                                             |
-| <span class="text-green">7</span>  | <span class="text-green">Task [Index](#index)</span>   | <span class="text-green">The position of a task in the team's list of tasks</span>                                                                             |
-| <span class="text-green">8</span>  | <span class="text-green">Task Name</span>              | <span class="text-green">The name of a task at the specified task index</span>                                                                                 |
-| <span class="text-green">9</span>  | <span class="text-green">Task Assignee</span>          | <span class="text-green">The name(s) of the member(s) assigned to the task</span>                                                                              |
-| <span class="text-green">10</span> | <span class="text-green">Task Completion Status</span> | <span class="text-green">The completion status of a task. `[X]` is displayed if task is completed, whereas `[ ]` is displayed if the task is incomplete</span> |
-| <span class="text-green">11</span> | <span class="text-green">Task Completion Rate</span>   | <span class="text-green">The number (and percentage) of tasks that have been completed by the selected team</span>                                             |
+| Number                                        | Component                                                         | Description                                                                                                                                                               |
+|-----------------------------------------------|-------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| <span class="text-with-color green">1</span>  | <span class="text-with-color green">Team Name</span>              | <span class="text-with-color green">The name of the selected team</span>                                                                                                  |  
+| <span class="text-with-color green">2</span>  | <span class="text-with-color green">Team Description</span>       | <span class="text-with-color green">The description of the selected team</span>                                                                                           |
+| <span class="text-with-color green">3</span>  | <span class="text-with-color green">Link Index</span>             | <span class="text-with-color green">The name of a link related to the selected team</span>                                                                                |
+| <span class="text-with-color green">4</span>  | <span class="text-with-color green">Link Name</span>              | <span class="text-with-color green">The name of a link related to the selected team</span>                                                                                |
+| <span class="text-with-color green">5</span>  | <span class="text-with-color green">Member [Index](#index)</span> | <span class="text-with-color green">The position of a member in the team's list of members</span>                                                                         |
+| <span class="text-with-color green">6</span>  | <span class="text-with-color green">Member Name</span>            | <span class="text-with-color green">The name of a member at the specified member index</span>                                                                             |
+| <span class="text-with-color green">7</span>  | <span class="text-with-color green">Task [Index](#index)</span>   | <span class="text-with-color green">The position of a task in the team's list of tasks</span>                                                                             |
+| <span class="text-with-color green">8</span>  | <span class="text-with-color green">Task Name</span>              | <span class="text-with-color green">The name of a task at the specified task index</span>                                                                                 |
+| <span class="text-with-color green">9</span>  | <span class="text-with-color green">Task Assignee</span>          | <span class="text-with-color green">The name(s) of the member(s) assigned to the task</span>                                                                              |
+| <span class="text-with-color green">10</span> | <span class="text-with-color green">Task Completion Status</span> | <span class="text-with-color green">The completion status of a task. `[X]` is displayed if task is completed, whereas `[ ]` is displayed if the task is incomplete</span> |
+| <span class="text-with-color green">11</span> | <span class="text-with-color green">Task Completion Rate</span>   | <span class="text-with-color green">The number (and percentage) of tasks that have been completed by the selected team</span>                                             |
 
 ### Persons Section
 
@@ -182,45 +191,49 @@ description, links, tasks, and members related to this team.
 This section displays the names, phone number, email, address, and tags of all persons that you have created in
 TruthTable. This section is also known as the "Contacts" section.
 
-| Number                             | Component                                        | Description                                                                         |
-|------------------------------------|--------------------------------------------------|-------------------------------------------------------------------------------------|
-| <span class="text-orange">1</span> | <span class="text-orange">[Index](#index)</span> | <span class="text-red">The position of a person in TruthTable's contact list</span> |
-| <span class="text-orange">2</span> | <span class="text-orange">Name</span>            | <span class="text-red">The name of the person at a specific index</span>            |
-| <span class="text-orange">3</span> | <span class="text-orange">Tags</span>            | <span class="text-red">The attributes associated with a person</span>               |
-| <span class="text-orange">4</span> | <span class="text-orange">Phone Number</span>    | <span class="text-red">The phone number of a person</span>                          |
-| <span class="text-orange">5</span> | <span class="text-orange">Email</span>           | <span class="text-red">The email address of a person</span>                         |
+| Number                                        | Component                                                   | Description                                                                                       |
+|-----------------------------------------------|-------------------------------------------------------------|---------------------------------------------------------------------------------------------------|
+| <span class="text-with-color orange">1</span> | <span class="text-with-color orange">[Index](#index)</span> | <span class="text-with-color orange">The position of a person in TruthTable's contact list</span> |
+| <span class="text-with-color orange">2</span> | <span class="text-with-color orange">Name</span>            | <span class="text-with-color orange">The name of the person at a specific index</span>            |
+| <span class="text-with-color orange">3</span> | <span class="text-with-color orange">Tags</span>            | <span class="text-with-color orange">The attributes associated with a person</span>               |
+| <span class="text-with-color orange">4</span> | <span class="text-with-color orange">Phone Number</span>    | <span class="text-with-color orange">The phone number of a person</span>                          |
+| <span class="text-with-color orange">5</span> | <span class="text-with-color orange">Email</span>           | <span class="text-with-color orange">The email address of a person</span>                         |
 
 ### Command Section
 
 ![Command Section](images/CommandSection.png)
 
-This section contains an input box where you can enter [commands](#command) for the actions that you want to perform. Try
-typing `help` in the input box and press <kbd>Enter</kbd> to see what happens!
+This section contains an input box where you can enter [commands](#command) for the actions that you want to perform. 
+Try typing `help` in the input box and press <kbd>Enter</kbd> to see what happens!
 
-| Number                           | Component                                        | Description                                                                                                                 |
-|----------------------------------|--------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
-| <span class="text-pink">1</span> | <span class="text-pink">Command Result</span>    | <span class="text-pink">The result of executing a command in the Command Input Box</span>                                   |
-| <span class="text-pink">2</span> | <span class="text-pink">Command Input Box</span> | <span class="text-pink">The input box for commands to be entered, which can be executed by pressing <kbd>Enter</kbd></span> |
+| Number                                      | Component                                                   | Description                                                                                                                            |
+|---------------------------------------------|-------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------|
+| <span class="text-with-color pink">1</span> | <span class="text-with-color pink">Command Result</span>    | <span class="text-with-color pink">The result of executing a command in the Command Input Box</span>                                   |
+| <span class="text-with-color pink">2</span> | <span class="text-with-color pink">Command Input Box</span> | <span class="text-with-color pink">The input box for commands to be entered, which can be executed by pressing <kbd>Enter</kbd></span> |
 
 [Back to Table of Contents](#table-of-contents)
 
-Congrats! You've successfully understood the entire TruthTable [User Interface](#user-interface)! Continue reading on to find out more about how TruthTable makes use of [Command Line Interface](#command-line-interface).
+Congratulations! You've successfully understood the entire TruthTable [User Interface](#user-interface)! Continue 
+reading on to find out more about how TruthTable makes use of a [Command Line Interface](#command-line-interface).
 
 ---
 
 ## Understanding TruthTable's CLI
 
-[Command Line Interface (CLI)](#command-line-interface) applications like TruthTable requires you to type specific words (called [commands](#command)) to make use of the application's features. On the other hand,
-[Graphical User Interface (GUI)](#graphical-user-interface) programs usually require you to use a mouse to click on the screen and perform certain actions.
+[Command Line Interface (CLI)](#command-line-interface) applications like TruthTable requires you to type specific words 
+(called [commands](#command)) to make use of the application's features. On the other hand,
+[Graphical User Interface (GUI)](#graphical-user-interface) programs usually require you to use a mouse to click on 
+the screen and perform certain actions.
 
 If you are not an experienced CLI user, terms like "commands", "flags", and "parameters" may appear daunting.
 
-But fret not! This section will cover what all these terms actually mean. By the end of it, you'll be able to confidently explain it to your friends too!
+But fret not! This section will cover what all these terms actually mean. By the end of it, you'll be able to 
+confidently explain it to your friends too!
 
 ### Commands, flags, and parameters
 
-All instructions in TruthTable are executed through **[commands](#command)**. Each command can have **[flags](#flag) specified after
-the command**, which modifies how the instruction should be carried out.
+All instructions in TruthTable are executed through **[commands](#command)**. Each command can have **[flags](#flag) 
+specified after the command**, which modifies how the instruction should be carried out.
 
 For each of these flags, there may be **[parameters](#parameter)** specified after it. But, **not all commands
 require parameters**.
@@ -247,12 +260,11 @@ Let's use an example to break down what we've talked about.
 
 Here's a summary of what each highlighted section represents.
 
-| Number                            | Name                                               | Meaning                                                                                                                |
-|-----------------------------------|----------------------------------------------------|------------------------------------------------------------------------------------------------------------------------|
-| <span class="text-red">1</span>   | <span class="text-red">Command</span>              | <span class="text-red">The name of an instruction</span>                                                               |
-| <span class="text-blue">2</span>  | <span class="text-blue">Flag/Option</span>         | <span class="text-blue">Text that is used to modify the operation of a command, often starting with `-` or `--`</span> |
-| <span class="text-green">3</span> | <span class="text-green">Parameter/Argument</span> | <span class="text-green">Information specified for a command to operate, often used after flags</span>                 |
-
+| Number                                       | Name                                                          | Meaning                                                                                                                           |
+|----------------------------------------------|---------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
+| <span class="text-with-color red">1</span>   | <span class="text-with-color red">Command</span>              | <span class="text-with-color red">The name of an instruction</span>                                                               |
+| <span class="text-with-color blue">2</span>  | <span class="text-with-color blue">Flag/Option</span>         | <span class="text-with-color blue">Text that is used to modify the operation of a command, often starting with `-` or `--`</span> |
+| <span class="text-with-color green">3</span> | <span class="text-with-color green">Parameter/Argument</span> | <span class="text-with-color green">Information specified for a command to operate, often used after flags</span>                 |
 
 <div markdown="block" class="alert alert-primary">
 **:information_source: Important note for flags**
@@ -299,22 +311,18 @@ For instance, in the `assign task` command, we can specify more than 1 assignee 
 A valid command is `assign task 1 -a 1 2 3` where `1 2 3` are recognized as the assignees to the task with index `1`.
 </div>
 
-
-<div markdown="block" class="alert alert-info">
-**:star: POSIX clustered short options** <br>
-TruthTable supports clustered options as specified in
-<a href="https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap12.html#tag_12_02" target="_blank">this document</a>.
-</div>
-
 ### Understanding the help message
 
-While using TruthTable, you might type the command in an incorrect format - perhaps you forgot to specify a flag or a parameter. Will the application crash? Will all your precious data be lost? Absolutely not! 
+While using TruthTable, you might have entered the command in an incorrect format - perhaps you forgot to specify a 
+flag or a parameter. Will the application crash? Will all your precious data be lost? Absolutely not! 
 
-Rather, we understand that it is possible for anyone to forget the correct format or command name, and we want to help you as much as possible! This is why **every command in TruthTable has its own help message**.
+Rather, we understand that it is possible for anyone to forget the correct format or command name, and we want to help 
+you as much as possible! This is why **every command in TruthTable has its own help message**.
 
-Each command allows you to specify the `-h` or `--help` flag, which will show you all the available flags and parameters for the command. Alternatively, you can also refer to this user guide to find out the details of any command.
+Each command allows you to specify the `-h` or `--help` flag, which will show you all the available flags and 
+parameters for the command. Alternatively, you can also refer to this user guide to find out the details of any command.
 
-So, you never have to worry about typing a wrong command since there's always help available _at your fingertips_. :smile:
+So, you never have to worry about typing a wrong command since there's always help available _at your fingertips_.
 
 Let's dive a little deeper into what a help message looks like and how to interpret it. 
 
@@ -324,15 +332,15 @@ Let's dive a little deeper into what a help message looks like and how to interp
 
 Here's a summary of what each highlighted section represents.
 
-| Number                            | Name                                                            | Special Syntax                                         | Remarks                                                                                                       |
-|-----------------------------------|-----------------------------------------------------------------|--------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
-| <span class="text-red">1</span>   | <span class="text-red">Command</span>                           | <span class="text-red">-</span>                        | <span class="text-red">Only alphabets and spaces (all commands can be found [here](#commands))</span>         |
-| <span class="text-green">2</span> | <span class="text-green">Optional Flag with no Parameter</span> | <span class="text-green">`[-flag]`</span>              | <span class="text-green">-</span>                                                                             |
-| <span class="text-green">3</span> | <span class="text-green">Optional Flag with Parameters</span>   | <span class="text-green">`[-flag=<parameters>]`</span> | <span class="text-green">An ellipsis `...` is present only if more than 1 parameter is **allowed**</span>     |
-| <span class="text-blue">4</span>  | <span class="text-blue">Required Flag with Parameters</span>    | <span class="text-blue">`flag=<parameters>`</span>     | <span class="text-blue">An ellipsis `...` is present only if more than 1 parameter is **allowed**</span>      |
-| <span class="text-blue">5</span>  | <span class="text-blue">Required Parameter</span>               | <span class="text-blue">`<parameter>`</span>           | <span class="text-blue">All parameters are required by default</span>                                         |
-| <span class="text-pink">6</span>  | <span class="text-pink">Flag/Parameter Name and Alias</span>    | <span class="text-pink">-</span>                       | <span class="text-pink">All aliases of a flag/parameter will be listed and separated with commas (`,`)</span> |
-| <span class="text-pink">7</span>  | <span class="text-pink">Flag/Parameter Description</span>       | <span class="text-pink">-</span>                       | <span class="text-pink">Brief description of flag/parameter</span>                                            |
+| Number                                       | Name                                                                       | Special Syntax                                                    | Remarks                                                                                                                  |
+|----------------------------------------------|----------------------------------------------------------------------------|-------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
+| <span class="text-with-color red">1</span>   | <span class="text-with-color red">Command</span>                           | <span class="text-with-color red">-</span>                        | <span class="text-with-color red">Only alphabets and spaces (all commands can be found [here](#commands))</span>         |
+| <span class="text-with-color green">2</span> | <span class="text-with-color green">Optional Flag with no Parameter</span> | <span class="text-with-color green">`[-flag]`</span>              | <span class="text-with-color green">-</span>                                                                             |
+| <span class="text-with-color green">3</span> | <span class="text-with-color green">Optional Flag with Parameters</span>   | <span class="text-with-color green">`[-flag=<parameters>]`</span> | <span class="text-with-color green">An ellipsis `...` is present only if more than 1 parameter is **allowed**</span>     |
+| <span class="text-with-color blue">4</span>  | <span class="text-with-color blue">Required Flag with Parameters</span>    | <span class="text-with-color blue">`flag=<parameters>`</span>     | <span class="text-with-color blue">An ellipsis `...` is present only if more than 1 parameter is **allowed**</span>      |
+| <span class="text-with-color blue">5</span>  | <span class="text-with-color blue">Required Parameter</span>               | <span class="text-with-color blue">`<parameter>`</span>           | <span class="text-with-color blue">All parameters are required by default</span>                                         |
+| <span class="text-with-color pink">6</span>  | <span class="text-with-color pink">Flag/Parameter Name and Alias</span>    | <span class="text-with-color pink">-</span>                       | <span class="text-with-color pink">All aliases of a flag/parameter will be listed and separated with commas (`,`)</span> |
+| <span class="text-with-color pink">7</span>  | <span class="text-with-color pink">Flag/Parameter Description</span>       | <span class="text-with-color pink">-</span>                       | <span class="text-with-color pink">Brief description of flag/parameter</span>                                            |
 
 ### Aliases
 
@@ -352,8 +360,8 @@ The `add person` command also has the following flags and their corresponding al
 - aliases for `-h`: `--help`
 - aliases for `-e`: `--email`
 - aliases for `-n`: `--name`
-- aliases for `-p`:`--phone`
-- aliases for `-t`:`--tags`
+- aliases for `-p`: `--phone`
+- aliases for `-t`: `--tags`
 
 You can find out more about these flags [here](#creating-a-new-person-add-person).
 
@@ -394,7 +402,7 @@ The commands are split into **5** main sections:
 1. [Person commands](#commands-to-manage-persons) and [member commands](#commands-to-manage-members)
 2. [Team commands](#commands-to-manage-teams)
 3. [Task commands](#commands-to-manage-tasks)
-4. [Link commands](#commands-to-manage-links--urls)
+4. [Link commands](#commands-to-manage-links)
 5. [General commands](#general-commands)
 
 <div markdown="block" class="alert alert-primary">**:information_source: Command Format**
@@ -444,7 +452,6 @@ Each parameter has its own constraints, which can be found [here](#flag-and-para
         4. `-hci`
 - If an extra parameter is specified, the command will not execute and an error message will be displayed
     - For e.g. `help with extra words` will display an error message
-
 </div>
 
 <div markdown="span" class="alert alert-success">
@@ -455,23 +462,29 @@ the help message that TruthTable displays whenever you run a command with `-h`.
 
 ### Commands to Manage Persons
 
-If you're looking for a quick summary of the commands to manage persons, you can find it [here](#summary-of-person-commands).
+If you're looking for a quick summary of the commands to manage persons, you can find 
+it [here](#summary-of-person-commands).
 
-If you want to understand how each command can be used with the help of relevant examples and illustrations, continue reading on! :smile:
+If you want to understand how each command can be used, we have provided some examples and illustrations on how to use
+them, so continue reading on!
 
 #### Creating a new person: `add person`
 
-It's the start of a new semester, and you are excited to work with your new classmates on software engineering projects. 
-You meet a person that seems like a really fun person to work with, and you can't wait to know more about them. You ask for their name, email and phone number 
-and simply key in `add person -e <EMAIL> -n<NAME> -p<PHONE>` and their contact details are saved! Now you can contact 
-them easily before you form your project groups. You may optionally specify `-t <TAGS>` for any interesting qualities about the person!
+It's the start of a new semester, and you are excited to work with your new classmates on software engineering 
+projects. You meet a person that seems like a really fun person to work with, and you can't wait to know more about 
+them. After getting their name, email, and phone number, you can save their contact details on TruthTable with this 
+`add person` command! Now you can contact them easily when you are forming your project teams. You may optionally 
+specify some tags for any interesting qualities about the person!
 
-The `add person` command allows you to add a new person to TruthTable. The new person is added to the [persons section](#persons-section) as seen in the image
-below. Do not worry if an error shows up, you might have typed something wrongly. Here, let us take walk through an example on how to add a person.
+This `add person` command allows you to add a new person to TruthTable. The new person is added to the 
+[persons section](#persons-section). Do not worry if an error shows up, as
+you might have made a typo. 
 
-Let us try to add John Doe to our application, along with his phone number and email address. Enter the command
+Here, let us take walk through an example on how to add a person.
 
-`add person -n "John Doe" -p 98765432 -e johnd@example.com` 
+Let's try to add a new person called John Doe to our application. 
+
+We can do so by entering the command `add person -n "John Doe" -p 98765432 -e johnd@example.com`.
 
 If done successfully, you should see a new person show up in the [persons section](#persons-section) as seen below.
 
@@ -506,28 +519,27 @@ A person can have any number of tags (including 0).
 
 #### Editing a person: `edit person`
 
-Oops! Seems like another classmate, Alex Yeoh, might have provided his school email instead of his personal email. Not to worry, you 
-can edit his contact details easily with `edit person`! First, identify the index number of your classmate in the
-[persons section](#persons-section). If you are not able to find his name visibly, refer to 
-[find person command](#finding-a-person-find-person) on how you can find your classmate easily. Next, key in 
-`edit person <INDEX_NUMBER> -e <NEW_EMAIL>` to change his email! You can edit other contact details as well.
+Oops! Seems like another classmate, Alex Yeoh, might have provided his school email instead of his personal email. You 
+can edit their contact details easily with `edit person`! 
 
-The `edit person` command allows you to edit an existing person in TruthTable. The edited person's details will be shown in the
-[persons section](#persons-section) as seen in the image below. As always, don't panic if you see an error message. Let 
-us run through an example on how to edit the details of a person.
+The `edit person` command allows you to edit an existing person in TruthTable. The edited person's details will be 
+shown in the [persons section](#persons-section). As always, don't panic if you see an 
+error message. Let us run through an example on how to edit the details of a person.
 
 Suppose your classmate, Alex Yeoh, has provided you with the wrong phone and email. Identify the index number of
-`Alex Yeoh` in the application (1 in the image below). Enter the command 
+`Alex Yeoh` in the application (1 in the image below). If you are not able to find their name, refer to
+[find person command](#finding-a-person-find-person) on how you can find them.
 
-`edit person 1 -p 91234567 -e johndoe@example.com`
+Then, enter the command `edit person 1 -p 91234567 -e johndoe@example.com`.
 
 If done successfully, you should see the new details show up under in the [persons section](#persons-section)
 under `Alex Yeoh` as seen below. 
 
+![Edit Person Example](images/EditPersonExample.png)
+
 Unable to find a person you are looking for? Please check that you have added the person into TruthTable! Refer to the 
 above [add person command](#creating-a-new-person-add-person) to add a new person into TruthTable.
 
-![Edit Person Example](images/EditPersonExample.png)
 
 **Format:** `edit person [-h] ([-n=<PERSON_NAME>] [-p=<PERSON_PHONE>] [-e=<PERSON_EMAIL>] 
 [-t[=\<PERSON_TAGS\>...]]...) <PERSON_INDEX>`
@@ -562,33 +574,33 @@ To remove all tags of a person, you can use `-t` without specifying any tags.
 
 **Examples:**
 
-* `edit person 1 -p 91234567 -e johndoe@example.com` Edits the phone number and email address of the 1st person to be
+* `edit person 1 -p 91234567 -e johndoe@example.com` edits the phone number and email address of the 1st person to be
   "91234567" and "johndoe@example.com" respectively.
-* `edit person 2 -n Betsy Crowe -t` Edits the name of the 2nd person to be "Betsy Crowe" and clears all existing tags.
+* `edit person 2 -n Betsy Crowe -t` edits the name of the 2nd person to be "Betsy Crowe" and clears all existing tags.
 
 #### Deleting a person: `delete person`
 
-Alas, you are done with the project and will no longer be working with this classmate. Not to worry, you
-can delete their contact details easily with `delete person`! First, identify the index number of your classmate in the
-[persons section](#persons-section). If you are not able to find their name visibly, refer to 
-[find command](#finding-a-person-find-person) on how you can find your classmate easily. Next, key in `delete person <INDEX_NUMBER>` 
-to remove them from TruthTable.
+Alas, you are done with the project and will no longer be working with this classmate. You
+can delete their contact details easily with `delete person`! 
 
-The `delete person` command allows you to delete the specified person from TruthTable. The person deleted will be 
-removed from the [persons section](#persons-section) as seen in the image below. Let us run through an example on how to delete a 
-person.
+The `delete person` command allows you to delete the specified person from TruthTable. The person deleted will be
+removed from the [persons section](#persons-section). Let us run through an example on how you can delete a person in TruthTable.
 
 Suppose you want to delete Alex Yeoh from your application. Identify the index number of `Alex Yeoh` in the
-application (1 in the image below). Enter the command
+application (1 in the image below). First, identify the index number of your classmate in the
+[persons section](#persons-section). If you are not able to find their name, refer to
+[find command](#finding-a-person-find-person) on how you can find them.
 
-`delete person 1`
+Then, enter the command `delete person 1`.
 
-If done successfully, you should see that the person `Alex Yeoh` has been removed under the [persons section](#persons-section).
+If done successfully, you should see that the person `Alex Yeoh` has been removed under the 
+[persons section](#persons-section).
+
+![Delete Person Example](images/DeletePersonExample.png)
 
 Unable to find a person you are looking for? Please check that you have added the person into TruthTable! Refer to the
 above [add person command](#creating-a-new-person-add-person) to add a new person into TruthTable.
 
-![Delete Person Example](images/DeletePersonExample.png)
 
 **Format:** `delete person [-h] <PERSON_INDEX>`
 
@@ -615,27 +627,26 @@ above [add person command](#creating-a-new-person-add-person) to add a new perso
 
 #### Finding a person: `find person`
 
-You recall talking to somebody called Alex in your class, but you do not remember his full name. Not to worry, you
-can find their contact details easily with `find person`! First, remember his first name or any part of his full name. Next, key in `find person <PERSON_NAME_KEYWORDS>`, and TruthTable will show you all persons with 
-names that contain the keywords that you specified!
+You recall talking to someone in your class, but you can't seem to remember his full name. Or, you are
+having trouble finding someone in the [persons section](#persons-section). With the `find person` command, you can now retrieve their details easily! 
 
-The `find person` command allows you to finds all persons whose names contain any of the given keywords. 
-The persons with matching names will be shown in the [persons section](#persons-section) as seen in the image below.
-Let us run through an example on how to find a person.
+The `find person` command allows you to find all persons whose names contain any of the keywords you specify. 
+The persons with matching names will be shown in the [persons section](#persons-section).
 
-Suppose you want to find everyone named Alex and everyone named David. Enter the command
+Let us run through how you can find a person.
 
-`find person alex david`
+Suppose that you remember that this person has the words Alex or David in their name. Then, to find all persons
+with Alex and David in their names, enter the command `find person alex david`.
 
 If done successfully, you should the see all persons named Alex and David show up under in the
 [persons section](#persons-section).
 
+![result for 'find person alex david'](images/FindPersonExample.png)
+
 Unable to find a person you are looking for? Please check that you have added the person into TruthTable! Refer to the
 above [add person command](#creating-a-new-person-add-person) to add a new person into TruthTable.
 
-To reset the person list, see the [list persons command](#listing-all-persons-list-persons).
-
-![result for 'find person alex david'](images/findPersonAlexDavidResult.png)
+To show everyone in the person list again, see the [list persons command](#listing-all-persons-list-persons).
 
 **Format:** `find person [-h] <PERSON_NAME_KEYWORDS>`
 
@@ -665,20 +676,16 @@ Take note that:
 
 #### Listing all persons: `list persons`
 
-You want to see an overview of all your classmates. Key in `list persons`, and TruthTable will show you all persons that 
-currently exist in your TruthTable.
+If you want to see all the persons you have added to TruthTable, key in `list persons`, and they will all
+appear in the [persons section](#persons-section). This is especially helpful if you have previously run the
+[`find person`](#finding-a-person-find-person) command previously.
 
-The `list persons` command shows the list of all persons in TruthTable. After running the 
-[`find person`](#finding-a-person-find-person) command, you may wish to view all persons again. To do so, the `list 
-persons` command will display all persons as seen in the image below.
+The `list persons` command shows the list of all persons in TruthTable. 
 
-If done successfully, you should the see all persons show up under in the [persons section](#persons-section) as shown
-below.
+![List Persons Example](images/ListPersonsExample.png)
 
 Unable to find a person you are looking for? Please check that you have added the person into TruthTable! Refer to the
 above [add person command](#creating-a-new-person-add-person) to add a new person into TruthTable.
-
-![List Persons Example](images/DeletePersonExample.png)
 
 **Format:** `list persons [-h]`
 
@@ -698,12 +705,9 @@ Summary of the commands to manage members can be found [here](#summary-of-member
 
 #### Adding a new member to the team: `add member`
 
-You have made up your mind on choosing that people that you want to work with for your group projects, and now you want to
-add them to your team. First, identify the index number of your classmate in the [persons section](#persons-section).
-Then, simply key in `add member <INDEX>` and they are added to your team. You can finally begin to work on some exciting software engineering projects with them!
-
-If you are not able to see their name in the list of persons, refer to [find person command](#finding-a-person-find-person) on how to
-find a person.
+You have made up your mind on you want to work with for your group projects, and now you want to
+add them to your team. You can add persons to your team with the `add member` command! You can finally begin to work 
+on some exciting software engineering projects with them!
 
 The `add member` command allows you to add a new team member in your currently selected team. The new member is added
 to the member list in the [current team section](#current-team-section) as seen in the image below.
@@ -713,9 +717,10 @@ Unsure of which team you are currently on? Please refer to the [current team sec
 Here, let us take a quick walk-through on how to add a person.
 
 Let us try to add a new person called Alex Yeoh to our team. Identify the index number of `Alex Yeoh` in the 
-application (1 in the image below). Enter the command
+application (1 in the image below). If you are not able to see their name in the list of persons, refer to [find person command](#finding-a-person-find-person) on how to
+find a person.
 
-`add member 1`
+Enter the command `add member 1` to add `Alex Yeoh` into your team.
 
 If done successfully, you should see a new member show up in the member list in the 
 [current team section](#current-team-section) as seen below. 
@@ -744,25 +749,28 @@ If done successfully, you should see a new member show up in the member list in 
 #### Delete a member from team: `delete member`
 
 Due to unfortunate circumstances, one of your teammates needs to be shuffled to another group, and he will no longer
-be on your team! Not to worry, you can delete members from your team. First, identify the index number of your teammate 
-in the [current team section](#current-team-section). If you are not able to see their name on the list, refer to
-[find member command](#finding-a-member-find-member) on how to find a member in your team. Then, simply key in 
-`delete member <INDEX>` and they will be removed from your team!
+be on your team! You can delete members from your team using the `delete member` command.
 
 The `delete member` command allows you to delete an existing team member in your currently selected team. 
-The corresponding team member will be removed from the [current team section](#current-team-section) as seen in the image 
-below. Unsure of what team you are currently on? Please refer to the [currently selected team](#current-team-section) 
+The corresponding team member will be removed from the [current team section](#current-team-section) as seen in the 
+image below. 
+
+Unsure of what team you are currently on? Please refer to the [currently selected team](#current-team-section) 
+
 Here, let us take a quick walk-through on how to delete a member.
 
-Let us try to delete Alex Yeoh from our team. Identify the index number of `Alex Yeoh` in the
-member list (1 in the image below). Enter the command
+Let us delete Alex Yeoh from our team. Firstly, identify the index number of `Alex Yeoh` in the
+member list (1 in the image below). If you are not able to see their name on the list, 
+refer to[find member command](#finding-a-member-find-member)
 
-`delete member 1`
+Enter the command `delete member 1` to delete `Alex Yeoh` from the team.
 
 If done successfully, Alex Yeoh should be removed from the [current team section](#current-team-section) as seen below.
 
-Unable to find an existing team member? Please check that you have added the team member into your team as shown in the 
-[current team section](#current-team-section). Refer to the above 
+![Delete Member Example](images/DeleteMemberExample.png)
+
+Unable to delete an existing team member? Please check that you have added the team member into your team as shown in 
+the [current team section](#current-team-section). Refer to the above 
 [add member command](#adding-a-new-member-to-the-team-add-member) on how to add a new team member.
 
 **Format:** `delete member [-h] <MEMBER_INDEX>`
@@ -787,20 +795,21 @@ Unable to find an existing team member? Please check that you have added the tea
 
 As your software project is growing and your team is getting bigger, you are no longer able to find specific team 
 members. Fret not, you can find your team members easily with the `find member` command.  
-First, recall any part (keyword) of the member's name you are looking for. Next, key in 
-`find member -n <PERSON_NAME_KEYWORDS>`, and TruthTable will show you all team members with names that contain those
-keywords! You can also find your team members by their email using the `-e` flag.
 
 The `find member` command allows you to find all team members whose names or emails contain any of the given keywords.
-The members with matching names will be shown in the member list in the [current team section](#current-team-section) 
-as seen in the image below. Let us run through the steps to find a team member.
+The members with matching names will be shown in the member list in the [current team section](#current-team-section)
+as seen in the image below. 
 
-Suppose you want to find all team members named Alex or David. Enter the command
+Let us run through the steps to find a team member.
 
-`find member -n alex david`
+Suppose you want to find all team members named Alex or David. 
+
+Enter the command `find member -n alex david` to find all team members named Alex or David.
 
 If done successfully, you should the see all team members named Alex and David show up under in the member list in the
-[current team section](#current-team-section).
+[current team section](#current-team-section). You can also find your team members by their email using the `-e` flag.
+
+![Find Member Example](images/FindMemberExample.png)
 
 Unable to find an existing team member? Please check that you have added the team member into your team as shown in the
 [current team section](#current-team-section). Refer to the above
@@ -846,21 +855,17 @@ Take note that:
 
 #### Listing all members of the team: `list members`
 
-You want to see a list of all your team members. Key in `list members`, and TruthTable will show you all existing
-team members in your [currently selected team](#current-team-section).
+TruthTable allows you to see a list of all your team members with the `list members` command. After running the
+[find member command](#finding-a-member-find-member), you may wish to view all team members again. 
 
-The `list members` command shows a list of all team members in your team. After running the
-[find member command](#finding-a-member-find-member), you may wish to view all team members again. To do so, 
-the `list members` command will update the member list in the [current team section](#current-team-section) and display all 
-team members as seen in the image below.
+To do so, enter `list members` and the member list in the [current team section](#current-team-section) will be 
+updated.
 
-If done successfully, you should the see all team members show up under in the member list in the
-[current team section](#current-team-section) as shown below.
+![List Members Example](images/ListMembersExample.png)
 
 Unable to find an existing team member? Please check that you have added the team member into your team as shown in the
 [current team section](#current-team-section). Refer to the above
 [add member command](#adding-a-new-member-to-the-team-add-member) on how to add a new team member.
-
 
 View all the members currently in the team, in the form of a list.
 
@@ -878,24 +883,29 @@ View all the members currently in the team, in the form of a list.
 
 #### Sort members: `sort members`
 
-Your team size is getting larger, and it is getting confusing for you to track the list of members in your team. Not to 
-worry, you can sort your team members by name with our `sort members` command! Suppose you want to see whether there is 
-team member called `Caroline`, but you are unsure of how to spell it. First, key in `sort members asc`, and TruthTable 
-will sort the list of team members alphabetically by name in ascending order. You can now verify if `Caroline` indeed 
-exists in your team by scrolling to all names that begin with `c`. You may sort your team members in descending order 
-with `sort members dsc` or reset to the original list order with `sort members res`.
+Your team size is getting larger, and it is getting confusing for you to track the members in your team. You can sort your team members by name with our `sort members` command! 
 
-The `sort members` command allows you to sort your team members in alphabetical order. The sorted team members will 
+The `sort members` command allows you to sort your team members in alphabetical order. The sorted team members will
 be shown in member list the [current team section](#current-team-section)  as seen in the image below.
 
 Let us run through an example on how to sort your team members.
 
-Suppose you want to sort your team members alphabetically in ascending order. Enter the command
+Suppose you want to check whether there is team member called `Caroline`, but you are unsure of how to spell it.
 
-`sort members asc`
+Enter the command `sort members asc` to sort all team members in alphabetical order. 
 
-If done successfully, the sorted team members will be shown in the member list in 
+If done successfully, the sorted team members will be shown in the member list in
 [current team section](#current-team-section)
+
+You can now verify if `Caroline` indeed  exists in your team by scrolling to all names that begin with `c`. You may 
+sort your team members in descending order with `sort members dsc` or reset to the original list order with 
+`sort members res`.
+
+![Sort Members Example](images/SortMembersExample.png)
+
+Unable to find an existing team member? Please check that you have added the team member into your team as shown in the
+[current team section](#current-team-section). Refer to the above
+[add member command](#adding-a-new-member-to-the-team-add-member) on how to add a new team member.
 
 **Format:** `sort members [-h] <ORDER>`
 
@@ -927,20 +937,22 @@ Summary of the commands to manage teams can be found [here](#summary-of-team-com
 
 #### Creating a new team: `add team`
 
-You have formed your group for the project and are ready to work on your software project! Now you are
-ready to create a new team. First, decide on a team name and a description of your team. 
-Next, key in `add team -n <TEAM_NAME> -d <TEAM_DESCRIPTION>` and a new team will be created. Combine this with 
-[set team command](#set-a-new-team-set-team) to switch to the team you just created. You are all set to work on your new software project!
+You have formed your group for the project and are ready to work on your software engineering project! After deciding on a team name and a description, you are now ready to create a new team. 
 
 The `add team` command allows you to add a new team to your list of teams. The new team is added to the 
-[teams section](#teams-section) as seen in the image below. Do not worry if an error shows up, you might have typed 
-something wrongly. Here, let us take a quick walk-through on how to add a team.
+[teams section](#teams-section) as seen in the image below. Do not worry if an error shows up, you might have typed something wrongly. 
 
-Let us try to add a new team named `CS2103T`, with a description called `Software Engineering`. Enter the command
+Here, let us take a quick walk-through on how to add a team.
 
-`add team CS2103 -d "Software Engineering"`
+Let us try to add a new team named `CS2103T`, with a description called `Software Engineering`. 
+
+Enter the command `add team CS2103T -d "Software Engineering"` to add the team as described.
 
 If done successfully, you should see a new team show up in the [teams section](#teams-section) as shown below.
+
+![Add Team Example](images/AddTeamExample.png)
+
+Combine this with [set team command](#set-a-new-team-set-team) to directly switch to the team you just created.
 
 **Format:** `add team [-h] [-d=TEAM_DESCRIPTION] <TEAM_NAME>`
 
@@ -962,20 +974,22 @@ If done successfully, you should see a new team show up in the [teams section](#
 
 #### Edit current team: `edit team`
 
-After a while, your group decides to change its team name. Not to worry, you are able to edit both, the name and the description, of a team. Once you decide on the new team name and description, key in `edit team -n <TEAM_NAME> -d <TEAM_DESCRIPTION>` and the details your
-[currently selected team](#current-team-section) will be edited. 
+After a while, your group decides to change its team name. You are able to edit both, the name and the description, of a team.
 
-The `edit team` command allows you to edit the details your currently selected team.
+The `edit team` command allows you to edit the details your currently selected team. The edited team details will be 
+shown in the [currently selected team](#current-team-section). 
 
-Here, let us take a quick walk-through on how to add a team.
+Here, let us take a quick walk-through on how to edit your currently selected team.
 
-Let us try to edit the name of our current team to `NUS TruthTable`. Enter the command
+Supposed you have decided on better team name `NUS TruthTable` 
 
-`edit team -n "NUS TruthTable"`
+Enter the command `edit team -n "NUS TruthTable"` to edit the name of the currently selected team.
 
-If done successfully, the details that you specified will be shown in the 
-[currently selected team](#current-team-section) as shown below.
+If done successfully, the details that you specified will be shown in the
+[currently selected team](#current-team-section) as shown below. You can also edit the team description directly 
+using the `-d` flag.
 
+![Edit Team Example](images/EditTeamExample.png)
 
 **Format:** `edit team [-h] ([-n=<TEAM_NAME>] [-d=<TEAM_DESCRIPTION>])`
 
@@ -1000,17 +1014,22 @@ If done successfully, the details that you specified will be shown in the
 
 #### Delete an existing team: `delete team`
 
-The semester is coming to an end, and the group project is finally completed. You can delete a team once it is no longer
-needed. Simply key in `delete team <TEAM_NAME>` to delete an existing team from the [teams section](#teams-section).
+The semester is coming to an end, and the group project is finally completed. You can delete a team once it is no longer needed with our `delete team` command.
 
-The `delete team` command allows you to delete an existing team. The team deleted will be removed from the 
+The `delete team` command allows you to delete an existing team. The team deleted will be removed from the
 [teams section](#teams-section). Let us show you an example of deleting a team.
 
-Suppose you have an existing team called CS2103T and want to remove it. Enter the command
+Suppose you have an existing team called `CS2103T` and want to remove it. 
 
-`delete team CS2103T`
+Enter the command `delete team CS2103T` to delete the target team.
 
 If done successfully, you should see the team `CS2103T` removed under the [teams section](#teams-section).
+
+![Delete Team Example](images/DeleteTeamExample.png)
+
+Unable to find the team that you want to delete? Please check that you have added the team into TruthTable as shown in the
+[teams section](#teams-section). Refer to the above [add team command](#creating-a-new-team-add-team) 
+on how to add a new team.
 
 **Format:** `delete team [-h] <TEAM_NAME>`
 
@@ -1030,20 +1049,24 @@ If done successfully, you should see the team `CS2103T` removed under the [teams
 
 #### Set a new team: `set team`
 
-It is a busy semester, and you have multiple teams that you need to manage. You can change the team that you are managing to 
-any other team that is displayed in the [teams section](#teams-section). Simply enter `set team <TEAM_NAME>` to change
-the working team to the target team.
+It is a busy semester, and you have multiple teams that you need to manage. Not to worry, you can change the team you 
+are managing using our `set team` command. 
 
-The `set team` command allows you to change the [currently selected team](#current-team-section) to a new team from 
-the list of teams in the [teams section](#teams-section). Let's see an example of how to use this command.
+The `set team` command allows you to change the [currently selected team](#current-team-section) to a new team from
+the list of teams in the [teams section](#teams-section). Let us show you an example of how to use this command.
 
-Suppose you have finished the tasks in your current team CS2103T and have an existing team called CS2102. You want to
-start managing that team instead. Enter the command
+Suppose you have finished the tasks in your current team `CS2103T` and have an existing team called `CS2102`. 
 
-`set team CS2102`
+Enter the command `set team CS2102` to change your current selected team.
 
-If done successfully, your [currently selected team](#current-team-section) will change to the team `CS2102` along with
-all of its information.
+If done successfully, your [currently selected team](#current-team-section) will change to the team `CS2102` along 
+with all of its team information, as shown below.
+
+![Set Team Example](images/SetTeamExample.png)
+
+Unable to find the team that you want to check? Please check that you have added the team into TruthTable as shown in 
+the [teams section](#teams-section). Refer to the above [add team command](#creating-a-new-team-add-team)
+on how to add a new team.
 
 **Format:** `set team [-h] <TEAM_NAME>`
 
@@ -1068,11 +1091,7 @@ Summary of the commands to manage tasks can be found [here](#summary-of-task-com
 #### Add task to team: `add task`
 
 Your professor has just announced a list of submissions that you need to complete for the project. You want to record
-the list of tasks that needs to be done in order to complete the submission on time. Decide on a task name and key in
-`add task <TASK_NAME>` and a new task will be added to the task list in [current team section](#current-team-section).
-You may optionally specify a deadline and assignees for this command using `-d <TASK_DEADLINE>` and 
-`-a <TASK_ASSIGNEES>` respectively. Please refer to the respective commands on how to 
-[set deadlines](#set-deadline-for-task-set-deadline) and [set assignees](#assign-a-task-to-team-member-assign-task) after a task has been created.
+the list of tasks that needs to be done in order to complete the submission on time. You can use the `add task` command for this!
 
 The `add task` allow you to add a new task to your current team. Each task can have a deadline and multiple assignees.
 The new task will be displayed in the task list of your [current team section](#current-team-section). Here, let's take a quick walk-through on how to add a new task.
@@ -1083,6 +1102,11 @@ Let us try to add a task called `Create PR`. Enter the command
 
 If done successfully, a new task with the name `Create PR` will be added to the task list in 
 [current team section](#current-team-section).
+
+Please refer to the respective commands on how to 
+[set deadlines](#set-deadline-for-task-set-deadline) and [set assignees](#assign-a-task-to-team-member-assign-task) after a task has been created.
+
+![Add Task Example](images/AddTaskExample.png)
 
 **Format:** `add task [-h] [-d=<TASK_DEADLINE>] [-a[=<TASK_ASSIGNEES>...]]... <TASK_NAME>`
 
@@ -1113,12 +1137,7 @@ If done successfully, a new task with the name `Create PR` will be added to the 
 
 #### Edit task in team: `edit task`
 
-Accidentally spelt the name of a task incorrectly? Not to worry, you can edit the details of the  task easily with the `edit task` command! First, identify the index number of the task in the task list of
-[current team section](#current-team-section). If you are not able to find the task visibly, refer to
-[find task command](#finding-a-task-find-task) on how you can find your task easily. Next, key in
-`edit task <INDEX_NUMBER> -n <NEW_TASK_NAME>` to change the name of the task! You can edit other information such as 
-deadline and assignees as well. Please refer to the respective commands on how to
-[set deadlines](#set-deadline-for-task-set-deadline) and [set assignees](#assign-a-task-to-team-member-assign-task).
+Accidentally spelt the name of a task incorrectly? Not to worry, you can edit the details of the  task easily with the `edit task` command!
 
 The `edit task` command allows you to edit an existing task in your team. The edited task's details will be shown in the
 task list of the [current team section](#current-team-section). Let
@@ -1131,6 +1150,12 @@ Suppose you want to change the task name from `Create PR` to `Merge PR`. Identif
 
 If done successfully, you should see the new details show up under in the task list of the
 [current team section](#current-team-section), with the task name of `Merge PR`.
+
+Please refer to the respective commands on how to
+[set deadlines](#set-deadline-for-task-set-deadline) and [set assignees](#assign-a-task-to-team-member-assign-task).
+
+
+![Edit Task Example](images/EditTaskExample.png)
 
 Unable to find a task you are looking for? Please check that you have added the task into TruthTable! Refer to the
 above [add task command](#add-task-to-team-add-task) to add a new task into TruthTable.
@@ -1180,11 +1205,7 @@ Take note that:
 
 #### Delete task from team: `delete task`
 
-You realise that the task that you created is actually not very important, and you'd like to remove it. Not to worry, you
-can delete the tasks easily with `delete task`! First, identify the index of the task in the task list of
-[current team section](#current-team-section). If you are not able to find the task visibly, refer to
-[find task command](#finding-a-task-find-task). Next, key in `delete task <INDEX_NUMBER>`
-to remove the task from TruthTable.
+You realise that the task that you created is actually not very important, and you'd like to remove it. You can delete the tasks easily with `delete task`! 
 
 The `delete task` command allows you to delete the specified task from TruthTable. The task deleted will be
 removed from the task list of the [current team section](#current-team-section). Let us run through an example on how to delete a
@@ -1197,6 +1218,8 @@ application (1 in the image below). Enter the command
 
 If done successfully, you should the task `Merge PR` removed under the task list of
 [current team section](#current-team-section).
+
+![Delete Task Example](images/DeleteTaskExample.png)
 
 Unable to find a task you are looking for? Please check that you have added the task into TruthTable! Refer to the
 above [add task command](#add-task-to-team-add-task) to add a new task into TruthTable.
@@ -1222,9 +1245,7 @@ above [add task command](#add-task-to-team-add-task) to add a new task into Trut
 #### Finding a task: `find task`
  
 The final deadline is coming up, and there so many tasks yet to complete. You recall adding a task called "merge", but you are not sure
-about the full name of the task. Not to worry, you can find the task easily with `find task`! First, recall any keyword
-you can remember from the task. Next, key in `find task <TASK_NAME_KEYWORDS>`, and TruthTable will show you all tasks with
-names that contain the keywords that you specified!
+about the full name of the task. You can find the task easily with `find task`! 
 
 The `find task` command allows you to finds all tasks whose names contain any of the given keywords.
 The tasks with matching names will be shown in the task list of [current team section](#current-team-section).
@@ -1233,10 +1254,12 @@ Let us run through an example on how to find a task.
 
 Suppose you want to find all tasks containing the keywords "User" or "Guide". Enter the command
 
-`find person User Guide`
+`find task User Guide`
 
 If done successfully, you should the see all tasks whose name contain "User" or "Guide" show up under in the
 task list of [current team section](#current-team-section).
+
+![Find Task Example](images/FindTaskExample.png)
 
 Unable to find a task you are looking for? Please check that you have added the task into TruthTable! Refer to the
 above [add task command](#add-task-to-team-add-task) to add a new task into TruthTable.
@@ -1271,9 +1294,6 @@ Take note that:
 #### Mark tasks as done: `mark`
 
 Seems like the task is finally completed. Hooray! You can mark the task as done with `mark task`! 
-First, identify the index number of the task in the task list of[current team section](#current-team-section). 
-If you are not able to find the task visibly, refer to [find task command](#finding-a-task-find-task) on how you can 
-find your task easily. Next, key in `mark task <INDEX_NUMBER>` to mark the task as completed.
 
 The `mark task` command allows you to mark an existing task as done. The marked task will be shown in the
 task list of the [current team section](#current-team-section).  
@@ -1287,6 +1307,8 @@ Suppose you want to mark the task of `Create PR` as done. Identify the index num
 
 If done successfully, you should see a cross appear beside the task named of `Merge PR`, under in the task list of the
 [current team section](#current-team-section).
+
+![Mark Example](images/MarkExample.png)
 
 Unable to find a task you are looking for? Please check that you have added the task into TruthTable! Refer to the
 above [add task command](#add-task-to-team-add-task) to add a new task into TruthTable.
@@ -1311,10 +1333,8 @@ To undo this command, please see the [unmark command](#unmark-tasks-as-done-unma
 
 #### Unmark tasks as done: `unmark`
 
-Oops, something about the task was incomplete. Not to worry, you can mark the task as incomplete easily with 
-`unmark task`! First, identify the index number of the task in the task list of 
-[current team section](#current-team-section). If you are not able to find the task visibly, refer to [find task command](#finding-a-task-find-task) on how you can
-find your task easily. Next, key in `unmark task <INDEX_NUMBER>` to mark the task as incomplete.
+Oops, a small portion of the task was still incomplete. Not to worry, you can mark the task as incomplete easily with 
+`unmark task`! 
 
 The `unmark task` command allows you to mark an existing task as incomplete. The unmarked task will be shown in the
 task list of the [current team section](#current-team-section).
@@ -1327,6 +1347,8 @@ Identify the index number of `Create PR` in the application (1 in the image belo
 `unmark task 1`
 
 If done successfully, you should the cross beside the task named of `Merge PR` disappear.
+
+![Unmark Example](images/UnmarkExample.png)
 
 Unable to find a task you are looking for? Please check that you have added the task into TruthTable! Refer to the
 above [add task command](#add-task-to-team-add-task) to add a new task into TruthTable.
@@ -1351,7 +1373,24 @@ To undo this command, please see the [mark command](#mark-tasks-as-done-mark).
 
 #### Set Deadline for task: `set deadline`
 
-Set a deadline for an existing task, and the deadline must be in `YYYY-MM-DD HH:MM` format.
+You realise that this task needs to be done more urgently than expected and need to change its deadline. Look no further, 
+you can set deadlines for your tasks using the `set deadline` command! 
+
+The `set deadline` command allows you to set a deadline for an existing task, and the deadline must be in 
+`YYYY-MM-DD HH:MM` format. The task with the new deadline will be shown in the task list of the 
+[current team section](#current-team-section).
+
+Let us run through an example on how to set deadlines.
+
+Suppose you have task called `Create PR`, and you need it to be completed by 11 November 2022, 2359hrs. 
+Identify the index number of `Create PR` in the application (1 in the image below).
+
+Then, enter the command `set deadline 1 2022-11-11 23:59`.
+
+If done successfully, you should see the `Create PR` task with the new deadline show up under in the task list of the
+[current team section](#current-team-section).
+
+![Set Deadline Example](images/SetDeadlineExample.png)
 
 **Format:** `set deadline [-h] <TASK_INDEX> <TASK_DEADLINE>`
 
@@ -1378,7 +1417,25 @@ Take note that:
 
 #### Assign a task to team member: `assign task`
 
-Assign an existing task to a team member in the user’s team.
+You have tasks that you need to assign people to work on. You can do this  
+using the `assign task` command. 
+
+The `assign task` command allows you to assign tasks to members in your team.
+The task with the new assignees will be shown in the task list of the [current team section](#current-team-section).
+
+Let us run through an example on how to assign tasks to your team members.
+
+Suppose you have task called `Create PR`, and you want to assign it to Alex Yeoh.
+
+Identify the index number of `Create PR` in the application (1 in the image below).
+Identify the index number of `Alex Yeoh` in the application (1 in the image below).
+
+Then, enter the command `assign task 1 -a 1`.
+
+If done successfully, you should see the `Create PR` task being assigned to `Alex Yeoh` show up under in the task list 
+of the [current team section](#current-team-section).
+
+![Assign Task Example](images/AssignTaskExample.png)
 
 **Format:** `assign task [-h] -a[=<TASK_ASSIGNEES>...] [-a[=<TASK_ASSIGNEES>...]]... <TASK_INDEX>`
 
@@ -1418,8 +1475,24 @@ Take note that:
 
 #### Assign a task to random team member: `assign random`
 
-Assign an existing task to a random team member in the user’s team. This command will not work if the team is empty or
-if the task has already been assigned to all members of the team.
+You have tasks and are looking to assign them to different people to work on. Since everyone is capable of 
+doing all of the tasks, you are not sure whom to assign the tasks to. Fret not, you can assign tasks to people randomly using the `assign random` command. 
+
+The `assign random` command allows you to assign tasks randomly to members in your team. The task with the new 
+assignees will be shown in the task list of the [current team section](#current-team-section).
+
+Let us run through an example on how to assign tasks to your team members.
+
+Suppose you have task called `Create PR`, and you want to assign it randomly to your team members.
+
+Identify the index number of `Create PR` in the application (1 in the image below).
+
+Then, enter the command `assign random 1`.
+
+If done successfully, you should see the `Create PR` task being assigned to a random member. It should show up under 
+in the task list of the [current team section](#current-team-section).
+
+![Assign Random Example](images/AssignRandomExample.png)
 
 **Format:** `assign random [-h] <TASK_INDEX>`
 
@@ -1441,7 +1514,24 @@ if the task has already been assigned to all members of the team.
 
 #### Filter tasks by team member: `tasksof`
 
-Find all tasks that have been assigned to a particular member in the currently selected team.
+Your team member privately tells you that he has been assigned too many tasks in this team project. Fortunately, you can
+see how many tasks each team member is assigned in your teams with `tasksof` command.
+
+The `tasksof` command allows you view the specific tasks assigned to a specified member. The tasks that are assigned 
+to that member will be shown in the task list of the [current team section](#current-team-section).
+
+Let us run through an example on how to assign tasks to your team members.
+
+Suppose you want to check the tasks being assigned to `Alex Yeoh`.
+
+Firstly, identify the index number of `Alex Yeoh` in the application (1 in the image below).
+
+Then, enter the command `tasksof 1`.
+
+If done successfully, you should see the all tasks that `Alex Yeoh` is assigned. It should show up under
+in the task list of the [current team section](#current-team-section).
+
+![Tasks Of Example](images/TasksOfExample.png)
 
 **Format:** `tasksof [-h] <MEMBER_INDEX>`
 
@@ -1461,11 +1551,26 @@ Find all tasks that have been assigned to a particular member in the currently s
 
 #### List tasks in team: `list tasks`
 
-View all the tasks in the [currently selected team](#current-team-section). These tasks can also be filtered based on
-whether they are complete or incomplete tasks.
+The final deadline is approaching and you want to view all the tasks for your team. You can use the 
+`list tasks` command to see a list of all your tasks in your team.
+
+The `list tasks` command shows a list of all tasks in your team. After running the 
+[find task command](#finding-a-task-find-task), you may wish to view all tasks. To do so, simply enter `list tasks` 
+command will update the task list in the [current team section](#current-team-section).
+
+If done successfully, you should the see all tasks show up under in the member list in the
+[current team section](#current-team-section) as shown below.
+
+You can also view all incomplete and complete tasks by adding the `-i` flag or the `-c` flag respectively.
+
+Unable to find an existing task? Please check that you have added the task into your team as shown in the
+[current team section](#current-team-section). Refer to the above
+[add task command](#add-task-to-team-add-task) on how to add a new task.
 
 This command can also be used to view all tasks again after using the [`find task` command](#finding-a-task-find-task)
 as the `find task` command filters the current team’s tasks based on some keyword(s).
+
+![List Tasks Example](images/ListTasksExample.png)
 
 **Format:** `list tasks [-h] [-c] [-i]`
 
@@ -1490,7 +1595,21 @@ as the `find task` command filters the current team’s tasks based on some keyw
 
 #### Sort tasks: `sort tasks`
 
-Sorts all tasks in the current team by name and displays them in the task list.
+The number of tasks is increasing, and it is confusing for you to find tasks in the list. Fret not, you can sort your team tasks by name with our `sort tasks` command! 
+
+The `sort tasks` command allows you to sort your tasks in alphabetical order. The sorted tasks will
+be displayed in task list the [current team section](#current-team-section) as seen in the image below.
+
+Let us run through an example on how to sort your tasks.
+
+Suppose you want to sort your team members alphabetically in descending order. Enter the command
+
+`sort tasks dsc`
+
+If done successfully, the sorted tasks will be shown in the task list in
+[current team section](#current-team-section)
+
+![Sort Tasks Example](images/SortTasksExample.png)
 
 **Format:** `sort tasks [-h] <ORDER>`
 
@@ -1518,7 +1637,15 @@ Sorts all tasks in the current team by name and displays them in the task list.
 
 #### View summary of task assignments in team: `summary`
 
-View the number of tasks assigned to each member in the team.
+As always, the number of tasks keep increasing and you want to assign task equally to everyone. How do you check the 
+number of tasks each person is assigned? You can use the `summary` function to gain an overview of the
+number of tasks each person is assigned in your team! Now you can make better decisions on who to assign the new
+tasks to.
+
+To do so, simply enter `summary` and the number of tasks each person is assigned will be displayed in the 
+[result panel](#command-section).
+
+![Summary Example](images/SummaryExample.png)
 
 **Format:** `summary [-h]`
 
@@ -1531,13 +1658,25 @@ View the number of tasks assigned to each member in the team.
 - `sum`
 - `su`
 
-### Commands to Manage Links / URLs
+### Commands to Manage Links
 
 Summary of the commands to manage links can be found [here](#summary-of-link-commands).
 
 #### Add a new link: `add link`
 
-Add a new link to the currently selected team.
+Your project has started and you're now having weekly meetings. As the meeting link is always the same, wouldn't it be nice 
+if it is recorded down permanently somewhere? TruthTable helps you do that with the `add link` command! 
+
+The `add link` command allows you to add a new link you wish to keep track of. The new link is added to the list of links in 
+the [currently selected team](#current-team-section) as seen in the image below. Here, let us take a quick walk-through on how to add a link.
+
+Let us try to add a new weekly meeting link, with a name `Meeting Link`, with the meeting link [URL](#url) of 
+`https://nus-sg.zoom.us/j/87390425930?pwd=aUZNZ1NJdW5hUjcxSGxXZyt0NjdLQT09`. Enter the command
+
+`add link -n "Meeting Link" -l https://nus-sg.zoom.us/j/87390425930?pwd=aUZNZ1NJdW5hUjcxSGxXZyt0NjdLQT09`
+
+If done successfully, you should see a new link show up in the list of links in the 
+[currently selected team](#current-team-section) as shown below.
 
 **Format:** `add link [-h] -l=<LINK_URL> -n=<LINK_NAME>`
 
@@ -1555,11 +1694,25 @@ Add a new link to the currently selected team.
 
 **Examples:**
 
-- `add link -n google -l https://google.com` will add a link named "google" with the URL "https://google.com".
+- `add link -n google -l https://google.com` will add a link named "google" with the [URL](#url) "https://google.com".
 
 #### Edit an existing link: `edit link`
 
-Edit an existing link in the currently selected team.
+Oops! Seems like meeting link for the weekly meeting has changed. Not to worry, you can edit the link [URL](#url) easily with `edit link`!
+
+The `edit link` command allows you to edit an existing link in TruthTable. The edited link will be shown in the list of 
+links in the [currently selected team](#current-team-section) as seen in the image below. As always, don't panic if 
+you see an error message. Let us run through an example on how to edit the details of a link. 
+
+Suppose the [URL](#url) of your `weekly meeting` has changed to
+`https://zoom.us/j/94669589458?pwd=bTQvWTlWbzR5T29Ja0w2d0J1R1R4QT09#success`. 
+Identify the index number of the link with a name `weekly meeting` in the application (1 in the image below).
+
+Then, enter the command `edit link 1 -l https://zoom.us/j/94669589458?pwd=bTQvWTlWbzR5T29Ja0w2d0J1R1R4QT09#success`
+
+If done successfully, the edited `weekly meeting` link  will appear up under in the list of links in the
+[currently selected team](#current-team-section) as shown below. You can edit the name of
+the link directly as well by supplying the `-n` tag.
 
 **Format:** `edit link [-h] ([-n=<LINK_NAME>] [-l=<LINK_URL>]) <LINK_INDEX>`
 
@@ -1581,13 +1734,26 @@ Edit an existing link in the currently selected team.
 
 **Examples:**
 
-- `edit link 1 -n facebook -l https://facebook.com` will update the 1st link to have the name "facebook" with the URL
+- `edit link 1 -n facebook -l https://facebook.com` will update the 1st link to have the name "facebook" with the [URL](#url)
   of "https://facebook.com".
 - `edit link 1 -n google` will update the 1st link to have the name "google".
 
 #### Delete an existing link: `delete link`
 
-Delete the specified link from the currently selected team.
+As the deadline approaches, your weekly meetings have become physical and you no longer need to keep track of the meeting link. You can delete links easily with `delete link`!
+
+The `delete link` command allows you to delete the specified link from TruthTable. The deleted link will be
+removed from the list of links in the [currently selected team](#current-team-section). 
+
+Let us run through an example on how you can delete a link in TruthTable.
+
+Suppose you want to delete the `weekly meeting` link from your application. Identify the index number of 
+`weekly meeting` in the application (1 in the image below). 
+
+Then, enter the command `delete link 1`.
+
+If done successfully, you should see that the link `weekly meeting` has been removed under the
+list of links in the [currently selected team](#current-team-section).
 
 **Format:** `delete link [-h] <LINK_INDEX>`
 
@@ -1613,7 +1779,11 @@ Summary of the general commands can be found [here](#summary-of-general-commands
 
 #### Clearing all entries: `clear`
 
-Deletes everything from the application, including persons, teams, tasks, links, and member information.
+Want to start from a blank application and try again! Not a problem! Use our `clear` command to clear all existing data
+in TruthTable! Enter `clear command` and if done successfully, all data will be cleared except for a `default` team, 
+for you to start again.
+
+Be warned you can no longer recover the deleted data! Think twice before doing it.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution: This action is irreversible!**
 </div>
@@ -1628,7 +1798,8 @@ Deletes everything from the application, including persons, teams, tasks, links,
 
 Whether you're someone that likes a light theme or dark theme, we've got you covered!
 
-This command allows you to toggle between light theme and dark theme.
+This command allows you to toggle between light theme and dark theme. Enter `theme` and your application will enter 
+the light theme from the dark theme, or dark theme from the light theme.
 
 **Format:** `theme [-h]`
 
@@ -1642,7 +1813,9 @@ This command allows you to toggle between light theme and dark theme.
 
 #### Exiting the program: `exit`
 
-Closes the program after 3 seconds.
+Enough work for today! Get some rest and recharge for tomorrow. See you again soon! 
+
+Enter `exit` and the program closes after 3 seconds.
 
 **Format:** `exit [-h]`
 
@@ -1658,7 +1831,7 @@ Closes the program after 3 seconds.
 
 #### Viewing help: `help`
 
-Shows the available commands in TruthTable as well as URL to this help page at the bottom.
+Shows the available commands in TruthTable as well as [URL](#url) to this help page at the bottom.
 
 **Format:** `help [-h]`
 
@@ -1767,7 +1940,7 @@ the data of your previous TruthTable home folder.
 | `TASK_ASSIGNEES`        | `-a`, `--assignee`    | - Only positive integers are allowed<br/> - Must be less than total number of members in selected team                         |
 | `TASK_DEADLINE`         | `-d`, `--deadline`    | - Must be in `YYYY-MM-DD HH:MM` format and cannot be blank<br/> - Date and time must be separated with a space                 |
 | `TASK_NAME_KEYWORDS`    |                       | - Any characters allowed, except quotes (`'` and `"`) and spaces, and should not be blank                                      |
-| `LINK_URL`              | `-l`, `--link`        | - Only valid URLs allowed<br/> - Click <a href="https://regex101.com/r/oW3Q3v/1" target="_blank">here to test your input</a>   |
+| `LINK_URL`              | `-l`, `--link`        | - Only valid [URLs](#url) allowed<br/> - Click <a href="https://regex101.com/r/oW3Q3v/1" target="_blank">here to test your input</a>   |
 | `LINK_NAME`             | `-n`, `--name`        | - Only alphabets, numbers, and spaces are allowed, and should not be blank                                                     |
 | `LINK_INDEX`            |                       | - Only positive integers are allowed<br/> - Must be less than total number of links in selected team                           |
 | `ORDER`                 |                       | - Only `asc`, `dsc`, and `res` allowed<br/> - Corresponds to ascending, descending, and reset respectively.                    |
@@ -1942,6 +2115,10 @@ For instance, the input box in the [command section](#command-section) is a comp
 
 A file which is used to store data, which adheres to a format called
 <a href="https://en.wikipedia.org/wiki/JSON" target="_blank">JavaScript Object Notation (JSON)</a>.
+
+### URL
+
+A URL (Uniform Resource Locator) is a unique identifier used to locate any resource (e.g. websites) on the Internet. It is also referred to as a web address.
 
 [Back to Table of Contents](#table-of-contents)
 
