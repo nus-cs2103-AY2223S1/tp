@@ -10,7 +10,7 @@ Overall structure of this user guide is adapted from https://ay2223s1-cs2103t-w1
 ## **About Swift+**
 
 Swift+ is a **project management app** designed to help software engineering (SWE) project leads in tracking their daily
-interactions with contacts. As a project lead, you can easily **record down your clients and teammates** by creating and editing 
+interactions with contacts. As a project lead, you can easily **record down your clients and teammates** by creating and editing
 contacts using Swift+. Using Swift+’s **task management system**, you can assign tasks to contacts and mark tasks as completed.
 Finally, you can gain an overview of your project with our intuitive side-by-side user interface.
 
@@ -103,7 +103,7 @@ To toggle between Contact View and Task View, you can use the [`Ctrl + Tab`](#to
 This table showcases the components shared by both Contact View and Task View.
 
 | Component Name        | Image                                                                      |
-|-----------------------|----------------------------------------------------------------------------|
+| --------------------- | -------------------------------------------------------------------------- |
 | **Menu Bar**          | ![Menu Bar](images/user-guide/menu-bar.png)                                |
 | **Command Input Box** | ![Command Input Box](images/user-guide/command-input-box.png)              |
 | **Command Results**   | ![Command Results](images/user-guide/command-results.png){:height="120px"} |
@@ -276,7 +276,7 @@ To understand how a full command is interpreted, let's look at the following exa
 **Example:** `add_contact n/CONTACT_NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 |                    | Component Name | Meaning                                                            |
-| ------------------ | -------------- |--------------------------------------------------------------------|
+| ------------------ | -------------- | ------------------------------------------------------------------ |
 | **`add_contact`**  | Command Word   | Tells Swift+ to execute command to add contact.                    |
 | **`n/`**           | Flag           | Distinguishes `CONTACT_NAME` from other input fields.              |
 | **`CONTACT_NAME`** | Parameter      | Represents placeholder for name of contact that you wish to input. |
@@ -342,16 +342,16 @@ A contact can have any number of tags (including 0).
 - The order of the keywords does not matter. e.g. `Mark Wilson` will match `Wilson Mark`
 - Only the name of contacts is searched.
 - Only full words will be matched e.g. `Mark` will not match `Marks`
-- Contacts matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Mark Wilson` will return `Mark Yang`, `Steve Wilson`
+- Contacts matching at least one keyword will be returned (i.e. `OR` search).<br>
+  e.g. As shown in the diagram below, `find_contact Alex David` will return `Alex Yeoh` and `David Li`, since they contain the keywords `Alex` and `David` respectively.
+  ![result for 'find alex david'](images/user-guide/findAlexDavidResult.png)
 
 </div>
 
 **Examples:**
 
 - `find_contact Mark` returns `Mark` and `mark`.
-- `find_contact alex david` returns `Alex Yeoh` and `David Li`.
-  ![result for 'find alex david'](images/user-guide/findAlexDavidResult.png)
+- `find_contact mark wilson` returns `Mark Yang` and `Steve Wilson`.
 
 #### Editing a contact: `edit_contact`
 
@@ -644,7 +644,7 @@ If your changes to the data file makes its format invalid, Swift+ will discard a
 
 ## **Command Summary**
 
-This section contains a summary of all commands in Swift+ listed in alphabetical order. 
+This section contains a summary of all commands in Swift+ listed in alphabetical order.
 
 | Action             | Format                                                                                         |
 | ------------------ | ---------------------------------------------------------------------------------------------- |
