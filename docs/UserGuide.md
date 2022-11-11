@@ -124,6 +124,7 @@ This will come in handy if:
 1. You want a general overview of the employees in the company as of this moment.
 2. You want to quickly find out their Employee ID to view more details.
 
+<div style="page-break-after: always"></div>
 
 #### 3. Display Panel
 
