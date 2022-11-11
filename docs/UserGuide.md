@@ -522,7 +522,7 @@ Suppose your classmate, Alex Yeoh, has provided you with the wrong phone and ema
 
 Then, enter the command `edit person 1 -p 91234567 -e johndoe@example.com`.
 
-If done successfully, you should see the new details show up under in the [persons section](#persons-section)
+If done successfully, you should see the new details show up in the [persons section](#persons-section)
 under "Alex Yeoh" as seen below. 
 
 ![Edit Person Example](images/EditPersonExample.png)
@@ -630,7 +630,7 @@ Let us run through how you can find a person.
 Suppose that you remember that this person has the words Alex or David in their name. Then, to find all persons
 with Alex and David in their names, enter the command `find person alex david`.
 
-If done successfully, you should the see all persons named Alex and David show up under in the
+If done successfully, you should the see all persons named Alex and David show up in the
 [persons section](#persons-section).
 
 ![result for 'find person alex david'](images/FindPersonExample.png)
@@ -800,7 +800,7 @@ Suppose you want to find all team members named Alex or David.
 
 Enter the command `find member -n alex david`.
 
-If done successfully, you should the see all team members named Alex and David show up under in the member list in the
+If done successfully, you should the see all team members named Alex and David show up in the member list in the
 [current team section](#current-team-section). You can also find your team members by their email using the `-e` flag.
 
 ![Find Member Example](images/FindMemberExample.png)
@@ -1153,7 +1153,7 @@ Suppose you want to change the task name from "Create PR" to "Merge PR". Identif
 
 Then, enter the command `edit task 1 -n "Merge PR"`.
 
-If done successfully, you should see the new details show up under in the task list of the
+If done successfully, you should see the new details show up in the task list of the
 [current team section](#current-team-section), with the task name of "Merge PR" as shown below. You can edit other
 information such as deadline and assignees as well. Please refer to the respective commands on how to
 [set deadlines](#set-deadline-for-task-set-deadline) and [set assignees](#assign-a-task-to-team-member-assign-task)!
@@ -1266,7 +1266,7 @@ Suppose you want to find all tasks containing the keywords "User" or "Guide". En
 
 Enter the command `find task User Guide`.
 
-If done successfully, you should the see all tasks whose name contain "User" or "Guide" show up under in the
+If done successfully, you should the see all tasks whose name contain "User" or "Guide" show up in the
 task list of [current team section](#current-team-section).
 
 ![Find Task Example](images/FindTaskExample.png)
@@ -1456,7 +1456,7 @@ member, refer to [find member command](#finding-a-member-find-member) on how you
 
 Then, enter the command `assign task 1 -a 1`.
 
-If done successfully, you should see the "User Stories" task being assigned to "Alex Yeoh" show up under in the task list
+If done successfully, you should see the "User Stories" task being assigned to "Alex Yeoh" show up in the task list
 of the [current team section](#current-team-section) as shown below. You can also specify multiple members to assign
 a task to multiple team members.
 
@@ -1514,7 +1514,7 @@ refer to the [find task command](#finding-a-task-find-task) on how you can find 
 
 Then, enter the command `assign random 1`.
 
-If done successfully, you should see the "Developer Guide" task being assigned to a random member. It should show up under 
+If done successfully, you should see the "Developer Guide" task being assigned to a random member. It should show up  
 in the task list of the [current team section](#current-team-section) as shown below.
 
 ![Assign Random Example](images/AssignRandomExample.png)
@@ -1557,7 +1557,7 @@ easily.
 
 Then, enter the command `tasksof 1`.
 
-If done successfully, you should see the all tasks that "Alex Yeoh" is assigned. It should show up under
+If done successfully, you should see the all tasks that "Alex Yeoh" is assigned. It should show up 
 in the task list of the [current team section](#current-team-section) as shown below.
 
 ![Tasks Of Example](images/TasksOfExample.png)
@@ -1590,7 +1590,7 @@ The `list tasks` command shows a list of all tasks in your team. After running t
 
 To do so, enter `list tasks`. 
 
-If done successfully, you should the see all tasks show up under in the member list in the
+If done successfully, you should the see all tasks show up in the member list in the
 [current team section](#current-team-section) as shown below. You can also view all incomplete and complete tasks by 
 supplying the `-i` flag or the `-c` flag respectively.
 
@@ -1738,13 +1738,13 @@ Oops! Seems like the meeting link for the weekly meeting has changed. You can ed
 The `edit link` command allows you to edit an existing link in TruthTable. The edited link will be shown in the list of 
 links in the [currently selected team](#current-team-section). Let us run through an example on how to edit the details of a link. 
 
-Suppose the [URL](#url) of your "weekly meeting" has changed to
+Suppose the [URL](#url) of your "Meeting Link" has changed to
 "https://zoom.us/j/94669589458?pwd=bTQvWTlWbzR5T29Ja0w2d0J1R1R4QT09#success".
 Identify the index of the link with a name "weekly meeting" in the application (1 in the image below).
 
 Then, enter the command `edit link 1 -n "monthly meeting" -l https://zoom.us/j/94669589458?pwd=bTQvWTlWbzR5T29Ja0w2d0J1R1R4QT09#success`
 
-If done successfully, the edited `monthly meeting` link will appear up under in the list of links in the
+If done successfully, the edited `monthly meeting` link will appear in the list of links in the
 [currently selected team](#current-team-section) as shown below. You can edit the name of
 the link directly as well by supplying the `-n` tag.
 
