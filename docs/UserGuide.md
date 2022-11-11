@@ -706,7 +706,7 @@ Summary of the commands to manage members can be found [here](#summary-of-member
 
 #### Adding a new member to the team: `add member`
 
-You have made up your mind on choosing that people that you want to work with for your group projects, and now you want to
+You have made up your mind on you want to work with for your group projects, and now you want to
 add them to your team. First, identify the index number of your classmate in the [persons section](#persons-section).
 Then, simply key in `add member <INDEX>` and they are added to your team. You can finally begin to work on some exciting software engineering projects with them!
 
@@ -769,8 +769,10 @@ member list (1 in the image below). Enter the command
 
 If done successfully, Alex Yeoh should be removed from the [current team section](#current-team-section) as seen below.
 
-Unable to find an existing team member? Please check that you have added the team member into your team as shown in the 
-[current team section](#current-team-section). Refer to the above 
+![Delete Member Example](images/DeleteMemberExample.png)
+
+Unable to delete an existing team member? Please check that you have added the team member into your team as shown in 
+the [current team section](#current-team-section). Refer to the above 
 [add member command](#adding-a-new-member-to-the-team-add-member) on how to add a new team member.
 
 **Format:** `delete member [-h] <MEMBER_INDEX>`
