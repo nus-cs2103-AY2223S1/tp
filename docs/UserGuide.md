@@ -70,7 +70,7 @@ before continuing!
 ### Command-specific terms
 1. **Command**: An instruction that you can type into the [command input box](#1-command-input-and-output-boxes) to do
 something in Cobb. Refer to [Features](#features) for the list of commands.
-2. **Syntax**: Denotes what you should include in your Command. Most Commands require specific flags and inputs to work.
+2. **Syntax**: Denotes what you should include in your command. Most commands require specific flags and inputs to work.
 3. **Flag**: Comes before (and indicates) an input to a command. For example, in the command `filterbuyers -pr NORMAL`, `-pr` is the flag and `NORMAL` is the input.
 
 ### Buyer-specific terms
@@ -166,7 +166,8 @@ It appears when you execute the [Help Command](#viewing-help-help).
 ## Features
 [Back to top](#table-of-contents)
 
-Take a look at the [Command Summary](#command-summary) for a quick summary of the features below!
+Cobb's features are mostly in the form of commands you can input into the [command input box](#1-command-input-and-output-boxes). We will now go into the details about each feature of Cobb.
+If you just want a quick summary of all the feature Cobb has, do take a look at the [command summary](#command-summary) section.
 
 <div markdown="block" class="alert alert-info">
 
@@ -176,8 +177,8 @@ Take a look at the [Command Summary](#command-summary) for a quick summary of th
 are using the `help` command, while `editbuyer 1 -n Jane Doe` specifies that you are using the `editbuyer` command.
 
 
-* To specify inputs to the command, type the input's flag followed by a space, and then its value.<br>
-  e.g. `-n John Doe` will define the input `NAME` to store the value `John Doe`.
+* To specify inputs to the command, type the corresponding input's flag followed by a space, and then the value of your input.<br>
+  e.g. `-n John Doe` will store the input value `John Doe` for the name flag, as indicated by `-n`. More details about the flags for each command will be given in each section below. 
 
 
 * Inputs not contained in any brackets must be passed into the command.<br>
@@ -188,7 +189,7 @@ are using the `help` command, while `editbuyer 1 -n Jane Doe` specifies that you
   e.g. `[-c CHARACTERISTICS]` means that the `-c CHARACTERISTICS` input is optional.
 
 
-* Inputs that contain angled braces `<>` can only take one of the values within the braces.<br>
+* Inputs that contain angled braces `<>` can only take any one of the values specified within the braces.<br>
   e.g. `-pr PRIORITY<HIGH, NORMAL, LOW>` means that the `PRIORITY` input can only take values `HIGH`, `NORMAL` or `LOW`.
 
 
@@ -210,27 +211,27 @@ are using the `help` command, while `editbuyer 1 -n Jane Doe` specifies that you
 ### Add Commands
 #### Adding a buyer to the database: `addbuyer`
 
-Adds a buyer to the database with relevant buyer information.<br>
-Syntax: `addbuyer -n NAME -ph PHONE -e EMAIL -a address [-r PRICE RANGE] [-c CHARACTERISTICS] [-pr PRIORITY<HIGH, NORMAL, LOW>]`
+Adds a buyer to your database with relevant buyer information.<br>
+Syntax: `addbuyer -n NAME -ph PHONE -e EMAIL -a ADDRESS [-r PRICE RANGE] [-c CHARACTERISTICS] [-pr PRIORITY<HIGH, NORMAL, LOW>]`
 
 The `-n` flag indicates the buyer's name.<br>
 The `-ph` flag indicates the buyer’s phone number.<br>
 The `-e` flag indicates the buyer’s email.<br>
 The `-a` flag indicates the buyer’s home address.<br>
-The `-r` flag indicates the price range of properties that the buyer can accept. A price range must take the form `xyz` - `xyz`, where `xyz` are numbers. <br>
-The `-c` flag indicates the characteristics that the buyer is looking for in a property, separated by `;`.<br>
+The `-r` flag indicates the price range of properties that the buyer is willing to accept. A price range must take the form `abc` - `xyz`, where `abc` and `xyz` are numbers. <br>
+The `-c` flag indicates the characteristics that the buyer is looking for in a property, each characteristic should be separated by `;`.<br>
 The `-pr` flag indicates the priority of the buyer.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 The price range, characteristics and priority fields are optional.<br>
-Only the price range and characteristics fields can be set as "Not Specified" by simply not including their flags (i.e. `-c` or `-r`), or 
+Only the price range and characteristics fields can be set as "Not Specified" by simply omitting their flags (i.e. `-c` or `-r`), or 
 by entering the flag with an empty input following it e.g. `-c  `.<br>
 The priority field will default to "Normal" if the priority flag is not used. *It cannot take in an empty input if the flag is used*.
 </div>
 
 
 <div markdown="span" class="alert alert-primary">:bulb: **Note:**
-You cannot add duplicate buyers that have the same phone number or email.
+To ensure that your database remains neat, Cobb will warn you when you try to add duplicate buyers that have the same phone number or email.
 </div>
 
 
@@ -249,7 +250,7 @@ The `-a` flag indicates the property’s address.<br>
 The `-d` flag indicates the property’s description.<br>
 The `-o` flag indicates the name of the property owner.<br>
 The `-ph` flag indicates the phone number of the property owner.<br>
-The `-c` flag indicates the characteristics associated with the property, separated by `;`.<br>
+The `-c` flag indicates the characteristics associated with the property, each characteristic separated by `;`.<br>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 The characteristics field is optional and can be set as "Not Specified" by simply not including the `-c` flag, or 
@@ -258,35 +259,35 @@ by entering the flag with an empty input following it e.g. `-c  `.
 
 
 <div markdown="span" class="alert alert-primary">:bulb: **Note:**
-You cannot add duplicate properties that have the same address.
+Similar to adding a duplicate buyer, Cobb will warn you when you try to add duplicate properties that have the same address.
 </div>
 
 
-Examples: <br>
-`addprop -n Peak Residences -a 333 Thompson Road -p 1000000 -d long property description -o Bob -ph 91234567 -c Toa Payoh; Bright`: 
+Example: <br>
+`addprop -n Peak Residences -a 333 Thompson Road -p 1000000 -d Long property description -o Bob -ph 91234567 -c Toa Payoh; Bright`: 
 Adds a property called "Peak Residences" owned by Bob with a phone number of 91234567. It has the characteristics "Toa Payoh" and "Bright".
 
 ### Delete Commands
-#### Deleting buyers from the database: `deletebuyer`
+#### Deleting a buyer from the database: `deletebuyer`
 
 Deletes the buyer at the specified index in the [Buyer List](#2-buyer-list).<br>
 Syntax: `deletebuyer INDEX`
 
-Examples:<br>
-`deletebuyer 5`: Deletes the fifth buyer currently visible on the buyer list.
+Example:<br>
+`deletebuyer 5`: Deletes the fifth buyer currently visible in the buyer list.
 
-#### Deleting properties from the database: `deleteprop`
+#### Deleting a property from the database: `deleteprop`
 
 Deletes the property at the specified index in the [Property List](#3-property-list).<br>
 Syntax: `deleteprop INDEX`
 
-Examples:<br>
-`deleteprop 5`: Deletes the fifth property currently visible on the property list.
+Example:<br>
+`deleteprop 5`: Deletes the fifth property currently visible in the property list.
 
 ### Edit Commands
 #### Edit a buyer entry in the database: `editbuyer`
 
-Edits a buyer’s details with new information in specified categories.<br>
+Edits a buyer’s details with new information, by specifying the relevant inputs to edit.<br>
 Syntax: `editbuyer INDEX [-n NAME] [-ph PHONE] [-e EMAIL] [-a ADDRESS] [-r PRICE RANGE] [-c CHARACTERISTICS] [-pr PRIORITY<HIGH, NORMAL, LOW>]`
 
 The `INDEX` indicates the buyer in the [Buyer List](#2-buyer-list) to be edited.<br>
@@ -299,6 +300,7 @@ The `-c` flag indicates the new characteristics that the buyer is looking for in
 The `-pr` flag indicates the new priority of the buyer.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Notice how all the flags are optional, and you can choose to edit any number of them at once.<br>
 Only the price range and characteristics fields can be reset by entering their flags with an empty input following it e.g. `-c  `.<br>
 </div>
 
@@ -324,8 +326,8 @@ The `-c` flag indicates the property's new characteristics.<br>
 Only the characteristics fields can be edited to "Not Specified" by entering its flag and an empty input following it e.g. `-c  `.
 </div>
 
-Examples:<br>
-`editprop 3 -n Hill Residence -a Block 225 -ph 750000`: Edits property at index 3 of the list to have a new name Hill Residence, a new address Block 225 and price 750000.
+Example:<br>
+`editprop 3 -n Hill Residence -a Block 225 -p 750000`: Edits property at index 3 of the list to have a new name Hill Residence, a new address Block 225, and new price of $750000.
 
 ### List Commands
 
@@ -554,7 +556,7 @@ Please take a look at the [quick start](#quick-start) section of the guide for m
 If the problem persists, please report the bug to us.
 
 **Q**: I deleted my data file! Is there any way to recover the data that I lost?<br>
-**A**: Try looking in your computer's trash bin (or recycling bin) for the files that were deleted. If the files can't be found, then we apologise, but there is currently
+**A**: Try looking in your computer's trash bin on macOS or recycle bin on Windows for the files that were deleted. If the files can't be found, then we apologise, but there is currently
 no way for you to retrieve lost data. :(
 
 **Q**: How do I uninstall Cobb? <br>
@@ -572,8 +574,8 @@ no way for you to retrieve lost data. :(
 |-----------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | [Add buyer](#adding-a-buyer-to-the-database-addbuyer)                             | `addbuyer -n NAME -ph PHONE -e EMAIL -a address [-r PRICE RANGE] [-c CHARACTERISTICS] [-pr PRIORITY<HIGH, NORMAL, LOW>]` <br> e.g. `addbuyer -n Tim -ph 87321237 -e tim@gmail.com -a S648234 -pr HIGH`                                              |
 | [Add property](#adding-a-property-to-the-database-addprop)                        | `addprop -n NAME -p PRICE -a ADDRESS -d DESCRIPTION -o OWNER NAME -ph OWNER PHONE [-c CHARACTERISTICS]` <br> e.g.`addprop -n Peak Residences -a 333 Thompson Road -p 1000000 -d long property description -o Bob -ph 91234567 -c Toa Payoh; Bright` |
-| [Delete buyer](#deleting-buyers-from-the-database-deletebuyer)                    | `deletebuyer INDEX` <br> e.g. `deletebuyer 5`                                                                                                                                                                                                       |
-| [Delete property](#deleting-properties-from-the-database-deleteprop)              | `deleteprop INDEX` <br> e.g. `deleteprop 5`                                                                                                                                                                                                         |
+| [Delete buyer](#deleting-a-buyer-from-the-database-deletebuyer)                   | `deletebuyer INDEX` <br> e.g. `deletebuyer 5`                                                                                                                                                                                                       |
+| [Delete property](#deleting-a-property-from-the-database-deleteprop)              | `deleteprop INDEX` <br> e.g. `deleteprop 5`                                                                                                                                                                                                         |
 | [Edit buyer](#edit-a-buyer-entry-in-the-database-editbuyer)                       | `editbuyer INDEX [-n NAME] [-ph PHONE] [-e EMAIL] [-a ADDRESS] [-r PRICE RANGE] [-c CHARACTERISTICS] [-pr PRIORITY<HIGH, NORMAL, LOW>]`<br> e.g. `editbuyer 3 -n John Doe -e johndoe@yahoo.com -r 40000-50000 -pr HIGH`                             |
 | [Edit property](#edit-a-property-entry-in-database-editprop)                      | `editprop INDEX [-n NAME] [-p PRICE] [-a ADDRESS] [-d DESCRIPTION] [-c CHARACTERISTICS] [-o OWNER NAME] [-ph OWNER PHONE]`<br> e.g. `editprop 3 -n Hill Residence -a Block 225 -ph 82000100`                                                        |
 | [List buyers](#list-buyers-in-database-listbuyers)                                | `listbuyers`                                                                                                                                                                                                                                        |
