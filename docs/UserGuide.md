@@ -233,8 +233,12 @@ For more information regarding `Export`, you can click [here](#exporting-address
 
 Shows help information that will be useful to you.
 
-Formats: 
-`help`
+Formats:  
+
+To view **general** command information,<br>
+`help`  
+
+To view **specific** command information,<br>
 `help [<command>]`
 
 * To view all the commands, type `help` and press <kbd>Enter</kbd>.
@@ -245,8 +249,9 @@ Formats:
 Examples:
 * `help add`
 
-
 * `help edit`
+
+* `help`
 
 <p align="center">
 
@@ -289,13 +294,7 @@ To add a **tutor**,<br>
     <p></p>
   * `<phone>` field should only contain numbers, and it should be between 7 and 15 digits long.
     <p></p>
-  * `<email>` field should be of the format local-part@domain and adhere to the following constraints:
-    1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters.
-    2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.
-       The domain name must:
-       - end with a domain label at least 2 characters long;
-       - have each domain label start and end with alphanumeric characters;
-       - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
+  * `<email>` field should be of the format of a correct email address such as "johndoe@gmail.com".
     <p></p>
   * `<address>` field can take any values but should not be left blank.
     <p></p>
@@ -317,7 +316,7 @@ To add a **tutor**,<br>
 
 * For tutors,
 
-  * `<quallification>` field should only contain alphanumeric characters, commas and spaces, and should not be left blank.
+  * `<qualification>` field should only contain alphanumeric characters, commas and spaces, and should not be left blank.
     <p></p>
   * `<institution>` field should only contain alphanumeric characters and spaces, and should not be left blank.
 
@@ -335,11 +334,11 @@ Examples:
 
 <p align="center">
 
-<img src="images/addPersonCommand_after.png"/>
+<img src="images/addPersonCommand_after.png"  width ="200"/>
 
 </p>
 
-This adds the new student into the database. Note that the Person Description Panel will now show the details of the new student.
+The new student has been added into the database.
 
 ### Adding a class: `add`
 
@@ -403,7 +402,7 @@ Examples:
 
 <p align="center">
 
-<img src="images/addClassCommand_after.png"/>
+<img src="images/addClassCommand_after.png" width ="200"/>
 
 </p>
 
@@ -430,7 +429,7 @@ Examples:
 
 <p align="center">
 
-<img src="images/deleteCommand_after.png"/>
+<img src="images/deleteCommand_after.png"  width ="200"/>
 
 </p>
 
@@ -474,13 +473,7 @@ To edit a **class**, <br>
     <p></p>
   * `<phone>` field should only contain numbers, and it should be between 7 and 15 digits long.
     <p></p>
-  * `<email>` field should be of the format local-part@domain and adhere to the following constraints:
-      1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters.
-      2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.
-         The domain name must:
-          - end with a domain label at least 2 characters long
-          - have each domain label start and end with alphanumeric characters
-          - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
+  * `<email>` field should be of the format of a correct email address such as "johndoe@gmail.com".
     <p></p>
   * `<address>` field can take any values but should not be left blank.
     <p></p>
@@ -494,7 +487,7 @@ To edit a **class**, <br>
       2. Secondary 1 to 4
 
     (Abbreviations are also allowed, e.g., "P1" or "Sec 3".)
-  * `<quallification>` field should only contain alphanumeric characters, commas and spaces, and should not be left blank.
+  * `<qualification>` field should only contain alphanumeric characters, commas and spaces, and should not be left blank.
     <p></p>
   * `<institution>` field should only contain alphanumeric characters and spaces, and should not be left blank.
     <p></p>
@@ -542,7 +535,8 @@ Examples:
 
 </p>
 
-This edits a specific person. The Person Description Panel and list will be updated.
+
+This edits the details of Alex Miller by changing his name to Tom Doe. Note that the Description Panel and the List Display Panel have been updated.
 
 ### Assign class to a person: `assign`
 
@@ -550,7 +544,7 @@ Assign an existing tuition class to a specific student/tutor.
 
 Format: `assign <index> n/<name>`
 
-* `assign` command only works when the **displayed list** is the **student list ** or **tutor list**.
+* `assign` command only works when the **displayed list** is the **student list** or **tutor list**.
 
 
 * The index refers to the index number shown in the **displayed list**.
@@ -586,7 +580,7 @@ Unassign an existing tuition class from a specific student/tutor.
 
 Format: `unassign <index> n/<name>`
 
-* `unassign` command only works when the **displayed list** is a student or tutor list.
+* `unassign` command only works when the **displayed list** is a **student list** or **tutor list**.
 
 
 * The index refers to the index number shown in the **displayed list**.
@@ -621,10 +615,14 @@ Examples:
 
 Adds the next of kin to an existing student. If there is an existing next of kin, it will be overwritten.
 
-Formats:
+Formats:  
+
+To **add** or **overwrite** existing next of kin,<br>
+`nok <index> n/<name> p/<phone> e/<email> a/<address> r/<relationship> [#/tag]…`
+
+To **remove** existing next of kin,<br>
 `nok <index>`
 
-`nok <index> n/<name> p/<phone> e/<email> a/<address> r/<relationship> [#/tag]…`
 
 * The **displayed list** when executing this command must be the **student list**.
 
@@ -649,13 +647,7 @@ Formats:
       <p></p>
     * `<phone>` field should only contain numbers, and it should be between 7 and 15 digits long.
       <p></p>
-    * `<email>` field should be of the format local-part@domain and adhere to the following constraints:
-        1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters.
-        2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.
-           The domain name must:
-            - end with a domain label at least 2 characters long
-            - have each domain label start and end with alphanumeric characters
-            - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
+    * `<email>` field should be of the format of a correct email address such as "johndoe@gmail.com".
         <p></p>
     * `<address>` field can take any values but should not be left blank.
         <p></p>
@@ -720,7 +712,7 @@ Format: `show <index>`
 
 Examples:
 * `show 3` 
-The **displayed list** is the **student list**.
+in the **student list**.
 
 <p align="center">
 
@@ -735,7 +727,7 @@ The **displayed list** is the **student list**.
 </p>
 
 * `show 1` 
-The **displayed list** is the **class list**.
+in the **class list**.
 
 <p align="center">
 
@@ -774,7 +766,7 @@ Examples:
 
 <p align="center">
 
-<img src="images/listCommand_after.png"/>
+<img src="images/listCommand_after.png"  width ="200"/>
 
 </p>
 
@@ -827,7 +819,7 @@ Examples:
 
 <p align="center">
 
-<img src="images/sortCommand_after.png"/>
+<img src="images/sortCommand_after.png"  width ="200"/>
 
 </p>
 
@@ -873,7 +865,7 @@ Format: `find [n/<name>] [s/<subject>] [l/<level>] [d/day] [t/time] [#/<tag>]`
 * When searching the `<level>` field, a space must be included between the level and number if the number is to be specified (e.g., `find l/secondary 1` instead of `find l/secondary1`).
 
 Examples:
-* `find n/john` 
+* `find n/john` in the **student list**.
 
 <p align="center">
 
@@ -883,13 +875,13 @@ Examples:
 
 <p align="center">
 
-<img src="images/findStudent_after.png"/>
+<img src="images/findStudent_after.png"  width ="200"/>
 
 </p>
 
 Note that the **displayed list** is the **student list**, so `find n/john` returns the students, `John Doe` and `Johnny Tay` in the **student list**.
 
-* `find i/NUS q/Bachelor of Computing`
+* `find i/NUS q/Bachelor of Computing` in the **tutor list**.
 
 <p align="center">
 
@@ -899,13 +891,13 @@ Note that the **displayed list** is the **student list**, so `find n/john` retur
 
 <p align="center">
 
-<img src="images/findTutor_after.png"/>
+<img src="images/findTutor_after.png"  width ="200"/>
 
 </p>
 
 Note that the **displayed list** is the **tutor list**, so `find i/NUS q/Bachelor of Computing` returns the tutors who had graduated from NUS with a Bachelor in Computing qualification.
 
-* `find d/monday #/hard`
+* `find d/monday #/hard` in the **class list**.
 
 <p align="center">
 
@@ -915,7 +907,7 @@ Note that the **displayed list** is the **tutor list**, so `find i/NUS q/Bachelo
 
 <p align="center">
 
-<img src="images/findClass_after.png"/>
+<img src="images/findClass_after.png"  width ="200"/>
 
 </p>
 
