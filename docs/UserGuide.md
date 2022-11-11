@@ -347,11 +347,11 @@ _Remove tag(s) from an eatery._
 `INDEX`: index of eatery to remove tag from (must be found in the current list) <br>
 `TAGNAME`: name of tag to remove from eatery <br>
 `-h`: displays help message (specific to untag) <br><br>
-Example: `untag 1 -t coffee -t tea`
+Example: `untag 44 -t cafe`
 
-Below is a comparison between when the store at index 50 is `tag[ged]` _(left)_ then `untag[ged]` _(right)_.
+Below is a comparison between when the store at index 44 is tagged with `cafe` _(left)_ then untagged _(right)_.
 The commands used are shown on the command line. <br>
-Note how the blue "cafe" tag on store 50 disappears after the untag command.
+Note how the red "cafe" tag on store 44 disappears after the untag command.
 ![Ui](images/user-guide/UgTagUntagComparison.png)
 <br><br>
 
@@ -414,11 +414,11 @@ _Deletes an eatery from the `Food Guide`._
 **Inputs:** <br>
 `INDEX`: index of eatery to remove from NUSEatWhere (must be found in the current list) <br>
 `-h`: displays help message (specific to delete) <br><br>
-Example: `delete 3`
+Example: `delete 68`
 
-Below is a comparison between when the store at index 70 is `add[ed]` _(left)_ then `delete[d]` _(right)_.
+Below is a comparison between when the store at index X was added  _(left)_ then deleted _(right)_.
 The commands used are shown on the command line. <br>
-Note how the eatery at index 70 disappears after the delete command.
+Note how the eatery at index 68 disappears after the delete command.
 ![Ui](images/user-guide/UgAddDeleteComparison.png)
 <br><br>
 
