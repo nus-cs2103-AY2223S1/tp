@@ -545,7 +545,7 @@ This [command](#glossary-command) marks the [debts](#glossary-debt) specified fr
 When you want to indicate that a particular debt has been paid, but still keep a record of it in PayMeLah, this is the command to use!
 
 **Format:**<br>
-`mark <person index> debt/<[debt index](#glossary-debt-index)…>`
+`mark <person index> debt/<debt index…>`
 
 **Example:**<br>
 * `mark 2 debt/2 3` will mark the 2nd and 3rd debt of the 2nd person in the current displayed [person list](#person-list-section) as paid.
@@ -561,7 +561,7 @@ This [command](#glossary-command) marks the [debts](#glossary-debt) specified fr
 When you realise that a debt you had previously [marked as paid](#marking-debts-as-paid-mark) is actually not paid yet, you can use this command to indicate that it is still unpaid.
 
 **Format:**<br>
-`unmark <person index> debt/<[debt index](#glossary-debt-index)…>`
+`unmark <person index> debt/<debt index…>`
 
 **Example:**<br>
 * `unmark 2 debt/2 3` will mark the 2nd and 3rd debt of the 2nd person in the current displayed [person list](#person-list-section) as unpaid.
