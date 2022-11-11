@@ -642,7 +642,7 @@ with Alex and David in their names, enter the command `find person alex david`.
 If done successfully, you should the see all persons named Alex and David show up under in the
 [persons section](#persons-section).
 
-![result for 'find person alex david'](images/findPersonAlexDavidResult.png)
+![result for 'find person alex david'](images/FindPersonExample.png)
 
 Unable to find a person you are looking for? Please check that you have added the person into TruthTable! Refer to the
 above [add person command](#creating-a-new-person-add-person) to add a new person into TruthTable.
@@ -811,6 +811,8 @@ Suppose you want to find all team members named Alex or David. Enter the command
 
 If done successfully, you should the see all team members named Alex and David show up under in the member list in the
 [current team section](#current-team-section).
+
+![Find Member Example](images/FindMemberExample.png)
 
 Unable to find an existing team member? Please check that you have added the team member into your team as shown in the
 [current team section](#current-team-section). Refer to the above
