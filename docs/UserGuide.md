@@ -104,7 +104,7 @@ This application UI is split into **5 sections**.
 * ***Input Command***: This is where you should key in your commands, and press enter to execute
 * ***Application's Reply***: Errors or success messages will appear here after you execute any commands
 * ***List Of Clients***: Every client that you have will appear here
-* ***Transaction details***: A list of transactions with a specific client will appear here if you use the [view command](#viewing-a-client-view), or it will show all transactions with every client if you use the [filter command](#filtering-buy-or-sell-transactions-filter)
+* ***Transaction Details***: A list of transactions with a specific client will appear here if you use the [view command](#viewing-a-client-view), or it will show all transactions with every client if you use the [filter command](#filtering-buy-or-sell-transactions-filter)
 * ***Remarks Of Specified Client***: Remarks of specified client will appear here
 * ***Net amount*** : This section displays the net amount transacted with all clients currently displayed in the *List Of Clients* panel on the left. Currently, only **dollars** is supported in our application. More currency will be added in the future.
 
@@ -192,16 +192,16 @@ Format: `add n/NAME a/ADDRESS p/PHONE e/EMAIL [t/TAG]...`
 * No restrictions on the `PHONE` input and `EMAIL` input. You can enter anything that you want.<br/>However, a warning will be given if it deviates from the standard convention.
     * This facilitates more freedom to input phone numbers like `+606 89987755 (HOME)` and emails like `alice@company.com (WORK)`
 
-| Field | Standard Convention                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-|-------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Phone | Contains only numbers, and at least 3 digits long                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| Email | Format: `local-part@domain`<br/>1. **Local-part** should only contain **alphanumeric characters** and these special characters `+`, `_`, `.`, `-`. The **local-part** may not start or end with any special character.<br/>2. This is followed by a **@** and then a **domain name**. The **domain name** is made up of domain labels separated by periods.<br/> The **domain name** must:<br/> - end with a domain label at least 2 characters long<br/>- have each domain label start and end with **alphanumeric characters**<br/>- have each domain label consist of **alphanumeric characters**, separated only by hyphens, if any |
+| Field    | Standard Convention                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `PHONE`  | Contains only numbers, and at least 3 digits long                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| `EMAIL`  | Format: `local-part@domain`<br/>1. **Local-part** should only contain **alphanumeric characters** and these special characters `+`, `_`, `.`, `-`. The **local-part** may not start or end with any special character.<br/>2. This is followed by a **@** and then a **domain name**. The **domain name** is made up of domain labels separated by periods.<br/> The **domain name** must:<br/> - end with a domain label at least 2 characters long<br/>- have each domain label start and end with **alphanumeric characters**<br/>- have each domain label consist of **alphanumeric characters**, separated only by hyphens, if any |
 
 > <div markdown="span" class="alert alert-warning">:warning: **Warning: You cannot add a client with a name that already exists in JeeqTracker**<br/> Names are considered duplicates even if they differ by case sensitivity or whitespaces!
 
 Examples:
-* `add n/Alice a/West Coast Park p/9876542 e/alice@gmail.com` adds a new client, **Alice** with the specified **address**, **phone** and **email** to the *List of Clients* panel, as depicted by the diagram below.
-* `add n/John a/Yishun Street 81 p/9876543 e/john@yahoo.com t/friends t/supplier` adds a new *client*, **John** with the specified **address**, **phone**, **email**, and **tags** to the *List of Clients* panel.
+* `add n/Alice a/West Coast Park p/9876542 e/alice@gmail.com` adds a new client, **Alice** with the specified **address**, **phone** and **email** to the *List Of Clients* panel, as depicted by the diagram below.
+* `add n/John a/Yishun Street 81 p/9876543 e/john@yahoo.com t/friends t/supplier` adds a new *client*, **John** with the specified **address**, **phone**, **email**, and **tags** to the *List Of Clients* panel.
 
 ![Ui](images/SampleAddCommand.png)
 
@@ -210,7 +210,7 @@ Examples:
 ### Listing all clients: `list`
 
 Lists all the clients stored in JeeqTracker. 
-This command is required for you because some other commands like `find`, `sort`, `view` will filter the *List of Clients* panel.
+This command is required for you because some other commands like `find`, `sort`, `view` will filter the *List Of Clients* panel.
 
 Format: `list`
 
@@ -244,12 +244,12 @@ Deletes a specified client from JeeqTracker.
 
 Format: `delete INDEX m/client`
 
-* The `INDEX` refers to the index number shown in the *List of Clients* panel.
+* The `INDEX` refers to the index number shown in the *List Of Clients* panel.
 * `INDEX` **must be a positive integer** e.g 1, 2, 3, …​
 
 Examples:
-* `delete 1 m/client` deletes the 1<sup>st</sup> client in the displayed *List of Clients* panel.
-* `delete 2 m/client` deletes the 2<sup>nd</sup> client in the displayed *List of Clients* panel.
+* `delete 1 m/client` deletes the 1<sup>st</sup> client in the displayed *List Of Clients* panel.
+* `delete 2 m/client` deletes the 2<sup>nd</sup> client in the displayed *List Of Clients* panel.
 
 > <div markdown="span" class="alert alert-danger">❗ **Danger: Deleting a client is an irreversible process**<br/> Be very careful here!
 
@@ -261,33 +261,35 @@ Finds clients whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]...`
 
-* The search is case-insensitive. e.g. `alice` will match `Alice`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* The search is case-insensitive. e.g. **alice** will match **Alice**
+* The order of the keywords does not matter. e.g. **Hans Bo** will match **Bo Hans**
 * Only the name is searched.
-* Only full words will be matched e.g. `Jame` will not match `James`
+* Only full words will be matched e.g. **Jame** will not match **James**
 * Clients matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `John Bob Lim` will return `John Koh`, `Bob Tan`
+  e.g. `John Bob Lim` will return **John Koh**, **Bob Tan**
 
 Examples:
-* `find John` returns clients `John`, `John Lim`, `John Koh`
-* `find Tan` returns clients `John Tan`, `Bob Tan`, `Alice Tan`
+* `find John` returns clients **John**, **John Lim**, **John Koh**
+* `find Tan` returns clients **John Tan**, **Bob Tan**, **Alice Tan**
 
 [Back to Table of Contents](#table-of-contents)
 
 ### Viewing a client: `view`
 
 Displays the **remarks** and **transactions** of the specified client.
-The *List of clients* panel will be filtered to display only the specified client.
+The *List Of Clients* panel will be filtered to display only the specified client.
 
 Format: `view INDEX`
 
 * Views the client at the specified `INDEX`.
-* `INDEX` refers to the index number shown in the displayed *List of Clients* panel. 
+* `INDEX` refers to the index number shown in the displayed *List Of Clients* panel. 
 * The `INDEX` **must be a positive integer** 1, 2, 3, …​
 * The `INDEX` **must not contain any signs** e.g +1, -3, …​
 
 Example:
 * `view 5` displays the **remarks** and **transactions** of the client at the 5<sup>th</sup> index.
+
+![Sample View Image](images/SampleViewCommand.PNG)
 
 > <div markdown="span" class="alert alert-primary">:bulb: Tip: Use the [list](#listing-all-clients-list) command if you want to get back the full list of clients</div>
 
@@ -295,11 +297,11 @@ Example:
 
 ### **Transaction Commands**
 
-The following section highlights **all** commands related to clients.
+The following section highlights **all** commands related to transactions.
 
 ### Creating a transaction: `buy` or `sell`
 
-Adds a `buy` or `sell` transaction to the *Transaction Details* of a specified client.
+Adds a `buy` or `sell` transaction to the *Transaction Details* panel of a specified client.
 
 Formats:
 
@@ -315,16 +317,16 @@ Parameter constraints:
 | `QUANTITY` | - Refers to the amount of the goods transacted. <br/> - **Must be a positive integer**<br/> - **Must not contain any signs**                                                                         |
 | `GOODS`    | - Refers to the name of the goods transacted. <br/> - **Must contain alphanumeric characters**<br/>- **Must not be blank**.                                                                          |
 | `PRICE`    | - Refers to the price of the goods transacted. <br/> - **Must be a positive number** e.g. 1.5, 2.3, 5<br/>- **Must not contain any signs** <br/>- **Prices will be rounded up to 2 decimal places.** |
-| `DATE`     | - Refers to the date of the transaction. <br/> - **Must be in the format of DD/MM/YYYY.** <br/> - If `DATE` is left empty, the current date that you entered the `command` will be used.             |
+| `DATE`     | - Refers to the date of the transaction. <br/> - **Must be in the format of DD/MM/YYYY.** <br/> - If date is left empty, the **current date** will be used.                                          |
 
 Examples (refer to diagram below as well):
-* `buy 3 q/100 g/apples price/1.5` creates a buy transaction for the 3<sup>rd</sup> client (Charlie) in the list.
-* `sell 1 q/50 g/Chicken price/5.55 d/07/11/2000` creates a sell transaction for the 1<sup>st</sup> client (Alice) in
-the list on the 07/11/2000.
+* `buy 3 q/100 g/apples price/1.5` creates a buy transaction for the 3<sup>rd</sup> client, **Charlie** in the *List Of Client* panel.
+* `sell 1 q/50 g/Chicken price/5.55 d/07/11/2000` creates a sell transaction for the 1<sup>st</sup> client, **Alice** in
+the *List Of Client* panel on the 07/11/2000.
 
 ![Ui](images/SampleBuySellCommand2.PNG)
 
-> <div markdown="span" class="alert alert-primary">:bulb: Tip: If you use the "buy" or "sell" command while the *List Of CLients* panel has more than one client, you will not be able to see the addition.<br/>Use the [view](#viewing-a-client-view) command to see it.</div>
+> <div markdown="span" class="alert alert-primary">:bulb: Tip: If you use the "buy" or "sell" command while the List Of Clients panel has more than one client, you will not be able to see the addition.<br/>Use the [view](#viewing-a-client-view) command to see it.</div>
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -334,14 +336,14 @@ Edits a transaction specified by the index number.
 
 Format: `edit INDEX m/transaction FIELDS [MORE_FIELDS]...`
 
-| Parameter | Constraints                                                                                                                                                                                      |
-|:----------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `INDEX`   | - Refers to the index number shown in the display *Transaction Details*. <br/> - **Must be a positive integer within the range displayed**<br/>  **- Must not contain any signs** e.g +1, -3, …​ |
-| `FIELDS`  | - Refers to the parameters to be changed for the transaction.<br/> - `[q/QUANTITY]`<br/> - `[g/GOODS]`<br/> - `[price/PRICE]`<br/> - `[d/DATE]`                                                  |
+| Parameter | Constraints                                                                                                                                                                                    |
+|:----------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `INDEX`   | - Refers to the index number shown in the *Transaction Details* panel. <br/> - **Must be a positive integer within the range displayed**<br/>  **- Must not contain any signs** e.g +1, -3, …​ |
+| `FIELDS`  | - Refers to the parameters to be changed for the transaction.<br/> - `[q/QUANTITY]`<br/> - `[g/GOODS]`<br/> - `[price/PRICE]`<br/> - `[d/DATE]`                                                |
 
 Example (refer to diagram below):
 
-`edit 1 m/transaction q/100 g/Apples price/1.5` edits the transaction at index 1 in the displayed *Transaction Details* panel, to have a new goods name: "Apples", quantity: "100", price: 1.5.
+`edit 1 m/transaction q/100 g/Apples price/1.5` edits the transaction at index 1 in the *Transaction Details* panel, to have a **new name: Apples**, **quantity: 100**, **price: 1.5**.
 
 > <div markdown="span" class="alert alert-warning">:warning: Warning: You must use [view](#viewing-a-client-view) command first before you can edit a transaction. If not, there will be an error within the application!
 
@@ -356,12 +358,12 @@ Deletes a transaction specified by the index number.
 
 Format: `delete INDEX m/transaction`
 
-* `INDEX` refers to the index number shown in the displayed *Transaction Details*. 
+* `INDEX` refers to the index number shown in the *Transaction Details* panel. 
 * `INDEX` must be a **positive integer**, and must not contain any signs e.g. +1, -3.
 
 Example:
 
-`delete 1 m/transaction` deletes the transaction at index 1 in the displayed *Transaction Details*.
+`delete 1 m/transaction` deletes the transaction at index 1 in the *Transaction Details* panel.
 
 > <div markdown="span" class="alert alert-warning">:warning: Warning: You must use [view](#viewing-a-client-view) command first before you can delete a transaction. If not, there will be an error within the application!
 
@@ -385,7 +387,7 @@ Examples:
 * `filter buy` displays all buy transactions.
 * `filter sell` displays all sell transactions.
 
-> <div markdown="span" class="alert alert-primary">:bulb: Tip: The transactions listed in *List of Transactions* panel does not belong to anyone, it is all transactions with all your clients</div>
+> <div markdown="span" class="alert alert-primary">:bulb: Tip: The transactions listed in List of Transactions panel does not belong to anyone, it is all transactions with all your clients</div>
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -396,17 +398,18 @@ Sorts the specified client's transaction by either the **latest transaction** or
 Format: `sort INDEX ORDER`
 * The *Transaction Details* panel will be empty if the client does not have any transactions.
 
-| Parameter | Constraints                                                                                                                                                                                         |
-|:----------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `INDEX`   | - Refers to the index number shown in the displayed *List Of Clients* panel.<br/> - **Must be a positive integer within the range displayed**<br/>  **- Must not contain any signs** e.g +1, -3, …​ |
-| `ORDER`   | - Refers to how the transaction will be sorted. <br/> - Order of sorting can only be `oldest` or `latest`.<br/>                                                                                     |
+| Parameter | Constraints                                                                                                                                                                               |
+|:----------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `INDEX`   | - Refers to the index number shown in the *List Of Clients* panel.<br/> - **Must be a positive integer within the range displayed**<br/>  **- Must not contain any signs** e.g +1, -3, …​ |
+| `ORDER`   | - Refers to how the transaction will be sorted. <br/> - Order of sorting can only be `oldest` or `latest`.<br/>                                                                           |
 
 
 Examples:
-* `sort 1 latest` displays the 1<sup>st</sup> client transactions sorted by the latest transaction on top.
-* `sort 5 oldest` displays the 5<sup>th</sup> client transactions sorted by the oldest transaction on top.
+* `sort 1 latest` displays the 1<sup>st</sup> client transactions sorted by the **latest transaction** in the *Transaction Details* panel.
 
-> <div markdown="span" class="alert alert-primary">:bulb: Tip: The sort command will filter the *List Of Clients* panel to display only the specified client.<br/>Use the [list](#listing-all-clients-list) command to get back the full list of clients.</div>
+![Sample Sort Command](images/SampleSortCommand.PNG)
+
+> <div markdown="span" class="alert alert-primary">:bulb: Tip: The sort command will filter the List Of Clients panel to display only the specified client.<br/>Use the [list](#listing-all-clients-list) command to get back the full list of clients.</div>
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -420,17 +423,17 @@ Creates a new remark for the specified client.
 
 Format: `remark INDEX REMARK`
 
-| Parameter | Constraints                                                                                                                                                                                     |
-|:----------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `INDEX`   | - Refers to the index number shown in the **displayed list of clients.**<br/>- **Must be a positive integer within the range displayed.**<br/>  **- Must not contain any signs** e.g +1, -3, …​ |
-| `REMARK`  | - Refers to the new remark.<br/>- **Must be filled**                                                                                                                                            |                                                                                                      |
+| Parameter | Constraints                                                                                                                                                                               |
+|:----------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `INDEX`   | - Refers to the index number shown in the *List Of Clients* panel.<br/>- **Must be a positive integer within the range displayed.**<br/>  **- Must not contain any signs** e.g +1, -3, …​ |
+| `REMARK`  | - Refers to the new remark.<br/>- **Must be filled**                                                                                                                                      |                                                                                                      |
 
 
 Examples:
-* `remark 1 punctual buyer` adds the remark **punctual buyer** to the client at index **1**.
+* `remark 1 punctual buyer` adds the remark **punctual buyer** to the client at index **1** of the *List Of Clients* panel.
 
 
-> <div markdown="span" class="alert alert-primary">:bulb: Tip: If you use the `remark` command while the *List of Clients* Panel has more than one client, you will not be able to see the addition.<br/>Use the [view](#viewing-a-client-view) command to see it.</div>
+> <div markdown="span" class="alert alert-primary">:bulb: Tip: If you use the `remark` command while the List of Clients Panel has more than one client, you will not be able to see the addition.<br/>Use the [view](#viewing-a-client-view) command to see it.</div>
 
 
 [Back to Table of Contents](#table-of-contents)
@@ -441,10 +444,10 @@ Edits a `remark` for a specified client.
 
 Format: `edit INDEX m/remark REMARK`
 
-| Parameter    | Constraints                                                                                                                                                                                  |
-|:-------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `INDEX`      | - Refers to the index number shown in the displayed list of remarks. <br/> - **Must be a positive integer within the range displayed**<br/>  **- Must not contain any signs** e.g +1, -3, …​ |
-| `REMARK`     | - Refers to the new remark.<br/>- It must be filled.                                                                                                                                         |
+| Parameter    | Constraints                                                                                                                                                                                            |
+|:-------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `INDEX`      | - Refers to the index number shown in the *Remarks Of Specified Client* panel. <br/> - **Must be a positive integer within the range displayed**<br/>  **- Must not contain any signs** e.g +1, -3, …​ |
+| `REMARK`     | - Refers to the new remark.<br/>- It must be filled.                                                                                                                                                   |
 
 Example:
 
@@ -456,11 +459,11 @@ Example:
 
 ### Deleting a remark: `delete`
 
-Deletes a `remark` for a client.
+Deletes a remark for a client.
 
 Format: `delete INDEX m/remark`
 
-* `INDEX` refers to the index number shown in the displayed list of remarks.
+* `INDEX` refers to the index number shown in the *Remarks Of Specified Client* panel.
 * **Must be a positive integer within the range display, and must not contain any signs** e.g. +1, -3.
 
 > <div markdown="span" class="alert alert-warning">:warning: Warning: You must use [view](#viewing-a-client-view) command first before you can delete a remark. If not, there will be an error within the application!
@@ -469,7 +472,7 @@ Format: `delete INDEX m/remark`
 
 Example:
 
-`delete 1 m/remark` deletes the remark at index 1 in the displayed remark list.
+`delete 1 m/remark` deletes the remark at index 1 in the *Remarks Of Specified Client* panel.
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -483,11 +486,11 @@ Clears all entries which include **clients**, **remarks** and **transactions** f
 
 Format: `clear`
 
-> <div markdown="span" class="alert alert-danger">❗ Danger: Information cleared by clear command cannot be retrieved. Only use this if you want to clear **all** data of `clients`, `remarks` and `transactions`.
+> <div markdown="span" class="alert alert-danger">❗ Danger: Information cleared by clear command cannot be retrieved. Only use this if you want to clear **all** data of **clients**, **remarks** and **transactions**.
 
 Example:
 
-* `clear` clears all client's entries together with the remarks and transactions.
+* `clear` deletes all client's entries together with the remarks and transactions.
 
 ![Ui](images/SampleClearCommand.png)
 
@@ -532,7 +535,7 @@ Displays the link to this user guide in a pop-up window.
 
 Format: `user_guide`
 
-* Displays a *pop-up* that contains the url to this user guide.
+* Displays a pop-up that contains the url to this user guide.
 * You can click on the `Copy URL` button to copy this url to your clipboard and 
 paste it in your browser if you need to refer to this user guide.
 
@@ -552,9 +555,9 @@ JeeqTracker data are saved in the hard disk automatically after any command that
 
 JeeqTracker data are saved as a JSON file "[JAR file location]/data/jeeqtracker.json". If you are an advanced user, you are welcome to update data directly by editing that data file.
 
-> <div markdown="span" class="alert alert-danger">:exclamation: Danger: If your changes to the data file makes its format invalid, JeeqTracker will discard all data and start with an empty data file at the next run.
+> <div markdown="span" class="alert alert-danger">:exclamation: Danger: If your changes to the data file makes its format invalid, **JeeqTracker will discard all data** and start with an empty data file at the next run.
 
-### Archiving data files `[coming in v2.0]`
+### Archiving data files [coming in v2.0]
 
 _Details coming soon ..._
 
