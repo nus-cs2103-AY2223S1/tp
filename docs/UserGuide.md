@@ -787,13 +787,13 @@ Format: `clear`
 
 <p align="center">
 
-<img src="images/clearCommand_before.png"/>
+<img src="images/clearCommand_before.png" width="600"/>
 
 </p>
 
 <p align="center">
 
-<img src="images/clearCommand_after.png"/>
+<img src="images/clearCommand_after.png" width="600"/>
 
 </p>
 
@@ -906,6 +906,8 @@ Note that the **displayed list** is the **student list**, so `find n/john` retur
 Note that the **displayed list** is the **tutor list**, so `find i/NUS q/Bachelor of Computing` returns the tutors who had graduated from NUS with a Bachelor in Computing qualification.
 
 * `find d/monday #/hard` in the **class list**.
+
+<div style="page-break-after: always;"></div>
 
 <div style="display:flex; flex-direction:row;">
 <div style="display:flex; flex-direction:column; align-items:center; padding:5px">
