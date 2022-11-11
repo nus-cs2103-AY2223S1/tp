@@ -132,14 +132,14 @@ to be present.<br>
   e.g. `([n/NAME] [e/EMAIL] [p/PHONE_NUMBER])` requires at least one of either `n/NAME`, `e/EMAIL`, or `p/PHONE_NUMBER`
 to be present.
 
-* Parameters can be in any order.<br>
+* [Parameters](#4-glossary) can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 * If a [parameter](#4-glossary) is expected only once in the command but you specified it multiple times, only the last occurrence of
-the parameter will be taken.<br>
+the [parameter](#4-glossary) will be taken.<br>
   e.g. if you specify `p/81234123 p/99999999`, only `p/99999999` will be taken.
 
-* Any [parameter](#4-glossary) in commands that do not take in parameters (such as
+* Any [parameter](#4-glossary) in commands that do not take in [parameters](#4-glossary) (such as
   [`home`](#252-navigate-to-home), [`list-module`](#215-list-module), [`list-person`](#247-list-person),
   [`clear`](#26-clear-data), [`help`](#27-view-help), and [`exit`](#28-exiting-the-program)) will be ignored.<br>
   e.g. if the command specifies `home 123`, it will be interpreted as [`home`](#252-navigate-to-home).
