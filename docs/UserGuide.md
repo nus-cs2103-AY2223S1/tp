@@ -981,7 +981,8 @@ Combine this with [set team command](#set-a-new-team-set-team) to directly switc
 #### Edit current team: `edit team`
 
 You discussed the group name with your team members, and they do not like the name you proposed! They prefer it to be
-something cooler instead. Not to worry, you are able to edit the details of your current team with `edit team` command. 
+something cooler instead. Not to worry, you are able to edit the details of your current team with the 
+`edit team` command. 
 
 The `edit team` command allows you to edit the details your currently selected team. The edited team details will be 
 shown in the [currently selected team](#current-team-section). 
@@ -1022,7 +1023,7 @@ using the `-d` flag.
 #### Delete an existing team: `delete team`
 
 The semester is coming to an end, and the group project is finally completed. You can delete a team once it is no longer
-needed with our `delete team` command.
+needed with the `delete team` command.
 
 The `delete team` command allows you to delete an existing team. The team deleted will be removed from the
 [teams section](#teams-section). Let us show you an example of deleting a team.
@@ -1058,7 +1059,7 @@ on how to add a new team.
 #### Set a new team: `set team`
 
 It is a busy semester, and you have multiple teams that you need to manage. Not to worry, you can change the team you 
-are managing using our `set team` command. 
+are managing using the `set team` command. 
 
 The `set team` command allows you to change the [currently selected team](#current-team-section) to a new team from
 the list of teams in the [teams section](#teams-section). Let us show you an example of how to use this command.
@@ -1099,23 +1100,25 @@ Summary of the commands to manage tasks can be found [here](#summary-of-task-com
 #### Add task to team: `add task`
 
 Your professor has just announced a list of submissions that you need to complete for the project. You want to record
-the list of tasks that needs to be done in order to complete the submission on time. Decide on a task name and key in
-`add task <TASK_NAME>` and a new task will be added to the task list in [current team section](#current-team-section).
-You may optionally specify a deadline and assignees for this command using `-d <TASK_DEADLINE>` and 
-`-a <TASK_ASSIGNEES>` respectively. Please refer to the respective commands on how to 
-[set deadlines](#set-deadline-for-task-set-deadline) and [set assignees](#assign-a-task-to-team-member-assign-task)!
+the list of tasks that needs to be done in order to complete the submission on time. Not to worry, you can record the 
+name of the task and the deadline with the `add task` command!
 
 The `add task` allow you to add a new task to your current team. Each task can have multiple assignees and a deadline.
-The new task will be displayed in the task list of your [current team section](#current-team-section). Do not worry if 
-an error shows up, you might have typed something wrongly. Here, let us take a quick walk-through on how to add a new 
-task.
+The new task will be displayed in the task list of your [current team section](#current-team-section). Do not worry if
+an error shows up, you might have typed something wrongly. 
 
-Let us try to add a task called `Create PR`. Enter the command 
+Here, let us take a quick walk-through on how to add a new task.
 
-`add task "Create PR"`
+Suppose we have a new task called `Create PR`. 
 
-If done successfully, a new task with the name `Create PR` will be added to the task list in 
-[current team section](#current-team-section).
+Enter the command `add task "Create PR"`
+
+If done successfully, a new task with the name `Create PR` will be added to the task list in
+[current team section](#current-team-section) as shown below.
+
+You may optionally specify a deadline and assignees for this command using `-d <TASK_DEADLINE>` and
+`-a <TASK_ASSIGNEES>` respectively. Please refer to the respective commands on how to
+[set deadlines](#set-deadline-for-task-set-deadline) and [set assignees](#assign-a-task-to-team-member-assign-task)!
 
 ![Add Task Example](images/AddTaskExample.png)
 
@@ -1149,24 +1152,22 @@ If done successfully, a new task with the name `Create PR` will be added to the 
 #### Edit task in team: `edit task`
 
 Opps! Seems like you did not like the name that you have given your task. Not to worry, you can edit the details of the 
-task easily with `edit task`! First, identify the index number of the task in the task list of
-[current team section](#current-team-section). If you are not able to find the task visibly, refer to
-[find task command](#finding-a-task-find-task) on how you can find your task easily. Next, key in
-`edit task <INDEX_NUMBER> -n <NEW_TASK_NAME>` to change the name of the task! You can edit other information such as 
-deadline and assignees as well. Please refer to the respective commands on how to
-[set deadlines](#set-deadline-for-task-set-deadline) and [set assignees](#assign-a-task-to-team-member-assign-task)!
+task easily with the `edit task` command! 
 
 The `edit task` command allows you to edit an existing task in your team. The edited task's details will be shown in the
 task list of the [current team section](#current-team-section). As always, do not panic if you see an error message. Let
 us run through how to edit the details of a task.
 
 Suppose you want to change the task name from `Create PR` to `Merge PR`. Identify the index number of
-`Create PR` in the application (1 in the image below). Enter the command
+`Create PR` in the application (1 in the image below). If you are not able to find the task visibly, refer to
+[find task command](#finding-a-task-find-task) on how you can find your task easily.
 
-`edit task 1 -n "Merge PR"`
+Enter the command `edit task 1 -n "Merge PR"` to edit the task.
 
 If done successfully, you should see the new details show up under in the task list of the
-[current team section](#current-team-section), with the task name of `Merge PR`.
+[current team section](#current-team-section), with the task name of `Merge PR` as shown below. You can edit other
+information such as deadline and assignees as well. Please refer to the respective commands on how to
+[set deadlines](#set-deadline-for-task-set-deadline) and [set assignees](#assign-a-task-to-team-member-assign-task)!
 
 ![Edit Task Example](images/EditTaskExample.png)
 
@@ -1217,22 +1218,20 @@ Passing `TASK_INDEX` after `ASSIGNEES` makes it impossible to distinguish which 
 #### Delete task from team: `delete task`
 
 You realise that the task that you added is too big and can be split into smaller sub-tasks. Not to worry, you
-can delete the tasks easily with `delete task`! First, identify the index number of task in the task list of
-[current team section](#current-team-section). If you are not able to find the task visibly, refer to
-[find task command](#finding-a-task-find-task). Next, key in `delete task <INDEX_NUMBER>`
-to remove the task from TruthTable.
+can delete the tasks easily with the `delete task` command! 
 
 The `delete task` command allows you to delete the specified task from TruthTable. The task deleted will be
 removed from the task list of the [current team section](#current-team-section). Let us run through how to delete a
 task.
 
 Suppose you want to delete a task called `Merge PR`. Identify the index number of `Merge PR` in the
-application (1 in the image below). Enter the command
+application (1 in the image below). If you are not able to find the task visibly, refer to
+[find task command](#finding-a-task-find-task).
 
-`delete task 1`
+Enter the command `delete task 1` to delete the task.
 
 If done successfully, you should the task `Merge PR` removed under the task list of
-[current team section](#current-team-section).
+[current team section](#current-team-section) as shown below.
 
 ![Delete Task Example](images/DeleteTaskExample.png)
 
@@ -1259,19 +1258,17 @@ above [add task command](#add-task-to-team-add-task) to add a new task into Trut
 
 #### Finding a task: `find task`
 
-Deadline is coming up the there so many tasks to complete. You recall adding a task called merge but you are not sure
-about the full name of the task. Not to worry, you can find the task easily with `find task`! First, recall any keyword
-you can remember from the task. Next, key in `find task <TASK_NAME_KEYWORDS>`, and TruthTable will show you all tasks with
-names that contain the keywords that you specified!
+Deadlines are coming and you are **swarmed**  complete. You recall adding a task called merge, but you are not sure
+about the full name of the task. Not to worry, you can find the task easily with the `find task` command!
 
 The `find task` command allows you to finds all tasks whose names contain any of the given keywords.
 The tasks with matching names will be shown in the task list of [current team section](#current-team-section).
 
 Let us run through how to find a task.
 
-Suppose you want to find all tasks named User and all tasks named Guide. Enter the command
+Suppose you want to find all tasks named User and all tasks named Guide. 
 
-`find task User Guide`
+Enter the command `find task User Guide` to find all tasks with names `User` or `Guide`.
 
 If done successfully, you should the see all tasks named User or Guide show up under in the
 task list of [current team section](#current-team-section).
@@ -1308,23 +1305,21 @@ To reset the task list, see the [list tasks command](#list-tasks-in-team-list-ta
 
 #### Mark tasks as done: `mark`
 
-Seems like the task is finally completed. Hooray! You can mark the task as done easily with `mark task`! 
-First, identify the index number of the task in the task list of[current team section](#current-team-section). 
-If you are not able to find the task visibly, refer to [find task command](#finding-a-task-find-task) on how you can 
-find your task easily. Next, key in `mark task <INDEX_NUMBER>` to mark the task as completed.
+Seems like the task is finally completed. Hooray! You can mark the task as done easily with the `mark task` command!
 
 The `mark task` command allows you to mark an existing task as done. The marked task will be shown in the
-task list of the [current team section](#current-team-section).  
+task list of the [current team section](#current-team-section).
 
 Let us run through how to mark an existing task.
 
 Suppose you want to mark the task of `Create PR` as done. Identify the index number of
-`Create PR` in the application (1 in the image below). Enter the command
+`Create PR` in the application (1 in the image below). If you are not able to find the task visibly, refer to [find task command](#finding-a-task-find-task) on how you can
+find your task easily.
 
-`mark task 1`
+Enter the command `mark task 1` to mark the task as done.
 
 If done successfully, you should see a cross appear beside the task named of `Merge PR`, under in the task list of the
-[current team section](#current-team-section).
+[current team section](#current-team-section) as shown below.
 
 ![Mark Example](images/MarkExample.png)
 
@@ -1351,22 +1346,22 @@ To undo this command, please see the [unmark command](#unmark-tasks-as-done-unma
 
 #### Unmark tasks as done: `unmark`
 
-Oops, something about the task was incomplete. Not to worry, you can mark the task as incomplete easily with 
-`unmark task`! First, identify the index number of the task in the task list of 
-[current team section](#current-team-section). If you are not able to find the task visibly, refer to [find task command](#finding-a-task-find-task) on how you can
-find your task easily. Next, key in `unmark task <INDEX_NUMBER>` to mark the task as incomplete.
+Oops, something about the task was incomplete. Not to worry, you can mark the task as incomplete easily with the 
+`unmark task` command! 
 
 The `unmark task` command allows you to mark an existing task as incomplete. The unmarked task will be shown in the
 task list of the [current team section](#current-team-section).
 
 Let us run through how to mark an existing task.
 
-Suppose the task of `Create PR` was originally complete and you want to mark the task of `Create PR` as incomplete. 
-Identify the index number of `Create PR` in the application (1 in the image below). Enter the command
+Suppose the task of `Create PR` was originally complete and you want to mark the task of `Create PR` as incomplete.
+Identify the index number of `Create PR` in the application (1 in the image below). If you are not able to find the 
+task visibly, refer to [find task command](#finding-a-task-find-task) on how you can find your task easily.
 
-`unmark task 1`
+Enter the command `unmark task 1` to mark the task as not done.
 
-If done successfully, you should the cross beside the task named of `Merge PR` disappear.
+If done successfully, you should the cross beside the task named of `Merge PR` disappear, under in the task list of the
+[current team section](#current-team-section) as shown below.
 
 ![Unmark Example](images/UnmarkExample.png)
 
@@ -1393,27 +1388,28 @@ To undo this command, please see the [mark command](#mark-tasks-as-done-mark).
 
 #### Set Deadline for task: `set deadline`
 
-You realise that this task needs to be done more urgently than expected and need to change its deadline. Look no further, 
-you can set deadlines for your tasks! First, identify the index number of the task in the task list of
-[current team section](#current-team-section). If you are not able to find the task visibly, refer to 
-[find task command](#finding-a-task-find-task) on how you can find your task easily. Next, key in 
-`set deadline <INDEX_NUMBER> <DEADLINE>` to set a new deadline for the task.
+You realise that this task needs to be done more urgently than expected and need to change its deadline. 
+Look no further, you can set deadlines for your tasks with the `set deadline` command!
 
-The `set deadline` command allows you to set a deadline for an existing task, and the deadline must be in 
-`YYYY-MM-DD HH:MM` format. The task with the new deadline will be shown in the task list of the 
+The `set deadline` command allows you to set a deadline for an existing task, and the deadline must be in
+`YYYY-MM-DD HH:MM` format. The task with the new deadline will be shown in the task list of the
 [current team section](#current-team-section).
 
 Let us run through an example on how to set deadlines.
 
-Suppose you have task called `Create PR`, and you need it to be completed by 11 November 2022, 2359hrs. 
-Identify the index number of `Create PR` in the application (1 in the image below).
+Suppose you have task called `Create PR`, and you need it to be completed by 11 November 2022, 2359hrs.
+Identify the index number of `Create PR` in the application (1 in the image below). If you are not able to find the 
+task visibly, refer to [find task command](#finding-a-task-find-task) on how you can find your task easily.
 
 Then, enter the command `set deadline 1 2022-11-11 23:59`.
 
 If done successfully, you should see the `Create PR` task with the new deadline show up  under in the task list of the
-[current team section](#current-team-section).
+[current team section](#current-team-section) as shown below.
 
 ![Set Deadline Example](images/SetDeadlineExample.png)
+
+Unable to find a task you are looking for? Please check that you have added the task into TruthTable! Refer to the
+above [add task command](#add-task-to-team-add-task) to add a new task into TruthTable.
 
 **Format:** `set deadline [-h] <TASK_INDEX> <TASK_DEADLINE>`
 
