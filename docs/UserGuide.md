@@ -532,7 +532,7 @@ Examples:
 
 </p>
 
-This edits the details of Alex Miller by changing his name to Tom Doe. Note that the Description Panel and the List Display Panel are updated after the commands.
+This edits the details of Alex Miller by changing his name to Tom Doe. Note that the Description Panel and the List Display Panel are updated.
 
 ### Assign class to a person: `assign`
 
