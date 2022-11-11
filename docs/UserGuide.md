@@ -727,7 +727,7 @@ The following table lists every keyboard shortcut currently available in PayMeLa
 
 ### Features for Data Management
 
-#### Saving the data
+#### Saving your data
 
 Your computer automatically saves PayMeLah data after any command that changes it. There is no need to save manually! Within the folder you saved your PayMeLah, you might have noticed that there is a `data` folder. As the name suggests, your PayMeLah data is saved in a `paymelah.json` file within that folder.
 
@@ -736,7 +736,7 @@ Your computer automatically saves PayMeLah data after any command that changes i
 A [JSON file](https://fileinfo.com/extension/json) is a common type of file used by many applications to store data in a format easily readable and editable by advanced users.
 </div>
 
-#### Editing the data file
+#### Editing your data file
 
 You can actually update the data in PayMeLah without even launching the application! To **save time**, advanced users are welcome to update data by directly editing `paymelah.json`.
 
@@ -761,10 +761,27 @@ If the data file fails to follow the required format, PayMeLah will **discard al
 
 ## FAQ
 
-**Q1**: How do I transfer my data to PayMeLah on another Computer?<br>
-**A**: You can install PayMeLah in the other computer and replace the data file in the other computer with the data file in your current computer's PayMeLah home folder.
+**Q1**: Do I need to save my data manually?<br>
+**A**: Nope! You don't have to worry about saving your data manually at all! PayMeLah automatically saves your data for you. If you are interested to learn more, you can head to the [saving your data](#saving-your-data) section.
 
-**Q2**: I can't find something that I **know** I have added to PayMeLah. Where did it go?<br>
+--------------------------------------------------------------------------------------------------------------------
+
+**Q2**: How do I transfer my data to PayMeLah on another computer?<br>
+**A**: Here is a X-step guide to transfer your data!
+
+1. Find your current data file. By default, it should be a `paymelah.json` file found in your `data` folder. See more under [saving your data](#saving-your-data).
+
+1. [Install PayMeLah](#tutorial-installing-paymelah) on your new computer!
+
+1. Launch PayMeLah on your new computer, then exit the application.
+
+1. You should now see a `data` folder within the folder that you saved PayMeLah. Enter the `data` folder and replace the `paymelah.json` file in your new computer with your `paymelah.json` file from your old computer.
+
+The next time you launch PayMeLah on your new computer, your data should be updated to reflect the data in your old computer!
+
+<div style="page-break-after: always;"></div>
+
+**Q3**: I can't find something that I **know** I have added to PayMeLah. Where did it go?<br>
 **A**: If you are trying to locate a person, try using the [`find` command](#locating-persons-by-inputs-find)! When searching for names, the `find` command displays partial matches, so it will find `Bobby` even if you search for `bob`.<br>
 If you are trying to locate a debt without knowing its full description, consider using the [`finddebt` command](#locating-persons-by-debt-description-finddebt) instead.<br>
 <div markdown="span" class="alert alert-primary">:bulb: **Other Tips:** <br>
@@ -772,10 +789,14 @@ If you are trying to locate a debt without knowing its full description, conside
 2. As a last resort, the [`list` command](#listing-all-persons-list) will list every person in PayMeLah. You can then [sort the list](#sorting-list-of-persons-sort) to make it easier to manually check through the list. If you still cannot find the person or debt you are looking for in the full [person list](#person-list-section) displayed by `list`, then unfortunately it means the item you are looking for is not in PayMeLah.
 </div>
 
-**Q3**: PayMeLah is not letting me use the command I want! What can I do?<br>
+--------------------------------------------------------------------------------------------------------------------
+
+**Q4**: PayMeLah is not letting me use the command I want! What can I do?<br>
 **A**: Oh no! Calm down - let's troubleshoot together. First, head to the [Command Summary](#command-summary) section to make sure you are using the command in the correct format. You can also click on the links there to read more about the specifics of each command. If PayMeLah continues to misbehave, do drop us an email at [paymelah.app@gmail.com](mailto:paymelah.app@gmail.com), and we will do our best to help you as soon as possible!
 
-**Q4**: Why can't PayMeLah do _this_?<br>
+--------------------------------------------------------------------------------------------------------------------
+
+**Q5**: Why can't PayMeLah do _this_?<br>
 **A**: We are so sorry that PayMeLah does not support this feature at the moment :( However, PayMeLah is a constant work in progress and we hope to deliver the features that you are looking for in the near future! In the meantime, feel free to drop us feedback at [paymelah.app@gmail.com](mailto:paymelah.app@gmail.com) so that we can better understand and serve your needs :)
 
 [Return to Table of Contents](#table-of-contents)
