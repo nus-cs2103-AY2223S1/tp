@@ -6,10 +6,12 @@ title: User Guide
 <div align=center><img src="images/userguide/ProfNUS.png" alt="img" width=400 height=250 /></div>
 
 
-Made for SOC (School of Computing) Professors, **ProfNUS** is the **easiest way to keep track of your teaching schedule and organize information regarding the students and modules you teach.** It is optimized for users who prefer Command Line Interface (CLI) so that frequent tasks can be done faster by typing in commands which is perfect for SOC Professors! Interested? :wink: Continue reading to find out more!
+Made for SoC (School of Computing) Professors, **ProfNUS** is the **easiest way to keep track of your teaching schedule and organize information regarding the students and modules you teach.** It is optimized for users who prefer Command Line Interface (CLI) so that frequent tasks can be done faster by typing in commands which is perfect for SoC Professors! Interested? :wink: Continue reading to find out more!
 
 * Table of Contents
 {:toc}
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -20,6 +22,8 @@ Welcome to **ProfNUS**! :blush:
 Are you a SoC professor who is busy with heavy research work, teaches many modules and manages hundreds of students and TAs at the same time? Do you feel dizzy changing from one platform to another such as Luminus or Canvas? Have you ever sent an email to the wrong group of students? Life is hard, but luckily, **ProfNUS** can help you out! **ProfNUS** is a comprehensive teaching management desktop application that assists SoC professor in terms of modules, students, TAs, and schedules. It is designed based on Command Line Interface (CLI), which perfectly fits SoC professors' habits and preferences. We also provide Graphic User Interface (GUI) for users to interact with our product.
 
 If you want to know more about how **ProfNUS** is able to ease your worries, go to the [Quick Start](#2-quick-start) and take your first step in **ProfNUS**!
+
+<div style="page-break-after: always;"></div>
 
 ## 2. Quick start
 
@@ -46,6 +50,8 @@ If you want to know more about how **ProfNUS** is able to ease your worries, go 
     * **`exit`** : Exits the app.
 
 6. Refer to the [Features](#4-features) below for details of each command.
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 ## 3. About
@@ -96,8 +102,10 @@ Notes about the command format:
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `sview`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+  * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `sview`, `exit` and `clear`) will be ignored.<br>
+    e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -127,7 +135,7 @@ You can use this command to access the help page, where you can find our User Gu
 
 ### 4.2. Module Manager
 
-As SOC Professors, you would be teaching at least one or more modules.
+As SoC Professors, you would be teaching at least one or more modules.
 In ProfNUS, you are able to add modules into our module list.
 We are able to save the module's name, unique module code, description
 and other module related information such as your teaching schedule for the module.
@@ -320,7 +328,7 @@ Now, let's use `mdel` to delete a module in ProfNUS!
 
 ### 4.3. Student Manager
 
-As SOC Professors, you certainly have many students and teaching assistants to keep track of.
+As SoC Professors, you certainly have many students and teaching assistants to keep track of.
 In ProfNUS, you are able to add students / teaching assistants into our contact list.
 We are able to save the individual's name, unique student id, phone number, email, telegram handle,
 address and other school related information such as modules the student is taking, modules which
@@ -464,7 +472,7 @@ You can use this command to edit a teaching assistant from the teaching assistan
 - You can remove all the teaching assistant’s tags by typing `t/` without specifying any tags after it.
   Likewise, this can be done for modules, ta modules and class groups as well by typing `c/`, `ta/` and `cg/` respectively.
 - Editing a teaching assistant that is a student will change the details of both of them displayed in the list.
-- Editing a teaching assistant is very similar to editing a student. Do refer to the section [Editing a Student](#433-editing-a-student-editstu)
+- Editing a teaching assistant is very similar to editing a student. Do refer to the section [Editing a Student](#434-editing-a-student-editstu)
 - Successfully editing a teaching assistant will redirect you to the all student's and teaching assistant's page.
 
 </div>
@@ -529,7 +537,7 @@ You can use this command to delete a teaching assistant from the teaching assist
 - The index refers to the index number shown in the displayed student list.
 - The index **must be a positive integer** 1, 2, 3, …​
 - Deleting a teaching assistant from the teaching assistant list will also delete the student from the student list.
-- Deleting a teaching assistant is very similar to deleting a student. Do refer to [Deleting a student](#435-deleting-a-student-delstu) if you are unsure.
+- Deleting a teaching assistant is very similar to deleting a student. Do refer to [Deleting a student](#436-deleting-a-student-delstu) if you are unsure.
 - Successfully deleting a teaching assistant will redirect you to the all student's and teaching assistant's page.
 
 </div>
@@ -602,7 +610,7 @@ In this section, we list all the parameters you will encounter of following comm
 
 #### 4.4.2. View your schedule: `sview`
 
-Views the list of selected/all schedules.
+Views the list of all schedules.
 
 **Format:** `sview`
 
@@ -610,7 +618,7 @@ Views the list of selected/all schedules.
 
 #### 4.4.3. View your timetable: `tview`
 
-Views the Timetable of all schedules
+Views the timetable of all schedules.
 
 **Format:** `tview [MODE]`
 
@@ -629,7 +637,7 @@ Views the Timetable of all schedules
 
 :exclamation: **Caution:**<br>
 
-- If there are other parameters/words after `sview` instead of `v` or `h`, ProfNUS will report an error.
+- If there are other parameters/words after `tview` instead of `v` or `h`, ProfNUS will report an error.
 
 </div>
 
@@ -824,6 +832,7 @@ ProfNUS data are saved as a JSON file `[JAR file location]/data/profnus.json`. A
 If your changes to the data file makes its format invalid, ProfNUS will discard all data and start with an empty data file at the next run.
 </div>
 
+<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
 
 ## 5. FAQ
