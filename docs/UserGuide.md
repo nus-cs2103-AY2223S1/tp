@@ -714,7 +714,7 @@ Example:
 
 **Reason for usage:**
 
-* You want to quickly edit one field in the patient's details.
+* You want to quickly edit a single field in the patient's details.
 
 Example:
 
