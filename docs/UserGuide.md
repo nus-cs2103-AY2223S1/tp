@@ -52,9 +52,9 @@ Getting started with PayMeLah is easy! Here is a tutorial on how to get PayMeLah
 
 1. Firstly, to run the PayMeLah application, you will need to have *Java 11* or above [installed](https://www.baeldung.com/java-check-is-installed) on your computer ([Mac](https://www.geeksforgeeks.org/how-to-install-java-on-macos/), [Windows](https://phoenixnap.com/kb/install-java-windows)).
 
-2. Next, you will need to prepare an [empty folder](https://www.wikihow.com/Make-a-New-Folder-on-a-Computer) to download PayMeLah to.
+2. Next, you will need to prepare an [**empty folder**](https://www.wikihow.com/Make-a-New-Folder-on-a-Computer) to download PayMeLah to.
 
-3. Now, you will need to visit [this link](https://github.com/AY2223S1-CS2103T-W13-3/tp/releases) to click and download the latest version of *PayMeLah.jar*. Make sure to download it to the folder you created in step 2! <br>
+3. Now, you will need to visit [**this link**](https://github.com/AY2223S1-CS2103T-W13-3/tp/releases) to click and download the latest version of *PayMeLah.jar*. Make sure to download it to the folder you created in step 2! <br>
    <img src="images/howToDownload_1.png" width="500" /> <br>
    <img src="images/howToDownload_2.png" width="500" /> <br>
 
@@ -87,7 +87,7 @@ Each section is made of several components which will be explained in the follow
 
 <img src="images/CommandLineSection.png" width="800" />
 
-This is the section where you can enter commands for PayMeLah, and where the status of your commands are displayed.
+This is the section where you can **enter commands** for PayMeLah, and where the **messages from PayMeLah are displayed**.
 
 | Number | Component Name | Details                                                                                                                                               |
 |:------:|----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -100,7 +100,7 @@ This is the section where you can enter commands for PayMeLah, and where the sta
 
 <img src="images/PersonListSection.png" width="800" />
 
-This is the section showing the list of persons added to PayMeLah. The names can be clicked to show their _person card_: a box containing their person details as well as their list of debts.
+This is the section showing the **list of persons** added to PayMeLah. **Click a person's name** to display their _person card_: a box containing their **person details** as well as their **list of debts**.
 
 | Number | Component Name  | Details                                                    |
 |:------:|-----------------|------------------------------------------------------------|
@@ -119,7 +119,7 @@ This is the section showing the list of persons added to PayMeLah. The names can
 
 <img src="images/DebtListSection.png" width="800" />
 
-This is the section showing details about each debt of a person.
+This is the section showing **details about each debt of a person**.
 
 | Number | Component Name | Details                                     |
 |:------:|----------------|---------------------------------------------|
