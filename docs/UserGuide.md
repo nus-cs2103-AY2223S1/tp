@@ -303,7 +303,6 @@ For instance,
 
 <div markdown="block" class="alert alert-success">
 **:bulb: Flags with multiple parameters**
-<br><br>
 If a flag is displayed with `...` behind it, this means that the flag accepts more than 1 parameter.
 <br><br>
 For instance, in the `assign task` command, we can specify more than 1 assignee (provided they are valid).
