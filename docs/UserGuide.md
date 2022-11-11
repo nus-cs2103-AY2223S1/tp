@@ -15,7 +15,7 @@ With Waddle, you can plan your travel itinerary in **3 simple steps**:
 
 If you wish to learn more about Waddle and its features, then this comprehensive user guide is for you!
 For tips on how to navigate our user guide, check out our [User Guide Tips](#user-guide-tips) section.
-For instructions on how to set-up Waddle, visit our [Quick start](#quick-start) section.
+For instructions on how to set up Waddle, visit our [Quick start](#quick-start) section.
 For basic information on how to make the best of Waddle, check out our [Tutorial for beginners](#tutorial-for-beginners).
 
 --------------------------------------------------------------------------------------------------------------------
@@ -174,7 +174,7 @@ You should see the item being moved from the Wishlist section to the Day 1 item 
 
 **:information_source: Notes:**<br>
    
-* For additional information, refer to the [`plan` command](#scheduling-an-item--plan) explanation in the [Features](#features) section under itinerary planning page commands.
+* For additional information, refer to the [`plan` command](#scheduling-an-activity--plan) explanation in the [Features](#features) section under itinerary planning page commands.
 
 </div>
 
@@ -230,7 +230,7 @@ You can expand your Waddle knowledge further by reading the other sections of th
 
 ### Universal commands
 
-Most commands in Waddle can only be used on the [main page](#the-main-page) or the [activity planning page](#the-activity-planning-page). However, the commands in this section may be used on either page at any time.
+Most commands in Waddle can only be used on the [main page](#the-home-page) or the [activity planning page](#the-activity-planning-page). However, the commands in this section may be used on either page at any time.
 
 ### Viewing help : `help`
 
@@ -672,7 +672,7 @@ If your changes to the data file makes its format invalid, Waddle will discard a
 
 | Term                               | Meaning                                                                                                                                                    |
 |------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Command Line Interface (CLI)**   | A CLI is a text-based user interface that allows users to input commands in the form of text                                                               |
-| **Graphical User Interface (GUI)** | A GUI is a graphics-based user interface that allows users to interact with elements such as icons and buttons when running a program                      |
+| **Command Line Interface (CLI)**   | A command line interface is a text-based user interface that allows users to input commands in the form of text                                            |
+| **Graphical User Interface (GUI)** | A graphical user interface is a graphics-based user interface that allows users to interact with visual elements like buttons and lists                    |
 | **Parameter**                      | The details that you have to provide waddle which differs for each command. For example, the `plan` command requires the `day` and `start time` parameters |
 | **Prefix**                         | The characters that precede the parameters you enter. For example, `n/` for the name parameter                                                             |
