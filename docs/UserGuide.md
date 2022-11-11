@@ -474,8 +474,7 @@ them. After getting their name, email, and phone number, you can save their cont
 specify some tags for any interesting qualities about the person!
 
 This `add person` command allows you to add a new person to TruthTable. The new person is added to the 
-[persons section](#persons-section). Do not worry if an error shows up, as
-you might have made a typo. 
+[persons section](#persons-section). 
 
 Here, let us take walk through an example on how to add a person.
 
@@ -791,7 +790,7 @@ the [current team section](#current-team-section). Refer to the above
 #### Finding a member: `find member`
 
 As your software project is growing and your team is getting bigger, you are no longer able to find specific team 
-members. Fret not, you can find your team members easily with the `find member` command.  
+members. You can find your team members easily with the `find member` command.  
 
 The `find member` command allows you to find all team members whose names or emails contain any of the given keywords.
 The members with matching names will be shown in the member list in the [current team section](#current-team-section)
@@ -937,7 +936,7 @@ Summary of the commands to manage teams can be found [here](#summary-of-team-com
 You have formed your group for the project and are ready to work on your software engineering project! After deciding on a team name and a description, you are now ready to create a new team. 
 
 The `add team` command allows you to add a new team to your list of teams. The new team is added to the 
-[teams section](#teams-section) as seen in the image below. Do not worry if an error shows up, you might have typed something wrongly. 
+[teams section](#teams-section) as seen in the image below.
 
 Here, let us take a quick walk-through on how to add a team.
 
@@ -1047,7 +1046,7 @@ on how to add a new team.
 
 #### Set a new team: `set team`
 
-It is a busy semester, and you have multiple teams that you need to manage. Not to worry, you can change the team you 
+It is a busy semester, and you have multiple teams that you need to manage. You can change the team you 
 are managing using the `set team` command. 
 
 The `set team` command allows you to change the [currently selected team](#current-team-section) to a new team from
@@ -1141,7 +1140,7 @@ Please refer to the respective commands on how to
 
 #### Edit task in team: `edit task`
 
-Accidentally spelt the name of a task incorrectly? Not to worry, you can edit the details of the  task easily with the `edit task` command!
+Accidentally spelt the name of a task incorrectly? You can edit the details of the  task easily with the `edit task` command!
 
 The `edit task` command allows you to edit an existing task in your team. The edited task's details will be shown in the
 task list of the [current team section](#current-team-section). Let
@@ -1342,7 +1341,7 @@ To undo this command, please see the [unmark command](#unmark-tasks-as-done-unma
 
 #### Unmark tasks as done: `unmark`
 
-Oops, a small portion of the task was still incomplete. Not to worry, you can mark the task as incomplete easily with the 
+Oops, a small portion of the task was still incomplete. You can mark the task as incomplete easily with the 
 `unmark task` command! 
 
 The `unmark task` command allows you to mark an existing task as incomplete. The unmarked task will be shown in the
@@ -1614,7 +1613,7 @@ Unable to find an existing task? Please check that you have added the task into 
 
 #### Sort tasks: `sort tasks`
 
-The number of tasks is increasing, and it is confusing for you to find tasks in the list. Fret not, you can sort your team tasks by name with our `sort tasks` command! 
+The number of tasks is increasing, and it is confusing for you to find tasks in the list. You can sort your team tasks by name with our `sort tasks` command! 
 
 The `sort tasks` command allows you to sort your tasks in alphabetical order. The sorted tasks will
 be displayed in task list the [current team section](#current-team-section) as seen in the image below.
