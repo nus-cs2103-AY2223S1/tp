@@ -22,10 +22,14 @@ Yet, it has all the benefits of a traditional application with a **graphical int
 at a glance, a neat overview of what you need to see. If you type fast, StudMap can get your student management tasks 
 **done faster** than anything else.
 
-This user guide aims to help you understand StudMap, so that you can make the best use of our features. Read on to find out more!
+This user guide aims to help you understand StudMap, so that you can make the best use of our features. You can read on to find out 
+more about why StudMap is a [good fit for you](#2-why-studmap), or if you can't wait to use this application, jump straight into the
+next section introducing our [user guide](#3-how-to-use-this-user-guide).
 
 ---
 <div style="page-break-after: always;"></div>
+
+## 1.1 Table of Contents
 
 * Table of Contents
 {:toc}
@@ -112,12 +116,12 @@ Throughout the guide, various types of notation are used to convey important inf
 
 Here are some of the symbols and syntax to look out for:
 
-| Symbol / Syntax      | Meaning                                                                       |
-|----------------------|-------------------------------------------------------------------------------|
-| :information_source: | Information about [commands](#command) or formats that you should be aware of |
-| :exclamation:        | Warning of potential user scenarios you might face that can lead to errors    |
-| :bulb:               | Tips that can help you save time using StudMap                                |
-| `code`               | Indicates [command](#command) or parameter that can be inputted into StudMap  |
+| Symbol / Syntax      | Meaning                                                                                     |
+|----------------------|---------------------------------------------------------------------------------------------|
+| :information_source: | Information about [commands](#command) or formats that you should be aware of               |
+| :exclamation:        | Warning of potential user scenarios you might face that can lead to errors                  |
+| :bulb:               | Tips that can help you save time using StudMap                                              |
+| `code`               | Indicates [command](#command) or [parameter](#parameters) that can be inputted into StudMap |
 
 ---
 <div style="page-break-after: always;"></div>
@@ -156,7 +160,7 @@ Take note of the three main elements of the interface:
 | Element      | Purpose                                                                                                                                                    |
 |--------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Command Box  | This is where you give instructions to StudMap, telling StudMap what you want to do. These instructions are called [Commands](#43-understanding-commands). |
-| Reply Box    | This is where StudMap replies with any useful feedback, for example after running a [command](#command).                                                               |
+| Reply Box    | This is where StudMap replies with any useful feedback, for example after running a [command](#command).                                                   |
 | Student List | This is where StudMap displays the list of students, with information about each student organized into individual **student cards**.                      |
 
 <div style="page-break-after: always;"></div>
@@ -172,15 +176,16 @@ The **left half** of each student card contains the student's particulars. Let's
 
 ![Student Info UI](images/ui/ui-student-info.png)
 
-| Element         | Purpose                                                                                                  |
-|-----------------|----------------------------------------------------------------------------------------------------------|
+| Element         | Purpose                                                                                                              |
+|-----------------|----------------------------------------------------------------------------------------------------------------------|
 | Index           | Order of the student in the list. Used to indicate which student card you want to target with a [command](#command). |
-| Student Name    | Name of your student. **Is Compulsory!**                                                                 |
-| Student ID      | Student ID of your student, usually beginning with E. **Is Compulsory!**                                 |
-| Phone Number    | Phone number of your student, if available.                                                              |
-| Email           | Email address of your student, if available.                                                             |
-| GitHub Username | GitHub username of your student, if available.                                                           |
-| Telegram Handle | Telegram handle of your student, if available.                                                           |
+| Student Name    | Name of your student. **Is Compulsory!**                                                                             |
+| Tag             | [Tag](#tag) appended to your student, providing additional information about him or her.                             |
+| Student ID      | Student ID of your student, usually beginning with E. **Is Compulsory!**                                             |
+| Phone Number    | Phone number of your student, if available.                                                                          |
+| Email           | Email address of your student, if available.                                                                         |
+| GitHub Username | GitHub username of your student, if available.                                                                       |
+| Telegram Handle | Telegram handle of your student, if available.                                                                       |
 
 
 The **right half** of each student card contains module information related to your TA responsibilities:
@@ -193,7 +198,7 @@ The **right half** of each student card contains module information related to y
 | Module                   | [Module](#module) you are teaching your student. **Is Compulsory!**                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | Attendance Percentage    | Percentage of classes that your student has been marked present.                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | Classes                  | {::nomarkdown} Detailed record of classes for your student. Each box represents one class: <ul><li>the text in the box indicates the name of the class</li><li>the colour indicates attendance status (Green for present, Red for absent)</li></ul>{:/}                                                                                                                                                                                                                                                                                   |
-| Participation Percentage | Percentage of participation components that your student has qualified for.                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| Participation Percentage | Percentage of [participation components](#participation-component) that your student has qualified for.                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | Participation Components | {::nomarkdown} Detailed record of participation for your student. Each box represents one component: <ul><li>the text in the box indicates the name of the component</li><li>the colour indicates participation status (Green for yes, Red for no)</li></ul>{:/}                                                                                                                                                                                                                                                                          |
 | Ungraded Assignments     | Number of ungraded assignments (assignments marked as **received**) that you yet to have graded.                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | Assignment Status        | {::nomarkdown} Detailed record of assignments for your student. Each box represents one assignment: <ul><li>the text in the box indicates the name of the assignment</li><li>the colour indicates assignment status</li></ul>{:/}<br/>**Note:** There are 3 assignment statuses: Graded for assignments finished grading (represented by green), Received for assignments your students have submitted and require marking (represented by red), and New for new assignments your students have not yet submitted (represented by yellow) |
@@ -222,20 +227,20 @@ StudMap has to be done by typing instructions, or `[commands](#command)`, that S
 The format of any command is standard. The command is first identified by its **command word**, which usually describes
 its main functionality. Examples of some useful commands are:
 
-* `list`, which **lists** the entire student list on StudMap<br><br>
-* `sort`, which **sorts** the student list in a certain order<br><br>
-* `grade`, which adds information about an assignment you have **graded** for a student
+* [`list`](#535-listing-all-students-list), which **lists** the entire student list on StudMap<br><br>
+* [`sort`](#537-sorting-the-students-sort), which **sorts** the student list in a certain order<br><br>
+* [`grade`](#544-grading-assignment-for-student-grade), which adds information about an assignment you have **graded** for a student
 
 ### Parameters
 
 Sometimes, you may need to include extra details about your instruction to perform a certain task (e.g. what way do you
-want to `sort` the list?). You can do this by adding **parameters**, or extra options, behind the command word to specify
+want to `sort` the list?). You can do this by adding [**parameters**](#parameters), or extra options, behind the command word to specify
 further instructions
 
-Here's an example of how parameters can be used:
+Here's an example of how [parameters](#parameters) can be used:
 
 * You wish to change the name of the second student to "Salad".<br><br>
-* You can type the `edit` command word, which will indicate to StudMap you want to edit a student<br><br>
+* You can type the [`edit`](#541-editing-a-student-edit) command word, which will indicate to StudMap you want to edit a student<br><br>
 * You can then provide two parameters: `2`, which is the index of the student to be edited, and `n/Salad`, which is the
   name you want<br><br>
 * The final command will look like this: `edit 2 n/Salad`!<br><br>
@@ -339,27 +344,28 @@ This will help you understand the guide better!
 </div>
 <div style="page-break-after: always;"></div>
 
-Throughout this section, you will see numerous parameters being used by different [commands](#command). Here is a consolidated
-summary of the parameters and any remarks (e.g. **constraints**) that might be of relevance.
+Throughout this section, you will see numerous [parameters](#parameters) being used by different [commands](#command). Here is a consolidated
+summary of the parameters and any remarks (e.g. **constraints**) that might be of relevance. Don't worry if this seems **overwhelming**! 
+You do not need to memorise these parameters, as they will be explained throughout the guide whenever they are used in the command!
 
-| Parameter    | Remarks                                                                                                                                                                         |
-|--------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| INDEX        | Number used to specify the student you wish to target. Can be replaced with ALL to target all students in displayed list                                                        |
-| KEYWORD      | Used in [`filter`](#538-filtering-the-students-filter)                                                                                                                          |
-| ORDER        | Used in [`sort`](#537-sorting-the-students-sort), can take two values: asc or dsc                                                                                               |
-| STATUS       | Used to represent status of assignments (new/received/marked), attendance (present/absent) and participation (yes/no)                                                           |
-| a/ASSIGNMENT | Assignment to be recorded for your student. <br/>**Constraint:** Must consist of [alphanumerics](#alphanumeric), spaces, dashes and underscores only                            |
-| a/ATTRIBUTE  | Attribute to be used for [`sorting`](#537-sorting-the-students-sort)                                                                                                            |
-| c/CLASS      | Class to be recorded for your student <br/>**Constraint:** Must consist of [alphanumerics](#alphanumeric), spaces, dashes and underscores only                                  |
-| e/EMAIL      | Email for your student. <br/>**Constraint:** Must be of the format local-part@domain                                                                                            |
-| g/GITNAME    | GitHub Username for your student                                                                                                                                                |
-| h/TELEHANDLE | Telegram Handle for your student. <br/>**Constraint:** Must have `@` before the handle e.g. @handle                                                                             |
-| id/ID        | Student ID for your student                                                                                                                                                     |
-| m/MODULE     | [module](#module) for your student. <br/>**Constraint:** Must follow NUS Module naming convention: letters, then 4 digits, and finally an optional letter suffix (i.e. CS2103T) |
-| n/NAME       | Name for your student                                                                                                                                                           |
-| p/COMPONENT  | Participation component to be recorded for your student. <br/>**Constraint:** Must consist of [alphanumerics](#alphanumeric), spaces, dashes and underscores only               |
-| p/PHONE      | Phone number for your student. <br/>**Constraint:** Must consist of only numbers, and an optional `+` at the beginning. Must have at least 3 digits                             |
-| t/TAG        | Tag for your student <br/>**Constraint:** Must be only [alphanumeric](#alphanumeric)                                                                                            |
+| Parameter    | Remarks                                                                                                                                                                                       |
+|--------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| INDEX        | Number used to specify the student you wish to target. Can be replaced with ALL to target all students in displayed list                                                                      |
+| KEYWORD      | Used in [`filter`](#538-filtering-the-students-filter)                                                                                                                                        |
+| ORDER        | Used in [`sort`](#537-sorting-the-students-sort), can take two values: asc or dsc                                                                                                             |
+| STATUS       | Used to represent status of assignments (new/received/marked), attendance (present/absent) and participation (yes/no)                                                                         |
+| a/ASSIGNMENT | Assignment to be recorded for your student. <br/>**Constraint:** Must consist of [alphanumerics](#alphanumeric), spaces, dashes and underscores only                                          |
+| a/ATTRIBUTE  | Attribute to be used for [`sorting`](#537-sorting-the-students-sort)                                                                                                                          |
+| c/CLASS      | Class to be recorded for your student <br/>**Constraint:** Must consist of [alphanumerics](#alphanumeric), spaces, dashes and underscores only                                                |
+| e/EMAIL      | Email for your student. <br/>**Constraint:** Must be of the format local-part@domain                                                                                                          |
+| g/GITNAME    | GitHub Username for your student                                                                                                                                                              |
+| h/TELEHANDLE | Telegram Handle for your student. <br/>**Constraint:** Must have `@` before the handle e.g. @handle                                                                                           |
+| id/ID        | Student ID for your student                                                                                                                                                                   |
+| m/MODULE     | [Module](#module) for your student. <br/>**Constraint:** Must follow NUS Module naming convention: letters, then 4 digits, and finally an optional letter suffix (i.e. CS2103T)               |
+| n/NAME       | Name for your student                                                                                                                                                                         |
+| p/COMPONENT  | [Participation Component](#participation-component) to be recorded for your student. <br/>**Constraint:** Must consist of [alphanumerics](#alphanumeric), spaces, dashes and underscores only |
+| p/PHONE      | Phone number for your student. <br/>**Constraint:** Must consist of only numbers, and an optional `+` at the beginning. Must have at least 3 digits                                           |
+| t/TAG        | [Tag](#tag) for your student <br/>**Constraint:** Must be only [alphanumeric](#alphanumeric)                                                                                                  |
 
 <div markdown="block" class="alert alert-info">
 :information_source: Here are some explanations about the format constraints for certain parameters that you may 
@@ -395,7 +401,7 @@ add a student into StudMap.<br><br>
 **Format:** `add n/NAME m/MODULE id/ID [p/PHONE] [e/EMAIL] [g/GITNAME] [h/TELEHANDLE] [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b>
-A student can have any number of tags (including 0)
+A student can have any number of [tags](#tag) (including 0)
 </div>
 
 **Examples:**
@@ -524,7 +530,7 @@ filtering, such as by their module, see [`filter`](#538-filtering-the-students-f
   ![Find Command](images/ui/ui-find.png)
   <br><br>
 * `find John` returns `john` and `John Doe`<br><br>
-* `find alex david` returns `Alex Yeoh`, `David Li`<br><br>
+* `find alex david` returns `Alex Yeoh` and `David Li`<br><br>
 
 **See Also:**
 [`filter`](#538-filtering-the-students-filter)
@@ -581,7 +587,7 @@ Examples:
 **Function:** Filters students from the StudMap based on different categories.
 
 If you want to check on the progress of weaker students you tagged as `NeedsMoreHelp`, for example, you can filter by
-tag to focus on them. If you're teaching multiple modules at once, you can filter by module to focus on the module
+[tag](#tag) to focus on them. If you're teaching multiple modules at once, you can filter by module to focus on the module
 you're currently interested in. If you want to find those assignment submissions you have yet to grade, you can filter
 by assignment.<br><br>
 
@@ -597,7 +603,7 @@ by assignment.<br><br>
 <div markdown="block" class="alert alert-info">
 **:information_source: Note:** The filter [command](#command) only successfully filters if there is an exact match between the category and
 the keyword provided. <br/>
-Example: `filter t/friends` will filter students who have the tag `friends`, but `filter t/fri` will not. 
+Example: `filter t/friends` will filter students who have the [tag](#tag) `friends`, but `filter t/fri` will not. 
 </div>
 
 **Example:**
@@ -659,7 +665,10 @@ Need to update outdated student details? You can easily edit that field without 
 
 ### 5.4.2 Marking attendance of student: `mark`
 
-**Function:** Mark students as present or absent for a specified class.<br><br>
+**Function:** Marks students as present or absent for a specified class.
+
+Need to record attendance for a class of students you just taught? Mark will help you keep track of who was present or
+absent for that particular class.<br><br>
 
 **Format:** `mark INDEX/ALL STATUS c/CLASS`
 
@@ -688,7 +697,9 @@ Need to update outdated student details? You can easily edit that field without 
 
 ### 5.4.3 Unmarking attendance of student: `unmark`
 
-**Function:** Removes the attendance record of a specific class from students.<br><br>
+**Function:** Removes the attendance record of a specific class from students.
+
+Made a mistake with attendance tracking for a particular class? Unmark will remove any attendance records you want.<br><br>
 
 **Format:** `unmark INDEX/ALL c/CLASS`
 
@@ -754,7 +765,10 @@ you include any lower case in the assignment name, it will be automatically conv
 
 ### 5.4.5 Removing assignment from student: `ungrade`
 
-**Function:** Remove the specified assignment from the student's record.<br><br>
+**Function:** Removes the specified assignment from the student's record.
+
+Made a mistake with the name of an assignment, or need to remove certain assigment records? Ungrade will remove
+any assignment records you want.<br><br>
 
 **Format:** `ungrade INDEX/ALL a/ASSIGNMENT`
 
@@ -777,7 +791,10 @@ you include any lower case in the assignment name, it will be automatically conv
 
 ### 5.4.6 Recording participation of student: `participate`
 
-**Function:** Records the participation of students in a given participation component.<br><br>
+**Function:** Records the participation of students in a given [participation component](#participation-component).
+
+Need to record who actively volunteered to share their answers in class for participation? Participate will help you 
+keep track of who participated for a [particular component](#participation-component) in your lesson.<br><br>
 
 **Format:** `participate INDEX/ALL STATUS p/COMPONENT`
 
@@ -807,7 +824,10 @@ you include any lower case in the assignment name, it will be automatically conv
 
 ### 5.4.7 Removing participation of student: `unparticipate`
 
-**Function:** Removes the record of participation for students in the given participation component.<br><br>
+**Function:** Removes the record of participation for students in the given [participation component](#participation-component).
+
+Made a mistake with the name of a [participation component](#participation-component), or need to remove certain participation records? 
+Unparticipate will remove any participation records you want.<br><br>
 
 **Format:** `unparticipate INDEX/ALL p/COMPONENT`
 
@@ -831,10 +851,10 @@ you include any lower case in the assignment name, it will be automatically conv
 
 ### 5.4.8 Adding tag to student: `tag`
 
-**Function:** Adds one or more text labels to students.
+**Function:** Adds one or more [tags](#tag), or text labels, to students.
 
 With this feature, you can keep small tidbits about your students on their entry.
-This can help you to better identify and keep track of them.
+This can help you better identify and keep track of them.
 
 <div markdown="block" class="alert alert-info">
 
@@ -872,7 +892,7 @@ below. <br>
 
 ### 5.4.9 Removing tag from student: `untag`
 
-**Function:** Removes the specified tag(s) from the student(s).
+**Function:** Removes the specified [tag(s)](#tag) from the student(s).
 
 Accidentally tagged a student wrongly, or simply don't want it there anymore? This is the [command](#command) for the job.<br><br>
 
@@ -911,12 +931,12 @@ Accidentally tagged a student wrongly, or simply don't want it there anymore? Th
 
 ### 5.5.2 Saving the data
 
-StudMap data are saved in the hard disk automatically after any [command](#command) that changes the data. There is no need to save
+StudMap data is saved in the hard disk automatically after any [command](#command) that changes the data. There is no need to save
 manually.
 
 ### 5.5.3 Backing up data
 
-StudMap data are saved as a [JSON file](#json-file) `[JAR file location]/data/studmap.json`. You can make a copy of this
+StudMap data is saved as a [JSON file](#json-file) `[JAR file location]/data/studmap.json`. You can make a copy of this
 file if you want to back up your data.
 
 ### 5.5.4 Editing the data file
@@ -925,7 +945,8 @@ As mentioned above, your StudMap data is saved as a [JSON file](#json-file) `[JA
 are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: <b>Caution:</b>
-If your changes to the data file makes its format invalid, StudMap will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, StudMap will discard all data and start with an empty data file at the next run. This means
+that mistakes with manually modifying the data file can **potentially wipe all** your student data!
 </div>
 
 ### 5.5.5 Viewing help: `help`
@@ -933,7 +954,7 @@ If your changes to the data file makes its format invalid, StudMap will discard 
 **Function:** Shows a message linking to the online User Guide.
 
 Confused about the usage of a certain feature? Don't worry, self-help is available on the comprehensive online User
-Guide.<br><br>
+Guide, right here!<br><br>
 
 ![Help Message](images/misc/helpMessage.png)
 
@@ -1028,5 +1049,17 @@ advanced users can edit their student data easily if they wish.
 
 Each module of study has a unique module code consisting of a two- or three-letter prefix that generally denotes the
 discipline, and four digits, and sometimes a suffix. e.g. `CS2101`, `CS2103T`.
+
+### Participation Component
+
+This is a flexible label for any aspect of your tutorial / lab class or module that should be graded for participation.
+For instance, if you want to reward those who actively share their answers in class, you can label a component called `SharedAnswers`
+which reflects their class participation.
+
+### Tag
+
+This is a small label that you can add to student entries, enabling you to keep track of small details about your students,
+and better identify them. For instance, you can tag weaker students as `Needs Help` or Macintosh users as `Mac Users`.
+
 
 
