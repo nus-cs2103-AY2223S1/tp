@@ -3,14 +3,18 @@ layout: page
 title: User Guide
 ---
 # Waddle User Guide 🦆
-Waddle is a **simple, no-frills travel planning application catered to people who love doing everything on their keyboards**.
+Waddle is a **simple, no-frills travel planning application** aligned with your travel itinerary planning needs.
+Waddle provides you with a structured and intuitive way to plan your trips, even for itinerary planning beginners.
 
-Waddle allows you to plan your travels in **3 simple steps**.
+You can plan your travel itinerary in **3 simple steps**.
 1. Create a trip itinerary
-2. Add activities to your itinerary
+2. Add activities to your itinerary wishlist
 3. Make a schedule for your trip
 
 **It's that simple**.
+
+This is a comprehensive user guide for anyone who wants to learn more about how to use Waddle and its features.
+If this is your first time using Waddle, check out our Tutorial for Beginners.
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always"></div>
@@ -18,7 +22,8 @@ Waddle allows you to plan your travels in **3 simple steps**.
 ## Table of Contents
 
 1. [**Quick start**](#quick-start)
-2. [**Features**](#features)
+2. [**Tutorial for Beginners**](#tutorial-for-beginners)
+3. [**Features**](#features)
    1. [**Universal commands**](#universal-commands)
       1. [`help` Viewing help](#viewing-help--help)
       2. [`exit` Exiting Waddle](#exiting-waddle--exit)
@@ -45,8 +50,8 @@ Waddle allows you to plan your travels in **3 simple steps**.
    6. [**Advanced**](#advanced)
       1. [Saving the data](#saving-the-data)
       2. [Editing the data file](#editing-the-data-file)
-3. [**FAQ**](#faq)
-4. [**Command summary**](#command-summary)
+4. [**FAQ**](#faq)
+5. [**Command summary**](#command-summary)
    1. [**Home page commands**](#home-page-commands)
    2. [**Item planning page commands**](#item-planning-page-commands)
 
@@ -83,6 +88,11 @@ Some example commands you can try:
    * **`exit`** : Exits the app.
 
 For more commands and their details, refer to the [Features](#features) section below.
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always"></div>
+
+## Tutorial for Beginners
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always"></div>
