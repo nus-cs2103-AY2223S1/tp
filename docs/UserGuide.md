@@ -5,24 +5,36 @@ title: User Guide
 
 # Introduction
 
-Welcome to the REal-Time User Guide!
+Welcome to the **REal-Time** User Guide!
 
+In this user guide, you will find everything you need to know about **REal-Time** in making your user
+experience easy and smooth.
 
-REal-Time is a desktop application for _Real-Estate agents_ to manage client information, schedule meetings,
-and track client offers and listings.
+The **REal-Time** user guide provides you with **step-by-step** instructions from installing the application
+to teaching you our easy-to-use features!
+
 
 ## About REal-Time
 
-It is optimized for use via a Command Line Interface ([CLI](#Glossary)) while still having the
-benefits of a Graphical User Interface ([GUI](#Glossary)).
-If you can type fast, REal-Time can get your contact management tasks done faster than traditional GUI apps.
+Tired of having to manage your client information and details through multiple spreadsheets, tracking through listings in another
+application and scheduling your important meetings with clients through a calendar app? Look no further, as **REal-Time**
+has got you covered!
+
+
+**REal-Time** is a desktop application for **Real-Estate agents** to **manage client information, schedule meetings,
+and track client offers and listings**, isn't that awesome?
+
+It is optimized for use via a _Command Line Interface_ ([CLI](#glossary)) while still having the added
+benefits of a _Graphical User Interface_ ([GUI](#glossary)).
+With just the usage of a standard keyboard, **REal-Time** can get all the necessary tasks
+done faster than traditional GUI apps!
 
 ## Fun fact
 The **"REa"** in **REal-Time** stands for _Real-Estate agents_, which is the intended target user of our application!
 
 ## Using this guide
 
-Now that you have read the introduction and learnt about what our product does, get started in using REal-Time by
+Now that you have read the introduction and learnt about what our product does, get started in using **REal-Time** by
 following the guide provided in the [Quick Start](#quick-start) section. Otherwise,
 * If you are still unsure of the commands used in REal-Time, the [Command Summary](#command-summary) is a good place to
 start.
@@ -43,13 +55,14 @@ better.
 
 1. Ensure you have `Java 11` or above installed in your Computer. To install `Java 11`,
 click [here](https://www.oracle.com/sg/java/technologies/downloads/#java11) and download the appropriate file depending
-on your Operating System ([OS](#Glossary)) (_e.g, Linux, Windows, macOS_).
+on your Operating System ([OS](#glossary)) (_e.g, Linux, Windows, macOS_).
 
 2. Download the latest `REal-Time.jar` file from [here](https://github.com/AY2223S1-CS2103T-W15-2/tp/releases). The
 `REal-Time.jar` file is located in the "Assets" section as shown below.
 ![downloadRelease](./images/downloadRelease.png)
 
-3. Copy the file to the folder you want to use as the _home folder_ for REal-Time.
+3. Copy the file to the folder you want to use as the _home folder_ for REal-Time. If you are unsure on how to create
+a new folder, click [here](https://www.computerhope.com/issues/ch000742.htm) to learn more.
 
 4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds.
 Note how the app contains some sample data.<br>
@@ -57,7 +70,7 @@ Note how the app contains some sample data.<br>
 
 5. Refer to the [Layout](#layout) if you are still unsure in navigating REal-Time's interface.
 
-6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and
+6. Type the command in the command box and press Enter to execute it. e.g. typing [**`help`**](#viewing-help--help) and
 pressing Enter will open the help window.<br>
    Some example commands you can try:
 
@@ -69,7 +82,9 @@ pressing Enter will open the help window.<br>
 
    * [**`exit`**](#exit-real-time--exit) : Exits the app.
 
-8. Refer to the [Features](#features) below for details of each command.
+* We recommend you to read the [Command Format](#command-format) section before using REal-Time.
+
+7. Refer to the [Features](#features) below for more details of each command.
 
 Back to [Table of Contents](#table-of-contents)
 
@@ -79,18 +94,17 @@ ___
 
 ![Layout](images/layout.png)
 
-`Command Box` - You can enter commands here.<br>
+`Command Box` - What you type will be shown here.<br>
 
 `Feedback Box` - REal-Time feedbacks to your commands will appear here.<br>
 
-`Client Box` - All clients in REal-Time will appear here.<br>
+`Client Box` - All [Clients](#glossary) in REal-Time will appear here.<br>
 
-`Offer Box` - All offers in REal-Time will appear here.<br>
+`Offer Box` - All [Offers](#glossary) in REal-Time will appear here.<br>
 
-`Listing Box` - All listings in REal-Time will appear here.<br>
+`Listing Box` - All [Listings](#glossary) in REal-Time will appear here.<br>
 
-`Meeting Box` - All meetings in REal-Time will appear here.
-
+`Meeting Box` - All [Meetings](#glossary) in REal-Time will appear here.
 
 Back to [Table of Contents](#table-of-contents)
 
@@ -172,7 +186,7 @@ change in REal-Time.<br>
 You can enter the following command:<br>
 
 ```text
-editO 2 n/Betsy Crower o/123456
+editO 2 n/Betsy Crower o/200000
 ```
 
 ## 4. `list`
@@ -207,32 +221,40 @@ In this section, we provide you the basic steps needed to [add](#adding-a-client
 
 **Format:** `addC n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
-`NAME` refers to the name of the client.<br>
-`PHONE_NUMBER` refers to the phone number of the client<br>
-`EMAIL` refers to the email address of the client.<br>
-`ADDRESS` refers to the address of the client.<br>
-`TAG` refers to the tags that you want to associate with the client.
+* `NAME` refers to the name of the client.<br>
+* `PHONE_NUMBER` refers to the phone number of the client<br>
+* `EMAIL` refers to the email address of the client.<br>
+* `ADDRESS` refers to the address of the client.<br>
+* `TAG` refers to the tags that you want to associate with the client.
 
 **Example input:**<br>
-_Success_
+
+**_Success_**
 ```text
 addC n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01
-addC n/Betsy Crowe t/friend e/betsy@example.com a/Newgate Prison p/1234567 t/criminal
 ```
 ![addClientSuccess](images/addclientjohndoe.png)<br>
 
-![addClientSuccess](images/addclientbetsy.png)<br>
-_Failure_
 ```text
-Invalid client name:
+addC n/Betsy Crowe t/friend e/betsy@example.com a/Newgate Prison p/1234567 t/criminal
+```
+![addClientSuccess](images/addclientbetsy.png)<br>
+
+**_Failure_**
+
+* **Invalid client name:**
+```text
 addC n/John D@e p/98765432 e/johnd@example.com a/John street, block 123, #01-01
 ```
+
 ![addClientFailure](images/invalidclientname.png)<br>
+
+* **Missing fields:**
 ```text
-Missing fields:
 addC n/John Doe a/John street, block 123, #01-01
 ```
 ![addClientFailure](images/addclientmissing.png)<br>
+
 **Expected Success Output:**<br>
 A new client is added to RealTime.<br>
 
@@ -258,19 +280,22 @@ ___
 **Format** - `delC INDEX`
 
 **Example Input:**<br>
-_Success_
+
+**_Success_**
 ```text
 delC 1
 ```
 ![deleteClientSuccess](images/deleteclient.png)<br>
-_Failure_
+
+**_Failure_**
+* **Invalid index:**
 ```text
-Invalid index:
 delC -1
 ```
 ![deleteClientFailure](images/invaliddelete.png)<br>
+
 **Expected Success Output:**<br>
-The client at `INDEX` 1 is deleted from REal-Time.<br>
+The client at specified `INDEX` is deleted from REal-Time.<br>
 
 **Feedback Box:**
 ```text
@@ -295,25 +320,32 @@ ___
 **Format:** `editC INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
 **Example input:**<br>
-_Success_
+
+**_Success_**
 ```text
 editC 1 p/91234567 e/johndoe@example.com
-editC 2 n/Betsy Crower t/
 ```
 ![editClientSuccess](images/editclient.png)<br>
 
-![editClientSuccess](images/editbetsy.png)<br>
-_Failure_
 ```text
-Invalid index:
+editC 2 n/Betsy Crower t/
+```
+![editClientSuccess](images/editbetsy.png)<br>
+
+**_Failure_**
+
+* **Invalid index:**
+```text
 editC 0 p/12345678
 ```
 ![editClientFailure](images/invaliddeleteindex.png)<br>
+
+* **Missing fields:**
 ```text
-Missing fields:
 editC 1
 ```
 ![editClientFailure](images/editmissingfield.png)<br>
+
 **Expected Success Output:**<br>
 The client at the specified `INDEX` is edited according to the fields provided.<br>
 
@@ -321,6 +353,7 @@ The client at the specified `INDEX` is edited according to the fields provided.<
 ```text
 Edited Client: [newly updated details of client]
 ```
+
 **Note:**
 1. Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client list.
    The index **must be a positive integer** 1, 2, 3, …​
@@ -348,18 +381,21 @@ Finds clients whose names contain any of the given keywords.
 **Format:** `findC KEYWORD [MORE_KEYWORDS]`
 
 **Example Input:**<br>
-_Success_
+
+**_Success_**
 ```text
 findC John
 ```
 ![findClientSuccess](images/findclient.png)<br>
-_Failure_
+
+**_Failure_**
+
+* **No keywords provided:**
 ```text
-No keywords provided:
 findC
 ```
 ![findClientFailure](images/findclientinvalid.png)<br>
-The list of clients in the Client Box is updated to a list of all matches from the findC command.
+* The list of clients in the Client Box is updated to a list of all matches from the findC command.
 
 **Feedback Box:**
 ```text
@@ -393,6 +429,7 @@ ___
 
 **Expected Success Output:**<br>
 The full list of clients appears in the Client Box.<br>
+
 ![listClientSuccess](images/listclient.png)<br>
 
 **Feedback Box:**
@@ -422,27 +459,32 @@ ___
 
 **Format:** `addO l/LISTING_ID n/NAME o/OFFER_PRICE`
 
-`LISTING_ID` refers to the ListingId of the Listing that the offer has been made for.<br>
-`NAME` refers to the name of the client making the offer.<br>
-`OFFER_PRICE` refers to the offer price that has been made for the listing.
+* `LISTING_ID` refers to the ListingId of the Listing that the offer has been made for.<br>
+* `NAME` refers to the name of the client making the offer.<br>
+* `OFFER_PRICE` refers to the offer price that has been made for the listing.
 
 **Example Input:**<br>
-_Success_
+
+**_Success_**
 ```text
 addO l/BEDOK_NORTH_BLK123_12 n/John Doe o/2000000
 ```
 ![addOfferSuccess](images/AddOfferSuccess.png)<br>
-_Failure_
+
+**_Failure_**
+
+* **Missing fields:**
 ```text
-Missing fields:
 addO l/BEDOK_NORTH_BLK123_12 n/John Doe
 ```
 ![addOfferFailure1](images/AddOfferFailure1.png)<br>
+
+* **Invalid offer price:**
 ```text
-Invalid offer price:
 addO l/BEDOK_NORTH_BLK123_12 n/John Doe o/-1
 ```
 ![addOfferFailure2](images/AddOfferFailure2.png)<br>
+
 **Expected Success Output:**<br>
 A new offer is added to REal-Time<br>
 
@@ -468,23 +510,29 @@ ___
 **Format** - `delO INDEX`
 
 **Example Input:**<br>
-_Success_
+
+**_Success_**
 ```text
 delO 2
 ```
 ![DeleteOfferSuccess](images/DeleteOfferSuccess.png)<br>
-_Failure_
+
+**_Failure_**
+
+* **Invalid index:**
 ```text
-Invalid index:
 delO 0
 ```
 ![DeleteOfferInvalid1](images/DeleteOfferInvalid1.png)<br>
+
+* **Missing Index**
 ```text
 delO
 ```
 ![DeleteOfferInvalid2](images/DeleteOfferInvalid2.png)<br>
+
 **Expected Success Output:**<br>
-The offer at `INDEX` 2 is deleted from REal-Time.<br>
+The offer at specified `INDEX`  is deleted from REal-Time.<br>
 
 **Feedback Box:**
 ```text
@@ -506,22 +554,27 @@ ___
 **Format:** `editO INDEX [n/NAME] [o/OFFER_PRICE] [l/LISTING_ID]`
 
 **Example Input:**
-_Success_
+
+**_Success_**
 ```text
 editO 2 n/Betsy Crower o/200000
 ```
 ![EditOfferSuccess](images/EditOfferSuccess.png)<br>
-_Failure_
+
+**_Failure_**
+
+* **Invalid index:**
 ```text
-Invalid index:
 editO -1 n/Betsy Crower o/200000
 ```
 ![EditOfferInvalidIndex](images/EditOfferInvalidIndex.png)<br>
+
+* **Invalid client name:**
 ```text
-Invalid client name:
 editO 2 n/Betsy Cr@wer o/200000
 ```
 ![EditOfferInvalidName](images/EditOfferInvalidName.png)<br>
+
 **Expected Success Output:**<br>
 The offer at `INDEX` 2 is edited according to the fields provided.<br>
 
@@ -560,22 +613,23 @@ In this section, we provide you the basic steps needed to [add](#adding-a-listin
 **Format:** `addL l/LISTING_ID a/ADDRESS n/OWNER_NAME ap/ASKING_PRICE [t/TAG]…​`
 
 
-`l/LISTING_ID` refers to the ListingId you wish to assign to this Listing.<br>
-`a/ADDRESS` refers to the address of this Listing.<br>
-`n/NAME` refers to the name of the owner of this Listing.<br>
-`ap/ASKING_PRICE` refers to the asking price that the owner is asking for this Listing.
+* `l/LISTING_ID` refers to the ListingId you wish to assign to this Listing.<br>
+* `a/ADDRESS` refers to the address of this Listing.<br>
+* `n/NAME` refers to the name of the owner of this Listing.<br>
+* `ap/ASKING_PRICE` refers to the asking price that the owner is asking for this Listing.
 
 **Example Input:**
 
-_Success_
+**_Success_**
 ```text
 addL l/007 a/100 Charming Ave n/Joke Peralta ap/10000000
 ```
 ![addL example](images/addL.png)
 
-_Failure_
+**_Failure_**
+
+* **Missing asking price field:**
 ```text
-Missing asking price field:
 addL l/007 a/100 Charming Ave n/Joke Peralta`
 ```
 ![addL Missing Parameter example](images/addLMissingParam.png)
@@ -595,6 +649,7 @@ New listing added: [listing details]
 
 Back to [Table of Contents](#table-of-contents)<br>
 Back to [Managing Listings](#managing-listings)
+
 ___
 
 ### Deleting a listing : `delL`
@@ -604,20 +659,22 @@ ___
 **Format:** `delL id/INDEX`
 
 **Example Input:**<br>
-_Success_
+
+**_Success_**
 ```text
 delL 1
 ```
 ![delL example](images/delL.png)
-_Failure_
+
+**_Failure_**
+* **Invalid index:**
 ```text
-Invalid index:
 delL 2356739457
 ```
 ![delL Invalid ListingId example](images/delLInvalidId.png)
 
 **Expected Success Output:**<br>
-The listing at `INDEX` 1 is deleted from REal-Time.<br>
+The listing at the specified `INDEX` is deleted from REal-Time.<br>
 
 **Feedback Box:**
 ```text
@@ -639,39 +696,41 @@ ___
 **Format:** `editL INDEX [l/LISTING_ID] [a/ADDRESS] [n/OWNER_NAME] [ap/ASKING_PRICE] [t/TAG]…​`
 
 **Example input:**<br>
-_Success_
+
+**_Success_**
 ```text
-`editL 1 n/Joke Peralta`
+editL 1 n/Joke Peralta
 ```
 ![editL example](images/editL.png)
 ![editedL example](images/editedL.png)
 
-_Failure_
+**_Failure_**
+* **Invalid index:**
 ```text
-Invalid index:
 editL 200 n/Joke Peralta
 ```
 ![editL IndexOutOfBounds example](images/editLIndexOutOfBounds.png)
+
+* **Missing fields:**
 ```text
-Missing fields:
 editL 1
 ```
 ![editL No Change example](images/editLNoChange.png)
 
 **Expected Success Output:**<br>
-The client at the specified `INDEX` is edited according to the fields provided.<br>
+The listing at the specified `INDEX` is edited according to the fields provided.<br>
 
 **Feedback Box:**
 ```text
-Edited Client: [newly updated details of client]
+Edited Listing: [newly updated details of listing]
 ```
 **Note:**
-1. Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client list.
+1. Edits the listing at the specified `INDEX`. The index refers to the index number shown in the displayed listing list.
    The index **must be a positive integer** 1, 2, 3, …​
 2. At least one of the optional fields must be provided.
 3. Existing values will be updated to the input values.
-4. When editing tags, the existing tags of the client will be removed i.e adding of tags is not cumulative.
-5. You can remove all the client’s tags by typing `t/` without
+4. When editing tags, the existing tags of the listing will be removed i.e adding of tags is not cumulative.
+5. You can remove all the listing’s tags by typing `t/` without
    specifying any tags after it.
 
 **Help:**
@@ -691,6 +750,7 @@ ___
 **Format:** `listL`
 
 **Expected Success Output:**<br>
+
 The full list of listings appears in the Client Box.<br>
 
 ![ListLSuccess](images/listL.png)
@@ -720,22 +780,25 @@ and [edit](#editing-a-meeting--editm) meetings.
 
 **Format:** `addM l/LISTING_ID n/CLIENT_NAME d/DATE_TIME`
 
-`LISTING_ID` refers to the Listing the meeting is about.
-`CLIENT_NAME` refers to the name of the Client you are meeting.
-`DATE_TIME` refers to the date and time of the meeting.
+* `LISTING_ID` refers to the Listing the meeting is about.
+* `CLIENT_NAME` refers to the name of the Client you are meeting.
+* `DATE_TIME` refers to the date and time of the meeting.
 
 **Example Input:**<br>
-_Success_
+
+**_Success_**
 ```text
 addM l/007 n/Joke Peralta d/2022-10-20 12:00
 ```
 ![addM](images/addM_example.png)<br>
-_Failure_
+
+**_Failure_**
+* **Wrong date format:**
 ```text
-Wrong date format:
 addM l/007 n/Joke Peralta d/tomorrow 12pm
 ```
 ![addM](images/addM_invalid.png)<br>
+
 **Note:**
 1. DATE_TIME must be in this format, yyyy-MM-dd HH:mm
 
@@ -746,6 +809,7 @@ addM l/007 n/Joke Peralta d/tomorrow 12pm
 
 Back to [Table of Contents](#table-of-contents)<br>
 Back to [Managing Meetings](#managing-meetings)
+
 ___
 
 ### Deleting a meeting : `delM`
@@ -755,20 +819,22 @@ ___
 **Format:** `delM id/INDEX`
 
 **Example Input:**<br>
-_Success_
+
+**_Success_**
 ```text
 delM 1
 ```
 ![addM](images/deleteM_example.png)<br>
-_Failure_
+
+**_Failure_**
+* **Invalid index:**
 ```text
-Invalid index:
 delM -1
 ```
 ![addM](images/delM_invalid.png)<br>
 
 **Expected Success Output:**<br>
-The meeting at `INDEX` 1 is deleted from REal-Time.<br>
+The meeting at the specified `INDEX` is deleted from REal-Time.<br>
 
 **Feedback Box:**
 ```text
@@ -780,6 +846,7 @@ Deleted Meeting: [details of the deleted listing]
 
 Back to [Table of Contents](#table-of-contents)
 Back to [Managing Meetings](#managing-meetings)
+
 ___
 
 ### Editing a meeting : `editM`
@@ -789,19 +856,22 @@ ___
 **Format:** `editM INDEX [n/NAME] [d/DATE_TIME]`
 
 **Example input:**<br>
-_Success_
+
+**_Success_**
 ```text
 `editM 1 n/Joke Peralta d/2022-10-20 23:59`
 ```
 ![editM](images/editM_example.png)<br>
-_Failure_
+
+**_Failure_**
+* **Invalid index:**
 ```text
-Invalid index:
 editM -1 n/Joke Peralta
 ```
 ![editM Invalid](images/editM_invalid.png)<br>
+
+* **Missing fields:**
 ```text
-Missing fields:
 editM 1
 ```
 ![editM no fields](images/editM_nofields.png)<br>
@@ -896,7 +966,7 @@ ___
 
 ### Editing the data file
 
-REal-Time data are saved as a JSON file `[JAR file location]/data/realtime.json`.
+REal-Time data are saved as a [JSON file](#glossary) `[JAR file location]/data/realtime.json`.
 Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:** If your changes to the data file makes its format invalid, REal-Time will
@@ -908,11 +978,16 @@ Back to [General](#general)
 
 # Glossary
 
-|  Term   |                                Description                                 |
-|:-------:|:--------------------------------------------------------------------------:|
-| **OS**  | The operating system is the software that is used to run in your computer. |
-| **CLI** |            Interface that takes in text commands from the user             |
-| **GUI** |  A form of user interface that allows users to interact through graphics   |
+|     Term      |                                                 Description                                                 |
+|:-------------:|:-----------------------------------------------------------------------------------------------------------:|
+|    **OS**     |                 The operating system is the software that is used to run in your computer.                  |
+|    **CLI**    |                             Interface that takes in text commands from the user                             |
+|    **GUI**    |                   A form of user interface that allows users to interact through graphics                   |
+|  **Client**   |                       A person that is interested in purchasing or selling a property                       |
+|   **Offer**   |                         A price that the purchaser is willing to pay for a property                         |
+|  **Listing**  |                                     A property that is being advertised                                     |
+|  **Meeting**  |                      A scheduled appointment between the Real-Estate agent and client                       |
+| **JSON file** | JSON stands for JavaScript Object Notation. JSON is a lightweight format for storing and transporting data. |
 
 Back to [Introduction](#introduction)<br>
 Back to [Table of Contents](#table-of-contents)
