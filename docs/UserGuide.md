@@ -19,9 +19,9 @@ If you can type fast, ModQuik can get your lesson management tasks done faster t
 
 ## 2. Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer. For more instructions, click [here](installing-java-11).
+1. Ensure you have Java `11` or above installed in your computer. For more instructions, click [here](installing-java-11).
 
-1. Download the latest `modquik.jar` [here](https://github.com/AY2223S1-CS2103T-W17-3/tp/releases).
+1. Download the latest `ModQuik.jar` [here](https://github.com/AY2223S1-CS2103T-W17-3/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your ModQuik.
 
@@ -662,14 +662,14 @@ _Details coming soon..._
        Method 2: Click on the `Tab` button, and it will toggle between all 4 tabs (**Student**, **Grade Chart**, **Consultation**, **Tutorial**).
 
 **Q**: How do I start the app? Double-clicking the jar file does not seem to do anything.<br>
-A: Double-clicking on a jar file may not always start the app. If that is the case, run the command `java -jar modquik.jar` in the same folder as the jar file.
+A: Double-clicking on a jar file may not always start the app. If that is the case, run the command `java -jar ModQuik.jar` in the same folder as the jar file.
 
 **Q**: All my data is lost and I'm not sure why...<br>
 **A**: The data file may have been accidentally moved out of the `data` folder. If that is the case, move the data file back and restart the app.
 You can also try looking in your trash bin to check if the file was accidentally deleted.
 
 **Q**: How do I uninstall ModQuik?<br>
-**A**: We are sad to see you go :(( Uninstalling ModQuik is as simple as deleting the `modquik.jar` file.
+**A**: We are sad to see you go :(( Uninstalling ModQuik is as simple as deleting the `ModQuik.jar` file.
 
 --------------------------------------------------------------------------------------------------------------------
 
