@@ -181,13 +181,13 @@ description, links, tasks, and members related to this team.
 This section displays the names, phone number, email, address, and tags of all persons that you have created in
 TruthTable. This section is also known as the "Contacts" section.
 
-| Number                          | Component                                     | Description                                                                         |
-|---------------------------------|-----------------------------------------------|-------------------------------------------------------------------------------------|
-| <span class="text-red">1</span> | <span class="text-red">[Index](#index)</span> | <span class="text-red">The position of a person in TruthTable's contact list</span> |
-| <span class="text-red">2</span> | <span class="text-red">Name</span>            | <span class="text-red">The name of the person at a specific index</span>            |
-| <span class="text-red">3</span> | <span class="text-red">Tags</span>            | <span class="text-red">The attributes associated with a person</span>               |
-| <span class="text-red">4</span> | <span class="text-red">Phone Number</span>    | <span class="text-red">The phone number of a person</span>                          |
-| <span class="text-red">5</span> | <span class="text-red">Email</span>           | <span class="text-red">The email address of a person</span>                         |
+| Number                             | Component                                        | Description                                                                         |
+|------------------------------------|--------------------------------------------------|-------------------------------------------------------------------------------------|
+| <span class="text-orange">1</span> | <span class="text-orange">[Index](#index)</span> | <span class="text-red">The position of a person in TruthTable's contact list</span> |
+| <span class="text-orange">2</span> | <span class="text-orange">Name</span>            | <span class="text-red">The name of the person at a specific index</span>            |
+| <span class="text-orange">3</span> | <span class="text-orange">Tags</span>            | <span class="text-red">The attributes associated with a person</span>               |
+| <span class="text-orange">4</span> | <span class="text-orange">Phone Number</span>    | <span class="text-red">The phone number of a person</span>                          |
+| <span class="text-orange">5</span> | <span class="text-orange">Email</span>           | <span class="text-red">The email address of a person</span>                         |
 
 ### Command Section
 
