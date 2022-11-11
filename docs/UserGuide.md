@@ -14,9 +14,11 @@ title: User Guide
 --------------------------------------------------------------------------------------------------------------------
 
 ## Introduction
-myStudent is **an easy-to-use, portable and aesthetically-pleasing desktop application for managing students of a tuition center**, optimized for use via a Command Line Interface 
-(CLI) while still having the benefits of a Graphical User Interface (GUI). If you're able to type fast, myStudent can get your
-work done faster than traditional GUI apps.
+Are you a tuition center manager who finds it tedious to deal with a large amount of data? **myStudent** is the perfect software to help improve your work experience!
+
+myStudent is **an easy-to-use, portable and aesthetically-pleasing desktop application for managing students of a tuition center**, optimized for use via a Command Line Interface
+(CLI) while still having the benefits of a Graphical User Interface (GUI).  
+With an intuitive User Interface(UI) design and easy-to-understand commands, myStudent is the perfect software for you. Wasting time searching on Google how a command work and racking your brain to create complicated formulas in your Excel sheet is now a thing of the past. You can become more productive today!
 
 ---
 ## About
@@ -240,11 +242,9 @@ Shows help information that will be useful to you.
 
 Formats:  
 
-To view **general** command information,<br>
-`help`  
+To view **general** command information, enter `help`  
 
-To view **specific** command information,<br>
-`help [<command>]`
+To view **specific** command information, enter `help [<command>]`
 
 * To view all the commands, type `help` and press <kbd>Enter</kbd>.
 
@@ -260,7 +260,7 @@ Examples:
 
 <p align="center">
 
-<img src="images/helpCommand.png" width="500px" />
+<img src="images/helpCommand.png" width="500px" style="height: 205px; object-fit:cover; object-position:0px 0px"/>
 
 </p>
 
@@ -331,19 +331,13 @@ Examples:
 
 * `add student n/John Doe p/98765432 e/johndoe@example.com a/John street, block 123, #01-01 s/Example Primary School l/Primary 3 #/badBoy`
 
-<p align="center">
+<div class="row" align="center" >
 
-<img src="images/addPersonCommand_before.png"/>
-
-</p>
-
-<p align="center">
-
-<img src="images/addPersonCommand_after.png" width="400"/>
-
-</p>
-
+<img src="images/addPersonCommand_before.png" width="59%" style="vertical-align: top;"/>
+<img src="images/addPersonCommand_after.png" width="40%"/>
 The new student has been added into the database.
+
+</div>
 
 <div style="page-break-after: always;"></div>
 
@@ -401,19 +395,15 @@ Examples:
 
 * `add class n/P2MATHF12 s/Math l/Primary 2 d/Friday t/12:00 - 14:00`
 
-<p align="center">
+<div class="row" align="center">
 
-<img src="images/addClassCommand_before.png"/>
-
-</p>
-
-<p align="center">
-
-<img src="images/addClassCommand_after.png" width="400"/>
-
-</p>
-
+<img src="images/addClassCommand_before.png" width="59%" style="vertical-align: top;"/>
+<img src="images/addClassCommand_after.png" width="40%"/>
 This adds the class into the database. 
+
+</div>
+
+
 
 <div style="page-break-after: always;"></div>
 
@@ -430,17 +420,16 @@ Format: `delete <index>`
 Examples:
 * `delete 2`
 
-<p align="center">
-
-<img src="images/deleteCommand_before.png"/>
-
-</p>
-
-<p align="center">
-
-<img src="images/deleteCommand_after.png" width="400"/>
-
-</p>
+<div style="display:flex; flex-direction:row;">
+<div style="display:flex; flex-direction:column; align-items:center; padding:5px">
+<img src="images/deleteCommand_before.png" height="330" style="object-fit:contain;"/>
+<figcaption>Before</figcaption>
+</div>
+<div style="display:flex; flex-direction:column; align-items:center; padding:5px">
+<img src="images/deleteCommand_after.png" height="330" style="object-fit:contain;"/>
+<figcaption>After</figcaption>
+</div>
+</div>
 
 <div style="page-break-after: always;"></div>
 
@@ -775,17 +764,16 @@ Format: `list <entry type>`
 Examples:
 * `list tutor`
 
-<p align="center">
-
-<img src="images/listCommand_before.png"/>
-
-</p>
-
-<p align="center">
-
-<img src="images/listCommand_after.png"  width="400"/>
-
-</p>
+<div style="display:flex; flex-direction:row;">
+<div style="display:flex; flex-direction:column; align-items:center; padding:5px">
+<img src="images/listCommand_before.png" height="330" style="object-fit:contain;"/>
+<figcaption>Before</figcaption>
+</div>
+<div style="display:flex; flex-direction:column; align-items:center; padding:5px">
+<img src="images/listCommand_after.png" height="330" style="object-fit:contain;"/>
+<figcaption>After</figcaption>
+</div>
+</div>
 
 Note that this changes the **displayed list** to the **tutor list**.
 
@@ -799,13 +787,13 @@ Format: `clear`
 
 <p align="center">
 
-<img src="images/clearCommand_before.png"/>
+<img src="images/clearCommand_before.png" width="600"/>
 
 </p>
 
 <p align="center">
 
-<img src="images/clearCommand_after.png"/>
+<img src="images/clearCommand_after.png" width="600"/>
 
 </p>
 
@@ -828,17 +816,16 @@ Format: `sort <order>`
 Examples:
 * `sort alpha`
 
-<p align="center">
-
-<img src="images/sortCommand_before.png"/>
-
-</p>
-
-<p align="center">
-
-<img src="images/sortCommand_after.png"  width="400"/>
-
-</p>
+<div style="display:flex; flex-direction:row;">
+<div style="display:flex; flex-direction:column; align-items:center; padding:2px">
+<img src="images/sortCommand_before.png" height="330" style="object-fit:contain;"/>
+<figcaption>Before</figcaption>
+</div>
+<div style="display:flex; flex-direction:column; align-items:center; padding:2px">
+<img src="images/sortCommand_after.png" height="330" style="object-fit:contain;"/>
+<figcaption>After</figcaption>
+</div>
+</div>
 
 <div style="page-break-after: always;"></div>
 
@@ -883,52 +870,57 @@ Format: `find [n/<name>] [s/<subject>] [l/<level>] [d/day] [t/time] [#/<tag>]`
 
 * When searching the `<level>` field, a space must be included between the level and number if the number is to be specified (e.g., `find l/secondary 1` instead of `find l/secondary1`).
 
+<div style="page-break-after: always;"></div>
+
 Examples:
 * `find n/john` in the **student list**.
 
-<p align="center">
-
-<img src="images/findStudent_before.png"/>
-
-</p>
-
-<p align="center">
-
-<img src="images/findStudent_after.png"  width="400"/>
-
-</p>
+<div style="display:flex; flex-direction:row;">
+<div style="display:flex; flex-direction:column; align-items:center; padding:5px">
+<img src="images/findStudent_before.png" height="330" style="object-fit:contain;"/>
+<figcaption>Before</figcaption>
+</div>
+<div style="display:flex; flex-direction:column; align-items:center; padding:5px">
+<img src="images/findStudent_after.png" height="330" style="object-fit:contain;"/>
+<figcaption>After</figcaption>
+</div>
+</div>
 
 Note that the **displayed list** is the **student list**, so `find n/john` returns the students, `John Doe` and `Johnny Tay` in the **student list**.
 
 * `find i/NUS q/Bachelor of Computing` in the **tutor list**.
 
-<p align="center">
-
-<img src="images/findTutor_before.png"/>
-
-</p>
-
-<p align="center">
-
-<img src="images/findTutor_after.png"  width="400"/>
-
-</p>
+<div style="display:flex; flex-direction:row;">
+<div style="display:flex; flex-direction:column; align-items:center; padding:5px">
+<img src="images/findTutor_before.png" height="330" style="object-fit:contain;"/>
+<figcaption>Before</figcaption>
+</div>
+<div style="display:flex; flex-direction:column; align-items:center; padding:5px">
+<img src="images/findTutor_after.png" height="330" style="object-fit:contain;"/>
+<figcaption>After</figcaption>
+</div>
+</div>
 
 Note that the **displayed list** is the **tutor list**, so `find i/NUS q/Bachelor of Computing` returns the tutors who had graduated from NUS with a Bachelor in Computing qualification.
 
 * `find d/monday #/hard` in the **class list**.
 
-<p align="center">
+<div style="page-break-after: always;"></div>
 
-<img src="images/findClass_before.png"/>
+<div style="display:flex; flex-direction:row;">
+<div style="display:flex; flex-direction:column; align-items:center; padding:5px">
+<img src="images/findClass_before.png" height="330" style="object-fit:contain;"/>
+<figcaption>Before</figcaption>
+</div>
+<div style="display:flex; flex-direction:column; align-items:center; padding:5px">
+<img src="images/findClass_after.png" height="330" style="object-fit:contain;"/>
+<figcaption>After</figcaption>
+</div>
+</div>
 
-</p>
 
-<p align="center">
 
-<img src="images/findClass_after.png"  width="400"/>
 
-</p>
 
 Note that the **displayed list** is the **class list**, so `find d/monday #/tag` returns all classes conducted on Monday and have the tag “hard”.
 
