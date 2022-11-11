@@ -762,7 +762,7 @@ Here is a quick tutorial on editing the data file:
 
 1. Double-click on the `paymelah.json` file to open it.<br>
    You should see some text similar to the following (don't worry if the words in your file appear to be in a different colour, it does not matter):<br>
-   <img src="images/jackson.png" width="300" />
+   <p style="text-align:center;"><img src="images/jackson.png" width="300" /></p>
 
 2. You can now edit the data by changing any of the green words you see! Do ensure that your replacement words are surrounded by double-inverted commas (`""`), as per the image above.
 
