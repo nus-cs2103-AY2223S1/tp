@@ -981,22 +981,22 @@ Combine this with [set team command](#set-a-new-team-set-team) to directly switc
 #### Edit current team: `edit team`
 
 You discussed the group name with your team members, and they do not like the name you proposed! They prefer it to be
-something cooler instead. Not to worry, you are able to edit the details of your current team. Once you decided on 
-better team name and a better description, key in `edit team -n <TEAM_NAME> -d <TEAM_DESCRIPTION>` and the details your
-[currently selected team](#current-team-section) will be edited. 
+something cooler instead. Not to worry, you are able to edit the details of your current team with `edit team` command. 
 
-The `edit team` command allows you to edit the details your currently selected team.
+The `edit team` command allows you to edit the details your currently selected team. The edited team details will be 
+shown in the [currently selected team](#current-team-section). 
 
-Here, let us take a quick walk-through on how to add a team.
+Here, let us take a quick walk-through on how to edit your currently selected team.
 
-Let us try to edit the name of our current team to `NUS TruthTable`. Enter the command
+Supposed you have decided on better team name `NUS TruthTable` 
 
-`edit team -n "NUS TruthTable"`
+Enter the command `edit team -n "NUS TruthTable"` to edit the name of the currently selected team.
+
+If done successfully, the details that you specified will be shown in the
+[currently selected team](#current-team-section) as shown below. You can also edit the team description directly 
+using the `-d` flag.
 
 ![Edit Team Example](images/EditTeamExample.png)
-
-If done successfully, the details that you specified will be shown in the 
-[currently selected team](#current-team-section) as shown below.
 
 **Format:** `edit team [-h] ([-n=<TEAM_NAME>] [-d=<TEAM_DESCRIPTION>])`
 
@@ -1022,18 +1022,22 @@ If done successfully, the details that you specified will be shown in the
 #### Delete an existing team: `delete team`
 
 The semester is coming to an end, and the group project is finally completed. You can delete a team once it is no longer
-needed. Simply key in `delete team <TEAM_NAME>` to delete an existing team from the [teams section](#teams-section).
+needed with our `delete team` command.
 
-The `delete team` command allows you to delete an existing team. The team deleted will be removed from the 
+The `delete team` command allows you to delete an existing team. The team deleted will be removed from the
 [teams section](#teams-section). Let us show you an example of deleting a team.
 
-Suppose you have an existing team called CS2103T and want to remove it. Enter the command
+Suppose you have an existing team called `CS2103T` and want to remove it. 
 
-`delete team CS2103T`
+Enter the command `delete team CS2103T` to delete the target team.
 
 If done successfully, you should see the team `CS2103T` removed under the [teams section](#teams-section).
 
 ![Delete Team Example](images/DeleteTeamExample.png)
+
+Unable to find the team that you want to delete? Please check that you have added the team into TruthTable as shown in the
+[teams section](#teams-section). Refer to the above [add team command](#creating-a-new-team-add-team) 
+on how to add a new team.
 
 **Format:** `delete team [-h] <TEAM_NAME>`
 
@@ -1053,22 +1057,24 @@ If done successfully, you should see the team `CS2103T` removed under the [teams
 
 #### Set a new team: `set team`
 
-It is a busy semester and you have multiple teams that you need to manage. You can change the team that you are managing to 
-any other team that is displayed in the [teams section](#teams-section). Simply enter `set team <TEAM_NAME>` to change
-the working team to the target team.
+It is a busy semester, and you have multiple teams that you need to manage. Not to worry, you can change the team you 
+are managing using our `set team` command. 
 
-The `set team` command allows you to change the [currently selected team](#current-team-section) to a new team from 
+The `set team` command allows you to change the [currently selected team](#current-team-section) to a new team from
 the list of teams in the [teams section](#teams-section). Let us show you an example of how to use this command.
 
-Suppose you have finished the tasks in your current team CS2103T and have an existing team called CS2102. You want to
-start managing that team instead. Enter the command
+Suppose you have finished the tasks in your current team `CS2103T` and have an existing team called `CS2102`. 
 
-`set team CS2102`
+Enter the command `set team CS2102` to change your current selected team.
 
-If done successfully, your [currently selected team](#current-team-section) will change to the team `CS2102` along with
-all of its information.
+If done successfully, your [currently selected team](#current-team-section) will change to the team `CS2102` along 
+with all of its team information, as shown below.
 
 ![Set Team Example](images/SetTeamExample.png)
+
+Unable to find the team that you want to check? Please check that you have added the team into TruthTable as shown in 
+the [teams section](#teams-section). Refer to the above [add team command](#creating-a-new-team-add-team)
+on how to add a new team.
 
 **Format:** `set team [-h] <TEAM_NAME>`
 
