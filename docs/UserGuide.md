@@ -491,6 +491,8 @@ Finds next-of-kin data for patients matching the input `PATIENT_NAME`, and is he
 
 * You want to contact a patient's next-of-kin to seek consent.
 
+<sub><sup>[back to top](#back-to-topt), [back to features](#features), [back to segment top](#retrieving-patient-info)</sup></sub>
+
 #### by hospital wing: `/hw`
 
 Finds all the patients in that particular hospital wing.
@@ -510,6 +512,8 @@ Finds all the patients in that particular hospital wing.
 * You want to know how many patients are in a hospital wing for better resource allocation.
 * You want a quick way to group patients according to hospital wing for zoning or isolation.
 * You forgot a patient's name and vaguely remember the hospital wing they are in, narrowing down your search.
+
+<sub><sup>[back to top](#back-to-topt), [back to features](#features), [back to segment top](#retrieving-patient-info)</sup></sub>
 
 #### by floor number: `/fn`
 
@@ -549,6 +553,8 @@ Finds all the patients in that particular ward number.
 * You want a quick way to group patients according to ward number for zoning or isolation.
 * You want to get familiar with the name of the list of patients you are in charge of for the day.
 
+<sub><sup>[back to top](#back-to-topt), [back to features](#features), [back to segment top](#retrieving-patient-info)</sup></sub>
+
 #### by long term medication: `/m`
 
 Finds all the patients by the long term medication prescribed to them.
@@ -567,6 +573,8 @@ Finds all the patients by the long term medication prescribed to them.
 * You want to know how many patients are taking a particular long term medication for better resource allocation.
 * You want to know how many of each long-term medication you have to administer to patients.
 * You want to closely keep track of the size of a group of patients who are on a more serious medication.
+
+<sub><sup>[back to top](#back-to-topt), [back to features](#features), [back to segment top](#retrieving-patient-info)</sup></sub>
 
 #### by patient type: `/inp`
 
@@ -618,6 +626,8 @@ in the command result box.
 * You want to know the previous medication prescriptions of a patient in a past appointment in order to
   administer the right medication for the current appointment.
 * You want to track if the patient has been to the hospital on a particular date for record keeping.
+
+<sub><sup>[back to top](#back-to-topt), [back to features](#features), [back to segment top](#retrieving-patient-info)</sup></sub>
 
 #### by appointment date: `/appton`
 
