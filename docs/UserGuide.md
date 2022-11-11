@@ -304,6 +304,9 @@ Format: `clients`
 
 Example Usage: `clients`
 
+Example Result:
+![clientsCommandExample](images/clientsCommandExample.png)
+
 #### __________________________
 
 ### Listing all clients : `allClients`
@@ -881,7 +884,7 @@ What's a guide without a summary? Here you go! Everything you need, summarised i
 | **View Filtered Clients** | `clients`                                                                                                                                                                                                                                                           | [Switching to Client View](#switching-to-the-view-of-currently-listed-clients--clients) |                                                         
 | **Sort Clients**          | `sort SORTING_METRIC`<br> eg. `sort name`                                                                                                                                                                                                                           | [Sorting all Clients](#sorting-all-clients--sort)                                       |
 | **Pin**                   | `pin (INDEX of CLIENT)` <br><br> e.g: `pin 1`                                                                                                                                                                                                                       | [Pin a Client](#pin-a-client-pin)                                                       |
-| **View Pinned**           | `viewPin`                                                                                                                                                                                                                                                           | [Pin a Client](#pin-a-client-pin)                                                       |
+| **View Pinned**           | `viewPin`                                                                                                                                                                                                                                                           | [Viewing Pinned Clients](#viewing-pinned-clients-viewpin)                               |
 
 Note: `allClients` shows all existing clients inside LTNS, while `clients` show all clients based on filter metric placed previously.
 
