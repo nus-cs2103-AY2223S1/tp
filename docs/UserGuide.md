@@ -440,7 +440,7 @@ Sorts buyers in the database according to a single given condition, and updates 
 Syntax: `sortbuyers [-n NAME<ASC/DESC>] [-r PRICE RANGE<ASC/DESC>] [-pr PRIORITY<ASC/DESC>] [-t TIME OF CREATION<ASC/DESC>]`
 
 The `-n` flag indicates to sort buyers by name in ascending or descending order.<br>
-The `-r` flag indicates to sort buyers by price range in ascending (by lower bound) or descending order (by upper bound).<br>
+The `-r` flag indicates to sort buyers by price range in ascending order (by lower bound) or descending order (by upper bound).<br>
 The `-pr` flag indicates to sort buyers by priority level in ascending or descending order.<br>
 The `-t` flag indicates to sort buyers by time of creation in ascending or descending order.<br>
 
@@ -467,7 +467,7 @@ Examples:<br>
 
 <div markdown="span" class="alert alert-primary">:exclamation: **Note:**
 These commands might cause the [Buyer List](#2-buyer-list) and [Property List](#3-property-list) to only show a portion of 
-buyers and properties in the database. Use the [List Commands](#list-commands) to show all buyers and properties again.
+buyers and properties in the database. You can use the [List Commands](#list-commands) to show all buyers and properties again.
 </div>
 
 #### Match specified buyer to properties: `matchbuyer`
@@ -482,7 +482,7 @@ Any properties with price lower than the lower bound of the buyer's price range 
 Syntax: `matchbuyer INDEX [-strict]`
 
 The `INDEX` indicates the buyer in the [Buyer List](#2-buyer-list) to be matched.<br>
-The `-strict` flag indicates to reduce the matches to only properties that match *all* the buyer's characteristics.<br>
+The `-strict` flag indicates to reduce the matches to only properties that match *all* of the buyer's characteristics.<br>
 
 Examples:<br>
 `matchbuyer 5 -strict`: Matches buyer 5 to existing properties in the database based on price range and *all* desired characteristics.
