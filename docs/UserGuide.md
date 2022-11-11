@@ -297,7 +297,7 @@ Examples:
 <a name="add-tutorial"></a>
 #### 5.2.1 Adding a tutorial: `add tutorial`
 
-Adds a tutorial to ModQuik.
+Adds a tutorial to ModQuik. Simply add any tutorial that you are teaching and keep track of it.
 
 Format: `add tutorial n/NAME m/MODULE v/VENUE T/TIMESLOT D/DAY`
 * `DAY` takes in a number from 1 (Monday) to 7 (Sunday).
@@ -369,7 +369,7 @@ Examples:
 <a name="add-consultation"></a>
 #### 5.3.1 Adding a consultation: `add consultation`
 
-Adds a consultation slot at the given time, date, place and description to ModQuik.
+Adds a consultation slot to ModQuik. You can use this whenever a student wants to schedule a consultation with you.
 
 Format: `add consultation n/NAME m/MODULE v/VENUE D/DATE T/TIMESLOT d/DESCRIPTION`
 * `DATE` should be given in the format yyyy-MM-dd, e.g. 2022-10-24.
@@ -729,7 +729,7 @@ Examples:
 | **att/**  | attendance       | [`add student`]<br> [`edit student`]                                                                                                                                                       |
 | **by/**   | sorting criteria | [`sort reminder`]                                                                                                                                                                          |
 | **d/**    | description      | [`add consultation`]<br> [`edit consultation`]<br> [`add reminder`]<br> [`edit reminder`]                                                                                                  |
-| **D/**    | date or day      | [`add consultation`] (`DATE`) <br> [`edit consultation`] (`DATE`)<br> [`add reminder`] (`DAY`)<br> [`edit reminder`] (`DAY`)                                                               |
+| **D/**    | date or day      | [`add tutorial`] (`DAY`) <br> [`edit tutorial`] (`DAY`)<br>[`add consultation`] (`DATE`) <br> [`edit consultation`] (`DATE`)<br> [`add reminder`] (`DATE`)<br> [`edit reminder`] (`DATE`)                                                               |
 | **e/**    | email            | [`add student`]<br> [`edit student`]                                                                                                                                                       |
 | **f/**    | field            | [`switch`]<br> [`clear`]                                                                                                                                                                   |
 | **g/**    | grade            | [`add student`]<br> [`edit student`]                                                                                                                                                       |
@@ -740,7 +740,7 @@ Examples:
 | **ph/**   | phone            | [`add student`]<br> [`edit student`]                                                                                                                                                       |
 | **part/** | participation    | [`add student`]<br> [`edit student`]                                                                                                                                                       |
 | **t/**    | tag              | [`add student`]<br> [`edit student`]                                                                                                                                                       |
-| **T/**    | time or timeslot | [`add reminder`] (`TIME`)<br> [`edit reminder`] (`TIME`)<br> [`add consultation`] (`TIMESLOT`)<br> [`edit consultation`] (`TIMESLOT`)<br>                                                  |
+| **T/**    | time or timeslot | [`add tutorial`] (`TIMESLOT`)<br> [`edit tutorial`] (`TIMESLOT`)<br>[`add consultation`] (`TIMESLOT`)<br> [`edit consultation`] (`TIMESLOT`)<br>[`add reminder`] (`TIME`)<br> [`edit reminder`] (`TIME`)<br>                                                   |
 | **tut/**  | tutorial         | [`add student`]<br> [`edit student`]<br> [`find`]<br> [`add tutorial`]<br> [`edit tutorial`]                                                                                               |
 | **tele/** | Telegram handle  | [`add student`]<br> [`edit student`]                                                                                                                                                       |
 | **v/**    | venue            | [`add tutorial`]<br> [`edit tutorial`]<br> [`add consultation`]<br> [`edit consultation`]                                                                                                  |
