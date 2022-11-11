@@ -321,6 +321,13 @@ Format: `appt INDEX {Prefix}/{Parameter}...`
 | `+`     | diag   | DIAGNOSIS             | -                                                                             |
 | `-` `*` | m      | MEDICATION_PRESCRIBED | Alphanumeric characters and spaces only.                                      |
 
+**Reasons for usage:**
+
+* You want to create a past appointment record for a patient.
+* You want to record the diagnosis for a patient during a past appointment.
+* You want to record the medication prescribed for a patient during a past appointment.
+* You want to record the date of the past appointment.
+
 **Upon Execution**
 
 If the command was successfully executed, you should see something similar to the image below in the Command Result Box:
@@ -351,6 +358,13 @@ Format: `delappt INDEX`
 
 * The index **must be a positive integer**, eg. 1, 2, 3...
 
+**Reasons for usage:**
+
+* You want to delete the most recent past appointment record for a patient.
+* The most recent past appointment record was incorrectly created.
+* The most recent past appointment data should be recorded under another patient.
+* The most recent past appointment record is no longer relevant.
+
 **Upon Execution**
 
 If the command was successfully executed, you should see something similar to the image below in the Command Result Box:
@@ -378,6 +392,13 @@ Format: `consult INDEX {Prefix}/{Parameter}...`
 | `+`     |      | INDEX                 | Positive integer only.                        |
 | `+`     | diag | DIAGNOSIS             | -                                             |
 | `-` `*` | m    | MEDICATION_PRESCRIBED | Alphanumeric characters and spaces only.      |
+
+**Reasons for usage:**
+
+* You want to record the diagnosis for a patient during a consultation.
+* You want to record the medication prescribed for a patient during a consultation.
+* You want to record the date of the consultation.
+* You want to indicate that a patient's upcoming appointment today has been completed.
 
 **Upon Execution**
 
