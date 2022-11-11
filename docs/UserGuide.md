@@ -179,7 +179,7 @@ This section showcases **all** commands in JeeqTracker that you can use. It is s
 
 ### **Client Commands**
 
-The following section highlights **all** commands related to `clients`.
+The following section highlights **all** commands related to **clients**.
 
 ### Adding a client: `add`
 
@@ -189,19 +189,19 @@ Format: `add n/NAME a/ADDRESS p/PHONE e/EMAIL [t/TAG]...`
 
 * `TAG` is optional.
 * Multiple `TAG` can be tagged to the client.
-* No restrictions on the `PHONE` input and `EMAIL` input. You can enter anything that you want.<br/>However, a warning will be given if it deviates from the **standard convention**.
+* No restrictions on the `PHONE` input and `EMAIL` input. You can enter anything that you want.<br/>However, a warning will be given if it deviates from the standard convention.
     * This facilitates more freedom to input phone numbers like `+606 89987755 (HOME)` and emails like `alice@company.com (WORK)`
 
-| Field | Standard Convention                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-|-------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Phone | Contains only numbers, and at least 3 digits long                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| Email | Format: `local-part@domain`<br/>1. **local-part** should only contain alphanumeric characters and these special characters `+`, `_`, `.`, `-`. The local-part may not start or end with any special character.<br/>2. This is followed by a **@** and then a **domain name**. The domain name is made up of domain labels separated by periods.<br/> The domain name must:<br/> - end with a domain label at least 2 characters long<br/>- have each domain label start and end with alphanumeric characters<br/>- have each domain label consist of alphanumeric characters, separated only by hyphens, if any |
+| Field | Standard Convention                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+|-------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Phone | Contains only numbers, and at least 3 digits long                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| Email | Format: `local-part@domain`<br/>1. **Local-part** should only contain **alphanumeric characters** and these special characters `+`, `_`, `.`, `-`. The **local-part** may not start or end with any special character.<br/>2. This is followed by a **@** and then a **domain name**. The **domain name** is made up of domain labels separated by periods.<br/> The **domain name** must:<br/> - end with a domain label at least 2 characters long<br/>- have each domain label start and end with **alphanumeric characters**<br/>- have each domain label consist of **alphanumeric characters**, separated only by hyphens, if any |
 
 > <div markdown="span" class="alert alert-warning">:warning: **Warning: You cannot add a client with a name that already exists in JeeqTracker**<br/> Names are considered duplicates even if they differ by case sensitivity or whitespaces!
 
 Examples:
-* `add n/Alice a/West Coast Park p/9876542 e/alice@gmail.com` adds a new client, **Alice** with the specified **address**, **phone** and **email** to the client list, as depicted by the diagram below.
-* `add n/John a/Yishun Street 81 p/9876543 e/john@yahoo.com t/friends t/supplier` adds a new client, **John** with the specified **address**, **phone**, **email**, and **tags** to the client list.
+* `add n/Alice a/West Coast Park p/9876542 e/alice@gmail.com` adds a new client, **Alice** with the specified **address**, **phone** and **email** to the *List of Clients* panel, as depicted by the diagram below.
+* `add n/John a/Yishun Street 81 p/9876543 e/john@yahoo.com t/friends t/supplier` adds a new *client*, **John** with the specified **address**, **phone**, **email**, and **tags** to the *List of Clients* panel.
 
 ![Ui](images/SampleAddCommand.png)
 
@@ -210,18 +210,18 @@ Examples:
 ### Listing all clients: `list`
 
 Lists all the clients stored in JeeqTracker. 
-This command is required for you because some other commands like `find`, `sort`, `view` will filter the list of clients panel.
+This command is required for you because some other commands like `find`, `sort`, `view` will filter the *List of Clients* panel.
 
 Format: `list`
 
-* Displays all the clients and their details (**Name**, **Address**, **Phone**, **Remarks**, **Total**) in JeeqTracker.
-* If JeeqTracker is empty, the **List Of Clients** section will be blank.
+* Displays all the clients and their details (`Name`, `Address`, `Phone`, `Remarks`, `Total`) in JeeqTracker.
+* If JeeqTracker is empty, the *List Of Clients* panel will be blank.
 
 [Back to Table of Contents](#table-of-contents)
 
 ### Editing a client: `edit`
 
-Edits the details of a `client`
+Edits the details of a client.
 
 Format: `edit INDEX m/client FIELDS [MORE_FIELDS]...`
 
@@ -240,16 +240,16 @@ Examples:
 
 ### Deleting a client: `delete`
 
-Deletes a specified `client` from JeeqTracker.
+Deletes a specified client from JeeqTracker.
 
 Format: `delete INDEX m/client`
 
-* The `INDEX` refers to the index number shown in the **Client List Panel**
+* The `INDEX` refers to the index number shown in the *List of Clients* panel.
 * `INDEX` **must be a positive integer** e.g 1, 2, 3, …​
 
 Examples:
-* `delete 1 m/client` deletes the 1<sup>st</sup> client in the displayed client list.
-* `delete 2 m/client` deletes the 2<sup>nd</sup> client in the displayed client list.
+* `delete 1 m/client` deletes the 1<sup>st</sup> client in the displayed *List of Clients* panel.
+* `delete 2 m/client` deletes the 2<sup>nd</sup> client in the displayed *List of Clients* panel.
 
 > <div markdown="span" class="alert alert-danger">❗ **Danger: Deleting a client is an irreversible process**<br/> Be very careful here!
 
@@ -269,25 +269,25 @@ Format: `find KEYWORD [MORE_KEYWORDS]...`
   e.g. `John Bob Lim` will return `John Koh`, `Bob Tan`
 
 Examples:
-* `find John` return clients `John`, `John Lim`, `John Koh`
-* `find Tan` return clients `John Tan`, `Bob Tan`, `Alice Tan`
+* `find John` returns clients `John`, `John Lim`, `John Koh`
+* `find Tan` returns clients `John Tan`, `Bob Tan`, `Alice Tan`
 
 [Back to Table of Contents](#table-of-contents)
 
 ### Viewing a client: `view`
 
-Displays the remarks and transactions of the specified client.
-The client list will be filtered to display only the specified client.
+Displays the **remarks** and **transactions** of the specified client.
+The *List of clients* panel will be filtered to display only the specified client.
 
 Format: `view INDEX`
 
 * Views the client at the specified `INDEX`.
-* `INDEX` refers to the index number shown in the **displayed** list of clients.
+* `INDEX` refers to the index number shown in the displayed *List of Clients* panel. 
 * The `INDEX` **must be a positive integer** 1, 2, 3, …​
 * The `INDEX` **must not contain any signs** e.g +1, -3, …​
 
 Example:
-* `view 5` displays the remarks and transactions of the client at the 5<sup>th</sup> index.
+* `view 5` displays the **remarks** and **transactions** of the client at the 5<sup>th</sup> index.
 
 > <div markdown="span" class="alert alert-primary">:bulb: Tip: Use the [list](#listing-all-clients-list) command if you want to get back the full list of clients</div>
 
