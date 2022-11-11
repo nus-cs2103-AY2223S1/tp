@@ -1916,7 +1916,7 @@ Examples include
 
 ### User Interface
 
-The user interface is some interface of which we interact with computers and devices in.
+User Interface is the point of contact between the user and a device, application, or website.
 
 Examples include
 
@@ -1925,9 +1925,9 @@ Examples include
 
 ### Component
 
-References a part of the user interface.
+A component refers to a part of the user interface.
 
-For instance, the input box in the [command section](#command-section) is a component of said section.
+For instance, the input box in the [command section](#command-section) is a component of that section.
 
 ### JSON File
 
