@@ -158,10 +158,11 @@ This is where you key in commands. After typing the commands, simply press <kbd>
 
 This is the area under the command box. It is where the feedback information is displayed after you execute a command. For example, if you had entered an invalid command, the feedback “Unknown command” would be shown in the box.
 
-<div align="center">
-<img src="images/unknownCommand.png" width="400px"/>
-</div>
+<p align="center">
 
+<img src="images/unknownCommand.png" width="400px"/>
+
+</p>
 
 ### 3. List Display Panel
 
@@ -177,18 +178,18 @@ In the **student list** and **tutor list**, clicking on the individual student o
 
 Note that the card for the person being displayed will be highlighted as well.
 
-<div style="page-break-after: always; padding: 0px; margin: 0px;"></div>
+<div style="page-break-after: always;"></div>
 
 ### 4. List Tabs
 
 There are three tabs: `Student`, `Tutor` and `Class`.  
 The highlighted tab indicates which list is currently being displayed.
 
-<div align="center" st>
+<p align="center">
 
 <img src="images/list_tabs_2.png"/>
 
-</div>
+</p>
 
 <div style="page-break-after: always;"></div>
 
@@ -259,7 +260,7 @@ Examples:
 
 <p align="center">
 
-<img src="images/helpCommand.png" width="500px" />
+<img src="images/helpCommand.png" width="500px" style="height: 220px; object-fit:cover; object-position:0px 0px"/>
 
 </p>
 
@@ -330,19 +331,13 @@ Examples:
 
 * `add student n/John Doe p/98765432 e/johndoe@example.com a/John street, block 123, #01-01 s/Example Primary School l/Primary 3 #/badBoy`
 
-<p align="center">
+<div class="row" align="center" >
 
-<img src="images/addPersonCommand_before.png"/>
-
-</p>
-
-<p align="center">
-
-<img src="images/addPersonCommand_after.png" width="400"/>
-
-</p>
-
+<img src="images/addPersonCommand_before.png" width="55%" style="vertical-align: top;"/>
+<img src="images/addPersonCommand_after.png" width="40%"/>
 The new student has been added into the database.
+
+</div>
 
 <div style="page-break-after: always;"></div>
 
@@ -400,19 +395,15 @@ Examples:
 
 * `add class n/P2MATHF12 s/Math l/Primary 2 d/Friday t/12:00 - 14:00`
 
-<p align="center">
+<div class="row" align="center">
 
-<img src="images/addClassCommand_before.png"/>
-
-</p>
-
-<p align="center">
-
-<img src="images/addClassCommand_after.png" width="400"/>
-
-</p>
-
+<img src="images/addClassCommand_before.png" width="55%" style="vertical-align: top;"/>
+<img src="images/addClassCommand_after.png" width="40%"/>
 This adds the class into the database. 
+
+</div>
+
+
 
 <div style="page-break-after: always;"></div>
 
