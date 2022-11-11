@@ -135,6 +135,8 @@ Displays your list of reminders.
 
 </div>
 
+<div style="page-break-after: always"></div>
+
 ### 5.1 Student Features
 
 ![Student](images/AnnotatedStudent.png)
@@ -350,6 +352,8 @@ Format: `delete tutorial INDEX`
 Examples:
 1. `delete tutorial 2`
 
+<div style="page-break-after: always"></div>
+
 ### 5.3 Consultation Features
 
 ![Consultation](images/AnnotatedConsultation.png)
@@ -414,6 +418,8 @@ Format: `delete consultation INDEX`
 
 Examples:
 1. `delete consultation 3`
+
+<div style="page-break-after: always"></div>
 
 ### 5.4 Reminder Features
 
@@ -657,7 +663,7 @@ You can also try looking in your trash bin to check if the file was accidentally
 | **Prefix**                         | Abbreviation of the name of the parameter followed by a `/`. User will need to type the prefix before the parameter in ModQuik.<br> e.g., `sort reminder by/deadline` where by/ is the prefix. |
 | **Lexicographically**              | Generalization of the alphabetical order of the dictionaries                                                                                                                                   |
 
-### 7.2 Notes
+### 7.2 Additional notes
 
 <a name="installing-java-11"></a>
 #### 7.2.1 Instructions on installing Java 11
