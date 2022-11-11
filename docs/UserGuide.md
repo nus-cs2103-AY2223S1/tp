@@ -45,8 +45,8 @@ Click [here](#tutorial-for-cli) to learn more about what is CLI.
     3. [Task Management Commands](#task-management-commands)
         - [Add a Task](#adding-a-new-task-task-add)
         - [Assign a Task to a Teammate](#assigning-a-task-to-a-teammate-task-assign)
-        - [Mark completed Task](#marking-completed-tasks-task-mark)
-        - [Unmark incomplete Task](#unmarking-incomplete-tasks-task-unmark)
+        - [Mark a Task](#marking-a-task-task-mark)
+        - [Unmark a Task](#unmarking-a-task-task-unmark)
         - [Delete a task](#deleting-a-task-task-delete)
         - [Set deadline to Task](#setting-deadlines-to-a-task-task-do--by)
         - [Sort Task by deadline](#sorting-tasks-by-deadline-task-sort)
@@ -365,7 +365,7 @@ Examples:
 Marks a task as complete.
 
 Format: `task mark TASK_INDEX`
-* Marks the task at the specified `TASK_INDEX`.
+* Marks the task at the specified `TASK_INDEX` as complete.
 * The index refers to the index number shown in the displayed task list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
