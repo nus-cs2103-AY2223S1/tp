@@ -170,19 +170,24 @@ Of course, this is not yet the end of your journey with PayMeLah - there are sti
 
 ### About the command format
 
-* The first word in the command is the **command phrase** that specifies which command will be carried out by PayMeLah.
+* **Command Phrase**
+  The first word in the command is the **command phrase** that specifies which command will be carried out by PayMeLah.
   e.g. in `add n/<name>`, `add` is the command phrase for PayMeLah to add a person.
 
-* Words in diamond brackets `<>` are **inputs to be supplied by you**.<br>
+* **User Supplied Inputs**
+  Words in diamond brackets `<>` are **inputs to be supplied by you**.<br>
   e.g. in `add n/<name>`, `<name>` is an input which can be used as `add n/John`.
 
-* To separate inputs that represent different information, you should precede inputs with their respective **prefixes** that end with `/`. <br>
+* **Prefixes**
+  To separate inputs that represent different information, you should precede inputs with their respective **prefixes** that end with `/`. <br>
   e.g. in `add n/<name> [t/<tag>]…`, `n/` and `t/` are prefixes preceding the inputs `<name>` and `<tag>` respectively.
 
-* Inputs in square brackets `[]` are **optional**.<br>
+* **Optional Inputs**
+  Inputs in square brackets `[]` are **optional**.<br>
   e.g. for `add n/<name> [t/<tag>]…`, the following usages are both acceptable: `add n/Alan Poe t/theatre kid`, `add n/Alan Poe`.
 
-* Inputs with … can be used **multiple times**, but remember to separate each usage with a space character in between.<br>
+* **Repeatable Inputs**
+  Inputs with … can be used **multiple times**, but remember to separate each usage with a space character in between.<br>
   e.g. in `adddebt <person index…>`, `<person index…>` is an input which can be used as `adddebt 1` or as `adddebt 1 2`.<br>
   e.g. in `add n/<name> [t/<tag>]…`, `[t/<tag>]…` is a pair of prefix and input which can be used as `add n/Alan t/Poet` or as `add n/Alan t/Poet t/Friend`.
 
@@ -192,13 +197,16 @@ Be very careful with how a command is formatted! If the `…` is found within th
 
 <div style="page-break-after: always;"></div>
 
-* Inputs can be in **any order**.<br>
+* **Order of Inputs**
+  Inputs can be in **any order**.<br>
   e.g. if the command specifies `d/<description> m/<money>`, `m/<money> d/<description>` is also acceptable.
 
-* If an input is expected only once in the command, but you specified it multiple times, **only the last occurrence of the input will be used**.<br>
+* **Extra Inputs**
+  If an input is expected only once in the command, but you specified it multiple times, **only the last occurrence of the input will be used**.<br>
   e.g. if the command requires `p/<phone number>` and you specify `p/12341234 p/56785678`, only `p/56785678` will be taken. This is useful for correcting a wrong input without having to use backspace.
 
-* Any inputs for commands that do not accept inputs will be **ignored**.<br>
+* **Ignored Inputs**
+  Any inputs for commands that do not accept inputs will be **ignored**.<br>
   e.g. entering `help 123` will be equivalent to entering `help`, as it does not accept any inputs.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
@@ -209,13 +217,16 @@ Avoid giving irrelevant inputs to commands that do not accept those inputs. For 
 
 #### Input-specific behaviour
 
-* Whenever `<date>` is specified as an input, you should input it in the format `yyyy-mm-dd` where `y` is year, `m` is month and `d` is day.<br>
+* **Inputting Dates**
+  Whenever `<date>` is specified as an input, you should input it in the format `yyyy-mm-dd` where `y` is year, `m` is month and `d` is day.<br>
   e.g. September 5 2022 should be input as `2022-09-05`.
 
-* Whenever `<time>` is specified as an input, you should input it in the format `hh:mm` where `h` is the hour in 24h clock format, and `m` is the minute.<br>
+* **Inputting Time**
+  Whenever `<time>` is specified as an input, you should input it in the format `hh:mm` where `h` is the hour in 24h clock format, and `m` is the minute.<br>
   e.g. 5:15PM should be input as `17:15` as per 24h clock notation.
 
-* Whenever `<money>` is specified as an input, you should input the amount in dollars and cents. You can also let PayMeLah help you with calculations by ending with `+` to add GST (7%), or `++` to add both Service Charge (10%) and GST (7%) to the amount specified. **All calculated values are automatically rounded up to the nearest cent.**<br>
+* **Inputting Monetary Values**
+  Whenever `<money>` is specified as an input, you should input the amount in dollars and cents. You can also let PayMeLah help you with calculations by ending with `+` to add GST (7%), or `++` to add both Service Charge (10%) and GST (7%) to the amount specified. **All calculated values are automatically rounded up to the nearest cent.**<br>
   e.g. when you input `2.00++`, PayMeLah will store a debt with a money amount that has Service Charge and GST added, i.e. `2.36`.
 
 [Return to Table of Contents](#table-of-contents)
