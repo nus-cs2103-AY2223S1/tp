@@ -51,7 +51,7 @@ the head teaching assistant. However, when using these tools, you may notice tha
 which you don’t use, but clutter up your screen. Some tools you actually want to use are instead hidden in the
 stash of icons and menus that you need to painstakingly sieve through.
 
-That’s not even the worst part! The module you’re teaching might demand separate Excel sheets to keep track of different
+That’s not even the worst part! The [module](#module) you’re teaching might demand separate Excel sheets to keep track of different
 items such as assignments and attendance which can be a huge hassle. Indeed, during our research, this is a point
 brought up by multiple TAs.
 
@@ -88,7 +88,7 @@ Thank you for choosing StudMap! This user guide will help you navigate our belov
 
 1. You can head off to [Section 4: Quick Start](#4-quick-start) section for a quick tutorial.<br><br>
 2. If you’re already using StudMap, check out [Section 5: Features](#5-features) section to get in-depth information
-   about each command you can give StudMap.<br><br>
+   about each [command](#command) you can give StudMap.<br><br>
 3. For advanced users, check out [Section 7: Command Summary](#7-command-summary) for an easy all-in-one record for all
    the commands.<br><br>
 4. If you see any unfamiliar terms, check out the [Section 8: Glossary](#8-glossary) for more information.<br><br>
@@ -101,12 +101,12 @@ Throughout the guide, various types of notation are used to convey important inf
 
 Here are some of the symbols and syntax to look out for:
 
-| Symbol / Syntax      | Meaning                                                                    |
-|----------------------|----------------------------------------------------------------------------|
-| :information_source: | Information about commands or formats that you should be aware of          |
-| :exclamation:        | Warning of potential user scenarios you might face that can lead to errors |
-| :bulb:               | Tips that can help you save time using StudMap                             |
-| `code`               | Indicates command or parameter that can be inputted into StudMap           |
+| Symbol / Syntax      | Meaning                                                                       |
+|----------------------|-------------------------------------------------------------------------------|
+| :information_source: | Information about [commands](#command) or formats that you should be aware of |
+| :exclamation:        | Warning of potential user scenarios you might face that can lead to errors    |
+| :bulb:               | Tips that can help you save time using StudMap                                |
+| `code`               | Indicates [command](#command) or parameter that can be inputted into StudMap  |
 
 ---
 
@@ -133,8 +133,7 @@ If you’re new to StudMap, this is the tutorial for you! Here are the steps for
 When you first load StudMap, you will likely be greeted with a display similar to the one below, containing some sample
 data.
 **Don't be overwhelmed!** While there may be many fields and objects to take in at first, let's go through the User
-Interface and
-explore each element one by one.
+Interface and explore each element one by one.
 
 ![UI Overview](images/ui/ui-getting-started.png)
 
@@ -154,6 +153,7 @@ such as personal particulars or module-related progress, and represents it in a 
 student card**.
 
 The **left half** of each student card contains the student's particulars. Let's zoom in and find out more:
+
 ![Student Info UI](images/ui/ui-student-info.png)
 
 | Element         | Purpose                                                                                                  |
@@ -170,15 +170,15 @@ The **right half** of each student card contains module information related to y
 
 ![TA Info UI](images/ui/ui-ta-info.png)
 
-| Element                  | Purpose                                                                                                                                                                                                                                                                                                               |
-|--------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Module                   | Module you are teaching your student. **Is Compulsory!**                                                                                                                                                                                                                                                              |
-| Attendance Percentage    | Percentage of classes that your student has been marked present.                                                                                                                                                                                                                                                      |
-| Classes                  | {::nomarkdown} Detailed record of classes for your student. Each box represents one class: <ul><li>the text in the box indicates the name of the class</li><li>the colour indicates attendance status (Green for present, Red for absent)</li></ul>{:/}                                                               |
-| Participation Percentage | Percentage of participation components that your student has qualified for.                                                                                                                                                                                                                                           |
-| Participation Components | {::nomarkdown} Detailed record of participation for your student. Each box represents one component: <ul><li>the text in the box indicates the name of the component</li><li>the colour indicates participation status (Green for yes, Red for no)</li></ul>{:/}                                                      |
-| Ungraded Assignments     | Number of ungraded assignments (assignments marked as **received**) that you yet to have graded.                                                                                                                                                                                                                      |
-| Assignment Status        | {::nomarkdown} Detailed record of assignments for your student. Each box represents one assignment: <ul><li>the text in the box indicates the name of the assignment</li><li>the colour indicates assignment status (There are 3 assignment status: Green for graded, Red for received, Yellow for new)</li></ul>{:/} |
+| Element                  | Purpose                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+|--------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Module                   | [module](#module) you are teaching your student. **Is Compulsory!**                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| Attendance Percentage    | Percentage of classes that your student has been marked present.                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| Classes                  | {::nomarkdown} Detailed record of classes for your student. Each box represents one class: <ul><li>the text in the box indicates the name of the class</li><li>the colour indicates attendance status (Green for present, Red for absent)</li></ul>{:/}                                                                                                                                                                                                                                                                               |
+| Participation Percentage | Percentage of participation components that your student has qualified for.                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| Participation Components | {::nomarkdown} Detailed record of participation for your student. Each box represents one component: <ul><li>the text in the box indicates the name of the component</li><li>the colour indicates participation status (Green for yes, Red for no)</li></ul>{:/}                                                                                                                                                                                                                                                                      |
+| Ungraded Assignments     | Number of ungraded assignments (assignments marked as **received**) that you yet to have graded.                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| Assignment Status        | {::nomarkdown} Detailed record of assignments for your student. Each box represents one assignment: <ul><li>the text in the box indicates the name of the assignment</li><li>the colour indicates assignment status</li></ul> **Note:** There are 3 assignment statuses: Graded for assignments finished grading (represented by green), Received for assignments your students have submitted and require marking (represented by red), and New for new assignments your students have not yet submitted (represented by yellow){:/} |
 
 <div markdown="block" class="alert alert-info">
 :information_source: **Note 1:** Each student is uniquely identified by their **name, student ID and module** combined.
@@ -205,7 +205,7 @@ its main functionality. Examples of some useful commands are:
 
 * `list`, which **lists** the entire student list on StudMap<br><br>
 * `sort`, which **sorts** the student list in a certain order<br><br>
-* `grade`, which adds information about an assignment you have **graded** for a student<br><br>
+* `grade`, which adds information about an assignment you have **graded** for a student
 
 ### Parameters
 
@@ -319,24 +319,24 @@ This will help you understand the guide better!
 Throughout this section, you will see numerous parameters being used by different commands. Here is a consolidated
 summary of the parameters and any remarks (e.g. **constraints**) that might be of relevance.
 
-| Parameter    | Remarks                                                                                                                                                              |
-|--------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| INDEX        | Number used to specify the student you wish to target. Can be replaced with ALL to target all students in displayed list                                             |
-| KEYWORD      | Used in [`filter`](#538-filtering-the-students-filter)                                                                                                               |
-| ORDER        | Used in [`sort`](#537-sorting-the-students-sort), can take two values: asc or dsc                                                                                    |
-| STATUS       | Used to represent status of assignments (new/received/marked), attendance (present/absent) and participation (yes/no)                                                |
-| a/ASSIGNMENT | Assignment to be recorded for your student. <br/>**Constraint:** Must consist of [alphanumerics](#alphanumeric), spaces, dashes and underscores only                 |
-| a/ATTRIBUTE  | Attribute to be used for [`sorting`](#537-sorting-the-students-sort)                                                                                                 |
-| c/CLASS      | Class to be recorded for your student <br/>**Constraint:** Must consist of [alphanumerics](#alphanumeric), spaces, dashes and underscores only                       |
-| e/EMAIL      | Email for your student. <br/>**Constraint:** Must be of the format local-part@domain                                                                                 |
-| g/GITNAME    | GitHub Username for your student                                                                                                                                     |
-| h/TELEHANDLE | Telegram Handle for your student. <br/>**Constraint:** Must have `@` before the handle e.g. @handle                                                                  |
-| id/ID        | Student ID for your student                                                                                                                                          |
-| m/MODULE     | Module for your student. <br/>**Constraint:** Must follow NUS Module naming convention: letters, then 4 digits, and finally an optional letter suffix (i.e. CS2103T) |
-| n/NAME       | Name for your student                                                                                                                                                |
-| p/COMPONENT  | Participation component to be recorded for your student. <br/>**Constraint:** Must consist of [alphanumerics](#alphanumeric), spaces, dashes and underscores only    |
-| p/PHONE      | Phone number for your student. <br/>**Constraint:** Must consist of only numbers, and an optional `+` at the beginning. Must have at least 3 digits                  |
-| t/TAG        | Tag for your student <br/>**Constraint:** Must be only [alphanumeric](#alphanumeric)                                                                                 |
+| Parameter    | Remarks                                                                                                                                                                         |
+|--------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| INDEX        | Number used to specify the student you wish to target. Can be replaced with ALL to target all students in displayed list                                                        |
+| KEYWORD      | Used in [`filter`](#538-filtering-the-students-filter)                                                                                                                          |
+| ORDER        | Used in [`sort`](#537-sorting-the-students-sort), can take two values: asc or dsc                                                                                               |
+| STATUS       | Used to represent status of assignments (new/received/marked), attendance (present/absent) and participation (yes/no)                                                           |
+| a/ASSIGNMENT | Assignment to be recorded for your student. <br/>**Constraint:** Must consist of [alphanumerics](#alphanumeric), spaces, dashes and underscores only                            |
+| a/ATTRIBUTE  | Attribute to be used for [`sorting`](#537-sorting-the-students-sort)                                                                                                            |
+| c/CLASS      | Class to be recorded for your student <br/>**Constraint:** Must consist of [alphanumerics](#alphanumeric), spaces, dashes and underscores only                                  |
+| e/EMAIL      | Email for your student. <br/>**Constraint:** Must be of the format local-part@domain                                                                                            |
+| g/GITNAME    | GitHub Username for your student                                                                                                                                                |
+| h/TELEHANDLE | Telegram Handle for your student. <br/>**Constraint:** Must have `@` before the handle e.g. @handle                                                                             |
+| id/ID        | Student ID for your student                                                                                                                                                     |
+| m/MODULE     | [module](#module) for your student. <br/>**Constraint:** Must follow NUS Module naming convention: letters, then 4 digits, and finally an optional letter suffix (i.e. CS2103T) |
+| n/NAME       | Name for your student                                                                                                                                                           |
+| p/COMPONENT  | Participation component to be recorded for your student. <br/>**Constraint:** Must consist of [alphanumerics](#alphanumeric), spaces, dashes and underscores only               |
+| p/PHONE      | Phone number for your student. <br/>**Constraint:** Must consist of only numbers, and an optional `+` at the beginning. Must have at least 3 digits                             |
+| t/TAG        | Tag for your student <br/>**Constraint:** Must be only [alphanumeric](#alphanumeric)                                                                                            |
 
 <div markdown="block" class="alert alert-info">
 :information_source: Here are some explanations about the format constraints for certain parameters that you may 
@@ -869,16 +869,16 @@ Accidentally tagged a student wrongly, or simply don't want it there anymore? Th
 ### 5.5.2 Saving the data
 
 StudMap data are saved in the hard disk automatically after any command that changes the data. There is no need to save
-manually.<br><br>
+manually.
 
 ### 5.5.3 Backing up data
 
 StudMap data are saved as a [JSON file](#json-file) `[JAR file location]/data/studmap.json`. You can make a copy of this
-file if you want to back up your data.<br><br>
+file if you want to back up your data.
 
 ### 5.5.4 Editing the data file
 
-As mentioned above, your StudMap data are saved as a JSON file `[JAR file location]/data/studmap.json`. Advanced users
+As mentioned above, your StudMap data is saved as a [JSON file](#json-file) `[JAR file location]/data/studmap.json`. Advanced users
 are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: <b>Caution:</b>
@@ -955,8 +955,8 @@ the specific student even if they have the same given name.
 
 ### Command
 
-A command is an instruction for StudMap, and the main way to interact with it! Check out the [Features](#5-features)
-section to see what commands are available.
+A command is an instruction for StudMap, and the main way to interact with it! Learn more about commands by looking at the
+[Understanding Commands section](#command-word), and check out the [Features](#5-features) section to see what commands are available.
 
 ### CSV (Comma-separated Values) file
 
