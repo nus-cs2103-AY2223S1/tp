@@ -371,7 +371,7 @@ You're about halfway through this User Guide already! Continue reading to find o
 </div>
 
 
-<div markdown="block" class="alert alert-warning">**:exclamation: This section contains important information that might require you to pay close attention.** 
+<div markdown="block" class="alert alert-warning">**:exclamation: This section contains important information that requires you to pay close attention.** 
 <br/><br/>
 If you don't understand something, don't worry! You can always read it again or refer to the help messages in our application.
 </div>
