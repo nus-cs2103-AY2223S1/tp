@@ -1390,7 +1390,7 @@ Please take note that:
 
 #### Set Deadline for task: `set deadline`
 
-You realize that this task needs to be done more urgently than expected and you need to change its deadline. 
+You realize that this task needs to be done more urgently than expected, and you need to change its deadline. 
 Look no further, as you can set deadlines for your tasks using the `set deadline` command! 
 
 The `set deadline` command allows you to set a deadline for an existing task, and the deadline must be in
@@ -1501,7 +1501,8 @@ Please take note that:
 #### Assign a task to random team member: `assign random`
 
 You have tasks and are looking to assign them to different people to work on. Since everyone is capable of 
-doing all of the tasks, you are not sure whom to assign the tasks to. You can assign tasks to people randomly using the `assign random` command. 
+doing all the tasks, you are not sure whom to assign the tasks to. You can assign tasks to people randomly using 
+the `assign random` command. 
 
 The `assign random` command allows you to assign tasks randomly to members in your team. The task with the new
 assignees will be shown in the task list of the [current team section](#current-team-section). Let us run through an
@@ -1697,8 +1698,8 @@ Summary of the commands to manage links can be found [here](#summary-of-link-com
 
 #### Add a new link: `add link`
 
-Your project has started and you're now having weekly meetings. As the meeting link is always the same, wouldn't it be nice 
-if it is recorded down permanently somewhere? TruthTable helps you do that with the `add link` command! 
+Your project has started, and you're now having weekly meetings. As the meeting link is always the same, wouldn't it 
+be nice if it is recorded down permanently somewhere? TruthTable helps you do that with the `add link` command! 
 
 The `add link` command allows you to add a new link you wish to keep track of. The new link is added to the list of links in 
 the [currently selected team](#current-team-section). Here, let us take a quick walk-through on how to add a link.
@@ -2004,27 +2005,27 @@ make sure that you are using the correct command formats.
 
 ### Flag And Parameter Constraints
 
-| Parameter Name          | Flags                 | Constraints                                                                                                                    |
-|-------------------------|-----------------------|--------------------------------------------------------------------------------------------------------------------------------|
-| `PERSON_EMAIL`          | `-e`, `--email`       | - Only valid emails allowed<br/> - Click <a href="https://regex101.com/r/0huBLM/1" target="_blank">here to test your input</a> |
-| `PERSON_NAME`           | `-n`,` --name`        | - Only alphabets, numbers, and spaces allowed, and should not be blank                                                         |
-| `PERSON_PHONE`          | `-p`, `--phone`       | - Only numbers allowed<br/> - Minimum of 3 numbers                                                                             |
-| `PERSON_TAGS`           | `-t`, `--tags`        | - Only alphabets and numbers are allowed, and should not be blank                                                              |
-| `PERSON_INDEX`          |                       | - Only positive integers are allowed<br/> - Must be less than total number of persons in TruthTable                            |
-| `MEMBER_INDEX`          |                       | - Only positive integers are allowed<br/> - Must be less than total number of members in TruthTable                            |
-| `MEMBER_NAME_KEYWORDS`  | `-n`, `--name`        | - Only alphabets and numbers are allowed, and should not be blank                                                              |
-| `MEMBER_EMAIL_KEYWORDS` | `-e`, `--email`       | - Only valid emails allowed<br/> - Click <a href="https://regex101.com/r/0huBLM/1" target="_blank">here to test your input</a> |
-| `MEMBER_DESCRIPTION`    | `-d`, `--description` | - Only alphabets, numbers, and spaces are allowed, and should not be blank                                                     |
-| `TEAM_NAME`             | `-n`, `--name`        | - Only alphabets and numbers are allowed, and should not be blank                                                              |
-| `TASK_NAME`             | `-n`, `--name`        | - Any characters allowed, except quotes (`'` and `"`) and should not be blank                                                  |
-| `TASK_INDEX`            |                       | - Only positive integers are allowed<br/> - Must be less than total number of tasks in selected team                           |
-| `TASK_ASSIGNEES`        | `-a`, `--assignee`    | - Only positive integers are allowed<br/> - Must be less than total number of members in selected team                         |
-| `TASK_DEADLINE`         | `-d`, `--deadline`    | - Must be in `YYYY-MM-DD HH:MM` format and cannot be blank<br/> - Date and time must be separated with a space                 |
-| `TASK_NAME_KEYWORDS`    |                       | - Any characters allowed, except quotes (`'` and `"`) and spaces, and should not be blank                                      |
-| `LINK_URL`              | `-l`, `--link`        | - Only valid [URLs](#url) allowed<br/> - Click <a href="https://regex101.com/r/oW3Q3v/1" target="_blank">here to test your input</a>   |
-| `LINK_NAME`             | `-n`, `--name`        | - Only alphabets, numbers, and spaces are allowed, and should not be blank                                                     |
-| `LINK_INDEX`            |                       | - Only positive integers are allowed<br/> - Must be less than total number of links in selected team                           |
-| `ORDER`                 |                       | - Only `asc`, `dsc`, and `res` allowed<br/> - Corresponds to ascending, descending, and reset respectively.                    |
+| Parameter Name          | Flags                 | Constraints                                                                                                                          |
+|-------------------------|-----------------------|--------------------------------------------------------------------------------------------------------------------------------------|
+| `PERSON_EMAIL`          | `-e`, `--email`       | - Only valid emails allowed<br/> - Click <a href="https://regex101.com/r/0huBLM/1" target="_blank">here to test your input</a>       |
+| `PERSON_NAME`           | `-n`,` --name`        | - Only alphabets, numbers, and spaces allowed, and should not be blank                                                               |
+| `PERSON_PHONE`          | `-p`, `--phone`       | - Only numbers allowed<br/> - Minimum of 3 numbers                                                                                   |
+| `PERSON_TAGS`           | `-t`, `--tags`        | - Only alphabets and numbers are allowed, and should not be blank                                                                    |
+| `PERSON_INDEX`          |                       | - Only positive integers are allowed<br/> - Must be less than total number of persons in TruthTable                                  |
+| `MEMBER_INDEX`          |                       | - Only positive integers are allowed<br/> - Must be less than total number of members in TruthTable                                  |
+| `MEMBER_NAME_KEYWORDS`  | `-n`, `--name`        | - Only alphabets and numbers are allowed, and should not be blank                                                                    |
+| `MEMBER_EMAIL_KEYWORDS` | `-e`, `--email`       | - Only valid emails allowed<br/> - Click <a href="https://regex101.com/r/0huBLM/1" target="_blank">here to test your input</a>       |
+| `MEMBER_DESCRIPTION`    | `-d`, `--description` | - Only alphabets, numbers, and spaces are allowed, and should not be blank                                                           |
+| `TEAM_NAME`             | `-n`, `--name`        | - Only alphabets and numbers are allowed, and should not be blank                                                                    |
+| `TASK_NAME`             | `-n`, `--name`        | - Any characters allowed, except quotes (`'` and `"`) and should not be blank                                                        |
+| `TASK_INDEX`            |                       | - Only positive integers are allowed<br/> - Must be less than total number of tasks in selected team                                 |
+| `TASK_ASSIGNEES`        | `-a`, `--assignee`    | - Only positive integers are allowed<br/> - Must be less than total number of members in selected team                               |
+| `TASK_DEADLINE`         | `-d`, `--deadline`    | - Must be in `YYYY-MM-DD HH:MM` format and cannot be blank<br/> - Date and time must be separated with a space                       |
+| `TASK_NAME_KEYWORDS`    |                       | - Any characters allowed, except quotes (`'` and `"`) and spaces, and should not be blank                                            |
+| `LINK_URL`              | `-l`, `--link`        | - Only valid [URLs](#url) allowed<br/> - Click <a href="https://regex101.com/r/oW3Q3v/1" target="_blank">here to test your input</a> |
+| `LINK_NAME`             | `-n`, `--name`        | - Only alphabets, numbers, and spaces are allowed, and should not be blank                                                           |
+| `LINK_INDEX`            |                       | - Only positive integers are allowed<br/> - Must be less than total number of links in selected team                                 |
+| `ORDER`                 |                       | - Only `asc`, `dsc`, and `res` allowed<br/> - Corresponds to ascending, descending, and reset respectively.                          |
 
 [Back to Table of Contents](#table-of-contents)
 
