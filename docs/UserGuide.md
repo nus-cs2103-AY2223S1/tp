@@ -328,7 +328,7 @@ Creates a past appointment for the patient specified by the index number used in
 
 * You want to create a past appointment record for a patient.
 * You want to record the diagnosis for a patient during a past appointment.
-* You want to record the medication prescribed for a patient during a past appointment.
+* You want to record the medication prescribed to a patient during a past appointment.
 * You want to record the date of the past appointment.
 
 **Upon Execution:**
@@ -365,9 +365,8 @@ Deletes the most recent past appointment of the patient specified by the index n
 **Reasons for usage:**
 
 * You want to delete the most recent past appointment record for a patient.
-* The most recent past appointment record was incorrectly created.
+* The most recent past appointment record is no longer relevant due to an inaccurate diagnosis or medication.
 * The most recent past appointment data should be recorded under another patient.
-* The most recent past appointment record is no longer relevant.
 
 **Upon Execution:**
 
@@ -385,6 +384,7 @@ If not, please follow the error message given and format above to enter the corr
 <sub><sup>[back to top](#back-to-topt), [back to features](#features), [back to segment top](#creating-patient-info)</sup></sub>
 
 ### Consulting a patient: `consult`
+
 Adds the diagnostic report of a patient after the consultation.
 
 **Format:** `consult INDEX {Prefix}/{Parameter}...`
