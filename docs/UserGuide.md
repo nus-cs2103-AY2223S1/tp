@@ -391,7 +391,7 @@ The `-fuzzy` flag indicates that fuzzy filtering will be applied:
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 By default, if multiple conditions are provided, the filter command will filter buyers who match ALL the conditions, unless the `fuzzy` flag is provided.<br>
 
-The `-c` flag will take in `;`-separated characteristics. This means that if we supply the following input: `filterbuyers -c bright; sunny -fuzzy`,
+The `-c` flag will take in `;`-separated characteristics. This means that if you supply the following input: `filterbuyers -c bright; sunny -fuzzy`,
 Cobb will match buyers that have either `bright` or `sunny` in their characteristics, that is, these two characteristics
 are taken as individual characteristics.
 </div>
@@ -414,7 +414,7 @@ The `-fuzzy` flag indicates that fuzzy filtering will be applied:
 - the `-c` flag will filter properties that have **at least one** of the specified `;`-separated characteristics rather than all.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-See above for more information regarding the `-c` and `-fuzzy` flags.
+Please see the tips above for more information regarding the `-c` and `-fuzzy` flags.
 </div>
 
 Examples:<br>
