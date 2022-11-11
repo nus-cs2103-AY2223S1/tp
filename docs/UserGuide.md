@@ -20,6 +20,8 @@ Furthermore, with the in-built **[Command Line Interface](#command-line-interfac
 
 So, what are you waiting for? Start revolutionizing your financial advising journey today! 
 
+<div style="page-break-after: always;"></div>
+
 # Table of Contents
 1. [Quickstart](#quick-start)
 2. [Tutorial](#tutorial)
@@ -173,7 +175,6 @@ Follow the following steps in entering the commands.
    * You can also do the same for `allPolicies` and `allEvents`, which will switch your Application view between Clients, Policies and Events 
 5. `delete 1`
    * This will delete the Client on your list with the index number of 1
-   
 
 #### Last Word of Advice 
 Congratulations! You are now ready to begin your journey of using LTNS! 
@@ -197,7 +198,7 @@ Like all things, learning can take some time, but you'll soon realise that each 
 
 # Features Overview
 
-**LTNS ** allows you to track your clients, policies and events.
+**LTNS** allows you to track your clients, policies and events.
 As such, the features available to you are split into **4** main features:
 1. [Common Features](#common-features): Here you can find basic Application features
 2. [Client Features](#client-features): Here you can find all features related to keeping track of all your clients 
