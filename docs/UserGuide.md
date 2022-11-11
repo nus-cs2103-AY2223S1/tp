@@ -923,7 +923,7 @@ by itself, it is useful as a precursor to chaining other commands after it.
 
 A list of such commands includes:
 
-- `<ITEM> delete` commands like [`task delete`](#delete-a-task-task-delete), [`team delete`](#delete-a-team-team-delete), [`person delete`](#delete-a-person-person-delete)
+- `<ITEM> delete` commands like [`task delete`](#deleting-a-task-from-team-task-delete), [`team delete`](#delete-a-team-team-delete), [`person delete`](#delete-a-person-person-delete)
 - [`task mark`](#mark-a-task-task-mark) and [`task unmark`](#unmark-a-task-task-unmark)
 - [`cg`](#navigate-to-a-team-cg) command
 - [`rename`](#rename-the-name-of-items-on-the-screen) command
