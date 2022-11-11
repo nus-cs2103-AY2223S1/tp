@@ -145,6 +145,18 @@ You will now see the planning page for the itinerary as follows:<br><br>
 
 You can return to the main page anytime you wish by executing `home`.
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note about commands:**<br>
+
+* Note that the commands for the main page are different from those for an itinerary planning page.
+  Some commands only apply to one type of page while some are universally applicable (i.e. they can be executed on any page).
+* To find out more about which commands apply to your current page, visit the user guide's [Features](#features) section.
+
+</div>
+<div style="page-break-after: always"></div>
+
+
 To add an activity to your Wishlist, use the [`add` command](#adding-an-activity--add).
 Try adding a new activity by typing in `add d/Visit Meiji Shrine du/120` to the command box and press Enter.
 This will add a new activity with the description of "Visit Meiji Shrine" and a duration of 120 minutes.
