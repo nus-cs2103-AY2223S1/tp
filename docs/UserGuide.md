@@ -64,12 +64,12 @@ service that would meet the needs of your client, increasing customer engagement
 
 ## Quick start
 
-1. Ensure you have Java `11` installed in your Computer. If you do not have Java, you can download it from 
+1. Ensure you have **Java 11** installed in your Computer. If you do not have Java, you can download it from 
 [here for Window Users](https://www.oracle.com/java/technologies/downloads/#java11) and [here for Mac Users](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx).
 
-2. Download the latest `jeeqtracker.jar` from [here](https://github.com/AY2223S1-CS2103T-T09-1/tp/releases).
+2. Download the latest **jeeqtracker.jar** from [here](https://github.com/AY2223S1-CS2103T-T09-1/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your JeeqTracker.
+3. Copy the file to the folder you want to use as the **home folder** for your JeeqTracker.
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the application contains some sample data.<br><br>
    ![Ui](images/QuickStart.png)
@@ -80,11 +80,11 @@ service that would meet the needs of your client, increasing customer engagement
 
    * **`list`** : Lists all clients.
 
-   * **`add`**`n/Alice a/311 Clementi Ave 2 p/9191919 e/alice@gmail.com t/friends` : Adds a client named `Alice` into JeeqTracker.
+   * **`add`**`n/Alice a/311 Clementi Ave 2 p/9191919 e/alice@gmail.com t/friends` : Adds a client named **Alice** into JeeqTracker.
 
    * **`delete`**`1 m/client` : Deletes the client at the first index together with all their transactions and remarks in the current list.
 
-   * **`find`**`Bernice` : Finds `Bernice` from the list of clients and display all clients with name containing `Bernice`. If there is only one find result, you will be able to see the transactions and remarks of `Bernice` as well.
+   * **`find`**`Bernice` : Finds **Bernice** from the list of clients and display all clients with name containing **Bernice**. If there is only one find result, you will be able to see the transactions and remarks of **Bernice** as well.
 
    * **`view`**`2` : Views the second client in the list and shows your transactions and remarks with him.
 
@@ -106,7 +106,7 @@ This application UI is split into **5 sections**.
 * ***List Of Clients***: Every client that you have will appear here
 * ***Transaction details***: A list of transactions with a specific client will appear here if you use the [view command](#viewing-a-client-view), or it will show all transactions with every client if you use the [filter command](#filtering-buy-or-sell-transactions-filter)
 * ***Remarks Of Specified Client***: Remarks of specified client will appear here
-* ***Net amount*** : This section displays the net amount transacted with all clients currently displayed in the `List Of Clients` panel on the left. Currently, only **dollars** is supported in our application. More currency will be added in the future.
+* ***Net amount*** : This section displays the net amount transacted with all clients currently displayed in the *List Of Clients* panel on the left. Currently, only **dollars** is supported in our application. More currency will be added in the future.
 
 > <div markdown="span" class="alert alert-primary">:bulb: Tip: These user interface sections will be referred to several times in the User Guide, it will be in italics!</div>
 
@@ -124,7 +124,7 @@ The [table of contents](#table-of-contents) provides links to every command. But
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
+* Words in **UPPER_CASE** are the parameters to be supplied by you.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/Alice`.
 
 * Items in square brackets are optional.<br>
