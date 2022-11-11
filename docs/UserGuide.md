@@ -18,7 +18,7 @@ can also serve as a reference for experienced users, with a convenient [Command 
 
 <div markdown="block" class="alert alert-info">
 
-:notebook: **Note:** We store this data locally on your device. This means that you can benefit from extremely quick loading times!
+:notebook: **Note:** We store patient data locally on your device. This means that you can benefit from extremely quick loading times!
 
 </div>
 
@@ -146,18 +146,18 @@ Format: `add {Prefix}/{Parameter}…​`
 
 **The prefixes and their respective parameters are as follows:**
 
-| Status  | Prefix | Parameter                               | Restrictions                                                                        |
-|---------|---|-----------------------------------------|-------------------------------------------------------------------------------------|
-| `+`     | n | NAME                                    | Alphanumeric characters and spaces only.                                            |
-| `+`     | p | PHONE                                   | Numbers only and at least 3 digits.                                                 |
-| `+`     | e | EMAIL                                   | Must follow a valid email format. See below for more information.                   |
-| `+`     | nok | NEXT-OF-KIN_NAME, RELATIONSHIP, CONTACT | NAME & RELATIONSHIP: Alphabets and spaces only. <br/>CONTACT: Numbers only.         |
-| `+`     | pt | PATIENT_TYPE                            | Either `inpatient`/`i` or `outpatient`/`o`.  (case-insensitive)                     |
-| `-`     | hw | HOSPITAL_WING                           | Either `north`, `south`, `east` or `west` (case-insensitive) . **Compulsory for inpatients**.          |
-| `-`     | fn | FLOOR_NUMBER                            | Positive integer only.                    **Compulsory for inpatients**.            |
-| `-`     | wn| WARD_NUMBER                             | One uppercase alphabet followed by 3 digits only.    **Compulsory for inpatients**. |
-| `-`     | ua | UPCOMING_APPOINTMENT                    | `dd-MM-yyyy` format only (i.e. `12-06-2022`).                                       |
-| `-` `*` | m | LONG_TERM_MEDICATION                    | Alphanumeric characters and spaces only.                                            |
+| Status  | Prefix | Parameter                               | Restrictions                                                                                  |
+|---------|--------|-----------------------------------------|-----------------------------------------------------------------------------------------------|
+| `+`     | n      | NAME                                    | Alphanumeric characters and spaces only.                                                      |
+| `+`     | p      | PHONE                                   | Numbers only and at least 3 digits.                                                           |
+| `+`     | e      | EMAIL                                   | Must follow a valid email format. See below for more information.                             |
+| `+`     | nok    | NEXT-OF-KIN_NAME, RELATIONSHIP, CONTACT | NAME & RELATIONSHIP: Alphabets and spaces only. <br/>CONTACT: Numbers only.                   |
+| `+`     | pt     | PATIENT_TYPE                            | Either `inpatient`/`i` or `outpatient`/`o`.  (case-insensitive)                               |
+| `-`     | hw     | HOSPITAL_WING                           | Either `north`, `south`, `east` or `west` (case-insensitive) . **Compulsory for inpatients**. |
+| `-`     | fn     | FLOOR_NUMBER                            | Positive integer only.                    **Compulsory for inpatients**.                      |
+| `-`     | wn     | WARD_NUMBER                             | One uppercase alphabet followed by 3 digits only.    **Compulsory for inpatients**.           |
+| `-`     | ua     | UPCOMING_APPOINTMENT                    | `dd-MM-yyyy` format only (i.e. `12-06-2022`), must be current or a future date.               |
+| `-` `*` | m      | LONG_TERM_MEDICATION                    | Alphanumeric characters and spaces only.                                                      |
 
 **Email Format**
 
@@ -212,18 +212,18 @@ Format: `edit INDEX {Prefix}/{Parameter}...`
 
 
 | Status  | Prefix | Parameter                               | Restrictions                                                                                  |
-|---------|---|-----------------------------------------|-----------------------------------------------------------------------------------------------|
-| `+`     |   | INDEX                                   | Positive integer only.                                                                        |
-| `-`     | n | NAME                                    | Alphanumeric characters and spaces only.                                                      |
-| `-`     | p | PHONE                                   | Numbers only and at least 3 digits.                                                           |
-| `-`     | e | EMAIL                                   | Must follow a valid email format. See below for more information.                             |
-| `-`     | nok | NEXT-OF-KIN_NAME, RELATIONSHIP, CONTACT | NAME & RELATIONSHIP: Alphabets and spaces only. <br/>CONTACT: Numbers only.                   |
-| `-`     | pt | PATIENT_TYPE                            | Either `inpatient`/`i` or `outpatient`/`o`.                                                   |
-| `-`     | hw | HOSPITAL_WING                           | Either `north`, `south`, `east` or `west` (case-insensitive).  **Compulsory for inpatients**. |
-| `-`     | fn | FLOOR_NUMBER                            | Positive integer only.            **Compulsory for inpatients**.                              |
-| `-`     | wn | WARD_NUMBER                             | One uppercase alphabet followed by 3 digits only.  **Compulsory for inpatients**.             |
-| `-`     | ua | UPCOMING_APPOINTMENT                    | `dd-MM-yyyy` format only (i.e. `12-06-2022`).                                                 |
-| `-` `*` | m | LONG_TERM_MEDICATION                    | Alphanumeric characters and spaces only.                                                      |
+|---------|--------|-----------------------------------------|-----------------------------------------------------------------------------------------------|
+| `+`     |        | INDEX                                   | Positive integer only.                                                                        |
+| `-`     | n      | NAME                                    | Alphanumeric characters and spaces only.                                                      |
+| `-`     | p      | PHONE                                   | Numbers only and at least 3 digits.                                                           |
+| `-`     | e      | EMAIL                                   | Must follow a valid email format. See below for more information.                             |
+| `-`     | nok    | NEXT-OF-KIN_NAME, RELATIONSHIP, CONTACT | NAME & RELATIONSHIP: Alphabets and spaces only. <br/>CONTACT: Numbers only.                   |
+| `-`     | pt     | PATIENT_TYPE                            | Either `inpatient`/`i` or `outpatient`/`o`.                                                   |
+| `-`     | hw     | HOSPITAL_WING                           | Either `north`, `south`, `east` or `west` (case-insensitive).  **Compulsory for inpatients**. |
+| `-`     | fn     | FLOOR_NUMBER                            | Positive integer only.            **Compulsory for inpatients**.                              |
+| `-`     | wn     | WARD_NUMBER                             | One uppercase alphabet followed by 3 digits only.  **Compulsory for inpatients**.             |
+| `-`     | ua     | UPCOMING_APPOINTMENT                    | `dd-MM-yyyy` format only (i.e. `12-06-2022`), must be current or a future date.               |
+| `-` `*` | m      | LONG_TERM_MEDICATION                    | Alphanumeric characters and spaces only.                                                      |
 
 **Email Format**
 
@@ -314,12 +314,12 @@ Format: `appt INDEX {Prefix}/{Parameter}...`
 
 **The prefixes and their respective parameters are as follows:**
 
-| Status  | Prefix | Parameter             | Restrictions                                  |
-|---------|-----|-----------------------|-----------------------------------------------|
-| `+`     |     | INDEX                 | Positive integer only.                        |
-| `+`     | on  | DATE                  | `dd-MM-yyyy` format only (i.e. `12-06-2022`). |
-| `+`     | diag | DIAGNOSIS             | -                                             |
-| `-` `*` | m   | MEDICATION_PRESCRIBED | Alphanumeric characters and spaces only.      |
+| Status  | Prefix | Parameter             | Restrictions                                                                  |
+|---------|--------|-----------------------|-------------------------------------------------------------------------------|
+| `+`     |        | INDEX                 | Positive integer only.                                                        |
+| `+`     | on     | DATE                  | `dd-MM-yyyy` format only (i.e. `12-06-2022`), must be current or a past date. |
+| `+`     | diag   | DIAGNOSIS             | -                                                                             |
+| `-` `*` | m      | MEDICATION_PRESCRIBED | Alphanumeric characters and spaces only.                                      |
 
 **Upon Execution**
 
@@ -568,7 +568,7 @@ If not, please follow the error message given and format above to enter the corr
 ### Obtaining total patient count: `count`
 
 Gets total number of patients. Also gets the total number of types of long-term medications prescribed to patients, and a breakdown of the number of patients
-taking each type of medication.
+taking each type of long-term medication.
 
 Format: `count`
 
@@ -637,7 +637,7 @@ Format: `clear`
 
 ### Opening the Help Page : `help`
 
-Opens the Help Window.
+Opens the Help Window, which allows you to copy the URL of the User Guide to your clipboard.
 
 Format: `help`
 
