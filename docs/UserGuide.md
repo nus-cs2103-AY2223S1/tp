@@ -126,11 +126,13 @@ These are the GUI components of TaskBook. Components are all described from top 
 {:start="6"}
 6. **Status Bar** - Indicates the location in your computer where TaskBook is tracking your Contact List and Task List.
 
+[↑ Back to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your computer.
 
 2. Download the latest `TaskBook.jar` from [here](https://github.com/AY2223S1-CS2103T-T13-4/tp/releases).
 
@@ -166,6 +168,8 @@ These are the GUI components of TaskBook. Components are all described from top 
 
 6. Refer to the [Features](#features) below for details of each command.
 
+[↑ Back to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Using the Examples in this Guide
@@ -173,9 +177,12 @@ These are the GUI components of TaskBook. Components are all described from top 
 The examples in this guide are formatted with the following conventions:
 * **Command** - Instructions to be typed into the command box. Will be executed when you press enter.
 * **Flag** - Indicators to differentiate various parts of a command. Always of the form `$/`, and is followed by a **parameter**. The `$` varies by **command**.<br>E.g: `s/` in `task sort s/SORT_TYPE`, or `i/` in `contact delete i/INDEX`.
-* **Parameter** - Component of a **command** that is prefixed by a flag. 
+* **Parameter** - Component of a **command** that is prefixed by a flag.
+
+[↑ Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -215,6 +222,10 @@ The examples in this guide are formatted with the following conventions:
 
 </div>
 
+[↑ Back to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
 ### Viewing help : `help`
 
 Shows you either the list of commands available or information about a particular command.
@@ -229,6 +240,10 @@ Examples:
 1. `help` shows the list of commands available.
 
 2. `help c/contact delete` shows the information about the `command delete` command.
+
+[↑ Back to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Listing
 
@@ -251,6 +266,10 @@ Shows you a list of all assigned tasks in your TaskBook in the order they were a
 **:computer: Format:** `task list`
 
 </div>
+
+[↑ Back to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Adding
 
@@ -446,6 +465,10 @@ Examples:
 </figcaption>
 </figure>
 
+[↑ Back to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
 ### Editing
 
 <div markdown="block" class="alert alert-warning">
@@ -554,6 +577,10 @@ Examples:
 </figcaption>
 </figure>
 
+[↑ Back to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
 ### Deleting
 
 #### Deleting a contact : `contact delete`
@@ -594,6 +621,10 @@ Deletes the specified task from your task list.
 
 Example:
 1. `task list` followed by `task delete i/2` deletes the 2nd task in your task list.
+
+[↑ Back to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Finding
 
@@ -660,6 +691,10 @@ Examples:
 3. `task find a/FROM` displays a task list where all tasks are assigned to you by someone else.
 
 4. `task find q/ea x/X` is equivalent to `task find x/X q/ea`.
+
+[↑ Back to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Sorting
 
@@ -729,6 +764,10 @@ Example:
 1. `task sort s/a` displays a task list sorted by description alphabetical order.
    * Given 3 tasks with descriptions: Walk the dog, Do homework, do chores, the order of the list will be: Do homework, Walk the dog, do chores.
 
+[↑ Back to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
 ### Marking as done
 
 #### Marking a task : `task mark`
@@ -760,6 +799,10 @@ Marks the specified task from your task list as not done.
 
 Example:
 1. `task list` followed by `task unmark i/2` marks the 2nd task in your task list.
+
+[↑ Back to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Undo and Redo
 
@@ -805,6 +848,10 @@ Example:
 
 3. `redo` will revert the state such that the task is deleted.
 
+[↑ Back to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
 ### Exiting the program : `bye`
 
 Ends the application immediately.
@@ -814,6 +861,10 @@ Ends the application immediately.
 **:computer: Format:** `bye`
 
 </div>
+
+[↑ Back to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Navigating Command History
 
@@ -839,9 +890,17 @@ Steps:
 
 1. Press `DOWN` arrow key.
 
+[↑ Back to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
 ### Saving the data
 
 TaskBook data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+[↑ Back to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Editing the data file
 
@@ -854,6 +913,8 @@ TaskBook data is saved as a JSON file `[JAR file location]/data/taskbook.json`. 
 * If your changes to the data file makes its format invalid, TaskBook will discard all data and start with an empty data file on the next run.
 
 </div>
+
+[↑ Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -885,7 +946,9 @@ Phone numbers must be at least 3 digits long, as the shortest phone numbers in t
 ### TAG Parameter
 
 The tag parameter `#/TAG` accepts only alphanumeric inputs and **no blank spaces**. (e.g. `#/friend` or `#/bestFriend` and **not** `#/best friend`)
- 
+
+[↑ Back to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -894,6 +957,8 @@ The tag parameter `#/TAG` accepts only alphanumeric inputs and **no blank spaces
 
 **Q**: How do I transfer my data to another computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TaskBook home folder.
+
+[↑ Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
