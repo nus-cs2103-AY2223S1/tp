@@ -764,13 +764,13 @@ Format: `list <entry type>`
 Examples:
 * `list tutor`
 
-<div style="display:flex; flex-direction:row; object-fit:contain">
+<div style="display:flex; flex-direction:row;">
 <div style="display:flex; flex-direction:column; align-items:center; padding:5px">
-<img src="images/listCommand_before.png" height="100%"/>
+<img src="images/listCommand_before.png" height="330" style="object-fit:contain;"/>
 <figcaption>Before</figcaption>
 </div>
 <div style="display:flex; flex-direction:column; align-items:center; padding:5px">
-<img src="images/listCommand_after.png" height="100%"/>
+<img src="images/listCommand_after.png" height="330" style="object-fit:contain;"/>
 <figcaption>After</figcaption>
 </div>
 </div>
