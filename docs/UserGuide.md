@@ -638,7 +638,7 @@ Here, Coydir offers a **simple yet powerful** way of keeping track of and making
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **5-point rating scale.**
+:information_source: **5-point rating scale**
 
 The 5 point performance appraisal ratings system is the most commonly used performance rating scale across the world.
 
@@ -739,7 +739,7 @@ This command results in one of the two cases below:
 
 **Case 1: Valid department name**
 
-If the department exists, the right panel will correctly displays the summary of the department.
+If the department exists, the Display Panel will correctly display the summary of the department.
 
 **Case 2: Invalid department name**
 
