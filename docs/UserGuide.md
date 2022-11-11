@@ -1219,9 +1219,9 @@ Our future plans for Contactmation includes:
 | Aliasing                 | `alias <NEW COMMAND NAME> <COMMAND>`                                   |
 | Saving macros            | `macro <NEW COMMAND NAME> <COMMANDS TO CHAIN>`                         |
 | Deleting Custom Commands | `rmMacro <COMMAND NAME>`                                               |
-| Chaining/seq             | `seq <command 1> [\| command 3]... OR seq <command 1> [; command 3]...`|                                      | 
+| Chaining/seq             | `seq <command 1> [\| command 3]... OR seq <command 1> [; command 3]...`|
 | Contains                 | `<ITEM> contains <ATTRIBUTE>`                                          |
-| Execute                  | `<INPUT> \| e`                                                         |                                                          |
+| Execute                  | `<INPUT> \| e`                                                         |
 | Foreach                  | `<ITEM> foreach <COMMAND>`                                             |
 | If else                  | `if [[CRITERIA]] ;; [[COMMAND IF]] ;; [[COMMAND ELSE]]`                |
 | Macro                    | `macro <MACRO WORD> <COMMAND SEQUENCE>`                                |
@@ -1230,6 +1230,6 @@ Our future plans for Contactmation includes:
 | Create/convert int       | `int <integer>`                                                        |
 | Create/convert float     | `float <float>`                                                        |
 | Create/convert String    | `str <String>`                                                         |
-| Print                    | `<...> \| print`                                                       |                                                    |
+| Print                    | `<...> \| print`                                                       |
 
 [Back to top](#table-of-contents)
