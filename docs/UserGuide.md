@@ -857,8 +857,6 @@ data file at the next run.
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
 
-<div style="page-break-after: always;"></div>
-
 ## FAQ
 
 **Q:** How do I transfer the data file to another computer?
