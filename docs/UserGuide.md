@@ -339,7 +339,7 @@ Examples:
 
 <p align="center">
 
-<img src="images/addPersonCommand_after.png"  width="400""/>
+<img src="images/addPersonCommand_after.png" width="400"/>
 
 </p>
 
