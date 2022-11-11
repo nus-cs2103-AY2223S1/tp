@@ -95,13 +95,13 @@ If this is your first time launching Waddle, you will see the following page wit
 
 If you wish to, you can [clear](#clearing-itineraries--clear) the sample itineraries by typing `clear` into the command box and pressing Enter.
 You will then see the below message:
-* insert image here
+![clear-command](images/clearCommand.png)
 
 Now you can add your first itinerary. To do so, use the [`add` command](#creating-a-new-itinerary--add) with the relevant itinerary details.
 Try executing the command `add d/Summer Trip sd/2023-06-01 du/5`. 
 It will add an itinerary named Summer Trip, starting from 1 June 2023 with a duration of 5 days.
 You should now see the message below and your itinerary added on the main page as follows:
-* insert image here
+![add-itinerary](images/ug-beg-tut/add-itinerary.png)
 
 <div markdown="block" class="alert alert-info">
 
@@ -117,7 +117,7 @@ You should now see the message below and your itinerary added on the main page a
 Select the itinerary which you have just created by typing in `select` along with the index of the itinerary on the list, then press Enter.
 For example, if "Summer Trip" is shown as the first itinerary on the list, enter `select 1`.
 You will now see the planning page for the itinerary as follows:
-* insert image here
+![planning-page-ui](images/ug-beg-tut/planning-page-ui.png)
 
 You can return to the main page anytime you wish by executing `home`.
 
@@ -125,7 +125,7 @@ To add an activity to your Wishlist, use the [`add` command](#adding-an-activity
 Try adding a new activity by typing in `add d/Visit Meiji Shrine du/120` to the command box and press Enter.
 This will add a new item with the description of "Visit Meiji Shrine" and a duration of 120 minutes.
 You should now see the item being displayed in the Wishlist.
-* insert image here
+![add-item](images/ug-beg-tut/add-item.png)
 
 <div markdown="block" class="alert alert-info">
 
@@ -144,7 +144,7 @@ To schedule an item from your Wishlist on a specific day in your itinerary, use 
 For example, type `plan 1 d/1 st/10:00` into the command box and Enter.
 Waddle will schedule the first item on your Wishlist for Day 1 of your itinerary starting at 10am.
 You should see the item being moved from the Wishlist section to the Day 1 item list, as follows:
-* insert image here
+![plan-item](images/ug-beg-tut/plan-item.png)
 
 <div markdown="block" class="alert alert-info">
 
@@ -163,18 +163,17 @@ Now you can try scheduling all the activities in your Wishlist!
 Once you are satisfied with your schedule, you can export your schedule as a PDF document using the [`pdf` command](#exporting-as-pdf-file--pdf).
 Type `pdf` into the command box and Enter.
 You should now see the below:
-* insert image here
+![pdf](images/ug-beg-tut/pdf.png)
 
 Navigate to your computer's Documents folder, where you should see a folder named Waddle. 
 Open up the folder to see a PDF document with the same name as your exported itinerary.
-You should see your schedule displayed similar to the below image:
-* insert image here
+You can open the PDF document to view your itinerary schedule.
 
 You can easily send your itinerary details to others using the [`copy` command](#copying-to-clipboard--copy).
 Type `copy` into the command box and Enter. 
 This will copy your itinerary to your clipboard, and you can now paste it in another location such as a messaging or email application.
 You should also see the below displayed in Waddle:
-* insert image here
+![copy](images/ug-beg-tut/copy.png)
 
 Congratulations! You have now created and planned your very first travel itinerary using Waddle.
 We hope this tutorial has helped you kickstart your journey!
