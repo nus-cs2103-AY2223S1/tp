@@ -416,7 +416,7 @@ _Deletes an eatery from the `Food Guide`._
 `-h`: displays help message (specific to delete) <br><br>
 Example: `delete 68`
 
-Below is a comparison between when the store at index X was added  _(left)_ then deleted _(right)_.
+Below is a comparison between when the store at index 68 was added  _(left)_ then deleted _(right)_.
 The commands used are shown on the command line. <br>
 Note how the eatery at index 68 disappears after the delete command.
 ![Ui](images/user-guide/UgAddDeleteComparison.png)
