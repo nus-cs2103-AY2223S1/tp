@@ -1719,6 +1719,8 @@ Let us try to add a new weekly meeting link, with a name `Meeting Link`, with th
 If done successfully, you should see a new link show up in the list of links in the 
 [currently selected team](#current-team-section) as shown below.
 
+![Add Link Example](images/AddLinkExample.png)
+
 **Format:** `add link [-h] -l=<LINK_URL> -n=<LINK_NAME>`
 
 | Flags          | Required           | Remarks                                                                |
@@ -1745,15 +1747,17 @@ The `edit link` command allows you to edit an existing link in TruthTable. The e
 links in the [currently selected team](#current-team-section) as seen in the image below. As always, don't panic if 
 you see an error message. Let us run through an example on how to edit the details of a link. 
 
-Suppose the url of your `weekly meeting` has changed to
+Suppose your `weekly meeting` has turned into a monthly meeting, with a new link
 `https://zoom.us/j/94669589458?pwd=bTQvWTlWbzR5T29Ja0w2d0J1R1R4QT09#success`. 
 Identify the index number of the link with a name `weekly meeting` in the application (1 in the image below).
 
-Then, enter the command `edit link 1 -l https://zoom.us/j/94669589458?pwd=bTQvWTlWbzR5T29Ja0w2d0J1R1R4QT09#success`
+Then, enter the command `edit link 1 -n "monthly meeting" -l https://zoom.us/j/94669589458?pwd=bTQvWTlWbzR5T29Ja0w2d0J1R1R4QT09#success`
 
-If done successfully, the edited `weekly meeting` link  will appear up under in the list of links in the
+If done successfully, the edited `monthly meeting` link  will appear up under in the list of links in the
 [currently selected team](#current-team-section) as shown below. You can edit the name of
 the link directly as well by supplying the `-n` tag.
+
+![Edit Link Example](images/EditLinkExample.png)
 
 **Format:** `edit link [-h] ([-n=<LINK_NAME>] [-l=<LINK_URL>]) <LINK_INDEX>`
 
@@ -1796,6 +1800,8 @@ Then, enter the command `delete link 1`.
 
 If done successfully, you should see that the link `weekly meeting` has been removed under the
 list of links in the [currently selected team](#current-team-section).
+
+![Delete Link Example](images/DeleteLinkExample.png)
 
 **Format:** `delete link [-h] <LINK_INDEX>`
 
