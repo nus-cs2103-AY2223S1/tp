@@ -172,7 +172,9 @@ The top section displays relevant messages/errors after the command is entered.
    - **`exit`** : Exits the app.
 
 6. Refer to the [Features](#features) below for details of each command.
-<br></br>
+
+<br>
+
 ## Symbols and Syntax
 
 Here are some symbols to look out for while using this guide:
