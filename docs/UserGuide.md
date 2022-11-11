@@ -16,10 +16,11 @@ StudMap is a lightweight desktop application for **managing your students** and 
 responsibilities**. With a suite of powerful features to **search and organize your students** as well as 
 built-in **attendance, participation and assignment tracking**, StudMap can resolve all your TA woes and more!
 
-Additionally, StudMap is optimized for use via a **Command Line Interface (CLI)**, meaning that you give instructions to
-StudMap through a text box, and StudMap just does it for you — it’s like magic. Yet, it has all the benefits of a
-traditional application with a **graphical interface**: you can still see, at a glance, a neat overview of what you need to
-see. If you type fast, StudMap can get your student management tasks **done faster** than anything else.
+Additionally, StudMap is optimized for use via a **[Command Line Interface (CLI)](#command-line-interface-cli)**: 
+just type instructions to StudMap through a text box, and StudMap will do it for you — it’s like magic! 
+Yet, it has all the benefits of a traditional application with a **graphical interface**: you can still see, 
+at a glance, a neat overview of what you need to see. If you type fast, StudMap can get your student management tasks 
+**done faster** than anything else.
 
 This user guide aims to help you understand StudMap, so that you can make the best use of our features. Read on to find out more!
 
@@ -154,8 +155,8 @@ Take note of the three main elements of the interface:
 
 As a student management tool, the core of StudMap is naturally your students. StudMap can store information about your
 student,
-such as personal particulars or module-related progress, and represents it in a single rectangular panel called a **
-student card**.
+such as personal particulars or module-related progress, and represents it in a single rectangular panel called a 
+**student card**.
 
 The **left half** of each student card contains the student's particulars. Let's zoom in and find out more:
 
@@ -175,15 +176,15 @@ The **right half** of each student card contains module information related to y
 
 ![TA Info UI](images/ui/ui-ta-info.png)
 
-| Element                  | Purpose                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-|--------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Module                   | [module](#module) you are teaching your student. **Is Compulsory!**                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| Attendance Percentage    | Percentage of classes that your student has been marked present.                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| Classes                  | {::nomarkdown} Detailed record of classes for your student. Each box represents one class: <ul><li>the text in the box indicates the name of the class</li><li>the colour indicates attendance status (Green for present, Red for absent)</li></ul>{:/}                                                                                                                                                                                                                                                                               |
-| Participation Percentage | Percentage of participation components that your student has qualified for.                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| Participation Components | {::nomarkdown} Detailed record of participation for your student. Each box represents one component: <ul><li>the text in the box indicates the name of the component</li><li>the colour indicates participation status (Green for yes, Red for no)</li></ul>{:/}                                                                                                                                                                                                                                                                      |
-| Ungraded Assignments     | Number of ungraded assignments (assignments marked as **received**) that you yet to have graded.                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| Assignment Status        | {::nomarkdown} Detailed record of assignments for your student. Each box represents one assignment: <ul><li>the text in the box indicates the name of the assignment</li><li>the colour indicates assignment status</li></ul> **Note:** There are 3 assignment statuses: Graded for assignments finished grading (represented by green), Received for assignments your students have submitted and require marking (represented by red), and New for new assignments your students have not yet submitted (represented by yellow){:/} |
+| Element                  | Purpose                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+|--------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Module                   | [module](#module) you are teaching your student. **Is Compulsory!**                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| Attendance Percentage    | Percentage of classes that your student has been marked present.                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| Classes                  | {::nomarkdown} Detailed record of classes for your student. Each box represents one class: <ul><li>the text in the box indicates the name of the class</li><li>the colour indicates attendance status (Green for present, Red for absent)</li></ul>{:/}                                                                                                                                                                                                                                                                                   |
+| Participation Percentage | Percentage of participation components that your student has qualified for.                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| Participation Components | {::nomarkdown} Detailed record of participation for your student. Each box represents one component: <ul><li>the text in the box indicates the name of the component</li><li>the colour indicates participation status (Green for yes, Red for no)</li></ul>{:/}                                                                                                                                                                                                                                                                          |
+| Ungraded Assignments     | Number of ungraded assignments (assignments marked as **received**) that you yet to have graded.                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| Assignment Status        | {::nomarkdown} Detailed record of assignments for your student. Each box represents one assignment: <ul><li>the text in the box indicates the name of the assignment</li><li>the colour indicates assignment status</li></ul>{:/}<br/>**Note:** There are 3 assignment statuses: Graded for assignments finished grading (represented by green), Received for assignments your students have submitted and require marking (represented by red), and New for new assignments your students have not yet submitted (represented by yellow) |
 
 <div markdown="block" class="alert alert-info">
 :information_source: **Note 1:** Each student is uniquely identified by their **name, student ID and module** combined.
@@ -200,7 +201,7 @@ that data from one module (e.g. Attendance for CS2103T) **will not be mixed** wi
 
 Now that you understand the User Interface of StudMap, what can you do to interact with it?
 
-StudMap is designed around the use of a Command Line Interface (CLI). This means that accessing or modifying data on
+StudMap is designed around the use of a **[Command Line Interface (CLI)](#command-line-interface-cli)**. This means that accessing or modifying data on
 StudMap has to be done by typing instructions, or `commands`, that StudMap can understand and execute.
 
 ### Command Word
@@ -697,8 +698,8 @@ you include any lower case in the assignment name, it will be automatically conv
 
 **Format:** `grade INDEX/ALL STATUS a/ASSIGNMENT`
 
-- `INDEX`: You can specify the index of the student you want to change the assignment grading status for. The index **
-  must be a positive integer** 1, 2, 3, …​<br><br>
+- `INDEX`: You can specify the index of the student you want to change the assignment grading status for. The index
+  **must be a positive integer** 1, 2, 3, …​<br><br>
 - `ALL`: You can modify the assignment grading status for every student in the currently displayed list.<br><br>
 - `STATUS`: You can specify the grading status for the assignment. Currently, following three statuses are supported:
     - `new`: The assignment has just been assigned to the student and hence it has not been submitted nor marked yet.
@@ -958,10 +959,20 @@ the specific student even if they have the same given name.
 
 # 8. Glossary
 
+### Alphanumeric
+
+An alphanumeric character is one that is either a number (0-9) or a letter (any letter of the alphabet, lower or upper
+case). An input described as alphanumeric means that all the characters of the input must follow these constraints (i.e.
+composed only of letters and/or numbers).
+
 ### Command
 
 A command is an instruction for StudMap, and the main way to interact with it! Learn more about commands by looking at the
 [Understanding Commands section](#command-word), and check out the [Features](#5-features) section to see what commands are available.
+
+### Command Line Interface (CLI)
+
+Command Line Interface (CLI) is a method of interaction between the user and StudMap primarily through typing out instructions, or `commands`.
 
 ### CSV (Comma-separated Values) file
 
@@ -977,8 +988,4 @@ advanced users can edit their student data easily if they wish.
 Each module of study has a unique module code consisting of a two- or three-letter prefix that generally denotes the
 discipline, and four digits, and sometimes a suffix. e.g. `CS2101`, `CS2103T`.
 
-### Alphanumeric
 
-An alphanumeric character is one that is either a number (0-9) or a letter (any letter of the alphabet, lower or upper
-case). An input described as alphanumeric means that all the characters of the input must follow these constraints (i.e.
-composed only of letters and/or numbers).
