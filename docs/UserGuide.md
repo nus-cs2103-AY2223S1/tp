@@ -156,8 +156,24 @@ Given below are extra details regarding command formats: <br>
 
 
 #### Command Practice 
-In this section, we will guide you through entering basic commands. If you feel confident enough, feel free to [skip](#last-word-of-advice) this section. 
+In this section, we will guide you through entering basic commands. If you feel confident enough, feel free to [skip](#last-word-of-advice) this section.
 
+Follow the following steps in entering the commands. 
+
+1. `addClient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-301 b/2000-01-01 i/90000.0 ra/M`
+   * This will add a "John Doe" with the relevant contact details into your Application 
+   * If you have entered this command previously, an error message indicating that "John Doe" already exists is expected 
+2. `editClient 1 n/New Client Name`
+   * This will edit the Client on your list with the index number of 1, changing his/her name to "New Client Name"
+3. `findClient n/John Doe` 
+   * This will find a client with the name "John Doe"
+   * John Doe that was previously added in Step 1 will be displayed! 
+4. `allClients`
+   * This will switch your view back to all your Clients
+   * You can also do the same for `allPolicies` and `allEvents`, which will switch your Application view between Clients, Policies and Events 
+5. `delete 1`
+   * This will delete the Client on your list with the index number of 1
+   
 
 #### Last Word of Advice 
 Congratulations! You are now ready to begin your journey of using LTNS! 
