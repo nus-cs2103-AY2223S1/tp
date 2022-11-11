@@ -870,7 +870,7 @@ work as normal with all the existing data.
 
 **A:** Open the Terminal app built inside your computer (For Windows user, you can also use Powershell) and run the
 following [command](#command): `java --version`. The version should then be displayed on the application.
-If your screen is displaying `openjdk 11.x.x` where `x` can be any number, then your computer is running Java `11`.
+If your screen is displaying `java 11.x.x` where `x` can be any number, then your computer is running Java `11`.
 
 If your computer is not running Java `11`, you can install it [here](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html). 
 Please install according to the [operating system](#operating-system) that 
@@ -890,6 +890,8 @@ This is the intended behavior of the application as of `v1.4`, to prevent orders
 false revenue.
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
+
+<div style="page-break-after: always;"></div>
 
 ## Command summary
 
