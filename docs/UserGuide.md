@@ -25,6 +25,8 @@ If you want to know more about how **ProfNUS** is able to ease your worries, go 
 
 <div style="page-break-after: always;"></div>
 
+--------------------------------------------------------------------------------------------------------------------
+
 ## 2. Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -140,6 +142,8 @@ In ProfNUS, you are able to add modules into our module list.
 We are able to save the module's name, unique module code, description
 and other module related information such as your teaching schedule for the module.
 
+<div style="page-break-after: always;"></div>
+
 #### 4.2.1. Module Manager Command Parameters
 
 Before you get started with this feature, have a look at the common parameters we have used. Take a look before you
@@ -152,6 +156,8 @@ continue!
 | `MODULE_DESCRIPTION` | This parameter represents the description of the module you are adding into ProfNUS.<br/>The description should be alphanumeric.<br/>Modules in ProfNUS are allowed to have the same description.                                                                                                                                                                                                                                                                              | `This module teaches you about software engineering principles.` |
 | `TAG`                | This parameter represents the tag you want to attach to the module.<br/>It must be a single word consisting of alphanumeric characters.                                                                                                                                                                                                                                                                                                                                        | `ModuleCoordinator`                                             |
 
+<div style="page-break-after: always;"></div>
+
 #### 4.2.2. Viewing list of modules: `mlist`
 
 You can use this command to view the list of modules that you have added into ProfNUS.
@@ -161,6 +167,8 @@ You can use this command to view the list of modules that you have added into Pr
 **Example:**
 
 ![mlist](images/userguide/mlist.png)
+
+<div style="page-break-after: always;"></div>
 
 #### 4.2.3. Viewing more details of a module in the list of modules: `vtarget`
 
