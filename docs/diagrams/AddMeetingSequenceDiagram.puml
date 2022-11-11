@@ -1,0 +1,80 @@
+@startuml
+!include style.puml
+
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":RealTimeParser" as RealTimeParser LOGIC_COLOR
+participant ":AddMeetingCommandParser" as AddMeetingCommandParser LOGIC_COLOR
+participant "m: AddMeetingCommand" as AddMeetingCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+-> LogicManager : execute(userInput)
+activate LogicManager
+
+LogicManager -> RealTimeParser : parseCommand(userInput)
+activate RealTimeParser
+
+create AddMeetingCommandParser
+RealTimeParser -> AddMeetingCommandParser
+activate AddMeetingCommandParser
+
+AddMeetingCommandParser --> RealTimeParser
+deactivate AddMeetingCommandParser
+
+note right of AddMeetingCommandParser
+Arguments in userInput are seperated by their prefixes
+using the tokenize method in the ArgumentTokenizer class.
+Each attribute is parsed by their respective parsers in the ParserUtil class
+and is used to instantiate an Meeting object.
+end note
+
+RealTimeParser -> AddMeetingCommandParser : parse(userInput))
+activate AddMeetingCommandParser
+
+
+create AddMeetingCommand
+AddMeetingCommandParser -> AddMeetingCommand
+activate AddMeetingCommand
+return m
+return m
+return m
+destroy AddMeetingCommandParser
+
+
+LogicManager -> AddMeetingCommand : execute(model)
+destroy RealTimeParser
+activate AddMeetingCommand
+
+
+AddMeetingCommand -> Model : hasMeeting(o)
+activate Model
+
+Model --> AddMeetingCommand
+deactivate Model
+
+AddMeetingCommand -> Model : addMeeting(o)
+activate Model
+
+Model --> AddMeetingCommand
+deactivate Model
+
+create CommandResult
+AddMeetingCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddMeetingCommand
+deactivate CommandResult
+
+AddMeetingCommand --> LogicManager : result
+deactivate AddMeetingCommand
+
+<--LogicManager
+deactivate LogicManager
+
+@enduml

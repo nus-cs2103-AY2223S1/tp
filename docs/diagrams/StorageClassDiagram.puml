@@ -14,12 +14,14 @@ Class JsonUserPrefsStorage
 Class "<<interface>>\nStorage" as Storage
 Class StorageManager
 
-package "AddressBook Storage" #F4F6F6{
-Class "<<interface>>\nAddressBookStorage" as AddressBookStorage
-Class JsonAddressBookStorage
-Class JsonSerializableAddressBook
-Class JsonAdaptedPerson
+package "RealTime Storage" #F4F6F6{
+Class "<<interface>>\nRealTimeStorage" as RealTimeStorage
+Class JsonRealTimeStorage
+Class JsonSerializableRealTime
+Class JsonAdaptedClient
 Class JsonAdaptedTag
+Class JsonAdaptedOffer
+Class JsonAdaptedListing
 }
 
 }
@@ -29,15 +31,18 @@ HiddenOutside ..> Storage
 
 StorageManager .up.|> Storage
 StorageManager -up-> "1" UserPrefsStorage
-StorageManager -up-> "1" AddressBookStorage
+StorageManager -up-> "1" RealTimeStorage
 
 Storage -left-|> UserPrefsStorage
-Storage -right-|> AddressBookStorage
+Storage -right-|> RealTimeStorage
 
 JsonUserPrefsStorage .up.|> UserPrefsStorage
-JsonAddressBookStorage .up.|> AddressBookStorage
-JsonAddressBookStorage ..> JsonSerializableAddressBook
-JsonSerializableAddressBook --> "*" JsonAdaptedPerson
-JsonAdaptedPerson --> "*" JsonAdaptedTag
+JsonRealTimeStorage .up.|> RealTimeStorage
+JsonRealTimeStorage ..> JsonSerializableRealTime
+JsonSerializableRealTime --> "*" JsonAdaptedClient
+JsonSerializableRealTime --> "*" JsonAdaptedOffer
+JsonSerializableRealTime --> "*" JsonAdaptedListing
+JsonAdaptedClient --> "*" JsonAdaptedTag
+JsonAdaptedListing --> "*" JsonAdaptedTag
 
 @enduml

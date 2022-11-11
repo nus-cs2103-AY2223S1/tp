@@ -1,0 +1,80 @@
+@startuml
+!include style.puml
+
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":RealTimeParser" as RealTimeParser LOGIC_COLOR
+participant ":AddOfferCommandParser" as AddOfferCommandParser LOGIC_COLOR
+participant "o: AddOfferCommand" as AddOfferCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+-> LogicManager : execute(userInput)
+activate LogicManager
+
+LogicManager -> RealTimeParser : parseCommand(userInput)
+activate RealTimeParser
+
+create AddOfferCommandParser
+RealTimeParser -> AddOfferCommandParser
+activate AddOfferCommandParser
+
+AddOfferCommandParser --> RealTimeParser
+deactivate AddOfferCommandParser
+
+note right of AddOfferCommandParser
+Arguments in userInput are seperated by their prefixes
+using the tokenize method in the ArgumentTokenizer class.
+Each attribute is parsed by their respective parsers in the ParserUtil class
+and is used to instantiate an Offer object.
+end note
+
+RealTimeParser -> AddOfferCommandParser : parse(userInput))
+activate AddOfferCommandParser
+
+
+create AddOfferCommand
+AddOfferCommandParser -> AddOfferCommand
+activate AddOfferCommand
+return o
+return o
+return o
+destroy AddOfferCommandParser
+
+
+LogicManager -> AddOfferCommand : execute(model)
+destroy RealTimeParser
+activate AddOfferCommand
+
+
+AddOfferCommand -> Model : hasOffer(o)
+activate Model
+
+Model --> AddOfferCommand
+deactivate Model
+
+AddOfferCommand -> Model : addOffer(o)
+activate Model
+
+Model --> AddOfferCommand
+deactivate Model
+
+create CommandResult
+AddOfferCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddOfferCommand
+deactivate CommandResult
+
+AddOfferCommand --> LogicManager : result
+deactivate AddOfferCommand
+
+<--LogicManager
+deactivate LogicManager
+
+@enduml
