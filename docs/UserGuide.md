@@ -58,8 +58,11 @@ Getting started with PayMeLah is easy! Here is a tutorial on how to get PayMeLah
    <img src="images/howToDownload_1.png" width="500" /> <br>
    <img src="images/howToDownload_2.png" width="500" /> <br>
 
-4. Finally, you are ready to use PayMeLah. Simply double-click the *paymelah.jar* in the folder you created to start the application. After a few seconds, you should see PayMeLah appear. Notice how we have some sample persons and [debts](#glossary-debt) present for you to experiment with our [features](#features).<br>
-   <img src="images/Ui.png" width="800" /> <br>
+<div style="page-break-after: always;"></div>
+
+4. Finally, you are ready to use PayMeLah. Simply double-click the *paymelah.jar* in the folder you created to start the app. After a few seconds, you should see PayMeLah appear. Notice how we have some sample persons and debts present for you to experiment with our [features](#features).  <br>
+
+<img src="images/Ui.png" width="800" /> <br>
 
 Now, let’s continue to learn how to [navigate the application](#tutorial-navigating-the-application) before familiarising ourselves with the [features](#features) you can use in PayMeLah.
 
@@ -74,11 +77,9 @@ Now, let’s continue to learn how to [navigate the application](#tutorial-navig
 * Once a command has been successfully carried out, PayMeLah will display the results accordingly.
 * Refer to the diagrams in the following pages to find out about the different components of PayMeLah that are responsible for receiving commands, displaying results, and more!
 
-<div style="page-break-after: always;"></div>
-
 <img src="images/UiDetails.png" width="800" />
 
-Each section is made of several components which are explained in their respective diagrams below:
+Each section is made of several components which will be explained in the following pages.
 
 <div style="page-break-after: always;"></div>
 
@@ -213,6 +214,9 @@ Be very careful with how a command is formatted! If the `…` is found within th
 Avoid giving irrelevant inputs to commands that do not accept those inputs. For example, `mark` expects a `<person index>` input and a `debt/<debt index…>` input, but not a `t/<tag>` input. Giving such inputs may cause unexpected behaviour in PayMeLah!
 </div>
 
+[Return to Table of Contents](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
 #### Input-specific behaviour
@@ -400,6 +404,10 @@ You can tell PayMeLah to add Service Charge and GST to the amount of money speci
 You might find it difficult to find the index of a specific person when your list gets long. In this situation, you may want to make use of the [`find` command](#locating-persons-by-inputs-find) or [`finddebt` command](#locating-persons-by-debt-description-finddebt) to shorten the list and make it easier to find and figure out the index of the person that you are looking for.
 </div>
 
+(Continued on next page!)
+
+<div style="page-break-after: always;"></div>
+
 **Additional information:**<br>
 * If you specify **neither date nor time**, the date and time will conveniently default to the current date and time.
 * If you specify **only the time but not the date**, the date will conveniently default to the current date.
@@ -408,8 +416,6 @@ You might find it difficult to find the index of a specific person when your lis
 <div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
 Be very careful! The default behaviour is slightly different across the different combinations of whether you provided date and time inputs.
 </div>
-
-<div style="page-break-after: always;"></div>
 
 **Example:**<br>
 * `adddebt 3 d/McDonalds m/8.9` will add a debt with the current date and time to the 3rd person in the [person list](#person-list-section). This debt is worth `$8.90` and has the description `McDonalds`.
@@ -439,6 +445,8 @@ You might find it difficult to find the index of a specific person when your lis
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Splitting a debt is just like [adding a debt](#adding-a-debt-adddebt) to multiple persons; however, here we divide the money of the debt over the persons who shared it (and round up to the closest cent). Thus, you can similarly tell PayMeLah to add Service Charge and GST to the amount of money specified by including `++` at the back of the amount. A single `+` will add only GST instead.
 </div>
+
+(Continued on next page!)
 
 <div style="page-break-after: always;"></div>
 
@@ -471,6 +479,8 @@ You can also [mark a debt as paid without deleting it](#marking-debts-as-paid-ma
 
 **Example:**<br>
 * `deletedebt 2 debt/2 3` will delete the 2nd and 3rd debt, regardless of paid or unpaid, of the 2nd person in the current displayed [person list](#person-list-section).
+
+--------------------------------------------------------------------------------------------------------------------
 
 #### Clearing debts: `cleardebts`
 
@@ -505,6 +515,8 @@ When you want to indicate that a particular debt has been paid, but still keep a
 
 **Example:**<br>
 * `mark 2 debt/2 3` will mark the 2nd and 3rd debt of the 2nd person in the current displayed [person list](#person-list-section) as paid.
+
+--------------------------------------------------------------------------------------------------------------------
 
 #### Marking debts as unpaid: `unmark`
 
@@ -621,6 +633,8 @@ When you do not remember the exact description of a debt you want to look for (e
 * `finddebt Burger` displays persons associated with debts that have descriptions `burger` or `Chicken Burger`
 * `finddebt burger meal` displays persons associated with debts that have descriptions `Chicken Burger` or `Meal Sharing`<br>
 
+<div style="page-break-after: always;"></div>
+
 #### Listing all persons: `list`
 
 **What it does:**<br>
@@ -632,7 +646,7 @@ When you have previously filtered the displayed [person list](#person-list-secti
 **Format:**<br>
 `list`
 
-<div style="page-break-after: always;"></div>
+--------------------------------------------------------------------------------------------------------------------
 
 #### Listing debtors: `listdebtors`
 
@@ -647,6 +661,8 @@ When you want to quickly find out who owes you significant amounts of money, thi
 
 **Example:**<br>
 `listdebtors m/10` displays the list of persons that owe more than $10.00.
+
+<div style="page-break-after: always;"></div>
 
 #### Sorting list of persons: `sort`
 
@@ -678,7 +694,6 @@ When you sort by time since oldest debt, all persons who do not owe any debt wil
 **Example:**<br>
 `sort n/+` sorts and displays the [person list](#person-list-section) in ascending alphabetical order of their names.
 
-
 [Return to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -689,6 +704,8 @@ When you sort by time since oldest debt, all persons who do not owe any debt wil
 Rest assured that the information in this section is **optional**!
 
 The following section is meant for advanced users of PayMeLah who are already comfortable with the basic features and are looking to further increase their efficiency in using PayMeLah. If you are a new user still getting used to PayMeLah, don't worry about reading this section yet. You can always come back to this section in the future after gaining more experience!
+
+<div style="page-break-after: always;"></div>
 
 ### Keyboard shortcuts
 
@@ -725,11 +742,11 @@ You can actually update the data in PayMeLah without even launching the applicat
 
 Here is a quick tutorial on editing the data file:
 
-Double-click on the `paymelah.json` file to open it.
-You should see the following:
-INSERT IMAGE
+1. Double-click on the `paymelah.json` file to open it.<br>
+   You should see the following:<br>
+   INSERT IMAGE
 
-You can now edit the data by changing any of the green words you see! Do ensure that your replacement words are surrounded by double-inverted commas (`""`), as per the image above.
+2. You can now edit the data by changing any of the green words you see! Do ensure that your replacement words are surrounded by double-inverted commas (`""`), as per the image above.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Warning:**<br>
 Make sure your edits still follow the [requirements of each input](#input-specific-behaviour)! For example, if you edit the date, it should still be in the `yyyy-mm-dd` format.<br>
