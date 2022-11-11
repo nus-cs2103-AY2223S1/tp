@@ -186,7 +186,7 @@ Restrictions:
 * `MODULE_CODE` 
   * `MODULE_CODE` must be at least 6 characters long.
   * The first two characters of `MODULE_CODE` should be alphabetical and the remaining characters should be alphanumeric.
-* `MODULE_NAME` must not be empty.
+* `MODULE_NAME` should not be empty.
 * `MODULE_CREDIT` should be an integer between 0 and 45 inclusive.
 
 <div markdown="span" class="alert alert-info">
@@ -694,7 +694,7 @@ Edits the specified exam by updating the existing values to the input values.
    
 Format: `e edit INDEX [m/MODULE]* [ex/EXAM_DESCRIPTION]* [ed/EXAM_DATE]*`
 
-Parameters
+Parameters:
 * `INDEX` refers to the index number (shown in the displayed exam list) of the exam to be edited.
 * `MODULE` refers to the module code of the module that will replace the existing module of the exam specified.
 * `EXAM_DESCRIPTION` refers to the exam description that will replace the existing exam description of the exam specified.
@@ -829,9 +829,9 @@ Exits the program.
 Format: `exit`
 
 --------------------------------------------------------------
-## Future Features to be added (Coming Soon!)<a id='1.1'></a>
+## Future Features to be added (Coming Soon!!)<a id='1.1'></a>
 
-To enhance your tracking process, MODPRO will let you:
+To optimize your tracking process, MODPRO will let you:
 * Edit the case sensitivity of module code in tasks, modules and exams.
 * Tick checkboxes of tasks using the mouse.
 * Add time and venue for exams. 
