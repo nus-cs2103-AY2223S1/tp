@@ -14,8 +14,13 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.GetCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.getcommands.GetNextOfKinCommand;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Person;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -34,6 +39,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private CommandBox commandBox;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -45,10 +51,10 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane personListPanelPlaceholder;
 
     @FXML
-    private StackPane resultDisplayPlaceholder;
+    private StackPane personViewPanelPlaceholder;
 
     @FXML
-    private StackPane statusbarPlaceholder;
+    private StackPane resultDisplayPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -78,6 +84,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -110,17 +117,16 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList(), false, this::executeCommand);
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
-
-        CommandBox commandBox = new CommandBox(this::executeCommand);
+        commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        handleView();
     }
 
     /**
@@ -168,6 +174,52 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Opens the count window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleCount() {
+        CountWindow countWindow = new CountWindow(logic.getCensus());
+        countWindow.show();
+    }
+
+    /**
+     * Updates the detailed person view panel with the newest info.
+     */
+    public void handleView() {
+        Person person = logic.getCurrentlyViewedPerson();
+        if (person == null) {
+            personViewPanelPlaceholder.setVisible(false);
+        } else {
+            PersonViewPanel personViewPanel = new PersonViewPanel(person, this::handlePersonViewClick);
+            personViewPanelPlaceholder.getChildren().clear();
+            personViewPanelPlaceholder.getChildren().setAll(personViewPanel.getRoot());
+            personViewPanelPlaceholder.setVisible(true);
+        }
+    }
+
+    /**
+     * Handles a field in the detailed person view panel being clicked, by setting the command to edit.
+     *
+     * @param prefix the click event.
+     */
+    private void handlePersonViewClick(Prefix prefix) {
+        String strPrefix = prefix.getPrefix();
+        String index = String.valueOf(logic.getCurrentlyViewedIndex().getOneBased());
+        String command = EditCommand.COMMAND_WORD;
+        setCommandBoxText(command + " " + index + " " + strPrefix);
+        commandBoxPlaceholder.requestFocus();
+    }
+
+    /**
+     * Sets the text in the CommandBox to the given String.
+     *
+     * @param text the text to set the field to.
+     */
+    private void setCommandBoxText(String text) {
+        commandBox.setCommandTextField(text);
+    }
+
+    /**
      * Executes the command and returns the result.
      *
      * @see seedu.address.logic.Logic#execute(String)
@@ -178,6 +230,17 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
+            if (commandText.contains(GetCommand.COMMAND_WORD + " "
+                    + GetNextOfKinCommand.NEXT_OF_KIN_PREFIX)) {
+                personListPanel = new PersonListPanel(logic.getFilteredPersonList(), true,
+                        this::executeCommand);
+                personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+            } else {
+                personListPanel = new PersonListPanel(logic.getFilteredPersonList(), false,
+                        this::executeCommand);
+                personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+            }
+
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
@@ -185,6 +248,11 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
+
+            if (commandResult.isShowCount()) {
+                handleCount();
+            }
+            handleView();
 
             return commandResult;
         } catch (CommandException | ParseException e) {

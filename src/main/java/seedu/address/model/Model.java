@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
 
 /**
@@ -76,7 +77,7 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /** Returns an unmodifiable view of the filtered person list. */
     ObservableList<Person> getFilteredPersonList();
 
     /**
@@ -84,4 +85,23 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /** Returns the Person currently being viewed. */
+    Person getCurrentlyViewedPerson();
+
+    /** Returns the Index of the Person currently being viewed. */
+    Index getCurrentlyViewedIndex();
+
+    /**
+     * Updates the Person currently being viewed.
+     * @param person The person to set as the new Person to view.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateCurrentlyViewedPerson(Person person, Index index);
+
+    /**
+     * Returns a string representation of the address book's census.
+     */
+    String getCensus();
 }
+

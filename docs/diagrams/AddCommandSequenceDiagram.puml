@@ -1,0 +1,61 @@
+@startuml
+!include style.puml
+
+skinparam defaultFontSize 40
+skinparam SequenceReferencebackgroundColor LightYellow
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
+participant ":AddCommand" as AddCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Person" as Person MODEL_COLOR
+participant ":ModelManager" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute(userInput)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(userInput)
+activate AddressBookParser
+
+create AddCommandParser
+AddressBookParser -> AddCommandParser++
+return
+
+AddressBookParser -> AddCommandParser:parse(args)
+activate AddCommandParser
+
+ref over AddCommandParser
+  Parse Args
+end
+
+create Person
+AddCommandParser -> Person++
+return person
+
+create AddCommand
+AddCommandParser -> AddCommand++
+
+return
+return addCommand
+destroy AddCommandParser
+return addCommand
+LogicManager->AddCommand++: execute(model)
+
+AddCommand -> Model: addPerson(toAdd)
+activate Model
+return
+
+create CommandResult
+AddCommand ->CommandResult++
+return
+
+return commandResult
+return
+
+@enduml

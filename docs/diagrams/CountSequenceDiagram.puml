@@ -1,0 +1,72 @@
+@startuml
+!include style.puml
+
+box UI UI_COLOR_T2
+participant ":MainWindow" as MainWindow UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant "d:CountCommand" as  CountCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":AddressBook" as AddressBook MODEL_COLOR
+end box
+
+activate MainWindow
+MainWindow -> LogicManager : execute("count")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("count")
+activate AddressBookParser
+
+create CountCommand
+AddressBookParser -> CountCommand
+activate CountCommand
+
+ CountCommand --> AddressBookParser : d
+deactivate CountCommand
+
+AddressBookParser --> LogicManager : d
+deactivate AddressBookParser
+
+LogicManager ->  CountCommand : execute()
+activate CountCommand
+
+create CommandResult
+ CountCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> CountCommand
+deactivate CommandResult
+
+ CountCommand --> LogicManager : result
+deactivate CountCommand
+
+MainWindow <--LogicManager
+
+MainWindow --> MainWindow : handleCount()
+
+MainWindow --> LogicManager : getCensus()
+
+LogicManager --> Model : getCensus()
+
+activate Model
+Model --> AddressBook : getCensus()
+
+activate AddressBook
+
+AddressBook --> Model : count
+deactivate AddressBook
+
+Model --> LogicManager : count
+deactivate Model
+
+LogicManager --> MainWindow : count
+deactivate LogicManager
+deactivate MainWindow
+@enduml

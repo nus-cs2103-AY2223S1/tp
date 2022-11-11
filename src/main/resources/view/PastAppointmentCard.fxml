@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox style="-fx-padding: 10 0 10 10">
+         <children>
+            <HBox>
+               <children>
+                  <Label fx:id="id" styleClass="cell_small_label" text="Past Appointment \$id" />
+                  <Label fx:id="date" styleClass="cell_small_label" text="\$date" />
+               </children>
+            </HBox >
+            <Label fx:id="diagnosis" styleClass="cell_small_label" text="\$diagnosis" style="-fx-padding: 0 0 0 10" />
+            <FlowPane fx:id="medications" style="-fx-padding: 0 0 0 10" />
+         </children>
+      </VBox>
+   </children>
+</HBox>

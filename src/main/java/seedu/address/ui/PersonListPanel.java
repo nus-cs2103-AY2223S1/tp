@@ -16,6 +16,7 @@ import seedu.address.model.person.Person;
 public class PersonListPanel extends UiPart<Region> {
     private static final String FXML = "PersonListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+    private CommandBox.CommandExecutor commandExecutor;
 
     @FXML
     private ListView<Person> personListView;
@@ -23,10 +24,17 @@ public class PersonListPanel extends UiPart<Region> {
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Person> personList) {
+    public PersonListPanel(ObservableList<Person> personList, Boolean isNextOfKin,
+                           CommandBox.CommandExecutor commandExecutor) {
         super(FXML);
-        personListView.setItems(personList);
-        personListView.setCellFactory(listView -> new PersonListViewCell());
+        if (!isNextOfKin) {
+            personListView.setItems(personList);
+            personListView.setCellFactory(listView -> new PersonListViewCell());
+        } else {
+            personListView.setItems(personList);
+            personListView.setCellFactory(listView -> new ContactListViewCell());
+        }
+        this.commandExecutor = commandExecutor;
     }
 
     /**
@@ -41,9 +49,27 @@ public class PersonListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
+                setGraphic(new PersonCard(person, getIndex() + 1, commandExecutor).getRoot());
             }
         }
     }
+
+    /**
+     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code ContactCard}.
+     */
+    class ContactListViewCell extends ListCell<Person> {
+        @Override
+        protected void updateItem(Person person, boolean empty) {
+            super.updateItem(person, empty);
+
+            if (empty || person == null) {
+                setGraphic(null);
+                setText(null);
+            } else {
+                setGraphic(new ContactCard(person, getIndex() + 1).getRoot());
+            }
+        }
+    }
+
 
 }

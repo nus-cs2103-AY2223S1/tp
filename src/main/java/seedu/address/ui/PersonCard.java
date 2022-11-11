@@ -1,12 +1,11 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Person;
 
 /**
@@ -25,6 +24,8 @@ public class PersonCard extends UiPart<Region> {
      */
 
     public final Person person;
+    private int displayedIndex;
+    private CommandBox.CommandExecutor commandExecutor;
 
     @FXML
     private HBox cardPane;
@@ -33,28 +34,28 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label phone;
+    private Label patientType;
     @FXML
-    private Label address;
-    @FXML
-    private Label email;
-    @FXML
-    private FlowPane tags;
+    private Label upcomingAppointment;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public PersonCard(Person person, int displayedIndex) {
+    public PersonCard(Person person, int displayedIndex, CommandBox.CommandExecutor commandExecutor) {
         super(FXML);
         this.person = person;
+        this.displayedIndex = displayedIndex;
+        this.commandExecutor = commandExecutor;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
-        person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        patientType.setText(person.getPatientType().toString());
+        person.getUpcomingAppointment().ifPresentOrElse(ua -> upcomingAppointment.setText(ua.toString()), () ->
+                upcomingAppointment.setVisible(false));
+    }
+
+    @FXML
+    public void handleViewPerson() throws CommandException, ParseException {
+        commandExecutor.execute("view " + displayedIndex);
     }
 
     @Override

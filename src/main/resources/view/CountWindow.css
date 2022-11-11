@@ -1,0 +1,20 @@
+#copyButton, #countMessage {
+    -fx-text-fill: black;
+}
+
+#copyButton {
+    -fx-background-color: derive(#DDBDDF, 10%);
+}
+
+#copyButton:hover {
+    -fx-background-color: derive(#1D1E2C, 50%);
+    -fx-text-fill: white;
+}
+
+#copyButton:armed {
+    -fx-background-color: darkgray;
+}
+
+#countMessageContainer {
+    -fx-background-color: derive(#F7EBEC, 20%);
+}

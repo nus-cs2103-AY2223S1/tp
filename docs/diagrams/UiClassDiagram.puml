@@ -3,18 +3,20 @@
 skinparam arrowThickness 1.1
 skinparam arrowColor UI_COLOR_T4
 skinparam classBackgroundColor UI_COLOR
+skinparam defaultFontSize 40
 
+'define UI Components
 package UI <<Rectangle>>{
 Class "<<interface>>\nUi" as Ui
 Class "{abstract}\nUiPart" as UiPart
 Class UiManager
 Class MainWindow
 Class HelpWindow
+Class CountWindow
 Class ResultDisplay
 Class PersonListPanel
-Class PersonCard
-Class StatusBarFooter
 Class CommandBox
+Class PersonViewPanel
 }
 
 package Model <<Rectangle>> {
@@ -28,33 +30,36 @@ Class HiddenLogic #FFFFFF
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Ui
 
-UiManager .left.|> Ui
+UiManager .left|> Ui
 UiManager -down-> "1" MainWindow
 MainWindow *-down->  "1" CommandBox
 MainWindow *-down-> "1" ResultDisplay
 MainWindow *-down-> "1" PersonListPanel
-MainWindow *-down-> "1" StatusBarFooter
-MainWindow --> "0..1" HelpWindow
-
-PersonListPanel -down-> "*" PersonCard
+MainWindow -down-> "0..1" HelpWindow
+MainWindow .down.> CountWindow
+MainWindow *-down-> "1" PersonViewPanel
 
 MainWindow -left-|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
 PersonListPanel --|> UiPart
-PersonCard --|> UiPart
-StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
+CountWindow --|> UiPart
+PersonViewPanel --|> UiPart
 
-PersonCard ..> Model
+PersonViewPanel .> CommandBox
+PersonViewPanel .down..> Model
+PersonListPanel .down..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
-PersonListPanel -[hidden]left- HelpWindow
-HelpWindow -[hidden]left- CommandBox
-CommandBox -[hidden]left- ResultDisplay
-ResultDisplay -[hidden]left- StatusBarFooter
+
+CountWindow -[hidden]right- HelpWindow
+HelpWindow -[hidden]right- ResultDisplay
+ResultDisplay -[hidden]left- CommandBox
+CommandBox -[hidden]left- PersonViewPanel
+PersonViewPanel -[hidden]left- PersonListPanel
 
 MainWindow -[hidden]-|> UiPart
 @enduml

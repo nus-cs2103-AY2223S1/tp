@@ -14,4 +14,19 @@ public interface ReadOnlyAddressBook {
      */
     ObservableList<Person> getPersonList();
 
+    /**
+     * Returns an unmodifiable view of the medications list.
+     * This list will not contain any duplicate medications.
+     */
+    String getMedicationMap();
+
+    /**
+     * Returns a string representation of the address book's census.
+     */
+    String getCensus();
+
+    /**
+     * Returns a string representation of the address book's medication map.
+     */
+    String getStringifiedMedicationMap();
 }

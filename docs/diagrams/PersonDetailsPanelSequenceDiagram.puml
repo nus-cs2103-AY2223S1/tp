@@ -1,0 +1,43 @@
+@startuml
+!include style.puml
+
+skinparam defaultFontSize 40
+
+Actor User as user USER_COLOR
+
+box Ui UI_COLOR_T1
+participant ":MainWindow" as mw UI_COLOR
+participant "email:Label" as email UI_COLOR
+participant ":PersonViewPanel" as pvp UI_COLOR
+participant ":CommandBox" as cb UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as lm LOGIC_COLOR
+end box
+
+user -> mw : click on Alex Yeoh's email
+activate mw
+
+mw -> email : getOnMouseClicked()
+activate email
+return mouseClickHandler
+
+mw -> pvp : checkClickType(event, //PREFIX_EMAIL//)
+activate pvp
+
+opt if event is a double primary mouse click
+pvp -> mw : handlePersonViewClick(//PREFIX_EMAIL//)
+activate mw
+
+mw -> lm : getCurrentlyViewedIndex()
+activate lm
+return
+
+mw -> cb : setCommandTextField("edit 1 e/")
+activate cb
+return
+return
+end opt
+return
+@enduml

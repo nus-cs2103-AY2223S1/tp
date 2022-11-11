@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
 
 /**
@@ -22,6 +23,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private CurrentlyViewedPerson currentlyViewedPerson;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,6 +36,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        resetCurrentlyViewedPerson();
     }
 
     public ModelManager() {
@@ -80,6 +83,8 @@ public class ModelManager implements Model {
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
         this.addressBook.resetData(addressBook);
+        updateFilteredPersonList(x -> true);
+        resetCurrentlyViewedPerson();
     }
 
     @Override
@@ -96,19 +101,34 @@ public class ModelManager implements Model {
     @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
+        if (target.equals(currentlyViewedPerson.getPerson()) && filteredPersons.size() > 0) {
+            currentlyViewedPerson = generateFirstPerson();
+        }
+        if (filteredPersons.size() <= 0) {
+            currentlyViewedPerson = new CurrentlyViewedPerson(null, null);
+        }
     }
 
     @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        int intIndex = filteredPersons.indexOf(person);
+        if (intIndex > -1) {
+            Index index = Index.fromZeroBased(filteredPersons.indexOf(person));
+            currentlyViewedPerson = new CurrentlyViewedPerson(person, index);
+        }
     }
 
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         addressBook.setPerson(target, editedPerson);
+        int intIndex = filteredPersons.indexOf(editedPerson);
+        if (intIndex > -1) {
+            Index index = Index.fromZeroBased(filteredPersons.indexOf(editedPerson));
+            currentlyViewedPerson = new CurrentlyViewedPerson(editedPerson, index);
+        }
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -126,6 +146,36 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    //=========== Currently Viewed Person Accessors =============================================================
+    @Override
+    public Person getCurrentlyViewedPerson() {
+        return currentlyViewedPerson.getPerson();
+    }
+
+    @Override
+    public Index getCurrentlyViewedIndex() {
+        return currentlyViewedPerson.getIndex();
+    }
+
+    @Override
+    public void updateCurrentlyViewedPerson(Person person, Index index) {
+        requireAllNonNull(person, index);
+        currentlyViewedPerson = new CurrentlyViewedPerson(person, index);
+    }
+
+    private void resetCurrentlyViewedPerson() {
+        if (filteredPersons.size() > 0) {
+            currentlyViewedPerson = generateFirstPerson();
+        } else {
+            currentlyViewedPerson = new CurrentlyViewedPerson(null, null);
+        }
+    }
+
+    private CurrentlyViewedPerson generateFirstPerson() {
+        Index index = Index.fromOneBased(1);
+        return new CurrentlyViewedPerson(filteredPersons.get(index.getZeroBased()), index);
     }
 
     @Override
@@ -147,4 +197,34 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(other.filteredPersons);
     }
 
+    @Override
+    public String getCensus() {
+        return addressBook.getCensus();
+    }
+
+    /**
+     * Class to represent the currently selected person Object.
+     */
+    public static class CurrentlyViewedPerson {
+        private final Person person;
+        private final Index index;
+
+        /**
+         * Creates a Currently Viewed Person Object.
+         * @param person Person viewed.
+         * @param index The Index in the filteredPersonList.
+         */
+        public CurrentlyViewedPerson(Person person, Index index) {
+            this.person = person;
+            this.index = index;
+        }
+
+        public Person getPerson() {
+            return person;
+        }
+
+        public Index getIndex() {
+            return index;
+        }
+    }
 }

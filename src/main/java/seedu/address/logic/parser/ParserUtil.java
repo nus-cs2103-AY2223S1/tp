@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,11 +10,18 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.UpcomingAppointment;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.FloorNumber;
+import seedu.address.model.person.HospitalWing;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.NextOfKin;
+import seedu.address.model.person.PatientType;
+import seedu.address.model.person.PatientType.PatientTypes;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.WardNumber;
+import seedu.address.model.tag.Medication;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -66,21 +74,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code address} is invalid.
-     */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
-        }
-        return new Address(trimmedAddress);
-    }
-
-    /**
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -96,29 +89,127 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
+     * Parses a {@code String nextOfKin} into an {@code NextOfKin}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code tag} is invalid.
+     * @throws ParseException if the given {@code nextOfKin} is invalid.
      */
-    public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+    public static NextOfKin parseNextOfKin(String nextOfKin) throws ParseException {
+        requireNonNull(nextOfKin);
+        String trimmedNextOfKin = nextOfKin.trim();
+        if (!NextOfKin.isValidNextOfKin(trimmedNextOfKin)) {
+            throw new ParseException(NextOfKin.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(trimmedTag);
+        return new NextOfKin(trimmedNextOfKin);
+    }
+
+    /**
+     * Parses a {@code String patientType} into an {@code PatientType}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code patientType} is invalid.
+     */
+    public static PatientType parsePatientType(String patientType) throws ParseException {
+        requireNonNull(patientType);
+        String trimmedPatientType = patientType.trim();
+        if (!PatientType.isValidPatientType(trimmedPatientType)) {
+            throw new ParseException(PatientType.MESSAGE_CONSTRAINTS);
+        }
+        PatientTypes pt = PatientTypes.parsePatientType(trimmedPatientType);
+        if (pt == null) {
+            throw new ParseException(PatientType.MESSAGE_CONSTRAINTS);
+        }
+        return new PatientType(pt);
+    }
+
+    /**
+     * Parses a {@code String hospitalWing} into an {@code hospitalWing}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code hospital wing} is invalid.
+     */
+    public static HospitalWing parseHospitalWing(String hospitalWing) throws ParseException {
+        requireNonNull(hospitalWing);
+        String trimmedHospitalWing = hospitalWing.trim();
+        if (!HospitalWing.isValidHospitalWing(trimmedHospitalWing)) {
+            throw new ParseException(HospitalWing.MESSAGE_CONSTRAINTS);
+        }
+        return new HospitalWing(trimmedHospitalWing);
+    }
+
+    /**
+     * Parses a {@code String floorNumber} into an {@code FloorNumber}.
+     * String will be converted to an Integer.
+     *
+     * @throws ParseException if the given {@code floorNumber} is invalid.
+     */
+    public static FloorNumber parseFloorNumber(String floorNumber) throws ParseException {
+        requireNonNull(floorNumber);
+        String trimmedFloorNumber = floorNumber.trim();
+        Integer parsedFloorNumber;
+        try {
+            parsedFloorNumber = Integer.valueOf(trimmedFloorNumber);
+        } catch (NumberFormatException nfe) {
+            throw new ParseException(FloorNumber.MESSAGE_CONSTRAINTS);
+        }
+        if (!FloorNumber.isValidFloorNumber(parsedFloorNumber)) {
+            throw new ParseException(FloorNumber.MESSAGE_CONSTRAINTS);
+        }
+        return new FloorNumber(parsedFloorNumber);
+    }
+
+    /**
+     * Parses a {@code String wardNumber} into an {@code WardNumber}.
+     * String will be converted to an Integer.
+     *
+     * @throws ParseException if the given {@code wardNumber} is invalid.
+     */
+    public static WardNumber parseWardNumber(String wardNumber) throws ParseException {
+        requireNonNull(wardNumber);
+        String trimmedWardNumber = wardNumber.trim();
+        if (!WardNumber.isValidWardNumber(trimmedWardNumber)) {
+            throw new ParseException(WardNumber.MESSAGE_CONSTRAINTS);
+        }
+        return new WardNumber(trimmedWardNumber);
+    }
+
+    /**
+     * Parses a {@code String medication} into a {@code Medication}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code medication} is invalid.
+     */
+    public static Medication parseMedication(String medication) throws ParseException {
+        requireNonNull(medication);
+        String trimmedMedication = medication.trim();
+        if (!Medication.isValidMedicationName(trimmedMedication)) {
+            throw new ParseException(Medication.MESSAGE_CONSTRAINTS);
+        }
+        return new Medication(trimmedMedication);
     }
 
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
+    public static Set<Medication> parseMedications(Collection<String> medications) throws ParseException {
+        requireNonNull(medications);
+        final Set<Medication> medicationSet = new HashSet<>();
+        for (String medicationName : medications) {
+            medicationSet.add(parseMedication(medicationName));
         }
-        return tagSet;
+        return medicationSet;
+    }
+
+    /**
+     * Parses {@code String upcomingAppointment} into a {@code UpcomingAppointment}.
+     */
+    public static UpcomingAppointment parseUpcomingAppointment(String upcomingAppointment) throws ParseException {
+        if (upcomingAppointment == null) {
+            return new UpcomingAppointment((LocalDate) null);
+        } else if (!UpcomingAppointment.isValidDate(upcomingAppointment)) {
+            throw new ParseException(Appointment.MESSAGE_CONSTRAINTS);
+        }
+        return new UpcomingAppointment(upcomingAppointment);
     }
 }
+

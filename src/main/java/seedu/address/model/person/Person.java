@@ -2,12 +2,18 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.model.tag.Tag;
+import seedu.address.model.appointment.PastAppointment;
+import seedu.address.model.appointment.UpcomingAppointment;
+import seedu.address.model.tag.Medication;
 
 /**
  * Represents a Person in the address book.
@@ -21,19 +27,94 @@ public class Person {
     private final Email email;
 
     // Data fields
-    private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
+    private final NextOfKin nextOfKin;
+    private final PatientType patientType;
+    private final Optional<HospitalWing> hospitalWing;
+    private final Optional<FloorNumber> floorNumber;
+    private final Optional<WardNumber> wardNumber;
+    private final Set<Medication> medications = new HashSet<>();
+    private final List<PastAppointment> pastAppointments;
+    private final Optional<UpcomingAppointment> upcomingAppointment;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, NextOfKin nextOfKin, PatientType patientType,
+                  HospitalWing hospitalWing, FloorNumber floorNumber, WardNumber wardNumber,
+                  Set<Medication> medications, List<PastAppointment> pastAppointments,
+                  UpcomingAppointment upcomingAppointment) {
+        requireAllNonNull(name, phone, email, nextOfKin, patientType, medications, pastAppointments);
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
-        this.tags.addAll(tags);
+        this.nextOfKin = nextOfKin;
+        this.patientType = patientType;
+        this.hospitalWing = Optional.ofNullable(hospitalWing);
+        this.floorNumber = Optional.ofNullable(floorNumber);
+        this.wardNumber = Optional.ofNullable(wardNumber);
+        this.medications.addAll(medications);
+        this.pastAppointments = pastAppointments;
+        this.upcomingAppointment = Optional.ofNullable(upcomingAppointment);
+    }
+
+    /**
+     * Checks to ensure the patient has the exact past appointment.
+     * @param appt the appointment to check the patient's past appointments against.
+     * @return true if he has that past appointment, false otherwise.
+     */
+    public boolean hasPastAppointment(PastAppointment appt) {
+        int length = pastAppointments.size();
+
+        // if appt is equal to any current past appointment, do not add as duplicate
+        for (int i = 0; i < length; i++) {
+            if (pastAppointments.get(i).equals(appt)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Adds input {@code PastAppointment} to stored list of {@code PastAppointment}s.
+     * @param appt the {@code PastAppointment} to be added
+     */
+    public void addPastAppointment(PastAppointment appt) {
+        int length = pastAppointments.size();
+        LocalDate apptDate = appt.getDate();
+
+        // Ensure no duplicate past appt,
+        // Should not trigger as hasPastAppointment(PastAppointment appt) should be called beforehand to check.
+        if (hasPastAppointment(appt)) {
+            return;
+        }
+
+        for (int i = 0; i < length; i++) {
+            LocalDate currentApptDate = pastAppointments.get(i).getDate();
+            if (apptDate.compareTo(currentApptDate) > 0) { //apptDate is more recent than currentApptDate
+                pastAppointments.add(i, appt);
+                break;
+            }
+        }
+
+        if (pastAppointments.size() == length) { //an appointment has not been added
+            pastAppointments.add(appt);
+        }
+    }
+
+    /**
+     * Removes the most recent {@code PastAppointment} from the stored list of {@code PastAppointment}s.
+     */
+    public void deleteMostRecentPastAppointment() {
+        // Ensure not deleting from an empty list,
+        // Should not trigger as getPastAppointmentCount() should be called beforehand to check.
+        if (getPastAppointmentCount() <= 0) {
+            return;
+        }
+        deletePastAppointment(0);
+    }
+
+    private void deletePastAppointment(int index) {
+        pastAppointments.remove(index);
     }
 
     public Name getName() {
@@ -48,16 +129,64 @@ public class Person {
         return email;
     }
 
-    public Address getAddress() {
-        return address;
+    public NextOfKin getNextOfKin() {
+        return nextOfKin;
+    }
+
+    public PatientType getPatientType() {
+        return patientType;
+    }
+
+    public Optional<HospitalWing> getHospitalWing() {
+        return hospitalWing;
+    }
+
+    public Optional<WardNumber> getWardNumber() {
+        return wardNumber;
+    }
+
+    public Optional<FloorNumber> getFloorNumber() {
+        return floorNumber;
     }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Set<Medication> getMedications() {
+        return Collections.unmodifiableSet(medications);
+    }
+
+    /**
+     * Returns a string representation of the medications.
+     */
+    public String getMedicationString() {
+        StringBuilder sb = new StringBuilder("Medication: ");
+        getMedications().stream().sorted(Comparator.comparing(medication -> medication.medicationName))
+                .forEach(medication -> sb.append(medication.medicationName).append(", "));
+        // remove trailing comma
+        sb.delete(sb.length() - 2, sb.length());
+        return sb.toString();
+    }
+
+    /**
+     * Returns list of {@code PastAppointment}s tagged to this patient.
+     * @return the list of {@code PastAppointment}s
+     */
+    public List<PastAppointment> getPastAppointments() {
+        return pastAppointments;
+    }
+
+    public Optional<UpcomingAppointment> getUpcomingAppointment() {
+        return upcomingAppointment;
+    }
+
+    /**
+     * Returns count of {@code PastAppointment}s to this patient.
+     * @return the count of {@code PastAppointment}s
+     */
+    public int getPastAppointmentCount() {
+        return pastAppointments.size();
     }
 
     /**
@@ -88,36 +217,71 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
-        return otherPerson.getName().equals(getName())
+        boolean isEqual = otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getNextOfKin().equals(getNextOfKin())
+                && otherPerson.getPatientType().equals(getPatientType())
+                && otherPerson.getMedications().equals(getMedications());
+
+        if (otherPerson.getPatientType().isInpatient() && getPatientType().isInpatient()) {
+            isEqual = isEqual && otherPerson.getHospitalWing().equals(getHospitalWing())
+                    && otherPerson.getFloorNumber().equals(getFloorNumber())
+                    && otherPerson.getWardNumber().equals(getWardNumber());
+        }
+        List<PastAppointment> otherPastAppointments = otherPerson.getPastAppointments();
+        if (otherPastAppointments == null && pastAppointments == null) {
+            isEqual = isEqual && true;
+        } else if (otherPastAppointments == null || pastAppointments == null) {
+            isEqual = isEqual && false;
+        } else {
+            isEqual = isEqual && otherPastAppointments.size() == pastAppointments.size();
+            for (int i = 0; i < pastAppointments.size(); i++) {
+                isEqual = isEqual && otherPastAppointments.get(i).equals(pastAppointments.get(i));
+            }
+        }
+        return isEqual;
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, nextOfKin, patientType, hospitalWing,
+                floorNumber, wardNumber, medications);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append("; Phone: ")
+                .append("; ")
                 .append(getPhone())
-                .append("; Email: ")
+                .append("; ")
                 .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress());
+                .append("; ")
+                .append(getNextOfKin())
+                .append("; ")
+                .append(getPatientType());
 
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
+        if (getPatientType().isInpatient()) {
+            builder.append("; ")
+                    .append(getHospitalWing().orElse(new HospitalWing("south")))
+                    .append("; ")
+                    .append(getFloorNumber().orElse(new FloorNumber(10)))
+                    .append("; ")
+                    .append(getWardNumber().orElse(new WardNumber("D312")));
         }
+
+
+        Set<Medication> tags = getMedications();
+        if (!tags.isEmpty()) {
+            builder.append("; Medications: ");
+            tags.forEach(tag -> builder.append(tag.medicationName).append(", "));
+        }
+        builder.append("; Past Appointments: ").append(getPastAppointmentCount());
+        builder.append("; ").append(getUpcomingAppointment().orElse(new UpcomingAppointment("")));
         return builder.toString();
     }
 
 }
+

@@ -35,7 +35,7 @@ public class Phone {
 
     @Override
     public String toString() {
-        return value;
+        return "Phone: " + value;
     }
 
     @Override

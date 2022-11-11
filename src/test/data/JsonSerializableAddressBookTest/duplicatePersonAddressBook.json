@@ -1,14 +1,23 @@
 {
   "persons": [ {
-    "name": "Alice Pauline",
-    "phone": "94351253",
-    "email": "alice@example.com",
-    "address": "123, Jurong West Ave 6, #08-111",
-    "tagged": [ "friends" ]
+    "name" : "Alice Pauline",
+    "phone" : "94351253",
+    "email" : "alice@example.com",
+    "nextOfKin" : "Charlie Pauline, Brother, 81273645",
+    "patientType": "OUTPATIENT",
+    "hospitalWing": null,
+    "floorNumber": null,
+    "wardNumber": null,
+    "medications" : [ "Ibuprofen" ]
   }, {
-    "name": "Alice Pauline",
-    "phone": "94351253",
-    "email": "pauline@example.com",
-    "address": "4th street"
+    "name" : "Alice Pauline",
+    "phone" : "94351253",
+    "email" : "alice@example.com",
+    "nextOfKin" : "Charlie Pauline, Brother, 81273645",
+    "patientType": "OUTPATIENT",
+    "hospitalWing": null,
+    "floorNumber": null,
+    "wardNumber": null,
+    "medications" : [ "Ibuprofen" ]
   } ]
 }

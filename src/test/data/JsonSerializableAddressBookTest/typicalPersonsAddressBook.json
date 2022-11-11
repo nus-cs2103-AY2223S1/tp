@@ -4,43 +4,83 @@
     "name" : "Alice Pauline",
     "phone" : "94351253",
     "email" : "alice@example.com",
-    "address" : "123, Jurong West Ave 6, #08-111",
-    "tagged" : [ "friends" ]
+    "nextOfKin" : "Charlie Pauline, Brother, 81273645",
+    "patientType": "OUTPATIENT",
+    "hospitalWing": null,
+    "floorNumber": null,
+    "wardNumber": null,
+    "medications" : [ "Ibuprofen" ]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
-    "address" : "311, Clementi Ave 2, #02-25",
-    "tagged" : [ "owesMoney", "friends" ]
+    "nextOfKin" : "Daniel Meier, Husband, 81273546",
+    "patientType": "INPATIENT",
+    "hospitalWing": "south",
+    "floorNumber": "1",
+    "wardNumber": "B690",
+    "medications" : [ "Paracetamol", "Xanax" ],
+    "pastAppointments" : [
+      {
+        "date" : "12-06-2022",
+        "diagnosis" : "Sick",
+        "medication": [ "Paracetamol", "Ibuprofen" ]
+      },
+      {
+        "date" : "14-06-2022",
+        "diagnosis" : "Deceased",
+        "medication": [ "Chlormine", "Amoxycillin" ]
+      }],
+    "upcomingAppointment" : "12-06-2050"
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "email" : "heinz@example.com",
-    "address" : "wall street",
-    "tagged" : [ ]
+    "nextOfKin" : "Charlie Pauline, Brother, 81273645",
+    "patientType": "OUTPATIENT",
+    "hospitalWing": null,
+    "floorNumber": null,
+    "wardNumber": null,
+    "medications" : [ ]
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
-    "address" : "10th street",
-    "tagged" : [ "friends" ]
+    "nextOfKin" : "Benson Meier, Husband, 81236848",
+    "patientType": "INPATIENT",
+    "hospitalWing": "south",
+    "floorNumber": "1",
+    "wardNumber": "A123",
+    "medications" : [  ]
   }, {
     "name" : "Elle Meyer",
-    "phone" : "9482224",
+    "phone" : "94822245",
     "email" : "werner@example.com",
-    "address" : "michegan ave",
-    "tagged" : [ ]
+    "nextOfKin" : "Charles Meyer, Husband, 83646756",
+    "patientType": "OUTPATIENT",
+    "hospitalWing": null,
+    "floorNumber": null,
+    "wardNumber": null,
+    "medications" : [ ]
   }, {
     "name" : "Fiona Kunz",
-    "phone" : "9482427",
+    "phone" : "94824275",
     "email" : "lydia@example.com",
-    "address" : "little tokyo",
-    "tagged" : [ ]
+    "nextOfKin" : "Violet Kunz, Daughter, 92725635",
+    "patientType": "INPATIENT",
+    "hospitalWing": "north",
+    "floorNumber": "2",
+    "wardNumber": "F528",
+    "medications" : [ ]
   }, {
     "name" : "George Best",
-    "phone" : "9482442",
+    "phone" : "94824424",
     "email" : "anna@example.com",
-    "address" : "4th street",
-    "tagged" : [ ]
+    "nextOfKin" : "Charlie Worst, Son, 92347462",
+    "patientType": "OUTPATIENT",
+    "hospitalWing": null,
+    "floorNumber": null,
+    "wardNumber": null,
+    "medications" : [ ]
   } ]
 }
