@@ -12,12 +12,12 @@ Finally, make use of Cobb's **matching** systems to match-make buyers and proper
 
 The only tools you need to make use of the full suite of capabilities Cobb has to offer are your hands and a keyboard.
 
-This **user guide** aims to provide an in-depth overview of how to set up, use, and debug Cobb. Take a look at the [command summary](#command-summary)
-section for a quick overview of the different commands along with how to use them, or dive into the [quick start](#quick-start)
-section to get started. 
+This **user guide** aims to provide you with an in-depth overview of how to set up, use, and debug Cobb. 
+Take a look at the [Command Summary](#command-summary) section for a quick overview of the different commands along with how to use them, 
+or dive into the [Quick Start](#quick-start) section to get started. 
 
 <div markdown="span" class="alert alert-primary">:exclamation: **Note:**
-Be sure to check out the [key definitions](#key-definitions) section of the guide if you are confused
+Be sure to check out the [Key Definitions](#key-definitions) section of the guide if you are confused
 by any of the terms used!
 </div>
 
@@ -45,7 +45,7 @@ by any of the terms used!
 3. Copy the `cobb.jar` file to the folder you want to use as the _main folder_ for Cobb. All data will be created and stored
    within this folder.
 
-4. Double-click the file to start the app. A window similar to the image below should appear in a few seconds. Note how the application contains some sample data.<br>
+4. Double-click the file to start the app. A window similar to the image below should appear in a few seconds. The application should already contain some sample data, as shown below.<br>
    ![Ui](images/Ui.png)
 
 Congratulations! Cobb is now set up and ready to work on your system.
@@ -69,24 +69,24 @@ before continuing!
 
 ### Command-specific terms
 1. **Command**: An instruction that you can type into the [command input box](#1-command-input-and-output-boxes) to do
-something in Cobb. See [Features](#features) for a list of commands.
-2. **Syntax**: The format in which a Command is to be typed.
+something in Cobb. Refer to [Features](#features) for the list of commands.
+2. **Syntax**: Denotes what you should include in your Command. Most Commands require specific flags and inputs to work.
 3. **Flag**: Comes before (and indicates) an input to a command. For example, in the command `filterbuyers -pr NORMAL`, `-pr` is the flag and `NORMAL` is the input.
 
 ### Buyer-specific terms
-1. **Price Range**: The price range of properties that a buyer might consider buying. That is, any property whose price
-   falls within this range will be considered by the buyer.
-2. **Characteristics**: The characteristics of a property that a buyer desires. For example, a buyer that has characteristics
-   `bright; sunny` is ideally looking for a property that is also `bright` and `sunny`.
-3. **Priority**: The priority that a buyer is assigned. Can be `LOW`, `NORMAL` or `HIGH`.
-4. **Time of Creation**: The time at which the buyer was added to the database with an [addbuyer](#adding-a-buyer-to-the-database-addbuyer) command.
+1. **Price Range**: The price range of properties that a buyer would consider buying. That is, the buyer would consider
+   any property whose price falls within this range.
+2. **Characteristics**: The characteristics of properties that a buyer desires. For example, a buyer that has characteristics
+   `bright; sunny` is ideally looking for a property that is `bright` and `sunny`.
+3. **Priority**: The priority that you assign to the buyer. Can be `LOW`, `NORMAL` or `HIGH`.
+4. **Time of Creation**: The time at which you added the buyer to the database with the [Add Buyer Command](#adding-a-buyer-to-the-database-addbuyer).
 
 ### Property-specific terms
 1. **Characteristics**: The characteristics associated with a property. For example, a property that has characteristics
    `windy; roomy` is both `windy` and `roomy`.
 2. **Owner Name**: The name of the owner of the property.
 3. **Owner Phone**: The phone number of the owner of the property.
-4. **Time of Creation**: The time at which the property was added to the database with an [addprop](#adding-a-property-to-the-database-addprop) command.
+4. **Time of Creation**: The time at which you added the property to the database with the [Add Property Command](#adding-a-property-to-the-database-addprop).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -99,62 +99,65 @@ that make up this window.
 ### 1. Command Input and Output Boxes
 These boxes are located at the top section of the window.<br><br>
 ![CommandBox](images/CommandBox.png)<br><br>
-The __command input box__ is located where the placeholder text `Enter command here...` is.<br>
-Clicking on it will allow you to input commands for Cobb to execute. 
+The **command input box** is located where the placeholder text `Enter command here...` is.<br>
+Clicking on it will allow you to type commands for Cobb to execute. 
 
-The __command output box__ is located directly beneath the __command input box__ as shown in the image above. Upon execution of any command,
-Cobb will display some information regarding the command, regardless of whether the command was successfully or
-not successfully executed.
+The **command output box** is located directly beneath the **command input box**, as shown in the image above, where it is 
+displaying the message "Listed all buyers". Upon execution of any command, Cobb will display some information regarding 
+the command, regardless of whether the command is successfully or not successfully executed.
 
-You can also use the up and down arrow keys to navigate the commands you have entered.
+<div markdown="span" class="alert alert-primary">:exclamation: **Note:**
+If a command is not successfully executed, the text within the command input box will turn <span style="color:red">red</span>.
+</div>
+
+After clicking on the **command input box**, you can use the up and down arrow keys to navigate the commands you have entered before.
+A command is considered as entered after you press the Enter key and if it is successfully executed.
 * The **up arrow** brings back a previously entered command into the command input box.
 * The **down arrow** does the reverse of the up arrow, bringing back a more recently entered command.
+These help you type many similar commands quickly as you can simply edit a previously entered command instead of having to type the
+whole command out again.
 
 Here are some commands you can test to start with.
 
-* **`listbuyers`** : Lists all buyers in the database, that is, clears any buyer filters currently in place.
+* **`listbuyers`** : Lists all buyers in the database.
 
 * **`addbuyer -n Tim Cook -ph 91234567 -e cook@apple.com -r 1000000-2500000 -a 10 lorong street avenue -c bright; sunny`** : 
-Adds a buyer named "Tim Cook" with phone number "91234567" to the database.
+Adds a buyer named "Tim Cook" with a specified phone number, email and address to the database.
 This buyer has a specified price range, and desired characteristics for the property he wants to buy.
 
-* **`deletebuyer 1`** : Deletes a buyer at index 1 of the current list from the database.
+* **`deletebuyer 1`** : Deletes a buyer at index 1 of the [buyer list](#2-buyer-list) from the database.
 
-* Press the **up arrow** key once. This brings back **`deletebuyer 1`** into the command input box. You can edit this to
-`deletebuyer 2` and press the enter key to test this as well.
+* Press the **up arrow** key once after clicking on the command input box. This brings back **`deletebuyer 1`** into the command input box. 
+  You can edit this to a similar command such as `deletebuyer 2` before pressing the Enter key.
 
 * **`help`** : Displays a help window.
 
-* **`exit`** : Exits the app.
+* **`exit`** : Exits the application.
 
-Refer to the [Features](#features) below for details of each command.
-
-<div markdown="span" class="alert alert-primary">:exclamation: **Note:**
-If a command was not successfully executed, the text within the command input box will turn red.
-</div>
+You can refer to the [Features](#features) below for the details of each command.
 
 ### 2. Buyer List
 You can find the buyer list located at the left section of the window.<br><br>
 <img src="images/BuyerList.png" width="300" /><br><br>
 The buyer list displays information regarding buyers who are currently stored in Cobb's database. 
 
-Note that it might not be showing *all* the buyers in the database all the time (please look at the [FAQ](#faq) for more information).
+Note that it might not be showing *all* the buyers in the database all the time (check out the [FAQ](#faq) for more information).
 
-It can also be filtered and modified using commands given in the [features](#features) section of the guide.
+You can also filter and modify the buyer list using the commands given in the [Features](#features) section below.
 
 ### 3. Property List
 You can find the property list located at the right section of the window.<br><br>
 <img src="images/PropertyList.png" width="300" /><br><br>
 The property list displays information regarding properties that are currently stored in Cobb's database. 
 
-Note that it might not be showing *all* the properties in the database all the time (please look at the [FAQ](#faq) for more information).
+Note that it might not be showing *all* the properties in the database all the time (check out the [FAQ](#faq) for more information).
 
-It can also be filtered and modified using commands given in the [features](#features) section of the guide.
+You can also filter and modify the property list using the commands given in the [Features](#features) section below.
 
 ### 4. Help Window
-This will appear as a separate window, and is not part of the main window.
+This will appear as a separate window.
 ![Help Window](images/HelpWindow.png)
-The __help window__ displays a link to Cobb's User Guide, which is this document. :)
+The __help window__ displays a link to Cobb's User Guide, which is the online version of this document. :)
 
 It appears when you execute the [Help Command](#viewing-help-help).
 
@@ -163,7 +166,7 @@ It appears when you execute the [Help Command](#viewing-help-help).
 ## Features
 [Back to top](#table-of-contents)
 
-Take a look at the [command summary](#command-summary) for a quick summary of the features below!
+Take a look at the [Command Summary](#command-summary) for a quick summary of the features below!
 
 <div markdown="block" class="alert alert-info">
 
@@ -501,13 +504,13 @@ Examples:<br>
 
 Clears Cobb (deletes all entries in the Buyer List and Property List).
 
-Format: `clear`
+Syntax: `clear`
 
 ### Exiting the program: `exit`
 
 Exits Cobb (closes the program).
 
-Format: `exit`
+Syntax: `exit`
 
 ### Viewing help: `help`
 
