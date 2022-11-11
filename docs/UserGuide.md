@@ -139,7 +139,7 @@ Here are some special formats to take note of when reading this user guide:
 ## Command Line Guide
 
    <p align="center">
-       <img src="images/CommandLine.png" width="700" />
+       <img src="images/CommandLineGuide.png" width="750" />
    </p>
 
 Simply type in:
