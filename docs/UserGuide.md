@@ -247,8 +247,9 @@ Formats:
 Examples:
 * `help add`
 
-
 * `help edit`
+
+* `help`
 
 <p align="center">
 
@@ -341,7 +342,7 @@ Examples:
 
 </p>
 
-This adds the student into the database. Note that the Person Description updates to the new student added.
+This adds the student into the database. 
 
 ### Adding a class: `add`
 
@@ -543,7 +544,7 @@ Examples:
 
 </p>
 
-This edits the specified person. Note that the Person Description Panel and the List are updated.
+This edits the details of Alex Miller by changing his name to Tom Doe. Note that the Description Panel and the List Display Panel are updated after the commands.
 
 ### Assign class to a person: `assign`
 
@@ -721,7 +722,7 @@ Format: `show <index>`
 
 Examples:
 * `show 3` 
-The **displayed list** is the **student list**.
+in the **student list**.
 
 <p align="center">
 
@@ -736,7 +737,7 @@ The **displayed list** is the **student list**.
 </p>
 
 * `show 1` 
-The **displayed list** is the **class list**.
+in the **class list**.
 
 <p align="center">
 
@@ -874,7 +875,7 @@ Format: `find [n/<name>] [s/<subject>] [l/<level>] [d/day] [t/time] [#/<tag>]`
 * When searching the `<level>` field, a space must be included between the level and number if the number is to be specified (e.g., `find l/secondary 1` instead of `find l/secondary1`).
 
 Examples:
-* `find n/john` 
+* `find n/john` in the **student list**.
 
 <p align="center">
 
@@ -890,7 +891,7 @@ Examples:
 
 Note that the **displayed list** is the **student list**, so `find n/john` returns the students, `John Doe` and `Johnny Tay` in the **student list**.
 
-* `find i/NUS q/Bachelor of Computing`
+* `find i/NUS q/Bachelor of Computing` in the **tutor list**.
 
 <p align="center">
 
@@ -906,7 +907,7 @@ Note that the **displayed list** is the **student list**, so `find n/john` retur
 
 Note that the **displayed list** is the **tutor list**, so `find i/NUS q/Bachelor of Computing` returns the tutors graduated from NUS with a Bachelor of Computing qualification.
 
-* `find d/monday #/hard`
+* `find d/monday #/hard` in the **class list**.
 
 <p align="center">
 
