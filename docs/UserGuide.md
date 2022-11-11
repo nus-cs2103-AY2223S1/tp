@@ -436,7 +436,7 @@ Note that you can only specify **one input** for these commands, as Cobb can onl
 
 #### Sort buyers in database: `sortbuyers`
 
-Sorts buyers in the database according to a single given condition, and updates the [Buyer List](#2-buyer-list).
+Sorts buyers in your database according to a single given condition, and updates the [Buyer List](#2-buyer-list).
 Syntax: `sortbuyers [-n NAME<ASC/DESC>] [-r PRICE RANGE<ASC/DESC>] [-pr PRIORITY<ASC/DESC>] [-t TIME OF CREATION<ASC/DESC>]`
 
 The `-n` flag indicates to sort buyers by name in ascending or descending order.<br>
@@ -451,7 +451,7 @@ Examples:<br>
 
 #### Sort properties in database: `sortprops`
 
-Sorts properties in the database according to a single given condition, and updates the [Property List](#3-property-list).
+Sorts properties in your database according to a single given condition, and updates the [Property List](#3-property-list).
 
 Syntax: `sortprops [-n NAME<ASC/DESC>] [-p PRICE<ASC/DESC>] [-t TIME OF CREATION<ASC/DESC>]`
 
@@ -472,7 +472,7 @@ buyers and properties in the database. You can use the [List Commands](#list-com
 
 #### Match specified buyer to properties: `matchbuyer`
 
-Intelligently matches a buyer in the database to all properties that are suitable for the buyer.
+Intelligently matches a buyer in your database to all properties that are suitable for the buyer.
 These properties must be within the buyer's price range and satisfy at least one of the buyer's characteristics to be considered suitable.
 
 <div markdown="span" class="alert alert-primary">:exclamation: **Note:**
@@ -489,7 +489,7 @@ Examples:<br>
 
 #### Match specified property to buyers: `matchprop`
 
-Intelligently matches a property in the database to all buyers who might be interested in that property.
+Intelligently matches a property in your database to all buyers who might be interested in that property.
 The property's price must be within the buyer's price range and the buyer should desire at least one of the property's characteristics.
 
 <div markdown="span" class="alert alert-primary">:exclamation: **Note:**
@@ -506,7 +506,7 @@ Examples:<br>
 
 ### Clearing the program: `clear`
 
-Clears Cobb (deletes all entries in the Buyer List and Property List).
+Clears Cobb (deletes all entries in your Buyer List and Property List).
 
 Syntax: `clear`
 
@@ -528,10 +528,10 @@ Cobb's data is saved for you automatically after any command that changes the da
 
 ### Editing the data file
 
-Cobb's data is saved as 2 separate JSON files `[JAR file location]/data/buyerbook.json` and `[JAR file location]/data/propertybook.json`. Advanced users are welcome to update data directly by editing these data files.
+Cobb's data is saved as 2 separate JSON files `[JAR file location]/data/buyerbook.json` and `[JAR file location]/data/propertybook.json`. If you are an advanced user, you are welcome to update data directly by editing these data files.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, Cobb will discard all data and start with a sample data file at the next run.
+If your changes to a data file make its format invalid, Cobb will discard all data and start with a sample data file on the next run.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
