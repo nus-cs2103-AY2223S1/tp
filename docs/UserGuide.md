@@ -24,8 +24,8 @@ faster than ever before!
 * [Introduction](#introduction)
 * [Table of Contents](#table-of-contents)
 * [Using the User Guide](#using-the-user-guide)
-* [First Glance](#first-glance)
 * [Quick Start](#quick-start)
+* [First Glance](#first-glance)
 * [Features](#features)
   * [Introduction to Our Features](#introduction-to-our-features)
   * [Utility commands](#utility-commands): 
@@ -85,7 +85,7 @@ Alternatively, you can install 'Java' directly on your computer through package 
 1. If you haven't done so already, install `Java` version 11 or higher by following the instructions in 
    [System Requirements](#system-requirements).
 
-2. Next, download the latest release of `foodguide.jar` from 
+2. Next, download the latest version of `foodguide.jar` from 
    [here](https://github.com/AY2223S1-CS2103T-W11-1/tp/releases).
 
 3. Make sure to move the file to your intended **home folder** for the NUSEatWhere application.
