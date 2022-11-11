@@ -147,10 +147,10 @@ Some commands only apply to one type of page while some are universally applicab
 </div>
 <div style="page-break-after: always"></div>
 
-To add an item to your Wishlist, use the [`add` command](#adding-an-item--add).
-Try adding a new item by typing in `add d/Meiji Shrine du/120` to the command box and press Enter.
-This will add a new item with the description of "Meiji Shrine" and a duration of 120 minutes.
-You should now see the item being displayed in the Wishlist.
+To add an activity to your Wishlist, use the [`add` command](#adding-an-item--add).
+Try adding a new activity by typing in `add d/Meiji Shrine du/120` to the command box and press Enter.
+This will add a new activity with the description of "Meiji Shrine" and a duration of 120 minutes.
+You should now see the activity being displayed in the Wishlist.
 ![add-item](images/ug-beg-tut/add-item.png)
 
 <div markdown="block" class="alert alert-info">
