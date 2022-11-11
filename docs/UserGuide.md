@@ -114,7 +114,8 @@ The following image describes how `NUSEatWhere` looks like upon opening the appl
 
 To interact with NUSEatWhere, you type commands into the Command Bar and press the 'Enter' key.
 
-If the command is successfully executed, a response message will appear in the Feedback Bar. However, if there is an error in your command, a red <span style="color:red">error message</span>
+If the command is successfully executed, a response message will appear in the Feedback Bar.
+However, if there is an error in your command, a red <span style="color:red">error message</span>
 will pop up instead, telling you what went wrong and how to correct it.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -146,9 +147,9 @@ You can use the `tag` and `untag` commands to change the tags attached to each e
 7. Lastly, we empower you to `add`, `edit` and `delete` eateries to and from `NUSEatWhere`. 
 This may be useful to include eateries near NUS (such as Supper Stretch!).
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-info">:information_source:
 
-### Important! Before Reading This Guide
+### Important! Before Reading This Guide 
 
 * Inputs in `UPPER_CASE` are needed for the command to work. <br>
   e.g. in `add -n NAME`, `NAME` is an input which can be used as `add -n Pasta Express`. <br><br>
@@ -477,7 +478,7 @@ _Edits the details of an eatery in `NUSEatWhere`._
 Example: `edit 1 -n KOI -l Central Square -c Drinks` <br>
 Example: `edit 3 -n KOI -l Central Square -c Drinks -p $$` <br>
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-info">:information_source:
 When editing the tags of an eatery, all existing tags will be overwritten.
 </div>
 
@@ -489,7 +490,7 @@ _Clears all eateries from `NUSEatWhere`._
 
 **Format:** `clear`
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-warning">:exclamation:
 This command removes ALL eateries.
 This action is irreversible.
 </div>
