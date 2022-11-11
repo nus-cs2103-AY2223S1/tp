@@ -442,7 +442,7 @@ Format: `edit INDEX m/remark REMARK`
 
 Example:
 
-`edit 1 m/remark Client replies very fast` edits the remark at index 1 to **Client replies very fast** in the displayed remark list. 
+`edit 1 m/remark Client replies very fast` edits the remark at index 1 to **Client replies very fast** in the *Remarks of Specified Client* Panel. 
 
 > <div markdown="span" class="alert alert-warning">:warning: Warning: You must use [view](#viewing-a-client-view) command first before you can edit a remark. If not, there will be an error within the application!
 
