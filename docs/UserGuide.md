@@ -52,12 +52,14 @@ Congratulations! Cobb is now set up and ready to work on your system.
 
 If you encounter any bugs during the setup process, please check out the [FAQ](#faq) section of this guide, which hopefully
 contains some information that can help you diagnose your issue.
+<br>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution (for advanced users):**
 On first launch, Cobb will create a few files that have the extension `.json` in its *home directory*. These files are used
 by Cobb to store its data. **Edit these at your own risk**, as Cobb will start with an empty database if it detects any
 error in the formatting of the data in these files.
 </div>
+<br>
 
 --------------------------------------------------------------------------------------------------------------------
 
