@@ -761,12 +761,12 @@ If the data file fails to follow the required format, PayMeLah will **discard al
 
 ## FAQ
 
-**Q1**: Do I need to save my data manually?<br>
+**Q1**: Do I **need to save** my data manually?<br>
 **A**: Nope! You don't have to worry about saving your data manually at all! PayMeLah automatically saves your data for you. If you are interested to learn more, you can head to the [saving your data](#saving-your-data) section.
 
 --------------------------------------------------------------------------------------------------------------------
 
-**Q2**: How do I transfer my data to PayMeLah on another computer?<br>
+**Q2**: How do I **transfer my data** to PayMeLah on another computer?<br>
 **A**: Here is a X-step guide to transfer your data!
 
 1. Find your current data file. By default, it should be a `paymelah.json` file found in your `data` folder. See more under [saving your data](#saving-your-data).
@@ -781,7 +781,7 @@ The next time you launch PayMeLah on your new computer, your data should be upda
 
 <div style="page-break-after: always;"></div>
 
-**Q3**: I can't find something that I **know** I have added to PayMeLah. Where did it go?<br>
+**Q3**: I **can't find something** that I know I have added to PayMeLah. Where did it go?<br>
 **A**: If you are trying to locate a person, try using the [`find` command](#locating-persons-by-inputs-find)! When searching for names, the `find` command displays partial matches, so it will find `Bobby` even if you search for `bob`.<br>
 If you are trying to locate a debt without knowing its full description, consider using the [`finddebt` command](#locating-persons-by-debt-description-finddebt) instead.<br>
 <div markdown="span" class="alert alert-primary">:bulb: **Other Tips:** <br>
@@ -791,12 +791,12 @@ If you are trying to locate a debt without knowing its full description, conside
 
 --------------------------------------------------------------------------------------------------------------------
 
-**Q4**: PayMeLah is not letting me use the command I want! What can I do?<br>
+**Q4**: PayMeLah is **not letting me use the command** I want! What can I do?<br>
 **A**: Oh no! Calm down - let's troubleshoot together. First, head to the [Command Summary](#command-summary) section to make sure you are using the command in the correct format. You can also click on the links there to read more about the specifics of each command. If PayMeLah continues to misbehave, do drop us an email at [paymelah.app@gmail.com](mailto:paymelah.app@gmail.com), and we will do our best to help you as soon as possible!
 
 --------------------------------------------------------------------------------------------------------------------
 
-**Q5**: Why can't PayMeLah do _this_?<br>
+**Q5**: Why **can't PayMeLah do _this_?**<br>
 **A**: We are so sorry that PayMeLah does not support this feature at the moment :( However, PayMeLah is a constant work in progress and we hope to deliver the features that you are looking for in the near future! In the meantime, feel free to drop us feedback at [paymelah.app@gmail.com](mailto:paymelah.app@gmail.com) so that we can better understand and serve your needs :)
 
 [Return to Table of Contents](#table-of-contents)
