@@ -473,7 +473,7 @@ This section contains **all** miscellaneous commands.
 
 ### Clearing all entries: `clear`
 
-Clears all entries which include **clients, remarks and transactions** from JeeqTracker.
+Clears all entries which include **clients**, **remarks** and **transactions** from JeeqTracker.
 
 Format: `clear`
 
