@@ -102,7 +102,7 @@ Below is an image of Coydir User Interface with the main components labelled.
 | 3   | Display Panel       | Displays the information of an employee or department. The information includes the employee's personal details, leave information, performance information. |
 | 4   | Command Panel       | Displays the system message after the execution of a command. The system message describes the outcome of the entered command.                               |
 
-#### Toolbar
+#### 1. Toolbar
 
 <img src="images/ui-screenshots/Toolbar.png" height=40>
 
@@ -112,9 +112,10 @@ This Toolbar can be used to :
 2. Access the Help guide through the **Help** button
 3. Change from Dark mode to Light Mode or vice versa through the **Theme** button
 
-#### Employee List Panel
+#### 2. Employee List Panel
 
-![Employee List Panel](images/ui-screenshots/Employee-List-Panel.png)
+<img src="images/ui-screenshots/employee-list-panel.png" class="centerImage">
+
 This shows the whole employee list with basic information such as _Name_, _Employee ID_ and _Position_.
 
 This will come in handy if:
@@ -122,11 +123,11 @@ This will come in handy if:
 1. You want a general overview of the employees in the company as of this moment.
 2. You want to quickly find out their Employee ID to view more details.
 
-#### Employee Info Panel
+#### 3. Display Panel
 
-![Employee Info Panel](images/ui-screenshots/Employee-Info-Panel.png)
+<img src="images/ui-screenshots/display-panel.png" class="centerImage">
+
 This shows a specific employee's particulars.
-
 Things to note:
 
 1. On startup of the application, this panel shows Coydir logo.
@@ -134,9 +135,9 @@ Things to note:
 3. If you delete an employee that you are currently viewing, the employee info view will display the next employee's particulars.
 4. If there is no next employee, this panel will revert to the Coydir logo.
 
-#### Command Panel
+#### 4. Command Panel
 
-![Command Panel](images/ui-screenshots/Command.png)
+<img src="images/ui-screenshots/command.png" class="centerImage">
 
 You can enter your user commands in the bottom section labeled as `Enter command here...`.
 
