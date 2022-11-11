@@ -440,7 +440,7 @@ Examples:
 
 ### Editing a remark: `edit`
 
-Edits a `remark` for a specified client.
+Edits a remark for a specified client.
 
 Format: `edit INDEX m/remark REMARK`
 
