@@ -1,0 +1,46 @@
+{
+  "_comment": "FoodGuide save file which contains the same Eatery values as in TypicalEateries#getTypicalFoodGuide()",
+  "eateries" : [ {
+    "name" : "Alice Abalone",
+    "price" : "$",
+    "cuisine" : "Chinese",
+    "location" : "University Town",
+    "tagged" : [ "seafood" ]
+  }, {
+    "name" : "Benson Bar",
+    "price" : "$$",
+    "cuisine" : "Beverages",
+    "location" : "University Town",
+    "tagged" : [ "alcohol" ]
+  }, {
+    "name" : "Carl Cafeteria",
+    "price" : "$$$",
+    "cuisine" : "Western",
+    "location" : "Block S3, Faculty of Science",
+    "tagged" : [ "steak" ]
+  }, {
+    "name" : "Daniel Diner",
+    "price" : "$",
+    "cuisine" : "Mixed",
+    "location" : "Block S4, Faculty of Science",
+    "tagged" : [ "steak" ]
+  }, {
+    "name" : "Elle Eatery",
+    "price" : "$$",
+    "cuisine" : "Mixed",
+    "location" : "Block E5, Faculty of Engineering",
+    "tagged" : [ ]
+  }, {
+    "name" : "Fiona Fastfood",
+    "price" : "$$$",
+    "cuisine" : "Western",
+    "location" : "Block E6, Faculty of Engineering",
+    "tagged" : [ ]
+  }, {
+    "name" : "George Grill",
+    "price" : "$",
+    "cuisine" : "Western",
+    "location" : "Block A7, Faculty of Arts",
+    "tagged" : [ ]
+  } ]
+}

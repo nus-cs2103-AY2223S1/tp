@@ -1,0 +1,41 @@
+@startuml
+start
+:User executes Add Command
+(using command word "add");
+:AddCommandParser created;
+:Argument tokenizer parses the
+arguments according to prefixes;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([Argument map is missing name,
+location and/or cuisine])
+    :ParserException is thrown
+    by AddCommandParser;
+    :CommandResult contains
+    error message;
+else ([else])
+    if () then ([Optional field
+    is left out])
+    :Eatery constructor is called
+    without the optional field;
+    :Upon initialization, eatery creates
+    and stores an empty optional field object
+    (e.g. default constructor for price is called);
+    else ([else])
+    :Optional field is retrieved
+    from the argument map;
+    :Eatery is constructed with the
+    optional field included;
+    :An optional field object is
+    created with the relevant data;
+    endif
+    :An eatery (to be added) is
+    passed into the AddCommand;
+    :CommandResult contains
+        success message;
+endif
+:CommandResult shown to user;
+stop
+@enduml

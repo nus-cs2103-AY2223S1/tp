@@ -1,0 +1,13 @@
+{
+  "eateries": [ {
+    "name": "Valid Eatery",
+    "price": "$",
+    "cuisine": "Chinese",
+    "location": "4th street"
+  }, {
+    "name": "Eatery With Invalid price Field",
+    "price": "abc",
+    "cuisine": "Chinese",
+    "location": "4th street"
+  } ]
+}

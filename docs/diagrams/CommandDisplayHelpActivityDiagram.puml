@@ -1,0 +1,32 @@
+@startuml
+start
+:User executes Command;
+:CommandParser created;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([Command contains
+PREFIX_HELP
+in correct format])
+    :DisplayCommandHelpException
+    thrown by CommandParser;
+    :CommandResult contains
+    usage message;
+else ([else])
+    if () then ([Command has
+    correct syntax])
+    :Command created
+    and executed;
+    :CommandResult contains
+    success message;
+    else ([else])
+    :ParseException thrown
+    by CommandParser;
+    :CommandResult contains
+    error message;
+    endif
+endif
+:CommandResult shown to user;
+stop
+@enduml

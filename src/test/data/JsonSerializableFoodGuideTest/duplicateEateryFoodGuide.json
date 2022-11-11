@@ -1,0 +1,14 @@
+{
+  "eateries": [ {
+    "name" : "Alice Abalone",
+    "price" : "$",
+    "cuisine" : "Chinese",
+    "location" : "University Town",
+    "tagged" : [ "seafood" ]
+  }, {
+    "name" : "Alice Abalone",
+    "price" : "$",
+    "cuisine" : "Chinese",
+    "location" : "University Town"
+  } ]
+}
