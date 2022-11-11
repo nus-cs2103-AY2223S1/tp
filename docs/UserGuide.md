@@ -954,9 +954,11 @@ something wrongly. Here, let us take a quick walk-through on how to add a team.
 
 Let us try to add a new team named `CS2103T`, with a description called `Software Engineering`. Enter the command
 
-`add team CS2103 -d "Software Engineering"`
+`add team CS2103T -d "Software Engineering"`
 
 If done successfully, you should see a new team show up in the [teams section](#teams-section) as shown below.
+
+![Add Team Example](images/AddTeamExample.png)
 
 **Format:** `add team [-h] [-d=TEAM_DESCRIPTION] <TEAM_NAME>`
 
@@ -980,8 +982,8 @@ If done successfully, you should see a new team show up in the [teams section](#
 #### Edit current team: `edit team`
 
 You discussed the group name with your team members, and they do not like the name you proposed! They prefer it to be
-something cooler instead. Not to worry, you are able to edit the details of your current team. Once you decided on better team 
-name and a better description, key in `edit team -n <TEAM_NAME> -d <TEAM_DESCRIPTION>` and the details your
+something cooler instead. Not to worry, you are able to edit the details of your current team. Once you decided on 
+better team name and a better description, key in `edit team -n <TEAM_NAME> -d <TEAM_DESCRIPTION>` and the details your
 [currently selected team](#current-team-section) will be edited. 
 
 The `edit team` command allows you to edit the details your currently selected team.
@@ -992,9 +994,10 @@ Let us try to edit the name of our current team to `NUS TruthTable`. Enter the c
 
 `edit team -n "NUS TruthTable"`
 
+![Edit Team Example](images/EditTeamExample.png)
+
 If done successfully, the details that you specified will be shown in the 
 [currently selected team](#current-team-section) as shown below.
-
 
 **Format:** `edit team [-h] ([-n=<TEAM_NAME>] [-d=<TEAM_DESCRIPTION>])`
 
@@ -1030,6 +1033,8 @@ Suppose you have an existing team called CS2103T and want to remove it. Enter th
 `delete team CS2103T`
 
 If done successfully, you should see the team `CS2103T` removed under the [teams section](#teams-section).
+
+![Delete Team Example](images/DeleteTeamExample.png)
 
 **Format:** `delete team [-h] <TEAM_NAME>`
 
