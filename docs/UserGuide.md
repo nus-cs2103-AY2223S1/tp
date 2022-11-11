@@ -14,7 +14,7 @@ You can plan your travel itinerary in **3 simple steps**.
 **It's that simple**.
 
 This is a comprehensive user guide for anyone who wants to learn more about how to use Waddle and its features.
-If this is your first time using Waddle, check out our Tutorial for Beginners.
+If this is your first time using Waddle, check out our [Tutorial for Beginners](#tutorial-for-beginners).
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always"></div>
@@ -93,6 +93,43 @@ For more commands and their details, refer to the [Features](#features) section 
 <div style="page-break-after: always"></div>
 
 ## Tutorial for Beginners
+
+If you are a beginner to Waddle, this tutorial will walk you through creating and planning your very first Waddle itinerary.
+
+
+This is the [main page](#the-main-page), which you will encounter when you open Waddle. 
+It displays all your current itineraries. 
+The various sections of the interface have been labeled in blue for your reference.
+If this is your first time launching Waddle, you will see the following page with two sample itineraries:
+![main-page-sample-ui](images/ug-beg-tut/main-page-sample-ui.png)
+
+
+If you wish to, you can [clear](#clearing-itineraries--clear) the sample itineraries by typing `clear` into the command box and pressing Enter.
+You will then see the below message:
+* insert image here
+
+Now you can add your first itinerary. To do so, use the [`add` command](#creating-a-new-itinerary--add) with the relevant itinerary details.
+Try executing the command `add d/Summer Trip sd/2023-06-01 du/5`. 
+It will add an itinerary named Summer Trip, starting from 1 June 2023 with a duration of 5 days.
+You should now see the message below and your itinerary added on the main page as follows:
+* insert image here
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes:**<br>
+
+* You can replace the add command inputs with the relevant details of your itinerary.
+* You can add optional details such as the country, number of people, and budget.
+ - e.g. Enter `add d/Summer Trip c/Japan sd/2023-06-01 du/5 p/4 b/2000` instead to specify the country as Japan, number of people as 4, and your budget as $2000. 
+* For additional information, refer to the [`add` command](#creating-a-new-itinerary--add) explanation under the [Features](#features) section.
+
+</div>
+<div style="page-break-after: always"></div>
+
+Select the itinerary which you have just created by typing in `select` along with the index of the itinerary on the list, then press Enter.
+For example, if "Summer Trip" is shown as the first itinerary on the list, enter `select 1`.
+You will now see the planning page for the itinerary as follows:
+* insert image here
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always"></div>
