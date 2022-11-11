@@ -128,6 +128,10 @@ OmniHealth's sorting and filtering system allows you to search for specific pati
 
 By default, the Patient List and Record List are **unfiltered** (not filtered by a find command). After using a find command [`find`](#finding-patients-by-name-find) or [`rfind`](#finding-records-by-keyword-rfind), the list will be considered **filtered**.
 
+Example:
+* Typing `find alex` will enter the **Filtered List View** where only the matching results are shown.
+* Typing `showall` will bring you back to the **Unfiltered List View** showing all the patients/records before the find command was executed.
+
 | Unfiltered List View (Default)              | Filtered List View                                  |
 |---------------------------------------------|-----------------------------------------------------|
 | ![Ui-unfiltered](images/UiUnfiltered.png)   | ![Ui-filtered](images/UiFiltered.png)               |
