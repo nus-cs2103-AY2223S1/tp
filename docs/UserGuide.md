@@ -38,7 +38,7 @@ faster than ever before!
     * [Tag](#add-tag-to-eatery--tag) / [Untag](#remove-tag-from-eatery--untag)
     * [Fav](#favourite-eatery--fav) / [Unfav](#unfavourite-eatery--unfav)
     * [Add](#add-eatery--add) / [Delete](#delete-eatery--delete) / [Edit](#edit-eatery--edit)
-    * [Clear](#clear-food-guide--clear)
+    * [Clear](#clear-nuseatwheres-eatery-list--clear)
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
 
@@ -67,7 +67,7 @@ raising an issue on our [GitHub](https://github.com/AY2223S1-CS2103T-W11-1/tp)!
 --------------------------------------------------------------------------------------------------------------------
 
 ## First Glance
-The following image describes how `Food Guide` looks like upon opening the application.
+The following image describes how `NUSEatWhere` looks like upon opening the application.
 
 ![Ui](images/user-guide/UgGuiGuide.png)
 
@@ -80,10 +80,10 @@ The following image describes how `Food Guide` looks like upon opening the appli
 
 3. Make sure to move the file to your intended **home folder** for the NUSEatWhere application.
 
-4. Double-click the file to start `Food Guide`. <br> 
+4. Double-click the file to start `NUSEatWhere`. <br> 
 The application should like the picture above in the [First Glance](#first-glance) section. 
 
-5. You're done setting up the `Food Guide`! <br> 
+5. You're done setting up the `NUSEatWhere`! <br> 
 Go ahead and type some commands into the command box and press Enter to execute it. <br>
 e.g. typing `help` and pressing Enter will open the help window. <br>
 
@@ -105,11 +105,11 @@ e.g. typing `help` and pressing Enter will open the help window. <br>
 
 ### Introduction to Our Features
 
-This section summarizes all the commands supported in the `Food Guide`. 
+This section summarizes all the commands supported in `NUSEatWhere`. 
 We highly recommend you read this section before jumping into all the features below!
 
 1. When in doubt, you can always fall back on the `help` command.
-For most commands, you can also add `-h` to the back to get `Food Guide` to generate 
+For most commands, you can also add `-h` to the back to get `NUSEatWhere` to generate 
 a help message on how to use the command (e.g. `find -h`)!
 
 2. To show all eateries, or reset the eateries in the list to its default state, use `list`.
@@ -120,12 +120,12 @@ to search for a specific eatery!
 4. Make use of our random generator by adding `-r NUMBER` after any `find` command. For example, run
 `find -r 1` to generate 1 random eatery to eat at.
 
-5. Customize `Food Guide` to suit your needs by adding tags to your eateries.
+5. Customize `NUSEatWhere` to suit your needs by adding tags to your eateries.
 You can use the `tag` and `untag` commands to change the tags attached to each eatery.
 
 6. Additionally, you can use the `fav` and `unfav` commands to mark some eateries as favourites!
 
-7. Lastly, we empower you to `add`, `edit` and `delete` eateries to and from `Food Guide`. 
+7. Lastly, we empower you to `add`, `edit` and `delete` eateries to and from `NUSEatWhere`. 
 This may be useful to include eateries near NUS (such as Supper Stretch!).
 
 <div markdown="block" class="alert alert-info">
@@ -184,7 +184,7 @@ When in doubt, use the help feature to see the list of commands within NUSEatWhe
 
 #### Listing all eateries : `list`
 
-_Lists out all the eateries in your `Food Guide`. <br>
+_Lists out all the eateries in `NUSEatWhere`. <br>
 If a command (e.g. `find`) has hidden some eateries from you, 
 you can simply type `list` to view all your eateries again._
 
@@ -289,7 +289,11 @@ Example: `findCuisine Chinese`
 #### Find eateries by price : `findPrice`
 
 _Search for eateries that match the specified price(s).
-You can also quickly narrow down your choices with the randomizer feature._
+You can also quickly narrow down your choices with the randomizer feature._ <br>
+
+<div markdown="block" class="alert alert-info">
+Prices can only take the values `$`, `$$`, or `$$$`, in increasing order of price.
+</div>
 
 **Format:** `findPrice PRICE…​ [-r NUMBER] [-h]`
 
@@ -335,7 +339,7 @@ Example: `findTag restaurant`
 ### Commands for Modifying Eateries
 These commands are used to modify and customise the list of eateries in `NUSEatWhere`.
 If you would like to add/remove/edit any sort of information within the application, these are the commands for you.
-Feel free to personalise the `Food Guide` eatery list to your liking!
+Feel free to personalise `NUSEatWhere` eatery list to your liking!
 
 <br>
 
@@ -373,7 +377,7 @@ Note how the red "cafe" tag on store 44 disappears after the untag command.
 
 #### Favourite Eatery : `fav`
 
-_Favourites an eatery in the `Food Guide`. <br>
+_Favourites an eatery in `NUSEatWhere`. <br>
 The favourite tag is standardized to be "<3" when using this command._
 
 **Format:** `fav INDEX [-h]`
@@ -388,7 +392,7 @@ Example: `fav 3`
 
 #### Unfavourite Eatery : `unfav`
 
-_Unfavourites an eatery in the `Food Guide`. <br>
+_Unfavourites an eatery in `NUSEatWhere`. <br>
 The tag to be removed is standardized to be "<3" when using this command._
 
 **Format:** `unfav INDEX [-h]`
@@ -403,7 +407,7 @@ Example: `unfav 3`
 
 #### Add eatery : `add`
 
-_Adds a new eatery to the `Food Guide`. The eatery will be added to the end of the
+_Adds a new eatery to `NUSEatWhere`. The eatery will be added to the end of the
 current list <br>
 (i.e. if the current list pre-addition has 5 eateries, the newly added eatery will be of index 6)._
 
@@ -423,7 +427,7 @@ Example: `add -n KOI -l Central Square -c Drinks -p $$`
 
 #### Delete eatery : `delete`
 
-_Deletes an eatery from the `Food Guide`._
+_Deletes an eatery from `NUSEatWhere`._
 
 **Format:** `delete INDEX [-h]`
 
@@ -440,7 +444,7 @@ Note how the eatery at index 68 disappears after the delete command.
 
 #### Edit Eatery : `edit`
 
-_Edits the details of an eatery in the `Food Guide`._
+_Edits the details of an eatery in `NUSEatWhere`._
 
 **Format:** `edit INDEX [-n NAME] [-l LOCATION] [-c CUISINE] [-p PRICE] [-t TAG]…​ [-h]`
 
@@ -461,9 +465,9 @@ When editing the tags of an eatery, all existing tags will be overwritten.
 
 <br>
 
-#### Clear Food Guide : `clear`
+#### Clear NUSEatWhere's Eatery List : `clear`
 
-_Clears all eateries from the `Food Guide`._
+_Clears all eateries from `NUSEatWhere`._
 
 **Format:** `clear`
 
@@ -487,8 +491,9 @@ by any means of file sharing (thumbdrive, email, Google Drive, etc.). In the oth
 `Food Guide`, replace the default data file with your data.
 
 **How can I manually edit `Food Guide` data?** <br>
-If you are familiar with the `json` file format, you may edit the data file `foodguide.json` directly.
-Do make a backup as an invalid data file will cause `NUSEatWhere` to override it with an empty file.
+If you are familiar with the `json` file format, you may edit the data file `foodguide.json` directly 
+using a text editor. Do make a backup as an invalid data file will cause `NUSEatWhere` to override 
+it with an empty file.
 
 **I would like to modify/build on NUSEatWhere, how do I go about this?** <br>
 Feel free to refer to the source code on our [GitHub](https://github.com/AY2223S1-CS2103T-W11-1/tp)!
