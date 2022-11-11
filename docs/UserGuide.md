@@ -197,7 +197,7 @@ INSERT IMAGE
 
 ### How to read command formats
 
-In this user guide, we will provide you with the format of each command. All you have to do is to follow the format while replacing the necessary parts with your own inputs!<br>
+In this user guide, we will provide you with the format of each [command](#glossary-command). All you have to do is to follow the format while replacing the necessary parts with your own [inputs](#glossary-input)!<br>
 This section will guide you on how to interpret the formats given, so that you can be a master at commanding PayMeLah!
 
 * **User Supplied Inputs**<br>
@@ -211,7 +211,7 @@ This section will guide you on how to interpret the formats given, so that you c
 * **Repeatable Inputs**<br>
   Inputs with `…` can be used **multiple times**, but remember to separate each usage with a space character in between.<br>
   e.g. in `adddebt <person index…>`, `<person index…>` is an input which can be used as `adddebt 1` or as `adddebt 1 2`.<br>
-  e.g. in `add n/<name> [t/<tag>]…`, `[t/<tag>]…` is a pair of prefix and input which can be used as `add n/Alan t/Poet` or as `add n/Alan t/Poet t/Friend`.
+  e.g. in `add n/<name> [t/<tag>]…`, `[t/<tag>]…` is a pair of [prefix](#glossary-prefix) and input which can be used as `add n/Alan t/Poet` or as `add n/Alan t/Poet t/Friend`.
 
 <div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
 Be very careful with how a command is formatted! If the `…` is found within the diamond brackets `<>` that correspond to an input as in `<person index…>`, then only the input itself is to be repeated. However, if the `…` is found outside the `<>` as in `[t/<tag>]…`, then both the prefix and input must be repeated. Read the 2 examples above carefully to see the difference.
@@ -221,7 +221,7 @@ Be very careful with how a command is formatted! If the `…` is found within th
 
 ### General input behaviour
 
-Just like words in human languages, inputs for PayMeLah commands follow certain rules. Do keep these in mind so that PayMeLah can understand your commands! 
+Just like words in human languages, [inputs](#glossary-input) for PayMeLah [commands](#glossary-command) follow certain rules. Do keep these in mind so that PayMeLah can understand your commands! 
 
 * **Order of Inputs**<br>
   Inputs can be in **any order**.<br>
