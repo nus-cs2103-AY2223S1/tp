@@ -198,7 +198,7 @@ Like all things, learning can take some time, but you'll soon realise that each 
 
 # Features Overview
 
-**LTNS** allows you to track your clients, policies and events.
+LTNS allows you to track your Clients, Policies and Events.
 As such, the features available to you are split into **4** main features:
 1. [Common Features](#common-features): Here you can find basic Application features
 2. [Client Features](#client-features): Here you can find all features related to keeping track of all your clients 
