@@ -61,7 +61,7 @@ If this is your first time using Waddle, we recommend checking out the [User Gui
 
 ## User Guide Tips
 
-### Finding what you neeed
+### Finding what you need
 
 1. [Quick start](#quick-start) will help you set up Waddle
 2. [Tutorial for Beginners](#tutorial-for-beginners) walks you through our graphical interface and also guides you on planning your very first itinerary on Waddle
@@ -106,7 +106,7 @@ Some example commands you can try:
 
    * **`add`** `d/My Japan Trip du/14 sd/2023-04-01` : Adds an itinerary for a 14-day trip named "My Japan Trip", which starts on the 1st of April 2023.
    
-   * **`select`** `1` : Brings you into [the planning page](#the-planning-page) for the 1st itinerary shown in the current list.
+   * **`select`** `1` : Brings you into [the planning page](#the-activity-planning-page) for the 1st itinerary shown in the current list.
 
    * **`delete`** `1` : Deletes the 1st itinerary shown in the current list.
 
@@ -188,7 +188,7 @@ You will now see the planning page for the itinerary as follows:
 
 ### Universal commands
 
-Most commands in Waddle can only be used on the [home page](#the-home-page) or the [planning page](#the-planning-page). However, the commands in this section may be used on either page at any time.
+Most commands in Waddle can only be used on the [home page](#the-home-page) or the [planning page](#the-activity-planning-page). However, the commands in this section may be used on either page at any time.
 
 ### Viewing help : `help`
 
@@ -217,7 +217,7 @@ The home page, or home page, of Waddle displays the list of itineraries you have
 * [edit](#editing-the-details-of-an-itinerary--edit) or [delete](#deleting-an-itinerary--delete) existing itineraries
 * [clear](#clearing-itineraries--clear) all existing itineraries
 
-Using the [`select` command](#selecting-an-itinerary--select)  will bring you to the [planning page](#the-planning-page) of the selected itinerary.
+Using the [`select` command](#selecting-an-itinerary--select)  will bring you to the [planning page](#the-activity-planning-page) of the selected itinerary.
 
 <div style="page-break-after: always"></div>
 
@@ -340,7 +340,7 @@ Format: `clear`
 ![Clear command](images/clearCommand.png)
 ### Selecting an itinerary : `select`
 
-Enters the [item planning page](#the-planning-page) for the selected itinerary.
+Enters the [item planning page](#the-activity-planning-page) for the selected itinerary.
 
 Format: `select INDEX`
 
