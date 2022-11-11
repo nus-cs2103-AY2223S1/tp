@@ -406,7 +406,7 @@ Examples:
 
 ### **Remark Commands**
 
-The following section highlights **all** commands related to `remarks`.
+The following section highlights **all** commands related to remarks.
 
 ### Creating a remark: `remark`
 
@@ -421,10 +421,10 @@ Format: `remark INDEX REMARK`
 
 
 Examples:
-* `remark 1 punctual buyer` adds the remark `punctual buyer` to the client at index 1.
+* `remark 1 punctual buyer` adds the remark **punctual buyer** to the client at index **1**.
 
 
-> <div markdown="span" class="alert alert-primary">:bulb: Tip: If you use the "remark" command while the "Client List Panel" has more than one client, you will not be able to see the addition.<br/>Use the [view](#viewing-a-client-view) command to see it.</div>
+> <div markdown="span" class="alert alert-primary">:bulb: Tip: If you use the `remark` command while the *Client List Panel* has more than one client, you will not be able to see the addition.<br/>Use the [view](#viewing-a-client-view) command to see it.</div>
 
 
 [Back to Table of Contents](#table-of-contents)
@@ -442,7 +442,7 @@ Format: `edit INDEX m/remark REMARK`
 
 Example:
 
-`edit 1 m/remark Client replies very fast` edits the remark at index 1 to 'Client replies very fast' in the displayed remark list. 
+`edit 1 m/remark Client replies very fast` edits the remark at index 1 to **Client replies very fast** in the displayed remark list. 
 
 > <div markdown="span" class="alert alert-warning">:warning: Warning: You must use [view](#viewing-a-client-view) command first before you can edit a remark. If not, there will be an error within the application!
 
