@@ -194,8 +194,8 @@ Format: `add n/NAME a/ADDRESS p/PHONE e/EMAIL [t/TAG]...`
 > <div markdown="span" class="alert alert-warning">:warning: **Warning: You cannot add a client with a name that already exists in JeeqTracker**<br/> Names are considered duplicates even if they differ by case sensitivity or whitespaces!
 
 Examples:
-* `add n/Alice a/West Coast Park p/9876542 e/alice@gmail.com` adds a new client, **Alice** with the specified **address**, **phone** and **email** to the *List of clients* panel, as depicted by the diagram below.
-* `add n/John a/Yishun Street 81 p/9876543 e/john@yahoo.com t/friends t/supplier` adds a new *client*, **John** with the specified **address**, **phone**, **email**, and **tags** to the *List of clients* panel.
+* `add n/Alice a/West Coast Park p/9876542 e/alice@gmail.com` adds a new client, **Alice** with the specified **address**, **phone** and **email** to the *List of Clients* panel, as depicted by the diagram below.
+* `add n/John a/Yishun Street 81 p/9876543 e/john@yahoo.com t/friends t/supplier` adds a new *client*, **John** with the specified **address**, **phone**, **email**, and **tags** to the *List of Clients* panel.
 
 ![Ui](images/SampleAddCommand.png)
 
@@ -204,7 +204,7 @@ Examples:
 ### Listing all clients: `list`
 
 Lists all the clients stored in JeeqTracker. 
-This command is required for you because some other commands like `find`, `sort`, `view` will filter the *List of clients* panel.
+This command is required for you because some other commands like `find`, `sort`, `view` will filter the *List of Clients* panel.
 
 Format: `list`
 
@@ -238,12 +238,12 @@ Deletes a specified client from JeeqTracker.
 
 Format: `delete INDEX m/client`
 
-* The `INDEX` refers to the index number shown in the *List of clients* panel.
+* The `INDEX` refers to the index number shown in the *List of Clients* panel.
 * `INDEX` **must be a positive integer** e.g 1, 2, 3, …​
 
 Examples:
-* `delete 1 m/client` deletes the 1<sup>st</sup> client in the displayed *List of clients* panel.
-* `delete 2 m/client` deletes the 2<sup>nd</sup> client in the displayed *List of clients* panel.
+* `delete 1 m/client` deletes the 1<sup>st</sup> client in the displayed *List of Clients* panel.
+* `delete 2 m/client` deletes the 2<sup>nd</sup> client in the displayed *List of Clients* panel.
 
 > <div markdown="span" class="alert alert-danger">❗ **Danger: Deleting a client is an irreversible process**<br/> Be very careful here!
 
@@ -276,7 +276,7 @@ The *List of clients* panel will be filtered to display only the specified clien
 Format: `view INDEX`
 
 * Views the client at the specified `INDEX`.
-* `INDEX` refers to the index number shown in the displayed *List of clients* panel. 
+* `INDEX` refers to the index number shown in the displayed *List of Clients* panel. 
 * The `INDEX` **must be a positive integer** 1, 2, 3, …​
 * The `INDEX` **must not contain any signs** e.g +1, -3, …​
 
