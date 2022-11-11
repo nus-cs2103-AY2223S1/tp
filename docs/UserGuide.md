@@ -14,9 +14,11 @@ title: User Guide
 --------------------------------------------------------------------------------------------------------------------
 
 ## Introduction
-myStudent is **an easy-to-use, portable and aesthetically-pleasing desktop application for managing students of a tuition center**, optimized for use via a Command Line Interface 
-(CLI) while still having the benefits of a Graphical User Interface (GUI). If you're able to type fast, myStudent can get your
-work done faster than traditional GUI apps.
+Are you a tuition center manager who finds it tedious to deal with a large amount of data? **myStudent** is the perfect software to help improve your work experience!
+
+myStudent is **an easy-to-use, portable and aesthetically-pleasing desktop application for managing students of a tuition center**, optimized for use via a Command Line Interface
+(CLI) while still having the benefits of a Graphical User Interface (GUI).  
+With an intuitive User Interface(UI) design and easy-to-understand commands, myStudent is the perfect software for you. Wasting time searching on Google how a command work and racking your brain to create complicated formulas in your Excel sheet is now a thing of the past. You can become more productive today!
 
 ---
 ## About
