@@ -627,6 +627,14 @@ Format: `count`
 * If 32 of those patients are on long-term antidepressants, the count will also display
   `antidepressants: 32`.
 
+
+**Reasons for usage:**
+
+* You want to know if the hospital is currently oversubscribed.
+* You want to keep track of the hospital's medicine inventory.
+* You want to look at the breakdown of the number of patients taking each type of long-term medication.
+
+
 <sub><sup>[back to top](#back-to-topt), [back to features](#features), [back to segment top](#retrieving-patient-info)</sup></sub>
 
 ---
@@ -649,6 +657,10 @@ Format: `view INDEX`
 
 * The index **must be a positive integer** 1, 2, 3, …​
 * Details are displayed on the patient details panel.
+
+**Reason for usage:**
+
+* You want to view a patient's information in detail. 
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 On startup, the patient details panel will always default to the first patient if present.
@@ -696,6 +708,10 @@ Opens the Help Window, which allows you to copy the URL of the User Guide to you
 
 Format: `help`
 
+**Reason for usage:**
+* You are unsure of the commands available and want to access the User Guide.
+
+
 ### Exiting the program : `exit`
 
 Exits checkUp.
@@ -703,6 +719,10 @@ Exits checkUp.
 Format: `exit`
 
 * GUI settings (window height and width) are preserved during this process.
+
+**Reason for usage:**
+
+* After you have completed your tasks using the app, you want to close the program.
 
 <sub><sup>[back to top](#back-to-topt), [back to features](#features), [back to segment top](#general-commands)</sup></sub>
 
@@ -757,7 +777,7 @@ Similar to other CLI applications, CheckUp supports a few keyboard shortcuts:
   * Navigate past commands with the `UP` and `DOWN` arrow keys.
   * Clear the text currently in the command box with `Ctrl + Shift + C`.
 
-**Reason for usage:**
+**Reasons for usage:**
 
 * You want to quickly access a previously entered command without having to retype it.
 * You want to clear the input line of a long command without having to manually delete it.
