@@ -201,7 +201,7 @@ Now that you've downloaded FindMyIntern, you can start managing your internship 
 
 2. The GUI (Graphical User Interface) similar to the below should appear in a few seconds. FindMyIntern will load some sample data.<br>
    <p align="center">
-       <img src="images/AnnotatedUi.png" />
+       <img id="annotatedUi" src="images/AnnotatedUi.png" />
    </p>
 
 3. Let's add your first internship application with the [`add` command](#adding-an-internship-application-add)!
@@ -227,6 +227,8 @@ Now that you've downloaded FindMyIntern, you can start managing your internship 
 <div style="page-break-after: always;"></div>
 
 ## Features
+
+FindMyIntern has many features and commands available. Before using the commands, here are some things to take note of.
 
 <div class="d-flex alert alert-info">
 <div class="me-3">
@@ -280,7 +282,7 @@ To navigate to a specific command, you can just click on any of the commands to 
 
 #### Adding an internship application: `add`
 
-Adds an internship application to FindMyIntern. Using this command, you can easily add and view the details of your application in the displayed internship application list.
+Adds an internship application to FindMyIntern. Using this command, you can easily add and view the details of your application in the [displayed internship application list](#annotatedUi).
 
 <div class="d-flex alert alert-secondary">
     <div class="me-3">
@@ -369,8 +371,8 @@ Edits an existing internship application in FindMyIntern. Using this command, yo
     </div>
 </div>
 
-* Edits the internship application at the specified `INDEX`. The index refers to the index number shown in the displayed
-  internship application list. The index **must be a positive integer** 1, 2, 3…
+* Edits the internship application at the specified `INDEX`. The index **must be a positive integer** 1, 2, 3…
+  *  The index refers to the index number shown in the current [displayed internship application list](#annotatedUi).
 * At least one of the optional fields must be provided.
 * When editing `INTERVIEW_DATE_TIME`, the [application status](#application-status) will change to "Shortlisted".
 * When editing tags, the existing tags will be removed and replaced with the input tags.
@@ -389,7 +391,7 @@ To change [application status](#application-status), see [`mark` command](#marki
 </div>
 </div>
 
-<div class="d-flex alert alert-warning">
+<div class="d-flex alert alert-warning mb-1">
 <div class="me-3">
   <span class="badge text-bg-warning">WARNING</span>
 </div>
@@ -439,8 +441,8 @@ Marks an internship [application status](#application-status). Using this comman
     </div>
 </div>
 
-* Updates the internship application at the specified `INDEX`. The index refers to the index number shown in the displayed
-  internship application list. The index **must be a positive integer** 1, 2, 3…
+* Updates the internship application at the specified `INDEX`. The index **must be a positive integer** 1, 2, 3…
+    *  The index refers to the index number shown in the current [displayed internship application list](#annotatedUi).
 * Updates the internship application to the specified `APPLICATION_STATUS`.
 * [`APPLICATION_STATUS`](#application-status) is case-insensitive.
 
@@ -448,7 +450,7 @@ Marks an internship [application status](#application-status). Using this comman
 Examples:
 * `mark 3 s/interviewed` - Marks the 3rd internship application status as `interviewed`
 * `mark 2 s/Accepted` - Marks the 2nd internship application status as `accepted`
-* `mark 4 s/rejecteD` - Marks the 4th internship application status as `rejected`
+* `mark 4 s/REJECTED` - Marks the 4th internship application status as `rejected`
 
 <div class="btn-group btn-group-sm mt-2 mb-3">
 <a href="#commands" class="btn btn-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-up me-2"></i>Back to commands</a>
@@ -457,7 +459,7 @@ Examples:
 
 #### Listing all internship applications: `list`
  
-Shows a list of all internship applications. Using this command, you can easily update the displayed internship application list to show you all internship applications, if it has been filtered by `find` or `filter`.
+Shows a list of all internship applications. Using this command, you can easily update the [displayed internship application list](#annotatedUi) to show you all internship applications, if it has been filtered by `find` or `filter`.
 
 <div class="d-flex alert alert-secondary">
     <div class="me-3">
@@ -475,6 +477,8 @@ Shows a list of all internship applications. Using this command, you can easily 
 <a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
 </div>
 
+<div style="page-break-after: always;"></div>
+
 #### Deleting an internship application: `delete`
 
 Deletes an internship application. Using this command, you can easily delete an internship application that you do not want to keep track of.
@@ -490,9 +494,8 @@ Deletes an internship application. Using this command, you can easily delete an 
     </div>
 </div>
 
-* Deletes the internship application at the specified `INDEX`.
-* The `INDEX` refers to the index number shown in the displayed internship application list.
-* The index **must be a positive integer** 1, 2, 3…
+* Deletes the internship application at the specified `INDEX`. The index **must be a positive integer** 1, 2, 3…
+    *  The index refers to the index number shown in the current [displayed internship application list](#annotatedUi).
 
 Examples:
 *  `delete 4` - Deletes the 4th internship application in the list.
@@ -501,8 +504,6 @@ Examples:
 <a href="#commands" class="btn btn-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-up me-2"></i>Back to commands</a>
 <a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
 </div>
-
-<div style="page-break-after: always;"></div>
 
 #### Finding for internship applications or tags: `find`
 
@@ -528,9 +529,10 @@ Finds internship applications where the company's name and tags contain any of t
 </div>
 <div markdown="span">
 **Usage of <code>find</code> command**<br>
-<code>find</code> command finds internship applications from the entire list of internship applications instead of the displayed internship application list.
+<code>find</code> command finds internship applications from the entire list of internship applications instead of the [displayed internship application list](#annotatedUi).
 </div>
 </div>
+<div style="page-break-after: always;"></div>
 
 Examples:
 * `find tiktok` returns internship application(s) and tag(s) containing `tiktok`
@@ -564,13 +566,13 @@ Filters for internship applications of the specified [application status](#appli
 
 * `APPLICATION_STATUS` is case-insensitive.
 
-<div class="d-flex alert alert-info">
+<div class="d-flex alert alert-info mb-1">
 <div class="me-3">
   <span class="badge text-bg-info">INFO</span>
 </div>
 <div markdown="span">
 **Usage of <code>filter</code> command**<br>
-<code>filter</code> command filters internship applications from the entire list of internship applications instead of the displayed internship application list.
+<code>filter</code> command filters internship applications from the entire list of internship applications instead of the [displayed internship application list](#annotatedUi).
 </div>
 </div>
 
@@ -579,7 +581,7 @@ Filters for internship applications of the specified [application status](#appli
   <span class="badge text-bg-info">INFO</span>
 </div>
 <div>
-<b><code><b>filter</b></code> vs <code><b>find</b></code></b><br>
+<b><code>filter</code> vs <code>find</code></b><br>
 <code>filter</code> and <code>find</code> commands may seem similar, here are some differences to take note of:<br>
 <table class="table table-light table-hover">
   <thead>
