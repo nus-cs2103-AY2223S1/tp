@@ -235,8 +235,12 @@ For more information regarding `Export`, you can click [here](#exporting-address
 
 Shows help information that will be useful to you.
 
-Formats: 
-`help`
+Formats:  
+
+To view **general** command information,<br>
+`help`  
+
+To view **specific** command information,<br>
 `help [<command>]`
 
 * To view all the commands, type `help` and press <kbd>Enter</kbd>.
@@ -319,7 +323,7 @@ To add a **tutor**,<br>
 
 * For tutors,
 
-  * `<quallification>` field should only contain alphanumeric characters, commas and spaces, and should not be left blank.
+  * `<qualification>` field should only contain alphanumeric characters, commas and spaces, and should not be left blank.
     <p></p>
   * `<institution>` field should only contain alphanumeric characters and spaces, and should not be left blank.
 
@@ -496,7 +500,7 @@ To edit a **class**, <br>
       2. Secondary 1 to 4
 
     (Abbreviations are also allowed, e.g., "P1" or "Sec 3".)
-  * `<quallification>` field should only contain alphanumeric characters, commas and spaces, and should not be left blank.
+  * `<qualification>` field should only contain alphanumeric characters, commas and spaces, and should not be left blank.
     <p></p>
   * `<institution>` field should only contain alphanumeric characters and spaces, and should not be left blank.
     <p></p>
@@ -622,10 +626,14 @@ Examples:
 
 Adds the next of kin to an existing student. If there is an existing next of kin, it will be overwritten.
 
-Formats:
+Formats:  
+
+To **add** or **overwrite** existing next of kin,<br>
+`nok <index> n/<name> p/<phone> e/<email> a/<address> r/<relationship> [#/tag]…`
+
+To **remove** existing next of kin,<br>
 `nok <index>`
 
-`nok <index> n/<name> p/<phone> e/<email> a/<address> r/<relationship> [#/tag]…`
 
 * The **displayed list** when executing this command must be the **student list**.
 
