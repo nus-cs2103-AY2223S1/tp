@@ -206,11 +206,13 @@ This section will guide you on how to interpret the formats given, so that you c
 
 * **Optional Inputs**<br>
   Inputs in square brackets `[]` are **optional**.<br>
-  e.g. for `add n/<name> [t/<tag>]…`, the following usages are both acceptable: `add n/Alan Poe t/theatre kid`, `add n/Alan Poe`.
+  e.g. for `add n/<name> [t/<tag>]…`, the following usages are both acceptable:<br>
+  `add n/Alan Poe t/theatre kid`, `add n/Alan Poe`.
   
 * **Repeatable Inputs**<br>
   Inputs with `…` can be used **multiple times**, but remember to separate each usage with a space character in between.<br>
-  e.g. in `adddebt <person index…>`, `<person index…>` is an input which can be used as `adddebt 1` or as `adddebt 1 2`.<br>
+  e.g. in `adddebt <person index…>`, `<person index…>` is an input which can be used as:<br>
+  `adddebt 1` or as `adddebt 1 2`.<br>
   e.g. in `add n/<name> [t/<tag>]…`, `[t/<tag>]…` is a pair of [prefix](#glossary-prefix) and input which can be used as `add n/Alan t/Poet` or as `add n/Alan t/Poet t/Friend`.
 
 <div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
