@@ -8,9 +8,10 @@ title: User Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-**Plannit** is an **all-in-one application** that streamlines the execution of module
-deliverables by **empowering NUS students** with the ability to manage **tasks**, **links** and
-**module-mates** (i.e., students in the same module) to increase their productivity.
+**Plannit** is an **all-in-one application** that streamlines the execution 
+of [module deliverables](#4-glossary) by **empowering NUS students** with the ability to 
+manage **tasks**, **links** and **module-mates** (i.e., students in the same 
+module) to increase their productivity.
 
 Plannit will be the **go-to platform** for them to access all modules links and information
 without needing to tediously navigate through multiple websites. Students 
@@ -20,8 +21,8 @@ so that they do not have to worry about unintentionally forgetting their tasks.
 In addition, Plannit allows tracking of student contacts by module.
 Students do not have to worry about forgetting which friend takes which module.
 
-Plannit is **optimized for use via a Command Line Interface (CLI)**
-while still having the benefits of a Graphical User Interface (GUI).
+Plannit is **optimized for use via a [Command Line Interface (CLI)](#4-glossary)**
+while still having the benefits of a [Graphical User Interface (GUI)](#4-glossary).
 If you can type fast, Plannit can help you track your module information and tasks faster than traditional GUI apps!
 
 
@@ -117,8 +118,8 @@ Features marked with * can only be utilised when you are at the home page.
   e.g. in `add-person n/Amy e/amy@gmail.com p/91234567`, `n/`, `e/`, and `p/` are the prefixes used to differentiate
   and identify your input for the three different fields.
 
-* Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
-  e.g. in `add m/MODULE`, `MODULE` is a parameter which can be used as `add m/MODULE`.
+* Words in `UPPER_CASE` are the [parameters](#4-glossary) to be supplied by you.<br>
+  e.g. in `add m/MODULE`, `MODULE` is a [parameter](#4-glossary) which can be used as `add m/MODULE`.
 
 * Items in square brackets are optional.<br>
   e.g. `n/NAME [e/EMAIL]` can be used as `n/John Doe e/john@u.nus.edu` or as `n/John Doe`.
@@ -134,11 +135,11 @@ to be present.
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of
+* If a [parameter](#4-glossary) is expected only once in the command but you specified it multiple times, only the last occurrence of
 the parameter will be taken.<br>
   e.g. if you specify `p/81234123 p/99999999`, only `p/99999999` will be taken.
 
-* Any parameter in commands that do not take in parameters (such as
+* Any [parameter](#4-glossary) in commands that do not take in parameters (such as
   [`home`](#252-navigate-to-home), [`list-module`](#215-list-module), [`list-person`](#247-list-person),
   [`clear`](#26-clear-data), [`help`](#27-view-help), and [`exit`](#28-exiting-the-program)) will be ignored.<br>
   e.g. if the command specifies `home 123`, it will be interpreted as [`home`](#252-navigate-to-home).
@@ -1000,9 +1001,24 @@ all data and start with an empty data file at the next run.
 
 --------------------------------------------------------------------------------------------------------------------
 ## 3. FAQ
+**Q**: I noticed a bug in the application. Is there an avenue to report it?<br>
+**A**: You may create an issue on our [GitHub repository](https://github.com/AY2223S1-CS2103T-T10-1/tp/issues).
+
+**Q**: Can I add my friend's Telegram handle to Plannit?<br>
+**A**: Plannit has no limit of the length of person names. Hence, you may
+consider adding your friend's Telegram handle to the person name when [adding him or her to Plannit](#241-add-person).
+
 **Q**: How do I transfer my data to another computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with
 the file that contains the data of your previous Plannit home folder.
+
+**Q**: Can I restore a module, link, task or contact which I have removed by 
+accident?<br>
+**A**: Unfortunately, the current version of Plannit does not support
+undo-ing of commands, and any lost data will not be recovered.
+
+**Q**: Can I change the colour theme of Plannit?<br>
+**A**: Unfortunately, Plannit is currently only available in dark mode.
 <br>
 <br>
 
@@ -1012,6 +1028,10 @@ the file that contains the data of your previous Plannit home folder.
 
 ## 4. Glossary
 
-| Term                  | Meaning                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-|-----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **local-part@domain** | The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-).<br>The local-part may not start or end with any special characters. <br> <br>This is followed by a '@' and then a domain name. <br> <br>The domain name is made up of domain labels separated by periods. The domain name must: <br> 1) end with a domain label at least 2 characters long <br> 2) have each domain label start and end with alphanumeric characters <br> 3) have each domain label consist of alphanumeric characters, separated only by hyphens, if any. |
+| Term                               | Meaning                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+|------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Command Line Interface (CLI)**   | An application which interacts with users through text. Users provide inputs as text commands and results are given to users as text outputs.                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| **Graphical User Interface (GUI)** | An application which interacts with users through visual elements such as windows, icons, menus and buttons.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| **local-part@domain**              | The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-).<br>The local-part may not start or end with any special characters. <br> <br>This is followed by a '@' and then a domain name. <br> <br>The domain name is made up of domain labels separated by periods. The domain name must: <br> 1) end with a domain label at least 2 characters long <br> 2) have each domain label start and end with alphanumeric characters <br> 3) have each domain label consist of alphanumeric characters, separated only by hyphens, if any. |
+ | **Module deliverables**            | Anything that the module requires you to complete.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+ | **Parameter**                      | The input (of a specific field) which you wish to supply to the application.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
