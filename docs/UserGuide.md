@@ -623,8 +623,8 @@ In this section, we list all the parameters you will encounter of following comm
 
 
 #### 4.4.2. View your schedule: `sview`
-
-Views the list of all schedules.
+ 
+You can use this command to view the list of all of your schedules.
 
 **Format:** `sview`
 
@@ -632,7 +632,7 @@ Views the list of all schedules.
 
 #### 4.4.3. View your timetable: `tview`
 
-Views the timetable of all schedules.
+You can use this command to view your timetable, consisting of all of your schedules.
 
 **Format:** `tview [MODE]`
 
@@ -673,6 +673,7 @@ If the command is `tview v` in previous example step 1, the vertical timetable w
 
 ![tview_v_step2](images/userguide/tview_v_step2.png)
 
+<div style="page-break-after: always;"></div>
 
 #### 4.4.4. Add your schedule: `sadd`
 
@@ -711,10 +712,11 @@ Now, let's use `sadd` to add a schedule with following information:
 
 ![sadd_step2](images/userguide/sadd_step2.png)
 
+<div style="page-break-after: always;"></div>
 
 #### 4.4.5. Edit your schedule: `sedit`
 
-Edits a schedule in ProfNUS.
+You can use this command to edit a schedule in ProfNUS.
 
 **Format:** `sedit INDEX [c/MODULE_CODE] [w/WEEKDAY] [ct/PERIOD] [cc/CLASS_TYPE] [cg/CLASS_GROUP] [cv/VENUE] `
 
@@ -750,10 +752,11 @@ Now, let's use `sedit` command to edit a schedule with the following information
 
 ![sedit_step2](images/userguide/sedit_step2.png)
 
+<div style="page-break-after: always;"></div>
 
 #### 4.4.6. Delete your schedule: `sdelete`
 
-Deletes a schedule from ProfNUS.
+You can use this command to delete a schedule from ProfNUS.
 
 **Format:** `sdelete INDEX`
 
@@ -788,7 +791,7 @@ Now, let's use `sdelete` command and delete the first schedule in your schedule 
 
 #### 4.4.7. Clear your schedule: `sclear`
 
-Clears all the schedules or all schedules of selected modules.
+You can use this command to clear all the schedules or all schedules of a selected module in ProfNUS.
 
 **Format:** `sclear [c/MODULE_CODE]...`
 
@@ -823,27 +826,29 @@ Now, let's use `sclear` to clear all schedules of CS2101 and CS2103T in the sche
 
 ![sclear_step2](images/userguide/sclear_step2.png)
 
+<div style="page-break-after: always;"></div>
+
 ### 4.5. Clearing all entries: `clear`
 
-Clears all entries from ProfNUS.
+You can use this command to clear all entries from ProfNUS.
 
 **Format:** `clear`
 
 ### 4.6. Exiting the program: `exit`
 
-Exits the program.
+You can use this command to exit ProfNUS.
 
 **Format:** `exit`
 
 ### 4.7. Saving the data
 
-ProfNUS data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Your data that you entered into ProfNUS is saved in the hard disk automatically after any command that changes the data. There is no need for you to save it manually.
 
 ### 4.8. Editing the data
-ProfNUS data are saved as a JSON file `[JAR file location]/data/profnus.json`. Advanced users are welcome to update data directly by editing that data file.
+Your data in ProfNUS is saved as a JSON file `[JAR file location]/data/profnus.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, ProfNUS will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, ProfNUS will discard all of your current data and start with an empty data file at the next run.
 </div>
 
 <div style="page-break-after: always;"></div>
@@ -852,7 +857,7 @@ If your changes to the data file makes its format invalid, ProfNUS will discard 
 ## 5. FAQ
 
 **Q:** How do I transfer my data to another Computer?<br>
-**A:** Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ProfNUS home folder.
+**A:** You can install ProfNUS in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ProfNUS home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
