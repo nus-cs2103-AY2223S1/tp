@@ -62,8 +62,12 @@ So, what are you waiting for? Start revolutionizing your financial advising jour
 5. [Command Summary](#command-summary)
 6. [Glossary](#glossary)
 
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak 
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
+
 
 ## Quick start
 1. Ensure you have Java `11` or above installed on your Computer. (Installation Guides: [Mac User](https://www.geeksforgeeks.org/how-to-install-java-on-macos/), [Windows User](https://phoenixnap.com/kb/install-java-windows))
@@ -76,6 +80,9 @@ So, what are you waiting for? Start revolutionizing your financial advising jour
 ![Ui.png](./images/Ui.png)
 
 5. Not sure where to start? The following section is a detailed Tutorial on how to use the Application. Feel free to [skip](#features-overview) this section if you are confident in using the application.
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak 
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -205,7 +212,9 @@ As such, the features available to you are split into **4** main features:
 3. [Policy Features](#policy-features): Here you can find all features related to keeping track of all your policies 
 4. [Event Features](#event-features): Here you can find all features related to keeping track of all your important appointments
 
-
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak 
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -277,6 +286,10 @@ Below is an example of what your JSON File should look like:
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, LTNS will discard all data and start with an empty data file at the next run.
+</div>
+
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak 
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -478,6 +491,10 @@ Remember pinning Bernice previously? Now you will be able to see Bernice's conta
 An existing client in your Client list can be assigned to an Event or Policy.<br>
 To find out how to do so, you can refer to the [Adding an Event](#adding-an-event-addevent) guide to assign a Client to an Event or refer to the [Assigning a Policy to a Client](#assigning-a-policy-to-a-client--assign) guide to find out how you can assign a Client to a Policy.
 
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak 
+</div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Policy Features
@@ -663,6 +680,9 @@ Example Usage:
 Below is an example result of the command `viewIncome 2000`, which displays the three year expected income starting from year 2000.
 ![result for 'viewIncome 2000'](images/viewIncome.png)
 
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak 
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -817,6 +837,10 @@ Note that at the time of writing, the current date is `November 9, 2022`.
 Hence, we display all events from `November 9, 2022 - November 16, 2022`.
 ![result for 'calendar'](images/viewCalendarSuccessful.png)
 
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak 
+</div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -852,6 +876,9 @@ A: Similarly, let us know which coverage you require by [contacting us](#contact
 Q: What do I do if the user guide does not address my concern? <br/>
 A: Fret not! Simply [reach out to us](#contact-us), and we will reply within three working days!
 
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak 
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1074,6 +1101,10 @@ Ready to try some examples? Navigate back to FindEvent command section [here](#s
 * For better clarity, `INDEX` has been placed in parentheses to denote clearly which index is being referred to (either CLIENT, POLICY or EVENT). At the same time, it is compulsory to include `INDEX`.
   <br> E.g: `(INDEX of EVENT)` refers to index from a list of events.
 
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak 
+</div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Glossary 
@@ -1101,6 +1132,10 @@ A standard of measurement. In the case of LTNS, a metric in sorting or searching
 
 #### Income Bracket
 Various income level ranges categorised by levels. LTNS uses the Inland Revenue Authority of Singapore's (IRAS) measurement of an income bracket.
+
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak 
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
