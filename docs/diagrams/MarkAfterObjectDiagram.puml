@@ -1,0 +1,29 @@
+@startuml
+!include style.puml
+skinparam ClassFontColor #000000
+skinparam ClassBorderColor #000000
+skinparam linetype ortho
+hide empty methods
+show members
+hide empty members
+
+title Final state after executing the <plain><font:monospaced><back:lightgray>MarkCommand</back></font></plain>
+
+Package Model {
+    class NewPerson as "__newPerson1:Person__"
+        class DebtList as "__newList:DebtList__"
+        object "__1:Debt__" as Debt1
+        object "__copyOf2:Debt__" as Debt2
+        object "__copyOf3:Debt__" as Debt3
+}
+
+Debt1 : isPaid = false
+Debt2 : isPaid = true
+Debt3 : isPaid = true
+
+NewPerson --> DebtList
+DebtList --> Debt1
+DebtList --> Debt2
+DebtList --> Debt3
+
+@end

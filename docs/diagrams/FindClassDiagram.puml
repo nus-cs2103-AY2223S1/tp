@@ -1,0 +1,75 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR_T4
+skinparam classBackgroundColor LOGIC_COLOR
+
+package "Model" MODEL_COLOR_T1 {
+Class PersonMatchesDescriptorPredicate MODEL_COLOR
+Class Name MODEL_COLOR
+Class Address MODEL_COLOR
+Class Telegram MODEL_COLOR
+Class Tag MODEL_COLOR
+Class Phone MODEL_COLOR
+Class Description MODEL_COLOR
+Class Money MODEL_COLOR
+Class DebtDate MODEL_COLOR
+Class DebtTime MODEL_COLOR
+}
+
+package "Logic" LOGIC_COLOR_T1 {
+Class "<<interface>>\nParser" as Parser
+Class AddressBookParser
+Class FindCommandParser
+Class FindCommand
+Class ParserUtil
+Class ArgumentMultimap
+Class ArgumentTokenizer
+Class Prefix
+Class PersonDescriptor
+Class DebtsDescriptor
+Class "{abstract}\nCommand" as Command
+Class FindCommand
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> AddressBookParser
+
+AddressBookParser .down.> FindCommandParser: creates >
+
+FindCommandParser ..> FindCommand : creates >
+AddressBookParser ..> Command : returns >
+FindCommandParser .up.|> Parser
+FindCommandParser ..> ArgumentMultimap
+FindCommandParser ..> ArgumentTokenizer
+ArgumentTokenizer ..> ArgumentMultimap
+FindCommandParser ..> Prefix
+FindCommandParser ..> ParserUtil
+FindCommandParser .right.> PersonMatchesDescriptorPredicate
+PersonMatchesDescriptorPredicate ..> PersonDescriptor
+PersonMatchesDescriptorPredicate ..> DebtsDescriptor
+PersonMatchesDescriptorPredicate .up.> Name
+PersonMatchesDescriptorPredicate .up.> Address
+PersonMatchesDescriptorPredicate .up.> Phone
+PersonMatchesDescriptorPredicate .up.> Telegram
+PersonMatchesDescriptorPredicate .up.> Tag
+PersonMatchesDescriptorPredicate .down.> Description
+PersonMatchesDescriptorPredicate .down.> Money
+PersonMatchesDescriptorPredicate .down.> DebtDate
+PersonMatchesDescriptorPredicate .down.> DebtTime
+FindCommandParser .up.> PersonDescriptor
+PersonDescriptor ..> Name
+PersonDescriptor ..> Address
+PersonDescriptor ..> Phone
+PersonDescriptor ..> Telegram
+PersonDescriptor ..> Tag
+FindCommandParser .down.> DebtsDescriptor
+DebtsDescriptor ..> Description
+DebtsDescriptor ..> Money
+DebtsDescriptor ..> DebtDate
+DebtsDescriptor ..> DebtTime
+ParserUtil .down.> Prefix
+ParserUtil ..> ArgumentMultimap
+ArgumentTokenizer .down.> Prefix
+FindCommand -up-|> Command
+@enduml

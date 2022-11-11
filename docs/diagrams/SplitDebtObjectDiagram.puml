@@ -1,0 +1,33 @@
+@startuml
+!include style.puml
+skinparam ClassFontColor #000000
+skinparam ClassBorderColor #000000
+
+title Final state after parsing the <plain><font:monospaced><back:lightgray>splitdebt</back></font></plain> example
+
+class SplitDebtCommand as "__:SplitDebtCommand__"
+class IndexOne as "__Person1:Index__"
+class IndexTwo as "__Person2:Index__"
+
+package Debt {
+    class Debt as "__debtSplitByThree:Debt__"
+    class Description as "__pizza:Description__"
+    class Money as "__10:Money__"
+    class DebtDate as "__currentDate:DebtDate__"
+    class DebtTime as "__currentTime:DebtTime__"
+}
+
+IndexOne -[hidden]> IndexTwo
+SplitDebtCommand --> "index" IndexOne
+SplitDebtCommand --> "index" IndexTwo
+SplitDebtCommand --> Debt
+
+Debt --> Description
+Debt --> Money
+Debt --> DebtDate
+Debt --> DebtTime
+
+Description -[hidden]> Money
+Money -[hidden]> DebtDate
+DebtDate -[hidden]> DebtTime
+@end

@@ -5,55 +5,56 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the email `paymelah.app@gmail.com`
 
 ## Project team
 
-### John Doe
+### Chen Lyuting
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/lyuting47.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/lyuting47)]
+[[portfolio](team/lyuting47.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Code Quality
 
-### Jean Doe
+### Wayne Zhang Si Yuan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/waynezsy.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/waynezsy)]
+[[portfolio](team/waynezsy.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Team Lead, Deliverables and Deadlines
+
+### Wong Rende
+
+<img src="images/wr3nd3.png" width="200px">
+
+[[github](http://github.com/wr3nd3)]
+[[portfolio](team/wr3nd3.md)]
+
+* Role: Developer
+* Responsibilities: Documentation
+
+### Samuel Tan
+
+<img src="images/tsammeow.png" width="200px">
+
+[[github](http://github.com/tsammeow)]
+[[portfolio](team/tsammeow.md)]
+
+* Role: Developer
+* Responsibilities: Testing
+
+### Bryan Yang
+
+<img src="images/thesoggy.png" width="200px">
+
+[[github](http://github.com/thesoggy)]
+[[portfolio](team/thesoggy.md)]
+
+* Role: Developer
+* Responsibilities: Integration
