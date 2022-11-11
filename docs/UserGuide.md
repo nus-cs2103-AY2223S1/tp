@@ -33,7 +33,7 @@ can also serve as a reference for experienced users, with a convenient [Command 
 
 <div markdown="block" class="alert alert-info">
 
-**:notebook: Notes about data storage without internet connection:**<br>
+:notebook: **Notes about data storage without internet connection:**<br>
 We store this data locally on your device. This means that you can benefit from extremely quick loading times!
 
 </div>
@@ -100,7 +100,7 @@ Do **take some time to read the following note** to better understand how you ca
 
 <div markdown="block" class="alert alert-info">
 
-**:notebook: Notes about the command format:**<br>
+:notebook: **Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
   e.g. in `get /n NAME`, `NAME` is a parameter which can be used as `get /n John Doe`.
@@ -175,7 +175,7 @@ A patient can have any number of medications (including 0)!
 
 <div markdown="block" class="alert alert-info">
 
-**:notebook: Notes about Patient Type:**<br>
+:notebook: **Notes about Patient Type:**<br>
 When the patient is an outpatient, `add` will throw an error if any values are input for the `hw/`, `fn/` and `wn/` fields.
 Similarly, for an inpatient, `add` will throw an error if values are **not** input any of the `hw/`, `fn/` and `wn/` fields.
 Please see the [Examples](#add-examples) below for more information.
@@ -238,7 +238,7 @@ Edits the details of the patient specified by the index number used in the patie
 
 <div markdown="block" class="alert alert-info">
 
-**:notebook: Notes about Patient Type:**<br>
+:notebook: **Notes about Patient Type:**<br>
 When the patient type is edited from an inpatient to an outpatient and subsequently back to an inpatient, 
 you will have to manually input the hospital wing, floor number and ward number again.
 </div>
@@ -697,7 +697,7 @@ Displays the details of a patient specified by the index number from the patient
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:**<br>
+:notebook: **Notes about the `view` command :**<br>
 On startup, the patient details panel will always default to the first patient if present.
 <br>
 It will also automatically focus onto the most recent patient added or edited.
