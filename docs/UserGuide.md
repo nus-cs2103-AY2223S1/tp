@@ -150,7 +150,7 @@ components are numbered, and their names and descriptions will be displayed in a
 
 ![Teams Section](images/TeamsSection.png)
 
-This section displays the names of all the teams that you have created in TruthTable. Only the names of each team is
+This section displays the names of all the teams that you have created in TruthTable. Only the names of each team are
 listed.
 
 <div markdown="block" class="alert alert-primary">**:information_source: Note:**
@@ -173,13 +173,13 @@ description, links, tasks, and members related to this team.
 |-----------------------------------------------|-------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | <span class="text-with-color green">1</span>  | <span class="text-with-color green">Team Name</span>              | <span class="text-with-color green">The name of the selected team</span>                                                                                                  |  
 | <span class="text-with-color green">2</span>  | <span class="text-with-color green">Team Description</span>       | <span class="text-with-color green">The description of the selected team</span>                                                                                           |
-| <span class="text-with-color green">3</span>  | <span class="text-with-color green">Link Index</span>             | <span class="text-with-color green">The name of a link related to the selected team</span>                                                                                |
+| <span class="text-with-color green">3</span>  | <span class="text-with-color green">Link [Index](#index)</span>   | <span class="text-with-color green">The name of a link related to the selected team</span>                                                                                |
 | <span class="text-with-color green">4</span>  | <span class="text-with-color green">Link Name</span>              | <span class="text-with-color green">The name of a link related to the selected team</span>                                                                                |
 | <span class="text-with-color green">5</span>  | <span class="text-with-color green">Member [Index](#index)</span> | <span class="text-with-color green">The position of a member in the team's list of members</span>                                                                         |
 | <span class="text-with-color green">6</span>  | <span class="text-with-color green">Member Name</span>            | <span class="text-with-color green">The name of a member at the specified member index</span>                                                                             |
 | <span class="text-with-color green">7</span>  | <span class="text-with-color green">Task [Index](#index)</span>   | <span class="text-with-color green">The position of a task in the team's list of tasks</span>                                                                             |
 | <span class="text-with-color green">8</span>  | <span class="text-with-color green">Task Name</span>              | <span class="text-with-color green">The name of a task at the specified task index</span>                                                                                 |
-| <span class="text-with-color green">9</span>  | <span class="text-with-color green">Task Assignee</span>          | <span class="text-with-color green">The name(s) of the member(s) assigned to the task</span>                                                                              |
+| <span class="text-with-color green">9</span>  | <span class="text-with-color green">Task Assignee(s)</span>       | <span class="text-with-color green">The name(s) of the member(s) assigned to the task</span>                                                                              |
 | <span class="text-with-color green">10</span> | <span class="text-with-color green">Task Completion Status</span> | <span class="text-with-color green">The completion status of a task. `[X]` is displayed if task is completed, whereas `[ ]` is displayed if the task is incomplete</span> |
 | <span class="text-with-color green">11</span> | <span class="text-with-color green">Task Completion Rate</span>   | <span class="text-with-color green">The number (and percentage) of tasks that have been completed by the selected team</span>                                             |
 
@@ -402,12 +402,6 @@ The commands are split into **5** main sections:
 4. [Link commands](#commands-to-manage-links)
 5. [General commands](#general-commands)
 
-<div markdown="block" class="alert alert-primary">**:information_source: Command Format**
-
-The format for each command adheres to the structure laid out in the
-[help command section](#example-command-help-message-assign-task---help).
-</div>
-
 <div markdown="block" class="alert alert-primary">**:information_source: Parameters and Constraints**
 
 Parameters are written in uppercase and wrapped with angle brackets (e.g. `<PARAMETER>`) in this guide.
@@ -510,7 +504,7 @@ A person can have any number of tags (including 0).
 
 * `add person -n "John Doe" -p 98765432 -e johnd@example.com` adds a person named "John Doe", with phone number
   "98765432" and email "johnd@example.com".
-* `a p -n "Betsy Crowe" -e betsycrowe@example.com -p 12345678 -t criminal friend` adds a person named "Betsy Crowe",
+* `a p -n "Betsy Crowe" -e betsycrowe@example.com -p 12345678 -t designer friend` adds a person named "Betsy Crowe",
   with phone number "12345678" and tags "designer" and "friend".
 
 #### Editing a person: `edit person`
@@ -523,13 +517,13 @@ shown in the [persons section](#persons-section). As always, don't panic if you 
 error message. Let us run through an example on how to edit the details of a person.
 
 Suppose your classmate, Alex Yeoh, has provided you with the wrong phone and email. Identify the index number of
-`Alex Yeoh` in the application (1 in the image below). If you are not able to find their name, refer to
+"Alex Yeoh" in the application (1 in the image below). If you are not able to find their name, refer to
 [find person command](#finding-a-person-find-person) on how you can find them.
 
 Then, enter the command `edit person 1 -p 91234567 -e johndoe@example.com`.
 
 If done successfully, you should see the new details show up under in the [persons section](#persons-section)
-under `Alex Yeoh` as seen below. 
+under "Alex Yeoh" as seen below. 
 
 ![Edit Person Example](images/EditPersonExample.png)
 
@@ -550,6 +544,10 @@ above [add person command](#creating-a-new-person-add-person) to add a new perso
 
 :asterisk: - at least one of the flags for email, name, phone, and tags must be specified
 
+<div markdown="block" class="alert alert-success">**:bulb: Tip**:
+To remove all tags of a person, you can use `-t` without specifying any tags.
+</div>
+
 Please take note that:
 
 * The command edits the person at the specified `PERSON_INDEX`, which refers to the index number shown in the
@@ -557,10 +555,6 @@ Please take note that:
 * `PERSON_INDEX` **must be a positive integer:** 1, 2, 3,...
 * Each field only updates if the flag for that field is specified.
 * When editing tags, the existing tags of the person will be **completely replaced** by the new tags specified.
-
-<div markdown="block" class="alert alert-success">**:bulb: Tip**:
-To remove all tags of a person, you can use `-t` without specifying any tags.
-</div>
 
 **Command Aliases:**
 
@@ -582,14 +576,14 @@ can delete their contact details easily with `delete person`!
 The `delete person` command allows you to delete the specified person from TruthTable. The person deleted will be
 removed from the [persons section](#persons-section). Let us run through an example on how you can delete a person in TruthTable.
 
-Suppose you want to delete Alex Yeoh from your application. Identify the index number of `Alex Yeoh` in the
+Suppose you want to delete Alex Yeoh from your application. Identify the index number of "Alex Yeoh" in the
 application (1 in the image below). First, identify the index number of your classmate in the
 [persons section](#persons-section). If you are not able to find their name, refer to
 [find command](#finding-a-person-find-person) on how you can find them.
 
 Then, enter the command `delete person 1`.
 
-If done successfully, you should see that the person `Alex Yeoh` has been removed under the 
+If done successfully, you should see that the person "Alex Yeoh" has been removed under the 
 [persons section](#persons-section).
 
 ![Delete Person Example](images/DeletePersonExample.png)
@@ -603,7 +597,6 @@ above [add person command](#creating-a-new-person-add-person) to add a new perso
 | Flags          | Required | Remarks                                                                |
 |----------------|----------|------------------------------------------------------------------------|
 | `-h`, `--help` | :x:      | Shows [help message](#understanding-the-help-message) for this command |
-
 
 Please take note that: 
 
@@ -677,7 +670,7 @@ Please take note that:
 
 If you want to see all the persons you have added to TruthTable, key in `list persons`, and they will all
 appear in the [persons section](#persons-section). This is especially helpful if you have previously run the
-[`find person`](#finding-a-person-find-person) command previously.
+[`find person`](#finding-a-person-find-person) command.
 
 The `list persons` command shows the list of all persons in TruthTable. 
 
@@ -709,19 +702,19 @@ add them to your team. You can add persons to your team with the `add member` co
 on some exciting software engineering projects with them!
 
 The `add member` command allows you to add a new team member in your currently selected team. The new member is added
-to the member list in the [current team section](#current-team-section) as seen in the image below.
+to the member list in the [current team section](#current-team-section).
 
-Unsure of which team you are currently on? Please refer to the [current team section](#current-team-section) 
+Unsure of which team you are currently on? Please refer to the [current team section](#current-team-section).
 
 Here, let us take a quick walk-through on how to add a person.
 
-Let us try to add a new person called Alex Yeoh to our team. Identify the index number of `Alex Yeoh` in the 
-application (1 in the image below). If you are not able to see their name in the list of persons, refer to [find person command](#finding-a-person-find-person) on how to
-find a person.
+Let us try to add a new person called Alex Yeoh to our team. Identify the index number of "Alex Yeoh" in the 
+application (1 in the image below). If you are not able to see their name in the list of persons, refer to 
+[find person command](#finding-a-person-find-person) on how to find a person.
 
 Then, enter the command `add member 1`.
 
-If done successfully, you should see a new member `Alex Yeoh` show up in the member list in the 
+If done successfully, you should see a new member "Alex Yeoh" show up in the member list in the 
 [current team section](#current-team-section) as seen below. 
 
 ![Add Member Example](images/AddMemberExample.png)
@@ -731,6 +724,8 @@ If done successfully, you should see a new member `Alex Yeoh` show up in the mem
 | Flags          | Required | Remarks                                                                |
 |----------------|----------|------------------------------------------------------------------------|
 | `-h`, `--help` | :x:      | Shows [help message](#understanding-the-help-message) for this command |
+
+Please take note that:
 
 * `PERSON_INDEX` **must be a positive integer:** 1, 2, 3,...
 
@@ -751,32 +746,33 @@ Due to unfortunate circumstances, one of your teammates needs to be shuffled to 
 be on your team! You can delete members from your team using the `delete member` command.
 
 The `delete member` command allows you to delete an existing team member in your currently selected team. 
-The corresponding team member will be removed from the [current team section](#current-team-section) as seen in the 
-image below. 
+The corresponding team member will be removed from the [current team section](#current-team-section). 
 
 Unsure of what team you are currently on? Please refer to the [currently selected team](#current-team-section) 
 
 Here, let us take a quick walk-through on how to delete a member.
 
-Let us delete Alex Yeoh from our team. Firstly, identify the index number of `Alex Yeoh` in the
+Let us delete Alex Yeoh from our team. Firstly, identify the index number of "Alex Yeoh" in the
 member list (1 in the image below). If you are not able to see their name on the list, 
-refer to[find member command](#finding-a-member-find-member)
+refer to the [find member command](#finding-a-member-find-member)
 
 Then, enter the command `delete member 1`.
 
-If done successfully, `Alex Yeoh` should be removed from the [current team section](#current-team-section) as seen below.
+If done successfully, "Alex Yeoh" should be removed from the [current team section](#current-team-section) as seen below.
 
 ![Delete Member Example](images/DeleteMemberExample.png)
 
 Unable to delete an existing team member? Please check that you have added the team member into your team as shown in 
-the [current team section](#current-team-section). Refer to the above 
-[add member command](#adding-a-new-member-to-the-team-add-member) on how to add a new team member.
+the [current team section](#current-team-section). Refer to the  
+[add member command](#adding-a-new-member-to-the-team-add-member) above on how to add a new team member.
 
 **Format:** `delete member [-h] <MEMBER_INDEX>`
 
 | Flags          | Required | Remarks                                                                |
 |----------------|----------|------------------------------------------------------------------------|
 | `-h`, `--help` | :x:      | Shows [help message](#understanding-the-help-message) for this command |
+
+Please take note that:
 
 * `MEMBER_INDEX` **must be a positive integer:** 1, 2, 3,...
 
@@ -796,8 +792,7 @@ As your software project is growing and your team is getting bigger, you are no 
 members. You can find your team members easily with the `find member` command.  
 
 The `find member` command allows you to find all team members whose names or emails contain any of the given keywords.
-The members with matching names will be shown in the member list in the [current team section](#current-team-section)
-as seen in the image below. 
+The members with matching names will be shown in the member list in the [current team section](#current-team-section). 
 
 Let us run through the steps to find a team member.
 
@@ -811,8 +806,8 @@ If done successfully, you should the see all team members named Alex and David s
 ![Find Member Example](images/FindMemberExample.png)
 
 Unable to find an existing team member? Please check that you have added the team member into your team as shown in the
-[current team section](#current-team-section). Refer to the above
-[add member command](#adding-a-new-member-to-the-team-add-member) on how to add a new team member.
+[current team section](#current-team-section). Refer to the 
+[add member command](#adding-a-new-member-to-the-team-add-member) above on how to add a new team member.
 
 To reset the member list, see the [list members command](#listing-all-members-of-the-team-list-members).
 
@@ -863,8 +858,8 @@ updated.
 ![List Members Example](images/ListMembersExample.png)
 
 Unable to find an existing team member? Please check that you have added the team member into your team as shown in the
-[current team section](#current-team-section). Refer to the above
-[add member command](#adding-a-new-member-to-the-team-add-member) on how to add a new team member.
+[current team section](#current-team-section). Refer to the 
+[add member command](#adding-a-new-member-to-the-team-add-member) above on how to add a new team member.
 
 View all the members currently in the team, in the form of a list.
 
@@ -885,7 +880,7 @@ View all the members currently in the team, in the form of a list.
 Your team size is getting larger, and it is getting confusing for you to track the members in your team. You can sort your team members by name with our `sort members` command! 
 
 The `sort members` command allows you to sort your team members in alphabetical order. The sorted team members will
-be shown in member list the [current team section](#current-team-section)  as seen in the image below.
+be shown in member list the [current team section](#current-team-section).
 
 Let us run through an example on how to sort your team members.
 
@@ -903,8 +898,8 @@ sort your team members in descending order with `sort members dsc` or reset to t
 ![Sort Members Example](images/SortMembersExample.png)
 
 Unable to find an existing team member? Please check that you have added the team member into your team as shown in the
-[current team section](#current-team-section). Refer to the above
-[add member command](#adding-a-new-member-to-the-team-add-member) on how to add a new team member.
+[current team section](#current-team-section). Refer to the 
+[add member command](#adding-a-new-member-to-the-team-add-member) above on how to add a new team member.
 
 **Format:** `sort members [-h] <ORDER>`
 
@@ -939,7 +934,7 @@ Summary of the commands to manage teams can be found [here](#summary-of-team-com
 You have formed your group for the project and are ready to work on your software engineering project! After deciding on a team name and a description, you are now ready to create a new team. 
 
 The `add team` command allows you to add a new team to your list of teams. The new team is added to the 
-[teams section](#teams-section) as seen in the image below.
+[teams section](#teams-section).
 
 Here, let us take a quick walk-through on how to add a team.
 
@@ -973,14 +968,15 @@ Combine this with [set team command](#set-a-new-team-set-team) to directly switc
 
 #### Edit current team: `edit team`
 
-After a while, your group decides to change its team name. You are able to edit both, the name and the description, of a team with the `edit team` command.
+After a while, your group decides to change its team name. You are able to edit both the name and the description of a 
+team with the `edit team` command.
 
 The `edit team` command allows you to edit the details your currently selected team. The edited team details will be 
 shown in the [currently selected team](#current-team-section). 
 
 Here, let us take a quick walk-through on how to edit your currently selected team.
 
-Supposed you have decided on better team name `NUS TruthTable` 
+Suppose you have decided on better team name `NUS TruthTable` 
 
 Enter the command `edit team -n "NUS TruthTable"`.
 
@@ -1028,7 +1024,7 @@ If done successfully, you should see the team `CS2103T` removed under the [teams
 ![Delete Team Example](images/DeleteTeamExample.png)
 
 Unable to find the team that you want to delete? Please check that you have added the team into TruthTable as shown in the
-[teams section](#teams-section). Refer to the above [add team command](#creating-a-new-team-add-team) 
+[teams section](#teams-section). Refer to the [add team command](#creating-a-new-team-add-team) above
 on how to add a new team.
 
 **Format:** `delete team [-h] <TEAM_NAME>`
@@ -1065,7 +1061,7 @@ with all of its team information, as shown below.
 ![Set Team Example](images/SetTeamExample.png)
 
 Unable to find the team that you want to check? Please check that you have added the team into TruthTable as shown in 
-the [teams section](#teams-section). Refer to the above [add team command](#creating-a-new-team-add-team)
+the [teams section](#teams-section). Refer to the [add team command](#creating-a-new-team-add-team) above
 on how to add a new team.
 
 **Format:** `set team [-h] <TEAM_NAME>`
@@ -1121,6 +1117,8 @@ Please refer to the respective commands on how to
 | `-h`, `--help`     | :x:      | Shows [help message](#understanding-the-help-message) for this command |
 | `-d`, `--deadline` | :x:      | Deadline of task (e.g. 2023-02-25 23:59)                               |  
 | `-a`, `--assignee` | :x:      | Index of members in [members section](#current-team-section)           |
+
+Please take note that:
 
 * `TASK_DEADLINE` contains both the date and time in `YYYY-MM-DD HH:MM` format, and it **does not have quotation marks
   (`""`)
@@ -1214,7 +1212,7 @@ Please take note that:
 
 #### Delete task from team: `delete task`
 
-You realise that the task that you created is actually not very important, and you'd like to remove it. You can delete the tasks easily with `delete task`! 
+You realize that the task that you created is actually not very important, and you'd like to remove it. You can delete the tasks easily with `delete task`! 
 
 The `delete task` command allows you to delete the specified task from TruthTable. The task deleted will be
 removed from the task list of the [current team section](#current-team-section). Let us run through an example on how to delete a
@@ -1239,6 +1237,8 @@ above [add task command](#add-task-to-team-add-task) to add a new task into Trut
 | Flags          | Required | Remarks                                                                |
 |----------------|----------|------------------------------------------------------------------------|
 | `-h`, `--help` | :x:      | Shows [help message](#understanding-the-help-message) for this command |
+
+Please take note that:
 
 * `TASK_INDEX` **must be a positive integer:** 1, 2, 3,...
 
@@ -1332,6 +1332,8 @@ To undo this command, please see the [unmark command](#unmark-tasks-as-done-unma
 |----------------|----------|------------------------------------------------------------------------|
 | `-h`, `--help` | :x:      | Shows [help message](#understanding-the-help-message) for this command |
 
+Please take note that:
+
 * `TASK_INDEX` **must be a positive integer:** 1, 2, 3,...
 
 **Command Aliases:**
@@ -1374,6 +1376,8 @@ To undo this command, please see the [mark command](#mark-tasks-as-done-mark).
 |----------------|----------|------------------------------------------------------------------------|
 | `-h`, `--help` | :x:      | Shows [help message](#understanding-the-help-message) for this command |
 
+Please take note that:
+
 * `TASK_INDEX` **must be a positive integer:** 1, 2, 3,...
 
 **Command Aliases:**
@@ -1386,8 +1390,8 @@ To undo this command, please see the [mark command](#mark-tasks-as-done-mark).
 
 #### Set Deadline for task: `set deadline`
 
-You realise that this task needs to be done more urgently than expected and need to change its deadline. Look no further, 
-you can set deadlines for your tasks using the `set deadline` command! 
+You realize that this task needs to be done more urgently than expected and you need to change its deadline. 
+Look no further, as you can set deadlines for your tasks using the `set deadline` command! 
 
 The `set deadline` command allows you to set a deadline for an existing task, and the deadline must be in
 `YYYY-MM-DD HH:MM` format. The task with the new deadline will be shown in the task list of the
@@ -1447,12 +1451,12 @@ Suppose you have task called `Create PR`, and you want to assign it to Alex Yeoh
 Identify the index number of `Create PR` in the application (1 in the image below). If you are not able to find the 
 task visibly, refer to [find task command](#finding-a-task-find-task) on how you can find your task easily.
 
-Identify the index number of `Alex Yeoh` in the application (1 in the image below). If you are not able to find the 
+Identify the index number of "Alex Yeoh" in the application (1 in the image below). If you are not able to find the 
 member  visibly, refer to [find member command](#finding-a-member-find-member) on how you can find your team member easily.
 
 Then, enter the command `assign task 1 -a 1`.
 
-If done successfully, you should see the `Create PR` task being assigned to `Alex Yeoh` show up under in the task list
+If done successfully, you should see the `Create PR` task being assigned to "Alex Yeoh" show up under in the task list
 of the [current team section](#current-team-section) as shown below. You can also specify multiple members to assign
 a task to multiple team members.
 
@@ -1521,6 +1525,8 @@ in the task list of the [current team section](#current-team-section) as shown b
 |----------------|----------|------------------------------------------------------------------------|
 | `-h`, `--help` | :x:      | Shows [help message](#understanding-the-help-message) for this command |
 
+Please take note that:
+
 * `TASK_INDEX` **must be a positive integer:** 1, 2, 3,...
 
 **Command Aliases:**
@@ -1543,15 +1549,15 @@ to that member will be shown in the task list of the [current team section](#cur
 
 Let us run through an example on how to assign tasks to your team members.
 
-Suppose you want to check the tasks being assigned to `Alex Yeoh`.
+Suppose you want to check the tasks being assigned to "Alex Yeoh".
 
-Firstly, identify the index number of `Alex Yeoh` in the application (1 in the image below). If you are not able to 
+Firstly, identify the index number of "Alex Yeoh" in the application (1 in the image below). If you are not able to 
 find the member visibly, refer to [find member command](#finding-a-member-find-member) on how you can find that member
 easily.
 
 Then, enter the command `tasksof 1`.
 
-If done successfully, you should see the all tasks that `Alex Yeoh` is assigned. It should show up under
+If done successfully, you should see the all tasks that "Alex Yeoh" is assigned. It should show up under
 in the task list of the [current team section](#current-team-section) as shown below.
 
 ![Tasks Of Example](images/TasksOfExample.png)
@@ -1561,6 +1567,8 @@ in the task list of the [current team section](#current-team-section) as shown b
 | Flags          | Required | Remarks                                                                |
 |----------------|----------|------------------------------------------------------------------------|
 | `-h`, `--help` | :x:      | Shows [help message](#understanding-the-help-message) for this command |
+
+Please take note that:
 
 * `MEMBER_INDEX` **must be a positive integer:** 1, 2, 3,...
 
@@ -1590,8 +1598,8 @@ You can also view all incomplete and complete tasks by adding the `-i` flag or t
 ![List Tasks Example](images/ListTasksExample.png)
 
 Unable to find an existing task? Please check that you have added the task into your team as shown in the
-[current team section](#current-team-section). Refer to the above
-[add task command](#add-task-to-team-add-task) on how to add a new task.
+[current team section](#current-team-section). Refer to the 
+[add task command](#add-task-to-team-add-task) above on how to add a new task.
 
 **Format:** `list tasks [-h] [-c] [-i]`
 
@@ -1616,10 +1624,11 @@ Unable to find an existing task? Please check that you have added the task into 
 
 #### Sort tasks: `sort tasks`
 
-The number of tasks is increasing, and it is confusing for you to find tasks in the list. You can sort your team tasks by name with our `sort tasks` command! 
+The number of tasks is increasing, and it is getting difficult for you to find tasks in the list. You can sort your 
+team's tasks by name with our `sort tasks` command! 
 
 The `sort tasks` command allows you to sort your tasks in alphabetical order. The sorted tasks will
-be displayed in task list the [current team section](#current-team-section) as seen in the image below.
+be displayed in task list the [current team section](#current-team-section).
 
 Let us run through an example on how to sort your tasks.
 
@@ -1661,9 +1670,9 @@ You may sort your tasks in descending order with `sort tasks dsc` or reset to th
 
 #### View summary of task assignments in team: `summary`
 
-As always, the number of tasks keep increasing and you want to assign task equally to everyone. How do you check the 
+As always, the number of tasks keep increasing, and you want to assign task equally to everyone. How do you check the 
 number of tasks each person is assigned? You can use the `summary` function to gain an overview of the
-number of tasks each person is assigned in your team! Now you can make better decisions on who to assign the new
+number of tasks each person is assigned in your team! Now you can make better decisions on whom to assign the new
 tasks to.
 
 To do so, simply enter `summary` and the number of tasks each person is assigned will be displayed in the 
@@ -1692,10 +1701,10 @@ Your project has started and you're now having weekly meetings. As the meeting l
 if it is recorded down permanently somewhere? TruthTable helps you do that with the `add link` command! 
 
 The `add link` command allows you to add a new link you wish to keep track of. The new link is added to the list of links in 
-the [currently selected team](#current-team-section) as seen in the image below. Here, let us take a quick walk-through on how to add a link.
+the [currently selected team](#current-team-section). Here, let us take a quick walk-through on how to add a link.
 
-Let us try to add a new weekly meeting link, with a name `Meeting Link`, with the meeting link [URL](#url) of 
-`https://nus-sg.zoom.us/j/87390425930?pwd=aUZNZ1NJdW5hUjcxSGxXZyt0NjdLQT09`. Enter the command
+Let us try to add a new weekly meeting link, with a name `Meeting Link`, and [URL](#url) of 
+`https://nus-sg.zoom.us/j/87390425930?pwd=aUZNZ1NJdW5hUjcxSGxXZyt0NjdLQT09`.
 
 Enter the command `add link -n "Meeting Link" -l https://nus-sg.zoom.us/j/87390425930?pwd=aUZNZ1NJdW5hUjcxSGxXZyt0NjdLQT09`.
 
@@ -1724,10 +1733,10 @@ If done successfully, you should see a new link show up in the list of links in 
 
 #### Edit an existing link: `edit link`
 
-Oops! Seems like meeting link for the weekly meeting has changed. You can edit the link [URL](#url) easily with the `edit link` command!
+Oops! Seems like the meeting link for the weekly meeting has changed. You can edit the link [URL](#url) easily with the `edit link` command!
 
 The `edit link` command allows you to edit an existing link in TruthTable. The edited link will be shown in the list of 
-links in the [currently selected team](#current-team-section) as seen in the image below. Let us run through an example on how to edit the details of a link. 
+links in the [currently selected team](#current-team-section). Let us run through an example on how to edit the details of a link. 
 
 Suppose the [URL](#url) of your `weekly meeting` has changed to
 `https://zoom.us/j/94669589458?pwd=bTQvWTlWbzR5T29Ja0w2d0J1R1R4QT09#success`. 
@@ -1751,6 +1760,8 @@ the link directly as well by supplying the `-n` tag.
 
 :asterisk: - at least one of the flags for link and name must be specified
 
+Please take note that:
+
 * `LINK_INDEX` **must be a positive integer:** 1, 2, 3,...
 
 **Command Aliases:**
@@ -1767,7 +1778,8 @@ the link directly as well by supplying the `-n` tag.
 
 #### Delete an existing link: `delete link`
 
-As the deadline approaches, your weekly meetings have become physical and you no longer need to keep track of the meeting link. You can delete links easily with the `delete link` command!
+As the deadline approaches, your weekly meetings have become in-person and you no longer need to keep track of the 
+meeting link. You can delete links easily with the `delete link` command!
 
 The `delete link` command allows you to delete the specified link from TruthTable. The deleted link will be
 removed from the list of links in the [currently selected team](#current-team-section). 
@@ -1789,6 +1801,8 @@ list of links in the [currently selected team](#current-team-section).
 | Flags          | Required | Remarks                                                                |
 |----------------|----------|------------------------------------------------------------------------|
 | `-h`, `--help` | :x:      | Shows [help message](#understanding-the-help-message) for this command |
+
+Please take note that:
 
 * `LINK_INDEX` **must be a positive integer:** 1, 2, 3,...
 
