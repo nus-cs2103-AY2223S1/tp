@@ -52,7 +52,7 @@ title: User Guide
     - [Clearing the data](#clearing-the-data-clear)
     - [Saving the data](#saving-the-data)
     - [Editing the data file](#editing-the-data-file)
-- [FAQ](#faq)
+- [Frequently Asked Questions](#faq)
 - [Glossary](#glossary)
 - [Field Formats](#field-formats)
 - [Command Summary](#command-summary)
@@ -638,7 +638,7 @@ Here, Coydir offers a **simple yet powerful** way of keeping track of and making
 
 <div markdown="span" class="alert alert-info">
 
-**:information_source: Note:** 5-point rating scale.<br><br>
+:information_source: **5-point rating scale.**
 
 The 5 point performance appraisal ratings system is the most commonly used performance rating scale across the world.
 
@@ -659,6 +659,7 @@ To use the command, key in the `rate` command, and provide the employee ID and a
 Ratings can take any values from 1 - 5, and it should not be blank.
 
 The numeric representation of the ratings follows as such:
+
 5: Outstanding | 4: Exceeds Expectations | 3: Satisfactory | 2: Needs Improvement | 1: Unsatisfactory
 
 This command results in one of two cases below:
@@ -703,7 +704,8 @@ Apart from supporting the core HR functions, Coydir also supports _department-le
 
 With these features, we offer a view that is broader than an individual employee profile and more specific than the full directory.
 
-Complete with **real-time statistics and analytics**, Coydir makes department management much simpler. With these information, department heads can easily observe the structure of a particular department, track the number of currently available employees for better tasks delegation, or even perform a department restructure to improve the overall efficiency of the company.
+Complete with **real-time statistics and analytics**, Coydir makes department management much simpler.
+With these information, department heads can easily observe the structure of a particular department, track the number of currently available employees for better tasks delegation, or even perform a department restructure to improve the overall efficiency of the company.
 
 Currently, our application only provides a list of default departments for you to choose from. Future update will include customizable department name. Our current list of valid departments are:
 
@@ -729,7 +731,7 @@ Currently, our application only provides a list of default departments for you t
 For department heads, pulling up data relevant to your department can be done through the `view-department` command.
 
 This allows you to view the summarized details of a department given the name of the department.
-Details include the number of employee in that particular department, employees who are currently available, employees who are currently on leave, and a table of employees in that department with their corresponding performance ratings.
+Details include the **number of employees** in that particular department, employees who are **currently available**, employees who are **currently on leave**, and a table of employees in that department with their corresponding **performance ratings**.
 
 Simply enter the `view-department` command, followed by the name of the department (which is case-insensitive).
 
@@ -814,7 +816,7 @@ If your changes to the data file makes its format invalid, Coydir will discard a
 
 ---
 
-## FAQ
+<h2 id="faq">Frequently Asked Questions</h2>
 
 **Q**: How do I transfer my data to another computer?<br>
 **A**: Make sure you have Coydir installed on the other computer first.
