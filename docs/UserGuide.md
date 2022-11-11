@@ -140,7 +140,7 @@ in the table below:
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your Computer. To do so, refer to this FAQ [here](#java-installation).
 
 2. Download the latest `TrackO.jar` from [here](https://github.com/AY2223S1-CS2103T-W15-3/tp/releases).
 
@@ -864,7 +864,7 @@ data file at the next run.
 **A:** Copy the [home folder](#quick-start) containing your TrackO.jar to the computer you are transferring to. The application should 
 work as normal with all the existing data.
 
-**Q:** How do I make sure that my computer is running Java 11?
+<a name ="java-installation"></a>**Q:** How do I make sure that my computer is running Java 11?
 
 **A:** Open the Terminal app built inside your computer (For Windows user, you can also use Powershell) and run the
 following [command](#command): `java --version`. The version should then be displayed on the application.
