@@ -51,8 +51,8 @@ If this is your first time using our User Guide, you might want to read this sec
 
 ## About JeeqTracker
 
-JeeqTracker is an extremely simple and easy-to-use application that will help you to keep track of clients’ 
-contact details, transaction records, and remarks about the client. 
+JeeqTracker is an **extremely simple and easy-to-use application** that will help you to keep track of your clients’ 
+**contact details**, **transaction records**, and **remarks** about the client. 
 
 Due to the nature of a home-based business, you will probably be thinking of how you can keep your clients engaged
 and increase customers satisfaction. With JeeqTracker, you can analyze and understand the demands of each client and provide a more personalized 
@@ -64,12 +64,12 @@ service that would meet the needs of your client, increasing customer engagement
 
 ## Quick start
 
-1. Ensure you have Java `11` installed in your Computer. If you do not have Java, you can download it from 
+1. Ensure you have **Java 11** installed in your Computer. If you do not have Java, you can download it from 
 [here for Window Users](https://www.oracle.com/java/technologies/downloads/#java11) and [here for Mac Users](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx).
 
-2. Download the latest `jeeqtracker.jar` from [here](https://github.com/AY2223S1-CS2103T-T09-1/tp/releases).
+2. Download the latest **jeeqtracker.jar** from [here](https://github.com/AY2223S1-CS2103T-T09-1/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your JeeqTracker.
+3. Copy the file to the folder you want to use as the **home folder** for your JeeqTracker.
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the application contains some sample data.<br><br>
    ![Ui](images/QuickStart.png)
@@ -80,11 +80,11 @@ service that would meet the needs of your client, increasing customer engagement
 
    * **`list`** : Lists all clients.
 
-   * **`add`**`n/Alice a/311 Clementi Ave 2 p/9191919 e/alice@gmail.com t/friends` : Adds a client named `Alice` into JeeqTracker.
+   * **`add`**`n/Alice a/311 Clementi Ave 2 p/9191919 e/alice@gmail.com t/friends` : Adds a client named **Alice** into JeeqTracker.
 
    * **`delete`**`1 m/client` : Deletes the client at the first index together with all their transactions and remarks in the current list.
 
-   * **`find`**`Bernice` : Finds `Bernice` from the list of clients and display all clients with name containing `Bernice`. If there is only one find result, you will be able to see the transactions and remarks of `Bernice` as well.
+   * **`find`**`Bernice` : Finds **Bernice** from the list of clients and display all clients with name containing **Bernice**. If there is only one find result, you will be able to see the transactions and remarks of **Bernice** as well.
 
    * **`view`**`2` : Views the second client in the list and shows your transactions and remarks with him.
 
@@ -100,13 +100,15 @@ service that would meet the needs of your client, increasing customer engagement
 
 ![UiOverview](images/UiOverview.png)
 
-This application UI is split into `5 sections`.
-* `Input Command`: This is where you should key in your commands, and press enter to execute
-* `Application's Reply`: Errors or success messages will appear here after you execute any commands
-* `List Of Clients`: Every client that you have will appear here
-* `Transaction details`: A list of transactions with a specific client will appear here if you use the [view command](#viewing-a-client-view), or it will show all transactions with every client if you use the [filter command](#filtering-buy-or-sell-transactions-filter)
-* `Remarks Of Specified Client`: Remarks of specified client will appear here
-* `Net amount` : This section displays the net amount transacted with all clients currently displayed in the `List Of Clients` panel on the left. Currently, only **dollars** is supported in our application. More currency will be added in the future.
+This application UI is split into **5 sections**.
+* ***Input Command***: This is where you should key in your commands, and press enter to execute
+* ***Application's Reply***: Errors or success messages will appear here after you execute any commands
+* ***List Of Clients***: Every client that you have will appear here
+* ***Transaction details***: A list of transactions with a specific client will appear here if you use the [view command](#viewing-a-client-view), or it will show all transactions with every client if you use the [filter command](#filtering-buy-or-sell-transactions-filter)
+* ***Remarks Of Specified Client***: Remarks of specified client will appear here
+* ***Net amount*** : This section displays the net amount transacted with all clients currently displayed in the *List Of Clients* panel on the left. Currently, only **dollars** is supported in our application. More currency will be added in the future.
+
+> <div markdown="span" class="alert alert-primary">:bulb: Tip: These user interface sections will be referred to several times in the User Guide, it will be in italics!</div>
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -114,7 +116,7 @@ This application UI is split into `5 sections`.
 
 ## How to use the User Guide
 
-This user guide contains detailed explanation on how to use the application. It provides information like what each `command` does, and how data is saved in the application.
+This user guide contains detailed explanation on how to use the application. It provides information like **what each command does**, and **how data is saved in the application**.
 
 The [table of contents](#table-of-contents) provides links to every command. But before you head there, below are some notes on how to interpret each command format.
 
@@ -122,7 +124,7 @@ The [table of contents](#table-of-contents) provides links to every command. But
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
+* Words in **UPPER_CASE** are the parameters to be supplied by you.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/Alice`.
 
 * Items in square brackets are optional.<br>
@@ -144,20 +146,24 @@ The [table of contents](#table-of-contents) provides links to every command. But
 
 </div>
 
-### Symbols
+### Symbols and Annotations
 
-Below are some symbols that you may encounter in the User Guide.
+Below are some symbols and annotations that you may encounter in the User Guide.
 
-| Symbol                                                                     | Meaning                                                              |
-|----------------------------------------------------------------------------|----------------------------------------------------------------------|
-| <div markdown="span" class="alert alert-danger">:exclamation: Danger</div> | Something that could cause irreversible damage when done incorrectly |
-| <div markdown="span" class="alert alert-warning">:warning: Warning</div>   | Something that could go wrong and should be noted                    |
-| <div markdown="span" class="alert alert-primary">:bulb: Tip</div>          | Something that can aid you to optimally utilise JeeqTracker          |
+| Symbol / Annotation                                                                   | Meaning                                                                               |
+|---------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------|
+| <div markdown="span" class="alert alert-danger">:exclamation: Danger</div>            | Something that could cause **irreversible damage** when done incorrectly              |
+| <div markdown="span" class="alert alert-warning">:warning: Warning</div>              | A **potential source of error**, and should be noted                                  |
+| <div markdown="span" class="alert alert-primary">:bulb: Tip</div>                     | Tips that can aid you to **optimally utilise** JeeqTracker                            |
+| <div markdown="block" class="alert alert-info">:information_source: Information</div> | **Important information** to take note of                                             |
+| **Bolded Text**                                                                       | Emphasizes **important terms** to look out for                                        |
+| `Text wrapped in a box`                                                               | Denotes terms related to a **command** or **field**                                   |
+| *Italic Text*                                                                         | Denotes a **user interface component** name, located [here](#user-interface-overview) | 
 
 
 > <div markdown="span" class="alert alert-primary">:bulb: Tip: It is recommended to understand the [User Interface](#user-interface-overview) as it will help you to navigate the application easily!</div>
 
-> <div markdown="span" class="alert alert-primary">:bulb: Tip: The term `INDEX` will appear in several command formats.<br/> **Red circle** in the diagram below refers to the **INDEX** for **clients**.<br/>**Blue circles** refer to the **INDEX** for **transactions**.<br/>**Green circles** refer to the **INDEX** For **remarks**.</div>
+> <div markdown="span" class="alert alert-primary">:bulb: Tip: The term **INDEX** will appear in several command formats.<br/> **Red circle** in the diagram below refers to the **INDEX** for **clients**.<br/>**Blue circles** refer to the **INDEX** for **transactions**.<br/>**Green circles** refer to the **INDEX** For **remarks**.</div>
 
 ![IndexMeaning](images/IndexMeaning.PNG)
 
@@ -169,7 +175,7 @@ You are now ready to use the application! Head over to [Quick Start](#quick-star
 
 ## Features
 
-This section showcases **all** commands in JeeqTracker that you can use. It is split into five sections, namely `Client Commands`, `Transaction Commands`, `Remark Commands`, `Miscellaneous Commands`, and `Data Storage`.
+This section showcases **all** commands in JeeqTracker that you can use. It is split into five sections, namely **Client Commands**, **Transaction Commands**, **Remark Commands**, **Miscellaneous Commands**, and **Data Storage**.
 
 ### **Client Commands**
 
@@ -579,7 +585,7 @@ _Details coming soon ..._
 | **Find**       | `find KEYWORD [MORE_KEYWORDS]...`<br> e.g., `find John`                                                                                                         |
 | **Help**       | `help [COMMAND]` <br> e.g.,`help` or `help add` or `help sort`                                                                                                  |
 | **List**       | `list`                                                                                                                                                          |
-| **Remark**     | `remark INDEX REMARK [t/TAG]...`<br> e.g., `remark 3 Punctual Buyer` or `remark 5 Fast and Decisive Buyer t/favourite`                                          |                                                                     |
+| **Remark**     | `remark INDEX REMARK [t/TAG]...`<br> e.g., `remark 3 Punctual Buyer` or `remark 5 Fast and Decisive Buyer t/favourite`                                          |
 | **Sell**       | `sell INDEX q/QUANTITY g/GOODS price/PRICE [d/DATE]` <br/> e.g., `sell 2 q/100 g/apples price/1.5 d/07/11/2022`                                                 |
 | **Sort**       | `sort INDEX ORDER` <br> e.g.,`sort 1 latest` or `sort 3 oldest`                                                                                                 | 
 | **User Guide** | `user_guide`                                                                                                                                                    |
@@ -589,18 +595,18 @@ _Details coming soon ..._
 
 ## Prefix Summary
 
-| Prefix     | Meaning                                        | Restrictions                                        | Example                       |
-|------------|------------------------------------------------|-----------------------------------------------------|-------------------------------|
-| **n/**     | Name of the client                             | Alphanumeric characters and spaces, required        | `n/Alice`                     |
-| **a/**     | Address of the client                          | Required                                            | `a/321 Clementi Road, #02-22` |
-| **p/**     | Phone number of the client                     | Required                                            | `p/98765432`                  |
-| **e/**     | Email of the client                            | Required                                            | `e/alice@gmail.com`           |
-| **g/**     | Goods name involved in the transaction         | Alphanumeric characters and spaces, required        | `g/Apples`                    |
-| **q/**     | Quantity of goods involved in the transaction  | Positive integer, required                          | `q/10`                        |
-| **price/** | Price per quantity of goods in the transaction | Positive number, required                           | `price/1.50`                  |
-| **m/**     | Mode of the command                            | Must be either `client`, `transaction`, or `remark` | `m/client`                    |
-| **d/**     | Date of transaction                            | In the format `dd/mm/yyyy`                          | `d/07/11/2022`                |
-| **t/**     | Tag applied on clients                         | Alphanumeric, single word                           | `t/friends`                   |
+| Prefix     | Meaning                                        | Restrictions                                              | Example                       |
+|------------|------------------------------------------------|-----------------------------------------------------------|-------------------------------|
+| **n/**     | Name of the client                             | Alphanumeric characters and spaces, required              | `n/Alice`                     |
+| **a/**     | Address of the client                          | Required                                                  | `a/321 Clementi Road, #02-22` |
+| **p/**     | Phone number of the client                     | Required                                                  | `p/98765432`                  |
+| **e/**     | Email of the client                            | Required                                                  | `e/alice@gmail.com`           |
+| **g/**     | Goods name involved in the transaction         | Alphanumeric characters and spaces, required              | `g/Apples`                    |
+| **q/**     | Quantity of goods involved in the transaction  | Positive integer, required                                | `q/10`                        |
+| **price/** | Price per quantity of goods in the transaction | Positive number, required                                 | `price/1.50`                  |
+| **m/**     | Mode of the command                            | Must be either **client**, **transaction**, or **remark** | `m/client`                    |
+| **d/**     | Date of transaction                            | In the format **dd/mm/yyyy**                              | `d/07/11/2022`                |
+| **t/**     | Tag applied on clients                         | Alphanumeric, single word                                 | `t/friends`                   |
 
 [Back to Table of Contents](#table-of-contents)
 
