@@ -145,7 +145,7 @@ go through the general command format.
 Here is an example command [`radd`](#adding-a-record-radd):
 
 <p align="center" width="100%">
-<img src="images/CommandFormat.png.png" alt="command-format" width="550"/>
+<img src="images/CommandFormat.png" alt="command-format" width="550"/>
 </p>
 
 1. **Command Word**: Determines what action you want OmniHealth to execute.
@@ -282,7 +282,7 @@ Format: `add n/NAME b/BIRTHDATE p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 * Name should only contain alphanumeric characters (eg. s/o is not a valid input).
 * Birthdate **cannot be after the current date**.
 * Duplicate patients are not allowed.
-    * Patients are considered duplicate when they have the same `NAME` and `ADDRESS`.
+    * Patients are considered duplicate when they have the same [`NAME`](#patient) and [`ADDRESS`](#patient).
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
 Birthdate must be given in DD-MM-YYYY format!
@@ -309,7 +309,7 @@ Examples:
 
 Format: `delete PATIENT_INDEX`
 
-* Deletes the patient at the specified `PATIENT_INDEX`.
+* Deletes the patient at the specified [`PATIENT_INDEX`](#patient).
 * The index refers to the index number shown in the displayed patient records list.
 * The index must be a positive integer 1, 2, 3, …​
 * The index must be within the [system limit](#faq).
@@ -326,7 +326,7 @@ Examples:
 
 Format: `edit PATIENT_INDEX [n/NAME] [b/BIRTHDATE] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​ The index must be within the [system limit](#faq).
+* Edits the patient at the specified [`PATIENT_INDEX`](#patient). The index refers to the index number shown in the displayed patient list. The index **must be a positive integer** 1, 2, 3, …​ The index must be within the [system limit](#faq).
 * At least one of the optional fields must be provided
 * Existing values will be overridden by the input values.
   * eg. when editing tags, the existing tags of the patient will be removed i.e adding of tags is not cumulative.
@@ -353,7 +353,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
+* Patients matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
@@ -381,7 +381,7 @@ Format: `clear`
 
 Format: `appt PATIENT_INDEX d/APPOINTMENT_DATE_TIME`
 
-* Adds a new appointment for the patient under the specified `PATIENT_INDEX`, with the given date.
+* Adds a new appointment for the patient under the specified [`PATIENT_INDEX`](#patient), with the given date.
 * The index refers to the index number shown in the displayed patient list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * The index must be within the [system limit](#faq).
@@ -407,7 +407,7 @@ Examples:
 
 Format: `apptcl PATIENT_INDEX`
 
-* Clears any appointment under the patient with the specified `PATIENT_INDEX`.
+* Clears any appointment under the patient with the specified [`PATIENT_INDEX`](#patient).
 * The index refers to the index number shown in the displayed patient list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * The index must be within the [system limit](#faq).
@@ -429,8 +429,8 @@ Examples:
 
 Format: `radd d/RECORD_DATE_TIME r/RECORD_DETAILS [m/MEDICATION]…`
 
-* Adds a new record to the patient with given `RECORD_DATE_TIME`, `RECORD_DETAILS` and `MEDICATION` information.
-  * `RECORD_DETAILS` field cannot be empty.
+* Adds a new record to the patient with given [`RECORD_DATE_TIME`](#record), [`RECORD_DETAILS`](#record) and [`MEDICATION`](#record) information.
+  * [`RECORD_DATE_TIME`](#record) and [`RECORD_DETAILS`](#record) fields cannot be empty.
 * The record date & time **cannot be in the future**.
   
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
@@ -464,7 +464,7 @@ Examples:
 
 Format: `redit RECORD_INDEX [d/RECORD_DATE_TIME] [r/RECORD_DETAILS] [m/MEDICATION]…​`
 
-* Edits the record at the specified `RECORD_INDEX`. The index refers to the index number shown in the displayed record list.
+* Edits the record at the specified [`RECORD_INDEX`](#record). The index refers to the index number shown in the displayed record list.
  The index **must be a positive integer** 1, 2, 3, …​ The index must be within the [system limit](#faq).
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
