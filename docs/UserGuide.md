@@ -25,6 +25,7 @@ at a glance, a neat overview of what you need to see. If you type fast, StudMap 
 This user guide aims to help you understand StudMap, so that you can make the best use of our features. Read on to find out more!
 
 ---
+<div style="page-break-after: always;"></div>
 
 * Table of Contents
 {:toc}
