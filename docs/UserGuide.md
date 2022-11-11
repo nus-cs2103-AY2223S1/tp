@@ -172,7 +172,7 @@ The top section displays relevant messages/errors after the command is entered.
    - **`exit`** : Exits the app.
 
 6. Refer to the [Features](#features) below for details of each command.
-
+<br></br>
 ## Symbols and Syntax
 
 Here are some symbols to look out for while using this guide:
@@ -375,7 +375,7 @@ Note: You can export this to `.csv`.
 1. Go to the folder where you stored the `jar` file.
 2. Move CSV file to the `data` folder.
    ![](images/batch-add-images/movingFile.png)
-
+<br></br>
 _If you are a new user (have not run any command yet), you will not see the `data` folder.
 You can run the [`clear` command](#clearing-the-data-clear) to remove the sample employees first.
 After this, you should be able to see the `data` folder._
