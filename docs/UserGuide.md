@@ -448,7 +448,7 @@ Summary of the commands to manage persons can be found [here](#summary-of-person
 It is the start of a new semester and you are excited to work with your new classmates on software engineering projects. 
 You want to get to know them better before you work with them in your teams. There is a person that seem like a really 
 fun person to work with, and you cannot wait to know more about them. Simply ask for their name, email and phone number 
-and simply key in `add person -e <EMAIL> -n<NAME> -p<PHONE>` and their contact details will be ! Now you can contact 
+and simply key in `add person -e <EMAIL> -n<NAME> -p<PHONE>` and their contact details will be saved! Now you can contact 
 them easily before you form your project groups. You may optionally specify `-t <TAGS>` for any interesting features 
 you remember of the person!
 
@@ -904,7 +904,21 @@ Summary of the commands to manage teams can be found [here](#summary-of-team-com
 
 #### Creating a new team: `add team`
 
-Add a new team to your list of teams, an error will be displayed if the team name is already in use.
+You have formed your group for the project and are ready to work on the best software project ever created! Now you are
+ready to create a new team. First, decide on a nice team name and a description that fits the purposes of your team. 
+Next, key in `add team -n <TEAM_NAME> -d <TEAM_DESCRIPTION>` and a new team will be created. Combine this with 
+[set team command](#set-a-new-team-set-team) to directly switch to the team you just created. Now you are ready to work
+on the best project ever.
+
+The `add team` command allows you to add a new team to your list of teams. The new team is added to the 
+[teams section](#teams-section) as seen in the image below. Do not worry if an error shows up, you might have typed 
+something wrongly. Here, let us take a quick walk-through on how to add a team.
+
+Let us try to add a new team named `CS2103T`, with a description called `Software Engineering`. Enter the command
+
+`add team CS2103 -d "Software Engineering"`
+
+If done successfully, you should see a new team show up in the [teams section](#teams-section) as shown below.
 
 **Format:** `add team [-h] [-d=TEAM_DESCRIPTION] <TEAM_NAME>`
 
@@ -926,6 +940,23 @@ Add a new team to your list of teams, an error will be displayed if the team nam
   as description
 
 #### Edit current team: `edit team`
+
+You discussed the group name with your team members, and they do not like the name you proposed! They prefer it to be
+something cooler instead. Not to worry, you are able to edit the details of your current team. Once you decided on better team 
+name and a better description, key in `edit team -n <TEAM_NAME> -d <TEAM_DESCRIPTION>` and the details your
+[currently selected team](#current-team-section) will be edited. 
+
+The `edit team` command allows you to edit the details your currently selected team.
+
+Here, let us take a quick walk-through on how to add a team.
+
+Let us try to edit the name of our current team to `NUS TruthTable`. Enter the command
+
+`edit team -n "NUS TruthTable"`
+
+If done successfully, the details that you specified will be shown in the 
+[currently selected team](#current-team-section) as shown below.
+
 
 **Format:** `edit team [-h] ([-n=<TEAM_NAME>] [-d=<TEAM_DESCRIPTION>])`
 
@@ -950,10 +981,17 @@ Add a new team to your list of teams, an error will be displayed if the team nam
 
 #### Delete an existing team: `delete team`
 
-Delete an existing team, and an error is displayed if
+The semester is coming to an end, and the group project is finally completed. You can delete a team once it is no longer
+needed. Simply key in `delete team <TEAM_NAME>` to delete an existing team from the [teams section](#teams-section).
 
-- The target team does not exist, or
-- The target team is the only existing team.
+The `delete team` command allows you to delete an existing team. The team deleted will be removed from the 
+[teams section](#teams-section). Let us show you an example of deleting a team.
+
+Suppose you have an existing team called CS2103T and want to remove it. Enter the command
+
+`delete team CS2103T`
+
+If done successfully, you should see the team `CS2103T` removed under the [teams section](#teams-section).
 
 **Format:** `delete team [-h] <TEAM_NAME>`
 
@@ -973,8 +1011,20 @@ Delete an existing team, and an error is displayed if
 
 #### Set a new team: `set team`
 
-Updates the [selected team](#current-team-section) and changes the current "working" team to another. An error is
-displayed if team does not exist.
+It is a busy semester and you have multiple teams that you need to manage. You can change the team that you are managing to 
+any other team that is displayed in the [teams section](#teams-section). Simply enter `set team <TEAM_NAME>` to change
+the working team to the target team.
+
+The `set team` command allows you to change the [currently selected team](#current-team-section) to a new team from 
+the list of teams in the [teams section](#teams-section). Let us show you an example of how to use this command.
+
+Suppose you have finished the tasks in your current team CS2103T and have an existing team called CS2102. You want to
+start managing that team instead. Enter the command
+
+`set team CS2102`
+
+If done successfully, your [currently selected team](#current-team-section) will change to the team `CS2102` along with
+all of its information.
 
 **Format:** `set team [-h] <TEAM_NAME>`
 
