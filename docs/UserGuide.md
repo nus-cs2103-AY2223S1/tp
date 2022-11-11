@@ -90,7 +90,7 @@ This is the [main page](#the-main-page), which you will encounter when you open 
 It displays all your current itineraries. 
 The various sections of the interface have been labeled in blue for your reference.
 If this is your first time launching Waddle, you will see the following page with two sample itineraries:<br>
-![main-page-sample-ui](images/ug-beg-tut/main-page-sample-ui.png)
+![home-page-sample-ui](images/ug-beg-tut/main-page-sample-ui.png)
 
 If you wish to, you can [clear](#clearing-itineraries--clear) the sample itineraries by typing `clear` into the command box and pressing Enter.
 You will then see the below message:<br>
@@ -118,28 +118,12 @@ For example, if "Summer Trip" is shown as the first itinerary on the list, enter
 You will now see the planning page for the itinerary as follows:<br>
 ![planning-page-ui](images/ug-beg-tut/planning-page-ui.png)
 
-The planning page for an itinerary displays all your current items.
-Unscheduled items will appear in the Wishlist section, whereas scheduled items will be listed under the corresponding Day.
-The various sections of the interface have been labeled in blue for your reference.
-
 You can return to the main page anytime you wish by executing `home`.
 
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Note about commands:**<br>
-
-* Note that the commands for the home page are different from those for an itinerary planning page.
-Some commands only apply to one type of page while some are universally applicable (i.e. they can be executed on any page).
-* To find out more about which commands apply to your current page, visit the user guide's [Features](#features) section.
-
-</div>
-<div style="page-break-after: always"></div>
-
 To add an activity to your Wishlist, use the [`add` command](#adding-an-activity--add).
-
-Try adding a new activity by typing in `add d/Meiji Shrine du/120` to the command box and press Enter.
-This will add a new activity with the description of "Meiji Shrine" and a duration of 120 minutes.
-You should now see the activity being displayed in the Wishlist.
+Try adding a new activity by typing in `add d/Visit Meiji Shrine du/120` to the command box and press Enter.
+This will add a new item with the description of "Visit Meiji Shrine" and a duration of 120 minutes.
+You should now see the item being displayed in the Wishlist.<br>
 ![add-item](images/ug-beg-tut/add-item.png)
 
 <div markdown="block" class="alert alert-info">
