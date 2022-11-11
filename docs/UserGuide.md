@@ -51,8 +51,8 @@ If this is your first time using our User Guide, you might want to read this sec
 
 ## About JeeqTracker
 
-JeeqTracker is an extremely simple and easy-to-use application that will help you to keep track of clients’ 
-contact details, transaction records, and remarks about the client. 
+JeeqTracker is an **extremely simple and easy-to-use application** that will help you to keep track of your clients’ 
+**contact details**, **transaction records**, and **remarks** about the client. 
 
 Due to the nature of a home-based business, you will probably be thinking of how you can keep your clients engaged
 and increase customers satisfaction. With JeeqTracker, you can analyze and understand the demands of each client and provide a more personalized 
@@ -64,12 +64,12 @@ service that would meet the needs of your client, increasing customer engagement
 
 ## Quick start
 
-1. Ensure you have Java `11` installed in your Computer. If you do not have Java, you can download it from 
+1. Ensure you have **Java 11** installed in your Computer. If you do not have Java, you can download it from 
 [here for Window Users](https://www.oracle.com/java/technologies/downloads/#java11) and [here for Mac Users](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx).
 
-2. Download the latest `jeeqtracker.jar` from [here](https://github.com/AY2223S1-CS2103T-T09-1/tp/releases).
+2. Download the latest **jeeqtracker.jar** from [here](https://github.com/AY2223S1-CS2103T-T09-1/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your JeeqTracker.
+3. Copy the file to the folder you want to use as the **home folder** for your JeeqTracker.
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the application contains some sample data.<br><br>
    ![Ui](images/QuickStart.png)
@@ -80,11 +80,11 @@ service that would meet the needs of your client, increasing customer engagement
 
    * **`list`** : Lists all clients.
 
-   * **`add`**`n/Alice a/311 Clementi Ave 2 p/9191919 e/alice@gmail.com t/friends` : Adds a client named `Alice` into JeeqTracker.
+   * **`add`**`n/Alice a/311 Clementi Ave 2 p/9191919 e/alice@gmail.com t/friends` : Adds a client named **Alice** into JeeqTracker.
 
    * **`delete`**`1 m/client` : Deletes the client at the first index together with all their transactions and remarks in the current list.
 
-   * **`find`**`Bernice` : Finds `Bernice` from the list of clients and display all clients with name containing `Bernice`. If there is only one find result, you will be able to see the transactions and remarks of `Bernice` as well.
+   * **`find`**`Bernice` : Finds **Bernice** from the list of clients and display all clients with name containing **Bernice**. If there is only one find result, you will be able to see the transactions and remarks of **Bernice** as well.
 
    * **`view`**`2` : Views the second client in the list and shows your transactions and remarks with him.
 
@@ -100,13 +100,15 @@ service that would meet the needs of your client, increasing customer engagement
 
 ![UiOverview](images/UiOverview.png)
 
-This application UI is split into `5 sections`.
-* `Input Command`: This is where you should key in your commands, and press enter to execute
-* `Application's Reply`: Errors or success messages will appear here after you execute any commands
-* `List Of Clients`: Every client that you have will appear here
-* `Transaction details`: A list of transactions with a specific client will appear here if you use the [view command](#viewing-a-client-view), or it will show all transactions with every client if you use the [filter command](#filtering-buy-or-sell-transactions-filter)
-* `Remarks Of Specified Client`: Remarks of specified client will appear here
-* `Net amount` : This section displays the net amount transacted with all clients currently displayed in the `List Of Clients` panel on the left. Currently, only **dollars** is supported in our application. More currency will be added in the future.
+This application UI is split into **5 sections**.
+* ***Input Command***: This is where you should key in your commands, and press enter to execute
+* ***Application's Reply***: Errors or success messages will appear here after you execute any commands
+* ***List Of Clients***: Every client that you have will appear here
+* ***Transaction details***: A list of transactions with a specific client will appear here if you use the [view command](#viewing-a-client-view), or it will show all transactions with every client if you use the [filter command](#filtering-buy-or-sell-transactions-filter)
+* ***Remarks Of Specified Client***: Remarks of specified client will appear here
+* ***Net amount*** : This section displays the net amount transacted with all clients currently displayed in the *List Of Clients* panel on the left. Currently, only **dollars** is supported in our application. More currency will be added in the future.
+
+> <div markdown="span" class="alert alert-primary">:bulb: Tip: These user interface sections will be referred to several times in the User Guide, it will be in italics!</div>
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -114,7 +116,7 @@ This application UI is split into `5 sections`.
 
 ## How to use the User Guide
 
-This user guide contains detailed explanation on how to use the application. It provides information like what each `command` does, and how data is saved in the application.
+This user guide contains detailed explanation on how to use the application. It provides information like **what each command does**, and **how data is saved in the application**.
 
 The [table of contents](#table-of-contents) provides links to every command. But before you head there, below are some notes on how to interpret each command format.
 
@@ -122,7 +124,7 @@ The [table of contents](#table-of-contents) provides links to every command. But
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
+* Words in **UPPER_CASE** are the parameters to be supplied by you.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/Alice`.
 
 * Items in square brackets are optional.<br>
@@ -144,20 +146,24 @@ The [table of contents](#table-of-contents) provides links to every command. But
 
 </div>
 
-### Symbols
+### Symbols and Annotations
 
-Below are some symbols that you may encounter in the User Guide.
+Below are some symbols and annotations that you may encounter in the User Guide.
 
-| Symbol                                                                     | Meaning                                                              |
-|----------------------------------------------------------------------------|----------------------------------------------------------------------|
-| <div markdown="span" class="alert alert-danger">:exclamation: Danger</div> | Something that could cause irreversible damage when done incorrectly |
-| <div markdown="span" class="alert alert-warning">:warning: Warning</div>   | Something that could go wrong and should be noted                    |
-| <div markdown="span" class="alert alert-primary">:bulb: Tip</div>          | Something that can aid you to optimally utilise JeeqTracker          |
+| Symbol / Annotation                                                                   | Meaning                                                                               |
+|---------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------|
+| <div markdown="span" class="alert alert-danger">:exclamation: Danger</div>            | Something that could cause **irreversible damage** when done incorrectly              |
+| <div markdown="span" class="alert alert-warning">:warning: Warning</div>              | A **potential source of error**, and should be noted                                  |
+| <div markdown="span" class="alert alert-primary">:bulb: Tip</div>                     | Tips that can aid you to **optimally utilise** JeeqTracker                            |
+| <div markdown="block" class="alert alert-info">:information_source: Information</div> | **Important information** to take note of                                             |
+| **Bolded Text**                                                                       | Emphasizes **important terms** to look out for                                        |
+| `Text wrapped in a box`                                                               | Denotes terms related to a **command** or **field**                                   |
+| *Italic Text*                                                                         | Denotes a **user interface component** name, located [here](#user-interface-overview) | 
 
 
 > <div markdown="span" class="alert alert-primary">:bulb: Tip: It is recommended to understand the [User Interface](#user-interface-overview) as it will help you to navigate the application easily!</div>
 
-> <div markdown="span" class="alert alert-primary">:bulb: Tip: The term `INDEX` will appear in several command formats.<br/> **Red circle** in the diagram below refers to the **INDEX** for **clients**.<br/>**Blue circles** refer to the **INDEX** for **transactions**.<br/>**Green circles** refer to the **INDEX** For **remarks**.</div>
+> <div markdown="span" class="alert alert-primary">:bulb: Tip: The term **INDEX** will appear in several command formats.<br/> **Red circle** in the diagram below refers to the **INDEX** for **clients**.<br/>**Blue circles** refer to the **INDEX** for **transactions**.<br/>**Green circles** refer to the **INDEX** For **remarks**.</div>
 
 ![IndexMeaning](images/IndexMeaning.PNG)
 
@@ -169,11 +175,11 @@ You are now ready to use the application! Head over to [Quick Start](#quick-star
 
 ## Features
 
-This section showcases **all** commands in JeeqTracker that you can use. It is split into five sections, namely `Client Commands`, `Transaction Commands`, `Remark Commands`, `Miscellaneous Commands`, and `Data Storage`.
+This section showcases **all** commands in JeeqTracker that you can use. It is split into five sections, namely **Client Commands**, **Transaction Commands**, **Remark Commands**, **Miscellaneous Commands**, and **Data Storage**.
 
 ### **Client Commands**
 
-The following section highlights **all** commands related to `clients`.
+The following section highlights **all** commands related to **clients**.
 
 ### Adding a client: `add`
 
@@ -183,19 +189,19 @@ Format: `add n/NAME a/ADDRESS p/PHONE e/EMAIL [t/TAG]...`
 
 * `TAG` is optional.
 * Multiple `TAG` can be tagged to the client.
-* No restrictions on the `PHONE` input and `EMAIL` input. You can enter anything that you want.<br/>However, a warning will be given if it deviates from the **standard convention**.
+* No restrictions on the `PHONE` input and `EMAIL` input. You can enter anything that you want.<br/>However, a warning will be given if it deviates from the standard convention.
     * This facilitates more freedom to input phone numbers like `+606 89987755 (HOME)` and emails like `alice@company.com (WORK)`
 
-| Field | Standard Convention                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-|-------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Phone | Contains only numbers, and at least 3 digits long                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| Email | Format: `local-part@domain`<br/>1. **local-part** should only contain alphanumeric characters and these special characters `+`, `_`, `.`, `-`. The local-part may not start or end with any special character.<br/>2. This is followed by a **@** and then a **domain name**. The domain name is made up of domain labels separated by periods.<br/> The domain name must:<br/> - end with a domain label at least 2 characters long<br/>- have each domain label start and end with alphanumeric characters<br/>- have each domain label consist of alphanumeric characters, separated only by hyphens, if any |
+| Field | Standard Convention                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+|-------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Phone | Contains only numbers, and at least 3 digits long                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| Email | Format: `local-part@domain`<br/>1. **Local-part** should only contain **alphanumeric characters** and these special characters `+`, `_`, `.`, `-`. The **local-part** may not start or end with any special character.<br/>2. This is followed by a **@** and then a **domain name**. The **domain name** is made up of domain labels separated by periods.<br/> The **domain name** must:<br/> - end with a domain label at least 2 characters long<br/>- have each domain label start and end with **alphanumeric characters**<br/>- have each domain label consist of **alphanumeric characters**, separated only by hyphens, if any |
 
 > <div markdown="span" class="alert alert-warning">:warning: **Warning: You cannot add a client with a name that already exists in JeeqTracker**<br/> Names are considered duplicates even if they differ by case sensitivity or whitespaces!
 
 Examples:
-* `add n/Alice a/West Coast Park p/9876542 e/alice@gmail.com` adds a new client, **Alice** with the specified **address**, **phone** and **email** to the client list, as depicted by the diagram below.
-* `add n/John a/Yishun Street 81 p/9876543 e/john@yahoo.com t/friends t/supplier` adds a new client, **John** with the specified **address**, **phone**, **email**, and **tags** to the client list.
+* `add n/Alice a/West Coast Park p/9876542 e/alice@gmail.com` adds a new client, **Alice** with the specified **address**, **phone** and **email** to the *List of Clients* panel, as depicted by the diagram below.
+* `add n/John a/Yishun Street 81 p/9876543 e/john@yahoo.com t/friends t/supplier` adds a new *client*, **John** with the specified **address**, **phone**, **email**, and **tags** to the *List of Clients* panel.
 
 ![Ui](images/SampleAddCommand.png)
 
@@ -204,18 +210,18 @@ Examples:
 ### Listing all clients: `list`
 
 Lists all the clients stored in JeeqTracker. 
-This command is required for you because some other commands like `find`, `sort`, `view` will filter the list of clients panel.
+This command is required for you because some other commands like `find`, `sort`, `view` will filter the *List of Clients* panel.
 
 Format: `list`
 
-* Displays all the clients and their details (**Name**, **Address**, **Phone**, **Remarks**, **Total**) in JeeqTracker.
-* If JeeqTracker is empty, the **List Of Clients** section will be blank.
+* Displays all the clients and their details (`Name`, `Address`, `Phone`, `Remarks`, `Total`) in JeeqTracker.
+* If JeeqTracker is empty, the *List Of Clients* panel will be blank.
 
 [Back to Table of Contents](#table-of-contents)
 
 ### Editing a client: `edit`
 
-Edits the details of a `client`
+Edits the details of a client.
 
 Format: `edit INDEX m/client FIELDS [MORE_FIELDS]...`
 
@@ -234,16 +240,16 @@ Examples:
 
 ### Deleting a client: `delete`
 
-Deletes a specified `client` from JeeqTracker.
+Deletes a specified client from JeeqTracker.
 
 Format: `delete INDEX m/client`
 
-* The `INDEX` refers to the index number shown in the **Client List Panel**
+* The `INDEX` refers to the index number shown in the *List of Clients* panel.
 * `INDEX` **must be a positive integer** e.g 1, 2, 3, …​
 
 Examples:
-* `delete 1 m/client` deletes the 1<sup>st</sup> client in the displayed client list.
-* `delete 2 m/client` deletes the 2<sup>nd</sup> client in the displayed client list.
+* `delete 1 m/client` deletes the 1<sup>st</sup> client in the displayed *List of Clients* panel.
+* `delete 2 m/client` deletes the 2<sup>nd</sup> client in the displayed *List of Clients* panel.
 
 > <div markdown="span" class="alert alert-danger">❗ **Danger: Deleting a client is an irreversible process**<br/> Be very careful here!
 
@@ -263,25 +269,25 @@ Format: `find KEYWORD [MORE_KEYWORDS]...`
   e.g. `John Bob Lim` will return `John Koh`, `Bob Tan`
 
 Examples:
-* `find John` return clients `John`, `John Lim`, `John Koh`
-* `find Tan` return clients `John Tan`, `Bob Tan`, `Alice Tan`
+* `find John` returns clients `John`, `John Lim`, `John Koh`
+* `find Tan` returns clients `John Tan`, `Bob Tan`, `Alice Tan`
 
 [Back to Table of Contents](#table-of-contents)
 
 ### Viewing a client: `view`
 
-Displays the remarks and transactions of the specified client.
-The client list will be filtered to display only the specified client.
+Displays the **remarks** and **transactions** of the specified client.
+The *List of clients* panel will be filtered to display only the specified client.
 
 Format: `view INDEX`
 
 * Views the client at the specified `INDEX`.
-* `INDEX` refers to the index number shown in the **displayed** list of clients.
+* `INDEX` refers to the index number shown in the displayed *List of Clients* panel. 
 * The `INDEX` **must be a positive integer** 1, 2, 3, …​
 * The `INDEX` **must not contain any signs** e.g +1, -3, …​
 
 Example:
-* `view 5` displays the remarks and transactions of the client at the 5<sup>th</sup> index.
+* `view 5` displays the **remarks** and **transactions** of the client at the 5<sup>th</sup> index.
 
 > <div markdown="span" class="alert alert-primary">:bulb: Tip: Use the [list](#listing-all-clients-list) command if you want to get back the full list of clients</div>
 
@@ -289,11 +295,11 @@ Example:
 
 ### **Transaction Commands**
 
-The following section highlights **all** commands related to `clients`.
+The following section highlights **all** commands related to clients.
 
 ### Creating a transaction: `buy` or `sell`
 
-Adds a `buy` or `sell` transaction to the **List Of Transactions** of a specified client.
+Adds a `buy` or `sell` transaction to the *Transaction Details* of a specified client.
 
 Formats:
 
@@ -305,7 +311,7 @@ Parameter constraints:
 
 | Parameter  | Constraints                                                                                                                                                                                          |
 |:-----------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `INDEX`    | - Refers to the index number shown in the displayed **List Of Clients**. <br/> - **Must be a positive integer** e.g 1, 2, 3, …​ <br/> - **Must not contain any signs** e.g +1, -3, …​                |
+| `INDEX`    | - Refers to the index number shown in the displayed *List Of Clients*. <br/> - **Must be a positive integer** e.g 1, 2, 3, …​ <br/> - **Must not contain any signs** e.g +1, -3, …​                  |
 | `QUANTITY` | - Refers to the amount of the goods transacted. <br/> - **Must be a positive integer**<br/> - **Must not contain any signs**                                                                         |
 | `GOODS`    | - Refers to the name of the goods transacted. <br/> - **Must contain alphanumeric characters**<br/>- **Must not be blank**.                                                                          |
 | `PRICE`    | - Refers to the price of the goods transacted. <br/> - **Must be a positive number** e.g. 1.5, 2.3, 5<br/>- **Must not contain any signs** <br/>- **Prices will be rounded up to 2 decimal places.** |
@@ -318,24 +324,24 @@ the list on the 07/11/2000.
 
 ![Ui](images/SampleBuySellCommand2.PNG)
 
-> <div markdown="span" class="alert alert-primary">:bulb: Tip: If you use the "buy" or "sell" command while the "Client List Panel" has more than one client, you will not be able to see the addition.<br/>Use the [view](#viewing-a-client-view) command to see it.</div>
+> <div markdown="span" class="alert alert-primary">:bulb: Tip: If you use the "buy" or "sell" command while the *List Of CLients* panel has more than one client, you will not be able to see the addition.<br/>Use the [view](#viewing-a-client-view) command to see it.</div>
 
 [Back to Table of Contents](#table-of-contents)
 
 ### Editing a transaction: `edit`
 
-Edits a `transaction` specified by the index number.
+Edits a transaction specified by the index number.
 
 Format: `edit INDEX m/transaction FIELDS [MORE_FIELDS]...`
 
-| Parameter | Constraints                                                                                                                                                                                         |
-|:----------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `INDEX`   | - Refers to the index number shown in the display **List of Transactions**. <br/> - **Must be a positive integer within the range displayed**<br/>  **- Must not contain any signs** e.g +1, -3, …​ |
-| `FIELDS`  | - Refers to the parameters to be changed for the transaction.<br/> - `[q/QUANTITY]`<br/> - `[g/GOODS]`<br/> - `[price/PRICE]`<br/> - `[d/DATE]`                                                     |
+| Parameter | Constraints                                                                                                                                                                                      |
+|:----------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `INDEX`   | - Refers to the index number shown in the display *Transaction Details*. <br/> - **Must be a positive integer within the range displayed**<br/>  **- Must not contain any signs** e.g +1, -3, …​ |
+| `FIELDS`  | - Refers to the parameters to be changed for the transaction.<br/> - `[q/QUANTITY]`<br/> - `[g/GOODS]`<br/> - `[price/PRICE]`<br/> - `[d/DATE]`                                                  |
 
 Example (refer to diagram below):
 
-`edit 1 m/transaction q/100 g/Apples price/1.5` edits the transaction at index 1 in the displayed list of transactions (pear), to have a new **goods name**: "Apples", **quantity**: "100", **price**: 1.5.
+`edit 1 m/transaction q/100 g/Apples price/1.5` edits the transaction at index 1 in the displayed *Transaction Details* panel, to have a new goods name: "Apples", quantity: "100", price: 1.5.
 
 > <div markdown="span" class="alert alert-warning">:warning: Warning: You must use [view](#viewing-a-client-view) command first before you can edit a transaction. If not, there will be an error within the application!
 
@@ -346,16 +352,16 @@ Example (refer to diagram below):
 
 ### Deleting a transaction: `delete`
 
-Deletes a `transaction` specified by the index number.
+Deletes a transaction specified by the index number.
 
 Format: `delete INDEX m/transaction`
 
-* `INDEX` refers to the index number shown in the displayed list of transactions. 
+* `INDEX` refers to the index number shown in the displayed *Transaction Details*. 
 * `INDEX` must be a **positive integer**, and must not contain any signs e.g. +1, -3.
 
 Example:
 
-`delete 1 m/transaction` deletes the transaction at index 1 in the displayed list of transactions.
+`delete 1 m/transaction` deletes the transaction at index 1 in the displayed *Transaction Details*.
 
 > <div markdown="span" class="alert alert-warning">:warning: Warning: You must use [view](#viewing-a-client-view) command first before you can delete a transaction. If not, there will be an error within the application!
 
@@ -366,20 +372,20 @@ Example:
 ### Filtering buy or sell transactions: `filter`
 
 Filters the buy or sell transactions of all the clients. After executing this command, the filtered transactions will be 
-displayed in the transaction panel while the client list panel will display all the clients.
+displayed in the *Transaction Details* panel while the *List Of Clients* panel will display all the clients.
 
 Format: `filter TYPE`
 
 * The `TYPE` refers to the type of transactions to be displayed.
   It can only be `buy` or `sell`.
-* If no clients made any transactions, the transaction section will be blank.
-* After calling the `filter` command, the client list panel will display all clients.
+* If no clients made any transactions, the *Transaction Details* panel will be blank.
+* After calling the `filter` command, the *List Of Clients* panel will display all clients.
 
 Examples:
 * `filter buy` displays all buy transactions.
 * `filter sell` displays all sell transactions.
 
-> <div markdown="span" class="alert alert-primary">:bulb: Tip: The transactions listed in "List of Transactions" panel does not belong to anyone, it is all transactions with all your clients</div>
+> <div markdown="span" class="alert alert-primary">:bulb: Tip: The transactions listed in *List of Transactions* panel does not belong to anyone, it is all transactions with all your clients</div>
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -388,25 +394,25 @@ Examples:
 Sorts the specified client's transaction by either the **latest transaction** or **oldest transaction** (defined by date).
 
 Format: `sort INDEX ORDER`
-* The list of transaction panel will be empty if the client does not have any transactions.
+* The *Transaction Details* panel will be empty if the client does not have any transactions.
 
-| Parameter | Constraints                                                                                                                                                                                  |
-|:----------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `INDEX`   | - Refers to the index number shown in the displayed list of clients. <br/> - **Must be a positive integer within the range displayed**<br/>  **- Must not contain any signs** e.g +1, -3, …​ |
-| `ORDER`   | - Refers to how the transaction will be sorted. <br/> - Order of sorting can only be `oldest` or `latest`.<br/>                                                                              |
+| Parameter | Constraints                                                                                                                                                                                         |
+|:----------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `INDEX`   | - Refers to the index number shown in the displayed *List Of Clients* panel.<br/> - **Must be a positive integer within the range displayed**<br/>  **- Must not contain any signs** e.g +1, -3, …​ |
+| `ORDER`   | - Refers to how the transaction will be sorted. <br/> - Order of sorting can only be `oldest` or `latest`.<br/>                                                                                     |
 
 
 Examples:
 * `sort 1 latest` displays the 1<sup>st</sup> client transactions sorted by the latest transaction on top.
 * `sort 5 oldest` displays the 5<sup>th</sup> client transactions sorted by the oldest transaction on top.
 
-> <div markdown="span" class="alert alert-primary">:bulb: Tip: The sort command will filter the list of clients panel to display only the specified client.<br/>Use the [list](#listing-all-clients-list) command to get back the full list of clients.</div>
+> <div markdown="span" class="alert alert-primary">:bulb: Tip: The sort command will filter the *List Of Clients* panel to display only the specified client.<br/>Use the [list](#listing-all-clients-list) command to get back the full list of clients.</div>
 
 [Back to Table of Contents](#table-of-contents)
 
 ### **Remark Commands**
 
-The following section highlights **all** commands related to `remarks`.
+The following section highlights **all** commands related to remarks.
 
 ### Creating a remark: `remark`
 
@@ -421,10 +427,10 @@ Format: `remark INDEX REMARK`
 
 
 Examples:
-* `remark 1 punctual buyer` adds the remark `punctual buyer` to the client at index 1.
+* `remark 1 punctual buyer` adds the remark **punctual buyer** to the client at index **1**.
 
 
-> <div markdown="span" class="alert alert-primary">:bulb: Tip: If you use the "remark" command while the "Client List Panel" has more than one client, you will not be able to see the addition.<br/>Use the [view](#viewing-a-client-view) command to see it.</div>
+> <div markdown="span" class="alert alert-primary">:bulb: Tip: If you use the `remark` command while the *List of Clients* Panel has more than one client, you will not be able to see the addition.<br/>Use the [view](#viewing-a-client-view) command to see it.</div>
 
 
 [Back to Table of Contents](#table-of-contents)
@@ -442,7 +448,7 @@ Format: `edit INDEX m/remark REMARK`
 
 Example:
 
-`edit 1 m/remark Client replies very fast` edits the remark at index **1** to 'Client replies very fast' in the displayed remark list. 
+`edit 1 m/remark Client replies very fast` edits the remark at index **1** to **Client replies very fast** in the *Remarks of Specified Client* Panel. 
 
 > <div markdown="span" class="alert alert-warning">:warning: Warning: You must use [view](#viewing-a-client-view) command first before you can edit a remark. If not, there will be an error within the application!
 
@@ -579,7 +585,7 @@ _Details coming soon ..._
 | **Find**       | `find KEYWORD [MORE_KEYWORDS]...`<br> e.g., `find John`                                                                                                         |
 | **Help**       | `help [COMMAND]` <br> e.g.,`help` or `help add` or `help sort`                                                                                                  |
 | **List**       | `list`                                                                                                                                                          |
-| **Remark**     | `remark INDEX REMARK [t/TAG]...`<br> e.g., `remark 3 Punctual Buyer` or `remark 5 Fast and Decisive Buyer t/favourite`                                          |                                                                     |
+| **Remark**     | `remark INDEX REMARK [t/TAG]...`<br> e.g., `remark 3 Punctual Buyer` or `remark 5 Fast and Decisive Buyer t/favourite`                                          |
 | **Sell**       | `sell INDEX q/QUANTITY g/GOODS price/PRICE [d/DATE]` <br/> e.g., `sell 2 q/100 g/apples price/1.5 d/07/11/2022`                                                 |
 | **Sort**       | `sort INDEX ORDER` <br> e.g.,`sort 1 latest` or `sort 3 oldest`                                                                                                 | 
 | **User Guide** | `user_guide`                                                                                                                                                    |
@@ -589,18 +595,18 @@ _Details coming soon ..._
 
 ## Prefix Summary
 
-| Prefix     | Meaning                                        | Restrictions                                        | Example                       |
-|------------|------------------------------------------------|-----------------------------------------------------|-------------------------------|
-| **n/**     | Name of the client                             | Alphanumeric characters and spaces, required        | `n/Alice`                     |
-| **a/**     | Address of the client                          | Required                                            | `a/321 Clementi Road, #02-22` |
-| **p/**     | Phone number of the client                     | Required                                            | `p/98765432`                  |
-| **e/**     | Email of the client                            | Required                                            | `e/alice@gmail.com`           |
-| **g/**     | Goods name involved in the transaction         | Alphanumeric characters and spaces, required        | `g/Apples`                    |
-| **q/**     | Quantity of goods involved in the transaction  | Positive integer, required                          | `q/10`                        |
-| **price/** | Price per quantity of goods in the transaction | Positive number, required                           | `price/1.50`                  |
-| **m/**     | Mode of the command                            | Must be either `client`, `transaction`, or `remark` | `m/client`                    |
-| **d/**     | Date of transaction                            | In the format `dd/mm/yyyy`                          | `d/07/11/2022`                |
-| **t/**     | Tag applied on clients                         | Alphanumeric, single word                           | `t/friends`                   |
+| Prefix     | Meaning                                        | Restrictions                                              | Example                       |
+|------------|------------------------------------------------|-----------------------------------------------------------|-------------------------------|
+| **n/**     | Name of the client                             | Alphanumeric characters and spaces, required              | `n/Alice`                     |
+| **a/**     | Address of the client                          | Required                                                  | `a/321 Clementi Road, #02-22` |
+| **p/**     | Phone number of the client                     | Required                                                  | `p/98765432`                  |
+| **e/**     | Email of the client                            | Required                                                  | `e/alice@gmail.com`           |
+| **g/**     | Goods name involved in the transaction         | Alphanumeric characters and spaces, required              | `g/Apples`                    |
+| **q/**     | Quantity of goods involved in the transaction  | Positive integer, required                                | `q/10`                        |
+| **price/** | Price per quantity of goods in the transaction | Positive number, required                                 | `price/1.50`                  |
+| **m/**     | Mode of the command                            | Must be either **client**, **transaction**, or **remark** | `m/client`                    |
+| **d/**     | Date of transaction                            | In the format **dd/mm/yyyy**                              | `d/07/11/2022`                |
+| **t/**     | Tag applied on clients                         | Alphanumeric, single word                                 | `t/friends`                   |
 
 [Back to Table of Contents](#table-of-contents)
 
