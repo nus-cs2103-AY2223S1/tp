@@ -4,40 +4,45 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.model.internship.Internship;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of findMyIntern data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final FindMyIntern findMyIntern;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Internship> filteredInternships;
+    private SortedList<Internship> sortedInternships;
+    private Predicate<Internship> currentPredicate = PREDICATE_SHOW_ALL_INTERNSHIPS;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given findMyIntern and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyFindMyIntern findMyIntern, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(findMyIntern, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with findMyIntern: " + findMyIntern + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.findMyIntern = new FindMyIntern(findMyIntern);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredInternships = new FilteredList<>(this.findMyIntern.getInternshipList());
+        sortedInternships = new SortedList<>(filteredInternships);
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new FindMyIntern(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -65,67 +70,84 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getFindMyInternFilePath() {
+        return userPrefs.getFindMyInternFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setFindMyInternFilePath(Path findMyInternFilePath) {
+        requireNonNull(findMyInternFilePath);
+        userPrefs.setFindMyInternFilePath(findMyInternFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== FindMyIntern ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
-    }
-
-    @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public void setFindMyIntern(ReadOnlyFindMyIntern findMyIntern) {
+        this.findMyIntern.resetData(findMyIntern);
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public ReadOnlyFindMyIntern getFindMyIntern() {
+        return findMyIntern;
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public boolean hasInternship(Internship internship) {
+        requireNonNull(internship);
+        return findMyIntern.hasInternship(internship);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void deleteInternship(Internship target) {
+        findMyIntern.removeInternship(target);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-
-        addressBook.setPerson(target, editedPerson);
+    public void addInternship(Internship internship) {
+        findMyIntern.addInternship(internship);
+        updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    @Override
+    public void setInternship(Internship target, Internship editedInternship) {
+        requireAllNonNull(target, editedInternship);
+
+        findMyIntern.setInternship(target, editedInternship);
+    }
+
+    @Override
+    public void markInternship(Internship target, Internship markInternship) {
+        setInternship(target, markInternship);
+    }
+
+    //=========== Filtered Internship List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * Returns an unmodifiable view of the list of {@code Internship} backed by the internal list of
+     * {@code versionedFindMyIntern}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Internship> getFilteredInternshipList() {
+        return sortedInternships;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredInternshipList(Predicate<Internship> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        currentPredicate = predicate;
+        filteredInternships.setPredicate(predicate);
+    }
+
+    @Override
+    public Predicate<Internship> getCurrentPredicate() {
+        return currentPredicate;
+    }
+
+    @Override
+    public void updateSortedInternshipList(Comparator<Internship> comparator) {
+        requireNonNull(comparator);
+        sortedInternships.setComparator(comparator);
     }
 
     @Override
@@ -142,9 +164,9 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return findMyIntern.equals(other.findMyIntern)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && sortedInternships.equals(other.sortedInternships);
     }
 
 }

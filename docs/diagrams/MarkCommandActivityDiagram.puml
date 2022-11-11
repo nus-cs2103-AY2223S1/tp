@@ -1,0 +1,17 @@
+@startuml
+scale 1.2
+start
+:User executes Mark command;
+:MarkCommandParser parses argument;
+if () then ([wrong format])
+    :Display error message;
+else ([else])
+    if () then ([new status is same as existing])
+        : Display error message;
+    else ([else])
+        :Internship is updated with new application status;
+        :Internship list is updated;
+    endif
+endif
+stop
+@enduml

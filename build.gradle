@@ -66,7 +66,12 @@ dependencies {
 }
 
 shadowJar {
-    archiveFileName = 'addressbook.jar'
+    archiveFileName = 'findmyintern.jar'
+    mainClassName = 'seedu.address.Main'
+}
+
+run {
+    enableAssertions = true
 }
 
 defaultTasks 'clean', 'test'

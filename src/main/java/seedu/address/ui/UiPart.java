@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.net.URL;
 
 import javafx.fxml.FXMLLoader;
+import javafx.util.Duration;
 import seedu.address.MainApp;
 
 /**
@@ -13,6 +14,9 @@ import seedu.address.MainApp;
  * It contains a scene graph with a root node of type {@code T}.
  */
 public abstract class UiPart<T> {
+
+    /** Delay before tooltip appears. */
+    public static final Duration TOOLTIP_DELAY = Duration.millis(250);
 
     /** Resource folder where FXML files are stored. */
     public static final String FXML_FILE_FOLDER = "/view/";

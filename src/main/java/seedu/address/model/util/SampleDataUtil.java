@@ -4,48 +4,61 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.FindMyIntern;
+import seedu.address.model.ReadOnlyFindMyIntern;
+import seedu.address.model.internship.ApplicationStatus;
+import seedu.address.model.internship.AppliedDate;
+import seedu.address.model.internship.Company;
+import seedu.address.model.internship.Description;
+import seedu.address.model.internship.Internship;
+import seedu.address.model.internship.InterviewDateTime;
+import seedu.address.model.internship.Link;
 import seedu.address.model.tag.Tag;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
+
+
 public class SampleDataUtil {
-    public static Person[] getSamplePersons() {
-        return new Person[] {
-            new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                new Address("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("friends")),
-            new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("colleagues", "friends")),
-            new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getTagSet("neighbours")),
-            new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                getTagSet("family")),
-            new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                new Address("Blk 47 Tampines Street 20, #17-35"),
-                getTagSet("classmates")),
-            new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                new Address("Blk 45 Aljunied Street 85, #11-31"),
-                getTagSet("colleagues"))
+    public static Internship[] getSampleInternships() {
+        return new Internship[] {
+            new Internship(new Company("Google"), new Link("https://careers.google.com/students"),
+                new Description("Software engineering internship, "
+                        + "work on projects related to mobile development, distributed and parallel systems"),
+                    ApplicationStatus.Interviewed, new AppliedDate("03/09/2022"),
+                    new InterviewDateTime("29/09/2022 13:30"), getTagSet("Backend")),
+            new Internship(new Company("TikTok"), new Link("https://careers.tiktok.com"),
+                new Description("Mobile software engineering internship, "
+                        + "design and implement new user features of mobile application"),
+                    ApplicationStatus.Rejected, new AppliedDate("11/09/2022"),
+                    new InterviewDateTime("23/09/2022 14:00"), getTagSet("Frontend")),
+            new Internship(new Company("Stripe"), new Link("https://stripe.com/en-sg/jobs/university"),
+                new Description("Software engineering internship, write software for production, "
+                        + "requires knowledge on how to handle HTTP requests"), ApplicationStatus.Accepted,
+                new AppliedDate("26/09/2022"), new InterviewDateTime("15/10/2022 10:30"), getTagSet("Backend")),
+            new Internship(new Company("Meta"), new Link("https://metacareers.com/careerprograms/students"),
+                new Description("Software engineering internship, work on assigned codebase, "
+                        + "product area, and/or system"), ApplicationStatus.Shortlisted,
+                new AppliedDate("05/10/2022"), new InterviewDateTime("23/10/2022 15:00"), getTagSet("Backend")),
+            new Internship(new Company("Jane Street"), new Link("https://janestreet.com/join-jane-street"),
+                new Description("Software engineering internship, work on two projects, learn OCaml, "
+                        + "gain exposure to libraries and tools used in internal systems"),
+                    ApplicationStatus.Applied, new AppliedDate("11/10/2022"),
+                    null, getTagSet("Quant")),
+            new Internship(new Company("Visa"), new Link("https://www.visa.com.sg/careers.html"),
+                new Description("Software engineering internship, get executive exposure, "
+                        + "engage in out-of-the-box problem solving"), ApplicationStatus.Shortlisted,
+                new AppliedDate("23/10/2022"), new InterviewDateTime("15/11/2022 16:15"), getTagSet("Backend"))
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
-        for (Person samplePerson : getSamplePersons()) {
-            sampleAb.addPerson(samplePerson);
+    public static ReadOnlyFindMyIntern getSampleFindMyIntern() {
+        FindMyIntern sampleFmi = new FindMyIntern();
+        for (Internship sampleInternship : getSampleInternships()) {
+            sampleFmi.addInternship(sampleInternship);
         }
-        return sampleAb;
+        return sampleFmi;
     }
 
     /**

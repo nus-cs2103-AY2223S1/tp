@@ -1,0 +1,60 @@
+{
+  "_comment": "FindMyIntern save file which contains the same Internship values as in TypicalInternships#getTypicalFindMyIntern()",
+  "internships" : [ {
+    "company" : "Alibaba",
+    "link" : "https://careers.alibaba.com/positionDetail",
+    "description" : "Software Engineering Intern",
+    "applicationStatus" : "applied",
+    "appliedDate" : "30 Oct 2022",
+    "interviewDateTime" : "30 Nov 2022 09:00",
+    "tagged" : [ "Ecommerce" ]
+  }, {
+    "company" : "Binance",
+    "link" : "https://careers.binance.com/positionDetail",
+    "description" : "Software Engineering Internship (6 months)",
+    "applicationStatus" : "interviewed",
+    "appliedDate" : "5 Oct 2022",
+    "interviewDateTime" : "5 Nov 2022 09:00",
+    "tagged" : [ "Crypto" ]
+  }, {
+    "company": "Citadel",
+    "link": "https://careers.Citadel.com/positionDetail",
+    "description": "Software Engineer Intern",
+    "applicationStatus" : "rejected",
+    "appliedDate" : "23 Oct 2022",
+    "interviewDateTime" : "23 Nov 2022 09:00",
+    "tagged" : [ "Backend" ]
+  }, {
+    "company": "Dell",
+    "link": "https://careers.Dell.com/positionDetail",
+    "description": "Software Developer Intern",
+    "applicationStatus" : "applied",
+    "appliedDate": "30 Sep 2022",
+    "interviewDateTime" : "30 Oct 2022 09:00",
+    "tagged" : [ "Backend" ]
+  }, {
+    "company": "Ebay",
+    "link": "https://careers.Ebay.com/positionDetail",
+    "description": "Software Engineer Intern 2023",
+    "applicationStatus" : "rejected",
+    "appliedDate": "27 Oct 2022",
+    "interviewDateTime" : "27 Nov 2022 09:00",
+    "tagged" : [ "Ecommerce" ]
+  }, {
+    "company": "Facebook",
+    "link": "https://careers.Facebook.com/positionDetail",
+    "description": "Software Engineer Intern - Mobile (Flutter)",
+    "applicationStatus" : "applied",
+    "appliedDate": "3 Nov 2022",
+    "interviewDateTime" : "3 Dec 2022 09:00",
+    "tagged" : [ "Frontend" ]
+  }, {
+    "company": "Goldman Sachs",
+    "link": "https://careers.GoldmanSachs.com/positionDetail",
+    "description": "Software Engineer Program - Summer Analyst",
+    "applicationStatus" : "accepted",
+    "appliedDate": "21 Oct 2022",
+    "interviewDateTime" : "21 Nov 2022 09:00",
+    "tagged" : [ "Backend" ]
+  } ]
+}

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.control.Button?>
+
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+  <GridPane HBox.hgrow="ALWAYS">
+    <columnConstraints>
+      <ColumnConstraints hgrow="NEVER" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+    </columnConstraints>
+    <rowConstraints>
+      <RowConstraints minHeight="-Infinity" valignment="TOP" vgrow="SOMETIMES"/>
+    </rowConstraints>
+    <Label fx:id="id" styleClass="cell_index" GridPane.columnIndex="0" />
+    <VBox fx:id="contents" alignment="CENTER_LEFT" spacing="2" GridPane.columnIndex="1">
+      <HBox spacing="30" alignment="CENTER_LEFT">
+        <Label fx:id="company" text="\$first" styleClass="cell_company" minWidth="50" />
+        <Button fx:id="linkButton" styleClass="cell_button_link" mnemonicParsing="false"
+                minWidth="50" onAction="#copyInternshipUrl" />
+        <Pane maxHeight="-Infinity" maxWidth="Infinity" HBox.hgrow="ALWAYS" />
+        <Label fx:id="applicationStatus" styleClass="applicationStatus_label" text="\$applicationStatus" />
+      </HBox>
+      <Label fx:id="description" styleClass="cell_small_text" text="\$description" wrapText="true" />
+      <HBox fx:id="appliedDateLine" spacing="5" alignment="CENTER_LEFT">
+        <Label fx:id="appliedDateLabel" styleClass="cell_small_label" text="\$appliedDateLabel" />
+        <Label fx:id="appliedDate" styleClass="cell_small_text" text="\$appliedDate" />
+      </HBox>
+      <HBox fx:id="interviewDateTimeLine" spacing="5" alignment="CENTER_LEFT">
+        <Label fx:id="interviewDateTimeLabel" styleClass="cell_small_label" text="\$interviewDateTimeLabel" />
+        <Label fx:id="interviewDateTime" styleClass="cell_small_text" text="\$interviewDateTime" />
+        <Pane maxHeight="-Infinity" maxWidth="Infinity" HBox.hgrow="ALWAYS" />
+        <HBox fx:id="tags" />
+      </HBox>
+    </VBox>
+  </GridPane>
+</HBox>

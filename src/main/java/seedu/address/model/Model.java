@@ -1,18 +1,19 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Person;
+import seedu.address.model.internship.Internship;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Internship> PREDICATE_SHOW_ALL_INTERNSHIPS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -35,53 +36,70 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' findMyIntern file path.
      */
-    Path getAddressBookFilePath();
+    Path getFindMyInternFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' findMyIntern file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setFindMyInternFilePath(Path findMyInternFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces findMyIntern data with the data in {@code findMyIntern}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setFindMyIntern(ReadOnlyFindMyIntern findMyIntern);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the FindMyIntern */
+    ReadOnlyFindMyIntern getFindMyIntern();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if an internship with the same identity as {@code internship} exists in the findMyIntern.
      */
-    boolean hasPerson(Person person);
+    boolean hasInternship(Internship internship);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given internship.
+     * The internship must exist in the findMyIntern.
      */
-    void deletePerson(Person target);
+    void deleteInternship(Internship target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds the given internship.
+     * {@code internship} must not already exist in findMyIntern.
      */
-    void addPerson(Person person);
+    void addInternship(Internship internship);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * Replaces the given internship {@code target} with {@code editedInternship}.
+     * {@code target} must exist in findMyIntern.
+     * The internship identity of {@code editedInternship} must not be the same as
+     * another existing internship in findMyIntern.
      */
-    void setPerson(Person target, Person editedPerson);
-
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
+    void setInternship(Internship target, Internship editedInternship);
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Replaces the given internship {@code target} with {@code markedInternship}.
+     * {@code target} must exist in findMyIntern.
+     * The internship identity of {@code markInternship} must not be the same as
+     * another existing internship in findMyIntern.
+     */
+    void markInternship(Internship target, Internship markedInternship);
+
+    /** Returns an unmodifiable view of the filtered internship list */
+    ObservableList<Internship> getFilteredInternshipList();
+
+    /**
+     * Updates the filter of the filtered internship list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredInternshipList(Predicate<Internship> predicate);
+
+    void updateSortedInternshipList(Comparator<Internship> comparator);
+
+    /**
+     * Returns the current predicate.
+     * @return the current predicate used by the filtered internship list.
+     */
+    Predicate<Internship> getCurrentPredicate();
 }

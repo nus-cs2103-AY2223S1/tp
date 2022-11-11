@@ -1,0 +1,19 @@
+{
+  "internships": [ {
+    "link" : "https://careers.tiktok.com/position/7132807469026117902/detail",
+    "description" : "Global E-commerce",
+    "applicationStatus" : "applied",
+    "appliedDate" : "5 Oct 2022",
+    "interviewDateTime": "5 Nov 2022 09:00",
+    "tagged" : [ "Frontend" ],
+    "company" : "Tiktok"
+  }, {
+    "link" : "https://careers.tiktok.com/position/7132807469026117902/detail",
+    "description" : "Global E-commerce",
+    "applicationStatus" : "applied",
+    "appliedDate" : "8 Oct 2022",
+    "interviewDateTime": "8 Nov 2022 09:00",
+    "tagged" : [ "Frontend" ],
+    "company" : "Tiktok"
+  } ]
+}

@@ -1,0 +1,58 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+
+participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
+participant "ckp:ContainsKeywordsPredicate" as ContainsKeywordsPredicate LOGIC_COLOR
+participant "f:FindCommand" as FindCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> FindCommandParser : parse("google")
+activate FindCommandParser
+
+create ContainsKeywordsPredicate
+FindCommandParser -> ContainsKeywordsPredicate : ContainsKeywordsPredicate("google")
+activate ContainsKeywordsPredicate
+
+ContainsKeywordsPredicate --> FindCommandParser :ckp
+deactivate ContainsKeywordsPredicate
+
+create FindCommand
+FindCommandParser -> FindCommand : FindCommand(ckp)
+activate FindCommand
+
+FindCommand --> FindCommandParser : f
+deactivate FindCommand
+
+[<--FindCommandParser : f
+deactivate FindCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+[<-[hidden]-FindCommandParser
+destroy FindCommandParser
+
+[-> FindCommand : execute()
+activate FindCommand
+
+FindCommand -> Model : updateFilteredInternshipList(ckp)
+activate Model
+
+Model --> FindCommand
+deactivate Model
+
+create CommandResult
+FindCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindCommand
+deactivate CommandResult
+
+[<--FindCommand : result
+deactivate FindCommand
+
+@enduml

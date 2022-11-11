@@ -1,21 +1,24 @@
 @startuml
+scale 1.3
 !include style.puml
 skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-AddressBook *-right-> "1" UniquePersonList
-AddressBook *-right-> "1" UniqueTagList
-UniqueTagList -[hidden]down- UniquePersonList
-UniqueTagList -[hidden]down- UniquePersonList
+FindMyIntern *-right-> "1" UniqueInternshipList
+FindMyIntern *-right-> "1" UniqueTagList
+UniqueTagList -[hidden]down- UniqueInternshipList
+UniqueTagList -[hidden]down- UniqueInternshipList
 
 UniqueTagList *-right-> "*" Tag
-UniquePersonList -right-> Person
+UniqueInternshipList -right-> Internship
 
-Person -up-> "*" Tag
+Internship -up-> "*" Tag
 
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
+Internship *--> Company
+Internship *--> AppliedDate
+Internship *--> InterviewDateTime
+Internship *--> Description
+Internship *--> Link
+Internship *--> ApplicationStatus
 @enduml

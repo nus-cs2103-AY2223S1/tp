@@ -1,0 +1,16 @@
+@startuml
+scale 1.2
+start
+:User executes Add command;
+:AddCommandParser parses argument;
+if () then ([wrong format])
+    :Display error message;
+else ([else])
+    if () then ([internship to be added is a duplicate])
+        : Display error message;
+    else ([else])
+        :New internship is added to internship list;
+    endif
+endif
+stop
+@enduml

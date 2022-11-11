@@ -1,23 +1,26 @@
 @startuml
+scale 1.3
 !include style.puml
 skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+Class "<<interface>>\nReadOnlyFindMyIntern" as ReadOnlyFindMyIntern
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
-Class AddressBook
+Class FindMyIntern
 Class ModelManager
 Class UserPrefs
 
-Class UniquePersonList
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
+Class UniqueInternshipList
+Class Internship
+Class Description
+Class Link
+Class Company
+Class AppliedDate
+Class InterviewDateTime
+Class ApplicationStatus
 Class Tag
 
 }
@@ -25,26 +28,30 @@ Class Tag
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+FindMyIntern .up.|> ReadOnlyFindMyIntern
 
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
+Model .left.> ReadOnlyFindMyIntern
+ModelManager -left-> "1" FindMyIntern
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+FindMyIntern *--> "1" UniqueInternshipList
+UniqueInternshipList -[hidden]right-> "~* all" Internship
+UniqueInternshipList --> "~* all" Internship
+Internship *--> Company
+Internship *--> AppliedDate
+Internship *--> InterviewDateTime
+Internship *--> Link
+Internship *--> Description
+Internship *--> ApplicationStatus
+Internship *--> "*" Tag
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Company -[hidden]right-> AppliedDate
+AppliedDate -[hidden]right-> Description
+Description -[hidden]right-> Link
+Link -[hidden]right-> ApplicationStatus
 
-ModelManager -->"~* filtered" Person
+ModelManager -->"~* filtered" Internship
 @enduml

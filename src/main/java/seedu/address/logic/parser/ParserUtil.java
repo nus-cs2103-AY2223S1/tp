@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -9,10 +10,12 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.internship.ApplicationStatus;
+import seedu.address.model.internship.AppliedDate;
+import seedu.address.model.internship.Company;
+import seedu.address.model.internship.Description;
+import seedu.address.model.internship.InterviewDateTime;
+import seedu.address.model.internship.Link;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -29,6 +32,9 @@ public class ParserUtil {
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
+        if (!StringUtil.isValidInteger(trimmedIndex)) {
+            throw new ParseException(MESSAGE_INVALID_COMMAND_FORMAT);
+        }
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
@@ -36,63 +42,98 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String name} into a {@code Name}.
+     * Parses a {@code String company} into a {@code Company}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code name} is invalid.
+     * @throws ParseException if the given {@code company} is invalid.
      */
-    public static Name parseName(String name) throws ParseException {
-        requireNonNull(name);
-        String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+    public static Company parseCompany(String company) throws ParseException {
+        requireNonNull(company);
+        String trimmedCompany = company.trim();
+        if (!Company.isValidCompany(trimmedCompany)) {
+            throw new ParseException(Company.MESSAGE_CONSTRAINTS);
         }
-        return new Name(trimmedName);
+        return new Company(trimmedCompany);
     }
 
     /**
-     * Parses a {@code String phone} into a {@code Phone}.
+     * Parses a {@code String link} into a {@code Link}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code phone} is invalid.
+     * @throws ParseException if the given {@code link} is invalid.
      */
-    public static Phone parsePhone(String phone) throws ParseException {
-        requireNonNull(phone);
-        String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+    public static Link parseLink(String link) throws ParseException {
+        requireNonNull(link);
+        String trimmedLink = link.trim();
+        if (!Link.isValidLink(trimmedLink)) {
+            throw new ParseException(Link.MESSAGE_CONSTRAINTS);
         }
-        return new Phone(trimmedPhone);
+        return new Link(trimmedLink);
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
+     * Parses a {@code String appliedDate} into an {@code AppliedDate}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code address} is invalid.
+     * @throws ParseException if the given {@code appliedDate} is invalid.
      */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+    public static AppliedDate parseAppliedDate(String appliedDate) throws ParseException {
+        requireNonNull(appliedDate);
+        String trimmedAppliedDate = appliedDate.trim();
+        if (!AppliedDate.isValidFormat(trimmedAppliedDate)) {
+            throw new ParseException(AppliedDate.FORMAT_CONSTRAINTS);
+        } else if (!AppliedDate.isValidDate(trimmedAppliedDate)) {
+            throw new ParseException(AppliedDate.DATE_CONSTRAINTS);
         }
-        return new Address(trimmedAddress);
+        return new AppliedDate(trimmedAppliedDate);
+    }
+
+
+    /**
+     * Parses a {@code String interviewDateTime} into an {@code InterviewDateTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code interviewDateTime} is invalid.
+     */
+    public static InterviewDateTime parseInterviewDateTime(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedInterviewDate = date.trim();
+        if (!InterviewDateTime.isValidFormat(trimmedInterviewDate)) {
+            throw new ParseException(InterviewDateTime.FORMAT_CONSTRAINTS);
+        } else if (!InterviewDateTime.isValidDateTime(trimmedInterviewDate)) {
+            throw new ParseException(InterviewDateTime.DATE_TIME_CONSTRAINTS);
+        }
+        return new InterviewDateTime(trimmedInterviewDate);
     }
 
     /**
-     * Parses a {@code String email} into an {@code Email}.
+     * Parses a {@code String description} into an {@code Description}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code email} is invalid.
+     * @throws ParseException if the given {@code description} is invalid.
      */
-    public static Email parseEmail(String email) throws ParseException {
-        requireNonNull(email);
-        String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+    public static Description parseDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        if (!Description.isValidDescription(trimmedDescription)) {
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
         }
-        return new Email(trimmedEmail);
+        return new Description(trimmedDescription);
+    }
+
+    /**
+     * Parses a {@code String applicationStatus} into an {@code ApplicationStatus}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code applicationStatus} is invalid.
+     */
+    public static ApplicationStatus parseApplicationStatus(String applicationStatus) throws ParseException {
+        requireNonNull(applicationStatus);
+        String trimmedApplicationStatus = applicationStatus.trim();
+
+        ApplicationStatus status = ApplicationStatus.parse(trimmedApplicationStatus);
+        return status;
+
     }
 
     /**

@@ -1,0 +1,65 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+
+participant ":FilterCommandParser" as FilterCommandParser LOGIC_COLOR
+participant "pred:InternshipHasApplicationStatusPredicate" as InternshipHasApplicationStatusPredicate LOGIC_COLOR
+participant "f:FilterCommand" as FilterCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "<<enumeration>>\nApplicationStatus" as ApplicationStatus MODEL_COLOR
+end box
+
+-> FilterCommandParser : parse("applied")
+activate FilterCommandParser
+
+FilterCommandParser -> ApplicationStatus : parse("applied")
+activate ApplicationStatus
+
+ApplicationStatus --> FilterCommandParser : Applied
+deactivate ApplicationStatus
+
+create InternshipHasApplicationStatusPredicate
+FilterCommandParser -> InternshipHasApplicationStatusPredicate : InternshipHasApplicationStatusPredicate(Applied)
+activate InternshipHasApplicationStatusPredicate
+
+InternshipHasApplicationStatusPredicate --> FilterCommandParser : pred
+deactivate InternshipHasApplicationStatusPredicate
+
+create FilterCommand
+FilterCommandParser -> FilterCommand : FilterCommand(pred)
+activate FilterCommand
+
+FilterCommand --> FilterCommandParser : f
+deactivate FilterCommand
+
+[<--FilterCommandParser : f
+deactivate FilterCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+[<-[hidden]-FilterCommandParser
+destroy FilterCommandParser
+
+[-> FilterCommand : execute()
+activate FilterCommand
+
+FilterCommand -> Model : updateFilteredInternshipList(pred)
+activate Model
+
+Model --> FilterCommand
+deactivate Model
+
+create CommandResult
+FilterCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FilterCommand
+deactivate CommandResult
+
+[<--FilterCommand : result
+deactivate FilterCommand
+
+@enduml
