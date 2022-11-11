@@ -1,0 +1,22 @@
+{
+  "_comment": "TaskPanel save file which contains the same Task values as in TypicalTasks#getTypicalTaskPanel()",
+  "tasks": [{
+    "title": "Add tasks to list",
+    "isCompleted": "false",
+    "deadline": "UNSPECIFIED",
+    "project": "",
+    "assigned": [ "Alice Pauline" ]
+  }, {
+    "title": "Assign contacts to task",
+    "isCompleted": "false",
+    "deadline": "1 January 2023",
+    "project": "CS2103T",
+    "assigned": [ "George Best" ]
+  }, {
+    "title": "Set deadline for a task",
+    "isCompleted": "false",
+    "deadline": "UNSPECIFIED",
+    "project": "",
+    "assigned": []
+  }]
+}

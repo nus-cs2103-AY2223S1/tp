@@ -9,123 +9,150 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.logic.commands.CommandTestUtil.showTeammateAtIndex;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TEAMMATE;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TEAMMATE;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_TEAMMATE;
+import static seedu.address.testutil.TypicalTasks.getTypicalTaskPanel;
+import static seedu.address.testutil.TypicalTeammates.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditCommand.EditTeammateDescriptor;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.TaskPanel;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.task.Task;
+import seedu.address.model.teammate.Teammate;
+import seedu.address.testutil.EditTeammateDescriptorBuilder;
+import seedu.address.testutil.TaskBuilder;
+import seedu.address.testutil.TeammateBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalTaskPanel(), new UserPrefs());
 
     @Test
-    public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Person editedPerson = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
+    public void execute_allFieldsSpecifiedUnfilteredListNoTaskChange_success() {
+        Teammate editedTeammate = new TeammateBuilder().build();
+        EditTeammateDescriptor descriptor = new EditTeammateDescriptorBuilder(editedTeammate).build();
+        EditCommand editCommand = new EditCommand(INDEX_SECOND_TEAMMATE, descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TEAMMATE_SUCCESS, editedTeammate);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
+            new TaskPanel(model.getTaskPanel()), new UserPrefs());
+        expectedModel.setTeammate(model.getFilteredTeammateList().get(1), editedTeammate);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
-        Person lastPerson = model.getFilteredPersonList().get(indexLastPerson.getZeroBased());
+    public void execute_someFieldsSpecifiedUnfilteredListNoTaskChange_success() {
+        Index indexSecondLastTeammate = Index.fromOneBased(model.getFilteredTeammateList().size() - 1);
+        Teammate secondLastTeammate = model.getFilteredTeammateList().get(indexSecondLastTeammate.getZeroBased());
 
-        PersonBuilder personInList = new PersonBuilder(lastPerson);
-        Person editedPerson = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+        TeammateBuilder teammateInList = new TeammateBuilder(secondLastTeammate);
+        Teammate editedTeammate = teammateInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
+        EditTeammateDescriptor descriptor = new EditTeammateDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
-        EditCommand editCommand = new EditCommand(indexLastPerson, descriptor);
+        EditCommand editCommand = new EditCommand(indexSecondLastTeammate, descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TEAMMATE_SUCCESS, editedTeammate);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(lastPerson, editedPerson);
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
+            new TaskPanel(model.getTaskPanel()), new UserPrefs());
+        expectedModel.setTeammate(secondLastTeammate, editedTeammate);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, new EditPersonDescriptor());
-        Person editedPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_TEAMMATE, new EditCommand.EditTeammateDescriptor());
+        Teammate editedTeammate = model.getFilteredTeammateList().get(INDEX_FIRST_TEAMMATE.getZeroBased());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TEAMMATE_SUCCESS, editedTeammate);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
-    public void execute_filteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
-
-        Person personInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Person editedPerson = new PersonBuilder(personInFilteredList).withName(VALID_NAME_BOB).build();
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
-                new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
-
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
-
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
+            new TaskPanel(model.getTaskPanel()), new UserPrefs());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_duplicatePersonUnfilteredList_failure() {
-        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(firstPerson).build();
-        EditCommand editCommand = new EditCommand(INDEX_SECOND_PERSON, descriptor);
+    public void execute_filteredListNoTaskChange_success() {
+        showTeammateAtIndex(model, INDEX_THIRD_TEAMMATE);
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
+        Teammate teammateInFilteredList =
+              model.getFilteredTeammateList().get(INDEX_FIRST_TEAMMATE.getZeroBased());
+        Teammate editedTeammate = new TeammateBuilder(teammateInFilteredList).withName(VALID_NAME_BOB).build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_TEAMMATE,
+                new EditTeammateDescriptorBuilder().withName(VALID_NAME_BOB).build());
+
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TEAMMATE_SUCCESS, editedTeammate);
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
+            new TaskPanel(model.getTaskPanel()), new UserPrefs());
+        expectedModel.setTeammate(model.getFilteredTeammateList().get(0), editedTeammate);
+
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_duplicatePersonFilteredList_failure() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+    public void execute_taskAssignedContactCascade_success() {
+        Teammate editedTeammate = new TeammateBuilder().build();
+        Task editedTask = new TaskBuilder(model.getFilteredTaskList().get(0)).withContacts("Amy Bee").build();
+        EditTeammateDescriptor descriptor = new EditTeammateDescriptorBuilder(editedTeammate).build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_TEAMMATE, descriptor);
 
-        // edit person in filtered list into a duplicate in address book
-        Person personInList = model.getAddressBook().getPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
-                new EditPersonDescriptorBuilder(personInList).build());
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TEAMMATE_SUCCESS, editedTeammate);
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
+                new TaskPanel(model.getTaskPanel()), new UserPrefs());
+        expectedModel.setTeammate(model.getFilteredTeammateList().get(0), editedTeammate);
+        expectedModel.setTask(model.getFilteredTaskList().get(0), editedTask);
+
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_invalidPersonIndexUnfilteredList_failure() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build();
+    public void execute_duplicateTeammateUnfilteredList_failure() {
+        Teammate firstTeammate = model.getFilteredTeammateList().get(INDEX_FIRST_TEAMMATE.getZeroBased());
+        EditTeammateDescriptor descriptor = new EditTeammateDescriptorBuilder(firstTeammate).build();
+        EditCommand editCommand = new EditCommand(INDEX_SECOND_TEAMMATE, descriptor);
+
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_TEAMMATE);
+    }
+
+    @Test
+    public void execute_duplicateTeammateFilteredList_failure() {
+        showTeammateAtIndex(model, INDEX_FIRST_TEAMMATE);
+
+        // edit teammate in filtered list into a duplicate in address book
+        Teammate teammateInList = model.getAddressBook().getTeammateList().get(INDEX_SECOND_TEAMMATE.getZeroBased());
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_TEAMMATE,
+                new EditTeammateDescriptorBuilder(teammateInList).build());
+
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_TEAMMATE);
+    }
+
+    @Test
+    public void execute_invalidTeammateIndexUnfilteredList_failure() {
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTeammateList().size() + 1);
+        EditTeammateDescriptor descriptor = new EditTeammateDescriptorBuilder().withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_TEAMMATE_DISPLAYED_INDEX);
     }
 
     /**
@@ -133,25 +160,25 @@ public class EditCommandTest {
      * but smaller than size of address book
      */
     @Test
-    public void execute_invalidPersonIndexFilteredList_failure() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
-        Index outOfBoundIndex = INDEX_SECOND_PERSON;
+    public void execute_invalidTeammateIndexFilteredList_failure() {
+        showTeammateAtIndex(model, INDEX_FIRST_TEAMMATE);
+        Index outOfBoundIndex = INDEX_SECOND_TEAMMATE;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getTeammateList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
-                new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
+                new EditTeammateDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_TEAMMATE_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_PERSON, DESC_AMY);
+        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_TEAMMATE, DESC_AMY);
 
         // same values -> returns true
-        EditPersonDescriptor copyDescriptor = new EditPersonDescriptor(DESC_AMY);
-        EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_PERSON, copyDescriptor);
+        EditCommand.EditTeammateDescriptor copyDescriptor = new EditTeammateDescriptor(DESC_AMY);
+        EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_TEAMMATE, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -164,10 +191,10 @@ public class EditCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_PERSON, DESC_AMY)));
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_TEAMMATE, DESC_AMY)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_PERSON, DESC_BOB)));
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_TEAMMATE, DESC_BOB)));
     }
 
 }

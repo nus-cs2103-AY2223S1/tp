@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyTaskPanel;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
@@ -18,13 +19,17 @@ public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private AddressBookStorage addressBookStorage;
+    private TaskPanelStorage taskPanelStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code AddressBookStorage}, {@code TaskPanelStorage}
+     * and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(AddressBookStorage addressBookStorage, TaskPanelStorage taskPanelStorage,
+                          UserPrefsStorage userPrefsStorage) {
         this.addressBookStorage = addressBookStorage;
+        this.taskPanelStorage = taskPanelStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -73,6 +78,35 @@ public class StorageManager implements Storage {
     public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         addressBookStorage.saveAddressBook(addressBook, filePath);
+    }
+
+    // ================ TaskPanel methods ==============================
+
+    @Override
+    public Path getTaskPanelFilePath() {
+        return taskPanelStorage.getTaskPanelFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyTaskPanel> readTaskPanel() throws DataConversionException, IOException {
+        return readTaskPanel(taskPanelStorage.getTaskPanelFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyTaskPanel> readTaskPanel(Path filePath) throws DataConversionException, IOException {
+        logger.fine("Attempting to read task data from file: " + filePath);
+        return taskPanelStorage.readTaskPanel(filePath);
+    }
+
+    @Override
+    public void saveTaskPanel(ReadOnlyTaskPanel taskPanel) throws IOException {
+        saveTaskPanel(taskPanel, taskPanelStorage.getTaskPanelFilePath());
+    }
+
+    @Override
+    public void saveTaskPanel(ReadOnlyTaskPanel taskPanel, Path filePath) throws IOException {
+        logger.fine("Attempting to write to task data file: " + filePath);
+        taskPanelStorage.saveTaskPanel(taskPanel, filePath);
     }
 
 }

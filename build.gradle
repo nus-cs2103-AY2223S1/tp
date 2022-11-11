@@ -41,6 +41,8 @@ task coverage(type: JacocoReport) {
 }
 
 dependencies {
+    implementation 'org.ocpsoft.prettytime:prettytime-nlp:5.0.4.Final'
+
     String jUnitVersion = '5.4.0'
     String javaFxVersion = '11'
 
@@ -66,7 +68,11 @@ dependencies {
 }
 
 shadowJar {
-    archiveFileName = 'addressbook.jar'
+    archiveFileName = 'arrow.jar'
+}
+
+run {
+    enableAssertions = true
 }
 
 defaultTasks 'clean', 'test'

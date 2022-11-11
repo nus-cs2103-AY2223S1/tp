@@ -1,0 +1,70 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TaskPanelParser" as TaskPanelParser LOGIC_COLOR
+participant ":ListTasksCommandParser" as ListTasksCommandParser LOGIC_COLOR
+participant "c:ListTasksCommand" as ListTasksCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("task list -a")
+activate LogicManager
+
+LogicManager -> TaskPanelParser : parseCommand("task list -a")
+activate TaskPanelParser
+
+create ListTasksCommandParser
+TaskPanelParser -> ListTasksCommandParser
+activate ListTasksCommandParser
+
+ListTasksCommandParser --> TaskPanelParser
+deactivate ListTasksCommandParser
+
+TaskPanelParser -> ListTasksCommandParser : parse(" -a")
+activate ListTasksCommandParser
+
+create ListTasksCommand
+ListTasksCommandParser -> ListTasksCommand
+activate ListTasksCommand
+
+ListTasksCommand --> ListTasksCommandParser : c
+deactivate ListTasksCommand
+
+ListTasksCommandParser --> TaskPanelParser : c
+deactivate ListTasksCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ListTasksCommandParser -[hidden]-> TaskPanelParser
+destroy ListTasksCommandParser
+
+TaskPanelParser --> LogicManager : c
+deactivate TaskPanelParser
+
+LogicManager -> ListTasksCommand : execute()
+activate ListTasksCommand
+
+ListTasksCommand -> Model : updateFilteredTaskList()
+activate Model
+Model -> Model : setPredicate()
+
+Model --> ListTasksCommand
+deactivate Model
+
+create CommandResult
+ListTasksCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ListTasksCommand
+deactivate CommandResult
+
+ListTasksCommand --> LogicManager : result
+deactivate ListTasksCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

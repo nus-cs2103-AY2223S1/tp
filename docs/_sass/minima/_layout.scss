@@ -159,7 +159,7 @@
  * Posts
  */
 .post-header {
-  margin-bottom: $spacing-unit;
+  margin-bottom: 0;
 }
 
 .post-title,
@@ -171,6 +171,12 @@
   @media screen and (min-width: $on-large) {
     @include relative-font-size(2.625);
   }
+}
+
+.post-subtitle {
+    margin-top: 0;
+    color: #808080;
+    font-size: $large-font-size;
 }
 
 .post-content {

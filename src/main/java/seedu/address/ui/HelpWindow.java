@@ -2,12 +2,20 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import seedu.address.commons.core.LogsCenter;
 
 /**
@@ -15,8 +23,8 @@ import seedu.address.commons.core.LogsCenter;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
+    public static final String USER_GUIDE_URL = "https://ay2223s1-cs2103t-t08-2.github.io/tp/UserGuide.html";
+    public static final String HELP_MESSAGE = "Refer to the user guide: " + USER_GUIDE_URL;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
@@ -42,6 +50,12 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public HelpWindow() {
         this(new Stage());
+        // User can press enter to close the help window if its focused.
+        getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode() == KeyCode.ESCAPE && getRoot().isShowing()) {
+                getRoot().close();
+            }
+        });
     }
 
     /**
@@ -96,7 +110,23 @@ public class HelpWindow extends UiPart<Stage> {
     private void copyUrl() {
         final Clipboard clipboard = Clipboard.getSystemClipboard();
         final ClipboardContent url = new ClipboardContent();
-        url.putString(USERGUIDE_URL);
+        url.putString(USER_GUIDE_URL);
         clipboard.setContent(url);
+        alertAndCloseHelpAuto();
+    }
+
+    /**
+     * Display an alert that the User Guide URL has been copied and
+     * closes the help window automatically after the user copies the URL.
+     */
+    private void alertAndCloseHelpAuto() {
+        Alert copiedAlert = new Alert(Alert.AlertType.INFORMATION);
+        copiedAlert.setHeaderText("URL copied");
+        copiedAlert.getDialogPane().lookupButton(ButtonType.OK).setVisible(false);
+        copiedAlert.show();
+        final KeyFrame closeHelp = new KeyFrame(Duration.seconds(1), e -> getRoot().close());
+        final KeyFrame closeAlert = new KeyFrame(Duration.seconds(0.75), e -> copiedAlert.close());
+        final Timeline timeline = new Timeline(closeAlert, closeHelp);
+        Platform.runLater(timeline::play);
     }
 }

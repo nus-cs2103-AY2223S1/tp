@@ -11,33 +11,41 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
+import seedu.address.model.teammate.Teammate;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of Arrow data.
  */
 public class ModelManager implements Model {
+
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
+    private final TaskPanel taskPanel;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Teammate> filteredTeammates;
+    private final FilteredList<Task> filteredTasks;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given addressBook, taskPanel and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyTaskPanel taskPanel, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(addressBook, taskPanel, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + addressBook
+                + ", task panel: " + taskPanel
+                + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
+        this.taskPanel = new TaskPanel(taskPanel);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredTeammates = new FilteredList<>(this.addressBook.getTeammateList());
+        filteredTasks = new FilteredList<>(this.taskPanel.getTaskList(), PREDICATE_INCOMPLETE_TASKS);
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new TaskPanel(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -88,44 +96,65 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public boolean hasTeammate(Teammate teammate) {
+        requireNonNull(teammate);
+        return addressBook.hasTeammate(teammate);
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public void deleteTeammate(Teammate target) {
+        addressBook.removeTeammate(target);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addTeammate(Teammate teammate) {
+        addressBook.addTeammate(teammate);
+        updateFilteredTeammateList(PREDICATE_SHOW_ALL_TEAMMATES);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void setTeammate(Teammate target, Teammate editedTeammate) {
+        requireAllNonNull(target, editedTeammate);
 
-        addressBook.setPerson(target, editedPerson);
+        addressBook.setTeammate(target, editedTeammate);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Teammate List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Teammate} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Teammate> getFilteredTeammateList() {
+        return filteredTeammates;
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Task} backed by the internal list of
+     * {@code versionedTaskPanel}
+     */
+    @Override
+    public ObservableList<Task> getFilteredTaskList() {
+        return filteredTasks;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredTeammateList(Predicate<Teammate> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredTeammates.setPredicate(predicate);
+    }
+
+    /** Replaces the given new task list {@code newTasks} with {@code editedTasks}. */
+    @Override
+    public void setFilteredTaskList(ObservableList<Task> newTasks) {
+        taskPanel.setTasks(newTasks);
+    }
+
+    @Override
+    public void updateFilteredTaskList(Predicate<Task> predicate) {
+        requireNonNull(predicate);
+        filteredTasks.setPredicate(predicate);
     }
 
     @Override
@@ -143,8 +172,42 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
+                && taskPanel.equals(other.taskPanel)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredTeammates.equals(other.filteredTeammates);
     }
 
+    //=========== TaskPanel ================================================================================
+
+    @Override
+    public ReadOnlyTaskPanel getTaskPanel() {
+        return taskPanel;
+    }
+
+    @Override
+    public void setTaskPanel(ReadOnlyTaskPanel taskPanel) {
+        this.taskPanel.resetData(taskPanel);
+    }
+
+    @Override
+    public boolean hasTask(Task task) {
+        requireNonNull(task);
+        return taskPanel.hasTask(task);
+    }
+
+    @Override
+    public void addTask(Task task) {
+        taskPanel.addTask(task);
+        // TODO: updateFilteredTaskList
+    }
+
+    @Override
+    public void deleteTask(Task deletedTask) {
+        taskPanel.removeTask(deletedTask);
+    }
+
+    @Override
+    public void setTask(Task target, Task editedTask) {
+        taskPanel.setTask(target, editedTask);
+    }
 }

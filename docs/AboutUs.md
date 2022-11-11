@@ -5,55 +5,60 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+## Project Team
 
-## Project team
+### Quah Kian Seong
 
-### John Doe
+<img src="images/kianseong.png" width="200px">
 
-<img src="images/johndoe.png" width="200px">
+[github](https://github.com/KIANSEONG)
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[portfolio](team/kianseong.md)
 
 * Role: Team Lead
-* Responsibilities: UI
 
-### Johnny Doe
+### Wang Xinyi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/wxy1203.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[github](https://github.com/wxy1203)
 
-* Role: Developer
-* Responsibilities: Data
+[portfolio](team/wxy1203.md)
 
-### Jean Doe
+* Role: Team Member
+* Responsibilities: Various
 
-<img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+### Brandon Thio
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+<img src="images/beetee17.png" width="200px">
 
-### James Doe
+[github](https://github.com/beetee17)
 
-<img src="images/johndoe.png" width="200px">
+[portfolio](team/beetee17.md)
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+* Role: Team Member
+* Responsibilities: Various
 
-* Role: Developer
-* Responsibilities: UI
+### Zheng Yilin
+
+
+<img src="images/yilinzyl.png" width="200px">
+
+[github](http://github.com/yilinzyl)
+
+[portfolio](team/yilinzyl.md)
+
+* Role: Team Member
+* Responsibilities: Various
+
+### Amresh
+
+<img src="images/amresh2000.png" width="200px">
+
+[github](http://github.com/amresh2000)
+
+[portfolio](team/amresh2000.md)
+
+* Role: Team Member
+* Responsibilities: Various
