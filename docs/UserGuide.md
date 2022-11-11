@@ -473,11 +473,11 @@ This section contains **all** miscellaneous commands.
 
 ### Clearing all entries: `clear`
 
-Clears all entries which include `clients`, `remarks` and `transactions` from JeeqTracker.
+Clears all entries which include **clients, remarks and transactions** from JeeqTracker.
 
 Format: `clear`
 
-> <div markdown="span" class="alert alert-danger">❗ Danger: Information cleared by clear command cannot be retrieved. Only use this if you want to clear **all** data of `clients`, `remarks` and `transactions`.
+> <div markdown="span" class="alert alert-danger">❗ **Danger**: Information cleared by clear command cannot be retrieved. Only use this if you want to clear **all** data of `clients`, `remarks` and `transactions`.
 
 Example:
 
@@ -503,9 +503,9 @@ Example:
 
 ### Viewing help: `help`
 
-`help` returns the list of all commands in the `Application's Reply` panel. 
+`help` returns the list of all commands in the *Application's Reply* panel. 
 
-`help [COMMAND]` returns the detailed description of that specified command in the `Application's Reply` panel.
+`help [COMMAND]` returns the detailed description of that specified command in the *Application's Reply* panel.
 
 [//]: # (![help message]&#40;images/helpMessage.png&#41;)
 
@@ -526,7 +526,7 @@ Displays the link to this user guide in a pop-up window.
 
 Format: `user_guide`
 
-* Displays a pop-up that contains the url to this user guide.
+* Displays a *pop-up* that contains the url to this user guide.
 * You can click on the `Copy URL` button to copy this url to your clipboard and 
 paste it in your browser if you need to refer to this user guide.
 
@@ -544,9 +544,9 @@ JeeqTracker data are saved in the hard disk automatically after any command that
 
 ### Editing the data file
 
-JeeqTracker data are saved as a JSON file `[JAR file location]/data/jeeqtracker.json`. If you are an advanced user, you are welcome to update data directly by editing that data file.
+JeeqTracker data are saved as a JSON file "[JAR file location]/data/jeeqtracker.json". If you are an advanced user, you are welcome to update data directly by editing that data file.
 
-> <div markdown="span" class="alert alert-danger">:exclamation: Danger: If your changes to the data file makes its format invalid, JeeqTracker will discard all data and start with an empty data file at the next run.
+> <div markdown="span" class="alert alert-danger">:exclamation: **Danger**: If your changes to the data file makes its format invalid, JeeqTracker will discard all data and start with an empty data file at the next run.
 
 ### Archiving data files `[coming in v2.0]`
 
