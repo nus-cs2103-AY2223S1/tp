@@ -151,27 +151,23 @@ This may be useful to include eateries near NUS (such as Supper Stretch!).
 
 ### Important! A Note on Command Format
 
-* Inputs in `UPPER_CASE` are needed for the command to work. <br>
-  e.g. in `add -n NAME`, `NAME` is an input which can be used as `add -n Pasta Express`. <br><br>
+| Command Expression     | Meaning                                                      | Example                                                                                                                   |
+|------------------------|--------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
+| `UPPER_CASE`           | Upper case inputs are **needed** for the command to work     | In `add -n NAME`, `NAME` is an input which can be used as `add -n Pasta Express`                                          |
+| `[]`                   | Inputs in square brackets are **optional**                   | `-n NAME [-p PRICE]` can be used as `-n Pasta Shop -p $` or as `-n Pasta Shop`                                            |                                                                                  |
+| `…​`                   | Items with `…​` after them can be used **one or more times** | `find NAME…​` can be used as `find Frontier`, `find Frontier Deck` etc.                                                   |
+| `-n`, `-t`, `-p`, etc. | Prefixed inputs can be in **any order**                      | if the command specifies `-n NAME -t TAGNAME`, you can also use `-t TAGNAME -n NAME`. Both will produce the same outcome. |
 
-* Inputs in square brackets are **optional**. <br>
-  e.g `-n NAME [-p PRICE]` can be used as `-n Pasta Shop -p $` or as `-n Pasta Shop`. <br><br>
-
-* Items with `…​` after them can be used **one or more times**. <br>
-  e.g. `find NAME…​` can be used as `find Frontier`, `find Frontier Deck` etc.  <br>
-  Note: For `-t TAGNAME1 [-t TAGNAME2]…​`, the correct input format is `-t mala -t vegetarian`.
-  Multiple `-t`s are required.<br><br>
-
-* **Prefixed inputs** _(e.g. -n, -p, -t, etc.)_ can be in **any order**. <br>
-  e.g. if the command specifies `-n NAME -t TAGNAME`, you can also use `-t TAGNAME -n NAME`. 
-  Both will produce the same outcome. <br><br>
+<div markdown="block" class="alert alert-info">
+  Note: For `-t TAGNAME1 [-t TAGNAME2]…​`, the correct input format is `-t mala -t vegetarian`. (Multiple `-t`s are required)
+</div>
 
 * If a certain input is expected only once in the command, but you specified it multiple times,
   only the last occurrence will be taken. <br>
   e.g. if you specify `-n nameA -n nameB`, only `-n nameB` will be taken. <br><br>
 
 * Extra inputs for commands that do not take inputs (such as `help`) will be ignored. <br>
-  e.g. `help 123` will be interpreted as `help`.
+  e.g. `help 123` will be interpreted as `help`.<br><br>
 
 * The special `-h` parameter will provide a useful help message for how to use the command. 
   To avoid any unforeseen behaviour, remove your other inputs when using `-h`.
