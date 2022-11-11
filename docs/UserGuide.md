@@ -179,7 +179,7 @@ Of course, this is not yet the end of your journey with PayMeLah - there are sti
 
 As you have learnt in the [navigation section](#tutorial-navigating-the-application), PayMeLah uses a [CLI](#glossary-command-line-interface-cli) to fulfill your needs. Let's take a closer look at what a [command](#glossary-command) consists of!
 
-INSERT IMAGE
+<img src="images/ExampleCommand.png" width="800" />
 
 * **Command Phrase**<br>
   The first word in the [command](#glossary-command) is the **command phrase** that specifies which command will be carried out by PayMeLah.
