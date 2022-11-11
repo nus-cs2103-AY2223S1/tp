@@ -114,7 +114,7 @@ This Toolbar can be used to :
 
 #### 2. Employee List Panel
 
-<img src="images/ui-screenshots/employee-list-panel.png" class="centerImage">
+<img src="images/ui-screenshots/Employee-List-Panel.png" class="centerImage">
 
 This shows the whole employee list with basic information such as _Name_, _Employee ID_ and _Position_.
 
@@ -137,7 +137,7 @@ Things to note:
 
 #### 4. Command Panel
 
-<img src="images/ui-screenshots/command.png" class="centerImage">
+<img src="images/ui-screenshots/Command.png" class="centerImage">
 
 You can enter your user commands in the bottom section labeled as `Enter command here...`.
 
@@ -152,7 +152,7 @@ The top section displays relevant messages/errors after the command is entered.
    2. If you do not have Java `11`:
       - If you are using Windows, you can install it from [here](https://www.oracle.com/java/technologies/downloads/).
       - If you are using Mac, you can install the Azul build of OpenJDK 11 version from [here](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx).
-2. Download the latest Coydir v1.3.0 jar file from [here](https://github.com/AY2223S1-CS2103T-T15-1/tp/releases).
+2. Download the latest Coydir v1.4.0 jar file from [here](https://github.com/AY2223S1-CS2103T-T15-1/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your Coydir.
 
