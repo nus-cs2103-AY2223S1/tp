@@ -317,7 +317,7 @@ A person can have any number of tags (including 0).
 
 **Examples:**<br>
 * `add n/John Doe p/98765432 tele/johndoe a/John street, block 123, #01-01` will add a person named `John Doe` with `98765432` as his phone number, `johndoe` as their Telegram handle and `John street, block 123, #01-01` as their address to PayMeLah.
-* `add n/Betsy Crowe t/friend a/Newgate Prison t/criminal` will add a person named `Betsy Crowe` with `Newgate Prison` as their address and both `friend` and `criminal` as their tags to PayMeLah.
+* `add n/Betsy Crowe t/friend a/Newgate Prison t/police` will add a person named `Betsy Crowe` with `Newgate Prison` as their address and both `friend` and `police` as their tags to PayMeLah.
 
 <div style="page-break-after: always;"></div>
 
