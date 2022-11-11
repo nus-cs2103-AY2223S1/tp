@@ -550,9 +550,9 @@ above [add person command](#creating-a-new-person-add-person) to add a new perso
 
 :asterisk: - at least one of the flags for email, name, phone, and tags must be specified
 
-Please take note that the command:
+Please take note that:
 
-* Edits the person at the specified `PERSON_INDEX`, which refers to the index number shown in the
+* The command edits the person at the specified `PERSON_INDEX`, which refers to the index number shown in the
   [persons section](#persons-section)
 * `PERSON_INDEX` **must be a positive integer:** 1, 2, 3,...
 * Each field only updates if the flag for that field is specified.
@@ -604,7 +604,10 @@ above [add person command](#creating-a-new-person-add-person) to add a new perso
 |----------------|----------|------------------------------------------------------------------------|
 | `-h`, `--help` | :x:      | Shows [help message](#understanding-the-help-message) for this command |
 
-* Deletes the person at the specified `PERSON_INDEX`, which refers to the index number shown in the
+
+Please take note that: 
+
+* The command deletes the person at the specified `PERSON_INDEX`, which refers to the index number shown in the
   [persons section](#persons-section)
 * `PERSON_INDEX` **must be a positive integer:** 1, 2, 3,...
 
@@ -789,7 +792,7 @@ the [current team section](#current-team-section). Refer to the above
 
 #### Finding a member: `find member`
 
-As your software project is growing and your team is getting bigger, you are no longer able to find specific team 
+As your software project is growing and your team is getting bigger, you are no longer able to find specific team
 members. You can find your team members easily with the `find member` command.  
 
 The `find member` command allows you to find all team members whose names or emails contain any of the given keywords.
@@ -1182,9 +1185,9 @@ Passing `TASK_INDEX` after `ASSIGNEES` makes it impossible to distinguish which 
 
 :asterisk: - at least one of the flags for name, deadline, and assignees must be specified
 
-Please take note that the command:
+Please take note that:
 
-* Edits the person at the specified `TASK_INDEX`, which refers to the index number shown in the
+* The command edits the person at the specified `TASK_INDEX`, which refers to the index number shown in the
   [team members section](#current-team-section)
 * `DEADLINE` contains both the date and time in `YYYY-MM-DD HH:MM` format, and it **does not have quotation marks (`""`)
   around the parameter**.
