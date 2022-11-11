@@ -370,6 +370,13 @@ You're about halfway through this User Guide already! Continue reading to find o
 [read the section on TruthTable's CLI](#understanding-truthtables-cli) before continuing!**
 </div>
 
+
+<div markdown="block" class="alert alert-warning">**:exclamation: This section contains important information that might require you to pay close attention.** 
+<br/><br/>
+If you don't understand something, don't worry! You can always read it again or refer to the help messages in our application.
+</div>
+
+
 TruthTable allows you to manage members, tasks, links, and members through the use of commands.
 
 <div markdown="block" class="alert alert-primary">**:information_source: Persons vs Members**
