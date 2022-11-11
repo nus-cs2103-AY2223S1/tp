@@ -965,8 +965,9 @@ Please close any .csv files that are currently open before clicking on the "*Exp
 
 </div>
 
-
 ---
+
+<div style="page-break-after: always;"></div>
 
 ### FAQs
 **Q:** Does myStudent need an Internet connection?  
