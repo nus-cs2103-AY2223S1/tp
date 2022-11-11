@@ -23,11 +23,10 @@ use its text-based commands. Get started now by heading over to the [How to use 
 ---
 
 ## **Table of Contents**
-
 {:.no_toc}
 
 1. Table of Contents
-   {:toc}
+{:toc}
 
 ---
 
@@ -343,22 +342,16 @@ A contact can have any number of tags (including 0).
 - The order of the keywords does not matter. e.g. `Mark Wilson` will match `Wilson Mark`
 - Only the name of contacts is searched.
 - Only full words will be matched e.g. `Mark` will not match `Marks`
-- Contacts matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Mark Wilson` will return `Mark Yang`, `Steve Wilson`
+- Contacts matching at least one keyword will be returned (i.e. `OR` search).<br>
+  e.g. As shown in the diagram below, `find_contact Alex David` will return `Alex Yeoh` and `David Li`, since they contain the keywords `Alex` and `David` respectively.
+  ![result for 'find alex david'](images/user-guide/findAlexDavidResult.png)
 
 </div>
 
 **Examples:**
 
 - `find_contact Mark` returns `Mark` and `mark`.
-- `find_contact alex david` returns `Alex Yeoh` and `David Li`.
-
-<div markdown="block" class="alert alert-info">:information_source: **Note**<br>
-
-- The diagram below shows the result of `find_contact alex david`, where the both contacts Alex Yeoh and David Li are returned as they contain the keywords `alex` and `david` respectively.
-  ![result for 'find alex david'](images/user-guide/findAlexDavidResult.png)
-
-</div>
+- `find_contact mark wilson` returns `Mark Yang` and `Steve Wilson`.
 
 #### Editing a contact: `edit_contact`
 
