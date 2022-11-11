@@ -24,10 +24,8 @@ at a glance, a neat overview of what you need to see. If you type fast, StudMap 
 
 This user guide aims to help you understand StudMap, so that you can make the best use of our features. Read on to find out more!
 
-<div style="page-break-after: always;"></div>
-
 ---
-
+<div style="page-break-after: always;"></div>
 
 * Table of Contents
 {:toc}
@@ -65,6 +63,7 @@ stash of icons and menus that you need to painstakingly sieve through.
 That’s not even the worst part! The [module](#module) you’re teaching might demand separate Excel sheets to keep track of different
 items such as assignments and attendance which can be a huge hassle. Indeed, during our research, this is a point
 brought up by multiple TAs.
+<div style="page-break-after: always;"></div>
 
 ### Note-Taking Applications
 
@@ -92,6 +91,7 @@ to provide you with the necessary tool to perform record keeping effectively. Th
 that you know how to make the most out of StudMap.
 
 ---
+<div style="page-break-after: always;"></div>
 
 # 3. How to use this User Guide
 
@@ -120,6 +120,7 @@ Here are some of the symbols and syntax to look out for:
 | `code`               | Indicates [command](#command) or parameter that can be inputted into StudMap  |
 
 ---
+<div style="page-break-after: always;"></div>
 
 # 4. Quick Start
 
@@ -145,6 +146,8 @@ When you first load StudMap, you will likely be greeted with a display similar t
 data.
 **Don't be overwhelmed!** While there may be many fields and objects to take in at first, let's go through the User
 Interface and explore each element one by one.
+
+<div style="page-break-after: always;"></div>
 
 ![UI Overview](images/ui/ui-getting-started.png)
 
