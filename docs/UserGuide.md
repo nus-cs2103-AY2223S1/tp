@@ -82,6 +82,8 @@ e.g. [`commands`](glossary) [`PARAMETERS`](glossary)
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always"></div>
+
 ## 4. GUI overview
 
 ![GUI](images/AnnotatedUi.png)
@@ -102,6 +104,8 @@ Displays the list of your chosen tab.
 Displays your list of reminders.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always"></div>
 
 ## 5. Features
 
@@ -209,10 +213,18 @@ You may want to use this command to:<br>
 Examples:
 1. `edit student 1 ph/91234567 e/jameslee@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `jameslee@example.com` respectively.
 2. `edit student 2 g/A t/` Edits the grade of the 2nd student to be `A` and clears all existing tags.
+3. [`find`] `m/CS2103T` followed by `edit student 2 g/A` Edits the grade of the 2nd student to be `A` in the results of the [`find`] command.
 
-
-* [`find`] `m/CS2103T` followed by `edit student 2 g/A` Edits the grade of the 2nd student to be `A` in the results of the [`find`] command.
-
+<table>
+  <tr>
+    <td>Before (example 2)</td>
+    <td>After (example 2)</td>
+  </tr>
+  <tr>
+    <td><img src="images/AddStudent.png" width=350></td>
+    <td><img src="images/EditStudent.png" width=350></td>
+  </tr>
+ </table>
 
 <a name="find"></a>
 #### 5.1.4 Locating students by their attributes: `find`
@@ -284,6 +296,7 @@ Format: `extract emails`
 Examples:
 1. [`find`] `m/CS2103T` followed by `extract emails` copies all the emails of the students in the results of the [`find`] command.
 
+<div style="page-break-after: always"></div>
 
 ### 5.2 Tutorial Features
 
@@ -322,16 +335,6 @@ Format: `edit tutorial INDEX [n/NAME] [m/MODULE] [v/VENUE] [T/TIMESLOT] [D/DAY]`
 Examples:
 1. `edit tutorial 2 v/Zoom T/14:00-16:00 D/5` Edits the venue of the 2nd tutorial to be `Zoom`, sets tutorial time to be `14:00 to 16:00` and sets tutorial day to be `Fri`.
 
-<table>
-  <tr>
-    <td>Before</td>
-    <td>After</td>
-  </tr>
-  <tr>
-    <td><img src="images/AddTutorial.png" width=350></td>
-    <td><img src="images/EditTutorial.png" width=350></td>
-  </tr>
- </table>
 
 <a name="delete-tutorial"></a>
 #### 5.2.3 Deleting a tutorial: `delete tutorial`
@@ -397,16 +400,6 @@ Examples:
 1. `edit consultation 2 T/14:00-16:00 D/2023-11-21` Edits the timeslot of the 2nd consultation to be `14:00 to 16:00` and sets consultation date to `2023 Nov 21`.
 2. `edit consultation 1 v/Zoom` Edits the venue of the 1st consultation to be `Zoom`.
 
-<table>
-  <tr>
-    <td>Before</td>
-    <td>After (example 2)</td>
-  </tr>
-  <tr>
-    <td><img src="images/AddConsultation.png" width=350></td>
-    <td><img src="images/EditConsultation.png" width=350></td>
-  </tr>
-</table>
 
 <a name="delete-consultation"></a>
 #### 5.3.3 Deleting a consultation: `delete consultation`
@@ -448,7 +441,7 @@ Examples:
 
 <table>
   <tr>
-    <td>Before</td>
+    <td>Before (example 2)</td>
     <td>After (example 2)</td>
   </tr>
   <tr>
@@ -626,6 +619,8 @@ _Details coming soon..._
 _Details coming soon..._
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always"></div>
 
 ## 6. FAQ
 
