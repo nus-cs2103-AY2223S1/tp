@@ -422,11 +422,11 @@ Examples:
 
 <div style="display:flex; flex-direction:row;">
 <div style="display:flex; flex-direction:column; align-items:center; padding:5px">
-<img src="images/deleteCommand_before.png" height="100%"/>
+<img src="images/deleteCommand_before.png" height="330" style="object-fit:contain;"/>
 <figcaption>Before</figcaption>
 </div>
 <div style="display:flex; flex-direction:column; align-items:center; padding:5px">
-<img src="images/deleteCommand_after.png" height="100%"/>
+<img src="images/deleteCommand_after.png" height="330" style="object-fit:contain;"/>
 <figcaption>After</figcaption>
 </div>
 </div>
@@ -818,11 +818,11 @@ Examples:
 
 <div style="display:flex; flex-direction:row;">
 <div style="display:flex; flex-direction:column; align-items:center; padding:2px">
-<img src="images/sortCommand_before.png" height="100%"/>
+<img src="images/sortCommand_before.png" height="330" style="object-fit:contain;"/>
 <figcaption>Before</figcaption>
 </div>
 <div style="display:flex; flex-direction:column; align-items:center; padding:2px">
-<img src="images/sortCommand_after.png" height="100%"/>
+<img src="images/sortCommand_after.png" height="330" style="object-fit:contain;"/>
 <figcaption>After</figcaption>
 </div>
 </div>
@@ -875,11 +875,11 @@ Examples:
 
 <div style="display:flex; flex-direction:row;">
 <div style="display:flex; flex-direction:column; align-items:center; padding:5px">
-<img src="images/findStudent_before.png" height="100%"/>
+<img src="images/findStudent_before.png" height="330" style="object-fit:contain;"/>
 <figcaption>Before</figcaption>
 </div>
 <div style="display:flex; flex-direction:column; align-items:center; padding:5px">
-<img src="images/findStudent_after.png" height="100%"/>
+<img src="images/findStudent_after.png" height="330" style="object-fit:contain;"/>
 <figcaption>After</figcaption>
 </div>
 </div>
@@ -890,11 +890,11 @@ Note that the **displayed list** is the **student list**, so `find n/john` retur
 
 <div style="display:flex; flex-direction:row;">
 <div style="display:flex; flex-direction:column; align-items:center; padding:5px">
-<img src="images/findTutor_before.png" height="100%"/>
+<img src="images/findTutor_before.png" height="330" style="object-fit:contain;"/>
 <figcaption>Before</figcaption>
 </div>
 <div style="display:flex; flex-direction:column; align-items:center; padding:5px">
-<img src="images/findTutor_after.png" height="100%"/>
+<img src="images/findTutor_after.png" height="330" style="object-fit:contain;"/>
 <figcaption>After</figcaption>
 </div>
 </div>
@@ -905,11 +905,11 @@ Note that the **displayed list** is the **tutor list**, so `find i/NUS q/Bachelo
 
 <div style="display:flex; flex-direction:row;">
 <div style="display:flex; flex-direction:column; align-items:center; padding:5px">
-<img src="images/findClass_before.png" height="100%"/>
+<img src="images/findClass_before.png" height="330" style="object-fit:contain;"/>
 <figcaption>Before</figcaption>
 </div>
 <div style="display:flex; flex-direction:column; align-items:center; padding:5px">
-<img src="images/findClass_after.png" height="100%"/>
+<img src="images/findClass_after.png" height="330" style="object-fit:contain;"/>
 <figcaption>After</figcaption>
 </div>
 </div>
