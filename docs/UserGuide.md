@@ -1388,7 +1388,25 @@ To undo this command, please see the [mark command](#mark-tasks-as-done-mark).
 
 #### Set Deadline for task: `set deadline`
 
-Set a deadline for an existing task, and the deadline must be in `YYYY-MM-DD HH:MM` format.
+You realise that this task needs to be done more urgently than expected and need to change its deadline. Look no further, 
+you can set deadlines for your tasks! First, identify the index number of the task in the task list of
+[current team section](#current-team-section). If you are not able to find the task visibly, refer to 
+[find task command](#finding-a-task-find-task) on how you can find your task easily. Next, key in 
+`set deadline <INDEX_NUMBER> <DEADLINE>` to set a new deadline for the task.
+
+The `set deadline` command allows you to set a deadline for an existing task, and the deadline must be in 
+`YYYY-MM-DD HH:MM` format. The task with the new deadline will be shown in the task list of the 
+[current team section](#current-team-section).
+
+Let us run through an example on how to set deadlines.
+
+Suppose you have task called `Create PR`, and you need it to be completed by 11 November 2022, 2359hrs. 
+Identify the index number of `Create PR` in the application (1 in the image below).
+
+Then, enter the command `set deadline 1 2022-11-11 23:59`.
+
+If done successfully, you should see the `Create PR` task with the new deadline show up  under in the task list of the
+[current team section](#current-team-section).
 
 **Format:** `set deadline [-h] <TASK_INDEX> <TASK_DEADLINE>`
 
@@ -1413,7 +1431,29 @@ Set a deadline for an existing task, and the deadline must be in `YYYY-MM-DD HH:
 
 #### Assign a task to team member: `assign task`
 
-Assign an existing task to a team member in the user’s team.
+You have tasks and are looking to assign it to different people to work on it. You can assign tasks to people 
+using the `assign task` command. First, identify the index number of the task in the task list of
+[current team section](#current-team-section). If you are not able to find the task visibly, refer to
+[find task command](#finding-a-task-find-task) on how you can find your task easily. Next, identify the index number of 
+the team member in the member list of[current team section](#current-team-section). If you are not able to find the member 
+visibly, refer to [find member command](#finding-a-member-find-member) on how you can find your team member easily. 
+Finally, key in `assign task <TASK_INDEX> -a <MEMBER_INDEX>` to assign it to that member! You can specify multiple members to 
+assign a task to multiple people.
+
+The `assign task` command allows you to assign tasks to members in your team.
+The task with the new assignees will be shown in the task list of the [current team section](#current-team-section).
+
+Let us run through an example on how to assign tasks to your team members.
+
+Suppose you have task called `Create PR`, and you want to assign it to Alex Yeoh.
+
+Identify the index number of `Create PR` in the application (1 in the image below).
+Identify the index number of `Alex Yeoh` in the application (1 in the image below).
+
+Then, enter the command `assign task 1 -a 1`.
+
+If done successfully, you should see the `Create PR` task being assigned to `Alex Yeoh` show up under in the task list 
+of the [current team section](#current-team-section).
 
 **Format:** `assign task [-h] -a[=<TASK_ASSIGNEES>...] [-a[=<TASK_ASSIGNEES>...]]... <TASK_INDEX>`
 
