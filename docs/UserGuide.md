@@ -170,35 +170,35 @@ Of course, this is not yet the end of your journey with PayMeLah - there are sti
 
 ### About the command format
 
-* The first word in the command is the command phrase that specifies which command will be carried out by PayMeLah.
+* The first word in the command is the **command phrase** that specifies which command will be carried out by PayMeLah.
   e.g. in `add n/<name>`, `add` is the command phrase for PayMeLah to add a person.
 
-* Words in diamond brackets `<>` are inputs to be supplied by you.<br>
+* Words in diamond brackets `<>` are **inputs to be supplied by you**.<br>
   e.g. in `add n/<name>`, `<name>` is an input which can be used as `add n/John`.
 
-* To separate inputs that represent different information, you should precede ambiguous inputs with their paired prefixes that end with `/`. <br>
+* To separate inputs that represent different information, you should precede inputs with their respective **prefixes** that end with `/`. <br>
   e.g. in `add n/<name> [t/<tag>]…`, `n/` and `t/` are prefixes preceding the inputs `<name>` and `<tag>` respectively.
 
-* Inputs in square brackets `[]` are optional.<br>
+* Inputs in square brackets `[]` are **optional**.<br>
   e.g. for `add n/<name> [t/<tag>]…`, the following usages are both acceptable: `add n/Alan Poe t/theatre kid`, `add n/Alan Poe`.
 
-* Inputs with … can be used multiple times, but remember to separate each usage with a space character in between.<br>
+* Inputs with … can be used **multiple times**, but remember to separate each usage with a space character in between.<br>
   e.g. in `adddebt <person index…>`, `<person index…>` is an input which can be used as `adddebt 1` or as `adddebt 1 2`.<br>
   e.g. in `add n/<name> [t/<tag>]…`, `[t/<tag>]…` is a pair of prefix and input which can be used as `add n/Alan t/Poet` or as `add n/Alan t/Poet t/Friend`.
 
 <div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
-Be very careful with how a command is formatted! If the `…` is found within the diamond brackets `<>` that correspond to an input as in `<person index…>`, then only the input itself is to be repeated. However, if the `…` is found outside the `<>` as in `[t/<tag>]…`, then both the prefix and input must be repeated.
+Be very careful with how a command is formatted! If the `…` is found within the diamond brackets `<>` that correspond to an input as in `<person index…>`, then only the input itself is to be repeated. However, if the `…` is found outside the `<>` as in `[t/<tag>]…`, then both the prefix and input must be repeated. Read the 2 examples above carefully to see the difference.
 </div>
 
 <div style="page-break-after: always;"></div>
 
-* Inputs can be in any order.<br>
+* Inputs can be in **any order**.<br>
   e.g. if the command specifies `d/<description> m/<money>`, `m/<money> d/<description>` is also acceptable.
 
-* If an input is expected only once in the command, but you specified it multiple times, only the last occurrence of the input will be taken.<br>
+* If an input is expected only once in the command, but you specified it multiple times, **only the last occurrence of the input will be used**.<br>
   e.g. if the command requires `p/<phone number>` and you specify `p/12341234 p/56785678`, only `p/56785678` will be taken. This is useful for correcting a wrong input without having to use backspace.
 
-* Any inputs for commands that do not accept inputs will be ignored.<br>
+* Any inputs for commands that do not accept inputs will be **ignored**.<br>
   e.g. entering `help 123` will be equivalent to entering `help`, as it does not accept any inputs.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
@@ -215,7 +215,7 @@ Avoid giving irrelevant inputs to commands that do not accept those inputs. For 
 * Whenever `<time>` is specified as an input, you should input it in the format `hh:mm` where `h` is the hour in 24h clock format, and `m` is the minute.<br>
   e.g. 5:15PM should be input as `17:15` as per 24h clock notation.
 
-* Whenever `<money>` is specified as an input, you should input the amount in dollars and cents. You can also let PayMeLah help you with calculations by ending with '+' to add GST, or '++' to add both Service Charge and GST to the amount specified. **All calculated values are automatically rounded up to the nearest cent.**<br>
+* Whenever `<money>` is specified as an input, you should input the amount in dollars and cents. You can also let PayMeLah help you with calculations by ending with `+` to add GST (7%), or `++` to add both Service Charge (10%) and GST (7%) to the amount specified. **All calculated values are automatically rounded up to the nearest cent.**<br>
   e.g. when you input `2.00++`, PayMeLah will store a debt with a money amount that has Service Charge and GST added, i.e. `2.36`.
 
 [Return to Table of Contents](#table-of-contents)
