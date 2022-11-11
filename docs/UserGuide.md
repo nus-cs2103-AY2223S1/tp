@@ -16,8 +16,8 @@ If you have no prior experience with command line interfaces, we recommend readi
 --------------------------------------------------------------------------------------------------------------------
 
 ## Introduction
-Are you a student applying for internships? Do you have trouble remembering what you have applied?
-Or are you tired of using Excel to keep track? FindMyIntern is the perfect solution for you!
+Are you a student applying for internships? Do you have trouble remembering what you have applied? 
+Or is using spreadsheets too troublesome for you? FindMyIntern is the perfect solution for you!
 
 FindMyIntern is a desktop application that helps you easily keep track of
 your internship applications.
@@ -25,7 +25,7 @@ your internship applications.
 FindMyIntern helps you to
 - Consolidate all applications into a single place
 - Find particular internship applications
-- Easily visualise different application statuses
+- Easily view applications with different statuses
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -132,7 +132,7 @@ Here are some special formats to take note of when reading this user guide:
     </div>
 </div>
 
-`Code denotes commands, parameters, user inputs or file names`
+`This code block denotes commands, parameters, user inputs or file names.`
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -143,14 +143,14 @@ Here are some special formats to take note of when reading this user guide:
    </p>
 
 Simply type in:
-1. The command 
-    * Example: `add` represents the `add` command
-2. The prefix indicating a field
-    * Example: The prefix `c/` indicates the `company` field
-3. The field to be added or updated
-    * Enter directly after the prefix
+1. The command. 
+    * Example: `add` represents the `add` command.
+2. The prefix indicating a field.
+    * Example: The prefix `c/` indicates the `company` field.
+3. The field to be added or updated.
+    * Enter directly after the prefix.
     * Example: For `c/TikTok`, `Tiktok` represents the actual `company` field to be added.
-4. Repeat steps 2 and 3 to add or update more fields in a single command
+4. Repeat steps 2 and 3 to add or update more fields in a single command.
 
 <div class="btn-group btn-group-sm mt-2 mb-3">
 <a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
@@ -252,7 +252,7 @@ Below shows the command format used in FindMyIntern.
 
 * If a parameter is expected only once in the command but is specified multiple times, only the last occurrence of the parameter will be taken<br>
   * e.g. if `c/Google c/TikTok` is entered, only `c/TikTok` will be taken
-  * However, this will not work for `INDEX`. e.g. `delete 1 2` will show an error instead.
+  * However, this will not work for `INDEX`. e.g. `delete 1 2` will show an error instead
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`) will be ignored<br>
   * e.g. if `help 123` is entered, it will be interpreted as `help`
