@@ -501,7 +501,7 @@ Format: `find [n/NAME_KEYWORD] [j/POSITION_KEYWORD] [d/DEPARTMENT_KEYWORD]`
 :bulb: **Important Tips!**
 
 - There must be _at least one_ parameter (and keyword) in the search, else Coydir will not know what to search for!
-- The keywords you input for searching are **case-insensitive**. Additionally, they need not be full words, just a segment will do. This means that searching for the department "tech" will show results for both "Technology and "Information Technology".
+- The keywords you input for searching are **case-insensitive**. Additionally, they need not be full words, just a segment will do. This means that searching for the department "tech" will show results for both "Technology" and "Information Technology".
 
 </div>
 
