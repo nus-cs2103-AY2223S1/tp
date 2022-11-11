@@ -48,9 +48,9 @@ Finally, here are some of the symbols and text formatting to look out for as you
 ## Quick start
 ### Tutorial: Installing PayMeLah
 
-Getting started with PayMeLah is easy! Here is a tutorial on how to get PayMeLah up and running in just 4 simple steps.
+Getting started with PayMeLah is easy! Here is a tutorial on how to get PayMeLah up and running in just **4 simple steps**.
 
-1. Firstly, to run the PayMeLah application, you will need to have *Java 11* or above [installed](https://www.baeldung.com/java-check-is-installed) in your Computer ([Mac](https://www.geeksforgeeks.org/how-to-install-java-on-macos/), [Windows](https://phoenixnap.com/kb/install-java-windows)).
+1. Firstly, to run the PayMeLah application, you will need to have *Java 11* or above [installed](https://www.baeldung.com/java-check-is-installed) on your computer ([Mac](https://www.geeksforgeeks.org/how-to-install-java-on-macos/), [Windows](https://phoenixnap.com/kb/install-java-windows)).
 
 2. Next, you will need to prepare an [empty folder](https://www.wikihow.com/Make-a-New-Folder-on-a-Computer) to download PayMeLah to.
 
@@ -62,7 +62,7 @@ Getting started with PayMeLah is easy! Here is a tutorial on how to get PayMeLah
 
 4. Finally, you are ready to use PayMeLah. Simply double-click the *PayMeLah.jar* in the folder you created to start the app. After a few seconds, you should see PayMeLah appear. Notice how we have some sample persons and debts present for you to experiment with our [features](#features).  <br>
 
-   <img src="images/Ui.png" width="800" /> <br>
+<img src="images/Ui.png" width="800" /> <br>
 
 Now, let’s continue to learn how to [navigate the application](#tutorial-navigating-the-application) before familiarising ourselves with the [features](#features) you can use in PayMeLah.
 
@@ -183,12 +183,12 @@ INSERT IMAGE
   The first word in the [command](#glossary-command) is the **command phrase** that specifies which command will be carried out by PayMeLah.
   e.g. in `add n/<name>`, `add` is the command phrase for PayMeLah to add a person.
 
-* **User Supplied [Inputs](#glossary-input)**<br>
-  Words in diamond brackets `<>` are **[inputs](#glossary-input) to be supplied by you**.<br>
+* **User Supplied Inputs**<br>
+  Words in diamond brackets `<>` are **inputs to be supplied by you**.<br>
   e.g. in `add n/<name>`, `<name>` is an input which can be used as `add n/John`.
 
-* **[Prefixes](#glossary-prefix)**<br>
-  To separate [inputs](#glossary-prefix) that represent different information, you should precede inputs with their respective **prefixes** that end with `/`. <br>
+* **Prefixes**<br>
+  To separate inputs that represent different information, you should precede inputs with their respective **[prefixes]((#glossary-prefix))** that end with a `/`. <br>
   e.g. in `add n/<name> [t/<tag>]…`, `n/` and `t/` are prefixes preceding the inputs `<name>` and `<tag>` respectively.
 
 <div style="page-break-after: always;"></div>
@@ -277,10 +277,10 @@ When you accidentally enter a wrong command and want to revert the changes made,
 `undo`
 
 **Additional information:**<br>
-After you undo a command, PayMeLah will automatically show the full list of persons for you to check whether the correct changes have been reverted. Be careful though, your undo history will be gone when you close the app!
+After you undo a command, PayMeLah will automatically display the full [person list](#person-list-section) for you to check whether the correct changes have been reverted. Be careful though, your undo history will be gone when you close the app!
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-The undo history of PayMeLah will only save your 10 most recent commands! Make sure to check the list of persons regularly if you are making many changes in one session!
+The undo history of PayMeLah will only save your 10 most recent commands! Make sure to check the [person list](#person-list-section) regularly if you are entering many commands in one session!
 </div>
 
 <div style="page-break-after: always;"></div>
@@ -499,7 +499,7 @@ You can also [mark a debt as paid without deleting it](#marking-debts-as-paid-ma
 #### Clearing debts: `cleardebts`
 
 **What it does:**<br>
-This command clears all of a debtor's debts from PayMeLah.
+This command clears all of a person's debts from PayMeLah.
 
 **When to use:**<br>
 When you no longer need to keep track of any debts of a person, you can use this command to clear their [debt list](#debt-list-section)! If you want to stop keeping track of only some of a person's debts, you can [delete specific debts](#deleting-a-debt-deletedebt).
@@ -804,12 +804,11 @@ If you are trying to locate a debt without knowing its full description, conside
 
 | Term                                                                                 | Description                                                                                                                                                                                              |
 |--------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| <span id="glossary-command">_Command_</span>                                         | An instruction for PayMeLah to execute. All commands start with a [_command phrase_](#glossary-command-phrase) and any [_inputs_](#glossary-input) the command may require.                              |
+| <span id="glossary-command">_Command_</span>                                         | An instruction for PayMeLah to execute. All commands start with a [_command phrase_](#glossary-command-phrase) followed by any [_inputs_](#glossary-input) the command may require.                      |
 | <span id="glossary-command-line-interface-cli">_Command Line Interface (CLI)_</span> | The method by which you instruct PayMeLah to perform tasks, which is by entering [_commands_](#glossary-command) into the [_command box_](#command-line-section).                                        |
 | <span id="glossary-command-phrase">_Command phrase_</span>                           | The name of the instruction for PayMeLah to execute. For example, [`list`](#listing-all-persons-list) is the [_command phrase_](#glossary-command-phrase) to show the list of persons added to PayMeLah. |
 | <span id="glossary-debt">_Debt_</span>                                               | A transaction event (e.g. group purchase, shared Grab food order) where someone owes you money.                                                                                                          |
 | <span id="glossary-debt-index">_Debt index_</span>                                   | The number that appears next to each [_debt_’s](#glossary-debt) description in a person’s [_debt list_](#debt-list-section).                                                                             |
-| <span id="glossary-debtor">_Debtor_</span>                                           | A person who owes you money.                                                                                                                                                                             |
 | <span id="glossary-entering-a-command">_Enter[ing]_ a command</span>                 | Type the [_command_](#glossary-command) into the [_command box_](#command-line-section), and press the <kbd>Enter</kbd> key.                                                                             |
 | <span id="glossary-index">_Index_</span>                                             | The number that appears next to each person’s name or each [_debt_’s](#glossary-debt) description.                                                                                                       |
 | <span id="glossary-input">_Input_</span>                                             | Additional information supplied by you that is used to run a [_command_](#glossary-command).                                                                                                             |
