@@ -49,6 +49,7 @@ If you are looking to help develop this project, take a look at our [Developer G
     * [Clearing data in TrackO: `clear`](#clearing-all-data-in-tracko-clear)
     * [Exiting TrackO: `exit`](#exiting-tracko-exit)
     * [Editing the data file](#editing-the-data-file)
+* [**FAQ**](#faq)
 * [**Command Summary**](#command-summary)
 * [**Glossary**](#glossary)
 
@@ -139,7 +140,7 @@ in the table below:
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your Computer. To do so, refer to this FAQ [here](#java-installation).
 
 2. Download the latest `TrackO.jar` from [here](https://github.com/AY2223S1-CS2103T-W15-3/tp/releases).
 
@@ -856,6 +857,38 @@ data file at the next run.
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
 
+## FAQ
+
+**Q:** How do I transfer the data file to another computer?
+
+**A:** Copy the [home folder](#quick-start) containing your TrackO.jar to the computer you are transferring to. The application should 
+work as normal with all the existing data.
+
+<a name ="java-installation"></a>**Q:** How do I make sure that my computer is running Java 11?
+
+**A:** Open the Terminal app built inside your computer (For Windows user, you can also use Powershell) and run the
+following [command](#command): `java --version`. The version should then be displayed on the application.
+If your screen is displaying `java 11.x.x` where `x` can be any number, then your computer is running Java `11`.
+
+If your computer is not running Java `11`, you can install it [here](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html). 
+Please install according to the [operating system](#operating-system) that 
+you are using (any of the options is fine, as they are all Java `11`).
+
+**Q:** I am unable to delete my item, what is happening?
+
+**A:** It is likely that the item you are trying to delete is linked to an order that is uncompleted, i.e. not paid or 
+not delivered, or both. You need to mark the order as completed (refer to [marko](#marking-an-order-as-paiddelivered-marko)) 
+if you want to delete the item.
+
+**Q:** I am unable to edit my item's item name and prices, what should I do?
+
+**A:** Just like the previous question, it is likely that the item you are trying to delete is linked to an order that
+is uncompleted. You are not allowed to edit the item's name, cost price, and sell price before you complete te order. 
+This is the intended behavior of the application as of `v1.4`, to prevent orders that are already paid to display a 
+false revenue.
+
+[Back to top &#8593;](#welcome-to-trackos-user-guide)
+
 <div style="page-break-after: always;"></div>
 
 ## Command summary
@@ -922,6 +955,11 @@ The programming language used to develop TrackO. `Java 11` is also required to r
 
 `JSON` stands for JavaScript Object Notation, used for storing the user's data in TrackO. `JSON` files are lightweight, 
 text-based, human-readable, and can be edited using a text editor.
+
+### Operating System
+
+An `operating system` is the most important software in your computer that manages all your software and hardware. Linux,
+macOS, and Windows may sound familiar to you; they are the operating systems in which TrackO can be run.
 
 ### Order
 
