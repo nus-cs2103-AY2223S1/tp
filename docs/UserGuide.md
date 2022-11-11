@@ -170,16 +170,16 @@ Of course, this is not yet the end of your journey with PayMeLah - there are sti
 
 ### About the command format
 
-* **[Command](#glossary-command) Phrase**<br>
+* **Command Phrase**<br>
   The first word in the [command](#glossary-command) is the **command phrase** that specifies which command will be carried out by PayMeLah.
   e.g. in `add n/<name>`, `add` is the command phrase for PayMeLah to add a person.
 
-* **User Supplied [Inputs](#glossary-input)**<br>
-  Words in diamond brackets `<>` are **[inputs](#glossary-input) to be supplied by you**.<br>
+* **User Supplied Inputs**<br>
+  Words in diamond brackets `<>` are **inputs to be supplied by you**.<br>
   e.g. in `add n/<name>`, `<name>` is an input which can be used as `add n/John`.
 
-* **[Prefixes](#glossary-prefix)**<br>
-  To separate [inputs](#glossary-prefix) that represent different information, you should precede inputs with their respective **prefixes** that end with `/`. <br>
+* **Prefixes**<br>
+  To separate inputs that represent different information, you should precede inputs with their respective **[prefixes]((#glossary-prefix))** that end with a `/`. <br>
   e.g. in `add n/<name> [t/<tag>]…`, `n/` and `t/` are prefixes preceding the inputs `<name>` and `<tag>` respectively.
 
 * **Optional Inputs**<br>
@@ -261,10 +261,10 @@ When you accidentally enter a wrong command and want to revert the changes made,
 `undo`
 
 **Additional information:**<br>
-After you undo a command, PayMeLah will automatically show the full list of persons for you to check whether the correct changes have been reverted. Be careful though, your undo history will be gone when you close the app!
+After you undo a command, PayMeLah will automatically display the full [person list](#person-list-section) for you to check whether the correct changes have been reverted. Be careful though, your undo history will be gone when you close the app!
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-The undo history of PayMeLah will only save your 10 most recent commands! Make sure to check the list of persons regularly if you are making many changes in one session!
+The undo history of PayMeLah will only save your 10 most recent commands! Make sure to check the [person list](#person-list-section) regularly if you are entering many commands in one session!
 </div>
 
 <div style="page-break-after: always;"></div>
@@ -770,7 +770,7 @@ If you are trying to locate a debt without knowing its full description, conside
 
 | Term                                                                                 | Description                                                                                                                                                                                              |
 |--------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| <span id="glossary-command">_Command_</span>                                         | An instruction for PayMeLah to execute. All commands start with a [_command phrase_](#glossary-command-phrase) and any [_inputs_](#glossary-input) the command may require.                              |
+| <span id="glossary-command">_Command_</span>                                         | An instruction for PayMeLah to execute. All commands start with a [_command phrase_](#glossary-command-phrase) followed by any [_inputs_](#glossary-input) the command may require.                      |
 | <span id="glossary-command-line-interface-cli">_Command Line Interface (CLI)_</span> | The method by which you instruct PayMeLah to perform tasks, which is by entering [_commands_](#glossary-command) into the [_command box_](#command-line-section).                                        |
 | <span id="glossary-command-phrase">_Command phrase_</span>                           | The name of the instruction for PayMeLah to execute. For example, [`list`](#listing-all-persons-list) is the [_command phrase_](#glossary-command-phrase) to show the list of persons added to PayMeLah. |
 | <span id="glossary-debt">_Debt_</span>                                               | A transaction event (e.g. group purchase, shared Grab food order) where someone owes you money.                                                                                                          |
