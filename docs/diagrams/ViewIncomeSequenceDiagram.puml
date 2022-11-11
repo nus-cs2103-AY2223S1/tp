@@ -1,0 +1,59 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":ViewIncomeCommandParser" as ViewIncomeCommandParser LOGIC_COLOR
+participant "p:ViewIncomeCommand" as ViewIncomeCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+[-> LogicManager : execute("viewIncome 2000")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("viewIncome 2000")
+activate AddressBookParser
+
+create ViewIncomeCommandParser
+AddressBookParser -> ViewIncomeCommandParser
+activate ViewIncomeCommandParser
+
+ViewIncomeCommandParser --> AddressBookParser
+deactivate ViewIncomeCommandParser
+
+AddressBookParser -> ViewIncomeCommandParser : parse("2000")
+activate ViewIncomeCommandParser
+
+create ViewIncomeCommand
+ViewIncomeCommandParser -> ViewIncomeCommand
+activate ViewIncomeCommand
+
+ViewIncomeCommand --> ViewIncomeCommandParser : p
+deactivate ViewIncomeCommand
+
+ViewIncomeCommandParser --> AddressBookParser : p
+deactivate ViewIncomeCommandParser
+
+AddressBookParser --> LogicManager : p
+deactivate AddressBookParser
+
+LogicManager -> ViewIncomeCommand : execute(model)
+activate ViewIncomeCommand
+
+ViewIncomeCommand -> Model : threeYearIncome(date, model), \n calculateIncome(date, model)
+activate Model
+
+Model --> ViewIncomeCommand : income, result
+deactivate Model
+
+ViewIncomeCommand --> LogicManager : result
+deactivate ViewIncomeCommand
+ViewIncomeCommand -[hidden]-> LogicManager : result
+
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

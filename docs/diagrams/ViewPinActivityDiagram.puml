@@ -1,0 +1,12 @@
+@startuml
+start
+:User executes command;
+:Sort through full list of clients for clients with pinned attribute as true;
+:Display only clients with pinned attribute as true;
+
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+stop
+@enduml

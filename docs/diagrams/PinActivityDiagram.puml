@@ -1,0 +1,10 @@
+@startuml
+start
+:User executes command;
+:Pinned attribute of selected Client gets set to true/false;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+stop
+@enduml

@@ -1,0 +1,80 @@
+@startuml
+!include style.puml
+
+skinparam defaultFontSize 23
+skinparam maxMessageSize 200
+skinparam noteFontSize 18
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant "PolicyAssignCommandParser" as PolicyAssignCommandParser LOGIC_COLOR
+participant "pac:PolicyAssignCommand" as PolicyAssignCommand LOGIC_COLOR
+participant "CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager: execute(command_details)
+activate LogicManager
+
+note right : command_details = "assign 1 1 \npr/200 sd/2020-10-12 \ned/2022-10-12"`
+LogicManager -> AddressBookParser: parseCommand(command_details)
+activate AddressBookParser
+
+create PolicyAssignCommandParser
+AddressBookParser -> PolicyAssignCommandParser
+activate PolicyAssignCommandParser
+
+PolicyAssignCommandParser --> AddressBookParser
+deactivate PolicyAssignCommandParser
+
+AddressBookParser --> PolicyAssignCommandParser:: parse(command_details)
+activate PolicyAssignCommandParser
+
+create PolicyAssignCommand
+PolicyAssignCommandParser -> PolicyAssignCommand :
+activate PolicyAssignCommand
+
+PolicyAssignCommand --> PolicyAssignCommandParser : pac
+deactivate PolicyAssignCommand
+
+PolicyAssignCommandParser --> AddressBookParser :pac
+destroy PolicyAssignCommandParser
+
+AddressBookParser --> LogicManager : pac
+deactivate AddressBookParser
+
+LogicManager -> PolicyAssignCommand : execute(model)
+activate PolicyAssignCommand
+
+PolicyAssignCommand -> Model : get first policy, get first client
+activate Model
+
+
+Model --> PolicyAssignCommand: policyToAdd, personToAdd
+deactivate Model
+
+PolicyAssignCommand -> Model:addPolicy(command_details)
+activate Model
+
+Model --> PolicyAssignCommand
+deactivate Model
+
+create CommandResult
+PolicyAssignCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> PolicyAssignCommand
+deactivate CommandResult
+
+PolicyAssignCommand --> LogicManager : result
+deactivate PolicyAssignCommand
+PolicyAssignCommand -[hidden]-> LogicManager : result
+
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

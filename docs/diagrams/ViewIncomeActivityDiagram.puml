@@ -1,0 +1,15 @@
+@startuml
+
+start
+:User executes command;
+
+:AddressBookParser parses command;
+
+if () then ([Command is valid])
+    :Displays a graph plot;
+
+else ([Invalid Command])
+    :Prompts to select valid inputs;
+endif
+stop
+@enduml
