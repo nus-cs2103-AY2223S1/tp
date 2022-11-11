@@ -98,7 +98,7 @@ This is the section where you can enter commands for PayMeLah, and where the sta
 
 #### Person List Section
 
-<img src="images/PersonCard.png" width="800" />
+<img src="images/PersonListSection.png" width="800" />
 
 This is the section showing the list of persons added to PayMeLah. The names can be clicked to show their _person card_: a box containing their person details as well as their list of debts.
 
@@ -116,7 +116,7 @@ This is the section showing the list of persons added to PayMeLah. The names can
 
 #### Debt List Section
 
-<img src="images/DebtList.png" width="800" />
+<img src="images/DebtListSection.png" width="800" />
 
 This is the section showing details about each debt of a person.
 
