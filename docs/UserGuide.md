@@ -398,7 +398,10 @@ A contact can have any number of tags (including 0).
 **Examples:**
 
 - `list_contact` followed by `select_contact 1` selects the 1st contact in the entire contact list and shows all tasks assigned to that contact.
-- `find_contact Hermione` followed by `select_contact 1` selects the 1st contact in the results of the `find_contact Hermione` command and shows all task assigned to that person.
+- `find_contact Bernice` followed by `select_contact 1` selects the 1st contact in the results of the `find_contact Bernice` command and shows all task assigned to that person.
+  <br/>
+  e.g. In the screenshot below, we can see the selected contact on the main panel and their assigned tasks on the sidebar.
+  ![Result for 'select_contact command'](images/user-guide/select-contact.png)
 
 ### Task Commands
 
@@ -491,7 +494,10 @@ A contact can have any number of tags (including 0).
 **Examples:**
 
 - `list_task` followed by `select_task 1` selects the 1st task in the entire task list and shows all contacts assigned to that task.
-- `find_task sleep` followed by `select_task 1` selects the 1st task in the results of the `find_task sleep` command and shows all contacts assigned to that task.
+- `find_task discuss` followed by `select_task 1` selects the 1st task in the results of the `find_task discuss` command and shows all contacts assigned to that task.
+  <br/>
+  e.g. In the screenshot below, we can see the selected task on the main panel and its assigned contacts on the sidebar.
+  ![Result for 'select_task command'](images/user-guide/select-task.png)
 
 #### Marking a task as complete: `mark`
 
