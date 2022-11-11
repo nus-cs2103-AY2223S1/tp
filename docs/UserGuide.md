@@ -455,14 +455,7 @@ Let us try to add a new person called John Doe. Enter the command
 `add person -n "John Doe" -p 98765432 -e johnd@example.com` 
 
 If done successfully, you should see a new person show up in the [persons section](#persons-section) as seen below. Please 
-refer below. 
-
-If you are still unsure, please enter `add person -h` and our application will give you a comprehensive guide on how 
-to use this command. 
-
-If you want to know more about the details of the command, please refer to the format and table directly below.
-
-If you want more examples usages, please see the examples below.
+refer below.
 
 ![Add Person Example](images/AddPersonExample.png)
 
@@ -498,7 +491,7 @@ A person can have any number of tags (including 0).
 Opps! Seems like your classmate might have provided his school email instead of his github email. Not to worry, you 
 can edit their contact details easily with `edit person`! First, identify the index number of your classmate in the
 [persons section](#persons-section). If you are not able to find their name visibly, refer to 
-[find command](#finding-a-person-find-person) on how you can find your classmate easily. Next, key in 
+[find person command](#finding-a-person-find-person) on how you can find your classmate easily. Next, key in 
 `edit person <INDEX_NUMBER> -e <NEW_EMAIL>` to change their email! You can edit other contact details as well.
 
 The `edit person` command allows you to edit an existing person in TruthTable. The edited person's details will be shown in the
@@ -514,14 +507,7 @@ If done successfully, you should see the new details show up under in the [perso
 under `Alex Yeoh` as seen below. 
 
 Unable to find a person you are looking for? Please check that you have added the person into TruthTable! Refer to the 
-above [add person command](#creating-a-new-person-add-person) to add a new person into TruthTable. 
-
-If you are still unsure, please enter `edit person -h` and our application will give you a comprehensive guide on how
-to use this command.
-
-If you want to know more about the details of the command, please refer to the format and table directly below.
-
-If you want more examples usages, please see the examples below.
+above [add person command](#creating-a-new-person-add-person) to add a new person into TruthTable.
 
 ![Edit Person Example](images/EditPersonExample.png)
 
@@ -579,13 +565,6 @@ If done successfully, you should the person `Alex Yeoh` removed under the [perso
 Unable to find a person you are looking for? Please check that you have added the person into TruthTable! Refer to the
 above [add person command](#creating-a-new-person-add-person) to add a new person into TruthTable.
 
-If you are still unsure, please enter `delete person -h` and our application will give you a comprehensive guide on how
-to use this command.
-
-If you want to know more about the details of the command, please refer to the format and table directly below.
-
-If you want more examples usages, please see the examples below.
-
 ![Delete Person Example](images/DeletePersonExample.png)
 
 **Format:** `delete person [-h] <PERSON_INDEX>`
@@ -618,7 +597,7 @@ can find their contact details easily with `find person`! First, recall his firs
 from his full name. Next, key in `find person <PERSON_NAME_KEYWORDS>`, and TruthTable will show you all persons with 
 names that contain the keywords that you specified!
 
-The `delete person` command allows you to finds all persons whose names contain any of the given keywords. 
+The `find person` command allows you to finds all persons whose names contain any of the given keywords. 
 The persons with matching names will be shown in the [persons section](#persons-section) as seen in the image below.
 Let us run through how to find a person.
 
@@ -631,13 +610,6 @@ If done successfully, you should the see all persons named Alex and David show u
 
 Unable to find a person you are looking for? Please check that you have added the person into TruthTable! Refer to the
 above [add person command](#creating-a-new-person-add-person) to add a new person into TruthTable.
-
-If you are still unsure, please enter `find person -h` and our application will give you a comprehensive guide on how
-to use this command.
-
-If you want to know more about the details of the command, please refer to the format and table directly below.
-
-If you want more examples usages, please see the examples below.
 
 ![result for 'find person alex david'](images/findPersonAlexDavidResult.png)
 
@@ -680,13 +652,6 @@ below.
 Unable to find a person you are looking for? Please check that you have added the person into TruthTable! Refer to the
 above [add person command](#creating-a-new-person-add-person) to add a new person into TruthTable.
 
-If you are still unsure, please enter `list persons -h` and our application will give you a comprehensive guide on how
-to use this command.
-
-If you want to know more about the details of the command, please refer to the format and table directly below.
-
-If you want more examples usages, please see the examples below.
-
 ![List Persons Example](images/DeletePersonExample.png)
 
 **Format:** `list persons [-h]`
@@ -707,8 +672,25 @@ Summary of the commands to manage members can be found [here](#summary-of-member
 
 #### Adding a new member to the team: `add member`
 
-Adds a new team member to the user’s currently selected team. If the member already exists in the team, an error message
-will be displayed.
+You have made up mind on choosing that people that you want to work with for your group projects, and now you want to
+add them to your team. First, identify the index number of your classmate in the [persons section](#persons-section).
+If you are not able to see their name on the list, refer to [find person command](#finding-a-person-find-person) on how to 
+find your classmate. Then, simply key in `add member <INDEX>` and they are finally added to your team. Viola, you can finally
+begin to work on some exciting software engineering projects with them!
+
+The `add member` command allows you to add a new team member in your currently selected team. The new member is added
+to the member list in the [current team section](#current-team-section) as seen in the image below.
+Unsure of what team you are currently on? Please refer to the [current team section](#current-team-section) 
+
+Here, let us take a quick walk-through on how to add a person.
+
+Let us try to add a new person called Alex Yeoh to our team. Identify the index number of `Alex Yeoh` in the 
+application(1 in the image below). Enter the command
+
+`add member 1`
+
+If done successfully, you should see a new member show up in the member list in the 
+[current team section](#current-team-section) as seen below. 
 
 ![Add Member Example](images/AddMemberExample.png)
 
@@ -733,7 +715,27 @@ will be displayed.
 
 #### Delete a member from team: `delete member`
 
-Delete a team member from the user’s team.
+Due to unfortunate circumstances, some of your teammates needs to be shuffled to other groups and they will no longer
+be on your team! Not to worry, you can delete members from your team. First, identify the index number of your teammate 
+in the [current team section](#current-team-section). If you are not able to see their name on the list, refer to
+[find member command](#finding-a-member-find-member) on how to find your classmate. Then, simply key in 
+`delete member <INDEX>` and they will be removed from your team!
+
+The `delete member` command allows you to delete an existing team member in your currently selected team. 
+The target team member will be removed from the [current team section](#current-team-section) as seen in the image 
+below. Unsure of what team you are currently on? Please refer to the [currently selected team](#current-team-section) 
+Here, let us take a quick walk-through on how to delete a member.
+
+Let us try to delete a member called Alex Yeoh to our team. Identify the index number of `Alex Yeoh` in the
+application(1 in the image below). Enter the command
+
+`delete member 1`
+
+If done successfully, Alex Yeoh should be removed from the [current team section](#current-team-section) as seen below.
+
+Unable to find an existing team member? Please check that you have added the team member into your team as shown in the 
+[current team section](#current-team-section). Refer to the above 
+[add member command](#adding-a-new-member-to-the-team-add-member) on how to add a new team member.
 
 **Format:** `delete member [-h] <MEMBER_INDEX>`
 
@@ -755,7 +757,27 @@ Delete a team member from the user’s team.
 
 #### Finding a member: `find member`
 
-Finds all members in the current team whose names or emails contain any of the given keywords.
+Your software project is growing and your team is getting bigger. However, you are no longer able to find specific team 
+members. We have you covered in TruthTable! You can find your team members easily with the `find member` command.  
+First, recall any keyword you can remember from the team member you are looking for. Next, key in 
+`find member -n <PERSON_NAME_KEYWORDS>`, and TruthTable will show you all team members with names that contain the
+keywords that you specified! You are able to find your team members by their email as well by specifying the `-e` flag.
+
+The `find member` command allows you to find all team members whose names or emails contain any of the given keywords.
+The members with matching names will be shown in the member list in the [current team section](#current-team-section) 
+as seen in the image below. Let us run through the steps to find a team member.
+
+Suppose you want to find all team members named Alex or David. Enter the command
+
+`find member -n alex david`
+
+If done successfully, you should the see all team members named Alex and David show up under in the member list in the
+[current team section](#current-team-section).
+
+Unable to find an existing team member? Please check that you have added the team member into your team as shown in the
+[current team section](#current-team-section). Refer to the above
+[add member command](#adding-a-new-member-to-the-team-add-member) on how to add a new team member.
+
 
 <div markdown="span" class="alert alert-primary">
 :information_source: **Note** <br> You can find members using **either** emails or names. This means that you 
@@ -793,6 +815,24 @@ should **not** use both `-n` and `-e` in the `find member` command.
 
 #### Listing all members of the team: `list members`
 
+You want to see an overview of all your team members. Key in `list members`, and TruthTable will show you all existing
+team members that currently exist in your [currently selected team](#current-team-section).
+
+The `list members` command shows a list of all team members in your team. After running the
+[find member command](#finding-a-member-find-member), you may wish to view all team members again. To do so, 
+the `list members` command will update the member list in the [current team section](#current-team-section) and display all 
+team members as seen in the image below.
+
+Enter `list members` to begin listing your members.
+
+If done successfully, you should the see all team members show up under in the member list in the
+[current team section](#current-team-section) as shown below.
+
+Unable to find an existing team member? Please check that you have added the team member into your team as shown in the
+[current team section](#current-team-section). Refer to the above
+[add member command](#adding-a-new-member-to-the-team-add-member) on how to add a new team member.
+
+
 View all the members currently in the team, in the form of a list.
 
 **Format:** `list members [-h]`
@@ -809,7 +849,24 @@ View all the members currently in the team, in the form of a list.
 
 #### Sort members: `sort members`
 
-Sorts all members in the current team by name and displays them in the member list.
+Your team size is getting larger, and it is confusing for you to make sense of the list of members in your team. Not to 
+worry, you can sort your team members by name with our `sort members` command! Suppose you want to see whether there is 
+team member called `Caroline`, but you are unsure of how to spell it. First, key in `sort members asc`, and TruthTable 
+will sort the list of team members alphabetically by name in ascending order. You can now verify if `Caroline` indeed 
+exists in your team by scrolling to all names that begin with `c`. You may sort your team members in descending order 
+with `sort members dsc` or reset to the original list with `sort members res`.
+
+The `sort members` command allows you to sort your team members in alphabetical order. The sorted team members will 
+be shown in member list the [current team section](#current-team-section)  as seen in the image below.
+
+Let us run through an example on how to sort your team members.
+
+Suppose you want to sort your team members alphabetically in ascending order. Enter the command
+
+`sort members asc`
+
+If done successfully, the sorted team members will be shown in the member list in 
+[current team section](#current-team-section)
 
 **Format:** `sort members [-h] <ORDER>`
 
