@@ -442,7 +442,7 @@ Format: `edit INDEX m/remark REMARK`
 
 Example:
 
-`edit 1 m/remark Client replies very fast` edits the remark at index 1 to 'Client replies very fast' in the displayed remark list. 
+`edit 1 m/remark Client replies very fast` edits the remark at index **1** to 'Client replies very fast' in the displayed remark list. 
 
 > <div markdown="span" class="alert alert-warning">:warning: Warning: You must use [view](#viewing-a-client-view) command first before you can edit a remark. If not, there will be an error within the application!
 
@@ -477,7 +477,7 @@ Clears all entries which include **clients**, **remarks** and **transactions** f
 
 Format: `clear`
 
-> <div markdown="span" class="alert alert-danger">❗ **Danger**: Information cleared by clear command cannot be retrieved. Only use this if you want to clear **all** data of `clients`, `remarks` and `transactions`.
+> <div markdown="span" class="alert alert-danger">❗ Danger: Information cleared by clear command cannot be retrieved. Only use this if you want to clear **all** data of `clients`, `remarks` and `transactions`.
 
 Example:
 
@@ -546,7 +546,7 @@ JeeqTracker data are saved in the hard disk automatically after any command that
 
 JeeqTracker data are saved as a JSON file "[JAR file location]/data/jeeqtracker.json". If you are an advanced user, you are welcome to update data directly by editing that data file.
 
-> <div markdown="span" class="alert alert-danger">:exclamation: **Danger**: If your changes to the data file makes its format invalid, JeeqTracker will discard all data and start with an empty data file at the next run.
+> <div markdown="span" class="alert alert-danger">:exclamation: Danger: If your changes to the data file makes its format invalid, JeeqTracker will discard all data and start with an empty data file at the next run.
 
 ### Archiving data files `[coming in v2.0]`
 
