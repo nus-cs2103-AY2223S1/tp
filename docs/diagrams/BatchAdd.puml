@@ -1,0 +1,79 @@
+@startuml
+!include Style.puml
+title BatchAddCommand
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":DatabaseParser" as DatabaseParser LOGIC_COLOR
+participant ":BatchAddCommandParser" as BatchAddCommandParser LOGIC_COLOR
+participant "b:BatchAddCommand" as BatchAddCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+[-> LogicManager: execute("batch-add coydir.csv")
+activate LogicManager
+
+LogicManager -> DatabaseParser : parseCommand("batch-add coydir.csv")
+activate DatabaseParser
+
+create BatchAddCommandParser
+DatabaseParser->BatchAddCommandParser
+activate BatchAddCommandParser
+
+BatchAddCommandParser --> DatabaseParser
+deactivate BatchAddCommandParser
+
+DatabaseParser -> BatchAddCommandParser : parse("coydir.csv")
+activate BatchAddCommandParser
+
+create BatchAddCommand
+BatchAddCommandParser -> BatchAddCommand : BatchAddCommand(coydir.csv)
+activate BatchAddCommand
+
+
+BatchAddCommand --> BatchAddCommandParser : b
+deactivate BatchAddCommand
+
+BatchAddCommandParser --> DatabaseParser : b
+deactivate BatchAddCommandParser
+
+DatabaseParser --> LogicManager : b
+deactivate DatabaseParser
+
+LogicManager -> BatchAddCommand : execute(model)
+activate BatchAddCommand
+    note right of BatchAddCommand
+    For more understanding
+    of //AddCommandParser.parse//
+    and //AddCommand.execute(model)//,
+    **refer to //AddCommand//**
+    end note
+
+BatchAddCommand -> BatchAddCommand : getInfo()
+activate BatchAddCommand
+loop #white  rows  in  (CSV) file
+    ref over BatchAddCommand
+    AddCommandParser.parse(row)
+    end
+end
+BatchAddCommand --> BatchAddCommand
+deactivate BatchAddCommand
+|||
+
+loop #white AddCommands  in  list
+ref over BatchAddCommand
+AddCommand.execute(model)
+end
+end
+
+create CommandResult
+BatchAddCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> BatchAddCommand
+deactivate CommandResult
+
+BatchAddCommand --> LogicManager
+deactivate BatchAddCommand
+
+@enduml

@@ -1,0 +1,59 @@
+@startuml
+
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":DatabaseParser" as DatabaseParser LOGIC_COLOR
+participant ":ViewDepartmentCommandParser" as ViewDepartmentCommandParser LOGIC_COLOR
+participant ":ViewDepartmentCommand" as ViewDepartmentCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+
+[-> LogicManager: execute("view-department Finance")
+activate LogicManager
+
+LogicManager -> DatabaseParser : parseCommand("view-department Finance")
+activate DatabaseParser
+
+create ViewDepartmentCommandParser
+DatabaseParser->ViewDepartmentCommandParser
+activate ViewDepartmentCommandParser
+
+ViewDepartmentCommandParser --> DatabaseParser
+deactivate ViewDepartmentCommandParser
+
+DatabaseParser -> ViewDepartmentCommandParser : parse("Finance")
+activate ViewDepartmentCommandParser
+
+create ViewDepartmentCommand
+ViewDepartmentCommandParser -> ViewDepartmentCommand : ViewDepartmentCommand("Finance")
+activate ViewDepartmentCommand
+
+
+ViewDepartmentCommand --> ViewDepartmentCommandParser
+deactivate ViewDepartmentCommand
+
+ViewDepartmentCommandParser --> DatabaseParser
+deactivate ViewDepartmentCommandParser
+
+DatabaseParser --> LogicManager
+deactivate DatabaseParser
+
+LogicManager -> ViewDepartmentCommand : execute()
+activate ViewDepartmentCommand
+
+create CommandResult
+ViewDepartmentCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ViewDepartmentCommand
+deactivate CommandResult
+
+ViewDepartmentCommand --> LogicManager
+deactivate ViewDepartmentCommand
+
+LogicManager -->[
+
+@enduml

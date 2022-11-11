@@ -1,7 +1,34 @@
 // Placeholder to allow defining custom styles that override everything else.
 // (Use `_sass/minima/custom-variables.scss` to override variable defaults)
-h2, h3, h4, h5, h6 {
-  color: #e46c0a;
+h4,
+h5,
+h6 {
+  color: #FF0078;
+  font-weight: bold;
+}
+
+h1, h2, h3 {
+  color: #FF0078;
+  font-weight: 900;
+  padding: 4px 8px;
+  margin-bottom: 18px;
+}
+
+.title {
+  color: #000000;
+  font-weight: 900;
+  padding: 4px 8px;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.subtitle {
+  color: #000000;
+  font-weight: 400;
+  padding: 4px 8px;
+  margin-bottom: 18px;
+  font-style: italic;
+  text-align: center;
 }
 
 // Bootstrap style alerts
@@ -10,7 +37,7 @@ h2, h3, h4, h5, h6 {
   padding: $alert-padding-y $alert-padding-x;
   margin-bottom: $alert-margin-bottom;
   border: $alert-border-width solid transparent;
-  order-radius : $alert-border-radius;
+  border-radius: $alert-border-radius;
 }
 
 // Headings for larger alerts
@@ -24,11 +51,21 @@ h2, h3, h4, h5, h6 {
   font-weight: $alert-link-font-weight;
 }
 
+// Class for images to be centered
+.centerImage {
+  text-align: center;
+  display: block;
+  margin: auto;
+}
+
 // Generate contextual modifier classes for colorizing the alert.
 
 @each $color, $value in $theme-colors {
   .alert-#{$color} {
-    @include alert-variant(color-level($value, $alert-bg-level), color-level($value, $alert-border-level), color-level($value, $alert-color-level));
+    @include alert-variant(
+      color-level($value, $alert-bg-level),
+      color-level($value, $alert-border-level),
+      color-level($value, $alert-color-level)
+    );
   }
 }
-

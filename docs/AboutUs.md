@@ -5,55 +5,54 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
-### John Doe
+### Chao Yung
 
-<img src="images/johndoe.png" width="200px">
+<kbd><img src="images/chao890.png" width="200px"></kbd>
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/chao890)]
+[[portfolio](team/chao890.md)]
 
-* Role: Project Advisor
+- Role: Developer, Git Expert
+- Responsibilities: Documentation
 
-### Jane Doe
+### Kevin Chang
 
-<img src="images/johndoe.png" width="200px">
+<kbd><img src="images/kevinchangjk.png" width="200px"></kbd>
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/kevinchangjk)]
+[[portfolio](team/kevinchangjk.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+- Role: Developer
+- Responsibilities: Backend, Code Quality
 
-### Johnny Doe
+### Prittam Ravi
 
-<img src="images/johndoe.png" width="200px">
+<kbd><img src="images/prit3010.png" width="200px"></kbd>
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/prit3010)]
+[[portfolio](team/prit3010.md)]
 
-* Role: Developer
-* Responsibilities: Data
+- Role: Team Lead
+- Responsibilities: Scheduling & Tracking, Deliverables & Deadlines
 
-### Jean Doe
+### Shawn Kok
 
-<img src="images/johndoe.png" width="200px">
+<kbd><img src="images/kok-je.png" width="200px"></kbd>
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/Kok-je)]
+[[portfolio](team/kok-je.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+- Role: Developer, IntelliJ expert, Figma expert
+- Responsibilities: Testing, Integration, UI
 
-### James Doe
+### Ng Shi Jun
 
-<img src="images/johndoe.png" width="200px">
+<kbd><img src="images/ngshijun.png" width="200px"></kbd>
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/ngshijun)]
+[[portfolio](team/ngshijun.md)]
 
-* Role: Developer
-* Responsibilities: UI
+- Role: Developer
+- Responsibilities: Frontend, UI

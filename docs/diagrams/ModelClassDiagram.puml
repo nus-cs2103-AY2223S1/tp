@@ -5,10 +5,10 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+Class "<<interface>>\nReadOnlyDatabase" as ReadOnlyDatabase
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
-Class AddressBook
+Class Database
 Class ModelManager
 Class UserPrefs
 
@@ -19,32 +19,41 @@ Class Email
 Class Name
 Class Phone
 Class Tag
-
+Class EmployeeId
+Class Position
+Class Department
+Class Rating
+Class Leave
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+Database .up.|> ReadOnlyDatabase
 
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
+Model .left.> ReadOnlyDatabase
+ModelManager -left-> "1" Database
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+Database *--> "1" UniquePersonList
+UniquePersonList --> "    ~* all" Person
+Person *--> "1" Name
+Person *--> "1" EmployeeId
+Person *--> "1" Position
+Person *--> "1" Department
+Person *---> "1" Phone
+Person *---> "1" Email
+Person *---> "1" Address
+Person *---> "1" Rating
+Person *---> "*" Tag
+Person *---> "*" Leave
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Name -[hidden]right-> EmployeeId
+Email -[hidden]right-> Address
+Address -[hidden]right-> Phone
 
-ModelManager -->"~* filtered" Person
+ModelManager -->"~* filtered      " Person
 @enduml

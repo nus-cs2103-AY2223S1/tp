@@ -1,0 +1,16 @@
+{
+  "persons": [
+    {
+      "name": "Person with invalid name field: Ha!ns Mu@ster",
+      "employeeId": "2",
+      "phone": "9482424",
+      "email": "hans@example.com",
+      "position": "Worker",
+      "department": "Operations",
+      "address": "4th street",
+      "leave": "14",
+      "leaveLeft": "14",
+      "leaveTaken": []
+    }
+  ]
+}

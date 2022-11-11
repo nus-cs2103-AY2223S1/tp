@@ -1,0 +1,19 @@
+{
+  "persons": [
+    {
+      "name": "Hans Muster",
+      "employeeId": "1",
+      "phone": "9482424",
+      "email": "invalid@email!3e",
+      "position": "Chief of Nothing",
+      "department": "General Management",
+      "leave": "14",
+      "leaveLeft": "14",
+      "address": "4th street",
+      "rating": "N/A",
+      "performanceHistory": [],
+      "leaveTaken": []
+    }
+  ],
+  "maxID": 2
+}
