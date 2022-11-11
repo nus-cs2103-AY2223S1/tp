@@ -42,7 +42,6 @@ Finally, here are some of the symbols and text formatting to look out for as you
 * Table of Contents
 {:toc}
 
---------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
 ## Quick start
@@ -73,7 +72,7 @@ Now, let’s continue to learn how to [navigate the application](#tutorial-navig
 
 ### Tutorial: Navigating the application
 
-* PayMeLah uses a [Command Line Interface (CLI)](#glossary-command-line-interface-cli) - which means that you perform actions by entering [commands](#glossary-command) for PayMeLah to carry out.
+* PayMeLah uses a [Command Line Interface (CLI)](#glossary-command-line-interface-cli) - which means that you perform actions by entering [commands](#glossary-command) for PayMeLah to carry out. If you want to find out more on how to make use of commands, you can jump ahead to the [command format section](#about-the-command-format).
 * Once a command has been successfully carried out, PayMeLah will display the results accordingly.
 * Refer to the diagrams in the following pages to find out about the different components of PayMeLah that are responsible for receiving commands, displaying results, and more!
 
@@ -113,8 +112,6 @@ This is the section showing the **list of persons** added to PayMeLah. **Click a
 |   7.   | Person Card     | A box containing the person's details and their debt list. |
 |   8.   | Total Debt      | The total amount of money owed by the person.              |
 
-<div style="page-break-after: always;"></div>
-
 #### Debt List Section
 
 <img src="images/DebtListSection.png" width="800" />
@@ -143,8 +140,11 @@ If your provided inputs are too long, PayMeLah may not be able to fully display 
 
 Once you have familiarised yourself with PayMeLah’s [user interface](#tutorial-navigating-the-application), it is time to officially start using PayMeLah! The following section provides a step-by-step guide that walks you through the process of **adding a debt** to PayMeLah in **3 simple steps**. You can choose to follow the sample commands word-for-word, or if you are feeling adventurous, you can try replacing the sample inputs with your own inputs instead.
 
-1. If you are a first time user, your PayMeLah may still be filled with the sample data that came with the [installation process](#tutorial-installing-paymelah). You can **remove all the sample data** with a single [`clear` command](#clearing-all-entries-clear), which you can do by simply entering `clear`. Don’t worry about losing this data - they are unlikely to be useful to you! Soon, your PayMeLah
-   will be filled with the information you actually want instead.<br>
+The guide begins on the following page!
+
+<div style="page-break-after: always;"></div>
+
+1. If you are a first time user, your PayMeLah may still be filled with the sample data that came with the [installation process](#tutorial-installing-paymelah). You can **remove all the sample data** with a single [`clear` command](#clearing-all-entries-clear), which you can do by simply entering `clear`. Don’t worry about losing this data - they are unlikely to be useful to you! Soon, your PayMeLah will be filled with the information you actually want instead.<br>0
 
 You should see that the [person list](#person-list-section) is now empty.
 
@@ -170,7 +170,6 @@ Of course, this is not yet the end of your journey with PayMeLah - there are sti
 
 [Return to Table of Contents](#table-of-contents)
 
---------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
 ## Features
@@ -195,6 +194,8 @@ INSERT IMAGE
 
 <div style="page-break-after: always;"></div>
 
+### General input behaviour
+
 * **Optional Inputs**<br>
   Inputs in square brackets `[]` are **optional**.<br>
   e.g. for `add n/<name> [t/<tag>]…`, the following usages are both acceptable: `add n/Alan Poe t/theatre kid`, `add n/Alan Poe`.
@@ -207,8 +208,6 @@ INSERT IMAGE
 <div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
 Be very careful with how a command is formatted! If the `…` is found within the diamond brackets `<>` that correspond to an input as in `<person index…>`, then only the input itself is to be repeated. However, if the `…` is found outside the `<>` as in `[t/<tag>]…`, then both the prefix and input must be repeated. Read the 2 examples above carefully to see the difference.
 </div>
-
-<div style="page-break-after: always;"></div>
 
 * **Order of Inputs**<br>
   Inputs can be in **any order**.<br>
@@ -763,7 +762,7 @@ Here is a quick tutorial on editing the data file:
 
 1. Double-click on the `paymelah.json` file to open it.<br>
    You should see some text similar to the following (don't worry if the words in your file appear to be in a different colour, it does not matter):<br>
-   <img src="images/jackson.png" width="600" />
+   <img src="images/jackson.png" width="300" />
 
 2. You can now edit the data by changing any of the green words you see! Do ensure that your replacement words are surrounded by double-inverted commas (`""`), as per the image above.
 
