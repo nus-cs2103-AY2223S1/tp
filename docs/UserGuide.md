@@ -1688,20 +1688,18 @@ Summary of the commands to manage links can be found [here](#summary-of-link-com
 #### Add a new link: `add link`
 
 Your project has started and now have weekly meetings. As the meeting link is always the same, wouldn't it be nice 
-if it is recorded down permanently somewhere? TruthTable helps you do that with the `add link` command! Firstly, 
-decide on a nice name that can uniquely identify the purpose of the link. Next, key in 
-`add link -n <LINK_NAME> -l <URL>` and a new link will be created.
+if it is recorded down permanently somewhere? TruthTable helps you do that with the `add link` command! 
 
-The `add link` command allows you to add a new link to the list of links. The new link is added to the list of links in 
-the [currently selected team](#current-team-section) as seen in the image below. Do not worry if an error shows up, 
+The `add link` command allows you to add a new link to the list of links. The new link is added to the list of links in
+the [currently selected team](#current-team-section) as seen in the image below. Do not worry if an error shows up,
 you might have typed something wrongly. Here, let us take a quick walk-through on how to add a link.
 
-Let us try to add a new weekly meeting link, with a name `Meeting Link`, with the meeting link url of 
-`https://nus-sg.zoom.us/j/87390425930?pwd=aUZNZ1NJdW5hUjcxSGxXZyt0NjdLQT09`. Enter the command
+Let us try to add a new weekly meeting link, with a name `Meeting Link`, with the meeting link url of
+`https://nus-sg.zoom.us/j/87390425930?pwd=aUZNZ1NJdW5hUjcxSGxXZyt0NjdLQT09`. 
 
-`add link -n "Meeting Link" -l https://nus-sg.zoom.us/j/87390425930?pwd=aUZNZ1NJdW5hUjcxSGxXZyt0NjdLQT09`
+Enter the command `add link -n "Meeting Link" -l https://nus-sg.zoom.us/j/87390425930?pwd=aUZNZ1NJdW5hUjcxSGxXZyt0NjdLQT09`.
 
-If done successfully, you should see a new link show up in the list of links in the 
+If done successfully, you should see a new link show up in the list of links in the
 [currently selected team](#current-team-section) as shown below.
 
 ![Add Link Example](images/AddLinkExample.png)
@@ -1726,7 +1724,8 @@ If done successfully, you should see a new link show up in the list of links in 
 
 #### Edit an existing link: `edit link`
 
-Oops! Seems like meeting link has changed. Not to worry, you can edit their link url easily with `edit person`!
+Oops! Seems like meeting link has changed. Not to worry, you can edit their link url easily with the `edit link` 
+command!
 
 The `edit link` command allows you to edit an existing link in TruthTable. The edited link will be shown in the list of 
 links in the [currently selected team](#current-team-section) as seen in the image below. As always, don't panic if 
@@ -1738,7 +1737,7 @@ Identify the index number of the link with a name `weekly meeting` in the applic
 
 Then, enter the command `edit link 1 -n "monthly meeting" -l https://zoom.us/j/94669589458?pwd=bTQvWTlWbzR5T29Ja0w2d0J1R1R4QT09#success`
 
-If done successfully, the edited `monthly meeting` link  will appear up under in the list of links in the
+If done successfully, the edited `monthly meeting` link will appear up under in the list of links in the
 [currently selected team](#current-team-section) as shown below. You can edit the name of
 the link directly as well by supplying the `-n` tag.
 
@@ -1771,7 +1770,7 @@ the link directly as well by supplying the `-n` tag.
 #### Delete an existing link: `delete link`
 
 The mode of your weekly meeting has changed to physical permanently and you no longer need to keep track of the 
-meeting link. Not to worry, you can delete links easily with `delete link`!
+meeting link. Not to worry, you can delete links easily with the `delete link` command!
 
 The `delete link` command allows you to delete the specified link from TruthTable. The deleted link will be
 removed from the list of links in the [currently selected team](#current-team-section). 
@@ -1868,9 +1867,19 @@ Enter `exit` and the program closes after 3 seconds.
 
 #### Viewing help: `help`
 
-Shows the available commands in TruthTable as well as URL to this help page at the bottom.
+Help! You are not sure what to do? You have come to the right place. Enter `help` and the list of commands available 
+will be shown as well as URL to this help page at the bottom as shown below.
 
 ![Help Example](images/HelpExample.png)
+
+You can seek help in the application by supplying the `-h` flag in any of our commands.
+
+Suppose you are not sure on how to use the [`add person` command](#creating-a-new-person-add-person). 
+
+Enter `add person -h`.
+
+If successful, clear instructions on how to use the `add person` command will be provided in the
+[command section](#command-section).
 
 **Format:** `help [-h]`
 
