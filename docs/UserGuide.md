@@ -549,6 +549,9 @@ Parameters:
 * `PRIORITY_STATUS` refers to the priority status which is tagged to the task in the displayed task list.
 * `DEADLINE` refers to the deadline which is tagged to the task in the displayed task list.
 
+---------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 <div markdown="span" class="alert alert-info">
 
 :information_source: **Note:** `PRIORITY_STATUS` is case-insensitive.
