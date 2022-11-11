@@ -2,6 +2,11 @@
 layout: page
 title: User Guide
 ---
+
+<p align="center">
+  <img src="images/ModQuikLogo.png"/>
+</p>
+
 ## 1. Introduction
 Are you a Teaching Assistant (TA) struggling to monitor your classes and what tasks you have to complete?
 Tired of having to use multiple applications (such as LumiNUS and Todoist) to keep track of all your responsibilities?<br>
