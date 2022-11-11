@@ -173,7 +173,7 @@ Of course, this is not yet the end of your journey with PayMeLah - there are sti
 
 ## Features
 
-### About the command format
+### Parts of a command
 
 As you have learnt in the [navigation section](#tutorial-navigating-the-application), PayMeLah uses a [CLI](#glossary-command-line-interface-cli) to fulfill your needs. Let's take a closer look at what a [command](#glossary-command) consists of!
 
@@ -183,20 +183,20 @@ INSERT IMAGE
   The first word in the [command](#glossary-command) is the **command phrase** that specifies which command will be carried out by PayMeLah.
   (add reference to pic)
 
+* **Inputs**<br>
+  These are **additional information to be supplied by you**. Check out [input behaviours](#general-input-behaviour) to learn more about how you should type them out!<br>
+  (add reference to pic)
+
 * **Prefixes**<br>
   To separate inputs that represent different information, you should precede inputs with their respective **[prefixes]((#glossary-prefix))** that end with a `/`. <br>
   (add reference to pic)
 
-* **Inputs**<br>
-  These are **additional information to be supplied by you**. Be careful! Some inputs have [special behaviours](#input-specific-behaviour) you need to look out for.<br>
-  (add reference to pic)
-
 <div style="page-break-after: always;"></div>
 
-#### How to read command formats
+### How to read command formats
 
-In this user guide, we will provide you with the format of each command. All you have to do to use a command is to replace the necessary parts with your own input!<br>
-This section will guide you on how to interpret the formats given so that you can be a master at commanding PayMeLah!
+In this user guide, we will provide you with the format of each command. All you have to do is to follow the format while replacing the necessary parts with your own inputs!<br>
+This section will guide you on how to interpret the formats given, so that you can be a master at commanding PayMeLah!
 
 * **User Supplied Inputs**<br>
   Words in diamond brackets `<>` are **inputs to be supplied by you**.<br>
@@ -216,6 +216,10 @@ Be very careful with how a command is formatted! If the `…` is found within th
 </div>
 
 <div style="page-break-after: always;"></div>
+
+### General input behaviour
+
+Just like words in human languages, inputs for PayMeLah commands follow certain rules. Do keep these in mind so that PayMeLah can understand your commands! 
 
 * **Order of Inputs**<br>
   Inputs can be in **any order**.<br>
