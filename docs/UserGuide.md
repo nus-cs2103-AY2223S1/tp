@@ -337,7 +337,7 @@ Examples:
 
 <p align="center">
 
-<img src="images/addPersonCommand_after.png"/>
+<img src="images/addPersonCommand_after.png"  width ="200"/>
 
 </p>
 
@@ -405,7 +405,7 @@ Examples:
 
 <p align="center">
 
-<img src="images/addClassCommand_after.png"/>
+<img src="images/addClassCommand_after.png" width ="200"/>
 
 </p>
 
@@ -432,7 +432,7 @@ Examples:
 
 <p align="center">
 
-<img src="images/deleteCommand_after.png"/>
+<img src="images/deleteCommand_after.png"  width ="200"/>
 
 </p>
 
@@ -775,7 +775,7 @@ Examples:
 
 <p align="center">
 
-<img src="images/listCommand_after.png"/>
+<img src="images/listCommand_after.png"  width ="200"/>
 
 </p>
 
@@ -828,7 +828,7 @@ Examples:
 
 <p align="center">
 
-<img src="images/sortCommand_after.png"/>
+<img src="images/sortCommand_after.png"  width ="200"/>
 
 </p>
 
@@ -884,7 +884,7 @@ Examples:
 
 <p align="center">
 
-<img src="images/findStudent_after.png"/>
+<img src="images/findStudent_after.png"  width ="200"/>
 
 </p>
 
@@ -900,7 +900,7 @@ Note that the **displayed list** is the **student list**, so `find n/john` retur
 
 <p align="center">
 
-<img src="images/findTutor_after.png"/>
+<img src="images/findTutor_after.png"  width ="200"/>
 
 </p>
 
@@ -916,7 +916,7 @@ Note that the **displayed list** is the **tutor list**, so `find i/NUS q/Bachelo
 
 <p align="center">
 
-<img src="images/findClass_after.png"/>
+<img src="images/findClass_after.png"  width ="200"/>
 
 </p>
 
