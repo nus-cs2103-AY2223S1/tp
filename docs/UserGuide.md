@@ -684,7 +684,7 @@ Example:
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Note:** You can only rate the performance of an employee once per day.<br><br>
+:bulb: **Note:** You can only rate the performance of an employee once per day.
 
 </div>
 
@@ -816,14 +816,23 @@ If your changes to the data file makes its format invalid, Coydir will discard a
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Coydir home folder.
+**Q**: How do I transfer my data to another computer?<br>
+**A**: Make sure you have Coydir installed on the other computer first.
+Then, you can copy the data file on your current company (can be found [here](#editing-the-data-file)) over to the other computer, at the same file location.
+This will enable Coydir to use the data you currently have.
 
 **Q**: What is the difference between an INDEX and an ID?<br>
-**A**: INDEX is the numbering of current showing list of employees, while ID represents the **unique** employee id of the employee.
+**A**: INDEX is the numbering of the current list of people displayed on the Employee List Panel, and it changes with commands such as `find`, when searching for employees.
+ID, on the other hand, refers to the **unique** and **permanent** employee ID of the employee, which never changes.
 
 **Q**: How do I change the rating of an employee?<br>
-**A**: You can easily change the rating of an employee by using the `rate` command and adjust the RATING accordingly. Do note that it's impossible for you to change the past rating of an employee.
+**A**: You can easily change the rating of an employee by using the `rate` command and adjust the RATING accordingly.
+Do note that it's impossible for you to change the past rating of an employee, and also, that you cannot rate an employee more than once per day.
+
+**Q**: How do I fill in the currently blank optional particulars for an employee?<br>
+**A**: You can fill them in with the `edit` command!
+The command allows you to edit the employee details, regardless of whether the details are already present, or if they are blank.
+Simply use the command together with whichever particulars you wish to add in.
 
 ---
 
