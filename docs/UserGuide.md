@@ -600,7 +600,6 @@ Examples:
 * `switch f/grade` with switch tabs and display a pie chart showing an overview of the number of students in each grade category.
 
 ![Grade Chart Tab](images/GradeChart.png)
-_Figure 2. Grade Chart Tab_
 
 <a name="clear"></a>
 ### 5.6 Clearing data: `clear`
