@@ -542,7 +542,6 @@ Examples:
 |:---------------------------------------------------:|
 |  Demonstration of Command: `t sort c/description`   |
 
-
 ### Adding the tags to a task
 Tags the specified task with a priority status and/or the deadline to complete the task. 
 
