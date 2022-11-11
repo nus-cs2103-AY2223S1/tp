@@ -175,7 +175,7 @@ Of course, this is not yet the end of your journey with PayMeLah - there are sti
 
 ## Features
 
-### About the command format
+### Parts of a command
 
 As you have learnt in the [navigation section](#tutorial-navigating-the-application), PayMeLah uses a [CLI](#glossary-command-line-interface-cli) to fulfill your needs. Let's take a closer look at what a [command](#glossary-command) consists of!
 
@@ -183,21 +183,28 @@ INSERT IMAGE
 
 * **Command Phrase**<br>
   The first word in the [command](#glossary-command) is the **command phrase** that specifies which command will be carried out by PayMeLah.
-  e.g. in `add n/<name>`, `add` is the command phrase for PayMeLah to add a person.
+  (add reference to pic)
 
-* **User Supplied Inputs**<br>
-  Words in diamond brackets `<>` are **additional information to be supplied by you**.<br>
-  e.g. in `add n/<name>`, `<name>` is an input which can be used as `add n/John`.
+* **Inputs**<br>
+  These are **additional information to be supplied by you**. Check out [input behaviours](#general-input-behaviour) to learn more about how you should type them out!<br>
+  (add reference to pic)
 
 * **Prefixes**<br>
   To separate inputs that represent different information, you should precede inputs with their respective **[prefixes]((#glossary-prefix))** that end with a `/`. <br>
-  e.g. in `add n/<name> [t/<tag>]…`, `n/` and `t/` are prefixes preceding the inputs `<name>` and `<tag>` respectively.
+  (add reference to pic)
 
 <div style="page-break-after: always;"></div>
 
-### General input behaviour
+### How to read command formats
 
-* <span id="optional-input">**Optional Inputs**</span><br>
+In this user guide, we will provide you with the format of each command. All you have to do is to follow the format while replacing the necessary parts with your own inputs!<br>
+This section will guide you on how to interpret the formats given, so that you can be a master at commanding PayMeLah!
+
+* **User Supplied Inputs**<br>
+  Words in diamond brackets `<>` are **inputs to be supplied by you**.<br>
+  e.g. in `add n/<name>`, `<name>` is an input which can be used as `add n/John`.
+
+* **Optional Inputs**<br>
   Inputs in square brackets `[]` are **optional**.<br>
   e.g. for `add n/<name> [t/<tag>]…`, the following usages are both acceptable: `add n/Alan Poe t/theatre kid`, `add n/Alan Poe`.
   
@@ -209,6 +216,12 @@ INSERT IMAGE
 <div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
 Be very careful with how a command is formatted! If the `…` is found within the diamond brackets `<>` that correspond to an input as in `<person index…>`, then only the input itself is to be repeated. However, if the `…` is found outside the `<>` as in `[t/<tag>]…`, then both the prefix and input must be repeated. Read the 2 examples above carefully to see the difference.
 </div>
+
+<div style="page-break-after: always;"></div>
+
+### General input behaviour
+
+Just like words in human languages, inputs for PayMeLah commands follow certain rules. Do keep these in mind so that PayMeLah can understand your commands! 
 
 * **Order of Inputs**<br>
   Inputs can be in **any order**.<br>
