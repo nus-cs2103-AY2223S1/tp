@@ -8,7 +8,7 @@ Tired of having to use multiple applications (such as LumiNUS and Todoist) to ke
 
 Introducing ModQuik, a Teaching Assistant tool made for you!
 
-ModQuik is a convenient tool that allows you to keep track of your classes, monitor your students' grades and set up reminders for your tasks (such as creating tutorial slides or marking homework). 
+ModQuik is a convenient tool that allows you to keep track of your classes, monitor your students' grades and set up reminders for your tasks (such as creating tutorial slides or marking homework).
 ModQuik is optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 If you can type fast, ModQuik can get your lesson management tasks done faster than traditional GUI apps.
 
@@ -203,16 +203,6 @@ Examples:
 1. `edit student 1 ph/91234567 e/jameslee@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `jameslee@example.com` respectively.
 2. `edit student 2 g/A t/` Edits the grade of the 2nd student to be `A` and clears all existing tags.
 
-<table>
-  <tr>
-    <td>Before (example 2)</td>
-    <td>After (example 2)</td>
-  </tr>
-  <tr>
-    <td><img src="images/AddStudent.png" width=350></td>
-    <td><img src="images/EditStudent.png" width=350></td>
-  </tr>
- </table>
 
 * [`find`] `m/CS2103T` followed by `edit student 2 g/A` Edits the grade of the 2nd student to be `A` in the results of the [`find`] command.
 
@@ -305,16 +295,6 @@ Format: `add tutorial n/NAME m/MODULE v/VENUE T/TIMESLOT D/DAY`
 Examples:
 1. `add tutorial n/T23 m/CS2103T v/COM1-0205 T/18:00-20:00 D/1`
 
-<table>
-  <tr>
-    <td>Before</td>
-    <td>After</td>
-  </tr>
-  <tr>
-    <td><img src="images/Tutorial.png" width=350></td>
-    <td><img src="images/AddTutorial.png" width=350></td>
-  </tr>
-</table>
 
 <a name="edit-tutorial"></a>
 #### 5.2.2 Editing a tutorial: `edit tutorial`
@@ -603,7 +583,7 @@ _Figure 2. Grade Chart Tab_
 <a name="clear"></a>
 ### 5.6 Clearing data: `clear`
 
-Clears all existing data in a specific field (including student, tutorial, reminder and consultation) or the entire app. 
+Clears all existing data in a specific field (including student, tutorial, reminder and consultation) or the entire app.
 
 For example, user might choose to reset the data when the semester ends to prepare for the upcoming semester.
 
