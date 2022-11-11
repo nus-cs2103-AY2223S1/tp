@@ -1836,6 +1836,8 @@ Be warned you can no longer recover the deleted data! Think twice before doing i
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution: This action is irreversible!**
 </div>
 
+![Clear Example](images/ClearExample.png)
+
 **Format:** `clear [-h]`
 
 | Flags          | Required | Remarks                                                                |
@@ -1848,6 +1850,8 @@ Whether you're someone that likes a light theme or dark theme, we've got you cov
 
 This command allows you to toggle between light theme and dark theme. Enter `theme` and your application will enter 
 the light theme from the dark theme, or dark theme from the light theme.
+
+![Theme Example](images/ThemeExample.png)
 
 **Format:** `theme [-h]`
 
@@ -1880,6 +1884,8 @@ Enter `exit` and the program closes after 3 seconds.
 #### Viewing help: `help`
 
 Shows the available commands in TruthTable as well as URL to this help page at the bottom.
+
+![Help Example](images/HelpExample.png)
 
 **Format:** `help [-h]`
 
