@@ -45,12 +45,12 @@ The table below summarises the function of each component.
 
 This guide uses icons and formatting to differentiate between the different types of information so that it is comprehensible. The following table summarises the icons and formatting used, along with their meaning.
 
-| **Icon/Formatting**      | **Meaning**                                                       |
-|--------------------------|-------------------------------------------------------------------|
-| :information_source:     | Extra Information to take note of when navigating through MODPRO  |
-| :exclamation:            | Warnings to take note of when navigating through MODPRO           |
-| :bulb:                   | Tips that we provide                                              |
-| `WORDS HIGHLIGHTED GREY` | Words that you can type into the Command Input                    |
+| **Icon/Formatting**      | **Meaning**                                                  |
+|--------------------------|--------------------------------------------------------------|
+| :information_source:     | Extra information that is good to know                       |
+| :exclamation:            | Warnings regarding the use of specific commands and features |
+| :bulb:                   | Tips on using MODPRO                                         |
+| `WORDS HIGHLIGHTED GREY` | Words that you can type into the Command Input               |
 
 
 ### Purpose of the guide
@@ -173,18 +173,21 @@ This document is to assist you in using MODPRO smoothly and effectively to track
 ## Modules-related Features
 
 ### Adding a module
-Adds the module into the module list.
+Adds a module into the stored module list.
 
 Format: `m add c/MODULE_CODE m/MODULE_NAME mc/MODULE_CREDIT`
+
 Parameters:
 * `MODULE_CODE` refers to the module code of the module being added.
 * `MODULE_NAME` refers to the name of the module.
 * `MODULE_CREDIT` refers to the number of module credits that the module has.
 
 Restrictions:
-* `MODULE_CODE` must be at least 6 characters long , the first two characters of the module code must be an alphabetical character and the rest of the characters should be alphanumeric characters.
+* `MODULE_CODE` 
+  * `MODULE_CODE` must be at least 6 characters long.
+  * The first two characters of `MODULE_CODE` should be alphabetical and the remaining characters should be alphanumeric.
 * `MODULE_NAME` must not be empty.
-* `MODULE_CREDIT` must be at least 0 and not more than 45.
+* `MODULE_CREDIT` should be an integer between 0 and 45 inclusive.
 
 <div markdown="span" class="alert alert-info">
 
@@ -193,17 +196,17 @@ Restrictions:
 
 Examples:
 
-`m add c/cs2100 m/computer organisation mc/4` adds a module with the module code cs2100, the module name computer organisation and the module credit 4.
+`m add c/cs2100 m/computer organisation mc/4` adds a module with the module code 'cs2100', the module name 'computer organisation' and the module credit '4'.
 
-`m add c/cs2105 m/networking mc/3` adds a module with the module code cs2105, the module name networking and the module credit 3.
+`m add c/cs2105 m/networking mc/3` adds a module with the module code 'cs2105', the module name 'networking' and the module credit '3'.
 
-| ![AddModuleCommand](images/AddModuleCommandDemo.png) |
-|:----------------------------------------------------:|
-|          Demonstration of AddModuleCommand           |
+|         ![AddModuleCommand](images/AddModuleCommandDemo.png)            |
+|:-----------------------------------------------------------------------:|
+| Demonstration of Command: `m add c/cs2100 m/computer organisation mc/4` |
 
 
 ### Listing the modules
-Lists all modules in stored module list.
+Lists all modules in the stored module list.
 
 Format: `m list`
 
@@ -230,7 +233,7 @@ Examples:
 `m find 30` finds modules whose module code contains the `KEYWORD` '30' such as 'CS2030S'.
 
 ### Deleting a module
-Deletes the specified module according to the index given.
+Deletes the specified module from the stored module list.
 
 Format: `m del INDEX`
 
@@ -242,11 +245,11 @@ Restrictions:
   * `INDEX` should be an integer greater than 0 and less than 2147483648.
   * `INDEX` should not be greater than the number of modules in the displayed module list.
 
-Example:
+Examples:
 
-`m del 1` deletes the first module in the module list.
+`m del 1` deletes the first module in the displayed module list.
 
-`m del 3` deletes the third module in the module list.
+`m del 3` deletes the third module in the displayed module list.
 
 <div markdown="span" class="alert alert-warning">
 :exclamation: **Warning:** All tasks and exams related to the module will be deleted after the specified module is deleted.
@@ -273,7 +276,7 @@ Parameters:
 
 Restrictions:
 * `INDEX`
-  * `INDEX` should be an integer greater than 0 and less than 2147483648
+  * `INDEX` should be an integer greater than 0 and less than 2147483648.
   * `INDEX` should not be greater than the number of modules in the displayed module list.
 * `MODULE_CODE`
   * `MODULE_CODE` should be at least 6 characters long.
@@ -292,20 +295,25 @@ Restrictions:
 
 Examples:
 
-`m edit 1 m/Programming Methodology I mc/4` changes the module name of the first module in the module list to 'Programming Methodology I' and the module credit to '4'.
+`m edit 1 m/Programming Methodology I mc/4` changes the module name of the first module in the displayed module list to 'Programming Methodology I' and the module credit to '4'.
 
-`m edit 2 c/cs2040 m/Data Structures and Algorithms mc/4` changes the module name of the second module in the module list to ‘Data Structures and Algorithms’, the module code to ‘cs2040’ and the module credit to ‘4’.
+`m edit 2 c/cs2040 m/Data Structures and Algorithms mc/4` changes the module name of the second module in the displayed module list to ‘Data Structures and Algorithms’, the module code to ‘cs2040’ and the module credit to ‘4’.
 
 ## Tasks-related Features
 
 ### Adding a task
-Adds the task into the stored task list.
+Adds a task into the stored task list.
 
 Format: `t add m/MODULE d/DESCRIPTION`
 
 Parameters:
 * `MODULE` refers to the module code of the module which the task belongs to.
 * `DESCRIPTION` refers to the task description to be shown.
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** `MODULE` is case-insensitive.
+</div>
 
 Restrictions:
 * `MODULE`
@@ -314,20 +322,15 @@ Restrictions:
   * `MODULE` should be the module code of an existing module in the stored module list.
 * `DESCRIPTION` should not be empty.
 
-<div markdown="span" class="alert alert-info">
-  
-:information_source: **Note:** `MODULE` is case-insensitive.
-</div>  
-
 Example:
 `t add m/CS2105 d/Assignment 1` adds a task with the module as 'CS2105' and description as 'Assignment 1' into the stored task list.
 
-| ![AddTaskCommand](images/AddTaskCommandDemo.png) |
-|:------------------------------------------------:|
-|         Demonstration of AddTaskCommand          |
+|     ![AddTaskCommand](images/AddTaskCommandDemo.png)      |
+|:---------------------------------------------------------:|
+| Demonstration of Command: `t add m/CS2105 d/Assignment 1` |
 
 ### Deleting a task 
-Deletes the specified task according to the index given.
+Deletes the specified task from the stored task list.
 
 Format: `t del INDEX`
 
@@ -341,16 +344,16 @@ Restrictions:
 
 Examples:
 
-`t del 1` deletes the first task in the task list. 
+`t del 1` deletes the first task in the displayed task list. 
 
-`t del 3` deletes the third task in the task list.
+`t del 3` deletes the third task in the displayed task list.
 
 <div markdown="span" class="alert alert-warning">
 :exclamation: **Warning:** When the task is deleted, if it has a link to an exam, the task will be unlinked from the exam.
 </div>
 
 ### Editing a task
-Edits the specified task, by updating the existing values to the input values.
+Edits the specified task by updating the existing values to the input values.
 
 Format: `t edit INDEX [m/MODULE]* [d/DESCRIPTION]*`
 
@@ -418,9 +421,9 @@ Examples:
 ------------------
 <div style="page-break-after: always;"></div>
 
-| ![MarkTaskCommand](images/MarkTask.png) |
-|:---------------------------------------:|
-|    Demonstration of MarkTaskCommand     |
+| ![MarkTaskCommand](images/MarkTask.png)   |
+|:-----------------------------------------:|
+|   Demonstration of Command: `t mark 1`    |
 
 ### Unmarking a task
 Indicates the specified task is not completed.
@@ -459,6 +462,11 @@ Parameters:
 * `COMPLETED` should be `y` to filter tasks that are complete or `n` to filter tasks that are incomplete.
 * `LINKED` should be `y` to filter tasks that are linked to an exam or `n` to filter tasks that are not linked to any exam.
 
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** `MODULE` is case-insensitive.
+</div> 
+
 Restrictions:
 * `MODULE`
   * `MODULE` should be at least 6 characters long.
@@ -467,20 +475,15 @@ Restrictions:
 * `COMPLETED` should be `y` or `n`.
 * `LINKED` should be `y` or `n`.
 
-<div markdown="span" class="alert alert-info">
-  
-:information_source: **Note:** `MODULE` is case-insensitive.
-</div>  
-
 Examples:
-
-`t filter m/cs2030 c/y` filters out all completed tasks that are under the module cs2030.
 
 `t filter l/n` filters out all tasks that are currently not linked to any exam.
 
-| ![FilterTasksCommand](images/FilterTasksCommandDemo.png) |
-|:--------------------------------------------------------:|
-|           Demonstration of FilterTasksCommand            |
+`t filter m/cs2030 c/y` filters out all completed tasks that are under the module 'cs2030'.
+
+| ![FilterTasksCommand](images/FilterTasksCommandDemo.png)   |
+|:----------------------------------------------------------:|
+|          Demonstration of Command: `t filter l/n`          |
 
 ### Finding a task
 Finds tasks in the stored task list whose task description matches the `KEYWORD` partially or fully.
@@ -501,12 +504,12 @@ Examples:
 
 `t find do paper` finds tasks that contain the `KEYWORD` 'do paper', such as 'do paper one', 'do paper two'.
 
-| ![FindCommand](images/FindCommandImage.png) |
-|:-------------------------------------------:|
-|      Demonstration of FindTasksCommand      |
+| ![FindCommand](images/FindCommandImage.png)   |
+|:---------------------------------------------:|
+|    Demonstration of Command: `t find work`    |
 
 ### Sorting the task list
-Sorts the tasks in the task list based on the criteria specified.
+Sorts tasks in the task list based on the criteria specified.
 
 Format: `t sort c/CRITERIA`
 
@@ -515,9 +518,9 @@ Parameter:
 
 Restrictions:
 * `CRITERIA` can be either `priority`, `deadline`, `module` or `description`.
-* When sorting by priority, all tasks marked with priority status `HIGH` will appear at the top of the displayed task list, followed by `MEDIUM`, `LOW` and lastly all tasks with no priority status being at the bottom.
-* When sorting by deadline, tasks with the earliest deadline will appear at the top of the displayed list and tasks with no deadlines will appear at the bottom of the displayed task list.
-* When sorting by module, all tasks will be sorted by module code in alphanumeric order.
+* When sorting by priority, tasks marked with priority status `HIGH` will appear at the top of the displayed task list, followed by tasks with priority status`MEDIUM`, and lastly tasks with priority status `LOW`.
+* When sorting by deadline, tasks with the earlier deadlines will appear at the top while tasks with no deadlines will appear at the bottom of the displayed task list.
+* When sorting by module, all tasks will be sorted by the module code in alphanumeric order.
 * When sorting by description, all tasks will be sorted by the task description in alphanumeric order.
 
 <div markdown="span" class="alert alert-info">
@@ -527,120 +530,121 @@ Restrictions:
 
 Examples:
 
+`t sort c/description` sorts all the tasks in the task list by task description.
+
 `t sort c/priority` sorts all the tasks in the task list by priority status.
 
 `t sort c/deadline` sorts all the tasks in the task list by deadline.
 
 `t sort c/module` sorts all the tasks in the task list by module code.
 
-`t sort c/description` sorts all the tasks in the task list by task description.
-
-| ![SortTaskCommand](images/SortTaskCommandDemo.png) |
-|:--------------------------------------------------:|
-|          Demonstration of SortTaskCommand          |
+| ![SortTaskCommand](images/SortTaskCommandDemo.png)  |
+|:---------------------------------------------------:|
+|  Demonstration of Command: `t sort c/description`   |
 
 
 ### Adding the tags to a task
-Tags the priority status and the deadline to complete task. 
+Tags the specified task with a priority status and/or the deadline to complete the task. 
 
 Format: `t tagadd INDEX [p/PRIORITY_STATUS]* [dl/DEADLINE]*`
 
 Parameters:
-* `INDEX` refers to the index number shown on the displayed task list.
+* `INDEX` refers to the index number (shown in the displayed task list) of the task to be tagged.
 * `PRIORITY_STATUS` refers to the priority status which is tagged to the task in the displayed task list.
 * `DEADLINE` refers to the deadline which is tagged to the task in the displayed task list.
-
-Restrictions:
-* `INDEX` should not be greater than 0 and less than 2147483648.
-* `INDEX` should not be greater than the number of tasks in the task list.
-* `PRIORITY STATUS` must be one of three priorities `HIGH`, `MEDIUM`, `LOW`.
-* `DEADLINE` must be in the format DD-MM-YYYY.
-* `DEADLINE` must not be earlier than the current date.
 
 <div markdown="span" class="alert alert-info">
 
 :information_source: **Note:** `PRIORITY_STATUS` is case-insensitive.
 </div>
 
+Restrictions:
+* `INDEX`
+  * `INDEX` should be an integer greater than 0 and less than 2147483648.
+  * `INDEX` should not be greater than the number of tasks in the displayed task list.
+* `PRIORITY STATUS` should be one of these three priorities: `HIGH`, `MEDIUM`, `LOW`.
+* `DEADLINE` should be in the format DD-MM-YYYY and not earlier than the current date.
+
 Examples:
 
-`t tagadd 1 p/HIGH` tags the first task in the displayed task list with the priority status of `HIGH`.
+`t tagadd 1 p/HIGH` tags the first task in the displayed task list with the priority status of 'high'.
 
-`t tagadd 1 dl/31-12-2022` tags the first task in the displayed task list with the deadline of `31-12-2022`.
+`t tagadd 1 dl/31-12-2022` tags the first task in the displayed task list with the deadline of '31-12-2022'.
 
 `t tagadd 2 p/low dl/31-12-2022` tags the second task in the displayed task list with a priority status of
-`LOW` and a deadline of `31-12-2022`.
+'low' and a deadline of '31-12-2022'.
 
-| ![AddTagCommand](images/AddTagCommandDemo.png) |
-|:----------------------------------------------:|
-|         Demonstration of AddTagCommand         |
+| ![AddTagCommand](images/AddTagCommandDemo.png)  |
+|:-----------------------------------------------:|
+|  Demonstration of Command: `t tagadd 1 p/HIGH`  |
 
 
 ### Editing the tags of a task
-Edits the tags associated with the task.
+Edits the tags associated with the specified task.
 
 Format: `t tagedit INDEX [p/PRIORITY_STATUS]* [dl/DEADLINE]*`
 
 Parameters:
-* `INDEX` refers to the index number shown on the displayed task list.
+* `INDEX` refers to the index number (shown in the displayed task list) of the task to edit the tags.
 * `PRIORITY_STATUS` refers to the priority status which is tagged to the task in the displayed task list.
 * `DEADLINE` refers to the deadline which is tagged to the task in the displayed task list.
-
-Restrictions:
-* `INDEX` should be greater than 0 and less than 2147483648.
-* `INDEX` should not be greater than the number of tasks in the task list.
-* `PRIORITY STATUS` must be one of three priorities `HIGH`, `MEDIUM`, `LOW`.
-* `DEADLINE` must be in the format DD-MM-YYYY.
-* `DEADLINE` must not be earlier than the current date.
-* To edit the `PRIORITY_STATUS` of the task, the task must already have a priority status tagged to it.
-* The edited `PRIORITY_STATUS` of the task should not be the same as the current priority status of the task.
-* To edit the `DEADLINE` of the task, the task must already have a deadline tagged to it.
-* `DEADLINE` should not be the same as the current deadline tagged to the task.
 
 <div markdown="span" class="alert alert-info">
 
 :information_source: **Note:** `PRIORITY_STATUS` is case-insensitive.
 </div>
 
+Restrictions:
+* `INDEX`
+  * `INDEX` should be an integer greater than 0 and less than 2147483648.
+  * `INDEX` should not be greater than the number of tasks in the displayed task list.
+* `PRIORITY STATUS`
+  * `PRIORITY STATUS` should be one of these three priorities: `HIGH`, `MEDIUM`, `LOW`.
+  * `PRIORITY_STATUS` of the task should not be the same as the current priority status of the task.
+* `DEADLINE`
+  * `DEADLINE` should be in the format DD-MM-YYYY and not earlier than the current date.
+  * `DEADLINE` should not be the same as the current deadline of the task.
+* To edit the `PRIORITY_STATUS` of the task, the task should already have a priority status tagged to it.
+* To edit the `DEADLINE` of the task, the task should already have a deadline tagged to it.
+
 Examples:
 
-`t tagadd 1 p/HIGH` followed by `t tagedit 1 p/LOW` update priority status of the task
-from `HIGH` to `LOW`.
+`t tagadd 1 p/HIGH` followed by `t tagedit 1 p/LOW` updates priority status of the task
+from 'high' to 'low'.
 
 `t tagadd 1 dl/31-12-2022` followed by `t tagedit 1 dl/31-11-2022` updates the deadline of the task
-from `31-12-2022` to `31-11-2022`.
+from '31-12-2022' to '31-11-2022'.
 
 ### Deleting the tags of a task
-Deletes the tags associated with the task.
+Deletes the tags associated with the specified task.
 
 Format: `t tagdel INDEX t/KEYWORD [SECOND_KEYWORD]`
 
 Parameters:
-* `INDEX` refers to the index number shown on the displayed task list.
+* `INDEX` refers to the index number (shown in the displayed task list) of the task to remove the tags.
 * `KEYWORD` refers to the first keyword which indicates the type of tag that can be removed.
 * `SECOND_KEYWORD` refers to second keyword which indicates the type of tag that can be removed.
-
-Restrictions:
-* `INDEX` should be greater than 0 and lesser than 2147483648.
-* `INDEX` should not be greater than the size of the displayed task list.
-* The list of keywords which can be used for `KEYWORD` and `SECOND_KEYWORD` are `priority` and `deadline`.
-* If duplicate keywords are used, the duplicate keyword will be ignored.
 
 <div markdown="span" class="alert alert-info">
 
 :information_source: **Note:** `KEYWORD` and `SECOND_KEYWORD` are case-insensitive.
 </div>
 
+Restrictions:
+* `INDEX` should be an integer greater than 0 and less than 2147483648.
+* `INDEX` should not be greater than the number of tasks in the displayed task list.
+* The list of keywords which can be used for `KEYWORD` and `SECOND_KEYWORD` are `priority` and `deadline`.
+* If duplicate keywords are used, the duplicate keyword will be ignored.
 
 Examples:
 
-`t tagadd 1 p/HIGH` followed by `t tagdel 1 t/priority` would delete the priority status
+`t tagadd 1 p/HIGH` followed by `t tagdel 1 t/priority` deletes the priority status
 of the first task in the displayed task list.
 
-`t tagadd 1 dl/24-11-2022` followed by `t tagdel 1 t/deadline` would delete the deadline
+`t tagadd 1 dl/24-11-2022` followed by `t tagdel 1 t/deadline` deletes the deadline
 of the first task in the displayed task list.
 
-`t tagadd 2 p/LOW dl/31-12-2022` followed by `t tagdel 2 t/priority deadline` would delete 
+`t tagadd 2 p/LOW dl/31-12-2022` followed by `t tagdel 2 t/priority deadline` deletes 
 the priority status and deadline of the second task in the displayed task list.
 
 ### Clearing the task list
@@ -679,14 +683,14 @@ Restrictions:
 Example:
 
 `e add m/CS2100 ex/midterms ed/20-08-2023` adds the exam with the exam module as 'CS2100',
-exam description as 'midterms', exam date as '20-08-2023' into the exam list. 
+exam description as 'midterms', exam date as '20-08-2023' into the stored exam list. 
 
-| ![AddExamCommand](images/AddExamImage.png) |
-|:------------------------------------------:|
-|      Demonstration of AddExamCommand       |
+|              ![AddExamCommand](images/AddExamImage.png)              |
+|:--------------------------------------------------------------------:|
+| Demonstration of Command: `e add m/CS2100 ex/midterms ed/20-08-2023` |
 
 ### Editing an exam
-Edits the specified exam, by updating the existing values to the input values.
+Edits the specified exam by updating the existing values to the input values.
    
 Format: `e edit INDEX [m/MODULE]* [ex/EXAM_DESCRIPTION]* [ed/EXAM_DATE]*`
 
@@ -704,7 +708,7 @@ Parameters
 Restrictions:
 * `INDEX`
    * `INDEX` should be an integer greater than 0 and less than 2147483648. 
-   * `INDEX` should not be more than the number of exams in the stored exam list.
+   * `INDEX` should not be greater than the number of exams in the displayed exam list.
 * `MODULE`
    * `MODULE` should be at least 6 characters long. 
    * The first two characters of `MODULE` should be alphabetical and the remaining characters should be alphanumeric.
@@ -721,91 +725,91 @@ Restrictions:
 
 Examples:
 
-`e edit 1 ex/finals ed/20-12-2022` changes the exam description of the first exam in the exam list to ‘finals’ and the exam date to ‘20-12-2022’.
+`e edit 1 ex/finals ed/20-12-2022` changes the exam description of the first exam in the displayed exam list to ‘finals’ and the exam date to ‘20-12-2022’.
 
-`e edit 2 m/CS2030S ex/midterms ed/22-12-2022` changes the exam description of the second exam in the exam list to ‘midterms’, the exam module to ‘CS2030S’ and the exam date as ‘22-12-2022’.
+`e edit 2 m/CS2030S ex/midterms ed/22-12-2022` changes the exam description of the second exam in the displayed exam list to ‘midterms’, the exam module to ‘CS2030S’ and the exam date to ‘22-12-2022’.
 
 
 ### Deleting an exam
-Deletes the specified exam according to the index given based on the displayed exam list.
+Deletes the specified exam from the stored exam list.
 
 Format: `e del INDEX`
 
 Parameter:
-* `INDEX` refers to the index number shown in the displayed exam list.
+* `INDEX` refers to the index number (shown in the displayed exam list) of the exam to be deleted.
 
 Restrictions:
 * `INDEX` should be an integer greater than 0 and less than 2147483648.
-* `INDEX` should not be more than the number of exams in the displayed exam list.
+* `INDEX` should not be greater than the number of exams in the displayed exam list.
 
 Example:
 
-`e del 1` deletes the first exam in the exam list.
+`e del 1` deletes the first exam in the displayed exam list.
 <div markdown="span" class="alert alert-warning">
 
 :exclamation: **Warning:** All tasks currently linked to the exam will be unlinked after the exam is deleted.
 </div>
 
 ### Linking an exam
-Links the task in displayed task list to the exam in the exam list based on the indexes given.
+Links the specified task to the specified exam.
 
 Format `e link e/EXAM_INDEX t/TASK_INDEX`
 
 Parameters:
-* `EXAM_INDEX` refers to the index number shown on the displayed exam list.
-* `TASK_INDEX` refers to the index number shown on the displayed task list.
+* `EXAM_INDEX` refers to the index number (shown in the displayed exam list) of the exam to be linked.
+* `TASK_INDEX` refers to the index number (shown in the displayed task list) of the task to be linked.
 
 Restrictions:
-* `EXAM_INDEX` and `TASK_INDEX` should be greater than 0 and lesser than 2147483648.
-* `EXAM_INDEX` should not be greater than the displayed exam list.
-* `TASK_INDEX` should not be greater than the displayed task list.
+* `EXAM_INDEX` and `TASK_INDEX` should be an integer greater than 0 and less than 2147483648.
+* `EXAM_INDEX` should not be greater than the number of exams in the displayed exam list.
+* `TASK_INDEX` should not be greater than the number of tasks in the displayed task list.
 
 Examples:
 
-`e link e/1 t/1` links the first task in the displayed task list to the first exam in the displayed exam list.
+`e link e/1 t/2` links the second task in the displayed task list to the first exam in the displayed exam list.
 
 `e link e/2 t/3` links the third task in the displayed task list to the second exam in the displayed exam list.
 
 | ![LinkExamCommand](images/LinkExamCommandDemo.png) |
 |:--------------------------------------------------:|
-|          Demonstration of LinkExamCommand          |
+|     Demonstration of Command: `e link e/1 t/2`     |
 
 
 ### Unlinking an exam
-Unlinks the exam from the task at the specified index on the displayed task list.
+Unlinks the exam from the specified task.
 
 Format: `e unlink INDEX`
 
 Parameter:
-* `INDEX` refers to the index number shown on the displayed task list of the task to be unlinked.
+* `INDEX` refers to the index number (shown in the displayed task list) of the task to be unlinked.
 
 Restrictions:
 * `INDEX` should be an integer greater than 0 and less than 2147483648.
-* `INDEX` should not be more than the number of tasks in the displayed task list.
+* `INDEX` should not be greater than the number of tasks in the displayed task list.
 
 Example:
 
-`e unlink 1` unlinks the first task in the task list from its current exam.
+`e unlink 1` unlinks the first task in the displayed task list from its current exam.
 
 ### Showing the tasks of an exam
-Shows all tasks linked to the exam according to the specified index from the displayed exam list.
+Shows all tasks linked to the specified exam.
 
 Format: `e showt INDEX`
 
 Parameter:
-* `INDEX` refers to the index number of the exam in the displayed exam list.
+* `INDEX` refers to the index number (shown in the displayed exam list) of the exam.
 
 Restrictions:
 * `INDEX` should be an integer greater than 0 and less than 2147483648.
-* `INDEX` should not be more than the number of exams in the displayed exam list.
+* `INDEX` should not be greater than the number of exams in the displayed exam list.
 
 Example:
 
-`e showt 1` shows a list of all tasks linked to the first exam in the exam list.
+`e showt 1` shows a list of all tasks linked to the first exam in the displayed exam list.
 
 | ![ListExamTasksCommand](images/ListExamTasksCommandDemo.png) |
 |:------------------------------------------------------------:|
-|            Demonstration of ListExamTasksCommand             |
+|            Demonstration of Command: `e showt 1`             |
 
 ## Other Features
 
@@ -827,11 +831,14 @@ Format: `exit`
 --------------------------------------------------------------
 ## Future Features to be added (Coming Soon!)<a id='1.1'></a>
 
-* Add the ability to edit the case sensitivity of module code in task, modules and exams.
-* Add the ability to add exam time and exam venue.
-* Add the ability to tick the checkboxes using the mouse.
-* Add the ability to undo commands.
-* Add more error messages when duplicate prefixes are being used.
+To enhance your tracking process, MODPRO will let you:
+* Edit the case sensitivity of module code in tasks, modules and exams.
+* Tick checkboxes of tasks using the mouse.
+* Add time and venue for exams. 
+* Undo commands.
+
+To provide you with a better user experience, MODPRO will:
+* Improve the handling of duplicate prefixes in commands, by recognizing and rejecting them.
 
 --------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -855,7 +862,7 @@ MODPRO will discard all data stored and start with an empty data file.
 --------------------------------------------------------------------------
 ## FAQ
 
-1. What is the difference between the stored task list and the displayed task list? 
+1. What is the difference between the stored list and a displayed list? (e.g. stored task list vs displayed task list)
    * The stored task list is the list containing all the tasks you created, whereas the displayed task list is the one shown on your screen. 
    * The stored task list and displayed task list could be different after the filter or find command.
 
