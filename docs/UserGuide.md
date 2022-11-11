@@ -82,6 +82,8 @@ e.g. [`commands`](glossary) [`PARAMETERS`](glossary)
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always"></div>
+
 ## 4. GUI overview
 
 ![GUI](images/AnnotatedUi.png)
@@ -102,6 +104,8 @@ Displays the list of your chosen tab.
 Displays your list of reminders.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always"></div>
 
 ## 5. Features
 
@@ -284,6 +288,7 @@ Format: `extract emails`
 Examples:
 1. [`find`] `m/CS2103T` followed by `extract emails` copies all the emails of the students in the results of the [`find`] command.
 
+<div style="page-break-after: always"></div>
 
 ### 5.2 Tutorial Features
 
@@ -626,6 +631,8 @@ _Details coming soon..._
 _Details coming soon..._
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always"></div>
 
 ## 6. FAQ
 
