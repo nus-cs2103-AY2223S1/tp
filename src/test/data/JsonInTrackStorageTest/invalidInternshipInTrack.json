@@ -1,0 +1,10 @@
+{
+  "internships": [ {
+    "name": "Internship with invalid name field: Ha!ns Mu@ster",
+    "position": "Valid Position",
+    "status": "Progress",
+    "email": "hans@example.com",
+    "website": "www.google.com",
+    "salary": "100000"
+  } ]
+}

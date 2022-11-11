@@ -1,0 +1,22 @@
+{
+  "internships": [ {
+    "name": "Alice Pauline",
+    "position": "Software Engineer",
+    "status" : "Progress",
+    "phone": "94351253",
+    "email": "alice@example.com",
+    "website": "https://www.microsoft.com",
+    "salary": "100000",
+    "tagged": [ "friends" ],
+    "remark": ""
+  }, {
+    "name": "Alice Pauline",
+    "position": "Software Engineer",
+    "status" : "Progress",
+    "phone": "94351253",
+    "email": "pauline@example.com",
+    "website": "https://www.microsoft.com",
+    "salary": "100000",
+    "remark": ""
+  } ]
+}

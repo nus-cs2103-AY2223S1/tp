@@ -328,13 +328,17 @@
     -fx-text-fill: white;
 }
 
-#filterField, #personListPanel, #personWebpage {
+#filterField, #internshipListPanel, #internshipWebpage {
     -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
 }
 
 #resultDisplay .content {
     -fx-background-color: transparent, #383838, transparent, #383838;
     -fx-background-radius: 0;
+}
+
+#upcomingTask {
+    -fx-text-fill: #FFFFFF !important;
 }
 
 #tags {
@@ -349,4 +353,44 @@
     -fx-border-radius: 2;
     -fx-background-radius: 2;
     -fx-font-size: 11;
+}
+
+#status {
+    -fx-hgap: 7;
+    -fx-vgap: 3;
+}
+
+#status . label {
+    -fx-text-fill: white;
+    -fx-background-color: #808080;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 11;
+}
+
+#status .label:rejected {
+    -fx-text-fill: white;
+    -fx-background-color: #ff0000;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 11;
+}
+
+#status .label:offered {
+    -fx-text-fill: white;
+    -fx-background-color: #008000;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 11;
+}
+
+.scroll-pane {
+    -fx-background-color: transparent
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent
 }

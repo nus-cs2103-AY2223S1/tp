@@ -1,0 +1,17 @@
+{
+  "internships": [ {
+    "name": "Valid Internship",
+    "position": "Valid Position",
+    "status": "Progress",
+    "email": "hans@example.com",
+    "website": "www.google.com",
+    "salary": "200000"
+  }, {
+    "name": "Internship With Invalid Salary Field",
+    "position": "Valid Position",
+    "status": "Progress",
+    "email": "hans@example.com",
+    "website": "www.google.com",
+    "salary": "hello"
+  } ]
+}

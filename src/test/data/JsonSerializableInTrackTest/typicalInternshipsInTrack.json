@@ -1,0 +1,107 @@
+{
+  "_comment": "InTrack save file which contains the same Internship values as in TypicalInternships#getTypicalInTrack()",
+  "internships" : [ {
+    "name" : "Google",
+    "position": "Software Engineer",
+    "status" : "Progress",
+    "email" : "careers@google.com",
+    "website" : "https://careers.google.com/",
+    "taskFilled" : [ {
+      "taskName" : "Application submitted",
+      "taskTime" : "19-10-2022 11:38"
+    } ],
+    "salary": "100000",
+    "tagged" : [ "Urgent" ],
+    "remark" : ""
+  }, {
+    "name" : "Meta",
+    "position": "Data Analyst",
+    "status" : "Progress",
+    "email" : "careers@meta.com",
+    "website" : "https://www.metacareers.com/",
+    "taskFilled" : [ {
+      "taskName" : "Application submitted",
+      "taskTime" : "20-10-2022 12:00"
+    } ],
+    "salary": "125000",
+    "tagged" : [ "Urgent", "Remote" ],
+    "remark" : ""
+  }, {
+    "name" : "Alibaba",
+    "position": "Frontend Engineer",
+    "status" : "Offered",
+    "email" : "careers@alibaba.com",
+    "website" : "https://careers.alibaba.com/",
+    "taskFilled" : [ {
+      "taskName" : "Application submitted",
+      "taskTime" : "19-10-2022 11:38"
+    } ],
+    "salary": "150000",
+    "tagged" : [ ],
+    "remark" : ""
+  }, {
+    "name" : "Paypal",
+    "position": "Backend Engineer",
+    "status" : "Progress",
+    "email" : "careers@paypal.com",
+    "website" : "https://careers.pypl.com/home/",
+    "taskFilled" : [ {
+      "taskName" : "Application submitted",
+      "taskTime" : "19-10-2022 11:38"
+    }, {
+      "taskName" : "HR Interview",
+      "taskTime" : "30-10-2022 09:00"
+    } ],
+    "salary": "175000",
+    "tagged" : [ "Remote" ],
+    "remark" : ""
+  }, {
+    "name" : "Samsung Group",
+    "position": "Full Stack Engineer",
+    "status" : "Offered",
+    "email" : "careers@samsung.com",
+    "website" : "https://www.samsung.com/sg/about-us/careers/",
+    "taskFilled" : [ {
+      "taskName" : "Application submitted",
+      "taskTime" : "25-10-2022 08:30"
+    }, {
+      "taskName" : "Technical Interview",
+      "taskTime" : "30-10-2022 09:00"
+    } ],
+    "salary": "200000",
+    "tagged" : [ "Urgent" ],
+    "remark" : ""
+  }, {
+    "name" : "Tencent Holdings Ltd",
+    "position": "Cyber Security Analyst",
+    "status" : "Offered",
+    "email" : "careers@tencent.com",
+    "website" : "https://careers.tencent.com/en-us/home.html",
+    "taskFilled" : [ {
+      "taskName" : "Application submitted",
+      "taskTime" : "19-10-2022 11:38"
+    }, {
+      "taskName" : "HR Interview",
+      "taskTime" : "30-10-2022 09:00"
+    } ],
+    "salary": "225000",
+    "tagged" : [ ],
+    "remark" : ""
+  }, {
+    "name" : "Netflix",
+    "position": "Algorithm Engineer",
+    "status" : "Progress",
+    "email" : "careers@netflix.com",
+    "website" : "https://jobs.netflix.com/",
+    "taskFilled" : [ {
+      "taskName" : "Application submitted",
+      "taskTime" : "19-10-2022 11:38"
+    }, {
+      "taskName" : "HR Interview",
+      "taskTime" : "30-10-2022 09:00"
+    } ],
+    "salary": "250000",
+    "tagged" : [ ],
+    "remark" : ""
+  } ]
+}

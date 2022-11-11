@@ -9,51 +9,53 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
-
-<img src="images/johndoe.png" width="200px">
-
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+### John
 
-### Jane Doe
+<img src="images/johnrhimawan.png" width="200px">
 
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/johnrhimawan)]
+[[portfolio](team/johnrhimawan.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Features, Code Quality, Documentation, Testing
 
-### Jean Doe
+### Kang Qiao
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/kangqiao322.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/kangqiao322)]
+[[portfolio](team/kangqiao322.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Features, Testing, Documentation
+
+### Jet
+
+<img src="images/jetlfj.png" width="200px">
+
+[[github](http://github.com/jetlfj)] [[portfolio](team/jetlfj.md)]
+
+* Role: Developer
+* Responsibilities: Features, Code Quality, Documentation, Testing, UI 
+
+### Charlton
+
+<img src="images/bigcrushes.png" width="200px">
+
+[[github](http://github.com/bigcrushes)]
+[[portfolio](team/bigcrushes.md)]
+
+* Role: Developer
+* Responsibilities: Features, Code Quality, Proof-reading
+
+### Chantell
+
+<img src="images/chantellyu.png" width="200px">
+
+[[github](http://github.com/chantellyu)]
+[[portfolio](team/chantellyu.md)]
+
+* Role: Developer
+* Responsibilities: Features, Documentation, UI
