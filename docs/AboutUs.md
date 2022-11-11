@@ -11,7 +11,7 @@ You can reach us at the email `e0773695@u.nus.edu`
 
 ### Sheyuan Yeo
 
-<img src="images/team-photos/piyotato.png" width="200px">
+<img src="images/piyotato.png" width="200px">
 
 [[github](https://github.com/Piyotato)]
 [[portfolio](team/piyotato.md)]
@@ -22,7 +22,7 @@ You can reach us at the email `e0773695@u.nus.edu`
 
 ### Silas Yeo Shuen Yu
 
-<img src="images/team-photos/comicalromance.png" width="200px">
+<img src="images/comicalromance.png" width="200px">
 
 [[github](http://github.com/comicalromance)]
 [[portfolio](team/comicalromance.md)]
@@ -33,7 +33,7 @@ You can reach us at the email `e0773695@u.nus.edu`
 
 ### Li, Po-Hsien
 
-<img src="images/team-photos/lpohsien.png" width="200px">
+<img src="images/lpohsien.png" width="200px">
 
 [[github](http://github.com/lpohsien)]
 [[portfolio](team/lpohsien.md)]
@@ -44,7 +44,7 @@ You can reach us at the email `e0773695@u.nus.edu`
 
 ### Lin Zizheng
 
-<img src="images/team-photos/dr-arrgghh.png" width="200px">
+<img src="images/dr-arrgghh.png" width="200px">
 
 [[github](http://github.com/dr-arrgghh)]
 [[portfolio](team/dr-arrgghh.md)]
@@ -55,7 +55,7 @@ You can reach us at the email `e0773695@u.nus.edu`
 
 ### Pang Bao Bin
 
-<img src="images/team-photos/highorbit25.png" width="200px">
+<img src="images/highorbit25.png" width="200px">
 
 [[github](http://github.com/highorbit25)]
 [[portfolio](team/highorbit25.md)]
