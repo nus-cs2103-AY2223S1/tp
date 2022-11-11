@@ -9,7 +9,7 @@ title: User Guide
 
 ## 1. Introduction
 Are you a Teaching Assistant (TA) struggling to monitor your classes and what tasks you have to complete?
-Tired of having to use multiple applications (such as LumiNUS and Todoist) to keep track of all your responsibilities?<br>
+Tired of having to use multiple applications such as LumiNUS and Todoist to keep track of all your responsibilities?<br>
 
 Introducing ModQuik, a Teaching Assistant tool made for you!
 
@@ -210,16 +210,6 @@ Examples:
 1. `edit student 1 ph/91234567 e/jameslee@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `jameslee@example.com` respectively.
 2. `edit student 2 g/A t/` Edits the grade of the 2nd student to be `A` and clears all existing tags.
 
-<table>
-  <tr>
-    <td>Before (example 2)</td>
-    <td>After (example 2)</td>
-  </tr>
-  <tr>
-    <td><img src="images/AddStudent.png" width=350></td>
-    <td><img src="images/EditStudent.png" width=350></td>
-  </tr>
- </table>
 
 * [`find`] `m/CS2103T` followed by `edit student 2 g/A` Edits the grade of the 2nd student to be `A` in the results of the [`find`] command.
 
@@ -312,16 +302,6 @@ Format: `add tutorial n/NAME m/MODULE v/VENUE T/TIMESLOT D/DAY`
 Examples:
 1. `add tutorial n/T23 m/CS2103T v/COM1-0205 T/18:00-20:00 D/1`
 
-<table>
-  <tr>
-    <td>Before</td>
-    <td>After</td>
-  </tr>
-  <tr>
-    <td><img src="images/Tutorial.png" width=350></td>
-    <td><img src="images/AddTutorial.png" width=350></td>
-  </tr>
-</table>
 
 <a name="edit-tutorial"></a>
 #### 5.2.2 Editing a tutorial: `edit tutorial`
