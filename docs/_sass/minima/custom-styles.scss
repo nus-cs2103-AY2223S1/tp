@@ -24,14 +24,6 @@ h2, h3, h4, h5, h6 {
   font-weight: $alert-link-font-weight;
 }
 
-.btn-outline-light {
-  border: #f1f2f4 solid 1px;
-  border-radius: 10px;
-  &:hover {
-    text-decoration: none;
-  }
-}
-
 // Generate contextual modifier classes for colorizing the alert.
 
 @each $color, $value in $theme-colors {

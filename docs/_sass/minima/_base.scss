@@ -131,6 +131,14 @@ a {
       text-decoration: underline;
     }
   }
+
+  .btn-outline-light {
+    border: #f1f2f4 solid 1px;
+    border-radius: 10px;
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }
 
 
