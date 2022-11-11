@@ -188,6 +188,7 @@ The highlighted tab indicates which list is currently being displayed.
 
 </p>
 
+<div style="page-break-after: always;"></div>
 
 ### 5. Description Panel
 
