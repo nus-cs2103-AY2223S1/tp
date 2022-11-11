@@ -427,11 +427,11 @@ A contact can have any number of tags (including 0).
 - Tasks are **sorted chronologically by deadline**.
 - Tasks without deadlines are listed below tasks with deadlines and sorted by their names alphabetically.
 
+</div>
+
 **Example:**
 - `list_task` displays a list of all tasks, as shown in the diagram below. Note that the first 3 tasks with deadlines are ordered chronologically and placed at the top. The last 2 tasks without deadlines are placed below.
   ![Result for 'list_task command'](images/user-guide/list-task-command.png)
-
-</div>
 
 #### Finding tasks by name: `find_task`
 
@@ -508,8 +508,8 @@ A contact can have any number of tags (including 0).
 <div markdown="block" class="alert alert-info">:information_source: **Note**<br>
 
 - Specified task must be currently incomplete for command to succeed.
-- The diagram below shows the task being marked as indicated by the checked tickbox.<br>
-  ![Task marked as complete](images/mark.png)
+- As shown in the diagram below, a **ticked checkbox** indicates a task being completed.
+  ![Task marked as complete](images/mark.png){:height="90px"}
 
 </div>
 
@@ -527,8 +527,8 @@ A contact can have any number of tags (including 0).
 <div markdown="block" class="alert alert-info">:information_source: **Note**<br>
 
 - Specified task must be currently completed for command to succeed.
-- The diagram below shows the task being unmarked as indicated by the unchecked tickbox.<br>
-  ![Task marked as incomplete](images/unmark.png)
+- As shown in the diagram below, an **empty checkbox** indicates a task being incomplete.
+  ![Task marked as incomplete](images/unmark.png){:height="90px"}
 
 </div>
 
