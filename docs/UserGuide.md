@@ -3,13 +3,14 @@ layout: page
 title: User Guide
 ---
 
-Welcome to the User Guide for TruthTable! :smile:
+Welcome to the User Guide for TruthTable!
 
-If you're a student team leader for a software engineering project, and you're struggling to keep track of your team's tasks, links, and overall progress, you've come to the right place!
+If you're a student team leader for a software engineering project, and you're struggling to keep track of your team's 
+tasks, links, and overall progress, you've come to the right place!
 
 ## About TruthTable
-TruthTable is a desktop application that enables **student team leaders** 
-to manage their **software engineering teams**, including **tasks, links and team members' information** - all in a single application!
+TruthTable is a desktop application that enables **student team leaders** to manage their **software engineering 
+teams**, including **tasks, links and team members' information** - all in a single application!
 
 TruthTable is **optimized for use via a [Command Line Interface (CLI)](#command-line-interface)** while still having the
 benefits of a [Graphical User Interface (GUI)](#graphical-user-interface). 
@@ -20,9 +21,11 @@ task and team management done _blazingly fast_, faster than traditional GUI appl
 Head over to [this section](#understanding-truthtables-cli) to learn more!
 </div>
 
-This guide will help you understand how the various features of TruthTable can help you manage your teams more efficiently.
+This guide will help you understand how the various features of TruthTable can help you manage your teams more 
+efficiently.
 
-Feel free to read on, or if you can't wait to get started, skip ahead to our [Getting Started Guide](#getting-started) to start using TruthTable now!
+Feel free to read on, or if you can't wait to get started, skip ahead to our [Getting Started Guide](#getting-started) 
+to start using TruthTable now!
 
 ## Using This Guide
 
@@ -30,7 +33,8 @@ This document will guide you on how to get familiar with all of TruthTable's [fe
 If you are an experienced user of TruthTable, this guide also contains valuable tips on how you can maximize your
 productivity while using TruthTable.
 
-While this guide can be quite long, feel free to jump ahead to any section in the [Table of Contents](#table-of-contents) below.
+While this guide can be quite long, feel free to jump ahead to any section in 
+the [Table of Contents](#table-of-contents) below.
 
 Here are the alerts to look out for while using this guide:
 
@@ -57,12 +61,12 @@ Throughout this guide, we use different text styles for different purposes. Here
 | [Glossary link](#glossary) | Clickable link to navigate to a section in the guide |
 | `text with background`     | Text relevant to commands or file names              |
 | <kbd>Esc</kbd>             | Keyboard button                                      |
-If this feels like too much information, don't worry! You don't have to remember any of this because you can always come back here in case you forget :smile:
+
 
 ## Table of Contents
 
 * Table of Contents
-  {:toc}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -116,6 +120,7 @@ So, fret not, you will become familiar with TruthTable's commands in no time.
    should appear in a few seconds. ![Ui](images/Ui.png)
     <br/><br/>
    <div markdown="block" class="alert alert-success">**:bulb: Sample data**:
+   <br><br>
    We have also added some sample data for you to play around with and get familiar with TruthTable's [commands](#commands)!
    </div>
 4. That's it! You can now follow our guide below on how to [navigate the application](#navigating-truthtables-interface).
@@ -132,8 +137,6 @@ After opening TruthTable for the first time, you should see the following screen
 
 Each section contains several [components](#component), which will be labelled in their respective sections below. These
 components are numbered, and their names and descriptions will be displayed in a tabular format.
-
-Don't worry if you didn't understand the above paragraph, continue reading the examples below and we're sure you'll get used to it :smile:
 
 ### Teams Section
 
