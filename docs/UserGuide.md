@@ -117,7 +117,7 @@ Commands have to be written in the correct format to be used. The format for eac
   e.g. if you specify `s/John Tan s/Sally Yeoh`, only `s/Sally Yeoh` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `listall`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+  e.g. if you input `help 123`, it will be interpreted as `help`.
 
 </div>
 
@@ -265,7 +265,7 @@ This section contains commands for managing students.
 
 ### Adding a student : `addstudent`
 
-Adds a student to your student list.
+Adds a student with name and matric number to your student list.
 
 Format: `addstudent s/NAME m/MATRIC_NUM`
 
@@ -279,7 +279,7 @@ Examples:
 
 ### Deleting a student : `deletestudent`
 
-Deletes a student from your student list.
+Deletes a student from your student list based on the student index.
 
 Format: `deletestudent STUDENT_INDEX`
 
@@ -291,7 +291,7 @@ Examples:
 
 ### Editing a student : `editstudent`
 
-Edits the details of an existing student in your student list.
+Edits the details of an existing student in your student list based on the student index. You have to provide the new name and/or matric number to be edited.
 
 Format: `editstudent STUDENT_INDEX [s/NAME] [m/MATRIC_NUM]`
 
@@ -329,7 +329,7 @@ Examples:
 
 ### Adding grades to a student : `grade`
 
-Records grades for a student's assessments.
+Records grades for a student's assessments, so that you can keep track of their grades.
 
 Format: `grade STUDENT_INDEX [ra1/MARKS] [ra2/MARKS] [mt/MARKS] [pa/MARKS] [fn/MARKS]`
 
@@ -358,7 +358,7 @@ Format: `mc STUDENT_INDEX num/MC_NUM r/MC_RESULT`
 
 * Sets mastery check result for the student at the specified `STUDENT_INDEX`. The index refers to the index number shown in the displayed student list.
 * `STUDENT_INDEX` **must be a positive integer** 1, 2, 3, …​
-* `MC_NUM` must be 1 or 2.
+* `MC_NUM` must be 1 or 2, referring to Mastery Check 1 or 2.
 * `MC_RESULT` must be "pass" or "fail".
 * `MC_RESULT` is not case-sensitive.
 
@@ -376,7 +376,7 @@ This section contains commands for managing tasks.
 
 ### Adding a task : `addtask`
 
-Adds a task to your task list.
+Adds a task with description and optional deadline to your task list.
 
 Format: `addtask t/TASK_DESC [d/DEADLINE]`
 
@@ -391,7 +391,7 @@ Examples:
 
 ### Deleting a task : `deletetask`
 
-Deletes a task from your task list.
+Deletes a task from your task list based on the task index.
 
 Format: `deletetask TASK_INDEX`
 
@@ -403,7 +403,7 @@ Examples:
 
 ### Marking a task as done : `marktask`
 
-Marks a task as done.
+Marks a task as done based on the task index.
 
 ![marktaskCommand](images/marktaskCommand.png)
 
@@ -421,7 +421,7 @@ Example:
 
 ### Marking a task as not done : `unmarktask`
 
-Marks a task as not done.
+Marks a task as not done based on the task index.
 
 Format: `unmarktask TASK_INDEX`
 
@@ -442,16 +442,16 @@ This section contains commands for managing lessons.
 
 ### Adding a studio lesson : `addstudio`
 
-Adds a studio lesson to your lesson list.
+Adds a studio lesson to your lesson list. 
 
 Format: `addstudio [l/LESSON_DESC] sd/START_DATE st/START_TIME [ed/END_DATE] et/END_TIME`
 
-* `l/LESSON_DESC` is optional
+* `l/LESSON_DESC` is optional.
 * `sd/START_DATE` and `ed/END_DATE` should be in the format `yyyy-MM-dd`.
 * `st/START_TIME` and `et/END_TIME` should be in the format `hh:mm`.
 * `ed/END_DATE` is optional, if unspecified `END_DATE` will be assumed to be the same as `START_DATE`.
 * Studio to be added must not already exist in your lesson list.
-* Studio to be added must not clash with other lessons in your lesson list.
+* Studio to be added must not clash in timing with other lessons in your lesson list.
 
 Examples:
 * `addstudio l/Studio 3 sd/2022-10-12 st/14:00 et/16:00` adds a studio lesson with description `Studio 3` on `Oct-12-2022` from `14:00` to `16:00`.
@@ -462,13 +462,13 @@ Adds a consult lesson to your lesson list.
 
 Format: `addconsult [l/LESSON_DESC] sd/START_DATE st/START_TIME [ed/END_DATE] et/END_TIME si/STUDENT_INDEX...`
 
-* `l/LESSON_DESC` is optional
+* `l/LESSON_DESC` is optional.
 * `sd/START_DATE` and `ed/END_DATE` should be in the format `yyyy-MM-dd`.
 * `st/START_TIME` and `et/END_TIME` should be in the format `hh:mm`.
-* `ed/END_DATE` is optional, if unspecified `END_DATE` will be assumed to be the same as `START_DATE`
+* `ed/END_DATE` is optional, if unspecified `END_DATE` will be assumed to be the same as `START_DATE`.
 * `si/STUDENT_INDEX` can be specified one or more times according to the number of attending students.
 * Consult to be added must not already exist in your lesson list.
-* Consult to be added must not clash with other lessons in your lesson list.
+* Consult to be added must not clash in timing with other lessons in your lesson list.
 
 Examples:
 * `addconsult l/Consultation on recursion sd/2022-10-14 st/12:00 et/14:00 si/3 si/4` adds a consult lesson with description `Consultation on recursion` on `Oct-14-2022` from `12:00` to `14:00` with the 3rd and 4th student in your student list.
@@ -480,13 +480,13 @@ Adds a mastery check lesson to your lesson list.
 
 Format: `addmc [l/LESSON_DESC] sd/START_DATE st/START_TIME [ed/END_DATE] et/END_TIME si/STUDENT_INDEX...`
 
-* `l/LESSON_DESC` is optional
+* `l/LESSON_DESC` is optional.
 * `sd/START_DATE` and `ed/END_DATE` should be in the format `yyyy-MM-dd`.
 * `st/START_TIME` and `et/END_TIME` should be in the format `hh:mm`.
-* `ed/END_DATE` is optional, if unspecified `END_DATE` will be assumed to be the same as `START_DATE`
+* `ed/END_DATE` is optional, if unspecified `END_DATE` will be assumed to be the same as `START_DATE`.
 * `si/STUDENT_INDEX` can be specified one or more times according to the number of attending students.
 * Mastery Check to be added must not already exist in your lesson list.
-* Mastery Check to be added must not clash with other lessons in your lesson list.
+* Mastery Check to be added must not clash in timing with other lessons in your lesson list.
 
 Examples:
 * `addmc l/Mastery check 1 sd/2022-10-12 st/12:00 et/14:00 si/1 si/2` adds a mastery check lesson with description `Mastery check 1` on `Oct-20-2022` from `12:00` to `14:00` with the 1st and 2nd student in your student list.
@@ -494,7 +494,7 @@ Examples:
 
 ### Deleting a lesson : `deletelesson`
 
-Deletes a lesson from your lesson list.
+Deletes a lesson from your lesson list based on the lesson index.
 
 Format: `deletelesson LESSON_INDEX`
 
@@ -506,7 +506,7 @@ Examples:
 
 ### Marking a lesson as completed : `marklesson`
 
-Marks a lesson as completed.
+Marks a lesson as completed based on the lesson index.
 
 Format: `marklesson LESSON_INDEX`
 
@@ -524,7 +524,7 @@ Example:
 
 ### Marking a lesson as not completed : `unmarklesson`
 
-Marks a lesson as not completed.
+Marks a lesson as not completed based on the lesson index.
 
 Format: `unmarklesson LESSON_INDEX`
 
@@ -638,7 +638,7 @@ JARVIS data is saved in 3 JSON files:
 If you are an advanced user, you may update data directly by editing the data files, but do heed the advisory below.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, JARVIS will discard all data and start with empty data files at the next run.
+If your changes to the data file makes its format invalid, JARVIS will discard all data and start with empty data files the next time you open the app.
 </div>
 
 [🠕 Back To Top](#table-of-contents)
