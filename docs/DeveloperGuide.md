@@ -1,5 +1,6 @@
 ---
-layout: page title: PennyWise Developer Guide
+layout: page
+title: PennyWise Developer Guide
 ---
 
 ![PennyWise Logo](images/PennyWiseLogo.png)
@@ -271,8 +272,7 @@ The `UI` component,
 
 The Logic component is the _brain_ of the application and handles how commands from the users are parsed and executed.
 
-**
-API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-W17-2/tp/blob/master/src/main/java/seedu/pennywise/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-W17-2/tp/blob/master/src/main/java/seedu/pennywise/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -310,8 +310,7 @@ How the parsing works:
 
 The Model component is in charge of managing the entities in the application.
 
-**
-API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W17-2/tp/blob/master/src/main/java/seedu/pennywise/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W17-2/tp/blob/master/src/main/java/seedu/pennywise/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -330,8 +329,7 @@ The `Model` component,
 
 The Storage component helps to provide data-storage facilities, allowing data in the application to be stored securely.
 
-**
-API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-W17-2/tp/blob/master/src/main/java/seedu/pennywise/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-W17-2/tp/blob/master/src/main/java/seedu/pennywise/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
