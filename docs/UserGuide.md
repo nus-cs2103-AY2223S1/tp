@@ -421,11 +421,11 @@ Examples:
 * `delete 2`
 
 <div style="display:flex; flex-direction:row;">
-<div style="display:flex; flex-direction:column; align-items:center; padding:10px">
+<div style="display:flex; flex-direction:column; align-items:center; padding:5px">
 <img src="images/deleteCommand_before.png" height="100%"/>
 <figcaption>Before</figcaption>
 </div>
-<div style="display:flex; flex-direction:column; align-items:center; padding:10px">
+<div style="display:flex; flex-direction:column; align-items:center; padding:5px">
 <img src="images/deleteCommand_after.png" height="100%"/>
 <figcaption>After</figcaption>
 </div>
@@ -765,11 +765,11 @@ Examples:
 * `list tutor`
 
 <div style="display:flex; flex-direction:row;">
-<div style="display:flex; flex-direction:column; align-items:center; padding:10px">
+<div style="display:flex; flex-direction:column; align-items:center; padding:5px">
 <img src="images/listCommand_before.png" height="100%"/>
 <figcaption>Before</figcaption>
 </div>
-<div style="display:flex; flex-direction:column; align-items:center; padding:10px">
+<div style="display:flex; flex-direction:column; align-items:center; padding:5px">
 <img src="images/listCommand_after.png" height="100%"/>
 <figcaption>After</figcaption>
 </div>
@@ -817,11 +817,11 @@ Examples:
 * `sort alpha`
 
 <div style="display:flex; flex-direction:row;">
-<div style="display:flex; flex-direction:column; align-items:center; padding:10px">
+<div style="display:flex; flex-direction:column; align-items:center; padding:2px">
 <img src="images/sortCommand_before.png" height="100%"/>
 <figcaption>Before</figcaption>
 </div>
-<div style="display:flex; flex-direction:column; align-items:center; padding:10px">
+<div style="display:flex; flex-direction:column; align-items:center; padding:2px">
 <img src="images/sortCommand_after.png" height="100%"/>
 <figcaption>After</figcaption>
 </div>
@@ -874,11 +874,11 @@ Examples:
 * `find n/john` in the **student list**.
 
 <div style="display:flex; flex-direction:row;">
-<div style="display:flex; flex-direction:column; align-items:center; padding:10px">
+<div style="display:flex; flex-direction:column; align-items:center; padding:5px">
 <img src="images/findStudent_before.png" height="100%"/>
 <figcaption>Before</figcaption>
 </div>
-<div style="display:flex; flex-direction:column; align-items:center; padding:10px">
+<div style="display:flex; flex-direction:column; align-items:center; padding:5px">
 <img src="images/findStudent_after.png" height="100%"/>
 <figcaption>After</figcaption>
 </div>
@@ -889,11 +889,11 @@ Note that the **displayed list** is the **student list**, so `find n/john` retur
 * `find i/NUS q/Bachelor of Computing` in the **tutor list**.
 
 <div style="display:flex; flex-direction:row;">
-<div style="display:flex; flex-direction:column; align-items:center; padding:10px">
+<div style="display:flex; flex-direction:column; align-items:center; padding:5px">
 <img src="images/findTutor_before.png" height="100%"/>
 <figcaption>Before</figcaption>
 </div>
-<div style="display:flex; flex-direction:column; align-items:center; padding:10px">
+<div style="display:flex; flex-direction:column; align-items:center; padding:5px">
 <img src="images/findTutor_after.png" height="100%"/>
 <figcaption>After</figcaption>
 </div>
@@ -904,11 +904,11 @@ Note that the **displayed list** is the **tutor list**, so `find i/NUS q/Bachelo
 * `find d/monday #/hard` in the **class list**.
 
 <div style="display:flex; flex-direction:row;">
-<div style="display:flex; flex-direction:column; align-items:center; padding:10px">
+<div style="display:flex; flex-direction:column; align-items:center; padding:5px">
 <img src="images/findClass_before.png" height="100%"/>
 <figcaption>Before</figcaption>
 </div>
-<div style="display:flex; flex-direction:column; align-items:center; padding:10px">
+<div style="display:flex; flex-direction:column; align-items:center; padding:5px">
 <img src="images/findClass_after.png" height="100%"/>
 <figcaption>After</figcaption>
 </div>
