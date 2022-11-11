@@ -153,6 +153,8 @@ Below are some symbols that you may encounter in the User Guide.
 | <div markdown="span" class="alert alert-danger">:exclamation: Danger</div> | Something that could cause irreversible damage when done incorrectly |
 | <div markdown="span" class="alert alert-warning">:warning: Warning</div>   | Something that could go wrong and should be noted                    |
 | <div markdown="span" class="alert alert-primary">:bulb: Tip</div>          | Something that can aid you to optimally utilise JeeqTracker          |
+| **Bolded Text**                                                            | Emphasizes important terms to look out for                           |
+| `Text wrapped in a box`                                                    | Denotes terms related to a command or field                          |
 
 
 > <div markdown="span" class="alert alert-primary">:bulb: Tip: It is recommended to understand the [User Interface](#user-interface-overview) as it will help you to navigate the application easily!</div>
