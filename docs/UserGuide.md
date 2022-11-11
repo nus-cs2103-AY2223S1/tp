@@ -147,6 +147,8 @@ You can use the `tag` and `untag` commands to change the tags attached to each e
 7. Lastly, we empower you to `add`, `edit` and `delete` eateries to and from `NUSEatWhere`. 
 This may be useful to include eateries near NUS (such as Supper Stretch!).
 
+<div markdown="block" class="alert alert-info">:information_source:
+
 ### Important! A Note on Command Format
 
 | Command Expression     | Meaning                                                      | Example                                                                                                                   |
