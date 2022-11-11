@@ -14,23 +14,23 @@ With Waddle, you can plan your travel itinerary in **3 simple steps**:
 **It's that simple**.
 
 If you wish to learn more about Waddle and its features, then this comprehensive user guide is for you!
-
-For instructions on how to set-up Waddle, visit our [Quick start](#quick-start) section.
+For tips on how to navigate our user guide, check out our [User Guide Tips](#user-guide-tips) section.
+For instructions on how to set up Waddle, visit our [Quick start](#quick-start) section.
 For basic information on how to make the best of Waddle, check out our [Tutorial for beginners](#tutorial-for-beginners).
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always"></div>
 
 ## Table of Contents
-
-1. [**Quick start**](#quick-start)
-2. [**Tutorial for beginners**](#tutorial-for-beginners)
-3. [**Features**](#features)
+1. [**User Guide Tips**](#user-guide-tips)
+2. [**Quick start**](#quick-start)
+3. [**Tutorial for beginners**](#tutorial-for-beginners)
+4. [**Features**](#features)
    1. [**Universal commands**](#universal-commands)
       1. [`help` Viewing help](#viewing-help--help)
       2. [`exit` Exiting Waddle](#exiting-waddle--exit)
-   2. [**The main page**](#the-main-page)
-   3. [**Commands on main page**](#commands-on-the-main-page)
+   2. [**The home page**](#the-home-page)
+   3. [**Commands on the home page**](#commands-on-the-home-page)
       1. [`add` Creating a new itinerary](#creating-a-new-itinerary--add)
       2. [`list` Listing all itineraries](#listing-all-itineraries--list)
       3. [`find` Locating itineraries by description](#locating-itineraries-by-description--find)
@@ -48,14 +48,39 @@ For basic information on how to make the best of Waddle, check out our [Tutorial
       6. [`unplan` Unscheduling an activity](#unscheduling-an-activity--unplan)
       7. [`copy` Copying to clipboard](#copying-to-clipboard--copy)
       8. [`pdf` Exporting as PDF file](#exporting-as-pdf-file--pdf)
-      9. [`home` Returning to main page](#returning-to-main-page--home)
+      9. [`home` Returning to home page](#returning-to-home-page--home)
    6. [**Advanced**](#advanced)
       1. [Saving the data](#saving-the-data)
       2. [Editing the data file](#editing-the-data-file)
-4. [**FAQ**](#faq)
-5. [**Command summary**](#command-summary)
+5. [**FAQ**](#faq)
+6. [**Command summary**](#command-summary)
    1. [**Home page commands**](#home-page-commands)
    2. [**Activity-planning page commands**](#activity-planning-page-commands)
+7. [**Glossary**](#glossary)
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always"></div>
+
+## User Guide Tips
+
+### Finding what you need
+
+1. [Quick start](#quick-start) will help you set up Waddle
+2. [Tutorial for Beginners](#tutorial-for-beginners) walks you through our graphical interface and also guides you on planning your very first itinerary on Waddle
+3. [Features](#features) helps you understand how our features can be used in your planning
+4. [FAQ](#faq) answers some of the most common questions we have gotten from our users. If you have questions for us, this section might just be the one you need!
+5. [Command Summary](#command-summary) provides a summarised list of our features' commands for your easy reference
+6. [Glossary](#glossary) explains some of the terms we used. If you do not understand a term in this guide, this section might be of help!
+7. You can use the buttons at the bottom right of each page to return to the [Table of Contents](#table-of-contents)
+
+### Understanding the symbols and syntax
+
+| Symbol/Syntax        | Meaning                                                                                                           |
+|----------------------|-------------------------------------------------------------------------------------------------------------------|
+| `command`            | When a word or phrase is highlighted with this markup, it simply means that it is related to a command or keyword |                              
+| :exclamation:        | The exclamation indicates a warning and contains information that is important                                    |
+| :bulb:               | When you see this, you can expect some tips from us!                                                              |
+| :information_source: | Wee will use this icon to provide you with information you should take note of                                    |
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always"></div>
@@ -64,15 +89,15 @@ For basic information on how to make the best of Waddle, check out our [Tutorial
 
 To begin planning your travels with Waddle, simply set it up as follows:
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your Computer. If you do not, you may install it [here](https://www.oracle.com/java/technologies/downloads).
 
 2. Download the latest `waddle.jar` from [here](https://github.com/AY2223S1-CS2103T-W11-4/tp/releases/).
 
 3. Copy the file to the folder you want to use as the _home folder_ for Waddle.
 
-4. Double-click the file to start the app. This will bring you to the Waddle [main page](#the-main-page). A graphical user interface (GUI) similar to the below should appear in a few seconds.
-   Note how the app contains a few sample itineraries.<br> <br>
-   ![Main Page](images/waddle-launch.png)
+4. Double-click the file to start the app. This will bring you to the Waddle [home page](#the-home-page). A graphical user interface (GUI) similar to the below should appear in a few seconds.
+   Note how the app contains some sample data.<br>
+   ![Home Page](images/mainPage.png)
 
 And you're ready to waddle! To execute any command, type it command in the command box and press Enter. e.g. typing **`help`** and pressing Enter will open the help window. For more information on how to begin waddling, carry on to the [Tutorial for beginners](#tutorial-for-beginners).
 
@@ -86,7 +111,7 @@ Alternatively, you may wish to dive straight to the full list of commands and th
 If you are a beginner to Waddle, this tutorial will walk you through creating and planning your very first Waddle itinerary.
 
 
-This is the [main page](#the-main-page), which you will encounter when you open Waddle. 
+This is the [home page](#the-home-page), which you will encounter when you open Waddle. 
 It displays all your current itineraries. 
 The various sections of the interface have been labeled in blue for your reference.
 If this is your first time launching Waddle, you will see the following page with two sample itineraries:<br> <br>
@@ -149,7 +174,7 @@ You should see the item being moved from the Wishlist section to the Day 1 item 
 
 **:information_source: Notes:**<br>
    
-* For additional information, refer to the [`plan` command](#scheduling-an-item--plan) explanation in the [Features](#features) section under itinerary planning page commands.
+* For additional information, refer to the [`plan` command](#scheduling-an-activity--plan) explanation in the [Features](#features) section under itinerary planning page commands.
 
 </div>
 
@@ -205,7 +230,7 @@ You can expand your Waddle knowledge further by reading the other sections of th
 
 ### Universal commands
 
-Most commands in Waddle can only be used on the [main page](#the-main-page) or the [activity planning page](#the-activity-planning-page). However, the commands in this section may be used on either page at any time.
+Most commands in Waddle can only be used on the [main page](#the-home-page) or the [activity planning page](#the-activity-planning-page). However, the commands in this section may be used on either page at any time.
 
 ### Viewing help : `help`
 
@@ -223,22 +248,22 @@ Format: `exit`
 
 <div style="page-break-after: always"></div>
 
-### The main page
+### The home page
 
-The main page, or home page, of Waddle is the page you see when you first launch the application. It displays the list of itineraries you have created and stored in the application.
+The home page, or home page, of Waddle displays the list of itineraries you have created and stored in the app.
 
-![Main Page](images/ug-beg-tut/main-page-sample-ui.png)
-[Commands exclusive to the main page](#commands-on-the-main-page) can help you:
+![Home Page](images/mainPage.png)
+[Commands exclusive to the home page](#commands-on-the-home-page) can help you:
 * [add](#creating-a-new-itinerary--add) new itineraries
 * [list](#listing-all-itineraries--list) or [find](#locating-itineraries-by-description--find) existing itineraries
 * [edit](#editing-the-details-of-an-itinerary--edit) or [delete](#deleting-an-itinerary--delete) existing itineraries
 * [clear](#clearing-itineraries--clear) all existing itineraries
 
-Using the [`select` command](#selecting-an-itinerary--select)  will bring you to the [activity planning page](#the-activity-planning-page) of the selected itinerary.
+Using the [`select` command](#selecting-an-itinerary--select)  will bring you to the [planning page](#the-activity-planning-page) of the selected itinerary.
 
 <div style="page-break-after: always"></div>
 
-### Commands on the main page
+### Commands on the home page
 
 ### Creating a new itinerary : `add`
 
@@ -316,7 +341,7 @@ Format: `edit INDEX [d/DESCRIPTION] [c/COUNTRY] [sd/START_DATE] [du/DURATION] [p
 
 **:information_source: Notes:** <br>
 
-* If you are editing the budget, please ensure that it is sufficient to cover the cost of all the planned acitivities. An error would be shown otherwise.<br>
+* If you are editing the budget, please ensure that it is sufficient to cover the cost of all the planned activities. An error would be shown otherwise.<br>
 * If you reduce the duration of an itinerary, days will be removed from the back, and any activities that were scheduled on a removed day would be returned to the wishlist.<br>
 
 </div>
@@ -391,7 +416,7 @@ Here's an example of how your activity-planning page might look like:
 * [Copy](#copying-to-clipboard--copy) your itinerary to your clipboard.
 * [Export](#exporting-as-pdf-file--pdf) your itinerary as a pdf file
 
-Using the [`home` command](#returning-to-main-page--home)  will bring you to the [main page](#the-main-page) of the selected itinerary.
+Using the [`home` command](#returning-to-home-page--home)  will bring you to the [home page](#the-home-page) of the selected itinerary.
 
 <div style="page-break-after: always"></div>
 
@@ -569,9 +594,9 @@ Here's an example of how the generated PDF would look like: <br>
 
 </div>
 
-### Returning to main page : `home`
+### Returning to home page : `home`
 
-Returns you to the [main itinerary list page](#the-main-page).
+Returns you to the [home page](#the-home-page).
 
 Format: `home`
 
@@ -636,5 +661,18 @@ If your changes to the data file makes its format invalid, Waddle will discard a
 | [**Unschedule Activity**](#unscheduling-an-activity--unplan)   | `unplan INDEX`<br> e.g., `unplan 3.2`                                                                    |
 | [**Copy to clipboard**](#copying-to-clipboard--copy)           | `copy`                                                                                                   |
 | [**Export to PDF**](#exporting-as-pdf-file--pdf)               | `pdf`                                                                                                    |
-| [**Return to Main Page**](#returning-to-main-page--home)       | `home`                                                                                                   |
+| [**Return to Home Page**](#returning-to-home-page--home)       | `home`                                                                                                   |
 | [**Exit**](#exiting-waddle--exit)                              | `exit`                                                                                                   |
+
+--------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always"></div>
+
+## Glossary
+
+| Term                               | Meaning                                                                                                                                                    |
+|------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Command Line Interface (CLI)**   | A command line interface is a text-based user interface that allows users to input commands in the form of text                                            |
+| **Graphical User Interface (GUI)** | A graphical user interface is a graphics-based user interface that allows users to interact with visual elements like buttons and lists                    |
+| **Parameter**                      | The details that you have to provide waddle which differs for each command. For example, the `plan` command requires the `day` and `start time` parameters |
+| **Prefix**                         | The characters that precede the parameters you enter. For example, `n/` for the name parameter                                                             |
