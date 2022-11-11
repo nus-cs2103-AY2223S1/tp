@@ -261,7 +261,8 @@ You can leave KEYWORD empty if you are using the randomizer (-r) feature!
 `-h`: displays help message (specific to find)
 <br>
 
-Example: `find veg -r 2`
+Example:
+* `find veg -r 2`
 
 Below is an example of what the list would look like when using the randomizer `-r` command.
 The command used is shown on the command line. <br>
@@ -282,8 +283,9 @@ You can also quickly narrow down your choices with the randomizer feature._
 `NUMBER`: how many randomly selected eateries to show (more than 0) <br>
 `-h`: displays help message (specific to findLocation) <br>
 
-Example: `findLocation University Town -r 2` <br>
-Example: `findLocation University Town`
+Example:
+* `findLocation University Town -r 2`
+* `findLocation University Town`
 
 <br>
 
@@ -300,8 +302,9 @@ You can also quickly narrow down your choices with the randomizer feature._
 `-h`: displays help message (specific to findCuisine)
 <br>
 
-Example: `findCuisine Chinese -r 2` <br>
-Example: `findCuisine Chinese`
+Example:
+* `findCuisine Chinese -r 2`
+* `findCuisine Chinese`
 
 <br>
 
@@ -322,8 +325,9 @@ Prices can only take the values `$`, `$$`, or `$$$`, in increasing order of pric
 `-h`: displays help message (specific to findCuisine)
 <br>
 
-Example: `findPrice $ -r 2` <br>
-Example: `findPrice $`
+Example:
+* `findPrice $ -r 2`
+* `findPrice $`
 
 <br>
 
@@ -349,7 +353,8 @@ Note:
 * Eateries matching at least one tag will be returned (i.e. `OR` search).
   e.g. `findTag foodcourt cafe` will return eateries with either tag.
 
-Example: `findTag restaurant`
+Example:
+* `findTag restaurant`
 
 <br>
 
@@ -371,8 +376,10 @@ _Labels an eatery with custom tag(s) to facilitate searching._
 **Inputs:** <br>
 `INDEX`: index of eatery to place tag on (must be found in the current list) <br>
 `TAGNAME`: name of tag to assign to eatery <br>
-`-h`: displays help message (specific to tag) <br><br>
-Example: `tag 1 -t coffee -t tea`
+`-h`: displays help message (specific to tag) <br>
+
+Example:
+* `tag 1 -t coffee -t tea`
 
 <br>
 
@@ -385,8 +392,10 @@ _Remove tag(s) from an eatery._
 **Inputs:** <br>
 `INDEX`: index of eatery to remove tag from (must be found in the current list) <br>
 `TAGNAME`: name of tag to remove from eatery <br>
-`-h`: displays help message (specific to untag) <br><br>
-Example: `untag 44 -t cafe`
+`-h`: displays help message (specific to untag) <br>
+
+Example: 
+* `untag 44 -t cafe`
 
 Below is a comparison between when the store at index 44 is tagged with `cafe` _(left)_ then untagged _(right)_.
 The commands used are shown on the command line. <br>
@@ -404,8 +413,10 @@ The favourite tag is standardized to be "<3" when using this command._
 **Inputs:** <br>
 
 `INDEX`: index of the eatery to favourite <br>
-`-h`: displays help message (specific to fav) <br><br>
-Example: `fav 3`
+`-h`: displays help message (specific to fav) <br>
+
+Example:
+* `fav 3`
 
 <br>
 
@@ -419,8 +430,10 @@ The tag to be removed is standardized to be "<3" when using this command._
 **Inputs:** <br>
 
 `INDEX`: index of the eatery to unfavourite <br>
-`-h`: displays help message (specific to unfav) <br><br>
-Example: `unfav 3`
+`-h`: displays help message (specific to unfav) <br>
+
+Example:
+* `unfav 3`
 
 <br>
 
@@ -438,9 +451,11 @@ current list <br>
 `CUISINE`: cuisine type of the eatery <br>
 `PRICE`: price of the eatery <br>
 `TAGNAME`: extra tags to add to the eatery <br>
-`-h`: displays help message (specific to add) <br><br>
-Example: `add -n KOI -l Central Square -c Drinks` <br>
-Example: `add -n KOI -l Central Square -c Drinks -p $$`
+`-h`: displays help message (specific to add) <br>
+
+Example:
+* `add -n KOI -l Central Square -c Drinks`
+* `add -n KOI -l Central Square -c Drinks -p $$`
 
 <br>
 
@@ -452,8 +467,10 @@ _Deletes an eatery from `NUSEatWhere`._
 
 **Inputs:** <br>
 `INDEX`: index of eatery to remove from NUSEatWhere (must be found in the current list) <br>
-`-h`: displays help message (specific to delete) <br><br>
-Example: `delete 68`
+`-h`: displays help message (specific to delete) <br>
+
+Example:
+* `delete 68`
 
 Below is a comparison between when the store at index 68 was added  _(left)_ then deleted _(right)_.
 The commands used are shown on the command line. <br>
@@ -474,9 +491,11 @@ _Edits the details of an eatery in `NUSEatWhere`._
 `CUISINE`: new cuisine type of the eatery <br>
 `PRICE`: new price of the eatery <br>
 `TAGNAME`: new tags of the eatery <br>
-`-h`: displays help message (specific to edit) <br><br>
-Example: `edit 1 -n KOI -l Central Square -c Drinks` <br>
-Example: `edit 3 -n KOI -l Central Square -c Drinks -p $$` <br>
+`-h`: displays help message (specific to edit) <br>
+
+Example:
+* `edit 1 -n KOI -l Central Square -c Drinks`
+* `edit 3 -n KOI -l Central Square -c Drinks -p $$`
 
 <div markdown="block" class="alert alert-info">:information_source:
 When editing the tags of an eatery, all existing tags will be overwritten.
