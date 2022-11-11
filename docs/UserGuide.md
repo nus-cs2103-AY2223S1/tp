@@ -42,6 +42,7 @@ Finally, here are some of the symbols and text formatting to look out for as you
 * Table of Contents
 {:toc}
 
+--------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
 ## Quick start
@@ -144,7 +145,7 @@ The guide begins on the following page!
 
 <div style="page-break-after: always;"></div>
 
-1. If you are a first time user, your PayMeLah may still be filled with the sample data that came with the [installation process](#tutorial-installing-paymelah). You can **remove all the sample data** with a single [`clear` command](#clearing-all-entries-clear), which you can do by simply entering `clear`. Don’t worry about losing this data - they are unlikely to be useful to you! Soon, your PayMeLah will be filled with the information you actually want instead.<br>0
+1. If you are a first time user, your PayMeLah may still be filled with the sample data that came with the [installation process](#tutorial-installing-paymelah). You can **remove all the sample data** with a single [`clear` command](#clearing-all-entries-clear), which you can do by simply entering `clear`. Don’t worry about losing this data - they are unlikely to be useful to you! Soon, your PayMeLah will be filled with the information you actually want instead.<br>
 
 You should see that the [person list](#person-list-section) is now empty.
 
@@ -224,11 +225,6 @@ Be very careful with how a command is formatted! If the `…` is found within th
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 Avoid giving irrelevant inputs to commands that do not accept those inputs. For example, `mark` expects a `<person index>` input and a `debt/<debt index…>` input, but not a `t/<tag>` input. Giving such inputs may cause unexpected behaviour in PayMeLah!
 </div>
-
-[Return to Table of Contents](#table-of-contents)
-
---------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
 
 #### Input-specific behaviour
 
@@ -762,7 +758,7 @@ Here is a quick tutorial on editing the data file:
 
 1. Double-click on the `paymelah.json` file to open it.<br>
    You should see some text similar to the following (don't worry if the words in your file appear to be in a different colour, it does not matter):<br>
-   <img src="images/jackson.png" width="300" />
+   <p style="text-align:center;"><img src="images/jackson.png" width="300" /></p>
 
 2. You can now edit the data by changing any of the green words you see! Do ensure that your replacement words are surrounded by double-inverted commas (`""`), as per the image above.
 
