@@ -149,7 +149,7 @@ This may be useful to include eateries near NUS (such as Supper Stretch!).
 
 <div markdown="block" class="alert alert-info">:information_source:
 
-### Important! Before Reading This Guide 
+### Important! A Note on Command Format
 
 * Inputs in `UPPER_CASE` are needed for the command to work. <br>
   e.g. in `add -n NAME`, `NAME` is an input which can be used as `add -n Pasta Express`. <br><br>
