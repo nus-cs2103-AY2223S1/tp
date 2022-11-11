@@ -522,6 +522,8 @@ Format: `rclear`
 
 <sub>[return to table of contents](#table-of-contents)</sub>
 
+<div style="page-break-after: always;"></div>
+
 ### Saving & Loading
 
 > Useful information relating to saving and loading of patient data
