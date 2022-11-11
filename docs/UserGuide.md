@@ -158,9 +158,7 @@ This may be useful to include eateries near NUS (such as Supper Stretch!).
 | `…​`                   | Items with `…​` after them can be used **one or more times** | `find NAME…​` can be used as `find Frontier`, `find Frontier Deck` etc.                                                   |
 | `-n`, `-t`, `-p`, etc. | Prefixed inputs can be in **any order**                      | if the command specifies `-n NAME -t TAGNAME`, you can also use `-t TAGNAME -n NAME`. Both will produce the same outcome. |
 
-<div markdown="block" class="alert alert-info">
   Note: For `-t TAGNAME1 [-t TAGNAME2]…​`, the correct input format is `-t mala -t vegetarian`. (Multiple `-t`s are required)
-</div>
 
 * If a certain input is expected only once in the command, but you specified it multiple times,
   only the last occurrence will be taken. <br>
