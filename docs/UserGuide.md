@@ -84,7 +84,7 @@ single application!
 ### Track Progress And Delegate Work
 
 We know that it is often difficult to visualize and communicate your team's progress to various stakeholders 
-(e.g. Professors, tutors, etc.). 
+(e.g. professors, tutors, etc.). 
 
 Well, you never have to worry about tracking your team's progress anymore! Using TruthTable, you can see the 
 **number of tasks completed by your team** as well as **which members have been assigned to which tasks** - all in 
