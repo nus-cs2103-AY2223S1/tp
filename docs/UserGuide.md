@@ -366,7 +366,7 @@ You're about halfway through this User Guide already! Continue reading to find o
 
 ## Commands
 
-<div markdown="block" class="alert alert-primary">**:information_source: Make sure you have 
+<div markdown="block" class="alert alert-warning">**:exclamation: Make sure you have 
 [read the section on TruthTable's CLI](#understanding-truthtables-cli) before continuing!**
 </div>
 
