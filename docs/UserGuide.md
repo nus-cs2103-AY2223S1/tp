@@ -575,17 +575,6 @@ Examples:
 1. `sort reminder by/priority`
 2. `sort reminder by/deadline`
 
-<table>
-  <tr>
-    <td>Sort reminder by priority</td>
-    <td>Sort reminder by deadline</td>
-  </tr>
-  <tr>
-    <td><img src="images/MarkedReminder.png" width=350></td>
-    <td><img src="images/ReminderDeadline.png" width=350></td>
-  </tr>
- </table>
-
 <a name="switch"></a>
 ### 5.5 Switch tabs: `switch`
 
