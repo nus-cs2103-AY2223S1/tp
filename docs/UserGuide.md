@@ -840,6 +840,8 @@ Examples:
 
 </p>
 
+<div style="page-break-after: always;"></div>
+
 ### Searching by multiple fields: `find`
 
 Finds entries from the **displayed list** based on multiple fields where the entries shown have fields that contain the respective keywords.
