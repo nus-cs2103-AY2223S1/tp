@@ -8,7 +8,7 @@ Tired of having to use multiple applications (such as LumiNUS and Todoist) to ke
 
 Introducing ModQuik, a Teaching Assistant tool made for you!
 
-ModQuik is a convenient tool that allows you to keep track of your classes, monitor your students' grades and set up reminders for your tasks (such as creating tutorial slides or marking homework). 
+ModQuik is a convenient tool that allows you to keep track of your classes, monitor your students' grades and set up reminders for your tasks (such as creating tutorial slides or marking homework).
 ModQuik is optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 If you can type fast, ModQuik can get your lesson management tasks done faster than traditional GUI apps.
 
@@ -603,13 +603,13 @@ _Figure 2. Grade Chart Tab_
 <a name="clear"></a>
 ### 5.6 Clearing data: `clear`
 
-Clears all existing data in a specific field (including student, tutorial, reminder and consultation) or the entire app. 
+Clears all existing data in a specific field (including student, tutorial, reminder and consultation) or the entire app.
 
 For example, user might choose to reset the data when the semester ends to prepare for the upcoming semester.
 
 Format: `clear f/FIELD`
 * `FIELD` including `all`, `student`, `tutorial`, `consultation`, `reminder`
-
+*
 <div markdown="span" class="alert alert-danger">:exclamation: **Warning:**
 Take note that this action is irreversible.
 </div>
@@ -654,12 +654,22 @@ _Details coming soon..._
 
 ## 6. FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
+**Q**: How do I transfer my data to another computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ModQuik home folder.
 
 **Q**: How do I toggle between tabs at the side panel?<br>
 **A**: Method 1: Use the [**switch tabs**][`switch`] command.<br>
        Method 2: Click on the `Tab` button, and it will toggle between all 4 tabs (**Student**, **Grade Chart**, **Consultation**, **Tutorial**).
+
+**Q**: How do I start the app? Double-clicking the jar file does not seem to do anything.<br>
+A: Double-clicking on a jar file may not always start the app. If that is the case, run the command `java -jar modquik.jar` in the same folder as the jar file.
+
+**Q**: All my data is lost and I'm not sure why...<br>
+**A**: The data file may have been accidentally moved out of the `data` folder. If that is the case, move the data file back and restart the app.
+You can also try looking in your trash bin to check if the file was accidentally deleted.
+
+**Q**: How do I uninstall ModQuik?<br>
+**A**: We are sad to see you go :(( Uninstalling ModQuik is as simple as deleting the `modquik.jar` file.
 
 --------------------------------------------------------------------------------------------------------------------
 
