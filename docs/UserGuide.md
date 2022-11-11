@@ -1739,9 +1739,9 @@ Oops! Seems like the meeting link for the weekly meeting has changed. You can ed
 The `edit link` command allows you to edit an existing link in TruthTable. The edited link will be shown in the list of 
 links in the [currently selected team](#current-team-section). Let us run through an example on how to edit the details of a link. 
 
-Suppose the [URL](#url) of your "Meeting Link" has changed to
+Suppose the [URL](#url) of your weekly meeting has changed to
 "https://zoom.us/j/94669589458?pwd=bTQvWTlWbzR5T29Ja0w2d0J1R1R4QT09#success".
-Identify the index of the link with a name "weekly meeting" in the application (1 in the image below).
+Identify the index of the link with a name "Meeting Link" in the application (1 in the image below).
 
 Then, enter the command `edit link 1 -n "monthly meeting" -l https://zoom.us/j/94669589458?pwd=bTQvWTlWbzR5T29Ja0w2d0J1R1R4QT09#success`
 
@@ -1825,7 +1825,7 @@ Summary of the general commands can be found [here](#summary-of-general-commands
 
 You graduated from NUS and join a tech company as a Project Manager. You want to continue using TruthTable but need 
 to remove all your old data. You can use the `clear` command to clear all existing data in TruthTable! 
-Enter `clear command` and if done successfully, all data will be cleared (except for a `default` team),
+Enter `clear` command and if done successfully, all data will be cleared (except for a `default` team),
 and you can start afresh!
 
 Be warned you can no longer recover the deleted data! Think twice before doing it.
