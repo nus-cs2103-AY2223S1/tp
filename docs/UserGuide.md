@@ -193,6 +193,9 @@ INSERT IMAGE
   To separate inputs that represent different information, you should precede inputs with their respective **[prefixes]((#glossary-prefix))** that end with a `/`. <br>
   e.g. in `add n/<name> [t/<tag>]…`, `n/` and `t/` are prefixes preceding the inputs `<name>` and `<tag>` respectively.
 
+[Return to Table of Contents](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
 ### General input behaviour
@@ -225,6 +228,11 @@ Be very careful with how a command is formatted! If the `…` is found within th
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 Avoid giving irrelevant inputs to commands that do not accept those inputs. For example, `mark` expects a `<person index>` input and a `debt/<debt index…>` input, but not a `t/<tag>` input. Giving such inputs may cause unexpected behaviour in PayMeLah!
 </div>
+
+[Return to Table of Contents](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 #### Input-specific behaviour
 
@@ -582,7 +590,7 @@ When you are looking for specific person(s) in PayMeLah, you can use this comman
 [d/<description>] [m/<money>] [above/<money>] [below/<money>]
 [date/<date>] [before/<date>] [after/<date>] [time/<time>]`
 
-The following table is a summary of all the [inputs](#glossary-input) this command can accept as search conditions:
+The following table (spanning this and the next page) is a summary of all the [inputs](#glossary-input) this command can accept as search conditions:
 
 | Input              | Description                                                                                                 | Examples                                                                                                                  |
 |--------------------|-------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
@@ -604,9 +612,11 @@ The following table is a summary of all the [inputs](#glossary-input) this comma
 * The ordering of the search condition inputs in the command does not matter.
 * At least one input must be provided, `find` cannot work with no inputs.
 
+(Continued on next page!)
+
 <div style="page-break-after: always;"></div>
 
-##### Combining inputs to `find`
+<span id="combining-inputs-to-find">**Combining inputs to `find`:**</span>
 
 When you provide multiple search condition inputs to `find`, only persons matching all conditions will be shown to you.
 
