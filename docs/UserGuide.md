@@ -326,25 +326,25 @@ Examples:<br>
 ### List Commands
 
 <div markdown="span" class="alert alert-primary">:exclamation: **Note:**
-These commands can be used to view all buyers and properties again, after a [Filter Command](#filter-commands) or a 
-[Find Command](#find-commands) is executed. See [FAQ](#faq) for more information.
+You can use these commands to view all buyers and properties again, after a [Filter Command](#filter-commands) or a 
+[Find Command](#find-commands) is executed. If you want more information, please check out [FAQ](#faq).
 </div>
 
 #### List buyers in database: `listbuyers`
 
-Updates the [Buyer List](#2-buyer-list) to show all buyers in the database, that is, removes all filters.<br>
+Updates the [Buyer List](#2-buyer-list) to show all buyers in your database, that is, removes all filters you have applied.<br>
 Syntax: `listbuyers`
 
 #### List properties in database: `listprops`
 
-Updates the [Property List](#3-property-list) to show all properties in the database, that is, removes all filters.<br>
+Updates the [Property List](#3-property-list) to show all properties in your database, that is, removes all filters you have applied.<br>
 Syntax: `listprops`
 
 ### Find Commands
 
 <div markdown="span" class="alert alert-primary">:exclamation: **Note:**
-These commands cause the [Buyer List](#2-buyer-list) and [Property List](#3-property-list) to only show a portion of 
-buyers and properties in the database. Use the [List Commands](#list-commands) to show all buyers and properties again.
+Using these commands cause the [Buyer List](#2-buyer-list) and [Property List](#3-property-list) to only show a portion of 
+buyers and properties in the database. Please use the [List Commands](#list-commands) if you want to show all buyers and properties again.
 
 Also, no flags are used for these commands and so the search phrase is to be supplied directly.
 </div>
@@ -352,7 +352,7 @@ Also, no flags are used for these commands and so the search phrase is to be sup
 
 #### Find buyer entry in database: `findbuyers`
 
-Searches through the database and displays all buyers whose names contain the given phrase (case-insensitive).<br>
+Searches through your database and displays all buyers whose names contain the given phrase (case-insensitive).<br>
 Syntax: `findbuyers PHRASE`
 
 Examples:<br>
@@ -361,7 +361,7 @@ Examples:<br>
 
 #### Find property entry in database: `findprops`
 
-Searches through the database and displays all properties whose names contain the given phrase (case-insensitive).<br>
+Searches through your database and displays all properties whose names contain the given phrase (case-insensitive).<br>
 Syntax: `findprops PHRASE`
 
 Examples:<br>
@@ -371,13 +371,13 @@ Examples:<br>
 ### Filter Commands
 
 <div markdown="span" class="alert alert-primary">:exclamation: **Note:**
-These commands might cause the [Buyer List](#2-buyer-list) and [Property List](#3-property-list) to only show a portion of 
-buyers and properties in the database. Use the [List Commands](#list-commands) to show all buyers and properties again.
+Using commands might cause the [Buyer List](#2-buyer-list) and [Property List](#3-property-list) to only show a portion of 
+buyers and properties in the database. Please use the [List Commands](#list-commands) if you want to show all buyers and properties again.
 </div>
 
 #### Filter buyers in database (multiple conditions): `filterbuyers`
 
-Filters buyers in the database according to multiple given conditions, and updates the [Buyer List](#2-buyer-list).
+Filters buyers in your database according to multiple given conditions, and updates the [Buyer List](#2-buyer-list).
 
 Syntax: `filterbuyers [-p PRICE] [-c CHARACTERISTICS] [-pr PRIORITY<HIGH, NORMAL, LOW>] [-fuzzy]`
 
@@ -403,7 +403,7 @@ Examples:<br>
 
 #### Filter property in database (multiple conditions): `filterprops`
 
-Filters properties in the database according to multiple given conditions, and updates the [Property List](#3-property-list).
+Filters properties in your database according to multiple given conditions, and updates the [Property List](#3-property-list).
 Syntax: `filterprops [-r PRICE RANGE] [-c CHARACTERISTICS] [-o OWNER NAME] [-fuzzy]`
 
 The `-r` flag filters properties with a price within the specified price range.<br>
