@@ -1133,10 +1133,6 @@ A standard of measurement. In the case of LTNS, a metric in sorting or searching
 #### Income Bracket
 Various income level ranges categorised by levels. LTNS uses the Inland Revenue Authority of Singapore's (IRAS) measurement of an income bracket.
 
-<div style="page-break-after: always; visibility: hidden"> 
-\pagebreak 
-</div>
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## Contact Us 
