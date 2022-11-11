@@ -811,6 +811,8 @@ Format: `sort <order>`
     <p></p>
   * **reverse**: Sorts the **displayed list** in reverse order.
 
+<div style="page-break-after: always;"></div>
+
 Examples:
 * `sort alpha`
 
@@ -867,6 +869,8 @@ Format: `find [n/<name>] [s/<subject>] [l/<level>] [d/day] [t/time] [#/<tag>]`
 
 
 * When searching the `<level>` field, a space must be included between the level and number if the number is to be specified (e.g., `find l/secondary 1` instead of `find l/secondary1`).
+
+<div style="page-break-after: always;"></div>
 
 Examples:
 * `find n/john` in the **student list**.
