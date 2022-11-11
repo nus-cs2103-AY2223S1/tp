@@ -232,8 +232,8 @@ understand the format styles for each command.
   
 - The `EMAIL` of the person must have an `@` symbol. We will refer to anything before the `@`
     symbol as `PART 1` and anything after the symbol to be `PART 2`.
-  
-  
+
+
   - `PART 1`: Can only contain alphanumeric characters and special characters such as (`+\_.-`).
       You may only start or end `PART 1` with alphanumeric characters.
   
@@ -241,10 +241,10 @@ understand the format styles for each command.
       domain labels.
   
     - `PART 2` must end with a domain label at least **2 characters long**.
-  
+    
     - Each domain label must start and end with alphanumeric characters.
     - Each domain label can only consist of alphanumeric characters and hyphens.  
-  
+
 
 
 - The `ADDRESS` of a person can take any values, but it should not be blank.
@@ -850,6 +850,9 @@ Example:
 
 - `task mark 1`
     - This command marks the first task in the task list.
+- An example of a marked task
+
+![An example of marked task](images\marked.png)
 
 ### Unmark a task: `task unmark`
 
@@ -865,7 +868,11 @@ Example:
 
 - `task unmark 1`
     - This command unmarks the first task in the task list.
-    
+
+- An example of a unmarked task
+
+![](images\unmarked.png)
+
 ### Finding a task: `find`
 
 Contactmation allows for searching of tasks with the [find command](#find-command-find).
