@@ -114,11 +114,11 @@ So, fret not, you will become familiar with TruthTable's commands in no time.
 
 3. Double-click on `truthtable.jar` to start the application. A window which looks similar to the screenshot below
    should appear in a few seconds. ![Ui](images/Ui.png)
-    <br/>
+    <br/><br/>
    <div markdown="block" class="alert alert-success">**:bulb: Sample data**:
    We have also added some sample data for you to play around with and get familiar with TruthTable's [commands](#commands)!
    </div>
-4. That's it! You can now follow our guide below on how to [navigate the application](#navigating-truthtables-application-interface).
+4. That's it! You can now follow our guide below on how to [navigate the application](#navigating-truthtables-interface).
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -206,24 +206,22 @@ Congrats! You've successfully understood the entire TruthTable [User Interface](
 
 ## Understanding TruthTable's CLI
 
-[Command Line Interface (CLI)](#command-line-interface) applications like TruthTable requires you to execute
-instructions by typing specific words to make use of the application's features. On the other hand,
-[Graphical User Interface (GUI)](#graphical-user-interface) programs usually require you to use a mouse and keyboard to
-click on objects and perform certain features.
+[Command Line Interface (CLI)](#command-line-interface) applications like TruthTable requires you to type specific words (called [commands](#command)) to make use of the application's features. On the other hand,
+[Graphical User Interface (GUI)](#graphical-user-interface) programs usually require you to use a mouse to click on the screen and perform certain actions.
 
-If you are not an experienced CLI user, however, terms like "commands", "flags", and "parameters" may appear daunting.
+If you are not an experienced CLI user, terms like "commands", "flags", and "parameters" may appear daunting.
 
-But fret not! This section will cover what all these terms actually mean.
+But fret not! This section will cover what all these terms actually mean. By the end of it, you'll be able to confidently explain it to your friends too!
 
 ### Commands, flags, and parameters
 
-All instructions are executed through **[commands](#command)**. Each command can have **[flags](#flag) specified after
+All instructions in TruthTable are executed through **[commands](#command)**. Each command can have **[flags](#flag) specified after
 the command**, which modifies how the instruction should be carried out.
 
-For each of these flags, there may be **[parameters](#parameter)** specified after it. But, **not all commands**
-require parameters.
+For each of these flags, there may be **[parameters](#parameter)** specified after it. But, **not all commands
+require parameters**.
 
-Note that flags and parameters always **come after the command**.
+Note that flags and parameters always come **after** the command.
 
 <div markdown="block" class="alert alert-primary">**:information_source: Do I need to memorize all these commands, 
 parameters, and flags?**
@@ -233,7 +231,7 @@ Nope!
 While you're going through this section, don't worry too much about memorizing the details of every command, as they all
 have their own help messages that you can refer to at any time.
 <br><br>
-Furthermore, the commands in TruthTable are designed to be **easy to remember** and **natural**, so you will be familiar
+Also, the commands in TruthTable are designed to be **easy to remember** and **intuitive**, so you will get familiar
 with them in no time!
 </div>
 
@@ -253,10 +251,15 @@ Here's a summary of what each highlighted section represents.
 
 ### Understanding the help message
 
-Every command in TruthTable has its own flags and parameters, so you don't have to remember all of them.
+While using TruthTable, you might type the command in an incorrect format - perhaps you forgot to specify a flag or a parameter. Will the application crash? Will all your precious data be lost? Absolutely not! 
 
-Instead, each command allows you to specify the `-h` and `--help` flag, which brings up the available flags and
-parameters for the command. Alternatively, you can also refer to this user guide to find out the details of any command.
+Rather, we understand that it is possible for anyone to forget the correct format or command name, and we want to help you as much as possible! This is why **every command in TruthTable has its own help message**.
+
+Each command allows you to specify the `-h` or `--help` flag, which will show you all the available flags and parameters for the command. Alternatively, you can also refer to this user guide to find out the details of any command.
+
+So, you never have to worry about typing a wrong command since there's always help available _at your fingertips_. :smile:
+
+Let's dive a little deeper into what a help message looks like and how to interpret it. 
 
 #### Example Command Help Message: `assign task --help`
 
