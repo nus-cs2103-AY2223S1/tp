@@ -53,7 +53,7 @@ If this is your first time using Waddle, check out our [Tutorial for Beginners](
 4. [**FAQ**](#faq)
 5. [**Command summary**](#command-summary)
    1. [**Home page commands**](#home-page-commands)
-   2. [**Item planning page commands**](#item-planning-page-commands)
+   2. [**Activity-planning page commands**](#item-planning-page-commands)
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always"></div>
@@ -272,7 +272,7 @@ Format: `edit INDEX [d/DESCRIPTION] [c/COUNTRY] [sd/START_DATE] [du/DURATION] [p
 **:information_source: Notes:** <br>
 
 * If you are editing the budget, please ensure that it is sufficient to cover the cost of all the planned items. An error would be shown otherwise.<br>
-* If you reduce the duration of an itinerary, days will be removed from the back, and any items that were scheduled on a removed day would be returned to the Wishlist.<br>
+* If you reduce the duration of an itinerary, days will be removed from the back, and any items that were scheduled on a removed day would be returned to the wishlist.<br>
 
 </div>
 
@@ -324,49 +324,54 @@ Examples:
 
 <div style="page-break-after: always"></div>
 
-### The planning page
+### The activity-planning page
 
-The planning page of an itinerary displays the list of items you have added to the itinerary. Items on the Wishlist that have not been added to you schedule yet will appear on top in order of priority, while scheduled items will appear in order of date and time.
+Once you have created your itinerary, you can now start adding and planning the activities that you want to complete in
+your time there! The activity-planning page of an itinerary displays the list of activities that you have added to your
+itinerary. Activities on the wishlist that you have not given a start time and date yet will appear at the very top,
+in order of _priority_ (as indicated by the number of stars). Activities that you have scheduled will instead appear in
+the list of days below the wishlist, sorted by _start time_.
 
-The index of scheduled items are in the format `DAY.ITEM_NUMBER`. Some examples:
-* The first item of the first day will have index `1.1`
-* The fifth item of the third day will have index `3.5`
-* The second item of the Wishlist will have index `2`
+The index of scheduled activities are in the format `DAY.ACTIVITY_NUMBER`. Some examples:
+* The _first_ activity of the _first_ day will have index `1.1`
+* The _fifth_ activity of the _third_ day will have index `3.5`
+* The _second_ activity of the wishlist will have index `2`
 
-Here's an example of how the item planning page looks like:
-![item planning page](images/itemPlanningUi.png)
+Here's an example of how your activity-planning page might look like:
+![activity-planning page](images/itemPlanningUi.png)
 
 <div style="page-break-after: always"></div>
 
-[Commands exclusive to the planning page](#commands-on-the-item-planning-page) can help you:
-* [add](#adding-an-item--add) new items
-* [edit](#editing-the-details-of-an-item--edit) or [delete](#deleting-an-item--delete) existing items
-* [view](#viewing-vacant-timeslots--free) the vacant time slots on your itinerary
-* [schedule](#scheduling-an-item--plan) or [unschedule](#unscheduling-an-item--unplan) items
-* export your itinerary via your [clipboard](#copying-to-clipboard--copy) or as a [pdf](#exporting-as-pdf-file--pdf) file
+[Commands exclusive to the activity-planning page](#commands-on-the-activity-planning-page) can help you:
+* [Add](#adding-an-activity--add) new activities
+* [Edit](#editing-the-details-of-an-activity--edit) or [Delete](#deleting-an-activity--delete) existing activities
+* [View](#viewing-vacant-timeslots--free) the vacant time slots on your itinerary
+* [Schedule](#scheduling-an-activity--plan) or [Unschedule](#unscheduling-an-activity--unplan) activities
+* [Copy](#copying-to-clipboard--copy) your itinerary to your clipboard.
+* [Export](#exporting-as-pdf-file--pdf) your itinerary as a pdf file
 
 Using the [`home` command](#returning-to-main-page--home)  will bring you to the [main page](#the-main-page) of the selected itinerary.
 
 <div style="page-break-after: always"></div>
 
-### Commands on the item planning page
+### Commands on the activity-planning page
 
-### Adding an item : `add`
+### Adding an activity : `add`
 
-Adds an item to the wishlist without a scheduled day and time.
+Adds an activity to your wishlist (without a scheduled day and time).
 
 Format: `add d/DESCRIPTION du/DURATION [p/PRIORITY] [c/COST] `
 
 * `DESCRIPTION` cannot be blank and must only contain alphanumeric characters, spaces and these following special characters: `()&!':.,-`.
-* `DURATION` is the time taken for the item in _minutes_. The duration must be more than 0 minutes and shorter than 1440 minutes (1 day).
+* `DURATION` is the time taken for the activity in _minutes_. The duration must be more than 0 minutes and shorter than 1440 minutes (1 day).
     - e.g. `du/100` is 100 minutes (or 1 hour and 40 minutes).
 
-* `PRIORITY` is used to rank the importance of an item. It must be a number from 1 to 5, with 1 being the highest priority.
+* `PRIORITY` is used to rank the importance of an activity. It must be a number from 1 to 5, with 1 being the highest priority.
 
-* `COST` is the cost of the item in dollars, or dollars and cents, and must be between 0 and 1,000,000.
+* `COST` is the cost of the activity in dollars, or dollars and cents, and must be between 0 and 1,000,000.
   - e.g. `c/100.20` is $100.20.
 
-* You cannot add items with the same description as an existing item in the item list.
+* You cannot add activities with the same description as an existing activity in the activity list.
 
 <div markdown="block" class="alert alert-info">
 
@@ -391,14 +396,14 @@ Running `add d/Go to the Louvre p/2 du/1`
 
 <div style="page-break-after: always"></div>
 
-### Editing the details of an item : `edit`
+### Editing the details of an activity : `edit`
 
-Edits an existing item in the item list.
+Edits an existing activity in your activity list.
 
 Format: `edit INDEX [d/DESCRIPTION] [p/PRIORITY] [c/COST] [du/DURATION]`
 
-* Edits the item at the specified `INDEX`. The index refers to the index number displayed in either the wishlist, or the scheduled items in the day lists.
-* The index of a scheduled item refers to the index number displayed in the list of days, the format being `DAY_NUMBER`.`ITEM_INDEX`.
+* Edits the activity at the specified `INDEX`. The index refers to the index number displayed in either the wishlist, or the scheduled activity in the list of days.
+* The index of a scheduled activity refers to the index number displayed in the list of days, the format being `DAY_NUMBER`.`ACTIVITY_INDEX`.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
@@ -411,25 +416,25 @@ Format: `edit INDEX [d/DESCRIPTION] [p/PRIORITY] [c/COST] [du/DURATION]`
 </div>
 
 Examples:
-* `edit 1 d/Go skiing` would edit the description of the 1st item in the unscheduled item list to be `Go skiing`.
-* `edit 2.2 p/3 c/100` would edit the priority and cost of the 2nd item in the Day 2 list to be `3` and `100` respectively.
+* `edit 1 d/Go skiing` would edit the description of the 1st activity in the unscheduled activity list to be `Go skiing`.
+* `edit 2.2 p/3 c/100` would edit the priority and cost of the 2nd activity in the Day 2 list to be `3` and `100` respectively.
 
 Running `edit 1 d/Go skiing`
 
 ![Edit Activity](images/editActivityCommand.png)
 
 
-### Deleting an item : `delete`
+### Deleting an activity : `delete`
 
-Deletes an existing item in the item list.
+Deletes an existing activity in your activity list.
 
 Format: `delete INDEX`
 
-* Deletes the item at the specified `INDEX`. The index refers to the index number displayed in either the unscheduled item list, or the scheduled items in the day lists.
+* Deletes the activity at the specified `INDEX`. The index refers to the index number displayed in either the unscheduled activity list, or the scheduled activity in the list of days.
 
 Examples:
-* `delete 1` would delete the 1st item in the unscheduled item list.
-* `delete 2.1` would delete the 1st item in the Day 2 item list.
+* `delete 1` would delete the 1st activity in the unscheduled activity list.
+* `delete 2.1` would delete the 1st activity in the Day 2 activity list.
 
 Running `delete 1`
 
@@ -439,34 +444,34 @@ Running `delete 1`
 
 ### Viewing vacant timeslots : `free`
 
-Displays the vacant timeslots available for scheduling items.
+Displays the vacant timeslots available for you to schedule activities.
 
 Format: `free`
 
-### Scheduling an item : `plan`
+### Scheduling an activity : `plan`
 
-Schedules an item from the Wishlist.
+Schedules an activity from your wishlist.
 
 Format: `plan INDEX d/DAY_NUMBER st/START_TIME`
 
-* Schedules the item at the specified `INDEX`. The index refers to the index number displayed in the Wishlist.
-* When an item is scheduled, the cost of the item is automatically deducted from the budget of the itinerary.
+* Schedules the activity at the specified `INDEX`. The index refers to the index number displayed in the wishlist.
+* When an activity is scheduled, the cost of the activity is automatically deducted from the budget of the itinerary.
 * `DAY_NUMBER` must be an integer from 1 to the duration (in days) of the trip.
 * `START_TIME` should be given in the format `hh:mm`, or `hh:mm:ss` where `hh` is the hour in 24-hour format, `mm` is the minute, and `ss` is the seconds.
-* The end time of the item is automatically calculated by adding the `DURATION` of the item to the `START_TIME`.
-* You can only add an item if there is no clash in timing between the start and end time of the new item, and the start and end time of any existing scheduled item.
+* The end time of the activity is automatically calculated by adding the `DURATION` of the activity to the `START_TIME`.
+* You can only add an activity if there is no clash in timing between the start and end time of the new activity, and the start and end time of any existing scheduled activity.
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Note:**<br>
 
-* When scheduling an item, please ensure that the item stays within the budget of the itinerary. An error would be shown otherwise.<br>
+* When scheduling an activity, please ensure that the activity stays within the budget of the itinerary. An error would be shown otherwise.<br>
 
 </div>
 
 Examples:
-* `plan 2 d/3 st/12:00` would add the 2nd item in the Wishlist to Day 3, starting at 12pm.
-* `plan 1 d/1 st/14:50:10` would add the 1st item in the Wishlist to Day 1, starting at 14:50pm, 10 seconds in.
+* `plan 2 d/3 st/12:00` would add the 2nd activity in the wishlist to Day 3, starting at 12pm.
+* `plan 1 d/1 st/14:50:10` would add the 1st activity in the wishlist to Day 1, starting at 14:50pm, 10 seconds in.
 
 Running `plan 1 d/1 st/11:00`
 
@@ -474,18 +479,18 @@ Running `plan 1 d/1 st/11:00`
 
 <div style="page-break-after: always"></div>
 
-### Unscheduling an item : `unplan`
+### Unscheduling an activity : `unplan`
 
-Takes an item from the itinerary and puts it back into the Wishlist.
+Takes an activity from the list of days and puts it back into the wishlist.
 
 Format: `unplan INDEX`
 
-* Unschedules the item at the specified `INDEX` as displayed on the day lists.
-* When an item is unscheduled, its cost is automatically added back to the budget of the itinerary.
+* Unschedules the activity at the specified `INDEX` as displayed on the day lists.
+* When an activity is unscheduled, its cost is automatically added back to the budget of the itinerary.
 
 Examples:
-* `unplan 2.1` would unschedule the 1st item in the Day 2 item list.
-* `unplan 4.5` would unschedule the 5th item in the Day 4 item list.
+* `unplan 2.1` would unschedule the 1st activity in the Day 2 activity list.
+* `unplan 4.5` would unschedule the 5th activity in the Day 4 activity list.
 
 Running `unplan 1.1`
 
@@ -495,7 +500,7 @@ Running `unplan 1.1`
 
 ### Copying to clipboard : `copy`
 
-Copies the itinerary in a text format onto your device's clipboard so you can paste it anywhere.
+Copies your itinerary in a text format onto your device's clipboard so that you can paste it anywhere.
 
 Format: `copy`
 
@@ -506,8 +511,8 @@ Here's an example of how the copied text would look like: <br>
 
 **:information_source: Note:** <br>
 
-* The generated text includes all days within the itinerary, even if there are no items planned for the day.
-* The generated text does not include the items in the Wishlist. For items to be reflected in the generated text, they must be planned.<br>
+* The generated text includes all days within the itinerary, even if there are no activities planned for the day.
+* The generated text does not include the activities in the wishlist. For activities to be reflected in the generated text, they must be planned.<br>
 
 </div>
 
@@ -515,7 +520,7 @@ Here's an example of how the copied text would look like: <br>
 
 ### Exporting as PDF file : `pdf`
 
-Exports the itinerary as a PDF file. The file can be found under the "Waddle" folder in your "Documents" folder.
+Exports your itinerary as a PDF file. The file can be found under the "Waddle" folder in your "Documents" folder.
 
 [//]: # (TODO: include screenshots of where to find it for windows and mac, maybe linux but idk how)
 
@@ -528,7 +533,7 @@ Here's an example of how the generated PDF would look like: <br>
 
 **:information_source: Note:** <br>
 
-* The generated PDF file does not contain the items in the Wishlist. For items to be reflected in the generated PDF file, they must be planned.<br>
+* The generated PDF file does not contain the activities in your wishlist. For these activities to be reflected in the generated PDF file, you must plan them.<br>
 * PDF can only display up to 35 characters for itinerary description and 50 characters for activity description.
 
 </div>
@@ -545,11 +550,11 @@ Format: `home`
 
 ### Saving the data
 
-Waddle data is saved in the hard disk automatically upon any change in the data. There is no need to save manually.
+Waddle data is saved in your hard disk automatically upon any change in the data. There is no need for you to save manually.
 
 ### Editing the data file
 
-Waddle data is saved as a JSON file `[JAR file location]/data/waddle.json`. Advanced users are welcome to update data directly by editing that data file.
+Waddle data is saved as a JSON file `[JAR file location]/data/waddle.json`. If you know how JSON works, you are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: <b>Caution:</b>
 If your changes to the data file makes its format invalid, Waddle will discard all data and start with an empty data file at the next run. Please perform a backup before manually editing data.
@@ -586,18 +591,18 @@ If your changes to the data file makes its format invalid, Waddle will discard a
 
 <div style="page-break-after: always"></div>
 
-### Item planning page commands
+### Activity-planning page commands
 
-| Action                                                       | Format, Examples                                                                                         |
-|--------------------------------------------------------------|----------------------------------------------------------------------------------------------------------|
-| [**Help**](#viewing-help--help)                              | `help`                                                                                                                                                            |  
-| [**Add Item**](#adding-an-item--add)                         | `add d/DESCRIPTION [p/PRIORITY] [c/COST] [du/DURATION]`<br> e.g.,`add d/Visit Taj Mahal p/5 c/40 du/180` |
-| [**Edit Item**](#editing-the-details-of-an-item--edit)       | `edit INDEX [d/DESCRIPTION] [p/PRIORITY] [c/COST] [du/DURATION]`<br> e.g., `edit 4.1 c/50`               |
-| [**Delete Item**](#deleting-an-item--delete)                 | `delete INDEX`<br> e.g., `delete 3`                                                                      |
-| [**View Vacant Timeslots**](#viewing-vacant-timeslots--free) | `free`                                                                                                   |
-| [**Schedule Item**](#scheduling-an-item--plan)               | `plan INDEX d/DAY NUMBER st/START TIME`<br> e.g., `plan 1 d/4 st/12:00`                                  |
-| [**Unschedule Item**](#unscheduling-an-item--unplan)         | `unplan INDEX`<br> e.g., `unplan 3.2`                                                                    |
-| [**Copy to clipboard**](#copying-to-clipboard--copy)         | `copy`                                                                                                   |
-| [**Export to PDF**](#exporting-as-pdf-file--pdf)             | `pdf`                                                                                                    |
-| [**Return to Main Page**](#returning-to-main-page--home)     | `home`                                                                                                   |
-| [**Exit**](#exiting-waddle--exit)                            | `exit`                                                                                                   |
+| Action                                                         | Format, Examples                                                                                         |
+|----------------------------------------------------------------|----------------------------------------------------------------------------------------------------------|
+| [**Help**](#viewing-help--help)                                | `help`                                                                                                   |  
+| [**Add Activity**](#adding-an-activity--add)                   | `add d/DESCRIPTION [p/PRIORITY] [c/COST] [du/DURATION]`<br> e.g.,`add d/Visit Taj Mahal p/5 c/40 du/180` |
+| [**Edit Activity**](#editing-the-details-of-an-activity--edit) | `edit INDEX [d/DESCRIPTION] [p/PRIORITY] [c/COST] [du/DURATION]`<br> e.g., `edit 4.1 c/50`               |
+| [**Delete Activity**](#deleting-an-activity--delete)           | `delete INDEX`<br> e.g., `delete 3`                                                                      |
+| [**View Vacant Timeslots**](#viewing-vacant-timeslots--free)   | `free`                                                                                                   |
+| [**Schedule Activity**](#scheduling-an-activity--plan)         | `plan INDEX d/DAY NUMBER st/START TIME`<br> e.g., `plan 1 d/4 st/12:00`                                  |
+| [**Unschedule Activity**](#unscheduling-an-activity--unplan)   | `unplan INDEX`<br> e.g., `unplan 3.2`                                                                    |
+| [**Copy to clipboard**](#copying-to-clipboard--copy)           | `copy`                                                                                                   |
+| [**Export to PDF**](#exporting-as-pdf-file--pdf)               | `pdf`                                                                                                    |
+| [**Return to Main Page**](#returning-to-main-page--home)       | `home`                                                                                                   |
+| [**Exit**](#exiting-waddle--exit)                              | `exit`                                                                                                   |
