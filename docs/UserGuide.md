@@ -409,7 +409,7 @@ Examples:
 
 <p align="center">
 
-<img src="images/addClassCommand_after.png" width="400""/>
+<img src="images/addClassCommand_after.png" width="400"/>
 
 </p>
 
