@@ -767,7 +767,7 @@ If the data file fails to follow the required format, PayMeLah will **discard al
 --------------------------------------------------------------------------------------------------------------------
 
 **Q2**: How do I **transfer my data** to PayMeLah on another computer?<br>
-**A**: Here is a X-step guide to transfer your data!
+**A**: Here is a simple 4-step guide to transfer your data!
 
 1. Find your current data file. By default, it should be a `paymelah.json` file found in your `data` folder. See more under [saving your data](#saving-your-data).
 
