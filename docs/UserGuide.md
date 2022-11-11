@@ -942,6 +942,8 @@ the item is currently in the second position on the list.
 
 Any item that the business needs to operate.
 
+<div style="page-break-after: always;"></div>
+
 ### JAR file
 
 `JAR` stands for `Java Archive` and is a file format that is used to store the files to run TrackO. `JAR` files are 
