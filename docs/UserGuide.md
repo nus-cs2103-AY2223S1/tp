@@ -457,23 +457,19 @@ If you want to understand how each command can be used with the help of relevant
 
 #### Creating a new person: `add person`
 
-It is the start of a new semester and you are excited to work with your new classmates on software engineering projects. 
-You want to get to know them better before you work with them in your teams. There is a person that seem like a really 
-fun person to work with, and you cannot wait to know more about them. Simply ask for their name, email and phone number 
-and simply key in `add person -e <EMAIL> -n<NAME> -p<PHONE>` and their contact details will be saved! Now you can contact 
-them easily before you form your project groups. You may optionally specify `-t <TAGS>` for any interesting features 
-you remember of the person!
+It's the start of a new semester, and you are excited to work with your new classmates on software engineering projects. 
+You meet a person that seems like a really fun person to work with, and you can't wait to know more about them. You ask for their name, email and phone number 
+and simply key in `add person -e <EMAIL> -n<NAME> -p<PHONE>` and their contact details are saved! Now you can contact 
+them easily before you form your project groups. You may optionally specify `-t <TAGS>` for any interesting qualities about the person!
 
 The `add person` command allows you to add a new person to TruthTable. The new person is added to the [persons section](#persons-section) as seen in the image
-below. Do not worry if an error shows up, you might have typed something wrongly. Here, let us take a quick walkthrough 
-on how to add a person.
+below. Do not worry if an error shows up, you might have typed something wrongly. Here, let us take walk through an example on how to add a person.
 
-Let us try to add a new person called John Doe. Enter the command
+Let us try to add John Doe to our application, along with his phone number and email address. Enter the command
 
 `add person -n "John Doe" -p 98765432 -e johnd@example.com` 
 
-If done successfully, you should see a new person show up in the [persons section](#persons-section) as seen below. Please 
-refer below.
+If done successfully, you should see a new person show up in the [persons section](#persons-section) as seen below.
 
 ![Add Person Example](images/AddPersonExample.png)
 
@@ -482,8 +478,8 @@ refer below.
 | Flags           | Required           | Remarks                                                                |
 |-----------------|--------------------|------------------------------------------------------------------------|
 | `-h`, `--help`  | :x:                | Shows [help message](#understanding-the-help-message) for this command |
-| `-e`, `--email` | :heavy_check_mark: | Email of person (e.g. truth@table.com)                                 |
-| `-n`, `--name`  | :heavy_check_mark: | Name of person (e.g. "Truth Table")                                    |
+| `-e`, `--email` | :heavy_check_mark: | Email of person (e.g. johndoe@gmail.com)                               |
+| `-n`, `--name`  | :heavy_check_mark: | Name of person (e.g. "John Doe")                                       |
 | `-p`,`--phone`  | :heavy_check_mark: | Phone of person (e.g. 98765432)                                        |
 | `-t`,`--tags`   | :x:                | Tags of person (e.g. Frontend, Backend)                                |
 
@@ -502,7 +498,7 @@ A person can have any number of tags (including 0).
 * `add person -n "John Doe" -p 98765432 -e johnd@example.com` adds a person named "John Doe", with phone number
   "98765432" and email "johnd@example.com".
 * `a p -n "Betsy Crowe" -e betsycrowe@example.com -p 12345678 -t criminal friend` adds a person named "Betsy Crowe",
-  with phone number "12345678" and tags named "criminal" and "friend".
+  with phone number "12345678" and tags "designer" and "friend".
 
 #### Editing a person: `edit person`
 
