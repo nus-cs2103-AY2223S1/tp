@@ -184,7 +184,7 @@ Please see the [Examples](#add-examples) below for more information.
 
 * You want to add the personal information of the patient such as their name and contact details (phone number and email).
 * You want to add the personal information of a patient's next-of-kin such as their next-of-kin's name, relationship
-  to the patient and contact number
+  to the patient and contact number.
 * You want to add a patient's type (inpatient/outpatient).
 * If the patient is an inpatient, you want to add the location of their ward (hospital wing, floor number of the ward 
   and ward number).
