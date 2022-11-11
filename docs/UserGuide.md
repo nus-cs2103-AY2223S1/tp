@@ -728,6 +728,11 @@ Similar to other CLI applications, CheckUp supports a few keyboard shortcuts:
   * Navigate past commands with the `UP` and `DOWN` arrow keys.
   * Clear the text currently in the command box with `Ctrl + Shift + C`.
 
+**Reason for usage:**
+
+* You want to quickly access a previously entered command without having to retype it.
+* You want to clear the input line of a long command without having to manually delete it.
+
 <sub><sup>[back to top](#back-to-topt), [back to features](#features), [back to segment top](#general-commands)</sup></sub>
 
 --------------------------------------------------------------------------------------------------------------------
