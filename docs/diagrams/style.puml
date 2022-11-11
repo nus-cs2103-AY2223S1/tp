@@ -31,6 +31,12 @@
 !define STORAGE_COLOR_T3 #806600
 !define STORAGE_COLOR_T2 #544400
 
+!define ORDER_MODEL_COLOR #707BE3
+!define ORDER_MODEL_COLOR_T1 #6974D5
+!define ORDER_MODEL_COLOR_T2 #626CC7
+!define ORDER_MODEL_COLOR_T3 #545DAB
+!define ORDER_MODEL_COLOR_T4 #383E72
+
 !define USER_COLOR #000000
 
 skinparam BackgroundColor #FFFFFFF
@@ -69,7 +75,8 @@ skinparam ParticipantPadding 10
 skinparam Shadowing false
 skinparam DefaultTextAlignment center
 skinparam packageStyle Rectangle
+skinparam classAttributeIconSize 0
 
 hide footbox
-hide members
+hide empty members
 hide circle

@@ -1,0 +1,78 @@
+@startuml
+!include style.puml
+skinparam noteTextAlignment left
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TrackOParser" as TrackOParser LOGIC_COLOR
+participant "parser:AddItemCommandParser" as AddItemCommandParser LOGIC_COLOR
+participant "toAdd:InventoryItem" as toAdd LOGIC_COLOR
+participant "command:AddItemCommand" as AddItemCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+[-> LogicManager : execute("addi i/Key q/200\nd/Cabinet keys\nsp/9.90 cp/4.90\nt/new")
+activate LogicManager
+
+LogicManager -> TrackOParser : parseCommand("addi i/Key q/200\nd/Cabinet keys\nsp/9.90 cp/4.90\nt/new")
+activate TrackOParser
+
+create AddItemCommandParser
+TrackOParser -> AddItemCommandParser
+activate AddItemCommandParser
+
+AddItemCommandParser --> TrackOParser : parser
+deactivate AddItemCommandParser
+
+TrackOParser -> AddItemCommandParser : parse("i/Key q/200\nd/Cabinet keys\nsp/9.90 cp/4.90\nt/new")
+activate AddItemCommandParser
+
+
+create toAdd
+note right
+<i>(omitted to reduce diagram complexity)</i>
+<b>parse</b> method argument is processed as follows:
+* separated into prefixes ("i/", "q/", etc) using the ArgumentTokenizer class,
+* have accompanying values (Key, 200, etc)
+encapsulated in relevant data classes (ItemName, Quantity, etc)
+after validation using the ParserUtil utility class,
+* passed as arguments for InventoryItem instantiation
+end note
+AddItemCommandParser -> toAdd : create item with item data
+activate toAdd
+
+toAdd --> AddItemCommandParser : toAdd
+deactivate
+
+create AddItemCommand
+AddItemCommandParser -> AddItemCommand : AddItemCommand(toAdd)
+activate AddItemCommand
+
+AddItemCommand --> AddItemCommandParser : command
+deactivate AddItemCommand
+
+AddItemCommandParser --> TrackOParser : command
+deactivate AddItemCommandParser
+
+AddItemCommandParser -[hidden]-> TrackOParser
+destroy AddItemCommandParser
+
+TrackOParser --> LogicManager: command
+deactivate TrackOParser
+
+LogicManager -> AddItemCommand : execute(model)
+activate AddItemCommand
+
+create CommandResult
+AddItemCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddItemCommand : result
+deactivate CommandResult
+
+AddItemCommand --> LogicManager : result
+deactivate AddItemCommand
+
+<-- LogicManager : result
+deactivate LogicManager
+@enduml

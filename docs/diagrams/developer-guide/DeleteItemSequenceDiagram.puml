@@ -1,0 +1,76 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TrackOParser" as TrackOParser LOGIC_COLOR
+participant "parser:DeleteItemCommandParser" as DeleteItemCommandParser LOGIC_COLOR
+participant "command:DeleteItemCommand" as DeleteItemCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("deletei 1")
+activate LogicManager
+
+LogicManager -> TrackOParser : parseCommand("deletei 1")
+activate TrackOParser
+
+create DeleteItemCommandParser
+TrackOParser -> DeleteItemCommandParser
+activate DeleteItemCommandParser
+
+DeleteItemCommandParser --> TrackOParser : parser
+deactivate DeleteItemCommandParser
+
+TrackOParser -> DeleteItemCommandParser : parse("1")
+activate DeleteItemCommandParser
+
+create DeleteItemCommand
+DeleteItemCommandParser -> DeleteItemCommand
+activate DeleteItemCommand
+
+DeleteItemCommand --> DeleteItemCommandParser : command
+deactivate DeleteItemCommand
+
+DeleteItemCommandParser --> TrackOParser : command
+deactivate DeleteItemCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+DeleteItemCommandParser -[hidden]-> TrackOParser
+destroy DeleteItemCommandParser
+
+TrackOParser --> LogicManager : command
+deactivate TrackOParser
+
+LogicManager -> DeleteItemCommand : execute(model)
+activate DeleteItemCommand
+
+DeleteItemCommand -> Model : get item by index
+activate Model
+
+Model --> DeleteItemCommand : inventoryItemToDelete
+deactivate Model
+
+DeleteItemCommand -> Model : deleteItem(inventoryItemToDelete)
+activate Model
+deactivate Model
+
+create CommandResult
+DeleteItemCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DeleteItemCommand : result
+deactivate CommandResult
+
+DeleteItemCommand --> LogicManager : result
+deactivate DeleteItemCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+DeleteItemCommand -[hidden]-> TrackOParser
+destroy DeleteItemCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

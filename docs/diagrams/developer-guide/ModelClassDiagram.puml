@@ -1,0 +1,81 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Model <<Rectangle>>{
+Class "<<interface>>\nReadOnlyTrackO" as ReadOnlyTrackO
+Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
+Class "<<interface>>\nModel" as Model
+Class TrackO
+Class ModelManager
+Class UserPrefs
+
+Class InventoryList
+Class InventoryItem
+Class ItemName
+Class Description
+Class Price
+Class Tag
+Class Quantity
+
+Class OrderList
+Class Order {
+    - timeCreated: LocalDateTime
+    - isPaid: boolean
+    - isDelivered: boolean
+}
+Class ItemQuantityPair
+Class Name
+Class Phone
+Class Email
+Class Address
+Class RecordedItem
+
+Class "<<interface>>\nItem" as Item
+
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Model
+
+TrackO .up.|> ReadOnlyTrackO
+
+ModelManager .up.|> Model
+Model .right.> ReadOnlyUserPrefs
+Model .left.> ReadOnlyTrackO
+ModelManager -left-> "1" TrackO
+ModelManager -right-> "1" UserPrefs
+UserPrefs .up.|> ReadOnlyUserPrefs
+
+TrackO *--> "1" InventoryList
+InventoryList --> "~* all" InventoryItem
+InventoryItem *--> "1" ItemName
+InventoryItem *--> "1" Description
+InventoryItem *--> "2" Price
+InventoryItem *--> "1" Quantity
+InventoryItem *--> "*" Tag
+
+TrackO *--> "1" OrderList
+OrderList --> "~* all" Order
+Order *--> "1" Name
+Order *--> "1" Phone
+Order *--> "1" Email
+Order *--> "1" Address
+Order *--> "*" ItemQuantityPair
+
+InventoryItem ....|> Item
+ItemQuantityPair *--> "1" Item
+RecordedItem ..|> Item
+
+ItemQuantityPair *--> "1" Quantity
+
+ItemName -[hidden]left-> Quantity
+Item -[hidden]down-> ItemQuantityPair
+Item -[hidden]down-> RecordedItem
+Quantity -[hidden]down-> ItemQuantityPair
+
+ModelManager -->"~* filtered" InventoryItem
+ModelManager -->"~* filtered" Order
+@enduml

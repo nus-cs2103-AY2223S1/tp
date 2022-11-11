@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox id="cardPane" styleClass="card-pane" fx:id="cardPane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+  <GridPane prefWidth="175.0" HBox.hgrow="ALWAYS">
+    <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+    </columnConstraints>
+    <VBox alignment="CENTER_LEFT" minHeight="120" GridPane.columnIndex="0">
+      <padding>
+        <Insets bottom="5" left="15" right="5" top="5" />
+      </padding>
+      <HBox alignment="CENTER_LEFT" spacing="5">
+        <VBox style="-fx-padding:  0 20 0 10;" prefWidth="85" minWidth="85" maxWidth="85" alignment="CENTER">
+          <Label fx:id="id" styleClass="cell_big_label_order">
+            <minWidth>
+              <!-- Ensures that the label text is never truncated -->
+              <Region fx:constant="USE_PREF_SIZE" />
+            </minWidth>
+          </Label>
+        </VBox>
+        <HBox style="-fx-background-color: #FFEDEC">
+          <padding>
+            <Insets left="1"/>
+          </padding>
+        </HBox>
+        <VBox style="-fx-padding: 0 20 0 20;" spacing="2" HBox.hgrow="ALWAYS">
+          <VBox fx:id="items" spacing="2"/>
+          <HBox alignment="CENTER_LEFT" spacing="5.0" fx:id="dateContainer" styleClass="date-container">
+            <Region styleClass="date-icon" fx:id="timeCreatedIcon"/>
+            <Label fx:id="timeCreated" styleClass="date-label" text="\$timeCreated" />
+          </HBox>
+          <HBox fx:id="totalOrderPriceContainer" alignment="CENTER_LEFT"
+                spacing="5.0" styleClass="light-green-container">
+            <Region styleClass="total-price-icon" fx:id="totalPriceIcon"/>
+            <Label fx:id="totalOrderPrice"/>
+          </HBox>
+          <HBox>
+            <Label fx:id="paidStatus" styleClass="status-labels"/>
+            <Label fx:id="deliveryStatus" styleClass="status-labels"/>
+          </HBox>
+          <HBox alignment="CENTER_LEFT" spacing="10.0">
+            <Region styleClass="icon-button" id="personIcon"/>
+            <Label fx:id="name" styleClass="cell_small_label_order" text="\$first" />
+          </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
+              <Region styleClass="icon-button" id="phoneIcon"/>
+              <Label fx:id="phone" styleClass="cell_small_label_order" text="\$phone" />
+            </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
+              <Region styleClass="icon-button" id="addressIcon"/>
+              <Label fx:id="address" styleClass="cell_small_label_order" text="\$address" />
+            </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
+              <Region styleClass="icon-button" id="emailIcon"/>
+              <Label fx:id="email" styleClass="cell_small_label_order" text="\$email" />
+            </HBox>
+        </VBox>
+      </HBox>
+
+
+
+    </VBox>
+      <rowConstraints>
+         <RowConstraints />
+      </rowConstraints>
+  </GridPane>
+</HBox>

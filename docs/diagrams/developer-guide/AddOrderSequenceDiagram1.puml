@@ -1,0 +1,89 @@
+@startuml
+!include style.puml
+skinparam noteTextAlignment left
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TrackOParser" as TrackOParser LOGIC_COLOR
+participant "parser:AddOrderCommandParser" as AddOrderCommandParser LOGIC_COLOR
+participant "toAdd:Order" as toAdd LOGIC_COLOR
+participant "command:AddOrderCommand" as AddOrderCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "model:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("addo n/John Doe\np/98765432\ne/johnd@example.com\na/311, Clementi Ave 2, #02-25")
+activate LogicManager
+
+LogicManager -> TrackOParser : parseCommand("addo n/John Doe\np/98765432\ne/johnd@example.com\na/311, Clementi Ave 2, #02-25")
+activate TrackOParser
+
+create AddOrderCommandParser
+TrackOParser -> AddOrderCommandParser
+activate AddOrderCommandParser
+
+AddOrderCommandParser --> TrackOParser : parser
+deactivate AddOrderCommandParser
+
+TrackOParser -> AddOrderCommandParser : parse("n/John Doe\np/98765432\ne/johnd@example.com\na/311, Clementi Ave 2, #02-25")
+activate AddOrderCommandParser
+
+
+create toAdd
+note right
+<i>(omitted to reduce diagram complexity)</i>
+<b>parse</b> method argument is processed as follows:
+* separated into prefixes ("n/", "p/", etc) using the ArgumentTokenizer class,
+* have accompanying values (John Doe, 98765432, etc)
+encapsulated in relevant data classes (Name, Phone, etc)
+after validation using the ParserUtil utility class,
+* passed as arguments for Order instantiation
+end note
+AddOrderCommandParser -> toAdd : create order with empty item data
+activate toAdd
+
+toAdd --> AddOrderCommandParser : toAdd
+deactivate
+
+create AddOrderCommand
+AddOrderCommandParser -> AddOrderCommand : AddOrderCommand(toAdd)
+activate AddOrderCommand
+
+AddOrderCommand --> AddOrderCommandParser : command
+deactivate AddOrderCommand
+
+AddOrderCommandParser --> TrackOParser : command
+deactivate AddOrderCommandParser
+
+AddOrderCommandParser -[hidden]-> TrackOParser
+destroy AddOrderCommandParser
+
+TrackOParser --> LogicManager: command
+deactivate TrackOParser
+
+LogicManager -> AddOrderCommand : execute(model)
+activate AddOrderCommand
+
+create CommandResult
+AddOrderCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddOrderCommand : result
+deactivate CommandResult
+
+AddOrderCommand --> LogicManager : result
+deactivate AddOrderCommand
+
+note left
+The returned CommandResult object
+here contains the message that the
+UI will use to prompt user to enter
+further inputs for item data and
+instructions to end the command sequence
+end note
+<-- LogicManager : result
+deactivate LogicManager
+@enduml
