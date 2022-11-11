@@ -70,7 +70,7 @@ To begin planning your travels with Waddle, simply set it up as follows:
 
 4. Double-click the file to start the app. This will bring you to the Waddle [main page](#the-main-page). A graphical user interface (GUI) similar to the below should appear in a few seconds.
    Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+   ![Main Page](images/mainPage.png)
 
 And you're ready to waddle! To execute any command, type it command in the command box and press Enter. e.g. typing **`help`** and pressing Enter will open the help window.
 <div style="page-break-after: always"></div>
@@ -145,6 +145,7 @@ Format: `exit`
 
 The main page, or home page, of Waddle displays the list of itineraries you have created and stored in the app.
 
+![Main Page](images/mainPage.png)
 [Commands exclusive to the main page](#commands-on-the-main-page) can help you:
 * [add](#creating-a-new-itinerary--add) new itineraries
 * [list](#listing-all-itineraries--list) or [find](#locating-itineraries-by-description--find) existing itineraries
@@ -185,6 +186,11 @@ alphanumeric characters, spaces and these following special characters: `()&!':.
   - e.g. `b/1000.505` will be reflected as $1,000.51.
 
 </div>
+
+Examples:
+* `add d/Summer Trip c/Singapore sd/2025-10-28 du/15 p/4 b/1000`
+
+![Add Command](images/addCommand.png)
 <div style="page-break-after: always"></div>
 
 ### Listing all itineraries : `list`
@@ -193,6 +199,7 @@ Shows a list of all itineraries in Waddle.
 
 Format: `list`
 
+![List Command](images/listCommand.png)
 ### Locating itineraries by description : `find`
 
 Finds itineraries with names containing any of the given keywords.
@@ -211,7 +218,7 @@ Examples:
 * `find India` returns `My India Trip` and `India Expedition`
 * `find India Trip` returns `My Japan Trip`, `My India Trip`, `India Expedition`
 * `find trip` returns the following result: <br><br>
-  ![result for 'find trip'](images/findTripResult.png)
+  ![result for 'find trip'](images/findCommand.png)
 
 ### Editing the details of an itinerary : `edit`
 
@@ -236,6 +243,10 @@ Examples:
 * `edit 1 du/15 sd/2023-11-03` Edits the duration and start date of the first itinerary to be `15` and `2023-11-03` respectively.
 * `edit 2 c/India` Edits the country of the second itinerary to be `India`.
 
+Running `edit 1 du/15 sd/2023-11-03`
+
+![Edit Command](images/editCommand.png)
+
 <div style="page-break-after: always"></div>
 
 ### Deleting an itinerary : `delete`
@@ -251,12 +262,17 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd itinerary in Waddle.
 * `find Japan` followed by `delete 1` deletes the 1st itinerary in the results of the `find` command.
 
+Running `delete 2`
+
+![Delete Command](images/deleteCommand.png)
+
 ### Clearing itineraries : `clear`
 
 Deletes all itineraries in Waddle.
 
 Format: `clear`
 
+![Clear command](images/clearCommand.png)
 ### Selecting an itinerary : `select`
 
 Enters the [item planning page](#the-planning-page) for the selected itinerary.
@@ -332,6 +348,10 @@ Examples:
 * `add d/Go to the Louvre p/2 du/1`
 * `add d/Skiing du/14 c/100`
 
+Running `add d/Go to the Louvre p/2 du/1`
+
+![Add Activity](images/addActivityCommand.png)
+
 <div style="page-break-after: always"></div>
 
 ### Editing the details of an item : `edit`
@@ -357,6 +377,11 @@ Examples:
 * `edit 1 d/Go skiing` would edit the description of the 1st item in the unscheduled item list to be `Go skiing`.
 * `edit 2.2 p/3 c/100` would edit the priority and cost of the 2nd item in the Day 2 list to be `3` and `100` respectively.
 
+Running `edit 1 d/Go skiing`
+
+![Edit Activity](images/editActivityCommand.png)
+
+
 ### Deleting an item : `delete`
 
 Deletes an existing item in the item list.
@@ -368,6 +393,10 @@ Format: `delete INDEX`
 Examples:
 * `delete 1` would delete the 1st item in the unscheduled item list.
 * `delete 2.1` would delete the 1st item in the Day 2 item list.
+
+Running `delete 1`
+
+![Delete Activity](images/deleteActivityCommand.png)
 
 <div style="page-break-after: always"></div>
 
@@ -402,6 +431,10 @@ Examples:
 * `plan 2 d/3 st/12:00` would add the 2nd item in the Wishlist to Day 3, starting at 12pm.
 * `plan 1 d/1 st/14:50:10` would add the 1st item in the Wishlist to Day 1, starting at 14:50pm, 10 seconds in.
 
+Running `plan 1 d/1 st/11:00`
+
+![Plan Activity](images/planCommand.png)
+
 <div style="page-break-after: always"></div>
 
 ### Unscheduling an item : `unplan`
@@ -416,6 +449,10 @@ Format: `unplan INDEX`
 Examples:
 * `unplan 2.1` would unschedule the 1st item in the Day 2 item list.
 * `unplan 4.5` would unschedule the 5th item in the Day 4 item list.
+
+Running `unplan 1.1`
+
+![Unplan Activity](images/unplanCommand.png)
 
 <div style="page-break-after: always"></div>
 
