@@ -1,0 +1,26 @@
+@startuml
+start
+:User executes command;
+
+if () is ([command format is valid]) then
+  if () is ([at least one field provided]) then
+    if () is ([all fields have correct format]) then
+        if () is ([edited internship is unique]) then
+          :edit the internship
+          at specified index;
+          :display success message;
+        else ([else])
+          :display error message;
+        endif
+    else ([else])
+    :display error message;
+    endif
+  else ([else])
+    :display error message;
+  endif
+else ([else])
+  :display error message;
+endif
+
+stop
+@enduml

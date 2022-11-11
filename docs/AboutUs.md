@@ -9,51 +9,59 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Lee I-Shiuan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ish1506.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/ish1506)]
+[[portfolio](team/ish1506.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities:
+  * Testing
+  * In-charge of `Model` component
 
-### Jean Doe
+### Tan Xuan Yun
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/tanxuanyun.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/tanxuanyun)]
+[[portfolio](team/tanxuanyun.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: 
+  * Integration of components 
+  * In-charge of `Logic` component 
 
-### James Doe
+### Lee Cheng Da
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/chengda300.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/chengda300)] [[portfolio](team/chengda300.md)]
+
+* Role: Developer
+* Responsibilities:
+  * Documentation
+  * In-charge of `Storage` component
+
+### Liu Fangrui
+
+<img src="images/liufangrui.png" width="200px">
+
+[[github](http://github.com/liufangrui)]
+[[portfolio](team/liufangrui.md)]
+
+* Role: Developer
+* Responsibilities: 
+  * Deliverables and deadlines 
+  * Scheduling and tracking
+
+### Ng Qi Ting
+
+<img src="images/nqt230.png" width="200px">
+
+[[github](http://github.com/nqt230)]
+[[portfolio](team/nqt230.md)]
 
 * Role: Developer
 * Responsibilities: UI

@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -7,11 +8,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 import org.junit.jupiter.api.Test;
 
 public class EmailTest {
-
-    @Test
-    public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Email(null));
-    }
 
     @Test
     public void constructor_invalidEmail_throwsIllegalArgumentException() {
@@ -64,5 +60,15 @@ public class EmailTest {
         assertTrue(Email.isValidEmail("peter_jack@very-very-very-long-example.com")); // long domain name
         assertTrue(Email.isValidEmail("if.you.dream.it_you.can.do.it@example.com")); // long local part
         assertTrue(Email.isValidEmail("e1234567@u.nus.edu")); // more than one period in domain
+    }
+
+    // solution adapted from
+    // https://stackoverflow.com/questions/5689795/testing-tostring-junit
+    @Test
+    public void testToString() {
+        // null email
+        Email email = new Email(null);
+        String expected = "No email";
+        assertEquals(expected, email.toString());
     }
 }

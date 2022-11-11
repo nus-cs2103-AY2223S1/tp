@@ -19,6 +19,14 @@ public class AppUtil {
     }
 
     /**
+     * Gets a string representation of the URL to the stylesheet from the specified theme.
+     */
+    public static String getStylesheetUrl(String theme) {
+        requireNonNull(theme);
+        return MainApp.class.getResource("/view/" + theme).toExternalForm();
+    }
+
+    /**
      * Checks that {@code condition} is true. Used for validating arguments to methods.
      *
      * @throws IllegalArgumentException if {@code condition} is false.

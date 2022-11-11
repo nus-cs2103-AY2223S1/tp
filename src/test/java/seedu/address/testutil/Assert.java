@@ -31,4 +31,18 @@ public class Assert {
         Throwable thrownException = Assertions.assertThrows(expectedType, executable);
         Assertions.assertEquals(expectedMessage, thrownException.getMessage());
     }
+
+    /**
+     * Asserts that the {@code executable} does not throw any exceptions.
+     * This is a wrapper method that invokes {@link Assertions#assertDoesNotThrow(Executable)}, to maintain consistency
+     * with our custom {@link #assertThrows(Class, String, Executable)} method.
+     * To standardize API calls in this project, users should use this method instead of
+     * {@link Assertions#assertDoesNotThrow(Executable)}.
+     */
+    // solution adapted from
+    // https://stackoverflow.com/questions/9803839/test-with-no-expected-exception
+    public static void assertDoesNotThrow(Executable executable) {
+        Assertions.assertDoesNotThrow(executable);
+    }
+
 }

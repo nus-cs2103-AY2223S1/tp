@@ -1,14 +1,19 @@
 {
   "persons": [ {
+    "personId": 0,
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
+    "internshipId": null,
     "tagged": [ "friends" ]
   }, {
+    "personId": 0,
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
+    "internshipId":  null,
     "address": "4th street"
-  } ]
+  } ],
+  "internships": []
 }

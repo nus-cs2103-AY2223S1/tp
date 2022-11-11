@@ -1,0 +1,16 @@
+@startuml
+start
+:User executes sort person command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([exactly 1 valid criterion prefix is given])
+    :Sort the person list based on
+    the given criterion prefix;
+    :Display success message;
+else ([else])
+    :Display an invalid command format error;
+endif
+stop
+@enduml

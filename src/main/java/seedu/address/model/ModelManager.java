@@ -4,24 +4,30 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.internship.Internship;
+import seedu.address.model.internship.InternshipId;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonId;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of InterNUS data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final SortedList<Person> filteredPersons;
+    private final SortedList<Internship> filteredInternships;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -33,7 +39,10 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        // Solution below adapted from
+        // https://stackoverflow.com/questions/17958337/javafx-tableview-with-filteredlist-jdk-8-does-not-sort-by-column
+        filteredPersons = new SortedList<>(new FilteredList<>(this.addressBook.getPersonList()));
+        filteredInternships = new SortedList<>(new FilteredList<>(this.addressBook.getInternshipList()));
     }
 
     public ModelManager() {
@@ -125,7 +134,104 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        // Since we are just swapping between 2 observable lists and they are wrappers around
+        // the source list, it is safe to swap between SortedList and FilteredList.
+        @SuppressWarnings("unchecked")
+        FilteredList<Person> personList = (FilteredList<Person>) filteredPersons.getSource();
+        personList.setPredicate(predicate);
+    }
+
+    @Override
+    public void refreshPersonList() {
+        // Since we are just swapping between 2 observable lists and they are wrappers around
+        // the source list, it is safe to swap between SortedList and FilteredList.
+        @SuppressWarnings("unchecked")
+        FilteredList<Person> personList = (FilteredList<Person>) filteredPersons.getSource();
+        Predicate<? super Person> predicate = personList.getPredicate();
+        personList.setPredicate(PREDICATE_SHOW_NO_PERSONS);
+        personList.setPredicate(predicate);
+    }
+
+    @Override
+    public boolean hasInternship(Internship internship) {
+        requireNonNull(internship);
+        return addressBook.hasInternship(internship);
+    }
+
+    @Override
+    public void deleteInternship(Internship target) {
+        addressBook.removeInternship(target);
+    }
+
+    @Override
+    public void addInternship(Internship internship) {
+        addressBook.addInternship(internship);
+        updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
+    }
+
+    @Override
+    public void setInternship(Internship target, Internship editedInternship) {
+        requireAllNonNull(target, editedInternship);
+
+        addressBook.setInternship(target, editedInternship);
+    }
+
+    @Override
+    public ObservableList<Internship> getFilteredInternshipList() {
+        return filteredInternships;
+    }
+
+    @Override
+    public void updateFilteredInternshipList(Predicate<Internship> predicate) {
+        requireNonNull(predicate);
+        // Since we are just swapping between 2 observable lists and they are wrappers around
+        // the source list, it is safe to swap between SortedList and FilteredList.
+        @SuppressWarnings("unchecked")
+        FilteredList<Internship> internshipList = (FilteredList<Internship>) filteredInternships.getSource();
+        internshipList.setPredicate(predicate);
+    }
+
+    @Override
+    public void refreshInternshipList() {
+        // Since we are just swapping between 2 observable lists and they are wrappers around
+        // the source list, it is safe to swap between SortedList and FilteredList.
+        @SuppressWarnings("unchecked")
+        FilteredList<Internship> internshipList = (FilteredList<Internship>) filteredInternships.getSource();
+        Predicate<? super Internship> predicate = internshipList.getPredicate();
+        internshipList.setPredicate(PREDICATE_SHOW_NO_INTERNSHIPS);
+        internshipList.setPredicate(predicate);
+    }
+
+    @Override
+    public void sortPersonList(Comparator<Person> comparator) {
+        requireNonNull(comparator);
+        filteredPersons.setComparator(comparator);
+    }
+
+    @Override
+    public void sortInternshipList(Comparator<Internship> comparator) {
+        requireNonNull(comparator);
+        filteredInternships.setComparator(comparator);
+    }
+
+    @Override
+    public int getNextPersonId() {
+        return addressBook.getNextPersonId();
+    }
+
+    @Override
+    public int getNextInternshipId() {
+        return addressBook.getNextInternshipId();
+    }
+
+    @Override
+    public Person findPersonById(PersonId personId) {
+        return addressBook.findPersonById(personId);
+    }
+
+    @Override
+    public Internship findInternshipById(InternshipId internshipId) {
+        return addressBook.findInternshipById(internshipId);
     }
 
     @Override
@@ -144,7 +250,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && filteredInternships.equals(other.filteredInternships);
     }
 
 }
