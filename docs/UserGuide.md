@@ -3,14 +3,18 @@ layout: page
 title: User Guide
 ---
 # Waddle User Guide 🦆
-Waddle is a **simple, no-frills travel planning application catered to people who love doing everything on their keyboards**.
+Waddle is a **simple, no-frills travel planning application** aligned with your travel itinerary planning needs.
+Waddle provides you with a structured and intuitive way to plan your trips, even for itinerary planning beginners.
 
-Waddle allows you to plan your travels in **3 simple steps**.
+You can plan your travel itinerary in **3 simple steps**.
 1. Create a trip itinerary
-2. Add activities to your itinerary
+2. Add activities to your itinerary wishlist
 3. Make a schedule for your trip
 
 **It's that simple**.
+
+This is a comprehensive user guide for anyone who wants to learn more about how to use Waddle and its features.
+If this is your first time using Waddle, check out our [Tutorial for Beginners](#tutorial-for-beginners).
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always"></div>
@@ -18,7 +22,8 @@ Waddle allows you to plan your travels in **3 simple steps**.
 ## Table of Contents
 
 1. [**Quick start**](#quick-start)
-2. [**Features**](#features)
+2. [**Tutorial for Beginners**](#tutorial-for-beginners)
+3. [**Features**](#features)
    1. [**Universal commands**](#universal-commands)
       1. [`help` Viewing help](#viewing-help--help)
       2. [`exit` Exiting Waddle](#exiting-waddle--exit)
@@ -45,10 +50,10 @@ Waddle allows you to plan your travels in **3 simple steps**.
    6. [**Advanced**](#advanced)
       1. [Saving the data](#saving-the-data)
       2. [Editing the data file](#editing-the-data-file)
-3. [**FAQ**](#faq)
-4. [**Command summary**](#command-summary)
+4. [**FAQ**](#faq)
+5. [**Command summary**](#command-summary)
    1. [**Home page commands**](#home-page-commands)
-   2. [**Item planning page commands**](#item-planning-page-commands)
+   2. [**Activity-planning page commands**](#item-planning-page-commands)
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always"></div>
@@ -65,7 +70,7 @@ To begin planning your travels with Waddle, simply set it up as follows:
 
 4. Double-click the file to start the app. This will bring you to the Waddle [main page](#the-main-page). A graphical user interface (GUI) similar to the below should appear in a few seconds.
    Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+   ![Main Page](images/mainPage.png)
 
 And you're ready to waddle! To execute any command, type it command in the command box and press Enter. e.g. typing **`help`** and pressing Enter will open the help window.
 <div style="page-break-after: always"></div>
@@ -83,6 +88,110 @@ Some example commands you can try:
    * **`exit`** : Exits the app.
 
 For more commands and their details, refer to the [Features](#features) section below.
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always"></div>
+
+## Tutorial for Beginners
+
+If you are a beginner to Waddle, this tutorial will walk you through creating and planning your very first Waddle itinerary.
+
+
+This is the [main page](#the-main-page), which you will encounter when you open Waddle. 
+It displays all your current itineraries. 
+The various sections of the interface have been labeled in blue for your reference.
+If this is your first time launching Waddle, you will see the following page with two sample itineraries:
+![main-page-sample-ui](images/ug-beg-tut/main-page-sample-ui.png)
+
+
+If you wish to, you can [clear](#clearing-itineraries--clear) the sample itineraries by typing `clear` into the command box and pressing Enter.
+You will then see the below message:
+* insert image here
+
+Now you can add your first itinerary. To do so, use the [`add` command](#creating-a-new-itinerary--add) with the relevant itinerary details.
+Try executing the command `add d/Summer Trip sd/2023-06-01 du/5`. 
+It will add an itinerary named Summer Trip, starting from 1 June 2023 with a duration of 5 days.
+You should now see the message below and your itinerary added on the main page as follows:
+* insert image here
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes:**<br>
+
+* You can replace the add command inputs with the relevant details of your itinerary.
+* You can add optional details such as the country, number of people, and budget.
+  - e.g. Enter `add d/Summer Trip c/Japan sd/2023-06-01 du/5 p/4 b/2000` instead to specify the country as Japan, number of people as 4, and your budget as $2000. 
+* For additional information, refer to the [`add` command](#creating-a-new-itinerary--add)  in the [Features](#features) section under main page commands.
+
+</div>
+<div style="page-break-after: always"></div>
+
+Select the itinerary which you have just created by typing in `select` along with the index of the itinerary on the list, then press Enter.
+For example, if "Summer Trip" is shown as the first itinerary on the list, enter `select 1`.
+You will now see the planning page for the itinerary as follows:
+* insert image here
+
+You can return to the main page anytime you wish by executing `home`.
+
+To add an item to your Wishlist, use the [`add` command](#adding-an-item--add).
+Try adding a new item by typing in `add d/Meiji Shrine du/120` to the command box and press Enter.
+This will add a new item with the description of "Meiji Shrine" and a duration of 120 minutes.
+You should now see the item being displayed in the Wishlist.
+* insert image here
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes:**<br>
+
+* You can replace the add command inputs with the relevant details of your items.
+* You can include optional details such as the priority and cost.
+  - e.g. Enter `add d/Meiji Shrine du/120 p/5 c/20` instead to specify the priority as 5 and the cost as $20.
+* For additional information, refer to the [`add` command](#adding-an-item--add) explanation in the [Features](#features) section under itinerary planning page commands.
+
+</div>
+<div style="page-break-after: always"></div>
+
+Try adding a few more items! You should see the items listed in the Wishlist.
+
+To schedule an item from your Wishlist on a specific day in your itinerary, use the [`plan` command](#scheduling-an-item--plan).
+For example, type `plan 1 d/1 st/10:00` into the command box and Enter.
+Waddle will schedule the first item on your Wishlist for Day 1 of your itinerary starting at 10am.
+You should see the item being moved from the Wishlist section to the Day 1 item list, as follows:
+* insert image here
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes:**<br>
+
+* Note that the index of the item is now displayed as 1.1, meaning it is the first item on Day 1. 
+To find out more about the index format, refer to the section on Command Formats.
+* For additional information, refer to the [`plan` command](#scheduling-an-item--plan) explanation in the [Features](#features) section under itinerary planning page commands.
+
+</div>
+<div style="page-break-after: always"></div>
+Note that the index of the item is now shown as 1.1, meaning it is the first item on Day 1.
+
+Now you can try scheduling all the items in your Wishlist!
+
+Once you are satisfied with your schedule, you can export your schedule as a PDF document using the [`pdf` command](#exporting-as-pdf-file--pdf).
+Type `pdf` into the command box and Enter.
+You should now see the below:
+* insert image here
+
+Navigate to your computer's Documents folder, where you should see a folder named Waddle. 
+Open up the folder to see a PDF document with the same name as your exported itinerary.
+You should see your schedule displayed similar to the below image:
+* insert image here
+
+You can easily send your itinerary details to others using the [`copy` command](#copying-to-clipboard--copy).
+Type `copy` into the command box and Enter. 
+This will copy your itinerary to your clipboard, and you can now paste it in another location such as a messaging or email application.
+You should also see the below displayed in Waddle:
+* insert image here
+
+Congratulations! You have now created and planned your very first travel itinerary using Waddle.
+We hope this tutorial has helped you kickstart your journey!
+You can expand your Waddle knowledge further by reading the other sections of this User Guide, starting with the [Features](#features) that are available to you.
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always"></div>
@@ -135,6 +244,7 @@ Format: `exit`
 
 The main page, or home page, of Waddle displays the list of itineraries you have created and stored in the app.
 
+![Main Page](images/mainPage.png)
 [Commands exclusive to the main page](#commands-on-the-main-page) can help you:
 * [add](#creating-a-new-itinerary--add) new itineraries
 * [list](#listing-all-itineraries--list) or [find](#locating-itineraries-by-description--find) existing itineraries
@@ -175,6 +285,11 @@ alphanumeric characters, spaces and these following special characters: `()&!':.
   - e.g. `b/1000.505` will be reflected as $1,000.51.
 
 </div>
+
+Examples:
+* `add d/Summer Trip c/Singapore sd/2025-10-28 du/15 p/4 b/1000`
+
+![Add Command](images/addCommand.png)
 <div style="page-break-after: always"></div>
 
 ### Listing all itineraries : `list`
@@ -183,6 +298,7 @@ Shows a list of all itineraries in Waddle.
 
 Format: `list`
 
+![List Command](images/listCommand.png)
 ### Locating itineraries by description : `find`
 
 Finds itineraries with names containing any of the given keywords.
@@ -201,7 +317,7 @@ Examples:
 * `find India` returns `My India Trip` and `India Expedition`
 * `find India Trip` returns `My Japan Trip`, `My India Trip`, `India Expedition`
 * `find trip` returns the following result: <br><br>
-  ![result for 'find trip'](images/findTripResult.png)
+  ![result for 'find trip'](images/findCommand.png)
 
 ### Editing the details of an itinerary : `edit`
 
@@ -218,13 +334,17 @@ Format: `edit INDEX [d/DESCRIPTION] [c/COUNTRY] [sd/START_DATE] [du/DURATION] [p
 **:information_source: Notes:** <br>
 
 * If you are editing the budget, please ensure that it is sufficient to cover the cost of all the planned items. An error would be shown otherwise.<br>
-* If you reduce the duration of an itinerary, days will be removed from the back, and any items that were scheduled on a removed day would be returned to the Wishlist.<br>
+* If you reduce the duration of an itinerary, days will be removed from the back, and any items that were scheduled on a removed day would be returned to the wishlist.<br>
 
 </div>
 
 Examples:
 * `edit 1 du/15 sd/2023-11-03` Edits the duration and start date of the first itinerary to be `15` and `2023-11-03` respectively.
 * `edit 2 c/India` Edits the country of the second itinerary to be `India`.
+
+Running `edit 1 du/15 sd/2023-11-03`
+
+![Edit Command](images/editCommand.png)
 
 <div style="page-break-after: always"></div>
 
@@ -241,12 +361,17 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd itinerary in Waddle.
 * `find Japan` followed by `delete 1` deletes the 1st itinerary in the results of the `find` command.
 
+Running `delete 2`
+
+![Delete Command](images/deleteCommand.png)
+
 ### Clearing itineraries : `clear`
 
 Deletes all itineraries in Waddle.
 
 Format: `clear`
 
+![Clear command](images/clearCommand.png)
 ### Selecting an itinerary : `select`
 
 Enters the [item planning page](#the-planning-page) for the selected itinerary.
@@ -261,49 +386,54 @@ Examples:
 
 <div style="page-break-after: always"></div>
 
-### The planning page
+### The activity-planning page
 
-The planning page of an itinerary displays the list of items you have added to the itinerary. Items on the Wishlist that have not been added to you schedule yet will appear on top in order of priority, while scheduled items will appear in order of date and time.
+Once you have created your itinerary, you can now start adding and planning the activities that you want to complete in
+your time there! The activity-planning page of an itinerary displays the list of activities that you have added to your
+itinerary. Activities on the wishlist that you have not given a start time and date yet will appear at the very top,
+in order of _priority_ (as indicated by the number of stars). Activities that you have scheduled will instead appear in
+the list of days below the wishlist, sorted by _start time_.
 
-The index of scheduled items are in the format `DAY.ITEM_NUMBER`. Some examples:
-* The first item of the first day will have index `1.1`
-* The fifth item of the third day will have index `3.5`
-* The second item of the Wishlist will have index `2`
+The index of scheduled activities are in the format `DAY.ACTIVITY_NUMBER`. Some examples:
+* The _first_ activity of the _first_ day will have index `1.1`
+* The _fifth_ activity of the _third_ day will have index `3.5`
+* The _second_ activity of the wishlist will have index `2`
 
-Here's an example of how the item planning page looks like:
-![item planning page](images/itemPlanningUi.png)
+Here's an example of how your activity-planning page might look like:
+![activity-planning page](images/itemPlanningUi.png)
 
 <div style="page-break-after: always"></div>
 
-[Commands exclusive to the planning page](#commands-on-the-item-planning-page) can help you:
-* [add](#adding-an-item--add) new items
-* [edit](#editing-the-details-of-an-item--edit) or [delete](#deleting-an-item--delete) existing items
-* [view](#viewing-vacant-timeslots--free) the vacant time slots on your itinerary
-* [schedule](#scheduling-an-item--plan) or [unschedule](#unscheduling-an-item--unplan) items
-* export your itinerary via your [clipboard](#copying-to-clipboard--copy) or as a [pdf](#exporting-as-pdf-file--pdf) file
+[Commands exclusive to the activity-planning page](#commands-on-the-activity-planning-page) can help you:
+* [Add](#adding-an-activity--add) new activities
+* [Edit](#editing-the-details-of-an-activity--edit) or [Delete](#deleting-an-activity--delete) existing activities
+* [View](#viewing-vacant-timeslots--free) the vacant time slots on your itinerary
+* [Schedule](#scheduling-an-activity--plan) or [Unschedule](#unscheduling-an-activity--unplan) activities
+* [Copy](#copying-to-clipboard--copy) your itinerary to your clipboard.
+* [Export](#exporting-as-pdf-file--pdf) your itinerary as a pdf file
 
 Using the [`home` command](#returning-to-main-page--home)  will bring you to the [main page](#the-main-page) of the selected itinerary.
 
 <div style="page-break-after: always"></div>
 
-### Commands on the item planning page
+### Commands on the activity-planning page
 
-### Adding an item : `add`
+### Adding an activity : `add`
 
-Adds an item to the wishlist without a scheduled day and time.
+Adds an activity to your wishlist (without a scheduled day and time).
 
 Format: `add d/DESCRIPTION du/DURATION [p/PRIORITY] [c/COST] `
 
 * `DESCRIPTION` cannot be blank and must only contain alphanumeric characters, spaces and these following special characters: `()&!':.,-`.
-* `DURATION` is the time taken for the item in _minutes_. The duration must be more than 0 minutes and shorter than 1440 minutes (1 day).
+* `DURATION` is the time taken for the activity in _minutes_. The duration must be more than 0 minutes and shorter than 1440 minutes (1 day).
     - e.g. `du/100` is 100 minutes (or 1 hour and 40 minutes).
 
-* `PRIORITY` is used to rank the importance of an item. It must be a number from 1 to 5, with 1 being the highest priority.
+* `PRIORITY` is used to rank the importance of an activity. It must be a number from 1 to 5, with 1 being the highest priority.
 
-* `COST` is the cost of the item in dollars, or dollars and cents, and must be between 0 and 1,000,000.
+* `COST` is the cost of the activity in dollars, or dollars and cents, and must be between 0 and 1,000,000.
   - e.g. `c/100.20` is $100.20.
 
-* You cannot add items with the same description as an existing item in the item list.
+* You cannot add activities with the same description as an existing activity in the activity list.
 
 <div markdown="block" class="alert alert-info">
 
@@ -322,16 +452,20 @@ Examples:
 * `add d/Go to the Louvre p/2 du/1`
 * `add d/Skiing du/14 c/100`
 
+Running `add d/Go to the Louvre p/2 du/1`
+
+![Add Activity](images/addActivityCommand.png)
+
 <div style="page-break-after: always"></div>
 
-### Editing the details of an item : `edit`
+### Editing the details of an activity : `edit`
 
-Edits an existing item in the item list.
+Edits an existing activity in your activity list.
 
 Format: `edit INDEX [d/DESCRIPTION] [p/PRIORITY] [c/COST] [du/DURATION]`
 
-* Edits the item at the specified `INDEX`. The index refers to the index number displayed in either the wishlist, or the scheduled items in the day lists.
-* The index of a scheduled item refers to the index number displayed in the list of days, the format being `DAY_NUMBER`.`ITEM_INDEX`.
+* Edits the activity at the specified `INDEX`. The index refers to the index number displayed in either the wishlist, or the scheduled activity in the list of days.
+* The index of a scheduled activity refers to the index number displayed in the list of days, the format being `DAY_NUMBER`.`ACTIVITY_INDEX`.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
@@ -344,74 +478,91 @@ Format: `edit INDEX [d/DESCRIPTION] [p/PRIORITY] [c/COST] [du/DURATION]`
 </div>
 
 Examples:
-* `edit 1 d/Go skiing` would edit the description of the 1st item in the unscheduled item list to be `Go skiing`.
-* `edit 2.2 p/3 c/100` would edit the priority and cost of the 2nd item in the Day 2 list to be `3` and `100` respectively.
+* `edit 1 d/Go skiing` would edit the description of the 1st activity in the unscheduled activity list to be `Go skiing`.
+* `edit 2.2 p/3 c/100` would edit the priority and cost of the 2nd activity in the Day 2 list to be `3` and `100` respectively.
 
-### Deleting an item : `delete`
+Running `edit 1 d/Go skiing`
 
-Deletes an existing item in the item list.
+![Edit Activity](images/editActivityCommand.png)
+
+
+### Deleting an activity : `delete`
+
+Deletes an existing activity in your activity list.
 
 Format: `delete INDEX`
 
-* Deletes the item at the specified `INDEX`. The index refers to the index number displayed in either the unscheduled item list, or the scheduled items in the day lists.
+* Deletes the activity at the specified `INDEX`. The index refers to the index number displayed in either the unscheduled activity list, or the scheduled activity in the list of days.
 
 Examples:
-* `delete 1` would delete the 1st item in the unscheduled item list.
-* `delete 2.1` would delete the 1st item in the Day 2 item list.
+* `delete 1` would delete the 1st activity in the unscheduled activity list.
+* `delete 2.1` would delete the 1st activity in the Day 2 activity list.
+
+Running `delete 1`
+
+![Delete Activity](images/deleteActivityCommand.png)
 
 <div style="page-break-after: always"></div>
 
 ### Viewing vacant timeslots : `free`
 
-Displays the vacant timeslots available for scheduling items.
+Displays the vacant timeslots available for you to schedule activities.
 
 Format: `free`
 
-### Scheduling an item : `plan`
+### Scheduling an activity : `plan`
 
-Schedules an item from the Wishlist.
+Schedules an activity from your wishlist.
 
 Format: `plan INDEX d/DAY_NUMBER st/START_TIME`
 
-* Schedules the item at the specified `INDEX`. The index refers to the index number displayed in the Wishlist.
-* When an item is scheduled, the cost of the item is automatically deducted from the budget of the itinerary.
+* Schedules the activity at the specified `INDEX`. The index refers to the index number displayed in the wishlist.
+* When an activity is scheduled, the cost of the activity is automatically deducted from the budget of the itinerary.
 * `DAY_NUMBER` must be an integer from 1 to the duration (in days) of the trip.
 * `START_TIME` should be given in the format `hh:mm`, or `hh:mm:ss` where `hh` is the hour in 24-hour format, `mm` is the minute, and `ss` is the seconds.
-* The end time of the item is automatically calculated by adding the `DURATION` of the item to the `START_TIME`.
-* You can only add an item if there is no clash in timing between the start and end time of the new item, and the start and end time of any existing scheduled item.
+* The end time of the activity is automatically calculated by adding the `DURATION` of the activity to the `START_TIME`.
+* You can only add an activity if there is no clash in timing between the start and end time of the new activity, and the start and end time of any existing scheduled activity.
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Note:**<br>
 
-* When scheduling an item, please ensure that the item stays within the budget of the itinerary. An error would be shown otherwise.<br>
+* When scheduling an activity, please ensure that the activity stays within the budget of the itinerary. An error would be shown otherwise.<br>
 
 </div>
 
 Examples:
-* `plan 2 d/3 st/12:00` would add the 2nd item in the Wishlist to Day 3, starting at 12pm.
-* `plan 1 d/1 st/14:50:10` would add the 1st item in the Wishlist to Day 1, starting at 14:50pm, 10 seconds in.
+* `plan 2 d/3 st/12:00` would add the 2nd activity in the wishlist to Day 3, starting at 12pm.
+* `plan 1 d/1 st/14:50:10` would add the 1st activity in the wishlist to Day 1, starting at 14:50pm, 10 seconds in.
+
+Running `plan 1 d/1 st/11:00`
+
+![Plan Activity](images/planCommand.png)
 
 <div style="page-break-after: always"></div>
 
-### Unscheduling an item : `unplan`
+### Unscheduling an activity : `unplan`
 
-Takes an item from the itinerary and puts it back into the Wishlist.
+Takes an activity from the list of days and puts it back into the wishlist.
 
 Format: `unplan INDEX`
 
-* Unschedules the item at the specified `INDEX` as displayed on the day lists.
-* When an item is unscheduled, its cost is automatically added back to the budget of the itinerary.
+* Unschedules the activity at the specified `INDEX` as displayed on the day lists.
+* When an activity is unscheduled, its cost is automatically added back to the budget of the itinerary.
 
 Examples:
-* `unplan 2.1` would unschedule the 1st item in the Day 2 item list.
-* `unplan 4.5` would unschedule the 5th item in the Day 4 item list.
+* `unplan 2.1` would unschedule the 1st activity in the Day 2 activity list.
+* `unplan 4.5` would unschedule the 5th activity in the Day 4 activity list.
+
+Running `unplan 1.1`
+
+![Unplan Activity](images/unplanCommand.png)
 
 <div style="page-break-after: always"></div>
 
 ### Copying to clipboard : `copy`
 
-Copies the itinerary in a text format onto your device's clipboard so you can paste it anywhere.
+Copies your itinerary in a text format onto your device's clipboard so that you can paste it anywhere.
 
 Format: `copy`
 
@@ -422,8 +573,8 @@ Here's an example of how the copied text would look like: <br>
 
 **:information_source: Note:** <br>
 
-* The generated text includes all days within the itinerary, even if there are no items planned for the day.
-* The generated text does not include the items in the Wishlist. For items to be reflected in the generated text, they must be planned.<br>
+* The generated text includes all days within the itinerary, even if there are no activities planned for the day.
+* The generated text does not include the activities in the wishlist. For activities to be reflected in the generated text, they must be planned.<br>
 
 </div>
 
@@ -431,7 +582,7 @@ Here's an example of how the copied text would look like: <br>
 
 ### Exporting as PDF file : `pdf`
 
-Exports the itinerary as a PDF file. The file can be found under the "Waddle" folder in your "Documents" folder.
+Exports your itinerary as a PDF file. The file can be found under the "Waddle" folder in your "Documents" folder.
 
 [//]: # (TODO: include screenshots of where to find it for windows and mac, maybe linux but idk how)
 
@@ -444,7 +595,7 @@ Here's an example of how the generated PDF would look like: <br>
 
 **:information_source: Note:** <br>
 
-* The generated PDF file does not contain the items in the Wishlist. For items to be reflected in the generated PDF file, they must be planned.<br>
+* The generated PDF file does not contain the activities in your wishlist. For these activities to be reflected in the generated PDF file, you must plan them.<br>
 * PDF can only display up to 35 characters for itinerary description and 50 characters for activity description.
 
 </div>
@@ -461,11 +612,11 @@ Format: `home`
 
 ### Saving the data
 
-Waddle data is saved in the hard disk automatically upon any change in the data. There is no need to save manually.
+Waddle data is saved in your hard disk automatically upon any change in the data. There is no need for you to save manually.
 
 ### Editing the data file
 
-Waddle data is saved as a JSON file `[JAR file location]/data/waddle.json`. Advanced users are welcome to update data directly by editing that data file.
+Waddle data is saved as a JSON file `[JAR file location]/data/waddle.json`. If you know how JSON works, you are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: <b>Caution:</b>
 If your changes to the data file makes its format invalid, Waddle will discard all data and start with an empty data file at the next run. Please perform a backup before manually editing data.
@@ -502,18 +653,18 @@ If your changes to the data file makes its format invalid, Waddle will discard a
 
 <div style="page-break-after: always"></div>
 
-### Item planning page commands
+### Activity-planning page commands
 
-| Action                                                       | Format, Examples                                                                                         |
-|--------------------------------------------------------------|----------------------------------------------------------------------------------------------------------|
-| [**Help**](#viewing-help--help)                              | `help`                                                                                                                                                            |  
-| [**Add Item**](#adding-an-item--add)                         | `add d/DESCRIPTION [p/PRIORITY] [c/COST] [du/DURATION]`<br> e.g.,`add d/Visit Taj Mahal p/5 c/40 du/180` |
-| [**Edit Item**](#editing-the-details-of-an-item--edit)       | `edit INDEX [d/DESCRIPTION] [p/PRIORITY] [c/COST] [du/DURATION]`<br> e.g., `edit 4.1 c/50`               |
-| [**Delete Item**](#deleting-an-item--delete)                 | `delete INDEX`<br> e.g., `delete 3`                                                                      |
-| [**View Vacant Timeslots**](#viewing-vacant-timeslots--free) | `free`                                                                                                   |
-| [**Schedule Item**](#scheduling-an-item--plan)               | `plan INDEX d/DAY NUMBER st/START TIME`<br> e.g., `plan 1 d/4 st/12:00`                                  |
-| [**Unschedule Item**](#unscheduling-an-item--unplan)         | `unplan INDEX`<br> e.g., `unplan 3.2`                                                                    |
-| [**Copy to clipboard**](#copying-to-clipboard--copy)         | `copy`                                                                                                   |
-| [**Export to PDF**](#exporting-as-pdf-file--pdf)             | `pdf`                                                                                                    |
-| [**Return to Main Page**](#returning-to-main-page--home)     | `home`                                                                                                   |
-| [**Exit**](#exiting-waddle--exit)                            | `exit`                                                                                                   |
+| Action                                                         | Format, Examples                                                                                         |
+|----------------------------------------------------------------|----------------------------------------------------------------------------------------------------------|
+| [**Help**](#viewing-help--help)                                | `help`                                                                                                   |  
+| [**Add Activity**](#adding-an-activity--add)                   | `add d/DESCRIPTION [p/PRIORITY] [c/COST] [du/DURATION]`<br> e.g.,`add d/Visit Taj Mahal p/5 c/40 du/180` |
+| [**Edit Activity**](#editing-the-details-of-an-activity--edit) | `edit INDEX [d/DESCRIPTION] [p/PRIORITY] [c/COST] [du/DURATION]`<br> e.g., `edit 4.1 c/50`               |
+| [**Delete Activity**](#deleting-an-activity--delete)           | `delete INDEX`<br> e.g., `delete 3`                                                                      |
+| [**View Vacant Timeslots**](#viewing-vacant-timeslots--free)   | `free`                                                                                                   |
+| [**Schedule Activity**](#scheduling-an-activity--plan)         | `plan INDEX d/DAY NUMBER st/START TIME`<br> e.g., `plan 1 d/4 st/12:00`                                  |
+| [**Unschedule Activity**](#unscheduling-an-activity--unplan)   | `unplan INDEX`<br> e.g., `unplan 3.2`                                                                    |
+| [**Copy to clipboard**](#copying-to-clipboard--copy)           | `copy`                                                                                                   |
+| [**Export to PDF**](#exporting-as-pdf-file--pdf)               | `pdf`                                                                                                    |
+| [**Return to Main Page**](#returning-to-main-page--home)       | `home`                                                                                                   |
+| [**Exit**](#exiting-waddle--exit)                              | `exit`                                                                                                   |
