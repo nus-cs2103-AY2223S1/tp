@@ -721,9 +721,9 @@ Let us try to add a new person called Alex Yeoh to our team. Identify the index 
 application (1 in the image below). If you are not able to see their name in the list of persons, refer to [find person command](#finding-a-person-find-person) on how to
 find a person.
 
-Enter the command `add member 1` to add `Alex Yeoh` into your team.
+Then, enter the command `add member 1`.
 
-If done successfully, you should see a new member show up in the member list in the 
+If done successfully, you should see a new member `Alex Yeoh` show up in the member list in the 
 [current team section](#current-team-section) as seen below. 
 
 ![Add Member Example](images/AddMemberExample.png)
@@ -764,9 +764,9 @@ Let us delete Alex Yeoh from our team. Firstly, identify the index number of `Al
 member list (1 in the image below). If you are not able to see their name on the list, 
 refer to[find member command](#finding-a-member-find-member)
 
-Enter the command `delete member 1` to delete `Alex Yeoh` from the team.
+Then, enter the command `delete member 1`.
 
-If done successfully, Alex Yeoh should be removed from the [current team section](#current-team-section) as seen below.
+If done successfully, `Alex Yeoh` should be removed from the [current team section](#current-team-section) as seen below.
 
 ![Delete Member Example](images/DeleteMemberExample.png)
 
@@ -805,7 +805,7 @@ Let us run through the steps to find a team member.
 
 Suppose you want to find all team members named Alex or David. 
 
-Enter the command `find member -n alex david` to find all team members named Alex or David.
+Enter the command `find member -n alex david`.
 
 If done successfully, you should the see all team members named Alex and David show up under in the member list in the
 [current team section](#current-team-section). You can also find your team members by their email using the `-e` flag.
@@ -894,7 +894,7 @@ Let us run through an example on how to sort your team members.
 
 Suppose you want to check whether there is team member called `Caroline`, but you are unsure of how to spell it.
 
-Enter the command `sort members asc` to sort all team members in alphabetical order. 
+Enter the command `sort members asc`.
 
 If done successfully, the sorted team members will be shown in the member list in
 [current team section](#current-team-section)
@@ -951,7 +951,7 @@ Here, let us take a quick walk-through on how to add a team.
 
 Let us try to add a new team named `CS2103T`, with a description called `Software Engineering`. 
 
-Enter the command `add team CS2103T -d "Software Engineering"` to add the team as described.
+Enter the command `add team CS2103T -d "Software Engineering"`.
 
 If done successfully, you should see a new team show up in the [teams section](#teams-section) as shown below.
 
@@ -991,7 +991,7 @@ Here, let us take a quick walk-through on how to edit your currently selected te
 
 Supposed you have decided on better team name `NUS TruthTable` 
 
-Enter the command `edit team -n "NUS TruthTable"` to edit the name of the currently selected team.
+Enter the command `edit team -n "NUS TruthTable"`.
 
 If done successfully, the details that you specified will be shown in the
 [currently selected team](#current-team-section) as shown below. You can also edit the team description directly 
@@ -1030,7 +1030,7 @@ The `delete team` command allows you to delete an existing team. The team delete
 
 Suppose you have an existing team called `CS2103T` and want to remove it. 
 
-Enter the command `delete team CS2103T` to delete the target team.
+Enter the command `delete team CS2103T`.
 
 If done successfully, you should see the team `CS2103T` removed under the [teams section](#teams-section).
 
@@ -1066,7 +1066,7 @@ the list of teams in the [teams section](#teams-section). Let us show you an exa
 
 Suppose you have finished the tasks in your current team `CS2103T` and have an existing team called `CS2102`. 
 
-Enter the command `set team CS2102` to change your current selected team.
+Enter the command `set team CS2102`.
 
 If done successfully, your [currently selected team](#current-team-section) will change to the team `CS2102` along 
 with all of its team information, as shown below.
@@ -1111,7 +1111,7 @@ Here, let us take a quick walk-through on how to add a new task.
 
 Suppose we have a new task called `Create PR`. 
 
-Enter the command `add task "Create PR"`
+Enter the command `add task "Create PR"`.
 
 If done successfully, a new task with the name `Create PR` will be added to the task list in
 [current team section](#current-team-section) as shown below.
@@ -1162,7 +1162,7 @@ Suppose you want to change the task name from `Create PR` to `Merge PR`. Identif
 `Create PR` in the application (1 in the image below). If you are not able to find the task visibly, refer to
 [find task command](#finding-a-task-find-task) on how you can find your task easily.
 
-Enter the command `edit task 1 -n "Merge PR"` to edit the task.
+Then, enter the command `edit task 1 -n "Merge PR"`.
 
 If done successfully, you should see the new details show up under in the task list of the
 [current team section](#current-team-section), with the task name of `Merge PR` as shown below. You can edit other
@@ -1228,7 +1228,7 @@ Suppose you want to delete a task called `Merge PR`. Identify the index number o
 application (1 in the image below). If you are not able to find the task visibly, refer to
 [find task command](#finding-a-task-find-task).
 
-Enter the command `delete task 1` to delete the task.
+Then, enter the command `delete task 1`.
 
 If done successfully, you should the task `Merge PR` removed under the task list of
 [current team section](#current-team-section) as shown below.
@@ -1268,7 +1268,7 @@ Let us run through how to find a task.
 
 Suppose you want to find all tasks named User and all tasks named Guide. 
 
-Enter the command `find task User Guide` to find all tasks with names `User` or `Guide`.
+Enter the command `find task User Guide`.
 
 If done successfully, you should the see all tasks named User or Guide show up under in the
 task list of [current team section](#current-team-section).
@@ -1316,7 +1316,7 @@ Suppose you want to mark the task of `Create PR` as done. Identify the index num
 `Create PR` in the application (1 in the image below). If you are not able to find the task visibly, refer to [find task command](#finding-a-task-find-task) on how you can
 find your task easily.
 
-Enter the command `mark task 1` to mark the task as done.
+Then, enter the command `mark task 1`.
 
 If done successfully, you should see a cross appear beside the task named of `Merge PR`, under in the task list of the
 [current team section](#current-team-section) as shown below.
@@ -1358,7 +1358,7 @@ Suppose the task of `Create PR` was originally complete and you want to mark the
 Identify the index number of `Create PR` in the application (1 in the image below). If you are not able to find the 
 task visibly, refer to [find task command](#finding-a-task-find-task) on how you can find your task easily.
 
-Enter the command `unmark task 1` to mark the task as not done.
+Then, enter the command `unmark task 1`.
 
 If done successfully, you should the cross beside the task named of `Merge PR` disappear, under in the task list of the
 [current team section](#current-team-section) as shown below.
@@ -1435,13 +1435,7 @@ above [add task command](#add-task-to-team-add-task) to add a new task into Trut
 #### Assign a task to team member: `assign task`
 
 You have tasks and are looking to assign it to different people to work on it. You can assign tasks to people 
-using the `assign task` command. First, identify the index number of the task in the task list of
-[current team section](#current-team-section). If you are not able to find the task visibly, refer to
-[find task command](#finding-a-task-find-task) on how you can find your task easily. Next, identify the index number of 
-the team member in the member list of[current team section](#current-team-section). If you are not able to find the member 
-visibly, refer to [find member command](#finding-a-member-find-member) on how you can find your team member easily. 
-Finally, key in `assign task <TASK_INDEX> -a <MEMBER_INDEX>` to assign it to that member! You can specify multiple members to 
-assign a task to multiple people.
+using the `assign task` command.
 
 The `assign task` command allows you to assign tasks to members in your team.
 The task with the new assignees will be shown in the task list of the [current team section](#current-team-section).
@@ -1450,13 +1444,17 @@ Let us run through an example on how to assign tasks to your team members.
 
 Suppose you have task called `Create PR`, and you want to assign it to Alex Yeoh.
 
-Identify the index number of `Create PR` in the application (1 in the image below).
-Identify the index number of `Alex Yeoh` in the application (1 in the image below).
+Identify the index number of `Create PR` in the application (1 in the image below). If you are not able to find the 
+task visibly, refer to [find task command](#finding-a-task-find-task) on how you can find your task easily.
+
+Identify the index number of `Alex Yeoh` in the application (1 in the image below). If you are not able to find the 
+member  visibly, refer to [find member command](#finding-a-member-find-member) on how you can find your team member easily.
 
 Then, enter the command `assign task 1 -a 1`.
 
-If done successfully, you should see the `Create PR` task being assigned to `Alex Yeoh` show up under in the task list 
-of the [current team section](#current-team-section).
+If done successfully, you should see the `Create PR` task being assigned to `Alex Yeoh` show up under in the task list
+of the [current team section](#current-team-section) as shown below. You can also specify multiple members to assign
+a task to multiple team members.
 
 ![Assign Task Example](images/AssignTaskExample.png)
 
@@ -1498,24 +1496,21 @@ The format for the `-a` flag indicates that you must specify at least 1 `-a` fla
 
 You have tasks and are looking to assign it to different people to work on it. Unfortunately, everyone is capable of 
 doing any of the tasks, and you are not sure who to assign the tasks to. Fret not, you can assign tasks to people
-using the `assign randopm` command. First, identify the index number of the task in the task list of
-[current team section](#current-team-section). If you are not able to find the task visibly, refer to
-[find task command](#finding-a-task-find-task) on how you can find your task easily. Next, key in 
-`assign random <TASK_INDEX>` to assign it to a random member on your team!
+using the `assign random` command. 
 
-The `assign random` command allows you to assign tasks randomly to members in your team. The task with the new 
-assignees will be shown in the task list of the [current team section](#current-team-section).
-
-Let us run through an example on how to assign tasks to your team members.
+The `assign random` command allows you to assign tasks randomly to members in your team. The task with the new
+assignees will be shown in the task list of the [current team section](#current-team-section). Let us run through an
+example on how to assign tasks randomly to your team members.
 
 Suppose you have task called `Create PR`, and you want to assign it randomly to your team members.
 
-Identify the index number of `Create PR` in the application (1 in the image below).
+Identify the index number of `Create PR` in the application (1 in the image below). If you are not able to find the task visibly, refer to
+[find task command](#finding-a-task-find-task) on how you can find your task easily.
 
 Then, enter the command `assign random 1`.
 
 If done successfully, you should see the `Create PR` task being assigned to a random member. It should show up under 
-in the task list of the [current team section](#current-team-section).
+in the task list of the [current team section](#current-team-section) as shown below.
 
 ![Assign Random Example](images/AssignRandomExample.png)
 
@@ -1540,24 +1535,23 @@ in the task list of the [current team section](#current-team-section).
 #### Filter tasks by team member: `tasksof`
 
 Your team member privately tells you that he has been assigned too much tasks in this team project. Fortunately, you can
-see how many tasks each team member is assigned in your teams with `tasksof` command. First, identify the index number 
-of the team member in the member list of the [current team section](#current-team-section). If you are not able to find 
-the member visibly, refer to [find member command](#finding-a-member-find-member) on how you can find that member 
-easily. Next, key in `tasksof <MEMBER_INDEX>` to the tasks that are assigned to that member!
+see how many tasks each team member is assigned in your teams with the `tasksof` command. 
 
-The `tasksof` command allows you view the specific tasks assigned to a specified member. The tasks that are assigned 
+The `tasksof` command allows you to view the specific tasks assigned to a specified member. The tasks that are assigned
 to that member will be shown in the task list of the [current team section](#current-team-section).
 
 Let us run through an example on how to assign tasks to your team members.
 
 Suppose you want to check the tasks being assigned to `Alex Yeoh`.
 
-Firstly, identify the index number of `Alex Yeoh` in the application (1 in the image below).
+Firstly, identify the index number of `Alex Yeoh` in the application (1 in the image below). If you are not able to 
+find the member visibly, refer to [find member command](#finding-a-member-find-member) on how you can find that member
+easily.
 
 Then, enter the command `tasksof 1`.
 
 If done successfully, you should see the all tasks that `Alex Yeoh` is assigned. It should show up under
-in the task list of the [current team section](#current-team-section).
+in the task list of the [current team section](#current-team-section) as shown below.
 
 ![Tasks Of Example](images/TasksOfExample.png)
 
@@ -1579,27 +1573,23 @@ in the task list of the [current team section](#current-team-section).
 
 #### List tasks in team: `list tasks`
 
-Deadlines are coming soon, and you want to know exactly how many tasks are in the team. Not to worry, you can use the 
-`list tasks` command to see a list of all your tasks in your team. Key in `list tasks`, and TruthTable will show you all existing
-tasks in your [currently selected team](#current-team-section).
+Deadlines are coming soon, and you want to know exactly how many tasks are in the team. You can use the 
+`list tasks` command to see a list of all your tasks in your team. 
 
 The `list tasks` command shows a list of all tasks in your team. After running the 
-[find task command](#finding-a-task-find-task), you may wish to view all tasks. To do so, simply enter `list tasks` 
-command will update the task list in the [current team section](#current-team-section).
+[find task command](#finding-a-task-find-task), you may wish to view all tasks again.
+
+To do so, enter `list tasks`. 
 
 If done successfully, you should the see all tasks show up under in the member list in the
-[current team section](#current-team-section) as shown below.
+[current team section](#current-team-section) as shown below. You can also view all incomplete and complete tasks by 
+supplying the `-i` flag or the `-c` flag respectively.
 
-You can also view all incomplete and complete tasks by supply the `-i` flag or the `-c` flag respectively.
+![List Tasks Example](images/ListTasksExample.png)
 
 Unable to find an existing task? Please check that you have added the task into your team as shown in the
 [current team section](#current-team-section). Refer to the above
 [add task command](#add-task-to-team-add-task) on how to add a new task.
-
-This command can also be used to view all tasks again after using the [`find task` command](#finding-a-task-find-task)
-as the `find task` command filters the current team’s tasks based on some keyword(s).
-
-![List Tasks Example](images/ListTasksExample.png)
 
 **Format:** `list tasks [-h] [-c] [-i]`
 
@@ -1624,24 +1614,23 @@ as the `find task` command filters the current team’s tasks based on some keyw
 
 #### Sort tasks: `sort tasks`
 
-The number of tasks is increasing, and it is confusing for you to make sense of the list of tasks in your team. Not to
-worry, you can sort your team tasks by name with our `sort tasks` command! Suppose you want to see whether there is
-task called `Create PR`, but you are unsure of how to spell it. First, key in `sort tasks asc`, and TruthTable
-will sort the list of tasks alphabetically by name in ascending order. You can now verify if `Create PR` indeed
-exists in your team by scrolling to all names that begin with `c`. You may sort your tasks in descending order
-with `sort tasks dsc` or reset to the original list order with `sort tasks res`.
+The number of tasks is increasing, and it is confusing for you to make sense of the list of tasks in your team. You can 
+sort your team tasks by name with our `sort tasks` command! 
 
 The `sort tasks` command allows you to sort your tasks in alphabetical order. The sorted tasks will
 be displayed in task list the [current team section](#current-team-section) as seen in the image below.
 
 Let us run through an example on how to sort your tasks.
 
-Suppose you want to sort your team members alphabetically in descending order. Enter the command
+Suppose you want to see whether there is task called `Create PR`, but you are unsure of how to spell it. 
 
-`sort tasks dsc`
+Enter the command `sort tasks asc`.
 
-If done successfully, the sorted tasks will be shown in the task list in
-[current team section](#current-team-section)
+If done successfully, the sorted tasks will be shown in the task list in [current team section](#current-team-section) 
+as shown below.
+
+You can now verify if `Create PR` indeed exists in your team by scrolling to all names that begin with `c`. 
+You may sort your tasks in descending order with `sort tasks dsc` or reset to the original list order with `sort tasks res`.
 
 ![Sort Tasks Example](images/SortTasksExample.png)
 
@@ -1671,13 +1660,13 @@ If done successfully, the sorted tasks will be shown in the task list in
 
 #### View summary of task assignments in team: `summary`
 
-As always, the number of tasks keep increasing and you want to assign task equally to everyone. How do you check the 
-number of tasks each person is assigned? Do not worry, you may use the `summary` function to gain an overview of the
-number of tasks each person is assigned in your team! Now you can make better decisions on who to assign the new
-tasks to.
+As always, the number of tasks keep increasing. As a team lead, you must ensure fairness in work distribution. 
+How do you check the  number of tasks each person is assigned? Do not worry, you may use the `summary` command to 
+gain an overview of the  number of tasks each person is assigned in your team! Now you can make better decisions on 
+assigning the new tasks.
 
 To do so, simply enter `summary` and the number of tasks each person is assigned will be displayed in the 
-[result panel](#command-section).
+[result panel](#command-section) as shown below.
 
 ![Summary Example](images/SummaryExample.png)
 
