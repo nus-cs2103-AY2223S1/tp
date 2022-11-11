@@ -94,7 +94,7 @@ If this is your first time launching Waddle, you will see the following page wit
 
 If you wish to, you can [clear](#clearing-itineraries--clear) the sample itineraries by typing `clear` into the command box and pressing Enter.
 You will then see the below message:<br>
-![clear-command](images/clearCommand.png)
+![clear-command](images/clear.png)
 
 Now you can add your first itinerary. To do so, use the [`add` command](#creating-a-new-itinerary--add) with the relevant itinerary details.
 Try executing the command `add d/Summer Trip sd/2023-06-01 du/5`. 
@@ -227,7 +227,7 @@ Format: `exit`
 
 The main page, or home page, of Waddle is the page you see when you first launch the application. It displays the list of itineraries you have created and stored in the application.
 
-![Main Page](images/mainPage.png)
+![Main Page](images/ug-beg-tut/main-page-sample-ui.png)
 [Commands exclusive to the main page](#commands-on-the-main-page) can help you:
 * [add](#creating-a-new-itinerary--add) new itineraries
 * [list](#listing-all-itineraries--list) or [find](#locating-itineraries-by-description--find) existing itineraries
@@ -272,7 +272,7 @@ alphanumeric characters, spaces and these following special characters: `()&!':.
 Examples:
 * `add d/Summer Trip c/Singapore sd/2025-10-28 du/15 p/4 b/1000`
 
-![Add Command](images/addCommand.png)
+![Add Command](images/add-itinerary.png)
 
 ### Listing all itineraries : `list`
 
@@ -280,7 +280,7 @@ Shows a list of all itineraries in Waddle.
 
 Format: `list`
 
-![List Command](images/listCommand.png)
+![List Command](images/list.png)
 
 ### Locating itineraries by description : `find`
 
@@ -300,7 +300,7 @@ Examples:
 * `find India` returns `My India Trip` and `India Expedition`
 * `find India Trip` returns `My Japan Trip`, `My India Trip`, `India Expedition`
 * `find trip` returns the following result: <br><br>
-  ![result for 'find trip'](images/findCommand.png)
+  ![result for 'find trip'](images/find.png)
 
 ### Editing the details of an itinerary : `edit`
 
@@ -327,7 +327,7 @@ Examples:
 
 Running `edit 1 du/15 sd/2023-11-03`
 
-![Edit Command](images/editCommand.png)
+![Edit Command](images/edit-itinerary.png)
 
 ### Deleting an itinerary : `delete`
 
@@ -344,7 +344,7 @@ Examples:
 
 Running `delete 2`
 
-![Delete Command](images/deleteCommand.png)
+![Delete Command](images/delete-itinerary.png)
 
 ### Clearing itineraries : `clear`
 
@@ -352,7 +352,7 @@ Deletes all itineraries in Waddle.
 
 Format: `clear`
 
-![Clear command](images/clearCommand.png)
+![Clear command](images/clear.png)
 ### Selecting an itinerary : `select`
 
 Enters the [activity planning page](#the-activity-planning-page) for the selected itinerary.
@@ -381,7 +381,7 @@ The index of scheduled activities are in the format `DAY.ACTIVITY_NUMBER`. Some 
 * The _second_ activity of the wishlist will have index `2`
 
 Here's an example of how your activity-planning page might look like:
-![activity-planning page](images/itemPlanningUi.png)
+![activity-planning page](images/ug-beg-tut/planning-page-ui.png)
 
 [Commands exclusive to the activity-planning page](#commands-on-the-activity-planning-page) can help you:
 * [Add](#adding-an-activity--add) new activities
@@ -433,7 +433,7 @@ Examples:
 
 Running `add d/Go to the Louvre p/2 du/1`
 
-![Add Activity](images/addActivityCommand.png)
+![Add Activity](images/add-item.png)
 
 ### Editing the details of an activity : `edit`
 
@@ -460,7 +460,7 @@ Examples:
 
 Running `edit 1 d/Go skiing`
 
-![Edit Activity](images/editActivityCommand.png)
+![Edit Activity](images/edit-item.png)
 
 
 ### Deleting an activity : `delete`
@@ -477,7 +477,7 @@ Examples:
 
 Running `delete 1`
 
-![Delete Activity](images/deleteActivityCommand.png)
+![Delete Activity](images/delete-item.png)
 
 ### Viewing vacant timeslots : `free`
 
@@ -512,7 +512,7 @@ Examples:
 
 Running `plan 1 d/1 st/11:00`
 
-![Plan Activity](images/planCommand.png)
+![Plan Activity](images/plan-item.png)
 
 ### Unscheduling an activity : `unplan`
 
@@ -529,7 +529,7 @@ Examples:
 
 Running `unplan 1.1`
 
-![Unplan Activity](images/unplanCommand.png)
+![Unplan Activity](images/unplan-item.png)
 
 ### Copying to clipboard : `copy`
 
