@@ -4,19 +4,24 @@ title: User Guide
 ---
 {::options toc_levels="1..2" /}
 {:logo: height="200px" width="200px" style="display:block; margin-left:auto; margin-right:auto;"}
+
+Welcome to the official user guide for StudMap! If you are a **teaching assistant (TA)** for a computing module, and you're
+swamped with the **admin workload** of managing your students, this application is just for **you!**
+
 ![StudMap Logo](images/studmap/studmap_hd.png){: logo}
 
 # 1. Overview
 
-StudMap is a lightweight desktop app for managing your students and organizing your teaching assistant (TA)
-responsibilities. It’s optimized for use via a Command Line Interface (CLI), meaning that you give instructions to
-StudMap through a text box, and StudMap just does it for you — it’s like magic. Yet, it has all the benefits of a
-traditional application with a graphical interface: you can still see, at a glance, a neat overview of what you need to
-see. If you type fast, StudMap can get your student management tasks done faster than anything else.
+StudMap is a lightweight desktop application for **managing your students** and **handling your TA
+responsibilities**. With a suite of powerful features to **search and organize your students** as well as 
+built-in **attendance, participation and assignment tracking**, StudMap can resolve all your TA woes and more!
 
-StudMap comes with powerful sort, filter, and mass operations features, as well as built-in attendance and participation
-tracking. If you are a TA for a computing [module](#module), StudMap is built just for you. This user guide aims to help
-you understand StudMap, so that you can make the best use of our features. Read on to find out more!
+Additionally, StudMap is optimized for use via a **Command Line Interface (CLI)**, meaning that you give instructions to
+StudMap through a text box, and StudMap just does it for you — it’s like magic. Yet, it has all the benefits of a
+traditional application with a **graphical interface**: you can still see, at a glance, a neat overview of what you need to
+see. If you type fast, StudMap can get your student management tasks **done faster** than anything else.
+
+This user guide aims to help you understand StudMap, so that you can make the best use of our features. Read on to find out more!
 
 ---
 
