@@ -177,12 +177,12 @@ A patient can have any number of medications (including 0)!
 
 :notebook: **Notes about Patient Type:**<br>
 When the patient is an outpatient, `add` will throw an error if any values are input for the `hw/`, `fn/` and `wn/` fields.
-Similarly, for an inpatient, `add` will throw an error if values are **not** input any of the `hw/`, `fn/` and `wn/` fields.
+Similarly, for an inpatient, `add` will throw an error if values are **not** input for any of the `hw/`, `fn/` and `wn/` fields.
 Please see the [Examples](#add-examples) below for more information.
 
 </div>
 
-**Reason for usage:**
+**Reasons for usage:**
 
 * You want to register a new patient to the hospital.
 * You want to add the personal information of the patient such as their name and contact details (phone number and email) for record purposes.
@@ -250,8 +250,14 @@ Edits the details of the patient specified by the index number used in the patie
 <div markdown="block" class="alert alert-info">
 
 :notebook: **Notes about Patient Type:**<br>
-When the patient type is edited from an inpatient to an outpatient and subsequently back to an inpatient, 
-you will have to manually input the hospital wing, floor number and ward number again.
+- When the patient type is edited from an inpatient to an outpatient, all hospital wing, floor number and ward number details
+  are automatically removed.
+- When the patient type is edited from an outpatient to an inpatient, 
+  you need to manually input the hospital wing, floor number and ward number details.
+- When the patient type is edited from an inpatient to an outpatient, and subsequently back to inpatient again,
+  you need to manually input the hospital wing, floor number and ward number details again as hospitalisation details
+  gets discarded in the process.
+
 </div>
 
 **Requirements:**
@@ -289,7 +295,6 @@ If not, please follow the error message given and format above to enter the corr
 * `edit 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st patient to be `91234567`
   and `johndoe@example.com` respectively.
   ![edit John Doe Result](images/ug-images/editCommand/editJohnDoeResult.png)
-
 
 * `edit 2 n/Betsy Crower m/` edits the name of the 2nd patient to be `Betsy Crower` and clears all existing medication.
   ![edit Betsy Crower Result](images/ug-images/editCommand/editBetsyCrowerResult.png)
@@ -754,7 +759,7 @@ Displays the details of a patient specified by the index number from the patient
 
 * You want to view all of a patient's information in detail.
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="span" class="alert alert-info">
 
 :notebook: **Notes about the `view` command :**<br>
 On startup, the patient details panel will always default to the first patient if present.
@@ -799,7 +804,7 @@ Empties checkUp of all patients stored.
 
 ### Opening the Help Page : `help`
 
-Opens the Help Window, which allows you to copy the URL of the User Guide to your clipboard.
+Opens the Help Window, which allows you to copy the link to the User Guide to your clipboard.
 
 **Format:** `help`
 
@@ -813,7 +818,7 @@ Exits checkUp.
 
 **Format:** `exit`
 
-* GUI settings (window height and width) are preserved during this process.
+* User interface settings (window height and width) are preserved during this process.
 
 **Reason for usage:**
 
@@ -837,7 +842,7 @@ any data created or deleted from the application.
 
 Although CheckUp is built as a Command Line Interface application, it also supports the following mouse interactions:
 
-#### Person List Panel
+#### Patient List Panel
 
 * Double-clicking on patients in the Patient List Panel will automatically open their info in the Patient Details Panel.
 
@@ -847,11 +852,11 @@ Although CheckUp is built as a Command Line Interface application, it also suppo
 
 **Example:**
 
-* Double-clicking on the first patient `Alex Yeoh` will display his details on the Patient View Panel.
+* Double-clicking on the first patient `Alex Yeoh` will display his details on the Patient Details Panel.
 
 ![Clicking on Patient List Panel Gif](images/ug-images/Person-List-Panel-Clickability.png)
 
-#### Person Details Panel
+#### Patient Details Panel
 
 * Double-clicking on the fields in the Patient Details Panel will automatically prepare them for editing in the Command Input Box.
 
@@ -867,7 +872,7 @@ Although CheckUp is built as a Command Line Interface application, it also suppo
 
 ### Keyboard Shortcuts
 
-Similar to other CLI applications, CheckUp supports a few keyboard shortcuts:
+Similar to other Command Line Interface applications, CheckUp supports a few keyboard shortcuts:
   * Navigate past commands with the `UP` and `DOWN` arrow keys.
   * Clear the text currently in the command box with `Ctrl + Shift + C`.
 
@@ -959,16 +964,17 @@ head over to [Oracle's Java download page](https://www.oracle.com/java/technolog
 
 ## Glossary
 
-| Term              | Definition                                                                                 |
-|-------------------|--------------------------------------------------------------------------------------------|
-| **Appointment**   | An arrangement to consult the doctor at a particular date.                                 |
-| **Diagnosis**     | The identification of diseases by the examination of symptoms and signs.                   |
-| **Inpatient**     | A patient who stays in a hospital while under treatment.                                   |
-| **Outpatient**    | A patient who goes to a hospital or clinic for treatment without staying there overnight.  |
-| **Hospital Wing** | The section of the hospital where the inpatient is in.                                     |
-| **Floor Number**  | The floor where the inpatient is on.                                                       |
-| **Medication**    | A drug or other form of medicine that is used to treat or prevent disease.                 |
-| **Next-Of-Kin**   | The patient's closest living relative.                                                     |
-| **Ward Number**   | The ward where the inpatient is in.                                                        |
+| Term                       | Definition                                                                                |
+|----------------------------|-------------------------------------------------------------------------------------------|
+| **Appointment**            | An arrangement to consult the doctor at a particular date.                                |
+| **Diagnosis**              | The identification of diseases by the examination of symptoms and signs.                  |
+| **Inpatient**              | A patient who stays in a hospital while under treatment.                                  |
+| **Outpatient**             | A patient who goes to a hospital or clinic for treatment without staying there overnight. |
+| **Hospital Wing**          | The section of the hospital where the inpatient is in.                                    |
+| **Floor Number**           | The floor where the inpatient is on.                                                      |
+| **Medication**             | A drug or other form of medicine that is used to treat or prevent disease.                |
+| **Next-Of-Kin**            | The patient's closest living relative.                                                    |
+| **Ward Number**            | The ward where the inpatient is in.                                                       |
+| **Command Line Interface** | Interface which receives commands from a user in the form of lines of text                |
 
 <sub><sup>[back to top](#back-to-topt)</sup></sub>
