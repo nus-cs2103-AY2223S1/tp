@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-This document is the official user guide of the LongTimeNoSee (LTNS) app. This guide is an introduction to LTNS and a help menu should you have any doubts while using the app.
+This document is the official user guide of the LongTimeNoSee app. This guide is an introduction to LTNS and a help menu should you have any doubts while using the app.
 <br>
 <br>
 
@@ -12,13 +12,13 @@ This document is the official user guide of the LongTimeNoSee (LTNS) app. This g
 </p>
 
 <br>
-Hello there! Long time no see! Suppose you are a financial advisor looking for an easier life. In that case, the LongTimeNoSee (LTNS) app is just the right tool you need!
+Hello there! Long time no see! Suppose you are a financial advisor looking for an easier life. In that case, the LTNS  app is just the right tool you need!
 
-The LTNS app is not just any other tool. It is an intelligent tool. Having surveyed countless financial advisors, we sympathize with your need for a way to manage clients, policies, and events! Therefore, the LTNS app strategically revolves around three stunning features! They are **client, policy, and event management!** Just the right tools you need to be the best financial advisor out there!
+The LTNS app is not just any other tool. It is an intelligent tool. Having surveyed countless financial advisors, we sympathize with your need for a way to manage clients, policies, and events! Therefore, the LTNS app strategically revolves around three stunning features! They are **Client, Policy, and Event Management!** Just the right tools you need to be the best financial advisor out there!
 
 Furthermore, with the in-built **[Command Line Interface](#command-line-interface-cli) (CLI)**, the LTNS app has revolutionized information access. To access any information you need, simply type into the CLI, and the information appears right in front of you!
 
-So, what are you waiting for? Start revolutionizing your financial advising journey [here](#tutorial)!
+So, what are you waiting for? Start revolutionizing your financial advising journey today! 
 
 # Table of Contents
 1. [Quickstart](#quick-start)
@@ -29,7 +29,7 @@ So, what are you waiting for? Start revolutionizing your financial advising jour
         * [Clearing Entries](#clearing-all-entries--clear)
         * [Exiting the Program](#exiting-the-program--exit)
         * [Saving Data](#saving-the-data)
-        * [Manually Editing Data File](#editing-the-data-file-for-the-pros)
+        * [Manually Editing Data File](#editing-the-data-file-for-advance-users)
     * [Client Features](#client-features)<br>
         * [Adding a Client](#adding-a-client--addclient)
         * [Switching to Client View](#switching-to-the-view-of-currently-listed-clients--clients)
@@ -66,9 +66,9 @@ So, what are you waiting for? Start revolutionizing your financial advising jour
 ## Quick start
 1. Ensure you have Java `11` or above installed on your Computer. (Installation Guides: [Mac User](https://www.geeksforgeeks.org/how-to-install-java-on-macos/), [Windows User](https://phoenixnap.com/kb/install-java-windows))
 
-2. Download the latest `longtimenosee.jar` from [here](https://github.com/AY2223S1-CS2103T-W13-2/tp/releases).
+2. Download the latest `LTNS.jar` from [here](https://github.com/AY2223S1-CS2103T-W13-2/tp/releases).
 
-3. Move the file to a folder of your choice, in particular where you want the application to be stored on your computer.
+3. Move the file to a folder of your choice, in particular, where you want the application to be stored on your computer.
 
 4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
 ![Ui.png](./images/Ui.png)
@@ -79,13 +79,13 @@ So, what are you waiting for? Start revolutionizing your financial advising jour
 
 ## Tutorial 
 
-Welcome to the LongTimeNoSee Tutorial! Here we will guide you through your journey of learning how to use your App!
+Welcome to the LTNS Tutorial! Here we will guide you through your journey of learning how to use your App!
 
-LongTimeNoSee works by giving your App commands through the keyboard. Let us first start by learning what's what. 
+LTNS works by giving your App commands through the keyboard. Let us first start by learning what's what. 
 
 Before we begin, be sure to follow the [Quick Start](#quick-start) section above to install and run the Application.
 
-The diagram below shows an example of how the Application will look like: 
+The diagram below shows an example of how the Application looks like: 
 ![UiTutorial](./images/UiTutorial.png)
 A description of the different parts of the Application is given below: 
 1. **Client Index Number**: This represents the index number of a client, in commands that require `INDEX_NUMBER`, this will be the number to use 
@@ -125,34 +125,7 @@ Try typing the command above into the command box and hit `enter`. Now observe t
 Notice that `[t/TAG]` are not required as they are optional. Also notice how we type the Parameter first before the client information eg. `b/2000-01-01` indicates a birthday on 1st January 2000
 </div>
 
-#### Last Word of Advice 
-Congratulations! You are now ready to begin your journey of using LongTimeNoSee! 
-
-When you are ready, go to the [Feature](#features-overview) section to find out about the commands you can use. 
-
-For ease of reading, each feature follows the following format:
-1. Description
-2. Command Format
-3. Additional Pointers and Tips
-4. Example Usages
-
-You may also refer to the [Command Format Table](#command-format-table) to find detailed descriptions of each **command tags**. 
-
-Additionally, refer to the [Command Summary Page](#command-summary) for a brief overview of every command.
-
-Like all things, learning can take some time, but you'll soon realise that each Command is very intuitive! If you still find yourself confused, fret not! Feel free to [contact us](#contact-us). We will be more than happy to assist you.
-
-
---------------------------------------------------------------------------------------------------------------------
-
-# Features Overview
-
-**LongTimeNoSee (LTNS)** allows you to track your clients, policies and events.
-As such, the features available to you are split into **4** main features:
-1. [Common Features](#common-features): Here you can find basic Application features
-2. [Client Features](#client-features): Here you can find all features related to keeping track of all your clients 
-3. [Policy Features](#policy-features): Here you can find all features related to keeping track of all your policies 
-4. [Event Features](#event-features): Here you can find all features related to keeping track of all your important appointments
+Given below are extra details regarding command formats: <br>
 
 <div markdown="block" class="alert alert-info">
 
@@ -175,11 +148,47 @@ As such, the features available to you are split into **4** main features:
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`. 
+  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * Click [here](#command-format-table) for a list of all possible parameters and their constraints
 
 </div>
+
+
+#### Command Practice 
+In this section, we will guide you through entering basic commands. If you feel confident enough, feel free to [skip](#last-word-of-advice) this section. 
+
+
+#### Last Word of Advice 
+Congratulations! You are now ready to begin your journey of using LTNS! 
+
+When you are ready, go to the [Feature](#features-overview) section to find out about the commands you can use. 
+
+For ease of reading, each feature follows the following format:
+1. Description
+2. Command Format
+3. Additional Pointers and Tips
+4. Example Usages
+
+You may also refer to the [Command Format Table](#command-format-table) to find detailed descriptions of each **command tags**. 
+
+Additionally, refer to the [Command Summary Page](#command-summary) for a brief overview of every command.
+
+Like all things, learning can take some time, but you'll soon realise that each Command is very intuitive! If you still find yourself confused, fret not! Feel free to [contact us](#contact-us). We will be more than happy to assist you.
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+# Features Overview
+
+**LTNS ** allows you to track your clients, policies and events.
+As such, the features available to you are split into **4** main features:
+1. [Common Features](#common-features): Here you can find basic Application features
+2. [Client Features](#client-features): Here you can find all features related to keeping track of all your clients 
+3. [Policy Features](#policy-features): Here you can find all features related to keeping track of all your policies 
+4. [Event Features](#event-features): Here you can find all features related to keeping track of all your important appointments
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -288,7 +297,7 @@ If successful, you should see the following message in the application status bo
 and you should now see John Doe's client information in LTNS
 ![addJohnDoeSuccess](./images/addJohnDoeSuccess.png)
 
-If not, not to worry, visit the [Frequently Asked Questions](#faq) to get some help
+Having trouble? Fret not! Visit the [Frequently Asked Questions](#faq) to get some help
 
 #### __________________________
 
@@ -456,13 +465,13 @@ To find out how to do so, you can refer to the [Adding an Event](#adding-an-even
 
 ## Policy Features
 
-Policies are a financial advisor’s best friend. Whether it’s an insurance policy, or an investment linked policy, LTNS has got you “covered”! (Pun not intended) Store policies from all kinds of coverages and the top companies in Singapore and even to assign them to clients under your care when you secure a deal. Let’s take a look at how it all works!
+Policies are a financial advisor’s best friend. Whether it’s an insurance policy, or an investment linked policy, LTNS has got you “covered”! Store policies from all kinds of coverages and the top companies in Singapore and even to assign them to clients under your care when you secure a deal. Let’s take a look at how it all works!
 
 #### __________________________
 
 ### Adding a Policy : `addPolicy`
 
-Found a new policy you want to pitch to your clients? LTNS lets you add the policy alongside company, coverage categories and commission levels, to easily access it in future.
+Found a new policy you want to pitch to your clients? LTNS lets you add the policy alongside its company, coverage categories and commission levels, to easily access it in future.
 
 Format: `addPolicy ti/TITLE cmp/COMPANY_CODE cms/Y1COMMISION% Y2COMISSION% Y3ONWARDS% cov/COVERAGE...`
 
@@ -634,24 +643,24 @@ Example Usage:
 * `viewIncome 2000` will display the expected income for years 2000, 2001 and 2002
 * `viewIncome 1899` will not be allowed since 1899 is not between 1900 and 2200
 
+Below is an example result of the command `viewIncome 2000`, which displays the three year expected income starting from year 2000.
 ![result for 'viewIncome 2000'](images/viewIncome.png)
 
-(Result after typing the command `viewIncome 2000`, which displays three year expected income starting from year 2000)
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Event Features
 
-Great job making it past the Client and Policy features! Just one more to go, and you're all set
+Having trouble keeping track of all your appointments amidst your busy schedule?
 
-Now, you've added a bunch of clients, but how do you <B> track appointments </B> with them?
-
-Fret not! Our handy app let's you track `Events` with clients! 
+Fret not! Our handy app lets you track `Events` with clients! 
 
 #### __________________________
 
 ### Adding an Event: `addEvent`
-An `Event` consists of four primary indicators. Think of it like any event, you'd want to know the "Who", "What", "When"!
+Made an appointment with a Client? Keep track of it by adding it to your Application! 
+
+An `Event` consists of three primary indicators:
 
 1. <B>Who</B>: The `name` of the client you are about to meet!
 2. <B>What</B>: A short `description` of the event. This could be anything you'd like, from the location of the event, to some short meeting notes.
@@ -661,7 +670,7 @@ This function adds an `Event` into the address book
 
 Format: `addEvent desc/EVENT_DESCRIPTION n/CLIENT_NAME date/EVENT_DATE st/START_TIME et/END_TIME`
 
-Oh no... what's all this? For more details, find a detailed explanation of different input restrictions [here](#command-format-table).
+For more details, find a detailed explanation of different input restrictions [here](#command-format-table).
 
 For any event in LTNS, the client specified by your event should already be present in the app.
 
@@ -682,7 +691,7 @@ If all's good, you should see the following command result at the top of your sc
 
 ![result for adding Ben Leong event](images/addEventResult.JPG)
 
-If not, not to worry! Just match the error message you've gotten with our helpful [Frequently Asked Questions](#faq) section.
+Having trouble? Not to worry! Just match the error message you've gotten with our helpful [Frequently Asked Questions](#faq) section.
 
 #### __________________________
 
@@ -707,7 +716,7 @@ The index **must be a positive integer** 1, 2, 3, …​
 ### Switching to the view of currently listed events : `events`
 Hey, I'm on another page and I want a quick glance at my current events. How do I switch back and forth quickly?
 
-Well this is the command for you!
+This is the command for you!
 If you previously filtered the event list ([via an Event Search](#searching-for-an-event--findevent)) and switched to view to other lists, this command will allow you to <B> come straight back to the filtered event list </B>
 
 
@@ -747,7 +756,7 @@ Here's an example result
 #### __________________________
 
 ### Searching for an Event : `findEvent`
-So, you've added tons of events. Now, I just need to find that one event happening tomorrow... 
+So, you've added many events. Now, I just need to find that one event happening tomorrow... 
 
 Easy! Just specify the appropriate [metrics](#metric), and LTNS will do the work for you. You can specify multiple metrics if you want your search to be more specific
 
@@ -778,9 +787,9 @@ Here's the result
 ### Viewing all Events in the next 7 days : `calendar`
 One of the highlights of our app, the `calendar` function shows all events you have in the next 7 days
 
-As usual, it's sorted in chronological order, for you to prioritize what's coming up the soonest
+As usual, it's sorted in chronological order, for you to prioritize what's coming up soon.
 
-Now, your immediately schedule is literally one word away
+Now, your immediate schedule is literally one word away.
 
 Format: `calendar`
 
