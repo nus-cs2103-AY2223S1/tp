@@ -180,6 +180,17 @@ Similarly, for an inpatient, `add` will throw an error if values are **not** inp
 Please see the [Examples](#add-examples) below for more information.
 </div>
 
+**Reasons for usage:**
+
+* You want to add the personal information of the patient such as their name and contact details (phone number and email).
+* You want to add the personal information of a patient's next-of-kin such as their next-of-kin's name, relationship
+  to the patient and contact number.
+* You want to add a patient's type (inpatient/outpatient).
+* If the patient is an inpatient, you want to add the location of their ward (hospital wing, floor number of the ward 
+  and ward number).
+* You want to add any upcoming appointments that a patient has.
+* You want to add any long-term medication that a patient has been prescribed.
+
 **Upon Execution**
 
 If the command was successfully executed, you should see something similar to the image below in the Command Result Box:
@@ -254,6 +265,18 @@ When editing medication, the existing medication of the patient will be removed 
 cumulative.
 </div>
 
+**Reasons for usage:**
+
+* You want to correct any typos when adding a patient's details into checkUp.
+* You want to edit the personal information of the patient such as their name and contact details (phone number and email).
+* You want to edit the personal information of a patient's next-of-kin such as their next-of-kin's name, relationship 
+  to the patient and contact number.
+* You want to edit a patient's type (inpatient/outpatient).
+* If the patient is an inpatient, you want to edit the location of their ward (hospital wing, floor number of the ward
+  and ward number).
+* You want to edit any upcoming appointments that a patient has.
+* You want to edit any long-term medication that a patient has been prescribed.
+
 **Upon Execution**
 
 If the command was successfully executed, you should see something similar to the image below in the Command Result Box:
@@ -286,6 +309,12 @@ Deletes the patient specified by the index number used in the patient list panel
 Format: `delete INDEX`
 
 * The index **must be a positive integer** 1, 2, 3, …​
+
+**Reasons for usage:**
+
+* You want to remove any personal information or data of a patient in checkUp.
+* You want to remove any erroneous information added into checkUp. e.g. You accidentally added an extra patient into 
+  checkUp and wish to remove it.
 
 **Upon Execution**
 
