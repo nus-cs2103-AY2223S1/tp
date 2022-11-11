@@ -139,6 +139,8 @@ Format: `add student n/NAME i/STUDENT_ID ph/PHONE e/EMAIL tele/TELEGRAM_HANDLE m
 
 * `PHONE` should be 8 digits long as per standard telephone numbers in Singapore.
 * `STUDENT_ID` should follow the following format AXXXXXXXY, where X is a number, and Y is an alphabet.
+* `TELEGRAM_HANDLE` follows the format of a username on Telegram, taking in a-z, 0-9 and underscores.
+* `MODULE` takes in the module code YY[Y]XXXX[Y], where X is a number, and Y is an alphabet. [Y] indicates an optional alphabet.
 * `ATTENDANCE` and `PARTICIPATION` can only take in integers greater than 0. If a value is not given, they will automatically be set to 0.
 * `GRADE` can take in `A`, `B`, `C`, `D`, `F`. If a value is not given, it will automatically be set to `PENDING...`.
 
@@ -220,7 +222,7 @@ Examples:
 <a name="find"></a>
 #### 5.1.4 Locating students by their attributes: `find`
 
-Finds students by names, student ID, module or tutorial, by checking if respective attribute contains any of the given keywords.
+Find students by name, student ID, module or tutorial, by checking if respective criteria contains any of the given keywords.
 
 Format: `find [n/NAME] [i/STUDENT_ID] [m/MODULE] [tut/TUTORIAL]`
 
@@ -573,17 +575,6 @@ Examples:
 1. `sort reminder by/priority`
 2. `sort reminder by/deadline`
 
-<table>
-  <tr>
-    <td>Sort reminder by priority</td>
-    <td>Sort reminder by deadline</td>
-  </tr>
-  <tr>
-    <td><img src="images/MarkedReminder.png" width=350></td>
-    <td><img src="images/ReminderDeadline.png" width=350></td>
-  </tr>
- </table>
-
 <a name="switch"></a>
 ### 5.5 Switch tabs: `switch`
 
@@ -598,7 +589,6 @@ Examples:
 * `switch f/grade` with switch tabs and display a pie chart showing an overview of the number of students in each grade category.
 
 ![Grade Chart Tab](images/GradeChart.png)
-_Figure 2. Grade Chart Tab_
 
 <a name="clear"></a>
 ### 5.6 Clearing data: `clear`
