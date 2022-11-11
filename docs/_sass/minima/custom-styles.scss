@@ -10,7 +10,7 @@ h2, h3, h4, h5, h6 {
   padding: $alert-padding-y $alert-padding-x;
   margin-bottom: $alert-margin-bottom;
   border: $alert-border-width solid transparent;
-  order-radius : $alert-border-radius;
+  border-radius : $alert-border-radius;
 }
 
 // Headings for larger alerts
@@ -28,7 +28,69 @@ h2, h3, h4, h5, h6 {
 
 @each $color, $value in $theme-colors {
   .alert-#{$color} {
-    @include alert-variant(color-level($value, $alert-bg-level), color-level($value, $alert-border-level), color-level($value, $alert-color-level));
+    @include alert-variant(color-level($value, $alert-bg-level), color-level($value, $alert-border-level),
+            color-level($value, $alert-color-level));
   }
 }
 
+// Basic keyboard style
+// style taken from https://developer.mozilla.org/en-US/docs/Web/HTML/Element/kbd
+kbd {
+  background-color: #eee;
+  border-radius: 3px;
+  border: 1px solid #b4b4b4;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 2px 0 0 rgba(255, 255, 255, 0.7) inset;
+  color: #333;
+  display: inline-block;
+  font-size: .85em;
+  font-weight: 700;
+  line-height: 1;
+  padding: 2px 4px;
+  white-space: nowrap;
+}
+
+// Override heading spaces
+.post-content {
+  h1, h2 { margin-top: $spacing-unit }
+  h3, h4, h5, h6 { margin-top: $spacing-unit * 0.5 }
+}
+
+// Override alert styles
+.alert .emoji {
+  margin-bottom: 3px;
+}
+
+.alert p {
+  margin-bottom: 0;
+}
+
+// Custom link styles
+.page-content a {
+  font-weight: 600;
+}
+
+table .text-with-color a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+// Custom text colors
+.text-with-color.red {
+  color: #ff0000;
+}
+
+.text-with-color.blue {
+  color: #1400ff;
+}
+
+.text-with-color.green {
+  color: #009d6e;
+}
+
+.text-with-color.pink {
+  color: #ff00c7;
+}
+
+.text-with-color.orange {
+  color: #ff4d00;
+}
