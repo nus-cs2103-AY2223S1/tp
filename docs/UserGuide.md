@@ -863,8 +863,7 @@ team members in your [currently selected team](#current-team-section).
 
 The `list members` command shows a list of all team members in your team. After running the
 [find member command](#finding-a-member-find-member), you may wish to view all team members again. To do so, 
-the `list members` command will update the member list in the [current team section](#current-team-section) and display all 
-team members as seen in the image below.
+the `list members` command will update the member list in the [current team section](#current-team-section).
 
 If done successfully, you should the see all team members show up under in the member list in the
 [current team section](#current-team-section) as shown below.
@@ -945,8 +944,7 @@ Summary of the commands to manage teams can be found [here](#summary-of-team-com
 You have formed your group for the project and are ready to work on the best software project ever created! Now you are
 ready to create a new team. First, decide on a nice team name and a description that fits the purposes of your team. 
 Next, key in `add team -n <TEAM_NAME> -d <TEAM_DESCRIPTION>` and a new team will be created. Combine this with 
-[set team command](#set-a-new-team-set-team) to directly switch to the team you just created. Now you are ready to work
-on the best project ever.
+[set team command](#set-a-new-team-set-team) to directly switch to the team you just created.
 
 The `add team` command allows you to add a new team to your list of teams. The new team is added to the 
 [teams section](#teams-section) as seen in the image below. Do not worry if an error shows up, you might have typed 
@@ -1495,8 +1493,26 @@ The format for the `-a` flag indicates that you must specify at least 1 `-a` fla
 
 #### Assign a task to random team member: `assign random`
 
-Assign an existing task to a random team member in the user’s team. This command will not work if the team is empty or
-if the task has already been assigned to all members of the team.
+You have tasks and are looking to assign it to different people to work on it. Unfortunately, everyone is capable of 
+doing any of the tasks, and you are not sure who to assign the tasks to. Fret not, you can assign tasks to people
+using the `assign randopm` command. First, identify the index number of the task in the task list of
+[current team section](#current-team-section). If you are not able to find the task visibly, refer to
+[find task command](#finding-a-task-find-task) on how you can find your task easily. Next, key in 
+`assign random <TASK_INDEX>` to assign it to a random member on your team!
+
+The `assign random` command allows you to assign tasks randomly to members in your team. The task with the new 
+assignees will be shown in the task list of the [current team section](#current-team-section).
+
+Let us run through an example on how to assign tasks to your team members.
+
+Suppose you have task called `Create PR`, and you want to assign it randomly to your team members.
+
+Identify the index number of `Create PR` in the application (1 in the image below).
+
+Then, enter the command `assign random 1`.
+
+If done successfully, you should see the `Create PR` task being assigned to a random member. It should show up under 
+in the task list of the [current team section](#current-team-section).
 
 ![Assign Random Example](images/AssignRandomExample.png)
 
@@ -1520,7 +1536,25 @@ if the task has already been assigned to all members of the team.
 
 #### Filter tasks by team member: `tasksof`
 
-Find all tasks that have been assigned to a particular member in the currently selected team.
+Your team member privately tells you that he has been assigned too much tasks in this team project. Fortunately, you can
+see how many tasks each team member is assigned in your teams with `tasksof` command. First, identify the index number 
+of the team member in the member list of the [current team section](#current-team-section). If you are not able to find 
+the member visibly, refer to [find member command](#finding-a-member-find-member) on how you can find that member 
+easily. Next, key in `tasksof <MEMBER_INDEX>` to the tasks that are assigned to that member!
+
+The `tasksof` command allows you view the specific tasks assigned to a specified member. The tasks that are assigned 
+to that member will be shown in the task list of the [current team section](#current-team-section).
+
+Let us run through an example on how to assign tasks to your team members.
+
+Suppose you want to check the tasks being assigned to `Alex Yeoh`.
+
+Firstly, identify the index number of `Alex Yeoh` in the application (1 in the image below).
+
+Then, enter the command `tasksof 1`.
+
+If done successfully, you should see the all tasks that `Alex Yeoh` is assigned. It should show up under
+in the task list of the [current team section](#current-team-section).
 
 ![Tasks Of Example](images/TasksOfExample.png)
 
@@ -1542,8 +1576,22 @@ Find all tasks that have been assigned to a particular member in the currently s
 
 #### List tasks in team: `list tasks`
 
-View all the tasks in the [currently selected team](#current-team-section). These tasks can also be filtered based on
-whether they are complete or incomplete tasks.
+Deadlines are coming soon, and you want to know exactly how many tasks are in the team. Not to worry, you can use the 
+`list tasks` command to see a list of all your tasks in your team. Key in `list tasks`, and TruthTable will show you all existing
+tasks in your [currently selected team](#current-team-section).
+
+The `list tasks` command shows a list of all tasks in your team. After running the 
+[find task command](#finding-a-task-find-task), you may wish to view all tasks. To do so, simply enter `list tasks` 
+command will update the task list in the [current team section](#current-team-section).
+
+If done successfully, you should the see all tasks show up under in the member list in the
+[current team section](#current-team-section) as shown below.
+
+You can also view all incomplete and complete tasks by supply the `-i` flag or the `-c` flag respectively.
+
+Unable to find an existing task? Please check that you have added the task into your team as shown in the
+[current team section](#current-team-section). Refer to the above
+[add task command](#add-task-to-team-add-task) on how to add a new task.
 
 This command can also be used to view all tasks again after using the [`find task` command](#finding-a-task-find-task)
 as the `find task` command filters the current team’s tasks based on some keyword(s).
@@ -1573,7 +1621,24 @@ as the `find task` command filters the current team’s tasks based on some keyw
 
 #### Sort tasks: `sort tasks`
 
-Sorts all tasks in the current team by name and displays them in the task list.
+The number of tasks is increasing, and it is confusing for you to make sense of the list of tasks in your team. Not to
+worry, you can sort your team tasks by name with our `sort tasks` command! Suppose you want to see whether there is
+task called `Create PR`, but you are unsure of how to spell it. First, key in `sort tasks asc`, and TruthTable
+will sort the list of tasks alphabetically by name in ascending order. You can now verify if `Create PR` indeed
+exists in your team by scrolling to all names that begin with `c`. You may sort your tasks in descending order
+with `sort tasks dsc` or reset to the original list order with `sort tasks res`.
+
+The `sort tasks` command allows you to sort your tasks in alphabetical order. The sorted tasks will
+be displayed in task list the [current team section](#current-team-section) as seen in the image below.
+
+Let us run through an example on how to sort your tasks.
+
+Suppose you want to sort your team members alphabetically in descending order. Enter the command
+
+`sort tasks dsc`
+
+If done successfully, the sorted tasks will be shown in the task list in
+[current team section](#current-team-section)
 
 ![Sort Tasks Example](images/SortTasksExample.png)
 
@@ -1603,7 +1668,13 @@ Sorts all tasks in the current team by name and displays them in the task list.
 
 #### View summary of task assignments in team: `summary`
 
-View the number of tasks assigned to each member in the team.
+As always, the number of tasks keep increasing and you want to assign task equally to everyone. How do you check the 
+number of tasks each person is assigned? Do not worry, you may use the `summary` function to gain an overview of the
+number of tasks each person is assigned in your team! Now you can make better decisions on who to assign the new
+tasks to.
+
+To do so, simply enter `summary` and the number of tasks each person is assigned will be displayed in the 
+[result panel](#command-section).
 
 ![Summary Example](images/SummaryExample.png)
 
@@ -1624,7 +1695,22 @@ Summary of the commands to manage links can be found [here](#summary-of-link-com
 
 #### Add a new link: `add link`
 
-Add a new link to the currently selected team.
+Your project has started and now have weekly meetings. As the meeting link is always the same, wouldn't it be nice 
+if it is recorded down permanently somewhere? TruthTable helps you do that with the `add link` command! Firstly, 
+decide on a nice name that can uniquely identify the purpose of the link. Next, key in 
+`add link -n <LINK_NAME> -l <URL>` and a new link will be created.
+
+The `add link` command allows you to add a new link to the list of links. The new link is added to the list of links in 
+the [currently selected team](#current-team-section) as seen in the image below. Do not worry if an error shows up, 
+you might have typed something wrongly. Here, let us take a quick walk-through on how to add a link.
+
+Let us try to add a new weekly meeting link, with a name `Meeting Link`, with the meeting link url of 
+`https://nus-sg.zoom.us/j/87390425930?pwd=aUZNZ1NJdW5hUjcxSGxXZyt0NjdLQT09`. Enter the command
+
+`add link -n "Meeting Link" -l https://nus-sg.zoom.us/j/87390425930?pwd=aUZNZ1NJdW5hUjcxSGxXZyt0NjdLQT09`
+
+If done successfully, you should see a new link show up in the list of links in the 
+[currently selected team](#current-team-section) as shown below.
 
 **Format:** `add link [-h] -l=<LINK_URL> -n=<LINK_NAME>`
 
@@ -1646,7 +1732,21 @@ Add a new link to the currently selected team.
 
 #### Edit an existing link: `edit link`
 
-Edit an existing link in the currently selected team.
+Oops! Seems like meeting link has changed. Not to worry, you can edit their link url easily with `edit person`!
+
+The `edit link` command allows you to edit an existing link in TruthTable. The edited link will be shown in the list of 
+links in the [currently selected team](#current-team-section) as seen in the image below. As always, don't panic if 
+you see an error message. Let us run through an example on how to edit the details of a link. 
+
+Suppose the url of your `weekly meeting` has changed to
+`https://zoom.us/j/94669589458?pwd=bTQvWTlWbzR5T29Ja0w2d0J1R1R4QT09#success`. 
+Identify the index number of the link with a name `weekly meeting` in the application (1 in the image below).
+
+Then, enter the command `edit link 1 -l https://zoom.us/j/94669589458?pwd=bTQvWTlWbzR5T29Ja0w2d0J1R1R4QT09#success`
+
+If done successfully, the edited `weekly meeting` link  will appear up under in the list of links in the
+[currently selected team](#current-team-section) as shown below. You can edit the name of
+the link directly as well by supplying the `-n` tag.
 
 **Format:** `edit link [-h] ([-n=<LINK_NAME>] [-l=<LINK_URL>]) <LINK_INDEX>`
 
@@ -1674,7 +1774,21 @@ Edit an existing link in the currently selected team.
 
 #### Delete an existing link: `delete link`
 
-Delete the specified link from the currently selected team.
+The mode of your weekly meeting has changed to physical permanently and you no longer need to keep track of the 
+meeting link. Not to worry, you can delete links easily with `delete link`!
+
+The `delete link` command allows you to delete the specified link from TruthTable. The deleted link will be
+removed from the list of links in the [currently selected team](#current-team-section). 
+
+Let us run through an example on how you can delete a link in TruthTable.
+
+Suppose you want to delete the `weekly meeting` link from your application. Identify the index number of 
+`weekly meeting` in the application (1 in the image below). 
+
+Then, enter the command `delete link 1`.
+
+If done successfully, you should see that the link `weekly meeting` has been removed under the
+list of links in the [currently selected team](#current-team-section).
 
 **Format:** `delete link [-h] <LINK_INDEX>`
 
@@ -1700,7 +1814,11 @@ Summary of the general commands can be found [here](#summary-of-general-commands
 
 #### Clearing all entries: `clear`
 
-Deletes everything from the application, including persons, teams, tasks, links, and member information.
+Want to start from a blank application and try again! Not a problem! Use our `clear` command to clear all existing data
+in TruthTable! Enter `clear command` and if done successfully, all data will be cleared except for a `default` team, 
+for you to start again.
+
+Be warned you can no longer recover the deleted data! Think twice before doing it.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution: This action is irreversible!**
 </div>
@@ -1715,7 +1833,8 @@ Deletes everything from the application, including persons, teams, tasks, links,
 
 Whether you're someone that likes a light theme or dark theme, we've got you covered!
 
-This command allows you to toggle between light theme and dark theme.
+This command allows you to toggle between light theme and dark theme. Enter `theme` and your application will enter 
+the light theme from the dark theme, or dark theme from the light theme.
 
 **Format:** `theme [-h]`
 
@@ -1729,7 +1848,9 @@ This command allows you to toggle between light theme and dark theme.
 
 #### Exiting the program: `exit`
 
-Closes the program after 3 seconds.
+Enough work for today! Get some rest and recharge for tomorrow. See you again soon! 
+
+Enter `exit` and the program closes after 3 seconds.
 
 **Format:** `exit [-h]`
 
