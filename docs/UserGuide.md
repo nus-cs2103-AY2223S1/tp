@@ -863,7 +863,7 @@ data file at the next run.
 
 **Q:** How do I transfer the data file to another computer?
 
-**A:** Copy the home folder containing your TrackO.jar to the computer you are transferring to. The application should 
+**A:** Copy the [home folder](#quick-start) containing your TrackO.jar to the computer you are transferring to. The application should 
 work as normal with all the existing data.
 
 **Q:** How do I make sure that my computer is running Java 11?
