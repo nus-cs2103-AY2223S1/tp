@@ -334,8 +334,8 @@ Here's a summary of what each highlighted section represents.
 
 To help you use our program even faster, we have introduced short forms for our commands and flags!
 
-These short forms are what we call "aliases", and they allow you to execute instructions _blazingly fast_ by minimizing
-the number of letters you need to type.
+We call these short forms "aliases", and they allow you to execute instructions _blazingly fast_ by minimizing
+the number of characters you need to type.
 
 For instance, the [`add person`](#creating-a-new-person-add-person) command has the following command aliases,
 
@@ -353,30 +353,32 @@ The `add person` command also has the following flags and their corresponding al
 
 You can find out more about these flags [here](#creating-a-new-person-add-person).
 
-To view all commands and their respective aliases, head over to the [command summary section](#command-aliases)
-to find out more.
+Feel free head over to the [command summary section](#command-aliases)
+to find out more about each command and its corresponding aliases.
 
 [Back to Table of Contents](#table-of-contents)
+
+Congrats! You've successfully understood how TruthTable makes use of [Command Line Interface](#command-line-interface) to improve your productivity. 
+
+You're about halfway through this User Guide already! Continue reading to find out about important commands that you can use to solve your project management problems :smile:
 
 ---
 
 ## Commands
 
 <div markdown="block" class="alert alert-primary">**:information_source: Make sure you have 
-[read this section](#understanding-truthtables-cli) before continuing!**
+[read the section on TruthTable's CLI](#understanding-truthtables-cli) before continuing!**
 </div>
 
 TruthTable allows you to manage members, tasks, links, and members through the use of commands.
 
 <div markdown="block" class="alert alert-primary">**:information_source: Persons vs Members**
 
-The persons in TruthTable (as seen in the [persons section](#persons-section)) may not all be in a team. However, any
-member of a team must be an existing person in TruthTable.
-<br><br>
-This is why TruthTable distinguishes between person and member commands.
+Some persons in TruthTable (as seen in the [persons section](#persons-section)) may not be in a team. However, any
+member of a team must be a person in TruthTable.
 </div>
 
-Consequently, the commands are split into **5** main sections:
+The commands are split into **5** main sections:
 
 1. [Person commands](#commands-to-manage-persons) and [member commands](#commands-to-manage-members)
 2. [Team commands](#commands-to-manage-teams)
