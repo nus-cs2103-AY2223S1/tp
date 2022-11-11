@@ -32,7 +32,7 @@ to use and what it does for all the features available in myStudent. If you don'
 
 * **Displayed list**: it refers to the current list that is displayed.
   There are three possible list: the **student list**, the **tutor list** and the **class list**.
-  Only one of the three will be displayed at one time, and this list is referred to as the **displayed list**.
+  Only one them will be displayed at one time, and this list is referred to as the **displayed list**.
 
 
 * **Format** appears in each command section. It refers to the format of the inputs that you need to type into the command box to execute the commands.
@@ -43,7 +43,7 @@ to use and what it does for all the features available in myStudent. If you don'
   (E.g., `n/` or `p/`.)
 
 
-* **Fields** are information to be supplied to the command by the user for the application to execute.  
+* **Fields** are information to be supplied by you for the application to execute.  
   (E.g., `name` or `phone`)
 
 </div>
@@ -52,19 +52,19 @@ to use and what it does for all the features available in myStudent. If you don'
 
 :information_source: Notes about the command format in this user guide:
 
-* `< >` - indicate that enclosing field is *mandatory*.   
+* `< >` - indicates that the enclosing field is *mandatory*.   
   (E.g., `add n/<name>`, where `<name>` is a mandatory field "name" and a valid input could be `add n/John Doe`.)
 
 
-* `[ ]` - indicate that the enclosing elements (prefixes and/or fields) are *optional*.  
+* `[ ]` - indicates that the enclosing elements (prefixes and/or fields) are *optional*.  
   (E.g., `n/<name> [#/<tag>]`, where valid inputs could be `add n/John Doe` or `n/John Doe #/male`.)
 
 
-* Users can input fields of prefixes in any order.  
+* You can input fields of prefixes in any order.  
   (E.g., `nok <index> n/<name> p/<phone>`, where valid inputs could be `nok 2 n/John Doe p/91234567` or `nok 2 n/John Doe p/91234567`. However, `nok n/John Doe p/91234567 2`, where the `<index>` is at the end of the input, is not valid.)
 
 
-* Extra input from the user for commands that do not take in any fields will be ignored.  
+* Extra inputs that you enter for commands that do not take in any fields will be ignored.  
   (E.g., the `clear` command does not have any other fields, thus typing `clear asdfghjkl` into the command box will have the same result as if you had entered `clear` instead.)
 
 </div>
@@ -86,9 +86,9 @@ Below is a quick guide on how to get started.
     <div markdown="block" class="alert alert-info">
     
     :information_source: **Home Folder**  
-    Home folder refers to the particular folder that will be containing the `myStudent.jar` file and its relevant files.
+    The **home folder** refers to the particular folder that will be containing the `myStudent.jar` file and its relevant files.
     Since myStudent will need to load and save files, it is recommended that you to put `myStudent.jar` in a new folder 
-    to ensure a smooth experience when using myStudent.
+    to ensure a smooth experience when using it.
     
     </div>
 
@@ -100,8 +100,8 @@ Below is a quick guide on how to get started.
 
 :pencil2: **Configuring the app**  
 
-You can change the default configurations of the app in the `preference.json` file which is located in the home folder.  
-A `preference.json` file will be created when you first run the application, if it doesn't exist initially.  You can then edit the file to customize mystudent to your needs.  
+You can change the default configurations of the app in the `preference.json` file, which is located in the home folder.  
+A `preference.json` file will be created when you first run the application, if it doesn't exist initially.  You can then edit the file to customize myStudent to your needs.  
 
 **What you can change:**
 * The size of the window such as its height and width (in pixels).
@@ -113,7 +113,7 @@ A `preference.json` file will be created when you first run the application, if 
 * The default theme.
 
 
-* Where data will be loaded from and stored into.
+* Where your data will be loaded from and stored into.
 
 | Settings 	                            | Default Value 	                       |
 |---------------------------------------|---------------------------------------|
@@ -155,7 +155,7 @@ This is where you key in commands. After typing the commands, simply press <kbd>
 
 ### 2. Feedback Box
 
-This is where the feedback information is displayed after you execute a command. For example, if you keyed in an invalid command, the feedback “Unknown command” would be shown in the box for your reference.
+This is the area under the command box. It is where the feedback information is displayed after you execute a command. For example, if you had entered an invalid command, the feedback “Unknown command” would be shown in the box.
 
 <p align="center">
 
@@ -189,8 +189,6 @@ The highlighted tab indicates which list is currently being displayed.
 </p>
 
 
-The above shows that the **student list** is the **displayed list**.
-
 ### 5. Description Panel
 
 <p align="center">
@@ -199,7 +197,7 @@ The above shows that the **student list** is the **displayed list**.
 
 </p>
 
-This is an example of a description being displayed in the description panel. When there is no person being display, the line “No Person Displayed” would be shown.
+This is an example of a student entry being displayed in the description panel. When there is no person being displayed, the line “No Person Displayed” would be shown.
 
 
 ### 6. Toolbar 
@@ -216,13 +214,13 @@ The `File`  menu contains `Export` and `Exit`.
 For more information regarding `Export`, you can click [here](#exporting-address-books-to-csv).
 
 
-* `Exit` allows the software to exit after three seconds of pause.
+* `Exit` allows you to exit the software.
 
 #### Help
 `Help` allows you to view the help information regarding our software.
 
 #### Theme
- `Theme` allows you to change the color scheme of the software.  
+ `Theme` allows you to change the color scheme of the software, such as what commands you can use.  
  There are four themes provided: `Light Theme`, `Dark Theme`,  `Green Theme` and `Pink Theme`.
 
 ---
@@ -340,7 +338,7 @@ Examples:
 
 </p>
 
-This adds the student into the database. 
+The new student has been added into the database.
 
 ### Adding a class: `add`
 
@@ -351,14 +349,14 @@ Format: `add class n/<name> s/<subject> l/<level> d/<day> t/<time> [#/<tag>]…`
 * All fields must be present, except for the optional `<tag>` field.
 
 
-* If a specific field is repeated, the last occurrence in the input is taken. The `<tag>` field is an exception as multiple tags are allowed.
+* If a specific field is repeated, the last occurrence of the field is taken. The `<tag>` field is an exception, where multiple tags are allowed.
 
 
 * Generally,  
 
   * `<name>` field should only contain alphanumeric characters and spaces, and should not be left blank. Also, there should not be an existing class with the same name.
     <p></p>
-  * `<subject>` field should only contain alphabetical characters, and should be one of the valid subjects spelt out in full. 
+  * `<subject>` field should only contain alphabetical characters, and should be one of the valid subjects. 
     The valid subjects are:
     1. English
     2. Mathematics
@@ -466,7 +464,7 @@ To edit a **class**, <br>
 * Fields must be valid in correspondence to the entry list being displayed currently. For example, when a **student list** is displayed, specifying a qualification when executing the edit command is disallowed.
 
 
-* If a specific optional field is repeated, the last occurrence in the input is taken. The `<tag>` field is an exception as multiple tags are allowed.
+* If a specific optional field is repeated, the last occurrence in the input is taken. The `<tag>` field is an exception, where multiple tags are allowed.
 
 
 * The constraints of each optional field must be followed. They are:  
@@ -493,7 +491,7 @@ To edit a **class**, <br>
     <p></p>
   * `<institution>` field should only contain alphanumeric characters and spaces, and should not be left blank.
     <p></p>
-  * `<subject>` field should only contain alphabetical characters, and should be one of the valid subjects spelt out in full.
+  * `<subject>` field should only contain alphabetical characters, and should be one of the valid subjects.
     The valid subjects are:
       1. English
       2. Mathematics
@@ -504,7 +502,8 @@ To edit a **class**, <br>
       7. Additional Mathematics
 
     (Abbreviations are also allowed, e.g., "Eng" or "Amath".)
-  * `<day>` field should be a valid day of the week. (Abbreviations are also allowed, e.g., "Mon" or "Thurs".)
+  * `<day>` field should be a valid day of the week.  
+  (Abbreviations are also allowed, e.g., "Mon" or "Thurs".)
     <p></p>
   * `<time>` field should be separated by a dash, a space or "to", and adhere to the following constraints:
       1. Timings must be in either 12-hour or 24-hour formats. When using the 12-hour format, AM/PM must be specified while minutes can be omitted. For both, the colon and initial zero may be omitted.
@@ -536,11 +535,12 @@ Examples:
 
 </p>
 
-This edits the details of Alex Miller by changing his name to Tom Doe. Note that the Description Panel and the List Display Panel are updated.
+
+This edits the details of Alex Miller by changing his name to Tom Doe. Note that the Description Panel and the List Display Panel have been updated.
 
 ### Assign class to a person: `assign`
 
-Assign an existing tuition class to a specified student/tutor.
+Assign an existing tuition class to a specific student/tutor.
 
 Format: `assign <index> n/<name>`
 
@@ -556,7 +556,7 @@ Format: `assign <index> n/<name>`
 * `<name>` field refers to name of the class being assigned and should only contain alphanumeric characters and spaces, and should not be left blank. The specified tuition class (case-sensitive) must already exist in the **class list**.
 
 
-* The tuition class to be assigned to the specified student/tutor must not have been assigned beforehand.
+* The tuition class to be assigned to the specific student/tutor must not be assigned beforehand.
 
 
 Examples:
@@ -576,7 +576,7 @@ Examples:
 
 ### Unassign class from a person: `unassign`
 
-Unassign an existing tuition class from a specified student/tutor.
+Unassign an existing tuition class from a specific student/tutor.
 
 Format: `unassign <index> n/<name>`
 
@@ -592,7 +592,7 @@ Format: `unassign <index> n/<name>`
 * `<name>` field refers to name of the class being assigned and should only contain alphanumeric characters and spaces, and should not be left blank. The specified tuition class (case-sensitive) must already exist in the **class list**.
 
 
-* The tuition class to be unassigned from the specified student/tutor must have been assigned to the
+* The tuition class to be unassigned from the specific student/tutor must be assigned to the
   student/tutor beforehand.
 
 Examples:
@@ -636,7 +636,7 @@ To **remove** existing next of kin,<br>
 * When adding a next of kin, all fields must be present, except for the optional `<tag>` field.
 
 
-* If a specific field is repeated, the last occurrence in the input is taken. The `<tag>` field is an exception as multiple tags are allowed.
+* If a specific field is repeated, the last occurrence of the field is taken. The `<tag>` field is an exception, where multiple tags are allowed.
 
 
 * If no fields are present after the required `index` field, the next of kin from the student of that index will be removed.
@@ -663,7 +663,7 @@ To **remove** existing next of kin,<br>
 Examples:
 
 * `nok 5 n/Eddy Doe p/86758594 e/eddydoe@example.com a/John street, block 123, #01-01 r/Father`
-  This adds a next of kin to John Doe.
+  This adds the next of kin to John Doe.
 
 <p align="center">
 
@@ -698,7 +698,7 @@ Examples:
 
 ### Showing the details of a person: `show`
 
-In the **student list** and **tutor list**, the details of the persons are not displayed. You could access the person’s details by executing the show command.
+In the **student list** and **tutor list**, the details of a person are not displayed due to privacy reasons. You can access a person’s details by executing the show command.
 
 Format: `show <index>`
 
@@ -708,7 +708,7 @@ Format: `show <index>`
 * In the **tutor list**, `show 1` shows the description of the first tutor in the list.
 
 
-* In the **class list**, `show 1` is invalid as `show` command can only be executed for the **student list** and **tutor list**.
+* In the **class list**, `show 1` is invalid as the `show` command can only be executed for the **student list** and **tutor list**.
 
 Examples:
 * `show 3` 
@@ -745,7 +745,7 @@ Note that `show` command is invalid for the **class list**.
 
 ### Listing all entries : `list`
 
-Shows a list of the specified entry type in the myStudent database.
+Shows the list of a specified entry type in the myStudent database.
 
 Format: `list <entry type>`
 * The valid entry types are:
@@ -753,7 +753,7 @@ Format: `list <entry type>`
   2. tutor
   3. class
   <p></p>
-* The lists of each entry type can be displayed by clicking any of the tabs above the **displayed list**.
+* The list of each entry type can also be displayed by clicking any of the tabs above the **displayed list**.
 
 Examples:
 * `list tutor`
@@ -774,11 +774,11 @@ Note that this changes the **displayed list** to the **tutor list**.
 
 ### Clears list: `clear`
 
-Clears either the student, the tutor or the **class list**.
+Clears either the student, tutor or class list.
 
 Format: `clear`
 
-* Please note the list you are clearing as this action is **irreversible**. This can be identified by the tabs above the **displayed list**.
+* Please ensure that you are clearing the correct list as this action is **irreversible**. The current list can be identified by the tabs above the **displayed list**.
 
 <p align="center">
 
@@ -792,7 +792,7 @@ Format: `clear`
 
 </p>
 
-Note that the clear command clears the **displayed list** only, which in this case is the **tutor list**. The **student list** and the **class list** will remain unchanged.
+Note that the clear command clears the current **displayed list** only which, in this case, is the **tutor list**. The **student list** and the **class list** will remain unchanged.
 
 ### Sort list: `sort`
 
@@ -825,7 +825,7 @@ Examples:
 
 ### Searching by multiple fields: `find`
 
-Finds entries from the **displayed list** based on multiple fields such that the fields of the entry specified contains the respective keywords.
+Finds entries from the **displayed list** based on multiple fields where the entries shown have fields that contain the respective keywords.
 
 Format: `find PREFIX/KEYWORD [MORE PREFIX/KEYWORD]...`
 
@@ -895,7 +895,7 @@ Note that the **displayed list** is the **student list**, so `find n/john` retur
 
 </p>
 
-Note that the **displayed list** is the **tutor list**, so `find i/NUS q/Bachelor of Computing` returns the tutors graduated from NUS with a Bachelor of Computing qualification.
+Note that the **displayed list** is the **tutor list**, so `find i/NUS q/Bachelor of Computing` returns the tutors who had graduated from NUS with a Bachelor in Computing qualification.
 
 * `find d/monday #/hard` in the **class list**.
 
@@ -930,7 +930,7 @@ They are named `students.csv`, `tutors.csv`, and `tuitionClasses.csv` respective
 
 Format: Click on the "*File*" tab located at the top-left corner of `myStudent` and click on "*Export*" in the dropdown menu, as shown in the image above.
 
-* The csv files will be saved in the same location as the .json files as specified in `preferences.json`.
+* The csv files will be saved in the same location as the .json files as specified in `preferences.json`. You can change the location [here](#quick-start), under **Configuring the app**.
 
 
 * The default location is in a folder named `data` in the [home folder](#quick-start) where you downloaded the `myStudent.jar` file.
