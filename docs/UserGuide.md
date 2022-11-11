@@ -178,7 +178,7 @@ are using the `help` command, while `editbuyer 1 -n Jane Doe` specifies that you
 
 
 * To specify inputs to the command, type the corresponding input's flag followed by a space, and then the value of your input.<br>
-  e.g. `-n John Doe` will store the input value `John Doe` for the name flag, as indicated by `-n`. More details about the flags for each command will be given in each sections below. 
+  e.g. `-n John Doe` will store the input value `John Doe` for the name flag, as indicated by `-n`. More details about the flags for each command will be given in each section below. 
 
 
 * Inputs not contained in any brackets must be passed into the command.<br>
