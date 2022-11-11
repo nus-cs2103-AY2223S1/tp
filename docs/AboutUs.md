@@ -5,55 +5,54 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
-### John Doe
+## Tjan Eng Ger, Kevin
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/nephelite.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/Nephelite)]
+[[portfolio](team/nephelite.md)]
 
-* Role: Project Advisor
+* Role: Team Leader, Developer
+* Responsibilities: UI, Logic
 
-### Jane Doe
+### See Toh Jin Wei
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/seetohjinwei.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/seetohjinwei)]
+[[portfolio](team/seetohjinwei.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Integration, Logic, Commons, DevOps
 
-### Jean Doe
+### Humphrey
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/bananamonkey4655.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/bananamonkey4655)]
+[[portfolio](team/bananamonkey4655.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Deliverables and Deadlines, Model, UI
+
+### Bill
+
+<img src="images/xiaobill8.png" width="200px">
+
+[[github](http://github.com/xiaobill8)]
+[[portfolio](team/xiaobill8.md)]
+
+* Role: Developer
+* Responsibilities: Testing, Model, Storage
+
+### Sim Choon Hong Dexter
+
+<img src="images/dexter-sim.png" width="200px">
+
+[[github](http://github.com/dexter-sim)]
+[[portfolio](team/dexter-sim.md)]
+
+* Role: Developer
+* Responsibilities: Code Quality, Scheduling and Tracking, Logic, Storage

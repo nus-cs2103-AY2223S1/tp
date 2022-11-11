@@ -45,7 +45,7 @@ As part of CI, this project uses Codecov to generate coverage reports. When CI r
 1. Sign up with Codecov using your GitHub account [here](https://codecov.io/signup).
 1. Once you are inside Codecov web app, add your org (that contains the fork) to CodeCov.
 1. Wait for the next run of CI in your fork (or push a dummy commit to it to trigger CI) to confirm CI is able to upload generated coverage data to CodeCov. If CodeCov is not set up correctly, the CI run will fail with an error message that mentions CodeCov.
-1. Get the Markdown code for the Codecov badge provided in `Settings > Badges` and update the `docs/index.md` of your repo with it so that the badge [![codecov](https://codecov.io/gh/se-edu/addressbook-level3/branch/master/graph/badge.svg)](https://codecov.io/gh/se-edu/addressbook-level3) in that page reflects the coverage of your project.
+1. Get the Markdown code for the Codecov badge provided in `Settings > Badges` and update the `docs/index.md` of your repo with it so that the badge [![codecov](https://codecov.io/gh/AY2223S1-CS2103T-T13-4/tp/branch/master/graph/badge.svg?token=LJBYLUBLCM)](https://codecov.io/gh/AY2223S1-CS2103T-T13-4/tp) in that page reflects the coverage of your project.
 
 ### Repository-wide checks
 
@@ -74,7 +74,7 @@ Any warnings or errors will be printed out to the console.
 
 Here are the steps to create a new release.
 
-1. Update the version number in [`MainApp.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java).
+1. Update the version number in [`MainApp.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/taskbook/MainApp.java).
 1. Generate a fat JAR file using Gradle (i.e., `gradlew shadowJar`).
 1. Tag the repo with the version number. e.g. `v0.1`
 1. [Create a new release using GitHub](https://help.github.com/articles/creating-releases/). Upload the JAR file you created.
