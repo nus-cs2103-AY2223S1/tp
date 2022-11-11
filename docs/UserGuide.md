@@ -17,12 +17,12 @@ This means that if you can type fast, TruthTable can get your
 task and team management done _blazingly fast_, faster than traditional GUI applications.
 
 <div markdown="block" class="alert alert-primary">**:information_source: Unsure what CLI or GUI means?**
-Head over to [this section](#understanding-truthtables-cli) to learn more! :relaxed:
+Head over to [this section](#understanding-truthtables-cli) to learn more!
 </div>
 
 This guide will help you understand how the various features of TruthTable can help you manage your teams more efficiently.
 
-Feel free to read on, or if you can't wait to get started, skip ahead to our [Getting Started guide](#getting-started) to start using TruthTable now!
+Feel free to read on, or if you can't wait to get started, skip ahead to our [Getting Started Guide](#getting-started) to start using TruthTable now!
 
 ## Using This Guide
 
@@ -39,24 +39,25 @@ Important information for all users to take note
 </div>
 
 <div markdown="block" class="alert alert-success">**:bulb: Tip for all users**:
-Useful information.
+Useful information to help you use TruthTable more effectively
 </div>
 
 <div markdown="block" class="alert alert-info">**:star: Tip for advanced users**:
-Useful information for more experienced users.
+Useful information for more experienced users
 </div>
 
 <div markdown="block" class="alert alert-warning">**:exclamation: Warning alert**:
-This alert contains important information to be wary of.
+Important information to be cautious of
 </div>
 
-Here are some text styles to look out for as well.
+Throughout this guide, we use different text styles for different purposes. Here is what each one means: 
 
 | Text Style Example         | Meaning                                              |
 |----------------------------|------------------------------------------------------|
 | [Glossary link](#glossary) | Clickable link to navigate to a section in the guide |
-| `text with background`     | Text relevant to commands or filenames               |
+| `text with background`     | Text relevant to commands or file names              |
 | <kbd>Esc</kbd>             | Keyboard button                                      |
+If this feels like too much information, don't worry! You don't have to remember any of this because you can always come back here in case you forget :smile:
 
 ## Table of Contents
 
@@ -87,7 +88,6 @@ This can also help you to delegate future tasks more fairly, by considering the 
 
 We all know that context switching is a productivity killer.
 
-
 Having to switch back and forth between project management and coding usually means switching between [GUI](#graphical-user-interface)-based applications (for project management) [CLI](#command-line-interface) code editors (for coding). 
 
 To solve this issue, TruthTable allows you to use a **single CLI for all your project management needs**, reducing the impact of context
@@ -116,8 +116,7 @@ So, fret not, you will become familiar with TruthTable's commands in no time.
    should appear in a few seconds. ![Ui](images/Ui.png)
     <br/>
    <div markdown="block" class="alert alert-success">**:bulb: Sample data**:
-   We have also added some sample data for you to play around and familiarize yourself with 
-   TruthTable's [features](#commands)!
+   We have also added some sample data for you to play around with and get familiar with TruthTable's [commands](#commands)!
    </div>
 4. That's it! You can now follow our guide below on how to [navigate the application](#navigating-truthtables-application-interface).
 
