@@ -14,7 +14,7 @@ You can plan your travel itinerary in **3 simple steps**.
 **It's that simple**.
 
 This is a comprehensive guide for you to learn more about how to use Waddle and its features.
-If this is your first time using Waddle, we recommend checking out the [User Guide Tips](#user-guide-tips) and [Tutorial for Beginners](#tutorial-for-beginners) sections to get yourself up to speed!
+If this is your first time using Waddle, we recommend checking out the [User Guide Tips](#user-guide-tips), [Quick start](#quick-start) and [Tutorial for Beginners](#tutorial-for-beginners) sections to get yourself up to speed!
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always"></div>
@@ -27,8 +27,8 @@ If this is your first time using Waddle, we recommend checking out the [User Gui
    1. [**Universal commands**](#universal-commands)
       1. [`help` Viewing help](#viewing-help--help)
       2. [`exit` Exiting Waddle](#exiting-waddle--exit)
-   2. [**The main page**](#the-main-page)
-   3. [**Commands on the main page**](#commands-on-the-main-page)
+   2. [**The home page**](#the-home-page)
+   3. [**Commands on the home page**](#commands-on-the-home-page)
       1. [`add` Creating a new itinerary](#creating-a-new-itinerary--add)
       2. [`list` Listing all itineraries](#listing-all-itineraries--list)
       3. [`find` Locating itineraries by description](#locating-itineraries-by-description--find)
@@ -46,7 +46,7 @@ If this is your first time using Waddle, we recommend checking out the [User Gui
       6. [`unplan` Unscheduling an activity](#unscheduling-an-activity--unplan)
       7. [`copy` Copying to clipboard](#copying-to-clipboard--copy)
       8. [`pdf` Exporting as PDF file](#exporting-as-pdf-file--pdf)
-      9. [`home` Returning to main page](#returning-to-main-page--home)
+      9. [`home` Returning to home page](#returning-to-home-page--home)
    6. [**Advanced**](#advanced)
       1. [Saving the data](#saving-the-data)
       2. [Editing the data file](#editing-the-data-file)
@@ -69,6 +69,7 @@ If this is your first time using Waddle, we recommend checking out the [User Gui
 4. [FAQ](#faq) answers some of the most common questions we have gotten from our users. If you have questions for us, this section might just be the one you need!
 5. [Command Summary](#command-summary) provides a summarised list of our features' commands for your easy reference
 6. [Glossary](#glossary) explains some of the terms we used. If you do not understand a term in this guide, this section might be of help!
+7. You can use the buttons at the bottom right of each page to return to the [Table of Contents](#table-of-contents)
 
 ### Understanding the symbols and syntax
 
@@ -86,17 +87,17 @@ If this is your first time using Waddle, we recommend checking out the [User Gui
 
 To begin planning your travels with Waddle, simply set it up as follows:
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your Computer. If you do not, you may install it [here](https://www.oracle.com/java/technologies/downloads).
 
 2. Download the latest `waddle.jar` from [here](https://github.com/AY2223S1-CS2103T-W11-4/tp/releases/).
 
 3. Copy the file to the folder you want to use as the _home folder_ for Waddle.
 
-4. Double-click the file to start the app. This will bring you to the Waddle [main page](#the-main-page). A graphical user interface (GUI) similar to the below should appear in a few seconds.
+4. Double-click the file to start the app. This will bring you to the Waddle [home page](#the-home-page). A graphical user interface (GUI) similar to the below should appear in a few seconds.
    Note how the app contains some sample data.<br>
-   ![Main Page](images/mainPage.png)
+   ![Home Page](images/mainPage.png)
 
-And you're ready to waddle! To execute any command, type it command in the command box and press Enter. e.g. typing **`help`** and pressing Enter will open the help window.
+And you're ready to Waddle! To execute any command, type it command in the command box and press Enter. e.g. typing **`help`** and pressing Enter will open the help window.
 <div style="page-break-after: always"></div>
 
 Some example commands you can try:
@@ -125,11 +126,11 @@ For more commands and their details, refer to the [Features](#features) section 
 If you are a beginner to Waddle, this tutorial will walk you through creating and planning your very first Waddle itinerary.
 
 
-This is the [main page](#the-main-page), which you will encounter when you open Waddle. 
+This is the [home page](#the-home-page), which you will encounter when you open Waddle. 
 It displays all your current itineraries. 
 The various sections of the interface have been labeled in blue for your reference.
 If this is your first time launching Waddle, you will see the following page with two sample itineraries:
-![main-page-sample-ui](images/ug-beg-tut/main-page-sample-ui.png)
+![home-page-sample-ui](images/ug-beg-tut/main-page-sample-ui.png)
 
 If you wish to, you can [clear](#clearing-itineraries--clear) the sample itineraries by typing `clear` into the command box and pressing Enter.
 You will then see the below message:
@@ -138,7 +139,7 @@ You will then see the below message:
 Now you can add your first itinerary. To do so, use the [`add` command](#creating-a-new-itinerary--add) with the relevant itinerary details.
 Try executing the command `add d/Summer Trip sd/2023-06-01 du/5`. 
 It will add an itinerary named Summer Trip, starting from 1 June 2023 with a duration of 5 days.
-You should now see the message below and your itinerary added on the main page as follows:
+You should now see the message below and your itinerary added on the home page as follows:
 * insert image here
 
 <div markdown="block" class="alert alert-info">
@@ -187,7 +188,7 @@ You will now see the planning page for the itinerary as follows:
 
 ### Universal commands
 
-Most commands in Waddle can only be used on the [main page](#the-main-page) or the [planning page](#the-planning-page). However, the commands in this section may be used on either page at any time.
+Most commands in Waddle can only be used on the [home page](#the-home-page) or the [planning page](#the-planning-page). However, the commands in this section may be used on either page at any time.
 
 ### Viewing help : `help`
 
@@ -205,12 +206,12 @@ Format: `exit`
 
 <div style="page-break-after: always"></div>
 
-### The main page
+### The home page
 
-The main page, or home page, of Waddle displays the list of itineraries you have created and stored in the app.
+The home page, or home page, of Waddle displays the list of itineraries you have created and stored in the app.
 
-![Main Page](images/mainPage.png)
-[Commands exclusive to the main page](#commands-on-the-main-page) can help you:
+![Home Page](images/mainPage.png)
+[Commands exclusive to the home page](#commands-on-the-home-page) can help you:
 * [add](#creating-a-new-itinerary--add) new itineraries
 * [list](#listing-all-itineraries--list) or [find](#locating-itineraries-by-description--find) existing itineraries
 * [edit](#editing-the-details-of-an-itinerary--edit) or [delete](#deleting-an-itinerary--delete) existing itineraries
@@ -220,7 +221,7 @@ Using the [`select` command](#selecting-an-itinerary--select)  will bring you to
 
 <div style="page-break-after: always"></div>
 
-### Commands on the main page
+### Commands on the home page
 
 ### Creating a new itinerary : `add`
 
@@ -377,7 +378,7 @@ Here's an example of how your activity-planning page might look like:
 * [Copy](#copying-to-clipboard--copy) your itinerary to your clipboard.
 * [Export](#exporting-as-pdf-file--pdf) your itinerary as a pdf file
 
-Using the [`home` command](#returning-to-main-page--home)  will bring you to the [main page](#the-main-page) of the selected itinerary.
+Using the [`home` command](#returning-to-home-page--home)  will bring you to the [home page](#the-home-page) of the selected itinerary.
 
 <div style="page-break-after: always"></div>
 
@@ -565,9 +566,9 @@ Here's an example of how the generated PDF would look like: <br>
 
 </div>
 
-### Returning to main page : `home`
+### Returning to home page : `home`
 
-Returns you to the [main itinerary list page](#the-main-page).
+Returns you to the [home page](#the-home-page).
 
 Format: `home`
 
@@ -631,7 +632,7 @@ If your changes to the data file makes its format invalid, Waddle will discard a
 | [**Unschedule Activity**](#unscheduling-an-activity--unplan)   | `unplan INDEX`<br> e.g., `unplan 3.2`                                                                    |
 | [**Copy to clipboard**](#copying-to-clipboard--copy)           | `copy`                                                                                                   |
 | [**Export to PDF**](#exporting-as-pdf-file--pdf)               | `pdf`                                                                                                    |
-| [**Return to Main Page**](#returning-to-main-page--home)       | `home`                                                                                                   |
+| [**Return to Home Page**](#returning-to-home-page--home)       | `home`                                                                                                   |
 | [**Exit**](#exiting-waddle--exit)                              | `exit`                                                                                                   |
 
 --------------------------------------------------------------------------------------------------------------------
