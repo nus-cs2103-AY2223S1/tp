@@ -55,8 +55,8 @@ Getting started with PayMeLah is easy! Here is a tutorial on how to get PayMeLah
 2. Next, you will need to prepare an [**empty folder**](https://www.wikihow.com/Make-a-New-Folder-on-a-Computer) to download PayMeLah to.
 
 3. Now, you will need to visit [**this link**](https://github.com/AY2223S1-CS2103T-W13-3/tp/releases) to click and download the latest version of *PayMeLah.jar*. Make sure to download it to the folder you created in step 2! <br>
-   <img src="images/howToDownload_1.png" width="500" /> <br>
-   <img src="images/howToDownload_2.png" width="500" /> <br>
+   <p style="text-align:center;"><img src="images/howToDownload_1.png" width="500" /></p> <br>
+   <p style="text-align:center;"><img src="images/howToDownload_2.png" width="500" /></p> <br>
 
 <div style="page-break-after: always;"></div>
 
