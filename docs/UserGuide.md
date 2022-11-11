@@ -91,8 +91,8 @@ Track the internships you're interested in and all the relevant information -- t
 
 # 2. How to use this User Guide?
 
-We have created this user manual for new users who want to use our app and returning users who need a reference to the command summary. 
-For new users you can proceed to our [Quick start](#3-quick-start) while returning users can skip to our [Command summary](#7-command-summary).
+We created this user manual for new users who want to use our app and for returning users who need a reference to the command summary. 
+For new users, you can proceed to our [Quick start](#3-quick-start) section while returning users can skip to our [Command summary](#7-command-summary).
 
 
 ## 2.1. Icons and symbols
@@ -197,9 +197,9 @@ The UI components description:
 Saves a contact person into InterNUS, from the hiring manager you liaise with 
 during the application process to the senior engineer you work with during the internship.
 
-Format: `add -p n/NAME [e/EMAIL] [p/PHONE_NUMBER] [t/TAG]…​ [l/LINK_INDEX] c/[COMPANY]`
+Format: `add -p n/NAME [e/EMAIL] [p/PHONE_NUMBER] [t/TAG]…​ [l/LINK_INDEX] [c/COMPANY]`
 * `PHONE_NUMBER` can only be numeric and consists of at least 3 numbers.
-* `LINK_INDEX` refers to the index number shown in the person list and is optional.
+* `LINK_INDEX` refers to the index number shown in the internship list and is optional.
     * Specifying this parameter will define the internship at the specified index in the internship list as the internship of the new person.
     * An internship is assumed to have at most one contact person, and a person is assumed to be in charge of at most one internship position.
     * If the internship at the specified index is already an internship for another person,
@@ -213,7 +213,7 @@ Format: `add -p n/NAME [e/EMAIL] [p/PHONE_NUMBER] [t/TAG]…​ [l/LINK_INDEX] c
 
 * Duplicate persons are not allowed.
   A person is considered to be a duplicate if there already exists a person in the list with the exact same name (case-sensitive).
-* Adding person maintains the current sorted order of the display list (as opposed to adding to the back of the list).
+* Adding a person maintains the current sorted order of the display list (as opposed to adding to the back of the list).
   By default, the list is sorted by date of creation. Refer to [this note under section 4.7.1 for how the sorting works](#471-sorting-persons-in-the-list-sort--p).
 * A person is assumed to be in charge of at most one internship position.
 * A person can have any number of tags (including 0).
@@ -310,7 +310,6 @@ Format: `edit -p INDEX [n/NAME] [p/PHONE] [e/EMAIL] [c/COMPANY] [t/TAG]…​`
 - Existing values will be updated to the input values.
 - When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 - You can remove all the person’s tags by typing `t/` without specifying any tags after it.
-- Does not allow duplicate name when editing name of person
 
 Examples:
 - `list -p` followed by `edit -p 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
@@ -353,9 +352,9 @@ Examples:
 Links an existing person and internship together in InterNUS.
 
 Format: `link p/PERSON_INDEX i/INTERNSHIP_INDEX`
-- Person at specified `PERSON_INDEX` and internship at specified `INTERNSHIP_INDEX` must be initially not linked to any person/internship.
-- Specified person will be displayed as contact person of specified internship and specified internship will be displayed as internship of specified person.
-- `PERSON_INDEX` and `INTERNSHIP_INDEX` must be a positive integer must be a positive integer 1, 2, 3, …
+- The person at the specified `PERSON_INDEX` and the internship at the specified `INTERNSHIP_INDEX` must be initially not linked to any person/internship.
+- The specified person will be displayed as the contact person of the specified internship. Likewise, the specified internship will be displayed as the internship of the specified person.
+- `PERSON_INDEX` and `INTERNSHIP_INDEX` must be positive integers 1, 2, 3, …
 
 Examples:
 - `link p/1 i/1` links the person at index **1** to the internship at index **1**.
@@ -366,7 +365,7 @@ Unlinks an existing person and internship together in InterNUS.
 
 Format: `unlink [p/PERSON_INDEX] [i/INTERNSHIP_INDEX]`
 - At least 1 of the optional fields must be provided.
-- Person/internship at the specified `PERSON_INDEX`/`INTERNSHIP_INDEX` will be unlinked.
+- The person/internship at the specified `PERSON_INDEX`/`INTERNSHIP_INDEX` will be unlinked.
 - If both `PERSON_INDEX` and `INTERNSHIP_INDEX` are provided, the specified person and internship must be linked to each other.
 - `PERSON_INDEX` and `INTERNSHIP_INDEX` must be a positive integer 1, 2, 3, …
 
@@ -391,7 +390,7 @@ Format: `find -p [n/ NAME_KEYWORDS...] [p/ PHONE_KEYWORDS...] [e/ EMAIL_KEYWORDS
 - The order of the keywords does not matter. e.g. **Hans Bo** will match **Bo Hans**.
 - Only the fields corresponding to the specified prefixes will be searched,
   and all the specified fields must contain at least one of the specified keywords to be added to the search result.
-- Absent fields will not be searched. e.g. **No company** will not find persons with blank company field.
+- Absent fields will not be searched. e.g. **No company** will not find persons with blank company fields.
 - Partial words will be matched. e.g. **Han** will match **Hans**.
 
 <div markdown="block" class="alert alert-info">
@@ -422,7 +421,7 @@ Format: `find -i [c/ COMPANY_NAME_KEYWORDS...] [r/ ROLE_KEYWORDS...] [s/ STATUS_
 - The order of the keywords does not matter. e.g. **Ltd ABC Pte Constructions** will match **ABC Constructions Pte Ltd**.
 - Only the fields corresponding to the specified prefixes will be searched,
   and all the specified fields must contain at least one of the specified keywords to be added to the search result.
-- Absent fields will not be searched. e.g. **No interviews scheduled** will not find internships with blank interview date.
+- Absent fields will not be searched. e.g. **No interviews scheduled** will not find internships with blank interview dates.
 - Partial words will be matched e.g. **app** will match **Apple** and **applications**. 
 
 <div markdown="block" class="alert alert-info">
@@ -463,7 +462,7 @@ Format: `delete -p INDEX`
 
 Examples:
 * `list -p` followed by `delete -p 2` deletes the 2nd person in InterNUS.
-* `find -p Betsy` followed by `delete -p 1` deletes the 1st person in the results of the `find` command.
+* `find -p n/Betsy` followed by `delete -p 1` deletes the 1st person in the results of the `find` command.
 
 ### 4.6.2. Deleting an internship by index : `delete -i`
 
@@ -612,7 +611,7 @@ InterNUS data is saved as a JSON file. `[JAR file location]`/data/addressbook.js
 Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, InterNUS will discard all data and start with an empty data file at the next run.
+If your changes to the data file make its format invalid, InterNUS will discard all data and start with an empty data file at the next run.
 </div>
 
 <br>
@@ -626,7 +625,7 @@ If your changes to the data file makes its format invalid, InterNUS will discard
 ## 5. FAQ
 
 **Q**: How do I transfer my data to another computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous InterNUS home folder.
+**A**: Install the app on the other computer and overwrite the data file it creates with your existing InterNUS data file. The data file can be found in the `data` directory of your home folder, and has the name `addressbook.json`.
 
 **Q**: How do I find a contact person's linked internship?<br>
 **A**: On the contact person's display, look for the linked internship's display name (shown as **Internship: COMPANY_NAME ROLE**), then use 
@@ -638,7 +637,7 @@ If your changes to the data file makes its format invalid, InterNUS will discard
 
 ## 6. Planned updates
 
-1. Improve the GUI to display the link between an internship and contact person more clearly.
+1. Improve the GUI to display the link between internships and their contact persons more clearly.
 2. Improve the search functionalities across both lists. In particular, the finding of an internship's contact person or a contact person's internship could be made simpler.
 3. Modify the checks for duplicate persons and internships to be smarter, as the current implementation does not consider the same name in a different case to be a duplicate name.
 4. Modify certain fields to have a more flexible range of accepted input. In particular:
@@ -646,7 +645,7 @@ If your changes to the data file makes its format invalid, InterNUS will discard
       This applies to not just person names, but also company names and internship role names, where it is reasonable to allow other special characters as well.
    2. Phone numbers, similarly, do not allow special characters to be included, so extensions like "+65" or dashes in between digits will not be accepted as valid input.
    3. Tags are currently restricted to one word, but it is reasonable to allow tags consisting of more words.
-   4. Interview dates are currently restricted to the format "yyyy-MM-dd HH:mm", so this could be improved to allow a greater variety of datetime formats. 
+   4. Interview dates are currently restricted to the format "yyyy-MM-dd HH:mm", so this could be improved to allow a greater variety of date and time formats. 
       Additionally, the time component of the input could be made optional.
 
 <br>
