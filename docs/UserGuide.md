@@ -107,6 +107,17 @@ Alternatively, you can install 'Java' directly on your computer through package 
 
 <br>
 
+## Date Fields 
+
+In our current application we storing the following data fields for each eatery. 
+
+|-----------------|--------------------------------------------| 
+| Field | Description | 
+| name  | stores the name of a eatery | 
+| price | stores the price range of an eatery | 
+| location | information about the location of the eatery | 
+| cuisinse | the cuisinse of food served by the eatery | 
+
 ## First Glance
 The following image describes how `NUSEatWhere` looks like upon opening the application.
 
