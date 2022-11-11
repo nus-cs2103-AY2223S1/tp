@@ -282,8 +282,8 @@ Examples:
 
 <div markdown="span" class="alert alert-primary">:bulb: **Note:**>
 
-* While editing the **Skill** tags, you can rename the existing `OLD_SKILL` of the person to `NEW_SKILL` provided the Skill Tag Type has not been deleted (Same for **Degree**, **JobType** and **Custom** tags).
-* While editing the **Notes** of a person, their existing notes will be overwritten by the new input. Therefore, it is not possible to edit individual notes (i.e. if you input `edit 1 note/Good at Java` and the person already has a note `Good at Python`, the person's note(s) will be changed to `Good at Java`).
+* While editing the **Skill** tags, you can rename the existing `OLD_SKILL` of the person to `NEW_SKILL` provided the Skill Tag Type has not been deleted (Same for **Degree**, **JobType** and **Custom** tags).<br>
+* While editing the **Notes** of a person, their existing notes will be overwritten by the new input. Therefore, it is not possible to edit individual notes (i.e. if you input `edit 1 note/Good at Java` and the person already has a note `Good at Python`, the person's note(s) will be changed to `Good at Java`).<br>
 * While editing the **Links** of a person, their existing links will be overwritten by the new input. Therefore, it is not possible to edit individual links (i.e. if you input `edit 1 l/https://github.com/JohnDoe` and the person already has a link `https://instagram.com/JohnDoe`, the person's link(s) will be changed to `https://github.com/JohnDoe`). The `l/` prefix can be used multiple times in the command to add multiple links.
 
 </div> 
@@ -571,7 +571,7 @@ Format: `redo`
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 - Redo can be used multiple times to redo multiple commands.
 </div>
-
+<br><br><br><br><br><br><br>
 ### Viewing Statistics based on ratings of candidates: `stats`
 
 Views rating statistics of the candidates currently saved in CLInkedIn.
@@ -602,6 +602,7 @@ Examples:
 * `export path//Desktop/sample/data.csv` exports the displayed list of candidates to `data.csv` in the `sample` directory of the `Desktop` (Sample path for MACOS).
 * `export path/C:\Users\John\Desktop\data.json` exports the displayed list of candidates to `data.json` in the `Desktop` (Sample path for WINDOWS).
 
+<br><br><br>
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Alternatively to export files using GUI, you can either go to `Export` -> `Export` in the Menu Bar or enter the command `export`. The following window will open on doing so:<br>
   
