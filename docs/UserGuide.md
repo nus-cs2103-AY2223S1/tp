@@ -384,28 +384,19 @@ After this, you should be able to see the `data` folder._
 
 1. Once done, run `batch-add FILENAME` in the command panel.
 
-Successful Batch Add:
+If the command is successful, the employees in the file should be added to the database all at once, and it should look something like the below image.
+
 ![](images/batch-add-images/BatchAddSuccess.png)
 
-Unsuccessful Batch Add:
+The command could be unsuccessful, and there are a few potential causes of this: 
+
+1. There could be a *duplicate* entry in the file, i.e. two employees share the same name in the file.
+It could also be possible that one of the employees in the file is a duplicate with an employee already in the database.
+2. If any of the particulars in the wrong format, Coydir will also not be able to read the file properly, and the command will not run.
+To prevent this, do refer to the format for the various fields [here](#field-formats).
 
 In the case of an unsuccessful Batch Add, **NONE** of the employees in the `.csv` will be added.
-
-**Case 1 (Duplicate Employee):**
-
-If there is another employee with the same name in the database or in the csv, command will fail
-and error will be raised.
-![](images/batch-add-images/DuplicateEmployee.png)
-
-**Case 2 (Any of the fields in wrong format):**
-
-If any of the fields are in a wrong format (as specified in `add` command), command will fail
-and error with regard to field in the wrong format will be raised
-
-![](images/batch-add-images/Incorrect Format.png)
-_In this case, a `Phone` field was in the wrong format._
-
-As of version `1.4.0` , this feature only supports `.csv` files and adding employees with the fields mentioned above.
+Also note that as of version `1.4.0` , this feature only supports `.csv` files and adding employees with the fields mentioned above.
 
 In the upcoming versions, we will expand `batch-add` feature to:
 
@@ -476,16 +467,6 @@ Example:
 As time passes, you might run into situations where employees leave the company, and need to be removed from the databse.
 
 You can remove these employees' data with the `delete` command, which removes all associated data from Coydir, so long as you provide the employee ID of the person to remove.
-
-When running the command, there are **two** possible outcomes:
-
-**Case 1: Employee with ID exists**
-
-If Coydir has an employee with the respective ID, Coydir will delete it.
-
-**Case 2: Employee with ID does not exist**
-
-Otherwise, if Coydir has no employee with ID that matches the specified name, Coydir will prompt you that the employee ID entered is invalid.
 
 Format: `delete ID`
 
@@ -579,16 +560,13 @@ There are two ways to check for the live availability of employees, a critical a
 
 This adds a leave period to an employee given the employee ID and a start and end date. The leave period will also be displayed in a table which can be seen when viewing the employee's particulars.
 
-This command results in one of two cases below:
+Upon adding a leave for an employee, the total leaves remaining will also be deducted accordingly. The employee's "On Leave" status will become "True" when the timeframe is within the leave period.
 
-**Case 1: Valid ID, date and sufficient leaves**
+However, the function could fail if:
 
-If the employee exists, the leave date given is valid,
-and the employee has sufficient leaves, the leave period will be added and shown in the table of leaves. The total leaves remaining will be deducted accordingly. The employee's "On Leave" status will become "True" when the timeframe is within the leave period.
-
-**Case 2: Invalid ID, date or insufficient leaves**
-
-If any of employee ID, date is invalid, or the employee does not possess enough leaves, Coydir will prompt you accordingly, and the command will not execute.
+1. The employee does not currently possess enough leaves.
+2. The date provided is in an incorrect format or does not exist.
+3. The leave period specified overlaps with another leave that the employee is taking.
 
 Format: `add-leave id/ID sd/START_DATE ed/END_DATE`
 
@@ -614,16 +592,6 @@ Example:
 #### Deleting a leave period for an employee: `delete-leave`
 
 Added a wrong leave period or the employee wants to change their leave application? Fret not, `delete-leave` helps you to removes a leave period for an employee given the employee ID and index of leave in the table. The leave period deleted will then be removed from the leave table.
-
-This command results in one of two cases below:
-
-**Case 1: Valid ID and index of leave**
-
-If the employee exists, the index given is valid, the leave period at that index of the list of leaves will be removed for the particular employee.
-
-**Case 2: Invalid ID, or index**
-
-If the employee ID, or the index is invalid, Coydir will prompt you accordingly, and the command will not execute.
 
 Format: `delete-leave id/ID i/INDEX`
 
@@ -668,21 +636,17 @@ This simple command adds a performance rating for an employee, together with tod
 You can use and adapt this to your own company policies, by rating according to your desired monthly/quarterly intervals, for example.
 
 To use the command, key in the `rate` command, and provide the employee ID and a numeric rating.
-Ratings can take any values from 1 - 5, and it should not be blank.
+Ratings can take any integer values from 1 - 5, and it should not be blank.
 
 The numeric representation of the ratings follows as such:
 
 5: Outstanding | 4: Exceeds Expectations | 3: Satisfactory | 2: Needs Improvement | 1: Unsatisfactory
 
-This command results in one of two cases below:
+After entering the command, the performance rating will be added and the performance field of the employee will be updated accordingly.
+This can be viewed easily with the `view` command.
 
-**Case 1: Valid ID and rating**
-
-If the employee exists, and the rating given is valid (is a integer from 1-5 inclusive), the performance rating will be added and the performance field of the employee will be updated accordingly.
-
-**Case 2: Invalid ID or rating**
-
-If the rating given for any employee is invalid (is not an integer from 1-5 inclusive), Coydir will prompt you accordingly, and the command will not execute.
+Do ensure that the rating given is valid.
+This means that you should only key in a rating that is an integer between **1 to 5 (inclusive)**, as any values outside of the 5-point scale has no meaning to Coydir.
 
 Format: `rate id/ID r/RATING`
 
@@ -746,16 +710,7 @@ This allows you to view the summarized details of a department given the name of
 Details include the **number of employees** in that particular department, employees who are **currently available**, employees who are **currently on leave**, and a table of employees in that department with their corresponding **performance ratings**.
 
 Simply enter the `view-department` command, followed by the name of the department (which is case-insensitive).
-
-This command results in one of the two cases below:
-
-**Case 1: Valid department name**
-
-If the department exists, the Display Panel will correctly display the summary of the department.
-
-**Case 2: Invalid department name**
-
-If the department name is invalid, the program will notify you through the result box, with a list of valid department name for easier reference.
+If the department exists, the *Display Panel* will correctly display the summary of the department.
 
 Format: `view-department DEPARTMENT`
 
