@@ -707,11 +707,8 @@ Summary of the commands to manage members can be found [here](#summary-of-member
 #### Adding a new member to the team: `add member`
 
 You have made up your mind on you want to work with for your group projects, and now you want to
-add them to your team. First, identify the index number of your classmate in the [persons section](#persons-section).
-Then, simply key in `add member <INDEX>` and they are added to your team. You can finally begin to work on some exciting software engineering projects with them!
-
-If you are not able to see their name in the list of persons, refer to [find person command](#finding-a-person-find-person) on how to
-find a person.
+add them to your team. You can add persons to your team with the `add member` command! You can finally begin to work 
+on some exciting software engineering projects with them!
 
 The `add member` command allows you to add a new team member in your currently selected team. The new member is added
 to the member list in the [current team section](#current-team-section) as seen in the image below.
@@ -721,9 +718,10 @@ Unsure of which team you are currently on? Please refer to the [current team sec
 Here, let us take a quick walk-through on how to add a person.
 
 Let us try to add a new person called Alex Yeoh to our team. Identify the index number of `Alex Yeoh` in the 
-application (1 in the image below). Enter the command
+application (1 in the image below). If you are not able to see their name in the list of persons, refer to [find person command](#finding-a-person-find-person) on how to
+find a person.
 
-`add member 1`
+Enter the command `add member 1` to add `Alex Yeoh` into your team.
 
 If done successfully, you should see a new member show up in the member list in the 
 [current team section](#current-team-section) as seen below. 
@@ -752,20 +750,21 @@ If done successfully, you should see a new member show up in the member list in 
 #### Delete a member from team: `delete member`
 
 Due to unfortunate circumstances, one of your teammates needs to be shuffled to another group, and he will no longer
-be on your team! Not to worry, you can delete members from your team. First, identify the index number of your teammate 
-in the [current team section](#current-team-section). If you are not able to see their name on the list, refer to
-[find member command](#finding-a-member-find-member) on how to find a member in your team. Then, simply key in 
-`delete member <INDEX>` and they will be removed from your team!
+be on your team! Not to worry, you can delete members from your team using the `delete member` command.
 
 The `delete member` command allows you to delete an existing team member in your currently selected team. 
-The corresponding team member will be removed from the [current team section](#current-team-section) as seen in the image 
-below. Unsure of what team you are currently on? Please refer to the [currently selected team](#current-team-section) 
+The corresponding team member will be removed from the [current team section](#current-team-section) as seen in the 
+image below. 
+
+Unsure of what team you are currently on? Please refer to the [currently selected team](#current-team-section) 
+
 Here, let us take a quick walk-through on how to delete a member.
 
-Let us try to delete Alex Yeoh from our team. Identify the index number of `Alex Yeoh` in the
-member list (1 in the image below). Enter the command
+Let us delete Alex Yeoh from our team. Firstly, identify the index number of `Alex Yeoh` in the
+member list (1 in the image below). If you are not able to see their name on the list, 
+refer to[find member command](#finding-a-member-find-member)
 
-`delete member 1`
+Enter the command `delete member 1` to delete `Alex Yeoh` from the team.
 
 If done successfully, Alex Yeoh should be removed from the [current team section](#current-team-section) as seen below.
 
@@ -797,20 +796,19 @@ the [current team section](#current-team-section). Refer to the above
 
 Your software project is growing and your team is getting bigger. However, you are no longer able to find specific team 
 members. Fret not, you can find your team members easily with the `find member` command.  
-First, recall any part of the member's name you are looking for. Next, key in 
-`find member -n <PERSON_NAME_KEYWORDS>`, and TruthTable will show you all team members with names that contain those
-keywords! You can also find your team members by their email using the `-e` flag.
 
 The `find member` command allows you to find all team members whose names or emails contain any of the given keywords.
-The members with matching names will be shown in the member list in the [current team section](#current-team-section) 
-as seen in the image below. Let us run through the steps to find a team member.
+The members with matching names will be shown in the member list in the [current team section](#current-team-section)
+as seen in the image below. 
 
-Suppose you want to find all team members named Alex or David. Enter the command
+Let us run through the steps to find a team member.
 
-`find member -n alex david`
+Suppose you want to find all team members named Alex or David. 
+
+Enter the command `find member -n alex david` to find all team members named Alex or David.
 
 If done successfully, you should the see all team members named Alex and David show up under in the member list in the
-[current team section](#current-team-section).
+[current team section](#current-team-section). You can also find your team members by their email using the `-e` flag.
 
 ![Find Member Example](images/FindMemberExample.png)
 
@@ -858,15 +856,11 @@ Take note that:
 
 #### Listing all members of the team: `list members`
 
-You want to see a list of all your team members. Key in `list members`, and TruthTable will show you all existing
-team members in your [currently selected team](#current-team-section).
+TruthTable allows you to see a list of all your team members with the `list members` command. After running the
+[find member command](#finding-a-member-find-member), you may wish to view all team members again. 
 
-The `list members` command shows a list of all team members in your team. After running the
-[find member command](#finding-a-member-find-member), you may wish to view all team members again. To do so, 
-the `list members` command will update the member list in the [current team section](#current-team-section).
-
-If done successfully, you should the see all team members show up under in the member list in the
-[current team section](#current-team-section) as shown below.
+To do so, enter `list members` and the member list in the [current team section](#current-team-section) will be 
+updated.
 
 ![List Members Example](images/ListMembersExample.png)
 
@@ -891,25 +885,29 @@ View all the members currently in the team, in the form of a list.
 #### Sort members: `sort members`
 
 Your team size is getting larger, and it is confusing for you to make sense of the list of members in your team. Not to 
-worry, you can sort your team members by name with our `sort members` command! Suppose you want to see whether there is 
-team member called `Caroline`, but you are unsure of how to spell it. First, key in `sort members asc`, and TruthTable 
-will sort the list of team members alphabetically by name in ascending order. You can now verify if `Caroline` indeed 
-exists in your team by scrolling to all names that begin with `c`. You may sort your team members in descending order 
-with `sort members dsc` or reset to the original list order with `sort members res`.
+worry, you can sort your team members by name with our `sort members` command! 
 
-The `sort members` command allows you to sort your team members in alphabetical order. The sorted team members will 
+The `sort members` command allows you to sort your team members in alphabetical order. The sorted team members will
 be shown in member list the [current team section](#current-team-section)  as seen in the image below.
 
 Let us run through an example on how to sort your team members.
 
-Suppose you want to sort your team members alphabetically in descending order. Enter the command
+Suppose you want to check whether there is team member called `Caroline`, but you are unsure of how to spell it.
 
-`sort members dsc`
+Enter the command `sort members asc` to sort all team members in alphabetical order. 
 
-If done successfully, the sorted team members will be shown in the member list in 
+If done successfully, the sorted team members will be shown in the member list in
 [current team section](#current-team-section)
 
+You can now verify if `Caroline` indeed  exists in your team by scrolling to all names that begin with `c`. You may 
+sort your team members in descending order with `sort members dsc` or reset to the original list order with 
+`sort members res`.
+
 ![Sort Members Example](images/SortMembersExample.png)
+
+Unable to find an existing team member? Please check that you have added the team member into your team as shown in the
+[current team section](#current-team-section). Refer to the above
+[add member command](#adding-a-new-member-to-the-team-add-member) on how to add a new team member.
 
 **Format:** `sort members [-h] <ORDER>`
 
@@ -941,22 +939,25 @@ Summary of the commands to manage teams can be found [here](#summary-of-team-com
 
 #### Creating a new team: `add team`
 
-You have formed your group for the project and are ready to work on the best software project ever created! Now you are
-ready to create a new team. First, decide on a nice team name and a description that fits the purposes of your team. 
-Next, key in `add team -n <TEAM_NAME> -d <TEAM_DESCRIPTION>` and a new team will be created. Combine this with 
-[set team command](#set-a-new-team-set-team) to directly switch to the team you just created.
+You have formed your group for the project and are ready to work on the best software project ever created! After 
+deciding on a nice team name and a description that fits the purposes of your team, you are now ready to create a 
+new team. 
 
 The `add team` command allows you to add a new team to your list of teams. The new team is added to the 
 [teams section](#teams-section) as seen in the image below. Do not worry if an error shows up, you might have typed 
-something wrongly. Here, let us take a quick walk-through on how to add a team.
+something wrongly. 
 
-Let us try to add a new team named `CS2103T`, with a description called `Software Engineering`. Enter the command
+Here, let us take a quick walk-through on how to add a team.
 
-`add team CS2103T -d "Software Engineering"`
+Let us try to add a new team named `CS2103T`, with a description called `Software Engineering`. 
+
+Enter the command `add team CS2103T -d "Software Engineering"` to add the team as described.
 
 If done successfully, you should see a new team show up in the [teams section](#teams-section) as shown below.
 
 ![Add Team Example](images/AddTeamExample.png)
+
+Combine this with [set team command](#set-a-new-team-set-team) to directly switch to the team you just created.
 
 **Format:** `add team [-h] [-d=TEAM_DESCRIPTION] <TEAM_NAME>`
 
