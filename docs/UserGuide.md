@@ -289,7 +289,7 @@ Example:
 
 ### **Transaction Commands**
 
-The following section highlights **all** commands related to `clients`.
+The following section highlights **all** commands related to clients.
 
 ### Creating a transaction: `buy` or `sell`
 
@@ -324,7 +324,7 @@ the list on the 07/11/2000.
 
 ### Editing a transaction: `edit`
 
-Edits a `transaction` specified by the index number.
+Edits a transaction specified by the index number.
 
 Format: `edit INDEX m/transaction FIELDS [MORE_FIELDS]...`
 
@@ -346,16 +346,16 @@ Example (refer to diagram below):
 
 ### Deleting a transaction: `delete`
 
-Deletes a `transaction` specified by the index number.
+Deletes a transaction specified by the index number.
 
 Format: `delete INDEX m/transaction`
 
-* `INDEX` refers to the index number shown in the displayed list of transactions. 
+* `INDEX` refers to the index number shown in the displayed Transaction Details. 
 * `INDEX` must be a **positive integer**, and must not contain any signs e.g. +1, -3.
 
 Example:
 
-`delete 1 m/transaction` deletes the transaction at index 1 in the displayed list of transactions.
+`delete 1 m/transaction` deletes the transaction at index 1 in the displayed Transaction Details.
 
 > <div markdown="span" class="alert alert-warning">:warning: Warning: You must use [view](#viewing-a-client-view) command first before you can delete a transaction. If not, there will be an error within the application!
 
@@ -366,7 +366,7 @@ Example:
 ### Filtering buy or sell transactions: `filter`
 
 Filters the buy or sell transactions of all the clients. After executing this command, the filtered transactions will be 
-displayed in the transaction panel while the client list panel will display all the clients.
+displayed in the transaction details panel while the list of clients will display all the clients.
 
 Format: `filter TYPE`
 
