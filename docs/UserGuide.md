@@ -1310,8 +1310,8 @@ task list of the [current team section](#current-team-section).
 
 Let us run through an example on how to mark an existing task.
 
-Suppose you want to mark the task of "Create PR" as done. Identify the index of
-"Create PR" in the application (1 in the image below). If you are not able to find the task, refer to the 
+Suppose you want to mark the task of "User Stories" as done. Identify the index of
+"User Stories" in the application (1 in the image below). If you are not able to find the task, refer to the 
 [find task command](#finding-a-task-find-task).
 
 Then, enter the command `mark task 1`.
@@ -1354,8 +1354,8 @@ task list of the [current team section](#current-team-section).
 
 Let us run through how to mark an existing task.
 
-Suppose the task "Create PR" was originally complete, and you want to mark the task "Create PR" as incomplete.
-Identify the index number of "Create PR" in the application (1 in the image below). If you are not able to find the
+Suppose the task "User Stories" was originally complete, and you want to mark the task "User Stories" as incomplete.
+Identify the index number of "User Stories" in the application (1 in the image below). If you are not able to find the
 task, refer to the [find task command](#finding-a-task-find-task).
 
 Then, enter the command `unmark task 1`.
@@ -1399,13 +1399,13 @@ The `set deadline` command allows you to set a deadline for an existing task, an
 
 Let us run through an example on how to set deadlines.
 
-Suppose you have task called "Create PR", and you need it to be completed by 11 November 2022, 2359hrs.
-Identify the index of "Create PR" in the application (1 in the image below). If you are not able to find the 
+Suppose you have task called "User Stories", and you need it to be completed by 11 November 2022, 2359hrs.
+Identify the index of "User Stories" in the application (1 in the image below). If you are not able to find the 
 task, refer to [find task command](#finding-a-task-find-task) on how you can find your task easily.
 
 Then, enter the command `set deadline 1 2022-11-11 23:59`.
 
-If done successfully, you should see the "Create PR" task with the new deadline show up in the task list of the
+If done successfully, you should see the "User Stories" task with the new deadline show up in the task list of the
 [current team section](#current-team-section).
 
 ![Set Deadline Example](images/SetDeadlineExample.png)
@@ -1446,9 +1446,9 @@ The task with the new assignees will be shown in the task list of the [current t
 
 Let us run through an example on how to assign tasks to your team members.
 
-Suppose you have task called "Create PR", and you want to assign it to Alex Yeoh.
+Suppose you have task called "User Stories", and you want to assign it to Alex Yeoh.
 
-Identify the index of "Create PR" in the application (1 in the image below). If you are not able to find the 
+Identify the index of "User Stories" in the application (1 in the image below). If you are not able to find the 
 task, refer to [find task command](#finding-a-task-find-task) on how you can find your task easily.
 
 Identify the index of "Alex Yeoh" in the application (1 in the image below). If you are not able to find the 
@@ -1456,7 +1456,7 @@ member, refer to [find member command](#finding-a-member-find-member) on how you
 
 Then, enter the command `assign task 1 -a 1`.
 
-If done successfully, you should see the "Create PR" task being assigned to "Alex Yeoh" show up under in the task list
+If done successfully, you should see the "User Stories" task being assigned to "Alex Yeoh" show up under in the task list
 of the [current team section](#current-team-section) as shown below. You can also specify multiple members to assign
 a task to multiple team members.
 
@@ -1507,14 +1507,14 @@ The `assign random` command allows you to assign tasks randomly to members in yo
 assignees will be shown in the task list of the [current team section](#current-team-section). Let us run through an
 example on how to assign tasks randomly to your team members.
 
-Suppose you have task called "Create PR", and you want to assign it randomly to your team members.
+Suppose you have task called "Developer Guide", and you want to assign it randomly to your team members.
 
-Identify the index of "Create PR" in the application (1 in the image below). If you are not able to find the task, 
+Identify the index of "Developer Guide" in the application (1 in the image below). If you are not able to find the task, 
 refer to the [find task command](#finding-a-task-find-task) on how you can find your task easily.
 
 Then, enter the command `assign random 1`.
 
-If done successfully, you should see the "Create PR" task being assigned to a random member. It should show up under 
+If done successfully, you should see the "Developer Guide" task being assigned to a random member. It should show up under 
 in the task list of the [current team section](#current-team-section) as shown below.
 
 ![Assign Random Example](images/AssignRandomExample.png)
@@ -1632,14 +1632,14 @@ be displayed in task list the [current team section](#current-team-section).
 
 Let us run through an example on how to sort your tasks.
 
-Suppose you want to see whether there is task called "Create PR", but you are unsure of how to spell it. 
+Suppose you want to see whether there is task called "User Stories", but you are unsure of how to spell it. 
 
 Enter the command `sort tasks asc`.
 
 If done successfully, the sorted tasks will be shown in the task list in [current team section](#current-team-section) 
 as shown below.
 
-You can now verify if "Create PR" indeed exists in your team by scrolling to all names that begin with `c`. 
+You can now verify if "User Stories" indeed exists in your team by scrolling to all names that begin with `c`. 
 You may sort your tasks in descending order with `sort tasks dsc` or reset to the original list order with `sort tasks res`.
 
 ![Sort Tasks Example](images/SortTasksExample.png)
