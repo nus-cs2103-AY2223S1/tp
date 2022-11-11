@@ -107,23 +107,20 @@ This section covers the 2 viewing modes: **Patient List View** and **Record List
 Navigating in between patients and their records is done easily with 2 commands:
 [`rlist`](#listing-all-records-of-a-patient-rlist) and [`list`](#listing-all-patients-list)
 
-**Patient List View (Default):**
+Example:
+* The **Patient List View** is OmniHealth's default viewing mode.
+* Typing `rlist 1` will enter the **Record List View** of `Alex Yeoh`.
+* Typing `list` will bring you back to the **Patient List View** showing all the patients.
 
-<p align="center" width="100%">
-<img src="images/UiPatients.png" alt="ui-patients" width="550"/>
-</p>
+| Patient List View (Default)              | Record List View                                        |
+|------------------------------------------|---------------------------------------------------------|
+| ![Ui-patients](images/UiPatients.png)    | ![Ui-records](images/UiRecords.png)                     |
+| Command to navigate to this view: `list` | Command to navigate to this view: `rlist PATIENT_INDEX` |
 
-Navigating into each patient's records is done through the [`rlist`](#listing-all-records-of-a-patient-rlist) command.
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 
-Example: `rlist 1` will enter the **Record List View** of `Alex Yeoh`
-<div style="page-break-after: always;"></div>
-**Record List View:**
-
-<p align="center" width="100%">
-<img src="images/UiRecords.png" alt="ui-records" width="550"/>
-</p>
-
-To return to the Patient List View, simply type [`list`](#listing-all-patients-list).
+Just remember that toggling between these two screens is easily done with 2 commands: `rlist` and `list`!
+</div>
 
 
 #### Filtered/Unfiltered List Views
