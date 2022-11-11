@@ -60,6 +60,7 @@ Getting started with PayMeLah is easy! Here is a tutorial on how to get PayMeLah
 
 <div style="page-break-after: always;"></div>
 
+{:start="4"}
 4. Finally, you are ready to use PayMeLah. Simply double-click the *PayMeLah.jar* in the folder you created to start the app. After a few seconds, you should see PayMeLah appear. Notice how we have some sample persons and debts present for you to experiment with our [features](#features).  <br>
 
 <img src="images/Ui.png" width="800" /> <br>
@@ -151,8 +152,9 @@ The guide begins on the following page!
 
    ![Empty person list](images/EmptyPersonList.png)
 
-<div style="page-break-after: always;"></div>
+    <div style="page-break-after: always;"></div>
 
+{:start="2"}
 2. You can now **add your first person** to PayMeLah with the [`add` command](#adding-a-person-add). The example we will use in this section is `add n/Ryan Tan tele/ryantan123`. Entering this command will add a person named `Ryan Tan` with `ryantan123` as his Telegram handle into PayMeLah.<br>
 
     You should see that the [person card](#person-list-section) for `Ryan Tan` is now visible in the [person list](#person-list-section). You can click on his name to expand his person card, as per the picture below. However, he does not have any [debts](#glossary-debt) associated with him just yet!
@@ -161,6 +163,7 @@ The guide begins on the following page!
 
 <div style="page-break-after: always;"></div>
 
+{:start="3"}
 3. You are now ready to **add a debt** to `Ryan Tan` using the [`adddebt` command](#adding-a-debt-adddebt)! This time, the example we will use is `adddebt 1 d/mcdonalds m/9.80`. Entering this command will add a [debt](#glossary-debt) of `$9.80` with the description `mcdonalds` to the 1st person in the [person list](#person-list-section), who happens to be `Ryan Tan`.<br>
 
     You should see that the person card for `Ryan Tan` should now be updated. Congratulations! You have just added your first debt to PayMeLah!
