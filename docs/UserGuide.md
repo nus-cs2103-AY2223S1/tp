@@ -182,11 +182,11 @@ The **left half** of each student card contains the student's particulars. Let's
 | GitHub Username | GitHub username of your student, if available.                                                           |
 | Telegram Handle | Telegram handle of your student, if available.                                                           |
 
-<div style="page-break-after: always;"></div>
 
 The **right half** of each student card contains module information related to your TA responsibilities:
 
 ![TA Info UI](images/ui/ui-ta-info.png)
+<div style="page-break-after: always;"></div>
 
 | Element                  | Purpose                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 |--------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -240,12 +240,14 @@ Here's an example of how parameters can be used:
   name you want<br><br>
 * The final command will look like this: `edit 2 n/Salad`!<br><br>
 
+<div style="page-break-after: always;"></div>
 <div markdown="block" class="alert alert-primary">
 :bulb: **Tip:** Confused about which commands use what parameters? Do not fret! Keying in the command word into the command box 
 and pressing enter will give you all the information about the command: what it does, what parameters it takes and so on!
 </div>
 
 To learn more about parameters, do check out the section on [information about parameters](#52-information-about-parameters)!
+<div style="page-break-after: always;"></div>
 
 ### Example Commands
 
@@ -304,6 +306,7 @@ Read on to learn in detail about the plethora of features that StudMap has in st
 curve? StudMap is designed to be extremely intuitive, with in-built help messages guiding you every step of the way!
 
 Follow the guide below, and you would be on track to mastering all the necessary [commands](#command) in no time.
+<div style="page-break-after: always;"></div>
 
 ## 5.2 Information about Parameters
 
@@ -474,6 +477,7 @@ the rest — it's like magic. For your convenience, you can find the import temp
 StudMap currently does not support any commas in any data field (cell) when importing a CSV file. Please avoid inputting any data
 that has commas in the CSV.
 </div>
+<div style="page-break-after: always;"></div>
 
 **Example Use Case:** Importing a fresh batch of students as a new StudMap user
 
@@ -513,6 +517,7 @@ filtering, such as by their module, see [`filter`](#538-filtering-the-students-f
 * Only full words will be matched e.g. `Han` will not match `Hans`.<br><br>
 * Students with name matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will
   return `Hans Gruber`, `Bo Yang`.<br><br>
+<div style="page-break-after: always;"></div>
 
 **Examples:**
 
@@ -563,6 +568,7 @@ the end of the StudMap. <br>
 by `% of classes attended` and `% of components participated` correspondingly. <br>
 
 </div>
+<div style="page-break-after: always;"></div>
 
 Examples:
 
@@ -680,7 +686,6 @@ Need to update outdated student details? You can easily edit that field without 
 
 **See Also:**
 [`unmark`](#543-unmarking-attendance-of-student-unmark)
-<div style="page-break-after: always;"></div>
 
 ### 5.4.3 Unmarking attendance of student: `unmark`
 
@@ -732,6 +737,7 @@ you include any lower case in the assignment name, it will be automatically conv
     - `received`: You have received the assignment submission from the student, but you have not graded it yet.
     - `marked`: You have received and graded the assignment.<br><br>
 - `ASSIGNMENT`: You can specify the assignment which you want to change the grading status for.
+<div style="page-break-after: always;"></div>
 
 **Examples:**
 
@@ -1017,6 +1023,7 @@ This is a file type that many applications use for importing and exporting data.
 
 This is a file type that many applications use for storing data in a human-readable format. We're also using it, so that
 advanced users can edit their student data easily if they wish.
+<div style="page-break-after: always;"></div>
 
 ### Module
 
