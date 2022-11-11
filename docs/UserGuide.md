@@ -292,13 +292,7 @@ To add a **tutor**,<br>
     <p></p>
   * `<phone>` field should only contain numbers, and it should be between 7 and 15 digits long.
     <p></p>
-  * `<email>` field should be of the format local-part@domain and adhere to the following constraints:
-    1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters.
-    2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.
-       The domain name must:
-       - end with a domain label at least 2 characters long;
-       - have each domain label start and end with alphanumeric characters;
-       - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
+  * `<email>` field should be of the format of a correct email address such as "johndoe@gmail.com".
     <p></p>
   * `<address>` field can take any values but should not be left blank.
     <p></p>
@@ -477,13 +471,7 @@ To edit a **class**, <br>
     <p></p>
   * `<phone>` field should only contain numbers, and it should be between 7 and 15 digits long.
     <p></p>
-  * `<email>` field should be of the format local-part@domain and adhere to the following constraints:
-      1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters.
-      2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.
-         The domain name must:
-          - end with a domain label at least 2 characters long
-          - have each domain label start and end with alphanumeric characters
-          - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
+  * `<email>` field should be of the format of a correct email address such as "johndoe@gmail.com".
     <p></p>
   * `<address>` field can take any values but should not be left blank.
     <p></p>
@@ -651,13 +639,7 @@ Formats:
       <p></p>
     * `<phone>` field should only contain numbers, and it should be between 7 and 15 digits long.
       <p></p>
-    * `<email>` field should be of the format local-part@domain and adhere to the following constraints:
-        1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters.
-        2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.
-           The domain name must:
-            - end with a domain label at least 2 characters long
-            - have each domain label start and end with alphanumeric characters
-            - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
+    * `<email>` field should be of the format of a correct email address such as "johndoe@gmail.com".
         <p></p>
     * `<address>` field can take any values but should not be left blank.
         <p></p>
