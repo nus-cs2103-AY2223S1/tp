@@ -60,14 +60,14 @@ title: InterNUS User Guide
 
 Welcome to the **InterNUS** user guide!
 
-**InterNUS** is a **_convenient_** and **_powerful_** desktop app, created to help **NUS CS students manage their internship applications.** 
-It is **_optimized_** for use via a Command Line Interface (CLI), 
-and complemented with a **_simple yet intuitive_** Graphical User Interface (GUI) 
-designed to help you **keep track of all your applications _at a glance._**
+InterNUS is a convenient and powerful desktop app, created to help **NUS CS students manage their internship applications.**
+It is optimized for use via a Command Line Interface (CLI),
+and complemented with a simple yet intuitive Graphical User Interface (GUI)
+designed to help you keep track of all your applications at a glance.
 
 Having trouble remembering who to contact for your various applications? Don’t worry! 
-**InterNUS** can also help you **keep track of all the contacts you meet along the way,** 
-**_from the start_** of the application process **_to the end_** of the internship programme and beyond!
+InterNUS can also help you keep track of all the contacts you meet along the way, 
+from the start of the application process to the end of the internship programme and beyond!
 
 ## 1.2. Person List
 
