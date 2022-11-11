@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-Cobb is a **Contact and Property Management System** that aims to help property agents and brokers manage their customer
+Cobb is a **Contact and Property Management System** that aims to help property agents manage their customer
 base and properties, as well as match and gain actionable insights from stored data. 
 
 As property agents, you can make use of Cobb's flexible **filtering and sorting** systems to understand key demographics of your customer base. 
@@ -348,7 +348,8 @@ Syntax: `listbuyers`
 
 Updates the [Property List](#3-property-list) to show all properties in your database, that is, removes all filters you have applied.<br>
 Syntax: `listprops`
-
+<br>
+   
 ### Find Commands
 
 <div markdown="span" class="alert alert-primary">:exclamation: **Note:**
@@ -594,3 +595,4 @@ no way for you to retrieve lost data. :(
 | [Clear](#clearing-the-program-clear)                                              | `clear`                                                                                                                                                                                                                                             |
 | [Exit Cobb](#exiting-the-program-exit)                                            | `exit`                                                                                                                                                                                                                                              |
 | [Get help](#viewing-help-help)                                                    | `help`                                                                                                                                                                                                                                              |
+   
