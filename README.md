@@ -2,7 +2,7 @@
 [![codecov](https://codecov.io/gh/AY2223S1-CS2103T-W17-3/tp/branch/master/graph/badge.svg?token=9M3PU7F9CR)](https://codecov.io/gh/AY2223S1-CS2103T-W17-3/tp)
 
 <p align="center">
-  <img src="images/ModQuikLogo.png"/>
+  <img src="docs/images/ModQuikLogo.png"/>
 </p>
 
 # ModQuik
