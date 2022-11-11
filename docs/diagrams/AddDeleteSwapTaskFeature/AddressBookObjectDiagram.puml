@@ -1,0 +1,37 @@
+@startuml
+!include ../style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package __addressbook:AddressBook__ <<Rectangle>>{
+Class "__addressbook:AddressBook__" as AddressBook
+Class "__persons:UniquePersonList__" as UniquePersonList MODEL_COLOR_T6
+Class "__modules:UniqueModuleList__" as UniqueModuleList MODEL_COLOR_T7
+
+Class "__CS1231:Module__" as Module1
+Class "__CS1231:ModuleCode__" as ModuleCode1
+Class "__Discrete Structures:ModuleTitle__" as ModuleTitle1
+Class "__tasks:TaskList__" as TaskList1 MODEL_COLOR_T5
+
+Class "__CS2106:Module__" as Module2
+Class "__CS2106:ModuleCode__" as ModuleCode2
+Class "__Introduction to OS:ModuleTitle__" as ModuleTitle2
+Class "__tasks:TaskList__" as TaskList2 MODEL_COLOR_T5
+
+}
+
+AddressBook *--> UniquePersonList MODEL_COLOR_T6
+AddressBook *--> UniqueModuleList MODEL_COLOR_T7
+
+UniqueModuleList *--> Module1
+Module1 *--> ModuleCode1
+Module1 *--> ModuleTitle1
+Module1 *--> TaskList1 MODEL_COLOR_T5
+
+UniqueModuleList *----> Module2
+Module2 *--> ModuleCode2
+Module2 *--> ModuleTitle2
+Module2 *--> TaskList2 MODEL_COLOR_T5
+
+@enduml

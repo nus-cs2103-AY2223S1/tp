@@ -20,7 +20,9 @@ public class UiManager implements Ui {
     public static final String ALERT_DIALOG_PANE_FIELD_ID = "alertDialogPane";
 
     private static final Logger logger = LogsCenter.getLogger(UiManager.class);
-    private static final String ICON_APPLICATION = "/images/address_book_32.png";
+    //Image is produced by GoodWare and is available for free on Flaticon
+    //https://www.flaticon.com/authors/good-ware
+    private static final String ICON_APPLICATION = "/images/saturn.png";
 
     private Logic logic;
     private MainWindow mainWindow;

@@ -65,8 +65,15 @@ dependencies {
     testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: jUnitVersion
 }
 
+//@@author cheeheng-reused
+//Reused from https://stackoverflow.com/questions/48396274/how-to-enable-assertions-in-the-gradle-run-task
+run {
+    enableAssertions = true
+}
+//@@author
+
 shadowJar {
-    archiveFileName = 'addressbook.jar'
+    archiveFileName = 'plannit.jar'
 }
 
 defaultTasks 'clean', 'test'

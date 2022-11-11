@@ -1,0 +1,42 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Model(Person) <<Rectangle>>{
+Class "<<interface>>\nModel" as Model
+Class ModelManager
+Class AddressBook
+
+Class UniquePersonList
+Class UniqueModuleList
+Class Person
+Class Module
+Class Email
+Class Name
+Class Phone
+
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Model
+
+ModelManager .up.|> Model
+ModelManager --> "1" AddressBook
+ModelManager -->" ~* filtered" Person
+ModelManager -->"~* filtered" Module
+
+
+AddressBook *--> "1" UniquePersonList
+AddressBook *--> "1" UniqueModuleList
+UniqueModuleList --> "~* all" Module
+UniquePersonList --> "~* all" Person
+Person *--> "1" Email
+Person *--> "1" Name
+Person *--> "1" Phone
+Module -right--> "*" Person : contains
+
+Email -[hidden]right-> Name
+Name -[hidden]right-> Phone
+@enduml

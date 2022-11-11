@@ -1,0 +1,87 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddModuleCommandParser" as Parser LOGIC_COLOR
+participant "c:AddModuleCommand" as AddModuleCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "CS2105:Module" as Module MODEL_COLOR
+end box
+
+[-> LogicManager : execute("add-module m/CS2105")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("add-module m/CS2105")
+activate AddressBookParser
+
+create Parser
+AddressBookParser -> Parser
+activate Parser
+
+Parser --> AddressBookParser
+deactivate Parser
+
+AddressBookParser -> Parser : parse("m/CS2105")
+activate Parser
+
+create Module
+Parser -> Module : Module("CS2105", "")
+activate Module
+Module --> Parser : m
+deactivate Module
+
+create AddModuleCommand
+Parser -> AddModuleCommand : AddModuleCommand(m)
+activate AddModuleCommand
+
+AddModuleCommand --> Parser : c
+deactivate AddModuleCommand
+
+Parser --> AddressBookParser : c
+deactivate Parser
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+Parser -[hidden]-> AddressBookParser
+destroy Parser
+
+AddressBookParser --> LogicManager : c
+deactivate AddressBookParser
+
+LogicManager -> AddModuleCommand : execute()
+activate AddModuleCommand
+
+AddModuleCommand -> Model : addModule(m)
+activate Model
+
+Model --> AddModuleCommand
+deactivate Model
+
+AddModuleCommand -> Model : goToHomePage()
+activate Model
+
+Model --> AddModuleCommand
+deactivate Model
+
+create CommandResult
+AddModuleCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddModuleCommand
+deactivate CommandResult
+
+AddModuleCommand --> LogicManager : result
+deactivate AddModuleCommand
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddModuleCommand -[hidden]-> LogicManager
+destroy AddModuleCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

@@ -1,0 +1,83 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":Parser" as Parser LOGIC_COLOR
+participant "d:DeletePersonCommand" as DeletePersonCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("delete-person n/Amy")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("delete-person n/Amy")
+activate AddressBookParser
+
+create Parser
+AddressBookParser -> Parser
+activate Parser
+
+Parser --> AddressBookParser
+deactivate Parser
+
+AddressBookParser -> Parser : parse("Amy")
+activate Parser
+
+create DeletePersonCommand
+Parser -> DeletePersonCommand
+activate DeletePersonCommand
+
+DeletePersonCommand --> Parser : d
+deactivate DeletePersonCommand
+
+Parser --> AddressBookParser : d
+deactivate Parser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+Parser -[hidden]-> AddressBookParser
+destroy Parser
+
+AddressBookParser --> LogicManager : d
+deactivate AddressBookParser
+
+LogicManager -> DeletePersonCommand : execute()
+activate DeletePersonCommand
+
+DeletePersonCommand -> Model : getPersonUsingName(Amy)
+activate Model
+
+Model --> DeletePersonCommand : p
+deactivate Model
+
+DeletePersonCommand -> Model : deletePerson(p)
+activate Model
+
+Model --> DeletePersonCommand
+deactivate Model
+
+DeletePersonCommand -> Model : goToHomePage()
+activate Model
+
+Model --> DeletePersonCommand
+deactivate Model
+
+create CommandResult
+DeletePersonCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DeletePersonCommand
+deactivate CommandResult
+
+DeletePersonCommand --> LogicManager : result
+deactivate DeletePersonCommand
+DeletePersonCommand -[hidden]-> LogicManager
+destroy DeletePersonCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

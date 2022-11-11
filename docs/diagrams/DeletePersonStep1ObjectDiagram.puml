@@ -1,0 +1,33 @@
+@startuml
+'https://plantuml.com/object-diagram
+
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package "Step 1\nSome initial state" <<Rectangle>>{
+object "<u>:UniquePersonList</u>" as persons {
+}
+
+object "<u>Alan:Person</u>" as alan {
+}
+
+object "<u>Emma:Person</u>" as emma {
+}
+
+object "<u>Jon:Person</u>" as jon {
+}
+
+
+persons --> alan : contains
+persons --> emma : contains
+persons --> jon : contains
+
+object "<u>CS2106:Module</u>" as cs2106 {
+}
+
+cs2106 -up-> emma : contains
+cs2106 -up-> alan : contains
+
+@enduml

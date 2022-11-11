@@ -1,0 +1,52 @@
+@startuml
+'https://plantuml.com/object-diagram
+
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+show members
+
+Package "Step 3\nOld CS2106 instance replaced with new CS2106 instance in UniqueModuleList"<<Rectangle>>{
+
+object "<u>:UniquePersonList</u>" as persons {
+}
+
+object "<u>Alan:Person</u>" as alan {
+}
+
+object "<u>Emma:Person</u>" as emma {
+}
+
+persons ---> alan : contains
+persons ---> emma : contains
+
+object "<u>:UniqueModuleList</u>" as modules {
+}
+
+object "<u>Old CS2106:Module</u>" as cs2106 {
+}
+
+object "<u>:Task</u>" as task {
+taskDescription = "Submit quiz"
+}
+
+
+object "<u>:Link</u>" as link {
+linkUrl = "www.coursemology.com"
+}
+
+object "<u>New CS2106:Module</u>" as cs2106num2 {
+}
+
+modules --> cs2106num2 : contains
+cs2106 --> task : contains
+cs2106 --> link : contains
+
+
+cs2106num2 --> task : contains
+cs2106num2 --> link : contains
+cs2106num2 --> alan : contains
+
+@enduml

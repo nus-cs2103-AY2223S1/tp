@@ -8,6 +8,21 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 public class CommandResultTest {
+    public static final String EXPECTED_FEEDBACK = "feedback";
+    public static final boolean EXPECTED_SHOW_HELP_STATUS = true;
+    public static final boolean EXPECTED_EXIT_STATUS = true;
+    public static final CommandResult EXPECTED_COMMAND_RESULT = new CommandResult("feedback", true, true);
+
+    @Test
+    public void isShowHelp() {
+        assertEquals(EXPECTED_SHOW_HELP_STATUS, EXPECTED_COMMAND_RESULT.isShowHelp());
+    }
+
+    @Test
+    public void isExit() {
+        assertEquals(EXPECTED_EXIT_STATUS, EXPECTED_COMMAND_RESULT.isExit());
+    }
+
     @Test
     public void equals() {
         CommandResult commandResult = new CommandResult("feedback");

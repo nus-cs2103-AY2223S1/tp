@@ -2,39 +2,55 @@ package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_LINK_ALIAS;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_LINK_ALIAS_2;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_LINK_URL;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_LINK_URL_2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_ALIAS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_ALIAS_2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_URL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_URL_2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_URL_3;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
+import seedu.address.model.module.link.Link;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
-    private static final String INVALID_PHONE = "+651234";
-    private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
-    private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_PHONE = "+651234";
 
     private static final String VALID_NAME = "Rachel Walker";
-    private static final String VALID_PHONE = "123456";
-    private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
-    private static final String VALID_TAG_1 = "friend";
-    private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_PHONE = "12345678";
 
+    private static final List<String> INVALID_ALIASES_UNIQUE =
+            Arrays.asList(INVALID_MODULE_LINK_ALIAS, INVALID_MODULE_LINK_ALIAS_2);
+    private static final List<String> VALID_ALIASES_DUPLICATE =
+            Arrays.asList(VALID_MODULE_LINK_ALIAS, VALID_MODULE_LINK_ALIAS);
+    private static final List<String> VALID_ALIASES_UNIQUE =
+            Arrays.asList(VALID_MODULE_LINK_ALIAS, VALID_MODULE_LINK_ALIAS_2);
+    private static final List<String> VALID_URLS_UNIQUE =
+            Arrays.asList(VALID_MODULE_LINK_URL, VALID_MODULE_LINK_URL_2);
+    private static final List<String> VALID_URLS_DUPLICATE =
+            Arrays.asList(VALID_MODULE_LINK_URL_2, VALID_MODULE_LINK_URL_2);
     private static final String WHITESPACE = " \t\r\n";
+
 
     @Test
     public void parseIndex_invalidInput_throwsParseException() {
@@ -103,29 +119,6 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseAddress_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress((String) null));
-    }
-
-    @Test
-    public void parseAddress_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseAddress(INVALID_ADDRESS));
-    }
-
-    @Test
-    public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(VALID_ADDRESS));
-    }
-
-    @Test
-    public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
-        String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(addressWithWhitespace));
-    }
-
-    @Test
     public void parseEmail_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseEmail((String) null));
     }
@@ -149,48 +142,125 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseTag_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseTag(null));
+    public void parseLinkAlias_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseLinkAlias(null));
     }
 
     @Test
-    public void parseTag_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTag(INVALID_TAG));
+    public void parseLinkAlias_validValue() throws Exception {
+        String expectedLinkAlias = VALID_MODULE_LINK_ALIAS;
+        assertEquals(expectedLinkAlias, ParserUtil.parseLinkAlias(VALID_MODULE_LINK_ALIAS));
     }
 
     @Test
-    public void parseTag_validValueWithoutWhitespace_returnsTag() throws Exception {
-        Tag expectedTag = new Tag(VALID_TAG_1);
-        assertEquals(expectedTag, ParserUtil.parseTag(VALID_TAG_1));
+    public void parseLinkAlias_invalidValue_throwsParseException() throws Exception {
+        assertThrows(ParseException.class, () -> ParserUtil.parseLinkAlias(INVALID_MODULE_LINK_ALIAS));
     }
 
     @Test
-    public void parseTag_validValueWithWhitespace_returnsTrimmedTag() throws Exception {
-        String tagWithWhitespace = WHITESPACE + VALID_TAG_1 + WHITESPACE;
-        Tag expectedTag = new Tag(VALID_TAG_1);
-        assertEquals(expectedTag, ParserUtil.parseTag(tagWithWhitespace));
+    public void parseLinkAliases_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseLinkAliases(null));
     }
 
     @Test
-    public void parseTags_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseTags(null));
+    public void parseLinkAliases_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseLinkAliases(INVALID_ALIASES_UNIQUE));
     }
 
     @Test
-    public void parseTags_collectionWithInvalidTags_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, INVALID_TAG)));
+    public void parseLinkAliases_validValue() throws ParseException {
+        assertTrue(ParserUtil.parseLinkAliases(VALID_ALIASES_UNIQUE).equals(VALID_ALIASES_UNIQUE));
     }
 
     @Test
-    public void parseTags_emptyCollection_returnsEmptySet() throws Exception {
-        assertTrue(ParserUtil.parseTags(Collections.emptyList()).isEmpty());
+    public void parseLinkUrl_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseLinkUrl(null));
     }
 
     @Test
-    public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
-        Set<Tag> actualTagSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
-        Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
+    public void parseLinkUrl_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseLinkUrl(INVALID_MODULE_LINK_URL));
+    }
 
-        assertEquals(expectedTagSet, actualTagSet);
+    @Test
+    public void parseLinkUrl_validValueWithoutHttps_returnsLink() throws Exception {
+        String expectedLinkUrl = VALID_MODULE_LINK_URL_3;
+        assertEquals(expectedLinkUrl, ParserUtil.parseLinkUrl(VALID_MODULE_LINK_URL_3));
+    }
+
+    @Test
+    public void parseLinkUrl_validValueWithoutWhitespace_returnsLink() throws Exception {
+        String expectedLinkUrl = VALID_MODULE_LINK_URL_3;
+        assertEquals(expectedLinkUrl, ParserUtil.parseLinkUrl(VALID_MODULE_LINK_URL_3));
+    }
+
+    @Test
+    public void parseLinkUrl_validValueWithWhitespace_returnsTrimmedLink() throws Exception {
+        String linkUrlWithWhitespace = WHITESPACE + VALID_MODULE_LINK_URL_3 + WHITESPACE;
+        String expectedLinkUrl = VALID_MODULE_LINK_URL_3;
+        assertEquals(expectedLinkUrl, ParserUtil.parseLinkUrl(linkUrlWithWhitespace));
+    }
+
+    @Test
+    public void parseLinks_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseLinks(null, null));
+    }
+
+    @Test
+    public void parseLinks_collectionWithInvalidLinkAlias_throwsParseException() {
+        List<String> listOfAliasesWithOneInvalidAlias = new ArrayList<>(VALID_ALIASES_UNIQUE);
+        listOfAliasesWithOneInvalidAlias.add(INVALID_MODULE_LINK_ALIAS);
+        assertThrows(ParseException.class, () -> ParserUtil.parseLinks(
+                listOfAliasesWithOneInvalidAlias, VALID_URLS_UNIQUE));
+    }
+
+    @Test
+    public void parseLinks_collectionWithInvalidLinkUrls_throwsParseException() {
+        List<String> listOfUrlsWithOneInvalidUrl = new ArrayList<>(VALID_URLS_UNIQUE);
+        listOfUrlsWithOneInvalidUrl.add(INVALID_MODULE_LINK_URL_2);
+        assertThrows(ParseException.class, () -> ParserUtil.parseLinks(
+                VALID_ALIASES_UNIQUE, listOfUrlsWithOneInvalidUrl));
+    }
+
+    @Test
+    public void parseLinks_collectionWithDuplicateLinkAlias_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseLinks(
+                VALID_ALIASES_DUPLICATE, VALID_URLS_UNIQUE));
+    }
+
+    @Test
+    public void parseLinks_collectionWithDuplicateLinkUrls_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseLinks(VALID_ALIASES_UNIQUE, VALID_URLS_DUPLICATE));
+    }
+
+    @Test
+    public void parseLinks_emptyCollection_returnsEmptySet() throws Exception {
+        assertTrue(ParserUtil.parseLinks(Collections.emptyList(), Collections.emptyList()).isEmpty());
+    }
+
+    @Test
+    public void parseLink_collectionWithValidLinks_returnsLinkSet() throws Exception {
+        Set<Link> actualLinkSet = ParserUtil.parseLinks(VALID_ALIASES_UNIQUE, VALID_URLS_UNIQUE);
+        List<Link> validListOfLinks = Arrays.asList(new Link(VALID_MODULE_LINK_ALIAS, VALID_MODULE_LINK_URL),
+                new Link(VALID_MODULE_LINK_ALIAS_2, VALID_MODULE_LINK_URL_2));
+        Set<Link> expectedLinkSet = new HashSet<Link>(validListOfLinks);
+        assertEquals(expectedLinkSet, actualLinkSet);
+    }
+
+    @Test
+    public void isUniqueList_validValue() throws Exception {
+        assertEquals(true, ParserUtil.isUniqueList(VALID_ALIASES_UNIQUE));
+    }
+
+    @Test
+    public void isUniqueList_invalidValue_throwsParseException() {
+        assertEquals(false, ParserUtil.isUniqueList(
+                Arrays.asList(VALID_MODULE_LINK_ALIAS, VALID_MODULE_LINK_ALIAS)));
+    }
+
+    @Test
+    public void validateAddLinkCommandPairSize_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.validateAddLinkCommandPairSize(
+                VALID_ALIASES_UNIQUE, Arrays.asList(VALID_MODULE_LINK_URL_2)));
     }
 }

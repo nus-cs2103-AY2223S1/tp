@@ -5,55 +5,75 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
-### John Doe
+### Danny (Kim Hyeongcheol)
 
-<img src="images/johndoe.png" width="200px">
+<img src="./images/bluesky0911.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[github](https://github.com/bluesky0911) |
+[portfolio](team/bluesky0911.md)
 
-* Role: Project Advisor
+* Role: Project Advisor, Head Tutor (CS2103T)
 
-### Jane Doe
+### Ek Wei Rui
 
-<img src="images/johndoe.png" width="200px">
+<img src="./images/ekweirui.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[github](https://github.com/ekweirui) |
+[portfolio](team/ekweirui.md)
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities:
+  * Modify adding, editing, and deleting of persons
+  * Implement delete person from module 
+  * Pull request reviewer
 
-### Jean Doe
+### Neo Shi Wen
 
-<img src="images/johndoe.png" width="200px">
+<img src="./images/shwene.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[github](http://github.com/shwene) |
+[portfolio](team/shwene.md)
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities:
+  * Implement links
+
+### Tan Chee Heng
+
+<img src="./images/cheeheng.png" width="200px">
+
+[github](http://github.com/cheeheng) |
+[portfolio](team/cheeheng.md)
+
+* Role: Developer / Tester
+* Responsibilities:
+  * Implement add/delete/edit modules
+  * Review pull requests
+
+### Tan Jia Rong
+
+<img src="./images/tan-jia-rong.png" width="200px">
+
+[github](https://github.com/Tan-Jia-Rong) |
+[portfolio](team/tan-jia-rong.md)
+
+* Role: Developer
+* Responsibilities:
+  * Implement homepage and module navigation
+  * Pull request reviewer
+  * Team discussion facilitator
+
+### Teo Yu Qi
+
+
+<img src="./images/teoyuqi.png" width="200px">
+
+[github](http://github.com/teoyuqi) |
+[portfolio](team/teoyuqi.md)
+* Developer
+* Responsibilities:
+  * Implement adding, deleting and swapping of tasks
+  * UI
+  * Review pull requests

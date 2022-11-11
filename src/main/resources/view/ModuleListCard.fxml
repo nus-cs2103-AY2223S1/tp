@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.layout.StackPane?>
+<HBox id="cardPane" fx:id="cardPane"
+      xmlns="http://javafx.com/javafx/8"
+      xmlns:fx="http://javafx.com/fxml/1" onMouseClicked="#handleClick">
+  <GridPane HBox.hgrow="ALWAYS" styleClass="module-card-pane">
+    <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" />
+    </columnConstraints>
+    <VBox alignment="TOP_LEFT" minHeight="90" GridPane.columnIndex="0">
+      <padding>
+        <Insets top="5" right="5" bottom="5" left="5" />
+      </padding>
+      <!-- HBox with module code and title. -->
+      <HBox spacing="5" alignment="CENTER_LEFT">
+        <Label fx:id="id" styleClass="cell_big_label" />
+        <Label fx:id="moduleCode" text="\$first" styleClass="cell_big_label" />
+        <Label fx:id="moduleTitle" text="\$moduleTitle" styleClass="cell_small_label" />
+      </HBox>
+      <!-- VBox with links. -->
+      <VBox styleClass="pane-with-border" fx:id="linksPane" minWidth="100"
+            prefWidth="200">
+        <FlowPane fx:id="links" />
+      </VBox>
+      <!-- VBox with tasks . -->
+      <VBox styleClass="pane-with-border" fx:id="taskListPane" minWidth="100"
+            prefWidth="200">
+        <StackPane fx:id="taskListPanelPlaceholder" />
+      </VBox>
+    </VBox>
+  </GridPane>
+</HBox>

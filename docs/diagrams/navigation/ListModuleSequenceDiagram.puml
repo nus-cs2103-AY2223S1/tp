@@ -1,0 +1,59 @@
+@startuml
+!include ../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant "command:ListModuleCommand" as ListModuleCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute(input)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(input)
+activate AddressBookParser
+
+create ListModuleCommand
+AddressBookParser -> ListModuleCommand
+activate ListModuleCommand
+ListModuleCommand --> AddressBookParser : command
+deactivate ListModuleCommand
+
+AddressBookParser --> LogicManager : command
+deactivate AddressBookParser
+
+LogicManager -> ListModuleCommand : execute()
+
+activate ListModuleCommand
+
+ListModuleCommand -> Model : getHomeStatusAsBoolean()
+activate Model
+Model --> ListModuleCommand
+deactivate Model
+
+ListModuleCommand -> Model : updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES)
+activate Model
+Model --> ListModuleCommand
+deactivate Model
+
+create CommandResult
+ListModuleCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ListModuleCommand
+deactivate CommandResult
+
+ListModuleCommand --> LogicManager : result
+deactivate ListModuleCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ListModuleCommand -[hidden]-> ListModuleCommand
+destroy ListModuleCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

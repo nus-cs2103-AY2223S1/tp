@@ -1,0 +1,84 @@
+@startuml
+!include ../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":FindModuleCommandParser" as FindModuleCommandParser LOGIC_COLOR
+participant "mPred:ModuleCodeStartsWithKeywordPredicate" as ModuleCodeMatchesKeywordPredicate LOGIC_COLOR
+participant "command:FindModuleCommand" as FindModuleCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute(input)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(input)
+activate AddressBookParser
+
+create FindModuleCommandParser
+AddressBookParser -> FindModuleCommandParser
+
+activate FindModuleCommandParser
+FindModuleCommandParser --> AddressBookParser
+deactivate FindModuleCommandParser
+
+AddressBookParser -> FindModuleCommandParser : parse(input)
+
+activate FindModuleCommandParser
+
+create ModuleCodeMatchesKeywordPredicate
+FindModuleCommandParser -> ModuleCodeMatchesKeywordPredicate
+activate ModuleCodeMatchesKeywordPredicate
+ModuleCodeMatchesKeywordPredicate --> FindModuleCommandParser : mPred
+deactivate ModuleCodeMatchesKeywordPredicate
+
+create FindModuleCommand
+FindModuleCommandParser -> FindModuleCommand
+activate FindModuleCommand
+FindModuleCommand --> FindModuleCommandParser : command
+deactivate FindModuleCommand
+
+FindModuleCommandParser --> AddressBookParser : command
+deactivate FindModuleCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FindModuleCommandParser -[hidden]-> AddressBookParser
+destroy FindModuleCommandParser
+
+AddressBookParser --> LogicManager : command
+deactivate AddressBookParser
+
+LogicManager -> FindModuleCommand : execute()
+
+activate FindModuleCommand
+
+FindModuleCommand -> Model : getHomeStatusAsBoolean()
+activate Model
+Model --> FindModuleCommand
+deactivate Model
+
+FindModuleCommand -> Model : updateFilteredModuleList(mPred)
+activate Model
+Model --> FindModuleCommand
+deactivate Model
+
+create CommandResult
+FindModuleCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindModuleCommand
+deactivate CommandResult
+
+FindModuleCommand --> LogicManager : result
+deactivate FindModuleCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FindModuleCommand -[hidden]-> FindModuleCommand
+destroy FindModuleCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

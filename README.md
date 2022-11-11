@@ -1,14 +1,38 @@
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
+[![Java CI](https://github.com/AY2223S1-CS2103T-T10-1/tp/actions/workflows/gradle.yml/badge.svg?branch=master)](https://github.com/AY2223S1-CS2103T-T10-1/tp/actions/workflows/gradle.yml)
+[![codecov](https://codecov.io/gh/AY2223S1-CS2103T-T10-1/tp/branch/master/graph/badge.svg?token=VXM3PV6R6B)](https://codecov.io/gh/AY2223S1-CS2103T-T10-1/tp)
+
+# Plannit
 
 ![Ui](docs/images/Ui.png)
 
-* This is **a sample project for Software Engineering (SE) students**.<br>
-  Example usages:
-  * as a starting point of a course project (as opposed to writing everything from scratch)
-  * as a case study
-* The project simulates an ongoing software project for a desktop application (called _AddressBook_) used for managing contact details.
-  * It is **written in OOP fashion**. It provides a **reasonably well-written** code base **bigger** (around 6 KLoC) than what students usually write in beginner-level SE modules, without being overwhelmingly big.
-  * It comes with a **reasonable level of user and developer documentation**.
-* It is named `AddressBook Level 3` (`AB3` for short) because it was initially created as a part of a series of `AddressBook` projects (`Level 1`, `Level 2`, `Level 3` ...).
-* For the detailed documentation of this project, see the **[Address Book Product Website](https://se-education.org/addressbook-level3)**.
-* This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
+* **Plannit** is an **all-in-one application** that streamlines the execution of module
+  deliverables by **empowering NUS students** with the ability to manage **tasks**, **links** and 
+  **module-mates** (i.e., students in the same module) to increase their productivity.
+
+* Plannit will be the **go-to platform** for them to access all modules links and information without needing to tediously navigate through multiple websites.
+
+* Plannit can be used to track their tasks for each module so that they do not have to worry about unintentionally forgetting their tasks.
+
+* Plannit allows tracking of student contacts by module. Students do not have to worry about forgetting which friend takes which module and can thus easily know who to approach when in need of help.
+
+* Plannit is **optimized for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Plannit can help you track your module information and tasks faster than traditional GUI apps!
+
+## Usage
+
+* Categorize module information by modules for easier tracking!
+
+## User Guide
+
+* If you are interested in using **Plannit**, please head over to our [User Guide](docs/UserGuide.md) for more information!
+
+## Developer Guide
+
+* If you are a programmer who is interested in enhancing **Plannit**, please head over to our [Developer Guide](docs/DeveloperGuide.md) for more information!
+
+## About Us
+
+* Interested in knowing more about us? [Click Here](docs/AboutUs.md)!
+
+## Acknowledgements
+Libraries used: [JavaFX](https://openjfx.io), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5). <br>
+This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).

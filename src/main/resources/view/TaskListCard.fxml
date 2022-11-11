@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8"
+      xmlns:fx="http://javafx.com/fxml/1">
+  <GridPane HBox.hgrow="ALWAYS">
+    <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="200" />
+    </columnConstraints>
+    <VBox alignment="CENTER_LEFT" GridPane.columnIndex="0">
+      <padding>
+        <Insets bottom="15" left="15" right="15" top="15" />
+      </padding>
+        <!-- Task number and task description have a total height of 40px. -->
+        <Label fx:id="id" alignment="TOP_LEFT"  contentDisplay="TOP" maxHeight="Infinity"
+               styleClass="cell_small_label" HBox.hgrow="ALWAYS" minHeight="20" />
+        <!-- Task Description. -->
+        <Label fx:id="taskDescription" alignment="TOP_LEFT"
+               contentDisplay="TOP" maxHeight="Infinity"
+               styleClass="cell_small_label" text="\$task"
+               textAlignment="JUSTIFY" wrapText="true" minHeight="20" />
+    </VBox>
+      <rowConstraints>
+         <RowConstraints />
+      </rowConstraints>
+  </GridPane>
+</HBox>
