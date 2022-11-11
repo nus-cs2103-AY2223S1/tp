@@ -4,7 +4,7 @@ title: User Guide
 ---
 ## 1. Introduction
 Are you a Teaching Assistant (TA) struggling to monitor your classes and what tasks you have to complete?
-Tired of having to use multiple applications (such as LumiNUS and Todoist) to keep track of all your responsibilities?<br>
+Tired of having to use multiple applications such as LumiNUS and Todoist to keep track of all your responsibilities?<br>
 
 Introducing ModQuik, a Teaching Assistant tool made for you!
 
