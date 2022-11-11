@@ -215,7 +215,7 @@ Finds modules in the stored module list whose module code matches the `KEYWORD` 
 
 Format: `m find KEYWORD`
 
-Parameters:
+Parameter:
 * `KEYWORD` refers to the keyword inputted by the user.
 
 <div markdown="span" class="alert alert-info">
@@ -238,7 +238,7 @@ Deletes the specified module from the stored module list.
 Format: `m del INDEX`
 
 Parameter:
-`INDEX` refers to the index number (shown in the displayed module list) of the module to be deleted.
+* `INDEX` refers to the index number (shown in the displayed module list) of the module to be deleted.
 
 Restrictions:
 * `INDEX`
@@ -335,7 +335,7 @@ Deletes the specified task from the stored task list.
 Format: `t del INDEX`
 
 Parameter:
-`INDEX` refers to the index number (shown in the displayed task list) of the task to be deleted.
+* `INDEX` refers to the index number (shown in the displayed task list) of the task to be deleted.
 
 Restrictions:
 * `INDEX`
@@ -399,7 +399,7 @@ Indicates the specified task is completed.
 Format: `t mark INDEX`
 
 Parameter:
-`INDEX` refers to the index number (shown in the displayed task list) of the task to be marked.
+* `INDEX` refers to the index number (shown in the displayed task list) of the task to be marked.
 
 Restrictions:
 * `INDEX`
@@ -490,7 +490,7 @@ Finds tasks in the stored task list whose task description matches the `KEYWORD`
 
 Format: `t find KEYWORD`
 
-Parameters:
+Parameter:
 * `KEYWORD` refers to the keyword inputted by the user.
 
 <div markdown="span" class="alert alert-info">
