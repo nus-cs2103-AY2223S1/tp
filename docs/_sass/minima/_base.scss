@@ -133,10 +133,10 @@ a {
   }
 
   .btn-outline-light {
-    border: #f1f2f4 solid 1px;
-    border-radius: 10px;
+    border: #f1f2f4 solid 1px !important;
+    border-radius: 10px !important;
     &:hover {
-      text-decoration: none;
+      text-decoration: none !important;
     }
   }
 }
