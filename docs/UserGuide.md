@@ -25,6 +25,7 @@ faster than ever before!
 * [Table of Contents](#table-of-contents)
 * [Using the User Guide](#using-the-user-guide)
 * [Quick Start](#quick-start)
+* [Data Fields] (#data-fields)
 * [First Glance](#first-glance)
 * [Features](#features)
   * [Introduction to Our Features](#introduction-to-our-features)
@@ -106,6 +107,19 @@ Alternatively, you can install 'Java' directly on your computer through package 
 6. You can refer to [Features](#features) below for the details of each command.
 
 <br>
+
+## Date Fields 
+
+In our current application we storing the following data fields for each eatery. 
+
+| Field  | Description  |
+|---|---|
+| name  | name of the eatery   |
+|  price |  price range of the eatery |
+|  location |  information about the location of the eatery |
+| cuisinse | the cuisinse of food served by the eatery  |
+
+
 
 ## First Glance
 The following image describes how `NUSEatWhere` looks like upon opening the application.
