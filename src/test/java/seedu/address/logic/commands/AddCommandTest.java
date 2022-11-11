@@ -21,6 +21,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.record.Record;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -114,6 +115,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasSimilarName(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setAddressBook(ReadOnlyAddressBook newData) {
             throw new AssertionError("This method should not be called.");
         }
@@ -139,6 +145,21 @@ public class AddCommandTest {
         }
 
         @Override
+        public void setRecord(Record target, Record editedRecord) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasRecord(Record record) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addRecord(Record record) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Person> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -147,6 +168,46 @@ public class AddCommandTest {
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void deleteRecord(Record record) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Record> getFilteredRecordList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredRecordList(Predicate<Record> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void clearRecords() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setFilteredRecordList(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setRecordListDisplayed(boolean b) {
+            throw new AssertionError("This method should not be called.");
+        };
+
+        @Override
+        public boolean isRecordListDisplayed() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setPersonWithRecords(Person person) {
+            throw new AssertionError("This method should not be called.");
+        };
     }
 
     /**
@@ -186,9 +247,20 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasSimilarName(Person person) {
+            requireNonNull(person);
+            return personsAdded.stream().anyMatch(person::hasSimilarName);
+        }
+
+        @Override
         public ReadOnlyAddressBook getAddressBook() {
             return new AddressBook();
         }
-    }
 
+        @Override
+        public boolean isRecordListDisplayed() {
+            return false;
+        }
+
+    }
 }

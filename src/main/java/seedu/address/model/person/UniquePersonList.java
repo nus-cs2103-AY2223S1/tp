@@ -37,6 +37,14 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
+     * Returns true if the list contains a person with the same name in lower case as the given argument.
+     */
+    public boolean hasSimilarName(Person toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck::hasSimilarName);
+    }
+
+    /**
      * Adds a person to the list.
      * The person must not already exist in the list.
      */

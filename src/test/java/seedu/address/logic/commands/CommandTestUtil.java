@@ -3,9 +3,12 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RECORD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -19,7 +22,10 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.record.Record;
+import seedu.address.model.record.RecordContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditRecordDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -28,45 +34,68 @@ public class CommandTestUtil {
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
+    public static final String VALID_BIRTHDATE_AMY = "06-06-1966";
+    public static final String VALID_BIRTHDATE_BOB = "08-08-1988";
     public static final String VALID_PHONE_AMY = "11111111";
     public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_ADDRESS_ALICE = "123, Jurong West Ave 6, #08-111";
+    public static final String VALID_TAG_DUSTALLERGY = "DustAllergy";
+    public static final String VALID_TAG_LATEXALLERGY = "LatexAllergy";
+    public static final String VALID_RECORD_DATE = "02-03-2020 1230";
+    public static final String VALID_RECORD_DATE_2 = "01-05-2022 1700";
+    public static final String VALID_RECORD_DATA = "fever";
+    public static final String VALID_RECORD_DATA_2 = "abdominal pain";
+    public static final String VALID_RECORD_MEDICATION = "Paracetamol 250mg";
+    public static final String VALID_APPOINTMENT_DATE_AMY = "01-01-2024 1200";
+    public static final String VALID_APPOINTMENT_DATE_BOB = "02-02-2024 1300";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
+    public static final String BIRTHDATE_DESC_AMY = " " + PREFIX_BIRTHDATE + VALID_BIRTHDATE_AMY;
+    public static final String BIRTHDATE_DESC_BOB = " " + PREFIX_BIRTHDATE + VALID_BIRTHDATE_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String TAG_DESC_LATEXALLERGY = " " + PREFIX_TAG + VALID_TAG_LATEXALLERGY;
+    public static final String TAG_DESC_DUSTALLERGY = " " + PREFIX_TAG + VALID_TAG_DUSTALLERGY;
+    public static final String RECORD_DATE_DESC = " " + PREFIX_DATE + VALID_RECORD_DATE;
+    public static final String RECORD_DATA_DESC = " " + PREFIX_RECORD + VALID_RECORD_DATA;
+    public static final String APPOINTMENT_DATE_AMY = " " + PREFIX_DATE + VALID_APPOINTMENT_DATE_AMY;
+    public static final String APPOINTMENT_DATE_BOB = " " + PREFIX_DATE + VALID_APPOINTMENT_DATE_BOB;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
+    public static final String INVALID_BIRTHDATE_DESC = " " + PREFIX_BIRTHDATE + "99-99-99"; // Incorrect date format
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "LatexAllergy*"; // '*' not allowed in tags
+    public static final String INVALID_RECORD_DATE_DESC = " " + PREFIX_DATE + "99-99-99"; // Incorrect date format
+    public static final String INVALID_RECORD_DATA_DESC = " " + PREFIX_RECORD + " "; // Cannot be blank
+    public static final String INVALID_APPOINTMENT_DATE = "" + PREFIX_DATE + "02-02-2023 3000"; // incorrect time format
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditRecordCommand.EditRecordDescriptor DESC_RECORD;
 
     static {
-        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
+        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY).withBirthdate(VALID_BIRTHDATE_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
+                .withTags(VALID_TAG_LATEXALLERGY).build();
+        DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).withBirthdate(VALID_BIRTHDATE_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withTags(VALID_TAG_DUSTALLERGY, VALID_TAG_LATEXALLERGY).build();
+        DESC_RECORD = new EditRecordDescriptorBuilder().withDate(VALID_RECORD_DATE)
+                .withData(VALID_RECORD_DATA).build();
     }
 
     /**
@@ -119,10 +148,24 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
 
         Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
-        final String[] splitName = person.getName().fullName.split("\\s+");
+        final String[] splitName = person.getName().properCaseName.split("\\s+");
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
     }
 
+    /**
+     * Updates {@code model}'s filtered record list to show only the record at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showRecordAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredRecordList().size());
+
+        Record record = model.getFilteredRecordList().get(targetIndex.getZeroBased());
+        final String[] splitRecord = record.record.split(" ");
+        model.updateFilteredRecordList(new RecordContainsKeywordsPredicate(
+                Arrays.asList(splitRecord[0]), Arrays.asList(), ""));
+
+        assertEquals(1, model.getFilteredRecordList().size());
+    }
 }

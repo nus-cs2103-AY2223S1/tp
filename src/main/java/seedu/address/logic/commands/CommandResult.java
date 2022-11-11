@@ -17,13 +17,27 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    /** The application should show recordList instead of personList. */
+    private final boolean showRecords;
+
     /**
-     * Constructs a {@code CommandResult} with the specified fields.
+     * Constructs a {@code CommandResult} with the specified fields for commands displaying personList.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.showRecords = false;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified fields for commands that display recordList
+     */
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean showRecords) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = showHelp;
+        this.exit = exit;
+        this.showRecords = showRecords;
     }
 
     /**
@@ -31,7 +45,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        this(feedbackToUser, false, false, false);
     }
 
     public String getFeedbackToUser() {
@@ -44,6 +58,10 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+
+    public boolean isShowRecords() {
+        return showRecords;
     }
 
     @Override

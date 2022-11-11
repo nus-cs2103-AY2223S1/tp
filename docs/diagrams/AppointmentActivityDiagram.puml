@@ -1,0 +1,20 @@
+@startuml
+!include style.puml
+
+start
+:User inputs Add Appointment Command;
+
+if () then ([Date, time and index \n are valid]\n)
+    :Appointment added \n for patient;
+    :Patient List is saved;
+    :User inputs Clear Appointment Command;
+        if () then ([Index \n is \n valid]\n)
+            :Appointment is cleared;
+        else ([else])
+            endif
+else ([else])
+
+endif
+stop
+
+@enduml

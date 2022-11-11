@@ -2,16 +2,34 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.person.Person.DEFAULT_ADDRESS;
+import static seedu.address.model.person.Person.DEFAULT_BIRTHDATE;
+import static seedu.address.model.person.Person.DEFAULT_EMAIL;
+import static seedu.address.model.person.Person.DEFAULT_NAME;
+import static seedu.address.model.person.Person.DEFAULT_PHONE;
 
 import java.nio.file.Path;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Appointment;
+import seedu.address.model.person.Birthdate;
+import seedu.address.model.person.DisplayedPerson;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.record.Record;
+import seedu.address.model.record.RecordList;
+import seedu.address.model.tag.Tag;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -21,7 +39,11 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
+    private final DisplayedPerson personWithRecords; // Person whose records are being displayed (if any)
     private final FilteredList<Person> filteredPersons;
+    private FilteredList<Record> filteredRecords;
+
+    private boolean isRecordListDisplayed = false;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -33,7 +55,17 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
+        Person placeholderPerson = new Person(new Name(DEFAULT_NAME),
+                new Birthdate(DEFAULT_BIRTHDATE),
+                new Phone(DEFAULT_PHONE),
+                new Email(DEFAULT_EMAIL),
+                new Address(DEFAULT_ADDRESS),
+                new HashSet<Tag>(),
+                new RecordList(),
+                Appointment.of(Appointment.NO_APPOINTMENT_SCHEDULED));
+        this.personWithRecords = new DisplayedPerson(placeholderPerson);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredRecords = new FilteredList<>(FXCollections.observableArrayList()); // empty FilteredList
     }
 
     public ModelManager() {
@@ -94,6 +126,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasSimilarName(Person person) {
+        requireNonNull(person);
+        return addressBook.hasSimilarName(person);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
     }
@@ -109,6 +147,50 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+    }
+
+    //=========== Record List ================================================================================
+
+    @Override
+    public void setRecordListDisplayed(boolean b) {
+        this.isRecordListDisplayed = b;
+    }
+
+    @Override
+    public boolean isRecordListDisplayed() {
+        return isRecordListDisplayed;
+    }
+
+    @Override
+    public void setPersonWithRecords(Person person) {
+        personWithRecords.setDisplayedPerson(person, this.addressBook);
+    }
+
+    @Override
+    public void addRecord(Record record) {
+        personWithRecords.addRecord(record);
+    }
+
+    @Override
+    public boolean hasRecord(Record record) {
+        return personWithRecords.hasRecord(record);
+    }
+
+    @Override
+    public void deleteRecord(Record record) {
+        personWithRecords.deleteRecord(record);
+    }
+
+    @Override
+    public void clearRecords() {
+        personWithRecords.clearRecords();
+    }
+
+    @Override
+    public void setRecord(Record target, Record editedRecord) {
+        requireAllNonNull(target, editedRecord);
+
+        personWithRecords.setRecord(target, editedRecord);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -128,6 +210,31 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    //=========== Filtered Record List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Record} backed by the internal list of
+     * {@code versionedAddressBook}. List of {@code Record} returned is sorted by Date, in
+     * descending order.
+     */
+    @Override
+    public ObservableList<Record> getFilteredRecordList() {
+        return filteredRecords.sorted(Collections.reverseOrder());
+    }
+
+    @Override
+    public void updateFilteredRecordList(Predicate<Record> predicate) {
+        requireNonNull(predicate);
+        filteredRecords.setPredicate(predicate);
+    }
+
+
+    @Override
+    public void setFilteredRecordList(Person person) {
+        setPersonWithRecords(person);
+        filteredRecords = new FilteredList<>(personWithRecords.getUnmodifiableRecords());
+    }
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -144,7 +251,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && filteredRecords.equals(other.filteredRecords);
     }
 
 }

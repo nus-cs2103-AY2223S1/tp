@@ -1,14 +1,20 @@
 {
   "persons": [ {
     "name": "Alice Pauline",
+    "birthdate" : "04-04-1944",
     "phone": "94351253",
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
-    "tagged": [ "friends" ]
+    "tagged": [ "friends" ],
+    "recordList": [],
+    "appointment": "01-01-2023 0000"
   }, {
     "name": "Alice Pauline",
+    "birthdate" : "04-04-1944",
     "phone": "94351253",
     "email": "pauline@example.com",
-    "address": "4th street"
+    "address": "123, Jurong West Ave 6, #08-111",
+    "recordList": [],
+    "appointment": "01-01-2023 0000"
   } ]
 }
