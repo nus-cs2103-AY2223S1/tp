@@ -661,6 +661,7 @@ any data created or deleted from the application.
 * checkUp stores data in the JSON format, improving readability and allowing for manually editing the data file.
 * The data file can be found in `data/checkup.json` in the home folder where checkUp's `jar` file is stored.
 * Care needs to be taken to follow data storage formats properly, or else the application will **reject** the data file.
+  * Rejected data files will be replaced with a new, empty data file when saving data.
 
 
 ### Mouse Interactions
