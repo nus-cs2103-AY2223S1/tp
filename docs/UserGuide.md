@@ -390,9 +390,6 @@ Examples:
 
 `t edit 2 m/CS2040 d/tutorial 2` changes the module and description of the second task in the displayed task list to 'CS2040' and 'tutorial 2' respectively.
 
-------------------
-<div style="page-break-after: always;"></div>
-
 ### Marking a task
 Indicates the specified task is completed.
 
