@@ -138,7 +138,6 @@ Things to note:
 3. If you delete an employee that you are currently viewing, the employee info view will display the next employee's particulars.
 4. If there is no next employee, this panel will revert to the Coydir logo.
 
-<div style="page-break-after: always"></div>
 
 #### 4. Command Panel
 
@@ -148,7 +147,6 @@ You can enter your user commands in the bottom section labeled as `Enter command
 
 The top section displays relevant messages/errors after the command is entered.
 
-<div style="page-break-after: always"></div>
 
 ## Quick start
 
