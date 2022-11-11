@@ -424,7 +424,7 @@ Examples:
 * `remark 1 punctual buyer` adds the remark **punctual buyer** to the client at index **1**.
 
 
-> <div markdown="span" class="alert alert-primary">:bulb: Tip: If you use the `remark` command while the *Client List Panel* has more than one client, you will not be able to see the addition.<br/>Use the [view](#viewing-a-client-view) command to see it.</div>
+> <div markdown="span" class="alert alert-primary">:bulb: Tip: If you use the `remark` command while the *List of Clients* Panel has more than one client, you will not be able to see the addition.<br/>Use the [view](#viewing-a-client-view) command to see it.</div>
 
 
 [Back to Table of Contents](#table-of-contents)
