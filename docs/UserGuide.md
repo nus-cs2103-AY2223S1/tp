@@ -3,18 +3,20 @@ layout: page
 title: User Guide
 ---
 # Waddle User Guide 🦆
-Welcome! Waddle is a **simple, no-frills travel planning application** aligned with your travel itinerary planning needs.
+Waddle is a **simple, no-frills travel planning application** aligned with your travel itinerary planning needs.
 Waddle provides you with a structured and intuitive way to plan your trips, even for itinerary planning beginners.
 
-You can plan your travel itinerary in **3 simple steps**.
+With Waddle, you can plan your travel itinerary in **3 simple steps**:
 1. Create a trip itinerary
 2. Add activities to your itinerary wishlist
 3. Make a schedule for your trip
 
 **It's that simple**.
 
-This is a comprehensive guide for you to learn more about how to use Waddle and its features.
-If this is your first time using Waddle, we recommend checking out the [User Guide Tips](#user-guide-tips), [Quick start](#quick-start) and [Tutorial for Beginners](#tutorial-for-beginners) sections to get yourself up to speed!
+If you wish to learn more about Waddle and its features, then this comprehensive user guide is for you!
+For tips on how to navigate our user guide, check out our [User Guide Tips](#user-guide-tips) section.
+For instructions on how to set-up Waddle, visit our [Quick start](#quick-start) section.
+For basic information on how to make the best of Waddle, check out our [Tutorial for beginners](#tutorial-for-beginners).
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always"></div>
@@ -22,7 +24,7 @@ If this is your first time using Waddle, we recommend checking out the [User Gui
 ## Table of Contents
 1. [**User Guide Tips**](#user-guide-tips)
 2. [**Quick start**](#quick-start)
-3. [**Tutorial for Beginners**](#tutorial-for-beginners)
+3. [**Tutorial for beginners**](#tutorial-for-beginners)
 4. [**Features**](#features)
    1. [**Universal commands**](#universal-commands)
       1. [`help` Viewing help](#viewing-help--help)
@@ -36,7 +38,7 @@ If this is your first time using Waddle, we recommend checking out the [User Gui
       5. [`delete` Deleting an itinerary](#deleting-an-itinerary--delete)
       6. [`clear` Clearing itineraries](#clearing-itineraries--clear)
       7. [`select` Selecting an itinerary](#selecting-an-itinerary--select)
-   4. [**The planning page**](#the-activity-planning-page)
+   4. [**The activity planning page**](#the-activity-planning-page)
    5. [**Commands on the activity planning page**](#commands-on-the-activity-planning-page)
       1. [`add` Adding an activity](#adding-an-activity--add)
       2. [`edit` Editing the details of an activity](#editing-the-details-of-an-activity--edit)
@@ -83,7 +85,7 @@ If this is your first time using Waddle, we recommend checking out the [User Gui
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always"></div>
 
-## Quick start
+## Quick Start
 
 To begin planning your travels with Waddle, simply set it up as follows:
 
@@ -97,26 +99,9 @@ To begin planning your travels with Waddle, simply set it up as follows:
    Note how the app contains some sample data.<br>
    ![Home Page](images/mainPage.png)
 
-And you're ready to Waddle! To execute any command, type it command in the command box and press Enter. e.g. typing **`help`** and pressing Enter will open the help window.
-<div style="page-break-after: always"></div>
+And you're ready to waddle! To execute any command, type it command in the command box and press Enter. e.g. typing **`help`** and pressing Enter will open the help window. For more information on how to begin waddling, carry on to the [Tutorial for beginners](#tutorial-for-beginners).
 
-Some example commands you can try:
-
-   * **`list`** : Lists all itineraries.
-
-   * **`add`** `d/My Japan Trip du/14 sd/2023-04-01` : Adds an itinerary for a 14-day trip named "My Japan Trip", which starts on the 1st of April 2023.
-   
-   * **`select`** `1` : Brings you into [the planning page](#the-activity-planning-page) for the 1st itinerary shown in the current list.
-
-   * **`delete`** `1` : Deletes the 1st itinerary shown in the current list.
-
-   * **`exit`** : Exits the app.
-
-<div markdown="span" class="alert alert-primary">
-            :bulb: **Tip:** You can use the `clear` command to delete the sample itineraries and reset Waddle when using Waddle for the first time.
-</div>
-
-For more commands and their details, refer to the [Features](#features) section below.
+Alternatively, you may wish to dive straight to the full list of commands and their details provided in the [Features](#features) section below.
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always"></div>
@@ -134,13 +119,13 @@ If this is your first time launching Waddle, you will see the following page wit
 
 If you wish to, you can [clear](#clearing-itineraries--clear) the sample itineraries by typing `clear` into the command box and pressing Enter.
 You will then see the below message:
-* insert image here
+![clear-command](images/clearCommand.png)
 
 Now you can add your first itinerary. To do so, use the [`add` command](#creating-a-new-itinerary--add) with the relevant itinerary details.
 Try executing the command `add d/Summer Trip sd/2023-06-01 du/5`. 
 It will add an itinerary named Summer Trip, starting from 1 June 2023 with a duration of 5 days.
-You should now see the message below and your itinerary added on the home page as follows:
-* insert image here
+You should now see the message below and your itinerary added on the main page as follows:
+![add-itinerary](images/ug-beg-tut/add-itinerary.png)
 
 <div markdown="block" class="alert alert-info">
 
@@ -148,16 +133,75 @@ You should now see the message below and your itinerary added on the home page a
 
 * You can replace the add command inputs with the relevant details of your itinerary.
 * You can add optional details such as the country, number of people, and budget.
- - e.g. Enter `add d/Summer Trip c/Japan sd/2023-06-01 du/5 p/4 b/2000` instead to specify the country as Japan, number of people as 4, and your budget as $2000. 
-* For additional information, refer to the [`add` command](#creating-a-new-itinerary--add) explanation under the [Features](#features) section.
+  - e.g. Enter `add d/Summer Trip c/Japan sd/2023-06-01 du/5 p/4 b/2000` instead to specify the country as Japan, number of people as 4, and your budget as $2000. 
+* For additional information, refer to the [`add` command](#creating-a-new-itinerary--add)  in the [Features](#features) section under main page commands.
 
 </div>
-<div style="page-break-after: always"></div>
 
 Select the itinerary which you have just created by typing in `select` along with the index of the itinerary on the list, then press Enter.
 For example, if "Summer Trip" is shown as the first itinerary on the list, enter `select 1`.
 You will now see the planning page for the itinerary as follows:
-* insert image here
+![planning-page-ui](images/ug-beg-tut/planning-page-ui.png)
+
+You can return to the main page anytime you wish by executing `home`.
+
+To add an activity to your Wishlist, use the [`add` command](#adding-an-activity--add).
+Try adding a new activity by typing in `add d/Visit Meiji Shrine du/120` to the command box and press Enter.
+This will add a new item with the description of "Visit Meiji Shrine" and a duration of 120 minutes.
+You should now see the item being displayed in the Wishlist.
+![add-item](images/ug-beg-tut/add-item.png)
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes:**<br>
+
+* You can replace the add command inputs with the relevant details of your items.
+* You can include optional details such as the priority and cost.
+  - e.g. Enter `add d/Visit Meiji Shrine du/120 p/5 c/20` instead to specify the priority as 5 and the cost as $20.
+* For additional information, refer to the [`add` command](#adding-an-activity--add) explanation in the [Features](#features) section under itinerary planning page commands.
+
+</div>
+
+Try adding a few more activities! You should see the activities listed in the Wishlist.
+
+To schedule an item from your Wishlist on a specific day in your itinerary, use the [`plan` command](#scheduling-an-activity--plan).
+For example, type `plan 1 d/1 st/10:00` into the command box and Enter.
+Waddle will schedule the first item on your Wishlist for Day 1 of your itinerary starting at 10am.
+You should see the item being moved from the Wishlist section to the Day 1 item list, as follows:
+![plan-item](images/ug-beg-tut/plan-item.png)
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes:**<br>
+
+* Note that the index of the item is now displayed as 1.1, meaning it is the first item on Day 1. 
+To find out more about the index format, refer to the section on Command Formats.
+* For additional information, refer to the [`plan` command](#scheduling-an-item--plan) explanation in the [Features](#features) section under itinerary planning page commands.
+
+</div>
+
+Note that the index of the item is now shown as 1.1, meaning it is the first item on Day 1.
+
+Now you can try scheduling all the activities in your Wishlist!
+
+Once you are satisfied with your schedule, you can export your schedule as a PDF document using the [`pdf` command](#exporting-as-pdf-file--pdf).
+Type `pdf` into the command box and Enter.
+You should now see the below:
+![pdf](images/ug-beg-tut/pdf.png)
+
+Navigate to your computer's Documents folder, where you should see a folder named Waddle. 
+Open up the folder to see a PDF document with the same name as your exported itinerary.
+You can open the PDF document to view your itinerary schedule.
+
+You can easily send your itinerary details to others using the [`copy` command](#copying-to-clipboard--copy).
+Type `copy` into the command box and Enter. 
+This will copy your itinerary to your clipboard, and you can now paste it in another location such as a messaging or email application.
+You should also see the below displayed in Waddle:
+![copy](images/ug-beg-tut/copy.png)
+
+Congratulations! You have now created and planned your very first travel itinerary using Waddle.
+We hope this tutorial has helped you kickstart your journey!
+You can expand your Waddle knowledge further by reading the other sections of this User Guide, starting with the [Features](#features) that are available to you.
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always"></div>
@@ -188,7 +232,7 @@ You will now see the planning page for the itinerary as follows:
 
 ### Universal commands
 
-Most commands in Waddle can only be used on the [home page](#the-home-page) or the [planning page](#the-activity-planning-page). However, the commands in this section may be used on either page at any time.
+Most commands in Waddle can only be used on the [main page](#the-main-page) or the [planning page](#the-planning-page). However, the commands in this section may be used on either page at any time.
 
 ### Viewing help : `help`
 
@@ -256,7 +300,6 @@ Examples:
 * `add d/Summer Trip c/Singapore sd/2025-10-28 du/15 p/4 b/1000`
 
 ![Add Command](images/addCommand.png)
-<div style="page-break-after: always"></div>
 
 ### Listing all itineraries : `list`
 
@@ -265,6 +308,7 @@ Shows a list of all itineraries in Waddle.
 Format: `list`
 
 ![List Command](images/listCommand.png)
+
 ### Locating itineraries by description : `find`
 
 Finds itineraries with names containing any of the given keywords.
@@ -311,8 +355,6 @@ Examples:
 Running `edit 1 du/15 sd/2023-11-03`
 
 ![Edit Command](images/editCommand.png)
-
-<div style="page-break-after: always"></div>
 
 ### Deleting an itinerary : `delete`
 
@@ -368,8 +410,6 @@ The index of scheduled activities are in the format `DAY.ACTIVITY_NUMBER`. Some 
 Here's an example of how your activity-planning page might look like:
 ![activity-planning page](images/itemPlanningUi.png)
 
-<div style="page-break-after: always"></div>
-
 [Commands exclusive to the activity-planning page](#commands-on-the-activity-planning-page) can help you:
 * [Add](#adding-an-activity--add) new activities
 * [Edit](#editing-the-details-of-an-activity--edit) or [Delete](#deleting-an-activity--delete) existing activities
@@ -422,8 +462,6 @@ Running `add d/Go to the Louvre p/2 du/1`
 
 ![Add Activity](images/addActivityCommand.png)
 
-<div style="page-break-after: always"></div>
-
 ### Editing the details of an activity : `edit`
 
 Edits an existing activity in your activity list.
@@ -468,8 +506,6 @@ Running `delete 1`
 
 ![Delete Activity](images/deleteActivityCommand.png)
 
-<div style="page-break-after: always"></div>
-
 ### Viewing vacant timeslots : `free`
 
 Displays the vacant timeslots available for you to schedule activities.
@@ -505,8 +541,6 @@ Running `plan 1 d/1 st/11:00`
 
 ![Plan Activity](images/planCommand.png)
 
-<div style="page-break-after: always"></div>
-
 ### Unscheduling an activity : `unplan`
 
 Takes an activity from the list of days and puts it back into the wishlist.
@@ -523,8 +557,6 @@ Examples:
 Running `unplan 1.1`
 
 ![Unplan Activity](images/unplanCommand.png)
-
-<div style="page-break-after: always"></div>
 
 ### Copying to clipboard : `copy`
 
@@ -543,8 +575,6 @@ Here's an example of how the copied text would look like: <br>
 * The generated text does not include the activities in the wishlist. For activities to be reflected in the generated text, they must be planned.<br>
 
 </div>
-
-<div style="page-break-after: always"></div>
 
 ### Exporting as PDF file : `pdf`
 
@@ -575,6 +605,7 @@ Format: `home`
 <div style="page-break-after: always"></div>
 
 ### Advanced
+This section contains miscellaneous additional information about Waddle's user data.
 
 ### Saving the data
 
