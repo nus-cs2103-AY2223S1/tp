@@ -139,6 +139,8 @@ Format: `add student n/NAME i/STUDENT_ID ph/PHONE e/EMAIL tele/TELEGRAM_HANDLE m
 
 * `PHONE` should be 8 digits long as per standard telephone numbers in Singapore.
 * `STUDENT_ID` should follow the following format AXXXXXXXY, where X is a number, and Y is an alphabet.
+* `TELEGRAM_HANDLE` follows the format of a username on Telegram, taking in a-z, 0-9 and underscores.
+* `MODULE` takes in the module code YY[Y]XXXX[Y], where X is a number, and Y is an alphabet. [Y] indicates an optional alphabet.
 * `ATTENDANCE` and `PARTICIPATION` can only take in integers greater than 0. If a value is not given, they will automatically be set to 0.
 * `GRADE` can take in `A`, `B`, `C`, `D`, `F`. If a value is not given, it will automatically be set to `PENDING...`.
 
@@ -220,7 +222,7 @@ Examples:
 <a name="find"></a>
 #### 5.1.4 Locating students by their attributes: `find`
 
-Finds students by names, student ID, module or tutorial, by checking if respective attribute contains any of the given keywords.
+Find students by name, student ID, module or tutorial, by checking if respective criteria contains any of the given keywords.
 
 Format: `find [n/NAME] [i/STUDENT_ID] [m/MODULE] [tut/TUTORIAL]`
 
