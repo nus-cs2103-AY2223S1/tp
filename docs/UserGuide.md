@@ -348,6 +348,8 @@ Syntax: `listbuyers`
 
 Updates the [Property List](#3-property-list) to show all properties in your database, that is, removes all filters you have applied.<br>
 Syntax: `listprops`
+   
+<br>
 <br>
    
 ### Find Commands
