@@ -1,0 +1,49 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR
+skinparam classBackgroundColor LOGIC_COLOR
+
+show members
+hide empty members
+
+Package Logic <<Rectangle>>{
+Class MarkCommand
+Class "{abstract}\nEditStudentCommand" as EditStudentCommand {
+    studentEditor : StudentEditor
+    indicesToEdit : IndexListGenerator
+    CommandResult execute(Model)
+}
+Class CommandResult
+Class "{abstract}\nCommand" as Command
+
+Class MarkCommandStudentEditor {
+    Student editStudent(Student)
+}
+Class "{abstract}\nIndexListGenerator" as IndexListGenerator
+Class "<<interface>>\nStudentEditor" as StudentEditor
+Class Student
+Class AllIndexGenerator
+Class SingleIndexGenerator
+
+}
+
+Package Model <<Model>> {
+Class Model MODEL_COLOR
+}
+
+
+MarkCommand -right-> "has" MarkCommandStudentEditor
+MarkCommand -right-> "has" IndexListGenerator
+
+MarkCommandStudentEditor -up-|> StudentEditor
+MarkCommandStudentEditor .right.> Student
+AllIndexGenerator -up-|> IndexListGenerator
+SingleIndexGenerator -up-|> IndexListGenerator
+
+MarkCommand -down-|> EditStudentCommand
+EditStudentCommand .down.> Model
+EditStudentCommand -down-|> Command
+EditStudentCommand .left.> CommandResult
+
+@enduml

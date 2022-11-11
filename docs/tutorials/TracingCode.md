@@ -16,7 +16,7 @@ When trying to understand an unfamiliar code base, one common strategy used is t
 
 Before we jump into the code, it is useful to get an idea of the overall structure and the high-level behavior of the application. This is provided in the 'Architecture' section of the developer guide. In particular, the architecture diagram (reproduced below), tells us that the App consists of several components.
 
-![ArchitectureDiagram](../images/ArchitectureDiagram.png)
+![ArchitectureDiagram](../images/diagrams/ArchitectureDiagram.png)
 
 It also has a sequence diagram (reproduced below) that tells us how a command propagates through the App.
 
@@ -175,7 +175,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
    ![EditCommand](../images/tracing/EditCommand.png)
 
 1. As you just traced through some code involved in parsing a command, you can take a look at this class diagram to see where the various parsing-related classes you encountered fit into the design of the `Logic` component.
-   <img src="../images/ParserClasses.png" width="600"/>
+   <img src="../images/diagrams/ParserClasses.png" width="600"/>
 
 1. Let’s continue stepping through until we return to `LogicManager#execute()`.
 

@@ -1,0 +1,26 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR
+skinparam classBackgroundColor LOGIC_COLOR
+
+show members
+hide empty members
+
+Package Logic <<Rectangle>>{
+Class MarkCommandParser
+Class "{abstract}\nEditStudentCommandParser" as EditStudentCommandParser
+Class "{abstract}\nIndexCommandParser" as IndexCommandParser
+
+Class "{abstract}\nIndexListGenerator" as IndexListGenerator
+Class AllIndexGenerator
+Class SingleIndexGenerator
+}
+
+AllIndexGenerator -up-|> IndexListGenerator
+SingleIndexGenerator -up-|> IndexListGenerator
+MarkCommandParser .right.|> IndexListGenerator
+MarkCommandParser -down-|> EditStudentCommandParser
+EditStudentCommandParser -down-|> IndexCommandParser
+
+@enduml

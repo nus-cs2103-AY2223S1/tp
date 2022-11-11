@@ -1,0 +1,28 @@
+@startuml
+
+show members
+hide empty members
+
+Package Logic <<Rectangle>> {
+Class FilterCommand {
+    CommandResult execute(Model)
+}
+Class ModelManager
+Class "<<interface>>\nPredicate" as Predicate
+Class "{abstract}\nCommand" as Command
+Class CommandResult
+}
+
+Package Model <<Model>> {
+Class Model {
+    void filterPersonListWithPredicate(predicate)
+}
+}
+
+FilterCommand -up-> "has" Predicate
+FilterCommand -left-|> Command
+FilterCommand .right.> CommandResult
+ModelManager -right-|> Predicate
+FilterCommand .down.> Model
+
+@enduml

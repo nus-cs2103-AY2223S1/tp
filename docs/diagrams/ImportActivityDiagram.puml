@@ -1,0 +1,15 @@
+@startuml
+start
+:User executes import command;
+:Open browser to select file;
+
+repeat
+    :Read row of CSV;
+    if () then ([CSV data valid])
+    :Create student populated by CSV data;
+    :Populate model with student;
+    else ([CSV data invalid])
+    endif
+repeat while () is ([CSV has rows left]) not ([else]);
+stop
+@enduml

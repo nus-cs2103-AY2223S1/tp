@@ -1,0 +1,19 @@
+{
+  "students": [ {
+    "name": "Valid Student",
+    "phone": "9482424",
+    "email": "hans@example.com",
+    "module": "CS2103T",
+    "studentId": "E1234561",
+    "gitName": "user1",
+    "handle": "@user1",
+  }, {
+    "name": "Student With Invalid Phone Field",
+    "phone": "948asdf2424",
+    "email": "hans@example.com",
+    "module": "CS2103T",
+    "studentId": "E1234562",
+    "gitName": "user2",
+    "handle": "@user2",
+  } ]
+}

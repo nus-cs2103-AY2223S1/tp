@@ -1,0 +1,11 @@
+{
+  "students": [ {
+    "name": "Hans Muster",
+    "phone": "9482424",
+    "email": "invalid@email!3e",
+    "module": "CS2103T",
+    "studentID" : "E1234561",
+    "gitName" : "user1",
+    "handle" : "@user1"
+  } ]
+}

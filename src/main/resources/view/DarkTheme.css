@@ -149,7 +149,7 @@
 .result-display {
     -fx-background-color: transparent;
     -fx-font-family: "Segoe UI Light";
-    -fx-font-size: 13pt;
+    -fx-font-size: 12pt;
     -fx-text-fill: white;
 }
 
@@ -328,7 +328,7 @@
     -fx-text-fill: white;
 }
 
-#filterField, #personListPanel, #personWebpage {
+#filterField, #studentListPanel, #studentWebpage {
     -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
 }
 
@@ -349,4 +349,102 @@
     -fx-border-radius: 2;
     -fx-background-radius: 2;
     -fx-font-size: 11;
+}
+
+#attendances {
+    -fx-hgap: 7;
+    -fx-vgap: 3;
+}
+
+#attendances .label {
+    -fx-text-fill: white;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 11;
+}
+
+#participations {
+    -fx-hgap: 7;
+    -fx-vgap: 3;
+}
+
+#participations .label {
+    -fx-text-fill: white;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 11;
+}
+
+#present {
+    -fx-background-color: #00C851;
+}
+
+#absent {
+    -fx-background-color: #FF4444;
+}
+
+#assignments {
+    -fx-hgap: 7;
+    -fx-vgap: 3;
+}
+
+#assignments .label {
+    -fx-text-fill: white;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 11;
+}
+
+#marked {
+    -fx-background-color: #447959;
+}
+
+#received {
+    -fx-background-color: #a5344c;
+}
+
+#new {
+    -fx-background-color: #be6805;
+}
+
+#attendanceRate .label {
+    -fx-font-size: 16px;
+    -fx-font-family: "Segoe UI Semibold";
+}
+
+#assignmentRate .label {
+    -fx-font-size: 16px;
+    -fx-font-family: "Segoe UI Semibold";
+}
+
+#participationRate .label {
+    -fx-font-size: 16px;
+    -fx-font-family: "Segoe UI Semibold";
+}
+
+#success {
+    -fx-text-fill: #00C851;
+}
+
+#caution {
+    -fx-text-fill: #be6805;
+}
+
+#fail {
+    -fx-text-fill: #FF4444;
+}
+
+#info {
+    -fx-text-fill: white;
+}
+
+#participated {
+    -fx-background-color: #00C851;
+}
+
+#didNotParticipate {
+    -fx-background-color: #FF4444;
 }

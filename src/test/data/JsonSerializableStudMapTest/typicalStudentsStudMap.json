@@ -1,0 +1,69 @@
+{
+  "_comment": "StudMap save file which contains the same Person values as in TypicalStudentss#getTypicalStudMap()",
+  "students" : [ {
+    "name" : "Alice Pauline",
+    "phone" : "94351253",
+    "email" : "alice@example.com",
+    "module": "CS2103T",
+    "studentID" : "E1234561",
+    "gitName" : "user1",
+    "handle" : "@user1",
+    "tagged" : [ "friends" ]
+  }, {
+    "name" : "Benson Meier",
+    "phone" : "98765432",
+    "email" : "johnd@example.com",
+    "module": "CS2103T",
+    "studentID" : "E1234562",
+    "gitName" : "user2",
+    "handle" : "@user2",
+    "tagged" : [ "owesMoney", "friends" ],
+    "attended" : [ "T01:Present", "T03:Absent", "T02:Present" ]
+  }, {
+    "name" : "Carl Kurz",
+    "phone" : "95352563",
+    "email" : "heinz@example.com",
+    "module": "CS2103T",
+    "studentID" : "E1234563",
+    "gitName" : "user3",
+    "handle" : "@user3",
+    "tagged" : [ ],
+    "assigned" : [ "A01:Marked", "A02:Marked", "A03:Received", "A04:New" ]
+  }, {
+    "name" : "Daniel Meier",
+    "phone" : "87652533",
+    "email" : "cornelia@example.com",
+    "module": "CS2103T",
+    "studentID" : "E1234564",
+    "gitName" : "user4",
+    "handle" : "@user4",
+    "tagged" : [ "friends" ]
+  }, {
+    "name" : "Elle Meyer",
+    "phone" : "9482224",
+    "email" : "werner@example.com",
+    "module": "CS2103T",
+    "studentID" : "E1234565",
+    "gitName" : "user5",
+    "handle" : "@user5",
+    "tagged" : [ ]
+  }, {
+    "name" : "Fiona Kunz",
+    "phone" : "9482427",
+    "email" : "lydia@example.com",
+    "module": "CS2103T",
+    "studentID" : "E1234566",
+    "gitName" : "user6",
+    "handle" : "@user6",
+    "tagged" : [ ]
+  }, {
+    "name" : "George Best",
+    "phone" : "9482442",
+    "email" : "anna@example.com",
+    "module": "CS2103T",
+    "studentID" : "E1234567",
+    "gitName" : "user7",
+    "handle" : "@user7",
+    "tagged" : [ ]
+  } ]
+}

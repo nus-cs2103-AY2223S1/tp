@@ -1,0 +1,24 @@
+@startuml
+start
+:User executes mark command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([single INDEX])
+    :Retrieve student at INDEX;
+    :Retrieve existing attendance;
+    :Concatenate new attendance;
+    :Set student to have the concatenated attendance set;
+else ([INDEX is "all"])
+    :Retrieve all indexes to be modified;
+repeat
+    :Retrieve student at current INDEX;
+    :Retrieve existing attendance;
+    :Concatenate new attendance;
+    :Update the student to have the
+    concatenated attendance set;
+repeat while () is ([Not every student updated]) not ([else]);
+endif
+stop
+@enduml
