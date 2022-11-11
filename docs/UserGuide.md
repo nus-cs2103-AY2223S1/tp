@@ -147,7 +147,7 @@ Some commands only apply to one type of page while some are universally applicab
 </div>
 <div style="page-break-after: always"></div>
 
-To add an activity to your Wishlist, use the [`add` command](#adding-an-item--add).
+To add an activity to your Wishlist, use the [`add` command](#adding-an-activity--add).
 Try adding a new activity by typing in `add d/Meiji Shrine du/120` to the command box and press Enter.
 This will add a new activity with the description of "Meiji Shrine" and a duration of 120 minutes.
 You should now see the activity being displayed in the Wishlist.
