@@ -758,6 +758,8 @@ in the **class list**.
 
 Note that `show` command is invalid for the **class list**.
 
+<div style="page-break-after: always;"></div>
+
 ### Listing all entries : `list`
 
 Shows the list of a specified entry type in the myStudent database.
