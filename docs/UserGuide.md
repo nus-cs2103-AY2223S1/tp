@@ -551,7 +551,7 @@ Assign an existing tuition class to a specified student/tutor.
 
 Format: `assign <index> n/<name>`
 
-* `assign` command only works when the **displayed list** is the **student list ** or **tutor list**.
+* `assign` command only works when the **displayed list** is the **student list** or **tutor list**.
 
 
 * The index refers to the index number shown in the **displayed list**.
@@ -587,7 +587,7 @@ Unassign an existing tuition class from a specified student/tutor.
 
 Format: `unassign <index> n/<name>`
 
-* `unassign` command only works when the **displayed list** is a student or tutor list.
+* `unassign` command only works when the **displayed list** is a **student list** or **tutor list**.
 
 
 * The index refers to the index number shown in the **displayed list**.
