@@ -184,7 +184,7 @@ Parameters:
 
 Restrictions:
 * `MODULE_CODE` 
-  * `MODULE_CODE` must be at least 6 characters long.
+  * `MODULE_CODE` should be at least 6 characters long.
   * The first two characters of `MODULE_CODE` should be alphabetical and the remaining characters should be alphanumeric.
 * `MODULE_NAME` should not be empty.
 * `MODULE_CREDIT` should be an integer between 0 and 45 inclusive.
