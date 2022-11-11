@@ -1,96 +1,122 @@
 package seedu.address.testutil;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
+import seedu.address.model.attribute.Address;
+import seedu.address.model.attribute.Attribute;
+import seedu.address.model.attribute.Email;
+import seedu.address.model.attribute.Name;
+import seedu.address.model.attribute.Phone;
+import seedu.address.model.item.AbstractSingleItem;
+import seedu.address.model.item.DisplayItem;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Person objects.
  */
-public class PersonBuilder {
+public class PersonBuilder extends AbstractDisplayItemBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
-    public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
-    private Name name;
-    private Phone phone;
-    private Email email;
-    private Address address;
-    private Set<Tag> tags;
+    private final Set<DisplayItem> parents;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
      */
     public PersonBuilder() {
-        name = new Name(DEFAULT_NAME);
-        phone = new Phone(DEFAULT_PHONE);
-        email = new Email(DEFAULT_EMAIL);
-        address = new Address(DEFAULT_ADDRESS);
-        tags = new HashSet<>();
+        super(new Name(DEFAULT_NAME), new ArrayList<>(), new HashSet<>());
+        parents = new HashSet<>();
     }
 
     /**
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
     public PersonBuilder(Person personToCopy) {
-        name = personToCopy.getName();
-        phone = personToCopy.getPhone();
-        email = personToCopy.getEmail();
-        address = personToCopy.getAddress();
-        tags = new HashSet<>(personToCopy.getTags());
+        super(personToCopy.getName(), new ArrayList<>(personToCopy.getAttributes()),
+                new HashSet<>(personToCopy.getTags()));
+        parents = new HashSet<>(personToCopy.getParents());
     }
 
-    /**
-     * Sets the {@code Name} of the {@code Person} that we are building.
-     */
+    @Override
     public PersonBuilder withName(String name) {
-        this.name = new Name(name);
+        super.setName(name);
+        return this;
+    }
+
+    @Override
+    public PersonBuilder withTags(String... tags) {
+        super.setTags(tags);
+        return this;
+    }
+
+    @Override
+    public PersonBuilder withAttribute(Attribute<?> attribute) {
+        super.addAttribute(attribute);
+        return this;
+    }
+
+    @Override
+    public <U> PersonBuilder withAttribute(String name, U data) {
+        super.addAttribute(name, data);
         return this;
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Adds address attribute to person.
+     *
+     * @param string address
+     * @return a {@code PersonBuilder} with the additional address attribute.
      */
-    public PersonBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+    public PersonBuilder withAddress(String string) {
+        withAttribute(new Address(string));
         return this;
     }
 
     /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
+     * Adds email attribute to person.
+     *
+     * @param string email
+     * @return a {@code PersonBuilder} with the additional email attribute.
      */
-    public PersonBuilder withAddress(String address) {
-        this.address = new Address(address);
+    public PersonBuilder withEmail(String string) {
+        withAttribute(new Email(string));
         return this;
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Person} that we are building.
+     * Adds phone attribute to person.
+     *
+     * @param string phone number.
+     * @return a {@code PersonBuilder} with the additional phone attribute.
      */
-    public PersonBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
+    public PersonBuilder withPhone(String string) {
+        withAttribute(new Phone(string));
         return this;
     }
 
     /**
-     * Sets the {@code Email} of the {@code Person} that we are building.
+     * Adds a new parent to the {@code PersonBuilder} that is being built.
      */
-    public PersonBuilder withEmail(String email) {
-        this.email = new Email(email);
+    public PersonBuilder withParent(AbstractSingleItem item) {
+        this.parents.add(item);
         return this;
     }
 
+    @Override
     public Person build() {
-        return new Person(name, phone, email, address, tags);
-    }
+        Person p = new Person(name.fullName);
+        p.setTags(tags);
 
+        for (Attribute<?> attr : attributes) {
+            p.addAttribute(attr);
+        }
+
+        for (DisplayItem parent : parents) {
+            p.setParent(parent);
+        }
+
+        return p;
+    }
 }

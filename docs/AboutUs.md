@@ -9,51 +9,52 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Li Zhaoqi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/eclipse-dominator.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/Eclipse-Dominator)]
+[[portfolio](team/eclipse-dominator.md)]
 
-* Role: Project Advisor
+- Role: Developer
+- Responsibilities: System designer, complex commands
 
-### Jane Doe
+### Eric Lee Ying Yao
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/autumn-sonata.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/autumn-sonata)]
+[[portfolio](team/autumn-sonata.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+- Role: Developer
+- Responsibilities: Update storage components, database
 
-### Johnny Doe
+### Jason Christopher
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jasonchristopher21.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/jasonchristopher21)]
+[[portfolio](team/jasonchristopher21.md)]
 
-* Role: Developer
-* Responsibilities: Data
+- Role: Developer
+- Responsibilities: Attributes, data modeling
 
-### Jean Doe
+### Connor Shihern Lim
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/connlim.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/connlim)]
+[[portfolio](team/connlim.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+- Role: Developer
+- Responsibilities: Implement Tasks, Quality Assurance, Bug fixing
 
-### James Doe
+### Mohamed Safwan S/O Abdul Wahab Lukuman
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/mohamedsaf1.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/mohamedsaf1)]
+[[portfolio](team/mohamedsaf1.md)]
 
-* Role: Developer
-* Responsibilities: UI
+- Role: Developer
+- Responsibilities: Group Functions, Code Quality and Code Integrity

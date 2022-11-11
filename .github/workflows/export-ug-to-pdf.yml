@@ -1,0 +1,26 @@
+name: User Guide to PDF
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'docs/UserGuide.md'
+
+jobs:
+  converttopdf:
+    name: Build PDF
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: baileyjm02/markdown-to-pdf@v1
+        with:
+          input_path: docs/UserGuide.md
+          output_dir: export
+          images_dir: docs/images
+          image_import: images
+          build_html: false
+      - uses: actions/upload-artifact@v3
+        with:
+          name: UserGuide
+          path: export/UserGuide.pdf

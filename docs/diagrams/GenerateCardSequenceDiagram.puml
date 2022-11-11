@@ -1,0 +1,63 @@
+@startuml
+!include style.puml
+
+box UI UI_COLOR_T1
+participant ":PersonListViewCell" as PersonListViewCell UI_COLOR
+participant ":PersonCard" as PersonCard UI_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Person" as Person MODEL_COLOR
+participant "attribute:Attribute" as Attribute MODEL_COLOR
+end box
+
+[-> PersonListViewCell : updateItem(person, empty)
+activate PersonListViewCell
+
+opt person != null && empty == False
+
+    create PersonCard
+    PersonListViewCell -> PersonCard: PersonCard(person, index)
+    activate PersonCard
+
+    PersonCard -> Person: getName()
+    activate Person
+
+    Person --> PersonCard: name
+    deactivate Person
+
+
+    PersonCard -> Person: getAttributes()
+    activate Person
+    Person --> PersonCard: List of Attributes
+    deactivate Person
+
+    loop for all attribute in Attributes
+        PersonCard -> Attribute: canBeDisplayedInList()
+        activate Attribute
+        Attribute --> PersonCard: result
+        deactivate Attribute
+        opt result == True
+            PersonCard -> Attribute: asUi()
+            activate Attribute
+            Attribute --> PersonCard: uiElement
+            deactivate Attribute
+
+            PersonCard -> PersonCard: addChild(uiElement)
+            activate PersonCard
+
+            PersonCard --> PersonCard
+            deactivate PersonCard
+        end
+
+    end
+
+    PersonCard --> PersonListViewCell
+    deactivate PersonCard
+
+end
+
+[<--PersonListViewCell
+deactivate PersonListViewCell
+
+@enduml

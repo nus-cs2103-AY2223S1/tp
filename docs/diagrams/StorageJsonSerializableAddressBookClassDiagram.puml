@@ -1,0 +1,33 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor STORAGE_COLOR
+skinparam classBackgroundColor STORAGE_COLOR
+
+package "JsonSerializableAddressBook Storage" #F4F6F6{
+Class JsonSerializableAddressBook
+Class JsonAdaptedAddressBookParser
+Class JsonAdaptedCustomCommandBuilder
+abstract Class JsonAdaptedDisplayItem
+Class JsonAdaptedAbstractAttribute
+Class JsonAdaptedPerson
+Class JsonAdaptedTask
+Class JsonAdaptedGroup
+Class JsonAdaptedTag
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> JsonSerializableAddressBook
+
+JsonSerializableAddressBook --> "*" JsonAdaptedPerson
+JsonSerializableAddressBook --> "*" JsonAdaptedTask
+JsonSerializableAddressBook --> "*" JsonAdaptedGroup
+JsonSerializableAddressBook --> "1" JsonAdaptedAddressBookParser
+JsonAdaptedPerson -up-|> JsonAdaptedDisplayItem
+JsonAdaptedTask -up-|> JsonAdaptedDisplayItem
+JsonAdaptedGroup -up-|> JsonAdaptedDisplayItem
+JsonAdaptedAddressBookParser --> "*" JsonAdaptedCustomCommandBuilder
+JsonAdaptedDisplayItem --> "*" JsonAdaptedAbstractAttribute
+JsonAdaptedDisplayItem --> "*" JsonAdaptedTag
+
+@enduml

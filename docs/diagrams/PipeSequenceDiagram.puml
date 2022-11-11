@@ -1,0 +1,69 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":xxxCommand" as xxxCommand LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":TaskCommandParser" as TaskCommandParser LOGIC_COLOR
+participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+activate xxxCommand
+xxxCommand -> AddressBookParser : parseCommand("task delete")
+activate AddressBookParser
+
+create TaskCommandParser
+AddressBookParser -> TaskCommandParser
+
+
+AddressBookParser -> TaskCommandParser: parse("delete")
+activate TaskCommandParser
+
+create DeleteCommand
+TaskCommandParser -> DeleteCommand
+activate DeleteCommand
+
+DeleteCommand --> TaskCommandParser
+deactivate DeleteCommand
+
+TaskCommandParser --> AddressBookParser
+deactivate TaskCommandParser
+
+AddressBookParser --> xxxCommand : d
+deactivate AddressBookParser
+
+
+xxxCommand -> DeleteCommand : setInput(TaskToDelete)
+activate DeleteCommand
+
+DeleteCommand --> xxxCommand
+deactivate DeleteCommand
+
+
+xxxCommand -> DeleteCommand : execute()
+activate DeleteCommand
+
+DeleteCommand -> Model : deleteTask(TaskToDelete)
+activate Model
+
+Model --> DeleteCommand
+deactivate Model
+
+create CommandResult
+DeleteCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DeleteCommand
+deactivate CommandResult
+
+DeleteCommand --> xxxCommand : result
+deactivate DeleteCommand
+
+[<--xxxCommand
+deactivate xxxCommand
+@enduml

@@ -1,13 +1,65 @@
 {
-  "persons": [ {
-    "name": "Valid Person",
-    "phone": "9482424",
-    "email": "hans@example.com",
-    "address": "4th street"
+  "persons" : [ {
+    "name" : "Person with invalid name field: Ha!ns Mu@ster",
+    "uid" : "a2af5cb4-0db5-3638-9f21-2b9efa99d166",
+    "tags" : [ ],
+    "attributes" : [ {
+      "data" : {
+        "type" : "Phone",
+        "content" : "93938282",
+        "display_format" : 31,
+        "style_format" : 288
+      }
+    }, {
+      "data" : {
+        "type" : "Email",
+        "content" : "hans@example.com",
+        "display_format" : 31,
+        "style_format" : 288
+      }
+    }, {
+      "data" : {
+        "type" : "Address",
+        "content" : "4th street",
+        "display_format" : 31,
+        "style_format" : 288
+      }
+    } ]
   }, {
-    "name": "Person With Invalid Phone Field",
-    "phone": "948asdf2424",
-    "email": "hans@example.com",
-    "address": "4th street"
-  } ]
+    "name" : "Will Cake",
+    "uid" : "5853d883-81f0-3f4c-978a-3c8d41a37e2c",
+    "tags" : [ ],
+    "attributes" : [ {
+      "data" : {
+        "type" : "Phone",
+        "content" : "93930404",
+        "display_format" : 31,
+        "style_format" : 288
+      }
+    }, {
+      "data" : {
+        "type" : "Email",
+        "content" : "will@gmail.com",
+        "display_format" : 31,
+        "style_format" : 288
+      }
+    }, {
+      "data" : {
+        "type" : "Address",
+        "content" : "19th avenue",
+        "display_format" : 31,
+        "style_format" : 288
+      }
+    } ]
+  } ],
+  "groups" : [ ],
+  "tasks" : [ ],
+  "itemRelationship" : {
+    "a2af5cb4-0db5-3638-9f21-2b9efa99d166" : [ ],
+    "5853d883-81f0-3f4c-978a-3c8d41a37e2c" : [ ]
+  },
+  "jsonAdaptedAddressBookParser" : {
+    "alias" : { },
+    "macros" : { }
+  }
 }

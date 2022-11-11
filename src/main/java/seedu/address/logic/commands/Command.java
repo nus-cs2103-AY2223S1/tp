@@ -8,6 +8,8 @@ import seedu.address.model.Model;
  */
 public abstract class Command {
 
+    public abstract Command setInput(Object additionalData) throws CommandException;
+
     /**
      * Executes the command and returns the result message.
      *

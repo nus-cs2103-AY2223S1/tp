@@ -31,6 +31,9 @@ LogicManager -right->"1" AddressBookParser
 AddressBookParser ..> XYZCommand : creates >
 
 XYZCommand -up-|> Command
+
+XYZCommand --> "0..*" XYZCommand
+
 LogicManager .left.> Command : executes >
 
 LogicManager --> Model

@@ -1,0 +1,28 @@
+@startuml
+!include style.puml
+
+box Storage LOGIC_COLOR_T1
+participant ":JsonAddressBookStorage" as JsonAddressBookStorage LOGIC_COLOR
+participant ":JsonSerializableAddressBook" as JsonSerializableAddressBook LOGIC_COLOR
+participant ":JsonAdaptedPerson" as JsonAdaptedPerson LOGIC_COLOR
+end box
+
+[-> JsonAddressBookStorage : readAddressBook()
+activate JsonAddressBookStorage
+
+JsonAddressBookStorage -> JsonSerializableAddressBook : toModelType()
+activate JsonSerializableAddressBook
+
+loop until all JsonAdaptedPerson has been iterated through
+    JsonSerializableAddressBook -> JsonAdaptedPerson : toModelType()
+    activate JsonAdaptedPerson
+    JsonAdaptedPerson --> JsonSerializableAddressBook : Person
+    deactivate JsonAdaptedPerson
+end
+
+JsonSerializableAddressBook --> JsonAddressBookStorage : AddressBook
+deactivate JsonSerializableAddressBook
+
+[<--JsonAddressBookStorage
+deactivate JsonAddressBookStorage
+@enduml

@@ -1,14 +1,217 @@
 {
-  "persons": [ {
-    "name": "Alice Pauline",
-    "phone": "94351253",
-    "email": "alice@example.com",
-    "address": "123, Jurong West Ave 6, #08-111",
-    "tagged": [ "friends" ]
+  "persons" : [ {
+    "fields" : {
+      "fieldList" : [ ]
+    },
+    "name" : "Alice Pauline",
+    "uid" : "6a407006-9331-3372-a72f-fb26358890f7",
+    "tags" : [ "friends" ],
+    "attributes" : [ {
+      "data" : {
+        "type" : "Address",
+        "content" : "123, Jurong West Ave 6, #08-111",
+        "display_format" : 63,
+        "style_format" : 288
+      }
+    }, {
+      "data" : {
+        "type" : "Email",
+        "content" : "alice@example.com",
+        "display_format" : 63,
+        "style_format" : 288
+      }
+    }, {
+      "data" : {
+        "type" : "Phone",
+        "content" : "94351253",
+        "display_format" : 63,
+        "style_format" : 288
+      }
+    } ]
   }, {
-    "name": "Alice Pauline",
-    "phone": "94351253",
-    "email": "pauline@example.com",
-    "address": "4th street"
-  } ]
+    "fields" : {
+      "fieldList" : [ ]
+    },
+    "name" : "Benson Meier",
+    "uid" : "1c39a824-f416-3eb8-881e-f007e45b2006",
+    "tags" : [ "owesMoney", "friends" ],
+    "attributes" : [ {
+      "data" : {
+        "type" : "Address",
+        "content" : "311, Clementi Ave 2, #02-25",
+        "display_format" : 63,
+        "style_format" : 288
+      }
+    }, {
+      "data" : {
+        "type" : "Email",
+        "content" : "johnd@example.com",
+        "display_format" : 63,
+        "style_format" : 288
+      }
+    }, {
+      "data" : {
+        "type" : "Phone",
+        "content" : "98765432",
+        "display_format" : 63,
+        "style_format" : 288
+      }
+    } ]
+  }, {
+    "fields" : {
+      "fieldList" : [ ]
+    },
+    "name" : "Carl Kurz",
+    "uid" : "c579e74e-64af-3a5a-91bd-ec8042734baa",
+    "tags" : [ ],
+    "attributes" : [ {
+      "data" : {
+        "type" : "Phone",
+        "content" : "95352563",
+        "display_format" : 63,
+        "style_format" : 288
+      }
+    }, {
+      "data" : {
+        "type" : "Email",
+        "content" : "heinz@example.com",
+        "display_format" : 63,
+        "style_format" : 288
+      }
+    }, {
+      "data" : {
+        "type" : "Address",
+        "content" : "wall street",
+        "display_format" : 63,
+        "style_format" : 288
+      }
+    } ]
+  }, {
+    "fields" : {
+      "fieldList" : [ ]
+    },
+    "name" : "Daniel Meier",
+    "uid" : "ec313cbe-3237-3521-a920-093d010c830e",
+    "tags" : [ "friends" ],
+    "attributes" : [ {
+      "data" : {
+        "type" : "Phone",
+        "content" : "87652533",
+        "display_format" : 63,
+        "style_format" : 288
+      }
+    }, {
+      "data" : {
+        "type" : "Email",
+        "content" : "cornelia@example.com",
+        "display_format" : 63,
+        "style_format" : 288
+      }
+    }, {
+      "data" : {
+        "type" : "Address",
+        "content" : "10th street",
+        "display_format" : 63,
+        "style_format" : 288
+      }
+    } ]
+  }, {
+    "fields" : {
+      "fieldList" : [ ]
+    },
+    "name" : "Fiona Kunz",
+    "uid" : "c42334cb-c054-3a81-885b-cf9c01896ec1",
+    "tags" : [ ],
+    "attributes" : [ {
+      "data" : {
+        "type" : "Phone",
+        "content" : "94822240",
+        "display_format" : 63,
+        "style_format" : 288
+      }
+    }, {
+      "data" : {
+        "type" : "Email",
+        "content" : "werner@example.com",
+        "display_format" : 63,
+        "style_format" : 288
+      }
+    }, {
+      "data" : {
+        "type" : "Address",
+        "content" : "michegan ave",
+        "display_format" : 63,
+        "style_format" : 288
+      }
+    } ]
+  }, {
+    "fields" : {
+      "fieldList" : [ ]
+    },
+    "name" : "Fiona Kunz",
+    "uid" : "8bdc4591-a4a8-3123-af9d-67a17f65a207",
+    "tags" : [ ],
+    "attributes" : [ {
+      "data" : {
+        "type" : "Phone",
+        "content" : "94824270",
+        "display_format" : 63,
+        "style_format" : 288
+      }
+    }, {
+      "data" : {
+        "type" : "Email",
+        "content" : "lydia@example.com",
+        "display_format" : 63,
+        "style_format" : 288
+      }
+    }, {
+      "data" : {
+        "type" : "Address",
+        "content" : "little tokyo",
+        "display_format" : 63,
+        "style_format" : 288
+      }
+    } ]
+  }, {
+    "fields" : {
+      "fieldList" : [ ]
+    },
+    "name" : "George Best",
+    "uid" : "e18b1774-c755-3701-875f-c7e32483ebe7",
+    "tags" : [ ],
+    "attributes" : [ {
+      "data" : {
+        "type" : "Phone",
+        "content" : "94824420",
+        "display_format" : 63,
+        "style_format" : 288
+      }
+    }, {
+      "data" : {
+        "type" : "Email",
+        "content" : "anna@example.com",
+        "display_format" : 63,
+        "style_format" : 288
+      }
+    }, {
+      "data" : {
+        "type" : "Address",
+        "content" : "4th street",
+        "display_format" : 63,
+        "style_format" : 288
+      }
+    } ]
+  } ],
+  "groups" : [ ],
+  "tasks" : [ ],
+  "itemRelationship" : {
+    "6a407006-9331-3372-a72f-fb26358890f7" : [ ],
+    "8bdc4591-a4a8-3123-af9d-67a17f65a207" : [ ],
+    "1c39a824-f416-3eb8-881e-f007e45b2006" : [ ],
+    "ec313cbe-3237-3521-a920-093d010c830e" : [ ],
+    "c42334cb-c054-3a81-885b-cf9c01896ec1" : [ ],
+    "c579e74e-64af-3a5a-91bd-ec8042734baa" : [ ],
+    "e18b1774-c755-3701-875f-c7e32483ebe7" : [ ]
+  }
 }

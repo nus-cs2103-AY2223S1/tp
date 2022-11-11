@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -14,10 +14,13 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.attribute.Address;
+import seedu.address.model.attribute.Email;
+import seedu.address.model.attribute.Field;
+import seedu.address.model.attribute.Name;
+import seedu.address.model.attribute.Phone;
+import seedu.address.model.group.Group;
+import seedu.address.model.group.Path;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -26,13 +29,17 @@ public class ParserUtilTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_TEAM_NAME = "invalid team";
+    private static final String INVALID_PATH_NAME = "invalid team\\";
 
     private static final String VALID_NAME = "Rachel Walker";
-    private static final String VALID_PHONE = "123456";
+    private static final String VALID_PHONE = "91234560";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_TEAM_NAME = "validTeamName";
+    private static final String VALID_PATH = "team/team1/team2";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -43,17 +50,18 @@ public class ParserUtilTest {
 
     @Test
     public void parseIndex_outOfRangeInput_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
-            -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
+        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, () -> {
+            ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1));
+        });
     }
 
     @Test
     public void parseIndex_validInput_success() throws Exception {
         // No whitespaces
-        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("1"));
+        assertEquals(INDEX_FIRST, ParserUtil.parseIndex("1"));
 
         // Leading and trailing whitespaces
-        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("  1  "));
+        assertEquals(INDEX_FIRST, ParserUtil.parseIndex("  1  "));
     }
 
     @Test
@@ -192,5 +200,44 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parsePath_validPath_returnsPath() throws Exception {
+        Path actualPath = ParserUtil.parsePath(VALID_PATH);
+        Path expectedPath = new Path(VALID_PATH);
+
+        assertEquals(actualPath.toString(), expectedPath.toString());
+    }
+
+    @Test
+    public void parsePath_invalidPathTrailing_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parsePath(INVALID_PATH_NAME));
+    }
+
+    @Test
+    public void parseTeam_validTeamName_returnsGroup() throws Exception {
+        Group actualGroup = ParserUtil.parseGroup(VALID_TEAM_NAME);
+        Group expectedGroup = new Group(VALID_TEAM_NAME);
+
+        assertEquals(actualGroup, expectedGroup);
+    }
+
+    @Test
+    public void parseGroup_invalidTeamNameHasWhitespace_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseGroup(INVALID_TEAM_NAME));
+    }
+
+    @Test
+    public void parseField_validFieldName_returnsField() throws ParseException {
+        Field expectedField = ParserUtil.parseField("fieldStub");
+        Field actualField = new Field("fieldStub");
+
+        assertEquals(expectedField, actualField);
+    }
+
+    @Test
+    public void parseField_invalidFieldName_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseField(" "));
     }
 }

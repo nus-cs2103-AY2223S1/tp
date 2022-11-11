@@ -1,8 +1,38 @@
 {
-  "persons": [ {
-    "name": "Person with invalid name field: Ha!ns Mu@ster",
-    "phone": "9482424",
-    "email": "hans@example.com",
-    "address": "4th street"
-  } ]
+  "persons" : [ {
+    "name" : "Person with invalid name field: Ha!ns Mu@ster",
+    "uid" : "a2af5cb4-0db5-3638-9f21-2b9efa99d166",
+    "tags" : [ ],
+    "attributes" : [ {
+      "data" : {
+        "type" : "Phone",
+        "content" : "93938282",
+        "display_format" : 31,
+        "style_format" : 288
+      }
+    }, {
+      "data" : {
+        "type" : "Email",
+        "content" : "hans@example.com",
+        "display_format" : 31,
+        "style_format" : 288
+      }
+    }, {
+      "data" : {
+        "type" : "Address",
+        "content" : "4th street",
+        "display_format" : 31,
+        "style_format" : 288
+      }
+    } ]
+  } ],
+  "groups" : [ ],
+  "tasks" : [ ],
+  "itemRelationship" : {
+    "a2af5cb4-0db5-3638-9f21-2b9efa99d166" : [ ]
+  },
+  "jsonAdaptedAddressBookParser" : {
+    "alias" : { },
+    "macros" : { }
+  }
 }

@@ -1,6 +1,7 @@
 package seedu.address.logic;
 
 import java.io.IOException;
+import java.nio.file.AccessDeniedException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
@@ -14,7 +15,10 @@ import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.group.Group;
+import seedu.address.model.item.AbstractSingleItem;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
 import seedu.address.storage.Storage;
 
 /**
@@ -22,6 +26,11 @@ import seedu.address.storage.Storage;
  */
 public class LogicManager implements Logic {
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
+
+    private static final String PERM_ERR =
+        "Unable to save your information!\nPlease check the FAQ section of the user guide for more information."
+            + "The user guide can be accessed through Help in the menu. \n%s";
+
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
     private final Model model;
@@ -34,7 +43,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        addressBookParser = AddressBookParser.get();
     }
 
     @Override
@@ -47,6 +56,9 @@ public class LogicManager implements Logic {
 
         try {
             storage.saveAddressBook(model.getAddressBook());
+        } catch (AccessDeniedException e) {
+            logger.info("Permission Error: " + e.getMessage());
+            throw new CommandException(String.format(PERM_ERR, e));
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -77,5 +89,20 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public ObservableList<Group> getFilteredGroupList() {
+        return model.getFilteredTeamList();
+    }
+
+    @Override
+    public AbstractSingleItem getContainer() {
+        return model.getContextContainer();
+    }
+
+    @Override
+    public ObservableList<Task> getFilteredTaskList() {
+        return model.getFilteredTaskList();
     }
 }

@@ -1,0 +1,601 @@
+{
+  "persons": [
+    {
+      "fields": {
+        "fieldList": []
+      },
+      "name": "Bob The Builder",
+      "uid": "5d1b473c-420d-3b1c-ab8a-7518748ae5a7",
+      "tags": [],
+      "attributes": [
+        {
+          "data": {
+            "type": "place",
+            "content": "Bikini Bottoms",
+            "display_format": 63,
+            "style_format": 288
+          }
+        },
+        {
+          "data": {
+            "type": "isImposter",
+            "content": "Imposter",
+            "display_format": 63,
+            "style_format": 288
+          }
+        }
+      ]
+    },
+    {
+      "fields": {
+        "fieldList": []
+      },
+      "name": "Plantkton",
+      "uid": "86c1660a-d6d6-3b1f-bc57-762ffbb9679b",
+      "tags": [],
+      "attributes": [
+        {
+          "data": {
+            "type": "place",
+            "content": "Bikini Bottoms",
+            "display_format": 63,
+            "style_format": 288
+          }
+        }
+      ]
+    },
+    {
+      "fields": {
+        "fieldList": []
+      },
+      "name": "Spongebob",
+      "uid": "31d3e515-b7d6-3d54-95c0-a9a27c4d7987",
+      "tags": [],
+      "attributes": [
+        {
+          "data": {
+            "type": "place",
+            "content": "Bikini Bottoms",
+            "display_format": 63,
+            "style_format": 288
+          }
+        }
+      ]
+    },
+    {
+      "fields": {
+        "fieldList": []
+      },
+      "name": "Patrick The Star",
+      "uid": "854cb165-d9cc-3a84-9583-a5f81673e48c",
+      "tags": [],
+      "attributes": [
+        {
+          "data": {
+            "type": "hp",
+            "content": "5454545",
+            "display_format": 63,
+            "style_format": 288
+          }
+        },
+        {
+          "data": {
+            "type": "place",
+            "content": "Bikini Bottoms",
+            "display_format": 63,
+            "style_format": 288
+          }
+        }
+      ]
+    },
+    {
+      "fields": {
+        "fieldList": []
+      },
+      "name": "Sandy Cheeks",
+      "uid": "b467b6ae-fe5a-36f1-9274-a95d065a21ce",
+      "tags": [],
+      "attributes": [
+        {
+          "data": {
+            "type": "place",
+            "content": "Bikini Bottoms",
+            "display_format": 63,
+            "style_format": 288
+          }
+        }
+      ]
+    },
+    {
+      "fields": {
+        "fieldList": []
+      },
+      "name": "Squidward",
+      "uid": "3e226616-1037-3f8b-bbe1-c9d9dc4e85db",
+      "tags": [],
+      "attributes": [
+        {
+          "data": {
+            "type": "type",
+            "content": "Genius Programmer",
+            "display_format": 63,
+            "style_format": 288
+          }
+        },
+        {
+          "data": {
+            "type": "place",
+            "content": "Bikini Bottoms",
+            "display_format": 63,
+            "style_format": 288
+          }
+        }
+      ]
+    },
+    {
+      "fields": {
+        "fieldList": []
+      },
+      "name": "Mr Krabs",
+      "uid": "9682abe4-456b-378c-987d-23e984968f13",
+      "tags": [],
+      "attributes": [
+        {
+          "data": {
+            "type": "place",
+            "content": "Bikini Bottoms",
+            "display_format": 63,
+            "style_format": 288
+          }
+        }
+      ]
+    },
+    {
+      "fields": {
+        "fieldList": []
+      },
+      "name": "Minion 1",
+      "uid": "80b1e5cd-a531-3a31-b8c8-5fed87e7d390",
+      "tags": [],
+      "attributes": [
+        {
+          "data": {
+            "type": "type",
+            "content": "Plankton's Evil Minions",
+            "display_format": 63,
+            "style_format": 288
+          }
+        }
+      ]
+    },
+    {
+      "fields": {
+        "fieldList": []
+      },
+      "name": "Minion 2",
+      "uid": "44ac5933-590f-32b0-b819-cd0097aeb1c0",
+      "tags": [],
+      "attributes": [
+        {
+          "data": {
+            "type": "type",
+            "content": "Plankton's Evil Minions",
+            "display_format": 63,
+            "style_format": 288
+          }
+        }
+      ]
+    },
+    {
+      "fields": {
+        "fieldList": []
+      },
+      "name": "Minion 3",
+      "uid": "52133639-288d-35b1-927a-66bca52c90e3",
+      "tags": [],
+      "attributes": [
+        {
+          "data": {
+            "type": "type",
+            "content": "Plankton's Evil Minions",
+            "display_format": 63,
+            "style_format": 288
+          }
+        }
+      ]
+    },
+    {
+      "fields": {
+        "fieldList": []
+      },
+      "name": "Minion 4",
+      "uid": "ac861ff3-dbe9-3f7e-9482-40b593547d9a",
+      "tags": [],
+      "attributes": [
+        {
+          "data": {
+            "type": "type",
+            "content": "Plankton's Evil Minions",
+            "display_format": 63,
+            "style_format": 288
+          }
+        }
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "name": "Krusty_Crabs",
+      "uid": "f91547fe-a598-3268-8c30-284006315ab3",
+      "tags": [],
+      "attributes": []
+    },
+    {
+      "name": "Bug_Fixes",
+      "uid": "0c830a5d-a723-3155-b937-830ef6f087c3",
+      "tags": [],
+      "attributes": []
+    },
+    {
+      "name": "Secret-Operations",
+      "uid": "7dc570e3-7cbc-3d39-ac32-17391aceb260",
+      "tags": [],
+      "attributes": [
+        {
+          "data": {
+            "type": "description",
+            "content": "DO NOT LOOK, NOTHING TO SEE HERE",
+            "display_format": 63,
+            "style_format": 288
+          }
+        }
+      ]
+    },
+    {
+      "name": "Sept",
+      "uid": "611bfc53-91fa-3c0d-8640-cea4bc5fd4dc",
+      "tags": [],
+      "attributes": []
+    },
+    {
+      "name": "Oct",
+      "uid": "4fc3f6c0-e106-3ed8-8c62-ecec89aa6771",
+      "tags": [],
+      "attributes": []
+    },
+    {
+      "name": "Squidward_birthday-surprise",
+      "uid": "6d3471fc-ece8-35f6-8d17-4cd29de4c74b",
+      "tags": [],
+      "attributes": []
+    },
+    {
+      "name": "Health_Inspection",
+      "uid": "4e656a81-67c6-3b20-b824-698fa9a2df23",
+      "tags": [],
+      "attributes": [
+        {
+          "data": {
+            "type": "data",
+            "content": "by 2022/10/30",
+            "display_format": 63,
+            "style_format": 288
+          }
+        }
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "description": "Unable to view the description in GUI",
+      "localDateTime": "",
+      "name": "Description Not Working",
+      "uid": "5a35e6ac-33d0-32df-955b-12d59fb59fcb",
+      "tags": [],
+      "attributes": [
+        {
+          "data": {
+            "type": "bug",
+            "content": "High Severity",
+            "display_format": 63,
+            "style_format": 288
+          }
+        }
+      ]
+    },
+    {
+      "description": "UG is missing seq commands details",
+      "localDateTime": "",
+      "name": "seq commands missing documentation",
+      "uid": "02e574e8-05ce-37ad-bd3d-5d040215bed5",
+      "tags": [],
+      "attributes": [
+        {
+          "data": {
+            "type": "bug",
+            "content": "low severity",
+            "display_format": 63,
+            "style_format": 288
+          }
+        }
+      ]
+    },
+    {
+      "description": "User unable to use the replace command",
+      "localDateTime": "",
+      "name": "replace command not working",
+      "uid": "5c0b2324-cd6d-30db-badc-ff6bdaee529b",
+      "tags": [],
+      "attributes": [
+        {
+          "data": {
+            "type": "bug",
+            "content": "High Severity",
+            "display_format": 63,
+            "style_format": 288
+          }
+        }
+      ]
+    },
+    {
+      "description": "Ensure tasks files are working",
+      "localDateTime": "",
+      "name": "Check tests files",
+      "uid": "bf81b6ae-7d2c-3158-8d36-892d65178b13",
+      "tags": [],
+      "attributes": []
+    },
+    {
+      "description": "Ensure user guide are up to date",
+      "localDateTime": "",
+      "name": "Check user guide",
+      "uid": "53e39006-f1f2-3fec-b3ed-14937585d0ba",
+      "tags": [],
+      "attributes": []
+    },
+    {
+      "description": "We need more fancier burgers!!!",
+      "localDateTime": "",
+      "name": "New Burger Recipes",
+      "uid": "b934d7ff-0f85-347b-805e-2bf55088a226",
+      "tags": [],
+      "attributes": []
+    },
+    {
+      "description": "Plankton need to know his secrets",
+      "localDateTime": "",
+      "name": "Steal Secret Recipes",
+      "uid": "9a0ac67f-e02b-30b6-af67-1b0e649151a8",
+      "tags": [],
+      "attributes": []
+    },
+    {
+      "description": "Plankton requires burger dominance",
+      "localDateTime": "",
+      "name": "Ruin the businness",
+      "uid": "74f4774d-9e64-3e31-a643-e6df74b12834",
+      "tags": [],
+      "attributes": []
+    },
+    {
+      "description": "Trust = benefits",
+      "localDateTime": "2022-10-30T15:57:51.199827900",
+      "name": "Gain trust",
+      "uid": "f9c2e1dd-9ac1-3ae7-8d37-270f9c563732",
+      "tags": [],
+      "attributes": []
+    },
+    {
+      "description": "Squidward birthday is on Oct 9",
+      "localDateTime": "",
+      "name": "Birthday checklist",
+      "uid": "4fb73f2f-3596-3025-b45e-950e2e56275d",
+      "tags": [],
+      "attributes": []
+    },
+    {
+      "description": "What does he like?",
+      "localDateTime": "2022-10-30T15:58:22.196729600",
+      "name": "Prepare gifts",
+      "uid": "33c49cd9-6373-350c-a005-e67c3f7a3a3f",
+      "tags": [],
+      "attributes": []
+    },
+    {
+      "description": "What kind of surprise do we need for him",
+      "localDateTime": "",
+      "name": "Prepare surprise",
+      "uid": "cbccb63f-2268-30d5-b1db-39689c76f8d0",
+      "tags": [],
+      "attributes": []
+    },
+    {
+      "description": "We need moar customers",
+      "localDateTime": "2022-10-30T16:02:48.645641900",
+      "name": "Advertise restaurant success",
+      "uid": "eca3ee0c-4513-33eb-93f5-57658adbd1d4",
+      "tags": [],
+      "attributes": []
+    },
+    {
+      "description": "It's looking old here",
+      "localDateTime": "2022-10-30T16:02:48.646641400",
+      "name": "Do renovation",
+      "uid": "1fd59d70-94c8-3157-8d57-82865e9fccdd",
+      "tags": [],
+      "attributes": []
+    },
+    {
+      "description": "we cannot fail this",
+      "localDateTime": "2022-10-30T16:02:48.648147200",
+      "name": "Prepare for health inspection",
+      "uid": "245efa69-e5bc-359b-81ea-7a3a7019f74f",
+      "tags": [],
+      "attributes": []
+    },
+    {
+      "description": "What events should we do next month?",
+      "localDateTime": "2022-10-30T16:02:48.649155",
+      "name": "Plans for Oct",
+      "uid": "84ffbd5e-e7fb-3069-91ec-d05564b23552",
+      "tags": [],
+      "attributes": []
+    },
+    {
+      "description": "!!!!! sweats",
+      "localDateTime": "",
+      "name": "Prepare for health inspection",
+      "uid": "4b914fa4-38be-3c9e-ab4b-00a2faf5546d",
+      "tags": [],
+      "attributes": []
+    },
+    {
+      "description": "yes",
+      "localDateTime": "2022-10-30T16:10:00.979435900",
+      "name": "Clean table",
+      "uid": "6440e851-84bb-3fb7-addf-131c7dc52bd0",
+      "tags": [],
+      "attributes": []
+    },
+    {
+      "description": "Make sure no dirt can be found",
+      "localDateTime": "2022-10-30T16:10:03.862598",
+      "name": "Sanitize Plates",
+      "uid": "fd319810-df1c-3e46-806f-daca5d676424",
+      "tags": [],
+      "attributes": []
+    },
+    {
+      "description": "This is important!",
+      "localDateTime": "",
+      "name": "Clean stoves",
+      "uid": "3044409c-f910-30cd-b6b4-6a263394dde9",
+      "tags": [],
+      "attributes": []
+    },
+    {
+      "description": "!!!!!!",
+      "localDateTime": "2022-10-30T16:10:02.169973900",
+      "name": "Hide all traces of secret recipe",
+      "uid": "12fd88fa-6ad7-30b2-bb4e-79da799545bf",
+      "tags": [],
+      "attributes": []
+    }
+  ],
+  "itemRelationship": {
+    "f91547fe-a598-3268-8c30-284006315ab3": [],
+    "84ffbd5e-e7fb-3069-91ec-d05564b23552": [
+      "611bfc53-91fa-3c0d-8640-cea4bc5fd4dc"
+    ],
+    "86c1660a-d6d6-3b1f-bc57-762ffbb9679b": [
+      "7dc570e3-7cbc-3d39-ac32-17391aceb260",
+      "f91547fe-a598-3268-8c30-284006315ab3"
+    ],
+    "80b1e5cd-a531-3a31-b8c8-5fed87e7d390": [
+      "7dc570e3-7cbc-3d39-ac32-17391aceb260"
+    ],
+    "5d1b473c-420d-3b1c-ab8a-7518748ae5a7": [],
+    "4e656a81-67c6-3b20-b824-698fa9a2df23": [
+      "4fc3f6c0-e106-3ed8-8c62-ecec89aa6771"
+    ],
+    "fd319810-df1c-3e46-806f-daca5d676424": [
+      "4e656a81-67c6-3b20-b824-698fa9a2df23"
+    ],
+    "1fd59d70-94c8-3157-8d57-82865e9fccdd": [
+      "611bfc53-91fa-3c0d-8640-cea4bc5fd4dc"
+    ],
+    "4b914fa4-38be-3c9e-ab4b-00a2faf5546d": [
+      "4fc3f6c0-e106-3ed8-8c62-ecec89aa6771"
+    ],
+    "bf81b6ae-7d2c-3158-8d36-892d65178b13": [
+      "0c830a5d-a723-3155-b937-830ef6f087c3"
+    ],
+    "ac861ff3-dbe9-3f7e-9482-40b593547d9a": [
+      "7dc570e3-7cbc-3d39-ac32-17391aceb260"
+    ],
+    "6d3471fc-ece8-35f6-8d17-4cd29de4c74b": [
+      "4fc3f6c0-e106-3ed8-8c62-ecec89aa6771"
+    ],
+    "33c49cd9-6373-350c-a005-e67c3f7a3a3f": [
+      "6d3471fc-ece8-35f6-8d17-4cd29de4c74b"
+    ],
+    "3044409c-f910-30cd-b6b4-6a263394dde9": [
+      "4e656a81-67c6-3b20-b824-698fa9a2df23"
+    ],
+    "245efa69-e5bc-359b-81ea-7a3a7019f74f": [
+      "611bfc53-91fa-3c0d-8640-cea4bc5fd4dc"
+    ],
+    "12fd88fa-6ad7-30b2-bb4e-79da799545bf": [
+      "4e656a81-67c6-3b20-b824-698fa9a2df23"
+    ],
+    "5c0b2324-cd6d-30db-badc-ff6bdaee529b": [
+      "0c830a5d-a723-3155-b937-830ef6f087c3"
+    ],
+    "854cb165-d9cc-3a84-9583-a5f81673e48c": [],
+    "6440e851-84bb-3fb7-addf-131c7dc52bd0": [
+      "4e656a81-67c6-3b20-b824-698fa9a2df23"
+    ],
+    "0c830a5d-a723-3155-b937-830ef6f087c3": [],
+    "3e226616-1037-3f8b-bbe1-c9d9dc4e85db": [
+      "4e656a81-67c6-3b20-b824-698fa9a2df23",
+      "0c830a5d-a723-3155-b937-830ef6f087c3",
+      "f91547fe-a598-3268-8c30-284006315ab3"
+    ],
+    "611bfc53-91fa-3c0d-8640-cea4bc5fd4dc": [
+      "f91547fe-a598-3268-8c30-284006315ab3"
+    ],
+    "cbccb63f-2268-30d5-b1db-39689c76f8d0": [
+      "6d3471fc-ece8-35f6-8d17-4cd29de4c74b"
+    ],
+    "4fb73f2f-3596-3025-b45e-950e2e56275d": [
+      "6d3471fc-ece8-35f6-8d17-4cd29de4c74b"
+    ],
+    "7dc570e3-7cbc-3d39-ac32-17391aceb260": [
+      "f91547fe-a598-3268-8c30-284006315ab3"
+    ],
+    "74f4774d-9e64-3e31-a643-e6df74b12834": [
+      "7dc570e3-7cbc-3d39-ac32-17391aceb260"
+    ],
+    "53e39006-f1f2-3fec-b3ed-14937585d0ba": [
+      "0c830a5d-a723-3155-b937-830ef6f087c3"
+    ],
+    "f9c2e1dd-9ac1-3ae7-8d37-270f9c563732": [
+      "7dc570e3-7cbc-3d39-ac32-17391aceb260"
+    ],
+    "5a35e6ac-33d0-32df-955b-12d59fb59fcb": [
+      "0c830a5d-a723-3155-b937-830ef6f087c3"
+    ],
+    "02e574e8-05ce-37ad-bd3d-5d040215bed5": [
+      "0c830a5d-a723-3155-b937-830ef6f087c3"
+    ],
+    "44ac5933-590f-32b0-b819-cd0097aeb1c0": [
+      "7dc570e3-7cbc-3d39-ac32-17391aceb260"
+    ],
+    "b467b6ae-fe5a-36f1-9274-a95d065a21ce": [],
+    "52133639-288d-35b1-927a-66bca52c90e3": [
+      "7dc570e3-7cbc-3d39-ac32-17391aceb260"
+    ],
+    "4fc3f6c0-e106-3ed8-8c62-ecec89aa6771": [
+      "f91547fe-a598-3268-8c30-284006315ab3"
+    ],
+    "31d3e515-b7d6-3d54-95c0-a9a27c4d7987": [
+      "6d3471fc-ece8-35f6-8d17-4cd29de4c74b",
+      "4e656a81-67c6-3b20-b824-698fa9a2df23",
+      "f91547fe-a598-3268-8c30-284006315ab3"
+    ],
+    "eca3ee0c-4513-33eb-93f5-57658adbd1d4": [
+      "611bfc53-91fa-3c0d-8640-cea4bc5fd4dc"
+    ],
+    "b934d7ff-0f85-347b-805e-2bf55088a226": [
+      "f91547fe-a598-3268-8c30-284006315ab3"
+    ],
+    "9682abe4-456b-378c-987d-23e984968f13": [
+      "6d3471fc-ece8-35f6-8d17-4cd29de4c74b",
+      "4e656a81-67c6-3b20-b824-698fa9a2df23",
+      "f91547fe-a598-3268-8c30-284006315ab3"
+    ],
+    "9a0ac67f-e02b-30b6-af67-1b0e649151a8": [
+      "7dc570e3-7cbc-3d39-ac32-17391aceb260"
+    ]
+  }
+}

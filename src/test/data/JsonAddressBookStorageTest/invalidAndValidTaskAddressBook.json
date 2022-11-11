@@ -1,0 +1,33 @@
+{
+  "persons" : [ ],
+  "groups" : [ {
+    "name" : "t1",
+    "uid" : "ca762678-c236-3043-b841-2bc071624f8f",
+    "tags" : [ ],
+    "attributes" : [ ]
+  } ],
+  "tasks" : [ {
+    "description" : "12am with friends",
+    "localDateTime" : "",
+    "name" : "Stargazing",
+    "uid" : "f11c0f7a-f044-3b1e-aa5e-3ff59f09d2c6",
+    "tags" : [ ],
+    "attributes" : [ ]
+  }, {
+    "description" : "In the morning, and hang it out",
+    "localDateTime" : "",
+    "name" : "Wash l#$!aundry",
+    "uid" : "4ef85a0c-b8d3-3b0d-83f9-d881273fb8ce",
+    "tags" : [ ],
+    "attributes" : [ ]
+  } ],
+  "itemRelationship" : {
+    "f11c0f7a-f044-3b1e-aa5e-3ff59f09d2c6" : [ "ca762678-c236-3043-b841-2bc071624f8f" ],
+    "4ef85a0c-b8d3-3b0d-83f9-d881273fb8ce" : [ "ca762678-c236-3043-b841-2bc071624f8f" ],
+    "ca762678-c236-3043-b841-2bc071624f8f" : [ ]
+  },
+  "jsonAdaptedAddressBookParser" : {
+    "alias" : { },
+    "macros" : { }
+  }
+}
