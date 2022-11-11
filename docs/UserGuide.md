@@ -132,6 +132,8 @@ Example:
 * Typing `find alex` will enter the **Filtered List View** where only the matching results are shown.
 * Typing `showall` will bring you back to the **Unfiltered List View** showing all the patients/records before the find command was executed.
 
+<div style="page-break-after: always;"></div>
+
 | Unfiltered List View (Default)              | Filtered List View                                  |
 |---------------------------------------------|-----------------------------------------------------|
 | ![Ui-unfiltered](images/UiUnfiltered.png)   | ![Ui-filtered](images/UiFiltered.png)               |
