@@ -1094,11 +1094,11 @@ The new task will be displayed in the task list of your [current team section](#
 
 Here, let us take a quick walk-through on how to add a new task.
 
-Suppose we have a new task called `Create PR`. 
+Suppose we have a new task called "Create PR". 
 
 Enter the command `add task "Create PR"`.
 
-If done successfully, a new task with the name `Create PR` will be added to the task list in
+If done successfully, a new task with the name "Create PR" will be added to the task list in
 [current team section](#current-team-section) as shown below.
 
 You may optionally specify a deadline and assignees for this command using `-d <TASK_DEADLINE>` and
@@ -1147,14 +1147,14 @@ The `edit task` command allows you to edit an existing task in your team. The ed
 task list of the [current team section](#current-team-section). Let
 us run through how to edit the details of a task.
 
-Suppose you want to change the task name from `Create PR` to `Merge PR`. Identify the index of
-`Create PR` in the application (1 in the image below). If you are not able to find the task, refer to the
+Suppose you want to change the task name from "Create PR" to "Merge PR". Identify the index of
+"Create PR" in the application (1 in the image below). If you are not able to find the task, refer to the
 [find task command](#finding-a-task-find-task).
 
 Then, enter the command `edit task 1 -n "Merge PR"`.
 
 If done successfully, you should see the new details show up under in the task list of the
-[current team section](#current-team-section), with the task name of `Merge PR` as shown below. You can edit other
+[current team section](#current-team-section), with the task name of "Merge PR" as shown below. You can edit other
 information such as deadline and assignees as well. Please refer to the respective commands on how to
 [set deadlines](#set-deadline-for-task-set-deadline) and [set assignees](#assign-a-task-to-team-member-assign-task)!
 
@@ -1218,13 +1218,13 @@ The `delete task` command allows you to delete the specified task from TruthTabl
 removed from the task list of the [current team section](#current-team-section). Let us run through an example on how to delete a
 task.
 
-Suppose you want to delete a task called `Merge PR`. Identify the index of `Merge PR` in the
+Suppose you want to delete a task called "Merge PR". Identify the index of "Merge PR" in the
 application (1 in the image below). If you are not able to find the task, refer to
 [find task command](#finding-a-task-find-task).
 
 Then, enter the command `delete task 1`.
 
-If done successfully, you should the task `Merge PR` removed under the task list of
+If done successfully, you should the task "Merge PR" removed under the task list of
 [current team section](#current-team-section) as shown below.
 
 ![Delete Task Example](images/DeleteTaskExample.png)
@@ -1310,13 +1310,13 @@ task list of the [current team section](#current-team-section).
 
 Let us run through an example on how to mark an existing task.
 
-Suppose you want to mark the task of `Create PR` as done. Identify the index of
-`Create PR` in the application (1 in the image below). If you are not able to find the task, refer to the 
+Suppose you want to mark the task of "Create PR" as done. Identify the index of
+"Create PR" in the application (1 in the image below). If you are not able to find the task, refer to the 
 [find task command](#finding-a-task-find-task).
 
 Then, enter the command `mark task 1`.
 
-If done successfully, you should see a cross appear beside the task named `Merge PR` in the task list of the
+If done successfully, you should see a cross appear beside the task named "Merge PR" in the task list of the
 [current team section](#current-team-section) as shown below.
 
 ![Mark Example](images/MarkExample.png)
@@ -1354,13 +1354,13 @@ task list of the [current team section](#current-team-section).
 
 Let us run through how to mark an existing task.
 
-Suppose the task of `Create PR` was originally complete and you want to mark the task of `Create PR` as incomplete.
-Identify the index of `Create PR` in the application (1 in the image below). If you are not able to find the 
-task, refer to [find task command](#finding-a-task-find-task) on how you can find your task easily.
+Suppose the task "Create PR" was originally complete, and you want to mark the task "Create PR" as incomplete.
+Identify the index number of "Create PR" in the application (1 in the image below). If you are not able to find the
+task, refer to the [find task command](#finding-a-task-find-task).
 
 Then, enter the command `unmark task 1`.
 
-If done successfully, you should the cross beside the task named of `Merge PR` disappear, under in the task list of the
+If done successfully, you should see the cross beside the task named `Merge PR` disappear from the task list of the
 [current team section](#current-team-section) as shown below.
 
 ![Unmark Example](images/UnmarkExample.png)
@@ -1399,13 +1399,13 @@ The `set deadline` command allows you to set a deadline for an existing task, an
 
 Let us run through an example on how to set deadlines.
 
-Suppose you have task called `Create PR`, and you need it to be completed by 11 November 2022, 2359hrs.
-Identify the index of `Create PR` in the application (1 in the image below). If you are not able to find the 
+Suppose you have task called "Create PR", and you need it to be completed by 11 November 2022, 2359hrs.
+Identify the index of "Create PR" in the application (1 in the image below). If you are not able to find the 
 task, refer to [find task command](#finding-a-task-find-task) on how you can find your task easily.
 
 Then, enter the command `set deadline 1 2022-11-11 23:59`.
 
-If done successfully, you should see the `Create PR` task with the new deadline show up in the task list of the
+If done successfully, you should see the "Create PR" task with the new deadline show up in the task list of the
 [current team section](#current-team-section).
 
 ![Set Deadline Example](images/SetDeadlineExample.png)
@@ -1446,9 +1446,9 @@ The task with the new assignees will be shown in the task list of the [current t
 
 Let us run through an example on how to assign tasks to your team members.
 
-Suppose you have task called `Create PR`, and you want to assign it to Alex Yeoh.
+Suppose you have task called "Create PR", and you want to assign it to Alex Yeoh.
 
-Identify the index of `Create PR` in the application (1 in the image below). If you are not able to find the 
+Identify the index of "Create PR" in the application (1 in the image below). If you are not able to find the 
 task, refer to [find task command](#finding-a-task-find-task) on how you can find your task easily.
 
 Identify the index of "Alex Yeoh" in the application (1 in the image below). If you are not able to find the 
@@ -1456,7 +1456,7 @@ member, refer to [find member command](#finding-a-member-find-member) on how you
 
 Then, enter the command `assign task 1 -a 1`.
 
-If done successfully, you should see the `Create PR` task being assigned to "Alex Yeoh" show up under in the task list
+If done successfully, you should see the "Create PR" task being assigned to "Alex Yeoh" show up under in the task list
 of the [current team section](#current-team-section) as shown below. You can also specify multiple members to assign
 a task to multiple team members.
 
@@ -1507,14 +1507,14 @@ The `assign random` command allows you to assign tasks randomly to members in yo
 assignees will be shown in the task list of the [current team section](#current-team-section). Let us run through an
 example on how to assign tasks randomly to your team members.
 
-Suppose you have task called `Create PR`, and you want to assign it randomly to your team members.
+Suppose you have task called "Create PR", and you want to assign it randomly to your team members.
 
-Identify the index of `Create PR` in the application (1 in the image below). If you are not able to find the task, 
+Identify the index of "Create PR" in the application (1 in the image below). If you are not able to find the task, 
 refer to the [find task command](#finding-a-task-find-task) on how you can find your task easily.
 
 Then, enter the command `assign random 1`.
 
-If done successfully, you should see the `Create PR` task being assigned to a random member. It should show up under 
+If done successfully, you should see the "Create PR" task being assigned to a random member. It should show up under 
 in the task list of the [current team section](#current-team-section) as shown below.
 
 ![Assign Random Example](images/AssignRandomExample.png)
@@ -1632,14 +1632,14 @@ be displayed in task list the [current team section](#current-team-section).
 
 Let us run through an example on how to sort your tasks.
 
-Suppose you want to see whether there is task called `Create PR`, but you are unsure of how to spell it. 
+Suppose you want to see whether there is task called "Create PR", but you are unsure of how to spell it. 
 
 Enter the command `sort tasks asc`.
 
 If done successfully, the sorted tasks will be shown in the task list in [current team section](#current-team-section) 
 as shown below.
 
-You can now verify if `Create PR` indeed exists in your team by scrolling to all names that begin with `c`. 
+You can now verify if "Create PR" indeed exists in your team by scrolling to all names that begin with `c`. 
 You may sort your tasks in descending order with `sort tasks dsc` or reset to the original list order with `sort tasks res`.
 
 ![Sort Tasks Example](images/SortTasksExample.png)
@@ -1703,8 +1703,8 @@ if it is recorded down permanently somewhere? TruthTable helps you do that with 
 The `add link` command allows you to add a new link you wish to keep track of. The new link is added to the list of links in 
 the [currently selected team](#current-team-section). Here, let us take a quick walk-through on how to add a link.
 
-Let us try to add a new weekly meeting link, with a name `Meeting Link`, and [URL](#url) of 
-`https://nus-sg.zoom.us/j/87390425930?pwd=aUZNZ1NJdW5hUjcxSGxXZyt0NjdLQT09`.
+Let us try to add a new weekly meeting link, with a name "Meeting Link", and [URL](#url) of 
+"https://nus-sg.zoom.us/j/87390425930?pwd=aUZNZ1NJdW5hUjcxSGxXZyt0NjdLQT09".
 
 Enter the command `add link -n "Meeting Link" -l https://nus-sg.zoom.us/j/87390425930?pwd=aUZNZ1NJdW5hUjcxSGxXZyt0NjdLQT09`.
 
@@ -1738,9 +1738,9 @@ Oops! Seems like the meeting link for the weekly meeting has changed. You can ed
 The `edit link` command allows you to edit an existing link in TruthTable. The edited link will be shown in the list of 
 links in the [currently selected team](#current-team-section). Let us run through an example on how to edit the details of a link. 
 
-Suppose the [URL](#url) of your `weekly meeting` has changed to
-`https://zoom.us/j/94669589458?pwd=bTQvWTlWbzR5T29Ja0w2d0J1R1R4QT09#success`. 
-Identify the index of the link with a name `weekly meeting` in the application (1 in the image below).
+Suppose the [URL](#url) of your "weekly meeting" has changed to
+"https://zoom.us/j/94669589458?pwd=bTQvWTlWbzR5T29Ja0w2d0J1R1R4QT09#success".
+Identify the index of the link with a name "weekly meeting" in the application (1 in the image below).
 
 Then, enter the command `edit link 1 -n "monthly meeting" -l https://zoom.us/j/94669589458?pwd=bTQvWTlWbzR5T29Ja0w2d0J1R1R4QT09#success`
 
