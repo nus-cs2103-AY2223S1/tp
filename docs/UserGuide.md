@@ -225,6 +225,8 @@ Examples:
 * `add -p n/Betsy Crowe t/HR e/betsycrowe@example.com` adds a person with `NAME` **Betsy Crowe**, `TAG` **HR**, `EMAIL` **betsycrowe@example.com**
   Here, since the `LINK_INDEX` field is omitted, the person will be added with **No internship linked**. To link an internship to this person, see [section 4.4.1 for the Link command](#441-linking-a-person-and-an-internship--link).
 
+<br>
+
 > [Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -266,6 +268,8 @@ Examples:
 * `add -i c/Grab r/Full Stack Developer s/PENDING d/2020-12-20 12:00` adds an internship with `COMPANY_NAME` **Grab**, `ROLE` **Full Stack Developer**, `STATUS` **PENDING** and `INTERVIEW_DATE` **2020-12-20 12:00**.
   Here, since the `LINK_INDEX` field is omitted, the internship will be added with **No contact person**. To link a person to this internship, see [section 4.4.1 for the Link command](#441-linking-a-person-and-an-internship--link).
 
+<br>
+
 > [Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -285,6 +289,8 @@ Format: `list -p`
 Removes all filters on the internship list and lists all internships in InterNUS in the current sorted order.
 
 Format: `list -i`
+
+<br>
 
 > [Back to Table of Contents](#table-of-contents)
 
@@ -310,6 +316,8 @@ Examples:
 - `list -p` followed by `edit -p 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 - `list -p` followed by `edit -p 2 n/Betsy Crower t/` edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
+<br>
+
 > [Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -329,6 +337,8 @@ Format: `edit -i INDEX [c/COMPANY] [r/ROLE] [s/STATUS] [d/INTERVIEW_DATE]`
 Examples:
 - `list -i` followed by `edit -i 1 s/ACCEPTED` edits the status of the 1st internship to be `ACCEPTED`.
 - `list -i` followed by `edit -i 2 s/REJECTED` edits the status of the 2nd internship to `REJECTED`.
+
+<br>
 
 > [Back to Table of Contents](#table-of-contents)
 
@@ -355,8 +365,8 @@ Examples:
 Unlinks an existing person and internship together in InterNUS.
 
 Format: `unlink [p/PERSON_INDEX] [i/INTERNSHIP_INDEX]`
-- At least 1 of the optional fields must be provided
-- Person and/or internship at the specified `PERSON_INDEX` and/or `INTERNSHIP_INDEX` will be unlinked.
+- At least 1 of the optional fields must be provided.
+- Person/internship at the specified `PERSON_INDEX`/`INTERNSHIP_INDEX` will be unlinked.
 - If both `PERSON_INDEX` and `INTERNSHIP_INDEX` are provided, the specified person and internship must be linked to each other.
 - `PERSON_INDEX` and `INTERNSHIP_INDEX` must be a positive integer 1, 2, 3, …
 
@@ -368,8 +378,6 @@ Examples:
 > [Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-
-<div style="page-break-after: always;"></div>
 
 ## 4.5. Find Command
 
@@ -471,6 +479,8 @@ Examples:
 * `list -i` followed by `delete -i 2` deletes the 2nd internship in InterNUS.
 * `find -i c/Meta` followed by `delete -i 1` deletes the 1st internship in the results of the `find` command.
 
+<br>
+
 > [Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -499,6 +509,8 @@ Examples:
 - When sorted by the attached company name, persons without an attached company name are listed at the bottom of the list, and they will be sorted in alphabetical order of their own names, ignoring upper and lower cases.
 </div>
 
+<br>
+
 > [Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -526,6 +538,8 @@ Examples:
 - When sorted by interview date, internships with no interview dates appear at the bottom of the list.
 </div>
 
+<br>
+
 > [Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -552,6 +566,8 @@ Exits the program.
 
 Format: `exit`
 
+<br>
+
 > [Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -576,6 +592,8 @@ Click on the Color Theme button in the Menu Bar to display a dropdown list to se
 |:------------------------------------:|
 | InterNUS light mode with sample data |
 
+<br>
+
 > [Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -596,6 +614,8 @@ Advanced users are welcome to update data directly by editing that data file.
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, InterNUS will discard all data and start with an empty data file at the next run.
 </div>
+
+<br>
 
 > [Back to Table of Contents](#table-of-contents)
 
@@ -629,6 +649,8 @@ If your changes to the data file makes its format invalid, InterNUS will discard
    4. Interview dates are currently restricted to the format "yyyy-MM-dd HH:mm", so this could be improved to allow a greater variety of datetime formats. 
       Additionally, the time component of the input could be made optional.
 
+<br>
+
 > [Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -655,6 +677,8 @@ If your changes to the data file makes its format invalid, InterNUS will discard
 | **Sort persons**      | `sort -p [n/] [c/]` <br> e.g., `sort -p c/`                                                                                                             |
 | **Sort internships**  | `sort -i [c/] [d/] [s/]` <br> e.g., `sort -i d/`                                                                                                        |
 | **Help**              | `help`                                                                                                                                                  |
+
+<br>
 
 > [Back to Table of Contents](#table-of-contents)
 
