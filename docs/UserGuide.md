@@ -460,7 +460,7 @@ You can also [mark a debt as paid without deleting it](#marking-debts-as-paid-ma
 `deletedebt <person index> debt/<debt index…>`
 
 **Example:**<br>
-* `deletedebt 2 debt/2 3`
+* `deletedebt 2 debt/2 3` will delete the 2nd and 3rd debt, regardless of paid or unpaid, of the 2nd person in the current displayed [person list](#person-list-section).
 
 #### Clearing debts: `cleardebts`
 
@@ -478,7 +478,7 @@ You might find it difficult to find the index of a specific person when your lis
 </div>
 
 **Example:**<br>
-* `cleardebts 3` will delete all the debts, paid or unpaid, from the 3rd person in the current [person list](#person-list-section).
+* `cleardebts 3` will delete all the debts, regardless of paid or unpaid, from the 3rd person in the current displayed [person list](#person-list-section).
 
 <div style="page-break-after: always;"></div>
 
@@ -494,7 +494,7 @@ When you want to indicate that a particular debt has been paid, but still keep a
 `mark <person index> debt/<debt index…>`
 
 **Example:**<br>
-* `mark 2 debt/2 3`
+* `mark 2 debt/2 3` will mark the 2nd and 3rd debt of the 2nd person in the current displayed [person list](#person-list-section) as paid.
 
 #### Marking debts as unpaid: `unmark`
 
@@ -502,13 +502,13 @@ When you want to indicate that a particular debt has been paid, but still keep a
 This command marks the debts specified from a person in PayMeLah as unpaid. Specifying multiple debts will mark all those debts as unpaid.
 
 **When to use:**<br>
-When you realise that a debt you had previously [marked as paid](#marking-debts-as-paid-mark) was actually not paid yet, you can use this command to indicate that it is still unpaid.
+When you realise that a debt you had previously [marked as paid](#marking-debts-as-paid-mark) is actually not paid yet, you can use this command to indicate that it is still unpaid.
 
 **Format:**<br>
 `unmark <person index> debt/<debt index…>`
 
 **Example:**<br>
-* `unmark 2 debt/2 3`
+* `unmark 2 debt/2 3` will mark the 2nd and 3rd debt of the 2nd person in the current displayed [person list](#person-list-section) as unpaid.
 
 <div style="page-break-after: always;"></div>
 
