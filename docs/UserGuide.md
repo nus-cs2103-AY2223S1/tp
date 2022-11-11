@@ -199,7 +199,7 @@ Now that you've downloaded FindMyIntern, you can start managing your internship 
 
 1. Open FindMyIntern by double-clicking `findmyintern.jar` if you have not already done so.
 
-2. The GUI similar to the below should appear in a few seconds. FindMyIntern will load some sample data.<br>
+2. The GUI (Graphical User Interface) similar to the below should appear in a few seconds. FindMyIntern will load some sample data.<br>
    <p align="center">
        <img src="images/AnnotatedUi.png" />
    </p>
@@ -280,7 +280,7 @@ To navigate to a specific command, you can just click on any of the commands to 
 
 #### Adding an internship application: `add`
 
-Adds an internship application to FindMyIntern.
+Adds an internship application to FindMyIntern. Using this command, you can easily add and view the details of your application in the displayed internship application list.
 
 <div class="d-flex alert alert-secondary">
     <div class="me-3">
@@ -356,7 +356,7 @@ Examples:
 
 #### Editing an internship application: `edit`
 
-Edits an existing internship application in FindMyIntern.
+Edits an existing internship application in FindMyIntern. Using this command, you can easily change any details if you have accidentally mistyped some information.
 
 <div class="d-flex alert alert-secondary">
     <div class="me-3">
@@ -426,7 +426,7 @@ Examples:
 
 #### Marking an internship application status: `mark`
 
-Marks an internship [application status](#application-status).
+Marks an internship [application status](#application-status). Using this command, you can easily change the application status if the company has gotten back to you.
 
 <div class="d-flex alert alert-secondary">
     <div class="me-3">
@@ -456,8 +456,8 @@ Examples:
 </div>
 
 #### Listing all internship applications: `list`
-
-Shows a list of all internship applications.
+ 
+Shows a list of all internship applications. Using this command, you can easily update the displayed internship application list to show you all internship applications, if it has been filtered by `find` or `filter`.
 
 <div class="d-flex alert alert-secondary">
     <div class="me-3">
@@ -477,7 +477,7 @@ Shows a list of all internship applications.
 
 #### Deleting an internship application: `delete`
 
-Deletes an internship application.
+Deletes an internship application. Using this command, you can easily delete an internship application that you do not want to keep track of.
 
 <div class="d-flex alert alert-secondary">
     <div class="me-3">
@@ -506,7 +506,7 @@ Examples:
 
 #### Finding for internship applications or tags: `find`
 
-Finds internship applications where the company's name and tags contain any of the given keywords.
+Finds internship applications where the company's name and tags contain any of the given keywords. Using this command, you can easily find an internship application that you are looking for.
 
 <div class="d-flex alert alert-secondary">
     <div class="me-3">
@@ -528,7 +528,7 @@ Finds internship applications where the company's name and tags contain any of t
 </div>
 <div markdown="span">
 **Usage of <code>find</code> command**<br>
-<code>find</code> command find internship applications from the original list instead of the current list.
+<code>find</code> command finds internship applications from the entire list of internship applications instead of the displayed internship application list.
 </div>
 </div>
 
@@ -549,7 +549,7 @@ Examples:
 
 #### Filtering for internship applications of a specific status: `filter`
 
-Filters for internship applications of the specified [application status](#application-status).
+Filters for internship applications of the specified [application status](#application-status). Using this command, you can easily filter for the application with the application status that you are looking for.
 
 <div class="d-flex alert alert-secondary">
     <div class="me-3">
@@ -570,7 +570,7 @@ Filters for internship applications of the specified [application status](#appli
 </div>
 <div markdown="span">
 **Usage of <code>filter</code> command**<br>
-<code>filter</code> command filter internship applications from the original list instead of the current list.
+<code>filter</code> command filters internship applications from the entire list of internship applications instead of the displayed internship application list.
 </div>
 </div>
 
@@ -615,7 +615,7 @@ Examples:
 
 #### Sorting the list of internship applications: `sort`
 
-Sorts the internship applications with the latest date at top to earliest at the bottom.
+Sorts the internship applications with the latest date at top to earliest at the bottom. Using this command, you can easily see those that have interviews coming up soon.
 
 <div class="d-flex alert alert-secondary">
     <div class="me-3">
@@ -653,7 +653,7 @@ Applications without interview date will remain at the bottom in the original or
 
 #### Clearing all internship applications: `clear`
 
-Clears all internship applications from FindMyIntern.
+Clears all internship applications from FindMyIntern. Using this command, you can easily clear all internship applications at once and start afresh.
 
 <div class="d-flex alert alert-secondary">
     <div class="me-3">
@@ -685,7 +685,7 @@ This command will clear the entire list of internships without warning. This com
 
 #### Viewing help: `help`
 
-Shows a message with a link to the user guide, and the data file location.
+Shows a message with a link to the user guide, and the data file location. Using this command, you can easily navigate to our user guide in case you have any difficulties in using FindMyIntern.
 
 <div class="d-flex alert alert-secondary">
     <div class="me-3">
@@ -711,7 +711,7 @@ Shows a message with a link to the user guide, and the data file location.
 
 #### Exiting the program: `exit`
 
-Exits the program.
+Exits the program. Using this command, you can quit FindMyIntern safely.
 
 <div class="d-flex alert alert-secondary">
     <div class="me-3">
