@@ -182,6 +182,17 @@ Please see the [Examples](#add-examples) below for more information.
 
 </div>
 
+**Reason for usage:**
+
+* You want to register a new patient to the hospital.
+* You want to add the personal information of the patient such as their name and contact details (phone number and email) for record purposes.
+* You want to add the personal information of a patient's next-of-kin such as their next-of-kin's name, relationship
+  to the patient and contact number for record purposes.
+* You want to add a patient's type according to overnight stay or daytime visit (inpatient/outpatient).
+* If the patient is an inpatient, you want to add the hospitalisation details (hospital wing, floor number and ward number) for record purposes.
+* You want to add any upcoming appointments that a patient has.
+* You want to add any long-term medication that a patient has been prescribed.
+
 **Upon Execution:**
 
 If the command was successfully executed, you should see something similar to the image below in the Command Result Box:
@@ -256,6 +267,16 @@ When editing medication, the existing medication of the patient will be removed 
 cumulative.
 </div>
 
+**Reasons for usage:**
+
+* You want to correct any typos when adding a patient's details into checkUp.
+* You want to edit the personal information of the patient such as their name and contact details (phone number and email).
+* You want to edit the personal information of a patient's next-of-kin as they want to pass the responsibility to another member of the family.
+* A patient is discharged, and you want to change their patient type from inpatient to outpatient.
+* If the patient is an inpatient, you want to edit the hospitalisation details as they are transferring wards.
+* You want to edit any upcoming appointments that a patient has as they are unable to make it.
+* A patient is on a new long-term medication for his new diagnosis, and you want to edit the long-term medication prescription of a patient.
+
 **Upon Execution:**
 
 If the command was successfully executed, you should see something similar to the image below in the Command Result Box:
@@ -289,6 +310,12 @@ Deletes the patient specified by the index number used in the patient list panel
 **Format:** `delete INDEX`
 
 * The index **must be a positive integer** 1, 2, 3, …​
+
+**Reasons for usage:**
+
+* You want to remove any personal information or data of a patient in checkUp.
+* You want to remove any erroneous information added into checkUp. e.g. You accidentally added an extra patient into 
+  checkUp and wish to remove it.
 
 **Upon Execution:**
 
@@ -508,7 +535,7 @@ Finds next-of-kin data for patients matching the input `PATIENT_NAME`, and is he
 * Patients with names that match at least one keyword will have their next-of-kin details displayed. e.g.
   `get /nok Hans Bo` will display `Sarar, 12345678, Mom`.
 
-**Reasons for usage:**
+**Reason for usage:**
 
 * You want to contact a patient's next-of-kin to seek consent.
 
@@ -618,7 +645,7 @@ Finds all the outpatients in checkUp.
 
 * Number of patients in the filtered list will be displayed in the command result box.
 
-**Reasons for usage:**
+**Reason for usage:**
 
 * You want to check how many patients are only here for their appointment.
 
@@ -754,6 +781,11 @@ Empties checkUp of all patients stored.
 * This command is **nuclear**, and cannot be reversed. It should only be executed when absolutely necessary.
 * This command is provided for privacy reasons, or to start afresh.
 
+**Reasons for usage:**
+
+* You want to reset the app completely.
+* You want to clear all patient data from your application.
+
 ### Opening the Help Page : `help`
 
 Opens the Help Window, which allows you to copy the URL of the User Guide to your clipboard.
@@ -790,6 +822,10 @@ Although CheckUp is built as a Command Line Interface application, it also suppo
 
 * Double-clicking on patients in the Patient List Panel will automatically open their info in the Patient Details Panel.
 
+**Reason for usage:**
+
+* You want to quickly view a patient's detailed info without having to enter a command.
+
 **Example:**
 
 * Double-clicking on the first patient `Alex Yeoh` will display his details on the Patient View Panel.
@@ -799,6 +835,10 @@ Although CheckUp is built as a Command Line Interface application, it also suppo
 #### Person Details Panel
 
 * Double-clicking on the fields in the Patient Details Panel will automatically prepare them for editing in the Command Input Box.
+
+**Reason for usage:**
+
+* You want to quickly edit a single field in the patient's details.
 
 **Example:**
 
@@ -811,6 +851,11 @@ Although CheckUp is built as a Command Line Interface application, it also suppo
 Similar to other CLI applications, CheckUp supports a few keyboard shortcuts:
   * Navigate past commands with the `UP` and `DOWN` arrow keys.
   * Clear the text currently in the command box with `Ctrl + Shift + C`.
+
+**Reasons for usage:**
+
+* You want to quickly access a previously entered command without having to retype it.
+* You want to clear the input line of a long command without having to manually delete it.
 
 <sub><sup>[back to top](#back-to-topt), [back to features](#features), [back to segment top](#general-commands)</sup></sub>
 
