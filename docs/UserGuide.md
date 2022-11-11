@@ -120,8 +120,8 @@ You should now see the message below and your itinerary added on the main page a
 
 * You can replace the add command inputs with the relevant details of your itinerary.
 * You can add optional details such as the country, number of people, and budget.
- - e.g. Enter `add d/Summer Trip c/Japan sd/2023-06-01 du/5 p/4 b/2000` instead to specify the country as Japan, number of people as 4, and your budget as $2000. 
-* For additional information, refer to the [`add` command](#creating-a-new-itinerary--add) explanation under the [Features](#features) section.
+  - e.g. Enter `add d/Summer Trip c/Japan sd/2023-06-01 du/5 p/4 b/2000` instead to specify the country as Japan, number of people as 4, and your budget as $2000. 
+* For additional information, refer to the [`add` command](#creating-a-new-itinerary--add)  in the [Features](#features) section under main page commands.
 
 </div>
 <div style="page-break-after: always"></div>
@@ -130,6 +130,68 @@ Select the itinerary which you have just created by typing in `select` along wit
 For example, if "Summer Trip" is shown as the first itinerary on the list, enter `select 1`.
 You will now see the planning page for the itinerary as follows:
 * insert image here
+
+You can return to the main page anytime you wish by executing `home`.
+
+To add an item to your Wishlist, use the [`add` command](#adding-an-item--add).
+Try adding a new item by typing in `add d/Meiji Shrine du/120` to the command box and press Enter.
+This will add a new item with the description of "Meiji Shrine" and a duration of 120 minutes.
+You should now see the item being displayed in the Wishlist.
+* insert image here
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes:**<br>
+
+* You can replace the add command inputs with the relevant details of your items.
+* You can include optional details such as the priority and cost.
+  - e.g. Enter `add d/Meiji Shrine du/120 p/5 c/20` instead to specify the priority as 5 and the cost as $20.
+* For additional information, refer to the [`add` command](#adding-an-item--add) explanation in the [Features](#features) section under itinerary planning page commands.
+
+</div>
+<div style="page-break-after: always"></div>
+
+Try adding a few more items! You should see the items listed in the Wishlist.
+
+To schedule an item from your Wishlist on a specific day in your itinerary, use the [`plan` command](#scheduling-an-item--plan).
+For example, type `plan 1 d/1 st/10:00` into the command box and Enter.
+Waddle will schedule the first item on your Wishlist for Day 1 of your itinerary starting at 10am.
+You should see the item being moved from the Wishlist section to the Day 1 item list, as follows:
+* insert image here
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes:**<br>
+
+* Note that the index of the item is now displayed as 1.1, meaning it is the first item on Day 1. 
+To find out more about the index format, refer to the section on Command Formats.
+* For additional information, refer to the [`plan` command](#scheduling-an-item--plan) explanation in the [Features](#features) section under itinerary planning page commands.
+
+</div>
+<div style="page-break-after: always"></div>
+Note that the index of the item is now shown as 1.1, meaning it is the first item on Day 1.
+
+Now you can try scheduling all the items in your Wishlist!
+
+Once you are satisfied with your schedule, you can export your schedule as a PDF document using the [`pdf` command](#exporting-as-pdf-file--pdf).
+Type `pdf` into the command box and Enter.
+You should now see the below:
+* insert image here
+
+Navigate to your computer's Documents folder, where you should see a folder named Waddle. 
+Open up the folder to see a PDF document with the same name as your exported itinerary.
+You should see your schedule displayed similar to the below image:
+* insert image here
+
+You can easily send your itinerary details to others using the [`copy` command](#copying-to-clipboard--copy).
+Type `copy` into the command box and Enter. 
+This will copy your itinerary to your clipboard, and you can now paste it in another location such as a messaging or email application.
+You should also see the below displayed in Waddle:
+* insert image here
+
+Congratulations! You have now created and planned your very first travel itinerary using Waddle.
+We hope this tutorial has helped you kickstart your journey!
+You can expand your Waddle knowledge further by reading the other sections of this User Guide, starting with the [Features](#features) that are available to you.
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always"></div>
