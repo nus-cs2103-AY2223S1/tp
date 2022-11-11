@@ -1,0 +1,82 @@
+{
+  "persons": [
+    {
+      "id": "c4c645da-27b3-454d-9428-5295a6ee1f33",
+      "name": "Alice Pauline",
+      "phone": "94351253",
+      "email": "alice@example.com",
+      "address": "123, Jurong West Ave 6, #08-111",
+      "tagged": ["friends"]
+    },
+    {
+      "id": "42d68acf-f3db-4c55-bbe6-4a3d1db64ac0",
+      "name": "Benson Meier",
+      "phone": "98765432",
+      "email": "johnd@example.com",
+      "address": "311, Clementi Ave 2, #02-25",
+      "tagged": ["owesMoney", "friends"]
+    },
+    {
+      "id": "6a5f8ed7-2607-47d1-9faf-bf2437642985",
+      "name": "Carl Kurz",
+      "phone": "95352563",
+      "email": "heinz@example.com",
+      "address": "wall street",
+      "tagged": []
+    },
+    {
+      "id": "fc3ad432-f7ed-403f-9236-18054ddd4b31",
+      "name": "Daniel Meier",
+      "phone": "87652533",
+      "email": "cornelia@example.com",
+      "address": "10th street",
+      "tagged": ["friends"]
+    },
+    {
+      "id": "dbef9f04-d31a-42b4-b57a-4d2fd34444c3",
+      "name": "Elle Meyer",
+      "phone": "9482224",
+      "email": "werner@example.com",
+      "address": "michegan ave",
+      "tagged": []
+    },
+    {
+      "id": "79faf217-b266-4dd8-91a5-d801e87e5447",
+      "name": "Fiona Kunz",
+      "phone": "9482427",
+      "email": "lydia@example.com",
+      "address": "little tokyo",
+      "tagged": []
+    },
+    {
+      "id": "14cec028-25a3-466d-8ffc-359dc1e2a585",
+      "name": "George Best",
+      "phone": "9482442",
+      "email": "anna@example.com",
+      "address": "4th street",
+      "tagged": []
+    }
+  ],
+  "tasks": [
+    {
+      "id": "bfbf250c-fd58-49b4-be15-ca12095ca2ee",
+      "taskName": "Buy Milk",
+      "contactIndex": 0
+    },
+    {
+      "id": "41478d11-dbba-441f-ab0f-99ddf097eac1",
+      "taskName": "CS2103T",
+      "contactIndex": 0
+    }
+  ],
+  "bridges": [
+    {
+      "personId": "c4c645da-27b3-454d-9428-5295a6ee1f33",
+      "taskId": "bfbf250c-fd58-49b4-be15-ca12095ca2ee"
+    },
+    {
+      "personId": "c4c645da-27b3-454d-9428-5295a6ee1f33",
+      "taskId": "bfbf250c-fd58-49b4-be15-ca12095ca2ee"
+    }
+  ]
+}

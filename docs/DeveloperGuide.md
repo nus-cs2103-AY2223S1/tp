@@ -2,107 +2,116 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
+
+## **Table of Contents**
+
+{:.no_toc}
+
+1. Table of Contents
 {:toc}
 
---------------------------------------------------------------------------------------------------------------------
+---
 
-## **Acknowledgements**
+## **Setting up and getting started**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+Refer to the guide [Setting up and getting started](SettingUp.md).
 
---------------------------------------------------------------------------------------------------------------------
-
-## **Setting up, getting started**
-
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
-
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Design**
 
-<div markdown="span" class="alert alert-primary">
-
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+<div markdown="span" class="alert alert-primary">:bulb: **Tip** <br>
+The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S1-CS2103T-T12-2/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
-The ***Architecture Diagram*** given above explains the high-level design of the App.
+The architecture diagram given above explains the high-level design of the App.
 
 Given below is a quick overview of main components and how they interact with each other.
 
-**Main components of the architecture**
+#### Main Components of the Architecture
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
-* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
-* At shut down: Shuts down the components and invokes cleanup methods where necessary.
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-T12-2/tp/blob/master/src/main/java/swift/Main.java) and [`MainApp`](https://github.com/AY2223S1-CS2103T-T12-2/tp/blob/master/src/main/java/swift/MainApp.java). It is responsible for,
 
-[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+- initializing the components in the correct sequence and connecting them up with each other during the app's launch.
+- shutting down the components and invoking cleanup methods where necessary when closing the app.
 
-The rest of the App consists of four components.
+The rest of the app consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+- [**`UI`**](#ui-component): Displays the user interface of the app.
+- [**`Logic`**](#logic-component): Parses and executes the commands.
+- [**`Model`**](#model-component): Holds the data of the app in memory.
+- [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
+[**`Commons`**](#common-classes) represents a collection of classes used by multiple components.
 
-**How the architecture components interact with each other**
+#### How the architecture components interact with each other
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The sequence diagram below shows how the components interact with each other for the scenario where the user issues the command `delete_contact 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
 Each of the four main components (also shown in the diagram above),
 
-* defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+- defines its API in an `interface` with the same name as the component.
+- implements its functionality using a concrete `{Component Name}Manager` class.
 
-For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
+For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class. Other components interact with a given component through its interface, rather than the concrete class. The reasoning is to prevent outside component's from being coupled to the implementation of a component, which is illustrated by the diagram below.
 
 <img src="images/ComponentManagers.png" width="300" />
 
 The sections below give more details of each component.
 
-### UI component
+### UI Component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The API of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-T12-2/tp/blob/master/src/main/java/swift/ui/Ui.java).
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+Here's a partial class diagram of the `UI` component without any of the task/contact management panels.
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+![Structure of the UI Component without Panels](images/UiClassDiagram.png)
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The UI consists of a `MainWindow` that is made up of parts, e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter`, and etc. All these parts, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+
+Here's another partial class diagram of the `UI` component with the task and contact management panels.
+
+![Structure of the UI Component with Panels](images/UiPanelsClassDiagram.png)
+
+The UI keeps track of which tab the user is currently viewing with the `isContactTabShown` boolean. If the contacts tab is currently in view, `MainWindow` contains `PersonListPanel` and `PersonTaskListPanel`, and it contains `TaskListPanel` and `TaskPersonListPanel` if otherwise.
+
+The `UI` component uses the [JavaFx](https://openjfx.io/) UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-T12-2/tp/blob/master/src/main/java/swift/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-T12-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
-* executes user commands using the `Logic` component.
-* listens for changes to `Model` data so that the UI can be updated with the modified data.
-* keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+- executes user commands using the `Logic` component.
+- prompts users with command suggestions and allows them to auto-complete them using the `Logic` component.
+- listens for changes to `Model` data so that the UI can be updated with the modified data.
+- keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
+- depends on some classes in the `Model` component, as it displays `Person` and `Task` objects located in the `Model`.
 
-### Logic component
+### Logic Component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+The API of this component is specified in [`Logic.java`](https://github.com/AY2223S1-CS2103T-T12-2/tp/blob/master/src/main/java/swift/logic/Logic.java).
 
-Here's a (partial) class diagram of the `Logic` component:
+Here's a partial class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
+
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddContactCommand`) which is executed by the `LogicManager`.
+3. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The sequence diagram below illustrates the interactions within the `Logic` component for the `execute("delete_contact 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete_contact 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note** <br>
+The lifeline for `DeleteContactCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -110,268 +119,569 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
-### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+- When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddContactCommandParser`)
+- The `XYZCommandParser` class then uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddContactCommand`), which the `AddressBookParser` returns back as a `Command` object.
+- All `XYZCommandParser` classes (e.g., `AddContactCommandParser`, `DeleteTaskCommandParser`, ...) inherit from the `Parser` interface, so that they can be treated similarly where possible, e.g. during testing.
+
+### Model Component
+
+The API of this component is specified in [`Model.java`](https://github.com/AY2223S1-CS2103T-T12-2/tp/blob/master/src/main/java/swift/model/Model.java).
+
+Here's a partial class diagram of the `Model` component:
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
+<div markdown="span" class="alert alert-info">:information_source: **Note** <br>
+The `Task` and `PersonTaskBridge` classes are left out of the above diagram for simplicity. Compared to the `Person` class, they follow a similar structure of attribute composition.
+</div>
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+- stores the address book data, i.e. all `Person` objects (which are contained in a `UniquePersonList` object).
+- stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+- stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` object.
+- does not depend on any of the other three components, because the `Model` represents data entities of the domain, and they should make sense on their own without depending on other components.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note** <br>
+An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
 </div>
 
+### Storage Component
 
-### Storage component
+The API of this component is specified in [`Storage.java`](https://github.com/AY2223S1-CS2103T-T12-2/tp/blob/master/src/main/java/swift/storage/Storage.java).
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+Here's a partial class diagram of the `Storage` component:
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+
+- can save both address book data and user preference data in `.json` format, and read them back into corresponding objects.
+- inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+- depends on some classes in the `Model` component, because the `Storage` component's job is to save/retrieve objects that belong to the `Model`.
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `swift.commons` package.
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Many-to-many relationship between `Person` and `Task`
 
-#### Proposed Implementation
+The implementation of the contact-task relation is facilitated by `PersonTaskBridge` and `PersonTaskBridgeList`.
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+`PersonTaskBridge` is a class containing a `Person` UUID and a `Task` UUID, representing a relation between a `Person` and a `Task`.
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+`PersonTaskBridgeList` is a class containing a list of `PersonTaskBridge` objects, representing all the relations between `Person` and `Task` objects in the `AddressBook`. Additionally, it implements the following operations:
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+- `PersonTaskBridgeList#add(PersonTaskBridge)` - Saves a new relation between a `Person` and a `Task` in the list.
+- `PersonTaskBridgeList#remove(PersonTaskBridge)` - Removes an existing relation between a `Person` and a `Task` from the list.
+- `PersonTaskBridgeList#removePerson(Person)` and `PersonTaskBridgeList#removeTask(Task)` - Removes all existing relations between a `Person` and `Task` objects from the list.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+These operations will be exposed in the `Model` interface.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+The following class diagram summarizes the relationship between `PersonTaskBridge` and other classes:
 
-![UndoRedoState0](images/UndoRedoState0.png)
+<img src="images/PersonTaskBridgeDiagram.png" width="250" />
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+#### Design Considerations
 
-![UndoRedoState1](images/UndoRedoState1.png)
+**Aspect: How `Person` and `Task` are associated with `PersonTaskBridge`**
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+- **Alternative 1 (current choice):** Stores `Person` and `Task` UUID in `PersonTaskBridge`.
 
-![UndoRedoState2](images/UndoRedoState2.png)
+  - Pros: No need to handle the case of changing index when `Person` or `Task` are filtered. Easier to maintain data integrity.
+  - Cons: Requires changes in `Person` and `Task` schema and storage.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+- **Alternative 2:** Stores `Person` and `Task` index in `PersonTaskBridge`.
+  - Pros: No change is needed for `Person` and `Task` schema.
+  - Cons: Requires changes to `PersonTaskBridge` objects every time a command changes `Person` or `Task` object index.
 
-</div>
+### Optional `Description` and `Deadline` Fields
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+The `Description` and `Deadline` fields for tasks are optional for the users fill in. The implementation of this optionality is 
+facilitated by wrapping the values using the [`java.util.Optional<T>`](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Optional.html) class. 
+By doing so, we took advantage of the provided methods, e.g. `orElse`, `or`, and etc. This `Optional` class thus helps to encapsulate
+the logic of methods that depend on the presence or absence of the contained value.
 
-![UndoRedoState3](images/UndoRedoState3.png)
+#### Difference from Optional `Tag`
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+It is also optional for a `Person` to have tags. To achieve this, a `Person` stores the tags in a `HashSet`.
+If no tags are assigned to a `Person`, the `HashSet` will be empty. By doing so, a `Person` can have any number of tags.
 
-</div>
+This differs from the implementation of optionality for `Description` and `Deadline`. For `Description` and `Deadline`,
+a `Task` can either contain the value or no value at all. Thus, due to the differing multiplicities, we could not use the 
+same implementation as tags.
 
-The following sequence diagram shows how the undo operation works:
+### View Task Details
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+The implementation of the task tab UI is facilitated by `TaskCard` and `TaskListPanel`.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+`TaskCard` and `TaskListPanel` extends the superclass `UiPart<Region>` and fills the UI container with a panel that displays the list of tasks, along with their assigned contacts and deadlines.
 
-</div>
+`TaskListPanel` in is responsible for displaying the graphics of a task using a `TaskCard`.
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+### Command Suggestions and Command Auto-Completion
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+The implementation of Command Suggestions and Command Auto-Completion is facilitated by `CommandSuggestor` in the `Logic` Component. The `CommandBox` UI component listens for changes in the command box textField and calls methods from `CommandSuggestor` to reflect command suggestions and allow autocompletion.
 
-</div>
+`CommandSuggestor` mainly implements the following operations:
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+- `CommandSuggestor#suggestCommand` - Suggests a command with the corresponding syntax based on the user's current input
+- `CommandSuggestor#autocompleteCommand` - Completes the current user input according to the shown command suggestion
 
-![UndoRedoState4](images/UndoRedoState4.png)
+#### Design Considerations
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+**Aspect: How to provide command suggestions to users**
 
-![UndoRedoState5](images/UndoRedoState5.png)
+- **Alternative 1 (current choice):** Provide command suggestion over the command box.
 
-The following activity diagram summarizes what happens when a user executes a new command:
+  - Pros: Uses less screen real estate
+  - Cons: Only able to view one possible command
 
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
+- **Alternative 2:** Provide command suggestions in a separate display box
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+  - Pros: Able to display all possible commands
+  - Cons: Uses more screen real estate
 
-_{more aspects and alternatives to be added}_
+**Aspect: How to autocomplete commands for users**
 
-### \[Proposed\] Data archiving
+- **Alternative 1:** Autocomplete up to next prefix according displayed command suggestion.
 
-_{Explain here how the data archiving feature will be implemented}_
+  - Pros: Users can easily autocomplete the command shown with just one tab
+  - Cons: Users might have to backspace and complete the command again for commands with common prefixes. Eg. `add_contact`, `add_task`
 
+- **Alternative 2 (current choice):** Autocomplete up to the longest matching prefix of all possible commands.
+  - Pros: Easy to autocomplete commands with common prefixes
+  - Cons: Users might have to type a few characters more
 
---------------------------------------------------------------------------------------------------------------------
+---
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## **Documentation, Logging, Dev-ops, Testing, and Configuration**
 
-* [Documentation guide](Documentation.md)
-* [Testing guide](Testing.md)
-* [Logging guide](Logging.md)
-* [Configuration guide](Configuration.md)
-* [DevOps guide](DevOps.md)
+To understand how to set up and maintain this project website, head over to the [Documentation Guide](Documentation.md).
 
---------------------------------------------------------------------------------------------------------------------
+You can learn how to run tests on Swift+ by going to the [Testing Guide](Testing.md) page.
+
+To learn how to run and release Swift+ using Gradle, please visit the [DevOps Guide](DevOps.md) page.
+
+Please visit the [Logging Guide](Logging.md) to learn how we implement logging.
+
+We also have files to configure properties of the app, which are detailed in the [Configuration Guide](Configuration.md).
+
+---
 
 ## **Appendix: Requirements**
 
-### Product scope
+This section covers the user requirements we attempt to meet in Swift+.
 
-**Target user profile**:
+### Target User Profile
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+Swift+ is designed for **software engineering project leads** who,
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+- need to keep track of many tasks with clients and colleagues.
+- can type fast.
+- prefer typing to mouse interactions.
+- prefer desktop apps over other types.
 
+### Value proposition
+
+Swift+ allows users to manage tasks with clients and colleagues **faster** than a typical GUI-driven app.
 
 ### User stories
 
-Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
+Priority levels:
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+- High (must have) - `* * *`
+- Medium (nice to have) - `* *`
+- Low (unlikely to have) - `*`
 
-*{More to be added}*
+| Priority | As a …​        | I want to …​             | So that I can…​                                                            |
+| -------- | -------------- | ------------------------ | -------------------------------------------------------------------------- |
+| `* * *`  | new user       | see usage instructions   | refer to instructions when I forget how to use the app                     |
+| `* * *`  | user           | add a new contact        | add a new contact to keep track of                                         |
+| `* * *`  | user           | view all contacts        | get an overview of all contacts in my app                                  |
+| `* * *`  | user           | update a contact         | update the particulars of a contact                                        |
+| `* * *`  | user           | delete a contact         | remove contacts that I no longer need                                      |
+| `* * *`  | user           | find contacts by name    | locate details of contacts without having to go through the entire list    |
+| `* * *`  | user           | add task for contact     | add a task to a contact to keep track of                                   |
+| `* * *`  | user           | view tasks by contact    | view tasks belonging to a contact                                          |
+| `* * *`  | user           | delete a task            | remove tasks that I no longer need                                         |
+| `* *`    | user           | update a task            | update the particulars of a task                                           |
+| `* *`    | user           | list all tasks           | get an overview of all tasks in my app                                     |
+| `* *`    | user           | find tasks by name       | locate details of tasks without having to go through the entire list       |
+| `* *`    | forgetful user | autocomplete my commands | conveniently type commands without referring to the user guide excessively |
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+For all use cases below, the system is `Swift+` and the actor is the `user`, unless specified otherwise.
 
-**Use case: Delete a person**
+**Use case: UC1 - Create a contact**
 
-**MSS**
+MSS:
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to add a contact.
+2. Swift+ creates the contact. 
 
-    Use case ends.
+Use case ends.
 
-**Extensions**
+Extensions:
 
-* 2a. The list is empty.
+- 1a. Swift+ detects an error in the entered data.
+    - 1a1. Swift+ requests for the correct data.
+    - Use case resumes from step 1.
 
-  Use case ends.
+**Use case: UC2 - Update a contact**
 
-* 3a. The given index is invalid.
+MSS:
 
-    * 3a1. AddressBook shows an error message.
+1.  User requests to view all contacts.
+2.  Swift+ returns a list of all contacts.
+3.  User requests to edit a specific contact in the list.
+4.  Swift+ edits the details of the specified contact.
 
-      Use case resumes at step 2.
+Use case ends.
 
-*{More to be added}*
+Extensions:
+
+- 2a. Swift+ returns an empty list.
+    - Use case ends.
+- 3a. Swift+ detects the given index to be invalid.
+    - 3a1. Swift+ requests for a valid index.
+    - Use case resumes from step 3.
+- 3b. Swift+ detects an error in the entered data.
+    - 3b1. Swift+ requests for the correct data.
+    - Use case resumes from step 3.
+
+**Use case: UC3 - Delete a person**
+
+MSS:
+
+1.  User requests to view all contacts.
+2.  Swift+ returns a list of all contacts.
+3.  User requests to delete a specific contact in the list.
+4.  Swift+ deletes the specified contact.
+
+Use case ends.
+
+Extensions:
+
+- 2a. Swift+ returns an empty list.
+    - Use case ends.
+- 3a. Swift+ detects the given index to be invalid.
+    - 3a1. Swift+ requests for a valid index.
+    - Use case resumes from step 3.
+
+**Use case: UC4 - Create a task**
+
+MSS:
+
+1. User requests to add a task.
+2. Swift+ creates the task.
+
+Use case ends.
+
+Extensions:
+
+- 1a. Swift+ detects an error in the entered data.
+    - 1a1. Swift+ requests for the correct data.
+    - Use case resumes from step 1.
+
+**Use case: UC5 - Update a task**
+
+MSS:
+
+1.  User requests to view all tasks.
+2.  Swift+ returns a list of all tasks.
+3.  User requests to edit a specific task in the list.
+4.  Swift+ edits the details of the specified task.
+ 
+Use case ends.
+
+Extensions:
+
+- 2a. Swift+ returns an empty list.
+    - Use case ends.
+- 3a. Swift+ detects the given index to be invalid.
+    - 3a1. Swift+ requests for a valid index.
+    - Use case resumes from step 3.
+- 3b. Swift+ detects an error in the entered data.
+    - 3b1. Swift+ requests for the correct data.
+    - Use case resumes from step 3.
+
+**Use case: UC6 - Delete a task**
+
+MSS:
+
+1.  User requests to view all tasks.
+2.  Swift+ returns a list of all tasks.
+3.  User requests to delete a specific task in the list.
+4.  Swift+ deletes the specified task.
+
+Use case ends.
+
+Extensions:
+
+- 2a. Swift+ returns an empty list.
+    - Use case ends.
+- 3a. Swift+ detects the given index to be invalid.
+    - 3a1. Swift+ requests for a valid index.
+    - Use case resumes from step 3.
+
+**Use case: UC7 - View tasks associated with a contact**
+
+MSS:
+
+1. User requests to view all contacts.
+2. Swift+ returns a list of all contacts.
+3. User requests to view tasks associated with a specified contact.
+4. Swift+ returns the contact and all associated tasks.
+
+Extensions:
+
+- 2a. Swift+ returns an empty list.
+    - Use case ends.
+- 3a. Swift+ detects the given index to be invalid.
+    - 3a1. Swift+ requests for a valid index.
+    - Use case resumes from step 3.
+
+**Use case: UC8 - Mark a task as completed**
+
+MSS:
+
+1. User requests to view all tasks.
+2. Swift+ returns a list of all tasks.
+3. User requests to mark a task as completed.
+4. Swift+ marks the specified task as completed.
+
+Extensions:
+
+- 2a. Swift+ returns an empty list.
+    - Use case ends.
+- 3a. Swift+ detects the given index to be invalid.
+    - 3a1. Swift+ requests for a valid index.
+    - Use case resumes from step 3.
+- 3b. Swift+ detects that the specified task is already completed.
+    - Swift+ indicates that task is already completed.
+    - Use case ends.
+
+**Use case: UC9 - Assign a task to a contact**
+
+MSS:
+
+1. User requests to view all tasks and contacts.
+2. Swift+ returns all tasks and contacts.
+3. User requests to assign a task to a contact.
+4. Swift+ assigns the specified task to the specified contact.
+
+Extensions:
+
+- 2a. Swift+ returns an empty list of contacts.
+    - Use case ends.
+- 2b. Swift+ returns an empty list of tasks.
+    - Use case ends.
+- 3a. Swift+ detects given contact or task index to be invalid.
+    - Swift+ requests for a valid index.
+    - Use case resumes from step 3.
+- 3b. Swift+ detects that the specified task is already assigned to the specified contact.
+    - Swift+ indicates that task is already assigned to the contact.
+    - Use case ends.
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 tasks and contacts without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+4.  Data should be persistent and stored in the local machine's storage.
+5.  Product is designed for single user and is not required to handle collaboration between multiple users.
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+- **API**: Stands for application programming interface, which is a set of definitions and protocols for building and integrating application software.
+- **Bridge**: Maps a relationship between a contact and a task.
+- **GUI**: Stands for graphical user interface, which is a system interface that uses visual icons, menus, and a mouse to manage interactions with the system.
+- **Mainstream OS**: Stands for mainstream operating systems, which includes Windows, Linux, Unix, and OS-X.
+- **UUID**: Stands for universally unique identifier, which is used for identifying information that needs to be unique within a system.
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
+<div markdown="span" class="alert alert-info">:information_source: **Note** <br>
+These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
-
 </div>
 
 ### Launch and shutdown
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1. Download the jar file and copy into an empty folder.
+   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
-
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+   2. Re-launch the app by double-clicking the jar file.<br>
+      Expected: The most recent window size and location is retained.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+### Adding a Task
 
-1. _{ more test cases …​ }_
+1. Adding a Task
 
-### Deleting a person
+   1. Prerequisites: task "Foo" isn't already added. If added, delete it first.
+   2. Test case: `add_task n/Foo d/Foo`<br>
+      Expected: Task "Foo" is added to the task list. Details of the added task shown in the status message.
+   3. Test case: `add_task n/Foo d/Foo`<br>
+      Expected: No task is added. Error details shown in the status message.
 
-1. Deleting a person while all persons are being shown
+2. Adding a Task with deadline
+   1. Prerequisites: deadline "Bar" isn't already added. If added, delete it first.
+   2. Test case: `add_task n/Bar d/Bar dl/02-02-2022 2200`<br>
+      Expected: Deadline "Bar" is added to the task list. Details of the added deadline shown in the status message.
+   3. Test case: `add_task n/Bar d/Bar dl/02-02-2022 2200`<br>
+      Expected: No deadline is added. Error details shown in the status message.
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+### Mark / Unmark a Task
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+1. Marking a Task as completed
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+   1. Prerequisites: task "Foo" is already added. If not added, add it first. Foo should be the first index in the task list.
+   2. Test case: `mark 1`<br>
+      Expected: Task "Foo" is marked as completed. Details of the completed task shown in the status message.
+   3. Test case: `mark 1`<br>
+      Expected: No task is marked as completed. Error details shown in the status message.
+   4. Test case: `mark 0`<br>
+      Expected: No task is marked as completed. Error details shown in the status message.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+2. Unmarking a Task as incomplete
+
+   1. Prerequisites: task "Bar" is already added. If not added, add it first. Foo should be the first index in the task list and already marked as complete.
+   2. Test case: `unmark 1`<br>
+      Expected: Task "Bar" is marked as uncompleted. Details of the uncompleted task shown in the status message.
+   3. Test case: `unmark 1`<br>
+      Expected: No task is marked as uncompleted. Error details shown in the status message.
+   4. Test case: `unmark 0`<br>
+      Expected: No task is marked as uncompleted. Error details shown in the status message.
+
+### Switching Lists
+
+1. List all tasks
+
+   1. Test case: `list_task`<br>
+      Expected: All tasks are listed in the task list and, if not already on the "Task List" view it's swapped to it. Details of the listed tasks shown in the status message.
+   2. Test case: `list_contact`<br>
+      Expected: All contacts are listed in the contact list and, if not already on the "Contact List" view it's swapped to it. Details of the listed contacts shown in the status message.
+   3. Test case: type `ctrl + tab`<br>
+      Expected: The current list is switched to the other list.
+
+### Viewing Task and Contact Assocation
+
+1. Select Task to view Contact Assocation
+
+   1. Prerequisites: task "Foo" is already added and assigned to contact "Alex". If not added, add it first. Foo should be the first index in the task list.
+   2. Test case: `select_task 1`<br>
+      Expected: Task "Foo" is selected, the view is swapped to the "Task List" and the contact list is updated to show all contacts associated with the task. Details of the selected task shown in the status message.
+   3. Test case: `select_task 0`<br>
+      Expected: No task is selected. Error details shown in the status message.
+
+2. Select Contact to view Task Association
+
+   1. Prerequisites: contact "Alex" is already added and assigned to task "Foo". If not added, add it first. Alex should be the first index in the contact list.
+   2. Test case: `select_contact 1`<br>
+      Expected: Contact "Alex" is selected, the view is swapped to the "Contact List" and the task list is updated to show all tasks associated with the contact. Details of the selected contact shown in the status message.
+   3. Test case: `select_contact 0`<br>
+      Expected: No contact is selected. Error details shown in the status message.
+
+### Finding Task or Contact
+
+1. Find Task
+
+   1. Prerequisites: task "Foo" is already added and "Bar" is not added. If not added, add it first.
+   2. Test case: `find_task Foo`<br>
+      Expected: All tasks containing "Foo" are listed in the task list. Details of the listed tasks shown in the status message.
+   3. Test case: `find_task Bar`<br>
+      Expected: No tasks are listed in the task list. Details of the listed tasks shown in the status message.
+
+2. Find Contact
+   1. Prerequisites: contact "Alex" is already added and "Bob is not added". If not added, add it first.
+   2. Test case: `find_contact Alex`<br>
+      Expected: All contacts containing "Alex" are listed in the contact list. Details of the listed contacts shown in the status message.
+   3. Test case: `find_contact Bob`<br>
+      Expected: No contacts are listed in the contact list. Details of the listed contacts shown in the status message.
+
+### Deleting a Task or Contact
+
+1. Deleting a Contact or Task while all Contact or Task are being shown
+
+   1. Prerequisites: List all Contacts or Tasks using the `list_contact` or `list_task` command.
+   2. Test case: `delete_contact 1` or `delete_task 1`<br>
+      Expected: First Contact or Task is deleted from the list. Details of the deleted Contact or Task shown in the status message.
+   3. Test case: `delete_contact 0` or `delete_task 0`<br>
+      Expected: No Contact, Task is deleted. Error details shown in the status message. Status bar remains the same.
+   4. Other incorrect delete commands to try: `delete_contact` / `delete_task`, `delete_contact x` / `delete_task x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Editing a Task or Contact
+
+1. Editing a Contact or Task while all Contact or Task are being shown
+
+   1. Prerequisites: List all Contacts or Tasks using the `list_contact` or `list_task` command. There should be at least one contact or task.
+   2. Test case: `edit_contact 1 n/Alex Yeoh p/98765432`
+      Expected: First Contact is edited to have the name "Alex Yeoh" and phone number "98765432". Details of the edited Contact shown in the status message.
+   3. Test case: `edit_contact 0 n/Alex Yeoh p/98765432`<br>
+      Expected: No Contact is edited. Error details shown in the status message. Status bar remains the same.
+   4. Test case: `edit_task 1 n/Bar d/Foo dl/02-02-2022 2200`<br>
+      Expected: First Task is edited to have the name "Bar", description "Foo" and deadline "02-02-2022 2200". Details of the edited Task shown in the status message.
+   5. Test case: `edit_task 0 n/Bar d/Foo dl/02-02-2022 2200`<br>
+      Expected: No Task is edited. Error details shown in the status message. Status bar remains the same.
+   6. Other incorrect edit commands to try: `edit_contact` / `edit_task`, `edit_contact x ...` / `edit_task x ...`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+### Autocomplete
+
+1. type `li` then press `tab`<br>
+   Expected: Autocomplete the command based on the current command text, autocompleting it to `list\_`.
+2. type `list_t` then press `tab`<br>
+   Expected: Autocomplete the command based on the current command text, autocompleting it to `list_task`.
+
+### Clearing all entries
+
+1. Clear all exisiting data in the application
+   1. Test case: `clear`<br>
+      Expected: All data is cleared from the application. Status message shows the number of contacts and tasks cleared.
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1.  Shutdown the app by typing `exit` into the command box.
+2.  Re-launch the app by double-clicking the jar file.<br>
+    Expected: The most recent state is saved.
+3.  Dealing with missing/corrupted data files
+    1.  Corrupt the data file in `data/addressbook.json` by adding random characters to make the JSON file unreadable or by simply deleting it.
+    2.  Re-launch the app by double-clicking the jar file.<br>
+        Expected: The app will start with an empty address book.
+    3.  After new data is added, the corrupted data file will be overwritten by the app. Any missing file will be replaced by the app.
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+### Viewing Help
 
-1. _{ more test cases …​ }_
+1. View Help
+   1. Test case: `help`<br>
+      Expected: Help window opens.
+
+---
+
+## **Acknowledgements**
+
+- This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+- Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
+- UI color scheme inspired by [TailwindUI](https://tailwindui.com/)
