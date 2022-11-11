@@ -124,17 +124,17 @@ You will then see the below message:<br> <br>
 Now you can add your first itinerary. To do so, use the [`add` command](#creating-a-new-itinerary--add) with the relevant itinerary details.
 Try executing the command `add d/Summer Trip sd/2023-06-01 du/5`. 
 It will add an itinerary named Summer Trip, starting from 1 June 2023 with a duration of 5 days.
-You should now see the message below and your itinerary added on the main page as follows:<br> <br>
+You should now see the message below and your itinerary added on the home page as follows:<br> <br>
 ![add-itinerary](images/ug-beg-tut/add-itinerary.png)
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes:**<br>
 
-* You can replace the add command inputs with the relevant details of your itinerary.
-* You can add optional details such as the country, number of people, and budget.
+* You can replace the `add` command inputs with the relevant details of your itinerary.
+* You can include optional details such as the country, number of people, and budget.
   - e.g. Enter `add d/Summer Trip c/Japan sd/2023-06-01 du/5 p/4 b/2000` instead to specify the country as Japan, number of people as 4, and your budget as $2000. 
-* For additional information, refer to the [`add` command](#creating-a-new-itinerary--add)  in the [Features](#features) section under main page commands.
+* For additional information, refer to the [`add` command](#creating-a-new-itinerary--add)  in the [Features](#features) section under home page commands.
 
 </div>
 
@@ -147,15 +147,15 @@ You can return to the main page anytime you wish by executing `home`.
 
 To add an activity to your Wishlist, use the [`add` command](#adding-an-activity--add).
 Try adding a new activity by typing in `add d/Visit Meiji Shrine du/120` to the command box and press Enter.
-This will add a new item with the description of "Visit Meiji Shrine" and a duration of 120 minutes.
-You should now see the item being displayed in the Wishlist.<br><br>
+This will add a new activity with the description of "Visit Meiji Shrine" and a duration of 120 minutes.
+You should now see the activity being displayed in the Wishlist.<br><br>
 ![add-item](images/ug-beg-tut/add-item.png)
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes:**<br>
 
-* You can replace the add command inputs with the relevant details of your items.
+* You can replace the `add` command inputs with the relevant details of your activities.
 * You can include optional details such as the priority and cost.
   - e.g. Enter `add d/Visit Meiji Shrine du/120 p/5 c/20` instead to specify the priority as 5 and the cost as $20.
 * For additional information, refer to the [`add` command](#adding-an-activity--add) explanation in the [Features](#features) section under itinerary planning page commands.
@@ -178,7 +178,7 @@ You should see the item being moved from the Wishlist section to the Day 1 item 
 
 </div>
 
-Note that the index of the item is now shown as 1.1, meaning it is the first item on Day 1.
+Note that the index of the activity is now shown as 1.1, meaning it is the first activity on Day 1.
 
 Now you can try scheduling all the activities in your Wishlist!
 
@@ -197,6 +197,7 @@ This will copy your itinerary to your clipboard, and you can now paste it in ano
 You should also see the below displayed in Waddle: <br> <br>
 ![copy](images/ug-beg-tut/copy.png)
 
+<br>
 Congratulations! You have now created and planned your very first travel itinerary using Waddle.
 We hope this tutorial has helped you kickstart your journey!
 You can expand your Waddle knowledge further by reading the other sections of this User Guide, starting with the [Features](#features) that are available to you.
