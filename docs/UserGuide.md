@@ -435,7 +435,7 @@ You can tell PayMeLah to add Service Charge and GST to the amount of money speci
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You might find it difficult to find the person index of a specific person when your list gets long. In this situation, you may want to make use of the [`find` command](#locating-persons-by-inputs-find) or [`finddebt` command](#locating-persons-by-debt-description-finddebt) to shorten the list and make it easier to find and figure out the person index of the person that you are looking for.
+You might find it difficult to find the [person index](#glossary-person-index) of a specific person when your list gets long. In this situation, you may want to make use of the [`find` command](#locating-persons-by-inputs-find) or [`finddebt` command](#locating-persons-by-debt-description-finddebt) to shorten the list and make it easier to find and figure out the person index of the person that you are looking for.
 </div>
 
 (Continued on next page!)
@@ -469,11 +469,11 @@ When you want to divide a group expense equally between multiple persons, you ca
 `splitdebt <person index…> d/<description> m/<money> [date/<date>] [time/<time>]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You can split a debt among as many persons as you want. You can even include yourself with the special person index `0`. But you cannot split a debt between just yourself.
+You can split a debt among as many persons as you want. You can even include yourself with the special [person index](#glossary-person-index) `0`. But you cannot split a debt between just yourself.
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You might find it difficult to find the person index of a specific person when your list gets long. In this situation, you may want to make use of the [`find` command](#locating-persons-by-inputs-find) or [`finddebt` command](#locating-persons-by-debt-description-finddebt) to shorten the list and make it easier to find and figure out the person index of the person that you are looking for.
+You might find it difficult to find the [person index](#glossary-person-index) of a specific person when your list gets long. In this situation, you may want to make use of the [`find` command](#locating-persons-by-inputs-find) or [`finddebt` command](#locating-persons-by-debt-description-finddebt) to shorten the list and make it easier to find and figure out the person index of the person that you are looking for.
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -528,7 +528,7 @@ When you no longer need to keep track of any debts of a person, you can use this
 `cleardebts <person index>`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You might find it difficult to find the person index of a specific person when your list gets long. In this situation, you may want to make use of the [`find` command](#locating-persons-by-inputs-find) or [`finddebt` command](#locating-persons-by-debt-description-finddebt) to shorten the list and make it easier to find and figure out the person index of the person that you are looking for.
+You might find it difficult to find the [person index](#glossary-person-index) of a specific person when your list gets long. In this situation, you may want to make use of the [`find` command](#locating-persons-by-inputs-find) or [`finddebt` command](#locating-persons-by-debt-description-finddebt) to shorten the list and make it easier to find and figure out the person index of the person that you are looking for.
 </div>
 
 **Example:**<br>
@@ -545,7 +545,7 @@ This [command](#glossary-command) marks the [debts](#glossary-debt) specified fr
 When you want to indicate that a particular debt has been paid, but still keep a record of it in PayMeLah, this is the command to use!
 
 **Format:**<br>
-`mark <person index> debt/<[debt index](#glossary-debt-index)…>`
+`mark <person index> debt/<debt index…>`
 
 **Example:**<br>
 * `mark 2 debt/2 3` will mark the 2nd and 3rd debt of the 2nd person in the current displayed [person list](#person-list-section) as paid.
@@ -561,7 +561,7 @@ This [command](#glossary-command) marks the [debts](#glossary-debt) specified fr
 When you realise that a debt you had previously [marked as paid](#marking-debts-as-paid-mark) is actually not paid yet, you can use this command to indicate that it is still unpaid.
 
 **Format:**<br>
-`unmark <person index> debt/<[debt index](#glossary-debt-index)…>`
+`unmark <person index> debt/<debt index…>`
 
 **Example:**<br>
 * `unmark 2 debt/2 3` will mark the 2nd and 3rd debt of the 2nd person in the current displayed [person list](#person-list-section) as unpaid.
