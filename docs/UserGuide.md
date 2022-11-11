@@ -673,6 +673,7 @@ If the command is `tview v` in previous example step 1, the vertical timetable w
 
 ![tview_v_step2](images/userguide/tview_v_step2.png)
 
+<div style="page-break-after: always;"></div>
 
 #### 4.4.4. Add your schedule: `sadd`
 
@@ -711,6 +712,7 @@ Now, let's use `sadd` to add a schedule with following information:
 
 ![sadd_step2](images/userguide/sadd_step2.png)
 
+<div style="page-break-after: always;"></div>
 
 #### 4.4.5. Edit your schedule: `sedit`
 
@@ -750,6 +752,7 @@ Now, let's use `sedit` command to edit a schedule with the following information
 
 ![sedit_step2](images/userguide/sedit_step2.png)
 
+<div style="page-break-after: always;"></div>
 
 #### 4.4.6. Delete your schedule: `sdelete`
 
@@ -822,6 +825,8 @@ Now, let's use `sclear` to clear all schedules of CS2101 and CS2103T in the sche
 **Step 2:** Press enter, then you can see the remaining schedules without those cleared.
 
 ![sclear_step2](images/userguide/sclear_step2.png)
+
+<div style="page-break-after: always;"></div>
 
 ### 4.5. Clearing all entries: `clear`
 
