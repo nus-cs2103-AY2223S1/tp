@@ -3,60 +3,26 @@ layout: page
 title: User Guide
 ---
 
-## About TruthTable
+Welcome to the User Guide for TruthTable! :smile:
 
-Welcome to the User Guide for TruthTable! TruthTable is a desktop application that enables **student team leaders** 
-to manage their **software engineering teams**, including **tasks, links and team member info**, in a single application.
+If you're a student team leader for a software engineering project, and you're struggling to keep track of your team's tasks, links, and overall progress, you've come to the right place!
+
+## About TruthTable
+TruthTable is a desktop application that enables **student team leaders** 
+to manage their **software engineering teams**, including **tasks, links and team members' information** - all in a single application!
 
 TruthTable is **optimized for use via a [Command Line Interface (CLI)](#command-line-interface)** while still having the
-benefits of a [Graphical User Interface (GUI)](#graphical-user-interface). If you can type fast, TruthTable can get your
-task management done _blazingly fast_, faster than traditional GUI applications.
+benefits of a [Graphical User Interface (GUI)](#graphical-user-interface). 
+This means that if you can type fast, TruthTable can get your
+task and team management done _blazingly fast_, faster than traditional GUI applications.
 
 <div markdown="block" class="alert alert-primary">**:information_source: Unsure what CLI or GUI means?**
-Head over to [this section](#understanding-truthtables-cli) to learn more!
+Head over to [this section](#understanding-truthtables-cli) to learn more! :relaxed:
 </div>
 
-If you're a student team leader for a software engineering team, this guide will help you understand how the various
-features of TruthTable can help you manage your teams more efficiently.
+This guide will help you understand how the various features of TruthTable can help you manage your teams more efficiently.
 
 Feel free to read on, or if you can't wait to get started, skip ahead to our [Getting Started guide](#getting-started) to start using TruthTable now!
-
-## Key Features of TruthTable
-
-### Organize all your info in one place
-
-Managing project documents and information has always been annoying. Aside from the multitude of links and
-slides created by your team, you may be using task management applications like
-<a href="https://www.notion.so/" target="_blank">Notion</a> to track your team's progress as well. 
-
-Find it hard to keep things organized? TruthTable allows you to collate and organize your **tasks, links, and team member info** all in one place.
-
-### Track progress and delegate work
-
-It is often difficult to visualize and communicate your team's progress to stakeholders. TruthTable solves this through
-its clean and comprehensive user interface.
-
-At a glance, you can see the **number of tasks completed by your team**, and determine the team's overall progress.
-
-TruthTable allows you to see **which members are assigned to which tasks**, enabling you to delegate work in a fair and
-equitable manner.
-
-### Convenient and fast
-
-Context switching is a productivity killer. Having to switch from project management to product development usually
-means switching from GUI-based applications to CLI code editors.
-
-Hence, TruthTable allows you to use a **single CLI for all your project management needs**, reducing the impact of context
-switching.
-
-<div markdown="span" class="alert alert-info">
-**:star: For experienced CLI users**:
-<br><br>
-TruthTable's command syntax is actually very similar to other command line applications like
-[Git](https://git-scm.com/) and [Docker](https://docs.docker.com/engine/reference/commandline/cli/)!
-
-Hence, you will become familiar with TruthTable's commands in no time.
-</div>
 
 ## Using This Guide
 
@@ -95,9 +61,46 @@ Here are some text styles to look out for as well.
 ## Table of Contents
 
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+
+## Key Features of TruthTable
+
+### Organize All Your Information In One Place
+
+We understand that managing project documents and information is a difficult task. Aside from the large number of links and
+slides created by your team, you may be using task management applications like
+<a href="https://www.notion.so/" target="_blank">Notion</a> to track your team's progress as well. 
+
+This is why TruthTable allows you to collate and organize your **tasks, links, and team members' information** in a single application!
+
+### Track Progress And Delegate Work
+
+We know that it is often difficult to visualize and communicate your team's progress to various stakeholders (e.g. Professors, tutors, etc.). 
+
+Well, you never have to worry about tracking your team's progress anymore! Using TruthTable, you can see the **number of tasks completed by your team** as well as **which members have been assigned to which tasks** - all in one glance!
+
+This can also help you to delegate future tasks more fairly, by considering the workload of all your members.
+
+### Convenient And Fast
+
+We all know that context switching is a productivity killer.
+
+
+Having to switch back and forth between project management and coding usually means switching between [GUI](#graphical-user-interface)-based applications (for project management) [CLI](#command-line-interface) code editors (for coding). 
+
+To solve this issue, TruthTable allows you to use a **single CLI for all your project management needs**, reducing the impact of context
+switching. You never have to use a mouse again!
+
+<div markdown="span" class="alert alert-info">
+**:star: For experienced CLI users**:
+<br><br>
+TruthTable's command syntax is actually very similar to other command line applications like
+[Git](https://git-scm.com/) and [Docker](https://docs.docker.com/engine/reference/commandline/cli/)!
+
+So, fret not, you will become familiar with TruthTable's commands in no time.
+</div>
 
 ## Getting Started
 
@@ -111,6 +114,7 @@ Here are some text styles to look out for as well.
 
 3. Double-click on `truthtable.jar` to start the application. A window which looks similar to the screenshot below
    should appear in a few seconds. ![Ui](images/Ui.png)
+    <br/>
    <div markdown="block" class="alert alert-success">**:bulb: Sample data**:
    We have also added some sample data for you to play around and familiarize yourself with 
    TruthTable's [features](#commands)!
