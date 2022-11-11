@@ -743,7 +743,7 @@ If done successfully, you should see a new member show up in the member list in 
 
 #### Delete a member from team: `delete member`
 
-Due to unfortunate circumstances, one of your teammates needs to be shuffled to other groups, and he will no longer
+Due to unfortunate circumstances, one of your teammates needs to be shuffled to another group, and he will no longer
 be on your team! Not to worry, you can delete members from your team. First, identify the index number of your teammate 
 in the [current team section](#current-team-section). If you are not able to see their name on the list, refer to
 [find member command](#finding-a-member-find-member) on how to find a member in your team. Then, simply key in 
