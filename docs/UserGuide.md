@@ -603,7 +603,8 @@ Examples:
 * `export path/C:\Users\John\Desktop\data.json` exports the displayed list of candidates to `data.json` in the `Desktop` (Sample path for WINDOWS).
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Alternatively to export files using GUI, you can either go to `Export` -> `Export` in the Menu Bar or enter the command `export`. The following window will open on doing so:<br><br>
+Alternatively to export files using GUI, you can either go to `Export` -> `Export` in the Menu Bar or enter the command `export`. The following window will open on doing so:<br>
+  
 <center><img src="images/ExportWindow.png"></center><br>
 Now you can easily export the displayed list of candidates by selecting a location and providing a name for the resultant file.
 </div>
@@ -623,7 +624,8 @@ Examples:
 * `import path/C:\Users\John\Desktop\data.json` imports the list of candidates from `data.json` in the `Desktop` to the address book (Sample path for WINDOWS).
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Alternatively to import files using GUI, you can either go to `Import` -> `Import` in the Menu Bar or enter the command `import`. The following window will open on doing so:<br><br>
+Alternatively to import files using GUI, you can either go to `Import` -> `Import` in the Menu Bar or enter the command `import`. The following window will open on doing so:<br>
+  
 <center><img src="images/ImportWindow.png"></center><br>
 Now you can easily select a file to import into the addressbook.
 </div>
