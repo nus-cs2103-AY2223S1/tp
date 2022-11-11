@@ -113,7 +113,6 @@ You should now see the message below and your itinerary added on the main page a
 * For additional information, refer to the [`add` command](#creating-a-new-itinerary--add)  in the [Features](#features) section under main page commands.
 
 </div>
-<div style="page-break-after: always"></div>
 
 Select the itinerary which you have just created by typing in `select` along with the index of the itinerary on the list, then press Enter.
 For example, if "Summer Trip" is shown as the first itinerary on the list, enter `select 1`.
@@ -138,7 +137,6 @@ You should now see the item being displayed in the Wishlist.
 * For additional information, refer to the [`add` command](#adding-an-activity--add) explanation in the [Features](#features) section under itinerary planning page commands.
 
 </div>
-<div style="page-break-after: always"></div>
 
 Try adding a few more activities! You should see the activities listed in the Wishlist.
 
@@ -157,7 +155,7 @@ To find out more about the index format, refer to the section on Command Formats
 * For additional information, refer to the [`plan` command](#scheduling-an-item--plan) explanation in the [Features](#features) section under itinerary planning page commands.
 
 </div>
-<div style="page-break-after: always"></div>
+
 Note that the index of the item is now shown as 1.1, meaning it is the first item on Day 1.
 
 Now you can try scheduling all the activities in your Wishlist!
@@ -287,6 +285,7 @@ Shows a list of all itineraries in Waddle.
 Format: `list`
 
 ![List Command](images/listCommand.png)
+
 ### Locating itineraries by description : `find`
 
 Finds itineraries with names containing any of the given keywords.
@@ -440,8 +439,6 @@ Running `add d/Go to the Louvre p/2 du/1`
 
 ![Add Activity](images/addActivityCommand.png)
 
-<div style="page-break-after: always"></div>
-
 ### Editing the details of an activity : `edit`
 
 Edits an existing activity in your activity list.
@@ -486,8 +483,6 @@ Running `delete 1`
 
 ![Delete Activity](images/deleteActivityCommand.png)
 
-<div style="page-break-after: always"></div>
-
 ### Viewing vacant timeslots : `free`
 
 Displays the vacant timeslots available for you to schedule activities.
@@ -523,8 +518,6 @@ Running `plan 1 d/1 st/11:00`
 
 ![Plan Activity](images/planCommand.png)
 
-<div style="page-break-after: always"></div>
-
 ### Unscheduling an activity : `unplan`
 
 Takes an activity from the list of days and puts it back into the wishlist.
@@ -541,8 +534,6 @@ Examples:
 Running `unplan 1.1`
 
 ![Unplan Activity](images/unplanCommand.png)
-
-<div style="page-break-after: always"></div>
 
 ### Copying to clipboard : `copy`
 
@@ -561,8 +552,6 @@ Here's an example of how the copied text would look like: <br>
 * The generated text does not include the activities in the wishlist. For activities to be reflected in the generated text, they must be planned.<br>
 
 </div>
-
-<div style="page-break-after: always"></div>
 
 ### Exporting as PDF file : `pdf`
 
