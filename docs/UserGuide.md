@@ -89,18 +89,18 @@ If you are a beginner to Waddle, this tutorial will walk you through creating an
 This is the [main page](#the-main-page), which you will encounter when you open Waddle. 
 It displays all your current itineraries. 
 The various sections of the interface have been labeled in blue for your reference.
-If this is your first time launching Waddle, you will see the following page with two sample itineraries:
+If this is your first time launching Waddle, you will see the following page with two sample itineraries:<br>
 ![main-page-sample-ui](images/ug-beg-tut/main-page-sample-ui.png)
 
 
 If you wish to, you can [clear](#clearing-itineraries--clear) the sample itineraries by typing `clear` into the command box and pressing Enter.
-You will then see the below message:
+You will then see the below message:<br>
 ![clear-command](images/clearCommand.png)
 
 Now you can add your first itinerary. To do so, use the [`add` command](#creating-a-new-itinerary--add) with the relevant itinerary details.
 Try executing the command `add d/Summer Trip sd/2023-06-01 du/5`. 
 It will add an itinerary named Summer Trip, starting from 1 June 2023 with a duration of 5 days.
-You should now see the message below and your itinerary added on the main page as follows:
+You should now see the message below and your itinerary added on the main page as follows:<br>
 ![add-itinerary](images/ug-beg-tut/add-itinerary.png)
 
 <div markdown="block" class="alert alert-info">
@@ -116,7 +116,7 @@ You should now see the message below and your itinerary added on the main page a
 
 Select the itinerary which you have just created by typing in `select` along with the index of the itinerary on the list, then press Enter.
 For example, if "Summer Trip" is shown as the first itinerary on the list, enter `select 1`.
-You will now see the planning page for the itinerary as follows:
+You will now see the planning page for the itinerary as follows:<br>
 ![planning-page-ui](images/ug-beg-tut/planning-page-ui.png)
 
 You can return to the main page anytime you wish by executing `home`.
@@ -124,7 +124,7 @@ You can return to the main page anytime you wish by executing `home`.
 To add an activity to your Wishlist, use the [`add` command](#adding-an-activity--add).
 Try adding a new activity by typing in `add d/Visit Meiji Shrine du/120` to the command box and press Enter.
 This will add a new item with the description of "Visit Meiji Shrine" and a duration of 120 minutes.
-You should now see the item being displayed in the Wishlist.
+You should now see the item being displayed in the Wishlist.<br>
 ![add-item](images/ug-beg-tut/add-item.png)
 
 <div markdown="block" class="alert alert-info">
@@ -143,15 +143,13 @@ Try adding a few more activities! You should see the activities listed in the Wi
 To schedule an item from your Wishlist on a specific day in your itinerary, use the [`plan` command](#scheduling-an-activity--plan).
 For example, type `plan 1 d/1 st/10:00` into the command box and Enter.
 Waddle will schedule the first item on your Wishlist for Day 1 of your itinerary starting at 10am.
-You should see the item being moved from the Wishlist section to the Day 1 item list, as follows:
+You should see the item being moved from the Wishlist section to the Day 1 item list, as follows:<br>
 ![plan-item](images/ug-beg-tut/plan-item.png)
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes:**<br>
-
-* Note that the index of the item is now displayed as 1.1, meaning it is the first item on Day 1. 
-To find out more about the index format, refer to the section on Command Formats.
+   
 * For additional information, refer to the [`plan` command](#scheduling-an-item--plan) explanation in the [Features](#features) section under itinerary planning page commands.
 
 </div>
