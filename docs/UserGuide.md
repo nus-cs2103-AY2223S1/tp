@@ -58,15 +58,20 @@ title: InterNUS User Guide
 
 ## 1.1. What is InterNUS?
 
-Welcome to the InterNUS user guide!
+Welcome to the **InterNUS** user guide!
 
-InterNUS is a convenient and powerful desktop app for NUS CS students to **manage their internship applications, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). It has a sleek design for you to track your internship applications at a glance.
+**InterNUS** is a **_convenient_** and **_powerful_** desktop app, created to help **NUS CS students manage their internship applications.** 
+It is **_optimized_** for use via a Command Line Interface (CLI), 
+and complemented with a **_simple yet intuitive_** Graphical User Interface (GUI) 
+designed to help you **keep track of all your applications _at a glance._**
 
-Having troubles finding who to contact for your various internship applications? Don’t worry! InterNUS also allows you to manage contact person during your applications. After your internship, InterNUS can still be used to manage your work contact list!
+Having trouble remembering who to contact for your various applications? Don’t worry! 
+**InterNUS** can also help you **keep track of all the contacts you meet along the way,** 
+**_from the start_** of the application process **_to the end_** of the internship programme and beyond!
 
 ## 1.2. Person List
 
-Store the information of key contacts in InterNUS. During the internship-hunting period, add the contacts of hiring managers and link them to your bookmarked internship positions. What about the multiple colleagues you'll meet during your internship stints? InterNUS makes it easy to manage these contacts and lets you see at a glance where you worked at together.
+Store the information of key contacts in InterNUS. During the internship-hunting period, add the contacts of hiring managers and link them to your bookmarked internship positions. What about the colleagues you'll meet during your internship stints? InterNUS makes it easy to manage these contacts and lets you see at a glance where you worked at together.
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Note:** Each person can be linked to a maximum of one internship, and vice  versa.
@@ -75,6 +80,10 @@ Store the information of key contacts in InterNUS. During the internship-hunting
 ## 1.3. Internship List
 
 Track the internships you're interested in and all the relevant information -- the company, role, contact person and interview date. Awaiting a reply, or have you been accepted? With InterNUS, you can monitor and update the statuses of your internship applications effortlessly.
+
+<br>
+
+> [Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -143,6 +152,10 @@ The UI components description:
 
 </div>
 
+<br>
+
+> [Back to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
@@ -166,6 +179,10 @@ The UI components description:
 6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.
 
 7. Refer to the [Features](#4-features) below for details of each command.
+
+<br>
+
+> [Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -245,6 +262,12 @@ Examples:
 * `add -i c/Grab r/Full Stack Developer s/PENDING d/2020-12-20 12:00` adds an internship with `COMPANY_NAME` **Grab**, `ROLE` **Full Stack Developer**, `STATUS` **PENDING** and `INTERVIEW_DATE` **2020-12-20 12:00**.
   Here, since the `LINK_INDEX` field is omitted, the internship will be added with **No contact person**. To link a person to this internship, see [section 4.4.1 for the Link command](#441-linking-a-person-and-an-internship--link).
 
+<br>
+
+> [Back to Table of Contents](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
 <div style="page-break-after: always;"></div>
 
 ## 4.2. List Command
@@ -260,6 +283,12 @@ Format: `list -p`
 Removes all filters on the internship list and lists all internships in InterNUS in the current sorted order.
 
 Format: `list -i`
+
+<br>
+
+> [Back to Table of Contents](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
 
@@ -297,6 +326,12 @@ Examples:
 - `list -i` followed by `edit -i 1 s/ACCEPTED` edits the status of the 1st internship to be `ACCEPTED`.
 - `list -i` followed by `edit -i 2 s/REJECTED` edits the status of the 2nd internship to `REJECTED`.
 
+<br>
+
+> [Back to Table of Contents](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
 <div style="page-break-after: always;"></div>
 
 ## 4.4. Link and Unlink Command
@@ -327,6 +362,12 @@ Examples:
 - `unlink p/1 i/1` unlinks person at index **1** and internship at index **1**.
 - `unlink p/1` unlinks person at index **1** and its linked internship.
 - `unlink i/1` unlinks internship at index **1** and its linked person.
+
+<br>
+
+> [Back to Table of Contents](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
 
@@ -390,6 +431,12 @@ i.e. `find -i s/a` will only find internships with `STATUS` **ACCEPTED** even th
 contain the letter **a**. This is to match the behaviour of `STATUS` shortcuts as mentioned in [this tip under section 4.1.2](#412-adding-an-internship-add--i).
 </div>
 
+<br>
+
+> [Back to Table of Contents](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
 <div style="page-break-after: always;"></div>
 
 ## 4.6. Delete Command
@@ -421,6 +468,12 @@ Format: `delete -i INDEX`
 Examples:
 * `list -i` followed by `delete -i 2` deletes the 2nd internship in InterNUS.
 * `find -i c/Meta` followed by `delete -i 1` deletes the 1st internship in the results of the `find` command.
+
+<br>
+
+> [Back to Table of Contents](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
 
@@ -469,6 +522,12 @@ Examples:
 - When sorted by interview date, internships with no interview dates appear at the bottom of the list.
 </div>
 
+<br>
+
+> [Back to Table of Contents](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
 <div style="page-break-after: always;"></div>
 
 ## 4.8. General
@@ -491,6 +550,12 @@ Exits the program.
 
 Format: `exit`
 
+<br>
+
+> [Back to Table of Contents](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
 <div style="page-break-after: always;"></div>
 
 ## 4.9. User Interface
@@ -511,6 +576,12 @@ Click on the Color Theme button in the Menu Bar to display a dropdown list to se
 |:------------------------------------:|
 | InterNUS light mode with sample data |
 
+<br>
+
+> [Back to Table of Contents](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
 <div style="page-break-after: always;"></div>
 
 ## 4.10. Data files
@@ -527,6 +598,10 @@ Advanced users are welcome to update data directly by editing that data file.
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, InterNUS will discard all data and start with an empty data file at the next run.
 </div>
+
+<br>
+
+> [Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -545,8 +620,6 @@ If your changes to the data file makes its format invalid, InterNUS will discard
 **A**: On the internship's display, look for the linked contact person's display name (shown as **Contact Person: NAME**), then use 
 `find -p n/NAME` to find the linked contact person.
 
---------------------------------------------------------------------------------------------------------------------
-
 ## 6. Planned updates
 
 1. Improve the GUI to display the link between an internship and contact person more clearly.
@@ -559,6 +632,10 @@ If your changes to the data file makes its format invalid, InterNUS will discard
    3. Tags are currently restricted to one word, but it is reasonable to allow tags consisting of more words.
    4. Interview dates are currently restricted to the format "yyyy-MM-dd HH:mm", so this could be improved to allow a greater variety of datetime formats. 
       Additionally, the time component of the input could be made optional.
+
+<br>
+
+> [Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -584,3 +661,9 @@ If your changes to the data file makes its format invalid, InterNUS will discard
 | **Sort persons**      | `sort -p [n/] [c/]` <br> e.g., `sort -p c/`                                                                                                             |
 | **Sort internships**  | `sort -i [c/] [d/] [s/]` <br> e.g., `sort -i d/`                                                                                                        |
 | **Help**              | `help`                                                                                                                                                  |
+
+<br>
+
+> [Back to Table of Contents](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------

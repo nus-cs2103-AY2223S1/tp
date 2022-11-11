@@ -5,7 +5,10 @@ title: Liu Fangrui's Project Portfolio Page
 
 ### Project: InterNUS
 
-InterNUS is a convenient and powerful desktop app for NUS CS students to **manage their internship applications, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). It has a sleek design for you to track your internship applications at a glance.
+**InterNUS** is a **_convenient_** and **_powerful_** desktop app, created to help **NUS CS students manage their internship applications.**
+It is **_optimized_** for use via a Command Line Interface (CLI),
+and complemented with a **_simple yet intuitive_** Graphical User Interface (GUI)
+designed to help you **keep track of all your applications _at a glance._**
 
 Below are my contributions to the project.
 
