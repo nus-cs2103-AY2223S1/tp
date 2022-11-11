@@ -143,10 +143,10 @@ The following glossary table provides clarification of the terms commonly used i
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n/NAME [st/SKILL_TAG]` can be used as `n/John Doe st/Java` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[st/SKILL_TAG]…​` can be used as ` ` (i.e. 0 times), `st/Java`, `st/Java st/Python` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -299,7 +299,7 @@ Format: `addTag INDEX [st/SKILL_TAG] [dt/DEGREE_TAG] [jtt/JOB_TYPE_TAG] [<alias>
 
 Examples:
 * `addTag 3 st/Java` Adds a Skill tag `Java` to the 3rd candidate.
-* `edit 2 dt/Bachelors` Adds a Degree tag `Bachelors` to the 2nd candidate.
+* `addTag 2 dt/Bachelors` Adds a Degree tag `Bachelors` to the 2nd candidate.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 To add multiple attributes to a candidate at once, you may use the [`addTo`](#adding-multiple-attributes-to-an-existing-candidate--addto) command. The `addTo` command parameters for adding tags are the same as the `addTag` command.
@@ -590,28 +590,30 @@ Example:
 
 Exports the data for the displayed list of candidates to the specified location in the specified format. 
 
-Format: `export path/<PATH WITH NAME OF FILE TO BE EXPORTED TO>`
-* The path must be absolute path.
+Format: `export path/PATH_WITH_NAME_OF_FILE_TO_BE_EXPORTED_TO`
+* The path specified must be an absolute path.
 * The format of the file must be JSON or CSV.
 * Any directory in the path which does not exist will automatically be created.
 * Only the displayed list of candidates will be exported.
 
 Examples:
-* `export path//Desktop/sample/data.csv` exports the filtered list of candidates to `data.csv` in the `sample` directory of the `Desktop` (Sample path for MACOS).
-* `export path/C:\Users\John\Desktop\data.json` exports the list of candidates to `data.json` in the `Desktop` (Sample path for WINDOWS).
+* `export path//Desktop/sample/data.csv` exports the displayed list of candidates to `data.csv` in the `sample` directory of the `Desktop` (Sample path for MACOS).
+* `export path/C:\Users\John\Desktop\data.json` exports the displayed list of candidates to `data.json` in the `Desktop` (Sample path for WINDOWS).
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Alternatively to export files using GUI, you can either go to `Export` -> `Export` in the Menu Bar or enter the command `export`.
+Alternatively to export files using GUI, you can either go to `Export` -> `Export` in the Menu Bar or enter the command `export`. The following window will open on doing so:<br>
+<center><img src="images/ExportWindow.png"></center><br>
+Now you can easily export the displayed list of candidates by selecting a location and providing a name for the resultant file.
 </div>
 
 ### Importing data into CLInkedIn: `import`
 
 Imports the data for candidates from the specified file.
 
-Format: `import path/<PATH WITH NAME OF FILE TO BE IMPORTED FROM>`
-* The path must be absolute path.
+Format: `import path/PATH_WITH_NAME_OF_FILE_TO_BE_IMPORTED_FROM`
+* The path specified must be an absolute path.
 * The format of the file must be JSON or CSV.
-* Data being import will be merged with the existing data in CLInkedIn.
+* The data being imported will be merged with the existing data in CLInkedIn.
 * Candidates whose name already exists in CLInkedIn will be ignored.
 
 Examples:
@@ -619,7 +621,9 @@ Examples:
 * `import path/C:\Users\John\Desktop\data.json` imports the list of candidates from `data.json` in the `Desktop` to the address book (Sample path for WINDOWS).
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Alternatively to import files using GUI, you can either go to `Import` -> `Import` in the Menu Bar or enter the command `import`.
+Alternatively to import files using GUI, you can either go to `Import` -> `Import` in the Menu Bar or enter the command `import`. The following window will open on doing so:<br>
+<center><img src="images/ImportWindow.png"></center><br>
+Now you can easily select a file to import into the addressbook.
 </div>
 
 ### Exiting CLInkedIn : `exit`
