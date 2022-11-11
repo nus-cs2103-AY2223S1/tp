@@ -722,7 +722,7 @@ When you do not remember the exact description of a debt you want to look for (e
 This [command](#glossary-command) displays the full [person list](#person-list-section) in PayMeLah.
 
 **When to use:**<br>
-When you have previously filtered the displayed [person list](#person-list-section) (using commands such as `[find](#locating-persons-by-inputs-find)` and `[finddebt](#locating-persons-by-debt-description)`) and want to view the full list again, this is the command to use!
+When you have previously filtered the displayed [person list](#person-list-section) (using commands such as [`find`](#locating-persons-by-inputs-find) and [`finddebt`](#locating-persons-by-debt-description)) and want to view the full list again, this is the command to use!
 
 **Format:**<br>
 `list`
