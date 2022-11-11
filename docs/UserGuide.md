@@ -240,11 +240,9 @@ Shows help information that will be useful to you.
 
 Formats:  
 
-To view **general** command information,<br>
-`help`  
+To view **general** command information, enter `help`  
 
-To view **specific** command information,<br>
-`help [<command>]`
+To view **specific** command information, enter `help [<command>]`
 
 * To view all the commands, type `help` and press <kbd>Enter</kbd>.
 
