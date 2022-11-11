@@ -516,7 +516,7 @@ The `edit person` command allows you to edit an existing person in TruthTable. T
 shown in the [persons section](#persons-section). As always, don't panic if you see an 
 error message. Let us run through an example on how to edit the details of a person.
 
-Suppose your classmate, Alex Yeoh, has provided you with the wrong phone and email. Identify the index number of
+Suppose your classmate, Alex Yeoh, has provided you with the wrong phone and email. Identify the index of
 "Alex Yeoh" in the application (1 in the image below). If you are not able to find their name, refer to
 [find person command](#finding-a-person-find-person) on how you can find them.
 
@@ -550,7 +550,7 @@ To remove all tags of a person, you can use `-t` without specifying any tags.
 
 Please take note that:
 
-* The command edits the person at the specified `PERSON_INDEX`, which refers to the index number shown in the
+* The command edits the person at the specified `PERSON_INDEX`, which refers to the index shown in the
   [persons section](#persons-section)
 * `PERSON_INDEX` **must be a positive integer:** 1, 2, 3,...
 * Each field only updates if the flag for that field is specified.
@@ -576,8 +576,8 @@ can delete their contact details easily with `delete person`!
 The `delete person` command allows you to delete the specified person from TruthTable. The person deleted will be
 removed from the [persons section](#persons-section). Let us run through an example on how you can delete a person in TruthTable.
 
-Suppose you want to delete Alex Yeoh from your application. Identify the index number of "Alex Yeoh" in the
-application (1 in the image below). First, identify the index number of your classmate in the
+Suppose you want to delete Alex Yeoh from your application. Identify the index of "Alex Yeoh" in the
+application (1 in the image below). First, identify the index of your classmate in the
 [persons section](#persons-section). If you are not able to find their name, refer to
 [find command](#finding-a-person-find-person) on how you can find them.
 
@@ -600,7 +600,7 @@ above [add person command](#creating-a-new-person-add-person) to add a new perso
 
 Please take note that: 
 
-* The command deletes the person at the specified `PERSON_INDEX`, which refers to the index number shown in the
+* The command deletes the person at the specified `PERSON_INDEX`, which refers to the index shown in the
   [persons section](#persons-section)
 * `PERSON_INDEX` **must be a positive integer:** 1, 2, 3,...
 
@@ -708,7 +708,7 @@ Unsure of which team you are currently on? Please refer to the [current team sec
 
 Here, let us take a quick walk-through on how to add a person.
 
-Let us try to add a new person called Alex Yeoh to our team. Identify the index number of "Alex Yeoh" in the 
+Let us try to add a new person called Alex Yeoh to our team. Identify the index of "Alex Yeoh" in the 
 application (1 in the image below). If you are not able to see their name in the list of persons, refer to 
 [find person command](#finding-a-person-find-person) on how to find a person.
 
@@ -752,7 +752,7 @@ Unsure of what team you are currently on? Please refer to the [currently selecte
 
 Here, let us take a quick walk-through on how to delete a member.
 
-Let us delete Alex Yeoh from our team. Firstly, identify the index number of "Alex Yeoh" in the
+Let us delete Alex Yeoh from our team. Firstly, identify the index of "Alex Yeoh" in the
 member list (1 in the image below). If you are not able to see their name on the list, 
 refer to the [find member command](#finding-a-member-find-member)
 
@@ -1090,7 +1090,7 @@ Your professor has just announced a list of submissions that you need to complet
 the list of tasks that needs to be done in order to complete the submission on time. You can use the `add task` command for this!
 
 The `add task` allow you to add a new task to your current team. Each task can have a deadline and multiple assignees.
-The new task will be displayed in the task list of your [current team section](#current-team-section). Here, let's take a quick walk-through on how to add a new task.
+The new task will be displayed in the task list of your [current team section](#current-team-section).
 
 Here, let us take a quick walk-through on how to add a new task.
 
@@ -1102,11 +1102,11 @@ If done successfully, a new task with the name `Create PR` will be added to the 
 [current team section](#current-team-section) as shown below.
 
 You may optionally specify a deadline and assignees for this command using `-d <TASK_DEADLINE>` and
-`-a <TASK_ASSIGNEES>` respectively. Please refer to the respective commands on how to
-[set deadlines](#set-deadline-for-task-set-deadline) and [set assignees](#assign-a-task-to-team-member-assign-task)!
+`-a <TASK_ASSIGNEES>` respectively.
 
-Please refer to the respective commands on how to 
-[set deadlines](#set-deadline-for-task-set-deadline) and [set assignees](#assign-a-task-to-team-member-assign-task) after a task has been created.
+Please refer to the respective commands on how to
+[set deadlines](#set-deadline-for-task-set-deadline) and [set assignees](#assign-a-task-to-team-member-assign-task) 
+after a task has been created.
 
 ![Add Task Example](images/AddTaskExample.png)
 
@@ -1147,9 +1147,9 @@ The `edit task` command allows you to edit an existing task in your team. The ed
 task list of the [current team section](#current-team-section). Let
 us run through how to edit the details of a task.
 
-Suppose you want to change the task name from `Create PR` to `Merge PR`. Identify the index number of
-`Create PR` in the application (1 in the image below). If you are not able to find the task visibly, refer to
-[find task command](#finding-a-task-find-task) on how you can find your task easily.
+Suppose you want to change the task name from `Create PR` to `Merge PR`. Identify the index of
+`Create PR` in the application (1 in the image below). If you are not able to find the task, refer to the
+[find task command](#finding-a-task-find-task).
 
 Then, enter the command `edit task 1 -n "Merge PR"`.
 
@@ -1185,7 +1185,7 @@ Passing `TASK_INDEX` after `ASSIGNEES` makes it impossible to distinguish which 
 
 Please take note that:
 
-* The command edits the person at the specified `TASK_INDEX`, which refers to the index number shown in the
+* The command edits the person at the specified `TASK_INDEX`, which refers to the index shown in the
   [team members section](#current-team-section)
 * `DEADLINE` contains both the date and time in `YYYY-MM-DD HH:MM` format, and it **does not have quotation marks (`""`)
   around the parameter**.
@@ -1218,8 +1218,8 @@ The `delete task` command allows you to delete the specified task from TruthTabl
 removed from the task list of the [current team section](#current-team-section). Let us run through an example on how to delete a
 task.
 
-Suppose you want to delete a task called `Merge PR`. Identify the index number of `Merge PR` in the
-application (1 in the image below). If you are not able to find the task visibly, refer to
+Suppose you want to delete a task called `Merge PR`. Identify the index of `Merge PR` in the
+application (1 in the image below). If you are not able to find the task, refer to
 [find task command](#finding-a-task-find-task).
 
 Then, enter the command `delete task 1`.
@@ -1310,13 +1310,13 @@ task list of the [current team section](#current-team-section).
 
 Let us run through an example on how to mark an existing task.
 
-Suppose you want to mark the task of `Create PR` as done. Identify the index number of
-`Create PR` in the application (1 in the image below). If you are not able to find the task visibly, refer to [find task command](#finding-a-task-find-task) on how you can
-find your task easily.
+Suppose you want to mark the task of `Create PR` as done. Identify the index of
+`Create PR` in the application (1 in the image below). If you are not able to find the task, refer to the 
+[find task command](#finding-a-task-find-task).
 
 Then, enter the command `mark task 1`.
 
-If done successfully, you should see a cross appear beside the task named of `Merge PR`, under in the task list of the
+If done successfully, you should see a cross appear beside the task named `Merge PR` in the task list of the
 [current team section](#current-team-section) as shown below.
 
 ![Mark Example](images/MarkExample.png)
@@ -1355,8 +1355,8 @@ task list of the [current team section](#current-team-section).
 Let us run through how to mark an existing task.
 
 Suppose the task of `Create PR` was originally complete and you want to mark the task of `Create PR` as incomplete.
-Identify the index number of `Create PR` in the application (1 in the image below). If you are not able to find the 
-task visibly, refer to [find task command](#finding-a-task-find-task) on how you can find your task easily.
+Identify the index of `Create PR` in the application (1 in the image below). If you are not able to find the 
+task, refer to [find task command](#finding-a-task-find-task) on how you can find your task easily.
 
 Then, enter the command `unmark task 1`.
 
@@ -1400,8 +1400,8 @@ The `set deadline` command allows you to set a deadline for an existing task, an
 Let us run through an example on how to set deadlines.
 
 Suppose you have task called `Create PR`, and you need it to be completed by 11 November 2022, 2359hrs.
-Identify the index number of `Create PR` in the application (1 in the image below). If you are not able to find the 
-task visibly, refer to [find task command](#finding-a-task-find-task) on how you can find your task easily.
+Identify the index of `Create PR` in the application (1 in the image below). If you are not able to find the 
+task, refer to [find task command](#finding-a-task-find-task) on how you can find your task easily.
 
 Then, enter the command `set deadline 1 2022-11-11 23:59`.
 
@@ -1448,11 +1448,11 @@ Let us run through an example on how to assign tasks to your team members.
 
 Suppose you have task called `Create PR`, and you want to assign it to Alex Yeoh.
 
-Identify the index number of `Create PR` in the application (1 in the image below). If you are not able to find the 
-task visibly, refer to [find task command](#finding-a-task-find-task) on how you can find your task easily.
+Identify the index of `Create PR` in the application (1 in the image below). If you are not able to find the 
+task, refer to [find task command](#finding-a-task-find-task) on how you can find your task easily.
 
-Identify the index number of "Alex Yeoh" in the application (1 in the image below). If you are not able to find the 
-member  visibly, refer to [find member command](#finding-a-member-find-member) on how you can find your team member easily.
+Identify the index of "Alex Yeoh" in the application (1 in the image below). If you are not able to find the 
+member, refer to [find member command](#finding-a-member-find-member) on how you can find your team member easily.
 
 Then, enter the command `assign task 1 -a 1`.
 
@@ -1509,8 +1509,8 @@ example on how to assign tasks randomly to your team members.
 
 Suppose you have task called `Create PR`, and you want to assign it randomly to your team members.
 
-Identify the index number of `Create PR` in the application (1 in the image below). If you are not able to find the task visibly, refer to
-[find task command](#finding-a-task-find-task) on how you can find your task easily.
+Identify the index of `Create PR` in the application (1 in the image below). If you are not able to find the task, 
+refer to the [find task command](#finding-a-task-find-task) on how you can find your task easily.
 
 Then, enter the command `assign random 1`.
 
@@ -1551,8 +1551,8 @@ Let us run through an example on how to assign tasks to your team members.
 
 Suppose you want to check the tasks being assigned to "Alex Yeoh".
 
-Firstly, identify the index number of "Alex Yeoh" in the application (1 in the image below). If you are not able to 
-find the member visibly, refer to [find member command](#finding-a-member-find-member) on how you can find that member
+Firstly, identify the index of "Alex Yeoh" in the application (1 in the image below). If you are not able to 
+find the member, refer to [find member command](#finding-a-member-find-member) on how you can find that member
 easily.
 
 Then, enter the command `tasksof 1`.
@@ -1740,7 +1740,7 @@ links in the [currently selected team](#current-team-section). Let us run throug
 
 Suppose the [URL](#url) of your `weekly meeting` has changed to
 `https://zoom.us/j/94669589458?pwd=bTQvWTlWbzR5T29Ja0w2d0J1R1R4QT09#success`. 
-Identify the index number of the link with a name `weekly meeting` in the application (1 in the image below).
+Identify the index of the link with a name `weekly meeting` in the application (1 in the image below).
 
 Then, enter the command `edit link 1 -n "monthly meeting" -l https://zoom.us/j/94669589458?pwd=bTQvWTlWbzR5T29Ja0w2d0J1R1R4QT09#success`
 
@@ -1786,7 +1786,7 @@ removed from the list of links in the [currently selected team](#current-team-se
 
 Let us run through an example on how you can delete a link in TruthTable.
 
-Suppose you want to delete the `weekly meeting` link from your application. Identify the index number of 
+Suppose you want to delete the `weekly meeting` link from your application. Identify the index of 
 `weekly meeting` in the application (1 in the image below). 
 
 Then, enter the command `delete link 1`.
@@ -1822,9 +1822,10 @@ Summary of the general commands can be found [here](#summary-of-general-commands
 
 #### Clearing all entries: `clear`
 
-Want to start from a blank application and try again! Not a problem! Use our `clear` command to clear all existing data
-in TruthTable! Enter `clear command` and if done successfully, all data will be cleared except for a `default` team, 
-for you to start again.
+You graduated from NUS and join a tech company as a Project Manager. You want to continue using TruthTable but need 
+to remove all your old data. You can use the `clear` command to clear all existing data in TruthTable! 
+Enter `clear command` and if done successfully, all data will be cleared (except for a `default` team),
+and you can start afresh!
 
 Be warned you can no longer recover the deleted data! Think twice before doing it.
 
