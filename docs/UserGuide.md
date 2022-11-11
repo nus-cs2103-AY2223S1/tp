@@ -18,44 +18,44 @@ title: User Guide
    3. [Making groups within groups](#making-groups-within-groups)
 5. [Features](#features)
    1. [Basic features](#basic-features)
-       1. [General commands](#1-general-commands)
-          1. [Clear command](#clear-command-clear)
-          2. [Exit command](#exits-the-program-exit)
-          3. [Add a field](#add-a-new-field-field-add)
-          4. [Edit a field](#edit-a-field-field-edit)
-          5. [Delete a field](#delete-a-field-field-delete)
-          6. [Rename a group, person or task](#rename-the-name-of-items-on-the-screen)
-          7. [Find command](#find-command-find)
-          7. [List all contacts in team](#listing-all-contacts-in-current-team)
-       2. [Team/Group commands](#2-teamgroup-commands)
-          1. [Create a team](#create-a-team-team-new)
-          2. [Delete a team](#delete-a-team-team-delete)
-          3. [Navigate to a team](#navigate-to-a-team-cg)
-          4. [Add new person to team](#add-new-contacts-within-a-team)
-          5. [Remove person from team](#removing-contacts-from-team-team-remove)
-          6. [Creating or deleting a subteam](#creating-and-deleting-a-subteam)
-          7. [Find a team](#finding-a-team-find)
-       3. [Person commands](#3-person-commands)
-          1. [Add a person](#add-a-person-person-new)
-          2. [Delete a person](#delete-a-person-person-delete)
-          4. [Find a person](#finding-a-person-find)
-       4. [Task commands](#4-task-commands)
-          1. [Adding a task](#adding-a-task-to-a-team-task-add)
-          2. [Deleting a task](#deleting-a-task-from-team-task-delete)
-          3. [Mark task](#mark-a-task-task-mark)
-          4. [Unmark task](#unmark-a-task-task-unmark)
-          5. [Find a task](#finding-a-task-find)
+      1. [General commands](#1-general-commands)
+         1. [Clear command](#clear-command-clear)
+         2. [Exit command](#exits-the-program-exit)
+         3. [Add a field](#add-a-new-field-field-add)
+         4. [Edit a field](#edit-a-field-field-edit)
+         5. [Delete a field](#delete-a-field-field-delete)
+         6. [Rename a group, person or task](#rename-the-name-of-items-on-the-screen)
+         7. [Find command](#find-command-find)
+         8. [List all contacts in team](#listing-all-contacts-in-current-team)
+      2. [Team/Group commands](#2-teamgroup-commands)
+         1. [Create a team](#create-a-team-team-new)
+         2. [Delete a team](#delete-a-team-team-delete)
+         3. [Navigate to a team](#navigate-to-a-team-cg)
+         4. [Add new person to team](#add-new-contacts-within-a-team)
+         5. [Remove person from team](#removing-contacts-from-team-team-remove)
+         6. [Creating or deleting a subteam](#creating-and-deleting-a-subteam)
+         7. [Find a team](#finding-a-team-find)
+      3. [Person commands](#3-person-commands)
+         1. [Add a person](#add-a-person-person-new)
+         2. [Delete a person](#delete-a-person-person-delete)
+         3. [Find a person](#finding-a-person-find)
+      4. [Task commands](#4-task-commands)
+         1. [Adding a task](#adding-a-task-to-a-team-task-add)
+         2. [Deleting a task](#deleting-a-task-from-team-task-delete)
+         3. [Mark task](#mark-a-task-task-mark)
+         4. [Unmark task](#unmark-a-task-task-unmark)
+         5. [Find a task](#finding-a-task-find)
    2. [Advanced features](#advanced-features)
-       1. [Chaining](#advanced-features-overview-chaining)
-       2. [Feature constraints](#advanced-feature-constraints)
-       3. [Select command](#select-command)
-       4. [Contains command](#contains-command)
-       5. [Execute command](#execute-command)
-       6. [Replace command](#replace-command)
-       7. [Foreach command](#foreach-command)
-       8. [If else command](#if--else-command)
-       9. [Aliasing](#aliasing)
-       10. [Custom command / macro](#custom-command--macro)
+      1. [Chaining](#advanced-features-overview-chaining)
+      2. [Feature constraints](#advanced-feature-constraints)
+      3. [Select command](#select-command)
+      4. [Contains command](#contains-command)
+      5. [Execute command](#execute-command)
+      6. [Replace command](#replace-command)
+      7. [Foreach command](#foreach-command)
+      8. [If else command](#if--else-command)
+      9. [Aliasing](#aliasing)
+      10. [Custom command / macro](#custom-command--macro)
 6. [FAQ](#faq)
 7. [Future plans](#future-plans)
 8. [Glossary](#glossary)
@@ -89,10 +89,10 @@ projects and streamline the management of their projects.
 
 ### Purpose
 
-This guide will elaborate on all the features available in Contactmation that will help make your experience of using 
+This guide will elaborate on all the features available in Contactmation that will help make your experience of using
 Contactmation pain-free.
 
-Examples with real-world applications are present to give you a clearer idea of how the features 
+Examples with real-world applications are present to give you a clearer idea of how the features
 can be utilised.
 
 ### User Guide Navigation
@@ -100,10 +100,11 @@ can be utilised.
 This guide is broken into different sections that will aid you in better understanding our application.
 
 Refer to:
+
 - The [contactmation window guide](#contactmation-window-guide) for a guide on the application window.
 - The [basic feature](#basic-features) section to get started on using the application.
 - The [advanced feature](#advanced-features) section for powerful tools that will help make your experience of
-using Contactmation much more streamlined and customisable.
+  using Contactmation much more streamlined and customisable.
 - The [glossary](#glossary) for explanations to the different terms used throughout this guide.
 - The [command summary](#command-summary) for a quick overview on how to use all our features.
 
@@ -120,21 +121,19 @@ We will be referring to these terminologies throughout the user guide.
 
 ### **Prerequisites**
 
-Before you start up Contactmation on your computer, 
+Before you start up Contactmation on your computer,
 
-- Ensure that `Java version 11` or above is installed on your device. Do refer to the [FAQ](#faq) if you need help with 
-checking whether `Java 11` is installed on your computer, or if you need help with installing `Java 11`.
+- Ensure that `Java version 11` or above is installed on your device. Do refer to the [FAQ](#faq) if you need help with
+  checking whether `Java 11` is installed on your computer, or if you need help with installing `Java 11`.
 
-
-- The current version of Contactmation can only be used in a desktop, but should work on all operating systems (such as 
-Windows, macOS and Linux etc.) as long as `Java 11` is installed.
+- The current version of Contactmation can only be used in a desktop, but should work on all operating systems (such as
+  Windows, macOS and Linux etc.) as long as `Java 11` is installed.
 
 ---
 
 ## **Quick start**
 
 1. Ensure that the [prerequisites](#prerequisites) are met before installing Contactmation.
-
 
 2. Download the latest version of `contactmation.jar` from
    [here](https://github.com/AY2223S1-CS2103T-T11-1/tp/releases). The file `contactmation.jar`
@@ -145,7 +144,6 @@ Windows, macOS and Linux etc.) as long as `Java 11` is installed.
 3. Save `contactmation.jar` into a Desktop folder on your computer. This folder will now be the home folder
    for Contactmation. Do look at the [FAQ](#faq) section for errors related to opening files used in Contactmation.
 
-
 4. Double-click on `contactmation.jar` to start up the application. You will be greeted with the current window
    if everything goes well:
 
@@ -153,7 +151,6 @@ Windows, macOS and Linux etc.) as long as `Java 11` is installed.
 
 5. You may begin by referring to the [before you begin](#before-you-begin) section to get
    started.
-
 
 6. You may then move on to the [basic features](#basic-features) section to get started on using
    Contactmation. For additional, more powerful commands, refer to our [advanced features](#advanced-features),
@@ -167,7 +164,7 @@ Windows, macOS and Linux etc.) as long as `Java 11` is installed.
 
 Before you begin, you will need to know how to interact with Contactmation.
 
-You may only interact with Contactmation by typing [commands](#glossary) into the 
+You may only interact with Contactmation by typing [commands](#glossary) into the
 [command box](#contactmation-window-guide). Upon hitting the `Enter` key, you will be able to execute the command
 currently residing in the command box.
 
@@ -176,15 +173,15 @@ currently residing in the command box.
 Simply type in the word `clear` into the command box and press the `Enter` key on your desktop. All the sample
 data will be wiped. Do note that this action is **irreversible**.
 
-> How do I properly write these commands? 
+> How do I properly write these commands?
 
-We will go through the standardised formats for each [basic](#basic-features) and [advanced](#advanced-features) 
+We will go through the standardised formats for each [basic](#basic-features) and [advanced](#advanced-features)
 feature in their respective sections.
 
 > How do I read the standardised formats for each feature?
 
 These formats may look cryptic at first glance. Do visit the [Standardised Format Style](#standardised-format-style)
-section to better understand how to read the formats. 
+section to better understand how to read the formats.
 
 ### Standardised Format Style
 
@@ -192,7 +189,7 @@ This section aims to help you better understand the different terminologies used
 feature description.
 
 | Format                    | Explanation                                                                                                                                                                                                |
-|---------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Square brackets** ([ ]) | Anything that is within the square brackets are entirely **optional**. You may skip anything wrapped in the square bracket and move on to the next [word](#glossary) in the [command sequence](#glossary). |
 | **Angled brackets** (< >) | Anything within angled brackets are placeholder words. These words will be replaced by other words for the command to run. The replacing words will be specified in the format section for each feature.   |
 | **Ellipses** (`...`)      | The word which these ellipses are attached to can be repeated multiple times in a single command.                                                                                                          |
@@ -203,7 +200,7 @@ The **innermost** format in a word has the **highest** priority, while the **out
 has a **lower** priority than any format within it. However, since an outer format is considered after the inner format,
 the outer format has a **stronger connotation** to it.
 
-Here is an additional example to solidify your understanding of how these formats make sense when combined. 
+Here is an additional example to solidify your understanding of how these formats make sense when combined.
 
 If the command format in the format section of a feature has `[t/tags...]`, that means that the **ellipses**
 will have a higher priority than the **square brackets**. This means that `t/tags` can be repeated multiple
@@ -214,65 +211,52 @@ Other keywords utilised in the guide are defined in the [glossary](#glossary).
 
 ### Constraints on placeholder words
 
-This section will help you understand what placeholder words in the format section for each command can be 
-replaced by. Placeholder words are words which are wrapped around angled brackets (`<>`) in the format section. 
+This section will help you understand what placeholder words in the format section for each command can be
+replaced by. Placeholder words are words which are wrapped around angled brackets (`<>`) in the format section.
 Do refer to the [standardised format style](#standardised-format-style) section for more information to
 understand the format styles for each command.
 
 - The `NAME` of the person or task must be [alphanumeric](#glossary) and can contain white spaces.
 
-
 - The `TEAM NAME` must be alphanumeric.
-
 
 - The `PHONE_NUMBER` is divided into 3 sections, namely the country code, area code and phone
   number in that order. Both the country and area code can have **1-4 digits**, and the phone number can
   be **3 digits or more**. All 3 sections must be separated by a white space. The `PHONE_NUMBER` may also
   begin with a (`+`) symbol. The country and area codes are entirely **optional**.
-  
 - The `EMAIL` of the person must have an `@` symbol. We will refer to anything before the `@`
-    symbol as `PART 1` and anything after the symbol to be `PART 2`.
-
+  symbol as `PART 1` and anything after the symbol to be `PART 2`.
 
   - `PART 1`: Can only contain alphanumeric characters and special characters such as (`+\_.-`).
-      You may only start or end `PART 1` with alphanumeric characters.
-  
+    You may only start or end `PART 1` with alphanumeric characters.
+
   - `PART 2`: Must have at least one period (`.`). We will refer to text separated by periods as
-      domain labels.
-  
+    domain labels.
+
     - `PART 2` must end with a domain label at least **2 characters long**.
-    
+
     - Each domain label must start and end with alphanumeric characters.
-    - Each domain label can only consist of alphanumeric characters and hyphens.  
-
-
+    - Each domain label can only consist of alphanumeric characters and hyphens.
 
 - The `ADDRESS` of a person can take any values, but it should not be blank.
 
-
 - The `TAG` must be alphanumeric.
-
 
 - The `INDEX` must be a positive whole number which cannot exceed the number of groups, contacts or tasks currently displayed in the
   application window.
 
-
 - The `KEYWORD` and `MORE_KEYWORDS` must be alphanumeric.
 
-
-- The `TITLE` is [alphanumeric](#glossary) and can contain hyphens and underscores. 
-
+- The `TITLE` is [alphanumeric](#glossary) and can contain hyphens and underscores.
 
 - The `DESCRIPTION` has no restrictions.
 
-
 - The `ITEM` can only be replaced with either `task`, `person` or `team`.
-- The `SELECTED_ITEM` are item that are selected via a select command or passed down from other commands  [See select command](#select-command) 
+- The `SELECTED_ITEM` are item that are selected via a select command or passed down from other commands [See select command](#select-command)
 
-  - e.g. 
+  - e.g.
 
-    - `task select 1` will select the first task and that first task will be considered the `SELECTED_ITEM` 
-
+    - `task select 1` will select the first task and that first task will be considered the `SELECTED_ITEM`
 
 ### Making groups within groups
 
@@ -306,8 +290,8 @@ to view specific information about a certain group and ignore other group inform
 
 > How do I restrict what I see on the display to only a specific group?
 
-Let us say you are only interested in seeing everything related to the `Research_And_Development` department 
-and nothing else. In this case, you might want to restrict what you see on the Contactmation display 
+Let us say you are only interested in seeing everything related to the `Research_And_Development` department
+and nothing else. In this case, you might want to restrict what you see on the Contactmation display
 to only view information within `Research_And_Development`.
 
 When you do this, all the other information in other groups (e.g. `Marketing`) will no longer
@@ -328,7 +312,7 @@ that is used to type all commands.
 :bulb: **Tip**: The [cg](#navigate-to-a-team) command is also used to view all your other groups again. To do this, just type `cg ..` or `cg /` into the command box.
 
 Following the above example, `cg 2` needs to be typed into the command box for you to view
-`Research_And_Development`, since the `Research_And_Development` department is listed as group 2 in the 
+`Research_And_Development`, since the `Research_And_Development` department is listed as group 2 in the
 Contactmation display.
 
 The following screen should appear upon pressing `Enter`:
@@ -337,24 +321,24 @@ The following screen should appear upon pressing `Enter`:
 
 We can see that the `Marketing` and `Research_And_Development` departments can no longer be seen.
 We are not able to see the `Marketing` department because now, we are focusing solely on the
-`Research_And_Development` department. 
+`Research_And_Development` department.
 
 > What happened to the `Research_And_Development` department?
 
 At the bottom left-hand corner of the [application window](#contactmation-window-guide), we can see
-the current group we are in. 
+the current group we are in.
 
 Therefore, what we are seeing now is **any groups, contacts or tasks that exist within `Research_And_Development`
-only**. Since `Vero_Ltd` is under the `Research_And_Development` group, it still can be seen on the display. 
+only**. Since `Vero_Ltd` is under the `Research_And_Development` group, it still can be seen on the display.
 
 > How do I create a group within another group?
 
 Let's assume you want to create another group, `Kong_Pte_Ltd`, under the `Vero_Ltd` group.
 So, you will have to use the `cg` command to first "zoom in" to `Vero_Ltd` and restrict what you are seeing
-on the display. So we will need to type `cg 1` in the [command box](#contactmation-window-guide) and execute the 
+on the display. So we will need to type `cg 1` in the [command box](#contactmation-window-guide) and execute the
 statement.
 
-Now, you are within the `Vero_Ltd` group. You may now create a subgroup within `Vero_Ltd` by executing the 
+Now, you are within the `Vero_Ltd` group. You may now create a subgroup within `Vero_Ltd` by executing the
 [team new](#create-a-team) command. In this case, you can type `team new Kong_Pte_Ltd` to create `Kong_Pte_Ltd`
 within `Vero_Ltd`:
 
@@ -366,7 +350,7 @@ The `Kong_Pte_Ltd` group is now created within `Vero_Ltd`!
 
 ## **Features**
 
-With Contactmation, you can not only use the [**basic features**](#basic-features) to manage your group project, but also use 
+With Contactmation, you can not only use the [**basic features**](#basic-features) to manage your group project, but also use
 [**advanced features**](#advanced-features) to customise and streamline your experience in Contactmation.
 
 However, if you are a new user of Contactmation, we recommend sticking
@@ -383,6 +367,7 @@ As Contactmation aims to help you manage your contacts, project groups and tasks
 a range of basic commands varying from adding a person to manipulating tasks and groups.
 
 The basic features are categorised as the following:
+
 1. [General Commands](#1-general-commands)
 2. [Team/Group Commands](#2-teamgroup-commands)
 3. [Contact Commands](#3-contact-commands)
@@ -390,14 +375,14 @@ The basic features are categorised as the following:
 
 ## 1. General commands
 
-These commands can be applied to any group, contact or task. 
+These commands can be applied to any group, contact or task.
 
 ### Clear command: `clear`
 
 This command clears all group, contact and task entries from the application. You can write this command if you are,
 for example, leaving a company and deciding to wipe all data related to the company.
 
-:exclamation: **Caution: This action is irreversible! Please make sure that you really want to 
+:exclamation: **Caution: This action is irreversible! Please make sure that you really want to
 delete all your information before doing so.**
 
 **Format:** `clear`
@@ -405,21 +390,20 @@ delete all your information before doing so.**
 ### Find command: `find`
 
 This command allows you to search for a person, group or task that matches a given `KEYWORD`. Searches may also include `MORE_KEYWORDS`
-to further narrow the search for a contact, subgroup or task within the current [scope](#glossary). 
+to further narrow the search for a contact, subgroup or task within the current [scope](#glossary).
 
 **Format:** [`<ITEM> find <KEYWORD> [<MORE_KEYWORDS>]`](#constraints-on-placeholder-words)
-
 
 **Examples:**
 
 - `person find John Doe`
-<br> This command finds a person named John Doe
+  <br> This command finds a person named John Doe
 - `task find task1 task2`
-<br> This command finds tasks whose name matches task1 or task2
+  <br> This command finds tasks whose name matches task1 or task2
 - `team find team1 team2`
-<br> This command finds teams whose name matches team1 or team2
+  <br> This command finds teams whose name matches team1 or team2
 
-![Finding a person by name](images\FindPerson.png)
+![Finding a person by name](images/FindPerson.png)
 
 To reset the find filters, you can use the [List command](#listing-all-contacts-in-current-team).
 
@@ -427,12 +411,12 @@ To reset the find filters, you can use the [List command](#listing-all-contacts-
 
 Contactmation supports the `list` command that displays all of your contacts in the current team to a list of persons.
 To execute the command, ensure that you have navigated to the desired team, then execute the command `list`. If you
-are currently not in the scope of any team, the `list` command will display all of your contacts in Contactmation by 
+are currently not in the scope of any team, the `list` command will display all of your contacts in Contactmation by
 default.
 
 **Format**: `list`
 
-![Listing all data](images\ListCommand.png)
+![Listing all data](images/ListCommand.png)
 
 ### Exits the program: `exit`
 
@@ -456,12 +440,10 @@ A field can provide additional information to the [item](#constraints-on-placeho
 
 - `field add u/<INDEX> <FIELD NAME> <DESCRIPTION>` to add a new field to the person at the current `INDEX`.
 
-
 - `field add g/<INDEX> <FIELD NAME> <DESCRIPTION>` to add a new field to the group at the current `INDEX`.
 
-
 - `field add t/<INDEX> <FIELD NAME> <DESCRIPTION>` to add a new field to the task at the current `INDEX`.
-- `<SELECTED_ITEM> field add <FIELD NAME> <DESCRIPTION> ` to add a new field to the selected task/person/group.  [See select command](#select-command) 
+- `<SELECTED_ITEM> field add <FIELD NAME> <DESCRIPTION> ` to add a new field to the selected task/person/group. [See select command](#select-command)
 
 For example, let us say we have a task `Do paperwork`, and we want to add additional information to it. We can
 call the command `field add t/1 Priority High` to add a field with the `NAME` as `Priority` and
@@ -481,13 +463,13 @@ explained above. Field names are case-sensitive.
 
 **Format**:
 
-- `field edit u/<INDEX> <FIELD NAME> <NEW DESCRIPTION>` to edit the field named `FIELD NAME` to the person at 
-   the current `INDEX`.
+- `field edit u/<INDEX> <FIELD NAME> <NEW DESCRIPTION>` to edit the field named `FIELD NAME` to the person at
+  the current `INDEX`.
 - `field edit g/<INDEX> <FIELD NAME> <NEW DESCRIPTION>` to edit the field named `FIELD NAME` to the group at
-   the current `INDEX`.
+  the current `INDEX`.
 - `field edit t/<INDEX> <FIELD NAME> <NEW DESCRIPTION>` to edit the field named `FIELD NAME` to the task at
-   the current `INDEX`.
-- `<SELECTED_ITEM> <INDEX> field edit<FIELD NAME> <DESCRIPTION> ` to edit the field named `FIELD NAME` to the selected item. [See select command](#select-command) 
+  the current `INDEX`.
+- `<SELECTED_ITEM> <INDEX> field edit<FIELD NAME> <DESCRIPTION> ` to edit the field named `FIELD NAME` to the selected item. [See select command](#select-command)
 
 Here is an example. Let us say that we have a group, `Research_and_development`, that has
 its "`Funding`" field to be "`On hold`".
@@ -506,14 +488,13 @@ The command will attempt to delete a field that belongs to a group, task or pers
 A field can provide additional information to the [item](#constraints-on-placeholder-words) when it is needed.
 
 **Format:**
-- `field delete u/<INDEX> <FIELD NAME>` to delete a field `<FIELD NAME>` from the person at the current `INDEX`.
 
+- `field delete u/<INDEX> <FIELD NAME>` to delete a field `<FIELD NAME>` from the person at the current `INDEX`.
 
 - `field delete g/<INDEX> <FIELD NAME>` to delete a field `<FIELD NAME>` from the group at the current `INDEX`.
 
-
 - `field delete t/<INDEX> <FIELD NAME>` to delete a field `<FIELD NAME>` from the task at the current `INDEX`.
-- `<SELECTED_ITEM> field delete <FIELD NAME>` to delete a field  `<FIELD NAME>` from the task at the current `INDEX`. [See select command](#select-command) 
+- `<SELECTED_ITEM> field delete <FIELD NAME>` to delete a field `<FIELD NAME>` from the task at the current `INDEX`. [See select command](#select-command)
 
 Continuing from the example in [add a new field](#add-a-new-field-field-add), let us now
 delete the `Priority High` field. To do this, we have to write `field delete t/1 Priority`
@@ -536,27 +517,25 @@ want the group, contact or task to be renamed to**.
 </div>
 
 **Format:**
-- `rename g/<INDEX> <new name>` to rename the group at the listed `INDEX`.
 
+- `rename g/<INDEX> <new name>` to rename the group at the listed `INDEX`.
 
 - `rename u/<INDEX> <new name>` to rename the contact at the listed `INDEX`.
 
-
 - `rename t/<INDEX> <new name>` to rename the task at the listed `INDEX`.
 
-
-- `<SELECTED_ITEM> <INDEX> rename <new name>` to rename the selected item.  [See select command](#select-command) 
+- `<SELECTED_ITEM> <INDEX> rename <new name>` to rename the selected item. [See select command](#select-command)
 
 **Example:**
 
 - `rename g/1 Marketing`
+
   - this will rename the first **group** in your list to `Marketing`.
 
-
-- `person select 1 rename Jimmy`   [See select command](#select-command) 
+- `person select 1 rename Jimmy` [See select command](#select-command)
   - this will rename the first **user** in your list to `Jimmy`.
 
-![Renaming a team to marketing](images\rename_cmd.png)
+![Renaming a team to marketing](images/rename_cmd.png)
 
 ### Find command: `find`
 
@@ -568,8 +547,8 @@ to further expand the search for a contact, subgroup or task within the [current
 **Examples:**
 
 - `person find John Doe`
-  - This means that we will find all persons in the current team with the current 
 
+  - This means that we will find all persons in the current team with the current
 
 - `task find task1 task2`
 
@@ -582,7 +561,7 @@ Team-related commands in Contactmation begin with the `team` keyword.
 
 ### Create a team: `team new`
 
-This command helps you create a new group/team name in the current team. 
+This command helps you create a new group/team name in the current team.
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Note:**<br>
@@ -593,7 +572,7 @@ section on what it really means to create teams within teams.
 
 **Format**: `team new <TEAM NAME>`
 
-The above command creates a new team with a specified team name. Do refer to the 
+The above command creates a new team with a specified team name. Do refer to the
 [constraints on placeholder words](#constraints-on-placeholder-words) section for more information on what
 you can type in `TEAM NAME`.
 
@@ -601,12 +580,11 @@ you can type in `TEAM NAME`.
 
 - `team new Vongola_X`
 
-
 - `team new vero-employees`
 
 ![Create Team Screenshot](images/user-guide-img/CreateTeamScreenshot.png)
 
-As seen in the example above, we are able to add team `vero-employees` to our 
+As seen in the example above, we are able to add team `vero-employees` to our
 [group list](#contactmation-window-guide).
 
 ### Delete a team: `team delete`
@@ -614,15 +592,15 @@ As seen in the example above, we are able to add team `vero-employees` to our
 To delete a team from Contactmation, you can use the `team delete` command followed by the team number seen in
 the current display of the team list.
 
-**Format**: 
+**Format**:
 
 - `team delete <INDEX>`
-- `team select <INDEX> team delete` [See select command](#select-command) 
+- `team select <INDEX> team delete` [See select command](#select-command)
 
 **Examples**:
 
 - `team delete 1`
-    - The above command deletes team number 1 in the [team list](#contactmation-window-guide).
+  - The above command deletes team number 1 in the [team list](#contactmation-window-guide).
 
 > What happens to all the people and tasks in that current team when I delete the team?
 
@@ -633,17 +611,16 @@ All `persons` and `tasks` will be transferred to the [root group](#glossary).
 To perform commands specific to a team, you will have to navigate first to that specific team. You can use the `cg`
 command to navigate to a specified team.
 
-:bulb: **Tip**: Please take a look at [making groups within groups](#making-groups-within-groups) 
+:bulb: **Tip**: Please take a look at [making groups within groups](#making-groups-within-groups)
 for a tutorial on team navigation before executing this command.
 
 **Formats**:
 
 - `cg <INDEX>`
-- `team select <INDEX> cg`   [See select command](#select-command) 
-
+- `team select <INDEX> cg` [See select command](#select-command)
 
 - `cg ..` moves you out of the group and into the parent group. To better understand this, let us have the following
-example:
+  example:
 
 ![Change group example](images/ChangeGroupExample.png)
 
@@ -653,10 +630,10 @@ However, when we use the `cg ..` command, we are able to move to the `/Research_
 ![Change group example out](images/ChangeGroupExample2.png)
 
 When we are in the `/Research_and_development` group, we can see that there is a group in the [group list](#contactmation-window-guide).
-That is the group we were in at first, before we used the `cg ..` command! 
+That is the group we were in at first, before we used the `cg ..` command!
 
-- `cg /` moves you to the [root group](#glossary) in Contactmation. 
-From the root group, you are able to **see all the groups currently existing in Contactmation**.
+- `cg /` moves you to the [root group](#glossary) in Contactmation.
+  From the root group, you are able to **see all the groups currently existing in Contactmation**.
 
 ![Change group example root](images/ChangeGroupExample3.png)
 
@@ -666,18 +643,18 @@ Following the previous examples in for the `cg` command, we see the `/Research_a
 **Examples**:
 
 - `cg 3`
-    - The above command allows you to navigate to team number 3 in your current [team list](#contactmation-window-guide).
-    - Before:
-      ![Create Team Screenshot](images/user-guide-img/NavigateTeamBefore.png)
-    - After:
-      ![Create Team Screenshot](images/user-guide-img/NavigateTeamAfter.png)
+  - The above command allows you to navigate to team number 3 in your current [team list](#contactmation-window-guide).
+  - Before:
+    ![Create Team Screenshot](images/user-guide-img/NavigateTeamBefore.png)
+  - After:
+    ![Create Team Screenshot](images/user-guide-img/NavigateTeamAfter.png)
 - `cg ..`
 
-![going back to a parent group](images\cg_back.png)
+![going back to a parent group](images/cg_back.png)
 
 - `cg /`
 
-![Going back to root directory](D:\NUS\tp\docs\images\cg_home.png)
+![Going back to root directory](images/cg_home.png)
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Note for experienced programmers:**<br>
@@ -712,9 +689,9 @@ mean that the person is deleted from Contactmation! The person can still be foun
 **Example:**
 
 - `team remove 3`
-    - This command removes contact number 3 in the specified team, and transfers the contact to 
+  - This command removes contact number 3 in the specified team, and transfers the contact to
     the [root group](#glossary).
-    
+
 ### Creating and Deleting a subteam
 
 Contactmation allows the creation and deletion of a subteam within a team using the same command as
@@ -726,15 +703,15 @@ Contactmation allows for searching of teams with the [find command](#find-comman
 
 ## 3. Person commands
 
-Person commands are used to add and manage people within Contactmation. This section will showcase the different 
+Person commands are used to add and manage people within Contactmation. This section will showcase the different
 commands that can be used on persons.
 
 Contact-related commands precede with the `person` keyword.
 
 ### Add a Person: `person new`
 
-Let us start off by adding a person to Contactmation. To add a contact, you can use the command `person new`, 
-followed by the name of the person. You can also choose to provide the phone number, email and address 
+Let us start off by adding a person to Contactmation. To add a contact, you can use the command `person new`,
+followed by the name of the person. You can also choose to provide the phone number, email and address
 to each person, or add a tag to identify each person.
 
 **Format**: `person new n/<NAME> [p/<PHONE>] [e/<EMAIL>] [a/<ADDRESS>] [t/<TAG>]...`
@@ -742,11 +719,13 @@ to each person, or add a tag to identify each person.
 **Examples**:
 
 To add a person with the name 'Alice Green', you may execute the following commmand.
+
 - `person new n/Alice Green`
 
-To add a person with the name 'Hilbert Stewart', whose phone number is +91 368 91829383, email is 
+To add a person with the name 'Hilbert Stewart', whose phone number is +91 368 91829383, email is
 hilbertstewart@gmail.com, address is '68 Hudson Street', and is tagged as friend, you may execute the following
 command.
+
 - `person new n/Hilbert Stewart p/+91 368 91829383 e/hilbertstewart@gmail.com a/68 Hudson Street t/friend`
 
 ![Add Person Screenshot](images/user-guide-img/PersonNewScreenshot.png)
@@ -756,10 +735,10 @@ command.
 Suppose that you want to remove a person from Contactmation. You can use the `person delete` command to delete a contact
 from the list of persons in the current scope.
 
-**Format**: 
+**Format**:
 
 - [`person delete <INDEX>`](#constraints-on-placeholder-words)
-- `person select <INDEX> person delete`  [See select command](#select-command) 
+- `person select <INDEX> person delete` [See select command](#select-command)
 
 The index refers to the index number shown in the displayed person list. The index should follow the format described
 by the [constraints on placeholder words](#constraints-on-placeholder-words).
@@ -782,6 +761,7 @@ This command only works if the `person` is not part of the `group` yet.
 </div>
 
 **Format:**
+
 - `assign u/<INDEX> g/<INDEX>`
 
 **Example:**
@@ -808,6 +788,7 @@ Task-related commands precede with the `task` keyword.
 Tasks can only be added if you are within a team. To check whether you are in a team, look at your
 [current team](#contactmation-window-guide) and ensure it is not the [root group](#glossary), which
 is when the current team is (`/`).
+
 </div>
 
 ### Adding a task to a team: `task add`
@@ -826,10 +807,10 @@ Adds a new task to an existing group scope. This group **cannot be the root grou
 
 Deletes an existing task from a group by their `INDEX` within the current [scope](#glossary).
 
-Format: 
+Format:
 
 - `task delete <INDEX>`
-- `task select <INDEX> task delete` [See select command](#select-command) 
+- `task select <INDEX> task delete` [See select command](#select-command)
 
 Example:
 
@@ -840,38 +821,39 @@ Example:
 
 Marks a task as complete, with the current time as the completed time of the task.
 
-Format: 
+Format:
 
 - `task mark <INDEX>`
 - `mark <INDEX>` (task here can be optional!)
-- `task select <INDEX> mark` [See select command](#select-command) 
+- `task select <INDEX> mark` [See select command](#select-command)
 
 Example:
 
 - `task mark 1`
-    - This command marks the first task in the task list.
+  - This command marks the first task in the task list.
 - An example of a marked task
 
-![An example of marked task](images\marked.png)
+![An example of marked task](images/marked.png)
 
 ### Unmark a task: `task unmark`
 
 Unmarks a task. The task will return to be `Incomplete`.
 
-Format: 
+Format:
 
 - `task unmark <INDEX>`
 - `unmark <INDEX>` (task here can be optional!)
-- `task select <INDEX> unmark` [See select command](#select-command) 
+- `task select <INDEX> unmark` [See select command](#select-command)
 
 Example:
 
 - `task unmark 1`
-    - This command unmarks the first task in the task list.
+
+  - This command unmarks the first task in the task list.
 
 - An example of a unmarked task
 
-![](images\unmarked.png)
+![](images/unmarked.png)
 
 ### Finding a task: `find`
 
@@ -905,7 +887,6 @@ commands together like such:
 - `seq <command 1> [| command 3]...`
 - `seq <command 1> [; command 3]...`
 
-
 Whenever a pipe symbol (`|`) is encountered, the output of the previous commands is then passed to the next command.
 
 Whenever (`;`) is used, the output of the previous commands are not passed on.
@@ -926,7 +907,7 @@ Here are some commands that will aid you in gaining better control over Contactm
 ### Select command
 
 This command allows you to select a specific group, contact or task by their `INDEX`. While this command does nothing
-by itself, it is useful as a precursor to chaining other commands after it. 
+by itself, it is useful as a precursor to chaining other commands after it.
 
 A list of such commands includes:
 
@@ -937,7 +918,7 @@ A list of such commands includes:
 - field related commands
   - [`field edit`](#edit-a-field-field-edit) command
   - [`field delete`](#delete-a-field-field-delete) command
-  - [`field add`](#add-a-new-field-field-add)  command
+  - [`field add`](#add-a-new-field-field-add) command
 
 **Format:** `<ITEM> select <INDEX> <COMMAND> [...]`
 
@@ -1002,8 +983,7 @@ This command behaves exactly like if else statements in programming languages. I
 then the command sequence will execute `COMMAND IF`, else it will execute `COMMAND ELSE` instead. The command
 ensures that the application cannot run `COMMAND IF` and `COMMAND ELSE` in the same command sequence.
 
->**Note:** If else commands cannot be nested in other if else commands directly.
-
+> **Note:** If else commands cannot be nested in other if else commands directly.
 
 **Format:** `if [[CRITERIA]] ;; [[COMMAND IF]] ;; [[COMMAND ELSE]]`
 
@@ -1112,10 +1092,9 @@ Generally, the process in checking for your `Java` version on your Linux distrib
 
 1. Open the terminal.
 
-
 2. Type `java -version` and see if there is an output. If there is no output, then `Java` is not installed. If there is an output, then check if the version for `Java` is correct. Refer to part 3-5 of the Windows section of this question for more information.
 
-Here are some helpful [guides](https://phoenixnap.com/kb/check-java-version-linux) 
+Here are some helpful [guides](https://phoenixnap.com/kb/check-java-version-linux)
 for popular Linux distributions such as Ubuntu.
 
 > How can I install `Java 11`?
@@ -1128,7 +1107,7 @@ You might encounter this when adding a group to Contactmation:
 
 ![Group in Contactmation](images/FaqGroupSlash.png)
 
-This is because the `Marketing` group is under the [root group](#glossary), which is named by 
+This is because the `Marketing` group is under the [root group](#glossary), which is named by
 default with a slash (`/`). Therefore, when a group name is `/Marketing`, it means that the `Marketing`
 group is a subgroup of the root group.
 
@@ -1155,8 +1134,8 @@ To check the location of Contactmation, do the following steps:
 ![address book pop up](images/AddressBookUgLocation.png)
 
 4. Here, we can see that under `Location`, we have `C:/` and `Desktop`. This means
-that the location Contactmation does not need administrative rights to access. Therefore,
-there should be no problem in starting and running Contactmation.
+   that the location Contactmation does not need administrative rights to access. Therefore,
+   there should be no problem in starting and running Contactmation.
 
 > Why is there an error in my result display stating: `Unable to save your information!`?
 
@@ -1170,9 +1149,9 @@ To combat this, use the following steps:
 ![Save file folder](images/FaqSaveFileError.png)
 
 3. There are several files of note, which consists of the `data` folder, `config` file and `preferences`
-file. If the `data` folder is not present, then the following steps can be ignored for the
-`data` folder. If the `data` folder is present, then you should also find an `addressbook` file
-within the `data` folder. The following steps are for `config`, `preferences` and the `addressbook` file.
+   file. If the `data` folder is not present, then the following steps can be ignored for the
+   `data` folder. If the `data` folder is present, then you should also find an `addressbook` file
+   within the `data` folder. The following steps are for `config`, `preferences` and the `addressbook` file.
 
 4. Right-click on the file, and select `Properties`. You will be greeted a pop-up similar to this:
 
@@ -1204,7 +1183,7 @@ Our future plans for Contactmation includes:
 ## **Glossary**
 
 | Vocabulary                   | Description                                                                                                                |
-|------------------------------|----------------------------------------------------------------------------------------------------------------------------|
+| ---------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
 | CLI / Command Line Interface | You can only interact with the application through text, which is typed in the [command box](#contactmation-window-guide). |
 | Command / Command sequence   | What you would write in the command box to interact with the application.                                                  |
 | Contact                      | A contact with contact information.                                                                                        |
@@ -1222,22 +1201,20 @@ Our future plans for Contactmation includes:
 
 ### General commands summary
 
-
-| Command                                                       | Format                                                                        |
-| ------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| Clear all [items](#glossary) from Contactmation               | `clear`                                                                         |
-| Exit Contactmation                                            | `exit`                                                                          |
-| Add additional information to an item                         | `field add u/<INDEX> <FIELD NAME> <DESCRIPTION>` or `field add g/<INDEX> <FIELD NAME> <DESCRIPTION>` or `field add t/<INDEX> <FIELD NAME> <DESCRIPTION>` |
-| Edit some additional information in an item                   | `field edit u/<INDEX> <FIELD NAME> <NEW DESCRIPTION>` or `field edit g/<INDEX> <FIELD NAME> <NEW DESCRIPTION>` or `field edit t/<INDEX> <FIELD NAME> <NEW DESCRIPTION>` |
-| Delete some additional information in an item                 | `field delete u/<INDEX> <FIELD NAME>` or `field delete g/<INDEX> <FIELD NAME>` or `field delete t/<INDEX> <FIELD NAME>`                                                                         |
-| Rename the name of items on the screen                        | `rename u/<INDEX> <new name>` or `rename g/<INDEX> <new name>` or `rename t/<INDEX> <new name>` or  `<ITEM> select <INDEX> rename <new name>`|
-| Find a person, group or task                                  | `<ITEM> find <KEYWORD> [<MORE_KEYWORDS>]` |
-
+| Command                                         | Format                                                                                                                                                                  |
+| ----------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Clear all [items](#glossary) from Contactmation | `clear`                                                                                                                                                                 |
+| Exit Contactmation                              | `exit`                                                                                                                                                                  |
+| Add additional information to an item           | `field add u/<INDEX> <FIELD NAME> <DESCRIPTION>` or `field add g/<INDEX> <FIELD NAME> <DESCRIPTION>` or `field add t/<INDEX> <FIELD NAME> <DESCRIPTION>`                |
+| Edit some additional information in an item     | `field edit u/<INDEX> <FIELD NAME> <NEW DESCRIPTION>` or `field edit g/<INDEX> <FIELD NAME> <NEW DESCRIPTION>` or `field edit t/<INDEX> <FIELD NAME> <NEW DESCRIPTION>` |
+| Delete some additional information in an item   | `field delete u/<INDEX> <FIELD NAME>` or `field delete g/<INDEX> <FIELD NAME>` or `field delete t/<INDEX> <FIELD NAME>`                                                 |
+| Rename the name of items on the screen          | `rename u/<INDEX> <new name>` or `rename g/<INDEX> <new name>` or `rename t/<INDEX> <new name>` or `<ITEM> select <INDEX> rename <new name>`                            |
+| Find a person, group or task                    | `<ITEM> find <KEYWORD> [<MORE_KEYWORDS>]`                                                                                                                               |
 
 ### Group commands summary
 
 | Command                            | Format                                                     |
-|------------------------------------|------------------------------------------------------------|
+| ---------------------------------- | ---------------------------------------------------------- |
 | Adding new team                    | `team new <NAME>`                                          |
 | Delete team                        | `team delete <INDEX>` or `team select <INDEX> team delete` |
 | Changing teams                     | `cg <INDEX>` or `cg ..` or `cg /`                          |
@@ -1247,7 +1224,7 @@ Our future plans for Contactmation includes:
 ### Person commands summary
 
 | Command                               | Format                                                                          |
-|---------------------------------------|---------------------------------------------------------------------------------|
+| ------------------------------------- | ------------------------------------------------------------------------------- |
 | Adding new person to current context  | `person new n/<NAME> [p/<PHONE_NUMBER>] [e/<EMAIL>] [a/<ADDRESS>] [t/<TAG>...]` |
 | Delete a person                       | `person delete <INDEX>` or `person select <INDEX> person delete`                |
 | Assigning a user to an existing group | `assign u/<INDEX> g/<INDEX>`                                                    |
@@ -1257,7 +1234,7 @@ Our future plans for Contactmation includes:
 ### Task commands summary
 
 | Command                            | Format                                                                   |
-|------------------------------------|--------------------------------------------------------------------------|
+| ---------------------------------- | ------------------------------------------------------------------------ |
 | Adding new task to current context | `task new t/<title> d/<description>`                                     |
 | Delete a task                      | `task delete <INDEX>` or `task select <INDEX> task delete`               |
 | Marking a task as complete         | `task mark <INDEX>` or `mark <INDEX>` or task select <INDEX> mark`       |
@@ -1266,22 +1243,22 @@ Our future plans for Contactmation includes:
 
 ### Advanced commands summary
 
-| Command                  | Format                                                       |
-| ------------------------ | ------------------------------------------------------------ |
-| Aliasing                 | `alias <NEW COMMAND NAME> <COMMAND>`                         |
-| Saving macros            | `macro <NEW COMMAND NAME> <COMMANDS TO CHAIN>`               |
-| Deleting Custom Commands | `rmMacro <COMMAND NAME>`                                     |
-| Chaining/seq             | `seq <command 1> [| command 3]... OR seq <command 1> [; command 3]...` |
-| Contains                 | `<ITEM> contains <ATTRIBUTE>`                                |
-| Execute                  | `<INPUT> | e`                                                |
-| Foreach                  | `<ITEM> foreach <COMMAND>`                                   |
-| If else                  | `if [[CRITERIA]] ;; [[COMMAND IF]] ;; [[COMMAND ELSE]]`      |
-| Macro                    | `macro <MACRO WORD> <COMMAND SEQUENCE>`                      |
-| Replace                  | `r <TEXT TO REPLACE> <TEXT TO BE REPLACED>`                  |
-| Select                   | `<ITEM> select <INDEX> <COMMAND> [...]`                      |
-| Create/convert int       | `int <integer>`                                              |
-| Create/convert float     | `float <float>`                                              |
-| Create/convert String    | `str <String>`                                               |
-| Print                    | `<...> | print`                                              |
+| Command                  | Format                                                  |
+| ------------------------ | ------------------------------------------------------- | -------------------------------------------------- |
+| Aliasing                 | `alias <NEW COMMAND NAME> <COMMAND>`                    |
+| Saving macros            | `macro <NEW COMMAND NAME> <COMMANDS TO CHAIN>`          |
+| Deleting Custom Commands | `rmMacro <COMMAND NAME>`                                |
+| Chaining/seq             | `seq <command 1> [                                      | command 3]... OR seq <command 1> [; command 3]...` |
+| Contains                 | `<ITEM> contains <ATTRIBUTE>`                           |
+| Execute                  | `<INPUT>                                                | e`                                                 |
+| Foreach                  | `<ITEM> foreach <COMMAND>`                              |
+| If else                  | `if [[CRITERIA]] ;; [[COMMAND IF]] ;; [[COMMAND ELSE]]` |
+| Macro                    | `macro <MACRO WORD> <COMMAND SEQUENCE>`                 |
+| Replace                  | `r <TEXT TO REPLACE> <TEXT TO BE REPLACED>`             |
+| Select                   | `<ITEM> select <INDEX> <COMMAND> [...]`                 |
+| Create/convert int       | `int <integer>`                                         |
+| Create/convert float     | `float <float>`                                         |
+| Create/convert String    | `str <String>`                                          |
+| Print                    | `<...>                                                  | print`                                             |
 
 [Back to top](#table-of-contents)
