@@ -17,6 +17,8 @@ title: User Guide
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ### Table of Contents
 
 - [Introduction](#introduction)
@@ -52,9 +54,12 @@ title: User Guide
     - [Editing the data file](#editing-the-data-file)
 - [FAQ](#faq)
 - [Glossary](#glossary)
-- [Command summary](#command-summary)
+- [Field Formats](#field-formats)
+- [Command Summary](#command-summary)
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 <img class="centerImage" src="images/Coydir.png" height=100>
 
@@ -347,7 +352,10 @@ Sample `.xlsx` file:
 ![](images/batch-add-images/SampleExcel.png)
 Note: You can export this to `.csv`.
 
-<div markdown="span" class="alert alert-warning">:warning: **Caution:** No commas to be used in the file. For the fields, make sure that they follow the same specifications as written in the `add` command.
+<div markdown="span" class="alert alert-warning">
+
+:warning: **Caution:** No commas are to be used in the file. For the fields, do ensure that they follow the same specifications as in the [Field Formats below](#field-formats).
+
 </div>
 
 **Step 2 (Uploading CSV file) :**
