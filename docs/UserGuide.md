@@ -167,7 +167,7 @@ It appears when you execute the [Help Command](#viewing-help-help).
 [Back to top](#table-of-contents)
 
 Cobb's features are mostly in the form of commands you can input into the [command input box](#1-command-input-and-output-boxes). We will now go into the details about each feature of Cobb.
-If you just want a quick summary of all the feature Cobb has, take a look at the [command summary](#command-summary) section.
+If you just want a quick summary of all the feature Cobb has, do take a look at the [command summary](#command-summary) section.
 
 <div markdown="block" class="alert alert-info">
 
@@ -287,7 +287,7 @@ Example:<br>
 ### Edit Commands
 #### Edit a buyer entry in the database: `editbuyer`
 
-Edits a buyer’s details with new information, by specifying the relevant flags to edit.<br>
+Edits a buyer’s details with new information, by specifying the relevant inputs to edit.<br>
 Syntax: `editbuyer INDEX [-n NAME] [-ph PHONE] [-e EMAIL] [-a ADDRESS] [-r PRICE RANGE] [-c CHARACTERISTICS] [-pr PRIORITY<HIGH, NORMAL, LOW>]`
 
 The `INDEX` indicates the buyer in the [Buyer List](#2-buyer-list) to be edited.<br>
