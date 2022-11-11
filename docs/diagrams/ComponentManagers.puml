@@ -10,13 +10,13 @@ Class LogicManager
 }
 
 package Model{
-Class "<<interface>>\nModel" as Model
-Class ModelManager
+Class "<<interface>>\nModel" as Model MODEL_COLOR
+Class ModelManager MODEL_COLOR
 }
 
 package Storage{
-Class "<<interface>>\nStorage" as Storage
-Class StorageManager
+Class "<<interface>>\nStorage" as Storage STORAGE_COLOR
+Class StorageManager STORAGE_COLOR
 }
 
 Class HiddenOutside #FFFFFF

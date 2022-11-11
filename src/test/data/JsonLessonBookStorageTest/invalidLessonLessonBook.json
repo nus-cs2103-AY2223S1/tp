@@ -1,0 +1,317 @@
+{
+  "lessons" : [ {
+    "type" : "studio",
+    "lessonDesc" : "Studio 3",
+    "startDateTime" : "2022-10-12T14:00:00",
+    "endDateTime" : "2022-10-12T16:00:00",
+    "studentList" : [ {
+      "name" : "@lex Yeoh",
+      "matricNum" : "A0123456A",
+      "gradeProfile" : {
+        "gradeMap" : {
+          "MC1" : {
+            "assessment" : "MC1",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "MC2" : {
+            "assessment" : "MC2",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "RA1" : {
+            "assessment" : "RA1",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "RA2" : {
+            "assessment" : "RA2",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "MIDTERM" : {
+            "assessment" : "MIDTERM",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "PRACTICAL_ASSESSMENT" : {
+            "assessment" : "PRACTICAL_ASSESSMENT",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "FINAL_ASSESSMENT" : {
+            "assessment" : "FINAL_ASSESSMENT",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "STUDIO_ATTENDANCE" : {
+            "assessment" : "STUDIO_ATTENDANCE",
+            "isGraded" : false,
+            "marks" : 0.0
+          }
+        }
+      }
+    }, {
+      "name" : "Bernice Yu",
+      "matricNum" : "A0000000D",
+      "gradeProfile" : {
+        "gradeMap" : {
+          "MC1" : {
+            "assessment" : "MC1",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "MC2" : {
+            "assessment" : "MC2",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "RA1" : {
+            "assessment" : "RA1",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "RA2" : {
+            "assessment" : "RA2",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "MIDTERM" : {
+            "assessment" : "MIDTERM",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "PRACTICAL_ASSESSMENT" : {
+            "assessment" : "PRACTICAL_ASSESSMENT",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "FINAL_ASSESSMENT" : {
+            "assessment" : "FINAL_ASSESSMENT",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "STUDIO_ATTENDANCE" : {
+            "assessment" : "STUDIO_ATTENDANCE",
+            "isGraded" : false,
+            "marks" : 0.0
+          }
+        }
+      }
+    }, {
+      "name" : "Bunny",
+      "matricNum" : "A2833958J",
+      "gradeProfile" : {
+        "gradeMap" : {
+          "MC1" : {
+            "assessment" : "MC1",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "MC2" : {
+            "assessment" : "MC2",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "RA1" : {
+            "assessment" : "RA1",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "RA2" : {
+            "assessment" : "RA2",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "MIDTERM" : {
+            "assessment" : "MIDTERM",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "PRACTICAL_ASSESSMENT" : {
+            "assessment" : "PRACTICAL_ASSESSMENT",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "FINAL_ASSESSMENT" : {
+            "assessment" : "FINAL_ASSESSMENT",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "STUDIO_ATTENDANCE" : {
+            "assessment" : "STUDIO_ATTENDANCE",
+            "isGraded" : false,
+            "marks" : 0.0
+          }
+        }
+      }
+    }, {
+      "name" : "David Li",
+      "matricNum" : "A8353285P",
+      "gradeProfile" : {
+        "gradeMap" : {
+          "MC1" : {
+            "assessment" : "MC1",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "MC2" : {
+            "assessment" : "MC2",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "RA1" : {
+            "assessment" : "RA1",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "RA2" : {
+            "assessment" : "RA2",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "MIDTERM" : {
+            "assessment" : "MIDTERM",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "PRACTICAL_ASSESSMENT" : {
+            "assessment" : "PRACTICAL_ASSESSMENT",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "FINAL_ASSESSMENT" : {
+            "assessment" : "FINAL_ASSESSMENT",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "STUDIO_ATTENDANCE" : {
+            "assessment" : "STUDIO_ATTENDANCE",
+            "isGraded" : false,
+            "marks" : 0.0
+          }
+        }
+      }
+    }, {
+      "name" : "Roy Balakrishnan",
+      "matricNum" : "A0033458L",
+      "gradeProfile" : {
+        "gradeMap" : {
+          "MC1" : {
+            "assessment" : "MC1",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "MC2" : {
+            "assessment" : "MC2",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "RA1" : {
+            "assessment" : "RA1",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "RA2" : {
+            "assessment" : "RA2",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "MIDTERM" : {
+            "assessment" : "MIDTERM",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "PRACTICAL_ASSESSMENT" : {
+            "assessment" : "PRACTICAL_ASSESSMENT",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "FINAL_ASSESSMENT" : {
+            "assessment" : "FINAL_ASSESSMENT",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "STUDIO_ATTENDANCE" : {
+            "assessment" : "STUDIO_ATTENDANCE",
+            "isGraded" : false,
+            "marks" : 0.0
+          }
+        }
+      }
+    }, {
+      "name" : "Sarah",
+      "matricNum" : "A4325833C",
+      "gradeProfile" : {
+        "gradeMap" : {
+          "MC1" : {
+            "assessment" : "MC1",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "MC2" : {
+            "assessment" : "MC2",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "RA1" : {
+            "assessment" : "RA1",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "RA2" : {
+            "assessment" : "RA2",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "MIDTERM" : {
+            "assessment" : "MIDTERM",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "PRACTICAL_ASSESSMENT" : {
+            "assessment" : "PRACTICAL_ASSESSMENT",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "FINAL_ASSESSMENT" : {
+            "assessment" : "FINAL_ASSESSMENT",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "STUDIO_ATTENDANCE" : {
+            "assessment" : "STUDIO_ATTENDANCE",
+            "isGraded" : false,
+            "marks" : 0.0
+          }
+        }
+      }
+    } ],
+    "attendance" : {
+      "0" : false,
+      "1" : false,
+      "2" : false,
+      "3" : false,
+      "4" : false,
+      "5" : false
+    },
+    "generalNotes" : [ ],
+    "studentNotes" : {
+      "0" : [ ],
+      "1" : [ ],
+      "2" : [ ],
+      "3" : [ ],
+      "4" : [ ],
+      "5" : [ ]
+    },
+    "isCompleted" : true,
+    "studioParticipation" : {
+      "0" : 0,
+      "1" : 100,
+      "2" : 0,
+      "3" : 0,
+      "4" : 0,
+      "5" : 0
+    }
+  } ]
+}

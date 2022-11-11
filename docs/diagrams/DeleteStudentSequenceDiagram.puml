@@ -1,0 +1,69 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":JarvisParser" as JarvisParser LOGIC_COLOR
+participant ":DeleteStudentCommandParser" as DeleteStudentCommandParser LOGIC_COLOR
+participant "d:DeleteStudentCommand" as DeleteStudentCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("deletestudent 1")
+activate LogicManager
+
+LogicManager -> JarvisParser : parseCommand("deletestudent 1")
+activate JarvisParser
+
+create DeleteStudentCommandParser
+JarvisParser -> DeleteStudentCommandParser
+activate DeleteStudentCommandParser
+
+DeleteStudentCommandParser --> JarvisParser
+deactivate DeleteStudentCommandParser
+
+JarvisParser -> DeleteStudentCommandParser : parse("1")
+activate DeleteStudentCommandParser
+
+create DeleteStudentCommand
+DeleteStudentCommandParser -> DeleteStudentCommand
+activate DeleteStudentCommand
+
+DeleteStudentCommand --> DeleteStudentCommandParser : d
+deactivate DeleteStudentCommand
+
+DeleteStudentCommandParser --> JarvisParser : d
+deactivate DeleteStudentCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+DeleteStudentCommandParser -[hidden]-> JarvisParser
+destroy DeleteStudentCommandParser
+
+JarvisParser --> LogicManager : d
+deactivate JarvisParser
+
+LogicManager -> DeleteStudentCommand : execute()
+activate DeleteStudentCommand
+
+DeleteStudentCommand -> Model : deleteStudent(1)
+activate Model
+
+Model --> DeleteStudentCommand
+deactivate Model
+
+create CommandResult
+DeleteStudentCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DeleteStudentCommand
+deactivate CommandResult
+
+DeleteStudentCommand --> LogicManager : result
+deactivate DeleteStudentCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

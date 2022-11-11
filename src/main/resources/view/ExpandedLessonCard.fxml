@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+    <GridPane HBox.hgrow="ALWAYS">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+        </columnConstraints>
+        <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
+            <padding>
+                <Insets bottom="5" left="15" right="5" top="5" />
+            </padding>
+            <HBox alignment="CENTER_LEFT" spacing="5">
+                <Label fx:id="id" styleClass="cell_big_label">
+                    <minWidth>
+                        <!-- Ensures that the label text is never truncated -->
+                        <Region fx:constant="USE_PREF_SIZE" />
+                    </minWidth>
+                </Label>
+                <Label fx:id="lessonType" styleClass="cell_big_label" text="\$lessonType" />
+            </HBox>
+            <Label fx:id="lessonDesc" style="-fx-font-size: 15; -fx-padding: 12; -fx-border-insets: 12; -fx-background-insets: 12;" styleClass="cell_small_label" text="\$lessonDesc" />
+            <Label fx:id="timePeriod" style="-fx-font-size: 15; -fx-padding: 12; -fx-border-insets: 12; -fx-background-insets: 12;" styleClass="cell_small_label" text="\$timePeriod" />
+         <TableView fx:id="tableView" prefWidth="200.0" style="-fx-background-color: transparent;" stylesheets="@ExpandedLessonTable.css">
+           <columns>
+               <TableColumn fx:id="studentIndex" editable="false" prefWidth="50.0" sortable="false" text="S/N" />
+               <TableColumn fx:id="studentNames" editable="false" prefWidth="175.0" sortable="false" text="Students" />
+             <TableColumn fx:id="studentAttendance" editable="false" prefWidth="150.0" sortable="false" text="Attendance" />
+             <TableColumn fx:id="studentParticipation" editable="false" minWidth="80.0" prefWidth="100.0" sortable="false" text="Participation" visible="false" />
+               <TableColumn fx:id="studentNotes" editable="false" prefWidth="1000.0" sortable="false" text="Notes" />
+           </columns>
+         </TableView>
+         <Label fx:id="generalNotes" style="-fx-font-size: 15; -fx-padding: 12; -fx-border-insets: 12; -fx-background-insets: 12;" styleClass="cell_small_label" text="General Notes:" />
+         <Label fx:id="hasClash" style="-fx-font-size: 15; -fx-padding: 12; -fx-border-insets: 12; -fx-background-insets: 12;" styleClass="cell_small_label" text="hasClash" visible="false" />
+        </VBox>
+      <rowConstraints>
+         <RowConstraints />
+      </rowConstraints>
+    </GridPane>
+   <ImageView fx:id="checkbox" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+      <HBox.margin>
+         <Insets bottom="25.0" right="15.0" top="25.0" />
+      </HBox.margin>
+   </ImageView>
+</HBox>

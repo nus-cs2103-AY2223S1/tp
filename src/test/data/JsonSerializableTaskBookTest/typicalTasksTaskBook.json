@@ -1,0 +1,19 @@
+{
+  "tasks" : [ {
+    "taskDesc" : "Mark mission 1",
+    "deadline" : "2022-10-23",
+    "isDone" : false
+  }, {
+    "taskDesc" : "Prepare studio 1 slides",
+    "deadline" : "2022-12-12",
+    "isDone" : false
+  }, {
+    "taskDesc" : "Check quest 1",
+    "deadline" : "2022-12-12",
+    "isDone" : false
+  }, {
+    "taskDesc" : "Conduct mastery check",
+    "deadline" : "2022-09-12",
+    "isDone" : false
+  } ]
+}

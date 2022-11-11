@@ -1,0 +1,51 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":AddNoteCommand" as AddNoteCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "lessonToAdd:Lesson" as Lesson MODEL_COLOR
+end box
+
+-> AddNoteCommand : execute(model)
+activate AddNoteCommand
+
+AddNoteCommand -> Model : getFilteredLessonList()
+activate Model
+
+Model --> AddNoteCommand : lastShownLessonList
+deactivate Model
+
+AddNoteCommand -> Model : getFilteredStudentList()
+activate Model
+
+Model --> AddNoteCommand : lastShownStudentList
+deactivate Model
+
+AddNoteCommand -> Lesson : addStudentNotes(student, notes)
+activate Lesson
+
+Lesson --> AddNoteCommand
+deactivate Lesson
+
+AddNoteCommand -> Model : updateFilteredLessonList()
+activate Model
+
+Model --> AddNoteCommand
+deactivate Model
+
+create CommandResult
+AddNoteCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddNoteCommand
+deactivate CommandResult
+
+[<--AddNoteCommand : commandResult
+deactivate AddNoteCommand
+
+@enduml

@@ -1,0 +1,46 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":MarkTaskCommand" as MarkTaskCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "taskToMark:Task" as Task MODEL_COLOR
+end box
+
+-> MarkTaskCommand : execute(model)
+activate MarkTaskCommand
+
+MarkTaskCommand -> Model : getFilteredTaskList()
+activate Model
+
+Model --> MarkTaskCommand : lastShownList
+deactivate Model
+
+MarkTaskCommand -> Task : markAsDone()
+activate Task
+
+Task --> MarkTaskCommand
+deactivate Task
+
+
+MarkTaskCommand -> Model : updateFilteredTaskList()
+activate Model
+
+Model --> MarkTaskCommand
+deactivate Model
+
+create CommandResult
+MarkTaskCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> MarkTaskCommand
+deactivate CommandResult
+
+[<--MarkTaskCommand : commandResult
+deactivate MarkTaskCommand
+
+@enduml
