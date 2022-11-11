@@ -1715,6 +1715,27 @@ data file on the next run.
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
 the data of your previous TruthTable home folder.
 
+**Q**: Do I need to save my data manually?<br>
+**A**: No. TruthTable saves your data for you automatically after running any command that changes data. For more information, 
+you can head to the [saving your data](https://ay2223s1-cs2103t-w13-4.github.io/tp/UserGuide.html#saving-the-data) section.
+
+**Q**: Do I need to be connected to the internet to use TruthTable?<br>
+**A**: No, you do not need to be connected to the internet to use our application. However, to open the 
+[team links](https://ay2223s1-cs2103t-w13-4.github.io/tp/UserGuide.html#commands-to-manage-links--urls) saved on TruthTable
+on your browser, you might need to be connected to the internet for the webpage to load.
+
+**Q**: Why is the list empty when I use the feature `list members`?<br>
+**A**: It is likely that you have not added the relevant contacts as members onto your current team. You can add your
+members into the team using the [`add member`](https://ay2223s1-cs2103t-w13-4.github.io/tp/UserGuide.html#adding-a-new-member-to-the-team-add-member) command.
+
+**Q**: Why am I seeing `You must have at least one team!` when trying to delete a team?<br>
+**A**: You can only delete a team if you have more than one team created. You can use the `add team` command to add a new team
+before deleting the team that you wish to delete.
+
+**Q**: Why am I unable to use a command?<br>
+**A**: Don't panic! Head to the [Command Summary](https://ay2223s1-cs2103t-w13-4.github.io/tp/UserGuide.html#command-summary) section to
+make sure that you are using the correct command formats.
+
 [Back to Table of Contents](#table-of-contents)
 
 ---
