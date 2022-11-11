@@ -708,7 +708,7 @@ Opens the Help Window, which allows you to copy the URL of the User Guide to you
 
 Format: `help`
 
-**Reasons for usage:**
+**Reason for usage:**
 * You are unsure of the commands available and want to access the User Guide.
 
 
