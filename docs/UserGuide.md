@@ -247,7 +247,6 @@ and pressing enter will give you all the information about the command: what it 
 </div>
 
 To learn more about parameters, do check out the section on [information about parameters](#52-information-about-parameters)!
-<div style="page-break-after: always;"></div>
 
 ### Example Commands
 
@@ -273,6 +272,7 @@ Let’s try out some commands! Type or copy a command into the Command Box and p
 
 This is just a short preview of the features that StudMap has to offer. The [Features](#5-features) section
 will guide you through all available commands in greater detail!
+<div style="page-break-after: always;"></div>
 
 ## 4.4 Migrating to StudMap
 
@@ -289,7 +289,6 @@ That’s all for the tutorial! Check out the [Features](#5-features) section for
 command. We hope you enjoy using StudMap!
 
 ---
-<div style="page-break-after: always;"></div>
 
 # 5. Features
 
