@@ -260,7 +260,7 @@ Examples:
 
 <p align="center">
 
-<img src="images/helpCommand.png" width="500px" style="height: 220px; object-fit:cover; object-position:0px 0px"/>
+<img src="images/helpCommand.png" width="500px" style="height: 205px; object-fit:cover; object-position:0px 0px"/>
 
 </p>
 
