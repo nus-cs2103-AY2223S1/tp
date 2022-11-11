@@ -355,7 +355,7 @@ A contact can have any number of tags (including 0).
 
 <div markdown="block" class="alert alert-info">:information_source: **Note**<br>
 
-- The diagram below shows the result of `find_contact alex david`, where the both contacts Alex Yeoh and David Li are returned, as they contain the keywords `alex` and `david` respectively.
+- The diagram below shows the result of `find_contact alex david`, where the both contacts Alex Yeoh and David Li are returned as they contain the keywords `alex` and `david` respectively.
   ![result for 'find alex david'](images/user-guide/findAlexDavidResult.png)
 
 </div>
