@@ -338,7 +338,8 @@ A contact can have any number of tags (including 0)
 **Format:** `list_contact`
 
 **Example:**
-![Result for 'list_contact command'](images/user-guide/list-contact-command.png)
+- `list_contact` displays a list of all contacts, as shown in the diagram below.
+  ![Result for 'list_contact command'](images/user-guide/list-contact-command.png)
 
 #### Finding contacts by name: `find_contact`
 
@@ -431,7 +432,8 @@ A contact can have any number of tags (including 0)
 - Tasks without deadlines are listed below tasks with deadlines and sorted by their names alphabetically.
 
 **Example:**
-![Result for 'list_task command'](images/user-guide/list-task-command.png)
+- `list_task` displays a list of all tasks, as shown in the diagram below. Note that the first 3 tasks with deadlines are ordered chronologically and placed at the top. The last 2 tasks without deadlines are placed below.
+  ![Result for 'list_task command'](images/user-guide/list-task-command.png)
 
 </div>
 
