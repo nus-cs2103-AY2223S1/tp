@@ -1701,8 +1701,7 @@ If done successfully, you should see a new link show up in the list of links in 
 Oops! Seems like meeting link for the weekly meeting has changed. Not to worry, you can edit the link [URL](#url) easily with `edit link`!
 
 The `edit link` command allows you to edit an existing link in TruthTable. The edited link will be shown in the list of 
-links in the [currently selected team](#current-team-section) as seen in the image below. As always, don't panic if 
-you see an error message. Let us run through an example on how to edit the details of a link. 
+links in the [currently selected team](#current-team-section) as seen in the image below. Let us run through an example on how to edit the details of a link. 
 
 Suppose the [URL](#url) of your `weekly meeting` has changed to
 `https://zoom.us/j/94669589458?pwd=bTQvWTlWbzR5T29Ja0w2d0J1R1R4QT09#success`. 
