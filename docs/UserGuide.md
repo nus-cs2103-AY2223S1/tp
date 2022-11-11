@@ -127,7 +127,6 @@ So, fret not, you will become familiar with TruthTable's commands in no time.
    should appear in a few seconds. ![Ui](images/Ui.png)
    <br><br>
    <div markdown="block" class="alert alert-success">**:bulb: Sample data**:
-   <br><br>
    We have also added some sample data for you to play around with and get familiar with TruthTable's 
    [commands](#commands)!
    </div>
