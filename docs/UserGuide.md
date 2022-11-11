@@ -125,11 +125,17 @@ Just remember that toggling between these two screens is easily done with 2 comm
 
 #### Filtered/Unfiltered List Views
 OmniHealth's sorting and filtering system allows you to search for specific patients and records in each respective list views.
-After using a find command [`find`](#finding-patients-by-name-find) or [`rfind`](#finding-records-by-keyword-rfind), the list will be considered **filtered**.
-To display all the patients/records (**Unfiltered List View**), you can use the command [`showall`](#displaying-the-full-list-showall).
+
+By default, the Patient List and Record List are **unfiltered** (not filtered by a find command). After using a find command [`find`](#finding-patients-by-name-find) or [`rfind`](#finding-records-by-keyword-rfind), the list will be considered **filtered**.
+
+| Unfiltered List View (Default)              | Filtered List View                                  |
+|---------------------------------------------|-----------------------------------------------------|
+| ![Ui-unfiltered](images/UiUnfiltered.png)   | ![Ui-filtered](images/UiFiltered.png)               |
+| Command to navigate to this view: `showall` | Command to navigate to this view: `find` or `rfind` |
+
 <div markdown="block" class="alert alert-info">
 
-:information_source: **Note:**[`showall`](#displaying-the-full-list-showall) command is applicable to both Patient List View and Record List View<br>
+:information_source: **Note:**[`showall`](#displaying-the-full-list-showall) command can be used in both Patient List View and Record List View<br>
 
 </div>
 
