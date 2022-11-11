@@ -241,7 +241,6 @@ Note that flags and parameters always come **after** the command.
 
 <div markdown="block" class="alert alert-primary">**:information_source: Do I need to memorize all these commands, 
 parameters, and flags?**
-<br><br>
 Nope!
 <br><br>
 While you're going through this section, don't worry too much about memorizing the details of every command, as they all
