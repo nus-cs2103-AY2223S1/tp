@@ -293,7 +293,7 @@ The following section highlights **all** commands related to clients.
 
 ### Creating a transaction: `buy` or `sell`
 
-Adds a `buy` or `sell` transaction to the **List Of Transactions** of a specified client.
+Adds a `buy` or `sell` transaction to the *Transaction Details* of a specified client.
 
 Formats:
 
@@ -305,7 +305,7 @@ Parameter constraints:
 
 | Parameter  | Constraints                                                                                                                                                                                          |
 |:-----------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `INDEX`    | - Refers to the index number shown in the displayed **List Of Clients**. <br/> - **Must be a positive integer** e.g 1, 2, 3, …​ <br/> - **Must not contain any signs** e.g +1, -3, …​                |
+| `INDEX`    | - Refers to the index number shown in the displayed *List Of Clients*. <br/> - **Must be a positive integer** e.g 1, 2, 3, …​ <br/> - **Must not contain any signs** e.g +1, -3, …​                  |
 | `QUANTITY` | - Refers to the amount of the goods transacted. <br/> - **Must be a positive integer**<br/> - **Must not contain any signs**                                                                         |
 | `GOODS`    | - Refers to the name of the goods transacted. <br/> - **Must contain alphanumeric characters**<br/>- **Must not be blank**.                                                                          |
 | `PRICE`    | - Refers to the price of the goods transacted. <br/> - **Must be a positive number** e.g. 1.5, 2.3, 5<br/>- **Must not contain any signs** <br/>- **Prices will be rounded up to 2 decimal places.** |
@@ -318,7 +318,7 @@ the list on the 07/11/2000.
 
 ![Ui](images/SampleBuySellCommand2.PNG)
 
-> <div markdown="span" class="alert alert-primary">:bulb: Tip: If you use the "buy" or "sell" command while the "Client List Panel" has more than one client, you will not be able to see the addition.<br/>Use the [view](#viewing-a-client-view) command to see it.</div>
+> <div markdown="span" class="alert alert-primary">:bulb: Tip: If you use the "buy" or "sell" command while the *List Of CLients* panel has more than one client, you will not be able to see the addition.<br/>Use the [view](#viewing-a-client-view) command to see it.</div>
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -328,14 +328,14 @@ Edits a transaction specified by the index number.
 
 Format: `edit INDEX m/transaction FIELDS [MORE_FIELDS]...`
 
-| Parameter | Constraints                                                                                                                                                                                         |
-|:----------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `INDEX`   | - Refers to the index number shown in the display **List of Transactions**. <br/> - **Must be a positive integer within the range displayed**<br/>  **- Must not contain any signs** e.g +1, -3, …​ |
-| `FIELDS`  | - Refers to the parameters to be changed for the transaction.<br/> - `[q/QUANTITY]`<br/> - `[g/GOODS]`<br/> - `[price/PRICE]`<br/> - `[d/DATE]`                                                     |
+| Parameter | Constraints                                                                                                                                                                                      |
+|:----------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `INDEX`   | - Refers to the index number shown in the display *Transaction Details*. <br/> - **Must be a positive integer within the range displayed**<br/>  **- Must not contain any signs** e.g +1, -3, …​ |
+| `FIELDS`  | - Refers to the parameters to be changed for the transaction.<br/> - `[q/QUANTITY]`<br/> - `[g/GOODS]`<br/> - `[price/PRICE]`<br/> - `[d/DATE]`                                                  |
 
 Example (refer to diagram below):
 
-`edit 1 m/transaction q/100 g/Apples price/1.5` edits the transaction at index 1 in the displayed list of transactions (pear), to have a new **goods name**: "Apples", **quantity**: "100", **price**: 1.5.
+`edit 1 m/transaction q/100 g/Apples price/1.5` edits the transaction at index 1 in the displayed *Transaction Details* panel, to have a new goods name: "Apples", quantity: "100", price: 1.5.
 
 > <div markdown="span" class="alert alert-warning">:warning: Warning: You must use [view](#viewing-a-client-view) command first before you can edit a transaction. If not, there will be an error within the application!
 
@@ -350,12 +350,12 @@ Deletes a transaction specified by the index number.
 
 Format: `delete INDEX m/transaction`
 
-* `INDEX` refers to the index number shown in the displayed Transaction Details. 
+* `INDEX` refers to the index number shown in the displayed *Transaction Details*. 
 * `INDEX` must be a **positive integer**, and must not contain any signs e.g. +1, -3.
 
 Example:
 
-`delete 1 m/transaction` deletes the transaction at index 1 in the displayed Transaction Details.
+`delete 1 m/transaction` deletes the transaction at index 1 in the displayed *Transaction Details*.
 
 > <div markdown="span" class="alert alert-warning">:warning: Warning: You must use [view](#viewing-a-client-view) command first before you can delete a transaction. If not, there will be an error within the application!
 
@@ -366,20 +366,20 @@ Example:
 ### Filtering buy or sell transactions: `filter`
 
 Filters the buy or sell transactions of all the clients. After executing this command, the filtered transactions will be 
-displayed in the transaction details panel while the list of clients will display all the clients.
+displayed in the *Transaction Details* panel while the *List Of Clients* panel will display all the clients.
 
 Format: `filter TYPE`
 
 * The `TYPE` refers to the type of transactions to be displayed.
   It can only be `buy` or `sell`.
-* If no clients made any transactions, the transaction section will be blank.
-* After calling the `filter` command, the client list panel will display all clients.
+* If no clients made any transactions, the *Transaction Details* panel will be blank.
+* After calling the `filter` command, the *List Of Clients* panel will display all clients.
 
 Examples:
 * `filter buy` displays all buy transactions.
 * `filter sell` displays all sell transactions.
 
-> <div markdown="span" class="alert alert-primary">:bulb: Tip: The transactions listed in "List of Transactions" panel does not belong to anyone, it is all transactions with all your clients</div>
+> <div markdown="span" class="alert alert-primary">:bulb: Tip: The transactions listed in *List of Transactions* panel does not belong to anyone, it is all transactions with all your clients</div>
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -388,19 +388,19 @@ Examples:
 Sorts the specified client's transaction by either the **latest transaction** or **oldest transaction** (defined by date).
 
 Format: `sort INDEX ORDER`
-* The list of transaction panel will be empty if the client does not have any transactions.
+* The *Transaction Details* panel will be empty if the client does not have any transactions.
 
-| Parameter | Constraints                                                                                                                                                                                  |
-|:----------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `INDEX`   | - Refers to the index number shown in the displayed list of clients. <br/> - **Must be a positive integer within the range displayed**<br/>  **- Must not contain any signs** e.g +1, -3, …​ |
-| `ORDER`   | - Refers to how the transaction will be sorted. <br/> - Order of sorting can only be `oldest` or `latest`.<br/>                                                                              |
+| Parameter | Constraints                                                                                                                                                                                         |
+|:----------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `INDEX`   | - Refers to the index number shown in the displayed *List Of Clients* panel.<br/> - **Must be a positive integer within the range displayed**<br/>  **- Must not contain any signs** e.g +1, -3, …​ |
+| `ORDER`   | - Refers to how the transaction will be sorted. <br/> - Order of sorting can only be `oldest` or `latest`.<br/>                                                                                     |
 
 
 Examples:
 * `sort 1 latest` displays the 1<sup>st</sup> client transactions sorted by the latest transaction on top.
 * `sort 5 oldest` displays the 5<sup>th</sup> client transactions sorted by the oldest transaction on top.
 
-> <div markdown="span" class="alert alert-primary">:bulb: Tip: The sort command will filter the list of clients panel to display only the specified client.<br/>Use the [list](#listing-all-clients-list) command to get back the full list of clients.</div>
+> <div markdown="span" class="alert alert-primary">:bulb: Tip: The sort command will filter the *List Of Clients* panel to display only the specified client.<br/>Use the [list](#listing-all-clients-list) command to get back the full list of clients.</div>
 
 [Back to Table of Contents](#table-of-contents)
 
