@@ -5,9 +5,9 @@ title: Lee Cheng Da's Project Portfolio Page
 
 ### Project: InterNUS
 
-InterNUS is a convenient and powerful desktop app for NUS CS students to **manage internship applications, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). It has a sleek design to track your internship status at one glance.
+InterNUS is a convenient and powerful desktop app for NUS CS students to **manage their internship applications, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). It has a sleek design for you to track your internship applications at a glance.
 
-Given below are my contributions to the project.
+Below are my contributions to the project.
 
 * **New Feature**: Added the ability to sort person list by name or company name
   * What it does: Sorts the list of persons in the app in alphabetical order
