@@ -149,11 +149,11 @@ You should see that the person list is now empty.
 
 1. You can now **add your first person** to PayMeLah with the [`add` command](#adding-a-person-add). The example we will use in this section is `add n/Ryan Tan tele/ryantan123`. Entering this command will add a person named `Ryan Tan` with `ryantan123` as his Telegram handle into PayMeLah.<br>
 
-You should see that the person card for `Ryan Tan` is now visible in the person list. You can click on his name to expand his person card, as per the picture below. However, he does not have any debts associated with him just yet!
+You should see that the person card for `Ryan Tan` is now visible in the [person list](#person-list-section). You can click on his name to expand his person card, as per the picture below. However, he does not have any debts associated with him just yet!
 
    ![Ryan Tan list](images/RyanTanList.png)
 
-1. You are now ready to **add a debt** to `Ryan Tan` using the [`adddebt` command](#adding-a-debt-adddebt)! This time, the example we will use is `adddebt 1 d/mcdonalds m/9.80`. Entering this command will add a debt of `$9.80` with the description `mcdonalds` to the 1st person in the person list, who happens to be `Ryan Tan`.<br>
+1. You are now ready to **add a debt** to `Ryan Tan` using the [`adddebt` command](#adding-a-debt-adddebt)! This time, the example we will use is `adddebt 1 d/mcdonalds m/9.80`. Entering this command will add a debt of `$9.80` with the description `mcdonalds` to the 1st person in the [person list](#person-list-section), who happens to be `Ryan Tan`.<br>
 
 You should see that the person card for `Ryan Tan` should now be updated. Congratulations! You have just added your first debt to PayMeLah!
 
@@ -264,7 +264,7 @@ The undo history of PayMeLah will only save your 10 most recent commands! Make s
 This command clears all data from PayMeLah.
 
 **When to use:**<br>
-When you want to start afresh with an empty person list, this is the command to use!
+When you want to start afresh with an empty [person list](#person-list-section), this is the command to use!
 
 **Format:**<br>
 `clear`
@@ -333,7 +333,7 @@ When a person’s particulars in PayMeLah have changed (e.g. phone number or Tel
 `edit <index> [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]…`
 
 **Additional information:**<br>
-* Edits the person at the specified `<index>`. The index refers to the person index shown in the displayed person list.
+* Edits the person at the specified `<index>`. The index refers to the person index shown in the displayed [person list](#person-list-section).
 * At least one of the optional fields must be provided.
 * Pre-existing values will be updated to the input values.
 * You can remove all the person’s tags by typing `t/` without
@@ -358,7 +358,7 @@ When you no longer need to track debts for a particular person, you can use this
 
 **Additional information:**<br>
 * Deletes the person at the specified `<index>`.
-* The index refers to the person index shown in the displayed person list.
+* The index refers to the person index shown in the displayed [person list](#person-list-section).
 
 **Examples:**<br>
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
@@ -402,7 +402,7 @@ Be very careful! The default behaviour is slightly different across the differen
 <div style="page-break-after: always;"></div>
 
 **Example:**<br>
-* `adddebt 3 d/McDonalds m/8.9` will add a debt with the current date and time to the 3rd person in the person list. This debt is worth `$8.90` and has the description `McDonalds`.
+* `adddebt 3 d/McDonalds m/8.9` will add a debt with the current date and time to the 3rd person in the [person list](#person-list-section). This debt is worth `$8.90` and has the description `McDonalds`.
 * `adddebt 1 4 d/chicken rice m/10++ date/2022-10-12 time/13:00` will add debts with `2022-10-12` and `13:00` as the date and time respectively to **both** the 1st person and 4th person. These debts require Service Charge and GST to be added to an initial price of `$10`, and will be recorded with the description `chicken rice`. Note that PayMeLah will automatically calculate the money for both debts and display the amounts as `$11.77`.
 
 <div style="page-break-after: always;"></div>
@@ -442,7 +442,7 @@ Be very careful! The default behaviour is slightly different across the differen
 </div>
 
 **Examples:**<br>
-* `splitdebt 1 2 d/Pizza m/33.99` will add debts with the current date and time to the 1st and 2nd person in the person list. This debt has the description `Pizza`and is worth `$33.99` in total before being divided by 2, over the 1st person and the 2nd person. Note that PayMeLah will automatically calculate the money for both debts and display the amounts as `$17.00`.
+* `splitdebt 1 2 d/Pizza m/33.99` will add debts with the current date and time to the 1st and 2nd person in the [person list](#person-list-section). This debt has the description `Pizza`and is worth `$33.99` in total before being divided by 2, over the 1st person and the 2nd person. Note that PayMeLah will automatically calculate the money for both debts and display the amounts as `$17.00`.
 * `splitdebt 0 2 5 d/KFC chicken bucket m/30+ date/2022-10-12` will add debts with `2022-10-12` and with the default `00:00` as the date and time respectively to **both** the 2nd person and 5th person. These debts will be recorded with the description `KFC chicken bucket` and require GST to be added to an initial total price of `$30` before dividing the costs by 3, over yourself, the 2nd person and the 5th person. Note that PayMeLah will automatically calculate the money for both debts and display the amounts as `$10.70`.
 
 <div style="page-break-after: always;"></div>
@@ -478,7 +478,7 @@ You might find it difficult to find the index of a specific person when your lis
 </div>
 
 **Example:**<br>
-* `cleardebts 3` will delete all the debts, paid or unpaid, from the 3rd person in the current person list.
+* `cleardebts 3` will delete all the debts, paid or unpaid, from the 3rd person in the current [person list](#person-list-section).
 
 <div style="page-break-after: always;"></div>
 
@@ -515,7 +515,7 @@ When you realise that a debt you had previously [marked as paid](#marking-debts-
 #### Getting the statement: `statement`
 
 **What it does:**<br>
-This command gets a statement of the total value of debts you are owed by everyone in the displayed person list.
+This command gets a statement of the total value of debts you are owed by everyone in the displayed [person list](#person-list-section).
 
 **When to use:**<br>
 When you want to quickly find out the total amount of money you are owed, you can use this command to let PayMeLah do the calculations for you!
@@ -527,7 +527,7 @@ When you want to quickly find out the total amount of money you are owed, you ca
 The statement will only sum up the debts that are marked as unpaid from the list that is currently displayed. This means that if you have shortened the list using the [`find` command](#locating-persons-by-inputs-find) or [`finddebt` command](#locating-persons-by-debt-description-finddebt), the statement will only sum up the debts that are marked as unpaid from the shortened list.
 
 **Example:**<br>
-`statement` displays `You are owed $583.90 in total.` when there are 2 persons in the displayed person list, who owe you $100 and $483.90 respectively.
+`statement` displays `You are owed $583.90 in total.` when there are 2 persons in the displayed [person list](#person-list-section), who owe you $100 and $483.90 respectively.
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -542,7 +542,7 @@ The statement will only sum up the debts that are marked as unpaid from the list
 This command finds and displays persons who match all the given conditions.
 
 **When to use:**<br>
-When you are looking for specific person(s) in PayMeLah, you can use this command to filter the displayed person list!
+When you are looking for specific person(s) in PayMeLah, you can use this command to filter the displayed [person list](#person-list-section)!
 
 **Format:**<br>
 `find [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]…
@@ -614,10 +614,10 @@ When you do not remember the exact description of a debt you want to look for (e
 #### Listing all persons: `list`
 
 **What it does:**<br>
-This command displays the full person list in PayMeLah.
+This command displays the full [person list](#person-list-section) in PayMeLah.
 
 **When to use:**<br>
-When you have previously filtered the displayed person list (using commands such as `find` and `finddebt`) and want to view the full list again, this is the command to use!
+When you have previously filtered the displayed [person list](#person-list-section) (using commands such as `find` and `finddebt`) and want to view the full list again, this is the command to use!
 
 **Format:**<br>
 `list`
@@ -641,10 +641,10 @@ When you want to quickly find out who owes you significant amounts of money, thi
 #### Sorting list of persons: `sort`
 
 **What it does:**<br>
-Sorts and displays the person list using the given criterion and order.
+Sorts and displays the [person list](#person-list-section) using the given criterion and order.
 
 **When to use:**<br>
-When you want to organise your data in PayMeLah, you can use this command to arrange the person list in an order you like!
+When you want to organise your data in PayMeLah, you can use this command to arrange the [person list](#person-list-section) in an order you like!
 
 **Format:**<br>
 `sort <criterion prefix><order>`
@@ -666,7 +666,7 @@ When you sort by time since oldest debt, all persons who do not owe any debt wil
 </div>
 
 **Example:**<br>
-`sort n/+` sorts and displays the person list in ascending alphabetical order of their names.
+`sort n/+` sorts and displays the [person list](#person-list-section) in ascending alphabetical order of their names.
 
 
 [Return to Table of Contents](#table-of-contents)
@@ -688,13 +688,13 @@ The following table lists every keyboard shortcut currently available in PayMeLa
 
 |                Keyboard Key                 | Function                                                                                                                                                                                                                                                                                                                                                                                                                       |
 |:-------------------------------------------:|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|               <kbd>Tab</kbd>                | **Scrolling down the [person list](#person-list-section):**<br> When you are in the command box, press <kbd>Tab</kbd> twice to navigate to the person list. Once you are in the person list, you can use <kbd>Tab</kbd> to continue moving down the list. Press <kbd>Tab</kbd> again after reaching the end of the list will return you to the command box.                                                                    |
+|               <kbd>Tab</kbd>                | **Scrolling down the [person list](#person-list-section):**<br> When you are in the command box, press <kbd>Tab</kbd> twice to navigate to the [person list](#person-list-section). Once you are in the [person list](#person-list-section), you can use <kbd>Tab</kbd> to continue moving down the list. Press <kbd>Tab</kbd> again after reaching the end of the list will return you to the command box.                                                                    |
 |      <kbd>Shift</kbd> + <kbd>Tab</kbd>      | **Scrolling up the [person list](#person-list-section):**<br> Same as <kbd>Tab</kbd> but moves up instead.                                                                                                                                                                                                                                                                                                                     |
-|              <kbd>Space</kbd>               | **Navigating a [person card](#person-list-section):**<br> When you are in the person list, use <kbd>Space</kbd> to expand or close the person card you are currently on. After expanding the person card, pressing <kbd>Tab</kbd> followed by <kbd>Space</kbd> will navigate you to the person’s debt list. Once you are done viewing the person's debt list, you can press <kbd>Tab</kbd> again to return to the person list. |
-|  <kbd>PageUp</kbd> and <kbd>PageDown</kbd>  | **Moving to another [person card](#person-list-section):**<br> When you are in the person list, use <kbd>PageUp</kbd> and <kbd>PageDown</kbd> to move up or down the list, automatically expanding each person card as you move. When you are in a person's debt list, use <kbd>PageUp</kbd> and <kbd>PageDown</kbd> to move up or down the debt list.                                                                         |
+|              <kbd>Space</kbd>               | **Navigating a [person card](#person-list-section):**<br> When you are in the [person list](#person-list-section), use <kbd>Space</kbd> to expand or close the person card you are currently on. After expanding the person card, pressing <kbd>Tab</kbd> followed by <kbd>Space</kbd> will navigate you to the person’s debt list. Once you are done viewing the person's debt list, you can press <kbd>Tab</kbd> again to return to the [person list](#person-list-section). |
+|  <kbd>PageUp</kbd> and <kbd>PageDown</kbd>  | **Moving to another [person card](#person-list-section):**<br> When you are in the [person list](#person-list-section), use <kbd>PageUp</kbd> and <kbd>PageDown</kbd> to move up or down the list, automatically expanding each person card as you move. When you are in a person's debt list, use <kbd>PageUp</kbd> and <kbd>PageDown</kbd> to move up or down the debt list.                                                                         |
 | <kbd>UpArrow</kbd> and <kbd>DownArrow</kbd> | **Moving to another [person card](#person-list-section):**<br> Similar to <kbd>PageUp</kbd> and <kbd>PageDown</kbd>, but without expanding the person cards you scroll by.                                                                                                                                                                                                                                                     |
-|               <kbd>Home</kbd>               | **Jumping to the top of the [person list](#person-list-section):**<br> When you are in the person list, press the <kbd>Home</kbd> key to jump to the first person in the person list. When you are in a person's debt list, press the <kbd>Home</kbd> key to jump to the first debt in the debt list.                                                                                                                          |
-|               <kbd>End</kbd>                | **Jumping to the bottom of the [person list](#person-list-section):**<br> When you are in the person list, press the <kbd>End</kbd> key to jump to the last person in the person list. When you are in a person's debt list, press the <kbd>End</kbd> key to jump to the last debt in the debt list.                                                                                                                           |
+|               <kbd>Home</kbd>               | **Jumping to the top of the [person list](#person-list-section):**<br> When you are in the [person list](#person-list-section), press the <kbd>Home</kbd> key to jump to the first person in the [person list](#person-list-section). When you are in a person's debt list, press the <kbd>Home</kbd> key to jump to the first debt in the debt list.                                                                                                                          |
+|               <kbd>End</kbd>                | **Jumping to the bottom of the [person list](#person-list-section):**<br> When you are in the [person list](#person-list-section), press the <kbd>End</kbd> key to jump to the last person in the [person list](#person-list-section). When you are in a person's debt list, press the <kbd>End</kbd> key to jump to the last debt in the debt list.                                                                                                                           |
 
 <div style="page-break-after: always;"></div>
 
@@ -742,7 +742,7 @@ If the data file fails to follow the required format, PayMeLah will **discard al
 If you are trying to locate a debt without knowing its full description, consider using the [`finddebt` command](#locating-persons-by-debt-description-finddebt) instead.<br>
 <div markdown="span" class="alert alert-primary">:bulb: **Other Tips:** <br>
 1. You can try [combining inputs](#combining-inputs-to-find) to refine your search, but sometimes, you cannot find something because you may have misremembered a detail like the date, or keyed it into PayMeLah wrongly by accident. In this situation, you may want to consider not making your search too specific, or using `before/` and `after/` inputs to search around a date instead of on that specific date.<br>
-2. As a last resort, the [`list` command](#listing-all-persons-list) will list every person in PayMeLah. You can then [sort the list](#sorting-list-of-persons-sort) to make it easier to manually check through the list. If you still cannot find the person or debt you are looking for in the full person list displayed by `list`, then unfortunately it means the item you are looking for is not in PayMeLah.
+2. As a last resort, the [`list` command](#listing-all-persons-list) will list every person in PayMeLah. You can then [sort the list](#sorting-list-of-persons-sort) to make it easier to manually check through the list. If you still cannot find the person or debt you are looking for in the full [person list](#person-list-section) displayed by `list`, then unfortunately it means the item you are looking for is not in PayMeLah.
 </div>
 
 **Q3**: PayMeLah is not letting me use the command I want! What can I do?<br>
