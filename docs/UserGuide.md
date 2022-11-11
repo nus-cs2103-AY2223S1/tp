@@ -66,6 +66,47 @@ raising an issue on our [GitHub](https://github.com/AY2223S1-CS2103T-W11-1/tp)!
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Quick Start
+
+### System Requirements
+
+For the ideal experience, we recommend using NUSEatWhere on either Windows, macOS or Linux operating systems.
+
+In addition, you will require 'Java' version 11 or higher to run NUSEatWhere. 'Java' version 11 can be downloaded from 
+the Oracle website [here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html).
+Alternatively, you can install 'Java' directly on your computer through package managers using the following commands:
+
+* On Windows, using [Chocolatey](https://chocolatey.org/), `choco install jdk11`
+* On macOS, `brew install openjdk@11`
+* On Linux, `sudo apt-get install openjdk-11-jdk`
+
+### Installing NUSEatWhere
+
+1. If you haven't done so already, install `Java` version 11 or higher by following the instructions in 
+   [System Requirements](#system-requirements).
+
+2. Next, download the latest release of `foodguide.jar` from 
+   [here](https://github.com/AY2223S1-CS2103T-W11-1/tp/releases).
+
+3. Make sure to move the file to your intended **home folder** for the NUSEatWhere application.
+
+4. Double-click the file to start `NUSEatWhere`. <br>
+   You should be greeted with an interface similar to the picture below in the [First Glance](#first-glance) section.
+
+5. You're done setting up the `NUSEatWhere`! <br>
+   Go ahead and type some commands into the command box and press Enter to execute it. <br>
+   e.g. typing `help` and pressing Enter will open the help window. <br>
+
+   Here are some example commands you can try:
+  * `help`: Opens a help window
+  * `list`: Lists all eateries
+  * `find mala`: List all eateries with 'mala' in its name
+  * `exit`: Closes the application
+
+6. You can refer to [Features](#features) below for the details of each command.
+
+<br>
+
 ## First Glance
 The following image describes how `NUSEatWhere` looks like upon opening the application.
 
@@ -75,34 +116,6 @@ To interact with NUSEatWhere, you type commands into the Command Bar and press t
 
 If the command is successfully executed, a response message will appear in the Feedback Bar. However, if there is an error in your command, a red <span style="color:red">error message</span>
 will pop up instead, telling you what went wrong and how to correct it.
-
-## Quick Start
-
-1. First, start by installing `Java 11` from 
-[here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html).
-
-2. Next, download the latest `foodguide.jar` from [here](https://github.com/AY2223S1-CS2103T-W11-1/tp/releases).
-
-3. Make sure to move the file to your intended **home folder** for the NUSEatWhere application.
-
-4. Double-click the file to start `NUSEatWhere`. <br> 
-The application should like the picture above in the [First Glance](#first-glance) section. 
-
-5. You're done setting up the `NUSEatWhere`! <br> 
-Go ahead and type some commands into the command box and press Enter to execute it. <br>
-e.g. typing `help` and pressing Enter will open the help window. <br>
-
-   Here are some example commands you can try:
-
-   * `help`: Lists all commands
-   * `list`: Lists all eateries
-   * `find mala`: List all eateries with 'mala' in its name
-   * `exit`: Closes the application
-
-6. You can refer to [Features](#features) below for the details of each command.
-
-<br>
-
 
 --------------------------------------------------------------------------------------------------------------------
 
