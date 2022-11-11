@@ -177,18 +177,18 @@ In the **student list** and **tutor list**, clicking on the individual student o
 
 Note that the card for the person being displayed will be highlighted as well.
 
-<div style="page-break-after: always; padding: 0px;"></div>
+<div style="page-break-after: always; padding: 0px; margin: 0px;"></div>
 
 ### 4. List Tabs
 
 There are three tabs: `Student`, `Tutor` and `Class`.  
 The highlighted tab indicates which list is currently being displayed.
 
-<p align="center">
+<div align="center" st>
 
 <img src="images/list_tabs_2.png"/>
 
-</p>
+</div>
 
 <div style="page-break-after: always;"></div>
 
