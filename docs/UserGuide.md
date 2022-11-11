@@ -791,7 +791,7 @@ Now, let's use `sdelete` command and delete the first schedule in your schedule 
 
 #### 4.4.7. Clear your schedule: `sclear`
 
-You can use this command to clear all the schedules or all schedules of a selected module.
+You can use this command to clear all the schedules or all schedules of a selected module in ProfNUS.
 
 **Format:** `sclear [c/MODULE_CODE]...`
 
