@@ -150,15 +150,15 @@ The [table of contents](#table-of-contents) provides links to every command. But
 
 Below are some symbols and annotations that you may encounter in the User Guide.
 
-| Symbol / Annotation                                                        | Meaning                                                                               |
-|----------------------------------------------------------------------------|---------------------------------------------------------------------------------------|
-| <div markdown="span" class="alert alert-danger">:exclamation: Danger</div> | Something that could cause **irreversible damage** when done incorrectly              |
-| <div markdown="span" class="alert alert-warning">:warning: Warning</div>   | A **potential source of error**, and should be noted                                  |
-| <div markdown="span" class="alert alert-primary">:bulb: Tip</div>          | Tips that can aid you to **optimally utilise** JeeqTracker                            |
-| <div markdown="block" class="alert alert-info">Information</div>           | **Important information** to take note of                                             |
-| **Bolded Text**                                                            | Emphasizes **important terms** to look out for                                        |
-| `Text wrapped in a box`                                                    | Denotes terms related to a **command** or **field**                                   |
-| *Italic Text*                                                              | Denotes a **user interface component** name, located [here](#user-interface-overview) | 
+| Symbol / Annotation                                                                   | Meaning                                                                               |
+|---------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------|
+| <div markdown="span" class="alert alert-danger">:exclamation: Danger</div>            | Something that could cause **irreversible damage** when done incorrectly              |
+| <div markdown="span" class="alert alert-warning">:warning: Warning</div>              | A **potential source of error**, and should be noted                                  |
+| <div markdown="span" class="alert alert-primary">:bulb: Tip</div>                     | Tips that can aid you to **optimally utilise** JeeqTracker                            |
+| <div markdown="block" class="alert alert-info">:information_source: Information</div> | **Important information** to take note of                                             |
+| **Bolded Text**                                                                       | Emphasizes **important terms** to look out for                                        |
+| `Text wrapped in a box`                                                               | Denotes terms related to a **command** or **field**                                   |
+| *Italic Text*                                                                         | Denotes a **user interface component** name, located [here](#user-interface-overview) | 
 
 
 > <div markdown="span" class="alert alert-primary">:bulb: Tip: It is recommended to understand the [User Interface](#user-interface-overview) as it will help you to navigate the application easily!</div>
