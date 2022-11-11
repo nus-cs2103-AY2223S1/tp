@@ -47,7 +47,7 @@ As a TA, you will find yourself juggling various tasks:
 3. Managing your students’ progress
 
 Managing these may be initially easy, but they can quickly pile up and become more tedious if not handled properly,
-especially with the tools available.
+especially with the lack of tools available.
 
 ## 2.2 What tools do TAs currently use?
 
@@ -57,17 +57,17 @@ One of the tools you may commonly encounter is spreadsheets, such
 as [Microsoft Excel](https://www.microsoft.com/en-us/microsoft-365/excel)
 or [Google Sheets](https://www.google.com/sheets/about/), often provided by
 the head teaching assistant. However, when using these tools, you may notice that there are a lot of redundant features
-which you don’t use, but clutter up your screen. Some tools you actually want to use are instead hidden in the
+which you don’t use, but clutter up your screen. Some features you actually want to use are instead hidden in the
 stash of icons and menus that you need to painstakingly sieve through.
 
-That’s not even the worst part! The [module](#module) you’re teaching might demand separate Excel sheets to keep track of different
+That’s not even the worst part! The [module](#module) you’re teaching might demand separate spreadsheets to keep track of different
 items such as assignments and attendance which can be a huge hassle. Indeed, during our research, this is a point
 brought up by multiple TAs.
 <div style="page-break-after: always;"></div>
 
 ### Note-Taking Applications
 
-After being annoyed by all the Excel sheets, some TAs fall back to personal note-taking applications, such as Apple
+After being annoyed by all the spreadsheets, some TAs fall back to personal note-taking applications, such as Apple
 Notes, Microsoft OneNote, or Notepad. If you use these, however, you realize that formatting is often difficult to do.
 Useful functionalities like sorting and filtering are also difficult to access, if not non-existent.
 
@@ -86,7 +86,7 @@ want this to happen to you!
 ## 2.4 Our Solution
 
 StudMap is our solution for you. It is a lightweight desktop app that addresses your needs as a TA. With a set of
-essential yet easy-to-use features, we aim to fill the void between Excel spreadsheets and traditional note-taking apps,
+essential yet easy-to-use features, we aim to fill the void between spreadsheets and traditional note-taking apps,
 to provide you with the necessary tool to perform record keeping effectively. This user guide is a reference for you, so
 that you know how to make the most out of StudMap.
 
@@ -156,8 +156,9 @@ Take note of the three main elements of the interface:
 | Element      | Purpose                                                                                                                                                    |
 |--------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Command Box  | This is where you give instructions to StudMap, telling StudMap what you want to do. These instructions are called [Commands](#43-understanding-commands). |
-| Reply Box    | This is where StudMap replies with any useful feedback, for example after running a command.                                                               |
+| Reply Box    | This is where StudMap replies with any useful feedback, for example after running a [command](#command).                                                               |
 | Student List | This is where StudMap displays the list of students, with information about each student organized into individual **student cards**.                      |
+<div style="page-break-after: always;"></div>
 
 ### Student Cards
 
@@ -172,13 +173,14 @@ The **left half** of each student card contains the student's particulars. Let's
 
 | Element         | Purpose                                                                                                  |
 |-----------------|----------------------------------------------------------------------------------------------------------|
-| Index           | Order of the student in the list. Used to indicate which student card you want to target with a command. |
+| Index           | Order of the student in the list. Used to indicate which student card you want to target with a [command](#command). |
 | Student Name    | Name of your student. **Is Compulsory!**                                                                 |
 | Student ID      | Student ID of your student, usually beginning with E. **Is Compulsory!**                                 |
 | Phone Number    | Phone number of your student, if available.                                                              |
 | Email           | Email address of your student, if available.                                                             |
 | GitHub Username | GitHub username of your student, if available.                                                           |
 | Telegram Handle | Telegram handle of your student, if available.                                                           |
+<div style="page-break-after: always;"></div>
 
 The **right half** of each student card contains module information related to your TA responsibilities:
 
@@ -204,13 +206,14 @@ This means that two students with the same name and module are considered **dist
 for more than one module, you will have to create separate entries for that student, each with a different module. This ensures
 that data from one module (e.g. Attendance for CS2103T) **will not be mixed** with that from another module (e.g. Attendance for CS2040).
 </div>
+<div style="page-break-after: always;"></div>
 
 ## 4.3 Understanding Commands
 
 Now that you understand the User Interface of StudMap, what can you do to interact with it?
 
 StudMap is designed around the use of a **[Command Line Interface (CLI)](#command-line-interface-cli)**. This means that accessing or modifying data on
-StudMap has to be done by typing instructions, or `commands`, that StudMap can understand and execute.
+StudMap has to be done by typing instructions, or `[commands](#command)`, that StudMap can understand and execute.
 
 ### Command Word
 
@@ -240,7 +243,7 @@ Here's an example of how parameters can be used:
 and pressing enter will give you all the information about the command: what it does, what parameters it takes and so on!
 </div>
 
-To learn more about parameters, do check out the section on [Parameters](#52-information-about-parameters)!
+To learn more about parameters, do check out the section on [information about parameters](#52-information-about-parameters)!
 
 ### Example Commands
 
@@ -269,7 +272,7 @@ will guide you through all available commands in greater detail!
 
 ## 4.4 Migrating to StudMap
 
-You may be concerned: you’re probably already using some Excel sheet of sorts for keeping track of student data –
+You may be concerned: you’re probably already using some spreadsheet of sorts for keeping track of student data –
 and you certainly don’t want to transfer all this data manually to StudMap! We’ve got you covered.
 
 Download this [Student Information Template](files/import_template.csv). If you want a sample of how to use it, check
@@ -282,6 +285,7 @@ That’s all for the tutorial! Check out the [Features](#5-features) section for
 command. We hope you enjoy using StudMap!
 
 ---
+<div style="page-break-after: always;"></div>
 
 # 5. Features
 
@@ -297,7 +301,7 @@ features:<br><br>
 Read on to learn in detail about the plethora of features that StudMap has in store for you! Worried about the learning
 curve? StudMap is designed to be extremely intuitive, with in-built help messages guiding you every step of the way!
 
-Follow the guide below, and you would be on track to mastering all the necessary commands in no time.
+Follow the guide below, and you would be on track to mastering all the necessary [commands](#command) in no time.
 
 ## 5.2 Information about Parameters
 
@@ -306,7 +310,7 @@ This will help you understand the guide better!
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Understanding the command format:**<br>
+**:information_source: Understanding the [command](#command) format:**<br>
 
 * Words in `UPPER_CASE` are the **parameters** to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
@@ -318,19 +322,20 @@ This will help you understand the guide better!
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in **any order**.<br>
-  e.g. if the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable.
+  e.g. if the [command](#command) specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command, but you specified it multiple times, only the **last occurrence**
+* If a parameter is expected only once in the [command](#command), but you specified it multiple times, only the **last occurrence**
   of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extra parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be
+* Extra parameters for [commands](#command) that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be
   **ignored**.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+  e.g. if the [command](#command) specifies `help 123`, it will be interpreted as `help`.
 
 </div>
+<div style="page-break-after: always;"></div>
 
-Throughout this section, you will see numerous parameters being used by different commands. Here is a consolidated
+Throughout this section, you will see numerous parameters being used by different [commands](#command). Here is a consolidated
 summary of the parameters and any remarks (e.g. **constraints**) that might be of relevance.
 
 | Parameter    | Remarks                                                                                                                                                                         |
@@ -363,6 +368,7 @@ find too restrictive.
   for NUS modules. Future plans for StudMap include expanding this format to more universities.
 
 </div>
+<div style="page-break-after: always;"></div>
 
 ## 5.3 Student List Management
 
@@ -399,6 +405,7 @@ A student can have any number of tags (including 0)
 
 **See Also:**
 [`import`](#534-importing-students-from-csv-file-import)
+<div style="page-break-after: always;"></div>
 
 ### 5.3.2 Deleting a student: `delete`
 
@@ -422,7 +429,7 @@ You can use [`find`](#536-locating-students-by-name-find) to help locate the stu
 **Examples:**
 
 * `list` followed by `delete 2` deletes the 2nd student in the StudMap.<br><br>
-* `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.<br><br>
+* `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` [command](#command).<br><br>
 
 **See Also:**
 [`clear`](#533-clearing-all-entries-clear)
@@ -431,18 +438,19 @@ You can use [`find`](#536-locating-students-by-name-find) to help locate the stu
 
 **Function:** Clears all entries from the StudMap.
 
-Need to start afresh? Delete all the entries from StudMap with this command.<br><br>
+Need to start afresh? Delete all the entries from StudMap with this [command](#command).<br><br>
 
 **Format:** `clear`
 
 <div markdown="span" class="alert alert-warning">
 :exclamation: <b>Caution:</b>
-This can be dangerous! Make sure you back up your data before executing this command.
+This can be dangerous! Make sure you back up your data before executing this [command](#command).
 See <a href="#553-backing-up-data">here</a> for more instructions.<br>
 </div>
 
 **See Also:**
 [`delete`](#532-deleting-a-student-delete)
+<div style="page-break-after: always;"></div>
 
 ### 5.3.4 Importing students from CSV file: `import`
 
@@ -456,7 +464,7 @@ the rest — it's like magic. For your convenience, you can find the import temp
 **Format:** `import`
 
 * Importing student data will add students to the existing student list, and will not clear any existing students<br><br>
-* Running the command will open a file browser for you to select the CSV file to import<br><br>
+* Running the [command](#command) will open a file browser for you to select the CSV file to import<br><br>
 * The CSV format accepted by StudMap is strict! Please use the template provided.<br><br>
 
 <div markdown="span" class="alert alert-warning">
@@ -473,17 +481,18 @@ that has commas in the CSV.
    <br><br>
    _Example of a properly edited import template which you can download here: [example csv](files/example_template.csv)_
    <br><br>
-3. Type the `import` command and select the CSV file you have modified<br><br>
+3. Type the `import` [command](#command) and select the CSV file you have modified<br><br>
 4. If done correctly, StudMap will create the new students using the data from the CSV file uploaded<br><br>
 
 **See Also:**
 [`add`](#531-adding-a-student-add)
+<div style="page-break-after: always;"></div>
 
 ### 5.3.5 Listing all students: `list`
 
 **Function:** Shows a list of all students in the StudMap.
 
-Want to take a look at all your students? This is the command you're looking for.<br><br>
+Want to take a look at all your students? This is the [command](#command) you're looking for.<br><br>
 
 **Format:** `list`
 
@@ -513,6 +522,7 @@ filtering, such as by their module, see [`filter`](#538-filtering-the-students-f
 
 **See Also:**
 [`filter`](#538-filtering-the-students-filter)
+<div style="page-break-after: always;"></div>
 
 ### 5.3.7 Sorting the students: `sort`
 
@@ -557,6 +567,7 @@ Examples:
 * `sort asc a/attendance` sorts list by `ATTENDANCE` in **ascending** order<br><br>
 * `sort asc a/name` sorts list by `NAME` in **ascending** order<br><br>
 * `sort dsc a/phone` sorts list by `PHONE` in **descending** order<br><br>
+<div style="page-break-after: always;"></div>
 
 ### 5.3.8 Filtering the students: `filter`
 
@@ -577,7 +588,7 @@ by assignment.<br><br>
     * Filters students specific to the category "assignment" represented with the prefix `a/`
 
 <div markdown="block" class="alert alert-info">
-**:information_source: Note:** The filter command only successfully filters if there is an exact match between the category and
+**:information_source: Note:** The filter [command](#command) only successfully filters if there is an exact match between the category and
 the keyword provided. <br/>
 Example: `filter t/friends` will filter students who have the tag `friends`, but `filter t/fri` will not. 
 </div>
@@ -595,6 +606,7 @@ Example: `filter t/friends` will filter students who have the tag `friends`, but
 
 **See Also:**
 [`find`](#536-locating-students-by-name-find)
+<div style="page-break-after: always;"></div>
 
 ## 5.4 Student Updating
 
@@ -607,6 +619,7 @@ Example: `filter t/friends` will filter students who have the tag `friends`, but
 * [5.4.7 Removing participation of student: `unparticipate`](#547-removing-participation-of-student-unparticipate)
 * [5.4.8 Adding tag to student: `tag`](#548-adding-tag-to-student-tag)
 * [5.4.9 Removing tag from student: `untag`](#549-removing-tag-from-student-untag)
+<div style="page-break-after: always;"></div>
 
 ### 5.4.1 Editing a student: `edit`
 
@@ -635,6 +648,7 @@ Need to update outdated student details? You can easily edit that field without 
 * `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student to be `91234567`
   and `johndoe@example.com` respectively.<br><br>
 * `edit 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.<br><br>
+<div style="page-break-after: always;"></div>
 
 ### 5.4.2 Marking attendance of student: `mark`
 
@@ -664,6 +678,7 @@ Need to update outdated student details? You can easily edit that field without 
 
 **See Also:**
 [`unmark`](#543-unmarking-attendance-of-student-unmark)
+<div style="page-break-after: always;"></div>
 
 ### 5.4.3 Unmarking attendance of student: `unmark`
 
@@ -688,12 +703,13 @@ Need to update outdated student details? You can easily edit that field without 
 
 **See Also:**
 [`mark`](#542-marking-attendance-of-student-mark)
+<div style="page-break-after: always;"></div>
 
 ### 5.4.4 Grading assignment for student: `grade`
 
 **Function:** Changes the grading status for a specific assignment for students.
 
-You can change the grading status for the assignments using this command. If the record of the assignment does not yet
+You can change the grading status for the assignments using this [command](#command). If the record of the assignment does not yet
 exist for the specified student, a new entry for the assignment will be automatically created for the student. This can
 help you to better keep track of assignments that you have graded or received.
 
@@ -727,6 +743,7 @@ you include any lower case in the assignment name, it will be automatically conv
 
 **See Also:**
 [`ungrade`](#545-removing-assignment-from-student-ungrade)
+<div style="page-break-after: always;"></div>
 
 ### 5.4.5 Removing assignment from student: `ungrade`
 
@@ -749,6 +766,7 @@ you include any lower case in the assignment name, it will be automatically conv
 
 **See Also:**
 [`grade`](#544-grading-assignment-for-student-grade)
+<div style="page-break-after: always;"></div>
 
 ### 5.4.6 Recording participation of student: `participate`
 
@@ -778,6 +796,7 @@ you include any lower case in the assignment name, it will be automatically conv
 
 **See Also:**
 [`unparticipate`](#547-removing-participation-of-student-unparticipate)
+<div style="page-break-after: always;"></div>
 
 ### 5.4.7 Removing participation of student: `unparticipate`
 
@@ -801,6 +820,7 @@ you include any lower case in the assignment name, it will be automatically conv
 
 **See Also:**
 [`participate`](#546-recording-participation-of-student-participate)
+<div style="page-break-after: always;"></div>
 
 ### 5.4.8 Adding tag to student: `tag`
 
@@ -817,7 +837,7 @@ This can help you to better identify and keep track of them.
 **:information_source: Note 2:** The tags are case-sensitive. For example, `goodStudent` and `goodstudent` will
 be recognised as different labels.
 
-**:information_source: Note 3:** The tagging command is cumulative, that is, new tags are simply added to the student(s)
+**:information_source: Note 3:** The tagging [command](#command) is cumulative, that is, new tags are simply added to the student(s)
 and do not replace their previous tags. To remove tags from the student(s), see [untag](#549-removing-tag-from-student-untag)
 below. <br>
 
@@ -830,7 +850,7 @@ below. <br>
   The index **must be a positive integer** 1, 2, 3, …​<br><br>
 - `ALL`: You can add tag(s) to all students currently displayed.<br><br>
 - `TAG`: You can specify the label to be added to the student. At least one label should be specified when you use this
-  command<br><br>
+  [command](#command)<br><br>
 - `OTHER`: You can also specify other tags that you might also want to add to your student(s).<br><br>
 
 **Examples:**
@@ -841,12 +861,13 @@ below. <br>
 
 **See Also:**
 [`untag`](#549-removing-tag-from-student-untag)
+<div style="page-break-after: always;"></div>
 
 ### 5.4.9 Removing tag from student: `untag`
 
 **Function:** Removes the specified tag(s) from the student(s).
 
-Accidentally tagged a student wrongly, or simply don't want it there anymore? This is the command for the job.<br><br>
+Accidentally tagged a student wrongly, or simply don't want it there anymore? This is the [command](#command) for the job.<br><br>
 
 **Format:** `untag INDEX/ALL t/TAG [t/OTHER]`
 
@@ -854,7 +875,7 @@ Accidentally tagged a student wrongly, or simply don't want it there anymore? Th
   the displayed student list.
   The index **must be a positive integer** 1, 2, 3, …​<br><br>
 - `ALL`: You can remove the tag for all students in the currently displayed list.<br><br>
-- `TAG`: You can specify the `TAG` to remove.There should be at least one label to be removed when you use this command.
+- `TAG`: You can specify the `TAG` to remove.There should be at least one label to be removed when you use this [command](#command).
   For the restrictions on the format of a `TAG`, see Note 1 for [Add tag to student](#548-adding-tag-to-student-tag).<br><br>
 - `OTHER`: You can also include multiple tags to be removed from your student(s).<br><br>
 
@@ -865,6 +886,7 @@ Accidentally tagged a student wrongly, or simply don't want it there anymore? Th
 
 **See Also:**
 [`tag`](#548-adding-tag-to-student-tag)
+<div style="page-break-after: always;"></div>
 
 ## 5.5 Miscellaneous
 
@@ -882,7 +904,7 @@ Accidentally tagged a student wrongly, or simply don't want it there anymore? Th
 
 ### 5.5.2 Saving the data
 
-StudMap data are saved in the hard disk automatically after any command that changes the data. There is no need to save
+StudMap data are saved in the hard disk automatically after any [command](#command) that changes the data. There is no need to save
 manually.
 
 ### 5.5.3 Backing up data
@@ -912,6 +934,7 @@ Guide.<br><br>
 
 
 ---
+<div style="page-break-after: always;"></div>
 
 # 6. Frequently Asked Questions
 
@@ -920,14 +943,14 @@ Guide.<br><br>
 the data of your previous StudMap home folder. See how to back up your data [here](#553-backing-up-data).
 <br><br>
 **Q**: How can I transfer my data from an existing spreadsheet to StudMap?<br>
-**A**: You can use the [`import`](#534-importing-students-from-csv-file-import) command.
+**A**: You can use the [`import`](#534-importing-students-from-csv-file-import) feature.
 <br><br>
 **Q**: Do I have to pay to use StudMap?<br>
 **A**: StudMap is completely free!
 <br><br>
 **Q**: Why is the list empty when I use the feature `list`?<br>
 **A**: It is likely that you have not added/transferred any data into StudMap. Start adding students
-through our `import` or `add` feature now!
+through our [`import`](#534-importing-students-from-csv-file-import) or [`add`](#531-adding-a-student-add) feature now!
 <br><br>
 **Q**: Why do I need to state the student's student ID to add him/her into StudMap?<br>
 **A**: To track a student effectively, we deem student ID as an important aspect since most assignments
@@ -938,6 +961,7 @@ require students to state their student ID.
 the specific student even if they have the same given name.
 
 ---
+<div style="page-break-after: always;"></div>
 
 # 7. Command Summary
 
@@ -964,6 +988,7 @@ the specific student even if they have the same given name.
 | **[Help](#555-viewing-help-help)**                                               | `help`                                                                                                                                                                                                       |
 
 ---
+<div style="page-break-after: always;"></div>
 
 # 8. Glossary
 
