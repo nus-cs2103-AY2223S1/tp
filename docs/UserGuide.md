@@ -312,8 +312,6 @@ Examples:
 
 ![Add Command](images/add-itinerary.png)
 
-<div style="page-break-after: always"></div>
-
 ### Listing all itineraries : `list`
 
 Shows a list of all itineraries in Waddle.
@@ -321,8 +319,6 @@ Shows a list of all itineraries in Waddle.
 Format: `list`
 
 ![List Command](images/list.png)
-
-<div style="page-break-after: always"></div>
 
 ### Locating itineraries by description : `find`
 
