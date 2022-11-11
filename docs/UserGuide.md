@@ -55,8 +55,8 @@ Getting started with PayMeLah is easy! Here is a tutorial on how to get PayMeLah
 2. Next, you will need to prepare an [**empty folder**](https://www.wikihow.com/Make-a-New-Folder-on-a-Computer) to download PayMeLah to.
 
 3. Now, you will need to visit [**this link**](https://github.com/AY2223S1-CS2103T-W13-3/tp/releases) to click and download the latest version of *PayMeLah.jar*. Make sure to download it to the folder you created in step 2! <br>
-   <img src="images/howToDownload_1.png" width="500" /> <br>
-   <img src="images/howToDownload_2.png" width="500" /> <br>
+   <p style="text-align:center;"><img src="images/howToDownload_1.png" width="500" /></p> <br>
+   <p style="text-align:center;"><img src="images/howToDownload_2.png" width="500" /></p> <br>
 
 <div style="page-break-after: always;"></div>
 
@@ -66,7 +66,7 @@ Getting started with PayMeLah is easy! Here is a tutorial on how to get PayMeLah
 
 Now, you must be curious as to how to navigate and use PayMeLah. Let’s continue to learn how to [navigate the application](#tutorial-navigating-the-application) before familiarising yourselves with the [features](#features) you can use in PayMeLah.
 
-[Return to Table of Contents](#table-of-contents)
+<a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Return to Table of Contents</a>
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -132,7 +132,7 @@ This is the section showing **details about each [debt](#glossary-debt) of a per
 If your provided inputs are too long, PayMeLah may not be able to fully display them and cut them off! While this is rare, do try to avoid entering unnecessarily long inputs to PayMeLah (e.g. save a person's nickname rather than their full name).
 </div>
 
-[Return to Table of Contents](#table-of-contents)
+<a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Return to Table of Contents</a>
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -169,7 +169,7 @@ The guide begins on the following page!
 
 Of course, this is not yet the end of your journey with PayMeLah - there are still several other commands you may require while using PayMeLah, including commands such as [`deletedebt`](#deleting-a-debt-deletedebt) and [`find`](#locating-persons-by-inputs-find). You can find out more about these commands in the [features](#features) section below.
 
-[Return to Table of Contents](#table-of-contents)
+<a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Return to Table of Contents</a>
 
 <div style="page-break-after: always;"></div>
 
@@ -179,21 +179,21 @@ Of course, this is not yet the end of your journey with PayMeLah - there are sti
 
 As you have learnt in the [navigation section](#tutorial-navigating-the-application), PayMeLah uses a [CLI](#glossary-command-line-interface-cli) to fulfill your needs. Let's take a closer look at what a [command](#glossary-command) consists of!
 
-INSERT IMAGE
+<img src="images/ExampleCommand.png" width="700" />
 
 * **Command Phrase**<br>
-  The first word in the [command](#glossary-command) is the **command phrase** that specifies which command will be carried out by PayMeLah.
-  (add reference to pic)
+  The first word in the [command](#glossary-command) is the **command phrase** that specifies which command will be carried out by PayMeLah.<br>
+  e.g. in the command above, `adddebt` is the command phrase
 
 * **Inputs**<br>
   These are **additional information to be supplied by you**. Check out [input behaviours](#general-input-behaviour) to learn more about how you should type them out!<br>
-  (add reference to pic)
+  e.g. in the command above, `9.80` is an input to specify some amount of money
 
 * **Prefixes**<br>
-  To separate inputs that represent different information, you should precede inputs with their respective **[prefixes]((#glossary-prefix))** that end with a `/`. <br>
-  (add reference to pic)
+  To separate inputs that represent different information, you should precede inputs with their respective **[prefixes](#glossary-prefix)** that end with a `/`. <br>
+  e.g. in the command above, `d/` is a prefix to indicate that the input after it, `mcdonalds`, is a debt description
 
-[Return to Table of Contents](#table-of-contents)
+<a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Return to Table of Contents</a>
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -244,7 +244,7 @@ Just like words in human languages, [inputs](#glossary-input) for PayMeLah [comm
 Avoid giving irrelevant inputs to commands that do not accept those inputs. For example, `mark` expects a `<person index>` input and a `debt/<debt index…>` input, but not a `t/<tag>` input. Giving such inputs may cause unexpected behaviour in PayMeLah!
 </div>
 
-[Return to Table of Contents](#table-of-contents)
+<a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Return to Table of Contents</a>
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -263,7 +263,7 @@ Avoid giving irrelevant inputs to commands that do not accept those inputs. For 
   Whenever `<money>` is specified as an input, you should express the amount in dollars and cents. You can also let PayMeLah help you with calculations by ending with `+` to add GST (7%), or `++` to add both Service Charge (10%) and GST (7%) to the amount specified. **All calculated values are automatically rounded up to the nearest cent.**<br>
   e.g. when you input `2.00++`, PayMeLah will interpret the amount with Service Charge and GST added, i.e. `2.36`.
 
-[Return to Table of Contents](#table-of-contents)
+<a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Return to Table of Contents</a>
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -317,7 +317,7 @@ When you want to start afresh with an empty [person list](#person-list-section),
 `clear`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-If you accidentally run this command, don't worry! You can use the `undo` command to easily get your data back.
+If you accidentally run this command, don't worry! You can use the [`undo` command](#undoing-a-command-undo) to easily get your data back.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -338,7 +338,7 @@ You can also click the ❌ button at the top of the PayMeLah window. There is no
 </div>
 
 
-[Return to Table of Contents](#table-of-contents)
+<a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Return to Table of Contents</a>
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -379,11 +379,11 @@ This [command](#glossary-command) edits an existing person in PayMeLah.
 When a person’s particulars in PayMeLah have changed (e.g. phone number or Telegram handle), you can use this command to update them!
 
 **Format:**<br>
-`edit <[person index](#glossary-person-index)> [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]…`
+`edit <person index> [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]…`
 
 **Additional information:**<br>
 * Edits the person at the specified `<person index>` in the currently displayed [person list](#person-list-section).
-* At least one of the [optional fields](#optional-input) must be provided.
+* At least one of the [optional fields](#how-to-read-command-formats) must be provided.
 * Pre-existing values will be updated to the input values.
 * You can remove all the person’s tags by typing `t/` without
   specifying any tags after it.
@@ -403,7 +403,7 @@ This [command](#glossary-command) deletes the specified person from PayMeLah.
 When you no longer need to track [debts](#glossary-debt) for a particular person, you can use this command to remove them from PayMeLah.
 
 **Format:**<br>
-`delete <[person index](#glossary-person-index)>`
+`delete <person index>`
 
 **Additional information:**<br>
 * Deletes the person at the specified `<person index>` of the currently displayed [person list](#person-list-section).
@@ -412,7 +412,7 @@ When you no longer need to track [debts](#glossary-debt) for a particular person
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find n/Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-[Return to Table of Contents](#table-of-contents)
+<a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Return to Table of Contents</a>
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -428,14 +428,14 @@ This [command](#glossary-command) adds a [debt](#glossary-debt) to a person in P
 When you want PayMeLah to keep track of a debt for one particular person, or the same debt for multiple persons, this is the command to use!
 
 **Format:**<br>
-`adddebt <[person index](#glossary-person-index)…> d/<description> m/<money> [date/<date>] [time/<time>]`
+`adddebt <person index…> d/<description> m/<money> [date/<date>] [time/<time>]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 You can tell PayMeLah to add Service Charge and GST to the amount of money specified by including `++` at the back of the amount. A single `+` will add only GST instead.
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You might find it difficult to find the index of a specific person when your list gets long. In this situation, you may want to make use of the [`find` command](#locating-persons-by-inputs-find) or [`finddebt` command](#locating-persons-by-debt-description-finddebt) to shorten the list and make it easier to find and figure out the index of the person that you are looking for.
+You might find it difficult to find the [person index](#glossary-person-index) of a specific person when your list gets long. In this situation, you may want to make use of the [`find` command](#locating-persons-by-inputs-find) or [`finddebt` command](#locating-persons-by-debt-description-finddebt) to shorten the list and make it easier to find and figure out the person index of the person that you are looking for.
 </div>
 
 (Continued on next page!)
@@ -466,14 +466,14 @@ This [command](#glossary-command) splits a [debt](#glossary-debt) evenly among s
 When you want to divide a group expense equally between multiple persons, you can use this command to let PayMeLah help you with the calculations and keep track of their debts!
 
 **Format:**<br>
-`splitdebt <[person index](#glossary-person-index)…> d/<description> m/<money> [date/<date>] [time/<time>]`
+`splitdebt <person index…> d/<description> m/<money> [date/<date>] [time/<time>]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You can split a debt among as many persons as you want. You can even include yourself with the special person index `0`. But you cannot split a debt between just yourself.
+You can split a debt among as many persons as you want. You can even include yourself with the special [person index](#glossary-person-index) `0`. But you cannot split a debt between just yourself.
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You might find it difficult to find the index of a specific person when your list gets long. In this situation, you may want to make use of the [`find` command](#locating-persons-by-inputs-find) or [`finddebt` command](#locating-persons-by-debt-description-finddebt) to shorten the list and make it easier to find and figure out the person index of the person that you are looking for.
+You might find it difficult to find the [person index](#glossary-person-index) of a specific person when your list gets long. In this situation, you may want to make use of the [`find` command](#locating-persons-by-inputs-find) or [`finddebt` command](#locating-persons-by-debt-description-finddebt) to shorten the list and make it easier to find and figure out the person index of the person that you are looking for.
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -509,7 +509,7 @@ When you no longer need to track some particular debt(s) owed by a person, you c
 You can also [mark a debt as paid without deleting it](#marking-debts-as-paid-mark) if you still wish to keep track of it.
 
 **Format:**<br>
-`deletedebt <[person index](#glossary-person-index)> debt/<debt index…>`
+`deletedebt <person index> debt/<debt index…>`
 
 **Example:**<br>
 * `deletedebt 2 debt/2 3` will delete the 2nd and 3rd debt, regardless of paid or unpaid, of the 2nd person in the current displayed [person list](#person-list-section).
@@ -525,10 +525,10 @@ This [command](#glossary-command) clears all of a person's [debts](#glossary-deb
 When you no longer need to keep track of any debts of a person, you can use this command to clear their [debt list](#debt-list-section)! If you want to stop keeping track of only some of a person's debts, you can [delete specific debts](#deleting-a-debt-deletedebt).
 
 **Format:**<br>
-`cleardebts <[person index](#glossary-person-index)>`
+`cleardebts <person index>`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You might find it difficult to find the index of a specific person when your list gets long. In this situation, you may want to make use of the [`find` command](#locating-persons-by-inputs-find) or [`finddebt` command](#locating-persons-by-debt-description-finddebt) to shorten the list and make it easier to find and figure out the person index of the person that you are looking for.
+You might find it difficult to find the [person index](#glossary-person-index) of a specific person when your list gets long. In this situation, you may want to make use of the [`find` command](#locating-persons-by-inputs-find) or [`finddebt` command](#locating-persons-by-debt-description-finddebt) to shorten the list and make it easier to find and figure out the person index of the person that you are looking for.
 </div>
 
 **Example:**<br>
@@ -545,7 +545,7 @@ This [command](#glossary-command) marks the [debts](#glossary-debt) specified fr
 When you want to indicate that a particular debt has been paid, but still keep a record of it in PayMeLah, this is the command to use!
 
 **Format:**<br>
-`mark <[person index](#glossary-person-index)> debt/<[debt index](#glossary-debt-index)…>`
+`mark <person index> debt/<debt index…>`
 
 **Example:**<br>
 * `mark 2 debt/2 3` will mark the 2nd and 3rd debt of the 2nd person in the current displayed [person list](#person-list-section) as paid.
@@ -561,7 +561,7 @@ This [command](#glossary-command) marks the [debts](#glossary-debt) specified fr
 When you realise that a debt you had previously [marked as paid](#marking-debts-as-paid-mark) is actually not paid yet, you can use this command to indicate that it is still unpaid.
 
 **Format:**<br>
-`unmark <[person index](#glossary-person-index)> debt/<[debt index](#glossary-debt-index)…>`
+`unmark <person index> debt/<debt index…>`
 
 **Example:**<br>
 * `unmark 2 debt/2 3` will mark the 2nd and 3rd debt of the 2nd person in the current displayed [person list](#person-list-section) as unpaid.
@@ -585,7 +585,7 @@ The statement will only sum up the debts that are marked as unpaid from the list
 **Example:**<br>
 `statement` displays "You are owed $583.90 in total." when there are 2 persons in the displayed [person list](#person-list-section), who owe you $100 and $483.90 respectively.
 
-[Return to Table of Contents](#table-of-contents)
+<a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Return to Table of Contents</a>
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -730,7 +730,7 @@ When you sort by "Time since oldest debt", all persons who do not owe any debts 
 **Example:**<br>
 `sort n/+` sorts and displays the [person list](#person-list-section) in ascending alphabetical order of their names.
 
-[Return to Table of Contents](#table-of-contents)
+<a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Return to Table of Contents</a>
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -759,7 +759,7 @@ The table on the next page lists every keyboard shortcut currently available in 
 |               <kbd>Home</kbd>               | **Jumping to the top of the [person list](#person-list-section):**<br> When you are in the [person list](#person-list-section), press the <kbd>Home</kbd> key to jump to the first person in the person list. When you are in a person's [debt list](#debt-list-section), press the <kbd>Home</kbd> key to jump to the first debt in the debt list.                                                                                                                        |
 |               <kbd>End</kbd>                | **Jumping to the bottom of the [person list](#person-list-section):**<br> When you are in the [person list](#person-list-section), press the <kbd>End</kbd> key to jump to the last person in the person list. When you are in a person's [debt list](#debt-list-section), press the <kbd>End</kbd> key to jump to the last debt in the debt list.                                                                                                                         |
 
-[Return to Table of Contents](#table-of-contents)
+<a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Return to Table of Contents</a>
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -775,6 +775,8 @@ Your computer automatically saves PayMeLah data after any [command](#glossary-co
 A [JSON file](https://fileinfo.com/extension/json) is a common type of file used by many applications to store data in a format easily readable and editable by advanced users.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 #### Editing your data file
 
 You can actually update the data in PayMeLah without even launching the application! To **save time**, advanced users are welcome to update data by directly editing _paymelah.json_.
@@ -783,7 +785,7 @@ Here is a quick tutorial on editing the data file:
 
 1. Double-click on the _paymelah.json_ file to open it.<br>
    You should see some text similar to the following (don't worry if the words in your file appear to be in a different colour, it does not matter):<br>
-   <p style="text-align:center;"><img src="images/jackson.png" width="300" /></p>
+   <p style="text-align:center;"><img src="images/jackson.png" width="400" /></p>
 
 2. You can now edit the data by changing any of the green words you see here in our example image! Do ensure that your replacement words are surrounded by double-inverted commas (`" "`), as per the image above.
 
@@ -793,7 +795,7 @@ Make sure your edits still follow the [requirements of each input](#input-specif
 If the data file fails to follow the required format, PayMeLah will **discard all data** and start with an empty data file the next time you launch it. This is **irreversible**! As such, please edit the data file directly only if you are very confident in what you are doing.
 </div>
 
-[Return to Table of Contents](#table-of-contents)
+<a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Return to Table of Contents</a>
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -838,7 +840,7 @@ If you are trying to locate a debt without knowing its full description, conside
 **Q5**: Why **can't PayMeLah do _this_?**<br>
 **A**: We are so sorry that PayMeLah does not support this feature at the moment :( However, PayMeLah is a constant work in progress and we hope to deliver the features that you are looking for in the near future! In the meantime, feel free to drop us feedback at [paymelah.app@gmail.com](mailto:paymelah.app@gmail.com) so that we can better understand and serve your needs :)
 
-[Return to Table of Contents](#table-of-contents)
+<a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Return to Table of Contents</a>
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -860,7 +862,7 @@ If you are trying to locate a debt without knowing its full description, conside
 | <span id="glossary-prefix">_Prefix_</span>                                           | A short piece of text indicating what type of information follows. For example, `n/` is the prefix that indicates that what follows is a name.                                               |
 
 
-[Return to Table of Contents](#table-of-contents)
+<a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Return to Table of Contents</a>
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -876,7 +878,7 @@ If you are trying to locate a debt without knowing its full description, conside
 | [**Clear**](#clearing-all-entries-clear)                                | `clear`          |
 | [**Exit**](#exiting-the-program-exit)                                   | `exit`           |
 
-[Return to Table of Contents](#table-of-contents)
+<a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Return to Table of Contents</a>
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -889,7 +891,7 @@ If you are trying to locate a debt without knowing its full description, conside
 | [**Edit person**](#editing-a-person-edit)                                 | `edit <person index> [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]…`<br> e.g.`edit 2 n/James Lee tele/James_L33`                                  |
 | [**Delete person**](#deleting-a-person-delete)                            | `delete <person index>`<br> e.g. `delete 3`                                                                                                                                 |
 
-[Return to Table of Contents](#table-of-contents)
+<a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Return to Table of Contents</a>
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -906,7 +908,7 @@ If you are trying to locate a debt without knowing its full description, conside
 | [**Unmark debts**](#marking-debts-as-unpaid-unmark)                   | `unmark <person index> debt/<debt index…>` <br> e.g. `unmark 2 debt/2 3`                                                                               |
 | [**Get statement**](#getting-the-statement-statement)                 | `statement`                                                                                                                                            |
 
-[Return to Table of Contents](#table-of-contents)
+<a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Return to Table of Contents</a>
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -921,6 +923,6 @@ If you are trying to locate a debt without knowing its full description, conside
 | [**List debtors**](#listing-all-debtors-listdebtors)             | `listdebtors [m/<money>]`<br> e.g. `listdebtors m/10`                                                                                                                                                                                                  |
 | [**Sort**](#sorting-list-of-persons-sort)                        | `sort <criterion prefix><order>`<br> e.g. `sort n/+`, `sort m/-`, `sort date/+`                                                                                                                                                                        |
 
-[Return to Table of Contents](#table-of-contents)
+<a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Return to Table of Contents</a>
 
 --------------------------------------------------------------------------------------------------------------------
