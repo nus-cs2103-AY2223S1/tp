@@ -66,6 +66,11 @@ The following image describes how `Food Guide` looks like upon opening the appli
 
 ![Ui](images/user-guide/UgGuiGuide.png)
 
+To interact with NUSEatWhere, you type commands into the Command Bar and press the 'Enter' key.
+
+If the command is successfully executed, a response message will appear in the Feedback Bar. However, if there is an error in your command, a red <span style="color:red">error message</span>
+will pop up instead, telling you what went wrong and how to correct it.
+
 ## Quick Start
 
 1. First, start by installing `Java 11` from 
