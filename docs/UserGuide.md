@@ -764,7 +764,7 @@ Format: `list <entry type>`
 Examples:
 * `list tutor`
 
-<div style="display:flex; flex-direction:row;">
+<div style="display:flex; flex-direction:row; object-fit:fill">
 <div style="display:flex; flex-direction:column; align-items:center; padding:5px">
 <img src="images/listCommand_before.png" height="100%"/>
 <figcaption>Before</figcaption>
