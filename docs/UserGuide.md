@@ -24,8 +24,8 @@ faster than ever before!
 * [Introduction](#introduction)
 * [Table of Contents](#table-of-contents)
 * [Using the User Guide](#using-the-user-guide)
-* [First Glance](#first-glance)
 * [Quick Start](#quick-start)
+* [First Glance](#first-glance)
 * [Features](#features)
   * [Introduction to Our Features](#introduction-to-our-features)
   * [Utility commands](#utility-commands): 
@@ -66,38 +66,57 @@ raising an issue on our [GitHub](https://github.com/AY2223S1-CS2103T-W11-1/tp)!
 
 --------------------------------------------------------------------------------------------------------------------
 
-## First Glance
-The following image describes how `NUSEatWhere` looks like upon opening the application.
-
-![Ui](images/user-guide/UgGuiGuide.png)
-
 ## Quick Start
 
-1. First, start by installing `Java 11` from 
-[here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html).
+### System Requirements
 
-2. Next, download the latest `foodguide.jar` from [here](https://github.com/AY2223S1-CS2103T-W11-1/tp/releases).
+For the ideal experience, we recommend using NUSEatWhere on either Windows, macOS or Linux operating systems.
+
+In addition, you will require 'Java' version 11 or higher to run NUSEatWhere. 'Java' version 11 can be downloaded from 
+the Oracle website [here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html).
+Alternatively, you can install 'Java' directly on your computer through package managers using the following commands:
+
+* On Windows, using [Chocolatey](https://chocolatey.org/), `choco install jdk11`
+* On macOS, `brew install openjdk@11`
+* On Linux, `sudo apt-get install openjdk-11-jdk`
+
+### Installing NUSEatWhere
+
+1. If you haven't done so already, install `Java` version 11 or higher by following the instructions in 
+   [System Requirements](#system-requirements).
+
+2. Next, download the latest version of `foodguide.jar` from 
+   [here](https://github.com/AY2223S1-CS2103T-W11-1/tp/releases).
 
 3. Make sure to move the file to your intended **home folder** for the NUSEatWhere application.
 
-4. Double-click the file to start `NUSEatWhere`. <br> 
-The application should like the picture above in the [First Glance](#first-glance) section. 
+4. Double-click the file to start `NUSEatWhere`. <br>
+   You should be greeted with an interface similar to the picture below in the [First Glance](#first-glance) section.
 
-5. You're done setting up the `NUSEatWhere`! <br> 
-Go ahead and type some commands into the command box and press Enter to execute it. <br>
-e.g. typing `help` and pressing Enter will open the help window. <br>
+5. You're done setting up the `NUSEatWhere`! <br>
+   Go ahead and type some commands into the command box and press Enter to execute it. <br>
+   e.g. typing `help` and pressing Enter will open the help window. <br>
 
    Here are some example commands you can try:
-
-   * `help`: Lists all commands
-   * `list`: Lists all eateries
-   * `find mala`: List all eateries with 'mala' in its name
-   * `exit`: Closes the application
+  * `help`: Opens a help window
+  * `list`: Lists all eateries
+  * `find mala`: List all eateries with 'mala' in its name
+  * `exit`: Closes the application
 
 6. You can refer to [Features](#features) below for the details of each command.
 
 <br>
 
+## First Glance
+The following image describes how `NUSEatWhere` looks like upon opening the application.
+
+![Ui](images/user-guide/UgGuiGuide.png)
+
+To interact with NUSEatWhere, you type commands into the Command Bar and press the 'Enter' key.
+
+If the command is successfully executed, a response message will appear in the Feedback Bar.
+However, if there is an error in your command, a red <span style="color:red">error message</span>
+will pop up instead, telling you what went wrong and how to correct it.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -128,9 +147,9 @@ You can use the `tag` and `untag` commands to change the tags attached to each e
 7. Lastly, we empower you to `add`, `edit` and `delete` eateries to and from `NUSEatWhere`. 
 This may be useful to include eateries near NUS (such as Supper Stretch!).
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-info">:information_source:
 
-### Important! Before Reading This Guide
+### Important! A Note on Command Format
 
 * Inputs in `UPPER_CASE` are needed for the command to work. <br>
   e.g. in `add -n NAME`, `NAME` is an input which can be used as `add -n Pasta Express`. <br><br>
@@ -242,7 +261,8 @@ You can leave KEYWORD empty if you are using the randomizer (-r) feature!
 `-h`: displays help message (specific to find)
 <br>
 
-Example: `find veg -r 2`
+Example:
+* `find veg -r 2`
 
 Below is an example of what the list would look like when using the randomizer `-r` command.
 The command used is shown on the command line. <br>
@@ -263,8 +283,9 @@ You can also quickly narrow down your choices with the randomizer feature._
 `NUMBER`: how many randomly selected eateries to show (more than 0) <br>
 `-h`: displays help message (specific to findLocation) <br>
 
-Example: `findLocation University Town -r 2` <br>
-Example: `findLocation University Town`
+Example:
+* `findLocation University Town -r 2`
+* `findLocation University Town`
 
 <br>
 
@@ -281,8 +302,9 @@ You can also quickly narrow down your choices with the randomizer feature._
 `-h`: displays help message (specific to findCuisine)
 <br>
 
-Example: `findCuisine Chinese -r 2` <br>
-Example: `findCuisine Chinese`
+Example:
+* `findCuisine Chinese -r 2`
+* `findCuisine Chinese`
 
 <br>
 
@@ -303,8 +325,9 @@ Prices can only take the values `$`, `$$`, or `$$$`, in increasing order of pric
 `-h`: displays help message (specific to findCuisine)
 <br>
 
-Example: `findPrice $ -r 2` <br>
-Example: `findPrice $`
+Example:
+* `findPrice $ -r 2`
+* `findPrice $`
 
 <br>
 
@@ -330,7 +353,8 @@ Note:
 * Eateries matching at least one tag will be returned (i.e. `OR` search).
   e.g. `findTag foodcourt cafe` will return eateries with either tag.
 
-Example: `findTag restaurant`
+Example:
+* `findTag restaurant`
 
 <br>
 
@@ -352,8 +376,10 @@ _Labels an eatery with custom tag(s) to facilitate searching._
 **Inputs:** <br>
 `INDEX`: index of eatery to place tag on (must be found in the current list) <br>
 `TAGNAME`: name of tag to assign to eatery <br>
-`-h`: displays help message (specific to tag) <br><br>
-Example: `tag 1 -t coffee -t tea`
+`-h`: displays help message (specific to tag) <br>
+
+Example:
+* `tag 1 -t coffee -t tea`
 
 <br>
 
@@ -366,8 +392,10 @@ _Remove tag(s) from an eatery._
 **Inputs:** <br>
 `INDEX`: index of eatery to remove tag from (must be found in the current list) <br>
 `TAGNAME`: name of tag to remove from eatery <br>
-`-h`: displays help message (specific to untag) <br><br>
-Example: `untag 44 -t cafe`
+`-h`: displays help message (specific to untag) <br>
+
+Example: 
+* `untag 44 -t cafe`
 
 Below is a comparison between when the store at index 44 is tagged with `cafe` _(left)_ then untagged _(right)_.
 The commands used are shown on the command line. <br>
@@ -385,8 +413,10 @@ The favourite tag is standardized to be "<3" when using this command._
 **Inputs:** <br>
 
 `INDEX`: index of the eatery to favourite <br>
-`-h`: displays help message (specific to fav) <br><br>
-Example: `fav 3`
+`-h`: displays help message (specific to fav) <br>
+
+Example:
+* `fav 3`
 
 <br>
 
@@ -400,8 +430,10 @@ The tag to be removed is standardized to be "<3" when using this command._
 **Inputs:** <br>
 
 `INDEX`: index of the eatery to unfavourite <br>
-`-h`: displays help message (specific to unfav) <br><br>
-Example: `unfav 3`
+`-h`: displays help message (specific to unfav) <br>
+
+Example:
+* `unfav 3`
 
 <br>
 
@@ -419,9 +451,11 @@ current list <br>
 `CUISINE`: cuisine type of the eatery <br>
 `PRICE`: price of the eatery <br>
 `TAGNAME`: extra tags to add to the eatery <br>
-`-h`: displays help message (specific to add) <br><br>
-Example: `add -n KOI -l Central Square -c Drinks` <br>
-Example: `add -n KOI -l Central Square -c Drinks -p $$`
+`-h`: displays help message (specific to add) <br>
+
+Example:
+* `add -n KOI -l Central Square -c Drinks`
+* `add -n KOI -l Central Square -c Drinks -p $$`
 
 <br>
 
@@ -433,8 +467,10 @@ _Deletes an eatery from `NUSEatWhere`._
 
 **Inputs:** <br>
 `INDEX`: index of eatery to remove from NUSEatWhere (must be found in the current list) <br>
-`-h`: displays help message (specific to delete) <br><br>
-Example: `delete 68`
+`-h`: displays help message (specific to delete) <br>
+
+Example:
+* `delete 68`
 
 Below is a comparison between when the store at index 68 was added  _(left)_ then deleted _(right)_.
 The commands used are shown on the command line. <br>
@@ -455,11 +491,13 @@ _Edits the details of an eatery in `NUSEatWhere`._
 `CUISINE`: new cuisine type of the eatery <br>
 `PRICE`: new price of the eatery <br>
 `TAGNAME`: new tags of the eatery <br>
-`-h`: displays help message (specific to edit) <br><br>
-Example: `edit 1 -n KOI -l Central Square -c Drinks` <br>
-Example: `edit 3 -n KOI -l Central Square -c Drinks -p $$` <br>
+`-h`: displays help message (specific to edit) <br>
 
-<div markdown="block" class="alert alert-info">
+Example:
+* `edit 1 -n KOI -l Central Square -c Drinks`
+* `edit 3 -n KOI -l Central Square -c Drinks -p $$`
+
+<div markdown="block" class="alert alert-info">:information_source:
 When editing the tags of an eatery, all existing tags will be overwritten.
 </div>
 
@@ -471,7 +509,7 @@ _Clears all eateries from `NUSEatWhere`._
 
 **Format:** `clear`
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-warning">:exclamation:
 This command removes ALL eateries.
 This action is irreversible.
 </div>
