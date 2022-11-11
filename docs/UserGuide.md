@@ -685,6 +685,11 @@ Format: `clear`
 * This command is **nuclear**, and cannot be reversed. It should only be executed when absolutely necessary.
 * This command is provided for privacy reasons, or to start afresh.
 
+**Reasons for usage:**
+
+* You want to reset the app completely.
+* You want to clear all patient data from your application.
+
 ### Opening the Help Page : `help`
 
 Opens the Help Window, which allows you to copy the URL of the User Guide to your clipboard.
@@ -722,6 +727,10 @@ Although CheckUp is built as a Command Line Interface application, it also suppo
 
 * Double-clicking on patients in the Patient List Panel will automatically open their info in the Patient Details Panel.
 
+**Reason for usage:**
+
+* You want to quickly view a patient's detailed info without having to enter a command.
+
 Example:
 
 * Double-clicking on the first patient `Alex Yeoh` will display his details on the Patient View Panel.
@@ -731,6 +740,10 @@ Example:
 #### Person Details Panel
 
 * Double-clicking on the fields in the Patient Details Panel will automatically prepare them for editing in the Command Input Box.
+
+**Reason for usage:**
+
+* You want to quickly edit a single field in the patient's details.
 
 Example:
 
@@ -743,6 +756,11 @@ Example:
 Similar to other CLI applications, CheckUp supports a few keyboard shortcuts:
   * Navigate past commands with the `UP` and `DOWN` arrow keys.
   * Clear the text currently in the command box with `Ctrl + Shift + C`.
+
+**Reason for usage:**
+
+* You want to quickly access a previously entered command without having to retype it.
+* You want to clear the input line of a long command without having to manually delete it.
 
 <sub><sup>[back to top](#back-to-topt), [back to features](#features), [back to segment top](#general-commands)</sup></sub>
 
