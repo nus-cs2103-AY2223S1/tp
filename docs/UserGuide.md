@@ -28,11 +28,11 @@ Finally, here are some of the symbols and text formatting to look out for as you
 :exclamation: **Warnings:** Yellow boxes contain important warnings.
 </div>
 
-|          Text Formatting           | Meaning |
-|:----------------------------------:| ------- |
+|          Text Formatting           | Meaning                                            |
+|:----------------------------------:|----------------------------------------------------|
 | [Hyperlink to Glossary](#glossary) | Clickable hyperlink to navigate to another section |
-|           `command text`           | Text relevant to PayMeLah user commands |
-|          <kbd>Ctrl</kbd>           | A keyboard key |
+|           `command text`           | Text relevant to PayMeLah user commands            |
+|          <kbd>Ctrl</kbd>           | A keyboard key                                     |
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -523,12 +523,11 @@ When you want to quickly find out the total amount of money you are owed, you ca
 **Format:**<br>
 `statement`
 
-<div markdown="block" class="alert alert-info">**:information_source: Note:**
-The statement will only sum up the debts that are not marked as paid from the list that is currently displayed. This means that if you have shortened the list using the [`find` command](#locating-persons-by-inputs-find) or [`finddebt` command](#locating-persons-by-debt-description-finddebt), the statement will only sum up the debts that are not marked as paid from the shortened list.
-</div>
+**Additional information:**<br>
+The statement will only sum up the debts that are marked as unpaid from the list that is currently displayed. This means that if you have shortened the list using the [`find` command](#locating-persons-by-inputs-find) or [`finddebt` command](#locating-persons-by-debt-description-finddebt), the statement will only sum up the debts that are marked as unpaid from the shortened list.
 
 **Example:**<br>
-`statement` returns `You are owed $583.90 in total.`
+`statement` displays `You are owed $583.90 in total.` when there are 2 persons in the displayed person list, who owe you $100 and $483.90 respectively.
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -605,12 +604,12 @@ When you do not remember the exact description of a debt you want to look for (e
 * The order of the keywords does not matter. e.g. `Sharing Meal` will match `Meal Sharing`
 * Only the descriptions of the debts are searched for the keywords.
 * Only full words will be matched e.g. `Burger` will not match `Burgers`
-* Persons with debts matching at least one keyword will be returned.
-  e.g. `burger meal` will return people associated with debts that have descriptions `Chicken Burger` or `Meal Sharing`
+* Persons with debts matching at least one keyword will be displayed.
+  e.g. `burger meal` will display people associated with debts that have descriptions `Chicken Burger` or `Meal Sharing`
 
 **Examples:**<br>
-* `finddebt Burger` returns people associated with debts that have descriptions `burger` or `Chicken Burger`
-* `finddebt burger meal` returns people associated with debts that have descriptions `Chicken Burger` or `Meal Sharing`<br>
+* `finddebt Burger` displays persons associated with debts that have descriptions `burger` or `Chicken Burger`
+* `finddebt burger meal` displays persons associated with debts that have descriptions `Chicken Burger` or `Meal Sharing`<br>
 
 #### Listing all persons: `list`
 
@@ -625,7 +624,7 @@ When you have previously filtered the displayed person list (using commands such
 
 <div style="page-break-after: always;"></div>
 
-#### Listing all debtors: `listdebtors`
+#### Listing debtors: `listdebtors`
 
 **What it does:**<br>
 This command shows a list of all persons that owe you more than or equal to a certain amount of money in PayMeLah. If no amount is provided, a list of persons who owe any amount of debt is displayed.
@@ -642,7 +641,7 @@ When you want to quickly find out who owes you significant amounts of money, thi
 #### Sorting list of persons: `sort`
 
 **What it does:**<br>
-Sorts and displays the list of persons using the given criterion and order.
+Sorts and displays the person list using the given criterion and order.
 
 **When to use:**<br>
 When you want to organise your data in PayMeLah, you can use this command to arrange the person list in an order you like!
@@ -667,7 +666,7 @@ When you sort by time since oldest debt, all persons who do not owe any debt wil
 </div>
 
 **Example:**<br>
-`sort n/+` sorts and displays the list of persons in ascending alphabetical order of their names.
+`sort n/+` sorts and displays the person list in ascending alphabetical order of their names.
 
 
 [Return to Table of Contents](#table-of-contents)
@@ -739,7 +738,7 @@ If the data file fails to follow the required format, PayMeLah will **discard al
 **A**: You can install PayMeLah in the other computer and replace the data file in the other computer with the data file in your current computer's PayMeLah home folder.
 
 **Q2**: I can't find something that I **know** I have added to PayMeLah. Where did it go?<br>
-**A**: If you are trying to locate a person, try using the [`find` command](#locating-persons-by-inputs-find)! When searching for names, the `find` command returns partial matches, so it will find `Bobby` even if you search for `bob`.<br>
+**A**: If you are trying to locate a person, try using the [`find` command](#locating-persons-by-inputs-find)! When searching for names, the `find` command displays partial matches, so it will find `Bobby` even if you search for `bob`.<br>
 If you are trying to locate a debt without knowing its full description, consider using the [`finddebt` command](#locating-persons-by-debt-description-finddebt) instead.<br>
 <div markdown="span" class="alert alert-primary">:bulb: **Other Tips:** <br>
 1. You can try [combining inputs](#combining-inputs-to-find) to refine your search, but sometimes, you cannot find something because you may have misremembered a detail like the date, or keyed it into PayMeLah wrongly by accident. In this situation, you may want to consider not making your search too specific, or using `before/` and `after/` inputs to search around a date instead of on that specific date.<br>
