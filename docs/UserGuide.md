@@ -549,7 +549,7 @@ Examples:
 
 #### Filtering for internship applications of a specific status: `filter`
 
-Filters for internship applications of the specified [application status](#application-status). Using this command, you can easily filter for the application with the application status that you are looking for.
+Filters for internship applications of the specified [application status](#application-status). Using this command, you can easily filter for the internship applications with the application status that you are interested in.
 
 <div class="d-flex alert alert-secondary">
     <div class="me-3">
@@ -615,7 +615,7 @@ Examples:
 
 #### Sorting the list of internship applications: `sort`
 
-Sorts the internship applications with the latest date at top to earliest at the bottom. Using this command, you can easily see those that have interviews coming up soon.
+Sorts the internship applications with the latest date at top to earliest at the bottom. Using this command, you can easily view the internship applications that have interviews coming up soon.
 
 <div class="d-flex alert alert-secondary">
     <div class="me-3">
