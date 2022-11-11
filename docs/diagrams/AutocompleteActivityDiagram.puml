@@ -1,0 +1,21 @@
+@startuml
+start
+:User inputs a letter;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([input matches start of command])
+    if () then ([input partially matches])
+    :Filter commands that match;
+    :Display possible commands to user in a popup;
+    :User selects a command from the popup;
+    :Selected command is fed into command box;
+    else ([input matches command])
+    :Popup does not appear;
+    endif
+else ([does not match any command])
+    :Popup does not appear;
+endif
+stop
+@enduml

@@ -5,14 +5,14 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyTaskList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
 /**
  * API of the Storage component
  */
-public interface Storage extends AddressBookStorage, UserPrefsStorage {
+public interface Storage extends AddressBookStorage, ArchivedTaskListStorage, UserPrefsStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
@@ -24,9 +24,17 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
     Path getAddressBookFilePath();
 
     @Override
-    Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException;
+    Path getArchivedTaskListFilePath();
 
     @Override
-    void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
+    Optional<ReadOnlyTaskList> readAddressBook() throws DataConversionException, IOException;
 
+    @Override
+    Optional<ReadOnlyTaskList> readArchivedTaskList() throws DataConversionException, IOException;
+
+    @Override
+    void saveAddressBook(ReadOnlyTaskList addressBook) throws IOException;
+
+    @Override
+    void saveArchivedTaskList(ReadOnlyTaskList addressBook) throws IOException;
 }

@@ -5,14 +5,14 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Task> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -39,6 +39,8 @@ public interface Model {
      */
     Path getAddressBookFilePath();
 
+    Path getArchivedTaskListFilePath();
+
     /**
      * Sets the user prefs' address book file path.
      */
@@ -47,41 +49,87 @@ public interface Model {
     /**
      * Replaces address book data with the data in {@code addressBook}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setAddressBook(ReadOnlyTaskList addressBook);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the TaskList */
+    ReadOnlyTaskList getAddressBook();
+
+    ReadOnlyTaskList getArchivedTaskList();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a task with the same identity as {@code task} exists in the address book.
      */
-    boolean hasPerson(Person person);
+    boolean hasPerson(Task task);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Returns true if a task with the same identity as {@code task} exists in the archived task book.
      */
-    void deletePerson(Person target);
+    boolean hasTaskInArchives(Task task);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Deletes the given task.
+     * The task must exist in the address book.
      */
-    void addPerson(Person person);
+    void deletePerson(Task target);
+
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
+     * Adds the given task.
+     * {@code task} must not already exist in the address book.
+     */
+    void addPerson(Task task);
+
+    void archivedTask(Task task);
+
+    /**
+     * Replaces the given task {@code target} with {@code editedTask}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The task identity of {@code editedTask} must not be the same as another existing task in the address book.
      */
-    void setPerson(Person target, Person editedPerson);
+    void setTask(Task target, Task editedTask);
 
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered task list */
+    ObservableList<Task> getFilteredPersonList();
+
+    ObservableList<Task> getFilteredArchivedTaskList();
+
+    ObservableList<Task> getObservableArchivedTaskList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered task list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+
+    void updateFilteredTaskList(Predicate<Task> predicate);
+
+    /**
+     * Updates filter status of the tasklist view.
+     * @param filter status of the tasklist view.
+     */
+    void updateFilterStatus(String filter);
+
+    /**
+     * Updates filter status of the tasklist view.
+     * @param filter status of the tasklist view.
+     * @param newFilterSet to reset filter set.
+     */
+    void updateFilterStatus(String filter, boolean newFilterSet);
+
+    /**
+     * Returns filter status of the tasklist.
+     * @return Returns filter status of the tasklist.
+     */
+    String getFilterStatus();
+
+    void updateFilteredArchivedTaskList(Predicate<Task> predicate);
+
+    void setArchivedTaskList(ReadOnlyTaskList addressBook);
+
+    void setArchivedTaskListFilePath(Path archivedTaskBookFilePath);
+
+    /**
+     * @return archived task list to be printed in CommandResult.
+     */
+    String getArchivedTasks();
+
 }

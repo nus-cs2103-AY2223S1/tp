@@ -1,0 +1,54 @@
+@font-face {
+    font-family: "Roboto Medium";
+    src: url("/fonts/roboto/Roboto-Medium.ttf");
+}
+
+@font-face {
+    font-family: "Roboto Medium Italic";
+    src: url("/fonts/roboto/Roboto-MediumItalic.ttf");
+}
+
+@font-face {
+    font-family: "Roboto";
+    src: url("/fonts/roboto/Roboto-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Roboto Light";
+    src: url("/fonts/roboto/Roboto-Light.ttf");
+}
+
+@font-face {
+    font-family: "Roboto Light Italic";
+    src: url("/fonts/roboto/Roboto-LightItalic.ttf");
+}
+
+@font-face {
+    font-family: "Roboto Bold";
+    src: url("/fonts/roboto/Roboto-Bold.ttf");
+}
+
+@font-face {
+    font-family: "Quicksand";
+    src: url("/fonts/quicksand/Quicksand-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Quicksand Bold";
+    src: url("/fonts/quicksand/Quicksand-Bold.ttf");
+}
+
+@font-face {
+    font-family: "Quicksand Light";
+    src: url("/fonts/quicksand/Quicksand-Light.ttf");
+}
+
+@font-face {
+    font-family: "Quicksand Semi Bold";
+    src: url("/fonts/quicksand/Quicksand-SemiBold.ttf");
+}
+
+@font-face {
+    font-family: "Quicksand Medium";
+    src: url("/fonts/quicksand/Quicksand-Medium.ttf");
+}

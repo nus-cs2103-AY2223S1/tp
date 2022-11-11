@@ -9,51 +9,51 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Shawn Lee
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/xenonshawn.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/xenonshawn)]
+[[portfolio](team/xenonshawn.md)]
 
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: Code Quality
 
-### Johnny Doe
+### Lin Leyi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/lleyi0606.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/lleyi0606)]
+[[portfolio](team/lleyi0606.md)]
 
-* Role: Developer
+* Role: Documentation
+* Responsibilities: Documentation
+
+### Fang Yiye
+
+<img src="images/yiyefyy.png" width="200px">
+
+[[github](http://github.com/yiyefyy)] [[portfolio](team/yiyefyy.md)]
+
+* Role: Testing
 * Responsibilities: Data
 
-### Jean Doe
+### Shawn Ng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/snigloo.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/snigloo)]
+[[portfolio](team/snigloo.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: UI/UX
+
+### Asher Lim
+
+<img src="images/doimoiboi.png" width="200px">
+
+[[github](http://github.com/doimoiboi)]
+[[portfolio](team/doimoiboi.md)]
+
+* Role: Deliverables and Deadlines
+* Responsibilities: Ensure project deliverables are done on time.

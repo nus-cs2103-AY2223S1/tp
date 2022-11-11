@@ -1,0 +1,26 @@
+@startuml
+start
+:User presses button;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([up key])
+    if () then ([previous command exists])
+    :Shift pointer to the left once;
+    :Obtain previous command;
+    :Feed previous command into the command box;
+    else ([else])
+    :No changes to command box;
+    endif
+else ([down key])
+    if () then ([next command exists])
+    :Shift pointer to the right once;
+    :Obtain next command;
+    :Feed next command into the command box;
+    else ([else])
+    :Clears command box;
+    endif
+endif
+stop
+@enduml

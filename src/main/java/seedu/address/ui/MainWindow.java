@@ -8,6 +8,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
@@ -23,7 +24,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class MainWindow extends UiPart<Stage> {
 
-    private static final String FXML = "MainWindow.fxml";
+    private static final String FXML = "NotionUSMainWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -31,9 +32,11 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private ArchiveWindow archiveWindow;
+    private TaskListPanel taskListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private FilterStatusDisplay filterStatusDisplay;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -42,13 +45,20 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private MenuItem archiveMenuItem;
+
+    @FXML
+    private HBox filterStatusDisplayPlaceholder;
+
+    @FXML
+    private StackPane taskListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
+
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -66,6 +76,9 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
+        archiveWindow = new ArchiveWindow(logic);
+
     }
 
     public Stage getPrimaryStage() {
@@ -110,8 +123,11 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        filterStatusDisplay = new FilterStatusDisplay();
+        filterStatusDisplayPlaceholder.getChildren().add(filterStatusDisplay.getRoot());
+
+        taskListPanel = new TaskListPanel(logic.getFilteredPersonList());
+        taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -135,6 +151,7 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+
     /**
      * Opens the help window or focuses on it if it's already opened.
      */
@@ -152,6 +169,19 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Opens an archive window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleShowArchive() {
+        if (!archiveWindow.isShowing()) {
+            archiveWindow.show();
+            archiveWindow.fillInnerParts();
+        } else {
+            archiveWindow.focus();
+        }
+    }
+
+    /**
      * Closes the application.
      */
     @FXML
@@ -160,11 +190,12 @@ public class MainWindow extends UiPart<Stage> {
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
+        archiveWindow.hide();
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public TaskListPanel getPersonListPanel() {
+        return taskListPanel;
     }
 
     /**
@@ -177,9 +208,12 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            filterStatusDisplay.setFilterStatus("Current View: " + logic.getFilterStatus());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            } else if (commandResult.isShowArchived()) {
+                handleShowArchive();
             }
 
             if (commandResult.isExit()) {

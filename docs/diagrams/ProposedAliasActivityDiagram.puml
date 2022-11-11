@@ -1,0 +1,21 @@
+@startuml
+start
+:User executes an alias command;
+
+if () then ([no provided alias word])
+    :Display list of aliases;
+else ([else])
+    if () then ([aliased word is "alias" or "unalias", or is otherwise invalid])
+        :Illegal alias command, throw error;
+    else ([else])
+        if () then ([alias already exists])
+            :Replace existing\nalias in AliasList;
+        else ([else])
+            :Add alias to AliasList;
+        endif
+        :Save AliasList to storage;
+        :Show result to user;
+    endif
+endif
+stop
+@enduml

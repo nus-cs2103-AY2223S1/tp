@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -19,25 +19,32 @@ import seedu.address.model.person.Person;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final TaskList addressBook;
+    private final ArchivedTaskList archivedTaskList;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private FilteredList<Task> filteredTasks;
+    private String filterStatus = "";
+    private final FilteredList<Task> filteredArchivedTasks;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyTaskList addressBook,
+                        ReadOnlyTaskList archivedTaskList, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(addressBook, archivedTaskList, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + addressBook
+                + "Archived Task Book: " + archivedTaskList + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.addressBook = new TaskList(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        this.archivedTaskList = new ArchivedTaskList(archivedTaskList);
+        filteredTasks = new FilteredList<>(this.addressBook.getTaskList());
+        filteredArchivedTasks = new FilteredList<>(this.archivedTaskList.getTaskList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new TaskList(), new ArchivedTaskList(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -70,62 +77,145 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Path getArchivedTaskListFilePath() {
+        return userPrefs.getArchivedTaskListFilePath();
+    }
+
+    @Override
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    @Override
+    public void setArchivedTaskListFilePath(Path archivedTaskListFilePath) {
+        requireNonNull(archivedTaskListFilePath);
+        userPrefs.setArchivedTaskListFilePath(archivedTaskListFilePath);
+    }
+
+    //=========== TaskList ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
+    public void setAddressBook(ReadOnlyTaskList addressBook) {
         this.addressBook.resetData(addressBook);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
+    public ReadOnlyTaskList getAddressBook() {
         return addressBook;
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public boolean hasPerson(Task task) {
+        requireNonNull(task);
+        return addressBook.hasPerson(task);
     }
 
     @Override
-    public void deletePerson(Person target) {
+    public void deletePerson(Task target) {
         addressBook.removePerson(target);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addPerson(Task task) {
+        addressBook.addPerson(task);
+        updateFilteredTaskList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void setTask(Task target, Task editedTask) {
+        requireAllNonNull(target, editedTask);
 
-        addressBook.setPerson(target, editedPerson);
+        addressBook.setPerson(target, editedTask);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+
+    //=========== ArchivedTaskBook ================================================================================
+
+    @Override
+    public ReadOnlyTaskList getArchivedTaskList() {
+        return archivedTaskList;
+    }
+
+    @Override
+    public void archivedTask(Task task) {
+        addressBook.removePerson(task);
+        archivedTaskList.addTask(task);
+    }
+
+    @Override
+    public boolean hasTaskInArchives(Task task) {
+        requireAllNonNull(task);
+        return archivedTaskList.hasTask(task);
+    }
+
+
+
+    @Override
+    public void setArchivedTaskList(ReadOnlyTaskList taskList) {
+        this.archivedTaskList.resetData(taskList);
+    }
+
+    @Override
+    public String getArchivedTasks() {
+        return archivedTaskList.toString();
+    }
+
+    //=========== Filtered Task List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Task} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Task> getFilteredPersonList() {
+        return filteredTasks;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public ObservableList<Task> getFilteredArchivedTaskList() {
+        return filteredArchivedTasks;
+    }
+
+    @Override
+    public ObservableList<Task> getObservableArchivedTaskList() {
+        return this.archivedTaskList.getTaskList();
+    }
+
+    @Override
+    public void updateFilteredTaskList(Predicate<Task> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredTasks.setPredicate(predicate);
+    }
+    @Override
+    public void updateFilterStatus(String filter) {
+        requireNonNull(filter);
+        if (this.filterStatus.equalsIgnoreCase("Showing all tasks") || this.filterStatus.equals("")) {
+            this.filterStatus = filter;
+        } else {
+            this.filterStatus += ", " + filter;
+        }
+    }
+
+    @Override
+    public void updateFilterStatus(String filter, boolean isNewFilterSet) {
+        requireNonNull(filter);
+        if (isNewFilterSet) {
+            this.filterStatus = filter;
+        } else {
+            this.filterStatus += ", " + filter;
+        }
+    }
+
+    @Override
+    public String getFilterStatus() {
+        return this.filterStatus;
+    }
+
+    @Override
+    public void updateFilteredArchivedTaskList(Predicate<Task> predicate) {
+        requireNonNull(predicate);
+        filteredArchivedTasks.setPredicate(predicate);
     }
 
     @Override
@@ -144,7 +234,9 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && archivedTaskList.equals(other.archivedTaskList)
+                && filteredTasks.equals(other.filteredTasks)
+                && filteredArchivedTasks.equals(other.filteredArchivedTasks);
     }
 
 }

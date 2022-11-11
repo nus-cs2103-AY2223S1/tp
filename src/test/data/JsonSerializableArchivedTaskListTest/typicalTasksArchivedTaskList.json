@@ -1,0 +1,35 @@
+{
+  "_comment": "ArchivedTaskBook save file which contains the same Person values as in TypicalPersons#getTypicalArchivedTaskBook()",
+  "archivedTasks" : [ {
+    "name" : "Chapter 2 Revision",
+    "module" : "CS2100",
+    "deadline" : "2022-11-11",
+    "tagged" : [ "revision" ],
+    "isDone" : true
+  }, {
+    "name" : "Problem Set C",
+    "module" : "CS2040S",
+    "deadline" : "2022-11-09",
+    "tagged" : [ ],
+    "isDone" : true
+  }, {
+    "name" : "Tutorial 7",
+    "module" : "MA2001",
+    "deadline" : "2022-12-09",
+    "tagged" : [ ],
+    "isDone" : false
+  }, {
+    "name" : "Tutorial 4",
+    "module" : "MA2001",
+    "deadline" : "2022-09-16",
+    "tagged" : [ ],
+    "isDone" : false
+  }, {
+    "name" : "Assignment 4",
+    "module" : "MA2001",
+    "deadline" : "2022-12-30",
+    "tagged" : [ ],
+    "isDone" : true
+  }
+  ]
+}

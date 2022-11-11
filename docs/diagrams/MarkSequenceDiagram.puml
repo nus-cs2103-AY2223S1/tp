@@ -1,0 +1,76 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TaskListParser" as TaskListParser LOGIC_COLOR
+participant ":MarkCommandParser" as MarkCommandParser LOGIC_COLOR
+participant ":MarkCommand" as MarkCommand LOGIC_COLOR
+participant ":Task" as Task LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("mark 1")
+activate LogicManager
+
+LogicManager -> TaskListParser : parseCommand("mark 1")
+activate TaskListParser
+
+create MarkCommandParser
+TaskListParser -> MarkCommandParser
+activate MarkCommandParser
+
+MarkCommandParser --> TaskListParser
+deactivate MarkCommandParser
+
+TaskListParser -> MarkCommandParser : parse("1")
+activate MarkCommandParser
+
+create MarkCommand
+MarkCommandParser -> MarkCommand
+activate MarkCommand
+
+MarkCommand --> MarkCommandParser : d
+deactivate MarkCommand
+
+MarkCommandParser --> TaskListParser : d
+deactivate MarkCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+MarkCommandParser -[hidden]-> TaskListParser
+destroy MarkCommandParser
+
+TaskListParser --> LogicManager : d
+deactivate TaskListParser
+
+LogicManager -> MarkCommand : execute()
+activate MarkCommand
+
+MarkCommand -> Task : Task()
+activate Task
+
+Task --> MarkCommand
+deactivate Task
+
+MarkCommand -> Model : setTask(taskToTag, taggedTask)
+activate Model
+
+Model --> MarkCommand
+deactivate Model
+
+create CommandResult
+MarkCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> MarkCommand
+deactivate CommandResult
+
+MarkCommand --> LogicManager : result
+deactivate MarkCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

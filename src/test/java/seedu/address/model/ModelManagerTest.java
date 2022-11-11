@@ -15,7 +15,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.task.NameContainsKeywordsPredicate;
 import seedu.address.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
@@ -26,7 +26,8 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new AddressBook(), new AddressBook(modelManager.getAddressBook()));
+        assertEquals(new TaskList(), new TaskList(modelManager.getAddressBook()));
+        assertEquals(new ArchivedTaskList(), new ArchivedTaskList(modelManager.getArchivedTaskList()));
     }
 
     @Test
@@ -38,6 +39,7 @@ public class ModelManagerTest {
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
         userPrefs.setAddressBookFilePath(Paths.get("address/book/file/path"));
+        userPrefs.setArchivedTaskListFilePath(Paths.get("archivedTask/list/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
@@ -45,6 +47,7 @@ public class ModelManagerTest {
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
         userPrefs.setAddressBookFilePath(Paths.get("new/address/book/file/path"));
+        userPrefs.setArchivedTaskListFilePath(Paths.get("archivedTask/book/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -66,10 +69,22 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void setArchivedTaskBookFilePath_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setArchivedTaskList(null));
+    }
+
+    @Test
     public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
         Path path = Paths.get("address/book/file/path");
         modelManager.setAddressBookFilePath(path);
         assertEquals(path, modelManager.getAddressBookFilePath());
+    }
+
+    @Test
+    public void setArchivedTaskBookFilePath_validPath_setsArchivedTaskBookFilePath() {
+        Path path = Paths.get("data/archivedTaskList.json");
+        modelManager.setArchivedTaskListFilePath(path);
+        assertEquals(path, modelManager.getArchivedTaskListFilePath());
     }
 
     @Test
@@ -78,8 +93,18 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void hasTask_nullArchivedTask_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasTaskInArchives(null));
+    }
+
+    @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
         assertFalse(modelManager.hasPerson(ALICE));
+    }
+
+    @Test
+    public void hasTask_taskNotInArchivedTaskBook_returnsFalse() {
+        assertFalse(modelManager.hasTaskInArchives(ALICE));
     }
 
     @Test
@@ -89,19 +114,53 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void hasTask_taskInArchivedTaskBook_returnsTrue() {
+        modelManager.addPerson(ALICE);
+        modelManager.archivedTask(ALICE);
+        assertTrue(modelManager.hasTaskInArchives(ALICE));
+    }
+
+    @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
     }
 
     @Test
+    public void getFilteredTaskList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredArchivedTaskList().remove(0));
+    }
+
+    @Test
+    public void updateFilterStatus_updatingFilters_isCorrect() {
+        // Replaces string when filter is empty.
+        modelManager.updateFilterStatus("");
+        modelManager.updateFilterStatus("Filter 1");
+        assertEquals("Filter 1", modelManager.getFilterStatus());
+        // Replaces string shown when filter is "Showing all tasks".
+        modelManager.updateFilterStatus("Showing all tasks", true);
+        modelManager.updateFilterStatus("Filter 1");
+        assertEquals("Filter 1", modelManager.getFilterStatus());
+        // Tests adding on a filter.
+        modelManager.updateFilterStatus("Additional filter");
+        assertEquals("Filter 1, Additional filter", modelManager.getFilterStatus());
+        // Tests new filter set when isNewFilterSet is set to true.
+        modelManager.updateFilterStatus("Replacement filter", true);
+        assertEquals("Replacement filter", modelManager.getFilterStatus());
+        // Tests filter set when isNewFilterSet is set to false, even if filter is "Showing all tasks".
+        modelManager.updateFilterStatus("Showing all tasks", false);
+        assertEquals("Replacement filter, Showing all tasks", modelManager.getFilterStatus());
+    }
+
+    @Test
     public void equals() {
-        AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
-        AddressBook differentAddressBook = new AddressBook();
+        TaskList addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        ArchivedTaskList archivedTaskList = new ArchivedTaskList();
+        TaskList differentAddressBook = new TaskList();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(addressBook, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs);
+        modelManager = new ModelManager(addressBook, archivedTaskList, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(addressBook, archivedTaskList, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -114,19 +173,21 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, archivedTaskList, userPrefs)));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
+        modelManager.updateFilteredTaskList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        modelManager.updateFilteredArchivedTaskList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        assertFalse(modelManager.equals(new ModelManager(addressBook, archivedTaskList, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        modelManager.updateFilteredTaskList(PREDICATE_SHOW_ALL_PERSONS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
+        differentUserPrefs.setArchivedTaskListFilePath(Paths.get("differentFilePath"));
+        assertFalse(modelManager.equals(new ModelManager(addressBook, archivedTaskList, differentUserPrefs)));
     }
 }

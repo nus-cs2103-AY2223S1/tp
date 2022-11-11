@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.image.ImageView?>
+
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <GridPane HBox.hgrow="ALWAYS">
+        <columnConstraints>
+            <ColumnConstraints hgrow="ALWAYS" prefWidth="150"/>
+        </columnConstraints>
+        <padding>
+            <Insets left="10"/>
+        </padding>
+        <VBox alignment="CENTER" minHeight="40">
+            <HBox spacing="20" alignment="CENTER_LEFT" GridPane.columnIndex="0">
+                <HBox alignment="CENTER_LEFT" prefWidth="250">
+                    <Label fx:id="id" styleClass="cell_big_label">
+                        <minWidth>
+                            <Region fx:constant="USE_PREF_SIZE"/>
+                        </minWidth>
+                    </Label>
+                    <Label fx:id="name" wrapText="true" text="\$first" styleClass="cell_big_label"/>
+                </HBox>
+                <FlowPane prefWidth="150" maxWidth="200" alignment="CENTER_LEFT" fx:id="tags"/>
+                <Label fx:id="module" prefWidth="150" styleClass="cell_small_label" text="\$module"/>
+                <Label fx:id="deadline" prefWidth="150" styleClass="cell_small_label" text="\$deadline"/>
+                <HBox prefWidth="150" alignment="CENTER_LEFT" styleClass="cell_checkbox">
+                    <ImageView fx:id="checkbox" fitHeight="20" fitWidth="20" preserveRatio="true"/>
+                </HBox>
+            </HBox>
+        </VBox>
+    </GridPane>
+</HBox>
