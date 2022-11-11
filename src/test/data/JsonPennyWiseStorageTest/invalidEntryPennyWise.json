@@ -1,0 +1,9 @@
+{
+  "expenditures" : [ {
+    "description" : "",
+    "amount" : "20",
+    "date" : "20-01-2022",
+    "tagged" : "Allowance"
+  } ],
+  "incomes": []
+}

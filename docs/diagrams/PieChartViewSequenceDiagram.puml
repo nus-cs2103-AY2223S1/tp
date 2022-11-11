@@ -1,0 +1,106 @@
+@startuml
+!include style.puml
+
+box UI UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+participant ":GraphPanel" as GraphPanel UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":PennyWiseParser" as PennyWiseParser LOGIC_COLOR
+participant ":ViewCommandParser" as ViewCommandParser LOGIC_COLOR
+participant ":GraphConfiguration" as GraphConfiguration LOGIC_COLOR
+participant ":ViewEntriesDescriptor" as ViewEntriesDescriptor LOGIC_COLOR
+participant "v:ViewCommand" as ViewCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":ModelManager" as ModelManager MODEL_COLOR
+end box
+
+[-> MainWindow: executeCommand("view t/e")]
+activate MainWindow
+
+MainWindow -> LogicManager : execute("view t/e")
+activate LogicManager
+
+LogicManager -> PennyWiseParser : parseCommand("view t/e")
+activate PennyWiseParser
+
+create ViewCommandParser
+PennyWiseParser -> ViewCommandParser
+activate ViewCommandParser
+ViewCommandParser --> PennyWiseParser
+deactivate ViewCommandParser
+
+PennyWiseParser -> ViewCommandParser : parse("t/e")
+activate ViewCommandParser
+create ViewEntriesDescriptor
+ViewCommandParser -> ViewEntriesDescriptor
+activate ViewEntriesDescriptor
+ViewEntriesDescriptor --> ViewCommandParser : viewEntriesDescriptor
+deactivate ViewEntriesDescriptor
+create ViewCommand
+ViewCommandParser -> ViewCommand
+activate ViewCommand
+ViewCommand --> ViewCommandParser : viewCommand
+deactivate ViewCommand
+ViewCommandParser --> PennyWiseParser : viewCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+deactivate ViewCommandParser
+ViewCommandParser -[hidden]-> PennyWiseParser
+destroy ViewCommandParser
+
+PennyWiseParser --> LogicManager : viewCommand
+deactivate PennyWiseParser
+
+LogicManager -> ViewCommand : execute(model)
+activate ViewCommand
+
+create GraphConfiguration
+ViewCommand -> GraphConfiguration
+activate GraphConfiguration
+GraphConfiguration --> ViewCommand
+deactivate GraphConfiguration
+
+ViewCommand -> ViewCommand : predicateSelector(viewEntriesDescriptor)
+activate ViewCommand
+ViewCommand --> ViewCommand : predicate
+deactivate ViewCommand
+
+ViewCommand -> ModelManager : updateFilteredExpenditureList(predicate)
+activate ModelManager
+ModelManager --> ViewCommand
+deactivate ModelManager
+ViewCommand --> LogicManager : commandResult
+deactivate ViewCommand
+
+LogicManager --> MainWindow : commandResult
+deactivate LogicManager
+
+MainWindow -> MainWindow : updateGraph()
+activate MainWindow
+
+MainWindow -> LogicManager : getExpensePieChartData()
+activate LogicManager
+
+LogicManager -> ModelManager : getExpensePieChartData()
+activate ModelManager
+
+ModelManager -> LogicManager
+deactivate ModelManager
+
+LogicManager -> MainWindow
+
+create GraphPanel
+MainWindow -> GraphPanel
+activate GraphPanel
+GraphPanel --> MainWindow
+deactivate GraphPanel
+deactivate LogicManager
+deactivate MainWindow
+
+[<--MainWindow
+deactivate MainWindow
+@enduml

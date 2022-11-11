@@ -1,0 +1,50 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant "v:ViewCommand" as ViewCommand LOGIC_COLOR
+participant ":GraphConfiguration" as GraphConfiguration LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":ModelManager" as ModelManager MODEL_COLOR
+end box
+
+[-> ViewCommand : execute(model)
+activate ViewCommand
+create GraphConfiguration
+ViewCommand -> GraphConfiguration
+activate GraphConfiguration
+GraphConfiguration --> ViewCommand : graphConfiguration
+deactivate GraphConfiguration
+
+ViewCommand -> ViewCommand : predicateSelector(viewEntriesDescriptor)
+activate ViewCommand
+ViewCommand --> ViewCommand : predicate
+deactivate ViewCommand
+
+alt entryType is expenditure
+ViewCommand -> ModelManager : updateFilteredExpenditureList(predicate)
+activate ModelManager
+ModelManager --> ViewCommand
+deactivate ModelManager
+else entryType is income
+ViewCommand -> ModelManager : updateFilteredIncomeList(predicate)
+activate ModelManager
+ModelManager --> ViewCommand
+deactivate ModelManager
+end
+
+create CommandResult
+ViewCommand -> CommandResult
+activate CommandResult
+CommandResult --> ViewCommand
+deactivate CommandResult
+
+deactivate ViewCommand
+
+deactivate ModelManager
+
+
+@enduml

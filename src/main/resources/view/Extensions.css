@@ -1,20 +1,118 @@
-
 .error {
-    -fx-text-fill: #d06651 !important; /* The error class should always override the default text-fill style */
+    /* The error class should always override the default text-fill style */
+    -fx-border-color: -pw-error !important;
 }
 
 .list-cell:empty {
     /* Empty cells will not have alternating colours */
-    -fx-background: #383838;
+    -fx-background: transparent;
 }
 
 .tag-selector {
     -fx-border-width: 1;
-    -fx-border-color: white;
+    -fx-border-color: -pw-white;
     -fx-border-radius: 3;
     -fx-background-radius: 3;
 }
 
 .tooltip-text {
-    -fx-text-fill: white;
+    -fx-text-fill: -pw-white;
+}
+
+#cardPane {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-padding: 4px;
+}
+
+/* Command Box */
+#commandTypeLabel {
+    -fx-font-size: 16px;
+    -fx-text-fill: -pw-white;
+}
+
+#commandTextField {
+    -fx-background-color: derive(-pw-surface, 20%);
+    -fx-effect: -pw-shadow-light;
+    -fx-border-radius: 16px;
+    -fx-background-radius: 16px;
+    -fx-padding: 8 16;
+    -fx-font-family: "Poppins Regular";
+    -fx-font-size: 16px;
+    -fx-text-fill: -pw-white;
+    -fx-border-width: 0 0 4 0;
+}
+
+#commandBoxPlaceholder {
+    -fx-padding: 8px;
+}
+
+#resultDisplay .content {
+    -fx-background-color: -pw-surface;
+    -fx-background-radius: 0;
+}
+
+#resultDisplay {
+    -fx-font-size: 15px;
+    -fx-font-family: "Poppins Regular";
+}
+
+#tags {
+    -fx-hgap: 7;
+    -fx-vgap: 3;
+}
+
+#tags .label {
+    -fx-text-fill: -pw-black;
+    -fx-background-color: -pw-light;
+    -fx-padding: 2 4;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-font-size: 12px;
+}
+
+#container {
+    -fx-padding: 8px;
+    -fx-background-color: -pw-surface;
+}
+
+#graphPanel {
+    -fx-padding: 24px;
+}
+
+#graphPanelPlaceholder,
+#entryList {
+    -fx-effect: -pw-shadow-main;
+    -fx-background-radius: 8px;
+}
+
+#graphPanelPlaceholder {
+    -fx-background-insets: 4px;
+}
+
+#entryList {
+    -fx-background-insets: 4px;
+}
+
+.axis-label {
+    -fx-text-fill: -pw-white;
+}
+
+.axis {
+    -fx-tick-label-fill: -pw-white;
+}
+
+.chart-legend {
+    -fx-background-color: transparent;
+    -fx-padding: 32px;
+}
+
+.chart-legend-item {
+    -fx-font-size: 1.3em;
+    -fx-text-fill: -pw-white;
+}
+
+
+#noEntryText {
+    -fx-text-fill: -pw-white;
 }

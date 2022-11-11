@@ -1,0 +1,36 @@
+@startuml
+
+start
+
+if () then ([inputs are valid))
+    :Parse the parameter(s) to create ViewEntriesDescriptor;
+    switch ()
+    case ([year month is present])
+      :Set graphType to be line graph;
+    case ([else])
+      :Set graphType to be pie chart;
+     endswitch
+    :Create graph configuration with the entryType and graphType;
+    switch ()
+    case ([year month is present])
+      :Set predicate to be showing entries in the specified month;
+    case ([else])
+      :Set predicate to be showing all entries;
+     endswitch
+    switch ()
+    case ([entryType is income])
+      :Update filtered income list with the predicate;
+    case ([entryType is expenditure])
+      :Update filtered expenditure list with the predicate;
+    case ([else])
+      stop
+    endswitch
+else ([else])
+    stop
+endif
+
+stop
+
+@enduml
+
+

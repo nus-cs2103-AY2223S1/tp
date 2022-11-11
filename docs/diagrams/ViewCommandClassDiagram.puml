@@ -1,0 +1,14 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR
+skinparam classBackgroundColor LOGIC_COLOR
+Class ViewCommand
+Class ViewEntriesDescriptor
+Class EntryType
+Class YearMonth
+
+ViewCommand -down-> "1" ViewEntriesDescriptor
+ViewEntriesDescriptor -down-> "1" EntryType
+ViewEntriesDescriptor -down-> "1" YearMonth
+@enduml

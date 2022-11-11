@@ -1,19 +1,33 @@
 #copyButton, #helpMessage {
-    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-family: "Poppins Regular";
+}
+
+#helpMessage {
+    -fx-text-fill: -pw-white;
 }
 
 #copyButton {
-    -fx-background-color: dimgray;
+    -fx-background-color: -pw-primary;
 }
 
 #copyButton:hover {
-    -fx-background-color: gray;
+    -fx-background-color: derive(-pw-secondary, 20%);
+    -fx-cursor: hand;
 }
 
 #copyButton:armed {
-    -fx-background-color: darkgray;
+    -fx-background-color: -pw-secondary;
 }
 
 #helpMessageContainer {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-padding: 8px;
+    -fx-background-color: -pw-surface;
 }
+
+#table {
+    -fx-border-color: -pw-secondary;
+    -fx-font-size: 12px;
+    -fx-font-family: "Poppins Regular";
+}
+
