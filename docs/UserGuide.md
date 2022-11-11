@@ -704,7 +704,7 @@ Summary of the commands to manage members can be found [here](#summary-of-member
 
 #### Adding a new member to the team: `add member`
 
-You have made up your mind on you want to work with for your group projects, and now you want to
+You have made up your mind on whom you want to work with for your group projects, and now you want to
 add them to your team. You can add persons to your team with the `add member` command! You can finally begin to work 
 on some exciting software engineering projects with them!
 
