@@ -138,8 +138,9 @@ Some applicable commands that helps to modify your data are: [assign](#assign-cl
     
 </div>
 
----
 <div style="page-break-after: always;"></div>
+
+---
 
 ## Layout
 
@@ -159,7 +160,7 @@ This is the area under the command box. It is where the feedback information is 
 
 <p align="center">
 
-<img src="images/unknownCommand.png"/>
+<img src="images/unknownCommand.png" width="400px"/>
 
 </p>
 
@@ -177,6 +178,8 @@ In the **student list** and **tutor list**, clicking on the individual student o
 
 Note that the card for the person being displayed will be highlighted as well.
 
+<div style="page-break-after: always;"></div>
+
 ### 4. List Tabs
 
 There are three tabs: `Student`, `Tutor` and `Class`.  
@@ -188,6 +191,7 @@ The highlighted tab indicates which list is currently being displayed.
 
 </p>
 
+<div style="page-break-after: always;"></div>
 
 ### 5. Description Panel
 
@@ -199,6 +203,7 @@ The highlighted tab indicates which list is currently being displayed.
 
 This is an example of a student entry being displayed in the description panel. When there is no person being displayed, the line “No Person Displayed” would be shown.
 
+<div style="page-break-after: always;"></div>
 
 ### 6. Toolbar 
 
@@ -255,7 +260,7 @@ Examples:
 
 <p align="center">
 
-<img src="images/helpCommand.png"/>
+<img src="images/helpCommand.png" width="500px" />
 
 </p>
 
@@ -334,11 +339,13 @@ Examples:
 
 <p align="center">
 
-<img src="images/addPersonCommand_after.png"  width="400""/>
+<img src="images/addPersonCommand_after.png" width="400"/>
 
 </p>
 
 The new student has been added into the database.
+
+<div style="page-break-after: always;"></div>
 
 ### Adding a class: `add`
 
@@ -402,11 +409,13 @@ Examples:
 
 <p align="center">
 
-<img src="images/addClassCommand_after.png" width="400""/>
+<img src="images/addClassCommand_after.png" width="400"/>
 
 </p>
 
 This adds the class into the database. 
+
+<div style="page-break-after: always;"></div>
 
 ### Deleting an entry: `delete`
 
@@ -429,7 +438,7 @@ Examples:
 
 <p align="center">
 
-<img src="images/deleteCommand_after.png"  width="400""/>
+<img src="images/deleteCommand_after.png" width="400"/>
 
 </p>
 
@@ -538,6 +547,8 @@ Examples:
 
 This edits the details of Alex Miller by changing his name to Tom Doe. Note that the Description Panel and the List Display Panel have been updated.
 
+<div style="page-break-after: always;"></div>
+
 ### Assign class to a person: `assign`
 
 Assign an existing tuition class to a specific student/tutor.
@@ -573,6 +584,8 @@ Examples:
 <img src="images/assignCommand_after.png"/>
 
 </p>
+
+<div style="page-break-after: always;"></div>
 
 ### Unassign class from a person: `unassign`
 
@@ -610,6 +623,8 @@ Examples:
 <img src="images/unassignCommand_after.png"/>
 
 </p>
+
+<div style="page-break-after: always;"></div>
 
 ### Add next of kin to a student: `nok`
 
@@ -743,6 +758,8 @@ in the **class list**.
 
 Note that `show` command is invalid for the **class list**.
 
+<div style="page-break-after: always;"></div>
+
 ### Listing all entries : `list`
 
 Shows the list of a specified entry type in the myStudent database.
@@ -822,6 +839,8 @@ Examples:
 <img src="images/sortCommand_after.png"  width="400"/>
 
 </p>
+
+<div style="page-break-after: always;"></div>
 
 ### Searching by multiple fields: `find`
 
@@ -946,8 +965,9 @@ Please close any .csv files that are currently open before clicking on the "*Exp
 
 </div>
 
-
 ---
+
+<div style="page-break-after: always;"></div>
 
 ### FAQs
 **Q:** Does myStudent need an Internet connection?  
