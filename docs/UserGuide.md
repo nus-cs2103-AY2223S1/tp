@@ -34,7 +34,7 @@ can also serve as a reference for experienced users, with a convenient [Command 
 <div markdown="block" class="alert alert-info">
 
 :notebook: **Notes about data storage without internet connection:**<br>
-We store this data locally on your device. This means that you can benefit from extremely quick loading times!
+We store patient data locally on your device. This means that you can benefit from extremely quick loading times!
 
 </div>
 
@@ -157,7 +157,7 @@ Adds a patient to checkUp.
 | `-`     | hw     | HOSPITAL_WING                           | Either `north`, `south`, `east` or `west` (case-insensitive) . **Compulsory for inpatients**. |
 | `-`     | fn     | FLOOR_NUMBER                            | Positive integer only.                    **Compulsory for inpatients**.                      |
 | `-`     | wn     | WARD_NUMBER                             | One uppercase alphabet followed by 3 digits only.    **Compulsory for inpatients**.           |
-| `-`     | ua     | UPCOMING_APPOINTMENT                    | `dd-MM-yyyy` format only (i.e. `12-06-2022`).                                                 |
+| `-`     | ua     | UPCOMING_APPOINTMENT                    | `dd-MM-yyyy` format only (i.e. `12-06-2022`), must be current or a future date.               |
 | `-` `*` | m      | LONG_TERM_MEDICATION                    | Alphanumeric characters and spaces only.                                                      |
 
 **Email Format**
@@ -224,7 +224,7 @@ Edits the details of the patient specified by the index number used in the patie
 | `-`     | hw     | HOSPITAL_WING                           | Either `north`, `south`, `east` or `west` (case-insensitive).  **Compulsory for inpatients**. |
 | `-`     | fn     | FLOOR_NUMBER                            | Positive integer only.            **Compulsory for inpatients**.                              |
 | `-`     | wn     | WARD_NUMBER                             | One uppercase alphabet followed by 3 digits only.  **Compulsory for inpatients**.             |
-| `-`     | ua     | UPCOMING_APPOINTMENT                    | `dd-MM-yyyy` format only (i.e. `12-06-2022`).                                                 |
+| `-`     | ua     | UPCOMING_APPOINTMENT                    | `dd-MM-yyyy` format only (i.e. `12-06-2022`), must be current or a future date.               |
 | `-` `*` | m      | LONG_TERM_MEDICATION                    | Alphanumeric characters and spaces only.                                                      |
 
 **Email Format**
@@ -317,12 +317,12 @@ Creates a past appointment for the patient specified by the index number used in
 
 **The prefixes and their respective parameters are as follows:**
 
-| Status  | Prefix | Parameter             | Restrictions                                  |
-|---------|--------|-----------------------|-----------------------------------------------|
-| `+`     |        | INDEX                 | Positive integer only.                        |
-| `+`     | on     | DATE                  | `dd-MM-yyyy` format only (i.e. `12-06-2022`). |
-| `+`     | diag   | DIAGNOSIS             | -                                             |
-| `-` `*` | m      | MEDICATION_PRESCRIBED | Alphanumeric characters and spaces only.      |
+| Status  | Prefix | Parameter             | Restrictions                                                                  |
+|---------|--------|-----------------------|-------------------------------------------------------------------------------|
+| `+`     |        | INDEX                 | Positive integer only.                                                        |
+| `+`     | on     | DATE                  | `dd-MM-yyyy` format only (i.e. `12-06-2022`), must be current or a past date. |
+| `+`     | diag   | DIAGNOSIS             | -                                                                             |
+| `-` `*` | m      | MEDICATION_PRESCRIBED | Alphanumeric characters and spaces only.                                      |
 
 **Upon Execution:**
 
@@ -661,7 +661,7 @@ If not, please follow the error message given and format above to enter the corr
 ### Obtaining total patient count: `count`
 
 Gets total number of patients. Also gets the total number of types of long-term medications prescribed to patients, and a breakdown of the number of patients
-taking each type of medication.
+taking each type of long-term medication.
 
 **Format:** `count`
 
@@ -735,7 +735,7 @@ Empties checkUp of all patients stored.
 
 ### Opening the Help Page : `help`
 
-Opens the Help Window.
+Opens the Help Window, which allows you to copy the URL of the User Guide to your clipboard.
 
 **Format:** `help`
 
@@ -759,6 +759,7 @@ any data created or deleted from the application.
 * checkUp stores data in the JSON format, improving readability and allowing for manually editing the data file.
 * The data file can be found in `data/checkup.json` in the home folder where checkUp's `jar` file is stored.
 * Care needs to be taken to follow data storage formats properly, or else the application will **reject** the data file.
+  * Rejected data files will be replaced with a new, empty data file when saving data.
 
 ### Mouse Interactions
 
