@@ -74,17 +74,21 @@ Throughout this guide, we use different text styles for different purposes. Here
 
 ### Organize All Your Information In One Place
 
-We understand that managing project documents and information is a difficult task. Aside from the large number of links and
-slides created by your team, you may be using task management applications like
+We understand that managing project documents and information is a difficult task. Aside from the large number of links 
+and slides created by your team, you may be using task management applications like
 <a href="https://www.notion.so/" target="_blank">Notion</a> to track your team's progress as well. 
 
-This is why TruthTable allows you to collate and organize your **tasks, links, and team members' information** in a single application!
+This is why TruthTable allows you to collate and organize your **tasks, links, and team members' information** in a 
+single application!
 
 ### Track Progress And Delegate Work
 
-We know that it is often difficult to visualize and communicate your team's progress to various stakeholders (e.g. Professors, tutors, etc.). 
+We know that it is often difficult to visualize and communicate your team's progress to various stakeholders 
+(e.g. Professors, tutors, etc.). 
 
-Well, you never have to worry about tracking your team's progress anymore! Using TruthTable, you can see the **number of tasks completed by your team** as well as **which members have been assigned to which tasks** - all in one glance!
+Well, you never have to worry about tracking your team's progress anymore! Using TruthTable, you can see the 
+**number of tasks completed by your team** as well as **which members have been assigned to which tasks** - all in 
+one glance!
 
 This can also help you to delegate future tasks more fairly, by considering the workload of all your members.
 
@@ -92,10 +96,12 @@ This can also help you to delegate future tasks more fairly, by considering the 
 
 We all know that context switching is a productivity killer.
 
-Having to switch back and forth between project management and coding usually means switching between [GUI](#graphical-user-interface)-based applications (for project management) [CLI](#command-line-interface) code editors (for coding). 
+Having to switch back and forth between project management and coding usually means switching between 
+[GUI](#graphical-user-interface)-based applications (for project management) [CLI](#command-line-interface) code editors 
+(for coding). 
 
-To solve this issue, TruthTable allows you to use a **single CLI for all your project management needs**, reducing the impact of context
-switching. You never have to use a mouse again!
+To solve this issue, TruthTable allows you to use a **single CLI for all your project management needs**, reducing 
+the impact of context switching. You never have to use a mouse again!
 
 <div markdown="span" class="alert alert-info">
 **:star: For experienced CLI users**:
@@ -112,18 +118,21 @@ So, fret not, you will become familiar with TruthTable's commands in no time.
    <a href="https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html" target="_blank">Java Installation Guide</a>
    for further instructions on how to download and install **Java 11**.
 
-2. Download the latest version of `truthtable.jar` from [our "Releases" page](https://github.com/AY2223S1-CS2103T-W13-4/tp/releases).
+2. Download the latest version of `truthtable.jar` from 
+   [our "Releases" page](https://github.com/AY2223S1-CS2103T-W13-4/tp/releases).
    The file can be located under the "Assets" section of the page as seen in the image below.
    ![TruthTable Download Location](images/DownloadLocation.png)
 
 3. Double-click on `truthtable.jar` to start the application. A window which looks similar to the screenshot below
    should appear in a few seconds. ![Ui](images/Ui.png)
-    <br/><br/>
+   <br><br>
    <div markdown="block" class="alert alert-success">**:bulb: Sample data**:
    <br><br>
-   We have also added some sample data for you to play around with and get familiar with TruthTable's [commands](#commands)!
+   We have also added some sample data for you to play around with and get familiar with TruthTable's 
+   [commands](#commands)!
    </div>
-4. That's it! You can now follow our guide below on how to [navigate the application](#navigating-truthtables-interface).
+4. That's it! You can now follow our guide below on how to 
+   [navigate the application](#navigating-truthtables-interfaceuser-interface).
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -149,10 +158,10 @@ listed.
 There will always be one team in TruthTable named "default" (if you do not specify any name).
 </div>
 
-| Number                           | Component                                      | Description                                                                      |
-|----------------------------------|------------------------------------------------|----------------------------------------------------------------------------------|
-| <span class="text-blue">1</span> | <span class="text-blue">[Index](#index)</span> | <span class="text-blue">The position of the team in the list of all teams</span> |  
-| <span class="text-blue">2</span> | <span class="text-blue">Name</span>            | <span class="text-blue">The name of the team at the specified index</span>       |
+| Number                                      | Component                                                 | Description                                                                                 |
+|---------------------------------------------|-----------------------------------------------------------|---------------------------------------------------------------------------------------------|
+| <span class="text-with-color blue">1</span> | <span class="text-with-color blue">[Index](#index)</span> | <span class="text-with-color blue">The position of the team in the list of all teams</span> |  
+| <span class="text-with-color blue">2</span> | <span class="text-with-color blue">Name</span>            | <span class="text-with-color blue">The name of the team at the specified index</span>       |
 
 ### Current Team Section
 
@@ -161,19 +170,19 @@ There will always be one team in TruthTable named "default" (if you do not speci
 This section contains information about your current team. It displays the currently selected team, along with the team
 description, links, tasks, and members related to this team.
 
-| Number                             | Component                                              | Description                                                                                                                                                    |
-|------------------------------------|--------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| <span class="text-green">1</span>  | <span class="text-green">Team Name</span>              | <span class="text-green">The name of the selected team</span>                                                                                                  |  
-| <span class="text-green">2</span>  | <span class="text-green">Team Description</span>       | <span class="text-green">The description of the selected team</span>                                                                                           |
-| <span class="text-green">3</span>  | <span class="text-green">Link Index</span>             | <span class="text-green">The name of a link related to the selected team</span>                                                                                |
-| <span class="text-green">4</span>  | <span class="text-green">Link Name</span>              | <span class="text-green">The name of a link related to the selected team</span>                                                                                |
-| <span class="text-green">5</span>  | <span class="text-green">Member [Index](#index)</span> | <span class="text-green">The position of a member in the team's list of members</span>                                                                         |
-| <span class="text-green">6</span>  | <span class="text-green">Member Name</span>            | <span class="text-green">The name of a member at the specified member index</span>                                                                             |
-| <span class="text-green">7</span>  | <span class="text-green">Task [Index](#index)</span>   | <span class="text-green">The position of a task in the team's list of tasks</span>                                                                             |
-| <span class="text-green">8</span>  | <span class="text-green">Task Name</span>              | <span class="text-green">The name of a task at the specified task index</span>                                                                                 |
-| <span class="text-green">9</span>  | <span class="text-green">Task Assignee</span>          | <span class="text-green">The name(s) of the member(s) assigned to the task</span>                                                                              |
-| <span class="text-green">10</span> | <span class="text-green">Task Completion Status</span> | <span class="text-green">The completion status of a task. `[X]` is displayed if task is completed, whereas `[ ]` is displayed if the task is incomplete</span> |
-| <span class="text-green">11</span> | <span class="text-green">Task Completion Rate</span>   | <span class="text-green">The number (and percentage) of tasks that have been completed by the selected team</span>                                             |
+| Number                                        | Component                                                         | Description                                                                                                                                                               |
+|-----------------------------------------------|-------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| <span class="text-with-color green">1</span>  | <span class="text-with-color green">Team Name</span>              | <span class="text-with-color green">The name of the selected team</span>                                                                                                  |  
+| <span class="text-with-color green">2</span>  | <span class="text-with-color green">Team Description</span>       | <span class="text-with-color green">The description of the selected team</span>                                                                                           |
+| <span class="text-with-color green">3</span>  | <span class="text-with-color green">Link Index</span>             | <span class="text-with-color green">The name of a link related to the selected team</span>                                                                                |
+| <span class="text-with-color green">4</span>  | <span class="text-with-color green">Link Name</span>              | <span class="text-with-color green">The name of a link related to the selected team</span>                                                                                |
+| <span class="text-with-color green">5</span>  | <span class="text-with-color green">Member [Index](#index)</span> | <span class="text-with-color green">The position of a member in the team's list of members</span>                                                                         |
+| <span class="text-with-color green">6</span>  | <span class="text-with-color green">Member Name</span>            | <span class="text-with-color green">The name of a member at the specified member index</span>                                                                             |
+| <span class="text-with-color green">7</span>  | <span class="text-with-color green">Task [Index](#index)</span>   | <span class="text-with-color green">The position of a task in the team's list of tasks</span>                                                                             |
+| <span class="text-with-color green">8</span>  | <span class="text-with-color green">Task Name</span>              | <span class="text-with-color green">The name of a task at the specified task index</span>                                                                                 |
+| <span class="text-with-color green">9</span>  | <span class="text-with-color green">Task Assignee</span>          | <span class="text-with-color green">The name(s) of the member(s) assigned to the task</span>                                                                              |
+| <span class="text-with-color green">10</span> | <span class="text-with-color green">Task Completion Status</span> | <span class="text-with-color green">The completion status of a task. `[X]` is displayed if task is completed, whereas `[ ]` is displayed if the task is incomplete</span> |
+| <span class="text-with-color green">11</span> | <span class="text-with-color green">Task Completion Rate</span>   | <span class="text-with-color green">The number (and percentage) of tasks that have been completed by the selected team</span>                                             |
 
 ### Persons Section
 
@@ -182,45 +191,49 @@ description, links, tasks, and members related to this team.
 This section displays the names, phone number, email, address, and tags of all persons that you have created in
 TruthTable. This section is also known as the "Contacts" section.
 
-| Number                             | Component                                        | Description                                                                         |
-|------------------------------------|--------------------------------------------------|-------------------------------------------------------------------------------------|
-| <span class="text-orange">1</span> | <span class="text-orange">[Index](#index)</span> | <span class="text-red">The position of a person in TruthTable's contact list</span> |
-| <span class="text-orange">2</span> | <span class="text-orange">Name</span>            | <span class="text-red">The name of the person at a specific index</span>            |
-| <span class="text-orange">3</span> | <span class="text-orange">Tags</span>            | <span class="text-red">The attributes associated with a person</span>               |
-| <span class="text-orange">4</span> | <span class="text-orange">Phone Number</span>    | <span class="text-red">The phone number of a person</span>                          |
-| <span class="text-orange">5</span> | <span class="text-orange">Email</span>           | <span class="text-red">The email address of a person</span>                         |
+| Number                                        | Component                                                   | Description                                                                                       |
+|-----------------------------------------------|-------------------------------------------------------------|---------------------------------------------------------------------------------------------------|
+| <span class="text-with-color orange">1</span> | <span class="text-with-color orange">[Index](#index)</span> | <span class="text-with-color orange">The position of a person in TruthTable's contact list</span> |
+| <span class="text-with-color orange">2</span> | <span class="text-with-color orange">Name</span>            | <span class="text-with-color orange">The name of the person at a specific index</span>            |
+| <span class="text-with-color orange">3</span> | <span class="text-with-color orange">Tags</span>            | <span class="text-with-color orange">The attributes associated with a person</span>               |
+| <span class="text-with-color orange">4</span> | <span class="text-with-color orange">Phone Number</span>    | <span class="text-with-color orange">The phone number of a person</span>                          |
+| <span class="text-with-color orange">5</span> | <span class="text-with-color orange">Email</span>           | <span class="text-with-color orange">The email address of a person</span>                         |
 
 ### Command Section
 
 ![Command Section](images/CommandSection.png)
 
-This section contains an input box where you can enter [commands](#command) for the actions that you want to perform. Try
-typing `help` in the input box and press <kbd>Enter</kbd> to see what happens!
+This section contains an input box where you can enter [commands](#command) for the actions that you want to perform. 
+Try typing `help` in the input box and press <kbd>Enter</kbd> to see what happens!
 
-| Number                           | Component                                        | Description                                                                                                                 |
-|----------------------------------|--------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
-| <span class="text-pink">1</span> | <span class="text-pink">Command Result</span>    | <span class="text-pink">The result of executing a command in the Command Input Box</span>                                   |
-| <span class="text-pink">2</span> | <span class="text-pink">Command Input Box</span> | <span class="text-pink">The input box for commands to be entered, which can be executed by pressing <kbd>Enter</kbd></span> |
+| Number                                      | Component                                                   | Description                                                                                                                            |
+|---------------------------------------------|-------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------|
+| <span class="text-with-color pink">1</span> | <span class="text-with-color pink">Command Result</span>    | <span class="text-with-color pink">The result of executing a command in the Command Input Box</span>                                   |
+| <span class="text-with-color pink">2</span> | <span class="text-with-color pink">Command Input Box</span> | <span class="text-with-color pink">The input box for commands to be entered, which can be executed by pressing <kbd>Enter</kbd></span> |
 
 [Back to Table of Contents](#table-of-contents)
 
-Congrats! You've successfully understood the entire TruthTable [User Interface](#user-interface)! Continue reading on to find out more about how TruthTable makes use of [Command Line Interface](#command-line-interface).
+Congratulations! You've successfully understood the entire TruthTable [User Interface](#user-interface)! Continue 
+reading on to find out more about how TruthTable makes use of a [Command Line Interface](#command-line-interface).
 
 ---
 
 ## Understanding TruthTable's CLI
 
-[Command Line Interface (CLI)](#command-line-interface) applications like TruthTable requires you to type specific words (called [commands](#command)) to make use of the application's features. On the other hand,
-[Graphical User Interface (GUI)](#graphical-user-interface) programs usually require you to use a mouse to click on the screen and perform certain actions.
+[Command Line Interface (CLI)](#command-line-interface) applications like TruthTable requires you to type specific words 
+(called [commands](#command)) to make use of the application's features. On the other hand,
+[Graphical User Interface (GUI)](#graphical-user-interface) programs usually require you to use a mouse to click on 
+the screen and perform certain actions.
 
 If you are not an experienced CLI user, terms like "commands", "flags", and "parameters" may appear daunting.
 
-But fret not! This section will cover what all these terms actually mean. By the end of it, you'll be able to confidently explain it to your friends too!
+But fret not! This section will cover what all these terms actually mean. By the end of it, you'll be able to 
+confidently explain it to your friends too!
 
 ### Commands, flags, and parameters
 
-All instructions in TruthTable are executed through **[commands](#command)**. Each command can have **[flags](#flag) specified after
-the command**, which modifies how the instruction should be carried out.
+All instructions in TruthTable are executed through **[commands](#command)**. Each command can have **[flags](#flag) 
+specified after the command**, which modifies how the instruction should be carried out.
 
 For each of these flags, there may be **[parameters](#parameter)** specified after it. But, **not all commands
 require parameters**.
@@ -247,12 +260,11 @@ Let's use an example to break down what we've talked about.
 
 Here's a summary of what each highlighted section represents.
 
-| Number                            | Name                                               | Meaning                                                                                                                |
-|-----------------------------------|----------------------------------------------------|------------------------------------------------------------------------------------------------------------------------|
-| <span class="text-red">1</span>   | <span class="text-red">Command</span>              | <span class="text-red">The name of an instruction</span>                                                               |
-| <span class="text-blue">2</span>  | <span class="text-blue">Flag/Option</span>         | <span class="text-blue">Text that is used to modify the operation of a command, often starting with `-` or `--`</span> |
-| <span class="text-green">3</span> | <span class="text-green">Parameter/Argument</span> | <span class="text-green">Information specified for a command to operate, often used after flags</span>                 |
-
+| Number                                       | Name                                                          | Meaning                                                                                                                           |
+|----------------------------------------------|---------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
+| <span class="text-with-color red">1</span>   | <span class="text-with-color red">Command</span>              | <span class="text-with-color red">The name of an instruction</span>                                                               |
+| <span class="text-with-color blue">2</span>  | <span class="text-with-color blue">Flag/Option</span>         | <span class="text-with-color blue">Text that is used to modify the operation of a command, often starting with `-` or `--`</span> |
+| <span class="text-with-color green">3</span> | <span class="text-with-color green">Parameter/Argument</span> | <span class="text-with-color green">Information specified for a command to operate, often used after flags</span>                 |
 
 <div markdown="block" class="alert alert-primary">
 **:information_source: Important note for flags**
@@ -299,22 +311,18 @@ For instance, in the `assign task` command, we can specify more than 1 assignee 
 A valid command is `assign task 1 -a 1 2 3` where `1 2 3` are recognized as the assignees to the task with index `1`.
 </div>
 
-
-<div markdown="block" class="alert alert-info">
-**:star: POSIX clustered short options** <br>
-TruthTable supports clustered options as specified in
-<a href="https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap12.html#tag_12_02" target="_blank">this document</a>.
-</div>
-
 ### Understanding the help message
 
-While using TruthTable, you might type the command in an incorrect format - perhaps you forgot to specify a flag or a parameter. Will the application crash? Will all your precious data be lost? Absolutely not! 
+While using TruthTable, you might have entered the command in an incorrect format - perhaps you forgot to specify a 
+flag or a parameter. Will the application crash? Will all your precious data be lost? Absolutely not! 
 
-Rather, we understand that it is possible for anyone to forget the correct format or command name, and we want to help you as much as possible! This is why **every command in TruthTable has its own help message**.
+Rather, we understand that it is possible for anyone to forget the correct format or command name, and we want to help 
+you as much as possible! This is why **every command in TruthTable has its own help message**.
 
-Each command allows you to specify the `-h` or `--help` flag, which will show you all the available flags and parameters for the command. Alternatively, you can also refer to this user guide to find out the details of any command.
+Each command allows you to specify the `-h` or `--help` flag, which will show you all the available flags and 
+parameters for the command. Alternatively, you can also refer to this user guide to find out the details of any command.
 
-So, you never have to worry about typing a wrong command since there's always help available _at your fingertips_. :smile:
+So, you never have to worry about typing a wrong command since there's always help available _at your fingertips_.
 
 Let's dive a little deeper into what a help message looks like and how to interpret it. 
 
@@ -324,15 +332,15 @@ Let's dive a little deeper into what a help message looks like and how to interp
 
 Here's a summary of what each highlighted section represents.
 
-| Number                            | Name                                                            | Special Syntax                                         | Remarks                                                                                                       |
-|-----------------------------------|-----------------------------------------------------------------|--------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
-| <span class="text-red">1</span>   | <span class="text-red">Command</span>                           | <span class="text-red">-</span>                        | <span class="text-red">Only alphabets and spaces (all commands can be found [here](#commands))</span>         |
-| <span class="text-green">2</span> | <span class="text-green">Optional Flag with no Parameter</span> | <span class="text-green">`[-flag]`</span>              | <span class="text-green">-</span>                                                                             |
-| <span class="text-green">3</span> | <span class="text-green">Optional Flag with Parameters</span>   | <span class="text-green">`[-flag=<parameters>]`</span> | <span class="text-green">An ellipsis `...` is present only if more than 1 parameter is **allowed**</span>     |
-| <span class="text-blue">4</span>  | <span class="text-blue">Required Flag with Parameters</span>    | <span class="text-blue">`flag=<parameters>`</span>     | <span class="text-blue">An ellipsis `...` is present only if more than 1 parameter is **allowed**</span>      |
-| <span class="text-blue">5</span>  | <span class="text-blue">Required Parameter</span>               | <span class="text-blue">`<parameter>`</span>           | <span class="text-blue">All parameters are required by default</span>                                         |
-| <span class="text-pink">6</span>  | <span class="text-pink">Flag/Parameter Name and Alias</span>    | <span class="text-pink">-</span>                       | <span class="text-pink">All aliases of a flag/parameter will be listed and separated with commas (`,`)</span> |
-| <span class="text-pink">7</span>  | <span class="text-pink">Flag/Parameter Description</span>       | <span class="text-pink">-</span>                       | <span class="text-pink">Brief description of flag/parameter</span>                                            |
+| Number                                       | Name                                                                       | Special Syntax                                                    | Remarks                                                                                                                  |
+|----------------------------------------------|----------------------------------------------------------------------------|-------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
+| <span class="text-with-color red">1</span>   | <span class="text-with-color red">Command</span>                           | <span class="text-with-color red">-</span>                        | <span class="text-with-color red">Only alphabets and spaces (all commands can be found [here](#commands))</span>         |
+| <span class="text-with-color green">2</span> | <span class="text-with-color green">Optional Flag with no Parameter</span> | <span class="text-with-color green">`[-flag]`</span>              | <span class="text-with-color green">-</span>                                                                             |
+| <span class="text-with-color green">3</span> | <span class="text-with-color green">Optional Flag with Parameters</span>   | <span class="text-with-color green">`[-flag=<parameters>]`</span> | <span class="text-with-color green">An ellipsis `...` is present only if more than 1 parameter is **allowed**</span>     |
+| <span class="text-with-color blue">4</span>  | <span class="text-with-color blue">Required Flag with Parameters</span>    | <span class="text-with-color blue">`flag=<parameters>`</span>     | <span class="text-with-color blue">An ellipsis `...` is present only if more than 1 parameter is **allowed**</span>      |
+| <span class="text-with-color blue">5</span>  | <span class="text-with-color blue">Required Parameter</span>               | <span class="text-with-color blue">`<parameter>`</span>           | <span class="text-with-color blue">All parameters are required by default</span>                                         |
+| <span class="text-with-color pink">6</span>  | <span class="text-with-color pink">Flag/Parameter Name and Alias</span>    | <span class="text-with-color pink">-</span>                       | <span class="text-with-color pink">All aliases of a flag/parameter will be listed and separated with commas (`,`)</span> |
+| <span class="text-with-color pink">7</span>  | <span class="text-with-color pink">Flag/Parameter Description</span>       | <span class="text-with-color pink">-</span>                       | <span class="text-with-color pink">Brief description of flag/parameter</span>                                            |
 
 ### Aliases
 
@@ -352,8 +360,8 @@ The `add person` command also has the following flags and their corresponding al
 - aliases for `-h`: `--help`
 - aliases for `-e`: `--email`
 - aliases for `-n`: `--name`
-- aliases for `-p`:`--phone`
-- aliases for `-t`:`--tags`
+- aliases for `-p`: `--phone`
+- aliases for `-t`: `--tags`
 
 You can find out more about these flags [here](#creating-a-new-person-add-person).
 
@@ -444,7 +452,6 @@ Each parameter has its own constraints, which can be found [here](#flag-and-para
         4. `-hci`
 - If an extra parameter is specified, the command will not execute and an error message will be displayed
     - For e.g. `help with extra words` will display an error message
-
 </div>
 
 <div markdown="span" class="alert alert-success">
@@ -455,23 +462,29 @@ the help message that TruthTable displays whenever you run a command with `-h`.
 
 ### Commands to Manage Persons
 
-If you're looking for a quick summary of the commands to manage persons, you can find it [here](#summary-of-person-commands).
+If you're looking for a quick summary of the commands to manage persons, you can find 
+it [here](#summary-of-person-commands).
 
-If you want to understand how each command can be used with the help of relevant examples and illustrations, continue reading on! :smile:
+If you want to understand how each command can be used, we have provided some examples and illustrations on how to use
+them, so continue reading on!
 
 #### Creating a new person: `add person`
 
-It's the start of a new semester, and you are excited to work with your new classmates on software engineering projects. 
-You meet a person that seems like a really fun person to work with, and you can't wait to know more about them. You ask for their name, email and phone number 
-and simply key in `add person -e <EMAIL> -n<NAME> -p<PHONE>` and their contact details are saved! Now you can contact 
-them easily before you form your project groups. You may optionally specify `-t <TAGS>` for any interesting qualities about the person!
+It's the start of a new semester, and you are excited to work with your new classmates on software engineering 
+projects. You meet a person that seems like a really fun person to work with, and you can't wait to know more about 
+them. After getting their name, email, and phone number, you can save their contact details on TruthTable with this 
+`add person` command! Now you can contact them easily when you are forming your project teams. You may optionally 
+specify some tags for any interesting qualities about the person!
 
-The `add person` command allows you to add a new person to TruthTable. The new person is added to the [persons section](#persons-section) as seen in the image
-below. Do not worry if an error shows up, you might have typed something wrongly. Here, let us take walk through an example on how to add a person.
+This `add person` command allows you to add a new person to TruthTable. The new person is added to the 
+[persons section](#persons-section). Do not worry if an error shows up, as
+you might have made a typo. 
 
-Let us try to add John Doe to our application, along with his phone number and email address. Enter the command
+Here, let us take walk through an example on how to add a person.
 
-`add person -n "John Doe" -p 98765432 -e johnd@example.com` 
+Let's try to add a new person called John Doe to our application. 
+
+We can do so by entering the command `add person -n "John Doe" -p 98765432 -e johnd@example.com`.
 
 If done successfully, you should see a new person show up in the [persons section](#persons-section) as seen below.
 
@@ -506,28 +519,27 @@ A person can have any number of tags (including 0).
 
 #### Editing a person: `edit person`
 
-Opps! Seems like your classmate might have provided his school email instead of his github email. Not to worry, you 
-can edit their contact details easily with `edit person`! First, identify the index number of your classmate in the
-[persons section](#persons-section). If you are not able to find their name visibly, refer to 
-[find person command](#finding-a-person-find-person) on how you can find your classmate easily. Next, key in 
-`edit person <INDEX_NUMBER> -e <NEW_EMAIL>` to change their email! You can edit other contact details as well.
+Oops! Seems like your classmate might have provided his school email instead of his GitHub email. Not to worry, you 
+can edit their contact details easily with `edit person`! 
 
-The `edit person` command allows you to edit an existing person in TruthTable. The edited person's details will be shown in the
-[persons section](#persons-section) as seen in the image below. As always, do not panic if you see an error message. Let 
-us run through how to edit the details of a person.
+The `edit person` command allows you to edit an existing person in TruthTable. The edited person's details will be 
+shown in the [persons section](#persons-section). As always, do not panic if you see an 
+error message. Let us run through how to edit the details of a person.
 
 Suppose your classmate Alex Yeoh has provided you with the wrong phone and email. Identify the index number of
-`Alex Yeoh` in the application (1 in the image below). Enter the command 
+`Alex Yeoh` in the application (1 in the image below). If you are not able to find their name, refer to
+[find person command](#finding-a-person-find-person) on how you can find them.
 
-`edit person 1 -p 91234567 -e johndoe@example.com`
+Then, enter the command `edit person 1 -p 91234567 -e johndoe@example.com`.
 
 If done successfully, you should see the new details show up under in the [persons section](#persons-section)
 under `Alex Yeoh` as seen below. 
 
+![Edit Person Example](images/EditPersonExample.png)
+
 Unable to find a person you are looking for? Please check that you have added the person into TruthTable! Refer to the 
 above [add person command](#creating-a-new-person-add-person) to add a new person into TruthTable.
 
-![Edit Person Example](images/EditPersonExample.png)
 
 **Format:** `edit person [-h] ([-n=<PERSON_NAME>] [-p=<PERSON_PHONE>] [-e=<PERSON_EMAIL>] 
 [-t[=\<PERSON_TAGS\>...]]...) <PERSON_INDEX>`
@@ -557,33 +569,32 @@ above [add person command](#creating-a-new-person-add-person) to add a new perso
 
 **Examples:**
 
-* `edit person 1 -p 91234567 -e johndoe@example.com` Edits the phone number and email address of the 1st person to be
+* `edit person 1 -p 91234567 -e johndoe@example.com` edits the phone number and email address of the 1st person to be
   "91234567" and "johndoe@example.com" respectively.
-* `edit person 2 -n Betsy Crowe -t` Edits the name of the 2nd person to be "Betsy Crowe" and clears all existing tags.
+* `edit person 2 -n Betsy Crowe -t` edits the name of the 2nd person to be "Betsy Crowe" and clears all existing tags.
 
 #### Deleting a person: `delete person`
 
 Alas, you are done with the project and will no longer be working with this classmate of yours. Not to worry, you
-can delete their contact details easily with `delete person`! First, identify the index number of your classmate in the
-[persons section](#persons-section). If you are not able to find their name visibly, refer to 
-[find command](#finding-a-person-find-person) on how you can find your classmate easily. Next, key in `delete person <INDEX_NUMBER>` 
-to remove them from TruthTable.
+can delete their contact details easily with `delete person`! 
 
-The `delete person` command allows you to delete the specified person from TruthTable. The person deleted will be 
-removed from the [persons section](#persons-section) as seen in the image below. Let us run through how to delete a 
-person.
+The `delete person` command allows you to delete the specified person from TruthTable. The person deleted will be
+removed from the [persons section](#persons-section). Let us run through how you can delete a person in TruthTable.
 
 Suppose you will never work with your classmate Alex Yeoh. Identify the index number of `Alex Yeoh` in the
-application (1 in the image below). Enter the command
+application (1 in the image below). First, identify the index number of your classmate in the
+[persons section](#persons-section). If you are not able to find their name, refer to
+[find command](#finding-a-person-find-person) on how you can find them.
 
-`delete person 1`
+Then, enter the command `delete person 1`.
 
-If done successfully, you should the person `Alex Yeoh` removed under the [persons section](#persons-section).
+If done successfully, the person `Alex Yeoh` will no longer be in the [persons section](#persons-section).
+
+![Delete Person Example](images/DeletePersonExample.png)
 
 Unable to find a person you are looking for? Please check that you have added the person into TruthTable! Refer to the
 above [add person command](#creating-a-new-person-add-person) to add a new person into TruthTable.
 
-![Delete Person Example](images/DeletePersonExample.png)
 
 **Format:** `delete person [-h] <PERSON_INDEX>`
 
@@ -610,28 +621,27 @@ above [add person command](#creating-a-new-person-add-person) to add a new perso
 
 #### Finding a person: `find person`
 
-You recall talking to the guy called Alex in your class but you do not remember his full name. Not to worry, you
-can find their contact details easily with `find person`! First, recall his first name or any keyword you can remember 
-from his full name. Next, key in `find person <PERSON_NAME_KEYWORDS>`, and TruthTable will show you all persons with 
-names that contain the keywords that you specified!
+You recall talking to someone in your class, but you can't seem to remember his full name. Or, you are
+having trouble finding someone in the [persons section](#persons-section). With the `find person` command, you can 
+now retrieve their details easily! 
 
-The `find person` command allows you to finds all persons whose names contain any of the given keywords. 
-The persons with matching names will be shown in the [persons section](#persons-section) as seen in the image below.
-Let us run through how to find a person.
+The `find person` command allows you to find all persons whose names contain any of the keywords you specify. 
+The persons with matching names will be shown in the [persons section](#persons-section).
 
-Suppose you want to find all people named Alex and all people named David. Enter the command
+Let us run through how you can find a person.
 
-`find person alex david`
+Suppose that you remember that this person has the words Alex or David in their name. Then, to find all persons
+with Alex and David in their names, enter the command `find person alex david`.
 
 If done successfully, you should the see all persons named Alex and David show up under in the
 [persons section](#persons-section).
 
+![result for 'find person alex david'](images/findPersonAlexDavidResult.png)
+
 Unable to find a person you are looking for? Please check that you have added the person into TruthTable! Refer to the
 above [add person command](#creating-a-new-person-add-person) to add a new person into TruthTable.
 
-To reset the person list, see the [list persons command](#listing-all-persons-list-persons).
-
-![result for 'find person alex david'](images/findPersonAlexDavidResult.png)
+To show everyone in the person list again, see the [list persons command](#listing-all-persons-list-persons).
 
 **Format:** `find person [-h] <PERSON_NAME_KEYWORDS>`
 
@@ -659,20 +669,16 @@ To reset the person list, see the [list persons command](#listing-all-persons-li
 
 #### Listing all persons: `list persons`
 
-You want to see an overview of all your classmates. Key in `list persons`, and TruthTable will show you all persons that 
-currently exist in your TruthTable
+If you want to see all the persons you have added to TruthTable, key in `list persons`, and they will all
+appear in the [persons section](#persons-section). This is especially helpful if you previously ran the
+[`find person`](#finding-a-person-find-person) command previously.
 
-The `list persons` command shows a list of all persons in TruthTable. After running the 
-[`find person`](#finding-a-person-find-person) command, you may wish to view all persons again. To do so, the list 
-persons command will update the [persons section](#persons-section) and display all persons as seen in the image below.
+The `list persons` command shows a list of all persons in TruthTable. 
 
-If done successfully, you should the see all persons show up under in the [persons section](#persons-section) as shown
-below.
+![List Persons Example](images/ListPersonsExample.png)
 
 Unable to find a person you are looking for? Please check that you have added the person into TruthTable! Refer to the
 above [add person command](#creating-a-new-person-add-person) to add a new person into TruthTable.
-
-![List Persons Example](images/DeletePersonExample.png)
 
 **Format:** `list persons [-h]`
 
