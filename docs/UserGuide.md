@@ -554,7 +554,7 @@ above [add person command](#creating-a-new-person-add-person) to add a new perso
 
 :asterisk: - at least one of the flags for email, name, phone, and tags must be specified
 
-Please take note that:
+Please take note that the command:
 
 * Edits the person at the specified `PERSON_INDEX`, which refers to the index number shown in the
   [persons section](#persons-section)
@@ -654,7 +654,7 @@ To show everyone in the person list again, see the [list persons command](#listi
 |----------------|----------|------------------------------------------------------------------------|
 | `-h`, `--help` | :x:      | Shows [help message](#understanding-the-help-message) for this command |
 
-Take note that:
+Please take note that:
 
 * Only the name is searched.
 * The search is case-insensitive, e.g. `alex` will match `Alex`.
@@ -832,7 +832,7 @@ should **not** use both `-n` and `-e` in the `find member` command.
 
 :hash: - exactly one of the flags for name or email must be specified
 
-Take note that:
+Please take note that:
 
 * Only the name or email is searched.
 * The search is case-insensitive, e.g. `alex` will match `Alex`.
@@ -1186,7 +1186,7 @@ Passing `TASK_INDEX` after `ASSIGNEES` makes it impossible to distinguish which 
 
 :asterisk: - at least one of the flags for name, deadline, and assignees must be specified
 
-Take note that:
+Please take note that the command:
 
 * Edits the person at the specified `TASK_INDEX`, which refers to the index number shown in the
   [team members section](#current-team-section)
@@ -1283,7 +1283,7 @@ To reset the task list, see the [list tasks command](#list-tasks-in-team-list-ta
 |----------------|----------|------------------------------------------------------------------------|
 | `-h`, `--help` | :x:      | Shows [help message](#understanding-the-help-message) for this command |
 
-Take note that:
+Please take note that:
 
 * Only the task name is searched.
 * The search is case-insensitive. e.g. `user guide` will match `User Guide`
@@ -1416,7 +1416,7 @@ above [add task command](#add-task-to-team-add-task) to add a new task into Trut
 |----------------|----------|------------------------------------------------------------------------|
 | `-h`, `--help` | :x:      | Shows [help message](#understanding-the-help-message) for this command |
 
-Take note that:
+Please take note that:
 
 * `TASK_INDEX` **must be a positive integer:** 1, 2, 3,...
 * `TASK_DEADLINE` contains both the date and time in `YYYY-MM-DD HH:MM` format, and it **does not have quotation marks
@@ -1477,7 +1477,7 @@ The format for the `-a` flag indicates that you must specify at least 1 `-a` fla
 | `-h`, `--help`     | :x:                | Shows [help message](#understanding-the-help-message) for this command |
 | `-a`, `--assignee` | :heavy_check_mark: | Index of members in [members section](#current-team-section)           |
 
-Take note that:
+Please take note that:
 
 * `TASK_INDEX` and `TASK_ASSIGNEES` **must be positive integers:** 1, 2, 3,...
 * The original assignees of the task will not be replaced with this command. Tnstead, only new assignees can be added.
