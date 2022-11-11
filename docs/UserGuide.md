@@ -818,8 +818,8 @@ should **not** use both `-n` and `-e` in the `find member` command.
 | Flags           | Required | Remarks                                                                |
 |-----------------|----------|------------------------------------------------------------------------|
 | `-h`, `--help`  | :x:      | Shows [help message](#understanding-the-help-message) for this command |
-| `-n`, `--name`  | :hash:   | Keywords to filter by name                                             |
-| `-e`, `--email` | :hash:   | Keywords to filter by email                                            |
+| `-n`, `--name`  | :hash:   | Keywords to filter the name by                                         |
+| `-e`, `--email` | :hash:   | Keywords to filter the email by                                        |
 
 :hash: - exactly one of the flags for name or email must be specified
 
