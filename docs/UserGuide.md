@@ -874,7 +874,7 @@ If your screen is displaying `openjdk 11.x.x` where `x` can be any number, then 
 
 If your computer is not running Java `11`, you can install it [here](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html). 
 Please install according to the [operating system](#operating-system) that 
-you are using (any of the options is fine, as they are all Java`11`).
+you are using (any of the options is fine, as they are all Java `11`).
 
 **Q:** I am unable to delete my item, what is happening?
 
