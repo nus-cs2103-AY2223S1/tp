@@ -1,6 +1,7 @@
 @startuml
 start
 :User executes the edit task command;
+
 switch ()
 case ( [invalid command] )
   :Display error message
@@ -22,14 +23,17 @@ case ( [module does not exist] )
    provided does not exist
    in the module list;
 case ( [else] )
-  :Create a copy of the task
-  at the specified index,
-  with the existing values
-  replaced by any provided
-  values;
-  :Replace the task at the
-  specified index with
-  this task;
+    if () then ( [task is linked and its module is changed] )
+        :Unlink the task from its exam;
+        :Display message stating that
+         the task is successfully edited
+         and unlinked;
+    else ( [else] )
+        :Display message stating that
+        the task is successfully edited;
+    endif
+
+
 endswitch
 stop
 @enduml

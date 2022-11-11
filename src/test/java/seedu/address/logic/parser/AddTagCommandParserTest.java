@@ -75,6 +75,10 @@ public class AddTagCommandParserTest {
         String missingPriorityAndDeadlinePrefix = "1" + " 23-11-2022" + " HIGH";
         assertParseFailure(parser, missingPriorityAndDeadlinePrefix, expectedMessage);
 
+        //Missing priority and deadline fields
+        String missingPriorityDeadlineFields = "1";
+        assertParseFailure(parser, missingPriorityDeadlineFields, expectedMessage);
+
     }
 
     @Test
@@ -87,6 +91,11 @@ public class AddTagCommandParserTest {
         //Empty Priority field
         String emptyPriorityField = "1 " + PREFIX_DEADLINE + "23-11-2022 " + PREFIX_PRIORITY_STATUS;
         assertParseFailure(parser, emptyPriorityField, PriorityTag.PRIORITY_TAG_CONSTRAINTS);
+
+        //Invalid index(Not a number)
+        String invalidCommandFormatMessage = String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                AddTagCommand.MESSAGE_USAGE);
+        assertParseFailure(parser, "abcde p/high", invalidCommandFormatMessage);
 
         //Invalid index(Non-positive)
         String invalidIndexMessage = ParserUtil.MESSAGE_INVALID_INDEX;

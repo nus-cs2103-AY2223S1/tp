@@ -25,7 +25,7 @@ public class TaskDescription implements Comparable<TaskDescription> {
     }
 
     public static boolean isValidDescription(String description) {
-        return description.length() > 0;
+        return description.strip().length() > 0;
     }
 
     @Override

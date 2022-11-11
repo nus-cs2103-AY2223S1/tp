@@ -3,31 +3,65 @@ layout: page
 title: Developer Guide
 ---
 ## **Table of Contents**
-* Acknowledgements
-* Setting up
-* Design
-  * Architecture
-  * UI component
-  * Logic component
-  * Model component
-  * Storage component
-  * Common classes
-* Implementation
-* Documentation, logging, testing, configuration, dev-ops
-* Appendix: Requirements
-  * Product scope
-  * User stories
-  * Use cases
-  * Non-Functional Requirements
-  * Glossary
-* Appendix: Instructions for manual testing
-  * 
+* [Acknowledgements](#acknowledgements)
+* [Setting up](#setting-up-getting-started)
+* [Design](#design)
+  * [Architecture](#architecture)
+  * [UI component](#ui-component)
+  * [Logic component](#logic-component)
+  * [Model component](#model-component)
+  * [Storage component](#storage-component)
+  * [Common classes](#common-classes)
+* [Implementation](#implementation)
+  * [Sort Task Command](#sort-task-command)
+  * [Filter Tasks Command](#filter-tasks-command)
+  * [Mark Task Command](#mark-task-command)
+  * [Edit Task Command](#edit-task-command)
+  * [Delete Task Command](#delete-task-command)
+  * [Link Exam Feature](#link-exam-feature)
+  * [Add Exam Feature](#add-exam-feature)
+  * [Unink Exam Command](#unlink-exam-command)
+  * [Find Tasks Feature](#find-tasks-feature)
+* [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+* [Appendix: Requirements](#ui-component)
+  * [Product scope](#product-scope)
+  * [User stories](#user-stories)
+  * [Use cases](#use-cases)
+  * [Non-Functional Requirements](#non-functional-requirements)
+  * [Glossary](#glossary)
+* [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+  * [Launch and Shutdown](#launch-and-shutdown)
+  * [Adding a module](#adding-a-module)
+  * [Adding a tag to a task](#adding-a-tag-to-a-task)
+  * [Editing a tag of a task](#editing-a-tag-of-a-task)
+  * [Deleting a tag of a task](#deleting-a-tag-of-a-task)
+  * [Sorting the task list](#sorting-the-task-list)
+  * [Linking the exam to a task](#linking-the-exam-to-a-task)
+  * [Viewing the help window](#viewing-the-help-window)
+  * [Adding an exam](#adding-an-exam)
+  * [Editing an exam](#editing-an-exam)
+  * [Finding a task](#finding-a-task)
+  * [Finding a module](#finding-a-module)
+  * [Listing modules](#listing-modules)
+  * [Listing tasks](#listing-tasks)
+  * [Marking a task](#marking-a-task)
+  * [Editing a task](#editing-a-task)
+  * [Adding a task](#adding-a-task)
+  * [Filtering the task list](#filtering-the-task-list)
+  * [Clearing the task list](#clearing-the-task-list)
+  * [Deleting an exam](#deleting-an-exam)
+  * [Unlinking an exam](#unlinking-an-exam)
+  * [Showing tasks of an exam](#showing-tasks-of-an-exam)
+  * [Clearing all lists](#clearing-all-lists)
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* This project is based on the [AddressBook-Level3](https://github.com/se-edu/addressbook-level3) project created by the [SE-EDU initiative](https://se-education.org/)
+* List of libraries used
+  * [JavaFx](https://openjfx.io/)
+  * [Junit5](https://junit.org/junit5/)    
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -112,7 +146,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Task`, `Exam`, `Module` objects residing in the `Model`.
 
 ### Logic component
 
@@ -128,11 +162,11 @@ How the `Logic` component works:
 1. The command can communicate with the `Model` when it is executed (e.g. to add a module).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("t mark 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `t mark 1` Command](images/MarkTaskSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `MarkCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -262,73 +296,71 @@ The following activity diagram summarises what happens when SortTaskCommand is e
 |:-------------------------------------------------------------:|
 |              Activity Diagram of SortTaskCommand              |
 
-### Filter feature
+### Filter Tasks Command
 
-#### Implementation
+#### Command Format
 
-The proposed filter mechanism is facilitated by `FilterPredicate`. It implements `Predicate` with module and tast status conditions, stored as `moduleToCheck` and `statusToCheck`. Additionally, it implements the following operations:
+`t filter [m/MODULE/]* [c/COMPLETED]* [l/LINKED]*` where `MODULE` refers to the module code of the module to be filtered out, `COMPLETED` refers to the completion status of the tasks to be filtered out, and `LINKED` refers to the link status of the tasks to be filtered out.
 
-* `FilterPredicate#test(Task)` — Checks if a task fulfils the given module and/or completion status requirements.
-* `FilterPredicate#toString()` — Returns a string representing all the conditions used during the filter operation.
+#### What is the feature about
+The `filter` command allows users to filter the task list by module, completion status, and/or link status.
+* `COMPLETED` will be `y` for filtering out tasks with `status` of `COMPLETE` and `n` for filtering out tasks with `TaskStatus` of `INCOMPLETE`.
+* `COMPLETED` will be `y` for filtering out tasks with `linkedExam` which is not `null` and `n` for filtering out tasks with `linkedExam` of `null`.
 
-These operations are exposed in the `Model` interface as `Model#updateFilteredTaskList`.
+#### How does the feature work
 
-Given below is an example usage scenario and how the filter mechanism behaves at each step.
+The filter tasks feature is currently implemented through the `FilterTasksCommand` which extends the abstract class `Command`. 
+The `FilterTasksCommand` operates by producing a `FilterPredicate` used to update the `FilteredTaskList`. 
+Executing a filter command will always filter the full `DistinctTaskList` and not the `FilteredTaskList` if two filter commands are executed one after another.
 
-Step 1. The user launches the application. The `AddressBook` will be initialized with the initial address book state.
+#### UML Diagrams
 
-Step 2. The user executes `filter m/CS2103T s/complete` command to filter the task list to show all CS2103T tasks that have been marked complete. The `filter` command calls `Model#UpdateFilteredTaskList`, causing the task list to be filtered with the given conditions for `moduleToCheck` and `statusToCheck`.
+Shown below is a sequence diagram of what occurs when the `execute` method of `LogicManager` is invoked.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `moduleToCheck` or `statusToCheck` input is invalid, there will be an error message shown and the address book will continue to show the current `taskFilteredList`.
+| ![FilterSequenceDiagram](images/FilterSequenceDiagram.png) |
+|:----------------------------------------------------------:|
+|           Sequence diagram of FilterTasksCommand           |
 
-</div>
-
-Step 3. The user executes `filter m/CS2103T s/imcomplete` command to filter the task list to show all CS2103T tasks that have been marked incomplete. The updated `taskFilterdList` will be filtered based on all the tasks, not only the ones which have been filtered out in the previous filter command from step 2.
-
-Step 4. The user executes `mark 1`. The first task is no longer in `taskFilteredList` since its `statusToCheck` is now complete and no longer fulfils the conditions.
-
-The following sequence diagram shows how the filter operation works:
-
-![FilterSequenceDiagram](images/FilterSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info"> :information_source: **Note:** The lifeline for `FilterCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FilterTasksCommand` and `FilterTasksCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
 
-The following activity diagram summarizes what happens when a user executes the filter command:
+1. The user executes `t filter m/CS2103T c/y l/n` command to filter the task list to show all CS2103T tasks that have been marked complete and are not linked to any exam.
+2. `LogicManager` calls `AddressBookParser#parseCommand()` with `"t filter m/CS2103T c/y l/n"` as the argument.
+3. `AddressBookParser` calls `FilterTasksCommandParser#parse()` with `"m/CS2103T c/y l/n"` as the argument.
+4. `FilterTasksCommandParser` creates a new `FilterTasksCommand` object with a new `FilterPredicate` object as argument, representing the filter conditions specified by the user.
+5. `LogicManager`calls `FilterTasksCommand#execute()` with `model` as the argument.
+6. `FilterTasksCommand` calls `Model#updateFilteredTaskList()` with `FilterPredicate` as an argument, causing the task list to be updated based on the new conditions for `module`, `isCompleted` and `isLinked` based on the `FilterPredicate`.
+7. `FilterTasksCommand#execute()` returns a `CommandResult` object with the `MESSAGE_SUCCESS` message as argument.
 
-<img src="images/FilterActivityDiagram.png" width="750" />
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `module`, `isCompleted` or `isLinked` input is invalid, there will be an error message shown and the address book will continue to show the current `taskFilteredList`.
 
-#### Design considerations:
+</div>
 
-**Aspect: User command input format:**
+The following activity diagram summarizes what happens when FilterTasksCommand is executed.
 
-* **Alternative 1 (current choice):** Optional condition fields.
-    * Pros: Easier to extend and add more conditions.
-    * Cons: Harder to implement.
-
-* **Alternative 2:** Compulsory condition fields.
-    * Pros: Easier to implement.
-    * Cons: Users have to type unnecessary details in command.
+| <img src="images/FilterActivityDiagram.png" width="700" /> |
+|:----------------------------------------------------------:|
+|           Activity diagram of FilterTasksCommand           |
 
 ### Mark Task Command
 
-####Command Format
+#### Command Format
 
 `t mark INDEX` where `INDEX` is the index (shown in the displayed task list) of the task to be marked.
 
-####What is the feature about
+#### What is the feature about
 
 The `t mark` command allows users to indicate a specific task is completed.
 The task specified will be ticked.
 
-####How does the feature work
+#### How does the feature work
 
 The mark task feature is currently implemented through the `MarkTaskCommand` which extends the abstract class `Command`.
 A copy of the task to be marked will be created, with its `TaskStatus` set to `COMPLETE`. This marked task will then replace the
 original task in the `DistinctTaskList`.
 
-####UML diagrams
+#### UML diagrams
 Shown below is a sequence diagram of what occurs when the execute method of LogicManager is invoked.
 
 |  ![MarkTaskSequenceDiagram](images/MarkTaskSequenceDiagram.png)  |
@@ -371,22 +403,21 @@ The following activity diagram summarizes what happens when MarkCommand is execu
 
 ### Edit Task Command
 
-####Command Format
+#### Command Format
 
 `t edit INDEX [m/MODULE]* [d/DESCRIPTION]*` where `INDEX` is the index of the task to edit, and `MODULE` and `DESCRIPTION` are the module and description to replace the current values of the specified task.
 
-####What is the feature about
+#### What is the feature about
 
 The `t edit` command allows users to update the specified task with the fields provided. The provided fields will replace the existing fields.
 
-####How does the feature work
-
+#### How does the feature work
 The edit task feature is currently implemented through the `EditTaskCommand` which extends the abstract class `Command`.
 A copy of the task to be edited will be created, with its existing `MODULE` and `DESCRIPTION` replaced with the new
 values provided. This edited task will then replace the
 original task in the `DistinctTaskList`.
 
-####UML diagrams
+#### UML diagrams
 Shown below is a sequence diagram of what occurs when the `execute` method of
 `LogicManager` is invoked.
 
@@ -423,6 +454,52 @@ The following activity diagram summarizes what happens when EditTaskCommand is e
 |  ![EditTaskActivityDiagram](images/EditTaskActivityDiagram.png)  |
 |:----------------------------------------------------------------:|
 |        Activity diagram of EditTaskCommand                       |
+
+### Delete Task Command
+
+#### Command Format
+`t del INDEX` where `INDEX` is the index (shown in the displayed task list) of the task to be deleted.
+
+#### What is the feature about
+The `t del` command allows users to delete a specific task from the displayed task list.
+
+#### How does the feature work
+The delete task feature is currently implemented through the `DeleteTaskCommand` which extends the abstract class `Command`.
+The task to be deleted will be retrieved from the `Model` based on the `INDEX` given. This task will then be deleted from the
+the `DistinctTaskList`.
+
+#### UML diagrams
+Shown below is a sequence diagram of what occurs when the execute method of LogicManager is invoked.
+
+| ![DeleteTaskSequenceDiagram](images/DeleteTaskSequenceDiagram.png) |
+|:------------------------------------------------------------------:|
+|               Sequence diagram of DeleteTaskCommand                |
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** The lifeline for `DeleteTaskCommandParser` and `DeleteTaskCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifelines reach the end of the diagram.
+</div>
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** If the command fails, `Model#deleteTask()` will not be called, so the task list will not change. If so, `DeleteTaskCommand` will return an error to the user rather than attempting to perform the command.
+</div>
+
+**Sequence of actions made when `execute` method of `LogicManager` is invoked**
+
+1. The user types the `t del 1` command.
+2. The `execute()` method of the `LogicManager` is called.
+3. The `LogicManager` then calls `AddressBookParser#parseCommand()` which parses `t del 1`, creating a `DeleteTaskCommandParser` object.
+4. The `AddressBookParser` calls `DeleteTaskCommandParser#parse()` which parses `1` and creates a `DeleteTaskCommand` object with an `Index` object storing the target index `1`.
+5. Then, the `LogicManager`calls `DeleteTaskCommand#execute()`.
+6. The `DeleteTaskCommand` retrieves the task at the `Index`, which is the first task in the filtered task list, from the `Model`.
+7. The `DeleteTaskCommand` command calls `Model#deleteTask()` to delete the `taskToDelete`.
+
+The following activity diagram summarizes what happens when DeleteTaskCommand is executed
+
+| ![DeleteTaskActivityDiagram](images/DeleteTaskActivityDiagram.png) |
+|:------------------------------------------------------------------:|
+|               Activity diagram of DeleteTaskCommand                |
 
 ### Link Exam feature
 
@@ -521,24 +598,24 @@ Shown below is a sequence diagram of what occurs when the execute method of Logi
 |:------------------------------------------------------------:|
 |              Sequence diagram of AddExamCommand              |
 
-Step 1. The user types an `e add m/cs2030s ex/midterms ed/20-12-2022` command. 
+1. The user types an `e add m/cs2030s ex/midterms ed/20-12-2022` command. 
 
-Step 2. The command calls `LogicManager#execute()` with 
+2. The command calls `LogicManager#execute()` with 
 the command input as the argument, which then calls `AddressBookParser#parseCommand() ` 
 with command input as the argument. 
 
-Step 3. `AddressBookParser#parseCommand()` matches the command to be 
+3. `AddressBookParser#parseCommand()` matches the command to be 
 an add exam command through the command word and the feature type, which then calls `AddExamCommandParser#parse()`.
 
-Step 4. `AddExamCommandParser#parse()` then parses `m/cs2030s ex/midterms ed/20-12-2022` to get `Module`, `ExamDescription` 
+4. `AddExamCommandParser#parse()` then parses `m/cs2030s ex/midterms ed/20-12-2022` to get `Module`, `ExamDescription` 
 and the `ExamDate` objects of the exam by calling their respective `ParserUtil` parse methods.
 Then, an `Exam` object is created with the three objects as arguments. 
 
-Step 5. `AddExamCommandParser#parse()` returns a new `AddExamCommand` object created with the `Exam`
+5. `AddExamCommandParser#parse()` returns a new `AddExamCommand` object created with the `Exam`
 object created previously as the argument in the constructor. `LogicManager` object will call 
 `AddExamCommand#execute()` with a `Model` object as the argument. 
 
-Step 6. `AddExamCommand#execute()` will check if model already contains the module of the exam 
+6. `AddExamCommand#execute()` will check if model already contains the module of the exam 
 through `Model#hasModule()`. If it does not contain the module, an exception will be thrown to 
 indicate the module is not found. It will also check if the model already contains the exam 
 through `Model#hasExam()`. If it contains the exam, an exception will be thrown 
@@ -549,15 +626,14 @@ which calls `AddressBook#addExam()` that will add the exam to the `DistinctExamL
 which stores all the exams.`AddExamCommand#execute()` method returns a `CommandResult` 
 object to display that the exam was successfully added.
 
-
 <div markdown="span" class="alert alert-info">
 
 :information_source: **Note:**
 
-* For step 4, the `Exam` object will not be created if the exam description or exam date or module 
-is not valid. Exam description is not valid if it is an empty string, exam date is not valid 
-if it is not in DD-MM-YYYY or if it is earlier than the current date. Module is not valid if it is not at least 6 characters long
-with the first 2 being alphabetical characters. Hence, in such cases, `Exam` object is not created, and the exam will not be added.
+* For step 4, the `Exam` object will not be created if the exam description or exam date or module
+  is not valid. Exam description is not valid if it is an empty string, exam date is not valid
+  if it is not in DD-MM-YYYY or if it is earlier than the current date. Module is not valid if it is not at least 6 characters long
+  with the first 2 being alphabetical characters. Hence, in such cases, `Exam` object is not created, and the exam will not be added.
 </div>
 
 The following activity diagram summarises what happens when AddExamCommand is executed
@@ -565,6 +641,51 @@ The following activity diagram summarises what happens when AddExamCommand is ex
 | ![AddExamActivityDiagram](images/AddExamActivityDiagram.png)  |
 |:-------------------------------------------------------------:|
 |               Activity diagram of AddExamCommand              |
+
+
+### Unlink Exam Command
+
+#### Command format
+`e unlink INDEX` where `INDEX` refers to the index number shown on the displayed task list of the task to be unlinked.
+
+#### What is the feature about
+The `e unlink` command allows users to unlink a task from its exam.
+
+#### How does the feature work
+The unlink exam feature is currently implemented through the `UnlinkExamCommand` class which extends the abstract class `Command`.
+A copy of the task to be unlinked will be created, with its `linkedExam` field set to `null`.
+The original task will be replaced with the new unlinked task in the `DistinctTaskList`.
+
+#### UML Diagrams
+
+Shown below is a sequence diagram of what occurs when the `execute` method of `LogicManager` is invoked.
+
+| ![UnlinkExamSequenceDiagram](images/UnlinkExamSequenceDiagram.png) |
+|:------------------------------------------------------------------:|
+|               Sequence diagram of UnlinkExamCommand                |
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UnlinkExamCommand` and `UnlinkExamCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+**Sequence of actions made when `execute` method of `LogicManager` is invoked**
+
+1. The user executes `e unlink 1` to unlink the first task in the `FilteredTaskList`.
+2. `LogicManager` calls `AddressBookParser#parseCommand()` with `"e unlink 1"` as the argument.
+3. `AddressBookParser` calls `UnlinkExamCommandParser#parse()` with `"1"` as the argument.
+4. `UnlinkExamCommandParser` creates a new `UnlinkExamCommand` object with a new `Index` object as argument, representing the first index of the task list.
+5. `LogicManager` calls `UnlinkExamCommand#execute()` with `model` as the argument.
+6. `UnlinkExamCommand` calls `Model#getFilteredTaskList()` which returns the current filtered task list.
+7. `List<Task>#get()` is called which returns the first task in the filtered task list.
+8. `Task#unlinkTask()` is called which returns a new `Task` object with the same fields as the first task in the filtered task list, but with its `linkedExam` field set to `null`.
+9. `UnlinkExamCommand` calls `Model#replaceTask()` to replace the original task at the first index with the new unlinked task.
+10. `UnlinkExamCommand#execute()`  returns a `CommandResult` object with the `EXAM_UNLINKED_SUCCESS` message as argument.
+
+The following activity diagram summarizes what happens when UnlinkExamCommand is executed.
+
+| <img src="images/UnlinkExamActivityDiagram.png" width="1000" /> |
+|:---------------------------------------------------------------:|
+|              Activity diagram of UnlinkExamCommand              |
 
   
 ### Find Tasks Feature
@@ -588,21 +709,21 @@ Shown below is a sequence diagram of what occurs when the execute method of Logi
 |:----------------------------------------------------------------:|
 |               Sequence diagram of FindTasksCommand               |
 
-Step 1. The user types an `t find task` command.
+1. The user types an `t find task` command.
 
-Step 2. The command calls `LogicManager#execute()` with
+2. The command calls `LogicManager#execute()` with
 the command input as the argument, which then calls `AddressBookParser#parseCommand() `
 with command input as the argument.
 
-Step 3. `AddressBookParser#parseCommand()` matches the command to be
+3. `AddressBookParser#parseCommand()` matches the command to be
 a find tasks command through the command word and the feature type, which then calls `FindTasksCommandParser#parse()` which takes in `task` as its argument.
 
-Step 4. `FindTasksCommandParser#parse()` will create a `DescriptionContainsKeywordsPredicate` object which is a predicate that takes in the keyword inputted by user and
+4. `FindTasksCommandParser#parse()` will create a `DescriptionContainsKeywordsPredicate` object which is a predicate that takes in the keyword inputted by user and
 tests if the task description matches the keyword- `task`
 Then it will create and return  `FindTasksCommand` object,that takes in a single argument-the `DescriptionContainsKeywordsPredicate` object, 
  to `LogicManager` object.
 
-Step 5.  `LogicManager` object will call `FindTasksCommand#execute()` with a `Model` object as the argument.
+5.  `LogicManager` object will call `FindTasksCommand#execute()` with a `Model` object as the argument.
 `FindTasksCommand#execute()` will call `Model#updateFilteredTaskList` to update the filtered task list
 by the predicate (which is the `DescriptionContainsKeywordsPredicate` object created previously) to only 
 display the tasks which match the keyword. Then, a `CommandResult` object is returned to the `LogicManager` object.
@@ -619,6 +740,7 @@ The following activity diagram summarises what happens when FindTasksCommand is 
 | ![FindTasksActicityDiagram](images/FindTasksActivityDiagram.png) |
 |:----------------------------------------------------------------:|
 |               Activity diagram of FindTasksCommand               |
+
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -652,31 +774,41 @@ The following activity diagram summarises what happens when FindTasksCommand is 
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​        | I want to …​                                                 | So that I can…​                                                                                      |
-|---------|----------------|--------------------------------------------------------------|------------------------------------------------------------------------------------------------------|
-| `* * *` | NUS student    | view a help guide on how to use the list of commands         | refer to this guide when I forget some of the commands                                               |
-| `* * *` | NUS student    | view the list of tasks I need to complete                    | start implementing those tasks.                                                                      |
-| `* * *` | NUS student    | create the tasks in the tasklist                             | add the list of tasks that need to be completed                                                      |
-| `* * *` | NUS student    | indicate a task is completed                                 | spend more time on other tasks.                                                                      |
-| `* * *` | NUS student    | add modules to my module list                                | add the modules that I am currently taking to the module list                                        |
-| `* * *` | NUS student    | delete the tasks in my tasklist                              | remove them if added wrongly.                                                                        |
-| `* * *` | NUS student    | delete the modules in my modulelist                          | remove them if added wrongly.                                                                        |
-| `* * *` | NUS student    | edit the modules in my modulelist                            | remove them if added wrongly.                                                                        |
-| `* * *` | NUS student    | link the task in the task list to the exam in the exam list  | track the number of exam-related tasks                                                               |
-| `* * *` | NUS student    | add my exams to the exam list                                | add my upcoming exams to the exam list to track my revision progress.                                |
-| `* * *` | NUS student    | view the list of modules I have                              | see the modules I am taking and my study progress for the modules.                                   |
-| `* * `  | NUS student    | tag the priority status of a task in the task list           | prioritise the task that I would like to complete first                                              |
-| `* * `  | NUS student    | tag the deadline of a task in the task list                  | track the date that the task should be completed                                                     |
-| `* * `  | NUS student    | edit the priority status tagged to a task in the task list   | change the priority of the task I would like to complete first                                       |
-| `* * `  | NUS student    | edit the deadline tagged to a task in the task list          | change the deadline that I would like to complete the task                                           |
-| `* * `  | NUS student    | delete the priority status tagged to a task in the task list | remove the priority status of tasks which have been added wrongly                                    |
-| `* * `  | NUS student    | tag the priority status tagged to a task in the task list    | remove deadlines which I no longer want to track.                                                    |
-| `* * `  | NUS student    | sort the tasks in the task list                              | organise the tasks in the task list.                                                                 |
-| `* *`   | NUS student    | find a task by task description through a command            | quickly locate the task instead of having to go through the whole list of tasks just to find it.     |
-| `* *`   | NUS student    | find a module by module code through a command               | quickly locate the module instead of having to go through the whole list of modules just to find it. |                                                   |                                                                                                 |
-| `* *`   | NUS student    | edit the exams in the exam list                              | change and correct the exam details easily if I input the wrong details.                             |
-| `* *`   | NUS student    | indicate a task is not completed                             | continue working on the task.                                                                        |
-| `* *`   | NUS student    | edit the tasks in my task list                               | easily change and correct the details of my tasks.                                                   |
+| Priority | As a …​     | I want to …​                                                      | So that I can…​                                                                                      |
+|----------|-------------|-------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|
+| `* * *`  | NUS student | view the list of tasks I need to complete                         | start implementing those tasks.                                                                      |
+| `* * *`  | NUS student | create the tasks in the tasklist                                  | add the list of tasks that need to be completed                                                      |
+| `* * *`  | NUS student | mark a task as complete                                           | have a better idea of what I have completed.                                                         |
+| `* * *`  | NUS student | delete the tasks in my tasklist                                   | remove them if added wrongly.                                                                        |
+| `* * *`  | NUS student | delete the modules in my modulelist                               | remove them if added wrongly.                                                                        |
+| `* * *`  | NUS student | edit the modules in my modulelist                                 | remove them if added wrongly.                                                                        |
+| `* *`    | NUS student | filter the task list by module, completion status and link status | easily look for a task.                                                                              |
+| `* * *`  | NUS student | delete the exams in my exam list                                  | remove exams that I no longer want to track.                                                         |
+| `* * *`  | NUS student | unlink a task from its exam                                       | remove links that I linked wrongly.                                                                  |
+| `* *`    | NUS student | look at all tasks specific to an exam                             | easily track tasks of my next exam.                                                                  |
+| `* *`    | NUS student | clear all the tasks in my task list                               | quickly start with an empty task list.                                                               |
+| `* *`    | NUS student | clear all tasks, exams and modules in the respective lists        | quickly start with an empty task, module and exam list.                                              |
+| `* * *`  | NUS student | view a help guide on how to use the list of commands              | refer to this guide when I forget some of the commands                                               |
+| `* * *`  | NUS student | indicate a task is completed                                      | spend more time on other tasks.                                                                      |
+| `* * *`  | NUS student | add modules to my module list                                     | add the modules that I am currently taking to the module list                                        |
+| `* * *`  | NUS student | link the task in the task list to the exam in the exam list       | track the number of exam-related tasks                                                               |
+| `* * *`  | NUS student | add my exams to the exam list                                     | add my upcoming exams to the exam list to track my revision progress.                                |
+| `* * *`  | NUS student | view the list of modules I have                                   | see the modules I am taking and my study progress for the modules.                                   |
+| `* * `   | NUS student | tag the priority status of a task in the task list                | prioritise the task that I would like to complete first                                              |
+| `* * `   | NUS student | tag the deadline of a task in the task list                       | track the date that the task should be completed                                                     |
+| `* * `   | NUS student | edit the priority status tagged to a task in the task list        | change the priority of the task I would like to complete first                                       |
+| `* * `   | NUS student | edit the deadline tagged to a task in the task list               | change the deadline that I would like to complete the task                                           |
+| `* * `   | NUS student | delete the priority status tagged to a task in the task list      | remove the priority status of tasks which have been added wrongly                                    |
+| `* * `   | NUS student | tag the priority status tagged to a task in the task list         | remove deadlines which I no longer want to track.                                                    |
+| `* * `   | NUS student | sort the tasks in the task list                                   | organise the tasks in the task list.                                                                 |
+| `* *`    | NUS student | find a task by task description through a command                 | quickly locate the task instead of having to go through the whole list of tasks just to find it.     |
+| `* *`    | NUS student | find a module by module code through a command                    | quickly locate the module instead of having to go through the whole list of modules just to find it. |
+| `* *`    | NUS student | edit the exams in the exam list                                   | change and correct the exam details easily if I input the wrong details.                             |
+| `* *`    | NUS student | indicate a task is not completed                                  | continue working on the task.                                                                        |
+| `* *`    | NUS student | edit the tasks in my task list                                    | easily change and correct the details of my tasks.                                                    |
+| `* *`    | NUS student | view my progress for each module                                  | focus on the modules which currently have little progress.                                                              |
+| `* *`    | NUS student | view my progress for each exam                                    | focus on revising for the exams which currently have little progress.                                                  |
+
 
 
 ### Use cases
@@ -687,18 +819,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: Add a task into task list**
 
 **MSS**
-
-1. User requests to add a task
-2. MODPRO shows the task added
-
+1. NUS student requests to add a task.
+2. MODPRO shows the task added.
+3. MODPRO updates the progress bar to include the added task. <br>
    Use case ends.
 
 **Extensions**
-
-* 1a. The given description is empty.
-
-    * 1a1. MODPRO shows an error message.
-
+* 1a. The command format is invalid.
+    * 1a1. MODPRO shows an error message. <br>
+      Use case ends.
+* 1b. The module code is invalid.
+    * 1b1. MODPRO shows an error message. <br>
+      Use case ends.
+* 1c. The given description is empty.
+    * 1c1. MODPRO shows an error message. <br>
+      Use case ends.
+* 1d. The module does not exist in the module list.
+    * 1d1. MODPRO shows an error message. <br>
       Use case ends.
 
 **Use case: List tasks in task list**
@@ -712,7 +849,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 * 1a. The provided command is in an invalid command format.
   
-    * 1a1. MODPRO shows an error message. </br>
+    * 1a1. MODPRO shows an error message. <br>
       Use case ends.
 
 
@@ -727,13 +864,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. The provided command is in an invalid command format
-    * 1a1. MODPRO shows an error message </br>
+    * 1a1. MODPRO shows an error message <br>
       Use case ends.
 * 1b. The given index for the task is invalid
-    * 1b1. MODPRO shows an error message </br>
+    * 1b1. MODPRO shows an error message <br>
       Use case ends.
 * 1c. The task specified is already marked 
-    * 1c1. MODPRO shows an error message </br>
+    * 1c1. MODPRO shows an error message <br>
       Use case ends.
 
 **Use case: Indicate a task is not completed**
@@ -747,13 +884,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. The provided command is in an invalid command format
-    * 1a1. MODPRO shows an error message </br>
+    * 1a1. MODPRO shows an error message <br>
       Use case ends.
 * 1b. The given index for the task is invalid
-    * 1b1. MODPRO shows an error message </br>
+    * 1b1. MODPRO shows an error message <br>
       Use case ends.
 * 1c. The task specified is already unmarked
-    * 1c1. MODPRO shows an error message </br>
+    * 1c1. MODPRO shows an error message <br>
       Use case ends.
 
 **Use case: Edit a task**
@@ -766,28 +903,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. The provided command is in an invalid command format
-    * 1a1. MODPRO shows an error message </br>
+    * 1a1. MODPRO shows an error message <br>
       Use case ends.
 * 1b. The given index for the task is invalid
-    * 1b1. MODPRO shows an error message </br>
+    * 1b1. MODPRO shows an error message <br>
       Use case ends.
 * 1c. Neither the module nor the description is provided.
-    * 1c1. MODPRO shows an error message </br>
+    * 1c1. MODPRO shows an error message <br>
       Use case ends.
 * 1d. The given module code is invalid
-    * 1d1. MODPRO shows an error message </br>
+    * 1d1. MODPRO shows an error message <br>
       Use case ends.
 * 1e. The given description is invalid
-    * 1e1. MODPRO shows an error message </br>
+    * 1e1. MODPRO shows an error message <br>
       Use case ends.
 * 1f. The given module does not exist in the module list
-    * 1f1. MODPRO shows an error message </br>
+    * 1f1. MODPRO shows an error message <br>
       Use case ends.
 * 1g. The module and description of the specified task are not changed.
-    * 1g1. MODPRO shows an error message </br>
+    * 1g1. MODPRO shows an error message <br>
       Use case ends.
 * 1h. The edited task is the same as another existing task in the task list
-    * 1h1. MODPRO shows an error message </br>
+    * 1h1. MODPRO shows an error message <br>
       Use case ends. 
 * 2a. The module of the specified task is changed and the specified task is linked to an exam
     * 2a1. MODPRO unlinks the task from its exam and updates the progress bar for the exam
@@ -807,22 +944,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. The provided command is in an invalid command format
-  * 1a1. MODPRO shows an error message </br>
+  * 1a1. MODPRO shows an error message <br>
   Use case ends.
 * 1b. The given index for the task is invalid
-  * 1b1. MODPRO shows an error message </br>
+  * 1b1. MODPRO shows an error message <br>
     Use case ends.
 * 1c. The priority status provided is invalid
-  * 1c1. MODPRO shows an error message </br>
+  * 1c1. MODPRO shows an error message <br>
   Use case ends
 * 1d. The deadline provided is invalid
-  * 1d1. MODPRO shows an error message </br>
+  * 1d1. MODPRO shows an error message <br>
   Use case ends
 * 1e. The task already has a priority status
-  * 1e1. MODPRO shows an error message </br>
+  * 1e1. MODPRO shows an error message <br>
   Use case ends
 * 1f. The task already has a deadline
-  * 1f1. MODPRO shows an error message </br>
+  * 1f1. MODPRO shows an error message <br>
   Use case ends
 
 **Use Case: Edit the tags of a task**
@@ -835,28 +972,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. The provided command is in an invalid command format
-    * 1a1. MODPRO shows an error message </br>
+    * 1a1. MODPRO shows an error message <br>
       Use case ends.
 * 1b. The given index for the task is invalid
-    * 1b1. MODPRO shows an error message </br>
+    * 1b1. MODPRO shows an error message <br>
       Use case ends.
 * 1c. The priority status provided is invalid
-    * 1c1. MODPRO shows an error message </br>
+    * 1c1. MODPRO shows an error message <br>
       Use case ends
 * 1d. The deadline provided is invalid
-    * 1d1. MODPRO shows an error message </br>
+    * 1d1. MODPRO shows an error message <br>
       Use case ends
 * 1e. The task does not have a priority status
-    * 1e1. MODPRO shows an error message </br>
+    * 1e1. MODPRO shows an error message <br>
       Use case ends
 * 1f. The task does not have a deadline
-    * 1f1. MODPRO shows an error message </br>
+    * 1f1. MODPRO shows an error message <br>
       Use case ends
 * 1g. The priority status is the same as the priority status of the task
-    * 1g1. MODPRO shows an error message </br>
+    * 1g1. MODPRO shows an error message <br>
       Use case ends
 * 1h. The deadline is the same as the deadline of the task
-    * 1h1. MODPRO shows an error message </br>
+    * 1h1. MODPRO shows an error message <br>
       Use case ends
 
 **Use Case: Delete tags of a task**
@@ -869,19 +1006,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. The provided command is in an invalid command format
-    * 1a1. MODPRO shows an error message </br>
+    * 1a1. MODPRO shows an error message <br>
       Use case ends.
 * 1b. The given index for the task is invalid
-    * 1b1. MODPRO shows an error message </br>
+    * 1b1. MODPRO shows an error message <br>
       Use case ends.
 * 1c. The keywords provided is invalid
-    * 1c1. MODPRO shows an error message </br>
+    * 1c1. MODPRO shows an error message <br>
       Use case ends
 * 1d. The task does not have a priority status
-    * 1d1. MODPRO shows an error message </br>
+    * 1d1. MODPRO shows an error message <br>
       Use case ends
 * 1e. The task does not have a deadline
-    * 1e1. MODPRO shows an error message </br>
+    * 1e1. MODPRO shows an error message <br>
       Use case ends
 
     
@@ -895,7 +1032,47 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. The given index is invalid.
-    * 1a1. MODPRO shows an error message. </br>
+    * 1a1. MODPRO shows an error message. <br>
+      Use case ends.
+
+**Use case: Filter the task list**
+
+**MSS**
+1. NUS student requests to filter the task list based on some conditions.
+2. MODPRO shows the list of tasks that fulfil the given conditions. <br>
+   Use case ends.
+
+**Extensions**
+* 1a. The command format is invalid.
+    * 1a1. MODPRO shows an error message. <br>
+      Use case ends.
+* 1b. The module code is invalid.
+    * 1b1. MODPRO shows an error message. <br>
+      Use case ends.
+* 1c. The module does not exist in the task list.
+    * 1c1. MODPRO shows an error message. <br>
+      Use case ends.
+* 1d. The completion status provided is invalid.
+    * 1d1. MODPRO shows an error message. <br>
+      Use case ends.
+* 1e. The link status provided is invalid.
+    * 1e1. MODPRO shows an error message. <br>
+      Use case ends.
+* 1f. There are no filter conditions stated.
+    * 1f1. MODPRO shows an error message. <br>
+      Use case ends.
+
+**Use case: Clear the task list**
+
+**MSS**
+1. NUS student requests to clear the task list.
+2. MODPRO clears the task list.
+3. MODPRO resets all exam and module progress bars. <br>
+   Use case ends.
+
+**Extensions**
+* 1a. The task list is already empty
+    * 1a1. MODPRO shows an error message. <br>
       Use case ends.
 
 **Use Case: Add a module to the module list**
@@ -908,25 +1085,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. The provided command is in an invalid command format
-    * 1a1. MODPRO shows an error message </br>
+    * 1a1. MODPRO shows an error message <br>
       Use case ends.
 * 1b. The given module code is invalid
-    * 1b1. MODPRO shows an error message </br>
+    * 1b1. MODPRO shows an error message <br>
       Use case ends.
 * 1c. The given module name is invalid
-    * 1c1. MODPRO shows an error message </br>
+    * 1c1. MODPRO shows an error message <br>
       Use case ends
 * 1d. The given module credit is invalid
-    * 1d1. MODPRO shows an error message </br>
+    * 1d1. MODPRO shows an error message <br>
       Use case ends
 * 1e. The given module code already exists in the module list
-  * 1e1. MODPRO shows an error message </br>
+  * 1e1. MODPRO shows an error message <br>
     Use case ends
 * 1f. The given module name already exists in the module list
-    * 1f1. MODPRO shows an error message </br>
+    * 1f1. MODPRO shows an error message <br>
       Use case ends
 * 1g. The given module credit already exists in the module list
-    * 1g1. MODPRO shows an error message </br>
+    * 1g1. MODPRO shows an error message <br>
       Use case ends
 
 **Use case: Delete a module from the module list**
@@ -939,10 +1116,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. The given index is invalid.
-    * 1a1. MODPRO shows an error message. </br>
+    * 1a1. MODPRO shows an error message. <br>
       Use case ends.
 * 1b. The module at the given index is tied to multiple tasks thus cannot be deleted
-    * 1a1. MODPRO shows an error message. </br>
+    * 1a1. MODPRO shows an error message. <br>
       Use case ends.
 
 **Use case: Edit a module in the module list**
@@ -955,14 +1132,87 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. The given index is invalid.
-    * 1a1. MODPRO shows an error message. </br>
+    * 1a1. MODPRO shows an error message. <br>
       Use case ends.
 * 1b. The module at the given index is tied to multiple tasks thus cannot be edited
-    * 1b1. MODPRO shows an error message. </br>
+    * 1b1. MODPRO shows an error message. <br>
       Use case ends.
 * 1c. The given module code is invalid 
-    * 1c1. MODPRO shows an error message. </br>
+    * 1c1. MODPRO shows an error message. <br>
       Use case ends.
+
+
+**Use case: Delete an exam from the exam list**
+
+**MSS**
+1. NUS student requests to delete a specific exam in the exam list.
+2. MODPRO deletes the exam.
+3. MODPRO unlinks all tasks currently linked to the deleted exam. <br>
+   Use case ends.
+
+**Extensions**
+* 1a. The command format is invalid.
+    * 1a1. MODPRO shows an error message. <br>
+      Use case ends.
+* 1b. The given index is non-positive or larger than 2147483647.
+    * 1b1. MODPRO shows an error message. <br>
+      Use case ends.
+* 1c. The given index is larger than the number of exams in the exam list.
+    * 1c1. MODPRO shows an error message. <br>
+      Use case ends.
+
+**Use case: Unlink task from exam**
+
+**MSS**
+1. NUS student requests to unlink a task from its exam.
+2. MODPRO unlinks the task.
+3. MODPRO updates the exam progress bar. <br>
+   Use case ends.
+
+**Extensions**
+* 1a. The command format is invalid.
+    * 1a1. MODPRO shows an error message. <br>
+      Use case ends.
+* 1b. The given index is non-positive or larger than 2147483647.
+    * 1b1. MODPRO shows an error message. <br>
+      Use case ends.
+* 1c. The given index is larger than the number of tasks in the task list.
+    * 1c1. MODPRO shows an error message. <br>
+      Use case ends.
+* 1d. The task is not linked to any exam.
+    * 1d1. MODPRO shows an error message. <br>
+      Use case ends.
+
+**Use case: Showing the tasks of an exam**
+
+**MSS**
+1. NUS student requests to list all tasks of a specified exam.
+2. MODPRO shows list of all tasks of the specified exam. <br>
+   Use case ends.
+
+**Extensions**
+* 1a. The command format is invalid.
+    * 1a1. MODPRO shows an error message. <br>
+      Use case ends.
+* 1b. The given index is non-positive or larger than 2147483647.
+    * 1b1. MODPRO shows an error message. <br>
+      Use case ends.
+* 1c. The given index is larger than the number of exams in the exam list.
+    * 1c1. MODPRO shows an error message. <br>
+      Use case ends.
+
+**Use case: Clear all lists**
+
+**MSS**
+1. NUS student requests to clear all lists.
+2. MODPRO clears task, exam and module lists. <br>
+   Use case ends.
+
+**Extensions**
+* 1a. All lists are already empty
+    * 1a1. MODPRO shows an error message. <br>
+      Use case ends.
+
 
 **Use Case: Sort the task list**
 
@@ -974,10 +1224,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. The provided command is in an invalid command format
-    * 1a1. MODPRO shows an error message </br>
+    * 1a1. MODPRO shows an error message <br>
       Use case ends.
 * 1b. The given criteria is invalid
-    * 1b1. MODPRO shows an error message </br>
+    * 1b1. MODPRO shows an error message <br>
       Use case ends.
 
 **Use Case: Link the exam to a task**
@@ -990,19 +1240,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. The provided command is in an invalid command format
-    * 1a1. MODPRO shows an error message </br>
+    * 1a1. MODPRO shows an error message <br>
       Use case ends.
 * 1b. The given index for the task is invalid
-    * 1b1. MODPRO shows an error message </br>
+    * 1b1. MODPRO shows an error message <br>
       Use case ends.
 * 1c. The given index for the exam is invalid
-    * 1c1. MODPRO shows an error message </br>
+    * 1c1. MODPRO shows an error message <br>
       Use case ends.
 * 1d. The task is already linked
-    * 1d1. MODPRO shows an error message </br>
+    * 1d1. MODPRO shows an error message <br>
       Use case ends.
 * 1e. The task and exam selected have a different module code
-    * 1e1. MODPRO shows an error message </br>
+    * 1e1. MODPRO shows an error message <br>
       Use case ends.
 
 
@@ -1018,7 +1268,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. The provided command is in an invalid command format.
-    * 1a1. MODPRO shows an error message. </br>
+    * 1a1. MODPRO shows an error message. <br>
       Use case ends.
   
 **Use case: Find tasks in the task list**
@@ -1031,10 +1281,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. The keyword inputted is empty
-    * 1a1. MODPRO shows an error message </br> 
+    * 1a1. MODPRO shows an error message <br> 
       Use case ends. 
 * 1b. The provided command is in an invalid command format.
-    * 1b1. MODPRO shows an error message. </br>
+    * 1b1. MODPRO shows an error message. <br>
       Use case ends.
 
 **Use case: Find modules in the module list**
@@ -1047,10 +1297,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. The keyword inputted is empty
-    * 1a1. MODPRO shows an error message </br>
+    * 1a1. MODPRO shows an error message <br>
       Use case ends.
 * 1b. The provided command is in an invalid command format.
-    * 1b1. MODPRO shows an error message. </br>
+    * 1b1. MODPRO shows an error message. <br>
       Use case ends.
   
 **Use case: Add an exam into the exam list** 
@@ -1063,25 +1313,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. The description of the exam is empty
-    * 1a1. MODPRO shows an error message. </br>
+    * 1a1. MODPRO shows an error message. <br>
       Use case ends. 
 * 1b. The exam date provided is invalid. 
-    * 1b1. MODPRO shows an error message. </br>
+    * 1b1. MODPRO shows an error message. <br>
       Use case ends.
 * 1c. Exam module does not exist in MODPRO.  
-    * 1c1. MODPRO shows an error message. </br>
+    * 1c1. MODPRO shows an error message. <br>
       Use case ends.
 * 1d. The exam to be added is the same as another existing exam in the exam list. 
-    * 1d1. MODPRO shows an error message. </br> 
+    * 1d1. MODPRO shows an error message. <br> 
       Use case ends. 
 * 1e. The module code provided is invalid. 
-    * 1e1. MODPRO shows an error message. </br> 
+    * 1e1. MODPRO shows an error message. <br> 
       Use case ends.
 * 1f. The provided command is in an invalid command format. 
-    * 1f1. MODPRO shows an error message. </br> 
+    * 1f1. MODPRO shows an error message. <br> 
       Use case ends.
 * 1g. Not all the fields(Exam description, Exam date, Module) are provided. 
-    * 1g1. MODPRO shows an error message. </br>
+    * 1g1. MODPRO shows an error message. <br>
       Use case ends. 
 
 **Use case: Edit an exam in the exam list**
@@ -1094,34 +1344,34 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. The given exam description is empty. 
-    * 1a1. MODPRO shows an error message. </br>
+    * 1a1. MODPRO shows an error message. <br>
       Use case ends.
 * 1b. The given exam date is invalid. 
-    * 1b1. MODPRO shows an error message. </br>
+    * 1b1. MODPRO shows an error message. <br>
       Use case ends.
 * 1c. The given exam module code is invalid.
-    * 1c1.MODPRO shows an error message. </br> 
+    * 1c1.MODPRO shows an error message. <br> 
       Use case ends. 
 * 1d. The given exam module does not exist in MODPRO. 
-    * 1d1. MODPRO shows an error message. </br> 
+    * 1d1. MODPRO shows an error message. <br> 
       Use case ends. 
 * 1e. The given index is invalid.
-    * 1e1. MODPRO shows an error message. </br>
+    * 1e1. MODPRO shows an error message. <br>
       Use case ends.
 * 1f. The edited exam is the same as another existing exam in the exam list.
-    * 1f1. MODPRO shows an error message. </br>
+    * 1f1. MODPRO shows an error message. <br>
       Use case ends.
 * 1g. The module and description and date of the exam are not changed. 
-    * 1g1. MODPRO shows an error message </br> 
+    * 1g1. MODPRO shows an error message <br> 
       Use case ends. 
 * 1h. The provided command is in an invalid command format.
-    * 1h1. MODPRO shows an error message. </br>
+    * 1h1. MODPRO shows an error message. <br>
       Use case ends.
 * 1i. No fields are provided to edit the exam. 
-    * 1i1. MODPRO shows an error message. </br>
+    * 1i1. MODPRO shows an error message. <br>
       Use case ends. 
 * 2a. The module of the specified exam is changed and the exam is linked to some tasks previously. 
-    * 2a1. MODPRO unlinks these tasks from the exam, and the updates the progress bar of the exam. </br>
+    * 2a1. MODPRO unlinks these tasks from the exam, and the updates the progress bar of the exam. <br>
       Use case ends.
 
 ### Non-Functional Requirements
@@ -1135,13 +1385,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 [//]: # (@@author)
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
-*{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **GUI**: Graphical User Interface
 * **UML** Unified Modeling Language
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
@@ -1159,7 +1409,7 @@ testers are expected to do more *exploratory* testing.
 
     1. Download the jar file and copy into an empty folder
 
-    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    1. Double-click the jar file Expected: Shows the GUI. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -1167,8 +1417,6 @@ testers are expected to do more *exploratory* testing.
 
     1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
 
 
 ### Adding a module
@@ -1371,8 +1619,6 @@ module code `cs2100` is added to the module list.
     2. Test case: `t list` <br>
        Expected: The task list should now display the all 4 tasks with task descriptions of "WORK", "homework 1", "homewoRK 2", "past year paper",with a message saying "Listed all tasks"
 
-2. _{ more test cases …​ }_
-
 ### Marking a task
 
 1. Marking a task while all tasks are being shown 
@@ -1480,11 +1726,67 @@ module code `cs2100` is added to the module list.
         * A warning and the details of the edited task are shown in the feedback message.
         * Progress bars for the 2 modules are updated.
 
-### Saving data
+### Adding a task
+1. Adding a task to the task list.
+   1. Prerequisite: The module `cs2030s` is present in the module list, and `cs2040s` is not present in the module list.
+   2. Test case: `t add m/cs2030s d/assignment`<br>
+      Expected: A task with module `cs2030s` and description `assignment` is added to the task list. A message is displayed to show that task has been added successfully.
+   3. Test case: `t add m/cs2040s d/assignment`<br>
+      Expected: Task will not be added, and an error message will be shown to say that the module does not exist.
+   4. Test case: `t add m/cs d/assignment`<br>
+      Expected: Task will not be added, and an error message will be shown to say that the module code is invalid.
+   5. Test case: `t add m/cs2040s d/`<br>
+      Expected: Task will not be added, and an error message will be shown to say that the description should not be empty.
 
-1. Dealing with missing/corrupted data files
+### Filtering the task list
+1. Filtering the task list by module, completion status and link status.
+   1. Prerequisite: First task with module `cs2030s`, which is `complete` and `linked`. Second task with module `cs2030s`, which is `incomplete` and `unlinked`.
+   2. Test case: `t filter m/cs2030s`<br>
+      Expected: Task list displays both tasks.
+   3. Test case: `t filter m/cs2040s`<br>
+      Expected: Task list does not display both tasks.
+   4. Test case: `t filter c/y`<br>
+      Expected: Task list displays first task only.
+   5. Test case: `t filter l/n`<br>
+      Expected: Task list displays second task only.
+   6. Test case: `t filter m/cs`<br>
+      Expected: Task list does not change, and an error message will be shown to say that the module code is invalid.
+   7. Test case: `t filter c/yes`<br>
+      Expected: Task list does not change, and an error message will be shown to say that response to condition is invalid.
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+### Clearing the task list
+1. Clearing non-empty task list.
+   1. Prerequisite: Task with module `cs2030s`, which is marked `complete`.
+   2. Test case: `t clear`<br>
+      Expected: Task list is cleared. `cs2030s` module progress bar resets.
 
-2. _{ more test cases …​ }_
+### Deleting an exam
+1. Deleting an exam from the exam list.
+   1. Prerequisite: One exam in the exam list. One task in the task list linked to the exam.
+   2. Test case: `e del 1`<br>
+      Expected: Exam is deleted, task becomes unlinked.
+   3. Test case: `e del 2`<br>
+      Expected: Both lists remain unchanged, and an error message will be shown to say that the exam list index is invalid.
 
+### Unlinking an exam
+1. Unlink an exam from a task.
+   1. Prerequisite: One exam in the exam list. First task in the task list linked to the exam. Second task is unlinked.
+   2. Test case: `e unlink 1`<br>
+      Expected: First task becomes unlinked.
+   3. Test case: `e unlink 2`<br>
+      Expected: Task list remains unchanged, and an error message will be shown to say that the task is already unlinked.
+   4. Test case: `e unlink 3`<br>
+      Expected: Both lists remain unchanged, and an error message will be shown to say that the task list index is invalid.
+
+### Showing tasks of an exam
+1. Show all tasks linked to an exam. 
+   1. Prerequisite: Two exams in the exam list and two tasks in the task list. Link first task to first exam and second task to second exam.
+   2. Test case: `e showt 1`<br>
+      Expected: Task list displays first task only.
+   3. Test case: `e showt 3`<br>
+      Expected: Both lists remain unchanged, and an error message will be shown to say that the exam list index is invalid.
+
+### Clearing all lists
+1. Clear all module, task and exam lists.
+   1. Test case: `clearall`<br>
+      Expected: Module, task and exam lists cleared.
