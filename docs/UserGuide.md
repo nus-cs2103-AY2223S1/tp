@@ -58,7 +58,7 @@ Getting started with PayMeLah is easy! Here is a tutorial on how to get PayMeLah
    <img src="images/howToDownload_1.png" width="500" /> <br>
    <img src="images/howToDownload_2.png" width="500" /> <br>
 
-4. Finally, you are ready to use PayMeLah. Simply double-click the *paymelah.jar* in the folder you created to start the app. After a few seconds, you should see PayMeLah appear. Notice how we have some sample persons and debts present for you to experiment with our [features](#features).  <br>
+4. Finally, you are ready to use PayMeLah. Simply double-click the *paymelah.jar* in the folder you created to start the application. After a few seconds, you should see PayMeLah appear. Notice how we have some sample persons and debts present for you to experiment with our [features](#features).  <br>
    <img src="images/Ui.png" width="800" /> <br>
 
 Now, let’s continue to learn how to [navigate the application](#tutorial-navigating-the-application) before familiarising ourselves with the [features](#features) you can use in PayMeLah.
@@ -70,7 +70,7 @@ Now, let’s continue to learn how to [navigate the application](#tutorial-navig
 
 ### Tutorial: Navigating the application
 
-* PayMeLah uses a Command Line Interface (CLI) - which means that you perform actions by entering commands for PayMeLah to carry out.
+* PayMeLah uses a [Command Line Interface (CLI)](#glossary-command-line-interface-cli) - which means that you perform actions by entering [commands](#glossary-command) for PayMeLah to carry out.
 * Once a command has been successfully carried out, PayMeLah will display the results accordingly.
 * Refer to the diagrams in the following pages to find out about the different components of PayMeLah that are responsible for receiving commands, displaying results, and more!
 
@@ -99,7 +99,7 @@ This is the section where you can enter commands for PayMeLah, and where the sta
 
 <img src="images/PersonCard.png" width="800" />
 
-This is the section showing the list of persons added to PayMeLah. The names can be clicked to show their person card: a box containing their person details as well as their list of debts.
+This is the section showing the list of persons added to PayMeLah. Each name can be clicked to show their person card: a box containing their person details as well as their list of debts.
 
 | Number | Component Name  | Details                                       |
 |:------:|-----------------|-----------------------------------------------|
@@ -159,7 +159,7 @@ You should see that the person card for `Ryan Tan` should now be updated. Congra
 
    ![YourFirstDebt](images/YourFirstDebt.png)
 
-Of course, this is not yet the end of your journey with PayMeLah - there are still several other commands you may require while using PayMeLah, including commands such as `deletedebt` and `find`. You can find out more about these commands in the [features](#features) section below.
+Of course, this is not yet the end of your journey with PayMeLah - there are still several other commands you may require while using PayMeLah, including commands such as [`deletedebt`](#deleting-a-debt-deletedebt) and [`find`](#locating-persons-by-inputs-find). You can find out more about these commands in the [features](#features) section below.
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -170,16 +170,16 @@ Of course, this is not yet the end of your journey with PayMeLah - there are sti
 
 ### About the command format
 
-* **Command Phrase**<br>
-  The first word in the command is the **command phrase** that specifies which command will be carried out by PayMeLah.
+* **[Command](#glossary-command) Phrase**<br>
+  The first word in the [command](#glossary-command) is the **command phrase** that specifies which command will be carried out by PayMeLah.
   e.g. in `add n/<name>`, `add` is the command phrase for PayMeLah to add a person.
 
-* **User Supplied Inputs**<br>
-  Words in diamond brackets `<>` are **inputs to be supplied by you**.<br>
+* **User Supplied [Inputs](#glossary-input)**<br>
+  Words in diamond brackets `<>` are **[inputs](#glossary-input) to be supplied by you**.<br>
   e.g. in `add n/<name>`, `<name>` is an input which can be used as `add n/John`.
 
-* **Prefixes**<br>
-  To separate inputs that represent different information, you should precede inputs with their respective **prefixes** that end with `/`. <br>
+* **[Prefixes](#glossary-prefix)**<br>
+  To separate [inputs](#glossary-prefix) that represent different information, you should precede inputs with their respective **prefixes** that end with `/`. <br>
   e.g. in `add n/<name> [t/<tag>]…`, `n/` and `t/` are prefixes preceding the inputs `<name>` and `<tag>` respectively.
 
 * **Optional Inputs**<br>
