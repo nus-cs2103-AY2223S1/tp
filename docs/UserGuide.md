@@ -121,7 +121,7 @@ The following glossary table provides clarification of the terms commonly used i
 
    * **`list`** : Lists all contacts.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/Application Received` : Adds a contact named `John Doe` to the Address Book.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
@@ -143,10 +143,10 @@ The following glossary table provides clarification of the terms commonly used i
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n/NAME [st/SKILL_TAG]` can be used as `n/John Doe st/Java` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[st/SKILL_TAG]…​` can be used as ` ` (i.e. 0 times), `st/Java`, `st/Java st/Python` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -195,10 +195,6 @@ Adds a candidate to the address book.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS s/STATUS [note/NOTE] [st/SKILL_TAG] [dt/DEGREE_TAG] [jtt/JOB_TYPE_TAG] [<alias>/TAG]…​ [rate/RATING] [l/LINK]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You can have any number and any kind of tags (including 0).
-</div>
-
 - By default, you can add 3 types of tags - `SKILL_TAG`, `DEGREE_TAG`, `JOB_TYPE_TAG`.
 
 - Alternatively, you can create your own custom tag type and alias for it. See [`createTagType`](#creating-a-custom-tag-type-createtagtype) command.
@@ -207,6 +203,10 @@ Examples:
 
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/OA in Progress st/Java dt/Bachelors jt/Internship rate/4` adds a candidate of name `John Doe`, phone number `98765432`, email `johnd@example.com`, address `John street, block 123, #01-01`, status `OA`, skill tag `Java`, degree tag `Bachelors`, job tag of `Internship` and rating of `4`.
 * `add n/Betsy Crowe st/java e/betsycrowe@example.com a/Newgate Prison p/1234567 s/Rejected` adds a candidate of name `Betsy Crowe`, skill tag of `java`, email of `betsycrowe@example.com`, address of `Newgate Prison` and status of `Rejected`.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You can have any number and any kind of tags (including 0).
+</div>
 
 ### Deleting a candidate : `delete`
 
@@ -224,6 +224,7 @@ Examples:
 
 ## Adding/Editing/Deleting Tag Types in CLInkedIn
 
+You can create, edit and delete tag types in CLInkedIn. 
 
 ### Creating a custom tag type: `createTagType`
 
@@ -239,7 +240,7 @@ Example:
 - `createTagType GPA gpat` creates a tag type `GPA` with `gpat` as its tag alias.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You can use existing tag types: Skill, or Degree, or Job Type.
+You can use existing tag types: Skill `st/` , or Degree `dt/`, or Job Type `jtt/`.
 </div>
 
 ### Editing tag type name: `editTagType`
@@ -260,7 +261,7 @@ Example: `deleteTagType GPA` deletes the `GPA` tag type.
 
 ## Modifying entries in CLInkedIn
 
-The following functions deal with modifying the information about the candidates saved in CLInkedIn.
+You can modify the information about the candidates saved in CLInkedIn using the following functions.
 
 ### Editing a candidate : `edit`
 
@@ -268,11 +269,10 @@ Edits an existing candidate in the address book.
 
 Format: `edit INDEX [n/NEW_NAME] [p/NEW_PHONE] [e/NEW_EMAIL] [a/NEW_ADDRESS] [s/NEW_STATUS] [st/OLD_SKILL_TAG-NEW_SKILL_TAG] [dt/OLD_DEGREE_TAG-NEW_DEGREE_TAG] [jtt/OLD_JOB_TYPE_TAG-NEW_JOB_TYPE_TAG] [<custom_tag_prefix>/OLD_TAG-NEW_TAG] [note/NEW_NOTE] [rate/NEW_RATING] [l/NEW_LINK]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the person at the specified `INDEX`. 
+* The index refers to the index number shown in the displayed person list. 
+* The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
-* While editing the **Skill** tags, the existing `OLD_SKILL` of the person will be renamed to `NEW_SKILL` provided the Skill Tag Type has not been deleted (Same for **Degree**, **JobType** and **Custom** tags).
-* While editing the **Notes** of a person, their existing notes will be overwritten by the new input. Therefore, it is not possible to edit individual notes (i.e. if you input `edit 1 note/Good at Java` and the person already has a note `Good at Python`, the person's note(s) will be changed to `Good at Java`).
-* While editing the **Links** of a person, their existing links will be overwritten by the new input. Therefore, it is not possible to edit individual links (i.e. if you input `edit 1 l/https://github.com/JohnDoe` and the person already has a link `https://instagram.com/JohnDoe`, the person's link(s) will be changed to `https://github.com/JohnDoe`). The `l/` prefix can be used multiple times in the command to add multiple links. 
 
 Examples:
 * `edit 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
@@ -280,18 +280,26 @@ Examples:
 * `edit 3 n/PersonA n/PersonB` edits the name of the 3rd person first to `PersonA` and then to `PersonB`. Hence the final name of 3rd person is set to `PersonB`.
 * `edit 2 l/https://github.com/JohnDoe l/https://instagram.com/JohnDoe` edits by replacing all existing links with the provided links.
 
+<div markdown="span" class="alert alert-primary">:bulb: **Note:**>
+* While editing the **Skill** tags, you can rename the existing `OLD_SKILL` of the person to `NEW_SKILL` provided the Skill Tag Type has not been deleted (Same for **Degree**, **JobType** and **Custom** tags).
+* While editing the **Notes** of a person, their existing notes will be overwritten by the new input. Therefore, it is not possible to edit individual notes (i.e. if you input `edit 1 note/Good at Java` and the person already has a note `Good at Python`, the person's note(s) will be changed to `Good at Java`).
+* While editing the **Links** of a person, their existing links will be overwritten by the new input. Therefore, it is not possible to edit individual links (i.e. if you input `edit 1 l/https://github.com/JohnDoe` and the person already has a link `https://instagram.com/JohnDoe`, the person's link(s) will be changed to `https://github.com/JohnDoe`). The `l/` prefix can be used multiple times in the command to add multiple links. 
+</div> 
+
 ### Adding a tag to an existing candidate : `addTag`
 
 Adds a tag to an existing person in the address book.
 
 Format: `addTag INDEX [st/SKILL_TAG] [dt/DEGREE_TAG] [jtt/JOB_TYPE_TAG] [<alias>/TAG]…​`
 
-* Adds a tag to the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Adds a tag to the person at the specified `INDEX`. 
+* The index refers to the index number shown in the displayed person list. 
+* The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 
 Examples:
 * `addTag 3 st/Java` Adds a Skill tag `Java` to the 3rd candidate.
-* `edit 2 dt/Bachelors` Adds a Degree tag `Bachelors` to the 2nd candidate.
+* `addTag 2 dt/Bachelors` Adds a Degree tag `Bachelors` to the 2nd candidate.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 To add multiple attributes to a candidate at once, you may use the [`addTo`](#adding-multiple-attributes-to-an-existing-candidate--addto) command. The `addTo` command parameters for adding tags are the same as the `addTag` command.
@@ -347,17 +355,17 @@ Format: `deleteNote INDEX`
 - The index refers to the index number shown in the displayed person list.
 - The index must be a positive integer 1, 2, 3, …​
 
-<div markdown="span" class="alert alert-primary">:bulb: **Note:**
-<strong>This command will delete all the notes</strong> of the person. CLInkedIn does not support deleting individual notes. Calling this command will delete all the notes of the person. If you wish to edit the existing notes of the person, please refer to the [`edit`](#editing-a-person--edit) command for more information.
-</div>
-
 Example:
 
 - `deleteNote 4` deletes all notes of the 4th person in the address book.
 
+<div markdown="span" class="alert alert-primary">:bulb: **Note:**
+<strong>This command will delete all the notes</strong> of the person. CLInkedIn does not support deleting individual notes. Calling this command will delete all the notes of the person. If you wish to edit the existing notes of the person, please refer to the [`edit`](#editing-a-person--edit) command for more information.
+</div>
+
 ### Adding optional rating: `addRate`
 
-Adds Rating, a numerical representation of candidates, to make quick comparisons between candidates.
+Adds rating, a numerical representation of candidates, to make quick comparisons between candidates.
 
 Format: `addRate INDEX rate/<RATING>`
 
@@ -365,13 +373,13 @@ Format: `addRate INDEX rate/<RATING>`
 - The index must be a positive integer 1, 2, 3, …​
 - The rating must be an integer between 1 and 10 inclusive.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Warning:**
-`rate/0` is **not** a valid rating. If you input `addrate 1 rate/0`, there will be no rating shown. If you input `edit 1 rate/0`, you will remove the current rating of the candidate.
-</div>
-
 Example:
 
 - `addRate 2 rate/5` adds a rating of `5` to the 2nd person in the address book.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Warning:**
+`rate/0` is **not** a valid rating. If you input `addRate 1 rate/0`, there will be no rating shown. If you input `edit 1 rate/0`, you will remove the current rating of the candidate.
+</div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 To add multiple attributes to a candidate at once, you may use the [`addTo`](#adding-multiple-attributes-to-an-existing-candidate--addto) command. The `addTo` command parameters for adding a rating are the same as the `addRate` command.
@@ -437,10 +445,6 @@ Format: `addTo INDEX [<alias>/TAG]…​ [note/NOTE] [rate/RATING] [l/LINK]…�
 - The prefixes of the attributes to be added must be used.
 - The attributes to be added must be valid.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Note:**
-The `addTo` command requires all parameters to follow the correct format as specified in the [`addTag`](#adding-tags--addtag), [`addNote`](#adding-optional-information--addnote), [`addRate`](#adding-optional-rating--addrate) and [`addLink`](#adding-optional-links--addlink) commands.
-</div>
-
 Examples:
 - `addTo 1 st/Java st/Python` adds the skill tags `Java` and `Python` to the 1st candidate.
 - `addTo 2 note/Strong in Java` adds a note `Strong in Java` to the 2nd candidate.
@@ -448,7 +452,13 @@ Examples:
 - `addTo 4 l/https://www.instagram.com l/https://github.com` adds links to instagram (`https://www.instagram.com`) and github (`https://github.com`) pages to the 4th candidate.
 - `addTo 5 st/Java rate/5 note/Strong in Java` adds the skill tag `Java`, a rating of `5` and a note `Strong in Java` to the 5th candidate.
 
+<div markdown="span" class="alert alert-primary">:bulb: **Note:**
+The `addTo` command requires all parameters to follow the correct format as specified in the [`addTag`](#adding-tags--addtag), [`addNote`](#adding-optional-information--addnote), [`addRate`](#adding-optional-rating--addrate) and [`addLink`](#adding-optional-links--addlink) commands.
+</div>
+
 ## Modifying contacts view in CLInkedIn
+
+You can use the following commands to modify how the contacts are displayed. 
 
 ### Viewing the details of a person : `view`
 
@@ -459,14 +469,14 @@ Format: `view INDEX`
 - The index refers to the index number shown in the displayed person list.
 - The index must be a positive integer 1, 2, 3, …​
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Alternatively to view the information of a specific person, you can also click on the person's card in the person list.
-</div>
-
 Examples:
 
 - `view 2` views the details of the 2nd person in CLInkedIn.
 - Clicking on the 2nd person's card in the person list will also show the details of the 2nd person.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Alternatively to view the information of a specific person, you can also click on the person's card in the person list.
+</div>
 
 ### Listing all persons : `list`
 
@@ -478,15 +488,23 @@ Format: `list`
 
 Sorts candidates in CLInkedIn according to their rating given. Candidates will be sorted according to their ratings in descending order (highest rating to lowest).
 
-<div markdown="span" class="alert alert-primary">:bulb: **Note:**
-Recall that rating is an optional field for a candidate. Thus, candidates with no ratings given will be displayed at the bottom, after candidates with a rating.
-</div>
-
 Format: `sort`
 
 Example:
 
 - `sort` will return a list of the candidates, sorted in order of descending rating.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Note:**
+Recall that rating is an optional field for a candidate. Thus, candidates with no ratings given will be displayed at the bottom, after candidates with a rating.
+</div>
+
+Below is a picture of the interface before the sort command is executed. 
+
+![img.png](images/img.png)
+
+Below is a picture of the interface after the sort command is executed, where candidates are listed from the highest rating to the lowest rating.
+
+![img_1.png](images/img_1.png)
 
 ### Finding personal information and tags: `find`
 
@@ -511,18 +529,19 @@ Format: `find KEYWORD [MORE_KEYWORDS]` or `find [n/NAME] [p/PHONE_NUMBER] [e/EMA
 - The personal information and tags will be searched.
 - Partial words will be matched e.g. `Han` will match `Hans`
 - Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 - Search can be further refined by specifying the type of tag to search for.
-  e.g. `find n/John p/867` will return `John Doe` with phone number `8675309`
+  
 </div>
 
 Examples:
 - `find John` returns `john` and `John Doe`
 - `find Java` returns list of candidates with Java skills
+- `find Hans Bo` will return `Hans Gruber`, `Bo Yang`
 - `find alex david` returns `Alex Yeoh`, `David Li`
 - `find n/John` returns `John Doe`
 - `find n/alex n/david` returns `Alex Yeoh`, `David Li`
 - `find s/application pending` returns list of candidates with status `application pending`
+- `find n/John p/867` returns `John Doe` with phone number `8675309`
 
 ### Clearing all contacts : `clear`
 
@@ -571,28 +590,30 @@ Example:
 
 Exports the data for the displayed list of candidates to the specified location in the specified format. 
 
-Format: `export path/<PATH WITH NAME OF FILE TO BE EXPORTED TO>`
-* The path must be absolute path.
+Format: `export path/PATH_WITH_NAME_OF_FILE_TO_BE_EXPORTED_TO`
+* The path specified must be an absolute path.
 * The format of the file must be JSON or CSV.
 * Any directory in the path which does not exist will automatically be created.
 * Only the displayed list of candidates will be exported.
 
 Examples:
-* `export path//Desktop/sample/data.csv` exports the filtered list of candidates to `data.csv` in the `sample` directory of the `Desktop` (Sample path for MACOS).
-* `export path/C:\Users\John\Desktop\data.json` exports the list of candidates to `data.json` in the `Desktop` (Sample path for WINDOWS).
+* `export path//Desktop/sample/data.csv` exports the displayed list of candidates to `data.csv` in the `sample` directory of the `Desktop` (Sample path for MACOS).
+* `export path/C:\Users\John\Desktop\data.json` exports the displayed list of candidates to `data.json` in the `Desktop` (Sample path for WINDOWS).
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Alternatively to export files using GUI, you can either go to `Export` -> `Export` in the Menu Bar or enter the command `export`.
+Alternatively to export files using GUI, you can either go to `Export` -> `Export` in the Menu Bar or enter the command `export`. The following window will open on doing so:<br>
+<center><img src="images/ExportWindow.png"></center><br>
+Now you can easily export the displayed list of candidates by selecting a location and providing a name for the resultant file.
 </div>
 
 ### Importing data into CLInkedIn: `import`
 
 Imports the data for candidates from the specified file.
 
-Format: `import path/<PATH WITH NAME OF FILE TO BE IMPORTED FROM>`
-* The path must be absolute path.
+Format: `import path/PATH_WITH_NAME_OF_FILE_TO_BE_IMPORTED_FROM`
+* The path specified must be an absolute path.
 * The format of the file must be JSON or CSV.
-* Data being import will be merged with the existing data in CLInkedIn.
+* The data being imported will be merged with the existing data in CLInkedIn.
 * Candidates whose name already exists in CLInkedIn will be ignored.
 
 Examples:
@@ -600,7 +621,9 @@ Examples:
 * `import path/C:\Users\John\Desktop\data.json` imports the list of candidates from `data.json` in the `Desktop` to the address book (Sample path for WINDOWS).
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Alternatively to import files using GUI, you can either go to `Import` -> `Import` in the Menu Bar or enter the command `import`.
+Alternatively to import files using GUI, you can either go to `Import` -> `Import` in the Menu Bar or enter the command `import`. The following window will open on doing so:<br>
+<center><img src="images/ImportWindow.png"></center><br>
+Now you can easily select a file to import into the addressbook.
 </div>
 
 ### Exiting CLInkedIn : `exit`
@@ -653,28 +676,33 @@ If your changes to the data file makes its format invalid, CLInkedIn will discar
 ## Command summary
 
 
-| Action            | Format, Examples                                                                                                                                                                                                                                                      |
-|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**           | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [st/SKILL_TAG] [dt/DEGREE_TAG] [jtt/JOB_TYPE_TAG] [<alias>/TAG]…​` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 st/Java`                                                   |
-| **Clear**         | `clear`                                                                                                                                                                                                                                                               |
-| **Delete**        | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                   |
-| **Edit**          | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [st/OLD_SKILL_TAG-NEW_SKILL_TAG] [dt/OLD_DEGREE_TAG-NEW_DEGREE_TAG] [jtt/OLD_JOB_TYPE_TAG-NEW_JOB_TYPE_TAG] [<alias>/OLD_TAG-NEW_TAG]…​`<br> e.g.,`edit 1 p/91234567 e/johndoe@example.com dt/Bachelors-Masters` |
-| **AddTag**        | `addTag INDEX [st/SKILL_TAG] [dt/DEGREE_TAG] [jtt/JOB_TYPE_TAG] [<alias>/TAG]…​`<br> e.g., `addTag 3 st/Java`                                                                                                                                                         |
-| **deleteTag**     | `deleteTag INDEX [st/SKILL_TAG] [dt/DEGREE_TAG] [jtt/JOB_TYPE_TAG] [<alias>/TAG]…​`<br> e.g., `deleteTag 2 dt/Bachelors`<br/>                                                                                                                                         |
-| **addTo**         | `addTo INDEX [st/SKILL_TAG] [dt/DEGREE_TAG] [jtt/JOB_TYPE_TAG] [<alias>/TAG]…​`<br> e.g., `addTo 1 st/Java`</br>                                                                                                                                                           |
-| **Create**        | `create TAG_TYPE TAG_ALIAS` <br> e.g., `create GPA gpat`                                                                                                                                                                                                              |
-| **EditTagType**   | `editTagType OLD_TAG_TYPE-NEW_TAG_TYPE OLD_TAG_ALIAS-NEW_TAG_ALIAS` <br> e.g., `editTagType GPA-Grade gpat-grdt`                                                                                                                                                      |
-| **DeleteTagType** | `deleteTagType TAG_TYPE` <br> e.g., `deleteTagType GPA`                                                                                                                                                                                                               |
-| **Undo**          | `undo`                                                                                                                                                                                                                                                                |
-| **Redo**          | `redo`                                                                                                                                                                                                                                                                |
-| **Statistics**    | `stats`                                                                                                                                                                                                                                                               |
-| **Find**          | `find KEYWORD [MORE_KEYWORDS]` or `find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [MORE_TAGGED_KEYWORDS]`  <br> e.g., `find James Jake` , `find n/Alex p/8764321`                                                                                                           |
-| **List**          | `list`                                                                                                                                                                                                                                                                |
-| **Help**          | `help`                                                                                                                                                                                                                                                                |
-| **Sort**          | `sort`                                                                                                                                                                                                                                                                |
-| **Rate**          | `rate INDEX r/RATING` <br> e.g., `rate 3 rate/5`                                                                                                                                                                                                                      |
-| **Export**        | `export path/<PATH WITH NAME OF FILE TO BE EXPORTED TO>` <br> e.g., `export path//Desktop/sample/data.csv`                                                                                                                                                            |
-| **Import**        | `import path/<PATH WITH NAME OF FILE TO BE IMPORTED FROM>` <br> e.g., `import path//Desktop/sample/data.csv`                                                                                                                                                          |                                                                                                                                                                                                                                                                                                            |
+| Action            | Format, Examples                                                                                                                                                                                                                                                                                                       |
+|-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**           | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS s/STATUS [note/NOTE] [rate/RATING] [st/SKILL_TAG] [dt/DEGREE_TAG] [jtt/JOB_TYPE_TAG] [<alias>/TAG]…​ [l/LINK]...` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 st/Java s/Application Received jtt/Internship`               |
+| **Clear**         | `clear`                                                                                                                                                                                                                                                                                                                |
+| **Delete**        | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                                                                    |
+| **Edit**          | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/STATUS] [note/NOTE] [rate/RATING] [l/LINK]... [st/OLD_SKILL_TAG-NEW_SKILL_TAG] [dt/OLD_DEGREE_TAG-NEW_DEGREE_TAG] [jtt/OLD_JOB_TYPE_TAG-NEW_JOB_TYPE_TAG] [<alias>/OLD_TAG-NEW_TAG]…​`<br> e.g.,`edit 1 p/91234567 e/johndoe@example.com dt/Bachelors-Masters` |
+| **AddTag**        | `addTag INDEX [st/SKILL_TAG] [dt/DEGREE_TAG] [jtt/JOB_TYPE_TAG] [<alias>/TAG]…​`<br> e.g., `addTag 3 st/Java`                                                                                                                                                                                                          |
+| **deleteTag**     | `deleteTag INDEX [st/SKILL_TAG] [dt/DEGREE_TAG] [jtt/JOB_TYPE_TAG] [<alias>/TAG]…​`<br> e.g., `deleteTag 2 dt/Bachelors`<br/>                                                                                                                                                                                          |
+| **addTo**         | `addTo INDEX [st/SKILL_TAG] [dt/DEGREE_TAG] [jtt/JOB_TYPE_TAG] [<alias>/TAG]…​ [note/NOTE] [l/LINK]... [rate/RATING]`<br> e.g., `addTo 1 st/Java note/Has 5 years work expereince`</br>                                                                                                                                |
+| **CreateTagType** | `createTagType TAG_TYPE TAG_ALIAS` <br> e.g., `create GPA gpat`                                                                                                                                                                                                                                                        |
+| **EditTagType**   | `editTagType OLD_TAG_TYPE-NEW_TAG_TYPE OLD_TAG_ALIAS-NEW_TAG_ALIAS` <br> e.g., `editTagType GPA-Grade gpat-grdt`                                                                                                                                                                                                       |
+| **DeleteTagType** | `deleteTagType TAG_TYPE` <br> e.g., `deleteTagType GPA`                                                                                                                                                                                                                                                                |
+| **Undo**          | `undo`                                                                                                                                                                                                                                                                                                                 |
+| **Redo**          | `redo`                                                                                                                                                                                                                                                                                                                 |
+| **Statistics**    | `stats`                                                                                                                                                                                                                                                                                                                |
+| **Find**          | `find KEYWORD [MORE_KEYWORDS]` or `find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [MORE_TAGGED_KEYWORDS]`  <br> e.g., `find James Jake` , `find n/Alex p/8764321`                                                                                                                                                            |
+| **List**          | `list`                                                                                                                                                                                                                                                                                                                 |
+| **Help**          | `help`                                                                                                                                                                                                                                                                                                                 |
+| **Sort**          | `sort`                                                                                                                                                                                                                                                                                                                 |
+| **AddRate**       | `addRate INDEX rate/RATING` <br> e.g., `addRate 3 rate/5`                                                                                                                                                                                                                                                              |
+| **DeleteRate**    | `deleteRate INDEX` <br> e.g., `deleteRate 2`                                                                                                                                                                                                                                                                           |
+| **AddNote**       | `addNote INDEX note/NOTE` <br> e.g., `addNote 2 note/In Dean's list`                                                                                                                                                                                                                                                   |
+| **DeleteNote**    | `deleteNote INDEX` <br> e.g., `deleteNote 2`                                                                                                                                                                                                                                                                           |
+| **AddLink**       | `addLink INDEX l/LINK...` <br> e.g., `addLink 2 l/https://github.com`                                                                                                                                                                                                                                                  |
+| **DeleteLink**    | `deleteLink INDEX` <br> e.g., `deleteLink 2`                                                                                                                                                                                                                                                                           |
+| **Export**        | `export path/<PATH WITH NAME OF FILE TO BE EXPORTED TO>` <br> e.g., `export path//Desktop/sample/data.csv`                                                                                                                                                                                                             |
+| **Import**        | `import path/<PATH WITH NAME OF FILE TO BE IMPORTED FROM>` <br> e.g., `import path//Desktop/sample/data.csv`                                                                                                                                                                                                           |                                                                                                                                                                                                                                                                                                            |
 
 
 
