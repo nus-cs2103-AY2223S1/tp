@@ -158,6 +158,7 @@ Take note of the three main elements of the interface:
 | Command Box  | This is where you give instructions to StudMap, telling StudMap what you want to do. These instructions are called [Commands](#43-understanding-commands). |
 | Reply Box    | This is where StudMap replies with any useful feedback, for example after running a [command](#command).                                                               |
 | Student List | This is where StudMap displays the list of students, with information about each student organized into individual **student cards**.                      |
+
 <div style="page-break-after: always;"></div>
 
 ### Student Cards
@@ -180,6 +181,7 @@ The **left half** of each student card contains the student's particulars. Let's
 | Email           | Email address of your student, if available.                                                             |
 | GitHub Username | GitHub username of your student, if available.                                                           |
 | Telegram Handle | Telegram handle of your student, if available.                                                           |
+
 <div style="page-break-after: always;"></div>
 
 The **right half** of each student card contains module information related to your TA responsibilities:
