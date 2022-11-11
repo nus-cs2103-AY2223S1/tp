@@ -1069,6 +1069,8 @@ start managing that team instead. Enter the command
 If done successfully, your [currently selected team](#current-team-section) will change to the team `CS2102` along with
 all of its information.
 
+![Set Team Example](images/SetTeamExample.png)
+
 **Format:** `set team [-h] <TEAM_NAME>`
 
 | Flags          | Required | Remarks                                                                |
