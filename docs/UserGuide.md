@@ -3,18 +3,78 @@ layout: page
 title: User Guide
 ---
 
-Welcome to InTrack!
+# Welcome to InTrack!
 
-InTrack is a desktop application for Computer Science students to manage their different internship applications.
+Tired of tracking your internship applications on your calendar or Microsoft Excel?
 
-InTrack allows users to:
+Looking for a more efficient way to track your countless internship applications?
+
+Well, look no further!
+
+**InTrack** might just be the solution for you! Introducing your one-stop internship tracker which will let you
+easily track all your internship applications! With **InTrack**, no more worrying about whether you've missed
+any important deadlines.
+
+So what are you waiting for? This user guide contains step-by-step instructions on how you can install and use
+**InTrack**, which will be your companion throughout your internship search!
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+# Table of Contents
+
+- [Introduction](#introduction---what-is-intrack)
+- [How To Use This Guide](#how-to-use-this-guide)
+- [Quick Start](#quick-start)
+- [GUI Summary](#gui-summary)
+- [Features](#features)
+  - [General Features](#general-features)
+    - [Viewing help: `help`](#viewing-help-help)
+    - [Viewing statistics of internship applications: `stats`](#viewing-statistics-of-internship-applications-stats)
+    - [Exiting the program: `exit`](#exiting-the-program-exit)
+    - [Saving the data](#saving-the-data)
+  - [Internship Application Management](#internship-application-management)
+    - [Adding an internship application: `add`](#adding-an-internship-application-add)
+    - [Deleting an internship application: `delete`](#deleting-an-internship-application-delete)
+    - [Updating status of an internship application: `status`](#updating-status-of-an-internship-application--status)
+    - [Adding a tag to an internship application: `addtag`](#adding-a-tag-to-an-internship-application--addtag)
+    - [Deleting a tag from an internship application: `deltag`](#deleting-a-tag-from-an-internship-application--deltag)
+    - [Selecting an internship application: `select`](#selecting-an-internship-application--select)
+    - [Editing an internship application: `edit`](#editing-an-internship-application--edit)
+    - [Adding a task to a selected internship application: `addtask`](#adding-a-task-to-a-selected-internship-application--addtask)
+    - [Deleting a task from a selected internship application: `deltask`](#deleting-a-task-from-a-selected-internship-application--deltask)
+    - [Adding a remark to an internship application: `remark`](#adding-a-remark-to-an-internship-application--remark)
+    - [Sending an email to a company: `mail`](#sending-an-email-to-a-company--mail)
+  - [List Management](#list-management)
+    - [Listing all internship applications: `list`](#listing-all-internship-applications--list)
+    - [Clearing all internship applications: `clear`](#clearing-all-internship-applications--clear)
+    - [Finding internship applications by company name: `findc`](#finding-internship-applications-by-company-name--findc)
+    - [Finding internship applications by position: `findp`](#finding-internship-applications-by-position--findp)
+    - [Finding internship applications by tags: `findt`](#finding-internship-applications-by-tags--findt)
+    - [Filtering internship applications by status: `filter`](#filtering-internship-applications-by-status--filter)
+    - [Sorting internship applications: `sort`](#sorting-internship-applications-sort)
+- [FAQ](#faq)
+- [Command Summary](#command-summary)
+  - [General Features](#general-features)
+  - [Internship Application Management](#internship-application-management)
+  - [List Management](#list-management)
+- [Glossary](#glossary)
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+# Introduction - What Is InTrack?
+
+**InTrack** is a desktop application built for Computer Science students to manage their different internship applications.
+
+**InTrack** allows users to:
 
 * seamlessly search for and update their various internship applications, as well as
-* keep track of the relevant timings and deadlines, 
+* keep track of the relevant timings and deadlines,
 
 all through a simple and easy-to-use platform!
 
-InTrack is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User
+**InTrack** is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User
 Interface (GUI). If you're a Computer Science student who can type fast, InTrack can help you manage your
 internship applications more efficiently and effectively than traditional GUI apps.
 
@@ -22,29 +82,45 @@ internship applications more efficiently and effectively than traditional GUI ap
 
 # How to use this guide
 
-First time using InTrack? We highly recommend reading this user guide in order.
+First time using **InTrack**? Not to worry, this user guide will help you to learn the basics of **InTrack** so that you
+can land your dream internship.
 
-Searching for information about specific features? You might find it helpful to navigate to the relevant sections via
+Now to get started, we have prepared a [Quick Start](#quick-start) section in this user guide to guarantee that you'll
+have no problem setting up **InTrack**.
+
+Moreover, familiarize yourself with the GUI, by heading over to the [GUI Summary](#gui-summary) where you will get a 
+quick breakdown on the GUI.
+
+Searching for information about a specific feature instead? You might find it helpful to navigate to the relevant sections via
 the [Table of Contents](#table-of-contents) for more detailed explanations of individual features.
 
 Alternatively, consider looking at the [Command Summary](#command-summary) for a brief outline of all the commands.
 
---------------------------------------------------------------------------------------------------------------------
+At any point of the user guide, if you're unsure of the technical jargon used, fret not! Head over to our
+[Glossary](#glossary) to find out what they mean. Or if you have a question, check out our [FAQ](#faq) in case your
+question already has a quick answer!
 
-# Table of Contents
+Before we start, this guide would contain some symbols and syntax, which has been collated in this table below:
 
-* Table of Contents
-{:toc}
+| Symbol/Syntax                                  | Meaning                                                                                                                                         |
+|------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
+| :warning: **Caution**                          | Very important information that you must know before using a command                                                                            |
+| :information_source: **Notes**                 | Important information that you should pay attention to                                                                                          |
+| :bulb: **Tip**                                 | Helpful information that you might want to know                                                                                                 |
+| `Highlighted text block`                       | Commands or parameters relevant to the application                                                                                              |
+| [Hyperlinks](#how-to-use-this-guide)           | When clicked, you will be led to a designated section within this document or an external link                                                  |
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
 # Quick start
 
-1. Ensure you have Java 11 or above installed in your Computer.
+1. Ensure you have Java 11 or above [installed in your Computer](#faq).
 
 2. Download the latest `InTrack.jar` from [here](https://github.com/AY2223S1-CS2103T-T11-2/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for InTrack.
+3. Copy the file to the folder you want to use as the _home folder_ for **InTrack**.
 
 4. Launch the app by double-clicking the file or by using the command `java -jar InTrack.jar` in your terminal. The GUI
    similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
@@ -56,16 +132,16 @@ Alternatively, consider looking at the [Command Summary](#command-summary) for a
    Some example commands you can try:
 
    * **`help`** : Opens the Help window, which contains a link to this User Guide, as well as a summary of all the
-   commands InTrack provides.
+   commands **InTrack** provides.
 
    * **`list`** : Lists all internship applications.
 
-   * **`add`**`c/Microsoft p/Software Engineer s/5000 e/hr@microsoft.com w/careers.microsoft.com t/Urgent` :
-     Adds an internship application for `Software Engineer` at `Microsoft` to InTrack.
+   * **`add c/Microsoft p/Software Engineer s/5000 e/hr@microsoft.com w/https://careers.microsoft.com t/Urgent`** :
+     Adds an internship application for `Software Engineer` at `Microsoft` to **InTrack**.
 
-   * **`delete`**`1` : Deletes the first internship application displayed in InTrack.
+   * **`delete 1`** : Deletes the first internship application displayed in **InTrack**.
 
-   * **`exit`** : Exits InTrack.
+   * **`exit`** : Exits **InTrack**.
 
 6. Refer to the [Features](#features) below for details of each command.
 
@@ -73,14 +149,14 @@ Alternatively, consider looking at the [Command Summary](#command-summary) for a
 
 # GUI Summary
 
-The following is an annotated breakdown of InTrack's GUI:
+The following is an annotated breakdown of **InTrack**'s GUI:
 
 ![GUI Summary](images/GUISummary.png)
 
 1. Command window: User inputs commands here.
 2. Display window: Relevant messages are displayed here. These can include success messages, error messages, and 
 the resulting statistics from when the `stats` command is entered.
-3. Internship panel: The list of internship applications in InTrack is displayed here. By default, this panel displays 
+3. Internship panel: The list of internship applications in **InTrack** is displayed here. By default, this panel displays 
 the complete list of internships, but this may change when some list management commands such as `filter` or `sort` 
 are entered.
 4. Individual internship window: By default, this is left blank. When the `select` command is used, the various fields 
@@ -90,7 +166,7 @@ of the selected internship will be shown here.
 
 # Features
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-info" style="page-break-after: always;">
 
 **:information_source: Notes about the command format:**<br>
 
@@ -98,7 +174,7 @@ of the selected internship will be shown here.
   E.g. in `add p/POSITION`, `POSITION` is a parameter which can be used as `add p/Software Engineer`.
 
 * Items in square brackets are optional.<br>
-  E.g `w/WEBSITE [t/TAG]` can be used as `w/careers.microsoft.com t/Urgent` or as `w/careers.microsoft.com`.
+  E.g `w/WEBSITE [t/TAG]` can be used as `w/https://careers.microsoft.com t/Urgent` or as `w/https://careers.microsoft.com`.
 
 * Items with `…` after them can be used multiple times including zero times.<br>
   E.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/Urgent`, `t/Urgent t/Remote` etc.
@@ -117,7 +193,7 @@ of the selected internship will be shown here.
 ### Viewing help: `help`
 
 If you're a little stuck, entering this command opens a help window with a link to this user guide, as well as a summary
-of all the commands InTrack provides.
+of all the commands **InTrack** provides.
 
 Format: `help`
 
@@ -127,8 +203,8 @@ Format: `help`
 
 ### Viewing statistics of internship applications: `stats`
 
-This command displays the statistical breakdown of your current list of internship applications. The statistics are 
-calculated based on the number of offered, in-progress and rejected applications.
+This command displays the statistical breakdown of your current list of internship applications. The statistics display
+the proportions of offered, in-progress and rejected applications.
 
 Format: `stats`
 
@@ -138,7 +214,7 @@ Format: `stats`
 
 ### Exiting the program: `exit`
 
-If you're done and would like to close InTrack, you can do so by entering the `exit` command.
+If you're done and would like to close **InTrack**, you can do so by entering the `exit` command.
 
 Format: `exit`
 
@@ -146,8 +222,8 @@ Format: `exit`
 
 ### Saving the data
 
-InTrack data is saved in the hard disk automatically after any command that changes the data.
-There is no need to save manually.
+**InTrack** data is saved in the hard disk automatically after any command that changes the data so there is no need for
+you to save manually.
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -155,7 +231,7 @@ There is no need to save manually.
 
 ### Adding an internship application: `add`
 
-This command adds a new internship application to InTrack with the parameters you have entered. When you add a new 
+This command adds a new internship application to **InTrack** with the parameters you have entered. When you add a new 
 internship application, you must specify the company and position name, the relevant email, website and salary, 
 and you also have the option to add relevant tags to the entry.
 
@@ -170,7 +246,7 @@ Format: `add c/COMPANY p/POSITION e/EMAIL w/WEBSITE s/SALARY [t/TAG]…`
 | `SALARY `  | Salary of the position                       | Must contain only numbers                                                     |
 | `TAG`      | Tag(s) of the internship application         | Must be one word per tag and contain only alphanumeric characters             |
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="span" class="alert alert-primary" style="page-break-after: always;">
 :bulb: **Tip:** An internship can have any number of tags (including 0), and you can add multiple tags at once.
 </div>
 
@@ -178,10 +254,10 @@ Format: `add c/COMPANY p/POSITION e/EMAIL w/WEBSITE s/SALARY [t/TAG]…`
 
 **:information_source: Note about duplicates:**<br>
 
-An internship application can only be added if it does not currently exist in InTrack. Each internship application is
+An internship application can only be added if it does not currently exist in **InTrack**. Each internship application is
 uniquely identified by its `COMPANY` and `POSITION` with no regards to case-sensitivity.<br>
 
-Example: If an internship application with the parameters `c/Microsoft p/Software Engineer` already exists in InTrack,
+Example: If an internship application with the parameters `c/Microsoft p/Software Engineer` already exists in **InTrack**,
 a new one with `c/MICROSOFT p/Software Engineer` will be treated as a duplicate and will not be added.
 
 </div>
@@ -203,13 +279,14 @@ Examples of usage:
 
 Expected outcome:
 
-* Internship application with the given information is added to InTrack and appears at the bottom of the displayed list.
+* Internship application with the given information is added to **InTrack** and appears at the bottom of the displayed list.
 
 [Back to Table of Contents](#table-of-contents)
 
 ### Deleting an internship application: `delete`
 
-Deletes the internship application at the specified `INDEX` from InTrack.
+If you have withdrawn from an internship application, you can delete the internship application at the specified `INDEX` 
+from **InTrack**.
 
 Format: `delete INDEX`
 
@@ -223,7 +300,7 @@ Example of usage:
 
 Expected outcome:
 
-* The first internship application in InTrack is deleted.
+* The first internship application in **InTrack** is deleted.
 
 Before deleting the internship application for `Software Engineer` at `Microsoft` at `INDEX` 1:
 
@@ -237,7 +314,7 @@ After deleting the internship application for `Software Engineer` at `Microsoft`
 
 ### Updating status of an internship application : `status`
 
-Updates the status of the internship application at the specified `INDEX` in InTrack with 1 of 3 possible statuses:
+Updates the status of your internship application at the specified `INDEX` in **InTrack** with 1 of 3 possible statuses:
 `o` for `Offered`, `p` for `Progress` or `r` for `Rejected`.
 
 Format: `status INDEX STATUS`
@@ -253,7 +330,7 @@ Example of usage:
 
 Expected outcome:
 
-* The status of the first internship application in InTrack is updated to `Offered`.
+* The status of the first internship application in **InTrack** is updated to `Offered`.
 
 Before updating the status of the internship application at `INDEX` 1 to `Offered`:
 
@@ -267,7 +344,7 @@ After updating the status of the internship application at `INDEX` 1 to `Offered
 
 ### Adding a tag to an internship application : `addtag`
 
-Adds one or more `Tag`s to the internship application at the specified `INDEX` in InTrack.
+Adds one or more `Tag`s to the internship application at the specified `INDEX` in **InTrack**.
 
 Format: `addtag INDEX TAG [MORE_TAGS]...`
 
@@ -294,13 +371,13 @@ Example of usage:
 
 Expected outcome:
 
-* The `Urgent` tag will appear on the first internship application in InTrack.
+* The `Urgent` tag will appear on the first internship application in **InTrack**.
 
 [Back to Table of Contents](#table-of-contents)
 
 ### Deleting a tag from an internship application : `deltag`
 
-Deletes one or more existing `Tag`s from the internship application at the specified `INDEX` in InTrack.
+Deletes one or more existing `Tag`s from the internship application at the specified `INDEX` in **InTrack**.
 
 Format: `deltag INDEX TAG [MORE_TAGS]...`
 
@@ -315,7 +392,7 @@ Example of usage:
 
 Expected outcome:
 
-* The `Urgent` tag, if it exists, will be removed from the first internship application in InTrack.
+* The `Urgent` tag, if it exists, will be removed from the first internship application in **InTrack**.
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -345,7 +422,7 @@ Example of usage:
 
 Expected outcome:
 
-* The first internship application in InTrack is selected and its details are shown on the right panel.
+* The first internship application in **InTrack** is selected and its details are shown on the right panel.
 
 Before selecting the internship application at `INDEX` 1:
 
@@ -369,6 +446,8 @@ Before an internship application can be edited, it must first be selected via th
 [`select` command](#selecting-an-internship-application--select).
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 Format: `edit [c/NEW_COMPANY] [p/NEW_POSITION] [e/NEW_EMAIL] [w/NEW_WEBSITE] [s/NEW_SALARY] [t/NEW_TAG]...`
 
@@ -465,6 +544,8 @@ Before a task can be deleted from an internship application, the internship must
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 Format: `deltask TASK_INDEX`
 
 | Parameter    | Significance                 | Constraints                                                                                         |
@@ -547,11 +628,13 @@ Format: `mail`
 
 [Back to Table of Contents](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ## List Management
 
 ### Listing all internship applications : `list`
 
-Shows a list of all internship applications in InTrack. Commonly used to return to the original list after using a 
+Shows a list of all internship applications in **InTrack**. Commonly used to return to the original list after using a 
 `filter` or one of the `find` commands.
 
 Format: `list`
@@ -560,7 +643,7 @@ Format: `list`
 
 ### Clearing all internship applications : `clear`
 
-`clear` deletes all internship applications in InTrack. You may wish to use this to remove all the sample data in InTrack.
+`clear` deletes all internship applications in **InTrack**. You may wish to use this to remove all the sample data in **InTrack**.
 
 <div markdown="block" class="alert alert-warning">
 :warning: `clear` CANNOT BE REVERSED OR UNDONE! Be sure that you wish to remove all existing data before entering the
@@ -721,14 +804,16 @@ After sorting by upcoming task time in ascending order:
 
 **Q**: How do I transfer my data to another computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
-the data of your previous InTrack home folder.
+the data of your previous **InTrack** home folder.
 
 **Q**: How do I check if I have the correct version of Java installed?<br>
 **A**: You can check the version of Java installed in your computer by opening the Command Prompt and typing `java --version`.
-If you have Java 11 installed, the correct version of Java is installed and you can start using InTrack.
+If you have Java 11 installed, the correct version of Java is installed and you can start using **InTrack**.
 
 **Q**: What is a positive unsigned integer?<br>
 **A**: A positive unsigned integer is a whole number that ranges from 1 to 4294967295 inclusive.
+
+[Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -769,3 +854,23 @@ If you have Java 11 installed, the correct version of Java is installed and you 
 | **Find by tag**                      | `findt KEYWORD [MORE_KEYWORDS]...`<br/> e.g. `findt Urgent`   |
 | **Filter by status**                 | `filter STATUS` <br/> e.g. `filter o`                         |
 | **Sort by time or salary**           | `sort SORT_TYPE SORT_ORDER`<br/> e.g. `sort time a`           |
+
+[Back to Table of Contents](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
+# Glossary
+
+| Term                                  |   Definition                                                                                        |
+|---------------------------------------|-----------------------------------------------------------------------------------------------------|
+| **Command**                           | A command is an executable instruction which the application can run                                |
+| **Parameter**                         | A parameter is an input that you can use in a command to execute instructions with specific details |
+| **Task**                              | A task is any deliverables that you have to do for a specific internship application                |
+| **Remark**                            | A remark is any note that you want to add to a specific internship application                      |
+| **Java**                              | Java is a programming language that **InTrack** used for development                                |
+| **Index**                             | An index is the position of an item in a numbered list                                              |
+| **JAR File**                          | An executable file that stores the files necessary to run **InTrack**, which can be run by double-clicking it |
+| **CLI (Command Line Interface)**      | A CLI is a text-based user interface (UI) which connects the user to the program                    |
+| **GUI (Graphical User Interface)**    | A GUI is user interface that allows users to interact with the program with interactive visual components (e.g. icons, buttons, etc) |
+
+[Back to Table of Contents](#table-of-contents)
