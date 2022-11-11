@@ -313,7 +313,7 @@ Parameter constraints:
 
 | Parameter  | Constraints                                                                                                                                                                                          |
 |:-----------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `INDEX`    | - Refers to the index number shown in the displayed *List Of Clients*. <br/> - **Must be a positive integer** e.g 1, 2, 3, …​ <br/> - **Must not contain any signs** e.g +1, -3, …​                  |
+| `INDEX`    | - Refers to the index number shown in the *List Of Clients* panel. <br/> - **Must be a positive integer** e.g 1, 2, 3, …​ <br/> - **Must not contain any signs** e.g +1, -3, …​                      |
 | `QUANTITY` | - Refers to the amount of the goods transacted. <br/> - **Must be a positive integer**<br/> - **Must not contain any signs**                                                                         |
 | `GOODS`    | - Refers to the name of the goods transacted. <br/> - **Must contain alphanumeric characters**<br/>- **Must not be blank**.                                                                          |
 | `PRICE`    | - Refers to the price of the goods transacted. <br/> - **Must be a positive number** e.g. 1.5, 2.3, 5<br/>- **Must not contain any signs** <br/>- **Prices will be rounded up to 2 decimal places.** |
