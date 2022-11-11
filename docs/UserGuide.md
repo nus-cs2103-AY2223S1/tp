@@ -295,7 +295,7 @@ Examples:
 <a name="add-tutorial"></a>
 #### 5.2.1 Adding a tutorial: `add tutorial`
 
-Adds a tutorial to ModQuik.
+Adds a tutorial to ModQuik. Simply add any tutorial that you are teaching and keep track of it.
 
 Format: `add tutorial n/NAME m/MODULE v/VENUE T/TIMESLOT D/DAY`
 * `DAY` takes in a number from 1 (Monday) to 7 (Sunday).
@@ -367,7 +367,7 @@ Examples:
 <a name="add-consultation"></a>
 #### 5.3.1 Adding a consultation: `add consultation`
 
-Adds a consultation slot at the given time, date, place and description to ModQuik.
+Adds a consultation slot to ModQuik. You can use this whenever a student wants to schedule a consultation with you.
 
 Format: `add consultation n/NAME m/MODULE v/VENUE D/DATE T/TIMESLOT d/DESCRIPTION`
 * `DATE` should be given in the format yyyy-MM-dd, e.g. 2022-10-24.
