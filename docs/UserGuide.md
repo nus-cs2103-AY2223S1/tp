@@ -281,9 +281,11 @@ Examples:
 * `edit 2 l/https://github.com/JohnDoe l/https://instagram.com/JohnDoe` edits by replacing all existing links with the provided links.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Note:**>
+
 * While editing the **Skill** tags, you can rename the existing `OLD_SKILL` of the person to `NEW_SKILL` provided the Skill Tag Type has not been deleted (Same for **Degree**, **JobType** and **Custom** tags).
 * While editing the **Notes** of a person, their existing notes will be overwritten by the new input. Therefore, it is not possible to edit individual notes (i.e. if you input `edit 1 note/Good at Java` and the person already has a note `Good at Python`, the person's note(s) will be changed to `Good at Java`).
-* While editing the **Links** of a person, their existing links will be overwritten by the new input. Therefore, it is not possible to edit individual links (i.e. if you input `edit 1 l/https://github.com/JohnDoe` and the person already has a link `https://instagram.com/JohnDoe`, the person's link(s) will be changed to `https://github.com/JohnDoe`). The `l/` prefix can be used multiple times in the command to add multiple links. 
+* While editing the **Links** of a person, their existing links will be overwritten by the new input. Therefore, it is not possible to edit individual links (i.e. if you input `edit 1 l/https://github.com/JohnDoe` and the person already has a link `https://instagram.com/JohnDoe`, the person's link(s) will be changed to `https://github.com/JohnDoe`). The `l/` prefix can be used multiple times in the command to add multiple links.
+
 </div> 
 
 ### Adding a tag to an existing candidate : `addTag`
