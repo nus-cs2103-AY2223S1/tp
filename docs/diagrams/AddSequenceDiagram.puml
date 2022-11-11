@@ -1,0 +1,132 @@
+@startuml
+!include style.puml
+
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant "<<class>>\nParserUtil" as ParserUtil LOGIC_COLOR
+participant "<<class>>\nArgumentTokenizer" as ArgumentTokenizer LOGIC_COLOR
+participant "map:ArgumentMultimap" as ArgumentMultimap LOGIC_COLOR
+participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
+participant "a:AddCommand" as AddCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("add student n/John ...")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("add student n/John ...", ...)
+activate AddressBookParser
+
+create AddCommandParser
+AddressBookParser -> AddCommandParser
+activate AddCommandParser
+
+AddCommandParser -> ArgumentTokenizer : tokenize(args, ...)
+activate ArgumentTokenizer
+create ArgumentMultimap
+ArgumentTokenizer -> ArgumentMultimap
+activate ArgumentMultimap
+
+ArgumentMultimap -> ArgumentTokenizer : map
+deactivate ArgumentMultimap
+
+ArgumentTokenizer -> AddCommandParser : map
+deactivate ArgumentTokenizer
+
+AddCommandParser -> ParserUtil : parseEntity(...)
+activate ParserUtil
+
+ParserUtil -> AddCommandParser : e
+deactivate ParserUtil
+
+alt e == STUDENT
+
+AddCommandParser -> AddCommandParser : extractFromMapForStudent(...)
+activate AddCommandParser
+
+AddCommandParser -> AddCommandParser
+deactivate AddCommandParser
+
+
+
+
+else e == TUTOR
+
+AddCommandParser -> AddCommandParser : extractFromMapForTutor(...)
+activate AddCommandParser
+
+AddCommandParser -> AddCommandParser
+deactivate AddCommandParser
+
+else e == CLASS
+
+AddCommandParser -> AddCommandParser : extractFromMapForClass(...)
+activate AddCommandParser
+
+AddCommandParser -> AddCommandParser
+deactivate AddCommandParser
+
+end
+
+create AddCommand
+AddCommandParser -> AddCommand
+activate AddCommand
+
+AddCommand --> AddCommandParser : a
+deactivate AddCommand
+
+AddCommandParser -> AddressBookParser : a
+deactivate AddCommandParser
+
+destroy AddCommandParser
+destroy ArgumentMultimap
+
+AddressBookParser --> LogicManager : a
+deactivate AddressBookParser
+
+LogicManager -> AddCommand : execute(model)
+activate AddCommand
+
+
+alt adding person
+
+AddCommand -> Model : addPerson(...)
+activate Model
+
+Model -> AddCommand
+deactivate Model
+
+else adding class
+
+AddCommand -> Model : addTuitionClass(...)
+activate Model
+
+Model -> AddCommand
+deactivate Model
+
+end
+
+create CommandResult
+AddCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddCommand
+deactivate CommandResult
+CommandResult -[hidden]-> AddCommand
+
+
+AddCommand --> LogicManager : commandResult
+deactivate AddCommand
+
+AddCommand -[hidden]-> LogicManager
+destroy AddCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

@@ -14,7 +14,9 @@ import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.student.Student;
+import seedu.address.model.person.tutor.Tutor;
+import seedu.address.model.tuitionclass.TuitionClass;
 import seedu.address.storage.Storage;
 
 /**
@@ -42,11 +44,12 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        //since parser depends on the current list type
+        Command command = addressBookParser.parseCommand(commandText, this.getCurrentListType());
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveAllAddressBook(model.getAddressBook());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -60,13 +63,32 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public ObservableList<Student> getFilteredStudentList() {
+        return model.getFilteredStudentList();
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public ObservableList<Tutor> getFilteredTutorList() {
+        return model.getFilteredTutorList();
+    }
+
+    @Override
+    public ObservableList<TuitionClass> getFilteredTuitionClassList() {
+        return model.getFilteredTuitionClassList();
+    }
+
+    public Path getTutorAddressBookFilePath() {
+        return model.getTutorAddressBookFilePath();
+    }
+
+    @Override
+    public Path getStudentAddressBookFilePath() {
+        return model.getStudentAddressBookFilePath();
+    }
+
+    @Override
+    public Path getTuitionClassAddressBookFilePath() {
+        return model.getTuitionClassAddressBookFilePath();
     }
 
     @Override
@@ -75,7 +97,22 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public void export() {
+        model.export();
+    }
+
+    @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public void updateCurrentListType(Model.ListType type) {
+        model.updateCurrentListType(type);
+    }
+
+    @Override
+    public Model.ListType getCurrentListType() {
+        return model.getCurrentListType();
     }
 }

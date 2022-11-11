@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<VBox maxHeight="-Infinity" minHeight="100.0" minWidth="-Infinity" prefHeight="100.0" prefWidth="50.0" spacing="5.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox alignment="BOTTOM_LEFT" minWidth="-Infinity" prefHeight="35.0" prefWidth="200.0">
+         <children>
+            <Label fx:id="id" styleClass="name-label" />
+            <Label fx:id="name" styleClass="name-label" text="\$first" />
+         </children>
+      </HBox>
+      <StackPane alignment="TOP_LEFT" prefHeight="16.0" prefWidth="200.0">
+         <children>
+            <Label id="tutorDescriptionLabel" alignment="TOP_LEFT" contentDisplay="CENTER" prefHeight="17.0" prefWidth="30.0" text="tutor" textAlignment="CENTER" />
+         </children>
+      </StackPane>
+      <FlowPane fx:id="classes" alignment="CENTER_LEFT" />
+   </children>
+   <padding>
+      <Insets left="20.0" />
+   </padding>
+</VBox>

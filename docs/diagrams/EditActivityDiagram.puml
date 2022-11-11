@@ -1,0 +1,36 @@
+@startuml
+!include style.puml
+
+start
+
+:user enters a edit command in
+the command box;
+
+:EditCommandParser parses the argument;
+
+if () then ([valid input arguments])
+    :get current FilteredList displayed;
+    if () then ([list of students or list of tutors])
+        :create the new Person object
+        reflecting changes;
+        :update Model using the
+        Model#setPerson operation replacing
+        old Person object;
+
+    else ([list of classes])
+        :create the new TuitionClass object
+        reflecting changes;
+        :update Model using the
+        Model#setTuitionClass operation replacing
+        old TuitionClass object;
+    endif
+else ([else])
+    :throws ParseException
+    with usage message
+    and feedback message;
+endif
+:returns feedback to user;
+
+stop
+
+@enduml
