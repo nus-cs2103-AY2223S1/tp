@@ -102,15 +102,16 @@ This is the section where you can enter commands for PayMeLah, and where the sta
 
 This is the section showing the list of persons added to PayMeLah. The names can be clicked to show their _person card_: a box containing their person details as well as their list of debts.
 
-| Number | Component Name  | Details                                       |
-|:------:|-----------------|-----------------------------------------------|
-|   1.   | Person Index    | The index of the person in the person list.   |
-|   2.   | Name            | The person’s name.                            |
-|   3.   | Phone Number    | The person’s phone number.                    |
-|   4.   | Telegram Handle | The person’s Telegram handle.                 |
-|   5.   | Tags            | The tags attached to the person.              |
-|   6.   | Address         | The person’s address.                         |
-|   7.   | Total Debt      | The total amount of money owed by the person. |
+| Number | Component Name  | Details                                                    |
+|:------:|-----------------|------------------------------------------------------------|
+|   1.   | Person Index    | The index of the person in the person list.                |
+|   2.   | Name            | The person’s name.                                         |
+|   3.   | Phone Number    | The person’s phone number.                                 |
+|   4.   | Telegram Handle | The person’s Telegram handle.                              |
+|   5.   | Tags            | The tags attached to the person.                           |
+|   6.   | Address         | The person’s address.                                      |
+|   7.   | Person Card     | A box containing the person's details and their debt list. |
+|   8.   | Total Debt      | The total amount of money owed by the person.              |
 
 <div style="page-break-after: always;"></div>
 
@@ -127,6 +128,7 @@ This is the section showing details about each debt of a person.
 |   3.   | Money          | The amount of money owed for the debt.      |
 |   4.   | Date/Time      | The date and time of the debt.              |
 |   5.   | Payment Status | The debt’s payment status (paid or unpaid). |
+|   6.   | Debt Card      | A box containing the debt's details.        |
 
 <div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
 If your provided inputs are too long, PayMeLah may not be able to fully display them and cut them off! While this is rare, do try to avoid entering unnecessarily long inputs to PayMeLah (e.g., save a person's nickname rather than their full name).
