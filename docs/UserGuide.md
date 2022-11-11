@@ -10,7 +10,7 @@ title: User Guide
 **NotionUS** is a lightweight but powerful application that can help you manage your assignments and tasks. It sports 
 a sleek and minimalist design which allows you to clearly see your outstanding tasks at a glance.
 
-**NotionUS** operates via a command line user interface which aids fast typists in managing their assignments quickly, 
+**NotionUS** operates via a [command line interface](#glossary) which aids fast typists in managing their assignments quickly, 
 while still providing the benefits of a graphical user interface.
 
 **NotionUS** excels in its simplicity and optimisation for the university student's task management needs. Upon 
@@ -39,7 +39,7 @@ The following is a short overview of the features and capabilities of NotionUS:
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
-   1. To check if you have Java installed, please open up a terminal (search for `Command Prompt` on Windows and 
+   1. To check if you have Java installed, please open up a [terminal](#glossary) (search for `Command Prompt` on Windows and 
       `Terminal` on Mac OS) and type in `java -version`. This will show your java version, if you have it installed.
    2. If you do not have Java 11 or above installed, please proceed to this [link](https://www.oracle.com/java/technologies/downloads/#java11)
       and download the appropriate Java for your operating system.
@@ -58,7 +58,7 @@ The following is a short overview of the features and capabilities of NotionUS:
 
 ### Understanding the Graphical User Interface (GUI)
 
-Understanding the GUI is essential to making the most out of your experience in the app.
+Understanding the [GUI](#glossary) is essential to making the most out of your experience in the app.
 
 ![GUIwalkaround](images/user-guide/GUIwalkaround.png)
 
@@ -81,9 +81,9 @@ From top to bottom:
 5. Command box:
     * This is where you enter commands to control the app.
 
-To learn more about other GUI Features, click [**here**](#gui-features).
+To learn more about other [GUI](#glossary) Features, click [**here**](#gui-features).
 
-Now that you understand the GUI, lets try inputting a command into the app!
+Now that you understand the [GUI](#glossary), lets try inputting a command into the app!
 
 Try typing the command `ls --module CS2103T` in the “Enter command here...” box and press “ENTER” to execute the command.
 
@@ -91,7 +91,7 @@ Try typing the command `ls --module CS2103T` in the “Enter command here...” 
 Lists all tasks associated with the module `CS2103T`.
 </div>
 
-The GUI should be updated as shown below:
+The [GUI](#glossary) should be updated as shown below:
 
 ![GUIwalkaround2](images/user-guide/GUIwalkaround2.png)
 
@@ -338,7 +338,7 @@ Allows you to tag a task.
 
 Format : `tag TASK_NUMBER -t TAG_NAME [-t TAG_NAME]*`
 * `TASK_NUMBER`: This is the number of the task currently displayed.
-* `TAG_NAME`: The word to tag the task with, should be alphanumeric, i.e. must not contain any spaces.
+* `TAG_NAME`: The word to tag the task with, should be [alphanumeric](#glossary), i.e. must not contain any spaces.
 * `[-t TAG_NAME]*`: You may add more than one tag by adding `-t TAG_NAME` after your first tag.
 
 Example: `tag 1 -t optional`
@@ -414,7 +414,7 @@ Format: `ls -m`
 Shows a list of all tasks under the same module.
 
 Format: `ls --module MODULE`
-* `MODULE`: Should be alphanumeric, i.e. must not contain any spaces.
+* `MODULE`: Should be [alphanumeric](#glossary), i.e. must not contain any spaces.
 
 Example: `ls --module cs2103t`
 
@@ -424,7 +424,7 @@ Shows a list of tasks whose tags match **exactly** with the tag_name. (Case-inse
 
 Format: `ls -t TAG_NAME`
 
-* `TAG_NAME`: The tag you are looking for should be an exact match and alphanumeric, ie must not contain any spaces.
+* `TAG_NAME`: The tag you are looking for should be an exact match and [alphanumeric](#glossary), ie must not contain any spaces.
 
 Example: `ls -t highPriority` will find tags with `highpriority` (Case-insensitive)
 
@@ -467,7 +467,7 @@ keywords. Meaning that names does not have to be an exact match (Example: search
 task name `tape`). `find` is not case-sensitive.
 
 Format: `find KEYWORD/TAG_NAME*`
-* `KEYWORD/TAG_NAME`: One keyword/tag name or multiple, which should be alphanumeric and separated by spaces.
+* `KEYWORD/TAG_NAME`: One keyword/tag name or multiple, which should be [alphanumeric](#glossary) and separated by spaces.
 
 Singular word search example: `find tut`
 finds names which contain `tut` and any tag that exactly match `tut`.
@@ -551,7 +551,7 @@ Click to return to: [Back to Top](#)
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous NotionUS home folder.
 
 **Q**: What if double-clicking fails to open the jar file?<br>
-**A**: Check that the correct version of java is installed (Java 11) locally on your computer. You may open the terminal and type java -version to check. If it is the wrong version, visit this [page](https://nus-cs2103-ay2223s1.github.io/website/admin/programmingLanguages.html#programming-language) for a guide to install the correct version of java. If you have the correct version of java installed, you may try to launch the app using terminal, open terminal or command prompt and type java -jar NotionUs.jar.  
+**A**: Check that the correct version of java is installed (Java 11) locally on your computer. You may open the [terminal](#glossary) and type java -version to check. If it is the wrong version, visit this [page](https://nus-cs2103-ay2223s1.github.io/website/admin/programmingLanguages.html#programming-language) for a guide to install the correct version of java. If you have the correct version of java installed, you may try to launch the app using [terminal](#glossary), open terminal or command prompt and type java -jar NotionUs.jar.  
 
 **Q**: Is internet needed for NotionUS to work?<br>
 **A**: No, NotionUS functions fully without internet connection.
@@ -597,11 +597,11 @@ Click to return to: [Back to Top](#)
 
 ## Glossary
 
-| Word             | Definition                                                                   |
-|------------------|------------------------------------------------------------------------------|
-| **GUI**          | Graphical User Interface - what the user sees when interacting with the app. |
-| **Alphanumeric** | A combination of both letters and numbers without space.                     |
-| **Terminal**     | A text-based interface for the computer.                                     |
-| **Interface**    | A program or device that allows the user to communicate with the computer.   |
+| Word                               | Definition                                                                 |
+|------------------------------------|----------------------------------------------------------------------------|
+| **Command Line Interface (CLI)**   | A program that mainly uses typed commands to interact with the app.        |
+| **Graphical User Interface (GUI)** | What the user sees when interacting with the app.                          |
+| **Alphanumeric**                   | A combination of both letters and numbers without space.                   |
+| **Terminal**                       | A text-based interface for the computer.                                   |
 
 Click to return to: [Back to Top](#)
