@@ -1880,8 +1880,8 @@ Enter `exit` and the program closes after 3 seconds.
 
 #### Viewing help: `help`
 
-Help! You are not sure what to do? You have come to the right place. Enter `help` and the list of commands available 
-will be shown as well as URL to this help page at the bottom as shown below.
+Help! Not sure what to do? You have come to the right place. Enter `help` and the list of commands available, as well as the URL to this help page at the bottom,
+will be shown.
 
 ![Help Example](images/HelpExample.png)
 
