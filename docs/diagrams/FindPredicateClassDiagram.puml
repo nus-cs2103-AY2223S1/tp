@@ -1,0 +1,18 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Class "<<interface>>\nPredicate" as PredicateStudent #444444
+
+note left
+Predicate<Student>
+end note
+
+NamePredicate .up.|> PredicateStudent
+StudentIdPredicate .up.|> PredicateStudent
+ModulePredicate .up.|> PredicateStudent
+TutorialPredicate .up.|> PredicateStudent
+
+@enduml

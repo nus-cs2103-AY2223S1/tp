@@ -1,0 +1,48 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+skinparam classAttributeIconSize 0
+
+Package Student <<Rectangle>>{
+
+Class UniqueStudentList
+Class Student
+
+together {
+Class StudentId
+Class Grade
+Class Email
+Class Name
+}
+
+together {
+Class Phone
+Class Attendance
+Class Participation
+Class TelegramHandle
+}
+
+}
+
+UniqueStudentList --> "~* all" Student
+
+Student *-left-> "1" StudentId
+Student *-left-> "1" Grade
+Student *-up-> "1" Email
+Student *--> "1" Name
+Student *--> "1" Phone
+Student *--> "1" Attendance
+Student *--> "1" Participation
+Student *--> "1" TelegramHandle
+
+Student *-down--> "1" ModuleCode
+Student *-down--> "1" TutorialName
+Student *-down--> "*" Tag
+
+TelegramHandle *-down[hidden]--> "1" ModuleCode
+TelegramHandle *-down[hidden]--> "1" TutorialName
+TelegramHandle *-down[hidden]--> "*" Tag
+
+@enduml

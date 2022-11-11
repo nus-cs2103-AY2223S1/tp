@@ -1,14 +1,33 @@
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
+[![CI Status](https://github.com/AY2223S1-CS2103T-W17-3/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S1-CS2103T-W17-3/tp/actions)
+[![codecov](https://codecov.io/gh/AY2223S1-CS2103T-W17-3/tp/branch/master/graph/badge.svg?token=9M3PU7F9CR)](https://codecov.io/gh/AY2223S1-CS2103T-W17-3/tp)
+
+<p align="center">
+  <img src="docs/images/ModQuikLogo.png"/>
+</p>
+
+# ModQuik
 
 ![Ui](docs/images/Ui.png)
 
-* This is **a sample project for Software Engineering (SE) students**.<br>
-  Example usages:
-  * as a starting point of a course project (as opposed to writing everything from scratch)
-  * as a case study
-* The project simulates an ongoing software project for a desktop application (called _AddressBook_) used for managing contact details.
-  * It is **written in OOP fashion**. It provides a **reasonably well-written** code base **bigger** (around 6 KLoC) than what students usually write in beginner-level SE modules, without being overwhelmingly big.
-  * It comes with a **reasonable level of user and developer documentation**.
-* It is named `AddressBook Level 3` (`AB3` for short) because it was initially created as a part of a series of `AddressBook` projects (`Level 1`, `Level 2`, `Level 3` ...).
-* For the detailed documentation of this project, see the **[Address Book Product Website](https://se-education.org/addressbook-level3)**.
-* This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
+Are you a Teaching Assistant (Teaching Assistant) struggling to monitor your classes and what tasks you have to complete?
+Tired of having to use multiple applications such as LumiNUS and Todoist to keep track of all your responsibilities? <br>
+<br>
+Introducing ModQuik, a Teaching Assistant tool made for you!
+
+ModQuik is a convenient tool that allows you to keep track of your classes, monitor your students' grades and set up reminders for your tasks (such as creating tutorial slides or marking homework).
+ModQuik is optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
+If you can type fast, ModQuik can get your lesson management tasks done faster than traditional GUI apps.
+
+Example usages:
+  * To find out which students are in which class
+  * To keep track of your students' grades
+  * To keep track of your tutorials and consultations
+  * To keep track of upcoming tasks
+
+## Site Map
+- [User Guide](https://ay2223s1-cs2103t-w17-3.github.io/tp/UserGuide.html)
+- [Developer Guide](https://ay2223s1-cs2103t-w17-3.github.io/tp/DeveloperGuide.html)
+- [About Us](https://ay2223s1-cs2103t-w17-3.github.io/tp/AboutUs.html)
+
+## Acknowledgements
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).

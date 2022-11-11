@@ -1,0 +1,78 @@
+@startuml
+!include style.puml
+skinparam ParticipantPadding 5
+
+box Ui UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+end box
+
+note left MainWindow
+input is "switch f/grade"
+end note
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ModQuikParser" as ModQuikParser LOGIC_COLOR
+participant "s:SwitchCommand" as SwitchCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":ModelManager" as ModelManager MODEL_COLOR
+participant ":ModQuik" as ModQuik MODEL_COLOR
+end box
+
+[-> MainWindow : executeCommand(input)
+activate MainWindow
+
+MainWindow -> LogicManager: execute(input)
+activate LogicManager
+
+LogicManager -> ModQuikParser : parseCommand(input)
+activate ModQuikParser
+
+create SwitchCommand
+ModQuikParser -> SwitchCommand
+activate SwitchCommand
+
+SwitchCommand --> ModQuikParser : s
+deactivate SwitchCommand
+
+ModQuikParser --> LogicManager : s
+deactivate ModQuikParser
+
+LogicManager -> SwitchCommand : execute()
+activate SwitchCommand
+
+create CommandResult
+SwitchCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> SwitchCommand
+deactivate CommandResult
+
+SwitchCommand --> LogicManager
+deactivate SwitchCommand
+
+LogicManager --> MainWindow
+deactivate LogicManager
+
+MainWindow -> MainWindow : handleShowChart()
+activate MainWindow
+
+MainWindow -> ModelManager : getStudentGradeChartData()
+activate ModelManager
+
+ModelManager -> ModQuik : getGradeData()
+activate ModQuik
+
+ModQuik --> ModelManager
+deactivate ModQuik
+
+ModelManager --> MainWindow
+deactivate ModelManager
+deactivate MainWindow
+
+[<--MainWindow
+deactivate MainWindow
+@enduml

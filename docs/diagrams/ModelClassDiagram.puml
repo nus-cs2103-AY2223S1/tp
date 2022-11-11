@@ -3,48 +3,80 @@
 skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
+skinparam classAttributeIconSize 0
 
 Package Model <<Rectangle>>{
-Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+Class "<<interface>>\nReadOnlyModQuik" as ReadOnlyModQuik
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
-Class AddressBook
+Class ModQuik
 Class ModelManager
 Class UserPrefs
 
-Class UniquePersonList
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
+together {
+Class UniqueConsultationList
+Class UniqueStudentList
+Class UniqueTutorialList
+Class UniqueReminderList
+}
+
+Class Student
+
+Class Consultation
+
+Class Reminder
+
+Class Tutorial
+Class TutorialName
+
 Class Tag
+
+package Commons {
+Class ModuleCode
+Class Venue
+}
+
+package DateTime {
+Class WeeklyTimeslot
+Class Datetime
+Class DatetimeRange
+}
 
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+ModQuik .up.|> ReadOnlyModQuik
 
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
+Model .right.> ReadOnlyModQuik
+ModelManager -down-> "1" ModQuik
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+ModQuik *-down-> "1" UniqueStudentList
+UniqueStudentList --> "~* all" Student
+Student *--> ModuleCode
+Student *--> TutorialName
+Student *--> "*" Tag
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+ModQuik *-down-> "1" UniqueConsultationList
+UniqueConsultationList --> "~* all" Consultation
+Consultation *--> ModuleCode
+Consultation *--> Venue
+Consultation *--> DatetimeRange
 
-ModelManager -->"~* filtered" Person
+ModQuik *-down-> "1" UniqueReminderList
+UniqueReminderList --> "~* all" Reminder
+Reminder *--> Datetime
+
+ModQuik *-down-> "1" UniqueTutorialList
+UniqueTutorialList --> "~* all" Tutorial
+Tutorial *--> TutorialName
+Tutorial *--> ModuleCode
+Tutorial *--> Venue
+Tutorial *--> WeeklyTimeslot
+
 @enduml

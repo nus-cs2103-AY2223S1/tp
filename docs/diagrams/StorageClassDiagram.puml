@@ -14,12 +14,18 @@ Class JsonUserPrefsStorage
 Class "<<interface>>\nStorage" as Storage
 Class StorageManager
 
-package "AddressBook Storage" #F4F6F6{
-Class "<<interface>>\nAddressBookStorage" as AddressBookStorage
-Class JsonAddressBookStorage
-Class JsonSerializableAddressBook
-Class JsonAdaptedPerson
+package "ModQuik Storage" #F4F6F6{
+Class "<<interface>>\nModQuikStorage" as ModQuikStorage
+Class JsonModQuikStorage
+Class JsonSerializableModQuik
 Class JsonAdaptedTag
+Class JsonAdaptedConsultation
+Class JsonAdaptedReminder
+Class JsonAdaptedStudent
+Class JsonAdaptedTutorial
+Class JsonAdaptedDatetime
+Class JsonAdaptedDatetimeRange
+Class JsonAdaptedWeeklyTimeslot
 }
 
 }
@@ -29,15 +35,21 @@ HiddenOutside ..> Storage
 
 StorageManager .up.|> Storage
 StorageManager -up-> "1" UserPrefsStorage
-StorageManager -up-> "1" AddressBookStorage
+StorageManager -up-> "1" ModQuikStorage
 
 Storage -left-|> UserPrefsStorage
-Storage -right-|> AddressBookStorage
+Storage -right-|> ModQuikStorage
 
 JsonUserPrefsStorage .up.|> UserPrefsStorage
-JsonAddressBookStorage .up.|> AddressBookStorage
-JsonAddressBookStorage ..> JsonSerializableAddressBook
-JsonSerializableAddressBook --> "*" JsonAdaptedPerson
-JsonAdaptedPerson --> "*" JsonAdaptedTag
+JsonModQuikStorage .up.|> ModQuikStorage
+JsonModQuikStorage ..> JsonSerializableModQuik
+JsonSerializableModQuik --> "*" JsonAdaptedStudent
+JsonAdaptedStudent --> "*" JsonAdaptedTag
+JsonSerializableModQuik --> "*" JsonAdaptedTutorial
+JsonAdaptedTutorial --> "1" JsonAdaptedWeeklyTimeslot
+JsonSerializableModQuik --> "*" JsonAdaptedConsultation
+JsonAdaptedConsultation --> "1" JsonAdaptedDatetimeRange
+JsonSerializableModQuik --> "*" JsonAdaptedReminder
+JsonAdaptedReminder --> "1" JsonAdaptedDatetime
 
 @enduml

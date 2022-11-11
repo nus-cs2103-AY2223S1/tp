@@ -1,0 +1,41 @@
+@startuml
+start
+:User executes addStudentCommand;
+
+if () then ([all prefixes present])
+    :Parse prefixes;
+    if () then ([all prefixes formatted correctly])
+        :Checks if all fields provided
+        are correctly formatted;
+        if () then ([all fields provided are correctly formatted])
+            :Create new Student
+            using provided fields;
+            :Check if student created
+            already exists in ModQuik;
+            if() then ([else])
+                :Check if student id provided
+                already exists in ModQuik;
+                if() then ([else])
+                    :Add new Student to ModQuik;
+                else ([duplicate student exists in ModQuik])
+                    :Display error message that student id
+                    provided already exists in ModQuik;
+                endif
+            else ([duplicate student exists in ModQuik])
+                :Display error message that the student
+                provided already exists in ModQuik;
+            endif
+        else ([else])
+            :Display error message fields
+            provided are wrongly formatted;
+        endif
+    else ([else])
+        :Display invalid prefix
+        format error message;
+    endif
+else ([else])
+    :Display error message
+    and show command format;
+endif
+stop
+@enduml
