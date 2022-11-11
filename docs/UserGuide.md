@@ -190,7 +190,7 @@ INSERT IMAGE
   e.g. in `add n/<name>`, `<name>` is an input which can be used as `add n/John`.
 
 * **Prefixes**<br>
-  To separate inputs that represent different information, you should precede inputs with their respective **[prefixes]((#glossary-prefix))** that end with a `/`. <br>
+  To separate inputs that represent different information, you should precede inputs with their respective **[prefixes](#glossary-prefix)** that end with a `/`. <br>
   e.g. in `add n/<name> [t/<tag>]…`, `n/` and `t/` are prefixes preceding the inputs `<name>` and `<tag>` respectively.
 
 [Return to Table of Contents](#table-of-contents)
@@ -302,7 +302,7 @@ When you want to start afresh with an empty [person list](#person-list-section),
 `clear`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-If you accidentally run this command, don't worry! You can use the `undo` command to easily get your data back.
+If you accidentally run this command, don't worry! You can use the [`undo` command](#undoing-a-command-undo) to easily get your data back.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
