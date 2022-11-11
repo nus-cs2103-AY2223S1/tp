@@ -73,7 +73,7 @@ Now, you must be curious as to how to navigate and use PayMeLah. Let’s continu
 
 ### Tutorial: Navigating the application
 
-* PayMeLah uses a [Command Line Interface (CLI)](#glossary-command-line-interface-cli) - which means that you perform actions by entering [commands](#glossary-command) for PayMeLah to carry out. If you want to find out more on how to make use of commands, you can jump ahead to the [command format section](#about-the-command-format).
+* PayMeLah uses a [Command Line Interface (CLI)](#glossary-command-line-interface-cli) - which means that you perform actions by entering [commands](#glossary-command) for PayMeLah to carry out. If you want to find out more on how to make use of commands, you can jump ahead to learn the [parts of a command](#parts-of-a-command).
 * Once a command has been successfully carried out, PayMeLah will display the results accordingly.
 * Refer to the diagrams in the following pages to find out about the different components of PayMeLah that are responsible for receiving commands, displaying results, and more!
 
