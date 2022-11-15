@@ -1,0 +1,171 @@
+{
+  "itineraries" : [ {
+    "description" : "Spring Trip",
+    "country" : "Australia",
+    "startDate" : "2023-01-01",
+    "duration" : "25",
+    "people" : "1",
+    "budget" : "30.0",
+    "items" : [ ],
+    "days" : [ {
+      "dayNumber" : 0,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 1,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 2,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 3,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 4,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 5,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 6,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 7,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 8,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 9,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 10,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 11,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 12,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 13,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 14,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 15,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 16,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 17,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 18,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 19,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 20,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 21,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 22,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 23,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 24,
+      "items" : [ ]
+    } ]
+  }, {
+    "description" : "Spring Trip",
+    "country" : "Australia",
+    "startDate" : "2023-01-01",
+    "duration" : "25",
+    "people" : "1",
+    "budget" : "30.0",
+    "items" : [ ],
+    "days" : [ {
+      "dayNumber" : 0,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 1,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 2,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 3,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 4,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 5,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 6,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 7,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 8,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 9,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 10,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 11,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 12,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 13,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 14,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 15,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 16,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 17,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 18,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 19,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 20,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 21,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 22,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 23,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 24,
+      "items" : [ ]
+    } ]
+  } ]
+}

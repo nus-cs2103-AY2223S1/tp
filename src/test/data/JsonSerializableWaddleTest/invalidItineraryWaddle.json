@@ -1,0 +1,11 @@
+{
+  "itineraries" : [ {
+    "description" : "Spring Trip",
+    "country" : "Australia",
+    "startDate" : "10",
+    "duration" : "20d",
+    "people" : "1",
+    "items" : [ ],
+    "days" : [ ]
+  } ]
+}

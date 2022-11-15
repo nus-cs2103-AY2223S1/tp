@@ -5,19 +5,19 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+Class "<<interface>>\nReadOnlyWaddle" as ReadOnlyWaddle
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
-Class AddressBook
+Class Waddle
 Class ModelManager
 Class UserPrefs
 
-Class UniquePersonList
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
+Class UniqueItineraryList
+Class Itinerary
+Class People
+Class Duration
+Class Description
+Class Country
 Class Tag
 
 }
@@ -25,26 +25,25 @@ Class Tag
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+Waddle .up.|> ReadOnlyWaddle
 
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
+Model .left.> ReadOnlyWaddle
+ModelManager -left-> "1" Waddle
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+Waddle *--> "1" UniqueItineraryList
+UniqueItineraryList --> "~* all" Itinerary
+Itinerary *--> Description
+Itinerary *--> Country
+Itinerary *--> Duration
+Itinerary *--> People
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Description -[hidden]right-> Country
+Country -[hidden]right-> People
+People -[hidden]right-> Duration
 
-ModelManager -->"~* filtered" Person
+ModelManager -->"~* filtered" Itinerary
 @enduml

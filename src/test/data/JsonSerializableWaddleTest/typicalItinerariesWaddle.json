@@ -1,0 +1,151 @@
+{
+  "_comment": "Waddle save file which contains the same Itinerary values as in TypicalItineraries#getTypicalWaddle()",
+  "itineraries" : [ {
+    "description" : "Spring Trip",
+    "country" : "Australia",
+    "startDate" : "2023-01-01",
+    "duration" : "14",
+    "people" : "1",
+    "budget" : "300.0",
+    "items" : [ ],
+    "days" : [ {
+      "dayNumber" : 0,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 1,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 2,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 3,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 4,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 5,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 6,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 7,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 8,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 9,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 10,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 11,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 12,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 13,
+      "items" : [ ]
+    } ]
+  }, {
+    "description" : "Autumn Hiking",
+    "country" : "Canada",
+    "startDate" : "2023-02-02",
+    "duration" : "22",
+    "people" : "2",
+    "budget" : "700.0",
+    "items" : [ ],
+    "days" : [ {
+      "dayNumber" : 0,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 1,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 2,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 3,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 4,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 5,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 6,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 7,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 8,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 9,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 10,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 11,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 12,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 13,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 14,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 15,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 16,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 17,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 18,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 19,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 20,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 21,
+      "items" : [ ]
+    } ]
+  }, {
+    "description" : "Graduation Trip",
+    "country" : "France",
+    "startDate" : "2023-03-03",
+    "duration" : "4",
+    "people" : "4",
+    "budget" : "2200.0",
+    "items" : [ ],
+    "days" : [ {
+      "dayNumber" : 0,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 1,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 2,
+      "items" : [ ]
+    }, {
+      "dayNumber" : 3,
+      "items" : [ ]
+    } ]
+  } ]
+}

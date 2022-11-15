@@ -31,6 +31,9 @@
 !define STORAGE_COLOR_T3 #806600
 !define STORAGE_COLOR_T2 #544400
 
+!define STAGE_COLOR #ff9000
+!define STAGE_COLOR_T1 #ffc37a
+
 !define USER_COLOR #000000
 
 skinparam BackgroundColor #FFFFFFF
