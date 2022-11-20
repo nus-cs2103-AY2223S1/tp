@@ -2,9 +2,11 @@ package seedu.address.model.quote;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-/** Collection of quotes. */
+/* Collection of quotes. */
 public class QuoteList {
     private static Quote randomQuote;
+    // @@author malwaregarry-reused
+    // List of quotes extracted with the API provided by https://zenquotes.io/.
     private static Quote[] quotes = {
         new Quote("If they wrote it to make money, don't read it.",
                 "Naval Ravikant"),
