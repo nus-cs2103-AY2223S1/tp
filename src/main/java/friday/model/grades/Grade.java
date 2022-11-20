@@ -12,6 +12,9 @@ public class Grade {
 
     public static final String MESSAGE_CONSTRAINTS = "Grades should be in percentages, between 0 and 100, "
             + "up to 2 decimal places, excluding the % sign.";
+    // @@author HowSuen-reused
+    // Reused from https://stackoverflow.com/questions/6593017/javascript-regular-expression-for-percentage-between-0-and-100
+    // with minor modifications
     public static final String VALIDATION_REGEX = "^(100(\\.0{1,2})?|[1-9]?\\d(\\.\\d{1,2})?)$";
 
     private final String examName;
