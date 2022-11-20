@@ -6,10 +6,12 @@ title: User Guide
 <div align=center><img src="images/userguide/ProfNUS.png" alt="img" width=400 height=250 /></div>
 
 
-Made for SOC (School of Computing) Professors, **ProfNUS** is the **easiest way to keep track of your teaching schedule and organize information regarding the students and modules you teach.** It is optimized for users who prefer Command Line Interface (CLI) so that frequent tasks can be done faster by typing in commands which is perfect for SOC Professors! Interested? :wink: Continue reading to find out more!
+Made for SoC (School of Computing) Professors, **ProfNUS** is the **easiest way to keep track of your teaching schedule and organize information regarding the students and modules you teach.** It is optimized for users who prefer Command Line Interface (CLI) so that frequent tasks can be done faster by typing in commands which is perfect for SoC Professors! Interested? :wink: Continue reading to find out more!
 
 * Table of Contents
 {:toc}
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -20,6 +22,10 @@ Welcome to **ProfNUS**! :blush:
 Are you a SoC professor who is busy with heavy research work, teaches many modules and manages hundreds of students and TAs at the same time? Do you feel dizzy changing from one platform to another such as Luminus or Canvas? Have you ever sent an email to the wrong group of students? Life is hard, but luckily, **ProfNUS** can help you out! **ProfNUS** is a comprehensive teaching management desktop application that assists SoC professor in terms of modules, students, TAs, and schedules. It is designed based on Command Line Interface (CLI), which perfectly fits SoC professors' habits and preferences. We also provide Graphic User Interface (GUI) for users to interact with our product.
 
 If you want to know more about how **ProfNUS** is able to ease your worries, go to the [Quick Start](#2-quick-start) and take your first step in **ProfNUS**!
+
+<div style="page-break-after: always;"></div>
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## 2. Quick start
 
@@ -46,6 +52,8 @@ If you want to know more about how **ProfNUS** is able to ease your worries, go 
     * **`exit`** : Exits the app.
 
 6. Refer to the [Features](#4-features) below for details of each command.
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 ## 3. About
@@ -96,8 +104,10 @@ Notes about the command format:
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `sview`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+  * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `sview`, `exit` and `clear`) will be ignored.<br>
+    e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -127,10 +137,12 @@ You can use this command to access the help page, where you can find our User Gu
 
 ### 4.2. Module Manager
 
-As SOC Professors, you would be teaching at least one or more modules.
+As SoC Professors, you would be teaching at least one or more modules.
 In ProfNUS, you are able to add modules into our module list.
 We are able to save the module's name, unique module code, description
 and other module related information such as your teaching schedule for the module.
+
+<div style="page-break-after: always;"></div>
 
 #### 4.2.1. Module Manager Command Parameters
 
@@ -143,6 +155,8 @@ continue!
 | `MODULE_CODE`        | This parameter represents the module code of a module in ProfNUS. Using module code can uniquely determine a module. The format should abide by the Module Code Format of NUS. Each unique module code consists of a two‐letter or three‐letter prefix that denotes the discipline, four digits the first of which indicates the level of the module, and one or zero letter postfix. Module codes are not case sensitive, this means that `CS2030S` is the same as `cs2030s`. | `CS2030S`                                                       |
 | `MODULE_DESCRIPTION` | This parameter represents the description of the module you are adding into ProfNUS.<br/>The description should be alphanumeric.<br/>Modules in ProfNUS are allowed to have the same description.                                                                                                                                                                                                                                                                              | `This module teaches you about software engineering principles.` |
 | `TAG`                | This parameter represents the tag you want to attach to the module.<br/>It must be a single word consisting of alphanumeric characters.                                                                                                                                                                                                                                                                                                                                        | `ModuleCoordinator`                                             |
+
+<div style="page-break-after: always;"></div>
 
 #### 4.2.2. Viewing list of modules: `mlist`
 
@@ -318,9 +332,11 @@ Now, let's use `mdel` to delete a module in ProfNUS!
 
 ![mdel_step2](images/userguide/mdel_step2.png)
 
+<div style="page-break-after: always;"></div>
+
 ### 4.3. Student Manager
 
-As SOC Professors, you certainly have many students and teaching assistants to keep track of.
+As SoC Professors, you certainly have many students and teaching assistants to keep track of.
 In ProfNUS, you are able to add students / teaching assistants into our contact list.
 We are able to save the individual's name, unique student id, phone number, email, telegram handle,
 address and other school related information such as modules the student is taking, modules which
@@ -333,6 +349,8 @@ can be both a student and a teaching assistant at the same time.
 As we can see, the person `Bernice Yu` is a student of the module `CS2040S` as seen by the red label and a
 teaching assistant of the module `CS2030S` as seen by the green label. If you edit or delete `Bernice Yu`, the changes will
 be saved on both sides.
+
+<div style="page-break-after: always;"></div>
 
 #### 4.3.1. Student Manager Command Parameters
 
@@ -351,6 +369,8 @@ continue!
 | `MODULE_CODE` | This parameter represents the module code of a module in ProfNUS. Using module code can uniquely determine a module. The format should abide by the Module Code Format of NUS.                                                                                                                                                                                                                                                               | `CS2030S`                           |
 | `CLASS_GROUP` | This parameter represents the group label if there are multiple lecture, tutorial, lab, or reflection groups.<br/>There are no restrictions on the information added to class groups. When a module is deleted, the class group will still remain.                                                                                                                                                                                           | `CS2030S:L1`                        |
 | `INDEX`       | This parameter represents the index of the student / teaching assistant in thier respective lists.<br/>The index must be in the range of the numbers provided.                                                                                                                                                                                                                                                                               | `1`                                 |
+
+<div style="page-break-after: always;"></div>
 
 #### 4.3.2. Listing all students: `list`
 
@@ -464,7 +484,7 @@ You can use this command to edit a teaching assistant from the teaching assistan
 - You can remove all the teaching assistant’s tags by typing `t/` without specifying any tags after it.
   Likewise, this can be done for modules, ta modules and class groups as well by typing `c/`, `ta/` and `cg/` respectively.
 - Editing a teaching assistant that is a student will change the details of both of them displayed in the list.
-- Editing a teaching assistant is very similar to editing a student. Do refer to the section [Editing a Student](#433-editing-a-student-editstu)
+- Editing a teaching assistant is very similar to editing a student. Do refer to the section [Editing a Student](#434-editing-a-student-editstu)
 - Successfully editing a teaching assistant will redirect you to the all student's and teaching assistant's page.
 
 </div>
@@ -529,7 +549,7 @@ You can use this command to delete a teaching assistant from the teaching assist
 - The index refers to the index number shown in the displayed student list.
 - The index **must be a positive integer** 1, 2, 3, …​
 - Deleting a teaching assistant from the teaching assistant list will also delete the student from the student list.
-- Deleting a teaching assistant is very similar to deleting a student. Do refer to [Deleting a student](#435-deleting-a-student-delstu) if you are unsure.
+- Deleting a teaching assistant is very similar to deleting a student. Do refer to [Deleting a student](#436-deleting-a-student-delstu) if you are unsure.
 - Successfully deleting a teaching assistant will redirect you to the all student's and teaching assistant's page.
 
 </div>
@@ -579,6 +599,8 @@ Now, let's use the `find` command to find students / teaching assistants with th
 
 ![find_step2](images/userguide/student/find_step2.png)
 
+<div style="page-break-after: always;"></div>
+
 ### 4.4. Schedule Manager
 
 As a professor in SoC, you must be busy with teaching. ProfNUS is here to help you out! We provide you with a variety of efficient commands to help you keep track of your teaching schedules easily. For each schedule, you can indicate the module it belongs to, the weekday it happens on, the class type, the class group, the time period, and the class venue. If you are interested, please continue to see how our schedule features can help you.
@@ -601,8 +623,8 @@ In this section, we list all the parameters you will encounter of following comm
 
 
 #### 4.4.2. View your schedule: `sview`
-
-Views the list of selected/all schedules.
+ 
+You can use this command to view the list of all of your schedules.
 
 **Format:** `sview`
 
@@ -610,7 +632,7 @@ Views the list of selected/all schedules.
 
 #### 4.4.3. View your timetable: `tview`
 
-Views the Timetable of all schedules
+You can use this command to view your timetable, consisting of all of your schedules.
 
 **Format:** `tview [MODE]`
 
@@ -629,7 +651,7 @@ Views the Timetable of all schedules
 
 :exclamation: **Caution:**<br>
 
-- If there are other parameters/words after `sview` instead of `v` or `h`, ProfNUS will report an error.
+- If there are other parameters/words after `tview` instead of `v` or `h`, ProfNUS will report an error.
 
 </div>
 
@@ -651,6 +673,7 @@ If the command is `tview v` in previous example step 1, the vertical timetable w
 
 ![tview_v_step2](images/userguide/tview_v_step2.png)
 
+<div style="page-break-after: always;"></div>
 
 #### 4.4.4. Add your schedule: `sadd`
 
@@ -689,10 +712,11 @@ Now, let's use `sadd` to add a schedule with following information:
 
 ![sadd_step2](images/userguide/sadd_step2.png)
 
+<div style="page-break-after: always;"></div>
 
 #### 4.4.5. Edit your schedule: `sedit`
 
-Edits a schedule in ProfNUS.
+You can use this command to edit a schedule in ProfNUS.
 
 **Format:** `sedit INDEX [c/MODULE_CODE] [w/WEEKDAY] [ct/PERIOD] [cc/CLASS_TYPE] [cg/CLASS_GROUP] [cv/VENUE] `
 
@@ -728,10 +752,11 @@ Now, let's use `sedit` command to edit a schedule with the following information
 
 ![sedit_step2](images/userguide/sedit_step2.png)
 
+<div style="page-break-after: always;"></div>
 
 #### 4.4.6. Delete your schedule: `sdelete`
 
-Deletes a schedule from ProfNUS.
+You can use this command to delete a schedule from ProfNUS.
 
 **Format:** `sdelete INDEX`
 
@@ -766,7 +791,7 @@ Now, let's use `sdelete` command and delete the first schedule in your schedule 
 
 #### 4.4.7. Clear your schedule: `sclear`
 
-Clears all the schedules or all schedules of selected modules.
+You can use this command to clear all the schedules or all schedules of a selected module in ProfNUS.
 
 **Format:** `sclear [c/MODULE_CODE]...`
 
@@ -801,35 +826,38 @@ Now, let's use `sclear` to clear all schedules of CS2101 and CS2103T in the sche
 
 ![sclear_step2](images/userguide/sclear_step2.png)
 
+<div style="page-break-after: always;"></div>
+
 ### 4.5. Clearing all entries: `clear`
 
-Clears all entries from ProfNUS.
+You can use this command to clear all entries from ProfNUS.
 
 **Format:** `clear`
 
 ### 4.6. Exiting the program: `exit`
 
-Exits the program.
+You can use this command to exit ProfNUS.
 
 **Format:** `exit`
 
 ### 4.7. Saving the data
 
-ProfNUS data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Your data that you entered into ProfNUS is saved in the hard disk automatically after any command that changes the data. There is no need for you to save it manually.
 
 ### 4.8. Editing the data
-ProfNUS data are saved as a JSON file `[JAR file location]/data/profnus.json`. Advanced users are welcome to update data directly by editing that data file.
+Your data in ProfNUS is saved as a JSON file `[JAR file location]/data/profnus.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, ProfNUS will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, ProfNUS will discard all of your current data and start with an empty data file at the next run.
 </div>
 
+<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
 
 ## 5. FAQ
 
 **Q:** How do I transfer my data to another Computer?<br>
-**A:** Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ProfNUS home folder.
+**A:** You can install ProfNUS in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ProfNUS home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -844,6 +872,8 @@ If your changes to the data file makes its format invalid, ProfNUS will discard 
 | [Switch to dark mode](#412-switch-to-dark-mode-dark)    | `dark`                                                                                                             | `dark`                                                                                                                                                                    |
 | [View help](#413-viewing-help-help)                     | `help`                                                                                                             | `help`                                                                                                                                                                     |
 
+<div style="page-break-after: always;"></div>
+
 ### 6.2. Module Manager Command Summary
 
 | Action                                                                                                       | Format                                                                         | Example                                                                              |
@@ -854,6 +884,8 @@ If your changes to the data file makes its format invalid, ProfNUS will discard 
 | [Add a module](#425-adding-a-module-madd)                                                                    | `madd n/MODULE_NAME c/MODULE_CODE d/MODULE_DESCRIPTION [t/TAG]…​`              | `madd n/Computer Organisation c/CS2100 d/Teaches you more on computer hardware t/Y2` |
 | [Editing a module](#426-editing-a-module-medit)                                                              | `medit MODULE_CODE n/MODULE_NAME c/MODULE_CODE d/MODULE_DESCRIPTION [t/TAG]…​` | `medit cs2100 n/Database systems c/cs2102 d/SQL t/important`                         |
 | [Delete a module](#427-deleting-a-module-mdel)                                                               | `mdel c/MODULE_CODE`                                                           | `mdel c/CS1101S`                                                                     |
+
+<div style="page-break-after: always;"></div>
 
 ### 6.3. Student Manager Command Summary
 
@@ -867,6 +899,8 @@ If your changes to the data file makes its format invalid, ProfNUS will discard 
 | [Delete a teaching assistant](#437-deleting-a-teaching-assistant-delta)                          | `delta INDEX`                                                                                                                                  | `delta 1`                                                                                                                                                              |
 | [Find a student/teaching assistant](#438-locating-students-and-teaching-assistants-by-name-find) | `find KEYWORD [MORE_KEYWORD]`                                                                                                                  | `find Adam Do`                                                                                                                                                         |
 
+<div style="page-break-after: always;"></div>
+
 ### 6.4. Schedule Manager Command Summary
 
 | Action                                                    | Format                                                                                            | Example                                                          |
@@ -877,6 +911,8 @@ If your changes to the data file makes its format invalid, ProfNUS will discard 
 | [Edit your schedule](#445-edit-your-schedule-sedit)       | `sedit INDEX [c/MODULE_CODE] [w/WEEKDAY] [ct/PERIOD] [cc/CLASS_TYPE] [cg/CLASS_GROUP] [cv/VENUE]` | `sedit 1 w/Monday ct/09:00-10:00 cc/tut cv/COM1-B103`            |
 | [Delete your schedule](#446-delete-your-schedule-sdelete) | `sdelete INDEX`                                                                                   | `sdelete 1`                                                      |
 | [Clear your schedule](#447-clear-your-schedule-sclear)    | `sclear [c/MODULE_CODE]...`                                                                       | `sclear c/CS2103T c/CS1101S`                                     |
+
+<div style="page-break-after: always;"></div>
 
 ### 6.5. Miscellaneous Command Summary
 
