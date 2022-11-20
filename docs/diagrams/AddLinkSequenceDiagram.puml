@@ -1,0 +1,89 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddLinkCommandParser" as AddLinkCommandParser LOGIC_COLOR
+participant "ParserUtil" as ParserUtil << class >> LOGIC_COLOR
+participant "a:AddLinkCommand" as AddLinkCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Person" as Person MODEL_COLOR
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("addLink 1 l/https://linkedin.com")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("addLink 1 l/https://linkedin.com")
+activate AddressBookParser
+
+create AddLinkCommandParser
+AddressBookParser -> AddLinkCommandParser
+activate AddLinkCommandParser
+
+AddLinkCommandParser --> AddressBookParser
+deactivate AddLinkCommandParser
+
+AddressBookParser -> AddLinkCommandParser : parse("1 l/https://linkedin.com")
+activate AddLinkCommandParser
+
+AddLinkCommandParser -> ParserUtil : parseLinks()
+activate ParserUtil
+
+ParserUtil -> ParserUtil : parseLink()
+activate ParserUtil
+
+ParserUtil --> ParserUtil : link
+deactivate ParserUtil
+
+ParserUtil --> AddLinkCommandParser : links
+deactivate ParserUtil
+
+create AddLinkCommand
+AddLinkCommandParser -> AddLinkCommand
+activate AddLinkCommand
+
+AddLinkCommand --> AddLinkCommandParser : a
+deactivate AddLinkCommand
+
+AddLinkCommandParser --> AddressBookParser : a
+deactivate AddLinkCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddLinkCommandParser -[hidden]-> AddressBookParser
+destroy AddLinkCommandParser
+
+AddressBookParser --> LogicManager : a
+deactivate AddressBookParser
+
+LogicManager -> AddLinkCommand : execute()
+activate AddLinkCommand
+
+AddLinkCommand -> Person : mergeLinks()
+activate Person
+
+Person --> AddLinkCommand
+deactivate Person
+
+AddLinkCommand -> Model : setPerson()
+activate Model
+
+Model --> AddLinkCommand
+deactivate Model
+
+create CommandResult
+AddLinkCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddLinkCommand
+deactivate CommandResult
+
+AddLinkCommand --> LogicManager : result
+deactivate AddLinkCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

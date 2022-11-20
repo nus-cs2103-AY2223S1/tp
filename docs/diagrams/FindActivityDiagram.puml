@@ -1,0 +1,34 @@
+@startuml
+!include style.puml
+skinparam activity {
+    BackgroundColor beige
+    BorderColor red
+}
+start
+:User executes command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([no prefixes used])
+    :Search each person's
+    details for any
+    keyword matches;
+    :Return matching
+    persons as a
+    filtered list;
+else if () then ([prefixes used])
+    :Search the specific
+    fields for any keyword
+    matches based on the
+    prefixes;
+    :Return matching
+    persons as a
+    filtered list;
+else ([else])
+    :Show an error
+    message with the
+    correct syntax;
+endif
+stop
+@enduml

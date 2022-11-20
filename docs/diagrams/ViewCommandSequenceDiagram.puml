@@ -1,0 +1,76 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":ViewCommandParser" as ViewCommandParser LOGIC_COLOR
+participant "ParserUtil" as ParserUtil << class >> LOGIC_COLOR
+participant "v:ViewCommand" as ViewCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Person" as Person MODEL_COLOR
+end box
+
+[-> LogicManager : execute("view 1")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("view 1")
+activate AddressBookParser
+
+create ViewCommandParser
+AddressBookParser -> ViewCommandParser
+activate ViewCommandParser
+
+ViewCommandParser --> AddressBookParser
+deactivate ViewCommandParser
+
+AddressBookParser -> ViewCommandParser : parse("1")
+activate ViewCommandParser
+
+ViewCommandParser -> ParserUtil : parseIndex("1")
+activate ParserUtil
+
+ParserUtil --> ViewCommandParser : index
+deactivate ParserUtil
+
+create ViewCommand
+ViewCommandParser -> ViewCommand
+activate ViewCommand
+
+ViewCommand --> ViewCommandParser : v
+deactivate ViewCommand
+
+ViewCommandParser --> AddressBookParser : v
+deactivate ViewCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ViewCommandParser -[hidden]-> AddressBookParser
+destroy ViewCommandParser
+
+AddressBookParser --> LogicManager : v
+deactivate AddressBookParser
+
+LogicManager -> ViewCommand : execute()
+activate ViewCommand
+
+ViewCommand -> Person : toString()
+activate Person
+
+Person --> ViewCommand
+deactivate Person
+
+create CommandResult
+ViewCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ViewCommand
+deactivate CommandResult
+
+ViewCommand --> LogicManager : result
+deactivate ViewCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

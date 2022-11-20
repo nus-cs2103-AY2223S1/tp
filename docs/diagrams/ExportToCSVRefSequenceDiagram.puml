@@ -1,0 +1,15 @@
+@startuml
+!include style.puml
+
+participant ":ExportCommand" as ExportCommand LOGIC_COLOR
+participant "<<class>> \n FileUtil" as FileUtil LOGIC_COLOR
+
+mainframe **sd**  export to CSV
+
+ExportCommand -> FileUtil: exportToCsvFile(filePath, data)
+activate FileUtil
+
+FileUtil --> ExportCommand
+deactivate FileUtil
+
+@enduml

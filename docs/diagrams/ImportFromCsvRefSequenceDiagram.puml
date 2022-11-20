@@ -1,0 +1,15 @@
+@startuml
+!include style.puml
+
+participant ":ImportCommand" as ImportCommand LOGIC_COLOR
+participant "<<class>> \n FileUtil" as FileUtil LOGIC_COLOR
+
+mainframe **sd**  import from CSV
+
+ImportCommand -> FileUtil: importFromCsvFile(filepath)
+activate FileUtil
+
+FileUtil --> ImportCommand: content
+deactivate FileUtil
+
+@enduml

@@ -1,0 +1,76 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":ExportCommandParser" as ExportCommandParser LOGIC_COLOR
+participant "exportCommand:ExportCommand" as ExportCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":ModelManager" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("export data.csv")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("export data.csv")
+activate AddressBookParser
+
+create ExportCommandParser
+AddressBookParser -> ExportCommandParser
+activate ExportCommandParser
+
+ExportCommandParser --> AddressBookParser
+deactivate ExportCommandParser
+
+AddressBookParser -> ExportCommandParser: parse("data.csv")
+activate ExportCommandParser
+
+create ExportCommand
+ExportCommandParser -> ExportCommand
+activate ExportCommand
+
+ExportCommand --> ExportCommandParser:exportCommand
+deactivate ExportCommand
+
+ExportCommandParser --> AddressBookParser:exportCommand
+deactivate ExportCommandParser
+
+AddressBookParser --> LogicManager:exportCommand
+deactivate AddressBookParser
+
+LogicManager -> ExportCommand : execute()
+activate ExportCommand
+
+ExportCommand -> Model : getFilteredPersonList()
+activate Model
+
+Model --> ExportCommand: personList
+deactivate Model
+
+ExportCommand -> ExportCommand: toCsv(personList)
+
+activate ExportCommand
+ref over ExportCommand
+    export to CSV
+end ref
+ExportCommand --> ExportCommand
+deactivate ExportCommand
+
+create CommandResult
+ExportCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ExportCommand:result
+deactivate CommandResult
+
+ExportCommand --> LogicManager : result
+deactivate ExportCommand
+
+[<--LogicManager:result
+deactivate LogicManager
+
+@enduml

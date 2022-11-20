@@ -1,4 +1,5 @@
 {
+  "prefixMap" : [ "jtt/", "Job Type", "dt/", "Degree", "st/", "Skills" ],
   "persons": [ {
     "name": "Valid Person",
     "phone": "9482424",

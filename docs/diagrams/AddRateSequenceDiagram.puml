@@ -1,0 +1,77 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddRateCommandParser" as AddRateCommandParser LOGIC_COLOR
+participant "ar:AddRateCommand" as AddRateCommand LOGIC_COLOR
+participant "ParserUtil" as ParserUtil << class >> LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+[-> LogicManager : execute(addRate 1 rate/9)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(addRate 1 rate/9)
+activate AddressBookParser
+
+create AddRateCommandParser
+AddressBookParser -> AddRateCommandParser
+activate AddRateCommandParser
+
+AddRateCommandParser --> AddressBookParser
+deactivate AddRateCommandParser
+
+AddressBookParser -> AddRateCommandParser : parse("1 rate/9")
+activate AddRateCommandParser
+
+AddRateCommandParser -> ParserUtil : parseRate()
+activate ParserUtil
+
+ParserUtil --> AddRateCommandParser : rate
+deactivate ParserUtil
+
+create AddRateCommand
+AddRateCommandParser -> AddRateCommand
+activate AddRateCommand
+
+AddRateCommand --> AddRateCommandParser : ar
+deactivate AddRateCommand
+
+AddRateCommandParser --> AddressBookParser : ar
+deactivate AddRateCommandParser
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddRateCommandParser -[hidden]-> AddressBookParser
+destroy AddRateCommandParser
+
+AddressBookParser --> LogicManager : ar
+deactivate AddressBookParser
+
+
+LogicManager -> AddRateCommand : execute(model)
+activate AddRateCommand
+
+AddRateCommand -> Model : setPerson(person)
+activate Model
+
+AddRateCommand -[hidden]-> LogicManager : void
+Model --> AddRateCommand
+deactivate Model
+
+AddRateCommand -> Model : updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS)
+activate Model
+
+AddRateCommand -[hidden]-> LogicManager : void
+Model --> AddRateCommand
+deactivate Model
+
+AddRateCommand --> LogicManager : result
+deactivate AddRateCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

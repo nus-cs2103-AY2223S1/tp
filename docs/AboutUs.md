@@ -9,51 +9,51 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Joseph Aedan Marcus
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/josephaedan.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/josephaedan)]
+[[portfolio](team/josephaedan.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: UI and Feature Implementation
 
-### Jean Doe
+### Pratham Jain
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/pratham31012002.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/pratham31012002)]
+[[portfolio](team/pratham31012002.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Scheduling and tracking
 
-### James Doe
+### Anjali Agarwal
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/agarwal-anjali.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/agarwal-anjali)]
+[[portfolio](team/agarwal-anjali.md)]
+
+* Role: Developer
+* Responsibilities: Integration
+
+### Marcus Tan
+
+<img src="images/emptygx.png" width="200px">
+
+[[github](http://github.com/emptygx)]
+[[portfolio](team/emptygx.md)]
+
+* Role: Developer
+* Responsibilities: UI and Design
+
+### Ying Ting
+<img src="images/ytingtan.png" width="200px">
+
+[[github](http://github.com/ytingtan)]
+[[portfolio](team/ytingtan.md)]
 
 * Role: Developer
 * Responsibilities: UI
