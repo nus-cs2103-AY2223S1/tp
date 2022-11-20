@@ -1,0 +1,29 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+package Module {
+    show member
+    Class Module {
+        tags: Set<Tag>
+        schedules: List<Schedule>
+    }
+    Class ModuleName {
+        fullName: String
+    }
+    Class ModuleCode {
+        fullCode: String
+    }
+    Class ModuleDescription {
+        fullDescription: String
+    }
+}
+
+Module *--> "1" ModuleName
+Module *--> "1" ModuleCode
+Module *--> "1" ModuleDescription
+
+@enduml
+

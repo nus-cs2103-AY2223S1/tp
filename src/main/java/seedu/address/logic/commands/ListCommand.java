@@ -2,11 +2,12 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TUTORS;
 
 import seedu.address.model.Model;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all persons in profNus to the user.
  */
 public class ListCommand extends Command {
 
@@ -19,6 +20,8 @@ public class ListCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(MESSAGE_SUCCESS);
+        model.updateFilteredTutorList(PREDICATE_SHOW_ALL_TUTORS);
+        return new CommandResult(MESSAGE_SUCCESS, false, false, false,
+                true, false, false, false, false, false);
     }
 }

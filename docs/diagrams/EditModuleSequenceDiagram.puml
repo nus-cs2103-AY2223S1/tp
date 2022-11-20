@@ -1,0 +1,108 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ProfNusParser" as ProfNusParser LOGIC_COLOR
+participant ":EditModuleCommandParser" as EditModuleCommandParser LOGIC_COLOR
+participant "c:ModuleCode" as ModuleCode LOGIC_COLOR
+participant "d:EditModuleDescriptor" as EditModuleDescriptor LOGIC_COLOR
+participant "e:EditModuleCommand" as EditModuleCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "m:Module" as Module MODEL_COLOR
+end box
+
+[-> LogicManager : execute("command_details")
+activate LogicManager
+
+LogicManager -> ProfNusParser : parseCommand("command_details")
+note left
+"command_details" serves
+to substitute
+the actual command
+"medit CS2107 n/Cybersecurity"
+for readability purposes
+end note
+activate ProfNusParser
+
+create EditModuleCommandParser
+ProfNusParser -> EditModuleCommandParser
+activate EditModuleCommandParser
+
+EditModuleCommandParser --> ProfNusParser
+deactivate EditModuleCommandParser
+
+ProfNusParser -> EditModuleCommandParser : parse("details")
+note left
+"details" serves
+to substitute
+the actual details
+"CS2107 n/Cybersecurity"
+for readability purposes
+end note
+activate EditModuleCommandParser
+
+create ModuleCode
+EditModuleCommandParser -> ModuleCode : "CS2107"
+activate ModuleCode
+
+ModuleCode --> EditModuleCommandParser : c
+deactivate ModuleCode
+
+create EditModuleDescriptor
+EditModuleCommandParser -> EditModuleDescriptor : "n/Cybersecurity"
+activate EditModuleDescriptor
+
+EditModuleDescriptor -> EditModuleCommandParser : d
+deactivate EditModuleDescriptor
+
+create EditModuleCommand
+EditModuleCommandParser -> EditModuleCommand : EditModuleCommand(c, d)
+activate EditModuleCommand
+
+EditModuleCommand --> EditModuleCommandParser : e
+deactivate EditModuleCommand
+
+EditModuleCommandParser --> ProfNusParser : e
+deactivate EditModuleCommandParser
+
+ProfNusParser --> LogicManager : e
+destroy EditModuleCommandParser
+deactivate ProfNusParser
+
+LogicManager -> EditModuleCommand : execute()
+activate EditModuleCommand
+
+create Module
+EditModuleCommand -> Module : createEditedModule()
+activate Module
+
+Module --> EditModuleCommand : m
+deactivate Module
+
+EditModuleCommand -> Model : setModule()
+activate Model
+
+Model --> EditModuleCommand
+deactivate Model
+
+create CommandResult
+EditModuleCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditModuleCommand : result
+deactivate CommandResult
+
+EditModuleCommand --> LogicManager : result
+deactivate EditModuleCommand
+EditModuleCommand -[hidden]-> LogicManager : result
+destroy EditModuleCommand
+
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

@@ -1,0 +1,18 @@
+@startuml
+start
+:User executes mview command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([any of the keywords violate
+           the given restrictions]
+)
+:Show error message;
+else ([else]
+)
+    :Filters module details according to keywords;
+    :Update GUI to show filtered module list;
+endif
+stop
+@enduml

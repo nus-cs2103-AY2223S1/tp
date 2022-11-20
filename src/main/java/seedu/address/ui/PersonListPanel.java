@@ -9,6 +9,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Student;
 
 /**
  * Panel containing the list of persons.
@@ -41,9 +42,13 @@ public class PersonListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
+                if (person instanceof Student) {
+                    setGraphic(new StudentCard((Student) person, getIndex() + 1).getRoot());
+                } else {
+                    setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
+                }
+
             }
         }
     }
-
 }

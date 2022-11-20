@@ -1,0 +1,18 @@
+@startuml
+start
+:User executes medit command;
+
+if () then ([did not specify
+code of the module to edit
+OR
+module does not exist]
+)
+:Show error message;
+
+else ([else])
+:Select module to edit;
+:Edits the module with
+new details specified;
+endif
+stop
+@enduml

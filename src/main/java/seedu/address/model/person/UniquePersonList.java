@@ -55,13 +55,21 @@ public class UniquePersonList implements Iterable<Person> {
      */
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
-        int index = internalList.indexOf(target);
+        Student studentTarget = (Student) target;
+        Student editedStudent = (Student) editedPerson;
+        int index = -1;
+        //int index = internalList.indexOf(target);
+        for (int i = 0; i < internalList.size(); i++) {
+            Student temp = (Student) internalList.get(i);
+            if (studentTarget.equals(temp)) {
+                index = i;
+            }
+        }
         if (index == -1) {
             throw new PersonNotFoundException();
         }
 
-        if (!target.isSamePerson(editedPerson) && contains(editedPerson)) {
+        if (!studentTarget.isSamePerson(editedStudent) && contains(editedPerson)) {
             throw new DuplicatePersonException();
         }
 
@@ -74,9 +82,17 @@ public class UniquePersonList implements Iterable<Person> {
      */
     public void remove(Person toRemove) {
         requireNonNull(toRemove);
-        if (!internalList.remove(toRemove)) {
+        int index = -1;
+        Student studentToRemove = (Student) toRemove;
+        for (int i = 0; i < internalList.size(); i++) {
+            if (internalList.get(i).equals(studentToRemove)) {
+                index = i;
+            }
+        }
+        if (index == -1) {
             throw new PersonNotFoundException();
         }
+        Person removed = internalList.remove(index);
     }
 
     public void setPersons(UniquePersonList replacement) {

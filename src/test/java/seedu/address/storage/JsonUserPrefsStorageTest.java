@@ -3,6 +3,7 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.ui.theme.Theme.DEFAULT_THEME;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -72,8 +73,9 @@ public class JsonUserPrefsStorageTest {
 
     private UserPrefs getTypicalUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setGuiSettings(new GuiSettings(1000, 500, 300, 100));
-        userPrefs.setAddressBookFilePath(Paths.get("addressbook.json"));
+        userPrefs.setGuiSettings(new GuiSettings(1000, 500, 300, 100,
+                DEFAULT_THEME.toString()));
+        userPrefs.setProfNusFilePath(Paths.get("data/profnus.json"));
         return userPrefs;
     }
 
@@ -103,7 +105,8 @@ public class JsonUserPrefsStorageTest {
     public void saveUserPrefs_allInOrder_success() throws DataConversionException, IOException {
 
         UserPrefs original = new UserPrefs();
-        original.setGuiSettings(new GuiSettings(1200, 200, 0, 2));
+        original.setGuiSettings(new GuiSettings(1200, 200, 0, 2,
+                DEFAULT_THEME.toString()));
 
         Path pefsFilePath = testFolder.resolve("TempPrefs.json");
         JsonUserPrefsStorage jsonUserPrefsStorage = new JsonUserPrefsStorage(pefsFilePath);
@@ -114,7 +117,8 @@ public class JsonUserPrefsStorageTest {
         assertEquals(original, readBack);
 
         //Try saving when the file exists
-        original.setGuiSettings(new GuiSettings(5, 5, 5, 5));
+        original.setGuiSettings(new GuiSettings(5, 5, 5, 5,
+                DEFAULT_THEME.toString()));
         jsonUserPrefsStorage.saveUserPrefs(original);
         readBack = jsonUserPrefsStorage.readUserPrefs().get();
         assertEquals(original, readBack);

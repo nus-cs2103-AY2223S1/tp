@@ -1,0 +1,86 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ProfNusParser" as ProfNusParser LOGIC_COLOR
+participant ":ViewTargetModuleCommandParser" as ViewTargetModuleCommandParser LOGIC_COLOR
+participant "v:ViewTargetModuleCommand" as ViewTargetModuleCommand LOGIC_COLOR
+participant "CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("vtarget 1")
+activate LogicManager
+
+LogicManager -> ProfNusParser : parseCommand("vtarget 1")
+note left
+the "1" supplied here
+as part of the argument
+is the index of the
+module in the list of
+modules, from one-based
+indexing.
+end note
+activate ProfNusParser
+
+create ViewTargetModuleCommandParser
+ProfNusParser -> ViewTargetModuleCommandParser
+activate ViewTargetModuleCommandParser
+
+ViewTargetModuleCommandParser --> ProfNusParser
+deactivate ViewTargetModuleCommandParser
+
+ProfNusParser -> ViewTargetModuleCommandParser
+activate ViewTargetModuleCommandParser
+
+create ViewTargetModuleCommand
+ViewTargetModuleCommandParser -> ViewTargetModuleCommand
+activate ViewTargetModuleCommand
+
+ViewTargetModuleCommand --> ViewTargetModuleCommandParser : v
+deactivate ViewTargetModuleCommand
+
+ViewTargetModuleCommandParser --> ProfNusParser : v
+deactivate ViewTargetModuleCommandParser
+
+ProfNusParser --> LogicManager : v
+destroy ViewTargetModuleCommandParser
+deactivate ProfNusParser
+
+LogicManager -> ViewTargetModuleCommand : execute()
+activate ViewTargetModuleCommand
+
+ViewTargetModuleCommand -> Model : viewModule()
+note left
+Arguments supplied to viewModule
+here is the module code
+of the target module identified
+by the indexing in the
+list of modules, omitted for
+readability.
+end note
+activate Model
+
+Model --> ViewTargetModuleCommand
+deactivate Model
+
+create CommandResult
+ViewTargetModuleCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ViewTargetModuleCommand
+deactivate CommandResult
+
+ViewTargetModuleCommand --> LogicManager : result
+deactivate ViewTargetModuleCommand
+
+ViewTargetModuleCommand -[hidden]-> LogicManager : result
+destroy ViewTargetModuleCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

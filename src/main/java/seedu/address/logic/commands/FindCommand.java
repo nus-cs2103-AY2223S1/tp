@@ -5,9 +5,10 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.StudentNameContainsKeywordsPredicate;
 
 /**
- * Finds and lists all persons in address book whose name contains any of the argument keywords.
+ * Finds and lists all persons in profNus whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
 public class FindCommand extends Command {
@@ -20,17 +21,30 @@ public class FindCommand extends Command {
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
     private final NameContainsKeywordsPredicate predicate;
+    private final StudentNameContainsKeywordsPredicate studentPredicate;
 
-    public FindCommand(NameContainsKeywordsPredicate predicate) {
+    /**
+     * Searches the student and tutor list for matching names.
+     *
+     * @param predicate
+     * @param studentPredicate
+     */
+    public FindCommand(NameContainsKeywordsPredicate predicate,
+                       StudentNameContainsKeywordsPredicate studentPredicate) {
         this.predicate = predicate;
+        this.studentPredicate = studentPredicate;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredPersonList(predicate);
-        return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+        model.updateFilteredTutorList(studentPredicate);
+        model.updateFilteredStudentList(predicate);
+        return new CommandResult(String.format(String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW,
+                model.getFilteredPersonList().size())),
+                false, false, false,
+                false, false, true, false, false, false);
     }
 
     @Override

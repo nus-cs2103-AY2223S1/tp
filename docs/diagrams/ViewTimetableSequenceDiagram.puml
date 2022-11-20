@@ -1,0 +1,64 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ProfNusParser" as ProfNusParser LOGIC_COLOR
+participant ":ViewTimetableCommandParser" as ViewTimetableCommandParser LOGIC_COLOR
+participant "vc:ViewScheduleCommand" as ViewScheduleCommand LOGIC_COLOR
+participant "result: CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+
+[-> LogicManager : execute("tview v")
+activate LogicManager
+
+LogicManager -> ProfNusParser : parseCommand("tview v")
+activate ProfNusParser
+
+create ViewTimetableCommandParser
+ProfNusParser -> ViewTimetableCommandParser
+activate ViewTimetableCommandParser
+
+ViewTimetableCommandParser --> ProfNusParser
+deactivate ViewTimetableCommandParser
+
+ProfNusParser -> ViewTimetableCommandParser : parse("v")
+activate ViewTimetableCommandParser
+
+create ViewScheduleCommand
+ViewTimetableCommandParser -> ViewScheduleCommand: ViewScheduleCommand(1)
+activate ViewScheduleCommand
+
+ViewScheduleCommand --> ViewTimetableCommandParser : vc
+deactivate ViewScheduleCommand
+
+ViewTimetableCommandParser --> ProfNusParser: vc
+deactivate ViewTimetableCommandParser
+
+ProfNusParser --> LogicManager : vc
+destroy ViewTimetableCommandParser
+deactivate ProfNusParser
+
+LogicManager -> ViewScheduleCommand : execute()
+activate ViewScheduleCommand
+
+
+
+
+create CommandResult
+ViewScheduleCommand -> CommandResult:
+activate CommandResult
+
+CommandResult --> ViewScheduleCommand: result
+deactivate CommandResult
+
+ViewScheduleCommand --> LogicManager : result
+deactivate ViewScheduleCommand
+
+ViewScheduleCommand -[hidden]-> LogicManager : result
+destroy ViewScheduleCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

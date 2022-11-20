@@ -1,0 +1,71 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ProfNusParser" as ProfNusParser LOGIC_COLOR
+participant ":ClearScheduleCommandParser" as ClearScheduleCommandParser LOGIC_COLOR
+participant "v:ClearScheduleCommand" as ClearScheduleCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("sclear")
+activate LogicManager
+
+LogicManager -> ProfNusParser : parseCommand("sclear")
+activate ProfNusParser
+
+create ClearScheduleCommandParser
+ProfNusParser -> ClearScheduleCommandParser
+activate ClearScheduleCommandParser
+
+ClearScheduleCommandParser --> ProfNusParser
+deactivate ClearScheduleCommandParser
+
+ProfNusParser -> ClearScheduleCommandParser : parse("")
+activate ClearScheduleCommandParser
+
+create ClearScheduleCommand
+ClearScheduleCommandParser -> ClearScheduleCommand
+activate ClearScheduleCommand
+
+ClearScheduleCommand --> ClearScheduleCommandParser : v
+deactivate ClearScheduleCommand
+
+ClearScheduleCommandParser --> ProfNusParser: v
+deactivate ClearScheduleCommandParser
+
+ProfNusParser --> LogicManager : v
+destroy ClearScheduleCommandParser
+deactivate ProfNusParser
+
+LogicManager -> ClearScheduleCommand : execute()
+activate ClearScheduleCommand
+
+ClearScheduleCommand -> Model : clearSchedules(modulesToClear)
+activate Model
+
+Model --> ClearScheduleCommand
+deactivate Model
+
+create CommandResult
+ClearScheduleCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ClearScheduleCommand : result
+deactivate CommandResult
+
+ClearScheduleCommand --> LogicManager : result
+deactivate ClearScheduleCommand
+
+ClearScheduleCommand -[hidden]-> LogicManager : result
+destroy ClearScheduleCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
+

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox id="slotPane" fx:id="slotPane" alignment="BASELINE_LEFT" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+    <VBox id="slotPaneVBox" fx:id="slotPaneVBox" alignment="TOP_LEFT" prefHeight="2660" prefWidth="2660" spacing="2.0" onMouseClicked="#handleOnClick" style="-fx-background-radius: 10px;" GridPane.columnIndex="0">
+        <padding>
+            <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+        </padding>
+        <HBox alignment="CENTER_LEFT" spacing="2.0">
+            <Label fx:id="module" text="\$module" />
+         <opaqueInsets>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </opaqueInsets>
+        </HBox>
+        <Label fx:id="time" text="\$time" />
+        <Label fx:id="type" text="\$type" />
+        <Label fx:id="venueName" text="\$venueName" />
+    </VBox>
+    <padding>
+        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+    </padding>
+</HBox>

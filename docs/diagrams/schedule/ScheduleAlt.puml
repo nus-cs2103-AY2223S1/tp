@@ -1,0 +1,43 @@
+@startuml
+!include ../style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+
+package Module {
+    Class Module
+}
+
+package Schedule {
+    show member
+    Class "{abstract}\nSchedule" as Schedule {
+        moduleCode
+        startTime
+        endTime
+        venue
+        weekday
+    }
+    Class LectureSchedule {
+        lectureGroup
+    }
+    Class TutorialSchedule {
+        tutorialGroup
+    }
+    Class LabSchedule {
+        labGroup
+    }
+    Class ReflectionSchedule {
+        reflectionGroup
+    }
+}
+
+LectureSchedule --|> Schedule
+TutorialSchedule --|> Schedule
+LabSchedule --|> Schedule
+ReflectionSchedule --|> Schedule
+
+Module -> "*" Schedule
+
+
+@enduml
