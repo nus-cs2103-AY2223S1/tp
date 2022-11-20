@@ -281,9 +281,11 @@ Examples:
 * `edit 2 l/https://github.com/JohnDoe l/https://instagram.com/JohnDoe` edits by replacing all existing links with the provided links.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Note:**>
-* While editing the **Skill** tags, you can rename the existing `OLD_SKILL` of the person to `NEW_SKILL` provided the Skill Tag Type has not been deleted (Same for **Degree**, **JobType** and **Custom** tags).
-* While editing the **Notes** of a person, their existing notes will be overwritten by the new input. Therefore, it is not possible to edit individual notes (i.e. if you input `edit 1 note/Good at Java` and the person already has a note `Good at Python`, the person's note(s) will be changed to `Good at Java`).
-* While editing the **Links** of a person, their existing links will be overwritten by the new input. Therefore, it is not possible to edit individual links (i.e. if you input `edit 1 l/https://github.com/JohnDoe` and the person already has a link `https://instagram.com/JohnDoe`, the person's link(s) will be changed to `https://github.com/JohnDoe`). The `l/` prefix can be used multiple times in the command to add multiple links. 
+
+* While editing the **Skill** tags, you can rename the existing `OLD_SKILL` of the person to `NEW_SKILL` provided the Skill Tag Type has not been deleted (Same for **Degree**, **JobType** and **Custom** tags).<br>
+* While editing the **Notes** of a person, their existing notes will be overwritten by the new input. Therefore, it is not possible to edit individual notes (i.e. if you input `edit 1 note/Good at Java` and the person already has a note `Good at Python`, the person's note(s) will be changed to `Good at Java`).<br>
+* While editing the **Links** of a person, their existing links will be overwritten by the new input. Therefore, it is not possible to edit individual links (i.e. if you input `edit 1 l/https://github.com/JohnDoe` and the person already has a link `https://instagram.com/JohnDoe`, the person's link(s) will be changed to `https://github.com/JohnDoe`). The `l/` prefix can be used multiple times in the command to add multiple links.
+
 </div> 
 
 ### Adding a tag to an existing candidate : `addTag`
@@ -570,13 +572,13 @@ Format: `redo`
 - Redo can be used multiple times to redo multiple commands.
 </div>
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 ### Viewing Statistics based on ratings of candidates: `stats`
 
 Views rating statistics of the candidates currently saved in CLInkedIn.
@@ -610,6 +612,7 @@ Examples:
 <br><br><br>
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Alternatively to export files using GUI, you can either go to `Export` -> `Export` in the Menu Bar or enter the command `export`. The following window will open on doing so:<br>
+  
 <center><img src="images/ExportWindow.png"></center><br>
 Now you can easily export the displayed list of candidates by selecting a location and providing a name for the resultant file.
 </div>
@@ -630,6 +633,7 @@ Examples:
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Alternatively to import files using GUI, you can either go to `Import` -> `Import` in the Menu Bar or enter the command `import`. The following window will open on doing so:<br>
+  
 <center><img src="images/ImportWindow.png"></center><br>
 Now you can easily select a file to import into the addressbook.
 </div>
