@@ -55,6 +55,8 @@ public class CommandBox extends UiPart<Region> {
         }
     }
 
+    //@@author gowribhat-reused
+    //Reused from https://github.com/AY2122S2-CS2103T-W13-3/tp with minor modifications
     /**
      * Return is KeyEvent is an arrow key.
      *
@@ -84,6 +86,7 @@ public class CommandBox extends UiPart<Region> {
             }
         }
     }
+    //@@author
 
     /**
      * Sets the command box style to use the default style.
