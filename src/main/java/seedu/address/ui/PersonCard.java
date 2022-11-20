@@ -107,7 +107,8 @@ public class PersonCard extends UiPart<Region> {
     }
 
     private Color getColourFromWorkload(int score) {
-        //gradual fade for RGB
+        //Formula below for gradual fade of RGB adapted from
+        //https://stackoverflow.com/questions/340209/generate-colors-between-red-and-green-for-a-power-meter
         double red = 255 * Math.sqrt(Math.sin(score * Math.PI / 200));
         double green = 255 * Math.sqrt(Math.cos(score * Math.PI / 200));;
         Color myColor;
