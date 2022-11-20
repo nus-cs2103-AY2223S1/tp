@@ -570,6 +570,13 @@ Format: `redo`
 - Redo can be used multiple times to redo multiple commands.
 </div>
 
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 ### Viewing Statistics based on ratings of candidates: `stats`
 
 Views rating statistics of the candidates currently saved in CLInkedIn.
@@ -600,6 +607,7 @@ Examples:
 * `export path//Desktop/sample/data.csv` exports the displayed list of candidates to `data.csv` in the `sample` directory of the `Desktop` (Sample path for MACOS).
 * `export path/C:\Users\John\Desktop\data.json` exports the displayed list of candidates to `data.json` in the `Desktop` (Sample path for WINDOWS).
 
+<br><br><br>
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Alternatively to export files using GUI, you can either go to `Export` -> `Export` in the Menu Bar or enter the command `export`. The following window will open on doing so:<br>
 <center><img src="images/ExportWindow.png"></center><br>
