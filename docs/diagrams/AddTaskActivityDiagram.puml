@@ -1,0 +1,15 @@
+@startuml
+start
+:User inputs Task command;
+
+:Parses the command;
+
+if() then ([command is valid])
+    :Executes TaskCommand;
+    :Creates a new task;
+
+else([command has missing/invalid arguments])
+    :Show parse error message;
+endif
+stop
+@enduml

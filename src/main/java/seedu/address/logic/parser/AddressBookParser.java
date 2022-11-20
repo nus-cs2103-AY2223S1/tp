@@ -7,14 +7,19 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.ClassGroupCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditTaskCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.RemoveTaskCommand;
+import seedu.address.logic.commands.TaskCommand;
+import seedu.address.logic.commands.UploadPictureCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -26,6 +31,7 @@ public class AddressBookParser {
      * Used for initial separation of command word and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
+
 
     /**
      * Parses user input into command for execution.
@@ -59,6 +65,9 @@ public class AddressBookParser {
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
+        case ClassGroupCommand.COMMAND_WORD:
+            return new ClassGroupCommandParser().parse(arguments);
+
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
 
@@ -67,6 +76,21 @@ public class AddressBookParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case TaskCommand.COMMAND_WORD:
+            return new TaskCommandParser().parse(arguments);
+
+        case RemoveTaskCommand.COMMAND_WORD:
+            return new RemoveTaskCommandParser().parse(arguments);
+
+        case EditTaskCommand.COMMAND_WORD:
+            return new EditTaskCommandParser().parse(arguments);
+
+        case AttendanceCommandParser.ATTENDANCE_COMMAND_WORD:
+            return new AttendanceCommandParser().parse(arguments);
+
+        case UploadPictureCommand.COMMAND_WORD:
+            return new UploadPictureCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

@@ -1,0 +1,24 @@
+{
+  "students": [ {
+    "name": "Alice Pauline",
+    "phone": "94351253",
+    "email": "alice@example.com",
+    "classGroup": "CS2030 Lab 2",
+    "studentId": "e0123456",
+    "tagged": [ "friends" ],
+    "attendanceList" : {
+      "modName" : "NA",
+      "attendanceList" : [ ]
+    }
+  }, {
+    "name": "Alice Pauline",
+    "phone": "94351253",
+    "email": "pauline@example.com",
+    "classGroup": "CS2030 Lab 6",
+    "studentId": "e0334821",
+    "attendanceList" : {
+      "modName" : "NA",
+      "attendanceList" : [ ]
+    }
+  } ]
+}

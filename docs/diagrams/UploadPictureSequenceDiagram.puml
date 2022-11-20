@@ -1,0 +1,87 @@
+@startuml
+/'https://plantuml.com/sequence-diagram'/
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":UploadPictureCommandParser" as UploadPictureCommandParser LOGIC_COLOR
+participant "u:UploadPictureCommand" as UploadPictureCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+box Storage STORAGE_COLOR_T1
+participant ":<<class>> \nImageStorage" STORAGE_COLOR_T3
+end box
+
+[-> LogicManager : execute("upload-pic 1")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("upload-pic 1")
+activate AddressBookParser
+
+create UploadPictureCommandParser
+AddressBookParser -> UploadPictureCommandParser
+activate UploadPictureCommandParser
+UploadPictureCommandParser --> AddressBookParser
+deactivate UploadPictureCommandParser
+
+AddressBookParser -> UploadPictureCommandParser : (parse("1"))
+activate UploadPictureCommandParser
+
+create UploadPictureCommand
+UploadPictureCommandParser -> UploadPictureCommand
+activate UploadPictureCommand
+
+UploadPictureCommand --> UploadPictureCommandParser : u
+deactivate UploadPictureCommand
+
+UploadPictureCommandParser --> AddressBookParser : u
+deactivate UploadPictureCommandParser
+
+AddressBookParser --> LogicManager : u
+deactivate AddressBookParser
+
+LogicManager -> UploadPictureCommand : execute()
+activate UploadPictureCommand
+
+UploadPictureCommand -> Model : getFilteredStudentList()
+activate Model
+Model --> UploadPictureCommand
+deactivate Model
+
+
+UploadPictureCommand -> ":<<class>> \nImageStorage" : chooseImage()
+activate ":<<class>> \nImageStorage"
+":<<class>> \nImageStorage" --> UploadPictureCommand
+deactivate
+
+UploadPictureCommand -> ":<<class>> \nImageStorage" : isJpgFile()
+activate ":<<class>> \nImageStorage"
+":<<class>> \nImageStorage" --> UploadPictureCommand
+deactivate
+
+UploadPictureCommand -> ":<<class>> \nImageStorage" : uploadImage()
+activate ":<<class>> \nImageStorage"
+":<<class>> \nImageStorage" --> UploadPictureCommand
+deactivate
+
+create CommandResult
+UploadPictureCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> UploadPictureCommand
+deactivate CommandResult
+
+UploadPictureCommand --> LogicManager : result
+deactivate UploadPictureCommand
+
+[<-- LogicManager
+deactivate LogicManager
+
+
+@enduml

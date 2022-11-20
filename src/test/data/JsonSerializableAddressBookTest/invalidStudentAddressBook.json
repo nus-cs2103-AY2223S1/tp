@@ -1,0 +1,9 @@
+{
+  "students": [ {
+      "name": "Hans Muster",
+      "phone": "9482424",
+      "email": "invalid@email!3e",
+      "classGroup": "CS2030 Lab 1",
+      "studentId": "e0897867"
+    } ]
+}

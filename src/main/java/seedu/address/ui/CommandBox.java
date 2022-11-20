@@ -3,10 +3,12 @@ package seedu.address.ui;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.storage.InputHistory;
 
 /**
  * The UI component that is responsible for receiving user command inputs.
@@ -17,6 +19,7 @@ public class CommandBox extends UiPart<Region> {
     private static final String FXML = "CommandBox.fxml";
 
     private final CommandExecutor commandExecutor;
+    private InputHistory inputHistory;
 
     @FXML
     private TextField commandTextField;
@@ -29,6 +32,8 @@ public class CommandBox extends UiPart<Region> {
         this.commandExecutor = commandExecutor;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
+        commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, this::handleArrowKeyPressed);
+        inputHistory = new InputHistory();
     }
 
     /**
@@ -40,6 +45,7 @@ public class CommandBox extends UiPart<Region> {
         if (commandText.equals("")) {
             return;
         }
+        inputHistory.add(commandText);
 
         try {
             commandExecutor.execute(commandText);
@@ -48,6 +54,39 @@ public class CommandBox extends UiPart<Region> {
             setStyleToIndicateCommandFailure();
         }
     }
+
+    //@@author gowribhat-reused
+    //Reused from https://github.com/AY2122S2-CS2103T-W13-3/tp with minor modifications
+    /**
+     * Return is KeyEvent is an arrow key.
+     *
+     * @param event key event
+     * @return true is key event is an arrow key, false otherwise
+     */
+    private boolean isArrowKey(KeyEvent event) {
+        return event.getCode().isArrowKey();
+    }
+
+    /**
+     * Handles the Up or Down Button pressed event.
+     */
+    private void handleArrowKeyPressed(KeyEvent event) {
+        if (isArrowKey(event)) {
+            switch (event.getCode()) {
+            case UP:
+                inputHistory.up();
+                commandTextField.setText(inputHistory.get());
+                break;
+            case DOWN:
+                inputHistory.down();
+                commandTextField.setText(inputHistory.get());
+                break;
+            default:
+                break;
+            }
+        }
+    }
+    //@@author
 
     /**
      * Sets the command box style to use the default style.
@@ -81,5 +120,4 @@ public class CommandBox extends UiPart<Region> {
          */
         CommandResult execute(String commandText) throws CommandException, ParseException;
     }
-
 }

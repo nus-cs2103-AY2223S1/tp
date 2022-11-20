@@ -1,0 +1,29 @@
+{
+  "_comment": "TaskBook save file which contains the same Task values as in TypicalAssignments#getTypicalTaskBookWithAssignments()",
+  "tasks" : [ {
+    "type" : "Assignment",
+    "title" : "CS2030S Homework Assignment",
+    "description" : "Due on 23rd March",
+    "students" : [ "Adam", "Bob" ]
+  }, {
+    "type" : "Assignment",
+    "title" : "Tutorial 3",
+    "description" : "URGENT",
+    "students" : [ "Adam", "Bob", "Charles", "Estelle" ]
+  }, {
+    "type" : "Assignment",
+    "title" : "Lab 33",
+    "description" : "Low priority",
+    "students" : [ "Adam" ]
+  }, {
+    "type" : "Assignment",
+    "title" : "Assignment 1",
+    "description" : "Easy",
+    "students" : [ "Adam", "Bob", "Charles", "Estelle", "Fred" ]
+  } , {
+    "type" : "Assignment",
+    "title" : "Assignment 2",
+    "description" : "Hard",
+    "students" : [ "Adam", "Charles", "Fred" ]
+  }]
+}

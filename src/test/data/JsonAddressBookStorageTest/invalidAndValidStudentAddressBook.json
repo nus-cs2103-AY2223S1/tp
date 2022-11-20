@@ -1,0 +1,15 @@
+{
+  "students": [ {
+    "name": "Valid Student",
+    "phone": "9482424",
+    "email": "hans@example.com",
+    "classGroup": "CS2030 Lab 1",
+    "studentId": "e0831246"
+  }, {
+    "name": "Student With Invalid Phone Field",
+    "phone": "948asdf2424",
+    "email": "hans@example.com",
+    "classGroup": "CS2030 Lab 1",
+    "studentId": "e0789132"
+  } ]
+}

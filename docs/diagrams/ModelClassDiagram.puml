@@ -6,45 +6,95 @@ skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
 Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+Class "<<interface>>\nReadOnlyTaskBook" as ReadOnlyTaskBook
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
 Class AddressBook
+Class TaskBook
 Class ModelManager
 Class UserPrefs
 
-Class UniquePersonList
-Class Person
-Class Address
-Class Email
+Class UniqueStudentList
+Class Student
 Class Name
+Class StudentId
+Class Email
 Class Phone
+Class ClassGroup
+Class AttendanceList
+Class Attendance
 Class Tag
 
+Class "{abstract}\nTask" as Task
+Class ToDo
+Class Deadline
+Class Assignment
+Class TaskTitle
+Class TaskDescription
+Class FormatDate
+Class TaskList
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
 AddressBook .up.|> ReadOnlyAddressBook
+TaskBook .up.|> ReadOnlyTaskBook
 
-ModelManager .up.|> Model
-Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
+ModelManager .up..|> Model
+Model .down.> ReadOnlyUserPrefs
+Model .right> ReadOnlyAddressBook
+Model .left.> ReadOnlyTaskBook
+ModelManager --> "1" AddressBook
 ModelManager -right-> "1" UserPrefs
+ModelManager --> "1" TaskBook
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+AddressBook *--> "1" UniqueStudentList
+UniqueStudentList --> "~* all" Student
+Student *--> "1" Name
+Student *--> "1" StudentId
+Student *--> "0..1" Phone
+Student *--> "0..1" Email
+Student *--> "0..1" ClassGroup
+Student *--> "*" Tag
+Student *--> "1" AttendanceList
+AttendanceList *--> "0..12" Attendance
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+TaskBook *--> "1" TaskList
+TaskList --> "~*" Task
+ToDo -up-|> Task
+Deadline -up-|> Task
+Assignment -up-|> Task
 
-ModelManager -->"~* filtered" Person
+Deadline *--> "1" FormatDate
+Task *-right-> "1" TaskTitle
+Task *-right-> "1" TaskDescription
+
+
+
+ReadOnlyAddressBook -[hidden]right> ReadOnlyUserPrefs
+ReadOnlyUserPrefs -[hidden]right-> ReadOnlyTaskBook
+
+AddressBook -[hidden]right> UserPrefs
+UserPrefs -[hidden]right-> TaskBook
+
+Name -[hidden]right-> StudentId
+StudentId -[hidden]right-> Email
+Email -[hidden]right-> Phone
+Phone -[hidden]right-> ClassGroup
+AttendanceList -[hidden]right-> Tag
+ClassGroup -[hidden]right-> AttendanceList
+
+Tag -[hidden]right-> ToDo
+
+TaskTitle -[hidden]down-> TaskDescription
+
+TaskList -[hidden]right-> UniqueStudentList
+Task -[hidden]left-> Student
+
+ToDo -[hidden]right-> Deadline
+Deadline -[hidden]right-> Assignment
+
+ModelManager -->"~* filtered" Student
 @enduml

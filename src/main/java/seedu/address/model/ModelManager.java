@@ -11,7 +11,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.model.student.Student;
+import seedu.address.model.task.Task;
+import seedu.address.storage.ImageStorage;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -21,23 +23,26 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Student> filteredStudents;
+    private final TaskBook taskBook;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given addressBook, taskBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyTaskBook taskBook, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(addressBook, taskBook, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + addressBook
+                + "task book: " + taskBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredStudents = new FilteredList<>(this.addressBook.getStudentList());
+        this.taskBook = new TaskBook(taskBook);
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new TaskBook(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -75,6 +80,17 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
+    @Override
+    public Path getTaskBookFilePath() {
+        return userPrefs.getTaskBookFilePath();
+    }
+
+    @Override
+    public void setTaskBookFilePath(Path taskBookFilePath) {
+        requireNonNull(taskBookFilePath);
+        userPrefs.setTaskBookFilePath(taskBookFilePath);
+    }
+
     //=========== AddressBook ================================================================================
 
     @Override
@@ -88,44 +104,99 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public boolean hasStudent(Student student) {
+        requireNonNull(student);
+        return addressBook.hasStudent(student);
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public boolean hasStudentWithMatchingId(Student student) {
+        requireNonNull(student);
+        return addressBook.hasStudentWithSameIdAs(student);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void deleteStudent(Student target) {
+        addressBook.removeStudent(target);
+        ImageStorage.remove(target);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-
-        addressBook.setPerson(target, editedPerson);
+    public void addStudent(Student student) {
+        addressBook.addStudent(student);
+        updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    @Override
+    public void setStudent(Student target, Student editedStudent) {
+        requireAllNonNull(target, editedStudent);
+        if (!target.hasSameId(editedStudent)) {
+            ImageStorage.renamePictureFile(target, editedStudent);
+        }
+        addressBook.setStudent(target, editedStudent);
+    }
+
+    @Override
+    public void clearStudentPictures() {
+        ImageStorage.empty();
+    }
+
+    //=========== TaskBook ================================================================================
+
+    @Override
+    public void setTaskBook(ReadOnlyTaskBook taskBook) {
+        this.taskBook.resetData(taskBook);
+    }
+
+    @Override
+    public ReadOnlyTaskBook getTaskBook() {
+        return taskBook;
+    }
+
+    @Override
+    public ObservableList<Task> getTaskList() {
+        return taskBook.getTaskList();
+    }
+
+    @Override
+    public boolean hasTask(Task task) {
+        requireNonNull(task);
+        return taskBook.hasTask(task);
+    }
+
+    @Override
+    public void addTask(Task task) {
+        requireNonNull(task);
+        taskBook.addTask(task);
+    }
+
+    @Override
+    public void deleteTask(Task target) {
+        requireNonNull(target);
+        taskBook.deleteTask(target);
+    }
+
+    @Override
+    public void setTask(Task target, Task editedTask) {
+        requireAllNonNull(target, editedTask);
+        taskBook.setTask(target, editedTask);
+    }
+
+    //=========== Filtered Student List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Student} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Student> getFilteredStudentList() {
+        return filteredStudents;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredStudentList(Predicate<Student> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredStudents.setPredicate(predicate);
     }
 
     @Override
@@ -144,7 +215,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredStudents.equals(other.filteredStudents)
+                && taskBook.equals(other.taskBook);
     }
 
 }

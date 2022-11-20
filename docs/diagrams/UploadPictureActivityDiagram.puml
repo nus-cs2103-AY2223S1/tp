@@ -1,0 +1,21 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User executes upload picture command;
+:parse the input Index;
+if () then ([index is valid])
+  :Open file chooser;
+   :User Selects Image;
+  if () then([Image is valid])
+    :Upload Image;
+  else ([Image is invalid])
+    :Show incorrect file type error;
+endif
+
+else ([index is invalid])
+    :Show parse error message;
+endif
+stop
+
+@enduml
