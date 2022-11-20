@@ -1,0 +1,24 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+: A list of members from a group;
+
+while () is ([list still has unchecked members])
+
+: Member is taken and assignment
+list is obtained;
+
+if () then ([member does not have task])
+    : Add assignment to the assignment list;
+    : editedPerson is created with new assignment list;
+    : Model invokes setPerson() to edit the person;
+else ([member already has task])
+endif
+
+endwhile ([list has iterated over all members])
+
+
+stop
+
+@enduml

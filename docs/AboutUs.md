@@ -5,55 +5,54 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
-### John Doe
+### Tan Jin Waye
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/tan-jin-waye.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/Tan-Jin-Waye)]
+[[portfolio](team/tan-jin-waye.md)]
 
-* Role: Project Advisor
+* Role: Developer
+* Responsibilities: Logic, Storage, DG Documentation
 
-### Jane Doe
+### Lian Guo Yang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/lianguoyang.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/LianGuoYang)]
+[[portfolio](team/lianguoyang.md)]
 
-* Role: Team Lead
+* Role: Developer
+* Responsibilities: Logic, Storage
+
+### Cedric Chia
+
+<img src="images/cedricchia123.png" width="200px">
+
+[[github](http://github.com/CedricChia123)]
+[[portfolio](team/cedricchia123.md)]
+
+* Role: Developer
+* Responsibilities: Integration, Documentation
+
+### Aloysius Neo
+
+<img src="images/aloynz.png" width="200px">
+
+[[github](http://github.com/Aloynz)]
+[[portfolio](team/aloynz.md)]
+
+* Role: Developer
 * Responsibilities: UI
 
-### Johnny Doe
+### Lee Zi Yang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/zylee348.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/zylee348)]
+[[portfolio](team/zylee348.md)]
 
 * Role: Developer
 * Responsibilities: UI

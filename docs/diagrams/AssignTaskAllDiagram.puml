@@ -1,0 +1,44 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User invokes "assigntaskall" command;
+:Command is parsed;
+
+if () then ([input is properly formatted])
+    :AssignTaskAllCommand is
+    generated then executed;
+
+    if () then ([group is found in the app])
+        : Group is obtained and
+        member list is extracted;
+
+        if () then ([group has members])
+            : Members are iterated over
+            and task is added
+            (REFER TO NEXT DIAGRAM);
+
+            if () then ([at least one member did not have task])
+                : Model updates its displayed
+                persons list;
+                : Feedback given to user
+                to signify execution success;
+            else ([all members had task beforehand])
+                : Throw CommandException
+                indicating no assignments made;
+            endif
+        else ([group has no members])
+            : Throw CommandException
+            indicating group has no members;
+        endif
+    else ([group not found in the app])
+        : Throw CommandException
+        indicating group not found;
+    endif
+
+else ([input not properly formatted])
+    :Throw ParseException;
+endif
+stop
+
+@enduml

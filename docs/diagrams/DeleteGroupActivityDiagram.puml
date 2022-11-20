@@ -1,0 +1,31 @@
+@startuml
+
+title DeleteGroupCommand
+
+start
+:User executes "deletegroup" command;
+:Command is parsed;
+
+if () then ([input is not empty])
+    :Check validity of groupname;
+
+    if () then ([valid groupname])
+        :Get the group from the group list;
+        :Filter the group list to only
+        display the group specified;
+        :Delete group tasks and remove
+        members from group;
+        :Delete group from TABS;
+
+
+    else ([else])
+        :Throw CommandException;
+    endif
+
+else ([else])
+    :Throw ParseException;
+endif
+
+stop
+
+@enduml

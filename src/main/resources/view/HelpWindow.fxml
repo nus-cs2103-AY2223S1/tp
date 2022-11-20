@@ -5,11 +5,14 @@
 <?import javafx.scene.Scene?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="470.0" maxWidth="750.0" minHeight="470.0" minWidth="750.0" resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/help_icon.png" />
   </icons>
@@ -17,28 +20,49 @@
     <Scene>
       <stylesheets>
         <URL value="@HelpWindow.css" />
+        <URL value="@DarkTheme.css" />
       </stylesheets>
 
-      <HBox alignment="CENTER" fx:id="helpMessageContainer">
-        <children>
-          <Label fx:id="helpMessage" text="Label">
-            <HBox.margin>
-              <Insets right="5.0" />
-            </HBox.margin>
-          </Label>
-          <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" text="Copy URL">
-            <HBox.margin>
-              <Insets left="5.0" />
-            </HBox.margin>
-          </Button>
-        </children>
-        <opaqueInsets>
-          <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
-        </opaqueInsets>
-        <padding>
-          <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
-        </padding>
-      </HBox>
+      <VBox fx:id="helpContainer" minHeight="450.0" minWidth="750.0" prefHeight="450.0" prefWidth="750.0" VBox.vgrow="ALWAYS">
+
+        <ScrollPane fitToHeight="true" fitToWidth="true">
+          <VBox styleClass="commands-summary-vbox">
+
+            <Label styleClass="help-title-label" text="Help Command Summary" wrapText="true"/>
+            <TableView fx:id="commandFeaturesTableView">
+              <VBox.margin>
+                <Insets top="10.0" />
+              </VBox.margin>
+            </TableView>
+          </VBox>
+        </ScrollPane>
+
+        <HBox fx:id="helpMessageContainer" alignment="CENTER">
+          <children>
+            <Label fx:id="helpMessage" text="Label" wrapText="true">
+              <HBox.margin>
+                <Insets right="5.0" />
+              </HBox.margin>
+            </Label>
+            <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" text="Copy URL">
+              <HBox.margin>
+                <Insets left="5.0" />
+              </HBox.margin>
+            </Button>
+            <Button fx:id="openButton" mnemonicParsing="false" onAction="#openUrl" text="Open URL">
+              <HBox.margin>
+                <Insets left="5.0" />
+              </HBox.margin>
+            </Button>
+          </children>
+          <opaqueInsets>
+            <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
+          </opaqueInsets>
+          <padding>
+            <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
+          </padding>
+        </HBox>
+      </VBox>
     </Scene>
   </scene>
 </fx:root>

@@ -1,0 +1,58 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":DeleteTaskCommandParser" as DeleteTaskCommandParser LOGIC_COLOR
+participant "command:DeleteTaskCommand" as DeleteTaskCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("deletetask Alice g/CS2103T task/Task")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("deletetask Alice g/CS2103T task/Task")
+activate AddressBookParser
+
+create DeleteTaskCommandParser
+AddressBookParser -> DeleteTaskCommandParser
+activate DeleteTaskCommandParser
+return
+
+AddressBookParser -> DeleteTaskCommandParser : parse("Alice g/CS2103T task/Task")
+activate DeleteTaskCommandParser
+
+create DeleteTaskCommand
+DeleteTaskCommandParser -> DeleteTaskCommand
+activate DeleteTaskCommand
+
+return command:DeleteTaskCommand
+
+deactivate DeleteTaskCommand
+
+DeleteTaskCommandParser --> AddressBookParser : command
+deactivate DeleteTaskCommandParser
+DeleteTaskCommandParser -[hidden]-> AddressBookParser
+destroy DeleteTaskCommandParser
+
+AddressBookParser --> LogicManager : command
+deactivate AddressBookParser
+
+LogicManager -> DeleteTaskCommand : execute()
+activate DeleteTaskCommand
+
+group ref [DeleteTaskCommand executes]
+DeleteTaskCommand -[hidden]-> Model
+end
+
+DeleteTaskCommand --> LogicManager : commandResult
+deactivate DeleteTaskCommand
+
+[<-- LogicManager
+deactivate LogicManager
+
+@enduml

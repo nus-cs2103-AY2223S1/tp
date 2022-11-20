@@ -1,0 +1,36 @@
+@startuml
+!include style.puml
+skinparam ClassFontColor #000000
+skinparam ClassBorderColor #000000
+
+package AddressBook {
+    class AB as "__ab:AddressBook__"
+    class UPL as "__pl:UniquePersonList__"
+    class UGL as "__gl:UniqueGroupList__"
+    class A as "__Alice:Person__"
+    class B as "__Bob:Person__"
+    class G as "__CS2103T:Group__"
+    class T as "__Task1:Task__"
+}
+
+AB -[hidden]right-> UPL
+AB -[hidden]right-> UGL
+UPL -[hidden]up-> UGL
+A -[hidden]up-> UPL
+B -[hidden]up-> UPL
+G -[hidden]up-> UGL
+T-[hidden]up-> A
+
+AB --> UPL
+AB --> UGL
+
+UPL --> A
+UPL --> B
+
+UGL --> G
+G -[hidden]-> A
+
+hide T
+
+@end
+

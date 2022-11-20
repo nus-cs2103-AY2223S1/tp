@@ -4,9 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.model.group.testutil.TypicalGroups.INDIVIDUAL_PROJECT;
+import static seedu.address.model.group.testutil.TypicalGroups.TEAM_PROJECT;
+import static seedu.address.model.person.testutil.Assert.assertThrows;
+import static seedu.address.model.person.testutil.TypicalPersons.ALICE;
+import static seedu.address.model.person.testutil.TypicalPersons.BENSON;
+import static seedu.address.model.person.testutil.TypicalPersons.BOB;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -14,9 +17,16 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.group.Group;
+import seedu.address.model.group.exceptions.DuplicateGroupException;
+import seedu.address.model.group.exceptions.GroupNotFoundException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.person.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
 
@@ -73,6 +83,22 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void getPersonWithName_nameOfAlice_returnAlice() {
+        modelManager.addPerson(ALICE);
+        modelManager.addPerson(BOB);
+        Person alice = modelManager.getPersonWithName(ALICE.getName()).get(0);
+
+        assertEquals(ALICE, alice);
+    }
+
+    @Test
+    public void getPersonWithName_emptyName_returnEmptyList() {
+        ObservableList<Person> personList = modelManager.getPersonWithName(ALICE.getName());
+
+        assertThrows(IndexOutOfBoundsException.class, () -> personList.get(0));
+    }
+
+    @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.hasPerson(null));
     }
@@ -89,8 +115,139 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void addPerson_nullPerson_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.addPerson(null));
+    }
+
+    @Test
+    public void addPerson_personAlreadyInAddressBook_throwsDuplicatePersonException() {
+        modelManager.addPerson(ALICE);
+        assertThrows(DuplicatePersonException.class, () -> modelManager.addPerson(ALICE));
+    }
+
+    @Test
+    public void deletePerson_nullPerson_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.deletePerson(null));
+    }
+
+    @Test
+    public void deletePerson_personNotInAddressBook_throwsPersonNotFoundException() {
+        assertThrows(PersonNotFoundException.class, () -> modelManager.deletePerson(ALICE));
+    }
+
+    @Test
+    public void deletePerson_personInAddressBook_personSuccessfullyRemoved() {
+        modelManager.addPerson(ALICE);
+        assertTrue(modelManager.hasPerson(ALICE));
+        modelManager.deletePerson(ALICE);
+        assertFalse(modelManager.hasPerson(ALICE));
+    }
+
+    @Test
+    public void setPerson_nullPerson_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setPerson(ALICE, null));
+    }
+
+    @Test
+    public void setPerson_personNotInAddressBook_throwsPersonNotFoundException() {
+        assertThrows(PersonNotFoundException.class, () -> modelManager.setPerson(ALICE, ALICE));
+    }
+
+    @Test
+    public void setPerson_personInAddressBook_personSuccessfullySet() {
+        modelManager.addPerson(ALICE);
+        modelManager.setPerson(ALICE, BOB);
+        assertFalse(modelManager.hasPerson(ALICE));
+        assertTrue(modelManager.hasPerson(BOB));
+    }
+
+    @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    }
+
+    @Test
+    public void getGroupWithName_nameOfTp_returnTp() {
+        modelManager.addGroup(TEAM_PROJECT);
+        modelManager.addGroup(INDIVIDUAL_PROJECT);
+        Group tP = modelManager.getGroupWithName(TEAM_PROJECT.getName()).get(0);
+
+        assertEquals(TEAM_PROJECT, tP);
+    }
+
+    @Test
+    public void getGroupWithName_emptyName_returnEmptyList() {
+        ObservableList<Group> groupList = modelManager.getGroupWithName(TEAM_PROJECT.getName());
+
+        assertThrows(IndexOutOfBoundsException.class, () -> groupList.get(0));
+    }
+
+    @Test
+    public void hasGroup_nullGroup_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasGroup(null));
+    }
+
+    @Test
+    public void hasGroup_groupNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.hasGroup(TEAM_PROJECT));
+    }
+
+    @Test
+    public void hasGroup_groupInAddressBook_returnsTrue() {
+        modelManager.addGroup(TEAM_PROJECT);
+        assertTrue(modelManager.hasGroup(TEAM_PROJECT));
+    }
+
+    @Test
+    public void addGroup_nullGroup_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.addGroup(null));
+    }
+
+    @Test
+    public void addGroup_groupAlreadyInAddressBook_throwsDuplicateGroupException() {
+        modelManager.addGroup(TEAM_PROJECT);
+        assertThrows(DuplicateGroupException.class, () -> modelManager.addGroup(TEAM_PROJECT));
+    }
+
+    @Test
+    public void deleteGroup_nullGroup_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.deleteGroup(null));
+    }
+
+    @Test
+    public void deleteGroup_groupNotInAddressBook_throwsGroupNotFoundException() {
+        assertThrows(GroupNotFoundException.class, () -> modelManager.deleteGroup(TEAM_PROJECT));
+    }
+
+    @Test
+    public void deleteGroup_groupInAddressBook_groupSuccessfullyRemoved() {
+        modelManager.addGroup(TEAM_PROJECT);
+        assertTrue(modelManager.hasGroup(TEAM_PROJECT));
+        modelManager.deleteGroup(TEAM_PROJECT);
+        assertFalse(modelManager.hasGroup(TEAM_PROJECT));
+    }
+
+    @Test
+    public void setGroup_nullGroup_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setGroup(TEAM_PROJECT, null));
+    }
+
+    @Test
+    public void setGroup_groupNotInAddressBook_throwsGroupNotFoundException() {
+        assertThrows(GroupNotFoundException.class, () -> modelManager.setGroup(TEAM_PROJECT, TEAM_PROJECT));
+    }
+
+    @Test
+    public void setGroup_groupInAddressBook_groupSuccessfullySet() {
+        modelManager.addGroup(TEAM_PROJECT);
+        modelManager.setGroup(TEAM_PROJECT, INDIVIDUAL_PROJECT);
+        assertFalse(modelManager.hasGroup(TEAM_PROJECT));
+        assertTrue(modelManager.hasGroup(INDIVIDUAL_PROJECT));
+    }
+
+    @Test
+    public void getFilteredGroupList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredGroupList().remove(0));
     }
 
     @Test

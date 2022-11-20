@@ -1,0 +1,25 @@
+@startuml
+
+title AssignTaskCommand
+
+start
+:User executes "assigntask" command;
+:Command is parsed;
+
+if () then ([parameters are parsed correctly])
+    :Executes;
+    if () then ([the person is a member of
+    the group without the task])
+    :Obtain group and person from Model;
+    :AssignTaskCommand performs assignment of task;
+    :Return CommandResult to LogicManager;
+    else ([else])
+    :Throw CommandException;
+    endif
+else ([else])
+: Throw ParseException;
+endif
+
+stop
+
+@enduml

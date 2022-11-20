@@ -1,0 +1,9 @@
+{
+  "persons": [ {
+    "name": "Hans Muster",
+    "email": "invalid@",
+    "address": "4th street",
+    "assignments": { }
+  } ],
+  "groups" : [ ]
+}

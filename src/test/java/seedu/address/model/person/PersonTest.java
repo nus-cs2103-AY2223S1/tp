@@ -3,17 +3,20 @@ package seedu.address.model.person;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENTS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUPS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.model.person.testutil.Assert.assertThrows;
+import static seedu.address.model.person.testutil.TypicalPersons.ALICE;
+import static seedu.address.model.person.testutil.TypicalPersons.ALILI;
+import static seedu.address.model.person.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.person.testutil.PersonBuilder;
 
 public class PersonTest {
 
@@ -48,6 +51,47 @@ public class PersonTest {
         String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
         editedBob = new PersonBuilder(BOB).withName(nameWithTrailingSpaces).build();
         assertFalse(BOB.isSamePerson(editedBob));
+    }
+
+    @Test
+    public void testHashCode() {
+        Person aliceCopy = new PersonBuilder(ALICE).build();
+        Person aliceCopy2 = new PersonBuilder(ALICE).build();
+
+        assertTrue(aliceCopy.hashCode() == aliceCopy2.hashCode());
+    }
+
+    @Test
+    public void testToString() {
+        Person aliliCopy = new PersonBuilder(ALILI).build();
+        String str = "Alili Pauline; "
+                + "Phone: 94351253; "
+                + "Email: alice@example.com; "
+                + "Address: 123, Jurong West Ave 6, #08-111; "
+                + "Tags: [friends]; "
+                + "Assignment: Group 1 [(LOW) Midterms]";
+
+        assertTrue(aliliCopy.toString().equals(str));
+    }
+
+    @Test
+    public void testToString_withPersonGroup_success() {
+        Person aliliCopy = new PersonBuilder(ALILI).withGroups(new String[]{"CS2101"}).build();
+        String str = "Alili Pauline; "
+                + "Phone: 94351253; "
+                + "Email: alice@example.com; "
+                + "Address: 123, Jurong West Ave 6, #08-111; "
+                + "Tags: [friends]; "
+                + "Assignment: Group 1 [(LOW) Midterms]; "
+                + "Group: CS2101";
+
+        assertTrue(aliliCopy.toString().equals(str));
+    }
+
+    @Test
+    public void getWorkloadScoreTest() {
+        Person aliceCopy = new PersonBuilder(ALICE).build();
+        assertTrue(aliceCopy.getWorkloadScore() == 0);
     }
 
     @Test
@@ -86,6 +130,10 @@ public class PersonTest {
 
         // different tags -> returns false
         editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different tags -> returns false
+        editedAlice = new PersonBuilder(ALICE).withAssignments(VALID_GROUPS, VALID_ASSIGNMENTS).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 }

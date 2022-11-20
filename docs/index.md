@@ -1,17 +1,17 @@
 ---
 layout: page
-title: AddressBook Level-3
+title: TABS
 ---
 
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
-[![codecov](https://codecov.io/gh/se-edu/addressbook-level3/branch/master/graph/badge.svg)](https://codecov.io/gh/se-edu/addressbook-level3)
+[![CI Status](https://github.com/AY2223S1-CS2103T-W10-1/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S1-CS2103T-W10-1/tp/actions)
+[![codecov](https://codecov.io/gh/AY2223S1-CS2103T-W10-1/tp/branch/master/graph/badge.svg?token=SQQ4K5J7N0)](https://codecov.io/gh/AY2223S1-CS2103T-W10-1/tp)
 
-![Ui](images/Ui.png)
+![Ui](images/user-guide/Ui.png)
 
-**AddressBook is a desktop application for managing your contact details.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
+TABS helps project team leaders **overview tasks assigned to group members**. It is targeted at individuals with less programming background i.e. **less CLI-intensive** in nature.
 
-* If you are interested in using AddressBook, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
-* If you are interested about developing AddressBook, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
+* If you are interested in using TABS, head over to the [_Quick Start_ section of the **User Guide**](https://ay2223s1-cs2103t-w10-1.github.io/tp/UserGuide.html).
+* If you are interested about developing TABS, the [**Developer Guide**](https://ay2223s1-cs2103t-w10-1.github.io/tp/DeveloperGuide.html) is a good place to start.
 
 
 **Acknowledgements**

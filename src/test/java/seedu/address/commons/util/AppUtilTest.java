@@ -1,7 +1,7 @@
 package seedu.address.commons.util;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.model.person.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
@@ -10,6 +10,7 @@ public class AppUtilTest {
     @Test
     public void getImage_exitingImage() {
         assertNotNull(AppUtil.getImage("/images/address_book_32.png"));
+        assertNotNull(AppUtil.getImage("/images/tabs_icon.png"));
     }
 
     @Test

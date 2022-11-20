@@ -3,9 +3,10 @@ package seedu.address.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.model.person.testutil.Assert.assertThrows;
+import static seedu.address.model.person.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -14,9 +15,13 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.assignment.Assignment;
+import seedu.address.model.assignment.Deadline;
+import seedu.address.model.assignment.Workload;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.PersonGroup;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -26,6 +31,8 @@ public class ParserUtilTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_ASSIGNMENT = " ";
+    private static final String INVALID_PERSONGROUP = " ";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -33,6 +40,9 @@ public class ParserUtilTest {
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_ASSIGNMENT_1 = "assignment 0";
+    private static final String VALID_PERSONGROUP_1 = "Alpha";
+
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -193,4 +203,45 @@ public class ParserUtilTest {
 
         assertEquals(expectedTagSet, actualTagSet);
     }
+
+    @Test
+    public void parseAssignment_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseAssignment(null));
+    }
+
+    @Test
+    public void parseAssignment_validValueWithoutWhitespace_returnsAssignment() throws Exception {
+        Assignment expectedAssignment = new Assignment(VALID_ASSIGNMENT_1);
+        assertEquals(expectedAssignment, ParserUtil.parseAssignment(VALID_ASSIGNMENT_1));
+    }
+
+    @Test
+    public void parseAssignment_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseAssignment(INVALID_ASSIGNMENT));
+    }
+
+    @Test
+    public void parseAssignmentWithDeadline_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseAssignmentWithDeadline(
+                INVALID_ASSIGNMENT,
+                Workload.HIGH,
+                new Deadline(LocalDateTime.now())));
+    }
+
+    @Test
+    public void parsePersonGroup_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parsePersonGroup(null));
+    }
+
+    @Test
+    public void parsePersonGroup_validValueWithoutWhitespace_returnsPersonGroup() throws ParseException {
+        PersonGroup expectedPersonGroup = new PersonGroup(VALID_PERSONGROUP_1);
+        assertEquals(expectedPersonGroup, ParserUtil.parsePersonGroup(VALID_PERSONGROUP_1));
+    }
+
+    @Test
+    public void parsePersonGroup_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parsePersonGroup(INVALID_PERSONGROUP));
+    }
+
 }
