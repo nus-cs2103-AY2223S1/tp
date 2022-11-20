@@ -571,7 +571,14 @@ Format: `redo`
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 - Redo can be used multiple times to redo multiple commands.
 </div>
-<br><br><br><br><br><br><br>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 ### Viewing Statistics based on ratings of candidates: `stats`
 
 Views rating statistics of the candidates currently saved in CLInkedIn.

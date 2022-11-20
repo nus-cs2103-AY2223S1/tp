@@ -94,6 +94,9 @@ public class FileUtil {
         Files.write(file, content.getBytes(CHARSET));
     }
 
+    //@@author chownces-reused
+    //https://github.com/AY2122S1-CS2103T-T11-2/tp/blame/master/src/main/java/lingogo/commons/util/FileUtil.java
+    // with minor modifications
     /**
      * Exports data to file path.
      */
@@ -112,6 +115,7 @@ public class FileUtil {
         writer.close();
     }
 
+    //Solution below adapted from https://www.geeksforgeeks.org/reading-csv-file-java-using-opencsv/
     /**
      * Imports data from file path.
      */
