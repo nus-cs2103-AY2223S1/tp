@@ -2,7 +2,7 @@ package seedu.address.model.quote;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-/* Collection of quotes. */
+/** Collection of quotes. */
 public class QuoteList {
     private static Quote randomQuote;
     // @@author malwaregarry-reused
