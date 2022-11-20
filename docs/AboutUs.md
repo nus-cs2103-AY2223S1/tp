@@ -5,55 +5,56 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us via [GitHub Issues](https://github.com/AY2223S1-CS2103T-W15-4/tp/issues)
 
-## Project team
+## Project FRIDAY
 
-### John Doe
+### Yuvaraj Kumaresan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yuvaraj0702.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/Yuvaraj0702)]
+[[portfolio](team/yuvaraj0702.md)]
 
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: Ensure adherence to deadlines and implement core features.
 
-### Johnny Doe
+### Darren Teo Zhi Jie
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/darrtzj.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/darrtzj)]
+[[portfolio](team/darrtzj.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Project advisor
+* Responsibilities: Advise team on progress and suggest changes to implementation.
 
-### Jean Doe
+### Tan How Suen
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/howsuen.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/HowSuen)]
+[[portfolio](team/howsuen.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: UI, Dev Ops
+
+### Soh Jing Ren
+
+<img src="images/jorrdansoh.png" width="200px">
+
+[[github](http://github.com/jorrdansoh)]
+[[portfolio](team/jorrdansoh.md)]
+
+* Role: Developer
+* Responsibilities: Data and Parsing
+
+### Yeo Kai Jiun
+
+<img src="images/kaij77.png" width="200px">
+
+[[github](http://github.com/kaij77)]
+[[portfolio](team/kaij77.md)]
+
+* Role: Developer
+* Responsibilities: Testing and Dev Ops

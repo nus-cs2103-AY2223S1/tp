@@ -1,0 +1,31 @@
+@startuml
+
+!include style.puml
+title Recording grades for students
+
+start
+
+:Receives a ""grade"" command;
+
+if () then ([valid command])
+    :Parses the ""grade""
+    command, index and grades;
+
+    :Writes the specified scores into
+    the specified student's grades;
+
+    :Displays the updated student's
+    scores in the GUI;
+
+    :Shows a success message;
+
+else ([else])
+
+    :Shows an invalid
+    command message;
+
+endif
+
+stop
+
+@enduml

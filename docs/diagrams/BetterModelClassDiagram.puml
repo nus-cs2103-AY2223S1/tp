@@ -4,18 +4,22 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-AddressBook *-right-> "1" UniquePersonList
-AddressBook *-right-> "1" UniqueTagList
-UniqueTagList -[hidden]down- UniquePersonList
-UniqueTagList -[hidden]down- UniquePersonList
+Friday *-down-> "1" UniqueStudentList
+Friday *-right-> "1" AliasMap
 
-UniqueTagList *-right-> "*" Tag
-UniquePersonList -right-> Person
+UniqueStudentList -right-> "*" Student
 
-Person -up-> "*" Tag
+Student *--> "*" Tag
 
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
+Student *--> "1" Name
+Student *--> "0..1" TelegramHandle
+Student *--> "0..1" MasteryCheck
+Student *--> "0..1" Consultation
+Student *--> "0..1" Remark
+Student *--> "1" GradesList
+
+AliasMap *--> "0..50" Alias
+AliasMap *--> "0..50" ReservedKeyword
+
+Alias "1" <-right> "1" ReservedKeyword
 @enduml

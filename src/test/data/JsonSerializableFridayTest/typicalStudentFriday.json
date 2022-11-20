@@ -1,0 +1,22 @@
+{
+  "students" : [ {
+    "name" : "Alice Pauline",
+    "telegramHandle" : "al1ce",
+    "consultation" : "2022-02-22",
+    "masteryCheck" : "2022-02-17",
+    "masteryCheckIsDone" : false,
+    "remark" : "She loves CS1101S",
+    "tagged" : [ "friends" ],
+    "gradesList" : [ "0", "0", "0", "0", "0" ]
+  }, {
+    "name" : "Benson Meier",
+    "telegramHandle" : "benson123",
+    "consultation" : "2022-09-17",
+    "masteryCheck" : "2022-08-17",
+    "masteryCheckIsDone" : false,
+    "remark" : "He can't take beer!",
+    "tagged" : [ "owesMoney", "friends" ],
+    "gradesList" : [ "0", "0", "0", "0", "0" ]
+  } ],
+  "aliases" : [ ]
+}

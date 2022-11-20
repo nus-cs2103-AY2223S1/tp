@@ -5,46 +5,57 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+Class "<<interface>>\nReadOnlyFriday" as ReadOnlyFriday
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
-Class AddressBook
+Class Friday
 Class ModelManager
 Class UserPrefs
 
-Class UniquePersonList
-Class Person
-Class Address
-Class Email
+Class UniqueStudentList
+Class Student
+Class MasteryCheck
+Class TelegramHandle
 Class Name
-Class Phone
+Class Consultation
 Class Tag
+Class Remark
+Class GradesList
+
+Class AliasMap
+Class Alias
+Class ReservedKeyword
 
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+Friday .up.|> ReadOnlyFriday
 
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
+Model .left.> ReadOnlyFriday
+ModelManager -left-> "1" Friday
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+Friday *--> "1" UniqueStudentList
+Friday *--> "1" AliasMap
+UniqueStudentList --> "~* all" Student
+AliasMap *--> Alias
+AliasMap *--> ReservedKeyword
+Alias <--> ReservedKeyword
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Student *--> Name
+Student *--> TelegramHandle
+Student *--> MasteryCheck
+Student *--> Consultation
+Student *--> "*" Tag
+Student *--> Remark
+Student *--> GradesList
 
-ModelManager -->"~* filtered" Person
+Alias -[hidden]right-> ReservedKeyword
+
+ModelManager -->"~* filtered" Student
 @enduml
