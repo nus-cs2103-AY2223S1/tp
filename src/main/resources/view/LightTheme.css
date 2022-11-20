@@ -1,3 +1,8 @@
+/*  @@author edfernape-reused
+    Reused from https://github.com/AY2223S1-CS2103-F14-4/tp/blob/master/src/main/resources/view/DarkTheme.css
+    with modification to theme colours
+*/
+
 .list-background {
     -fx-background-color: #ADD8E6;
     -fx-border-width: 3;
