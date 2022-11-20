@@ -23,6 +23,8 @@ checkstyle {
 test {
     useJUnitPlatform()
     finalizedBy jacocoTestReport
+
+    jvmArgs "-Djava.awt.headless=false"
 }
 
 task coverage(type: JacocoReport) {
@@ -67,6 +69,10 @@ dependencies {
 
 shadowJar {
     archiveFileName = 'addressbook.jar'
+}
+
+run {
+    enableAssertions = true
 }
 
 defaultTasks 'clean', 'test'

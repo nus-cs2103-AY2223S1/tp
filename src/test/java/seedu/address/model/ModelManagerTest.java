@@ -3,19 +3,22 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.FilterCommandPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.reminder.ReminderList;
 import seedu.address.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
@@ -98,10 +101,11 @@ public class ModelManagerTest {
         AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
         AddressBook differentAddressBook = new AddressBook();
         UserPrefs userPrefs = new UserPrefs();
+        ReminderList reminderList = new ReminderList();
 
         // same values -> returns true
-        modelManager = new ModelManager(addressBook, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs);
+        modelManager = new ModelManager(addressBook, userPrefs, reminderList);
+        ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs, reminderList);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -114,19 +118,54 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs, reminderList)));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
+        Set<NameContainsKeywordsPredicate> preds = Stream.of(keywords)
+                .map(keyword -> new NameContainsKeywordsPredicate(keyword))
+                .collect(Collectors.toSet());
+        modelManager.addNewFilterToFilteredPersonList(new FilterCommandPredicate(preds, null));
+        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs, reminderList)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        modelManager.clearFiltersInFilteredPersonList();
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs, reminderList)));
     }
+
+    @Test
+    public void setTargetPerson_setPersonAsTarget_personIsSetAsTargetPerson() {
+        modelManager.setTargetPerson(ALICE);
+        assertTrue(modelManager.isTargetPerson(ALICE));
+    }
+
+    @Test
+    public void clearTargetPerson_clearTargetPerson_noTargetPersonAfterClear() {
+        modelManager.setTargetPerson(ALICE);
+        assertTrue(modelManager.hasTargetPerson());
+        modelManager.clearTargetPerson();
+        assertFalse(modelManager.hasTargetPerson());
+    }
+
+    @Test
+    public void hasTargetPerson_targetPersonNotSet_returnsFalse() {
+        assertFalse(modelManager.hasTargetPerson());
+    }
+
+    @Test
+    public void hasTargetPerson_targetPersonSet_returnsTrue() {
+        modelManager.setTargetPerson(ALICE);
+        assertTrue(modelManager.hasTargetPerson());
+    }
+
+    @Test
+    public void getTargetPerson_getTargetPerson_currentTargetPerson() {
+        modelManager.setTargetPerson(ALICE);
+        assertEquals(ALICE, modelManager.getTargetPerson());
+    }
+
 }

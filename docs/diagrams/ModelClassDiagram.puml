@@ -9,17 +9,14 @@ Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
 Class AddressBook
+Class ReminderList
 Class ModelManager
 Class UserPrefs
+Class TargetPerson
 
 Class UniquePersonList
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
-Class Tag
-
+Class TagSet
+Class MessageList
 }
 
 Class HiddenOutside #FFFFFF
@@ -30,21 +27,19 @@ AddressBook .up.|> ReadOnlyAddressBook
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
 Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
-ModelManager -right-> "1" UserPrefs
+ModelManager -right-> "1" AddressBook
+ModelManager -up-> "1" UserPrefs
+ModelManager -right-> "0..1" TargetPerson
+ModelManager -down-> "all      " ReminderList
+ModelManager -down-> "targeted\nperson's" ReminderList
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+AddressBook *--> "1" TagSet
+AddressBook *--> "1" MessageList
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+UserPrefs -[hidden]right-> TargetPerson
+UniquePersonList -[hidden]right-> TagSet
+MessageList -[hidden]right-> TagSet
 
-ModelManager -->"~* filtered" Person
 @enduml

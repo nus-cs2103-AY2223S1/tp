@@ -1,31 +1,48 @@
 package seedu.address.model.person;
 
-import java.util.List;
+import static java.util.Objects.requireNonNull;
+
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
 
 /**
- * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Person}'s {@code Name} matches the keyword given.
  */
 public class NameContainsKeywordsPredicate implements Predicate<Person> {
-    private final List<String> keywords;
+    private final String keyword;
 
-    public NameContainsKeywordsPredicate(List<String> keywords) {
-        this.keywords = keywords;
+    /**
+     * Creates a {@code NameContainsKeywordsPredicates} with keywords converted
+     * to lower and duplicates removed.
+     *
+     * @param keywords Name to filter for.
+     */
+    public NameContainsKeywordsPredicate(String keyword) {
+        requireNonNull(keyword);
+        this.keyword = keyword.toLowerCase();
     }
 
     @Override
     public boolean test(Person person) {
-        return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getName().fullName, keyword));
+        return StringUtil.containsWordIgnoreCase(person.getName().fullName, keyword);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof NameContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((NameContainsKeywordsPredicate) other).keywords)); // state check
+                && keyword.equals(((NameContainsKeywordsPredicate) other).keyword)); // state check
+    }
+
+    @Override
+    public int hashCode() {
+        return keyword.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "[" + keyword + "]";
     }
 
 }

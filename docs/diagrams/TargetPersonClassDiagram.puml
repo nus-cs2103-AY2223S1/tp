@@ -1,0 +1,32 @@
+@startuml
+!include style.puml
+show members
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classAttributeIconSize 0
+skinparam classBackgroundColor MODEL_COLOR
+
+
+Class ModelManager {
+    +getObservableTargetPerson(): TargetPerson
+    +getTargetPerson(): Person
+    +setTargetPerson(Person): void
+    +clearTargetPerson(): void
+    +isTargetPerson(Person): boolean
+    +hasTargetPerson(): boolean
+}
+
+Class TargetPerson {
+    -targetPerson: Optional<Person>
+
+    +getNameProperty(): SimpleStringProperty
+    +getPhoneProperty(): SimpleStringProperty
+    +getAddressProperty(): SimpleStringProperty
+    +getEmailProperty(): SimpleStringProperty
+    +getRemarkProperty(): SimpleStringProperty
+    +getTagsProperty(): ObservableSet<Tag>
+}
+
+ModelManager -down-> "1 " TargetPerson
+
+@enduml

@@ -10,6 +10,7 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.reminder.ReadOnlyReminderList;
 
 /**
  * Manages storage of AddressBook data in local storage.
@@ -19,13 +20,16 @@ public class StorageManager implements Storage {
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private AddressBookStorage addressBookStorage;
     private UserPrefsStorage userPrefsStorage;
+    private ReminderListStorage reminderListStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage,
+                          ReminderListStorage reminderListStorage) {
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
+        this.reminderListStorage = reminderListStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -75,4 +79,31 @@ public class StorageManager implements Storage {
         addressBookStorage.saveAddressBook(addressBook, filePath);
     }
 
+    // ================ ReminderList methods ==============================
+    @Override
+    public Path getReminderListFilePath() {
+        return reminderListStorage.getReminderListFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyReminderList> readReminderList() throws DataConversionException, IOException {
+        return readReminderList(reminderListStorage.getReminderListFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyReminderList> readReminderList(Path filePath) throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return reminderListStorage.readReminderList(filePath);
+    }
+
+    @Override
+    public void saveReminderList(ReadOnlyReminderList reminderList) throws IOException {
+        saveReminderList(reminderList, reminderListStorage.getReminderListFilePath());
+    }
+
+    @Override
+    public void saveReminderList(ReadOnlyReminderList reminderList, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        reminderListStorage.saveReminderList(reminderList, filePath);
+    }
 }

@@ -1,0 +1,38 @@
+@startuml
+!include style.puml
+show members
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classAttributeIconSize 0
+skinparam classBackgroundColor MODEL_COLOR
+
+
+Class ModelManager {
+    +createMessage(Message): void
+    +deleteMessage(Message): void
+    +hasMessage(Message): boolean
+    +getMessages(): List<Message>
+}
+
+Class AddressBook {
+    +createMessage(Message): void
+    +deleteMessage(Message): void
+    +hasMessage(Message): boolean
+}
+
+Class MessageList {
+    +add(Message): void
+    +remove(Message): void
+    +contains(Message): boolean
+}
+
+Class Message {
+    -message: String
+    +generate(Person): String
+}
+
+ModelManager -down-> AddressBook
+AddressBook -down-> MessageList
+MessageList "1" -down-> "*" Message
+
+@enduml

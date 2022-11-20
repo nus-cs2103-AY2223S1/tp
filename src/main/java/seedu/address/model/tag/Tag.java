@@ -3,14 +3,18 @@ package seedu.address.model.tag;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.Collection;
+
 /**
  * Represents a Tag in the address book.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
  */
 public class Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric and "
+            + "cannot contain only numerals";
+    public static final String VALIDATION_REGEX_ALPHA_NUMERIC = "\\p{Alnum}+";
+    public static final String VALIDATION_REGEX_ONLY_NUMERALS = "\\d+";
 
     public final String tagName;
 
@@ -29,7 +33,7 @@ public class Tag {
      * Returns true if a given string is a valid tag name.
      */
     public static boolean isValidTagName(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return !test.matches(VALIDATION_REGEX_ONLY_NUMERALS) && test.matches(VALIDATION_REGEX_ALPHA_NUMERIC);
     }
 
     @Override
@@ -51,4 +55,20 @@ public class Tag {
         return '[' + tagName + ']';
     }
 
+    /**
+     * Format tags for pretty printing.
+     * @returns "tag1, tag2, tag3"
+     */
+    public static String toString(Collection<Tag> tags) {
+        requireNonNull(tags);
+        if (tags.isEmpty()) {
+            return "";
+        }
+
+        String result = tags.stream().reduce(
+                "", (tagString, tag) -> tagString + ", " + tag.tagName, (x, y) -> x + y);
+        // Remove unneeded preceding comma and space
+        result = result.substring(2);
+        return result;
+    }
 }

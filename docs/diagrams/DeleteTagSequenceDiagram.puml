@@ -1,0 +1,25 @@
+@startuml filter-sequence
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":DeleteTagCommand" as TagCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "model:Model" as Model MODEL_COLOR
+end box
+
+[->TagCommand : execute(model)
+activate TagCommand
+
+TagCommand -> Model : deleteTags(tagsToDelete)
+activate Model
+
+TagCommand <-- Model
+deactivate Model
+
+<-- TagCommand
+deactivate TagCommand
+
+
+@enduml

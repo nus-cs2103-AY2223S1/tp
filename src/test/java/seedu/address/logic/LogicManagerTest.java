@@ -17,9 +17,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.FilterClearCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
@@ -27,7 +28,9 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.reminder.ReminderList;
 import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonReminderListStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.testutil.PersonBuilder;
@@ -46,7 +49,9 @@ public class LogicManagerTest {
         JsonAddressBookStorage addressBookStorage =
                 new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        JsonReminderListStorage reminderListStorage =
+                new JsonReminderListStorage(temporaryFolder.resolve("reminders.json"));
+        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage, reminderListStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -64,8 +69,13 @@ public class LogicManagerTest {
 
     @Test
     public void execute_validCommand_success() throws Exception {
-        String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
+        String filterClearCommand =
+                String.format("%s %s", FilterClearCommand.COMMAND_WORD, FilterClearCommand.COMMAND_SPECIFIER);
+
+        String expectedMesasge =
+                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()) + "\n";
+
+        assertCommandSuccess(filterClearCommand, expectedMesasge, model);
     }
 
     @Test
@@ -75,7 +85,9 @@ public class LogicManagerTest {
                 new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        JsonReminderListStorage reminderListStorage =
+                new JsonReminderListStorage(temporaryFolder.resolve("ioExceptionReminders.json"));
+        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage, reminderListStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -129,7 +141,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), new ReminderList());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 

@@ -1,13 +1,17 @@
 package seedu.address.ui;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.util.logging.Logger;
 
-import javafx.event.ActionEvent;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextInputControl;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
@@ -16,6 +20,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.quote.Quote;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -24,6 +29,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
+    private static final String HELP_HOTKEY = "F1";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -32,14 +38,17 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private TargetPersonPanel targetPersonPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private WelcomePanel welcomePanel;
+    private MessageTemplatePanel messageTemplatePanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
 
     @FXML
-    private MenuItem helpMenuItem;
+    private Button helpMenuItem;
 
     @FXML
     private StackPane personListPanelPlaceholder;
@@ -49,6 +58,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private GridPane mainPane;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -62,8 +74,9 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
-
-        setAccelerators();
+        setHelpShortcut();
+        welcomePanel = new WelcomePanel(logic.getReminderListAsObservableList());
+        mainPane.addColumn(1, welcomePanel.getRoot());
 
         helpWindow = new HelpWindow();
     }
@@ -72,36 +85,14 @@ public class MainWindow extends UiPart<Stage> {
         return primaryStage;
     }
 
-    private void setAccelerators() {
-        setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
-    }
-
     /**
-     * Sets the accelerator of a MenuItem.
-     * @param keyCombination the KeyCombination value of the accelerator
+     * Sets F1 to open the help window.
      */
-    private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
-        menuItem.setAccelerator(keyCombination);
-
-        /*
-         * TODO: the code below can be removed once the bug reported here
-         * https://bugs.openjdk.java.net/browse/JDK-8131666
-         * is fixed in later version of SDK.
-         *
-         * According to the bug report, TextInputControl (TextField, TextArea) will
-         * consume function-key events. Because CommandBox contains a TextField, and
-         * ResultDisplay contains a TextArea, thus some accelerators (e.g F1) will
-         * not work when the focus is in them because the key event is consumed by
-         * the TextInputControl(s).
-         *
-         * For now, we add following event filter to capture such key events and open
-         * help window purposely so to support accelerators even when focus is
-         * in CommandBox or ResultDisplay.
-         */
+    private void setHelpShortcut() {
         getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
-            if (event.getTarget() instanceof TextInputControl && keyCombination.match(event)) {
-                menuItem.getOnAction().handle(new ActionEvent());
-                event.consume();
+            if (KeyCombination.valueOf(HELP_HOTKEY).match(event)) {
+                handleHelp();
+                event.consume(); // To stop event from propagating to other handlers
             }
         });
     }
@@ -112,6 +103,11 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+        targetPersonPanel = new TargetPersonPanel(logic.getTargetPerson(),
+                logic.getTargetPersonReminderListAsObservableList());
+
+        messageTemplatePanel = new MessageTemplatePanel(logic.getMessageTemplates());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -168,6 +164,71 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Displays a message to the user via the UI.
+     * @param message Message to be displayed.
+     */
+    public void displayMessage(String message) {
+        resultDisplay.setFeedbackToUser(message);
+    }
+
+    /**
+     * Sets the welcome message within welcomePanel.
+     * @param message Message to be displayed.
+     */
+    public void setWelcomeMessage(String message) {
+        requireAllNonNull(welcomePanel, message);
+        welcomePanel.setWelcomeMessage(message);
+    }
+
+    /**
+     * Sets the motivational quote within welcomePanel
+     * @param quote quote to be displayed.
+     */
+    public void setMotivationalQuote(Quote quote) {
+        requireAllNonNull(welcomePanel, quote);
+        welcomePanel.setMotivationalQuote(quote.toString());
+    }
+
+    /**
+     * Sets the secondary pane to specified pane.
+     * @param secondaryPaneState Secondary Pane to be set.
+     */
+    public void setSecondaryPaneState(SecondaryPaneState secondaryPaneState) {
+        requireNonNull(mainPane);
+        resetSecondaryPane();
+        switch(secondaryPaneState) {
+        case WELCOME:
+            mainPane.addColumn(1, welcomePanel.getRoot());
+            break;
+        case TARGET_PERSON:
+            mainPane.addColumn(1, targetPersonPanel.getRoot());
+            break;
+        case MESSAGE_TEMPLATES:
+            mainPane.addColumn(1, messageTemplatePanel.getRoot());
+            break;
+        case HELP:
+        default:
+            break;
+        }
+    }
+
+    /**
+     * Removes the secondary pane from UI.
+     */
+    private void resetSecondaryPane() {
+        requireNonNull(mainPane);
+        ObservableList<Node> childrens = mainPane.getChildren();
+        // gosh it took me more than an hour to find out how to do this
+        for (Node node : childrens) {
+            if (node.getStyleClass().contains("secondary-pane")) {
+                logger.info("Removing secondary pane");
+                mainPane.getChildren().remove(node);
+                break;
+            }
+        }
+    }
+
+    /**
      * Executes the command and returns the result.
      *
      * @see seedu.address.logic.Logic#execute(String)
@@ -176,10 +237,14 @@ public class MainWindow extends UiPart<Stage> {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            displayMessage(commandResult.getFeedbackToUser());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            }
+
+            if (commandResult.getSecondaryPaneState() != null) {
+                setSecondaryPaneState(commandResult.getSecondaryPaneState());
             }
 
             if (commandResult.isExit()) {
@@ -189,7 +254,7 @@ public class MainWindow extends UiPart<Stage> {
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
-            resultDisplay.setFeedbackToUser(e.getMessage());
+            displayMessage(e.getMessage());
             throw e;
         }
     }
