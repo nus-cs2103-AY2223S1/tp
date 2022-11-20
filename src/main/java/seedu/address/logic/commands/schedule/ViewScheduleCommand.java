@@ -23,10 +23,8 @@ public class ViewScheduleCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-
         model.updateFilteredScheduleList(PREDICATE_SHOW_ALL_SCHEDULES);
         return new CommandResult(MESSAGE_SUCCESS, false, false, false, false, false, false, true, false, false);
     }
-
 }
 

@@ -5,7 +5,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.ui.UiPart;
-// Solution below adapted from https://github.com/AY2021S1-CS2103T-W13-3/tp with some modifications
+//@@author lizekai-richard-reused
+//Reused from https://github.com/AY2021S1-CS2103T-W13-3/tp
+// with some modifications
 /**
  * A UI Component that that constitutes a region of a calendar view.
  */
@@ -31,5 +33,6 @@ public abstract class SlotContainer extends UiPart<Region> {
     public void setColor(String color) {
         slotPaneVBox.setStyle("-fx-font-size: 20; -fx-background-color: " + color + "; -fx-background-radius: 10px;");
     }
-
 }
+//@@author
+

@@ -14,7 +14,9 @@ import seedu.address.model.module.schedule.Schedule;
 import seedu.address.model.module.schedule.Weekdays;
 import seedu.address.ui.UiPart;
 import seedu.address.ui.theme.Theme;
-// Solution below adapted from https://github.com/AY2021S1-CS2103T-W13-3/tp with some modifications
+//@@author lizekai-richard-reused
+//Reused from https://github.com/AY2021S1-CS2103T-W13-3/tp
+// with some modifications
 /**
  * Creates a schedule grid panel
  */
@@ -176,15 +178,7 @@ public class ScheduleGridPanel extends UiPart<Region> {
             scrollPane.getStylesheets().add("view/schedule/css/scrollPaneLight.css");
         }
     }
-
-    // /**
-    //  * Sets the style of gridPane
-    //  */
-    // public void setGridPaneStyle(Theme theme) {
-    //     if (theme.equals(Theme.DARK)) {
-    //       gridPane.setStyle("-fx-background-color: rgba(29,29,35,0.71)");
-    //   } else {
-    //       gridPane.setStyle("-fx-background-color: rgba(245,241,207,0.89)");
-    //   }
-    //}
 }
+
+//@@author
+
