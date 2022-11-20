@@ -1,0 +1,25 @@
+{
+  "persons": [ {
+    "name" : "Alice Pauline",
+    "phone" : "94351253",
+    "email" : "alice@example.com",
+    "tagged" : [ "friends" ]
+  } ],
+  "books": [ {
+    "title" : "How to Spell",
+    "author" : "Ronald Johnson",
+    "isLoaned": false,
+    "returnDate": ""
+  }, {
+    "title" : "Making a Computer",
+    "author" : "Roger Smith",
+    "isLoaned": false,
+    "returnDate": ""
+  }, {
+    "title" : "Get Motivated",
+    "author" : "Lim Chee Teck",
+    "isLoaned": false,
+    "returnDate": ""
+  }]
+}
+

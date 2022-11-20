@@ -1,0 +1,14 @@
+@startuml
+start
+:User enters a List Command;
+:ListCommandParser parses for valid format;
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([valid format])
+    :Parse Subcommand ⋔;
+else ([else])
+    :Show error message;
+endif
+stop
+@enduml

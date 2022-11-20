@@ -1,0 +1,13 @@
+@startuml
+start
+:User enters a FindUserCommand;
+:FindUserArgumentsParser parses for valid format;
+
+if() then ([find command is valid]))
+    :Create new find user command which is executed by LogicManager;
+    :UI updates user list to show all users with matches to specified predicate;
+else ([else])
+    :Show error message;
+endif
+stop
+@enduml

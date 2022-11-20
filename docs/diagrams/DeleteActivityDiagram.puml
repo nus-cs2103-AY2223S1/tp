@@ -1,0 +1,28 @@
+@startuml
+start
+:User enters a DeleteCommand;
+:DeleteCommandParser parses for valid format;
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([valid format])
+    if () then ([subcommand is 'users'])
+        if () then ([valid format])
+            :Create and execute DeleteUserCommand;
+            :UI updates its list of users to reflect deletion of user;
+        else ([invalid])
+            :Show error message;
+        endif
+    else ([subcommand is 'books'])
+        if () then ([valid format])
+            :Return and execute DeleteBookCommand;
+            :UI updates its list of books to reflect deletion of book;
+        else ([invalid]])
+            :Show error message;
+        endif
+    endif
+else ([invalid])
+    :Show error message;
+endif
+stop
+@enduml

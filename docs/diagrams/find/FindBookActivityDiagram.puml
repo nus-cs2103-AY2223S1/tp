@@ -1,0 +1,13 @@
+@startuml
+start
+:User enters a FindBookCommand;
+:FindBookArgumentsParser parses for valid format;
+
+if() then ([find command is valid]))
+    :Create new find book command which is executed by LogicManager;
+    :UI updates book list to show all books with matches to specified predicate;
+else ([else])
+    :Show error message;
+endif
+stop
+@enduml

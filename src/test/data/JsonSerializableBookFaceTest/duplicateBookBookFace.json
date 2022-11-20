@@ -1,0 +1,19 @@
+{
+  "persons": [ {
+    "name": "Hans Muster",
+    "phone": "9482424",
+    "email": "alice@example.com"
+  } ],
+  "books": [ {
+    "title" : "How to Spell",
+    "author" : "Ronald Johnson",
+    "isLoaned": false,
+    "returnDate": ""
+  }, {
+    "title": "How to Spell",
+    "author": "Ronald Johnson",
+    "isLoaned": false,
+    "returnDate": ""
+  } ]
+}
+
