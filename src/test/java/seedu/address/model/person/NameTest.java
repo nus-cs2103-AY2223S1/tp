@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -36,5 +37,17 @@ public class NameTest {
         assertTrue(Name.isValidName("peter the 2nd")); // alphanumeric characters
         assertTrue(Name.isValidName("Capital Tan")); // with capital letters
         assertTrue(Name.isValidName("David Roger Jackson Ray Jr 2nd")); // long names
+    }
+
+    @Test
+    public void isCompareToCorrect() {
+        // ALICE < BOB
+        assertEquals(new Name("Alice").compareTo(new Name("Elle")), -4);
+
+        // ALICE == ALICE
+        assertEquals(new Name("Alice").compareTo(new Name("Alice")), 0);
+
+        // BOB > ALICE
+        assertEquals(new Name("Carl").compareTo(new Name("Alice")), 2);
     }
 }

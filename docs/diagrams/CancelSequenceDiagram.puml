@@ -1,0 +1,76 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":CancelCommandParser" as CancelCommandParser LOGIC_COLOR
+participant "d:CancelCommand" as CancelCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant "SelectAppointmentCommand" as SelectAppointmentCommand LOGIC_COLOR
+
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("cancel 1")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("cancel 1")
+activate AddressBookParser
+
+create CancelCommandParser
+AddressBookParser -> CancelCommandParser
+activate CancelCommandParser
+
+CancelCommandParser --> AddressBookParser
+deactivate CancelCommandParser
+
+AddressBookParser -> CancelCommandParser : parse("1")
+activate CancelCommandParser
+
+create CancelCommand
+CancelCommandParser -> CancelCommand
+activate CancelCommand
+
+CancelCommand --> CancelCommandParser : d
+deactivate CancelCommand
+
+CancelCommandParser --> AddressBookParser : d
+deactivate CancelCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+CancelCommandParser -[hidden]-> AddressBookParser
+destroy CancelCommandParser
+
+AddressBookParser --> LogicManager : d
+deactivate AddressBookParser
+
+LogicManager -> CancelCommand : execute()
+activate CancelCommand
+
+CancelCommand -> SelectAppointmentCommand : getTargetAppointment(model)
+activate SelectAppointmentCommand
+SelectAppointmentCommand --> CancelCommand : toBeCancelledAppt
+deactivate SelectAppointmentCommand
+
+CancelCommand -> Model : CancelAppointment(toBeCancelledAppt)
+activate Model
+
+Model --> CancelCommand
+deactivate Model
+
+create CommandResult
+CancelCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> CancelCommand
+deactivate CommandResult
+
+CancelCommand --> LogicManager : result
+deactivate CancelCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

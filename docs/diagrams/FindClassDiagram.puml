@@ -1,0 +1,35 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Class "<<interface>>\nPredicate" as Predicate
+
+show FindCommand fields
+class FindCommand {
+    isUsingAppointmentPredicate: boolean
+}
+
+show CombinedPersonPredicate fields
+class CombinedPersonPredicate {
+    name : String
+    phone : String
+    email : String
+    address : String
+    tagList : List<String>
+}
+
+show CombinedAppointmentPredicate fields
+class CombinedAppointmentPredicate {
+    reason : String
+    startDateTime : LocalDateTime
+    endDateTime : LocalDateTime
+}
+
+CombinedPersonPredicate .up.|> Predicate
+CombinedAppointmentPredicate .up.|> Predicate
+
+FindCommand -left-> "1" CombinedPersonPredicate
+FindCommand -right-> "1" CombinedAppointmentPredicate
+@enduml

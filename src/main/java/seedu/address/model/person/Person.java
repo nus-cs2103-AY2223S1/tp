@@ -3,10 +3,17 @@ package seedu.address.model.person;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import javafx.beans.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
+import javafx.util.Callback;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -21,18 +28,46 @@ public class Person {
     private final Email email;
 
     // Data fields
+    // Solution below adapted from https://stackoverflow.com/questions/31687642
+    private final Callback<Appointment, Observable[]> extractor = Appointment::getProperties;
+    private final ObservableList<Appointment> appointments = FXCollections.observableArrayList(extractor);
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
-     * Every field must be present and not null.
+     * Constructor for a person.
+     *
+     * @param name Name of the person.
+     * @param phone Phone number of the person.
+     * @param email Email of the person.
+     * @param address Address of the person.
+     * @param listOfAppointments Appointments that the person has.
+     * @param tags Tags associated with the person.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, List<Appointment> listOfAppointments,
+                  Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, listOfAppointments);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.appointments.addAll(listOfAppointments);
+        for (Appointment appointment : listOfAppointments) {
+            if (appointment.getPatient() != this) {
+                appointment.setPatient(this);
+            }
+        }
+        // Solution below adapted from https://stackoverflow.com/questions/31687642
+        this.appointments.addListener((ListChangeListener<Appointment>) c -> {
+            while (c.next()) {
+                if (c.wasUpdated()) {
+                    appointments.sort(Comparator.comparing(Appointment::getDateTime));
+                }
+                if (c.wasAdded()) {
+                    appointments.sort(Comparator.comparing(Appointment::getDateTime));
+                }
+            }
+        });
         this.tags.addAll(tags);
     }
 
@@ -52,9 +87,15 @@ public class Person {
         return address;
     }
 
+    public List<Appointment> getAppointments() {
+        return appointments;
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
+     *
+     * @return Set of tags associated with the person.
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
@@ -63,6 +104,8 @@ public class Person {
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
+     *
+     * @return Whether this person is same as the given person.
      */
     public boolean isSamePerson(Person otherPerson) {
         if (otherPerson == this) {
@@ -70,12 +113,98 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+                && otherPerson.getName().equals(getName())
+                && otherPerson.getPhone().equals(getPhone());
+    }
+
+    private String getAppointmentsString() {
+        String str = "Currently has %s upcoming ";
+        int num = 0;
+        for (Appointment appts : appointments) {
+            if (!appts.isMarked()) {
+                num += 1;
+            }
+        }
+        str = String.format(str, num);
+        str += num == 1 ? "appointment" : "appointments";
+        return str;
+    }
+
+    public String getParticulars() {
+        String str = phone.value;
+        if (!address.value.isEmpty()) {
+            str += "\n" + address.value;
+        }
+        if (!email.value.isEmpty()) {
+            str += "\n" + email.value;
+        }
+        str += "\n" + getAppointmentsString();
+        return str;
+    }
+
+    public Observable getApptsProperty() {
+        return appointments;
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns -1 if this person appears before the other person, and
+     * returns 0 if this person has the same order as the other person, and
+     * returns 1 if this person appears after the other person.
+     *
+     * @param person The other person to compare with.
+     * @return Relative positioning of this person compared to the given person.
+     */
+    public int compareTo(Person person) {
+        return this.getName().compareTo(person.getName()) < 0
+                ? -1
+                : this.getName().compareTo(person.getName()) > 0
+                ? 1
+                : this.getPhone().compareTo(person.getPhone());
+    }
+
+    /**
+     * Returns the group number where this person belongs to, which is determined
+     * by its tags.
+     *
+     * @return Group that the person belongs to.
+     */
+    public int getGroupNumber() {
+        Set<Tag> tags = this.getTags();
+        if (tags.isEmpty()) {
+            return 0;
+        }
+        int value = 0;
+        for (Tag tag: tags) {
+            value += tag.ordinal();
+        }
+        if (tags.size() == 1) {
+            return value + 1;
+        }
+        if (tags.size() == 2) {
+            return value + 3;
+        }
+        return value + 4;
+    }
+
+    /**
+     * Returns 10 * group difference -1 if this person appears before the other person, and
+     * returns 10 * group difference if this person has the same order as the other person, and
+     * returns 10 * group difference + 1 if this person appears after the other person. This method
+     * makes sure that people with the same tag group are grouped together.
+     *
+     * @param person The other person to compare with.
+     * @return Relative positioning of this person compared to given person after accounting for grouping.
+     */
+    public int groupCompareTo(Person person) {
+        int tagWeight = 10;
+        int nameWeight = 1;
+        return tagWeight * (this.getGroupNumber() - person.getGroupNumber())
+            + nameWeight * this.compareTo(person);
+    }
+
+    /*
+     Returns true if both persons have the same identity and data fields.
+     This defines a stronger notion of equality between two persons.
      */
     @Override
     public boolean equals(Object other) {
@@ -92,6 +221,7 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getAppointments().equals(getAppointments())
                 && otherPerson.getTags().equals(getTags());
     }
 
@@ -117,7 +247,8 @@ public class Person {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+        builder.append("; Appointments: ")
+                .append(getAppointments());
         return builder.toString();
     }
-
 }

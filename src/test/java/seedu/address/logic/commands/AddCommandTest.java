@@ -9,6 +9,8 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -20,6 +22,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -114,6 +117,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void addAppointment(Appointment appointment) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setAddressBook(ReadOnlyAddressBook newData) {
             throw new AssertionError("This method should not be called.");
         }
@@ -134,6 +142,21 @@ public class AddCommandTest {
         }
 
         @Override
+        public void deleteAppointment(Appointment target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteAppointments(List<Appointment> appointmentList) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setAppointment(Appointment target, Appointment editedAppointment) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setPerson(Person target, Person editedPerson) {
             throw new AssertionError("This method should not be called.");
         }
@@ -144,7 +167,32 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Appointment> getFilteredAppointmentList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updatePersonComparator(Comparator<Person> comparator) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateAppointmentComparator(Comparator<Appointment> comparator) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredLists(Predicate<Person> predicate, Predicate<Appointment> appointmentPredicate) {
             throw new AssertionError("This method should not be called.");
         }
     }

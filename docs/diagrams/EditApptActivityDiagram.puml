@@ -1,0 +1,15 @@
+@startuml
+start
+:User executes edit appt command;
+:Parser creates EditAppointmentDescriptor;
+if () then ([isAnyFieldEdited])
+    :Create new appointment object
+                with edited fields;
+    :Replace existing appointment object
+         in list with edited appointment;
+else ([else])
+    :Throw parseException;
+endif
+:Result is displayed to user;
+stop
+@enduml

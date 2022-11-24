@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -26,12 +27,15 @@ public class MainWindow extends UiPart<Stage> {
     private static final String FXML = "MainWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
+    private final String lightThemeUrl = getClass().getResource("/view/LightMode.css").toExternalForm();
+    private final String darkThemeUrl = getClass().getResource("/view/DarkMode.css").toExternalForm();
 
     private Stage primaryStage;
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private AppointmentListPanel appointmentListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -45,6 +49,9 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane personListPanelPlaceholder;
 
     @FXML
+    private StackPane appointmentListPanelPlaceholder;
+
+    @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
@@ -55,6 +62,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     public MainWindow(Stage primaryStage, Logic logic) {
         super(FXML, primaryStage);
+        System.out.println(darkThemeUrl);
 
         // Set dependencies
         this.primaryStage = primaryStage;
@@ -66,6 +74,9 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
+        helpWindow.getRoot().getScene().getStylesheets()
+                .add(logic.getGuiSettings().getStylesheet());
     }
 
     public Stage getPrimaryStage() {
@@ -113,13 +124,16 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
+        appointmentListPanel = new AppointmentListPanel(logic.getFilteredAppointmentList());
+        appointmentListPanelPlaceholder.getChildren().add(appointmentListPanel.getRoot());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        CommandBox commandBox = new CommandBox(this::executeCommand);
+        CommandBox commandBox = new CommandBox(this::executeCommand, resultDisplay, logic.getCommandHistory());
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
@@ -129,9 +143,48 @@ public class MainWindow extends UiPart<Stage> {
     private void setWindowDefaultSize(GuiSettings guiSettings) {
         primaryStage.setHeight(guiSettings.getWindowHeight());
         primaryStage.setWidth(guiSettings.getWindowWidth());
+        primaryStage.getScene().getStylesheets().add(guiSettings.getStylesheet());
         if (guiSettings.getWindowCoordinates() != null) {
             primaryStage.setX(guiSettings.getWindowCoordinates().getX());
             primaryStage.setY(guiSettings.getWindowCoordinates().getY());
+        }
+    }
+
+    /**
+     * Enables the light theme.
+     */
+    @FXML
+    private void useLightTheme() {
+        Scene scene = primaryStage.getScene();
+        assert lightThemeUrl != null;
+        assert darkThemeUrl != null;
+        if (scene.getStylesheets().contains(darkThemeUrl)) {
+            scene.getStylesheets().remove(darkThemeUrl);
+            scene.getStylesheets().add(lightThemeUrl);
+        }
+        Scene helpScene = helpWindow.getRoot().getScene();
+        if (helpScene.getStylesheets().contains(darkThemeUrl)) {
+            helpScene.getStylesheets().remove(darkThemeUrl);
+            helpScene.getStylesheets().add(lightThemeUrl);
+        }
+    }
+
+    /**
+     * Enables the dark theme.
+     */
+    @FXML
+    private void useDarkTheme() {
+        Scene scene = primaryStage.getScene();
+        assert lightThemeUrl != null;
+        assert darkThemeUrl != null;
+        if (scene.getStylesheets().contains(lightThemeUrl)) {
+            scene.getStylesheets().remove(lightThemeUrl);
+            scene.getStylesheets().add(darkThemeUrl);
+        }
+        Scene helpScene = helpWindow.getRoot().getScene();
+        if (helpScene.getStylesheets().contains(lightThemeUrl)) {
+            helpScene.getStylesheets().remove(lightThemeUrl);
+            helpScene.getStylesheets().add(darkThemeUrl);
         }
     }
 
@@ -157,7 +210,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleExit() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-                (int) primaryStage.getX(), (int) primaryStage.getY());
+                (int) primaryStage.getX(), (int) primaryStage.getY(), primaryStage.getScene().getStylesheets().get(1));
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();

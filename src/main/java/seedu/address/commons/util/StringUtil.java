@@ -6,6 +6,12 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+
+import seedu.address.model.tag.Tag;
 
 /**
  * Helper functions for handling strings.
@@ -36,6 +42,51 @@ public class StringUtil {
 
         return Arrays.stream(wordsInPreppedSentence)
                 .anyMatch(preppedWord::equalsIgnoreCase);
+    }
+
+    /**
+     * String.contains() method but with case-insensitive feature.
+     *
+     * @param sentence cannot be null, but can be empty
+     * @param sequence cannot be null, but can be empty
+     */
+    public static boolean containsIgnoreCase(String sentence, String sequence) {
+        requireNonNull(sentence);
+        requireNonNull(sequence);
+
+        // @author NicholasTYD-reused
+        // Reused from https://stackoverflow.com/a/86832
+        // with renaming of variables
+        return Pattern.compile(Pattern.quote(sequence), Pattern.CASE_INSENSITIVE).matcher(sentence).find();
+        // @author
+    }
+
+    /**
+     * Returns true if {@code tagSet} has all the {@code strings} in it.
+     *
+     * @param tagSet cannot be null
+     * @param strings cannot be null
+     */
+    public static boolean containsAllTagsIgnoreCase(Set<Tag> tagSet, List<String> strings) {
+        requireNonNull(tagSet);
+        requireNonNull(strings);
+
+        List<String> tagListToCheckInUpperCase =
+                tagSet.stream().map(tag -> tag.toString().toUpperCase()).collect(Collectors.toList());
+        List<String> stringsToSearchInUpperCase =
+                strings.stream().map(String::toUpperCase).collect(Collectors.toList());
+
+        return tagListToCheckInUpperCase.containsAll(stringsToSearchInUpperCase);
+    }
+
+    /**
+     * Removes redundant spaces in a string.
+     * E.g "     test    string  " becomes "test string".
+     * @param str a string
+     * @return A string with redundant spaces removed.
+     */
+    public static String removeRedundantSpaces(String str) {
+        return str.trim().replaceAll("\\s+", " ");
     }
 
     /**

@@ -1,0 +1,101 @@
+// @@author DaneMarc
+// Reused from https://github.com/AY2122S2-CS2103T-W09-2/tp/blob/master/src/main/resources/view/Cinnamon.css
+// with modifications
+
+.list-cell:filled {
+    -fx-background-color: #4bbfd0;
+    -fx-border-color: #4bbfd0;
+}
+
+.list-cell:filled:odd {
+    -fx-background-color: #89d5db;
+    -fx-border-color: #89d5db;
+}
+
+.list-cell .label {
+    -fx-text-fill: #333;
+}
+
+#personListView .list-cell:filled:selected {
+    -fx-border-color: #10aec2;
+}
+
+.result-display {
+    -fx-background-color: #89d5db;
+    -fx-text-fill: #222;
+    -fx-border-color: #89d5db;
+}
+
+.result-display .content, .result-display .scroll-bar {
+    -fx-background-color: #89d5db;
+}
+
+.status-bar .label {
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: #333;
+    -fx-padding: 10px;
+    -fx-pref-height: 30px;
+}
+
+.pane-with-border, .status-bar, .scroll-bar, .list-view, .list-cell {
+    -fx-background-color: #c6e6e8;
+}
+
+.menu-bar, .context-menu, .menu-item:focused {
+    -fx-background-color: #10aec2;
+}
+
+.menu:hover, .menu:showing, .menu-item:hover {
+    -fx-background-color: #c6e6e8;
+}
+
+.menu-item, .menu-bar .label {
+    -fx-text-fill: #333
+}
+
+.thumb {
+    -fx-background-color: #10aec2;
+}
+
+#resultPane {
+    -fx-border-color: #10aec2;
+}
+
+#commandTextField {
+    -fx-prompt-text-fill: #949494;
+    -fx-background-color: #89d5db;
+    -fx-border-color: #10aec2;
+    -fx-text-fill: #333;
+}
+
+#commandTextField:focused {
+    -fx-border-color: #10aec2;
+}
+
+#tags .label {
+    -fx-background-color: #10aec2;
+}
+
+#copyButton, #helpMessage {
+    -fx-text-fill: #333;
+}
+
+#copyButton {
+    -fx-background-color: #10aec2;
+}
+
+#copyButton:hover {
+    -fx-background-color: #4bbfd0;
+}
+
+#copyButton:armed {
+    -fx-background-color: #89d5db;
+}
+
+#helpMessageContainer {
+    -fx-background-color: #c6e6e8;
+}
+
+#patientHeading, #appointmentHeading {
+    -fx-text-fill: #333;
+}

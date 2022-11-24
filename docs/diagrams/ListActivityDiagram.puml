@@ -1,0 +1,19 @@
+@startuml
+!pragma useVerticalIf on
+start
+:User executes list command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([list patients])
+    :Show full patients list;
+else if () then ([list appts])
+    :Show full appointments list;
+else if () then ([list all])
+    :Show full patients and appointments list;
+else ([else])
+    :Throw exception;
+endif
+stop
+@enduml

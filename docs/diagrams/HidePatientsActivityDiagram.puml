@@ -1,0 +1,18 @@
+@startuml
+start
+:User executes hide patients command;
+
+if () then ([hide by tag])
+    :Create patient predicate based on tag;
+else if () then ([hide by name])
+    :Create patient predicate based on name;
+else ([else])
+    :Throw exception with error message, list unchanged;
+    stop
+
+endif
+:Combine with current predicate in HiddenPredicateSingleton;
+:Executes the filtered patient list with new predicate;
+:Result is displayed to user;
+stop
+@enduml

@@ -28,9 +28,27 @@ public class Phone {
 
     /**
      * Returns true if a given string is a valid phone number.
+     *
+     * @return Whether given phone number is valid.
      */
     public static boolean isValidPhone(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns -1 if this phone appears before the other phone, and
+     * returns 0 if this phone has the same order as the other phone, and
+     * returns 1 if this phone appears after the other phone.
+     *
+     * @param phone The other person to compare with.
+     * @return Relative positioning of this phone number compared to the given phone number.
+     */
+    public int compareTo(Phone phone) {
+        return this.value.compareTo(phone.value) < 0
+                ? -1
+                : this.value.compareTo(phone.value) > 0
+                ? 1
+                : 0;
     }
 
     @Override

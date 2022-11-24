@@ -9,7 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditPatientCommand.EditPersonDescriptor;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
@@ -35,7 +35,7 @@ public class PersonUtil {
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
         person.getTags().stream().forEach(
-            s -> sb.append(PREFIX_TAG + s.tagName + " ")
+            s -> sb.append(PREFIX_TAG + s.toString() + " ")
         );
         return sb.toString();
     }
@@ -54,7 +54,7 @@ public class PersonUtil {
             if (tags.isEmpty()) {
                 sb.append(PREFIX_TAG);
             } else {
-                tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
+                tags.forEach(s -> sb.append(PREFIX_TAG).append(s.toString()).append(" "));
             }
         }
         return sb.toString();

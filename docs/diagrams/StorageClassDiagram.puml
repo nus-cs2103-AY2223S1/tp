@@ -20,8 +20,10 @@ Class JsonAddressBookStorage
 Class JsonSerializableAddressBook
 Class JsonAdaptedPerson
 Class JsonAdaptedTag
+Class JsonAdaptedAppointment
 }
 
+Class JsonCommandHistoryStorage
 }
 
 Class HiddenOutside #FFFFFF
@@ -30,6 +32,7 @@ HiddenOutside ..> Storage
 StorageManager .up.|> Storage
 StorageManager -up-> "1" UserPrefsStorage
 StorageManager -up-> "1" AddressBookStorage
+StorageManager -down-> "1" JsonCommandHistoryStorage
 
 Storage -left-|> UserPrefsStorage
 Storage -right-|> AddressBookStorage
@@ -39,5 +42,6 @@ JsonAddressBookStorage .up.|> AddressBookStorage
 JsonAddressBookStorage ..> JsonSerializableAddressBook
 JsonSerializableAddressBook --> "*" JsonAdaptedPerson
 JsonAdaptedPerson --> "*" JsonAdaptedTag
+JsonAdaptedPerson ---> "*" JsonAdaptedAppointment
 
 @enduml

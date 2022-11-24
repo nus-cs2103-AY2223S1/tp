@@ -1,0 +1,87 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":MarkCommandParser" as MarkCommandParser LOGIC_COLOR
+participant "mc:MarkCommand" as MarkCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "target:Appointment" as Appointment MODEL_COLOR
+end box
+[-> LogicManager : execute("mark 1")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("mark 1")
+activate AddressBookParser
+
+create MarkCommandParser
+AddressBookParser -> MarkCommandParser
+activate MarkCommandParser
+
+MarkCommandParser --> AddressBookParser
+deactivate MarkCommandParser
+
+AddressBookParser -> MarkCommandParser : parse("mark 1")
+activate MarkCommandParser
+
+create MarkCommand
+MarkCommandParser -> MarkCommand
+activate MarkCommand
+
+MarkCommand --> MarkCommandParser
+deactivate MarkCommand
+
+MarkCommandParser --> AddressBookParser
+deactivate MarkCommandParser
+
+AddressBookParser --> LogicManager : mc
+deactivate AddressBookParser
+
+LogicManager -> MarkCommand : execute(model)
+activate MarkCommand
+
+MarkCommand -> Model : getTargetAppointment(model)
+activate Model
+
+Model --> MarkCommand : appointmentToMark
+deactivate Model
+
+MarkCommand --> Appointment : mark()
+activate Appointment
+
+Appointment --> MarkCommand
+deactivate Appointment
+
+opt appointment is recurring
+
+MarkCommand --> MarkCommand : addRecurringAppointment
+activate MarkCommand
+
+MarkCommand --> MarkCommand
+deactivate MarkCommand
+
+end
+
+create CommandResult
+MarkCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> MarkCommand
+deactivate CommandResult
+CommandResult -[hidden]-> MarkCommand
+destroy CommandResult
+
+
+MarkCommand --> LogicManager : result
+deactivate MarkCommand
+MarkCommand -[hidden]-> LogicManager : result
+destroy MarkCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

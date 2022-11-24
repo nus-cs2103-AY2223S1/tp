@@ -40,12 +40,16 @@ public class Email {
      */
     public Email(String email) {
         requireNonNull(email);
-        checkArgument(isValidEmail(email), MESSAGE_CONSTRAINTS);
+        if (!email.isEmpty()) {
+            checkArgument(isValidEmail(email), MESSAGE_CONSTRAINTS);
+        }
         value = email;
     }
 
     /**
      * Returns if a given string is a valid email.
+     *
+     * @return Whether given email is valid.
      */
     public static boolean isValidEmail(String test) {
         return test.matches(VALIDATION_REGEX);

@@ -1,0 +1,101 @@
+// @@author DaneMarc
+// Reused from https://github.com/AY2122S2-CS2103T-W09-2/tp/blob/master/src/main/resources/view/Caramel.css
+// with modifications
+
+.list-cell:filled {
+    -fx-background-color: #333;
+    -fx-border-color: #333;
+}
+
+.list-cell:filled:odd {
+    -fx-background-color: #474747;
+    -fx-border-color: #474747;
+}
+
+#personListView .list-cell:filled:selected {
+    -fx-border-color: #10aec2;
+}
+
+.list-cell .label {
+    -fx-text-fill: #EAEAEA;
+}
+
+.result-display {
+    -fx-background-color: #333;
+    -fx-text-fill: #EAEAEA;
+    -fx-border-color: #333;
+}
+
+.result-display .content, .result-display .scroll-bar {
+    -fx-background-color: #333;
+}
+
+.status-bar .label {
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: #EAEAEA;
+    -fx-padding: 10px;
+    -fx-pref-height: 30px;
+}
+
+.pane-with-border, .status-bar, .scroll-bar, .list-view, .list-cell {
+    -fx-background-color: #2A2A2A;
+}
+
+.menu-bar, .context-menu, .menu-item:focused {
+    -fx-background-color: #10aec2;
+}
+
+.menu:hover, .menu:showing, .menu-item:hover {
+    -fx-background-color: #2A2A2A;
+}
+
+.menu-item, .menu-bar .label {
+    -fx-text-fill: #EAEAEA
+}
+
+.thumb {
+    -fx-background-color: #10aec2;
+}
+
+#resultPane {
+    -fx-border-color: #10aec2;
+}
+
+#commandTextField {
+    -fx-prompt-text-fill: #949494;
+    -fx-background-color: #2A2A2A;
+    -fx-border-color: transparent transparent #10aec2 transparent;
+    -fx-text-fill: #EAEAEA;
+}
+
+#commandTextField:focused {
+    -fx-border-color: transparent transparent #10aec2 transparent;
+}
+
+#tags .label {
+    -fx-background-color: #10aec2;
+}
+
+#copyButton, #helpMessage {
+    -fx-text-fill: #EAEAEA;
+}
+
+#copyButton {
+    -fx-background-color: #333;
+}
+
+#copyButton:hover {
+    -fx-background-color: #474747;
+}
+
+#copyButton:armed {
+    -fx-background-color: #949494;
+}
+
+#helpMessageContainer {
+    -fx-background-color: #2A2A2A;
+}
+
+#patientHeading, #appointmentHeading {
+    -fx-text-fill: #EAEAEA;
+}

@@ -26,7 +26,8 @@ public class StorageManagerTest {
     public void setUp() {
         JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        JsonCommandHistoryStorage commandHistoryStorage = new JsonCommandHistoryStorage(getTempFilePath("ch"));
+        storageManager = new StorageManager(addressBookStorage, userPrefsStorage, commandHistoryStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -41,7 +42,8 @@ public class StorageManagerTest {
          * More extensive testing of UserPref saving/reading is done in {@link JsonUserPrefsStorageTest} class.
          */
         UserPrefs original = new UserPrefs();
-        original.setGuiSettings(new GuiSettings(300, 600, 4, 6));
+        original.setGuiSettings(new GuiSettings(300, 600, 4, 6,
+                getClass().getResource("/view/LightMode.css").toExternalForm()));
         storageManager.saveUserPrefs(original);
         UserPrefs retrieved = storageManager.readUserPrefs().get();
         assertEquals(original, retrieved);
