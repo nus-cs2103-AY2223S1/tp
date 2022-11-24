@@ -28,6 +28,7 @@ public class Person {
     private final Email email;
 
     // Data fields
+    // Solution below adapted from https://stackoverflow.com/questions/31687642
     private final Callback<Appointment, Observable[]> extractor = Appointment::getProperties;
     private final ObservableList<Appointment> appointments = FXCollections.observableArrayList(extractor);
     private final Address address;
@@ -56,6 +57,7 @@ public class Person {
                 appointment.setPatient(this);
             }
         }
+        // Solution below adapted from https://stackoverflow.com/questions/31687642
         this.appointments.addListener((ListChangeListener<Appointment>) c -> {
             while (c.next()) {
                 if (c.wasUpdated()) {
