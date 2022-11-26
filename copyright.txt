@@ -1,13 +1,9 @@
-﻿Some code adapted from http://code.makery.ch/library/javafx-8-tutorial/ by Marco Jakob
+Some code adapted from http://code.makery.ch/library/javafx-8-tutorial/ by Marco Jakob
 
-Copyright by Colton Wiscombe - https://mdi.bessarabov.com/icon/food-turkey
+FoodRem icon by Colton Wiscombe - https://materialdesignicons.com/icon/food-turkey
 - foodrem.png
-- foodrem.ico
-
-Copyright by Jan Jan Kovařík - http://glyphicons.com/
-- calendar.png
-- edit.png
 
 Website:
 - Fonts by Google Fonts - https://fonts.google.com/
-- Icons from Font Awesome - https://fontawesome.com/
+- Icons by Font Awesome - https://fontawesome.com/
+- Icons by Octicons - https://primer.style/octicons/
