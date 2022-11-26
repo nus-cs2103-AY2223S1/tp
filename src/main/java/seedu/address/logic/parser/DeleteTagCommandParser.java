@@ -42,7 +42,10 @@ public class DeleteTagCommandParser implements Parser<DeleteTagCommand> {
         return new DeleteTagCommand(index, tags);
     }
 
+    //@@author dlimyy-reused
+    //Reused with minor modifications from existing AB3 (https://github.com/nus-cs2103-AY2223S1/tp)
     private static boolean isTagPrefixPresent(ArgumentMultimap argumentMultimap) {
         return argumentMultimap.getValue(PREFIX_TAG).isPresent();
     }
+    //@@author
 }

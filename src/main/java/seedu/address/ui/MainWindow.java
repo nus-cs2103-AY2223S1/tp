@@ -121,11 +121,15 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        //@@author dlimyy-reused
+        //Reused with modifications
+        // from existing AB3 (https://github.com/nus-cs2103-AY2223S1/tp)
         taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
         taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
 
         moduleListPanel = new ModuleListPanel(logic.getFilteredModuleList());
         moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
+        //@@author
 
         examListPanel = new ExamListPanel(logic.getFilteredExamList());
         examListPanelPlaceholder.getChildren().add(examListPanel.getRoot());

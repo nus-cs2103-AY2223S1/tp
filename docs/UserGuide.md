@@ -119,6 +119,10 @@ This document is to assist you in using MODPRO smoothly and effectively to track
 4. Double-click the file to start the app. The GUI similar to the image below should appear in a few seconds. <br>
    ![Ui](images/Ui.png)
 
+<!--@@author dlimyy-reused-->
+<!--Reused with minor modification from existing AB3-->
+<!--https://github.com/nus-cs2103-AY2223S1/tp-->
+
 5. Type the command in the command box and press Enter to execute it. <br>
    e.g. typing help and pressing Enter will open the help window. <br>
    Here are some commands you can try:
@@ -128,6 +132,7 @@ This document is to assist you in using MODPRO smoothly and effectively to track
    * `m delete 1` : Deletes the 1st module shown in the displayed module list.
    * `exit` : Exits the app.
 
+<!--@@author-->
 6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -844,6 +849,9 @@ To provide you with a better user experience, MODPRO will:
 
 ## General 
 
+<!--@@author dlimyy-reused-->
+<!--Reused with minor modification from existing AB3-->
+<!--https://github.com/nus-cs2103-AY2223S1/tp-->
 ### Saving data to the data file
 * All MODPRO data will be manually saved to the hard disk after the execution of each command.
 There is no need to manually save the data.
@@ -857,6 +865,8 @@ to modify the data at the JSON file.
 If changes made to the modpro.json makes the format invalid or invalid data is used, 
 MODPRO will discard all data stored and start with an empty data file.
 </div>
+
+<!--@@author-->
 
 --------------------------------------------------------------------------
 ## FAQ

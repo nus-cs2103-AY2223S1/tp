@@ -45,6 +45,8 @@ class JsonSerializableAddressBook {
         this.exams.addAll(exams);
     }
 
+    //@@author dlimyy-reused
+    //Reused with minor modifications from existing AB3 (https://github.com/nus-cs2103-AY2223S1/tp)
     /**
      * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
      *
@@ -55,6 +57,7 @@ class JsonSerializableAddressBook {
         tasks.addAll(source.getTaskList().stream().map(JsonAdaptedTask::new).collect(Collectors.toList()));
         exams.addAll(source.getExamList().stream().map(JsonAdaptedExam::new).collect(Collectors.toList()));
     }
+    //@@author
 
     /**
      * Converts this address book into the model's {@code AddressBook} object.
