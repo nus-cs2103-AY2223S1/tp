@@ -1,0 +1,55 @@
+@startuml
+!include style.puml
+mainframe **sd**  get taskToEdit and create editedTask
+
+box Logic LOGIC_COLOR_T1
+participant "c:EditTaskCommand" as EditTaskCommand LOGIC_COLOR
+
+end box
+
+box Model MODEL_COLOR_T1
+participant "taskToEdit:Task" as TargetTask MODEL_COLOR
+participant "unlinkedEditedTask:Task" as UnlinkedEditedTask MODEL_COLOR
+participant "linkedEditedTask:Task" as LinkedEditedTask MODEL_COLOR
+participant ":Model" as Model MODEL_COLOR
+end box
+
+
+EditTaskCommand -> Model : get task at the specified index
+activate Model
+
+Model --> EditTaskCommand : taskToEdit
+deactivate Model
+
+EditTaskCommand -> TargetTask : edit()
+activate TargetTask
+
+alt "module is changed"
+
+create UnlinkedEditedTask
+TargetTask -> UnlinkedEditedTask
+note right
+unlinkedEditedTask has no
+linked exam, while
+linkedEditedTask keeps
+any linked exam of taskToEdit
+end note
+activate UnlinkedEditedTask
+
+UnlinkedEditedTask --> TargetTask
+deactivate UnlinkedEditedTask
+
+else "module not changed"
+create LinkedEditedTask
+TargetTask -> LinkedEditedTask
+activate LinkedEditedTask
+
+LinkedEditedTask --> TargetTask
+deactivate LinkedEditedTask
+end
+
+TargetTask --> EditTaskCommand : editedTask
+deactivate TargetTask
+autonumber
+
+@enduml

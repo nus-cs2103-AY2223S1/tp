@@ -1,0 +1,20 @@
+@startuml
+start
+:User executes the delete exam command;
+if () then ([invalid command format])
+    :Display invalid command format error message;
+else ([else])
+    if () then ([invalid task index])
+    :Display invalid task index shown error message;
+
+    else ([else])
+            : delete task;
+            if () then ([deleted task is linked])
+            :Display message that task has been deleted successfully with link dropped;
+            else ([else])
+            :Display message that task has been deleted successfully;
+            endif
+    endif
+endif
+stop
+@enduml

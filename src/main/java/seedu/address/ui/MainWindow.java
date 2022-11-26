@@ -31,7 +31,10 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+
+    private TaskListPanel taskListPanel;
+    private ModuleListPanel moduleListPanel;
+    private ExamListPanel examListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -50,6 +53,15 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane statusbarPlaceholder;
 
+    @FXML
+    private StackPane moduleListPanelPlaceholder;
+
+    @FXML
+    private StackPane taskListPanelPlaceholder;
+
+    @FXML
+    private StackPane examListPanelPlaceholder;
+
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -59,7 +71,6 @@ public class MainWindow extends UiPart<Stage> {
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
-
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
 
@@ -110,8 +121,18 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        //@@author dlimyy-reused
+        //Reused with modifications
+        // from existing AB3 (https://github.com/nus-cs2103-AY2223S1/tp)
+        taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
+        taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
+
+        moduleListPanel = new ModuleListPanel(logic.getFilteredModuleList());
+        moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
+        //@@author
+
+        examListPanel = new ExamListPanel(logic.getFilteredExamList());
+        examListPanelPlaceholder.getChildren().add(examListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -163,10 +184,6 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
-    }
-
     /**
      * Executes the command and returns the result.
      *
@@ -177,15 +194,12 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
-
             if (commandResult.isExit()) {
                 handleExit();
             }
-
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);

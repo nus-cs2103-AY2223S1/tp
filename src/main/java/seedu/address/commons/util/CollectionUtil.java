@@ -27,6 +27,16 @@ public class CollectionUtil {
     }
 
     /**
+     * Throws NullPointerException if all of {@code items} is null.
+     */
+    public static void requireAnyNonNull(Object... items) {
+        requireNonNull(items);
+        if (!isAnyNonNull(items)) {
+            throw new NullPointerException();
+        }
+    }
+
+    /**
      * Returns true if {@code items} contain any elements that are non-null.
      */
     public static boolean isAnyNonNull(Object... items) {

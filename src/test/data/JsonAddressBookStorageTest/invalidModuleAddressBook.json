@@ -1,0 +1,9 @@
+{
+  "tasks" : [ ],
+  "modules" : [{
+    "moduleCode" : "cs2030",
+    "moduleName" : "Programming Methodology",
+    "moduleCredit" : "-9999999999999999999"
+  }],
+  "exams" : [ ]
+}

@@ -1,0 +1,18 @@
+@startuml
+start
+:User execute keyword;
+:Parse Command;
+if () then ([keyword is not empty])
+    :Update filtered task list;
+    :Displays the tasks which matches the keyword
+    with a message that states
+    the number of tasks that are listed. ;
+
+else ([else])
+  :Display error message stating invalid format;
+
+endif
+
+stop
+
+@enduml

@@ -1,0 +1,17 @@
+{
+  "tasks" : [ ],
+  "modules" : [ {
+    "moduleCode" : "cs2030",
+    "moduleName" : "Programming Methodology",
+    "moduleCredit" : "4"
+  }],
+  "exams" : [ {
+    "description" : "Final Exam",
+    "date" : "28-12-2022",
+    "moduleCode" : "cs2030"
+  }, {
+    "description" : "Final Exam",
+    "date" : "28-12-2022",
+    "moduleCode" : "cs2030"
+  }]
+}

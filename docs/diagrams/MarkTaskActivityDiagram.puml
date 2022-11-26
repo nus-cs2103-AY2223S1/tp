@@ -1,0 +1,23 @@
+@startuml
+start
+:User executes the mark command;
+switch ()
+case ( [no valid number provided to indicate the index])
+    :Display error message
+    regarding invalid command format;
+case ( [invalid index])
+    :Display error message
+   regarding invalid index;
+case ( [task already marked] )
+    :Display error message
+   stating task is already marked;
+case ( [else] )
+    :Display message stating that
+    the task is successfully marked;
+    :Tick the task and update the
+    progress bar for the module
+    of the task;
+endswitch
+
+stop
+@enduml
