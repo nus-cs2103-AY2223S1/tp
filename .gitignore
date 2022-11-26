@@ -8,6 +8,10 @@ src/main/resources/docs/
 /out/
 /*.iml
 
+# VSCode files
+/bin/
+/.vscode/
+
 # Storage/log files
 /data/
 /config.json
@@ -20,3 +24,6 @@ src/test/data/sandbox/
 # MacOS custom attributes files created by Finder
 .DS_Store
 docs/_site/
+
+# Ruby config files for local Jekyll server
+docs/.ruby-version

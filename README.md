@@ -1,14 +1,23 @@
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
+[![Java CI](https://github.com/AY2223S1-CS2103T-T10-3/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/AY2223S1-CS2103T-T10-3/tp/actions/workflows/gradle.yml)
+[![codecov](https://codecov.io/gh/AY2223S1-CS2103T-T10-3/tp/branch/master/graph/badge.svg?token=K13DUI69HX)](https://codecov.io/gh/AY2223S1-CS2103T-T10-3/tp)
+
+# WorkBook (WB)
 
 ![Ui](docs/images/Ui.png)
 
-* This is **a sample project for Software Engineering (SE) students**.<br>
-  Example usages:
-  * as a starting point of a course project (as opposed to writing everything from scratch)
-  * as a case study
-* The project simulates an ongoing software project for a desktop application (called _AddressBook_) used for managing contact details.
-  * It is **written in OOP fashion**. It provides a **reasonably well-written** code base **bigger** (around 6 KLoC) than what students usually write in beginner-level SE modules, without being overwhelmingly big.
-  * It comes with a **reasonable level of user and developer documentation**.
-* It is named `AddressBook Level 3` (`AB3` for short) because it was initially created as a part of a series of `AddressBook` projects (`Level 1`, `Level 2`, `Level 3` ...).
-* For the detailed documentation of this project, see the **[Address Book Product Website](https://se-education.org/addressbook-level3)**.
-* This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
+* WorkBook (WB) is a desktop app for CS/tech students who are applying for internships to manage their internship applications.
+
+* WorkBook (WB) is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, WB can get your internship management tasks done faster than traditional GUI apps.
+ 
+## Usage 
+
+* Manage your internship applications for easier tracking!
+
+
+## Acknowledgements
+Libraries used: [JavaFX](https://openjfx.io), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5). <br>
+This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org). <br>
+User Guide: Table of Contents with bullet points removed is reused from [@ianyong's team in 2020](https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/190/commits/b91ca546a6a41a977a8dbf4d40c969ab07a49ad7).
+Reused [code](https://github.com/AY2223S1-CS2103T-T10-4/tp/commit/118c73f20a9eac789f37778a2f05e225f76a1110) from CS2103T-T10-4 to parse optional arguments.
+
+

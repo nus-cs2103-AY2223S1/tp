@@ -1,0 +1,53 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":WorkBookParser" as WorkBookParser LOGIC_COLOR
+participant "r:RedoCommand" as RedoCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":VersionedWorkBook" as VersionedWorkBook MODEL_COLOR
+end box
+[-> LogicManager : execute(redo)
+activate LogicManager
+
+LogicManager -> WorkBookParser : parseCommand(redo)
+activate WorkBookParser
+
+create RedoCommand
+WorkBookParser -> RedoCommand
+activate RedoCommand
+
+RedoCommand --> WorkBookParser
+deactivate RedoCommand
+
+WorkBookParser --> LogicManager : r
+deactivate WorkBookParser
+
+LogicManager -> RedoCommand : execute()
+activate RedoCommand
+
+RedoCommand -> Model : redoWorkBook()
+activate Model
+
+Model -> VersionedWorkBook : redo()
+activate VersionedWorkBook
+
+VersionedWorkBook -> VersionedWorkBook :resetData(ReadOnlyWorkBook)
+VersionedWorkBook --> Model :
+deactivate VersionedWorkBook
+
+Model --> RedoCommand
+deactivate Model
+
+RedoCommand --> LogicManager : result
+deactivate RedoCommand
+RedoCommand -[hidden]-> LogicManager : result
+destroy RedoCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

@@ -1,14 +1,15 @@
 @startuml
+
+skinparam ActivityBackgroundColor yellow
 start
 :User executes command;
 
 'Since the beta syntax does not support placing the condition outside the
 'diamond we place it as the true branch instead.
 
-if () then ([command commits AddressBook])
-    :Purge redundant states;
-    :Save AddressBook to
-    addressBookStateList;
+if () then ([command commits WorkBook])
+   :Purge redundant states;
+   :Save WorkBook to workBookStateList;
 else ([else])
 endif
 stop

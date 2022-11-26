@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="TOP_CENTER" stylesheets="@Tips.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+  <children>
+    <HBox fx:id="headerContainer" alignment="CENTER">
+      <children>
+          <Label fx:id="tipsHeader" text="Tips Header" textAlignment="CENTER" />
+      </children>
+      <opaqueInsets>
+        <Insets bottom="6.0" left="5.0" right="10.0" top="5.0" />
+      </opaqueInsets>
+      <padding>
+        <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
+      </padding>
+    </HBox>
+    <GridPane fx:id="gridPane" alignment="CENTER" vgap="20.0">
+      <columnConstraints>
+        <ColumnConstraints hgrow="ALWAYS" />
+      </columnConstraints>
+      <padding>
+          <Insets bottom="30.0" left="10.0" right="10.0" top="10.0" />
+      </padding>
+         <children>
+            <HBox alignment="CENTER" GridPane.hgrow="ALWAYS">
+               <children>
+                  <Label styleClass="tipText" text="Sorry, there are no tips for this stage yet." textAlignment="CENTER" />
+               </children>
+            </HBox>
+         </children>
+    </GridPane>
+  </children>
+</VBox>

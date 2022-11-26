@@ -1,5 +1,19 @@
-#copyButton, #helpMessage {
+#copyButton, #urlMessage {
     -fx-text-fill: white;
+}
+
+#topHeader {
+    -fx-text-fill: orange;
+    -fx-font-weight: bold;
+    -fx-font-size: 20px;
+}
+
+.commandText {
+    -fx-text-fill: white;
+}
+
+.commandHeader {
+    -fx-text-fill: orange;
 }
 
 #copyButton {
@@ -14,6 +28,10 @@
     -fx-background-color: darkgray;
 }
 
-#helpMessageContainer {
+.commandContainer {
+    -fx-background-color: derive(#1d1d1d, 20%);
+}
+
+#urlMessageContainer, #topHeaderContainer {
     -fx-background-color: derive(#1d1d1d, 20%);
 }

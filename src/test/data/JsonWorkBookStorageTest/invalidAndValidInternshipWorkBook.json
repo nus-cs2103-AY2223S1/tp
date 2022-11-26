@@ -1,0 +1,13 @@
+{
+  "internships": [ {
+    "company": "Valid Internship",
+    "role": "Software Engineer",
+    "email": "hans@example.com",
+    "stage": "Technical Interview",
+    "date": "16-Oct-2022 14:00"
+  }, {
+    "company": "Internship With Missing Role",
+    "email": "hans@example.com",
+    "stage": "Technical Interview"
+  } ]
+}

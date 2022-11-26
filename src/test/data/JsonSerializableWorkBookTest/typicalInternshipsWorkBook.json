@@ -1,0 +1,54 @@
+{
+  "_comment": "WorkBook save file which contains the same Internship values as in TypicalInternships#getTypicalWorkBook()",
+  "internships" : [ {
+    "company" : "Alice Pauline",
+    "role" : "Software Engineer",
+    "email" : "alice@example.com",
+    "stage" : "Technical Interview",
+    "dateTime": "12-Oct-2022 12:00",
+    "tagged" : [ "friends" ]
+  }, {
+    "company" : "Benson Meier",
+    "role" : "Software Engineer",
+    "email" : "johnd@example.com",
+    "stage" : "HR Interview",
+    "dateTime": "12-Dec-2022 14:00",
+    "languages": [ "Java", "Python" ],
+    "tagged" : [ "owesMoney", "friends" ]
+  }, {
+    "company" : "Carl Kurz",
+    "role" : "Software Engineer",
+    "email" : "heinz@example.com",
+    "stage" : "Rejected",
+    "dateTime" : "",
+    "tagged" : [ ]
+  }, {
+    "company" : "Daniel Meier",
+    "role" : "Software Engineer",
+    "email" : "cornelia@example.com",
+    "stage" : "Technical Interview",
+    "dateTime": "",
+    "tagged" : [ "friends" ]
+  }, {
+    "company" : "Elle Meyer",
+    "role" : "Software Engineer",
+    "email" : "werner@example.com",
+    "stage" : "Application Sent",
+    "dateTime": "",
+    "tagged" : [ ]
+  }, {
+    "company" : "Fiona Kunz",
+    "role" : "Software Engineer",
+    "email" : "lydia@example.com",
+    "stage" : "Online Assessment",
+    "dateTime": "",
+    "tagged" : [ ]
+  }, {
+    "company" : "George Best",
+    "role" : "Software Engineer",
+    "email" : "anna@example.com",
+    "stage" : "Team Lead Interview",
+    "dateTime": "",
+    "tagged" : [ ]
+  } ]
+}

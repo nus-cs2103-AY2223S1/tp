@@ -1,0 +1,44 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR_T4
+skinparam classBackgroundColor UI_COLOR
+show members
+
+package Model <<Rectangle>>{
+Class "<<interface>>\nModel" as Model
+Class ModelManager
+Class VersionedWorkBook
+Class Internship
+Class UniqueInternshipList {
+internalList: ObservableList<Internship>
+sortedInternalList: SortedList<Internship>
+}
+Class WorkBook
+}
+
+package Logic {
+Class AddCommandParser {
+parse(String): AddCommand
+}
+Class AddCommand
+Class CommandResult
+Class "{abstract}\nCommand" as Command
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside .> AddCommand
+
+AddCommandParser ..> AddCommand : produces >
+AddCommand -up-|> Command
+Command .> CommandResult : produces >
+
+Command ...> Model
+
+ModelManager .up.|> Model
+VersionedWorkBook -up-|> WorkBook
+ModelManager --> "1 " VersionedWorkBook
+
+WorkBook *--> "1  " UniqueInternshipList
+UniqueInternshipList --> "~* all" Internship
+@enduml
