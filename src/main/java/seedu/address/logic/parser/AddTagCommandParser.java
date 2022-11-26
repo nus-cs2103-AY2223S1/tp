@@ -47,7 +47,10 @@ public class AddTagCommandParser implements Parser<AddTagCommand> {
         return new AddTagCommand(priorityTag, deadlineTag, index);
     }
 
+    //@@author dlimyy-reused
+    //Reused from existing AB3 (https://github.com/nus-cs2103-AY2223S1/tp)
     private static boolean areAnyPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
+    //@@author
 }

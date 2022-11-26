@@ -45,7 +45,10 @@ public class LinkExamCommandParser implements Parser<LinkExamCommand> {
         return new LinkExamCommand(examIndex, taskIndex);
     }
 
+    //@@author dlimyy-reused
+    //Reused with minor modifications from existing AB3 (https://github.com/nus-cs2103-AY2223S1/tp)
     private static boolean areAllPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
+    //@@author
 }

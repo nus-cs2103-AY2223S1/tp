@@ -45,8 +45,11 @@ public class AddModuleCommandParser implements Parser<Command> {
         return new AddModuleCommand(module);
     }
 
+    //@@author dlimyy-reused
+    //Reused from existing AB3 (https://github.com/nus-cs2103-AY2223S1/tp)
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
+    //@@author
 
 }
