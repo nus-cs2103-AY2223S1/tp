@@ -1,0 +1,77 @@
+@startuml
+!include ./style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":JeeqTrackerParser" as JeeqTrackerParser LOGIC_COLOR
+participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
+participant "d:EditClientCommand" as EditClientCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("edit 2 m/client n/John p/1234567")
+activate LogicManager
+
+LogicManager -> JeeqTrackerParser : parseCommand("edit")
+activate JeeqTrackerParser
+
+create EditCommandParser
+JeeqTrackerParser -> EditCommandParser
+activate EditCommandParser
+
+EditCommandParser --> JeeqTrackerParser
+deactivate EditCommandParser
+
+JeeqTrackerParser -> EditCommandParser : parse("2 m/client n/John p/1234567")
+activate EditCommandParser
+
+create EditClientCommand
+EditCommandParser -> EditClientCommand
+activate EditClientCommand
+
+EditClientCommand --> EditCommandParser : d
+deactivate EditClientCommand
+
+EditCommandParser --> JeeqTrackerParser : d
+deactivate EditCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditCommandParser -[hidden]-> JeeqTrackerParser
+destroy EditCommandParser
+
+JeeqTrackerParser --> LogicManager : d
+deactivate JeeqTrackerParser
+
+LogicManager -> EditClientCommand : execute()
+activate EditClientCommand
+
+EditClientCommand -> Model : getFilteredClientList()
+activate Model
+
+Model --> EditClientCommand
+deactivate Model
+
+EditClientCommand -> EditClientCommand: createEditedClient(clientToEdit, editClientDescriptor)
+
+EditClientCommand -> Model: setClient(clientToEdit, editedClient)
+activate Model
+
+Model --> EditClientCommand
+deactivate Model
+
+create CommandResult
+EditClientCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditClientCommand
+deactivate CommandResult
+
+EditClientCommand --> LogicManager : result
+deactivate EditClientCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

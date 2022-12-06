@@ -1,0 +1,17 @@
+{
+  "clients": [ {
+    "name": "Valid Client",
+    "address": "4th street",
+    "phone": "919191",
+    "email": "hbhhb@gmail.com",
+    "remarks": [ ],
+    "transactions": [ ]
+  }, {
+    "name": "Client With Invalid name Field @",
+    "address": "4th street",
+    "phone": "919191",
+    "email": "hbhhb@gmail.com",
+    "remarks": [ ],
+    "transactions": [ ]
+  } ]
+}

@@ -4,18 +4,21 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-AddressBook *-right-> "1" UniquePersonList
-AddressBook *-right-> "1" UniqueTagList
-UniqueTagList -[hidden]down- UniquePersonList
-UniqueTagList -[hidden]down- UniquePersonList
+JeeqTracker *-right-> "1" UniqueClientList
+JeeqTracker *-right-> "1" UniqueTagList
+UniqueTagList -[hidden]down- UniqueClientList
+UniqueTagList -[hidden]down- UniqueClientList
 
 UniqueTagList *-right-> "*" Tag
-UniquePersonList -right-> Person
+UniqueClientList -right-> Client
 
-Person -up-> "*" Tag
+Client -up-> "*" Tag
 
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
+Client *--> "1" Name
+Client *--> "1" Address
+Client *--> "1" ClientPhone
+Client *--> "1" ClientEmail
+Client *--> "1" UniqueRemarkList
+Client *--> "1" TransactionLog
+
 @enduml

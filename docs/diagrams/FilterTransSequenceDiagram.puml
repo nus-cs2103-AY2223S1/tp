@@ -1,0 +1,59 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":JeeqTrackerParser" as JeeqTrackerParser LOGIC_COLOR
+participant ":FilterTransCmdParser" as FilterTransCmdParser LOGIC_COLOR
+participant "d:FilterTransCommand" as FilterTransCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+[-> LogicManager : execute("filter buy")
+activate LogicManager
+
+LogicManager -> JeeqTrackerParser : parseCommand("filter buy")
+activate JeeqTrackerParser
+
+create FilterTransCmdParser
+JeeqTrackerParser -> FilterTransCmdParser
+activate FilterTransCmdParser
+
+FilterTransCmdParser --> JeeqTrackerParser
+deactivate FilterTransCmdParser
+
+JeeqTrackerParser -> FilterTransCmdParser : parse("buy")
+activate FilterTransCmdParser
+
+create FilterTransCommand
+FilterTransCmdParser -> FilterTransCommand
+activate FilterTransCommand
+
+FilterTransCommand --> FilterTransCmdParser : d
+deactivate FilterTransCommand
+
+FilterTransCmdParser --> JeeqTrackerParser : d
+deactivate FilterTransCmdParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FilterTransCmdParser -[hidden]-> JeeqTrackerParser
+destroy FilterTransCmdParser
+
+JeeqTrackerParser --> LogicManager : d
+deactivate JeeqTrackerParser
+
+LogicManager -> FilterTransCommand : execute()
+activate FilterTransCommand
+
+create CommandResult
+FilterTransCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FilterTransCommand
+deactivate CommandResult
+
+FilterTransCommand --> LogicManager : result
+deactivate FilterTransCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

@@ -1,0 +1,75 @@
+{
+  "_comment": "JeeqTracker save file which contains the same Client values as in TypicalClients#getTypicalJeeqTracker()",
+  "clients" : [ {
+    "name" : "Alice Pauline",
+    "address" : "123, Jurong West Ave 6, #08-111",
+    "phone": "87654321",
+    "email": "amybee@gmail.com",
+    "tagged" : [ "friends" ],
+    "remarks": [ ],
+    "transactions": [ ]
+  }, {
+    "name" : "Benson Meier",
+    "address" : "311, Clementi Ave 2, #02-25",
+    "phone": "12112121",
+    "email": "ben@gmail.com",
+    "tagged" : [ "owesMoney", "friends" ],
+    "remarks" : [ {
+      "text" : "hi",
+      "tagged" : [ ]
+    } ],
+    "transactions" : [ {
+      "goods" : "Books",
+      "price" : "12.30",
+      "quantity" : "10",
+      "type" : "BUY",
+      "date" : "20/01/2000"
+    }, {
+      "goods" : "Toys",
+      "price" : "150",
+      "quantity" : "2",
+      "type" : "SELL",
+      "date" : "20/01/2000"
+    } ]
+  }, {
+    "name" : "Carl Kurz",
+    "address" : "wall street",
+    "phone": "9818112",
+    "email": "carl@gmail.com",
+    "tagged" : [ ],
+    "remarks": [ ],
+    "transactions": [ ]
+  }, {
+    "name" : "Daniel Meier",
+    "address" : "10th street",
+    "phone": "12121212",
+    "email": "dan@gmail.com",
+    "tagged" : [ "friends" ],
+    "remarks": [ ],
+    "transactions": [ ]
+  }, {
+    "name" : "Elle Meyer",
+    "address" : "michegan ave",
+    "phone": "9228282",
+    "email": "eellee@gmail.com",
+    "tagged" : [ ],
+    "remarks": [ ],
+    "transactions": [ ]
+  }, {
+    "name" : "Fiona Kunz",
+    "address" : "little tokyo",
+    "phone": "12121212",
+    "email": "fiona@gmail.com",
+    "tagged" : [ ],
+    "remarks": [ ],
+    "transactions": [ ]
+  }, {
+    "name" : "George Best",
+    "address" : "4th street",
+    "phone": "9778282",
+    "email": "george@gmail.com",
+    "tagged" : [ ],
+    "remarks": [ ],
+    "transactions": [ ]
+  } ]
+}

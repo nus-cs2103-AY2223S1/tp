@@ -11,19 +11,53 @@ public class CommandResult {
 
     private final String feedbackToUser;
 
-    /** Help information should be shown to the user. */
-    private final boolean showHelp;
+    /** User Guide information should be shown to the user. */
+    private final boolean showUserGuide;
 
     /** The application should exit. */
     private final boolean exit;
 
+    /** Filter transactions. */
+    private final boolean isFilterTransactions;
+
+    /** Sort transactions. */
+    private final boolean isSortTransactions;
+
+    /** No change in UI. */
+    private final boolean hasNoUiChange;
+
     /**
-     * Constructs a {@code CommandResult} with the specified fields.
+     * Constructs a {@code CommandResult} with all the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+    public CommandResult(String feedbackToUser, boolean showUserGuide, boolean exit, boolean isFilterTransactions,
+                         boolean isSortTransactions, boolean hasNoUiChange) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.showHelp = showHelp;
+        this.showUserGuide = showUserGuide;
         this.exit = exit;
+        this.isFilterTransactions = isFilterTransactions;
+        this.isSortTransactions = isSortTransactions;
+        this.hasNoUiChange = hasNoUiChange;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified 4 fields.
+     */
+    public CommandResult(String feedbackToUser, boolean showUserGuide, boolean exit, boolean isFilterTransactions) {
+        this(feedbackToUser, showUserGuide, exit, isFilterTransactions, false, false);
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified 3 fields.
+     */
+    public CommandResult(String feedbackToUser, boolean showUserGuide, boolean exit) {
+        this(feedbackToUser, showUserGuide, exit, false, false, false);
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified 2 fields.
+     */
+    public CommandResult(String feedbackToUser, boolean hasNoUiChange) {
+        this(feedbackToUser, false, false, false, false, hasNoUiChange);
     }
 
     /**
@@ -31,19 +65,36 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        this(feedbackToUser, false, false, false, false, false);
     }
 
     public String getFeedbackToUser() {
         return feedbackToUser;
     }
 
-    public boolean isShowHelp() {
-        return showHelp;
+    public boolean isShowUserGuide() {
+        return showUserGuide;
+    }
+
+    public boolean isFilteredTransactions() {
+        return isFilterTransactions;
+    }
+
+    public boolean hasNoUiChange() {
+        return hasNoUiChange;
     }
 
     public boolean isExit() {
         return exit;
+    }
+
+    @Override
+    public String toString() {
+        return feedbackToUser;
+    }
+
+    public boolean isSortedTransactions() {
+        return isSortTransactions;
     }
 
     @Override
@@ -59,13 +110,13 @@ public class CommandResult {
 
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
-                && showHelp == otherCommandResult.showHelp
+                && showUserGuide == otherCommandResult.showUserGuide
                 && exit == otherCommandResult.exit;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, showUserGuide, exit);
     }
 
 }

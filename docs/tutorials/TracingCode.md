@@ -120,14 +120,14 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 
         CommandResult commandResult;
         //Parse user input from String to a Command
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = jeeqTrackerParser.parseCommand(commandText);
         //Executes the Command and stores the result
         commandResult = command.execute(model);
 
         try {
             //We can deduce that the previous line of code modifies model in some way
             // since it's being stored here.
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveJeeqTracker(model.getJeeqTracker());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -141,7 +141,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 1. _Step over_ the logging code since it is of no interest to us now.
    ![StepOver](../images/tracing/StepOver.png)
 
-1. _Step into_ the line where user input in parsed from a String to a Command, which should bring you to the `AddressBookParser#parseCommand()` method (partial code given below):
+1. _Step into_ the line where user input in parsed from a String to a Command, which should bring you to the `JeeqTrackerParser#parseCommand()` method (partial code given below):
    ``` java
    public Command parseCommand(String userInput) throws ParseException {
        ...
@@ -171,7 +171,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 
 1. Stepping through the method shows that it calls `ArgumentTokenizer#tokenize()` and `ParserUtil#parseIndex()` to obtain the arguments and index required.
 
-1. The rest of the method seems to exhaustively check for the existence of each possible parameter of the `edit` command and store any possible changes in an `EditPersonDescriptor`. Recall that we can verify the contents of `editPersonDesciptor` through the 'Variables' window.<br>
+1. The rest of the method seems to exhaustively check for the existence of each possible parameter of the `edit` command and store any possible changes in an `EditClientDescriptor`. Recall that we can verify the contents of `editClientDesciptor` through the 'Variables' window.<br>
    ![EditCommand](../images/tracing/EditCommand.png)
 
 1. As you just traced through some code involved in parsing a command, you can take a look at this class diagram to see where the various parsing-related classes you encountered fit into the design of the `Logic` component.
@@ -189,22 +189,22 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
    @Override
    public CommandResult execute(Model model) throws CommandException {
        ...
-       Person personToEdit = lastShownList.get(index.getZeroBased());
-       Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
-       if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-           throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+       Client clientToEdit = lastShownList.get(index.getZeroBased());
+       Client editedClient = createEditedClient(clientToEdit, editClientDescriptor);
+       if (!clientToEdit.isSameClient(editedClient) && model.hasClient(editedClient)) {
+           throw new CommandException(MESSAGE_DUPLICATE_CLIENT);
        }
-       model.setPerson(personToEdit, editedPerson);
-       model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-       return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+       model.setClient(clientToEdit, editedClient);
+       model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
+       return new CommandResult(String.format(MESSAGE_EDIT_CLIENT_SUCCESS, editedClient));
    }
    ```
 
 1. As suspected, `command#execute()` does indeed make changes to the `model` object. Specifically,
-   * it uses the `setPerson()` method (defined in the interface `Model` and implemented in `ModelManager` as per the usual pattern) to update the person data.
-   * it uses the `updateFilteredPersonList` method to ask the `Model` to populate the 'filtered list' with _all_ persons.<br>
-     FYI, The 'filtered list' is the list of persons resulting from the most recent operation that will be shown to the user immediately after. For the `edit` command, we populate it with all the persons so that the user can see the edited person along with all other persons. If this was a `find` command, we would be setting that list to contain the search results instead.<br>
-     To provide some context, given below is the class diagram of the `Model` component. See if you can figure out where the 'filtered list' of persons is being tracked.
+   * it uses the `setClient()` method (defined in the interface `Model` and implemented in `ModelManager` as per the usual pattern) to update the client data.
+   * it uses the `updateFilteredClientList` method to ask the `Model` to populate the 'filtered list' with _all_ clients.<br>
+     FYI, The 'filtered list' is the list of clients resulting from the most recent operation that will be shown to the user immediately after. For the `edit` command, we populate it with all the clients so that the user can see the edited client along with all other clients. If this was a `find` command, we would be setting that list to contain the search results instead.<br>
+     To provide some context, given below is the class diagram of the `Model` component. See if you can figure out where the 'filtered list' of clients is being tracked.
      <img src="../images/ModelClassDiagram.png" width="450" /><br>
    * :bulb: This may be a good time to read through the [`Model` component section of the DG](../DeveloperGuide.html#model-component)
 
@@ -217,29 +217,29 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 
 1. Similar to before, you can step over/into statements in the `LogicManager#execute()` method to examine how the control is transferred to the `Storage` component and what happens inside that component.
 
-   <div markdown="span" class="alert alert-primary">:bulb: **Intellij Tip:** When trying to step into a statement such as `storage.saveAddressBook(model.getAddressBook())` which contains multiple method calls, Intellij will let you choose (by clicking) which one you want to step into.
+   <div markdown="span" class="alert alert-primary">:bulb: **Intellij Tip:** When trying to step into a statement such as `storage.saveJeeqTracker(model.getJeeqTracker())` which contains multiple method calls, Intellij will let you choose (by clicking) which one you want to step into.
    </div>
 
-1.  As you step through the code inside the `Storage` component, you will eventually arrive at the `JsonAddressBook#saveAddressBook()` method which calls the `JsonSerializableAddressBook` constructor, to create an object that can be _serialized_ (i.e., stored in storage medium) in JSON format. That constructor is given below (with added line breaks for easier readability):
+1.  As you step through the code inside the `Storage` component, you will eventually arrive at the `JsonJeeqTracker#saveJeeqTracker()` method which calls the `JsonSerializableJeeqTracker` constructor, to create an object that can be _serialized_ (i.e., stored in storage medium) in JSON format. That constructor is given below (with added line breaks for easier readability):
 
-    **`JsonSerializableAddressBook` constructor:**
+    **`JsonSerializableJeeqTracker` constructor:**
     ``` java
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyJeeqTracker} into this class for Jackson use.
      *
      * @param source future changes to this will not affect the created
-     * {@code JsonSerializableAddressBook}.
+     * {@code JsonSerializableJeeqTracker}.
      */
-    public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
-        persons.addAll(
-            source.getPersonList()
+    public JsonSerializableJeeqTracker(ReadOnlyJeeqTracker source) {
+        clients.addAll(
+            source.getClientList()
                   .stream()
-                  .map(JsonAdaptedPerson::new)
+                  .map(JsonAdaptedClient::new)
                   .collect(Collectors.toList()));
     }
     ```
 
-1. It appears that a `JsonAdaptedPerson` is created for each `Person` and then added to the `JsonSerializableAddressBook`.
+1. It appears that a `JsonAdaptedClient` is created for each `Client` and then added to the `JsonSerializableJeeqTracker`.
    This is because regular Java objects need to go through an _adaptation_ for them to be suitable to be saved in JSON format.
 
 1. While you are stepping through the classes in the `Storage` component, here is the component's class diagram to help you understand how those classes fit into the structure of the component.<br>
@@ -296,6 +296,6 @@ Here are some quick questions you can try to answer based on your execution path
 
     4.  Add a new command
 
-    5.  Add a new field to `Person`
+    5.  Add a new field to `Client`
 
     6.  Add a new entity to the address book

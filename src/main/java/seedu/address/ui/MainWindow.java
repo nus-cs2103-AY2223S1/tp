@@ -1,7 +1,10 @@
 package seedu.address.ui;
 
+import java.util.Iterator;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -16,6 +19,9 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.client.Client;
+import seedu.address.model.remark.Remark;
+import seedu.address.model.transaction.Transaction;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -31,9 +37,12 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private ClientListPanel clientListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private RemarkListPanel remarkListPanel;
+    private TransactionListPanel transactionListPanel;
+    private NetTransactionBox netTransactionBox;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -42,13 +51,22 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane clientListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private StackPane remarkListPanelPlaceholder;
+
+    @FXML
+    private StackPane transactionListPanelPlaceholder;
+
+    @FXML
+    private StackPane menuPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -78,7 +96,8 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
-     * @param keyCombination the KeyCombination value of the accelerator
+     *
+     * @param keyCombination the KeyCombination value of the accelerator.
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
         menuItem.setAccelerator(keyCombination);
@@ -110,17 +129,26 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        clientListPanel = new ClientListPanel(logic.getFilteredClientList());
+        clientListPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
+
+        transactionListPanel = new TransactionListPanel();
+        transactionListPanelPlaceholder.getChildren().add(transactionListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        remarkListPanel = new RemarkListPanel();
+        remarkListPanelPlaceholder.getChildren().add(remarkListPanel.getRoot());
+
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getJeeqTrackerFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        netTransactionBox = new NetTransactionBox(logic.calculateTotalTransaction(logic.getFilteredClientList()));
+        menuPlaceholder.getChildren().add(netTransactionBox.getRoot());
     }
 
     /**
@@ -163,8 +191,80 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    /**
+     * Handles changes to the UI whenever the Remark or Transaction information is updated in a client.
+     * @param commandResult the result of command executed.
+     */
+    private void handleClientDetailsUpdate(CommandResult commandResult) {
+        ObservableList<Client> clientList = logic.getFilteredClientList();
+        double updatedNetTransaction = logic.calculateTotalTransaction(clientList);
+        if (clientList.size() != 1) {
+            // Empty remark list panel.
+            remarkListPanel.setRemarkList(FXCollections.observableArrayList());
+            transactionListPanel.setTransactionList(FXCollections.observableArrayList());
+            netTransactionBox.setNetTransaction(updatedNetTransaction);
+            return;
+        }
+        Client client = clientList.get(0);
+        ObservableList<Remark> remarks = client.getRemarks().asUnmodifiableObservableList();
+        ObservableList<Transaction> transactions = client.getTransactions().asUnmodifiableObservableList();
+        remarkListPanel.setRemarkList(remarks);
+        transactionListPanel.setTransactionList(transactions);
+        netTransactionBox.setNetTransaction(updatedNetTransaction);
+    }
+
+    /**
+     * Handles changes to the UI whenever the filtered command is executed.
+     * @param result the result of command executed.
+     */
+    private void handleFilterTransaction(CommandResult result) {
+        ObservableList<Client> clientList = logic.getFilteredClientList();
+        remarkListPanel.setRemarkList(FXCollections.observableArrayList());
+        ObservableList<Transaction> transactions = FXCollections.observableArrayList();
+        double updatedNetTransaction = logic.calculateTotalTransaction(clientList);
+        Iterator<Client> itr = clientList.listIterator();
+        while (itr.hasNext()) {
+            Client client = itr.next();
+            if (isBuyFilter(result)) {
+                transactions.addAll(client.getBuyTransactionList());
+            } else {
+                transactions.addAll(client.getSellTransactionList());
+            }
+        }
+        transactionListPanel.setTransactionList(transactions);
+        netTransactionBox.setNetTransaction(updatedNetTransaction);
+    }
+
+    /**
+     * Handles changes to the UI whenever the sort command is executed.
+     * @param result the result of command executed.
+     */
+
+    private void handleSortTransaction(CommandResult result) {
+        ObservableList<Client> clientList = logic.getFilteredClientList();
+        remarkListPanel.setRemarkList(FXCollections.observableArrayList());
+        double updatedNetTransaction = logic.calculateTotalTransaction(clientList);
+        ObservableList<Transaction> transactions = FXCollections.observableArrayList();
+        Client client = clientList.get(0);
+        if (isOldestSort(result)) {
+            transactions.addAll(client.getSortOldestTransaction());
+        } else {
+            transactions.addAll(client.getSortLatestTransaction());
+        }
+        ObservableList<Remark> remarks = client.getRemarks().asUnmodifiableObservableList();
+        remarkListPanel.setRemarkList(remarks);
+        transactionListPanel.setTransactionList(transactions);
+        netTransactionBox.setNetTransaction(updatedNetTransaction);
+    }
+
+    private boolean isBuyFilter(CommandResult result) {
+        String output = result.toString();
+        return (output.contains("buy"));
+    }
+
+    private boolean isOldestSort(CommandResult result) {
+        String output = result.toString();
+        return (output.contains("oldest"));
     }
 
     /**
@@ -178,13 +278,22 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            if (commandResult.isShowHelp()) {
+            if (commandResult.isShowUserGuide()) {
                 handleHelp();
             }
 
             if (commandResult.isExit()) {
                 handleExit();
             }
+
+            if (commandResult.isFilteredTransactions()) {
+                handleFilterTransaction(commandResult);
+            } else if (commandResult.isSortedTransactions()) {
+                handleSortTransaction(commandResult);
+            } else if (!commandResult.hasNoUiChange()) {
+                handleClientDetailsUpdate(commandResult);
+            }
+
 
             return commandResult;
         } catch (CommandException | ParseException e) {
@@ -193,4 +302,5 @@ public class MainWindow extends UiPart<Stage> {
             throw e;
         }
     }
+
 }

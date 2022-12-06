@@ -9,11 +9,16 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.client.Address;
+import seedu.address.model.client.ClientEmail;
+import seedu.address.model.client.ClientPhone;
+import seedu.address.model.client.Name;
+import seedu.address.model.remark.Text;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.transaction.Date;
+import seedu.address.model.transaction.Goods;
+import seedu.address.model.transaction.Price;
+import seedu.address.model.transaction.Quantity;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -43,7 +48,7 @@ public class ParserUtil {
      */
     public static Name parseName(String name) throws ParseException {
         requireNonNull(name);
-        String trimmedName = name.trim();
+        String trimmedName = name.trim().replaceAll("\\s{2,}", " ");
         if (!Name.isValidName(trimmedName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
@@ -51,18 +56,20 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String phone} into a {@code Phone}.
+     * Parses a {@code String phone} into a {@code ClientPhone}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code phone} is invalid.
      */
-    public static Phone parsePhone(String phone) throws ParseException {
+    public static ClientPhone parseClientPhone(String phone) {
         requireNonNull(phone);
-        String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+        String trimmedPhone = phone.trim().replaceAll("\\s{2,}", " ");
+
+        ClientPhone newPhone = new ClientPhone(trimmedPhone);
+        if (!ClientPhone.isValidPhone(trimmedPhone)) {
+            newPhone.setWarning();
         }
-        return new Phone(trimmedPhone);
+
+        return newPhone;
     }
 
     /**
@@ -73,7 +80,7 @@ public class ParserUtil {
      */
     public static Address parseAddress(String address) throws ParseException {
         requireNonNull(address);
-        String trimmedAddress = address.trim();
+        String trimmedAddress = address.trim().replaceAll("\\s{2,}", " ");
         if (!Address.isValidAddress(trimmedAddress)) {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
         }
@@ -81,18 +88,35 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String email} into an {@code Email}.
+     * Parses a {@code String text} into a {@code Text}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code email} is invalid.
+     * @throws ParseException if the given {@code text} is invalid.
      */
-    public static Email parseEmail(String email) throws ParseException {
-        requireNonNull(email);
-        String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+    public static Text parseText(String text) throws ParseException {
+        requireNonNull(text);
+        String trimmedText = text.trim().replaceAll("\\s{2,}", " ");
+        if (!Text.isValidText(trimmedText)) {
+            throw new ParseException(Text.MESSAGE_CONSTRAINTS);
         }
-        return new Email(trimmedEmail);
+        return new Text(trimmedText);
+    }
+
+    /**
+     * Parses a {@code String email} into an {@code ClientEmail}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     */
+    public static ClientEmail parseClientEmail(String email) {
+        requireNonNull(email);
+        String trimmedEmail = email.trim().replaceAll("\\s{2,}", " ");
+
+        ClientEmail newEmail = new ClientEmail(trimmedEmail);
+        if (!ClientEmail.isValidEmail(trimmedEmail)) {
+            newEmail.setWarning();
+        }
+
+        return newEmail;
     }
 
     /**
@@ -120,5 +144,65 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String goods} into an {@code Goods}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code goods} is invalid.
+     */
+    public static Goods parseGoods(String goods) throws ParseException {
+        requireNonNull(goods);
+        String trimmedGoods = goods.trim().replaceAll("\\s{2,}", " ");
+        if (!Goods.isValidName(trimmedGoods)) {
+            throw new ParseException(Goods.MESSAGE_CONSTRAINTS);
+        }
+        return new Goods(trimmedGoods);
+    }
+
+    /**
+     * Parses a {@code String price} into an {@code Price}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code price} is invalid.
+     */
+    public static Price parsePrice(String price) throws ParseException {
+        requireNonNull(price);
+        String trimmedPrice = price.trim();
+        Price.parsePriceArguments(trimmedPrice);
+        return new Price(trimmedPrice);
+    }
+
+    /**
+     * Parses a {@code String quantity} into an {@code Quantity}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code quantity} is invalid.
+     */
+    public static Quantity parseQuantity(String quantity) throws ParseException {
+        requireNonNull(quantity);
+        String trimmedQuantity = quantity.trim();
+        Quantity.parseQuantityArguments(trimmedQuantity);
+        return new Quantity(trimmedQuantity);
+    }
+
+
+    /**
+     * Parses a {@code String date} into an {@code Date}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static Date parseDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        if (!Date.isValidDateFormat(trimmedDate)) {
+            throw new ParseException(Date.MESSAGE_CONSTRAINTS_WRONG_FORMAT);
+        }
+        if (!Date.isValidDateInput(trimmedDate)) {
+            throw new ParseException(Date.MESSAGE_CONSTRAINTS_WRONG_DATE);
+        }
+        return new Date(trimmedDate);
     }
 }

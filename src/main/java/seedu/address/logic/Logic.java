@@ -7,8 +7,8 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.ReadOnlyJeeqTracker;
+import seedu.address.model.client.Client;
 
 /**
  * API of the Logic component
@@ -24,19 +24,19 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the JeeqTracker.
      *
-     * @see seedu.address.model.Model#getAddressBook()
+     * @see seedu.address.model.Model#getJeeqTracker()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyJeeqTracker getJeeqTracker();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered list of clients */
+    ObservableList<Client> getFilteredClientList();
 
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getJeeqTrackerFilePath();
 
     /**
      * Returns the user prefs' GUI settings.
@@ -47,4 +47,11 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Returns the net amount transacted by all clients in the current list.
+     */
+    double calculateTotalTransaction(ObservableList<Client> filteredClientList);
+
+
 }

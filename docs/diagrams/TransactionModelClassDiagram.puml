@@ -1,0 +1,20 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Class "{abstract}\n Transaction " as Transaction
+Class " <<interface>> \n Comparable " as Comparable< Transaction >
+
+TransactionLog *-right-> "*" Transaction
+
+Client *--> "1" TransactionLog
+
+Transaction .up.|> Comparable
+Transaction *--> "1" Goods
+Transaction *--> "1" Price
+Transaction *--> "1" Quantity
+Transaction *--> "1" Date
+
+@enduml

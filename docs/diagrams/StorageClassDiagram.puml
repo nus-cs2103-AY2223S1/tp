@@ -14,30 +14,33 @@ Class JsonUserPrefsStorage
 Class "<<interface>>\nStorage" as Storage
 Class StorageManager
 
-package "AddressBook Storage" #F4F6F6{
-Class "<<interface>>\nAddressBookStorage" as AddressBookStorage
-Class JsonAddressBookStorage
-Class JsonSerializableAddressBook
-Class JsonAdaptedPerson
+package "JeeqTracker Storage" #F4F6F6{
+Class "<<interface>>\nJeeqTrackerStorage" as JeeqTrackerStorage
+Class JsonJeeqTrackerStorage
+Class JsonSerializableJeeqTracker
+Class JsonAdaptedClient
 Class JsonAdaptedTag
-}
+Class JsonAdaptedRemark
+Class JsonAdaptedTransaction
 
 }
 
-Class HiddenOutside #FFFFFF
+}
 HiddenOutside ..> Storage
 
 StorageManager .up.|> Storage
 StorageManager -up-> "1" UserPrefsStorage
-StorageManager -up-> "1" AddressBookStorage
+StorageManager -up-> "1" JeeqTrackerStorage
 
 Storage -left-|> UserPrefsStorage
-Storage -right-|> AddressBookStorage
+Storage -right-|> JeeqTrackerStorage
 
 JsonUserPrefsStorage .up.|> UserPrefsStorage
-JsonAddressBookStorage .up.|> AddressBookStorage
-JsonAddressBookStorage ..> JsonSerializableAddressBook
-JsonSerializableAddressBook --> "*" JsonAdaptedPerson
-JsonAdaptedPerson --> "*" JsonAdaptedTag
+JsonJeeqTrackerStorage .up.|> JeeqTrackerStorage
+JsonJeeqTrackerStorage ..> JsonSerializableJeeqTracker
+JsonSerializableJeeqTracker --> "*" JsonAdaptedClient
+JsonAdaptedClient --> "*" JsonAdaptedTag
+JsonAdaptedClient --> "*" JsonAdaptedRemark
+JsonAdaptedClient --> "*" JsonAdaptedTransaction
 
 @enduml
