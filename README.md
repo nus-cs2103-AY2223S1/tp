@@ -11,7 +11,7 @@
 that they interact with by keeping track of their `BUY / SELL` transactions, and `REMARKS` of clients.**
 While it has a GUI (Graphical User Interface), most of the user interactions happen using a CLI (Command Line Interface).
 
-[Download](https://github.com/AY2223S1-CS2103T-T09-2/tp/releases) our application now!
+[Download](https://github.com/AY2223S1-CS2103T-T09-1/tp/releases) our application now!
 
 ## Motivation
 - Current existing applications are mostly GUI centric, which is slower to get things done compared to CLI.
