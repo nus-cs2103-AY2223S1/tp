@@ -6,8 +6,54 @@
 
 ## FoodRem
 
-<!-- TODO: Check that this matches {{ site.data.foodrem.about.summary }} -->
+<!-*  TODO: Check that this matches {{ site.data.foodrem.about.summary }} -->
+
 FoodRem is an Inventory Management System that empowers small food and beverage (F&B) restaurant managers to manage inventory and obtain insights from inventory data. As a restaurant manager, leverage upon FoodRem's Inventory Management System during your daily operations. Utilize FoodRem's flexible tagging system to help you organize your inventory according to your business needs. Finally, streamline your business decisions by deriving insights from your inventory usage through FoodRem's statistics, keeping track of vital data such as food wastage.
+
+## FoodRem User Guide
+
+Here is the link to our FoodRem [User Guide](https://ay2223s1-cs2103t-w16-2.github.io/tp/UserGuide.html)!
+
+## FoodRem Developer Guide
+
+Here is the link to our FoodRem [Developer Guide](https://ay2223s1-cs2103t-w16-2.github.io/tp/DeveloperGuide.html)!
+
+## Project Team
+
+### Mai Ting Kai
+
+<img src="docs/images/ferusel.png" width="200px">
+
+[[Personal Github](https://github.com/ferusel)]
+[[Project Portfolio Page](https://ay2223s1-cs2103t-w16-2.github.io/tp/team/ferusel)]
+
+### Bryan Lim Jing Xiang
+
+<img src="docs/images/bryanljx.png" width="200px">
+
+[[Personal Github](https://github.com/bryanljx)]
+[[Project Portfolio Page](https://ay2223s1-cs2103t-w16-2.github.io/tp/team/bryanljx)]
+
+### Richard Dominick
+
+<img src="docs/images/richdom2185.png" width="200px">
+
+[[Personal Github](https://github.com/RichDom2185)]
+[[Project Portfolio Page](https://ay2223s1-cs2103t-w16-2.github.io/tp/team/richdom2185)]
+
+### Tan Wei Lie Eugene
+
+<img src="docs/images/eugenetanwl3881.png" width="200px">
+
+[[Personal Github](https://github.com/eugenetanwl3881)]
+[[Project Portfolio Page](https://ay2223s1-cs2103t-w16-2.github.io/tp/team/eugenetanwl3881)]
+
+### Tan Yi Xian
+
+<img src="docs/images/yixiann.png" width="200px">
+
+[[Personal Github](https://github.com/yixiann)]
+[[Project Portfolio Page](https://ay2223s1-cs2103t-w16-2.github.io/tp/team/yixiann)]
 
 ## Acknowledgements
 
