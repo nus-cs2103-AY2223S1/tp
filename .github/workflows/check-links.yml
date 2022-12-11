@@ -1,0 +1,21 @@
+name: Check all links on website are valid
+
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  check-links:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Set up repository
+        uses: actions/checkout@main
+      - name: Set up PATH
+        run: echo "$HOME/.gem/ruby/2.7.0/bin" >> $GITHUB_PATH
+      - name: Set up server dependencies
+        working-directory: ${{ github.workspace }}/docs
+        run: gem install --user-install bundler && bundle install
+      - name: Set up checker dependencies
+        working-directory: ${{ github.workspace }}/cli-test/linkchecker
+        run: npm install
+      - name: Set up server and check all links are valid
+        working-directory: ${{ github.workspace }}/cli-test/linkchecker
+        run: python serve-and-check.py

@@ -1,0 +1,110 @@
+
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":FoodRemParser" as FoodRemParser LOGIC_COLOR
+participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
+participant ":Index" as Index LOGIC_COLOR
+participant "editItemDescriptor:EditItemDescriptor" as EditItemDescriptor LOGIC_COLOR
+participant ":EditCommand" as EditCommand LOGIC_COLOR
+participant "editedItem:Item" as Item LOGIC_COLOR
+participant ":ItemWithMessage" as ItemWithMessage LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+
+
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("edit 1 n/newname")
+activate LogicManager
+
+LogicManager -> FoodRemParser : parseCommand("edit 1 n/newname")
+activate FoodRemParser
+
+create EditCommandParser
+FoodRemParser -> EditCommandParser
+activate EditCommandParser
+
+EditCommandParser --> FoodRemParser
+deactivate EditCommandParser
+
+FoodRemParser -> EditCommandParser : parse("edit 1 n/newname")
+activate EditCommandParser
+
+create Index
+EditCommandParser -> Index
+activate Index
+
+Index --> EditCommandParser
+deactivate Index
+
+create EditItemDescriptor
+EditCommandParser -> EditItemDescriptor
+activate EditItemDescriptor
+
+EditItemDescriptor -> EditCommandParser
+deactivate EditItemDescriptor
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditItemDescriptor -[hidden]-> EditCommandParser
+destroy EditItemDescriptor
+
+create EditCommand
+EditCommandParser -> EditCommand
+activate EditCommand
+
+EditCommand --> EditCommandParser
+deactivate EditCommand
+
+EditCommandParser --> FoodRemParser
+deactivate EditCommandParser
+
+FoodRemParser --> LogicManager
+deactivate FoodRemParser
+destroy EditCommandParser
+
+LogicManager -> EditCommand : execute(model)
+activate EditCommand
+
+EditCommand -> Model : getCurrentList()
+activate Model
+
+Model --> EditCommand
+deactivate Model
+
+EditCommand -> EditCommand : createEditedItem(itemToEdit, editItemDescriptor)
+activate EditCommand
+
+create Item
+EditCommand -> Item
+activate Item
+
+Item --> EditCommand
+deactivate Item
+
+EditCommand --> EditCommand
+deactivate EditCommand
+
+create ItemWithMessage
+EditCommand -> ItemWithMessage
+activate ItemWithMessage
+
+ItemWithMessage --> EditCommand
+deactivate ItemWithMessage
+
+create CommandResult
+EditCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditCommand
+deactivate CommandResult
+
+deactivate EditCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

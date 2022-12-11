@@ -1,0 +1,15 @@
+@startuml
+!include style.puml
+
+[-> UiView : viewFrom("hello")
+activate UiView
+
+UiView -> StringView : from("hello")
+activate StringView
+
+UiView <-- StringView
+deactivate StringView
+
+[<--UiView
+deactivate UiView
+@enduml

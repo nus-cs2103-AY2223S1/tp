@@ -2,58 +2,54 @@
 layout: page
 title: About Us
 ---
+<!-- Due to grading script explicitly checking for an `img` tag -->
+<!-- markdownlint-disable-file no-inline-html -->
 
-We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
-
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+We are a team based in the [School of Computing, National University of Singapore](https://comp.nus.edu.sg).
 
 ## Project team
 
-### John Doe
+### Mai Ting Kai
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ferusel.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/ferusel)]
+[[portfolio](team/ferusel)]
 
 * Role: Team Lead
-* Responsibilities: UI
 
-### Johnny Doe
+### Bryan Lim Jing Xiang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/bryanljx.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/bryanljx)]
+[[portfolio](team/bryanljx)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Tech Lead
 
-### Jean Doe
+### Richard Dominick
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/richdom2185.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/RichDom2185)]
+[[portfolio](team/richdom2185)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Tech Lead
 
-### James Doe
+### Tan Wei Lie Eugene
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/eugenetanwl3881.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/eugenetanwl3881)]
+[[portfolio](team/eugenetanwl3881)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Documentation
+
+### Tan Yi Xian
+
+<img src="images/yixiann.png" width="200px">
+
+[[github](https://github.com/yixiann)]
+[[portfolio](team/yixiann)]
+
+* Role: Secretary

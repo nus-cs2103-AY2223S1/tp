@@ -1,0 +1,85 @@
+name: Build
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+    tags:
+      - v*
+
+jobs:
+  jarfile:
+    runs-on: ubuntu-20.04
+    outputs:
+      upload_url: ${{ steps.create_release.outputs.upload_url }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@main
+        with:
+          ref: master
+      - name: Validate Gradle Wrapper
+        uses: gradle/wrapper-validation-action@v1
+      - name: Setup JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+          java-package: jdk+fx
+      - name: Create JAR file
+        run: ./gradlew shadowJar
+      - name: Generate tag name from time
+        id: tagname
+        run: echo ::set-output name=TAGNAME::$(echo ${{ github.event.repository.pushed_at }} | sed -e 's/^../AR/')
+      - name: Generate release name from time
+        id: releasename
+        run: echo "::set-output name=RELEASENAME::$(date -d @${{ github.event.repository.pushed_at }})"
+      - name: Create release on GitHub
+        id: create_release # We need the id to refer to it in the next step
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.tagname.outputs.TAGNAME }}
+          release_name: Auto-release ${{ steps.releasename.outputs.RELEASENAME }}
+          body: 'Auto-created release from branch "${{ github.ref_name }}"'
+      - name: Upload JAR file to GitHub releases
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./build/libs/foodrem.jar
+          asset_name: foodrem.jar
+          asset_content_type: application/java-archive
+  pdfs:
+    needs: jarfile
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Set up repository
+        uses: actions/checkout@main
+      - name: Set up PATH
+        run: echo "$HOME/.gem/ruby/2.7.0/bin" >> $GITHUB_PATH
+      - name: Set up server dependencies
+        working-directory: ${{ github.workspace }}/docs
+        run: gem install --user-install bundler && bundle install
+      - name: Create PDFs of UG and DG
+        working-directory: ${{ github.workspace }}/docs
+        run: ./make-pdf.sh
+      - name: Upload UG to release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ needs.jarfile.outputs.upload_url }}
+          asset_path: ./docs/release/UserGuide.pdf
+          asset_name: UserGuide.pdf
+          asset_content_type: application/pdf
+      - name: Upload DG to release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ needs.jarfile.outputs.upload_url }}
+          asset_path: ./docs/release/DeveloperGuide.pdf
+          asset_name: DeveloperGuide.pdf
+          asset_content_type: application/pdf

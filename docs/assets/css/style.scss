@@ -4,9 +4,14 @@
 
 @import
   "minima/skins/{{ site.minima.skin | default: 'classic' }}",
-  "minima/initialize";
+  "minima/initialize",
+  "foodrem",
+  "admonitions",
+  "toc",
+  "ppp",
+  "pdf";
 
 .icon {
-    height: 21px;
-    width: 21px
+  height: 21px;
+  width: 21px
 }

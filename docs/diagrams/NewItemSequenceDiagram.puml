@@ -1,0 +1,91 @@
+
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":FoodRemParser" as FoodRemParser LOGIC_COLOR
+participant ":NewCommandParser" as NewCommandParser LOGIC_COLOR
+participant ":ItemName" as ItemName LOGIC_COLOR
+participant "item:Item" as Item LOGIC_COLOR
+participant ":NewCommand" as NewCommand LOGIC_COLOR
+participant ":ItemWithMessage" as ItemWithMessage LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+
+
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("new n/itemname")
+activate LogicManager
+
+LogicManager -> FoodRemParser : parseCommand("new n/itemname")
+activate FoodRemParser
+
+create NewCommandParser
+FoodRemParser -> NewCommandParser
+activate NewCommandParser
+
+NewCommandParser --> FoodRemParser
+deactivate NewCommandParser
+
+FoodRemParser -> NewCommandParser : parse("n/itemname")
+activate NewCommandParser
+
+create ItemName
+NewCommandParser -> ItemName
+activate ItemName
+ItemName --> NewCommandParser
+deactivate ItemName
+
+create Item
+NewCommandParser -> Item
+activate Item
+Item --> NewCommandParser
+deactivate Item
+
+create NewCommand
+NewCommandParser -> NewCommand
+activate NewCommand
+NewCommand --> NewCommandParser
+deactivate NewCommand
+
+NewCommandParser --> FoodRemParser
+deactivate NewCommandParser
+
+FoodRemParser --> LogicManager
+deactivate FoodRemParser
+destroy NewCommandParser
+
+LogicManager -> NewCommand : execute(model)
+activate NewCommand
+
+NewCommand -> Model : addItem(newItem)
+activate Model
+
+Model --> NewCommand
+deactivate Model
+
+create ItemWithMessage
+NewCommand -> ItemWithMessage
+activate ItemWithMessage
+
+ItemWithMessage --> NewCommand
+deactivate ItemWithMessage
+
+create CommandResult
+NewCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> NewCommand
+deactivate CommandResult
+
+NewCommand --> LogicManager
+deactivate NewCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

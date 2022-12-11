@@ -1,0 +1,15 @@
+{
+  "name": "linkchecker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "check-links.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "module",
+  "author": "Richard Dominick",
+  "license": "ISC",
+  "dependencies": {
+    "node-linkchecker": "^0.0.3"
+  }
+}

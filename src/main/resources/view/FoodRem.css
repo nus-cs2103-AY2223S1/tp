@@ -1,0 +1,189 @@
+.menu-bar {
+  -fx-alignment: center-right;
+  -fx-background-color: #f1e4c2;
+}
+
+.main-body {
+  -fx-background-color: #fdf6e3;
+  -fx-padding: 16;
+}
+
+// Unused as of now. TODO: Delete
+/* JavaFX CSS does not support `+` selector, so
+ * we cannot use `column > * + *` here */
+.margin-top {
+  /* Workaround nonexistent -fx-margin */
+  -fx-padding: 12 0 0 0;
+  -fx-border-insets: 12 0 0 0;
+  -fx-background-insets: 12 0 0 0;
+}
+
+.item-listview,
+.command-placeholder,
+.command-box > TextField,
+.result-placeholder,
+.result-box > TextArea {
+  -fx-focus-color: transparent;
+  -fx-text-box-border: transparent;
+  -fx-background-color: transparent;
+}
+
+.command-placeholder,
+.list-placeholder,
+.result-placeholder {
+  -fx-border-color: black;
+  -fx-border-radius: 5;
+  -fx-border-width: 1;
+  -fx-padding: 12;
+
+  -fx-min-width: 340;
+  -fx-pref-width: 1000;
+}
+
+.command-placeholder {
+  -fx-background-color: #eee;
+}
+
+.list-placeholder,
+.result-placeholder {
+  -fx-background-color: white;
+}
+
+.result-placeholder {
+  -fx-min-height: 300;
+  -fx-pref-height: 300;
+}
+
+.command-box > TextField,
+.result-box > * {
+  -fx-text-fill: black;
+  -fx-highlight-fill: brown; // TODO
+  -fx-highlight-text-fill: pink; // TODO
+  -fx-font-family: "Montserrat";
+
+  -fx-padding: 0;
+}
+
+.result-box > * .bold {
+  -fx-font-weight: bold;
+  -fx-font-family: "Montserrat Bold" !important;
+}
+
+.command-box > TextField {
+  -fx-font-family: "JetBrains Mono";
+  -fx-prompt-text-fill: #363636;
+}
+
+.result-box > TextArea {
+  -fx-focus-traversable: false;
+}
+
+.result-box > TextArea * {
+  -fx-padding: 0;
+  -fx-background-color: transparent;
+}
+
+/* ============================ *
+ * Statistics                   *
+ * ============================ */
+ .stats-header {
+   -fx-font-size: 18pt;
+ }
+
+/* ============================ *
+ * ItemView                     *
+ * ============================ */
+.item-detail-name {
+  -fx-font-weight: bold;
+  -fx-font-family: "Montserrat Bold";
+  -fx-font-size: 16pt;
+}
+
+.item-detail-tag {
+  -fx-font-size: 10pt;
+  -fx-background-color: #f3d3b5;
+  -fx-background-radius: 8;
+  -fx-font-family: "Epilogue";
+
+  -fx-label-padding: 4 6 4 6;
+}
+
+.scroll-result-box {
+  -fx-background-color: transparent;
+}
+
+/* ============================ *
+ * ItemCard                     *
+ * ============================ */
+.item-listview-tag {
+  -fx-font-size: 8pt;
+  -fx-background-color: #f3d3b5;
+  -fx-background-radius: 4;
+  -fx-label-padding: 2 3 2 3;
+  -fx-text-fill: black;
+}
+
+.item-listview-data {
+  -fx-font-size: 9pt;
+}
+
+.lined-separator {
+  -fx-border-width: 0 0 1px 0;
+  -fx-border-color: lightgray;
+}
+
+.list-view .list-cell:even,
+.list-view .list-cell:odd {
+  -fx-background-radius: 8;
+  -fx-padding: 8 10 8 10;
+}
+
+.tags-overflow-label {
+  -fx-font-size: 8pt;
+  -fx-font-fill: gray;
+}
+
+/* ============================ *
+ * ScrollBar                    *
+ * ============================ */
+.scroll-bar {
+  -fx-background-color: #ffffff;
+}
+
+.scroll-bar .thumb {
+  -fx-background-color: #cccccc;
+  -fx-background-insets: 3;
+}
+
+.scroll-bar .increment-button,
+.scroll-bar .decrement-button {
+  -fx-background-color: transparent;
+  -fx-padding: 0 0 0 0;
+}
+
+.scroll-bar .increment-arrow,
+.scroll-bar .decrement-arrow {
+  -fx-shape: " ";
+}
+
+.scroll-bar:vertical .increment-arrow,
+.scroll-bar:vertical .decrement-arrow {
+  -fx-padding: 1 8 1 8;
+}
+
+.scroll-bar:horizontal .increment-arrow,
+.scroll-bar:horizontal .decrement-arrow {
+  -fx-padding: 8 1 8 1;
+}
+
+/* ============================ *
+* ResultDisplay                *
+* ============================ */
+.scroll-pane > .viewport {
+  -fx-background-color: #ffffff;
+  -fx-border-color: #ffffff;
+}
+
+.scroll-pane {
+  -fx-background-color: transparent;
+}

@@ -1,4 +1,4 @@
-title: "AB-3"
+title: "FoodRem"
 theme: minima
 
 header_pages:
@@ -8,8 +8,22 @@ header_pages:
 
 markdown: kramdown
 
-repository: "se-edu/addressbook-level3"
+collections:
+  - glossary
+
+repository: "AY2223S1-CS2103T-W16-2/tp"
 github_icon: "images/github-icon.png"
+
+enable_features:
+  admonitions: true
+  autoglossary: true
+
+defaults:
+  - scope:
+      path: "" # Site-wide default
+    values:
+      master_branch: "https://github.com/AY2223S1-CS2103T-W16-2/tp/tree/master"
+      main_src: "src/main/java/seedu/foodrem"
 
 plugins:
   - jemoji

@@ -1,0 +1,18 @@
+{% comment %}
+  Copyright 2022 Richard Dominick
+
+  Pure Liquid HTML (safe) minifier (minified to give no blank lines at the top of the rendered HTML).
+{% endcomment %}{% capture newline %}
+{% endcapture %}{% comment %} MOVE COMMENTS TO NEW LINES {% endcomment %}{% assign replacement = '>' | append: newline | append: '<!-- ' %}{% assign content = content | replace: '><!-- ', replacement %}{% comment %} HARDCODE MULTIPLE SPACE REPLACEMENT {% endcomment %}{% assign content = content
+  | replace: '>  <', '><'
+  | replace: '>   <', '><'
+  | replace: '>    <', '><'
+  | replace: '>     <', '><'
+  | replace: '>      <', '><'
+  | replace: '>       <', '><'
+  | replace: '>        <', '><'
+%}{% comment %} STRIP ALL LINES {% endcomment %}{% assign lines = content | split: newline %}{% assign trimmed = '' | split: '' %}{% for line in lines %}
+  {% comment %} {% assign start = line | slice: 0, 5 %}{% if start != '<pre ' %}{% assign skip_line = true %}{% endif %}{% if skip_line %}{% assign trimmed = trimmed | push: line %}{% continue %}{% endif %}{% assign start = line | slice: 0, 6 %}{% if start != '</pre>' %}{% assign skip_line = false %}{% endif %} {% endcomment %}
+  {% assign stripped = line | strip %}
+  {% assign trimmed = trimmed | push: stripped %}
+{% endfor %}{% assign content = trimmed | join: newline %}{% comment %} REMOVE LINES CONTAINING ONLY COMMENTS {% endcomment %}{% assign lines = content | split: newline %}{% assign without_comments = '' | split: '' %}{% for line in lines %}{% assign start = line | slice: 0, 5 %}{% if start != '<!-- ' %}{% assign without_comments = without_comments | push: line %}{% continue %}{% endif %}{% assign slice_index = line | size | minus: 4 %}{% assign end = line | slice: slice_index, 4 %}{% if end != ' -->' %}{% assign without_comments = without_comments | push: line %}{% continue %}{% endif %}{% endfor %}{% assign content = without_comments | join: newline %}{% comment %} REMOVE BLANK LINES {% endcomment %}{% assign content = content | split: newline | where_exp: 'item', 'item != ""' | join: newline %}{% comment %} MINIFY LINES {% endcomment %}{% assign replacement = '>' | append: newline | append: '<' %}{% assign content = content | replace: replacement, '><' %}{% comment %} RENDER {% endcomment %}{{ content }}

@@ -1,0 +1,20 @@
+@startuml
+!pragma useVerticalIf on
+start
+:User enters new command;
+if () then ([else])
+  :Error: Invalid command format;
+  stop
+([Item name is provided and arguments are valid]) elseif () then ([else])
+  :Error: Item already exists;
+  stop
+([Item does not exist in Item List]) elseif () then ([else])
+  :Error: Insufficient storage space for Items;
+  stop
+ else ([Storage space for Items is available])
+endif
+  :new command successfully executes.;
+stop
+
+@enduml
+

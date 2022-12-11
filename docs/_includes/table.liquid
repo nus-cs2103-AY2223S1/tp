@@ -1,0 +1,4 @@
+{% capture content %}
+{% include_relative {{ include.file }} %}
+{% endcapture %}
+{{ content | replace: "<td ", "<td markdown='span' " | replace: "<th ", "<th markdown='span' " | replace: "<td>", "<td markdown='span'>" | replace: "<th>", "<th markdown='span'>" }}

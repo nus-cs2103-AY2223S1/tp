@@ -1,0 +1,19 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Item *--> "1" ItemUnit
+
+ItemUnit -[Dotted]-> ItemUnitValidator
+
+ItemUnit -[Dotted]-> ItemUnitComparator
+
+ItemUnitComparator -[Dotted]-|> "<<interface>>\nItemComparator"
+
+"<<interface>>\nItemComparator" --|> "<<interface>>\nComparator"
+
+ItemUnitValidator -[Dotted]-|> "<<interface>>\nValidator"
+
+@enduml

@@ -1,0 +1,25 @@
+@startuml
+!pragma useVerticalIf on
+start
+:User enters decrement command;
+if () then ([Specified quantity is not provided])
+    if () then ([Final quantity is valid])
+        :Item quantity is decremented by 1;
+        stop
+    else ([Final quantity is invalid])
+    endif
+else ( [Specified quantity is provided])
+    if () then ([Specified quantity is valid])
+        if () then ([Final quantity is valid])
+            :Item quantity is decremented by the specified quantity;
+            stop
+        else ([Final quantity is invalid])
+        endif
+    else ([Specified quantity is invalid])
+        : Error: The item quantity should not ...;
+        stop
+    endif
+endif
+:Error: (Final Quantity) The item quantity should not ...;
+stop
+@enduml
