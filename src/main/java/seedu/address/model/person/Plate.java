@@ -27,10 +27,10 @@ public class Plate {
     /**
      * Returns true if a given string is a valid car plate.
      */
-    // COME BACK LATER TO FIX THIS SHITTTTT todo
+
     public static boolean isValidPlate(String test) {
-        return true;
-//                test.matches(VALIDATION_REGEX);
+        return
+                test.matches(VALIDATION_REGEX);
     }
 
     @Override

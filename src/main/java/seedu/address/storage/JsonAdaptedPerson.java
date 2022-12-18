@@ -116,7 +116,8 @@ class JsonAdaptedPerson {
         if (arrival == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Arrival.class.getSimpleName()));
         }
-        if (!Plate.isValidPlate(arrival)) {
+        //todo
+        if (!Arrival.isValidArrival(arrival)) {
             throw new IllegalValueException(Plate.MESSAGE_CONSTRAINTS);
         }
         final Arrival modelArrival = new Arrival(arrival);
