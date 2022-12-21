@@ -125,7 +125,7 @@ public class ModUnmarkCommandTest {
      * in the list of taken modules of a batchmate.
      */
     @Test
-    public void execute_unmarkNonExistingMod1_throwsCommandException() {
+    public void execute_unmarkNonExistingMod1_throwsCommandException() throws CommandException {
 
         Student batchmate = new StudentBuilder(BOB).withMods(
                         VALID_MOD_CS2100.getModName(),
@@ -156,7 +156,7 @@ public class ModUnmarkCommandTest {
      * 1 non-existing mod in the list of taken modules of a batchmate.
      */
     @Test
-    public void execute_unmarkNonExistingMod2_throwsCommandException() {
+    public void execute_unmarkNonExistingMod2_throwsCommandException() throws CommandException {
 
         Student batchmate = new StudentBuilder(BOB).withMods(
                         VALID_MOD_CS2100.getModName(),
