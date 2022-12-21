@@ -1,6 +1,7 @@
 package seedu.masslinkers.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.masslinkers.commons.core.Messages.MESSAGE_INVALID_CLEAR_COMMAND;
 
 import java.util.List;
 
@@ -34,6 +35,9 @@ public class ModMarkAllCommand extends ModCommand {
         requireNonNull(model);
 
         List<Student> lastShownList = model.getFilteredStudentList();
+        if (lastShownList.isEmpty()) {
+            throw new CommandException(MESSAGE_INVALID_CLEAR_COMMAND);
+        }
 
         for (Student student : lastShownList) {
             student.markAllMods();

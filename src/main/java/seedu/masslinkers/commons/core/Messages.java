@@ -6,6 +6,7 @@ package seedu.masslinkers.commons.core;
 public class Messages {
 
     public static final String MESSAGE_UNKNOWN_COMMAND = "Invalid command! Enter help to view all valid commands.";
+    public static final String MESSAGE_INVALID_CLEAR_COMMAND = "Invalid command! List is already empty!";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INCOMPLETE_COMMAND_FORMAT = "Incomplete command format! \n%1$s";
     public static final String MESSAGE_MISSING_ARGUMENTS = "Missing arguments for the given command! \n%1$s";

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Scene?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.stage.Stage?>
+
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<fx:root minHeight="600" minWidth="700" onCloseRequest="#handleExit" title="Mass Linkers"
+         type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+  <icons>
+    <Image url="@/images/address_book_32.png" />
+  </icons>
+  <scene>
+    <Scene>
+      <stylesheets>
+        <URL value="@css/DarkTheme.css" />
+        <URL value="@css/Extensions.css"/>
+      </stylesheets>
+
+      <VBox>
+        <AnchorPane fx:id="menuContainer" xmlns:fx="http://javafx.com/fxml/1">
+        <MenuBar AnchorPane.topAnchor="8" fx:id="menuBar" VBox.vgrow="NEVER">
+          <Menu mnemonicParsing="false" text="File">
+            <MenuItem mnemonicParsing="false" styleClass="menu-item"  onAction="#handleExit" text="Exit" />
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <MenuItem styleClass="menu-item" fx:id="helpMenuItem" mnemonicParsing="false"
+                      onAction="#handleHelp" text="Help" />
+          </Menu>
+        </MenuBar>
+            <Label AnchorPane.rightAnchor="20" AnchorPane.topAnchor="10" AnchorPane.bottomAnchor="10"
+                   fx:id="appLogo" text="Mass Linkers"/>
+        </AnchorPane>
+        <!--Search bar-->
+        <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
+          <padding>
+            <Insets bottom="5" left="10" right="10" top="5" />
+          </padding>
+        </StackPane>
+
+        <!--Search result-->
+        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="90" minHeight="90" prefHeight="90"
+                   styleClass="pane-with-border" VBox.vgrow="NEVER">
+          <padding>
+            <Insets bottom="10" left="10" right="10" top="2" />
+          </padding>
+        </StackPane>
+
+        <HBox prefWidth="400" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+
+          <!--People left panel-->
+        <StackPane minWidth="300" prefWidth="NaN" styleClass="pane-with-border" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+        <VBox fx:id="studentList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+          <HBox fx:id="studentHeader" alignment="CENTER">
+            <children>
+              <ImageView fitHeight="30.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                  <Image url="@../images/person.png" />
+                </image>
+              </ImageView>
+              <HBox alignment="CENTER">
+                <padding>
+                  <Insets top="9" right="1" bottom="9" left="6" />
+                </padding>
+                <Label styleClass="label-header" text="Students" textAlignment="CENTER" textFill="WHITE" />
+              </HBox>
+            </children>
+          </HBox>
+          <padding>
+            <Insets bottom="10" left="10" right="10" top="1" />
+          </padding>
+          <HBox>
+            <padding>
+              <Insets bottom="0"  />
+            </padding>
+          </HBox>
+          <StackPane fx:id="studentListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+        </VBox>
+        </StackPane>
+          <!--Mods right panel-->
+          <StackPane minWidth="300" prefWidth="NaN" styleClass="pane-with-border"
+                     HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+
+          <VBox fx:id="modList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+            <HBox fx:id="modHeader" alignment="CENTER">
+              <children>
+                <ImageView fitHeight="30.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                    <Image url="@../images/book.png" />
+                  </image>
+                </ImageView>
+                <HBox alignment="CENTER">
+                  <padding>
+                    <Insets top="9" right="1" bottom="9" left="6" />
+                  </padding>
+                  <Label styleClass="label-header" text="Modules" textAlignment="CENTER" textFill="WHITE" />
+                </HBox>
+              </children>
+            </HBox>
+            <padding>
+              <Insets bottom="10" left="10" right="10" top="1" />
+            </padding>
+            <HBox>
+          <padding>
+                  <Insets bottom="0"  />
+                </padding>
+              </HBox>
+              <StackPane fx:id="modListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+            </VBox>
+          </StackPane>
+        </HBox>
+        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
+      </VBox>
+    </Scene>
+  </scene>
+</fx:root>
