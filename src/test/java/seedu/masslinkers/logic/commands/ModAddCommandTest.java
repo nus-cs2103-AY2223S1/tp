@@ -80,7 +80,7 @@ public class ModAddCommandTest {
      * Test the {@code execute} method to add a pre-existing mod.
      */
     @Test
-    public void execute_saveDuplicateMods_success() throws CommandException {
+    public void execute_saveDuplicateMods_error() throws CommandException {
 
         // adds a test student to model
         Student toAdd = new StudentBuilder(BOB).withMods(VALID_MOD_CS2100.getModName()).build();
@@ -90,17 +90,7 @@ public class ModAddCommandTest {
         Index indexLastStudent = Index.fromOneBased(model.getFilteredStudentList().size());
         ModAddCommand commandToExecute = new ModAddCommand(indexLastStudent,
                 FXCollections.singletonObservableList(VALID_MOD_CS2100));
-        CommandResult commandResult = commandToExecute.execute(model);
-        // get the edited student from ModAddCommand
-        Student editedStudent = model.getFilteredStudentList().get(indexLastStudent.getZeroBased());
-
-        // expected edited student
-        Student editedStudentExpected = new StudentBuilder(BOB)
-                .withMods(VALID_MOD_CS2100.getModName())
-                .build();
-
-        assertEquals(String.format(ModAddCommand.MESSAGE_SUCCESS, editedStudent), commandResult.getFeedbackToUser());
-        assertEquals(editedStudent, editedStudentExpected);
+        assertCommandFailure(commandToExecute, model, Messages.MOD_ACTION_NO_CHANGE);
     }
 
     /**

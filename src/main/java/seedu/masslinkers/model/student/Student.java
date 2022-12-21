@@ -1,5 +1,6 @@
 package seedu.masslinkers.model.student;
 
+import static seedu.masslinkers.commons.core.Messages.MOD_ACTION_NO_CHANGE;
 import static seedu.masslinkers.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
@@ -12,6 +13,7 @@ import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
+import seedu.masslinkers.logic.commands.exceptions.CommandException;
 import seedu.masslinkers.model.interest.Interest;
 import seedu.masslinkers.model.util.ModComparator;
 
@@ -125,7 +127,18 @@ public class Student {
      *
      * @param mods The list of mods to add in.
      */
-    public void addMods(ObservableList<Mod> mods) {
+    public void addMods(ObservableList<Mod> mods) throws CommandException {
+        ObservableList<Mod> currMods = this.getMods();
+        boolean noChange = true;
+        for (Mod mod: mods) {
+            if (!currMods.contains(mod)) {
+                noChange = false;
+                break;
+            }
+        }
+        if (noChange) {
+            throw new CommandException(MOD_ACTION_NO_CHANGE);
+        }
         Set<Mod> uniqueModsSet = mods
                 .stream()
                 .filter(mod -> !this.mods.contains(mod))
@@ -157,7 +170,22 @@ public class Student {
      *
      * @param mods The list of mods to be marked.
      */
-    public void markMods(ObservableList<Mod> mods) {
+    public void markMods(ObservableList<Mod> mods) throws CommandException {
+        ObservableList<Mod> currMods = this.getMods();
+        boolean noChange = true;
+        for (Mod mod: mods) {
+            for (Mod existingMod: currMods) {
+                if (existingMod.isSameMod(mod)) {
+                    if (!existingMod.getModStatus()) {
+                        noChange = false;
+                        break;
+                    }
+                }
+            }
+        }
+        if (noChange) {
+            throw new CommandException(MOD_ACTION_NO_CHANGE);
+        }
         for (Mod mod : mods) {
             for (Mod currentMod : this.mods) {
                 String currentModName = currentMod.getModName();
@@ -174,7 +202,22 @@ public class Student {
     /**
      * Marks all mods of a batchmate as taken.
      */
-    public void markAllMods() {
+    public void markAllMods() throws CommandException {
+        ObservableList<Mod> currMods = this.getMods();
+        boolean noChange = true;
+        for (Mod mod: mods) {
+            for (Mod existingMod: currMods) {
+                if (existingMod.isSameMod(mod)) {
+                    if (!existingMod.getModStatus()) {
+                        noChange = false;
+                        break;
+                    }
+                }
+            }
+        }
+        if (noChange) {
+            throw new CommandException(MOD_ACTION_NO_CHANGE);
+        }
         for (Mod mod : this.mods) {
             mod.markMod();
         }
@@ -185,7 +228,22 @@ public class Student {
      *
      * @param mods The list of mods to be unmarked.
      */
-    public void unmarkMods(ObservableList<Mod> mods) {
+    public void unmarkMods(ObservableList<Mod> mods) throws CommandException {
+        ObservableList<Mod> currMods = this.getMods();
+        boolean noChange = true;
+        for (Mod mod: mods) {
+            for (Mod existingMod: currMods) {
+                if (existingMod.isSameMod(mod)) {
+                    if (existingMod.getModStatus()) {
+                        noChange = false;
+                        break;
+                    }
+                }
+            }
+        }
+        if (noChange) {
+            throw new CommandException(MOD_ACTION_NO_CHANGE);
+        }
         for (Mod mod : mods) {
             for (Mod currentMod : this.mods) {
                 String currentModName = currentMod.getModName();

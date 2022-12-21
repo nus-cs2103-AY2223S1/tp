@@ -3,6 +3,7 @@ package seedu.masslinkers.model.student;
 import static java.util.Objects.requireNonNull;
 import static seedu.masslinkers.commons.util.AppUtil.checkArgument;
 
+import seedu.masslinkers.logic.commands.exceptions.CommandException;
 import seedu.masslinkers.logic.parser.ParserUtil;
 
 /**
@@ -91,14 +92,14 @@ public class Mod {
     /**
      * Marks a module as taken.
      */
-    public void markMod() {
+    public void markMod() throws CommandException {
         this.hasTaken = true;
     }
 
     /**
      * Unmarks a module and updates the status as taking.
      */
-    public void unmarkMod() {
+    public void unmarkMod() throws CommandException {
         this.hasTaken = false;
     }
 

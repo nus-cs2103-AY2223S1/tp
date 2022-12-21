@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.masslinkers.logic.commands.exceptions.CommandException;
 import seedu.masslinkers.model.util.SampleDataUtil;
 import seedu.masslinkers.testutil.StudentBuilder;
 
@@ -43,7 +44,7 @@ public class ModTakingContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void test_modTakingContainsKeywords_returnsTrue() {
+    public void test_modTakingContainsKeywords_returnsTrue() throws CommandException {
         // One keyword
         ModTakingContainsKeywordsPredicate predicate = new ModTakingContainsKeywordsPredicate(
                 Collections.singletonList("cs2109s"));
@@ -65,7 +66,7 @@ public class ModTakingContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void test_modTakingDoesNotContainKeywords_returnsFalse() {
+    public void test_modTakingDoesNotContainKeywords_returnsFalse() throws CommandException {
         // Mod taken
         Student chanHuatHeng = new StudentBuilder().withName("Chan Huat Heng").withMods("MA1521").build();
         chanHuatHeng.markMods(SampleDataUtil.getModSet("MA1521"));

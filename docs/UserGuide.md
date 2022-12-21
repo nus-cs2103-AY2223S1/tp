@@ -100,7 +100,7 @@ The following notes outline several noteworthy format that the [Features](#5-fea
 
 * Any words that come after a prefix will be taken as the parameter.<br>
   Example:
-  * `n/john smith t/john parallelisation` john parallelization would be considered as the parameter for the telegram handle, which is invalid.
+  * `n/john smith t/johnxyz parallelisation` john parallelization would be considered as the parameter for the telegram handle, which is invalid.
     <br>ie. a space does not demarcate the end of a parameter.
 
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.
@@ -352,7 +352,12 @@ __Examples:__
 <div markdown="span" class="alert alert-warning">:warning: **Warning:** The `mod mark all` command is irreversible. Only execute it if you intend to mark __all existing modules__ for __all batchmates__ as taken. 
  </div>
 
-Marks all current modules of every batchmate in Mass Linkers as `taken` in the _Modules panel_. This makes it convenient to update the module status of all existing modules of every batchmate as taken after each semester.
+Marks all current modules of batchmate currently listed in Mass Linkers as `taken` in the _Modules panel_. This makes it convenient to update the module status of all existing modules of every batchmate as taken after each semester.
+
+<div markdown="block" class="alert alert-info">:information_source: **Note:**
+To mark all mods present of all students, carry out ```list``` followed by ```mod mark all```.
+
+</div>
 
 __Format:__ `mod mark all`
 

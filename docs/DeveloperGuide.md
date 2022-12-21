@@ -699,7 +699,7 @@ testers are expected to do more *exploratory* testing.
            Expected: No batchmate is added. The status message indicates that the batchmate already exists in Mass Linkers.
            Uniqueness is verified using two of the mandatory fields - the ```Student```'s name and telegram handle.
 
-    2. Test case: `add n/John t/john i/ai g/john`.<br>
+    2. Test case: `add n/John t/johnxyz i/ai g/john`.<br>
        Expected: A new batchmate with the name `John`, telegram handle `john`, interests `ai` and GitHub `john` is added at the bottom of the _Students panel_ in Mass Linkers.
        The status message indicates that a batchname named `John` has been successfully added.
 
