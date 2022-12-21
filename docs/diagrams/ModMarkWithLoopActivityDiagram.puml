@@ -1,0 +1,22 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+'This diagram is not used now, as the loop notation is
+'not taught in CS2103T module.
+
+start
+:Student enters mod mark command;
+:Mass Linkers reads and parses command;
+:Mass Linkers searches for the
+batchmate at specified index;
+repeat
+  :Mass Linkers searches for a specified mod
+  in the list of mods of batchmate;
+  :Mass Linkers marks the
+  specified mod as taken;
+repeat while (more mods?) is (yes)
+->no;
+:Updated mod status is saved
+and stored in Mass Linkers;
+stop
+
+@enduml

@@ -1,0 +1,34 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+|#dee4e8|JsonAdaptedMod|
+|#c4c9cd|Mod|
+|#daf0fe|ParserUtil|
+
+sprite $rake [16x16/8] {
+0000000000000000
+0000000jj0000000
+0000000jj0000000
+0005555jj5555000
+000jjeejjeejj000
+000jj00jj00jj000
+000jj00jj00jj000
+0000000000000000
+}
+
+|JsonAdaptedMod|
+start
+:Calls the constructor of Mod;
+|Mod|
+:Checks if the arguments provided is valid;
+:Calls ParserUtil#parseModsToCategory(String modName);
+|ParserUtil|
+:Determines and returns a category <$rake>;
+
+|Mod|
+:The constructor assigns the category to this instance of Mod;
+:The constructor returns the instance to JsonAdaptedMod;
+|JsonAdaptedMod|
+stop
+
+@enduml

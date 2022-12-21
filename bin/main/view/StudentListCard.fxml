@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+  <GridPane HBox.hgrow="ALWAYS">
+    <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+    </columnConstraints>
+    <VBox alignment="TOP_LEFT" minHeight="85" GridPane.columnIndex="0">
+      <padding>
+        <Insets top="5" right="5" bottom="5" left="15" />
+      </padding>
+      <HBox spacing="1" alignment="CENTER_LEFT">
+        <Label fx:id="id" styleClass="cell_big_label">
+          <minWidth>
+            <!-- Ensures that the label text is never truncated -->
+            <Region fx:constant="USE_PREF_SIZE" />
+          </minWidth>
+        </Label>
+        <Label fx:id="name" text="\$first" styleClass="cell_big_label" wrapText="true"/>
+      </HBox>
+
+      <HBox>
+      <padding>
+        <Insets top="3" bottom="3" />
+      </padding>
+      <FlowPane fx:id="interests" />
+      </HBox>
+
+      <HBox fx:id="telegramContainer" alignment="CENTER_LEFT">
+        <children>
+          <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+              <Image url="@../images/telegram.png" />
+            </image>
+          </ImageView>
+          <HBox>
+            <padding>
+              <Insets top="1" right="1" bottom="1" left="4" />
+            </padding>
+            <Label fx:id="telegram" styleClass="cell_small_label" wrapText="true" />
+          </HBox>
+        </children>
+      </HBox>
+
+      <HBox fx:id="phoneContainer" alignment="CENTER_LEFT">
+        <children>
+          <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+              <Image url="@../images/phone.png" />
+            </image>
+          </ImageView>
+          <HBox>
+            <padding>
+              <Insets top="1" right="1" bottom="1" left="4" />
+            </padding>
+            <Label fx:id="phone" styleClass="cell_small_label" wrapText="true" />
+          </HBox>
+        </children>
+      </HBox>
+
+      <HBox fx:id="emailContainer" alignment="CENTER_LEFT">
+        <children>
+          <ImageView fitHeight="17.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+              <Image url="@../images/mail.png" />
+            </image>
+          </ImageView>
+          <HBox>
+            <padding>
+              <Insets top="1" right="1" bottom="1" left="4" />
+            </padding>
+            <Label fx:id="email" styleClass="cell_small_label" wrapText="true" />
+          </HBox>
+        </children>
+      </HBox>
+
+      <HBox fx:id="githubContainer" alignment="CENTER_LEFT">
+        <children>
+          <ImageView fitHeight="17.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+              <Image url="@../images/github.png" />
+            </image>
+          </ImageView>
+          <HBox>
+            <padding>
+              <Insets top="1" right="1" bottom="1" left="4" />
+            </padding>
+            <Label fx:id="github" styleClass="cell_small_label" wrapText="true" />
+          </HBox>
+        </children>
+      </HBox>
+    </VBox>
+  </GridPane>
+</HBox>

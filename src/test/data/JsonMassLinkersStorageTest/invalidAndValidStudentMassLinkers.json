@@ -1,0 +1,23 @@
+{
+  "students": [ {
+    "name": "Valid Student",
+    "phone": "9482424",
+    "email": "hans@example.com",
+    "mods" : [ {
+      "modName" : "CS2100",
+      "hasTaken" : false
+    } ],
+    "handle": "valid",
+    "username": "valid"
+  }, {
+    "name": "Student With Invalid Phone Field",
+    "phone": "948asdf2424",
+    "email": "hans@example.com",
+    "mods" : [ {
+      "modName" : "CS2100",
+      "hasTaken" : false
+    } ],
+    "handle": "valid",
+    "username": "valid"
+  } ]
+}

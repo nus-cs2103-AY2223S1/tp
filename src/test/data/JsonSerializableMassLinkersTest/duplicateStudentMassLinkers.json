@@ -1,0 +1,22 @@
+{
+  "students": [ {
+    "name": "Alice Pauline",
+    "phone": "94351253",
+    "email": "alice@example.com",
+    "handle": "alice",
+    "username": "alifur",
+    "mods" : [ {
+      "modName" : "CS2100",
+      "hasTaken" : false
+    } ],
+    "interests": [ "tennis" ]
+  }, {
+    "name": "Alice Pauline",
+    "phone": "94351253",
+    "email": "pauline@example.com",
+    "handle": "alice",
+    "username": "alpaul",
+    "mods" : [ ],
+    "address": "4th street"
+  } ]
+}

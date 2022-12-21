@@ -1,0 +1,34 @@
+@startuml
+skinparam classAttributeIconSize 0
+hide circle
+hide members
+show ModCommandParser methods
+show ModMarkCommand methods
+show Student methods
+show Mod methods
+
+Class "<<interface>>\nParser" as Parser
+Class "{abstract}\nModCommand" as ModCommand
+
+Class ModCommandParser {
+  -parseMarkCommand(args: String): ModMarkCommand
+}
+Class ModMarkCommand {
+  +execute(model: Model): CommandResult
+}
+Class Student {
+ +markMods(mods: ObservableList<Mod>)
+}
+Class Mod {
+ +markMod()
+}
+
+Parser <|.. ModCommandParser
+ModCommand <|-- ModMarkCommand
+ModCommandParser -right-> ModMarkCommand
+ModMarkCommand --> Student
+Student -left-> Mod
+ModCommandParser ..> Mod
+ModMarkCommand ..> Mod
+
+@enduml

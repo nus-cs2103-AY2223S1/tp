@@ -3,57 +3,61 @@ layout: page
 title: About Us
 ---
 
-We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
+We are Team Mass Linkers, a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+
+We strive to use our tech skills to solve problems faced by students and make peer support accessible and convenient for all. 
+
+You can find out more about our work below or reach out to us via the portfolio links below.
+
 
 ## Project team
 
-### John Doe
+### Chin Hong Ming
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/chm252.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/chm252)]
+[[portfolio](team/chm252.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Model, Integration
 
-### Jean Doe
+### Sheryl-Lynn Tan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/sltsheryl.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/sltsheryl)] [[portfolio](team/sltsheryl.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: UI, Student Information
+
+### Zheng Jiarui
+
+<img src="images/carriezhengjr.png" width="200px">
+
+[[github](https://github.com/carriezhengjr)] [[portfolio](team/carriezhengjr.md)]
+
+* Role: Developer
+* Responsibilities: User Guide, Logic
+
+
+### Elijah Seah
+
+<img src="images/elijahs67.png" width="200px">
+
+[[github](https://github.com/elijahs67)]
+[[portfolio](team/elijahs67.md)]
+
+* Role: Developer
+* Responsibilities: Commons, Testing
+
+### Jonas Goh
+
+<img src="images/jonasgwt.png" width="200px">
+
+[[github](http://github.com/jonasgwt)]
+[[portfolio](team/jonasgwt.md)]
+
+* Role: Developer
+* Responsibilities: Storage

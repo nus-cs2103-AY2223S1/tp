@@ -1,0 +1,22 @@
+@startuml
+!include style.puml
+skinparam Class {
+BorderColor #000000
+}
+
+participant ":JsonAdaptedMod" as JsonAdaptedMod STORAGE_COLOR
+participant ":Mod" as Mod MODEL_COLOR
+participant "ParserUtil" as ParserUtil <<class>> LOGIC_COLOR
+
+
+create Mod
+JsonAdaptedMod -> Mod: new Mod("CS2103T", false)
+activate Mod
+Mod -> ParserUtil: parseModsToCategory("CS2103T")
+activate ParserUtil
+ParserUtil --> Mod: modCategory
+deactivate ParserUtil
+Mod --> JsonAdaptedMod:
+deactivate Mod
+
+@enduml

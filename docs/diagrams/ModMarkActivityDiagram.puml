@@ -1,0 +1,24 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:Student enters mod mark command;
+:Mass Linkers reads and parses command;
+:Mass Linkers searches for the
+batchmate at specified index;
+if () then ([1 mod to mark])
+    :Mass Linkers searches for the specified
+    mod in the list of mods of batchmate;
+    :Mass Linkers marks
+    that mod as taken;
+else ([multiple mods to mark])
+    :Mass Linkers searches for all specified
+    mods in the list of mods of batchmate;
+    :Mass Linkers marks all
+    specified mods as taken;
+endif
+:Updated mod status is saved
+and stored in Mass Linkers;
+stop
+
+@enduml

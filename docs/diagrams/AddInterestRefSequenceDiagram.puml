@@ -1,0 +1,41 @@
+@startuml
+!include style.puml
+skinparam SequenceReferenceBackgroundColor White
+box Logic LOGIC_COLOR_T1
+participant ":AddInterest\nCommand" as AddInterestCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":Student" as Student MODEL_COLOR
+end box
+
+group sd Add Interest
+[-> AddInterestCommand : execute()
+activate AddInterestCommand
+
+AddInterestCommand -> Model: getFilteredStudentList()
+activate Model
+Model --> AddInterestCommand: ObservableList<Student>
+deactivate Model
+
+AddInterestCommand -> Student: get(1)
+activate Student
+Student --> AddInterestCommand: studentToEdit
+deactivate Student
+
+AddInterestCommand -> Student: addInterest("algo")
+activate Student
+Student --> AddInterestCommand
+deactivate Student
+
+
+AddInterestCommand -> Model: updateFilteredStudentList()
+activate Model
+Model --> AddInterestCommand
+deactivate Model
+
+[<--AddInterestCommand
+deactivate AddInterestCommand
+end
+@enduml

@@ -1,0 +1,22 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:Takes the first 2 characters from modName;
+switch ()
+case (["CS", "CP", "IS"])
+  :Return COMP category;
+case (["MA", "ST"])
+  :Return MATH category;
+case(["LS", "CM", "PC"])
+  :Return SCI category;
+case(["GE", "UT"])
+  :Return GE category;
+case(["ES"])
+  :Return COMMS category;
+case([all others])
+  :Return UE category;
+endswitch
+stop
+
+@enduml
