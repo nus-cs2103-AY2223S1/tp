@@ -94,8 +94,8 @@ public class EditCommand extends Command {
         Plate updatedPlate = editPersonDescriptor.getPlate().orElse(personToEdit.getPlate());
         Arrival updatedArrival = editPersonDescriptor.getArrival().orElse(personToEdit.getArrival());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedPlate, updatedArrival, updatedTags);
+        RepairDuration updatedRepairDuration = editPersonDescriptor.getRepairDuration().orElse(personToEdit.getRepairDuration());
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedPlate, updatedArrival, updatedRepairDuration, updatedTags);
     }
 
     @Override
@@ -127,6 +127,7 @@ public class EditCommand extends Command {
         private Address address;
         private Plate plate;
         private Arrival arrival;
+        private RepairDuration repairDuration;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -142,6 +143,7 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setPlate(toCopy.plate);
             setArrival(toCopy.arrival);
+            setRepairDuration(toCopy.repairDuration);
             setTags(toCopy.tags);
         }
 
@@ -149,7 +151,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, plate, arrival,tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, plate, arrival, repairDuration, tags);
         }
 
         public void setName(Name name) {
@@ -178,6 +180,14 @@ public class EditCommand extends Command {
 
         public void setAddress(Address address) {
             this.address = address;
+        }
+
+        public void setRepairDuration(RepairDuration repairDuration) {
+            this.repairDuration = repairDuration;
+        }
+
+        public Optional<RepairDuration> getRepairDuration() {
+            return Optional.ofNullable(repairDuration);
         }
 
         public Optional<Plate> getPlate() {
@@ -238,6 +248,7 @@ public class EditCommand extends Command {
                     && getAddress().equals(e.getAddress())
                     && getPlate().equals(e.getPlate())
                     && getArrival().equals(e.getArrival())
+                    && getRepairDuration().equals(e.getRepairDuration())
                     && getTags().equals(e.getTags());
         }
     }

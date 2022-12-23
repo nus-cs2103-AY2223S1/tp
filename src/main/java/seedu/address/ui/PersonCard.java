@@ -44,6 +44,8 @@ public class PersonCard extends UiPart<Region> {
     private Label plate;
     @FXML
     private Label arrival;
+    @FXML
+    private Label endDate;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -58,10 +60,12 @@ public class PersonCard extends UiPart<Region> {
         email.setText(person.getEmail().value);
         plate.setText(person.getPlate().value);
         arrival.setText(person.getArrival().toString());
+        endDate.setText(person.getRepairDuration().getEndDate(person.getArrival()));
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
+
 
     @Override
     public boolean equals(Object other) {

@@ -110,6 +110,15 @@ public class ParserUtil {
         return new Arrival(trimmedArrival);
     }
 
+    public static RepairDuration parseRepairDuration(String repairDuration) throws ParseException {
+        requireNonNull(repairDuration);
+        String trimmedRepairDuration = repairDuration.trim();
+        if (!RepairDuration.isValidRepairDuration(trimmedRepairDuration)) {
+            throw new ParseException(RepairDuration.MESSAGE_CONSTRAINTS);
+        }
+        return new RepairDuration(trimmedRepairDuration);
+    }
+
     /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.

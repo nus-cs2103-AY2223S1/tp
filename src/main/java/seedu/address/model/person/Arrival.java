@@ -59,6 +59,12 @@ public class Arrival {
         return formattedString;
     }
 
+    public String toDateString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String formattedString = value.format(formatter);
+        return formattedString;
+    }
+
 
     @Override
     public boolean equals(Object other) {

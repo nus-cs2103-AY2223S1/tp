@@ -26,6 +26,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final String plate;
     private final String arrival;
+    private final String repairDuration;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -35,6 +36,7 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("plate") String plate, @JsonProperty("arrival") String arrival,
+            @JsonProperty("repairDuration") String repairDuration,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
@@ -42,6 +44,7 @@ class JsonAdaptedPerson {
         this.address = address;
         this.plate = plate;
         this.arrival = arrival;
+        this.repairDuration = repairDuration;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -49,6 +52,7 @@ class JsonAdaptedPerson {
 
     /**
      * Converts a given {@code Person} into this class for Jackson use.
+     * writing
      */
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
@@ -56,7 +60,8 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         plate = source.getPlate().value;
-        arrival = source.getArrival().toString();
+        arrival = source.getArrival().toDateString();
+        repairDuration = source.getRepairDuration().toString();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -64,7 +69,7 @@ class JsonAdaptedPerson {
 
     /**
      * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
-     *
+     * reading
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
@@ -116,14 +121,22 @@ class JsonAdaptedPerson {
         if (arrival == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Arrival.class.getSimpleName()));
         }
-        //todo
         if (!Arrival.isValidArrival(arrival)) {
-            throw new IllegalValueException(Plate.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Arrival.MESSAGE_CONSTRAINTS);
         }
         final Arrival modelArrival = new Arrival(arrival);
 
+        if (repairDuration == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Arrival.class.getSimpleName()));
+        }
+
+        if (!RepairDuration.isValidRepairDuration(repairDuration)) {
+            throw new IllegalValueException(RepairDuration.MESSAGE_CONSTRAINTS);
+        }
+        final RepairDuration modelRepairDuration = new RepairDuration(repairDuration);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelPlate, modelArrival, modelTags);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelPlate, modelArrival, modelRepairDuration, modelTags);
     }
 
 }
